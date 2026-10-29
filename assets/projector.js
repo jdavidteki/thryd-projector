@@ -53,11 +53,11 @@ function render(m){
   const BW=innerWidth*.13, BH=innerHeight*.2; // natural entity box
   Object.entries(items).forEach(([reg,list])=>{
     const r=regionRect(reg), top=r.top+innerHeight*.055, W=r.width*.96, H=r.bottom-top-innerHeight*.01, n=list.length;
-    let best=null;for(let cols=1;cols<=n;cols++){const rows=Math.ceil(n/cols),cw=W/cols,ch=H/rows,sc=Math.min(1,cw/BW,ch/BH);if(!best||sc>best.sc+1e-6)best={cols,rows,cw,ch,sc};}
+    let best=null;for(let cols=1;cols<=n;cols++){const rows=Math.ceil(n/cols),cw=W/cols,ch=H/rows,sc=Math.min(1,cw/BW,ch/BH);if(!best||sc>=best.sc-1e-6)best={cols,rows,cw,ch,sc};}
     const {cols,cw,ch,sc}=best;
     list.forEach((it,k)=>{const e=ent(it.id,it.kind,it.label,it.sp);seen.add(it.id);
       const x=r.left+r.width*.02+cw*(k%cols+.5), y=top+ch*(Math.floor(k/cols)+1)-innerHeight*.005;
-      e.style.setProperty('--s',sc.toFixed(3)); e.style.width=(cw*.96/sc)+'px';
+      e.style.setProperty('--s',sc.toFixed(3)); e.style.width=(cw*.88/sc)+'px';
       e.style.left=x+'px';e.style.top=y+'px';e.title=it.label;
       if(it.c){pos[it.label]=[x,y];e.classList.toggle('off',!!it.c.off);e.querySelector('.note').textContent=it.c.note||'';}
       else{const o=it.o;e.querySelector('.note').textContent=o.holder?'held by '+o.holder:'';e.classList.toggle('off',o.region!==m.here&&!o.holder);}
