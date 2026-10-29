@@ -75,7 +75,7 @@ function objsFor(set){const [k,e0]=set?lookup(set):[null,null]; if(k===objKey&&o
   $('stage').insertBefore(L,$('cap')); objLayer=L; fitLayer(); requestAnimationFrame(()=>L.classList.add('on'));}
 addEventListener('resize',fitLayer);
 // agenda state changed an object -> its sprite glides a bit and pulses
-function objChanged(id){if(!objLayer||!id)return;objLayer.querySelectorAll('.ob').forEach(b=>{if(b.dataset.sid===id||b.dataset.label===id){
+function objChanged(id){if(!objLayer||!id)return;objLayer.querySelectorAll('.ob:not(.dpatch)').forEach(b=>{if(b.dataset.sid===id||b.dataset.label===id){
   const w=b.querySelector('.spw')||b;w.classList.remove('moved');void w.offsetWidth;w.style.setProperty('--gx',((Math.random()-.5)*6).toFixed(1)+'px');w.style.setProperty('--gy',((Math.random()-.5)*4).toFixed(1)+'px');w.classList.add('moved');}});}
 function trackObjs(st){(st.objects||[]).forEach(o=>{const v=JSON.stringify([o.place,o.holder||o.held_by||null,o.state||o.status||null]);
   if(objState[o.label]!==undefined&&objState[o.label]!==v)objChanged(o.label);objState[o.label]=v;});
