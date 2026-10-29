@@ -32,15 +32,31 @@ startSlide();
 // ---------- in-place object sprites (data/objects_map.json): patch at bbox, sprite on top, gentle motion
 let OMAP={}, objLayer=null, objKey=null, objState={};
 const mapKey=p=>{const r=(p||'').match(/(run-[\w]+)/), j=(p||'').match(/\b(j\d+)(?:_blur)?\.(?:gif|jpe?g|webp)$|\/(j\d+)\/?$/);return r&&j?r[1]+'/'+(j[1]||j[2]):null;};
-function setKey(set){const p=set&&(set.gif||set.src||set.dir)||''; let k=mapKey(p);
-  if(!k){const j=p.match(/(?:^|\/)(j\d+)(?:\/|$|_)/), r=p.match(/(run-[\w]+)/)||[0,($('run').textContent||'').trim()]; if(j&&r[1])k=r[1]+'/'+j[1];}
-  if(!k&&p.includes('assets/webp/')){const j=p.match(/(j\d+)/);if(j)k='run-5a58c4/'+j[1];} // live backdrops are run-5a58c4 views
-  return k;}
+// lookup order: run+jN, run+gN, replays.json gifs[] (gN -> Nth source gif), card wN -> jN, GIF basename
+let RGIFS={}; const runOf=p=>{const r=(p||'').match(/(run-[\w-]+?)(?=\/|$)/);return r?r[1]:null;};
+const baseOf=p=>{const b=(p||'').split('/').pop().replace(/\.(gif|webp|jpe?g|png)$/i,'').replace(/_(blur|view)$/,'');return b;};
+let OBASE={}; function addOmap(om){OMAP={};OBASE={};Object.entries(om||{}).forEach(([k,v])=>{const mk=mapKey(k);if(mk)OMAP[mk]=v;OMAP[k]=v;
+  const r=runOf(k),b=baseOf(k);if(r&&b)OMAP[r+'/'+b]=OMAP[r+'/'+b]||v;if(b)(OBASE[b]=OBASE[b]||[]).push(v);
+  if(v&&v.run&&(v.jN||v.j))OMAP[v.run+'/'+(v.jN||v.j)]=OMAP[v.run+'/'+(v.jN||v.j)]||v; if(v&&v.replays_path){OMAP[v.replays_path]=v;const m2=mapKey(v.replays_path);if(m2)OMAP[m2]=OMAP[m2]||v;}});}
+function lookup(set){const p=set&&(set.gif||set.src||set.dir)||''; const tries=[];
+  let k=mapKey(p); if(k)tries.push(k);
+  const run=runOf(p)||($('run').textContent||'').trim(); const j=p.match(/(?:^|\/)(j\d+)(?:\/|$|_|\.)/), g=p.match(/(?:^|\/)(g(\d+))\/?$/);
+  if(run&&j)tries.push(run+'/'+j[1]);
+  if(run&&g){tries.push(run+'/'+g[1]); const src=(RGIFS[run]||[])[+g[2]]; if(src){tries.push(src);const mk=mapKey(src);if(mk)tries.push(mk);tries.push(run+'/'+baseOf(src));}}
+  if(run&&set&&/^w\d+$/.test(set.card||''))tries.push(run+'/j'+set.card.slice(1));
+  if(p.includes('assets/webp/')){const jj=p.match(/(j\d+)/);if(jj)tries.push('run-5a58c4/'+jj[1]);} // live backdrops are run-5a58c4 views
+  for(const t of tries)if(OMAP[t])return [t,OMAP[t]];
+  const b=baseOf(p); if(b&&!/^(g\d+|f\d+)$/.test(b)&&OBASE[b]&&OBASE[b].length===1)return ['base:'+b,OBASE[b][0]];
+  return [tries[0]||null,null];}
+function setKey(set){return lookup(set)[0];}
+async function loadOmap(){try{const om=await J('data/objects_map.json');const before=JSON.stringify(Object.keys(OMAP));addOmap(om);
+  if(JSON.stringify(Object.keys(OMAP))!==before&&bgSet){objKey=null;objsFor(bgSet);}}catch(e){}}
+async function loadRGifs(){try{(await J('data/replays.json')).runs.forEach(r=>RGIFS[r.run]=r.gifs||[]);}catch(e){}}
 function fitLayer(){if(!objLayer||!objLayer._fs)return;const st=$('stage'),W=st.clientWidth,H=st.clientHeight,[fw,fh]=objLayer._fs,sc=Math.min(W/fw,H/fh);
   Object.assign(objLayer.style,{width:fw*sc+'px',height:fh*sc+'px',left:(W-fw*sc)/2+'px',top:(H-fh*sc)/2+'px'});}
-function objsFor(set){const k=set?setKey(set):null; if(k===objKey&&objLayer)return; objKey=k;
+function objsFor(set){const [k,e0]=set?lookup(set):[null,null]; if(k===objKey&&objLayer)return; objKey=k;
   if(objLayer){const old=objLayer;old.classList.remove('on');setTimeout(()=>old.remove(),2600);objLayer=null;}
-  const e=k&&OMAP[k]; if(!e)return;
+  const e=e0; if(!e)return;
   const L=document.createElement('div');L.id='objs';L._fs=e.frame_size||[480,270];L.dataset.key=k;
   (e.objects||[]).forEach((o,i)=>{const[x,y,w,h]=o.bbox;const box=document.createElement('div');
     box.className='ob'+(o.sprite?'':' anchor');Object.assign(box.style,{left:x*100+'%',top:y*100+'%',width:w*100+'%',height:h*100+'%'});
@@ -61,7 +77,7 @@ function trackObjs(st){(st.objects||[]).forEach(o=>{const v=JSON.stringify([o.pl
   (st.characters||[]).forEach(c=>{const id=c.id||c.name,v=JSON.stringify([c.place]);if(objState['c:'+id]!==undefined&&objState['c:'+id]!==v)objChanged(id);objState['c:'+id]=v;});}
 window.thrydObjChanged=objChanged;
 function liveBackdrop(place){const p=(place||'').toLowerCase();const b=media.backdrops;
-  const k=/marina|boat|bay|causeway|church|wheelhouse|deck/.test(p)?'j6':'j12';return b[k]&&Object.assign({label:short(place)},b[k]);}
+  const k=Q.get('scene')||(/marina|boat|bay|causeway|church|wheelhouse|deck/.test(p)?'j6':'j12');return b[k]&&Object.assign({label:short(place)},b[k]);}
 // ---------- gutters: chips grouped by place, left & right of the stage, never over it
 const ents={}; let lastM=null, prevReg={}, order={}, regionsKey='';
 function ent(id,kind,label,sprite){
@@ -118,10 +134,11 @@ function say(L,who){ const e=ents['c:'+who]; if(!e)return;
   b.querySelector('.who').textContent=who+(L.src?' · '+L.src:''); b.querySelector('.txt').textContent=L.line;
   b.classList.toggle('r',right); b.style.left=(right?r.left-innerWidth*.006:r.right+innerWidth*.006)+'px';
   b.style.top=Math.min(innerHeight*.8,Math.max(innerHeight*.08,r.top+r.height/2))+'px';
-  b.classList.add('on'); setTimeout(()=>b.classList.remove('on'),Math.min(Math.max(SPEED*.9,4000),7000));
+  b.classList.add('on'); setTimeout(()=>b.classList.remove('on'),Math.min(Math.max(SLIDE*900,4000),7000));
 }
+const everyS=f=>{const g=gen;const run=()=>{const t=setTimeout(()=>{if(g!==gen)return;f();run();},SLIDE*1000);timers.push(t);};run();};
 const every=(f,ms)=>{const g=gen;const t=setInterval(()=>{if(g===gen)f();},ms);timers.push(t);};
-function reset(){gen++;timers.forEach(clearInterval);timers=[];Object.keys(ents).forEach(k=>{ents[k].remove();delete ents[k];});regionsKey='';$('bubble').classList.remove('on');}
+function reset(){gen++;timers.forEach(t=>{clearInterval(t);clearTimeout(t);});timers=[];Object.keys(ents).forEach(k=>{ents[k].remove();delete ents[k];});regionsKey='';$('bubble').classList.remove('on');}
 // ---------- LIVE from state.json
 let localPrec=[];
 function fromState(s){
@@ -146,7 +163,7 @@ async function live(){
     const it=(items.length?String(items[step++%items.length]):'waiting').replace(/ ?\(undefined\)/g,'');
     ticker(cur.story_time_label,ok(it)?it:'move (cut away)',`${cur.current_card} · ${cur.seats||''} · state ${String(cur.exported_at||'').slice(11,16)} ET`);
     const m=fromState(cur); maybeBubble(lines(),m.chars.filter(c=>!c.off).map(c=>c.name).concat(m.chars.length?[]:[]).slice(0,4).length?m.chars.filter(c=>!c.off).map(c=>c.name):m.chars.map(c=>c.name));};
-  upd(); every(upd,SPEED);
+  upd(); everyS(upd);
   every(async()=>{try{const n=await LIVE_STATE();if(g!==gen)return;const k=JSON.stringify([n.current_place,n.characters,n.objects,n.current_card,n.seated_count]);
       if(n.characters&&n.characters.length){if(k!==last&&last){(n.objects||[]).forEach(o=>pulse(o.label));} last=k; apply(n);}}catch(e){}},POLL);
 }
@@ -166,7 +183,7 @@ async function loopTimeline(){
     ticker(e.world,e.label,`${e.scene} · update ${i%ev.length+1}/${ev.length}`);
     const sp=Object.entries(chars).filter(([n,r])=>r===here).map(([n])=>n);
     maybeBubble(localPrec,sp.length?sp:Object.keys(chars)); i++; };
-  step(); every(step,SPEED);
+  step(); everyS(step);
 }
 // ---------- REPLAY
 async function replay(){
@@ -192,7 +209,7 @@ async function replay(){
     const ls=f.latest_seat; const lab=f.kind==='seat'&&ls?`seat ${ls.seat} seated on ${ls.card}`:`${f.card||''} ${f.event||''}${f.status?' · '+f.status:''}`;
     ticker(String(f.t||'').replace('T',' ').slice(0,16)+' ET',lab,`${want} · update ${i%fr.length+1}/${fr.length} · ${f.seated_count||0} seated`);
     maybeBubble(prec,cast.slice(0,6)); i++; };
-  step(); every(step,SPEED);
+  step(); everyS(step);
 }
 window.thrydSay=say; window.thrydChoose=choose;
 // ---------- UI
@@ -208,7 +225,7 @@ let idleT;const wake=()=>{document.body.classList.remove('idle');clearTimeout(id
 addEventListener('resize',()=>{regionsKey='';});
 (async()=>{
   try{media=await J('data/media.json');}catch(e){}
-  try{const om=await J('data/objects_map.json');Object.entries(om).forEach(([k,v])=>{const mk=mapKey(k);if(mk)OMAP[mk]=v;});}catch(e){}
+  await loadOmap(); await loadRGifs(); setInterval(()=>{if(MODE==='live'){loadOmap();loadRGifs();}},120000);
   const ss=$('slide');if(ss){ss.value=String(SLIDE);ss.onclick=e=>e.stopPropagation();ss.onchange=e=>{SLIDE=+e.target.value;localStorage.setItem('thryd_slide',SLIDE);Q.set('slide',SLIDE);history.replaceState(null,'','?'+Q.toString());startSlide();};}
   try{(await J('assets/runs/media.json')).runs.forEach(r=>runMedia[r.run]=r.media);}catch(e){}
   try{localPrec=(await J('data/precisions.json')).map(p=>({line:p.line,src:p.src,move:p.move}));}catch(e){}
