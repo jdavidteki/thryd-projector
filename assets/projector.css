@@ -41,3 +41,20 @@ body.idle #bar{opacity:0;transform:translateY(-100%);pointer-events:none}body.id
 .uchip .lab{outline:none;cursor:text;color:var(--acc);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .ux{background:none;color:#aaa;border:0;cursor:pointer}
 body.drop:after{content:"drop GIF to add";position:fixed;inset:3vh;border:3px dashed var(--acc);display:grid;place-items:center;font-size:5vh;color:var(--acc);z-index:20}
+
+/* v6 in-place object sprites */
+#objs{position:absolute;z-index:2;pointer-events:none;opacity:0;transition:opacity 2.5s}#objs.on{opacity:1}
+#objs .ob{position:absolute}
+#objs .patch{position:absolute;inset:0;width:100%;height:100%}
+#objs .spw{position:absolute;inset:0;transform:translate(0,0);transition:transform 1.6s cubic-bezier(.4,0,.2,1)}
+#objs .spw.moved{transform:translate(var(--gx,3px),var(--gy,-2px));animation:op 1.4s 2}
+@keyframes op{50%{filter:drop-shadow(0 0 1.2vh var(--acc)) brightness(1.35)}}
+#objs .sp{position:absolute;inset:0;width:100%;height:100%;animation-iteration-count:infinite;animation-timing-function:ease-in-out;will-change:transform}
+.m-sway{animation:sway 6s infinite ease-in-out;transform-origin:50% 100%}@keyframes sway{0%,100%{transform:rotate(-1.4deg)}50%{transform:rotate(1.4deg)}}
+.m-bob{animation:bob 4.5s infinite ease-in-out}@keyframes bob{0%,100%{transform:translateY(-3px) rotate(-.6deg)}50%{transform:translateY(3px) rotate(.6deg)}}
+.m-slide{animation:slide 7s infinite ease-in-out}@keyframes slide{0%,100%{transform:translateX(-4px)}50%{transform:translateX(4px)}}
+.m-flicker{animation:flick 3.2s infinite steps(1,end)}@keyframes flick{0%,100%{opacity:1;filter:brightness(1)}20%{opacity:.82;filter:brightness(1.2)}23%{opacity:1}55%{filter:brightness(1.12)}61%{opacity:.88;filter:brightness(.92)}64%{opacity:1;filter:brightness(1)}}
+.sp.small.m-sway{animation-name:swayS}@keyframes swayS{0%,100%{transform:rotate(-.4deg)}50%{transform:rotate(.4deg)}}
+.sp.small.m-bob{animation-name:bobS}@keyframes bobS{0%,100%{transform:translateY(-1.5px)}50%{transform:translateY(1.5px)}}
+.sp.small.m-slide{animation-name:slideS}@keyframes slideS{0%,100%{transform:translateX(-2px)}50%{transform:translateX(2px)}}
+#objs .olab{position:absolute;left:100%;top:0;margin-left:.3vw;font-size:1.2vh;color:var(--char);background:#000a;padding:.1vh .4vw;border-radius:.6vh;white-space:nowrap}

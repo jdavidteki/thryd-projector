@@ -13,7 +13,7 @@ const short=p=>(p||'elsewhere').replace(/,? (in )?Miami(, Florida)?/g,'').replac
 // ---------- stage: current scene GIF, large & centered, crossfaded
 let bgSet=null,bgI=0,bgFlip=0,bgTimer=null,stageN=0; window.THRYD_UG=window.THRYD_UG||[];
 function showUser(u){clearInterval(bgTimer);bgSet={dir:'user:'+u.id};const w=$('ug');w.innerHTML='';w.appendChild(u.vis);
-  w.classList.add('on');$('bgA').classList.remove('on');$('bgB').classList.remove('on');$('cap').textContent=u.label;}
+  w.classList.add('on');objsFor(null);$('bgA').classList.remove('on');$('bgB').classList.remove('on');$('cap').textContent=u.label;}
 function backdrop(set,force){ stageN++;
   const ug=window.THRYD_UG; if(ug.length&&stageN%3===0){return showUser(ug[Math.floor(stageN/3)%ug.length]);}
   if(!set||(!force&&bgSet&&bgSet.dir===set.dir))return; bgSet=set;bgI=0; $('ug').classList.remove('on');
@@ -21,10 +21,45 @@ function backdrop(set,force){ stageN++;
   for(let i=0;i<set.frames;i++){const im=new Image();im.src=`${set.dir}/f${String(i).padStart(3,'0')}.webp`;}
   bgFlip^=1; const on=imgs[bgFlip],off=imgs[bgFlip^1];
   const tick=()=>{on.src=`${set.dir}/f${String(bgI%set.frames).padStart(3,'0')}.webp`;bgI++;};
-  tick(); on.classList.add('on'); off.classList.remove('on'); $('cap').textContent=set.label||'';
+  tick(); on.classList.add('on'); off.classList.remove('on'); $('cap').textContent=set.label||''; objsFor(set);
   bgTimer=setInterval(tick,Math.max(80,set.ms||120));
 }
-let POOL=[],poolI=0; setInterval(()=>{if(POOL.length>1){poolI=(poolI+1)%POOL.length;backdrop(POOL[poolI],true);}},60000);
+let POOL=[],poolI=0;
+// slide speed: 8s default, 30s, 60s (?slide=30 or the bar select; remembered)
+let SLIDE=+(Q.get('slide')||localStorage.getItem('thryd_slide')||8); if(![8,30,60].includes(SLIDE))SLIDE=8; let slideT=null;
+function startSlide(){clearInterval(slideT);slideT=setInterval(()=>{if(POOL.length>1){poolI=(poolI+1)%POOL.length;backdrop(POOL[poolI],true);}},SLIDE*1000);}
+startSlide();
+// ---------- in-place object sprites (data/objects_map.json): patch at bbox, sprite on top, gentle motion
+let OMAP={}, objLayer=null, objKey=null, objState={};
+const mapKey=p=>{const r=(p||'').match(/(run-[\w]+)/), j=(p||'').match(/\b(j\d+)(?:_blur)?\.(?:gif|jpe?g|webp)$|\/(j\d+)\/?$/);return r&&j?r[1]+'/'+(j[1]||j[2]):null;};
+function setKey(set){const p=set&&(set.gif||set.src||set.dir)||''; let k=mapKey(p);
+  if(!k){const j=p.match(/(?:^|\/)(j\d+)(?:\/|$|_)/), r=p.match(/(run-[\w]+)/)||[0,($('run').textContent||'').trim()]; if(j&&r[1])k=r[1]+'/'+j[1];}
+  if(!k&&p.includes('assets/webp/')){const j=p.match(/(j\d+)/);if(j)k='run-5a58c4/'+j[1];} // live backdrops are run-5a58c4 views
+  return k;}
+function fitLayer(){if(!objLayer||!objLayer._fs)return;const st=$('stage'),W=st.clientWidth,H=st.clientHeight,[fw,fh]=objLayer._fs,sc=Math.min(W/fw,H/fh);
+  Object.assign(objLayer.style,{width:fw*sc+'px',height:fh*sc+'px',left:(W-fw*sc)/2+'px',top:(H-fh*sc)/2+'px'});}
+function objsFor(set){const k=set?setKey(set):null; if(k===objKey&&objLayer)return; objKey=k;
+  if(objLayer){const old=objLayer;old.classList.remove('on');setTimeout(()=>old.remove(),2600);objLayer=null;}
+  const e=k&&OMAP[k]; if(!e)return;
+  const L=document.createElement('div');L.id='objs';L._fs=e.frame_size||[480,270];L.dataset.key=k;
+  (e.objects||[]).forEach((o,i)=>{const[x,y,w,h]=o.bbox;const box=document.createElement('div');
+    box.className='ob'+(o.sprite?'':' anchor');Object.assign(box.style,{left:x*100+'%',top:y*100+'%',width:w*100+'%',height:h*100+'%'});
+    box.dataset.sid=o.state_id||'';box.dataset.label=o.label;
+    if(o.sprite){ if(o.patch){const pa=new Image();pa.className='patch';pa.alt='';pa.src=o.patch;box.appendChild(pa);}
+      const sp=new Image();sp.className='sp m-'+(o.motion||'sway');sp.alt=o.label;sp.src=o.sprite;sp.style.animationDelay=(-i*1.7)+'s';
+      if(/door|street|window/i.test(o.label))sp.classList.add('small');
+      const wr=document.createElement('div');wr.className='spw';wr.appendChild(sp);box.appendChild(wr);}
+    else{const t=document.createElement('span');t.className='olab';t.textContent=o.label;box.appendChild(t);}
+    L.appendChild(box);});
+  $('stage').insertBefore(L,$('cap')); objLayer=L; fitLayer(); requestAnimationFrame(()=>L.classList.add('on'));}
+addEventListener('resize',fitLayer);
+// agenda state changed an object -> its sprite glides a bit and pulses
+function objChanged(id){if(!objLayer||!id)return;objLayer.querySelectorAll('.ob').forEach(b=>{if(b.dataset.sid===id||b.dataset.label===id){
+  const w=b.querySelector('.spw')||b;w.classList.remove('moved');void w.offsetWidth;w.style.setProperty('--gx',((Math.random()-.5)*6).toFixed(1)+'px');w.style.setProperty('--gy',((Math.random()-.5)*4).toFixed(1)+'px');w.classList.add('moved');}});}
+function trackObjs(st){(st.objects||[]).forEach(o=>{const v=JSON.stringify([o.place,o.holder||o.held_by||null,o.state||o.status||null]);
+  if(objState[o.label]!==undefined&&objState[o.label]!==v)objChanged(o.label);objState[o.label]=v;});
+  (st.characters||[]).forEach(c=>{const id=c.id||c.name,v=JSON.stringify([c.place]);if(objState['c:'+id]!==undefined&&objState['c:'+id]!==v)objChanged(id);objState['c:'+id]=v;});}
+window.thrydObjChanged=objChanged;
 function liveBackdrop(place){const p=(place||'').toLowerCase();const b=media.backdrops;
   const k=/marina|boat|bay|causeway|church|wheelhouse|deck/.test(p)?'j6':'j12';return b[k]&&Object.assign({label:short(place)},b[k]);}
 // ---------- gutters: chips grouped by place, left & right of the stage, never over it
@@ -101,7 +136,7 @@ async function live(){
   let s=null; try{s=await LIVE_STATE();}catch(e){}
   if(!s||!(s.characters||[]).length){return loopTimeline();}
   let last='', step=0, cur=s;
-  const apply=st=>{const m=fromState(st);render(m);cur=st;
+  const apply=st=>{const m=fromState(st);render(m);cur=st;trackObjs(st);
     backdrop(liveBackdrop(st.current_place)); POOL=Object.values(media.backdrops);
     $('run').textContent=st.run||'';};
   apply(s);
@@ -173,6 +208,8 @@ let idleT;const wake=()=>{document.body.classList.remove('idle');clearTimeout(id
 addEventListener('resize',()=>{regionsKey='';});
 (async()=>{
   try{media=await J('data/media.json');}catch(e){}
+  try{const om=await J('data/objects_map.json');Object.entries(om).forEach(([k,v])=>{const mk=mapKey(k);if(mk)OMAP[mk]=v;});}catch(e){}
+  const ss=$('slide');if(ss){ss.value=String(SLIDE);ss.onclick=e=>e.stopPropagation();ss.onchange=e=>{SLIDE=+e.target.value;localStorage.setItem('thryd_slide',SLIDE);Q.set('slide',SLIDE);history.replaceState(null,'','?'+Q.toString());startSlide();};}
   try{(await J('assets/runs/media.json')).runs.forEach(r=>runMedia[r.run]=r.media);}catch(e){}
   try{localPrec=(await J('data/precisions.json')).map(p=>({line:p.line,src:p.src,move:p.move}));}catch(e){}
   setMode(MODE);
