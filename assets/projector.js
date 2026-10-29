@@ -249,11 +249,18 @@ function toast(msg,bad){let t=document.getElementById('toast');if(!t){t=document
   t.textContent=msg;t.className=bad?'bad on':'on';clearTimeout(t._h);t._h=setTimeout(()=>t.className='',2600);}
 function setReg(id,r){if(!lastM)return;const nm=id.slice(2);(id[0]==='c'?lastM.chars:lastM.objs).forEach(x=>{if((x.name||x.label)===nm){x.region=r;if(x.off!==undefined)x.off=r!==lastM.here;}});
   if(!lastM.regions.includes(r))lastM.regions.push(r);place(lastM);}
+async function dragSend(body){
+  if(DRAG.transport!=='ntfy'){const r=await fetch(DRAG.endpoint,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify(body)});const j=await r.json().catch(()=>({}));return {status:r.status,...j};}
+  const rid=Math.random().toString(36).slice(2,12), t0=Math.floor(Date.now()/1000)-5;
+  const r=await fetch(DRAG.endpoint,{method:'POST',body:JSON.stringify({...body,rid})});if(!r.ok)throw new Error('relay HTTP '+r.status);
+  for(let i=0;i<20;i++){await new Promise(z=>setTimeout(z,1500));
+    try{const tx=await (await fetch(DRAG.reply+'/json?poll=1&since='+t0,{cache:'no-store'})).text();
+      for(const l of tx.split('\n')){if(!l)continue;let m;try{m=JSON.parse(l);m=JSON.parse(m.message||'{}');}catch(e){continue;}if(m.rid===rid)return m;}}catch(e){}}
+  throw new Error('no reply from box (timeout)');}
 async function dropTo(id,from,to){
   if(!DRAG||!DRAG.endpoint){toast('drag endpoint not available',1);return;}
   const label=id.slice(2); PEND[id]={region:to,until:Date.now()+8*60e3}; setReg(id,to); toast(`moving ${label} → ${to}…`);
-  try{const r=await fetch(DRAG.endpoint,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify({key:DRAG.key,object:label,place:PFULL[to]||to})});
-    const j=await r.json().catch(()=>({}));if(!r.ok||!j.ok)throw new Error(j.error||('HTTP '+r.status));toast(`${label} → ${to} ✓`);pulse(label);}
+  try{const j=await dragSend({key:DRAG.key,object:label,place:PFULL[to]||to});if(!j.ok)throw new Error(j.error||('HTTP '+j.status));toast(`${label} → ${to} ✓`);pulse(label);}
   catch(e){delete PEND[id];setReg(id,from);toast(`couldn't move ${label}: ${e.message}`,1);}}
 (function(){let d=null;
   document.addEventListener('pointerdown',ev=>{const c=ev.target.closest&&ev.target.closest('.chip');if(!c||!c.dataset.id)return;
