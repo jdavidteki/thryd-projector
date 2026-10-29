@@ -3,13 +3,27 @@
 const Q=new URLSearchParams(location.search), $=id=>document.getElementById(id);
 let muted=Q.get('audio')==='0'||localStorage.getItem('thryd_mute')==='1', clips=null;
 const btn=$('mute'); const show=()=>btn.textContent=muted?'🔇 audio off':'🔊 audio on'; show();
-btn.onclick=e=>{e.stopPropagation();muted=!muted;localStorage.setItem('thryd_mute',muted?'1':'0');if(muted)speechSynthesis?.cancel();show();};
+btn.onclick=e=>{e.stopPropagation();muted=!muted;localStorage.setItem('thryd_mute',muted?'1':'0');if(muted)speechSynthesis?.cancel();else{unlocked=true;gate.classList.add('off');}show();};
 const loadClips=()=>fetch('data/audio.json?_='+Date.now(),{cache:'no-store'}).then(r=>r.ok?r.json():null).then(m=>{
   let a=Array.isArray(m)?m:m&&(m.clips||m.items||m.audio||m.files||m.lines); if(!Array.isArray(a)||!a.length)return;
   clips=a.map(c=>typeof c==='string'?{file:c}:c).map(c=>{let f=c.file||c.src||c.path||c.url||c.audio||'';
     if(f&&!/^(https?:|\/|assets\/|data\/)/.test(f))f='assets/audio/'+f; return {file:f,line:c.line||c.text||c.tweet||'',run:c.run||c.run_id||null};}).filter(c=>c.file);
 }).catch(()=>{});
 if(Q.get('audio')==='clips'){loadClips(); setInterval(()=>{if(!clips)loadClips();},300000);}
+let unlocked=false, VOICE=null;
+const pickVoice=()=>{const vs=speechSynthesis.getVoices()||[];VOICE=vs.find(v=>/^en(-|_)?(US|GB|NG)?/i.test(v.lang)&&v.localService)||vs.find(v=>/^en/i.test(v.lang))||vs[0]||null;};
+if('speechSynthesis' in window){pickVoice();speechSynthesis.addEventListener?.('voiceschanged',pickVoice);setInterval(()=>{if(speechSynthesis.speaking)speechSynthesis.resume();},5000);}
+const gate=document.createElement('div');gate.id='sndgate';gate.textContent='🔊 Tap anywhere to turn on sound';document.body.appendChild(gate);
+if(muted||!('speechSynthesis' in window))gate.classList.add('off');
+function speakText(t){if(muted||!unlocked||!('speechSynthesis' in window))return;
+  const parts=(t.replace(/\[\[|\]\]/g,'').match(/[^.!?;,]{1,140}[.!?;,]?/g)||[t]).map(x=>x.trim()).filter(Boolean).slice(0,4);
+  speechSynthesis.cancel();speechSynthesis.resume();
+  parts.forEach(x=>{const u=new SpeechSynthesisUtterance(x);if(VOICE){u.voice=VOICE;u.lang=VOICE.lang;}else u.lang='en-US';u.rate=.95;u.pitch=.9;speechSynthesis.speak(u);});}
+const unlock=()=>{if(unlocked)return;unlocked=true;gate.classList.add('off');if(muted){muted=false;localStorage.setItem('thryd_mute','0');show();}
+  try{pickVoice();speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(' ');u.volume=0;speechSynthesis.speak(u);}catch(e){}
+  setTimeout(()=>{try{speakOnce();}catch(e){}},2500);};
+addEventListener('pointerdown',unlock,{capture:true});addEventListener('touchend',unlock,{capture:true});addEventListener('keydown',unlock,{capture:true});
+window.thrydSpeak=speakText;
 function speakOnce(){
   const C=window.CUR||{lines:[],speakers:[]}; const run=($('run')||{}).textContent;
   if(clips&&clips.length){const pool=clips.filter(c=>!c.run||c.run===run||('run-'+c.run)===run); const c=pool[Math.floor(Math.random()*pool.length)];
@@ -17,9 +31,9 @@ function speakOnce(){
       if(!muted){const a=new Audio(c.file||c.src);a.play().catch(()=>{});} return;}}
   const L=window.thrydChoose&&window.thrydChoose(C.lines); if(!L)return;
   const who=C.speakers[Math.floor(Math.random()*C.speakers.length)]; if(who&&window.thrydSay)window.thrydSay(L,who);
-  if(!muted&&'speechSynthesis' in window){const u=new SpeechSynthesisUtterance(L.line.replace(/\[\[|\]\]/g,''));u.rate=.92;u.pitch=.9;speechSynthesis.cancel();speechSynthesis.speak(u);}
+  speakText(L.line);
 }
-const lo=+(Q.get('audiomin')||40), hi=+(Q.get('audiomax')||90);
+const lo=+(Q.get('audiomin')||15), hi=+(Q.get('audiomax')||30);
 (function loop(){setTimeout(()=>{try{speakOnce();}catch(e){} loop();},(lo+Math.random()*(hi-lo))*1000);})();
 // ---------- Add GIF
 const DB=new Promise((res,rej)=>{const r=indexedDB.open('thryd-projector',1);r.onupgradeneeded=()=>r.result.createObjectStore('gifs',{keyPath:'id'});r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error);});

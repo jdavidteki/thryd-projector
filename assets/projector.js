@@ -44,7 +44,7 @@ function lookup(set){const p=set&&(set.gif||set.src||set.dir)||''; const tries=[
   if(run&&j)tries.push(run+'/'+j[1]);
   if(run&&g){tries.push(run+'/'+g[1]); const src=(RGIFS[run]||[])[+g[2]]; if(src){tries.push(src);const mk=mapKey(src);if(mk)tries.push(mk);tries.push(run+'/'+baseOf(src));}}
   if(run&&set&&/^w\d+$/.test(set.card||''))tries.push(run+'/j'+set.card.slice(1));
-  if(p.includes('assets/webp/')){const jj=p.match(/(j\d+)/);if(jj)tries.push('run-5a58c4/'+jj[1]);} // live backdrops are run-5a58c4 views
+  if(p.includes('assets/webp/')&&!runOf(p)){const jj=p.match(/(j\d+)/);if(jj)tries.push('run-5a58c4/'+jj[1]);} // live backdrops are run-5a58c4 views
   for(const t of tries)if(OMAP[t])return [t,OMAP[t]];
   const b=baseOf(p); if(b&&!/^(g\d+|f\d+)$/.test(b)&&OBASE[b]&&OBASE[b].length===1)return ['base:'+b,OBASE[b][0]];
   return [tries[0]||null,null];}
@@ -62,7 +62,7 @@ function objsFor(set){const [k,e0]=set?lookup(set):[null,null]; if(k===objKey&&o
     box.className='ob'+(o.sprite?'':' anchor');Object.assign(box.style,{left:x*100+'%',top:y*100+'%',width:w*100+'%',height:h*100+'%'});
     box.dataset.sid=o.state_id||'';box.dataset.label=o.label;
     if(o.sprite){ if(o.patch){const pa=new Image();pa.className='patch';pa.alt='';pa.src=o.patch;box.appendChild(pa);}
-      const sp=new Image();sp.className='sp m-'+(o.motion||'sway');sp.alt=o.label;sp.src=o.sprite;sp.style.animationDelay=(-i*1.7)+'s';
+      const sp=new Image();sp.className='sp m-'+(/sandal|shoe|slipper/i.test(o.label)?'hop':(o.motion||'sway'));sp.alt=o.label;sp.src=o.sprite;sp.style.animationDelay=(-i*1.7)+'s';
       if(/door|street|window/i.test(o.label))sp.classList.add('small');
       const wr=document.createElement('div');wr.className='spw';wr.appendChild(sp);box.appendChild(wr);}
     else{const t=document.createElement('span');t.className='olab';t.textContent=o.label;box.appendChild(t);}
@@ -76,6 +76,8 @@ function trackObjs(st){(st.objects||[]).forEach(o=>{const v=JSON.stringify([o.pl
   if(objState[o.label]!==undefined&&objState[o.label]!==v)objChanged(o.label);objState[o.label]=v;});
   (st.characters||[]).forEach(c=>{const id=c.id||c.name,v=JSON.stringify([c.place]);if(objState['c:'+id]!==undefined&&objState['c:'+id]!==v)objChanged(id);objState['c:'+id]=v;});}
 window.thrydObjChanged=objChanged;
+setInterval(()=>{if(!objLayer)return;const bs=[...objLayer.querySelectorAll('.ob')];if(bs.length){const b=bs[Math.floor(Math.random()*bs.length)];objChanged(b.dataset.sid||b.dataset.label);}},3000);
+function livePool(){const P=Object.values(media.backdrops);Object.entries(runMedia).forEach(([r,ms])=>(ms||[]).forEach(m=>{if(lookup(m)[1])P.push(Object.assign({label:r+' · '+(m.card||'')},m));}));return P;}
 function liveBackdrop(place){const p=(place||'').toLowerCase();const b=media.backdrops;
   const k=Q.get('scene')||(/marina|boat|bay|causeway|church|wheelhouse|deck/.test(p)?'j6':'j12');return b[k]&&Object.assign({label:short(place)},b[k]);}
 // ---------- gutters: chips grouped by place, left & right of the stage, never over it
@@ -154,7 +156,7 @@ async function live(){
   if(!s||!(s.characters||[]).length){return loopTimeline();}
   let last='', step=0, cur=s;
   const apply=st=>{const m=fromState(st);render(m);cur=st;trackObjs(st);
-    backdrop(liveBackdrop(st.current_place)); POOL=Object.values(media.backdrops);
+    backdrop(liveBackdrop(st.current_place)); POOL=livePool();
     $('run').textContent=st.run||'';};
   apply(s);
   const lines=()=>[...(cur.moves||[]).flatMap(m=>(m.precisions||[]).map(p=>({line:p.line,src:'seat '+p.seat,move:/\[\[/.test(p.line)}))),...localPrec];
@@ -179,7 +181,7 @@ async function loopTimeline(){
     if(e.object){objs[e.object]=here;}
     render({regions:names,here,chars:Object.entries(chars).map(([n,r])=>({name:n,region:r,off:r!==here})),objs:Object.entries(objs).map(([l,r])=>({label:l,region:r}))});
     if(e.object)pulse(e.object);
-    backdrop(liveBackdrop(e.place)); POOL=Object.values(media.backdrops);
+    backdrop(liveBackdrop(e.place)); POOL=livePool();
     ticker(e.world,e.label,`${e.scene} · update ${i%ev.length+1}/${ev.length}`);
     const sp=Object.entries(chars).filter(([n,r])=>r===here).map(([n])=>n);
     maybeBubble(localPrec,sp.length?sp:Object.keys(chars)); i++; };
