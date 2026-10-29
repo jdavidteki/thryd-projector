@@ -1,0 +1,15 @@
+#code{position:fixed;top:6vh;right:0;bottom:4vh;width:22vw;padding:1vh 1vw;z-index:3;pointer-events:none;overflow:hidden;background:linear-gradient(90deg,#0000,#000a 12%);font:1.45vh/1.45 ui-monospace,Menlo,Consolas,monospace;color:#5f5;opacity:.78;
+ -webkit-mask-image:linear-gradient(#0000,#000 22%);mask-image:linear-gradient(#0000,#000 22%);display:flex;flex-direction:column;justify-content:flex-end}
+#code div{white-space:pre-wrap;word-break:break-all}#code .a{color:#fb4}#code .d{color:#5f58}#code .cur::after{content:'▋';animation:blink 1s steps(1) infinite}
+#grain{position:fixed;inset:-50%;z-index:20;pointer-events:none;opacity:.07;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");animation:grain .9s steps(6) infinite}
+@keyframes grain{0%{transform:translate(0,0)}20%{transform:translate(-3%,2%)}40%{transform:translate(2%,-3%)}60%{transform:translate(-2%,-1%)}80%{transform:translate(3%,3%)}}
+#vignette{animation:breathe 9s ease-in-out infinite}@keyframes breathe{50%{opacity:.75}}
+#live{position:fixed;bottom:4vh;left:1.5vw;z-index:11;font:1.7vh ui-monospace,Menlo,monospace;color:#eee;text-shadow:0 0 .6vh #000;letter-spacing:.08em;pointer-events:none}
+#live .dot{display:inline-block;width:1.1vh;height:1.1vh;border-radius:50%;background:#f22;box-shadow:0 0 .8vh #f22;margin-right:.6vw;animation:blink 1.4s steps(1) infinite}#live b{color:#f44}#live .seat{color:#fb4;margin-left:1vw}
+@keyframes blink{50%{opacity:0}}
+#crawl{position:fixed;left:0;right:0;bottom:0;height:2.6vh;z-index:5;overflow:hidden;background:#000b;font:1.4vh/2.6vh ui-monospace,Menlo,monospace;color:#bbb;pointer-events:none}
+#crawl span{position:absolute;white-space:nowrap;will-change:transform}
+body.idle #live{opacity:.55}body.idle #code{opacity:.6}
+#crawl i{position:absolute;left:0;top:0;bottom:0;z-index:2;padding:0 1vw;background:#b00;color:#fff;font-style:normal;font-weight:bold}
+#live .dot.fl{animation:fl .6s 3,blink 1.4s steps(1) 1.8s infinite}@keyframes fl{50%{transform:scale(1.8);background:#fff}}
+#live .seat.pulse{animation:sp 1s 3}@keyframes sp{50%{color:#fff;text-shadow:0 0 1.2vh #fb4}}#live #sclk{color:#9cf}
