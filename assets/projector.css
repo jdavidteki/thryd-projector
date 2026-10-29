@@ -60,4 +60,8 @@ body.drop:after{content:"drop GIF to add";position:fixed;inset:3vh;border:3px da
 .sp.small{animation-duration:3.6s}
 #objs .spw.moved{transform:translate(var(--gx,12px),var(--gy,-10px)) scale(1.15);transition:transform .6s}
 #sndgate{position:fixed;inset:auto 0 12vh 0;margin:auto;width:max-content;max-width:90vw;padding:1.6vh 3vh;background:#000c;border:2px solid var(--acc);color:#fff;font-size:2.6vh;border-radius:1vh;z-index:50;text-align:center;cursor:pointer;animation:p 1.4s infinite}
-#sndgate.off{display:none}
+#sndgate.off{display:none}.chip{touch-action:none;cursor:grab;user-select:none;-webkit-user-select:none}
+.chip.ghost{position:fixed;z-index:9999;pointer-events:none;opacity:.9;box-shadow:0 6px 24px #000a;cursor:grabbing;transition:none}
+.ph.drop{outline:2px solid #ffb648;background:#ffb64833}
+#toast{position:fixed;left:50%;bottom:4vh;transform:translateX(-50%);z-index:10000;background:#0d1a10ee;color:#cfe;border:1px solid #3a6;padding:.5em 1em;border-radius:8px;font:14px/1.3 monospace;opacity:0;transition:opacity .3s;pointer-events:none}
+#toast.on{opacity:1}#toast.bad{border-color:#c44;color:#fcc}

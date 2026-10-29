@@ -111,7 +111,7 @@ function place(m){
   side.forEach((ns,k)=>{ const units=cnt[k]||1, u=Math.min(5.4*vh,(bot-top)/units), sc=u/(5.4*vh); let y=top;
     const x=k?88*vw:1*vw, w=11*vw;
     ns.forEach(n=>{const h=hdr(n);hs.add(n);Object.assign(h.style,{left:x+'px',top:y+'px',width:w+'px',fontSize:Math.max(1.2,1.6*sc)+'vh'});h.classList.toggle('here',n===m.here);h.classList.toggle('r',!!k);y+=1.3*u;
-      groups[n].forEach(it=>{const e=ent(it.id,it.kind,it.label,it.sp);seen.add(it.id);
+      groups[n].forEach(it=>{const e=ent(it.id,it.kind,it.label,it.sp);seen.add(it.id);e.dataset.id=it.id;e.dataset.reg=n;
         const held=it.o&&it.o.holder; e.classList.toggle('held',!!held);e.classList.toggle('r',!!k);
         Object.assign(e.style,{left:(x+(held?(k?0:1.2*vw):0))+'px',top:y+'px',width:(w-(held?1.2*vw:0))+'px',height:(u*.86)+'px',fontSize:(1.75*sc)+'vh'});
         const r=it.c?it.c.region:(held?'held':it.o.region); if(prevReg[it.id]!==undefined&&prevReg[it.id]!==r)pulse(it.label); prevReg[it.id]=r;
@@ -147,11 +147,14 @@ const every=(f,ms)=>{const g=gen;const t=setInterval(()=>{if(g===gen)f();},ms);t
 function reset(){gen++;timers.forEach(t=>{clearInterval(t);clearTimeout(t);});timers=[];Object.keys(ents).forEach(k=>{ents[k].remove();delete ents[k];});regionsKey='';$('bubble').classList.remove('on');}
 // ---------- LIVE from state.json
 let localPrec=[];
+const PFULL={}, PEND={};  // short heading -> full place; pending drags {id:{region,until}}
 function fromState(s){
-  const names=[],add=p=>{const n=short(p);if(!names.includes(n))names.push(n);return n;};
+  const names=[],add=p=>{const n=short(p);PFULL[n]=PFULL[n]||p;if(!names.includes(n))names.push(n);return n;};
+  (s.locations||[]).forEach(p=>{const n=short(p);PFULL[n]=PFULL[n]||p;});
+  const pend=(id,r)=>{const q=PEND[id];if(!q)return r;if(q.region===r||Date.now()>q.until){delete PEND[id];return r;}if(!names.includes(q.region))names.push(q.region);return q.region;};
   const here=add(s.current_place);
-  const chars=(s.characters||[]).map(c=>({name:c.name,region:add(c.place),note:c.note||'',off:short(c.place)!==here}));
-  const objs=(s.objects||[]).map(o=>({label:o.label,region:add(o.place),holder:o.holder||o.held_by||null}));
+  const chars=(s.characters||[]).map(c=>({name:c.name,region:pend('c:'+c.name,add(c.place)),note:c.note||'',off:short(c.place)!==here}));
+  const objs=(s.objects||[]).map(o=>({label:o.label,region:pend('o:'+o.label,add(o.place)),holder:o.holder||o.held_by||null}));
   return {regions:names,here,chars,objs};
 }
 async function live(){
@@ -239,3 +242,31 @@ addEventListener('resize',()=>{regionsKey='';});
   setMode(MODE);
 })();
 })();
+
+// ---------- drag a chip onto a place heading -> <object>.setlocation(<place>) via data/drag.json endpoint
+let DRAG=null; (async()=>{try{DRAG=await J('data/drag.json?t='+Date.now());}catch(e){}})();
+function toast(msg,bad){let t=document.getElementById('toast');if(!t){t=document.createElement('div');t.id='toast';document.body.appendChild(t);}
+  t.textContent=msg;t.className=bad?'bad on':'on';clearTimeout(t._h);t._h=setTimeout(()=>t.className='',2600);}
+function setReg(id,r){if(!lastM)return;const nm=id.slice(2);(id[0]==='c'?lastM.chars:lastM.objs).forEach(x=>{if((x.name||x.label)===nm){x.region=r;if(x.off!==undefined)x.off=r!==lastM.here;}});
+  if(!lastM.regions.includes(r))lastM.regions.push(r);place(lastM);}
+async function dropTo(id,from,to){
+  if(!DRAG||!DRAG.endpoint){toast('drag endpoint not available',1);return;}
+  const label=id.slice(2); PEND[id]={region:to,until:Date.now()+8*60e3}; setReg(id,to); toast(`moving ${label} → ${to}…`);
+  try{const r=await fetch(DRAG.endpoint,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify({key:DRAG.key,object:label,place:PFULL[to]||to})});
+    const j=await r.json().catch(()=>({}));if(!r.ok||!j.ok)throw new Error(j.error||('HTTP '+r.status));toast(`${label} → ${to} ✓`);pulse(label);}
+  catch(e){delete PEND[id];setReg(id,from);toast(`couldn't move ${label}: ${e.message}`,1);}}
+(function(){let d=null;
+  document.addEventListener('pointerdown',ev=>{const c=ev.target.closest&&ev.target.closest('.chip');if(!c||!c.dataset.id)return;
+    d={c,x:ev.clientX,y:ev.clientY,on:false,id:c.dataset.id,from:c.dataset.reg,pid:ev.pointerId};},{passive:true});
+  document.addEventListener('pointermove',ev=>{if(!d||ev.pointerId!==d.pid)return;const dx=ev.clientX-d.x,dy=ev.clientY-d.y;
+    if(!d.on){if(dx*dx+dy*dy<64)return;d.on=true;d.g=d.c.cloneNode(true);d.g.classList.add('ghost');const r=d.c.getBoundingClientRect();
+      Object.assign(d.g.style,{left:r.left+'px',top:r.top+'px',width:r.width+'px',height:r.height+'px'});document.body.appendChild(d.g);d.r=r;}
+    ev.preventDefault();d.g.style.transform=`translate(${dx}px,${dy}px)`;
+    document.querySelectorAll('.ph.drop').forEach(h=>h.classList.remove('drop'));const h=tgt(ev);if(h)h.classList.add('drop');},{passive:false});
+  function tgt(ev){const x=ev.clientX,y=ev.clientY,inR=e=>{const r=e.getBoundingClientRect();return x>=r.left-6&&x<=r.right+6&&y>=r.top-4&&y<=r.bottom+4;};
+    for(const h of $('map').querySelectorAll('.ph'))if(inR(h))return h;
+    for(const c of $('ents').querySelectorAll('.chip'))if(c.dataset.reg&&inR(c))return $('map').querySelector(`[data-name="${CSS.escape(c.dataset.reg)}"]`);return null;}
+  const end=ev=>{if(!d||ev.pointerId!==d.pid)return;const dd=d;d=null;if(!dd.on)return;dd.g.remove();
+    document.querySelectorAll('.ph.drop').forEach(h=>h.classList.remove('drop'));const h=ev.type==='pointerup'&&tgt(ev);
+    if(h&&h.dataset.name!==dd.from)dropTo(dd.id,dd.from,h.dataset.name);};
+  document.addEventListener('pointerup',end);document.addEventListener('pointercancel',end);})();
