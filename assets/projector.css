@@ -65,3 +65,12 @@ body.drop:after{content:"drop GIF to add";position:fixed;inset:3vh;border:3px da
 .ph.drop{outline:2px solid #ffb648;background:#ffb64833}
 #toast{position:fixed;left:50%;bottom:4vh;transform:translateX(-50%);z-index:10000;background:#0d1a10ee;color:#cfe;border:1px solid #3a6;padding:.5em 1em;border-radius:8px;font:14px/1.3 monospace;opacity:0;transition:opacity .3s;pointer-events:none}
 #toast.on{opacity:1}#toast.bad{border-color:#c44;color:#fcc}
+.chip,.chip *{-webkit-touch-callout:none;-webkit-user-drag:none;user-select:none;-webkit-user-select:none;-webkit-tap-highlight-color:transparent}
+.chip img,.chip .lab,.chip .note,.chip .dot{pointer-events:none}
+.chip.lift{transform:scale(1.08);box-shadow:0 0 0 2px #ffb648,0 8px 22px #000c;z-index:50}
+.chip.grabbed{opacity:.35}
+.chip.ghost{transition:none!important;transform-origin:center;box-shadow:0 0 0 2px #ffb648,0 14px 34px #000d;opacity:.95!important;filter:none!important}
+body.dragmode,body.dragmode *{cursor:grabbing!important;user-select:none!important}
+body.dragging .ph{pointer-events:auto!important}
+body.dragmode .ph{transition:none}
+.ph.drop{color:#ffb648!important;border-color:#ffb648!important}
