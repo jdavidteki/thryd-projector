@@ -241,8 +241,6 @@ addEventListener('resize',()=>{regionsKey='';});
   try{localPrec=(await J('data/precisions.json')).map(p=>({line:p.line,src:p.src,move:p.move}));}catch(e){}
   setMode(MODE);
 })();
-})();
-
 // ---------- drag a chip onto a place heading -> <object>.setlocation(<place>) via data/drag.json endpoint
 let DRAG=null; (async()=>{try{DRAG=await J('data/drag.json?t='+Date.now());}catch(e){}})();
 function toast(msg,bad){let t=document.getElementById('toast');if(!t){t=document.createElement('div');t.id='toast';document.body.appendChild(t);}
@@ -277,3 +275,5 @@ async function dropTo(id,from,to){
     document.querySelectorAll('.ph.drop').forEach(h=>h.classList.remove('drop'));const h=ev.type==='pointerup'&&tgt(ev);
     if(h&&h.dataset.name!==dd.from)dropTo(dd.id,dd.from,h.dataset.name);};
   document.addEventListener('pointerup',end);document.addEventListener('pointercancel',end);})();
+
+})();
