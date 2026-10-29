@@ -312,7 +312,12 @@ async function dropTo(id,from,to){
     const el=document.elementsFromPoint(x,y).find(e=>e.closest&&e.closest('.chip:not(.ghost)')&&!e.closest('.dob'));const c=el&&el.closest('.chip');
     return c&&c.dataset.reg?$('map').querySelector(`[data-name="${CSS.escape(c.dataset.reg)}"]`):null;};
   const clr=()=>document.querySelectorAll('.ph.drop').forEach(h=>h.classList.remove('drop'));
-  document.addEventListener('pointerdown',ev=>{const b=ev.target.closest&&ev.target.closest('#objs:not(.gone) .dob');if(!b||d)return;if(ev.pointerType==='mouse'&&ev.button!==0)return;
+  const AC=new WeakMap();
+  const opaque=(b,x,y)=>{const im=b.querySelector('img');if(!im||!im.naturalWidth)return true;const r=im.getBoundingClientRect();if(x<r.left||x>r.right||y<r.top||y>r.bottom)return false;
+    let c=AC.get(im);if(!c){c=document.createElement('canvas');c.width=im.naturalWidth;c.height=im.naturalHeight;try{c.getContext('2d',{willReadFrequently:true}).drawImage(im,0,0);}catch(e){return true;}AC.set(im,c);}
+    try{const px=c.getContext('2d').getImageData(Math.floor((x-r.left)/r.width*c.width),Math.floor((y-r.top)/r.height*c.height),1,1).data;return px[3]>40;}catch(e){return true;}};
+  const pickDob=(x,y)=>{const u=[...new Set(document.elementsFromPoint(x,y).map(e=>e.closest&&e.closest('#objs:not(.gone) .dob')).filter(Boolean))];return u.find(b=>opaque(b,x,y))||null;};
+  document.addEventListener('pointerdown',ev=>{const b0=ev.target.closest&&ev.target.closest('#objs:not(.gone) .dob');const b=b0?pickDob(ev.clientX,ev.clientY):null;if(!b||d)return;if(ev.pointerType==='mouse'&&ev.button!==0)return;
     ev.preventDefault();ev.stopPropagation();window.thrydHold(60000);const r=b.getBoundingClientRect();
     d={b,pid:ev.pointerId,x:ev.clientX,y:ev.clientY,l0:parseFloat(b.style.left),t0:parseFloat(b.style.top),on:false};try{b.setPointerCapture(ev.pointerId);}catch(e){}},{passive:false,capture:true});
   document.addEventListener('pointermove',ev=>{if(!d||ev.pointerId!==d.pid)return;const dx=ev.clientX-d.x,dy=ev.clientY-d.y;
