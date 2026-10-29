@@ -274,6 +274,7 @@ async function dropTo(id,from,to){
   const end=ev=>{if(!d||ev.pointerId!==d.pid)return;const dd=d;d=null;if(!dd.on)return;dd.g.remove();
     document.querySelectorAll('.ph.drop').forEach(h=>h.classList.remove('drop'));const h=ev.type==='pointerup'&&tgt(ev);
     if(h&&h.dataset.name!==dd.from)dropTo(dd.id,dd.from,h.dataset.name);};
+  document.addEventListener('dragstart',ev=>{if(ev.target.closest&&ev.target.closest('.chip'))ev.preventDefault();});
   document.addEventListener('pointerup',end);document.addEventListener('pointercancel',end);})();
 
 })();
