@@ -71,7 +71,7 @@ function objsFor(set){const [k,e0]=set?lookup(set):[null,null]; if(k===objKey&&o
       if(/door|street|window/i.test(o.label))sp.classList.add('small');
       const wr=document.createElement('div');wr.className='spw';wr.appendChild(sp);box.appendChild(wr);}
     else{const t=document.createElement('span');t.className='olab';t.textContent=o.label;box.appendChild(t);}
-    if(o.draggable&&o.sprite){const pa=box.querySelector('.patch');if(pa){const ph=document.createElement('div');ph.className='ob dpatch';ph.dataset.label=o.label;Object.assign(ph.style,{left:x*100+'%',top:y*100+'%',width:w*100+'%',height:h*100+'%'});ph.appendChild(pa);L.appendChild(ph);}box.classList.add('dob');box.dataset.id=(o.kind==='obj'?'o:':'c:')+o.label;const sv=DPOS[k+'|'+o.label];
+    if(o.draggable&&o.sprite){const pa=box.querySelector('.patch');if(pa){const ph=document.createElement('div');ph.className='ob dpatch';ph.dataset.label=o.label;Object.assign(ph.style,{left:x*100+'%',top:y*100+'%',width:w*100+'%',height:h*100+'%'});ph.appendChild(pa);L.appendChild(ph);}box.classList.add('dob');box.style.zIndex=String(3+Math.round((1-w*h)*20));box.dataset.id=(o.kind==='obj'?'o:':'c:')+o.label;const sv=DPOS[k+'|'+o.label];
       if(sv){box.style.left=sv[0]+'%';box.style.top=sv[1]+'%';box.dataset.dp='1';box.classList.add('away');const q=L.querySelector(`.dpatch[data-label="${CSS.escape(o.label)}"]`);if(q)q.classList.add('away');}}
     L.appendChild(box);});
   $('stage').insertBefore(L,$('cap')); objLayer=L; fitLayer(); requestAnimationFrame(()=>L.classList.add('on'));}
