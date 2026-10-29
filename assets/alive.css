@@ -4,7 +4,7 @@
 #grain{position:fixed;inset:-50%;z-index:20;pointer-events:none;opacity:.07;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");animation:grain .9s steps(6) infinite}
 @keyframes grain{0%{transform:translate(0,0)}20%{transform:translate(-3%,2%)}40%{transform:translate(2%,-3%)}60%{transform:translate(-2%,-1%)}80%{transform:translate(3%,3%)}}
 #vignette{animation:breathe 9s ease-in-out infinite}@keyframes breathe{50%{opacity:.75}}
-#live{position:fixed;bottom:4vh;left:1.5vw;z-index:11;font:1.7vh ui-monospace,Menlo,monospace;color:#eee;text-shadow:0 0 .6vh #000;letter-spacing:.08em;pointer-events:none}
+#live{position:fixed;top:5.6vh;left:50%;transform:translateX(-50%);white-space:nowrap;z-index:11;font:1.7vh ui-monospace,Menlo,monospace;color:#eee;text-shadow:0 0 .6vh #000;letter-spacing:.08em;pointer-events:none}
 #live .dot{display:inline-block;width:1.1vh;height:1.1vh;border-radius:50%;background:#f22;box-shadow:0 0 .8vh #f22;margin-right:.6vw;animation:blink 1.4s steps(1) infinite}#live b{color:#f44}#live .seat{color:#fb4;margin-left:1vw}
 @keyframes blink{50%{opacity:0}}
 #crawl{position:fixed;left:0;right:0;bottom:0;height:2.6vh;z-index:5;overflow:hidden;background:#000b;font:1.4vh/2.6vh ui-monospace,Menlo,monospace;color:#bbb;pointer-events:none}

@@ -9,8 +9,8 @@ async function load(){const [st,tl,cf]=await Promise.all([get('data/state.json')
   if(st.current_card)L.push(`thryd.card = ${st.current_card}`);if(st.ticker&&st.ticker.line)L.push(clean(st.ticker.line).slice(0,140));}
  if(tl&&tl.events){for(const e of tl.events){const l=clean(e.label);if(!l||bad.test(l))continue;
   const k=e.kind;L.push(k==='move'?`>> ${l.replace(/^move /,'')}`:k==='theme'?`#thryd.importtheme("${l.replace(/^theme imported:? ?/,'')}")`:k==='scene'?`-- ${l}`:k==='miracle'?`!! miracle: ${l}`:`${k}: ${l}`);}}
- const F=cf?(Array.isArray(cf)?cf:(cf.lines||cf.events||cf.feed||[])).map(x=>clean(typeof x==='string'?x:(x.line||x.text||x.cmd||x.label||''))).filter(l=>l&&!bad.test(l)):[];
- if(F.length){real=F;arch=F.slice(-25);}else if(L.length){real=L;arch=L.slice(-25);}
+ const F=cf?(Array.isArray(cf)?cf:(cf.items||cf.lines||cf.events||cf.feed||[])).map(x=>clean(typeof x==='string'?x:(x.line||x.text||x.cmd||x.label||''))).filter(l=>l&&!bad.test(l)):[];
+ if(F.length){real=F;arch=F.slice(-25);if(cf.latest_news&&!bad.test(cf.latest_news))arch.unshift(clean(cf.latest_news));}else if(L.length){real=L;arch=L.slice(-25);}
  if(seat!==lastSeat){pulse=lastSeat!==null;lastSeat=seat;}
  live.innerHTML=`<span class="dot"></span><b>LIVE</b> <span id="clk"></span> <span id="sclk"></span>${seat?`<span class="seat${pulse?' pulse':''}">seats ${seat}</span>`:''}`;pulse=false;flash();tick();}
 const syn=()=>{const j='j'+(1+Math.random()*30|0);return R([`>> thryd.db.seat(${j}) ok`,`scanning archive... ${900+Math.random()*600|0} lines`,`cooldown(line) = ${2+Math.random()*6|0} agendas`,`fetch state.json 200 ${20+Math.random()*80|0}ms`,`dice.roll(d20) = ${1+Math.random()*20|0}`,`${runId}.heartbeat()`,`gc: freed ${Math.random()*9|0}.${Math.random()*9|0}MB`,`seated ${seatN||'?'}/30 · queue ${Math.random()*4|0}`])};
