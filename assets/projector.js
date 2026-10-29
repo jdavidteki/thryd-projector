@@ -10,61 +10,64 @@ const $=id=>document.getElementById(id);
 const J=async u=>{const r=await fetch(u+(u.includes('?')?'&':'?')+'_='+Date.now(),{cache:'no-store'});if(!r.ok)throw new Error(r.status);return r.json();};
 let media={backdrops:{},sprites:{}}, runMedia={}, timers=[], gen=0;
 const short=p=>(p||'elsewhere').replace(/,? (in )?Miami(, Florida)?/g,'').replace(/^(the|a) /i,'').replace(/ outside the apartment.*$/,'').replace(/^apartment Marisol and Calla share in /,'').slice(0,34);
-// ---------- backdrop (GIF frames as webp)
-let bgSet=null,bgI=0,bgFlip=0,bgTimer=null;
-function backdrop(set){ if(!set||(bgSet&&bgSet.dir===set.dir))return; bgSet=set;bgI=0;
+// ---------- stage: current scene GIF, large & centered, crossfaded
+let bgSet=null,bgI=0,bgFlip=0,bgTimer=null,stageN=0; window.THRYD_UG=window.THRYD_UG||[];
+function showUser(u){clearInterval(bgTimer);bgSet={dir:'user:'+u.id};const w=$('ug');w.innerHTML='';w.appendChild(u.vis);
+  w.classList.add('on');$('bgA').classList.remove('on');$('bgB').classList.remove('on');$('cap').textContent=u.label;}
+function backdrop(set,force){ stageN++;
+  const ug=window.THRYD_UG; if(ug.length&&stageN%3===0){return showUser(ug[Math.floor(stageN/3)%ug.length]);}
+  if(!set||(!force&&bgSet&&bgSet.dir===set.dir))return; bgSet=set;bgI=0; $('ug').classList.remove('on');
   clearInterval(bgTimer); const imgs=[$('bgA'),$('bgB')];
   for(let i=0;i<set.frames;i++){const im=new Image();im.src=`${set.dir}/f${String(i).padStart(3,'0')}.webp`;}
   bgFlip^=1; const on=imgs[bgFlip],off=imgs[bgFlip^1];
   const tick=()=>{on.src=`${set.dir}/f${String(bgI%set.frames).padStart(3,'0')}.webp`;bgI++;};
-  tick(); on.classList.add('on'); off.classList.remove('on');
+  tick(); on.classList.add('on'); off.classList.remove('on'); $('cap').textContent=set.label||'';
   bgTimer=setInterval(tick,Math.max(80,set.ms||120));
 }
 function liveBackdrop(place){const p=(place||'').toLowerCase();const b=media.backdrops;
-  return /marina|boat|bay|causeway|church|wheelhouse|deck/.test(p)?b.j6:b.j12;}
-// ---------- stage
-const ents={}; let regionsKey='';
-function layout(names,here){
-  const key=names.join('|'); const map=$('map');
-  if(key!==regionsKey){ regionsKey=key; map.innerHTML='';
-    const n=names.length, cols=Math.ceil(Math.sqrt(n*1.8)), rows=Math.ceil(n/cols);
-    names.forEach((nm,i)=>{const d=document.createElement('div');d.className='reg';d.dataset.name=nm;
-      const c=i%cols,r=Math.floor(i/cols);
-      Object.assign(d.style,{left:`calc(${c/cols*100}% + .5vw)`,top:`calc(${r/rows*100}% + .5vh)`,width:`calc(${100/cols}% - 1vw)`,height:`calc(${100/rows}% - 1vh)`});
-      d.innerHTML=`<h3></h3>`;d.querySelector('h3').textContent=nm;map.appendChild(d);});
-  }
-  [...map.children].forEach(d=>d.classList.toggle('here',d.dataset.name===here));
-}
-function regionRect(name){const d=[...$('map').children].find(x=>x.dataset.name===name)||$('map').children[0];return d?d.getBoundingClientRect():{left:0,top:0,width:200,height:200};}
+  const k=/marina|boat|bay|causeway|church|wheelhouse|deck/.test(p)?'j6':'j12';return b[k]&&Object.assign({label:short(place)},b[k]);}
+// ---------- gutters: chips grouped by place, left & right of the stage, never over it
+const ents={}; let lastM=null, prevReg={}, order={}, regionsKey='';
 function ent(id,kind,label,sprite){
-  let e=ents[id]; if(!e){e=document.createElement('div');e.className='ent '+kind;
-    e.innerHTML=(sprite?`<img alt="" src="${sprite}">`:(kind==='char'?'<div class="sil"></div>':''))+'<div class="lab"></div><div class="note"></div>';
-    e.querySelector('.lab').textContent=label; e.style.opacity=0; $('ents').appendChild(e); ents[id]=e;
-    requestAnimationFrame(()=>e.style.opacity='');}
+  let e=ents[id]; if(!e){e=document.createElement('div');e.className='chip '+kind;
+    e.innerHTML=(sprite?`<img alt="" src="${sprite}">`:'<i class="dot"></i>')+'<span class="lab"></span><span class="note"></span>';
+    e.querySelector('.lab').textContent=label; e.title=label; e.style.opacity=0;
+    e.onclick=ev=>{ev.stopPropagation();Object.values(ents).forEach(x=>x!==e&&x.classList.remove('sel'));e.classList.toggle('sel');};
+    $('ents').appendChild(e); ents[id]=e; requestAnimationFrame(()=>e.style.opacity='');}
   return e;}
-// model: {regions[],here,chars[{name,region,off,note}],objs[{label,region,holder}],world,upd,meta,lines[],speakers}
-function render(m){
-  layout(m.regions,m.here);
-  const seen=new Set(), pos={}, items={};
-  const push=(reg,it)=>(items[reg]=items[reg]||[]).push(it);
-  m.chars.forEach(c=>push(c.region,{id:'c:'+c.name,kind:'char',label:c.name,sp:media.sprites[c.name],c}));
-  const charReg={};m.chars.forEach(c=>charReg[c.name]=c.region);
-  m.objs.forEach(o=>push((o.holder&&charReg[o.holder])||o.region,{id:'o:'+o.label,kind:'obj',label:o.label,sp:media.sprites[o.label],o}));
-  const BW=innerWidth*.13, BH=innerHeight*.2; // natural entity box
-  Object.entries(items).forEach(([reg,list])=>{
-    const r=regionRect(reg), top=r.top+innerHeight*.055, W=r.width*.96, H=r.bottom-top-innerHeight*.01, n=list.length;
-    let best=null;for(let cols=1;cols<=n;cols++){const rows=Math.ceil(n/cols),cw=W/cols,ch=H/rows,sc=Math.min(1,cw/BW,ch/BH);if(!best||sc>=best.sc-1e-6)best={cols,rows,cw,ch,sc};}
-    const {cols,cw,ch,sc}=best;
-    list.forEach((it,k)=>{const e=ent(it.id,it.kind,it.label,it.sp);seen.add(it.id);
-      const x=r.left+r.width*.02+cw*(k%cols+.5), y=top+ch*(Math.floor(k/cols)+1)-innerHeight*.005;
-      e.style.setProperty('--s',sc.toFixed(3)); e.style.width=(cw*.8/sc)+'px';
-      e.style.left=x+'px';e.style.top=y+'px';e.title=it.label;
-      if(it.c){pos[it.label]=[x,y];e.classList.toggle('off',!!it.c.off);e.querySelector('.note').textContent=it.c.note||'';}
-      else{const o=it.o;e.querySelector('.note').textContent=o.holder?'held by '+o.holder:'';e.classList.toggle('off',o.region!==m.here&&!o.holder);}
-    });});
+function hdr(name){let h=$('map').querySelector(`[data-name="${CSS.escape(name)}"]`);
+  if(!h){h=document.createElement('div');h.className='ph';h.dataset.name=name;h.textContent=name;h.title=name;$('map').appendChild(h);}return h;}
+// model: {regions[],here,chars[{name,region,off,note}],objs[{label,region,holder}]}
+function render(m){ lastM=m; place(m); }
+function place(m){
+  const groups={}; const charReg={}; m.chars.forEach(c=>charReg[c.name]=c.region);
+  const add=(g,it)=>(groups[g]=groups[g]||[]).push(it);
+  m.chars.forEach(c=>add(c.region,{id:'c:'+c.name,kind:'char',label:c.name,sp:media.sprites[c.name],c}));
+  m.objs.forEach(o=>add((o.holder&&charReg[o.holder])||o.region,{id:'o:'+o.label,kind:'obj',label:o.label,sp:media.sprites[o.label],o}));
+  // held items sit right after their holder
+  Object.values(groups).forEach(l=>{l.sort((a,b)=>(order[a.id]??0)-(order[b.id]??0));
+    l.filter(it=>it.o&&it.o.holder).forEach(it=>{const i=l.indexOf(it),h=l.findIndex(x=>x.label===it.o.holder);if(h>=0){l.splice(i,1);l.splice(l.findIndex(x=>x.label===it.o.holder)+1,0,it);}});});
+  const names=[m.here,...m.regions.filter(r=>r!==m.here)].filter(n=>groups[n]);
+  const side=[[],[]],cnt=[0,0]; names.forEach(n=>{const k=cnt[0]<=cnt[1]?0:1;side[k].push(n);cnt[k]+=groups[n].length+1.3;});
+  const vh=innerHeight/100,vw=innerWidth/100, top=7*vh, bot=86*vh, seen=new Set(), hs=new Set();
+  side.forEach((ns,k)=>{ const units=cnt[k]||1, u=Math.min(5.4*vh,(bot-top)/units), sc=u/(5.4*vh); let y=top;
+    const x=k?88*vw:1*vw, w=11*vw;
+    ns.forEach(n=>{const h=hdr(n);hs.add(n);Object.assign(h.style,{left:x+'px',top:y+'px',width:w+'px',fontSize:Math.max(1.2,1.6*sc)+'vh'});h.classList.toggle('here',n===m.here);h.classList.toggle('r',!!k);y+=1.3*u;
+      groups[n].forEach(it=>{const e=ent(it.id,it.kind,it.label,it.sp);seen.add(it.id);
+        const held=it.o&&it.o.holder; e.classList.toggle('held',!!held);e.classList.toggle('r',!!k);
+        Object.assign(e.style,{left:(x+(held?(k?0:1.2*vw):0))+'px',top:y+'px',width:(w-(held?1.2*vw:0))+'px',height:(u*.86)+'px',fontSize:(1.75*sc)+'vh'});
+        const r=it.c?it.c.region:(held?'held':it.o.region); if(prevReg[it.id]!==undefined&&prevReg[it.id]!==r)pulse(it.label); prevReg[it.id]=r;
+        if(it.c){e.classList.toggle('off',!!it.c.off);e.querySelector('.note').textContent=it.c.note||'';}
+        else{e.querySelector('.note').textContent=held?'held by '+held:'';e.classList.toggle('off',it.o.region!==m.here&&!held);}
+        y+=u;});
+      y+=.3*u;});});
+  [...$('map').children].forEach(h=>{if(!hs.has(h.dataset.name))h.remove();});
   Object.keys(ents).forEach(k=>{if(!seen.has(k)){ents[k].remove();delete ents[k];}});
-  m._pos=pos;
 }
+// something moves every 4-6s: swap two chips inside a group, pulse one
+(function drift(){setTimeout(()=>{try{if(lastM){const ids=Object.keys(ents);if(ids.length>1){
+  const a=ids[Math.floor(Math.random()*ids.length)],b=ids[Math.floor(Math.random()*ids.length)];
+  order[a]=Math.random()*10;order[b]=Math.random()*10; place(lastM); const e=ents[a]; if(e)pulse(e.title);}}}catch(e){} drift();},4000+Math.random()*2000);})();
 function ticker(world,upd,meta){$('world').textContent=world||'';const u=$('upd');u.style.opacity=0;
   setTimeout(()=>{u.textContent=upd||'';u.style.opacity=1;},400);$('meta').textContent=meta||'';}
 function pulse(name){const e=ents['o:'+name]||ents['c:'+name];if(e){e.classList.remove('pulse');void e.offsetWidth;e.classList.add('pulse');}}
