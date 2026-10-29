@@ -229,7 +229,7 @@ addEventListener('resize',()=>{regionsKey='';});
 (async()=>{
   try{media=await J('data/media.json');}catch(e){}
   try{LXTRA=(await J('data/live_extra.json')).sets||[];}catch(e){}
-  await loadOmap(); await loadRGifs(); setInterval(async()=>{if(MODE==='live'){loadOmap();loadRGifs();try{const n=(await J('data/live_extra.json?t='+Date.now())).sets||[];if(n.length!==LXTRA.length){LXTRA=n;POOL=livePool();poolI=Math.max(0,POOL.length-1);backdrop(POOL[poolI],true);}}catch(e){}}},60000);
+  await loadOmap(); await loadRGifs(); setTimeout(()=>{if(MODE==='live'&&LXTRA.length){const nw=LXTRA.slice().sort((a,b)=>(b.mtime||0)-(a.mtime||0))[0];POOL=livePool();poolI=Math.max(0,POOL.indexOf(nw));backdrop(nw,true);}},2500); setInterval(async()=>{if(MODE==='live'){loadOmap();loadRGifs();try{const n=(await J('data/live_extra.json?t='+Date.now())).sets||[];if(n.length!==LXTRA.length){LXTRA=n;POOL=livePool();poolI=Math.max(0,POOL.length-1);backdrop(POOL[poolI],true);}}catch(e){}}},60000);
   const ss=$('slide');if(ss){ss.value=String(SLIDE);ss.onclick=e=>e.stopPropagation();ss.onchange=e=>{SLIDE=+e.target.value;localStorage.setItem('thryd_slide',SLIDE);Q.set('slide',SLIDE);history.replaceState(null,'','?'+Q.toString());startSlide();};}
   try{(await J('assets/runs/media.json')).runs.forEach(r=>runMedia[r.run]=r.media);}catch(e){}
   try{localPrec=(await J('data/precisions.json')).map(p=>({line:p.line,src:p.src,move:p.move}));}catch(e){}
