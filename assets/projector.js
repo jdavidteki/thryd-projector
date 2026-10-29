@@ -56,6 +56,7 @@ async function loadOmap(){try{const om=await J('data/objects_map.json');const be
 async function loadRGifs(){try{(await J('data/replays.json')).runs.forEach(r=>RGIFS[r.run]=r.gifs||[]);}catch(e){}}
 function fitLayer(){if(!objLayer||!objLayer._fs)return;const st=$('stage'),W=st.clientWidth,H=st.clientHeight,[fw,fh]=objLayer._fs,sc=Math.min(W/fw,H/fh);
   Object.assign(objLayer.style,{width:fw*sc+'px',height:fh*sc+'px',left:(W-fw*sc)/2+'px',top:(H-fh*sc)/2+'px'});}
+const DPOS=JSON.parse(localStorage.getItem('thryd_dpos')||'{}');
 function objsFor(set){const [k,e0]=set?lookup(set):[null,null]; if(k===objKey&&objLayer)return; objKey=k;
   if(objLayer){const old=objLayer;old.classList.remove('on');setTimeout(()=>old.remove(),2600);objLayer=null;}
   const e=e0; if(!e)return;
@@ -68,6 +69,8 @@ function objsFor(set){const [k,e0]=set?lookup(set):[null,null]; if(k===objKey&&o
       if(/door|street|window/i.test(o.label))sp.classList.add('small');
       const wr=document.createElement('div');wr.className='spw';wr.appendChild(sp);box.appendChild(wr);}
     else{const t=document.createElement('span');t.className='olab';t.textContent=o.label;box.appendChild(t);}
+    if(o.draggable&&o.sprite){const pa=box.querySelector('.patch');if(pa){const ph=document.createElement('div');ph.className='ob dpatch';ph.dataset.label=o.label;Object.assign(ph.style,{left:x*100+'%',top:y*100+'%',width:w*100+'%',height:h*100+'%'});ph.appendChild(pa);L.appendChild(ph);}box.classList.add('dob');box.dataset.id=(o.kind==='obj'?'o:':'c:')+o.label;const sv=DPOS[k+'|'+o.label];
+      if(sv){box.style.left=sv[0]+'%';box.style.top=sv[1]+'%';box.classList.add('away');const q=L.querySelector(`.dpatch[data-label="${CSS.escape(o.label)}"]`);if(q)q.classList.add('away');}}
     L.appendChild(box);});
   $('stage').insertBefore(L,$('cap')); objLayer=L; fitLayer(); requestAnimationFrame(()=>L.classList.add('on'));}
 addEventListener('resize',fitLayer);
@@ -294,4 +297,27 @@ async function dropTo(id,from,to){
   document.addEventListener('selectstart',ev=>{if(ev.target.closest&&ev.target.closest('.chip'))ev.preventDefault();});
   document.addEventListener('dragstart',ev=>{if(ev.target.closest&&ev.target.closest('.chip'))ev.preventDefault();});})();
 
+
+// ---------- drag a person/object INSIDE the scene (cut-out layers from objects_map 'draggable') -> same setlocation path as chips
+(function(){let d=null;
+  const regOf=id=>{if(!lastM)return null;const nm=id.slice(2);const x=(id[0]==='c'?lastM.chars:lastM.objs).find(z=>(z.name||z.label)===nm);return x?x.region:null;};
+  const hit=(x,y)=>{for(const q of $('map').querySelectorAll('.ph')){const r=q.getBoundingClientRect();if(x>=r.left-10&&x<=r.right+10&&y>=r.top-12&&y<=r.bottom+12)return q;}
+    const el=document.elementsFromPoint(x,y).find(e=>e.closest&&e.closest('.chip:not(.ghost)')&&!e.closest('.dob'));const c=el&&el.closest('.chip');
+    return c&&c.dataset.reg?$('map').querySelector(`[data-name="${CSS.escape(c.dataset.reg)}"]`):null;};
+  const clr=()=>document.querySelectorAll('.ph.drop').forEach(h=>h.classList.remove('drop'));
+  document.addEventListener('pointerdown',ev=>{const b=ev.target.closest&&ev.target.closest('#objs .dob');if(!b||d)return;if(ev.pointerType==='mouse'&&ev.button!==0)return;
+    ev.preventDefault();ev.stopPropagation();const r=b.getBoundingClientRect();
+    d={b,pid:ev.pointerId,x:ev.clientX,y:ev.clientY,l0:parseFloat(b.style.left),t0:parseFloat(b.style.top),on:false};try{b.setPointerCapture(ev.pointerId);}catch(e){}},{passive:false,capture:true});
+  document.addEventListener('pointermove',ev=>{if(!d||ev.pointerId!==d.pid)return;const dx=ev.clientX-d.x,dy=ev.clientY-d.y;
+    if(!d.on){if(dx*dx+dy*dy<25)return;d.on=true;d.b.classList.add('lifting','away');{const q=d.b.parentNode.querySelector(`.dpatch[data-label="${CSS.escape(d.b.dataset.label)}"]`);if(q)q.classList.add('away');}document.body.classList.add('dragmode');d.b.parentNode.appendChild(d.b);}
+    ev.preventDefault();const L=d.b.parentNode.getBoundingClientRect();d.b.style.left=(d.l0+dx/L.width*100)+'%';d.b.style.top=(d.t0+dy/L.height*100)+'%';
+    clr();const h=hit(ev.clientX,ev.clientY);if(h)h.classList.add('drop');},{passive:false});
+  const end=ev=>{if(!d||ev.pointerId!==d.pid)return;const dd=d;d=null;try{dd.b.releasePointerCapture(dd.pid);}catch(e){}
+    dd.b.classList.remove('lifting');document.body.classList.remove('dragmode');clr();if(!dd.on)return;
+    const k=dd.b.parentNode&&dd.b.parentNode.dataset.key;DPOS[k+'|'+dd.b.dataset.label]=[parseFloat(dd.b.style.left),parseFloat(dd.b.style.top)];
+    try{localStorage.setItem('thryd_dpos',JSON.stringify(DPOS));}catch(e){}
+    const h=hit(ev.clientX,ev.clientY),id=dd.b.dataset.id,from=regOf(id);if(!h){toast('dropped in the scene — drop on a place name to move them');return;}
+    if(h.dataset.name===from){toast(`${id.slice(2)} is already at ${from}`);return;}
+    dropTo(id,from,h.dataset.name);};
+  document.addEventListener('pointerup',end);document.addEventListener('pointercancel',end);})();
 })();
