@@ -24,10 +24,12 @@ function backdrop(set,force){ stageN++;
   tick(); on.classList.add('on'); off.classList.remove('on'); $('cap').textContent=set.label||''; objsFor(set);
   bgTimer=setInterval(tick,Math.max(80,set.ms||120));
 }
-let POOL=[],poolI=0;
+let POOL=[],poolI=0,LXTRA=[];
 // slide speed: 8s default, 30s, 60s (?slide=30 or the bar select; remembered)
 let SLIDE=+(Q.get('slide')||localStorage.getItem('thryd_slide')||8); if(![8,30,60].includes(SLIDE))SLIDE=8; let slideT=null;
-function startSlide(){clearInterval(slideT);slideT=setInterval(()=>{if(POOL.length>1){poolI=(poolI+1)%POOL.length;backdrop(POOL[poolI],true);}},SLIDE*1000);}
+const NEWEST=()=>LXTRA.length?LXTRA.slice().sort((a,b)=>(b.mtime||0)-(a.mtime||0))[0]:null; let slideN=0;
+// newest live view comes back every 3rd slide; others cycle in between
+function startSlide(){clearInterval(slideT);slideT=setInterval(()=>{if(POOL.length>1){slideN++;const nw=MODE==='live'&&NEWEST();if(nw&&slideN%3===0&&bgSet&&bgSet.dir!==nw.dir){backdrop(nw,true);return;}poolI=(poolI+1)%POOL.length;if(nw&&POOL[poolI]===nw&&POOL.length>2)poolI=(poolI+1)%POOL.length;backdrop(POOL[poolI],true);}},SLIDE*1000);}
 startSlide();
 // ---------- in-place object sprites (data/objects_map.json): patch at bbox, sprite on top, gentle motion
 let OMAP={}, objLayer=null, objKey=null, objState={};
@@ -77,7 +79,7 @@ function trackObjs(st){(st.objects||[]).forEach(o=>{const v=JSON.stringify([o.pl
   (st.characters||[]).forEach(c=>{const id=c.id||c.name,v=JSON.stringify([c.place]);if(objState['c:'+id]!==undefined&&objState['c:'+id]!==v)objChanged(id);objState['c:'+id]=v;});}
 window.thrydObjChanged=objChanged;
 setInterval(()=>{if(!objLayer)return;const bs=[...objLayer.querySelectorAll('.ob')];if(bs.length){const b=bs[Math.floor(Math.random()*bs.length)];objChanged(b.dataset.sid||b.dataset.label);}},3000);
-let LXTRA=[]; // data/live_extra.json: unmapped face-blurred/no-people sets, play as-is
+// LXTRA (data/live_extra.json): original unblurred live views, play as-is
 function livePool(){const P=Object.values(media.backdrops).concat(LXTRA);Object.entries(runMedia).forEach(([r,ms])=>(ms||[]).forEach(m=>{if(lookup(m)[1])P.push(Object.assign({label:r+' · '+(m.card||'')},m));}));return P;}
 function liveBackdrop(place){const p=(place||'').toLowerCase();const b=media.backdrops;
   const k=Q.get('scene')||(/marina|boat|bay|causeway|church|wheelhouse|deck/.test(p)?'j6':'j12');return b[k]&&Object.assign({label:short(place)},b[k]);}
@@ -156,8 +158,8 @@ async function live(){
   let s=null; try{s=await LIVE_STATE();}catch(e){}
   if(!s||!(s.characters||[]).length){return loopTimeline();}
   let last='', step=0, cur=s;
-  const apply=st=>{const m=fromState(st);render(m);cur=st;trackObjs(st);
-    backdrop(liveBackdrop(st.current_place)); POOL=livePool();
+  let first=true; const apply=st=>{const m=fromState(st);render(m);cur=st;trackObjs(st);
+    POOL=livePool(); if(first){first=false;const nw=NEWEST();if(nw){poolI=Math.max(0,POOL.indexOf(nw));backdrop(nw,true);}else backdrop(liveBackdrop(st.current_place));}
     $('run').textContent=st.run||'';};
   apply(s);
   const lines=()=>[...(cur.moves||[]).flatMap(m=>(m.precisions||[]).map(p=>({line:p.line,src:'seat '+p.seat,move:/\[\[/.test(p.line)}))),...localPrec];
@@ -229,7 +231,7 @@ addEventListener('resize',()=>{regionsKey='';});
 (async()=>{
   try{media=await J('data/media.json');}catch(e){}
   try{LXTRA=(await J('data/live_extra.json')).sets||[];}catch(e){}
-  await loadOmap(); await loadRGifs(); setTimeout(()=>{if(MODE==='live'&&LXTRA.length){const nw=LXTRA.slice().sort((a,b)=>(b.mtime||0)-(a.mtime||0))[0];POOL=livePool();poolI=Math.max(0,POOL.indexOf(nw));backdrop(nw,true);}},2500); setInterval(async()=>{if(MODE==='live'){loadOmap();loadRGifs();try{const n=(await J('data/live_extra.json?t='+Date.now())).sets||[];if(n.length!==LXTRA.length){LXTRA=n;POOL=livePool();poolI=Math.max(0,POOL.length-1);backdrop(POOL[poolI],true);}}catch(e){}}},60000);
+  await loadOmap(); await loadRGifs();  setInterval(async()=>{if(MODE==='live'){loadOmap();loadRGifs();try{const n=(await J('data/live_extra.json?t='+Date.now())).sets||[];const o=NEWEST();LXTRA=n;const nw=NEWEST();POOL=livePool();if(nw&&(!o||o.dir!==nw.dir||o.mtime!==nw.mtime)){poolI=Math.max(0,POOL.indexOf(nw));backdrop(nw,true);}}catch(e){}}},60000);
   const ss=$('slide');if(ss){ss.value=String(SLIDE);ss.onclick=e=>e.stopPropagation();ss.onchange=e=>{SLIDE=+e.target.value;localStorage.setItem('thryd_slide',SLIDE);Q.set('slide',SLIDE);history.replaceState(null,'','?'+Q.toString());startSlide();};}
   try{(await J('assets/runs/media.json')).runs.forEach(r=>runMedia[r.run]=r.media);}catch(e){}
   try{localPrec=(await J('data/precisions.json')).map(p=>({line:p.line,src:p.src,move:p.move}));}catch(e){}
