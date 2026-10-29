@@ -14,7 +14,9 @@ const short=p=>(p||'elsewhere').replace(/,? (in )?Miami(, Florida)?/g,'').replac
 let bgSet=null,bgI=0,bgFlip=0,bgTimer=null,stageN=0; window.THRYD_UG=window.THRYD_UG||[];
 function showUser(u){clearInterval(bgTimer);bgSet={dir:'user:'+u.id};const w=$('ug');w.innerHTML='';w.appendChild(u.vis);
   w.classList.add('on');objsFor(null);$('bgA').classList.remove('on');$('bgB').classList.remove('on');$('cap').textContent=u.label;}
-function backdrop(set,force){ stageN++;
+let HOLD=0; // in-scene drag pins the current scene (slideshow paused while dragging + 30s after a drop)
+window.thrydHold=ms=>{HOLD=ms?Math.max(HOLD,Date.now()+ms):0;};
+function backdrop(set,force){ if(Date.now()<HOLD)return; stageN++;
   const ug=window.THRYD_UG; if(ug.length&&stageN%3===0){return showUser(ug[Math.floor(stageN/3)%ug.length]);}
   if(!set||(!force&&bgSet&&bgSet.dir===set.dir))return; bgSet=set;bgI=0; $('ug').classList.remove('on');
   clearInterval(bgTimer); const imgs=[$('bgA'),$('bgB')];
@@ -58,7 +60,7 @@ function fitLayer(){if(!objLayer||!objLayer._fs)return;const st=$('stage'),W=st.
   const k=Math.max(W/fw,H/fh),w=fw*k,h=fh*k;Object.assign(objLayer.style,{width:w+'px',height:h+'px',left:(W-w)/2+'px',top:(H-h)/2+'px'});} // cover
 const DPOS=JSON.parse(localStorage.getItem('thryd_dpos')||'{}');
 function objsFor(set){const [k,e0]=set?lookup(set):[null,null]; if(k===objKey&&objLayer)return; objKey=k;
-  if(objLayer){const old=objLayer;old.classList.remove('on');setTimeout(()=>old.remove(),2600);objLayer=null;}
+  if(objLayer){const old=objLayer;old.classList.remove('on');old.classList.add('gone');setTimeout(()=>old.remove(),2600);objLayer=null;}
   const e=e0; if(!e)return;
   const L=document.createElement('div');L.id='objs';L._fs=e.frame_size||[480,270];L.dataset.key=k;
   (e.objects||[]).forEach((o,i)=>{const[x,y,w,h]=o.bbox;const box=document.createElement('div');
@@ -70,12 +72,17 @@ function objsFor(set){const [k,e0]=set?lookup(set):[null,null]; if(k===objKey&&o
       const wr=document.createElement('div');wr.className='spw';wr.appendChild(sp);box.appendChild(wr);}
     else{const t=document.createElement('span');t.className='olab';t.textContent=o.label;box.appendChild(t);}
     if(o.draggable&&o.sprite){const pa=box.querySelector('.patch');if(pa){const ph=document.createElement('div');ph.className='ob dpatch';ph.dataset.label=o.label;Object.assign(ph.style,{left:x*100+'%',top:y*100+'%',width:w*100+'%',height:h*100+'%'});ph.appendChild(pa);L.appendChild(ph);}box.classList.add('dob');box.dataset.id=(o.kind==='obj'?'o:':'c:')+o.label;const sv=DPOS[k+'|'+o.label];
-      if(sv){box.style.left=sv[0]+'%';box.style.top=sv[1]+'%';box.classList.add('away');const q=L.querySelector(`.dpatch[data-label="${CSS.escape(o.label)}"]`);if(q)q.classList.add('away');}}
+      if(sv){box.style.left=sv[0]+'%';box.style.top=sv[1]+'%';box.dataset.dp='1';box.classList.add('away');const q=L.querySelector(`.dpatch[data-label="${CSS.escape(o.label)}"]`);if(q)q.classList.add('away');}}
     L.appendChild(box);});
   $('stage').insertBefore(L,$('cap')); objLayer=L; fitLayer(); requestAnimationFrame(()=>L.classList.add('on'));}
+// cover math: the layer is the full frame scaled by k=max(W/fw,H/fh) and centred, so the visible window in layer % is
+// x in [ox, 100-ox], y in [oy, 100-oy]; keep a dropped box (w%,h%) at least partly inside it
+function visClamp(L,l,t,w,h){const st=$('stage'),W=st.clientWidth,H=st.clientHeight,[fw,fh]=L._fs||[480,270],k=Math.max(W/fw,H/fh);
+  const ox=(1-W/(fw*k))/2*100,oy=(1-H/(fh*k))/2*100,m=.35;
+  return [Math.min(Math.max(l,ox-w*m),100-ox-w*(1-m)),Math.min(Math.max(t,oy-h*m),100-oy-h*(1-m))];}
 addEventListener('resize',fitLayer);
 // agenda state changed an object -> its sprite glides a bit and pulses
-function objChanged(id){if(!objLayer||!id)return;objLayer.querySelectorAll('.ob:not(.dpatch)').forEach(b=>{if(b.dataset.sid===id||b.dataset.label===id){
+function objChanged(id){if(!objLayer||!id)return;objLayer.querySelectorAll('.ob:not(.dpatch):not([data-dp])').forEach(b=>{if(b.dataset.sid===id||b.dataset.label===id){
   const w=b.querySelector('.spw')||b;w.classList.remove('moved');void w.offsetWidth;w.style.setProperty('--gx',((Math.random()-.5)*6).toFixed(1)+'px');w.style.setProperty('--gy',((Math.random()-.5)*4).toFixed(1)+'px');w.classList.add('moved');}});}
 function trackObjs(st){(st.objects||[]).forEach(o=>{const v=JSON.stringify([o.place,o.holder||o.held_by||null,o.state||o.status||null]);
   if(objState[o.label]!==undefined&&objState[o.label]!==v)objChanged(o.label);objState[o.label]=v;});
@@ -305,16 +312,17 @@ async function dropTo(id,from,to){
     const el=document.elementsFromPoint(x,y).find(e=>e.closest&&e.closest('.chip:not(.ghost)')&&!e.closest('.dob'));const c=el&&el.closest('.chip');
     return c&&c.dataset.reg?$('map').querySelector(`[data-name="${CSS.escape(c.dataset.reg)}"]`):null;};
   const clr=()=>document.querySelectorAll('.ph.drop').forEach(h=>h.classList.remove('drop'));
-  document.addEventListener('pointerdown',ev=>{const b=ev.target.closest&&ev.target.closest('#objs .dob');if(!b||d)return;if(ev.pointerType==='mouse'&&ev.button!==0)return;
-    ev.preventDefault();ev.stopPropagation();const r=b.getBoundingClientRect();
+  document.addEventListener('pointerdown',ev=>{const b=ev.target.closest&&ev.target.closest('#objs:not(.gone) .dob');if(!b||d)return;if(ev.pointerType==='mouse'&&ev.button!==0)return;
+    ev.preventDefault();ev.stopPropagation();window.thrydHold(60000);const r=b.getBoundingClientRect();
     d={b,pid:ev.pointerId,x:ev.clientX,y:ev.clientY,l0:parseFloat(b.style.left),t0:parseFloat(b.style.top),on:false};try{b.setPointerCapture(ev.pointerId);}catch(e){}},{passive:false,capture:true});
   document.addEventListener('pointermove',ev=>{if(!d||ev.pointerId!==d.pid)return;const dx=ev.clientX-d.x,dy=ev.clientY-d.y;
     if(!d.on){if(dx*dx+dy*dy<25)return;d.on=true;d.b.classList.add('lifting','away');{const q=d.b.parentNode.querySelector(`.dpatch[data-label="${CSS.escape(d.b.dataset.label)}"]`);if(q)q.classList.add('away');}document.body.classList.add('dragmode');d.b.parentNode.appendChild(d.b);}
     ev.preventDefault();const L=d.b.parentNode.getBoundingClientRect();d.b.style.left=(d.l0+dx/L.width*100)+'%';d.b.style.top=(d.t0+dy/L.height*100)+'%';
     clr();const h=hit(ev.clientX,ev.clientY);if(h)h.classList.add('drop');},{passive:false});
   const end=ev=>{if(!d||ev.pointerId!==d.pid)return;const dd=d;d=null;try{dd.b.releasePointerCapture(dd.pid);}catch(e){}
-    dd.b.classList.remove('lifting');document.body.classList.remove('dragmode');clr();if(!dd.on)return;
-    const k=dd.b.parentNode&&dd.b.parentNode.dataset.key;DPOS[k+'|'+dd.b.dataset.label]=[parseFloat(dd.b.style.left),parseFloat(dd.b.style.top)];
+    dd.b.classList.remove('lifting');document.body.classList.remove('dragmode');clr();if(!dd.on){window.thrydHold(0);return;}
+    window.thrydHold(30000);const Lp=dd.b.parentNode,k=Lp&&Lp.dataset.key;const[cl,ct]=visClamp(Lp,parseFloat(dd.b.style.left),parseFloat(dd.b.style.top),parseFloat(dd.b.style.width),parseFloat(dd.b.style.height));
+    dd.b.style.left=cl+'%';dd.b.style.top=ct+'%';dd.b.dataset.dp='1';DPOS[k+'|'+dd.b.dataset.label]=[+cl.toFixed(3),+ct.toFixed(3)];
     try{localStorage.setItem('thryd_dpos',JSON.stringify(DPOS));}catch(e){}
     const h=hit(ev.clientX,ev.clientY),id=dd.b.dataset.id,from=regOf(id);if(!h){toast('dropped in the scene — drop on a place name to move them');return;}
     if(h.dataset.name===from){toast(`${id.slice(2)} is already at ${from}`);return;}
