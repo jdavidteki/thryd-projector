@@ -205,7 +205,7 @@ async function replay(){
   const runs=(R&&R.runs||[]).filter(r=>!r.live);
   if(!runs.length){ticker('','no replays yet','');return;}
   if(!pick.options.length) runs.forEach(r=>{const o=document.createElement('option');o.value=r.run;o.textContent=`${r.date||''} · ${r.run} (${r.frames||0})`;pick.appendChild(o);});
-  const want=Q.get('run')&&runs.find(r=>r.run===Q.get('run'))?Q.get('run'):(pick.value||runs[runs.length-1].run); pick.value=want;
+  const want=Q.get('run')&&runs.find(r=>r.run===Q.get('run'))?Q.get('run'):(pick.value||([...runs].reverse().find(r=>(r.frames||0)>0)||runs[runs.length-1]).run); pick.value=want;
   const meta=runs.find(r=>r.run===want); let D;
   try{D=await J(meta.replay||`data/replay_${want}.json`);}catch(e){ticker('',`replay for ${want} not built yet`,'');return;}
   if(g!==gen)return;
