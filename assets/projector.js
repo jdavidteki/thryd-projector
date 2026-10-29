@@ -24,6 +24,7 @@ function backdrop(set,force){ stageN++;
   tick(); on.classList.add('on'); off.classList.remove('on'); $('cap').textContent=set.label||'';
   bgTimer=setInterval(tick,Math.max(80,set.ms||120));
 }
+let POOL=[],poolI=0; setInterval(()=>{if(POOL.length>1){poolI=(poolI+1)%POOL.length;backdrop(POOL[poolI],true);}},60000);
 function liveBackdrop(place){const p=(place||'').toLowerCase();const b=media.backdrops;
   const k=/marina|boat|bay|causeway|church|wheelhouse|deck/.test(p)?'j6':'j12';return b[k]&&Object.assign({label:short(place)},b[k]);}
 // ---------- gutters: chips grouped by place, left & right of the stage, never over it
@@ -67,7 +68,7 @@ function place(m){
 // something moves every 4-6s: swap two chips inside a group, pulse one
 (function drift(){setTimeout(()=>{try{if(lastM){const ids=Object.keys(ents);if(ids.length>1){
   const a=ids[Math.floor(Math.random()*ids.length)],b=ids[Math.floor(Math.random()*ids.length)];
-  order[a]=Math.random()*10;order[b]=Math.random()*10; place(lastM); const e=ents[a]; if(e)pulse(e.title);}}}catch(e){} drift();},4000+Math.random()*2000);})();
+  order[a]=Math.random()*10;order[b]=Math.random()*10; place(lastM); Object.values(ents).forEach(x=>x.style.setProperty('--j',((Math.random()-.5)*1.2).toFixed(2)+'vw')); const e=ents[a]; if(e)pulse(e.title);}}}catch(e){} drift();},4000+Math.random()*2000);})();
 function ticker(world,upd,meta){$('world').textContent=world||'';const u=$('upd');u.style.opacity=0;
   setTimeout(()=>{u.textContent=upd||'';u.style.opacity=1;},400);$('meta').textContent=meta||'';}
 function pulse(name){const e=ents['o:'+name]||ents['c:'+name];if(e){e.classList.remove('pulse');void e.offsetWidth;e.classList.add('pulse');}}
@@ -78,10 +79,11 @@ function maybeBubble(lines,speakers){ CUR.lines=lines; CUR.speakers=speakers; si
 function choose(lines){const pool=lines.filter(l=>ok(l.line)); if(!pool.length)return null;
   const mv=pool.filter(l=>l.move); const src=(mv.length&&Math.random()<.7)?mv:pool; return src[Math.floor(Math.random()*src.length)];}
 function say(L,who){ const e=ents['c:'+who]; if(!e)return;
-  const r=e.getBoundingClientRect(), b=$('bubble');
+  const r=e.getBoundingClientRect(), b=$('bubble'), right=e.classList.contains('r');
   b.querySelector('.who').textContent=who+(L.src?' · '+L.src:''); b.querySelector('.txt').textContent=L.line;
-  b.style.left=Math.min(innerWidth*.78,Math.max(innerWidth*.22,r.left+r.width/2))+'px'; b.style.top=(r.top-innerHeight*.01)+'px';
-  b.classList.add('on'); setTimeout(()=>b.classList.remove('on'),Math.min(SPEED*.9,7000));
+  b.classList.toggle('r',right); b.style.left=(right?r.left-innerWidth*.006:r.right+innerWidth*.006)+'px';
+  b.style.top=Math.min(innerHeight*.8,Math.max(innerHeight*.08,r.top+r.height/2))+'px';
+  b.classList.add('on'); setTimeout(()=>b.classList.remove('on'),Math.min(Math.max(SPEED*.9,4000),7000));
 }
 const every=(f,ms)=>{const g=gen;const t=setInterval(()=>{if(g===gen)f();},ms);timers.push(t);};
 function reset(){gen++;timers.forEach(clearInterval);timers=[];Object.keys(ents).forEach(k=>{ents[k].remove();delete ents[k];});regionsKey='';$('bubble').classList.remove('on');}
@@ -100,13 +102,13 @@ async function live(){
   if(!s||!(s.characters||[]).length){return loopTimeline();}
   let last='', step=0, cur=s;
   const apply=st=>{const m=fromState(st);render(m);cur=st;
-    backdrop(liveBackdrop(st.current_place));
+    backdrop(liveBackdrop(st.current_place)); POOL=Object.values(media.backdrops);
     $('run').textContent=st.run||'';};
   apply(s);
   const lines=()=>[...(cur.moves||[]).flatMap(m=>(m.precisions||[]).map(p=>({line:p.line,src:'seat '+p.seat,move:/\[\[/.test(p.line)}))),...localPrec];
   const upd=()=>{const mv=(cur.moves||[]).slice(-10), re=(cur.recent_events||[]).slice(-6);
     const items=[...mv.map(m=>m.move),...re.map(e=>`${e.card||''} ${e.ev}${e.status?' · '+e.status:''}`)];
-    const it=items.length?items[step++%items.length]:'waiting';
+    const it=(items.length?String(items[step++%items.length]):'waiting').replace(/ ?\(undefined\)/g,'');
     ticker(cur.story_time_label,ok(it)?it:'move (cut away)',`${cur.current_card} · ${cur.seats||''} · state ${String(cur.exported_at||'').slice(11,16)} ET`);
     const m=fromState(cur); maybeBubble(lines(),m.chars.filter(c=>!c.off).map(c=>c.name).concat(m.chars.length?[]:[]).slice(0,4).length?m.chars.filter(c=>!c.off).map(c=>c.name):m.chars.map(c=>c.name));};
   upd(); every(upd,SPEED);
@@ -125,7 +127,7 @@ async function loopTimeline(){
     if(e.object){objs[e.object]=here;}
     render({regions:names,here,chars:Object.entries(chars).map(([n,r])=>({name:n,region:r,off:r!==here})),objs:Object.entries(objs).map(([l,r])=>({label:l,region:r}))});
     if(e.object)pulse(e.object);
-    backdrop(liveBackdrop(e.place));
+    backdrop(liveBackdrop(e.place)); POOL=Object.values(media.backdrops);
     ticker(e.world,e.label,`${e.scene} · update ${i%ev.length+1}/${ev.length}`);
     const sp=Object.entries(chars).filter(([n,r])=>r===here).map(([n])=>n);
     maybeBubble(localPrec,sp.length?sp:Object.keys(chars)); i++; };
@@ -151,7 +153,7 @@ async function replay(){
   const step=()=>{ if(g!==gen)return; const f=fr[i%fr.length]; if(f.cast&&f.cast.length)cast=f.cast;
     const here=f.card&&/^w\d+$/.test(f.card)?'card '+f.card:regions[0];
     render({regions,here,chars:(cast.length?cast:[]).slice(0,6).map(n=>({name:n,region:here})),objs:[]});
-    if(rm.length){const mi=rm.find(x=>x.card===f.card)||rm[Math.floor(cards.indexOf(f.card)*rm.length/Math.max(1,cards.length))]||rm[0];backdrop(mi);} 
+    if(rm.length){const mi=rm.find(x=>x.card===f.card)||rm[Math.floor(cards.indexOf(f.card)*rm.length/Math.max(1,cards.length))]||rm[0];backdrop(Object.assign({label:`${want} · ${mi.card||''}`},mi));POOL=rm;} 
     const ls=f.latest_seat; const lab=f.kind==='seat'&&ls?`seat ${ls.seat} seated on ${ls.card}`:`${f.card||''} ${f.event||''}${f.status?' · '+f.status:''}`;
     ticker(String(f.t||'').replace('T',' ').slice(0,16)+' ET',lab,`${want} · update ${i%fr.length+1}/${fr.length} · ${f.seated_count||0} seated`);
     maybeBubble(prec,cast.slice(0,6)); i++; };
@@ -167,7 +169,7 @@ $('pick').onclick=e=>e.stopPropagation();
 $('pick').onchange=e=>{Q.set('run',e.target.value);history.replaceState(null,'','?'+Q.toString());reset();replay();};
 const fs=()=>{if(!document.fullscreenElement)document.documentElement.requestFullscreen?.().catch(()=>{});else document.exitFullscreen?.();};
 document.addEventListener('click',fs); document.addEventListener('keydown',e=>{if(e.key==='f'||e.key==='F')fs();});
-setTimeout(()=>$('hint').style.opacity=0,8000);
+let idleT;const wake=()=>{document.body.classList.remove('idle');clearTimeout(idleT);idleT=setTimeout(()=>document.body.classList.add('idle'),3000);};addEventListener('mousemove',wake);addEventListener('keydown',wake);wake();
 addEventListener('resize',()=>{regionsKey='';});
 (async()=>{
   try{media=await J('data/media.json');}catch(e){}

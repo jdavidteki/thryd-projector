@@ -20,3 +20,6 @@ Use the button or drag and drop a GIF to add a labeled sprite. Sprites are store
 
 ## GitHub Pages
 Serve the repo root (a `.nojekyll` file is included). All paths are relative. `export_state.py` / `data/state.json` and the replay files belong to the Chief of Staff pipeline. Rebuild the assets with `tools/build_projector.py` and `tools/build_runs.py`.
+
+## Wall layout (v5)
+The current scene's GIF plays large in the centre (object-fit: contain) and crossfades whenever the scene changes. It also rotates about every 60s, and GIFs you add join the rotation. Characters and objects appear as small chips grouped by place in the left and right gutters, so they never cover the GIF. Chips drift and swap every 4–6s, held items sit under whoever holds them, and the most recently changed item pulses. Clicking a chip only highlights it. Speech bubbles grow out of a chip toward the GIF's edge. The top bar hides after 3s of no mouse movement.

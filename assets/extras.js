@@ -26,7 +26,7 @@ const DB=new Promise((res,rej)=>{const r=indexedDB.open('thryd-projector',1);r.o
 const tx=async(mode,f)=>{const db=await DB;return new Promise((res,rej)=>{const t=db.transaction('gifs',mode);const r=f(t.objectStore('gifs'));t.oncomplete=()=>res(r&&r.result);t.onerror=()=>rej(t.error);});};
 const put=g=>tx('readwrite',s=>s.put(g)), del=id=>tx('readwrite',s=>s.delete(id)), all=()=>tx('readonly',s=>s.getAll());
 async function mount(g){
-  const d=document.createElement('div'); d.className='ent obj user'; d.style.left=(g.x||20)+'vw'; d.style.top=(g.y||80)+'vh';
+  const d=document.createElement('div'); d.className='uchip';
   let vis;
   if('ImageDecoder' in window){ try{
       const dec=new ImageDecoder({data:await g.blob.arrayBuffer(),type:g.blob.type||'image/gif'}); await dec.tracks.ready;
@@ -34,21 +34,19 @@ async function mount(g){
       for(let i=0;i<Math.min(n,60);i++){const {image}=await dec.decode({frameIndex:i});const bm=await createImageBitmap(image);fr.push([bm,(image.duration||100000)/1000]);image.close();}
       vis=document.createElement('canvas'); vis.width=fr[0][0].width; vis.height=fr[0][0].height; const cx=vis.getContext('2d'); let k=0;
       const tick=()=>{cx.clearRect(0,0,vis.width,vis.height);cx.drawImage(fr[k][0],0,0);const ms=Math.max(40,fr[k][1]);k=(k+1)%fr.length;setTimeout(tick,ms);}; tick();
-      d.title=`${fr.length} frames`;
     }catch(e){vis=null;} }
   if(!vis){vis=document.createElement('img');vis.src=URL.createObjectURL(g.blob);}
-  vis.className='uvis'; d.appendChild(vis);
-  const lab=document.createElement('div'); lab.className='lab'; lab.contentEditable='true'; lab.textContent=g.label; d.appendChild(lab);
+  vis.className='uvis';
+  const lab=document.createElement('span'); lab.className='lab'; lab.contentEditable='true'; lab.textContent=g.label; d.appendChild(lab);
   const x=document.createElement('button'); x.className='ux'; x.textContent='×'; d.appendChild(x);
+  const U={id:g.id,label:g.label,vis}; (window.THRYD_UG=window.THRYD_UG||[]).push(U);
   lab.onclick=e=>e.stopPropagation(); lab.onkeydown=e=>{e.stopPropagation();if(e.key==='Enter'){e.preventDefault();lab.blur();}};
-  lab.onblur=()=>{g.label=lab.textContent.trim()||g.label;put(g);};
-  x.onclick=e=>{e.stopPropagation();d.remove();del(g.id);};
-  d.onpointerdown=e=>{if(e.target===lab||e.target===x)return;e.preventDefault();const mv=ev=>{g.x=ev.clientX/innerWidth*100;g.y=ev.clientY/innerHeight*100+6;d.style.left=g.x+'vw';d.style.top=g.y+'vh';};
-    const up=()=>{removeEventListener('pointermove',mv);removeEventListener('pointerup',up);put(g);};addEventListener('pointermove',mv);addEventListener('pointerup',up);};
+  lab.onblur=()=>{g.label=U.label=lab.textContent.trim()||g.label;put(g);};
+  x.onclick=e=>{e.stopPropagation();d.remove();del(g.id);const a=window.THRYD_UG,i=a.indexOf(U);if(i>=0)a.splice(i,1);vis.remove();};
   d.onclick=e=>e.stopPropagation(); $('user').appendChild(d);
 }
 async function addFiles(files){for(const f of files){if(!/^image\/(gif|webp|png)/.test(f.type))continue;
-  const g={id:Date.now()+'-'+Math.random().toString(36).slice(2,6),label:f.name.replace(/\.\w+$/,''),blob:f,x:15+Math.random()*60,y:70};await put(g);mount(g);}}
+  const g={id:Date.now()+'-'+Math.random().toString(36).slice(2,6),label:f.name.replace(/\.\w+$/,''),blob:f};await put(g);mount(g);}}
 const inp=$('gifin'); $('addgif').onclick=e=>{e.stopPropagation();inp.click();}; inp.onclick=e=>e.stopPropagation();
 inp.onchange=()=>{addFiles(inp.files);inp.value='';};
 addEventListener('dragover',e=>{e.preventDefault();document.body.classList.add('drop');});
