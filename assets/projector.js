@@ -80,7 +80,8 @@ function trackObjs(st){(st.objects||[]).forEach(o=>{const v=JSON.stringify([o.pl
 window.thrydObjChanged=objChanged;
 setInterval(()=>{if(!objLayer)return;const bs=[...objLayer.querySelectorAll('.ob')];if(bs.length){const b=bs[Math.floor(Math.random()*bs.length)];objChanged(b.dataset.sid||b.dataset.label);}},3000);
 // LXTRA (data/live_extra.json): original unblurred live views, play as-is
-function livePool(){const P=Object.values(media.backdrops).concat(LXTRA);Object.entries(runMedia).forEach(([r,ms])=>(ms||[]).forEach(m=>{if(lookup(m)[1])P.push(Object.assign({label:r+' · '+(m.card||'')},m));}));return P;}
+// live loop = clean stills only (no baked terminal panel); replay-mode GIF frames stay out of it
+function livePool(){return Object.values(media.backdrops).concat(LXTRA);}
 function liveBackdrop(place){const p=(place||'').toLowerCase();const b=media.backdrops;
   const k=Q.get('scene')||(/marina|boat|bay|causeway|church|wheelhouse|deck/.test(p)?'j6':'j12');return b[k]&&Object.assign({label:short(place)},b[k]);}
 // ---------- gutters: chips grouped by place, left & right of the stage, never over it
