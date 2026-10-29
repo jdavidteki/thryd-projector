@@ -14,3 +14,20 @@ Positions are computed client-side in index.html: one stage column per place, sl
 {run, date, cast[], seated[] {seat, card, line (exact archive line), safe},
  frames[] (sorted by t, ET ISO) {t, kind "ev"|"seat", card, event, status, seated_count, latest_seat {seat,card,line,safe}, cast[]|null}}
 Each frame is a cumulative snapshot: play frames in order (scale real time gaps) to replay an agenda.
+
+## objects_map.json (object sprites over GIF backdrops)
+
+Keyed by the GIF path exactly as listed in `data/replays.json` `runs[].gifs`.
+
+```json
+{"<gif path>": {"frame_size": [w, h], "bbox_units": "normalized 0-1 of frame",
+  "objects": [{"label": "", "state_id": "", "bbox": [x, y, w, h],
+    "sprite": "assets/sprites/<run>/<gif>/<object>.png",
+    "patch": "assets/sprites/<run>/<gif>/<object>.patch.png",
+    "motion": "sway|bob|slide|flicker", "sprite_source": "<still used>"}]}}
+```
+
+- `bbox` is normalized (x, y = top-left), so multiply by the rendered backdrop size.
+- `state_id` is the matching `state.json` object label / character id, or null if the object isn't in state.
+- `sprite` is an RGBA cutout (OpenCV GrabCut) taken from the `_blur` still at the same framing. `patch` is an opaque, inpainted and blurred plate the same size. Draw the patch at the bbox, then draw the sprite on top with its motion.
+- Entries with `"anchor_only": true` (characters and the phone held at a face) have no sprite or patch. Use them only to place labels.
