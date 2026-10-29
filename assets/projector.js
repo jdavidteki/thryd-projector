@@ -54,8 +54,8 @@ function setKey(set){return lookup(set)[0];}
 async function loadOmap(){try{const om=await J('data/objects_map.json');const before=JSON.stringify(Object.keys(OMAP));addOmap(om);
   if(JSON.stringify(Object.keys(OMAP))!==before&&bgSet){objKey=null;objsFor(bgSet);}}catch(e){}}
 async function loadRGifs(){try{(await J('data/replays.json')).runs.forEach(r=>RGIFS[r.run]=r.gifs||[]);}catch(e){}}
-function fitLayer(){if(!objLayer||!objLayer._fs)return;const st=$('stage'),W=st.clientWidth,H=st.clientHeight,[fw,fh]=objLayer._fs,sc=Math.min(W/fw,H/fh);
-  Object.assign(objLayer.style,{width:fw*sc+'px',height:fh*sc+'px',left:(W-fw*sc)/2+'px',top:(H-fh*sc)/2+'px'});}
+function fitLayer(){if(!objLayer||!objLayer._fs)return;const st=$('stage'),W=st.clientWidth,H=st.clientHeight,[fw,fh]=objLayer._fs;
+  Object.assign(objLayer.style,{width:W+'px',height:H+'px',left:'0px',top:'0px'});} // full-bleed: stretched like the scene (object-fit:fill)
 const DPOS=JSON.parse(localStorage.getItem('thryd_dpos')||'{}');
 function objsFor(set){const [k,e0]=set?lookup(set):[null,null]; if(k===objKey&&objLayer)return; objKey=k;
   if(objLayer){const old=objLayer;old.classList.remove('on');setTimeout(()=>old.remove(),2600);objLayer=null;}
