@@ -426,7 +426,7 @@ async function dropTo(id,from,to){
     e.classList.add('done');const c=document.createElement('div');c.className='prophcap';c.textContent='✨ prophecy fulfilled: '+t.assert;lay().appendChild(c);
     setTimeout(()=>{e.classList.add('fade');c.classList.add('fade');},4200);setTimeout(()=>{e.remove();c.remove();},5600);}
   function fromState(s){st=s||st;if(!s)return;const A=x=>Array.isArray(x)?x:(x&&typeof x==='object'?(Array.isArray(x.targets)?x.targets:Array.isArray(x.items)?x.items:Object.values(x).filter(v=>v&&typeof v==='object')):[]);const MF=(s.miracles&&Array.isArray(s.miracles.fulfilled)?s.miracles.fulfilled:[]).map(m=>typeof m==='string'?{assert:m,fulfilled:true}:{...m,fulfilled:true});const list=[...MF,...A(s.targets),...A(s.miracles),...A(s.miracle)].filter(m=>m&&typeof m==='object');
-    const ful=list.filter(m=>/fulfil|true|done|met/i.test(String(m.status||''))||m.fulfilled===true);if(!ful.length)return;
+    const ful=list.filter(m=>/^fulfill?ed$/i.test(String(m.status||''))||m.fulfilled===true);if(!ful.length)return;
     const a=T();let ch=0;a.forEach(t=>{if(t.status!=='open')return;if(ful.some(m=>norm(m.assert||(m.target&&m.target.assert)||(typeof m.target==='string'?m.target:''))===norm(t.assert))){t.status='fulfilled';ch=1;fulfil(t);}});if(ch)save(a);}
   window.thrydTarget={make,scene,fromState,list:T,text:MT};
   const poll=async()=>{try{fromState(await LIVE_STATE());}catch(e){}draw();};
