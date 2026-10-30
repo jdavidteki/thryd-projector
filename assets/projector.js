@@ -286,7 +286,8 @@ async function dragSend(body){
 async function dropTo(id,from,to){
   if(!DRAG||!DRAG.endpoint){toast('drag endpoint not available',1);return;}
   const label=id.slice(2); PEND[id]={region:to,until:Date.now()+8*60e3}; setReg(id,to); toast(`moving ${label} → ${to}…`);
-  try{const j=await dragSend({key:DRAG.key,object:label,place:PFULL[to]||to});if(!j.ok)throw new Error(j.error||('HTTP '+j.status));toast(`${label} → ${to} ✓`);pulse(label);}
+  const tg=window.thrydTarget&&thrydTarget.make(label,`${label}.place == "${PFULL[to]||to}"`,{type:'chip',id,place:to});
+  try{const j=await dragSend({key:DRAG.key,object:label,place:PFULL[to]||to,...(tg?{target:tg}:{})});if(!j.ok)throw new Error(j.error||('HTTP '+j.status));toast(`${label} → ${to} ✓`);pulse(label);}
   catch(e){delete PEND[id];setReg(id,from);toast(`couldn't move ${label}: ${e.message}`,1);}}
 (function(){let d=null;
   const hit=(x,y)=>{document.body.classList.add('dragging');let el=null;try{el=document.elementFromPoint(x,y);}finally{document.body.classList.remove('dragging');}
@@ -347,7 +348,7 @@ async function dropTo(id,from,to){
     window.thrydHold(30000);const Lp=dd.b.parentNode,k=Lp&&Lp.dataset.key;const[cl,ct]=visClamp(Lp,parseFloat(dd.b.style.left),parseFloat(dd.b.style.top),parseFloat(dd.b.style.width),parseFloat(dd.b.style.height));
     dd.b.style.left=cl+'%';dd.b.style.top=ct+'%';dd.b.dataset.dp='1';DPOS[k+'|'+dd.b.dataset.label]=[+cl.toFixed(3),+ct.toFixed(3)];
     try{localStorage.setItem('thryd_dpos',JSON.stringify(DPOS));}catch(e){}
-    const h=hit(ev.clientX,ev.clientY),id=dd.b.dataset.id,from=regOf(id);if(!h){toast('dropped in the scene — drop on a place name to move them');return;}
+    const h=hit(ev.clientX,ev.clientY),id=dd.b.dataset.id,from=regOf(id);if(!h){toast('dropped in the scene — drop on a place name to move them');if(window.thrydTarget)thrydTarget.scene(dd.b,k,cl,ct);return;}
     if(h.dataset.name===from){toast(`${id.slice(2)} is already at ${from}`);return;}
     dropTo(id,from,h.dataset.name);};
   document.addEventListener('pointerup',end);document.addEventListener('pointercancel',end);})();
@@ -387,3 +388,38 @@ async function dropTo(id,from,to){
     if(b.dataset.z==='0')reset();else zoomAt(z*(b.dataset.z==='+'?1.25:0.8),cx,cy);});
   ui.addEventListener('dblclick',ev=>ev.stopPropagation());
   document.body.appendChild(ui);addEventListener('resize',apply);apply();})();
+
+// ---------- prophecies: every drag is an open-ended #thryd.miracle.target. Page records + shows a ghost; ONLY state.json marks fulfilled.
+(function(){const LS='thryd_targets';const T=()=>{try{return JSON.parse(localStorage.getItem(LS)||'[]');}catch(e){return [];}};
+  const save=a=>{try{localStorage.setItem(LS,JSON.stringify(a.slice(-60)));}catch(e){}};
+  let st=null; const norm=a=>String(a||'').replace(/\s+/g,' ').trim().toLowerCase();
+  const curJ=()=>{const s=st||{};return s.current_card||'';};
+  function make(label,assert,ghost){const t={kind:'miracle.target',assert,run:(st&&st.run)||CUR_RUN||'',j:curJ(),at:new Date().toISOString()};
+    const a=T().filter(x=>!(x.ghost&&ghost&&x.ghost.label===label&&x.status==='open'));  // a new drag of the same thing supersedes its open ghost
+    a.push({...t,status:'open',ghost:{...ghost,label}});save(a);draw();return t;}
+  async function scene(b,k,cl,ct){const label=b.dataset.label,L=b.parentNode,R=b.getBoundingClientRect();let other=null,best=0;
+    L.querySelectorAll('.ob:not(.dpatch)').forEach(o=>{if(o===b)return;const r=o.getBoundingClientRect();const ix=Math.max(0,Math.min(R.right,r.right)-Math.max(R.left,r.left)),iy=Math.max(0,Math.min(R.bottom,r.bottom)-Math.max(R.top,r.top));const v=ix*iy;if(v>best){best=v;other=o.dataset.label;}});
+    const place=(st&&st.current_place)||(lastM&&PFULL[lastM.here])||'';
+    const assert=other?`${label}.position == "on top of ${other}"`:`${label}.place == "${place}"`;
+    const t=make(label,assert,{type:'sprite',key:k,left:cl,top:ct,w:b.style.width,h:b.style.height,src:(b.querySelector('.sp')||{}).src||''});
+    try{if(DRAG&&DRAG.endpoint)fetch(DRAG.endpoint,{method:'POST',body:JSON.stringify({key:DRAG.key,target:t,rid:Math.random().toString(36).slice(2,12)})}).catch(()=>{});}catch(e){}
+    toast('✨ prophecy: '+assert);}
+  const lay=()=>{let g=document.getElementById('prophs');if(!g){g=document.createElement('div');g.id='prophs';document.body.appendChild(g);}return g;};
+  function ghostEl(t){const g=t.ghost||{};let e=document.querySelector(`[data-proph="${CSS.escape(t.at)}"]`);
+    if(g.type==='sprite'){const L=document.getElementById('objs');if(!L||L.dataset.key!==g.key){if(e)e.remove();return null;}
+      if(!e||e.parentNode!==L){if(e)e.remove();e=document.createElement('div');e.className='proph sprite';e.dataset.proph=t.at;if(g.src){const im=new Image();im.src=g.src;im.alt='';e.appendChild(im);}L.appendChild(e);}
+      Object.assign(e.style,{left:g.left+'%',top:g.top+'%',width:g.w,height:g.h});return e;}
+    const h=document.querySelector(`#map .ph[data-name="${CSS.escape(g.place||'')}"]`);if(!h){if(e)e.remove();return null;}
+    if(!e){e=document.createElement('div');e.className='proph chip';e.dataset.proph=t.at;e.textContent=g.label;lay().appendChild(e);}
+    const r=h.getBoundingClientRect();Object.assign(e.style,{left:r.left+'px',top:(r.bottom+4)+'px'});return e;}
+  function draw(){const a=T();document.querySelectorAll('[data-proph]').forEach(e=>{if(!a.some(t=>t.at===e.dataset.proph&&t.status!=='gone'))e.remove();});
+    a.forEach(t=>{if(t.status==='open')ghostEl(t);});}
+  function fulfil(t){const e=ghostEl(t)||(()=>{const x=document.createElement('div');x.className='proph chip';x.textContent=t.ghost&&t.ghost.label||'';x.style.cssText='left:50%;top:40%';lay().appendChild(x);return x;})();
+    e.classList.add('done');const c=document.createElement('div');c.className='prophcap';c.textContent='✨ prophecy fulfilled: '+t.assert;lay().appendChild(c);
+    setTimeout(()=>{e.classList.add('fade');c.classList.add('fade');},4200);setTimeout(()=>{e.remove();c.remove();},5600);}
+  function fromState(s){st=s||st;if(!s)return;const list=[...(s.targets||[]),...(s.miracles||[]),...((s.miracle&&s.miracle.targets)||[])];
+    const ful=list.filter(m=>/fulfil|true|done|met/i.test(String(m.status||''))||m.fulfilled===true);if(!ful.length)return;
+    const a=T();let ch=0;a.forEach(t=>{if(t.status!=='open')return;if(ful.some(m=>norm(m.assert||m.target||(m.target&&m.target.assert))===norm(t.assert))){t.status='fulfilled';ch=1;fulfil(t);}});if(ch)save(a);}
+  window.thrydTarget={make,scene,fromState,list:T};
+  const poll=async()=>{try{fromState(await LIVE_STATE());}catch(e){}draw();};
+  poll();setInterval(poll,20000);setInterval(draw,1200);addEventListener('resize',draw);})();

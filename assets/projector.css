@@ -102,3 +102,13 @@ body.idle #zoomui{opacity:.25}
 #objs .ob .spw.offstage{transform:translateX(var(--ox,-140%))!important;opacity:0;transition:transform 2.2s cubic-bezier(.5,0,.2,1),opacity 1.6s ease-in .5s!important;animation:none!important}
 #objs .ob .spw{transition:transform 2.2s cubic-bezier(.2,.7,.3,1),opacity 1.4s}
 #objs .ob.offscene{pointer-events:none!important}
+/* prophecy ghosts (#thryd.miracle.target) */
+#prophs{position:fixed;inset:0;pointer-events:none;z-index:60}
+.proph{pointer-events:none;border:1.5px dashed rgba(255,240,200,.7);border-radius:8px;opacity:.28;animation:prophP 3.6s ease-in-out infinite;transition:opacity 1.2s,box-shadow 1.2s,filter 1.2s}
+.proph.chip{position:fixed;padding:2px 8px;font-size:12px;color:#fff;background:rgba(255,255,255,.04);transform:translateX(0)}
+.proph.sprite{position:absolute;z-index:2}
+.proph.sprite img{width:100%;height:100%;object-fit:contain;filter:grayscale(1) brightness(1.6);opacity:.7}
+.proph.done{animation:none;opacity:1;border-style:solid;border-color:#ffe08a;box-shadow:0 0 18px 6px rgba(255,214,120,.75)}
+.proph.fade,.prophcap.fade{opacity:0!important;box-shadow:none}
+.prophcap{position:fixed;left:50%;bottom:14%;transform:translateX(-50%);padding:6px 14px;border-radius:14px;background:rgba(20,16,4,.78);color:#ffe9a8;font-size:14px;z-index:61;transition:opacity 1.2s;box-shadow:0 0 14px rgba(255,214,120,.5)}
+@keyframes prophP{0%,100%{opacity:.18}50%{opacity:.4}}
