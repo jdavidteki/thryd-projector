@@ -1,32 +1,31 @@
-# #thryd prophecy targets (drags = open-ended #thryd.miracle.target)
+# #thryd prophecy targets — page side (matches Chief of Staff contract, commit cd521af)
 
-## Record the page creates on every drop
-```json
-{"kind":"miracle.target",
- "assert":"<label>.place == \"<full place>\"",
- "run":"<state.run>",
- "j":"<state.current_card>",
- "at":"<ISO-8601 UTC, e.g. 2026-10-30T14:59:24.148Z>"}
-```
-`assert` forms:
-- chip dropped on a place heading, or sprite dropped on a heading: `Sefa Lorn.place == "the old lighthouse on Saltmere point"` (full place from state, PFULL)
-- sprite dropped free in the scene overlapping another object's box (largest overlap): `<label>.position == "on top of <other label>"`
-- sprite dropped free, no overlap: `<label>.place == "<state.current_place>"`
+Drags are open-ended `#thryd.miracle.target`. The page records and draws them; **only `state.miracles` decides open/fulfilled.**
 
-## Transport (existing data/drag.json ntfy relay, no new backend)
-- Heading drops: the normal setlocation body gains a field: `{key, object, place, rid, target:{...record}}`
-- Free scene drops: fire-and-forget `{key, rid, target:{...record}}` (no object/place, so the validator may reply with an error; the page ignores it).
-- Always kept in browser localStorage `thryd_targets` (array, last 60) = record + `status:'open'|'fulfilled'` + `ghost` (page-only drawing info).
-
-## The bridge chip (static page can't reach files)
-After a drop a `🔮 prophesy` chip appears near the item. Tapping it copies exactly:
-`#thryd.miracle.target(assert(<assert>))`
+## Bridge chip (the static page can't reach files)
+After any drop a `🔮 prophesy` chip appears near the item. Tap = copies exactly
+`#thryd.miracle.target(assert(<object>.place == "<place>"))`
 e.g. `#thryd.miracle.target(assert(Sefa Lorn.place == "the old lighthouse on Saltmere point"))`
 (navigator.clipboard, textarea+execCommand fallback) and shows `copied — paste in [[nh]]`.
+`<place>` = full place name from state (heading drops) or `state.current_place` (free in-scene sprite drops).
 
-## Fulfilment (written ONLY by Chief of Staff in data/state.json; page never self-fulfils)
-Primary key `miracles`. Page accepts any of:
-- `miracles: [ {assert, status:'open'|'fulfilled', at}, ... ]`
-- `miracles: {open:[...], fulfilled:[...], targets:[...]}` — every entry in `fulfilled` counts as fulfilled (entries may be objects with `assert` or plain assert strings); entries in other arrays count when `status` is 'fulfilled' (or `fulfilled:true`).
-- fallback `targets: [ {assert, status, at} ]`
-Match = assert text, whitespace-collapsed, case-insensitive. On match: ghost brightens + glow, caption `✨ prophecy fulfilled: <assert>` ~4s, then ghost removed. State polled every 20s.
+## Record the page makes on each drop
+```json
+{"kind":"miracle.target","object":"<label>","place":"<full place>",
+ "assert":"<label>.place == \"<place>\"","run":"<state.run>","j":"<state.current_card>",
+ "at":"<ISO UTC>", "near":"on top of <other>"   // near only for in-scene drops overlapping another object
+}
+```
+- Sent best-effort on the existing data/drag.json ntfy relay: heading drops add `target` to the usual `{key,object,place,rid}`; in-scene drops send `{key,rid,target}` fire-and-forget.
+- Kept in localStorage `thryd_targets` (last 60) with page-only `status` + `ghost` drawing info. Captions already shown: `thryd_targets_seen`.
+
+## What the page reads: state.json `miracles`
+```json
+"miracles": {"open":[...], "fulfilled":[...], "error": "optional"}
+entry: {id, object, place, status, window:{raw}, set_on_card, fulfilled_card, fulfilled_world_time, evidence:{actual}, raw}
+```
+- `error` present (truthy) → page shows NO ghosts/captions.
+- `open[]` → dashed ghost (faint, slow pulse) under the matching place heading, or at the dropped spot if this browser made that drag.
+- Local drags not yet in open[]/fulfilled[] → ghost too ("unsent").
+- `fulfilled[]` → ghost brightens + glow, caption `✨ prophecy fulfilled: <object label>.place == "<place>"` ~4s, then removed. Shown once per entry (key `id`, else object|place|fulfilled_card).
+- Matching: `object` loose vs objects[]/characters labels and local drags — case-insensitive, leading "the" dropped, split on `/` (`phone` ~ `phone/footage`); `place` equal or substring either way.
