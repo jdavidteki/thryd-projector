@@ -144,7 +144,9 @@ function maybeBubble(lines,speakers){ CUR.lines=lines; CUR.speakers=speakers; si
   const L=choose(lines); if(!L||!speakers.length)return; say(L,speakers[Math.floor(Math.random()*speakers.length)]);
 }
 function choose(lines){const pool=lines.filter(l=>ok(l.line)); if(!pool.length)return null;
-  const mv=pool.filter(l=>l.move); const src=(mv.length&&Math.random()<.7)?mv:pool; return src[Math.floor(Math.random()*src.length)];}
+  if(TDECK.length&&Math.random()<.75){for(let i=0;i<TDECK.length;i++){const t=TDECK[TI++%TDECK.length];if(ok(t.line))return t;}}
+  const mv=pool.filter(l=>l.move); const src=(mv.length&&Math.random()<.3)?mv:pool; return src[Math.floor(Math.random()*src.length)];}
+let TDECK=[],TI=0;
 function say(L,who){ const e=ents['c:'+who]; if(!e)return;
   const r=e.getBoundingClientRect(), b=$('bubble'), right=e.classList.contains('r');
   b.querySelector('.who').textContent=who+(L.src?' · '+L.src:''); b.querySelector('.txt').textContent=L.line;
@@ -249,6 +251,7 @@ addEventListener('resize',()=>{regionsKey='';});
   const ss=$('slide');if(ss){ss.value=String(SLIDE);ss.onclick=e=>e.stopPropagation();ss.onchange=e=>{SLIDE=+e.target.value;localStorage.setItem('thryd_slide',SLIDE);Q.set('slide',SLIDE);history.replaceState(null,'','?'+Q.toString());startSlide();};}
   try{(await J('assets/runs/media.json')).runs.forEach(r=>runMedia[r.run]=r.media);}catch(e){}
   try{localPrec=(await J('data/precisions.json')).map(p=>({line:p.line,src:p.src,move:p.move}));}catch(e){}
+  try{const T=(await J('data/tweets_all.json')).map(p=>({line:p.line,src:p.src,move:false}));for(let i=T.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[T[i],T[j]]=[T[j],T[i]];}TDECK=T;TI=0;}catch(e){}
   setMode(MODE);
 })();
 // ---------- drag a chip onto a place heading -> <object>.setlocation(<place>) via data/drag.json endpoint
