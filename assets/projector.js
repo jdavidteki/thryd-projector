@@ -200,7 +200,7 @@ async function loopTimeline(){
     if(e.object){objs[e.object]=here;}
     render({regions:names,here,chars:Object.entries(chars).map(([n,r])=>({name:n,region:r,off:r!==here})),objs:Object.entries(objs).map(([l,r])=>({label:l,region:r}))});
     if(e.object)pulse(e.object);
-    backdrop(liveBackdrop(e.place)); POOL=livePool();
+    POOL=livePool(); if(i===0||!NEWEST()||(bgSet&&!LXTRA.includes(bgSet)))backdrop(NEWEST()||liveBackdrop(e.place)); // keep newest view up; slide timer still cycles
     ticker(e.world,e.label,`${e.scene} · update ${i%ev.length+1}/${ev.length}`);
     const sp=Object.entries(chars).filter(([n,r])=>r===here).map(([n])=>n);
     maybeBubble(localPrec,sp.length?sp:Object.keys(chars)); i++; };
