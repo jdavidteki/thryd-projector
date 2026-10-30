@@ -286,7 +286,7 @@ async function dragSend(body){
 async function dropTo(id,from,to){
   if(!DRAG||!DRAG.endpoint){toast('drag endpoint not available',1);return;}
   const label=id.slice(2); PEND[id]={region:to,until:Date.now()+8*60e3}; setReg(id,to); toast(`moving ${label} → ${to}…`);
-  const tg=window.thrydTarget&&thrydTarget.make(label,`${label}.place == "${PFULL[to]||to}"`,{type:'chip',id,place:to});
+  const tg=window.thrydTarget&&thrydTarget.make(label,PFULL[to]||to,{type:'chip',id,place:to});
   try{const j=await dragSend({key:DRAG.key,object:label,place:PFULL[to]||to,...(tg?{target:tg}:{})});if(!j.ok)throw new Error(j.error||('HTTP '+j.status));toast(`${label} → ${to} ✓`);pulse(label);}
   catch(e){delete PEND[id];setReg(id,from);toast(`couldn't move ${label}: ${e.message}`,1);}}
 (function(){let d=null;
@@ -389,45 +389,60 @@ async function dropTo(id,from,to){
   ui.addEventListener('dblclick',ev=>ev.stopPropagation());
   document.body.appendChild(ui);addEventListener('resize',apply);apply();})();
 
-// ---------- prophecies: every drag is an open-ended #thryd.miracle.target. Page records + shows a ghost; ONLY state.json marks fulfilled.
-(function(){const LS='thryd_targets';const T=()=>{try{return JSON.parse(localStorage.getItem(LS)||'[]');}catch(e){return [];}};
-  const save=a=>{try{localStorage.setItem(LS,JSON.stringify(a.slice(-60)));}catch(e){}};
-  let st=null; const norm=a=>String(a||'').replace(/\s+/g,' ').trim().toLowerCase();
-  const curJ=()=>{const s=st||{};return s.current_card||'';};
-  function make(label,assert,ghost){const t={kind:'miracle.target',assert,run:(st&&st.run)||CUR_RUN||'',j:curJ(),at:new Date().toISOString()};
-    const a=T().filter(x=>!(x.ghost&&ghost&&x.ghost.label===label&&x.status==='open'));  // a new drag of the same thing supersedes its open ghost
-    a.push({...t,status:'open',ghost:{...ghost,label}});save(a);draw();setTimeout(()=>pchip(t,ghost),60);return t;}
-  const MT=t=>`#thryd.miracle.target(assert(${t.assert}))`;
+// ---------- prophecies (contract: Chief of Staff cd521af). Every drag = open-ended #thryd.miracle.target(assert(<object>.place == "<place>")).
+// Page records drags + draws ghosts; ONLY state.miracles {open:[],fulfilled:[],error?} decides open/fulfilled. miracles.error -> show nothing.
+(function(){const LS='thryd_targets',SEEN='thryd_targets_seen';
+  const T=()=>{try{return JSON.parse(localStorage.getItem(LS)||'[]');}catch(e){return [];}};const save=a=>{try{localStorage.setItem(LS,JSON.stringify(a.slice(-60)));}catch(e){}};
+  const seen=new Set((()=>{try{return JSON.parse(localStorage.getItem(SEEN)||'[]');}catch(e){return [];}})());
+  const mark=k=>{seen.add(k);try{localStorage.setItem(SEEN,JSON.stringify([...seen].slice(-200)));}catch(e){}};
+  let st=null,M={open:[],fulfilled:[],error:null};
+  const n=x=>String(x||'').toLowerCase().replace(/^the\s+/,'').replace(/\s+/g,' ').trim();
+  const toks=x=>n(x).split(/[\/,]| ~ /).map(s=>s.trim()).filter(Boolean);
+  const objEq=(a,b)=>{a=n(a);b=n(b);if(!a||!b)return false;if(a===b)return true;const A=toks(a),B=toks(b);return A.some(x=>B.includes(x))||A.some(x=>b.startsWith(x+'/'))||B.some(x=>a.startsWith(x+'/'));};
+  const plEq=(a,b)=>{a=n(a);b=n(b);return !!a&&!!b&&(a===b||a.includes(b)||b.includes(a));};
+  const asrt=(o,p)=>`${o}.place == "${p}"`; const MT=(o,p)=>`#thryd.miracle.target(assert(${asrt(o,p)}))`;
+  const labelOf=o=>{const L=(st&&st.objects||[]).map(x=>x.label).concat((st&&st.characters||[]).map(c=>c.name));return L.find(l=>objEq(l,o))||o;};
+  const headFor=p=>[...document.querySelectorAll('#map .ph')].find(h=>plEq(h.dataset.name,p)||(typeof PFULL!=='undefined'&&plEq(PFULL[h.dataset.name],p)));
+  function make(label,place,ghost){const t={kind:'miracle.target',object:label,place,assert:asrt(label,place),run:(st&&st.run)||(typeof CUR_RUN!=='undefined'?CUR_RUN:'')||'',j:(st&&st.current_card)||'',at:new Date().toISOString()};
+    const a=T().filter(x=>!(objEq(x.object,label)&&x.status==='open'));a.push({...t,status:'open',ghost:{...ghost,label}});save(a);draw();setTimeout(()=>pchip(t,ghost),60);return t;}
+  async function scene(b,k,cl,ct){const label=b.dataset.label,L=b.parentNode,R=b.getBoundingClientRect();let other=null,best=0;
+    L.querySelectorAll('.ob:not(.dpatch)').forEach(o=>{if(o===b)return;const r=o.getBoundingClientRect();const v=Math.max(0,Math.min(R.right,r.right)-Math.max(R.left,r.left))*Math.max(0,Math.min(R.bottom,r.bottom)-Math.max(R.top,r.top));if(v>best){best=v;other=o.dataset.label;}});
+    const place=(st&&st.current_place)||(typeof lastM!=='undefined'&&typeof PFULL!=='undefined'&&lastM&&PFULL[lastM.here])||'';
+    const t=make(label,place,{type:'sprite',key:k,left:cl,top:ct,w:b.style.width,h:b.style.height,src:(b.querySelector('.sp')||{}).src||''});if(other)t.near=`on top of ${other}`;
+    try{if(typeof DRAG!=='undefined'&&DRAG&&DRAG.endpoint)fetch(DRAG.endpoint,{method:'POST',body:JSON.stringify({key:DRAG.key,target:t,rid:Math.random().toString(36).slice(2,12)})}).catch(()=>{});}catch(e){}
+    toast('🔮 prophecy: '+t.assert);}
   async function copy(x){try{await navigator.clipboard.writeText(x);return true;}catch(e){const ta=document.createElement('textarea');ta.value=x;ta.style.cssText='position:fixed;left:-9999px;top:0';document.body.appendChild(ta);ta.select();let ok=false;try{ok=document.execCommand('copy');}catch(e2){}ta.remove();return ok;}}
-  function pchip(t,g){document.querySelectorAll('.prophchip').forEach(x=>x.remove());const c=document.createElement('button');c.className='prophchip';c.textContent='🔮 prophesy';c.title=MT(t);c.dataset.text=MT(t);
-    let r=null;if(g.type==='sprite'){const L=document.getElementById('objs');const b=L&&L.querySelector(`.dob[data-label="${CSS.escape(g.label)}"]`);r=b&&b.getBoundingClientRect();}else{const h=document.querySelector(`#map .ph[data-name="${CSS.escape(g.place||'')}"]`);r=h&&h.getBoundingClientRect();}
+  function pchip(t,g){document.querySelectorAll('.prophchip').forEach(x=>x.remove());const txt=MT(t.object,t.place);const c=document.createElement('button');c.className='prophchip';c.textContent='🔮 prophesy';c.title=txt;c.dataset.text=txt;
+    let r=null;if(g.type==='sprite'){const L=document.getElementById('objs');const b=L&&L.querySelector(`.dob[data-label="${CSS.escape(g.label||t.object)}"]`);r=b&&b.getBoundingClientRect();}else{const h=headFor(t.place);r=h&&h.getBoundingClientRect();}
     r=r||{left:innerWidth/2,bottom:innerHeight/2};c.style.left=Math.min(innerWidth-130,Math.max(4,r.left))+'px';c.style.top=Math.min(innerHeight-40,r.bottom+28)+'px';
     ['pointerdown','pointerup','click','dblclick'].forEach(ev=>c.addEventListener(ev,e=>e.stopPropagation()));
-    c.addEventListener('click',async()=>{const ok=await copy(MT(t));c.textContent=ok?'copied — paste in [[nh]]':'copy failed — '+MT(t);c.classList.add('ok');clearTimeout(c._h);c._h=setTimeout(()=>c.remove(),2500);});
+    c.addEventListener('click',async()=>{const ok=await copy(txt);c.textContent=ok?'copied — paste in [[nh]]':'copy failed — '+txt;c.classList.add('ok');clearTimeout(c._h);c._h=setTimeout(()=>c.remove(),2500);});
     document.body.appendChild(c);setTimeout(()=>{if(!c.classList.contains('ok'))c.remove();},45000);}
-  async function scene(b,k,cl,ct){const label=b.dataset.label,L=b.parentNode,R=b.getBoundingClientRect();let other=null,best=0;
-    L.querySelectorAll('.ob:not(.dpatch)').forEach(o=>{if(o===b)return;const r=o.getBoundingClientRect();const ix=Math.max(0,Math.min(R.right,r.right)-Math.max(R.left,r.left)),iy=Math.max(0,Math.min(R.bottom,r.bottom)-Math.max(R.top,r.top));const v=ix*iy;if(v>best){best=v;other=o.dataset.label;}});
-    const place=(st&&st.current_place)||(lastM&&PFULL[lastM.here])||'';
-    const assert=other?`${label}.position == "on top of ${other}"`:`${label}.place == "${place}"`;
-    const t=make(label,assert,{type:'sprite',key:k,left:cl,top:ct,w:b.style.width,h:b.style.height,src:(b.querySelector('.sp')||{}).src||''});
-    try{if(DRAG&&DRAG.endpoint)fetch(DRAG.endpoint,{method:'POST',body:JSON.stringify({key:DRAG.key,target:t,rid:Math.random().toString(36).slice(2,12)})}).catch(()=>{});}catch(e){}
-    toast('✨ prophecy: '+assert);}
   const lay=()=>{let g=document.getElementById('prophs');if(!g){g=document.createElement('div');g.id='prophs';document.body.appendChild(g);}return g;};
-  function ghostEl(t){const g=t.ghost||{};let e=document.querySelector(`[data-proph="${CSS.escape(t.at)}"]`);
-    if(g.type==='sprite'){const L=document.getElementById('objs');if(!L||L.dataset.key!==g.key){if(e)e.remove();return null;}
-      if(!e||e.parentNode!==L){if(e)e.remove();e=document.createElement('div');e.className='proph sprite';e.dataset.proph=t.at;if(g.src){const im=new Image();im.src=g.src;im.alt='';e.appendChild(im);}L.appendChild(e);}
-      Object.assign(e.style,{left:g.left+'%',top:g.top+'%',width:g.w,height:g.h});return e;}
-    const h=document.querySelector(`#map .ph[data-name="${CSS.escape(g.place||'')}"]`);if(!h){if(e)e.remove();return null;}
-    if(!e){e=document.createElement('div');e.className='proph chip';e.dataset.proph=t.at;e.textContent=g.label;lay().appendChild(e);}
+  // ghost spec: {gid, object, place, ghost?}; sprite ghosts sit where dropped (same scene key), others sit under the place heading
+  function ghostEl(s){const g=s.ghost||{};let e=document.querySelector(`[data-proph="${CSS.escape(s.gid)}"]`);
+    if(g.type==='sprite'){const L=document.getElementById('objs');if(L&&L.dataset.key===g.key){
+      if(!e||e.parentNode!==L){if(e)e.remove();e=document.createElement('div');e.className='proph sprite';e.dataset.proph=s.gid;if(g.src){const im=new Image();im.src=g.src;im.alt='';e.appendChild(im);}L.appendChild(e);}
+      Object.assign(e.style,{left:g.left+'%',top:g.top+'%',width:g.w,height:g.h});return e;}if(e&&e.classList.contains('sprite')){e.remove();e=null;}}
+    const h=headFor(s.place);if(!h){if(e)e.remove();return null;}
+    if(!e){e=document.createElement('div');e.className='proph chip';e.dataset.proph=s.gid;e.textContent=labelOf(s.object);lay().appendChild(e);}
     const r=h.getBoundingClientRect();Object.assign(e.style,{left:r.left+'px',top:(r.bottom+4)+'px'});return e;}
-  function draw(){const a=T();document.querySelectorAll('[data-proph]').forEach(e=>{if(!a.some(t=>t.at===e.dataset.proph&&t.status!=='gone'))e.remove();});
-    a.forEach(t=>{if(t.status==='open')ghostEl(t);});}
-  function fulfil(t){const e=ghostEl(t)||(()=>{const x=document.createElement('div');x.className='proph chip';x.textContent=t.ghost&&t.ghost.label||'';x.style.cssText='left:50%;top:40%';lay().appendChild(x);return x;})();
-    e.classList.add('done');const c=document.createElement('div');c.className='prophcap';c.textContent='✨ prophecy fulfilled: '+t.assert;lay().appendChild(c);
-    setTimeout(()=>{e.classList.add('fade');c.classList.add('fade');},4200);setTimeout(()=>{e.remove();c.remove();},5600);}
-  function fromState(s){st=s||st;if(!s)return;const A=x=>Array.isArray(x)?x:(x&&typeof x==='object'?(Array.isArray(x.targets)?x.targets:Array.isArray(x.items)?x.items:Object.values(x).filter(v=>v&&typeof v==='object')):[]);const MF=(s.miracles&&Array.isArray(s.miracles.fulfilled)?s.miracles.fulfilled:[]).map(m=>typeof m==='string'?{assert:m,fulfilled:true}:{...m,fulfilled:true});const list=[...MF,...A(s.targets),...A(s.miracles),...A(s.miracle)].filter(m=>m&&typeof m==='object');
-    const ful=list.filter(m=>/^fulfill?ed$/i.test(String(m.status||''))||m.fulfilled===true);if(!ful.length)return;
-    const a=T();let ch=0;a.forEach(t=>{if(t.status!=='open')return;if(ful.some(m=>norm(m.assert||(m.target&&m.target.assert)||(typeof m.target==='string'?m.target:''))===norm(t.assert))){t.status='fulfilled';ch=1;fulfil(t);}});if(ch)save(a);}
-  window.thrydTarget={make,scene,fromState,list:T,text:MT};
+  const localFor=(o,p)=>T().find(t=>t.status==='open'&&objEq(t.object,o)&&plEq(t.place,p));
+  function specs(){if(M.error)return [];const out=[];
+    (M.open||[]).forEach(m=>{const l=localFor(m.object,m.place);out.push({gid:'m:'+(m.id||m.object+'|'+m.place),object:m.object,place:m.place,ghost:l&&l.ghost});});
+    T().forEach(t=>{if(t.status!=='open')return;if((M.open||[]).some(m=>objEq(m.object,t.object)&&plEq(m.place,t.place)))return;
+      if((M.fulfilled||[]).some(m=>objEq(m.object,t.object)&&plEq(m.place,t.place)))return;out.push({gid:'l:'+t.at,object:t.object,place:t.place,ghost:t.ghost});});return out;}
+  function draw(){const S=specs(),ids=new Set(S.map(s=>s.gid));document.querySelectorAll('[data-proph]').forEach(e=>{if(!ids.has(e.dataset.proph)&&!e.classList.contains('done'))e.remove();});S.forEach(ghostEl);}
+  function fulfil(m){const l=T().find(t=>objEq(t.object,m.object)&&plEq(t.place,m.place));const gid=[...document.querySelectorAll('[data-proph]')].map(e=>e.dataset.proph).find(g=>g==='m:'+(m.id||m.object+'|'+m.place)||(l&&g==='l:'+l.at));
+    const s={gid:gid||'f:'+(m.id||m.object),object:m.object,place:m.place,ghost:l&&l.ghost};let e=ghostEl(s);
+    if(!e){e=document.createElement('div');e.className='proph chip';e.dataset.proph=s.gid;e.textContent=labelOf(m.object);e.style.cssText='left:46%;top:40%';lay().appendChild(e);}
+    e.classList.add('done');const c=document.createElement('div');c.className='prophcap';c.textContent='✨ prophecy fulfilled: '+asrt(labelOf(m.object),m.place);lay().appendChild(c);
+    setTimeout(()=>{e.classList.add('fade');c.classList.add('fade');},4200);setTimeout(()=>{e.remove();c.remove();},5600);
+    if(l){const a=T();a.forEach(t=>{if(t.at===l.at)t.status='fulfilled';});save(a);}}
+  function fromState(s){if(!s)return;st=s;const mi=s.miracles;
+    M=mi&&typeof mi==='object'&&!Array.isArray(mi)?{open:Array.isArray(mi.open)?mi.open:[],fulfilled:Array.isArray(mi.fulfilled)?mi.fulfilled:[],error:mi.error||null}:{open:[],fulfilled:[],error:null};
+    if(M.error){document.querySelectorAll('[data-proph],.prophcap').forEach(e=>e.remove());return;}
+    M.fulfilled.forEach(m=>{const k=m.id||(m.object+'|'+m.place+'|'+(m.fulfilled_card||''));if(seen.has(k))return;mark(k);fulfil(m);});draw();}
+  window.thrydTarget={make,scene,fromState,list:T,text:MT,state:()=>M};
   const poll=async()=>{try{fromState(await LIVE_STATE());}catch(e){}draw();};
   poll();setInterval(poll,20000);setInterval(draw,1200);addEventListener('resize',draw);})();
