@@ -26,10 +26,10 @@ function backdrop(set,force){ if(Date.now()<HOLD)return; stageN++;
   tick(); on.classList.add('on'); off.classList.remove('on'); $('cap').textContent=set.label||''; objsFor(set);
   bgTimer=setInterval(tick,Math.max(80,set.ms||120));
 }
-let POOL=[],poolI=0,LXTRA=[];
+let POOL=[],poolI=0,LXTRA=[],CUR_RUN=null; const RUNX=()=>LXTRA.filter(x=>CUR_RUN&&x.run===CUR_RUN);
 // slide speed: 8s default, 30s, 60s (?slide=30 or the bar select; remembered)
 let SLIDE=+(Q.get('slide')||localStorage.getItem('thryd_slide')||8); if(![8,30,60].includes(SLIDE))SLIDE=8; let slideT=null;
-const NEWEST=()=>LXTRA.length?LXTRA.slice().sort((a,b)=>(b.mtime||0)-(a.mtime||0))[0]:null; let slideN=0;
+const NEWEST=()=>RUNX().length?RUNX().slice().sort((a,b)=>(b.mtime||0)-(a.mtime||0))[0]:null; let slideN=0;
 // newest live view comes back every 3rd slide; others cycle in between
 function startSlide(){clearInterval(slideT);slideT=setInterval(()=>{if(POOL.length>1){slideN++;const nw=MODE==='live'&&NEWEST();if(nw&&slideN%3===0&&bgSet&&bgSet.dir!==nw.dir){backdrop(nw,true);return;}poolI=(poolI+1)%POOL.length;if(nw&&POOL[poolI]===nw&&POOL.length>2)poolI=(poolI+1)%POOL.length;backdrop(POOL[poolI],true);}},SLIDE*1000);}
 startSlide();
@@ -74,7 +74,7 @@ function objsFor(set){const [k,e0]=set?lookup(set):[null,null]; if(k===objKey&&o
     if(o.draggable&&o.sprite){const pa=box.querySelector('.patch');if(pa){const ph=document.createElement('div');ph.className='ob dpatch';ph.dataset.label=o.label;Object.assign(ph.style,{left:x*100+'%',top:y*100+'%',width:w*100+'%',height:h*100+'%'});ph.appendChild(pa);L.appendChild(ph);}box.classList.add('dob');box.style.zIndex=String(3+Math.round((1-w*h)*20));box.dataset.id=(o.kind==='obj'?'o:':'c:')+o.label;const sv=DPOS[k+'|'+o.label];
       if(sv){box.style.left=sv[0]+'%';box.style.top=sv[1]+'%';box.dataset.dp='1';box.classList.add('away');const q=L.querySelector(`.dpatch[data-label="${CSS.escape(o.label)}"]`);if(q)q.classList.add('away');}}
     L.appendChild(box);});
-  $('stage').insertBefore(L,$('cap')); objLayer=L; fitLayer(); requestAnimationFrame(()=>L.classList.add('on'));}
+  $('stage').insertBefore(L,$('cap')); objLayer=L; fitLayer(); applyPlaces(); requestAnimationFrame(()=>L.classList.add('on'));}
 // cover math: the layer is the full frame scaled by k=max(W/fw,H/fh) and centred, so the visible window in layer % is
 // x in [ox, 100-ox], y in [oy, 100-oy]; keep a dropped box (w%,h%) at least partly inside it
 function visClamp(L,l,t,w,h){const st=$('stage'),W=st.clientWidth,H=st.clientHeight,[fw,fh]=L._fs||[480,270],k=Math.max(W/fw,H/fh);
@@ -88,12 +88,23 @@ function trackObjs(st){(st.objects||[]).forEach(o=>{const v=JSON.stringify([o.pl
   if(objState[o.label]!==undefined&&objState[o.label]!==v)objChanged(o.label);objState[o.label]=v;});
   (st.characters||[]).forEach(c=>{const id=c.id||c.name,v=JSON.stringify([c.place]);if(objState['c:'+id]!==undefined&&objState['c:'+id]!==v)objChanged(id);objState['c:'+id]=v;});}
 window.thrydObjChanged=objChanged;
+// object's place != scene's place -> its sprite slides off toward the nearer edge and fades; slides back in when it returns
+function applyPlaces(){const m=lastM;if(!objLayer||!m)return;const reg={},cr={};(m.chars||[]).forEach(c=>{reg[c.name]=c.region;cr[c.name]=c.region;});
+  (m.objs||[]).forEach(o=>reg[o.label]=(o.holder&&cr[o.holder])||o.region);
+  objLayer.querySelectorAll('.ob:not(.dpatch)').forEach(b=>{const id=(b.dataset.sid&&reg[b.dataset.sid]!==undefined)?b.dataset.sid:b.dataset.label;const r=reg[id];
+    const w=b.querySelector('.spw');const off=r!==undefined&&r!==m.here;b.classList.toggle('offscene',off);if(!w)return;
+    if(off){const x=parseFloat(b.style.left)||0,bw=parseFloat(b.style.width)||1,left=x+bw/2<50;
+      w.style.setProperty('--ox',((left?-(x+bw):(100-x))/bw*100+30)*(left?1:1)+'%');w.classList.add('offstage');}
+    else w.classList.remove('offstage');});}
+window.thrydApplyPlaces=applyPlaces; window.thrydDebug=()=>({run:CUR_RUN,pool:POOL.length,bg:bgSet&&bgSet.dir});
 setInterval(()=>{if(!objLayer)return;const bs=[...objLayer.querySelectorAll('.ob')];if(bs.length){const b=bs[Math.floor(Math.random()*bs.length)];objChanged(b.dataset.sid||b.dataset.label);}},3000);
 // LXTRA (data/live_extra.json): original unblurred live views, play as-is
 // live loop = clean stills only (no baked terminal panel); replay-mode GIF frames stay out of it
-function livePool(){return Object.values(media.backdrops).concat(LXTRA);}
-function liveBackdrop(place){const p=(place||'').toLowerCase();const b=media.backdrops;
-  const k=Q.get('scene')||(/marina|boat|bay|causeway|church|wheelhouse|deck/.test(p)?'j6':'j12');return b[k]&&Object.assign({label:short(place)},b[k]);}
+function livePool(){return RUNX();} // current run's exact posted GIF frames only
+// no live view for the current run yet -> plain neutral stage (never another run's view)
+function liveBackdrop(place){const nw=NEWEST();if(nw)return nw;neutralStage(place);return null;}
+function neutralStage(place){if(bgSet&&bgSet.neutral)return;clearInterval(bgTimer);bgSet={dir:'neutral',neutral:1};
+  [$('bgA'),$('bgB')].forEach(i=>{i.classList.remove('on');i.removeAttribute('src');});$('ug').classList.remove('on');$('cap').textContent=place?short(place):'';objsFor(null);}
 // ---------- gutters: chips grouped by place, left & right of the stage, never over it
 const ents={}; let lastM=null, prevReg={}, order={}, regionsKey='';
 function ent(id,kind,label,sprite){
@@ -106,12 +117,16 @@ function ent(id,kind,label,sprite){
 function hdr(name){let h=$('map').querySelector(`[data-name="${CSS.escape(name)}"]`);
   if(!h){h=document.createElement('div');h.className='ph';h.dataset.name=name;h.textContent=name;h.title=name;$('map').appendChild(h);}return h;}
 // model: {regions[],here,chars[{name,region,off,note}],objs[{label,region,holder}]}
-function render(m){ lastM=m; place(m); }
+function render(m){ lastM=m; place(m); applyPlaces(); }
+function sidSprite(id){if(!id)return null;const hit=L=>{for(const o of L||[])if(o&&o.sprite&&(o.state_id===id||(!o.state_id&&o.label===id)))return o.sprite;return null;};
+  const cur=objLayer&&OMAP[objLayer.dataset.key];let r=hit(cur&&cur.objects);if(r)return r;
+  for(const v of Object.values(OMAP)){if(v&&(r=hit((v.objects||[]).filter(o=>o.state_id===id))))return r;}return null;}
+const chipSp=n=>media.sprites[n]||sidSprite(n);
 function place(m){
   const groups={}; const charReg={}; m.chars.forEach(c=>charReg[c.name]=c.region);
   const add=(g,it)=>(groups[g]=groups[g]||[]).push(it);
-  m.chars.forEach(c=>add(c.region,{id:'c:'+c.name,kind:'char',label:c.name,sp:media.sprites[c.name],c}));
-  m.objs.forEach(o=>add((o.holder&&charReg[o.holder])||o.region,{id:'o:'+o.label,kind:'obj',label:o.label,sp:media.sprites[o.label],o}));
+  m.chars.forEach(c=>add(c.region,{id:'c:'+c.name,kind:'char',label:c.name,sp:chipSp(c.name),c}));
+  m.objs.forEach(o=>add((o.holder&&charReg[o.holder])||o.region,{id:'o:'+o.label,kind:'obj',label:o.label,sp:chipSp(o.label),o}));
   // held items sit right after their holder
   Object.values(groups).forEach(l=>{l.sort((a,b)=>(order[a.id]??0)-(order[b.id]??0));
     l.filter(it=>it.o&&it.o.holder).forEach(it=>{const i=l.indexOf(it),h=l.findIndex(x=>x.label===it.o.holder);if(h>=0){l.splice(i,1);l.splice(l.findIndex(x=>x.label===it.o.holder)+1,0,it);}});});
@@ -121,7 +136,7 @@ function place(m){
   side.forEach((ns,k)=>{ const units=cnt[k]||1, u=Math.min(5.4*vh,(bot-top)/units), sc=u/(5.4*vh); let y=top;
     const x=k?88*vw:1*vw, w=11*vw;
     ns.forEach(n=>{const h=hdr(n);hs.add(n);Object.assign(h.style,{left:x+'px',top:y+'px',width:w+'px',fontSize:Math.max(1.2,1.6*sc)+'vh'});h.classList.toggle('here',n===m.here);h.classList.toggle('r',!!k);y+=1.3*u;
-      groups[n].forEach(it=>{const e=ent(it.id,it.kind,it.label,it.sp);seen.add(it.id);e.dataset.id=it.id;e.dataset.reg=n;
+      groups[n].forEach(it=>{const e=ent(it.id,it.kind,it.label,it.sp);if(it.sp&&!e.querySelector('img')){const d0=e.querySelector('.dot');const im=new Image();im.alt='';im.draggable=false;im.src=it.sp;d0?d0.replaceWith(im):e.prepend(im);}seen.add(it.id);e.dataset.id=it.id;e.dataset.reg=n;
         const held=it.o&&it.o.holder; e.classList.toggle('held',!!held);e.classList.toggle('r',!!k);
         Object.assign(e.style,{left:(x+(held?(k?0:1.2*vw):0))+'px',top:y+'px',width:(w-(held?1.2*vw:0))+'px',height:(u*.86)+'px',fontSize:(1.75*sc)+'vh'});
         const r=it.c?it.c.region:(held?'held':it.o.region); if(prevReg[it.id]!==undefined&&prevReg[it.id]!==r)pulse(it.label); prevReg[it.id]=r;
@@ -174,7 +189,7 @@ async function live(){
   let s=null; try{s=await LIVE_STATE();}catch(e){}
   if(!s||!(s.characters||[]).length){return loopTimeline();}
   let last='', step=0, cur=s;
-  let first=true; const apply=st=>{const m=fromState(st);render(m);cur=st;trackObjs(st);
+  let first=true; const apply=st=>{CUR_RUN=st.run||CUR_RUN;const m=fromState(st);render(m);cur=st;trackObjs(st);
     POOL=livePool(); if(first){first=false;const nw=NEWEST();if(nw){poolI=Math.max(0,POOL.indexOf(nw));backdrop(nw,true);}else backdrop(liveBackdrop(st.current_place));}
     $('run').textContent=st.run||'';};
   apply(s);
@@ -191,7 +206,7 @@ async function live(){
 // ---------- fallback: loop data/timeline.json
 async function loopTimeline(){
   const g=gen; let T; try{T=await J('data/timeline.json');}catch(e){ticker('','no state.json or timeline.json yet','');return;}
-  $('mode').textContent='live · timeline loop'; $('run').textContent=T.run;
+  $('mode').textContent='live · timeline loop'; $('run').textContent=T.run; CUR_RUN=T.run;
   const ev=T.events, names=[...new Set(ev.map(e=>short(e.place)))];
   let i=0, chars={}, objs={};
   const step=()=>{ if(g!==gen)return; const e=ev[i%ev.length]; if(i%ev.length===0){chars={};objs={};}
@@ -200,7 +215,7 @@ async function loopTimeline(){
     if(e.object){objs[e.object]=here;}
     render({regions:names,here,chars:Object.entries(chars).map(([n,r])=>({name:n,region:r,off:r!==here})),objs:Object.entries(objs).map(([l,r])=>({label:l,region:r}))});
     if(e.object)pulse(e.object);
-    POOL=livePool(); if(i===0||!NEWEST()||(bgSet&&!LXTRA.includes(bgSet)))backdrop(NEWEST()||liveBackdrop(e.place)); // keep newest view up; slide timer still cycles
+    POOL=livePool(); if(i===0||!NEWEST()||(bgSet&&!RUNX().includes(bgSet)))backdrop(NEWEST()||liveBackdrop(e.place)); // keep newest view up; slide timer still cycles
     ticker(e.world,e.label,`${e.scene} · update ${i%ev.length+1}/${ev.length}`);
     const sp=Object.entries(chars).filter(([n,r])=>r===here).map(([n])=>n);
     maybeBubble(localPrec,sp.length?sp:Object.keys(chars)); i++; };
@@ -247,7 +262,7 @@ addEventListener('resize',()=>{regionsKey='';});
 (async()=>{
   try{media=await J('data/media.json');}catch(e){}
   try{LXTRA=(await J('data/live_extra.json')).sets||[];}catch(e){}
-  await loadOmap(); await loadRGifs(); setTimeout(()=>{if(MODE==='live'&&LXTRA.length){const nw=LXTRA.slice().sort((a,b)=>(b.mtime||0)-(a.mtime||0))[0];POOL=livePool();poolI=Math.max(0,POOL.indexOf(nw));backdrop(nw,true);}},2500); setInterval(async()=>{if(MODE==='live'){loadOmap();loadRGifs();try{const n=(await J('data/live_extra.json?t='+Date.now())).sets||[];const o=NEWEST();LXTRA=n;const nw=NEWEST();POOL=livePool();if(nw&&(!o||o.dir!==nw.dir||o.mtime!==nw.mtime)){poolI=Math.max(0,POOL.indexOf(nw));backdrop(nw,true);}}catch(e){}}},60000);
+  await loadOmap(); await loadRGifs(); setTimeout(()=>{if(MODE==='live'&&NEWEST()){const nw=NEWEST();POOL=livePool();poolI=Math.max(0,POOL.indexOf(nw));backdrop(nw,true);}},2500); setInterval(async()=>{if(MODE==='live'){loadOmap();loadRGifs();try{const n=(await J('data/live_extra.json?t='+Date.now())).sets||[];const o=NEWEST();LXTRA=n;const nw=NEWEST();POOL=livePool();if(nw&&(!o||o.dir!==nw.dir||o.mtime!==nw.mtime)){poolI=Math.max(0,POOL.indexOf(nw));backdrop(nw,true);}}catch(e){}}},60000);
   const ss=$('slide');if(ss){ss.value=String(SLIDE);ss.onclick=e=>e.stopPropagation();ss.onchange=e=>{SLIDE=+e.target.value;localStorage.setItem('thryd_slide',SLIDE);Q.set('slide',SLIDE);history.replaceState(null,'','?'+Q.toString());startSlide();};}
   try{(await J('assets/runs/media.json')).runs.forEach(r=>runMedia[r.run]=r.media);}catch(e){}
   try{localPrec=(await J('data/precisions.json')).map(p=>({line:p.line,src:p.src,move:p.move}));}catch(e){}

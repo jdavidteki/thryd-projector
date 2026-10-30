@@ -97,3 +97,8 @@ body.zoomed #stage{cursor:grab}body.panning,body.panning *{cursor:grabbing!impor
 #zoomui button{background:#000a;color:var(--ink);border:1px solid #444;font:inherit;font-size:1.6vh;min-width:2.2em;padding:.2em .5em;border-radius:.4em;cursor:pointer}
 #zoomui span{color:var(--dim);min-width:3em;text-align:center}
 body.idle #zoomui{opacity:.25}
+
+/* object away from the scene's place: slide off toward the edge + fade; slides back in on return */
+#objs .ob .spw.offstage{transform:translateX(var(--ox,-140%))!important;opacity:0;transition:transform 2.2s cubic-bezier(.5,0,.2,1),opacity 1.6s ease-in .5s!important;animation:none!important}
+#objs .ob .spw{transition:transform 2.2s cubic-bezier(.2,.7,.3,1),opacity 1.4s}
+#objs .ob.offscene{pointer-events:none!important}
