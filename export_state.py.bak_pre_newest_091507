@@ -1,0 +1,100 @@
+#!/usr/bin/env python3
+"""Dump the live state of run-5a58c4 into data/state.json for the projector page.
+READ-ONLY on thryd.db (sqlite mode=ro) and on the run files. Usage: export_state.py [--loop SECONDS] [--out PATH]"""
+import json, os, re, sqlite3, sys, time, datetime, argparse
+RUN="run-5a58c4"; R=f"/workspace/{RUN}"; DB="/workspace/thryd-db/thryd.db"; TICK="/workspace/thryd-db/ticker.log"
+HERE=os.path.dirname(os.path.abspath(__file__))
+CAST={"marisol_5a58c4":"Marisol","teo_5a58c4":"Teo","calla_5a58c4":"Calla","dez_5a58c4":"Dez"}
+# objects shown on the wall: (label, thryd.db id or None, regex used to find it in card prompts, default place)
+OBJS=[("dress","dress_marisol_5a58c4",r"\bdress\b"),("logbook",None,r"\blogbook\b"),("cabin lamp",None,r"cabin lamp"),
+      ("phone",None,r"\bphone\b"),("Calla's light",None,r"Calla'?s (light|lamp|window)"),("cabin door",None,r"cabin door"),
+      ("sandal",None,r"\bsandals?\b"),("hose",None,r"\bhose\b"),("wet street",None,r"wet street|street (is|was) wet|rain")]
+def rj(p,d=None):
+    try: return json.load(open(p))
+    except Exception: return d
+def wn(c): m=re.match(r"[wj](\d+)$",c or ""); return int(m.group(1)) if m else None
+def export():
+    c=sqlite3.connect(f"file:{DB}?mode=ro",uri=True,timeout=10)
+    cards=c.execute("select card,world_ts from card_ts where run=? order by world_ts",(RUN,)).fetchall()
+    cur=max((wn(k) or 0) for k,_ in cards) if cards else 0
+    story_ts=max((t for _,t in cards),default=None)
+    st={k:json.loads(v) for k,v in c.execute("select id,state from objects where id in (%s)"%",".join("?"*len(CAST)+",?"*0),list(CAST))}
+    # walk the posted cards up to the current one; last known place per character / object
+    who={n:{"place":None,"note":None,"card":None} for n in CAST.values()}; obj={o[0]:{"place":None,"card":None} for o in OBJS}
+    scenes=[]
+    for n in range(1,cur+1):
+        job=rj(f"{R}/jobs/w{n}.json",{}) or {}; s=job.get("_story") or {}
+        place=s.get("place"); prompt=job.get("prompt","")
+        if not place:
+            m=re.search(r"\n[^,\n]*?(?:am|pm)[^,\n]*,[^,\n]*,\s*([^,\n]+(?:,[^,\n]+)?)",prompt)
+            place=m.group(1).strip() if m else None
+        if place: place=re.split(r",\s*where\b",place)[0].strip()
+        if not place or place.startswith("and the reality"): continue
+        scenes.append({"card":f"w{n}","place":place,"world_time":s.get("world_time")})
+        for e in s.get("cast") or job.get("_returning") and [] or []:
+            name=e.split()[0] if isinstance(e,str) else None
+            name=CAST.get(name,name)
+            if name in who:
+                note=re.search(r"\((.*)\)",e); note=note.group(1) if note else None
+                p=place
+                if note and re.search(r"by (phone|text)|offstage|on the ",note):
+                    p=(note.split(",")[-1].strip() if "," in note else "elsewhere")
+                who[name]={"place":p,"note":note,"card":f"w{n}"}
+        for lab,_,rx in OBJS:
+            if re.search(rx,prompt,re.I): obj[lab]={"place":place,"card":f"w{n}"}
+    byc={x["card"]:x["place"] for x in scenes}
+    for lab,plate in (("Calla's light","w12"),("hose","w6"),("phone","w12"),("wet street","w12"),("cabin lamp","w6"),("cabin door","w6"),("sandal","w6")):
+        if not obj[lab]["place"]: obj[lab]={"place":byc.get(plate),"card":plate,"from":"live view "+plate.replace("w","j")}
+    # projector drags (setlocation via the drag endpoint) override the card-walk place
+    for lab,oid,_ in OBJS:
+        r=c.execute("select state from objects where id=?",(oid or re.sub(r"[^a-z0-9]+","",lab.lower())+"_5a58c4",)).fetchone()
+        dp=json.loads(r[0]).get("drag_place") if r else None
+        if dp: obj[lab]={"place":dp,"card":obj[lab].get("card"),"from":"projector-drag"}
+    for k,v in CAST.items():
+        dp=st.get(k,{}).get("drag_place")
+        if dp: who[v]={"place":dp,"note":"moved on the projector","card":who[v].get("card")}
+    cur_place=scenes[-1]["place"] if scenes else None
+    chars=[{"id":k,"name":v,"role":st.get(k,{}).get("role"),**who[v]} for k,v in CAST.items()]
+    objects=[]
+    for lab,oid,_ in OBJS:
+        o={"label":lab,"db_id":oid,**obj[lab]}
+        if oid:
+            row=c.execute("select state from objects where id=?",(oid,)).fetchone()
+            if row: s=json.loads(row[0]); o.update(color=s.get("color"),last_seen=s.get("last_seen"),rumples=s.get("rumples"))
+        objects.append(o)
+    # [[move]]: main db state updates per card (command_log), with the card's seated precisions (exact archive lines)
+    ans=rj(f"{R}/answers.json",{}) or {}
+    seated={}
+    for e in ans.get("entries",[]):
+        k=wn(e.get("job")) or wn(e.get("card"))
+        if k and e.get("pick") and e.get("safe"): seated.setdefault(f"w{k}",[]).append({"line":e["pick"],"safe":e.get("safe"),"seat":e.get("seat")})
+    moves=[]
+    for card,cmd,eff,ts in c.execute("select card,command,effects,world_ts from command_log where run=? order by n",(RUN,)):
+        try: v=json.loads(eff or "{}").get("value") or {}
+        except Exception: v={}
+        res=None
+        if isinstance(v,dict): res=v.get("resolved_to") or v.get("theme") or (v.get("effect") if isinstance(v.get("effect"),str) else None)
+        moves.append({"card":card,"world_ts":ts,"move":f"{card} · {cmd}"+(f" → {res}" if res else ""),"precisions":seated.get(card,[])})
+    ev=[]
+    try:
+        for l in open(f"{R}/events.jsonl").readlines()[-12:]:
+            e=json.loads(l); ev.append({"t":e.get("t"),"ev":e.get("ev"),"card":e.get("card"),"status":e.get("status")})
+    except Exception: pass
+    tick=None
+    try:
+        last=open(TICK).readlines()[-1]; tick={"wall":last.split()[0],"line":last.strip()[:240]}
+    except Exception: pass
+    return {"run":RUN,"exported_at":datetime.datetime.now().astimezone().isoformat(timespec="seconds"),
+            "story_time":story_ts,"story_time_label":scenes[-1]["world_time"] if scenes and scenes[-1]["world_time"] else story_ts,
+            "current_card":f"w{cur}","current_place":cur_place,"ticker":tick,"seated_count":ans.get("seated"),"seats":ans.get("seats"),
+            "characters":chars,"objects":objects,"locations":sorted({s["place"] for s in scenes}|{x["place"] for x in chars if x["place"]}),
+            "scenes":scenes,"latest_seat":(lambda es:{k:es[-1].get(k) for k in ("seat","card","pick","safe","at")} if es else None)([e for e in ans.get("entries",[]) if e.get("seat")]),"moves":moves,"recent_events":ev}
+def write(out):
+    d=export(); tmp=out+".tmp"; json.dump(d,open(tmp,"w"),indent=1,ensure_ascii=False); os.replace(tmp,out); return d
+if __name__=="__main__":
+    a=argparse.ArgumentParser(); a.add_argument("--loop",type=int,default=0); a.add_argument("--out",default=f"{HERE}/data/state.json"); a=a.parse_args()
+    while True:
+        try: d=write(a.out); print(d["exported_at"],d["current_card"],d["story_time"],flush=True)
+        except Exception as e: print("export error:",e,flush=True)
+        if not a.loop: break
+        time.sleep(a.loop)
