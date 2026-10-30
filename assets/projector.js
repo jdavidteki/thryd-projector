@@ -320,7 +320,7 @@ async function dropTo(id,from,to){
     let c=AC.get(im);if(!c){c=document.createElement('canvas');c.width=im.naturalWidth;c.height=im.naturalHeight;try{c.getContext('2d',{willReadFrequently:true}).drawImage(im,0,0);}catch(e){return true;}AC.set(im,c);}
     try{const px=c.getContext('2d').getImageData(Math.floor((x-r.left)/r.width*c.width),Math.floor((y-r.top)/r.height*c.height),1,1).data;return px[3]>40;}catch(e){return true;}};
   const pickDob=(x,y)=>{const u=[...new Set(document.elementsFromPoint(x,y).map(e=>e.closest&&e.closest('#objs:not(.gone) .dob')).filter(Boolean))];return u.find(b=>opaque(b,x,y))||null;};
-  document.addEventListener('pointerdown',ev=>{const b0=ev.target.closest&&ev.target.closest('#objs:not(.gone) .dob');const b=b0?(pickDob(ev.clientX,ev.clientY)||b0):null;if(!b||d)return;if(ev.pointerType==='mouse'&&ev.button!==0)return;
+  document.addEventListener('pointerdown',ev=>{const b0=ev.target.closest&&ev.target.closest('#objs:not(.gone) .dob');const pk=b0?pickDob(ev.clientX,ev.clientY):null;if(b0&&!pk&&window.thrydZoom&&thrydZoom.get().z>1)return; /* zoomed: transparent bbox area pans */const b=b0?(pk||b0):null;if(!b||d)return;if(ev.pointerType==='mouse'&&ev.button!==0)return;
     ev.preventDefault();ev.stopPropagation();window.thrydHold(60000);const r=b.getBoundingClientRect();
     d={b,pid:ev.pointerId,x:ev.clientX,y:ev.clientY,l0:parseFloat(b.style.left),t0:parseFloat(b.style.top),on:false};try{b.setPointerCapture(ev.pointerId);}catch(e){}},{passive:false,capture:true});
   document.addEventListener('pointermove',ev=>{if(!d||ev.pointerId!==d.pid)return;const dx=ev.clientX-d.x,dy=ev.clientY-d.y;
@@ -337,3 +337,38 @@ async function dropTo(id,from,to){
     dropTo(id,from,h.dataset.name);};
   document.addEventListener('pointerup',end);document.addEventListener('pointercancel',end);})();
 })();
+
+// ---------- zoom/pan the scene (#stage: backdrop + #objs + in-scene people scale together). 1x-4x.
+// Existing drags keep working: the .dob drag converts pointer deltas with the layer's transformed rect, chips live outside #stage.
+(function(){const st=document.getElementById('stage');if(!st)return;let z=1,tx=0,ty=0;const MIN=1,MAX=4;
+  st.style.transformOrigin='0 0';
+  const clamp=()=>{const W=st.clientWidth,H=st.clientHeight;tx=Math.min(0,Math.max(W-W*z,tx));ty=Math.min(0,Math.max(H-H*z,ty));};
+  const apply=()=>{clamp();st.style.transform=z===1?'':`translate(${tx}px,${ty}px) scale(${z})`;document.body.classList.toggle('zoomed',z>1);const l=document.getElementById('zlvl');if(l)l.textContent=z.toFixed(1)+'×';};
+  const sr=()=>({l:st.offsetLeft,t:st.offsetTop});
+  const zoomAt=(nz,cx,cy)=>{nz=Math.min(MAX,Math.max(MIN,nz));const o=sr(),px=cx-o.l,py=cy-o.t;const sx=(px-tx)/z,sy=(py-ty)/z;z=nz;tx=px-sx*z;ty=py-sy*z;if(z===1){tx=ty=0;}apply();};
+  const reset=()=>{z=1;tx=ty=0;apply();};
+  // client px -> untransformed stage px (scene space) for drop math
+  window.thrydZoom={get:()=>({z,tx,ty}),reset,zoomAt,toScene:(x,y)=>{const o=sr();return [(x-o.l-tx)/z,(y-o.t-ty)/z];}};
+  const onItem=t=>t&&t.closest&&t.closest('.chip,#bar,#zoomui,#user,.ph,#sndgate,#toast');
+  addEventListener('wheel',ev=>{const t=ev.target;if(t.closest&&t.closest('#bar,#zoomui,#user,select'))return;ev.preventDefault();zoomAt(z*Math.exp(-ev.deltaY*(ev.ctrlKey?0.01:0.0015)),ev.clientX,ev.clientY);},{passive:false});
+  const P=new Map();let pan=null,pinch=null,moved=0,lastTap=0,lastXY=[0,0];
+  document.addEventListener('pointerdown',ev=>{if(onItem(ev.target))return;if(ev.pointerType==='mouse'&&ev.button!==0)return;
+    P.set(ev.pointerId,[ev.clientX,ev.clientY]);if(P.size===1)moved=0;
+    if(P.size===2){const[a,b]=[...P.values()];pinch={d:Math.hypot(a[0]-b[0],a[1]-b[1])||1,z0:z};pan=null;}
+    else if(P.size===1&&z>1){pan={x:ev.clientX,y:ev.clientY,tx,ty};}});
+  document.addEventListener('pointermove',ev=>{if(!P.has(ev.pointerId))return;P.set(ev.pointerId,[ev.clientX,ev.clientY]);
+    if(pinch&&P.size>=2){ev.preventDefault();const[a,b]=[...P.values()];const d=Math.hypot(a[0]-b[0],a[1]-b[1]);moved=1;zoomAt(pinch.z0*d/pinch.d,(a[0]+b[0])/2,(a[1]+b[1])/2);return;}
+    if(pan){const dx=ev.clientX-pan.x,dy=ev.clientY-pan.y;if(dx*dx+dy*dy>16){moved=1;document.body.classList.add('panning');}tx=pan.tx+dx;ty=pan.ty+dy;apply();}},{passive:false});
+  const up=ev=>{if(!P.has(ev.pointerId))return;P.delete(ev.pointerId);
+    if(P.size<2)pinch=null;if(P.size===1&&z>1){const[a]=[...P.values()];pan={x:a[0],y:a[1],tx,ty};}else if(!P.size){pan=null;document.body.classList.remove('panning');}
+    if(moved){st._nofs=Date.now();return;}
+    if(ev.type==='pointerup'&&ev.pointerType!=='mouse'){const n=Date.now();if(n-lastTap<320&&Math.hypot(ev.clientX-lastXY[0],ev.clientY-lastXY[1])<40){reset();lastTap=0;st._nofs=n;}else{lastTap=n;lastXY=[ev.clientX,ev.clientY];}}};
+  document.addEventListener('pointerup',up);document.addEventListener('pointercancel',up);
+  document.addEventListener('dblclick',ev=>{if(onItem(ev.target))return;reset();st._nofs=Date.now();});
+  // a pan/pinch/double-tap must not toggle fullscreen via the document click handler
+  document.addEventListener('click',ev=>{if(st._nofs&&Date.now()-st._nofs<500)ev.stopImmediatePropagation();},true);
+  const ui=document.createElement('div');ui.id='zoomui';ui.innerHTML='<button data-z="-" title="zoom out">−</button><span id="zlvl">1.0×</span><button data-z="+" title="zoom in">+</button><button data-z="0" title="reset zoom">⟲</button>';
+  ui.addEventListener('click',ev=>{ev.stopPropagation();const b=ev.target.closest('button');if(!b)return;const cx=st.offsetLeft+st.clientWidth/2,cy=st.offsetTop+st.clientHeight/2;
+    if(b.dataset.z==='0')reset();else zoomAt(z*(b.dataset.z==='+'?1.25:0.8),cx,cy);});
+  ui.addEventListener('dblclick',ev=>ev.stopPropagation());
+  document.body.appendChild(ui);addEventListener('resize',apply);apply();})();

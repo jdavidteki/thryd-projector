@@ -90,3 +90,10 @@ body.dragmode .ph{transition:none}
 
 #objs.gone .dob{pointer-events:none}
 #stage #objs img{opacity:1!important;object-fit:fill!important}
+/* zoom/pan */
+#stage{touch-action:none;will-change:transform}
+body.zoomed #stage{cursor:grab}body.panning,body.panning *{cursor:grabbing!important}
+#zoomui{position:fixed;right:1vw;bottom:1.5vh;z-index:11;display:flex;gap:.3em;align-items:center;font-size:1.4vh;transition:opacity .8s}
+#zoomui button{background:#000a;color:var(--ink);border:1px solid #444;font:inherit;font-size:1.6vh;min-width:2.2em;padding:.2em .5em;border-radius:.4em;cursor:pointer}
+#zoomui span{color:var(--dim);min-width:3em;text-align:center}
+body.idle #zoomui{opacity:.25}
