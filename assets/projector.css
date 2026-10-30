@@ -90,11 +90,3 @@ body.dragmode .ph{transition:none}
 
 #objs.gone .dob{pointer-events:none}
 #stage #objs img{opacity:1!important;object-fit:fill!important}
-/* 2026-10-29 calm: sprites became visible; keep motion subtle */
-#objs .sp{animation-duration:5s!important}
-@keyframes sway{0%,100%{transform:rotate(-1.2deg) translateX(-1px)}50%{transform:rotate(1.2deg) translateX(1px)}}
-@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-2px)}}
-@keyframes hop{0%,100%{transform:translateY(0)}50%{transform:translateY(-2px)}}
-@keyframes slide{0%,100%{transform:translateX(0)}50%{transform:translateX(2px)}}
-@keyframes flicker{0%,100%{opacity:1}50%{opacity:.85}}
-@keyframes flick{0%,100%{opacity:1}50%{opacity:.88}}
