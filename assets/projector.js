@@ -396,7 +396,15 @@ async function dropTo(id,from,to){
   const curJ=()=>{const s=st||{};return s.current_card||'';};
   function make(label,assert,ghost){const t={kind:'miracle.target',assert,run:(st&&st.run)||CUR_RUN||'',j:curJ(),at:new Date().toISOString()};
     const a=T().filter(x=>!(x.ghost&&ghost&&x.ghost.label===label&&x.status==='open'));  // a new drag of the same thing supersedes its open ghost
-    a.push({...t,status:'open',ghost:{...ghost,label}});save(a);draw();return t;}
+    a.push({...t,status:'open',ghost:{...ghost,label}});save(a);draw();setTimeout(()=>pchip(t,ghost),60);return t;}
+  const MT=t=>`#thryd.miracle.target(assert(${t.assert}))`;
+  async function copy(x){try{await navigator.clipboard.writeText(x);return true;}catch(e){const ta=document.createElement('textarea');ta.value=x;ta.style.cssText='position:fixed;left:-9999px;top:0';document.body.appendChild(ta);ta.select();let ok=false;try{ok=document.execCommand('copy');}catch(e2){}ta.remove();return ok;}}
+  function pchip(t,g){document.querySelectorAll('.prophchip').forEach(x=>x.remove());const c=document.createElement('button');c.className='prophchip';c.textContent='🔮 prophesy';c.title=MT(t);c.dataset.text=MT(t);
+    let r=null;if(g.type==='sprite'){const L=document.getElementById('objs');const b=L&&L.querySelector(`.dob[data-label="${CSS.escape(g.label)}"]`);r=b&&b.getBoundingClientRect();}else{const h=document.querySelector(`#map .ph[data-name="${CSS.escape(g.place||'')}"]`);r=h&&h.getBoundingClientRect();}
+    r=r||{left:innerWidth/2,bottom:innerHeight/2};c.style.left=Math.min(innerWidth-130,Math.max(4,r.left))+'px';c.style.top=Math.min(innerHeight-40,r.bottom+28)+'px';
+    ['pointerdown','pointerup','click','dblclick'].forEach(ev=>c.addEventListener(ev,e=>e.stopPropagation()));
+    c.addEventListener('click',async()=>{const ok=await copy(MT(t));c.textContent=ok?'copied — paste in [[nh]]':'copy failed — '+MT(t);c.classList.add('ok');clearTimeout(c._h);c._h=setTimeout(()=>c.remove(),2500);});
+    document.body.appendChild(c);setTimeout(()=>{if(!c.classList.contains('ok'))c.remove();},45000);}
   async function scene(b,k,cl,ct){const label=b.dataset.label,L=b.parentNode,R=b.getBoundingClientRect();let other=null,best=0;
     L.querySelectorAll('.ob:not(.dpatch)').forEach(o=>{if(o===b)return;const r=o.getBoundingClientRect();const ix=Math.max(0,Math.min(R.right,r.right)-Math.max(R.left,r.left)),iy=Math.max(0,Math.min(R.bottom,r.bottom)-Math.max(R.top,r.top));const v=ix*iy;if(v>best){best=v;other=o.dataset.label;}});
     const place=(st&&st.current_place)||(lastM&&PFULL[lastM.here])||'';
@@ -417,9 +425,9 @@ async function dropTo(id,from,to){
   function fulfil(t){const e=ghostEl(t)||(()=>{const x=document.createElement('div');x.className='proph chip';x.textContent=t.ghost&&t.ghost.label||'';x.style.cssText='left:50%;top:40%';lay().appendChild(x);return x;})();
     e.classList.add('done');const c=document.createElement('div');c.className='prophcap';c.textContent='✨ prophecy fulfilled: '+t.assert;lay().appendChild(c);
     setTimeout(()=>{e.classList.add('fade');c.classList.add('fade');},4200);setTimeout(()=>{e.remove();c.remove();},5600);}
-  function fromState(s){st=s||st;if(!s)return;const list=[...(s.targets||[]),...(s.miracles||[]),...((s.miracle&&s.miracle.targets)||[])];
+  function fromState(s){st=s||st;if(!s)return;const A=x=>Array.isArray(x)?x:(x&&typeof x==='object'?(Array.isArray(x.targets)?x.targets:Array.isArray(x.items)?x.items:Object.values(x).filter(v=>v&&typeof v==='object')):[]);const MF=(s.miracles&&Array.isArray(s.miracles.fulfilled)?s.miracles.fulfilled:[]).map(m=>typeof m==='string'?{assert:m,fulfilled:true}:{...m,fulfilled:true});const list=[...MF,...A(s.targets),...A(s.miracles),...A(s.miracle)].filter(m=>m&&typeof m==='object');
     const ful=list.filter(m=>/fulfil|true|done|met/i.test(String(m.status||''))||m.fulfilled===true);if(!ful.length)return;
-    const a=T();let ch=0;a.forEach(t=>{if(t.status!=='open')return;if(ful.some(m=>norm(m.assert||m.target||(m.target&&m.target.assert))===norm(t.assert))){t.status='fulfilled';ch=1;fulfil(t);}});if(ch)save(a);}
-  window.thrydTarget={make,scene,fromState,list:T};
+    const a=T();let ch=0;a.forEach(t=>{if(t.status!=='open')return;if(ful.some(m=>norm(m.assert||(m.target&&m.target.assert)||(typeof m.target==='string'?m.target:''))===norm(t.assert))){t.status='fulfilled';ch=1;fulfil(t);}});if(ch)save(a);}
+  window.thrydTarget={make,scene,fromState,list:T,text:MT};
   const poll=async()=>{try{fromState(await LIVE_STATE());}catch(e){}draw();};
   poll();setInterval(poll,20000);setInterval(draw,1200);addEventListener('resize',draw);})();
