@@ -23,7 +23,7 @@ function backdrop(set,force){ if(Date.now()<HOLD)return; stageN++;
   for(let i=0;i<set.frames;i++){const im=new Image();im.src=`${set.dir}/f${String(i).padStart(3,'0')}.webp`;}
   bgFlip^=1; const on=imgs[bgFlip],off=imgs[bgFlip^1];
   const tick=()=>{on.src=`${set.dir}/f${String(bgI%set.frames).padStart(3,'0')}.webp`;bgI++;};
-  tick(); on.classList.add('on'); off.classList.remove('on'); $('cap').textContent=set.label||''; objsFor(set);
+  tick(); on.classList.add('on'); off.classList.remove('on'); $('cap').textContent=(set.label||'')+viewTag(set); objsFor(set);
   bgTimer=setInterval(tick,Math.max(80,set.ms||120));
 }
 let POOL=[],poolI=0,LXTRA=[],CUR_RUN=null; const RUNX=()=>LXTRA.filter(x=>CUR_RUN&&x.run===CUR_RUN);
@@ -102,7 +102,10 @@ setInterval(()=>{if(!objLayer)return;const bs=[...objLayer.querySelectorAll('.ob
 // live loop = clean stills only (no baked terminal panel); replay-mode GIF frames stay out of it
 // every posted live view of every run (exact posted GIF frames from data/live_extra.json, no cap); current run first, newest first.
 // weighting: startSlide() brings the current run's NEWEST() back every 3rd slide; with no current-run view it rotates through all.
-function livePool(){const seen=new Set(),cur=[],oth=[];LXTRA.slice().sort((a,b)=>(b.mtime||0)-(a.mtime||0)).forEach(x=>{if(!x||!x.dir||seen.has(x.dir))return;seen.add(x.dir);(CUR_RUN&&x.run===CUR_RUN?cur:oth).push(x);});return cur.concat(oth);}
+function livePool(){const seen=new Set(),cur=[],oth=[];LXTRA.slice().sort((a,b)=>(b.mtime||0)-(a.mtime||0)).forEach(x=>{if(!x||!x.dir||seen.has(x.dir))return;seen.add(x.dir);(CUR_RUN&&x.run===CUR_RUN?cur:oth).push(x);});const k=oth.map(x=>x.dir).join('|');if(k!==SHUF.k){const a=oth.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}SHUF={k,a};}return cur.concat(SHUF.a);}
+let SHUF={k:null,a:[]};
+// caption counter: which of the N posted views is on screen
+function viewTag(set){const i=POOL.findIndex(x=>x&&set&&x.dir===set.dir);return i<0?'':'  · view '+(i+1)+'/'+POOL.length;}
 // no live view for the current run yet -> plain neutral stage (never another run's view)
 function liveBackdrop(place){const nw=NEWEST();if(nw)return nw;neutralStage(place);return null;}
 function neutralStage(place){if(bgSet&&bgSet.neutral)return;clearInterval(bgTimer);bgSet={dir:'neutral',neutral:1};
@@ -383,6 +386,12 @@ async function dropTo(id,from,to){
     if(moved){st._nofs=Date.now();return;}
     if(ev.type==='pointerup'&&ev.pointerType!=='mouse'){const n=Date.now();if(n-lastTap<320&&Math.hypot(ev.clientX-lastXY[0],ev.clientY-lastXY[1])<40){reset();lastTap=0;st._nofs=n;}else{lastTap=n;lastXY=[ev.clientX,ev.clientY];}}};
   document.addEventListener('pointerup',up);document.addEventListener('pointercancel',up);
+  // iOS Safari: stop native page zoom, and pinch via touch events (pointer pinch gets cancelled when Safari claims the gesture)
+  ['gesturestart','gesturechange','gestureend'].forEach(t=>document.addEventListener(t,e=>e.preventDefault(),{passive:false}));
+  let tp=null;const td=t=>Math.hypot(t[0].clientX-t[1].clientX,t[0].clientY-t[1].clientY)||1;
+  document.addEventListener('touchstart',e=>{if(e.touches.length===2&&!onItem(e.target)){tp={d:td(e.touches),z0:z};e.preventDefault();}},{passive:false});
+  document.addEventListener('touchmove',e=>{if(tp&&e.touches.length===2){e.preventDefault();if(pinch)return;const t=e.touches;moved=1;st._nofs=Date.now();zoomAt(tp.z0*td(t)/tp.d,(t[0].clientX+t[1].clientX)/2,(t[0].clientY+t[1].clientY)/2);}},{passive:false});
+  document.addEventListener('touchend',e=>{if(e.touches.length<2)tp=null;});
   document.addEventListener('dblclick',ev=>{if(onItem(ev.target))return;reset();st._nofs=Date.now();});
   // a pan/pinch/double-tap must not toggle fullscreen via the document click handler
   document.addEventListener('click',ev=>{if(st._nofs&&Date.now()-st._nofs<500)ev.stopImmediatePropagation();},true);

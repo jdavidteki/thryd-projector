@@ -114,3 +114,7 @@ body.idle #zoomui{opacity:.25}
 @keyframes prophP{0%,100%{opacity:.18}50%{opacity:.4}}
 .prophchip{position:fixed;z-index:62;pointer-events:auto;cursor:pointer;border:1px solid rgba(200,170,255,.7);border-radius:14px;padding:4px 11px;font:13px system-ui,sans-serif;color:#f4ecff;background:rgba(40,20,70,.82);box-shadow:0 0 10px rgba(170,120,255,.45)}
 .prophchip.ok{background:rgba(30,60,30,.88);border-color:#9f9}
+
+html,body{touch-action:none;overscroll-behavior:none;-webkit-text-size-adjust:100%}
+#zoomui{z-index:70;font-size:max(1.4vh,13px);bottom:max(1.5vh,env(safe-area-inset-bottom))}
+#zoomui button{font-size:max(1.6vh,18px);min-width:44px;min-height:40px}
