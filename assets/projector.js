@@ -273,7 +273,6 @@ addEventListener('resize',()=>{regionsKey='';});
 let DRAG=null; (async()=>{try{DRAG=await J('data/drag.json?t='+Date.now());}catch(e){}})();
 function toast(msg,bad){let t=document.getElementById('toast');if(!t){t=document.createElement('div');t.id='toast';document.body.appendChild(t);}
   t.textContent=msg;t.className=bad?'bad on':'on';clearTimeout(t._h);t._h=setTimeout(()=>t.className='',2600);}
-window.thrydCtx=()=>({toast,DRAG,PFULL:typeof PFULL!=='undefined'?PFULL:{},lastM:typeof lastM!=='undefined'?lastM:null}); // prophecy module lives outside this scope
 function setReg(id,r){if(!lastM)return;const nm=id.slice(2);(id[0]==='c'?lastM.chars:lastM.objs).forEach(x=>{if((x.name||x.label)===nm){x.region=r;if(x.off!==undefined)x.off=r!==lastM.here;}});
   if(!lastM.regions.includes(r))lastM.regions.push(r);place(lastM);}
 async function dragSend(body){
@@ -403,15 +402,15 @@ async function dropTo(id,from,to){
   const plEq=(a,b)=>{a=n(a);b=n(b);return !!a&&!!b&&(a===b||a.includes(b)||b.includes(a));};
   const asrt=(o,p)=>`${o}.place == "${p}"`; const MT=(o,p)=>`#thryd.miracle.target(assert(${asrt(o,p)}))`;
   const labelOf=o=>{const L=(st&&st.objects||[]).map(x=>x.label).concat((st&&st.characters||[]).map(c=>c.name));return L.find(l=>objEq(l,o))||o;};
-  const headFor=p=>[...document.querySelectorAll('#map .ph')].find(h=>plEq(h.dataset.name,p)||(window.thrydCtx&&plEq(thrydCtx().PFULL[h.dataset.name],p)));
-  function make(label,place,ghost,near){const t={kind:'miracle.target',object:label,place,...(near?{near}:{}),assert:asrt(label,place),run:(st&&st.run)||(typeof CUR_RUN!=='undefined'?CUR_RUN:'')||'',j:(st&&st.current_card)||'',at:new Date().toISOString()};
+  const headFor=p=>[...document.querySelectorAll('#map .ph')].find(h=>plEq(h.dataset.name,p)||(typeof PFULL!=='undefined'&&plEq(PFULL[h.dataset.name],p)));
+  function make(label,place,ghost){const t={kind:'miracle.target',object:label,place,assert:asrt(label,place),run:(st&&st.run)||(typeof CUR_RUN!=='undefined'?CUR_RUN:'')||'',j:(st&&st.current_card)||'',at:new Date().toISOString()};
     const a=T().filter(x=>!(objEq(x.object,label)&&x.status==='open'));a.push({...t,status:'open',ghost:{...ghost,label}});save(a);draw();setTimeout(()=>pchip(t,ghost),60);return t;}
   async function scene(b,k,cl,ct){const label=b.dataset.label,L=b.parentNode,R=b.getBoundingClientRect();let other=null,best=0;
     L.querySelectorAll('.ob:not(.dpatch)').forEach(o=>{if(o===b)return;const r=o.getBoundingClientRect();const v=Math.max(0,Math.min(R.right,r.right)-Math.max(R.left,r.left))*Math.max(0,Math.min(R.bottom,r.bottom)-Math.max(R.top,r.top));if(v>best){best=v;other=o.dataset.label;}});
-    const C=window.thrydCtx?thrydCtx():{};const place=(st&&st.current_place)||(C.lastM&&C.PFULL[C.lastM.here])||'';
-    const t=make(label,place,{type:'sprite',key:k,left:cl,top:ct,w:b.style.width,h:b.style.height,src:(b.querySelector('.sp')||{}).src||''},other?`on top of ${other}`:null);
-    try{const DG=C.DRAG;if(DG&&DG.endpoint)fetch(DG.endpoint,{method:'POST',body:JSON.stringify({key:DG.key,target:t,rid:Math.random().toString(36).slice(2,12)})}).catch(()=>{});}catch(e){}
-    if(C.toast)C.toast('🔮 prophecy: '+t.assert);}
+    const place=(st&&st.current_place)||(typeof lastM!=='undefined'&&typeof PFULL!=='undefined'&&lastM&&PFULL[lastM.here])||'';
+    const t=make(label,place,{type:'sprite',key:k,left:cl,top:ct,w:b.style.width,h:b.style.height,src:(b.querySelector('.sp')||{}).src||''});if(other)t.near=`on top of ${other}`;
+    try{if(typeof DRAG!=='undefined'&&DRAG&&DRAG.endpoint)fetch(DRAG.endpoint,{method:'POST',body:JSON.stringify({key:DRAG.key,target:t,rid:Math.random().toString(36).slice(2,12)})}).catch(()=>{});}catch(e){}
+    toast('🔮 prophecy: '+t.assert);}
   async function copy(x){try{await navigator.clipboard.writeText(x);return true;}catch(e){const ta=document.createElement('textarea');ta.value=x;ta.style.cssText='position:fixed;left:-9999px;top:0';document.body.appendChild(ta);ta.select();let ok=false;try{ok=document.execCommand('copy');}catch(e2){}ta.remove();return ok;}}
   function pchip(t,g){document.querySelectorAll('.prophchip').forEach(x=>x.remove());const txt=MT(t.object,t.place);const c=document.createElement('button');c.className='prophchip';c.textContent='🔮 prophesy';c.title=txt;c.dataset.text=txt;
     let r=null;if(g.type==='sprite'){const L=document.getElementById('objs');const b=L&&L.querySelector(`.dob[data-label="${CSS.escape(g.label||t.object)}"]`);r=b&&b.getBoundingClientRect();}else{const h=headFor(t.place);r=h&&h.getBoundingClientRect();}
