@@ -42,7 +42,7 @@ function altKeys(card){const c=String(card||'').toLowerCase(),out=new Set();if(!
 function cardOfSet(set){if(!set)return null;if(set.card)return String(set.card);const p=set.dir||set.gif||set.src||set.label||'';const m=String(p).match(/(?:^|[\/_\s·.-])([wj]\d+)(?:\b|[\/_.-]|$)/i);return m?m[1]:null;}
 function eventsFor(card){const keys=altKeys(card);if(!keys.size)return [];return TL.events.filter(e=>keys.has(String(e.scene||'').toLowerCase())||keys.has(String(e.card||'').toLowerCase()));}
 function rebuildNames(){scNames=[...new Set(TL.events.map(e=>short(e.place||'')).filter(Boolean))];}
-function syncPauseBtn(){const btn=$('rpause');if(!btn)return;if(scEv.length){btn.style.display='';btn.textContent=scPaused?'Play':'Pause';}else btn.style.display='none';}
+function syncPauseBtn(){const btn=$('rpause');if(!btn)return;if(scEv.length||cmEv.length){btn.style.display='';btn.textContent=scPaused?'Play':'Pause';}else btn.style.display='none';}
 function applySceneEvent(e,card){
   const here=short(e.place||scHere||'elsewhere');scHere=here;if(here&&!scNames.includes(here))scNames.push(here);
   if(e.cast&&e.cast.length)e.cast.forEach(n=>{scChars[n]=here;});
@@ -70,6 +70,65 @@ async function loadTimeline(){try{const T=await J('data/timeline.json');TL={run:
   else if(bgSet){bindScene(bgSet);}
 }catch(e){}}
 function ensureSceneTimer(){if(scTimer)return;scTimer=setInterval(()=>{if(!scPaused)sceneStep();},SCENE_MS);}
+// ---------- customer moves: loop data/drags.json (past projector-drags + live ntfy), forever; Pause stops this too
+let cmEv=[], cmI=0, cmTimer=null, cmSeen=new Set(), cmLastNtfy=0, cmPos={}, DRAGS_RUN=null;
+const CM_MS=Math.min(Math.max(1400,SPEED),2800);
+function cmSig(e){return e.id||[e.at||'',e.object||'',e.place||'',e.x,e.y].join('|');}
+function cmLabel(o){return String(o||'').replace(/_5a58c4$/i,'').trim();}
+function cmFindId(label){const want=cmLabel(label).toLowerCase();if(!want)return null;
+  const tryId=id=>{const nm=id.slice(2).toLowerCase();return nm===want||nm.replace(/_5a58c4$/,'')===want;};
+  for(const id of Object.keys(ents)){if(tryId(id))return id;}
+  if(lastM){for(const c of lastM.chars||[]){if(cmLabel(c.name).toLowerCase()===want)return 'c:'+c.name;}
+    for(const o of lastM.objs||[]){if(cmLabel(o.label).toLowerCase()===want)return 'o:'+o.label;}}
+  return null;}
+function cmEnsure(label,region){let id=cmFindId(label);if(id)return id;
+  // chip missing (other-run cut-out / not in state yet) — seed a soft entry into lastM so place() can show it
+  if(!lastM){lastM={regions:[],here:region||'elsewhere',chars:[],objs:[]};}
+  const here=lastM.here||region||'elsewhere';const r=region||here;
+  if(r&&!lastM.regions.includes(r))lastM.regions.push(r);
+  // prefer object chip for lowercase labels, character for Title Case
+  if(/^[A-Z]/.test(label)&&!/\d/.test(label)){lastM.chars.push({name:label,region:r,off:r!==here});return 'c:'+label;}
+  lastM.objs.push({label:label,region:r});return 'o:'+label;}
+function cmMoveLayer(label,x,y){if(!objLayer||x==null||y==null)return;const want=cmLabel(label).toLowerCase();
+  objLayer.querySelectorAll('.dob').forEach(b=>{if(cmLabel(b.dataset.label).toLowerCase()!==want)return;
+    const[cl,ct]=visClamp(objLayer,+x,+y,parseFloat(b.style.width)||1,parseFloat(b.style.height)||1);
+    b.style.left=cl+'%';b.style.top=ct+'%';b.dataset.dp='1';b.classList.add('away');
+    const q=objLayer.querySelector(`.dpatch[data-label="${CSS.escape(b.dataset.label)}"]`);if(q)q.classList.add('away');
+    const k=objLayer.dataset.key;if(k){DPOS[k+'|'+b.dataset.label]=[+cl.toFixed(3),+ct.toFixed(3)];try{localStorage.setItem('thryd_dpos',JSON.stringify(DPOS));}catch(e){}}
+    b.classList.remove('pulse');void b.offsetWidth;b.classList.add('pulse');});}
+function cmTicker(e,idx,n){const lab=cmLabel(e.object),pl=short(e.place||'');
+  const line=$('cmove');if(line){line.textContent=`${lab} → ${pl} · move ${idx+1} of ${n}`;line.style.display=n?'':'none';}
+  // also nudge the main meta so a glance at the ticker still shows the customer move
+  const meta=$('meta');if(meta&&(!scEv.length||scPaused))meta.textContent=`customer · move ${idx+1}/${n}`;}
+function applyCustMove(e){if(!e)return;const lab=cmLabel(e.object),full=e.place||'elsewhere',pl=short(full);
+  if(pl&&!scNames.includes(pl))scNames.push(pl); if(typeof PFULL!=='undefined')PFULL[pl]=PFULL[pl]||full;
+  cmPos[lab]=pl;
+  if(scChars[lab]!==undefined)scChars[lab]=pl; else scObjs[lab]=pl;
+  const id=cmEnsure(lab,pl);if(id&&lastM){setReg(id,pl);pulse(lab);}
+  if(e.x!=null&&e.y!=null)cmMoveLayer(lab,e.x,e.y);
+  else if(objLayer){const want=lab.toLowerCase();objLayer.querySelectorAll('.dob').forEach(b=>{if(cmLabel(b.dataset.label).toLowerCase()===want){const w=b.querySelector('.spw')||b;w.classList.remove('moved');void w.offsetWidth;w.classList.add('moved');}});}}
+function cmStep(){if(scPaused||!cmEv.length)return;const n=cmEv.length,idx=cmI%n;const e=cmEv[idx];cmI++;applyCustMove(e);cmTicker(e,idx,n);}
+function ensureCmTimer(){if(cmTimer)return;cmTimer=setInterval(()=>{if(!scPaused)cmStep();},CM_MS);}
+function cmAppend(e){if(!e||!e.object||!e.place)return false;const s=cmSig(e);if(cmSeen.has(s))return false;cmSeen.add(s);cmEv.push(e);syncPauseBtn();return true;}
+async function loadDrags(){try{const D=await J('data/drags.json');DRAGS_RUN=D.run||null;const list=(D.events||[]).slice();
+  if(!cmEv.length){cmEv=list;cmI=0;list.forEach(e=>cmSeen.add(cmSig(e)));syncPauseBtn();if(cmEv.length)cmStep();}
+  else{list.forEach(e=>cmAppend(e));}}catch(e){}}
+async function pollNtfyDrags(){if(!DRAG||!DRAG.endpoint||DRAG.transport!=='ntfy')return;
+  try{const since=cmLastNtfy||'all';const url=DRAG.endpoint.replace(/\/?$/,'')+'/json?poll=1&since='+encodeURIComponent(since);
+    const tx=await(await fetch(url,{cache:'no-store'})).text();
+    for(const l of tx.split('\n')){if(!l)continue;let m;try{m=JSON.parse(l);}catch(e){continue;}
+      if(m.event!=='message')continue;if(m.id)cmLastNtfy=m.id;
+      let body;try{body=JSON.parse(m.message||'{}');}catch(e){continue;}
+      if(!DRAG.key||body.key!==DRAG.key)continue;
+      let obj=body.object,place=body.place,target=body.target,x=body.x,y=body.y;
+      if(target&&typeof target==='object'){obj=obj||target.object;place=place||target.place;if(x==null&&target.x!=null)x=target.x;if(y==null&&target.y!=null)y=target.y;}
+      const at=(target&&target.at)||(m.time?new Date(m.time*1000).toISOString():new Date().toISOString());
+      const e={at,object:cmLabel(obj||''),place:place||'',src:'ntfy',id:m.id};
+      if(target!=null)e.target=target;if(typeof x==='number')e.x=x;if(typeof y==='number')e.y=y;
+      if(cmAppend(e)){/* newly stacked — visible on next loop pass */}}}catch(e){}}
+function noteLocalDrag(label,place,xy){const e={at:new Date().toISOString(),object:cmLabel(label),place,src:'local'};
+  if(xy&&typeof xy.x==='number')e.x=xy.x;if(xy&&typeof xy.y==='number')e.y=xy.y;
+  cmAppend(e);}
 // ---------- in-place object sprites (data/objects_map.json): patch at bbox, sprite on top, gentle motion
 let OMAP={}, objLayer=null, objKey=null, objState={};
 const mapKey=p=>{const r=(p||'').match(/(run-[\w]+)/), j=(p||'').match(/\b(j\d+)(?:_blur)?\.(?:gif|jpe?g|webp)$|\/(j\d+)\/?$/);return r&&j?r[1]+'/'+(j[1]||j[2]):null;};
@@ -288,7 +347,7 @@ function setMode(m){MODE=m;Q.set('mode',m);history.replaceState(null,'','?'+Q.to
   document.querySelectorAll('#modes button[data-m]').forEach(b=>b.classList.toggle('on',b.dataset.m===m));
   $('pick').style.display=m==='replay'?'':'none'; bgSet=null; clearScene(); (m==='replay'?replay:live)();}
 document.querySelectorAll('#modes button[data-m]').forEach(b=>b.onclick=ev=>{ev.stopPropagation();setMode(b.dataset.m);});
-const _rp=$('rpause'); if(_rp)_rp.onclick=ev=>{ev.stopPropagation();if(!scEv.length)return;scPaused=!scPaused;syncPauseBtn();if(!scPaused)sceneStep();};
+const _rp=$('rpause'); if(_rp)_rp.onclick=ev=>{ev.stopPropagation();if(!scEv.length&&!cmEv.length)return;scPaused=!scPaused;syncPauseBtn();if(!scPaused){if(scEv.length)sceneStep();if(cmEv.length)cmStep();}};
 $('pick').onclick=e=>e.stopPropagation();
 $('pick').onchange=e=>{Q.set('run',e.target.value);history.replaceState(null,'','?'+Q.toString());reset();replay();};
 const fs=()=>{if(!document.fullscreenElement)document.documentElement.requestFullscreen?.().catch(()=>{});else document.exitFullscreen?.();};
@@ -304,6 +363,8 @@ addEventListener('resize',()=>{regionsKey='';});
   try{localPrec=(await J('data/precisions.json')).map(p=>({line:p.line,src:p.src,move:p.move}));}catch(e){}
   try{const T=(await J('data/tweets_all.json')).map(p=>({line:p.line,src:p.src,move:false}));for(let i=T.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[T[i],T[j]]=[T[j],T[i]];}TDECK=T;TI=0;}catch(e){}
   await loadTimeline(); ensureSceneTimer(); setInterval(()=>{loadTimeline();},30000);
+  await loadDrags(); ensureCmTimer(); setInterval(()=>{loadDrags();},60000);
+  setInterval(()=>{pollNtfyDrags();},30000); setTimeout(()=>{pollNtfyDrags();},2500);
   setMode(MODE);
 })();
 // ---------- drag a chip onto a place heading -> <object>.setlocation(<place>) via data/drag.json endpoint
@@ -321,11 +382,13 @@ async function dragSend(body){
     try{const tx=await (await fetch(DRAG.reply+'/json?poll=1&since='+t0,{cache:'no-store'})).text();
       for(const l of tx.split('\n')){if(!l)continue;let m;try{m=JSON.parse(l);m=JSON.parse(m.message||'{}');}catch(e){continue;}if(m.rid===rid)return m;}}catch(e){}}
   throw new Error('no reply from box (timeout)');}
-async function dropTo(id,from,to){
+async function dropTo(id,from,to,xy){
   if(!DRAG||!DRAG.endpoint){toast('drag endpoint not available',1);return;}
   const label=id.slice(2); PEND[id]={region:to,until:Date.now()+8*60e3}; setReg(id,to); toast(`moving ${label} → ${to}…`);
-  const tg=window.thrydTarget&&thrydTarget.make(label,PFULL[to]||to,{type:'chip',id,place:to});
-  try{const j=await dragSend({key:DRAG.key,object:label,place:PFULL[to]||to,...(tg?{target:tg}:{})});if(!j.ok)throw new Error(j.error||('HTTP '+j.status));toast(`${label} → ${to} ✓`);pulse(label);}
+  const tg=window.thrydTarget&&thrydTarget.make(label,PFULL[to]||to,{type:'chip',id,place:to,...(xy||{})});
+  const body={key:DRAG.key,object:label,place:PFULL[to]||to,...(tg?{target:tg}:{})};
+  if(xy&&typeof xy.x==='number'){body.x=xy.x;body.y=xy.y;}
+  try{const j=await dragSend(body);if(!j.ok)throw new Error(j.error||('HTTP '+j.status));toast(`${label} → ${to} ✓`);pulse(label);noteLocalDrag(label,PFULL[to]||to,xy);}
   catch(e){delete PEND[id];setReg(id,from);toast(`couldn't move ${label}: ${e.message}`,1);}}
 (function(){let d=null;
   const hit=(x,y)=>{document.body.classList.add('dragging');let el=null;try{el=document.elementFromPoint(x,y);}finally{document.body.classList.remove('dragging');}
@@ -386,9 +449,9 @@ async function dropTo(id,from,to){
     window.thrydHold(30000);const Lp=dd.b.parentNode,k=Lp&&Lp.dataset.key;const[cl,ct]=visClamp(Lp,parseFloat(dd.b.style.left),parseFloat(dd.b.style.top),parseFloat(dd.b.style.width),parseFloat(dd.b.style.height));
     dd.b.style.left=cl+'%';dd.b.style.top=ct+'%';dd.b.dataset.dp='1';DPOS[k+'|'+dd.b.dataset.label]=[+cl.toFixed(3),+ct.toFixed(3)];
     try{localStorage.setItem('thryd_dpos',JSON.stringify(DPOS));}catch(e){}
-    const h=hit(ev.clientX,ev.clientY),id=dd.b.dataset.id,from=regOf(id);if(!h){toast('dropped in the scene — drop on a place name to move them');if(window.thrydTarget)thrydTarget.scene(dd.b,k,cl,ct);return;}
+    const h=hit(ev.clientX,ev.clientY),id=dd.b.dataset.id,from=regOf(id);if(!h){toast('dropped in the scene — drop on a place name to move them');if(window.thrydTarget)thrydTarget.scene(dd.b,k,cl,ct);noteLocalDrag(dd.b.dataset.label,(window.thrydCtx&&thrydCtx().lastM&&thrydCtx().PFULL[thrydCtx().lastM.here])||'',{x:+cl.toFixed(3),y:+ct.toFixed(3)});return;}
     if(h.dataset.name===from){toast(`${id.slice(2)} is already at ${from}`);return;}
-    dropTo(id,from,h.dataset.name);};
+    dropTo(id,from,h.dataset.name,{x:+cl.toFixed(3),y:+ct.toFixed(3)});};
   document.addEventListener('pointerup',end);document.addEventListener('pointercancel',end);})();
 })();
 
@@ -453,7 +516,7 @@ async function dropTo(id,from,to){
     L.querySelectorAll('.ob:not(.dpatch)').forEach(o=>{if(o===b)return;const r=o.getBoundingClientRect();const v=Math.max(0,Math.min(R.right,r.right)-Math.max(R.left,r.left))*Math.max(0,Math.min(R.bottom,r.bottom)-Math.max(R.top,r.top));if(v>best){best=v;other=o.dataset.label;}});
     const C=window.thrydCtx?thrydCtx():{};const place=(st&&st.current_place)||(C.lastM&&C.PFULL[C.lastM.here])||'';
     const t=make(label,place,{type:'sprite',key:k,left:cl,top:ct,w:b.style.width,h:b.style.height,src:(b.querySelector('.sp')||{}).src||''},other?`on top of ${other}`:null);
-    try{const DG=C.DRAG;if(DG&&DG.endpoint)fetch(DG.endpoint,{method:'POST',body:JSON.stringify({key:DG.key,target:t,rid:Math.random().toString(36).slice(2,12)})}).catch(()=>{});}catch(e){}
+    try{const DG=C.DRAG;if(DG&&DG.endpoint)fetch(DG.endpoint,{method:'POST',body:JSON.stringify({key:DG.key,object:label,place,x:+(+cl).toFixed(3),y:+(+ct).toFixed(3),target:t,rid:Math.random().toString(36).slice(2,12)})}).catch(()=>{});}catch(e){}
     if(C.toast)C.toast('🔮 prophecy: '+t.assert);}
   async function copy(x){try{await navigator.clipboard.writeText(x);return true;}catch(e){const ta=document.createElement('textarea');ta.value=x;ta.style.cssText='position:fixed;left:-9999px;top:0';document.body.appendChild(ta);ta.select();let ok=false;try{ok=document.execCommand('copy');}catch(e2){}ta.remove();return ok;}}
   function pchip(t,g){document.querySelectorAll('.prophchip').forEach(x=>x.remove());const txt=MT(t.object,t.place);const c=document.createElement('button');c.className='prophchip';c.textContent='🔮 prophesy';c.title=txt;c.dataset.text=txt;
