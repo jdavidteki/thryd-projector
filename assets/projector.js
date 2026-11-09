@@ -206,6 +206,8 @@ function applyCustMove(e){if(!e)return Promise.resolve();const lab=cmLabel(e.obj
   if(scChars[lab]!==undefined)scChars[lab]=pl; else scObjs[lab]=pl;
   const xy=(e.x!=null&&e.y!=null)?{x:+e.x,y:+e.y}:null;
   const id=cmEnsure(lab,pl);if(id&&lastM){setReg(id,pl);pulse(lab);}
+  // only exact customer drops (x,y in this scene) move cut-outs; place-only moves stay on the chips + ticker, nothing walks off-frame
+  if(!cmVisible(e))return new Promise(z=>setTimeout(z,CM_REDUCED?60:900));
   return sceneAnim(lab,full,xy).then(()=>{});}
 function cmEnqueue(job){cmQ.push(job);cmPump();}
 async function cmPump(){if(cmBusy||scPaused)return;const job=cmQ.shift();if(!job)return;cmBusy=true;
@@ -216,7 +218,8 @@ async function cmPump(){if(cmBusy||scPaused)return;const job=cmQ.shift();if(!job
   }}
 // scene-first loop: moves whose object has a cut-out in THIS scene play in order, over and over; brand-new moves jump the line once
 let cmNew=[], cmSceneI={};
-function cmVisible(e){return !!(e&&cmFindBoxes(e.object).length);}
+function cmSceneKey(){return (objLayer&&objLayer.dataset.key)||'';}
+function cmVisible(e){if(!e||e.x==null||e.y==null)return false;if(e.scene&&cmSceneKey()&&e.scene!==cmSceneKey())return false;return !!cmFindBoxes(e.object).length;}
 function cmStep(){if(scPaused||!cmEv.length)return;const n=cmEv.length;
   if(cmNew.length){const e=cmNew.shift();const i=cmEv.indexOf(e);cmEnqueue(async()=>{await applyCustMove(e);cmTicker(e,i<0?n-1:i,n);});return;}
   const vis=[];for(let k=0;k<n;k++)if(cmVisible(cmEv[k]))vis.push(k);
@@ -248,9 +251,10 @@ async function pollNtfyDrags(){if(!DRAG||!DRAG.endpoint||DRAG.transport!=='ntfy'
       if(target&&typeof target==='object'){obj=obj||target.object;place=place||target.place;if(x==null&&target.x!=null)x=target.x;if(y==null&&target.y!=null)y=target.y;}
       const at=(target&&target.at)||(m.time?new Date(m.time*1000).toISOString():new Date().toISOString());
       const e={at,object:cmLabel(obj||''),place:place||'',src:'ntfy',id:m.id};
+      {const fk=o=>{if(!o||typeof o!=='object')return null;if(typeof o.key==='string'&&/run-/.test(o.key))return o.key;for(const v of Object.values(o)){const r=fk(v);if(r)return r;}return null;};const sk=fk(target);if(sk)e.scene=sk;}
       if(target!=null)e.target=target;if(typeof x==='number')e.x=x;if(typeof y==='number')e.y=y;
       if(cmAppend(e,cmPolledOnce)){/* new moves play next, then join the loop */}}cmPolledOnce=true;}catch(e){}}
-function noteLocalDrag(label,place,xy){const e={at:new Date().toISOString(),object:cmLabel(label),place,src:'local'};
+function noteLocalDrag(label,place,xy){const e={at:new Date().toISOString(),object:cmLabel(label),place,src:'local'};if(cmSceneKey())e.scene=cmSceneKey();
   if(xy&&typeof xy.x==='number')e.x=xy.x;if(xy&&typeof xy.y==='number')e.y=xy.y;
   cmAppend(e,false);}
 // ---------- in-place object sprites (data/objects_map.json): patch at bbox, sprite on top, gentle motion
