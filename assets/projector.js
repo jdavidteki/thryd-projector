@@ -1,4 +1,4 @@
-const LIVE_STATE=async()=>{try{const r=await fetch('https://raw.githubusercontent.com/jdavidteki/thryd-projector/main/data/state.json?t='+Date.now(),{cache:'no-store'});if(!r.ok)throw 0;return await r.json();}catch(e){return LIVE_STATE();}};
+const LIVE_STATE=async()=>{try{const r=await fetch('https://raw.githubusercontent.com/jdavidteki/thryd-projector/main/data/state.json?t='+Date.now(),{cache:'no-store'});if(!r.ok)throw 0;return await r.json();}catch(e){try{const r=await fetch('data/state.json?_='+Date.now(),{cache:'no-store'});if(!r.ok)throw 0;return await r.json();}catch(e2){throw e2;}}};
 // #thryd projector: live (data/state.json) · timeline loop (data/timeline.json) · replay (data/replays.json + replay_<run>.json)
 (()=>{
 const Q=new URLSearchParams(location.search);
@@ -13,7 +13,7 @@ const short=p=>(p||'elsewhere').replace(/,? (in )?Miami(, Florida)?/g,'').replac
 // ---------- stage: current scene GIF, large & centered, crossfaded
 let bgSet=null,bgI=0,bgFlip=0,bgTimer=null,stageN=0; window.THRYD_UG=window.THRYD_UG||[];
 function showUser(u){clearInterval(bgTimer);bgSet={dir:'user:'+u.id};const w=$('ug');w.innerHTML='';w.appendChild(u.vis);
-  w.classList.add('on');objsFor(null);$('bgA').classList.remove('on');$('bgB').classList.remove('on');$('cap').textContent=u.label;}
+  w.classList.add('on');objsFor(null);$('bgA').classList.remove('on');$('bgB').classList.remove('on');$('cap').textContent=u.label;clearScene();}
 let HOLD=0; // in-scene drag pins the current scene (slideshow paused while dragging + 30s after a drop)
 window.thrydHold=ms=>{HOLD=ms?Math.max(HOLD,Date.now()+ms):0;};
 function backdrop(set,force){ if(Date.now()<HOLD)return; stageN++;
@@ -25,6 +25,7 @@ function backdrop(set,force){ if(Date.now()<HOLD)return; stageN++;
   const tick=()=>{on.src=`${set.dir}/f${String(bgI%set.frames).padStart(3,'0')}.webp`;bgI++;};
   tick(); on.classList.add('on'); off.classList.remove('on'); $('cap').textContent=(set.label||'')+viewTag(set); objsFor(set);
   bgTimer=setInterval(tick,Math.max(80,set.ms||120));
+  bindScene(set);
 }
 let POOL=[],poolI=0,LXTRA=[],CUR_RUN=null; const RUNX=()=>LXTRA.filter(x=>CUR_RUN&&x.run===CUR_RUN);
 // slide speed: 8s default, 30s, 60s (?slide=30 or the bar select; remembered)
@@ -33,6 +34,42 @@ const NEWEST=()=>RUNX().length?RUNX().slice().sort((a,b)=>(b.mtime||0)-(a.mtime|
 // newest live view comes back every 3rd slide; others cycle in between
 function startSlide(){clearInterval(slideT);slideT=setInterval(()=>{if(POOL.length>1){slideN++;const nw=MODE==='live'&&NEWEST();if(nw&&slideN%3===0&&bgSet&&bgSet.dir!==nw.dir){backdrop(nw,true);return;}poolI=(poolI+1)%POOL.length;if(nw&&POOL[poolI]===nw&&POOL.length>2)poolI=(poolI+1)%POOL.length;backdrop(POOL[poolI],true);}},SLIDE*1000);}
 startSlide();
+
+// ---------- per-GIF scene updates: loop data/timeline.json events for the GIF on stage
+let TL={run:null,events:[]}, scKey='', scEv=[], scI=0, scPaused=false, scChars={}, scObjs={}, scNames=[], scHere='', scTimer=null;
+const SCENE_MS=Math.min(Math.max(1200,SPEED),2500);
+function altKeys(card){const c=String(card||'').toLowerCase(),out=new Set();if(!c)return out;out.add(c);const m=c.match(/^([wj])(\d+)$/);if(m){out.add('w'+m[2]);out.add('j'+m[2]);}return out;}
+function cardOfSet(set){if(!set)return null;if(set.card)return String(set.card);const p=set.dir||set.gif||set.src||set.label||'';const m=String(p).match(/(?:^|[\/_\s·.-])([wj]\d+)(?:\b|[\/_.-]|$)/i);return m?m[1]:null;}
+function eventsFor(card){const keys=altKeys(card);if(!keys.size)return [];return TL.events.filter(e=>keys.has(String(e.scene||'').toLowerCase())||keys.has(String(e.card||'').toLowerCase()));}
+function rebuildNames(){scNames=[...new Set(TL.events.map(e=>short(e.place||'')).filter(Boolean))];}
+function syncPauseBtn(){const btn=$('rpause');if(!btn)return;if(scEv.length){btn.style.display='';btn.textContent=scPaused?'Play':'Pause';}else btn.style.display='none';}
+function applySceneEvent(e,card){
+  const here=short(e.place||scHere||'elsewhere');scHere=here;if(here&&!scNames.includes(here))scNames.push(here);
+  if(e.cast&&e.cast.length)e.cast.forEach(n=>{scChars[n]=here;});
+  if(e.object)scObjs[e.object]=here;
+  const lab=String(e.label||'');
+  const sm=lab.match(/move\s+(\S+)\.setlocation\((.+)\)/i);
+  if(sm){const who=sm[1].replace(/^\[\[|\]\]$/g,''),pl=short(sm[2].replace(/^["']|["']$/g,''));if(pl&&!scNames.includes(pl))scNames.push(pl);if(scObjs[who]!==undefined||scChars[who]===undefined&&/^[a-z]/.test(who))scObjs[who]=pl;else scChars[who]=pl;}
+  render({regions:scNames.length?scNames:[here],here,chars:Object.entries(scChars).map(([n,r])=>({name:n,region:r,off:r!==here})),objs:Object.entries(scObjs).map(([l,r])=>({label:l,region:r}))});
+  if(e.object)pulse(e.object);
+  const n=scEv.length,idx=((scI-1)%n+n)%n;
+  ticker(e.world||'',ok(lab)?lab:('update '+(idx+1)),`${card||''} · update ${idx+1}/${n}`);
+  const sp=Object.entries(scChars).filter(([n,r])=>r===here).map(([n])=>n);
+  maybeBubble(localPrec,sp.length?sp:Object.keys(scChars));
+}
+function sceneStep(){if(scPaused||!scEv.length)return;const n=scEv.length,idx=scI%n;if(idx===0){scChars={};scObjs={};}const e=scEv[idx];scI++;applySceneEvent(e,cardOfSet(bgSet)||(scKey.split('|')[0]||''));}
+function bindScene(set){
+  const card=cardOfSet(set);const keys=altKeys(card);const keyStr=[...keys].sort().join('|');
+  if(keyStr===scKey){syncPauseBtn();return;}
+  scKey=keyStr;scEv=eventsFor(card);scI=0;scChars={};scObjs={};scPaused=false;syncPauseBtn();
+  if(!scEv.length)return;sceneStep();
+}
+function clearScene(){scKey='';scEv=[];scI=0;scChars={};scObjs={};scPaused=false;syncPauseBtn();}
+async function loadTimeline(){try{const T=await J('data/timeline.json');TL={run:T.run||null,events:(T.events||[]).slice()};rebuildNames();
+  if(scKey){const card=cardOfSet(bgSet)||scKey.split('|').find(Boolean)||'';const next=eventsFor(card);const prevLen=scEv.length;scEv=next;if(prevLen===0&&next.length){scI=0;sceneStep();}syncPauseBtn();}
+  else if(bgSet){bindScene(bgSet);}
+}catch(e){}}
+function ensureSceneTimer(){if(scTimer)return;scTimer=setInterval(()=>{if(!scPaused)sceneStep();},SCENE_MS);}
 // ---------- in-place object sprites (data/objects_map.json): patch at bbox, sprite on top, gentle motion
 let OMAP={}, objLayer=null, objKey=null, objState={};
 const mapKey=p=>{const r=(p||'').match(/(run-[\w]+)/), j=(p||'').match(/\b(j\d+)(?:_blur)?\.(?:gif|jpe?g|webp)$|\/(j\d+)\/?$/);return r&&j?r[1]+'/'+(j[1]||j[2]):null;};
@@ -194,12 +231,12 @@ async function live(){
   let s=null; try{s=await LIVE_STATE();}catch(e){}
   if(!s||!(s.characters||[]).length){return loopTimeline();}
   let last='', step=0, cur=s;
-  let first=true; const apply=st=>{CUR_RUN=st.run||CUR_RUN;const m=fromState(st);render(m);cur=st;trackObjs(st);
+  let first=true; const apply=st=>{CUR_RUN=st.run||CUR_RUN;cur=st;trackObjs(st);if(!scEv.length){const m=fromState(st);render(m);}
     POOL=livePool(); if(first){first=false;const nw=NEWEST();if(nw){poolI=Math.max(0,POOL.indexOf(nw));backdrop(nw,true);}else if(POOL.length){poolI=0;backdrop(POOL[0],true);}else backdrop(liveBackdrop(st.current_place));}
     $('run').textContent=st.run||'';};
   apply(s);
   const lines=()=>[...(cur.moves||[]).flatMap(m=>(m.precisions||[]).map(p=>({line:p.line,src:'seat '+p.seat,move:/\[\[/.test(p.line)}))),...localPrec];
-  const upd=()=>{const mv=(cur.moves||[]).slice(-10), re=(cur.recent_events||[]).slice(-6);
+  const upd=()=>{if(scEv.length)return;const mv=(cur.moves||[]).slice(-10), re=(cur.recent_events||[]).slice(-6);
     const items=[...mv.map(m=>m.move),...re.map(e=>`${e.card||''} ${e.ev}${e.status?' · '+e.status:''}`)];
     const it=(items.length?String(items[step++%items.length]):'waiting').replace(/ ?\(undefined\)/g,'');
     ticker(cur.story_time_label,ok(it)?it:'move (cut away)',`${cur.current_card} · ${cur.seats||''} · state ${String(cur.exported_at||'').slice(11,16)} ET`);
@@ -210,21 +247,12 @@ async function live(){
 }
 // ---------- fallback: loop data/timeline.json
 async function loopTimeline(){
-  const g=gen; let T; try{T=await J('data/timeline.json');}catch(e){ticker('','no state.json or timeline.json yet','');return;}
-  $('mode').textContent='live · timeline loop'; $('run').textContent=T.run; CUR_RUN=T.run;
-  const ev=T.events, names=[...new Set(ev.map(e=>short(e.place)))];
-  let i=0, chars={}, objs={};
-  const step=()=>{ if(g!==gen)return; const e=ev[i%ev.length]; if(i%ev.length===0){chars={};objs={};}
-    const here=short(e.place);
-    if(e.kind==='scene'){(e.cast||[]).forEach(n=>chars[n]=here);}
-    if(e.object){objs[e.object]=here;}
-    render({regions:names,here,chars:Object.entries(chars).map(([n,r])=>({name:n,region:r,off:r!==here})),objs:Object.entries(objs).map(([l,r])=>({label:l,region:r}))});
-    if(e.object)pulse(e.object);
-    POOL=livePool(); if(i===0||!NEWEST()||(bgSet&&!livePool().some(x=>x.dir===bgSet.dir)))backdrop(NEWEST()||liveBackdrop(e.place)); // keep newest view up; slide timer still cycles
-    ticker(e.world,e.label,`${e.scene} · update ${i%ev.length+1}/${ev.length}`);
-    const sp=Object.entries(chars).filter(([n,r])=>r===here).map(([n])=>n);
-    maybeBubble(localPrec,sp.length?sp:Object.keys(chars)); i++; };
-  step(); everyS(step);
+  const g=gen; await loadTimeline(); if(!TL.events.length){ticker('','no state.json or timeline.json yet','');return;}
+  $('mode').textContent='live · timeline'; $('run').textContent=TL.run||''; CUR_RUN=TL.run;
+  POOL=livePool();
+  if(POOL.length){poolI=0;backdrop(POOL[0],true);}
+  else{const e0=TL.events[0];bindScene({card:e0.scene||e0.card,label:e0.label});}
+  every(async()=>{if(g!==gen)return;await loadTimeline();},30000);
 }
 // ---------- REPLAY
 async function replay(){
@@ -245,8 +273,10 @@ async function replay(){
   const rm=(runMedia[want]||[]); let i=0, cast=D.cast||[];
   const step=()=>{ if(g!==gen)return; const f=fr[i%fr.length]; if(f.cast&&f.cast.length)cast=f.cast;
     const here=f.card&&/^w\d+$/.test(f.card)?'card '+f.card:regions[0];
+    if(rm.length){const mi=rm.find(x=>x.card===f.card)||rm[Math.floor(cards.indexOf(f.card)*rm.length/Math.max(1,cards.length))]||rm[0];backdrop(Object.assign({label:`${want} · ${mi.card||''}`,card:mi.card||f.card},mi));POOL=rm;}
+    else if(f.card) bindScene({card:f.card,label:want+' · '+f.card});
+    if(scEv.length){i++;return;}
     render({regions,here,chars:(cast.length?cast:[]).slice(0,6).map(n=>({name:n,region:here})),objs:[]});
-    if(rm.length){const mi=rm.find(x=>x.card===f.card)||rm[Math.floor(cards.indexOf(f.card)*rm.length/Math.max(1,cards.length))]||rm[0];backdrop(Object.assign({label:`${want} · ${mi.card||''}`},mi));POOL=rm;} 
     const ls=f.latest_seat; const lab=f.kind==='seat'&&ls?`seat ${ls.seat} seated on ${ls.card}`:`${f.card||''} ${f.event||''}${f.status?' · '+f.status:''}`;
     ticker(String(f.t||'').replace('T',' ').slice(0,16)+' ET',lab,`${want} · update ${i%fr.length+1}/${fr.length} · ${f.seated_count||0} seated`);
     maybeBubble(prec,cast.slice(0,6)); i++; };
@@ -255,9 +285,10 @@ async function replay(){
 window.thrydSay=say; window.thrydChoose=choose;
 // ---------- UI
 function setMode(m){MODE=m;Q.set('mode',m);history.replaceState(null,'','?'+Q.toString());
-  document.querySelectorAll('#modes button').forEach(b=>b.classList.toggle('on',b.dataset.m===m));
-  $('pick').style.display=m==='replay'?'':'none'; bgSet=null; (m==='replay'?replay:live)();}
-document.querySelectorAll('#modes button').forEach(b=>b.onclick=ev=>{ev.stopPropagation();setMode(b.dataset.m);});
+  document.querySelectorAll('#modes button[data-m]').forEach(b=>b.classList.toggle('on',b.dataset.m===m));
+  $('pick').style.display=m==='replay'?'':'none'; bgSet=null; clearScene(); (m==='replay'?replay:live)();}
+document.querySelectorAll('#modes button[data-m]').forEach(b=>b.onclick=ev=>{ev.stopPropagation();setMode(b.dataset.m);});
+const _rp=$('rpause'); if(_rp)_rp.onclick=ev=>{ev.stopPropagation();if(!scEv.length)return;scPaused=!scPaused;syncPauseBtn();if(!scPaused)sceneStep();};
 $('pick').onclick=e=>e.stopPropagation();
 $('pick').onchange=e=>{Q.set('run',e.target.value);history.replaceState(null,'','?'+Q.toString());reset();replay();};
 const fs=()=>{if(!document.fullscreenElement)document.documentElement.requestFullscreen?.().catch(()=>{});else document.exitFullscreen?.();};
@@ -272,6 +303,7 @@ addEventListener('resize',()=>{regionsKey='';});
   try{(await J('assets/runs/media.json')).runs.forEach(r=>runMedia[r.run]=r.media);}catch(e){}
   try{localPrec=(await J('data/precisions.json')).map(p=>({line:p.line,src:p.src,move:p.move}));}catch(e){}
   try{const T=(await J('data/tweets_all.json')).map(p=>({line:p.line,src:p.src,move:false}));for(let i=T.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[T[i],T[j]]=[T[j],T[i]];}TDECK=T;TI=0;}catch(e){}
+  await loadTimeline(); ensureSceneTimer(); setInterval(()=>{loadTimeline();},30000);
   setMode(MODE);
 })();
 // ---------- drag a chip onto a place heading -> <object>.setlocation(<place>) via data/drag.json endpoint
