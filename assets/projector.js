@@ -1,4 +1,4 @@
-const LIVE_STATE=async()=>{try{const r=await fetch('https://raw.githubusercontent.com/jdavidteki/thryd-projector/main/data/state.json?t='+Date.now(),{cache:'no-store'});if(!r.ok)throw 0;return await r.json();}catch(e){try{const r=await fetch('data/state.json?_='+Date.now(),{cache:'no-store'});if(!r.ok)throw 0;return await r.json();}catch(e2){throw e2;}}};
+const LIVE_STATE=async()=>{try{const r=await fetch('https://raw.githubusercontent.com/jdavidteki/thryd-projector/main/data/state.json?t='+Date.now(),{cache:'no-store'});if(!r.ok)throw 0;return await r.json();}catch(e){return LIVE_STATE();}};
 // #thryd projector: live (data/state.json) · timeline loop (data/timeline.json) · replay (data/replays.json + replay_<run>.json)
 (()=>{
 const Q=new URLSearchParams(location.search);
@@ -191,11 +191,8 @@ function fromState(s){
 }
 async function live(){
   reset(); const g=gen; $('mode').textContent='live';
-  // default: auto-replay saved state updates from data/timeline.json when present
-  try{const T0=await J('data/timeline.json');if(T0&&T0.events&&T0.events.length){return loopTimeline(T0);}}catch(e){}
   let s=null; try{s=await LIVE_STATE();}catch(e){}
   if(!s||!(s.characters||[]).length){return loopTimeline();}
-  const rp=$('rpause'); if(rp)rp.style.display='none';
   let last='', step=0, cur=s;
   let first=true; const apply=st=>{CUR_RUN=st.run||CUR_RUN;const m=fromState(st);render(m);cur=st;trackObjs(st);
     POOL=livePool(); if(first){first=false;const nw=NEWEST();if(nw){poolI=Math.max(0,POOL.indexOf(nw));backdrop(nw,true);}else if(POOL.length){poolI=0;backdrop(POOL[0],true);}else backdrop(liveBackdrop(st.current_place));}
@@ -212,35 +209,22 @@ async function live(){
       if(n.characters&&n.characters.length){if(k!==last&&last){(n.objects||[]).forEach(o=>pulse(o.label));} last=k; apply(n);}}catch(e){}},POLL);
 }
 // ---------- fallback: loop data/timeline.json
-async function loopTimeline(Tpre){
-  const g=gen; let T=Tpre; if(!T){try{T=await J('data/timeline.json');}catch(e){ticker('','no state.json or timeline.json yet','');return;}}
-  if(!T.events||!T.events.length){ticker('','no state updates in timeline.json yet','');return;}
-  $('mode').textContent='live · replay'; $('run').textContent=T.run; CUR_RUN=T.run;
-  let ev=T.events.slice(), names=[...new Set(ev.map(e=>short(e.place||'')))];
-  let i=0, chars={}, objs={}, paused=false, lastIdx=-1;
-  const btn=$('rpause'); if(btn){btn.style.display='';btn.textContent='Pause';btn.onclick=e=>{e.stopPropagation();paused=!paused;btn.textContent=paused?'Replay':'Pause';if(!paused)step();};}
-  const applyAt=idx=>{ const e=ev[idx]; if(idx===0){chars={};objs={};}
-    const here=short(e.place||'');
+async function loopTimeline(){
+  const g=gen; let T; try{T=await J('data/timeline.json');}catch(e){ticker('','no state.json or timeline.json yet','');return;}
+  $('mode').textContent='live · timeline loop'; $('run').textContent=T.run; CUR_RUN=T.run;
+  const ev=T.events, names=[...new Set(ev.map(e=>short(e.place)))];
+  let i=0, chars={}, objs={};
+  const step=()=>{ if(g!==gen)return; const e=ev[i%ev.length]; if(i%ev.length===0){chars={};objs={};}
+    const here=short(e.place);
     if(e.kind==='scene'){(e.cast||[]).forEach(n=>chars[n]=here);}
     if(e.object){objs[e.object]=here;}
-    if(e.place&&!names.includes(here))names.push(here);
     render({regions:names,here,chars:Object.entries(chars).map(([n,r])=>({name:n,region:r,off:r!==here})),objs:Object.entries(objs).map(([l,r])=>({label:l,region:r}))});
     if(e.object)pulse(e.object);
-    POOL=livePool(); if(idx===0||!NEWEST()||(bgSet&&!livePool().some(x=>x.dir===bgSet.dir)))backdrop(NEWEST()||liveBackdrop(e.place));
-    ticker(e.world||'',e.label||('update '+(idx+1)),`${e.scene||''} · update ${idx+1}/${ev.length}`);
+    POOL=livePool(); if(i===0||!NEWEST()||(bgSet&&!livePool().some(x=>x.dir===bgSet.dir)))backdrop(NEWEST()||liveBackdrop(e.place)); // keep newest view up; slide timer still cycles
+    ticker(e.world,e.label,`${e.scene} · update ${i%ev.length+1}/${ev.length}`);
     const sp=Object.entries(chars).filter(([n,r])=>r===here).map(([n])=>n);
-    maybeBubble(localPrec,sp.length?sp:Object.keys(chars)); lastIdx=idx; };
-  const step=()=>{ if(g!==gen||paused||!ev.length)return; const idx=i%ev.length; applyAt(idx); i++; };
-  const pull=async()=>{ if(g!==gen)return; try{const T2=await J('data/timeline.json'); const ne=(T2&&T2.events)||[];
-    if(ne.length>ev.length){ const add=ne.slice(ev.length); ev=ev.concat(add);
-      add.forEach(e=>{const h=short(e.place||''); if(h&&!names.includes(h))names.push(h);});
-      if(T2.run){$('run').textContent=T2.run; CUR_RUN=T2.run;}
-      if(lastIdx>=0) ticker(ev[lastIdx].world||'',ev[lastIdx].label||'',`${ev[lastIdx].scene||''} · update ${lastIdx+1}/${ev.length}`);
-    } else if(ne.length&&ne.length===ev.length){ /* same length: keep playing current list */ }
-    else if(ne.length&&ev.length===0){ ev=ne.slice(); }
-  }catch(e){}};
-  step(); everyS(step); every(pull,30000);
-  // hide pause when leaving this mode (reset/gen bump clears timers; button hidden by setMode)
+    maybeBubble(localPrec,sp.length?sp:Object.keys(chars)); i++; };
+  step(); everyS(step);
 }
 // ---------- REPLAY
 async function replay(){
@@ -271,11 +255,9 @@ async function replay(){
 window.thrydSay=say; window.thrydChoose=choose;
 // ---------- UI
 function setMode(m){MODE=m;Q.set('mode',m);history.replaceState(null,'','?'+Q.toString());
-  document.querySelectorAll('#modes button[data-m]').forEach(b=>b.classList.toggle('on',b.dataset.m===m));
-  $('pick').style.display=m==='replay'?'':'none';
-  const rp=$('rpause'); if(rp){rp.style.display=m==='live'?'':'none';rp.textContent='Pause';}
-  bgSet=null; (m==='replay'?replay:live)();}
-document.querySelectorAll('#modes button[data-m]').forEach(b=>b.onclick=ev=>{ev.stopPropagation();setMode(b.dataset.m);});
+  document.querySelectorAll('#modes button').forEach(b=>b.classList.toggle('on',b.dataset.m===m));
+  $('pick').style.display=m==='replay'?'':'none'; bgSet=null; (m==='replay'?replay:live)();}
+document.querySelectorAll('#modes button').forEach(b=>b.onclick=ev=>{ev.stopPropagation();setMode(b.dataset.m);});
 $('pick').onclick=e=>e.stopPropagation();
 $('pick').onchange=e=>{Q.set('run',e.target.value);history.replaceState(null,'','?'+Q.toString());reset();replay();};
 const fs=()=>{if(!document.fullscreenElement)document.documentElement.requestFullscreen?.().catch(()=>{});else document.exitFullscreen?.();};
