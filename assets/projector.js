@@ -164,9 +164,15 @@ async function sceneAnim(label,place,xy){const boxes=cmFindBoxes(label);if(!boxe
       const[cl,ct]=visClamp(objLayer,+xy.x,+xy.y,bw,parseFloat(b.style.height)||1);
       b.classList.remove('cm-out','offscene');cmPatchAway(b,true);b.dataset.dp='1';b.classList.add('away','cm-move');
       const k=objLayer.dataset.key;if(k){DPOS[k+'|'+b.dataset.label]=[+cl.toFixed(3),+ct.toFixed(3)];try{localStorage.setItem('thryd_dpos',JSON.stringify(DPOS));}catch(e){}}
-      await cmFly(b,cl,ct,{label:'',arcSign:cl>=hl?-1:1});
+      const curL=parseFloat(b.style.left)||0,curT=parseFloat(b.style.top)||0;
+      if(Math.abs(curL-cl)<1.5&&Math.abs(curT-ct)<1.5&&(Math.abs(hl-cl)>=1.5||Math.abs(ht-ct)>=1.5)){await cmFly(b,hl,ht,{label:'',arcSign:hl>=curL?-1:1});await new Promise(z=>setTimeout(z,CM_REDUCED?60:500));}
+      await cmFly(b,cl,ct,{label:'',arcSign:cl>=(parseFloat(b.style.left)||0)?-1:1});
       b.classList.remove('pulse');void b.offsetWidth;b.classList.add('pulse');
     }else if(!atHere){
+      if(b.classList.contains('cm-out')||(parseFloat(b.style.opacity||'1')<0.5)){ // already gone: come back in first so every loop shows the move
+        b.classList.remove('cm-out','offscene');b.style.transition='none';b.style.left=edgeL+'%';b.style.top=ht+'%';b.style.opacity='0';cmClearXform(b);void b.offsetWidth;
+        await cmFly(b,hl,ht,{fadeFrom:0,fadeTo:1,label:'',arcSign:leftSide?1:-1});cmPatchAway(b,false);
+        await new Promise(z=>setTimeout(z,CM_REDUCED?60:700));}
       b.classList.add('cm-out','lifting','away','offscene');cmPatchAway(b,true);
       await cmFly(b,edgeL,ht,{fadeTo:0,label:'→ '+pl,arc:Math.min(56,28),arcSign:leftSide?-1:1});
     }else{
@@ -180,11 +186,17 @@ async function sceneAnim(label,place,xy){const boxes=cmFindBoxes(label);if(!boxe
     }
   }
   return true;}
-function cmResetLayers(){if(!objLayer)return;objLayer.querySelectorAll('.ob.cm-out, .ob.cm-live').forEach(b=>{
-  const[hl,ht]=cmHome(b);b.style.transition='none';b.classList.remove('cm-out','offscene','lifting','cm-fly');
-  b.style.left=hl+'%';b.style.top=ht+'%';cmClearXform(b);b.style.opacity='1';
-  const tag=b.querySelector('.cmto');if(tag){tag.classList.remove('on');tag.textContent='';}
-  cmPatchAway(b, !!b.dataset.dp);cmIdle(b,true);});}
+function cmResetLayers(){if(!objLayer)return Promise.resolve();const fl=[];
+  objLayer.querySelectorAll('.ob.dob:not(.dpatch), .ob.cm-out, .ob.cm-live').forEach(b=>{
+  if(b.classList.contains('dpatch'))return;
+  const[hl,ht]=cmHome(b);const tag=b.querySelector('.cmto');if(tag){tag.classList.remove('on');tag.textContent='';}
+  const faded=b.classList.contains('cm-out')||(parseFloat(b.style.opacity||'1')<0.5);
+  b.classList.remove('cm-out','offscene','lifting');
+  const cl=parseFloat(b.style.left)||0,ct=parseFloat(b.style.top)||0;
+  if(faded||CM_REDUCED){b.style.transition='none';b.style.left=hl+'%';b.style.top=ht+'%';cmClearXform(b);b.style.opacity='1';b.classList.remove('cm-fly');cmPatchAway(b,false);cmIdle(b,true);}
+  else if(Math.abs(cl-hl)>0.3||Math.abs(ct-ht)>0.3){fl.push(cmFly(b,hl,ht,{label:'',arcSign:hl>=cl?-1:1}).then(()=>{cmPatchAway(b,false);}));}
+  else{cmPatchAway(b,false);cmIdle(b,true);}});
+  return Promise.all(fl);}
 function cmTicker(e,idx,n){const lab=cmLabel(e.object),pl=short(e.place||'');
   const line=$('cmove');if(line){line.textContent=`${lab} → ${pl} · move ${idx+1} of ${n}`;line.style.display=n?'':'none';}
   const meta=$('meta');if(meta&&(!scEv.length||scPaused))meta.textContent=`customer · move ${idx+1}/${n}`;}
@@ -202,17 +214,29 @@ async function cmPump(){if(cmBusy||scPaused)return;const job=cmQ.shift();if(!job
     if(scPaused)return;
     cmRestT=setTimeout(()=>{cmRestT=null;cmPump();}, CM_REDUCED?80:600);
   }}
-function cmStep(){if(scPaused||!cmEv.length)return;const n=cmEv.length,idx=cmI%n;
-  if(idx===0)cmEnqueue(async()=>{cmResetLayers();});
-  const e=cmEv[idx];cmI++;const i=idx;
-  cmEnqueue(async()=>{await applyCustMove(e);cmTicker(e,i,n);});}
+// scene-first loop: moves whose object has a cut-out in THIS scene play in order, over and over; brand-new moves jump the line once
+let cmNew=[], cmSceneI={};
+function cmVisible(e){return !!(e&&cmFindBoxes(e.object).length);}
+function cmStep(){if(scPaused||!cmEv.length)return;const n=cmEv.length;
+  if(cmNew.length){const e=cmNew.shift();const i=cmEv.indexOf(e);cmEnqueue(async()=>{await applyCustMove(e);cmTicker(e,i<0?n-1:i,n);});return;}
+  const vis=[];for(let k=0;k<n;k++)if(cmVisible(cmEv[k]))vis.push(k);
+  if(vis.length){const key=(objLayer&&objLayer.dataset.key)||'_';let j=cmSceneI[key]||0;if(j>=vis.length){j=0;}
+    if(j===0&&vis.length>1)cmEnqueue(async()=>{await cmResetLayers();});
+    const i=vis[j];cmSceneI[key]=j+1;const e=cmEv[i];
+    cmEnqueue(async()=>{await applyCustMove(e);cmTicker(e,i,n);});return;}
+  const idx=cmI%n;const e=cmEv[idx];cmI++;
+  cmEnqueue(async()=>{await applyCustMove(e);cmTicker(e,idx,n);});}
 function ensureCmTimer(){if(cmTimer)return;
   // cadence: only enqueue when the queue is short, so moves never stutter on top of each other
   cmTimer=setInterval(()=>{if(scPaused)return;if(cmQ.length>1||cmBusy)return;cmStep();}, CM_REDUCED?900:Math.max(CM_MS,2200));}
-function cmAppend(e){if(!e||!e.object||!e.place)return false;const s=cmSig(e);if(cmSeen.has(s))return false;cmSeen.add(s);cmEv.push(e);syncPauseBtn();return true;}
+function cmAppend(e,fresh){if(!e||!e.object||(!e.place&&e.x==null))return false;if(!e.place)e.place=(lastM&&lastM.here&&typeof PFULL!=='undefined'&&PFULL[lastM.here])||(lastM&&lastM.here)||'here';const s=cmSig(e);if(cmSeen.has(s))return false;
+  // same move echoed back from ntfy after a local drop: skip
+  if(e.src==='ntfy'&&e.x!=null){const dup=cmEv.find(z=>z.src==='local'&&cmLabel(z.object)===cmLabel(e.object)&&z.x!=null&&Math.abs(z.x-e.x)<0.01&&Math.abs(z.y-e.y)<0.01);if(dup){cmSeen.add(s);return false;}}
+  cmSeen.add(s);cmEv.push(e);if(fresh)cmNew.push(e);syncPauseBtn();return true;}
 async function loadDrags(){try{const D=await J('data/drags.json');DRAGS_RUN=D.run||null;const list=(D.events||[]).slice();
   if(!cmEv.length){cmEv=list;cmI=0;list.forEach(e=>cmSeen.add(cmSig(e)));syncPauseBtn();if(cmEv.length)cmStep();}
   else{list.forEach(e=>cmAppend(e));}}catch(e){}}
+let cmPolledOnce=false;
 async function pollNtfyDrags(){if(!DRAG||!DRAG.endpoint||DRAG.transport!=='ntfy')return;
   try{const since=cmLastNtfy||'all';const url=DRAG.endpoint.replace(/\/?$/,'')+'/json?poll=1&since='+encodeURIComponent(since);
     const tx=await(await fetch(url,{cache:'no-store'})).text();
@@ -225,10 +249,10 @@ async function pollNtfyDrags(){if(!DRAG||!DRAG.endpoint||DRAG.transport!=='ntfy'
       const at=(target&&target.at)||(m.time?new Date(m.time*1000).toISOString():new Date().toISOString());
       const e={at,object:cmLabel(obj||''),place:place||'',src:'ntfy',id:m.id};
       if(target!=null)e.target=target;if(typeof x==='number')e.x=x;if(typeof y==='number')e.y=y;
-      if(cmAppend(e)){/* newly stacked — visible on next loop pass */}}}catch(e){}}
+      if(cmAppend(e,cmPolledOnce)){/* new moves play next, then join the loop */}}cmPolledOnce=true;}catch(e){}}
 function noteLocalDrag(label,place,xy){const e={at:new Date().toISOString(),object:cmLabel(label),place,src:'local'};
   if(xy&&typeof xy.x==='number')e.x=xy.x;if(xy&&typeof xy.y==='number')e.y=xy.y;
-  cmAppend(e);}
+  cmAppend(e,false);}
 // ---------- in-place object sprites (data/objects_map.json): patch at bbox, sprite on top, gentle motion
 let OMAP={}, objLayer=null, objKey=null, objState={};
 const mapKey=p=>{const r=(p||'').match(/(run-[\w]+)/), j=(p||'').match(/\b(j\d+)(?:_blur)?\.(?:gif|jpe?g|webp)$|\/(j\d+)\/?$/);return r&&j?r[1]+'/'+(j[1]||j[2]):null;};
@@ -261,7 +285,7 @@ function objsFor(set){const [k,e0]=set?lookup(set):[null,null]; if(k===objKey&&o
   const L=document.createElement('div');L.id='objs';L._fs=e.frame_size||[480,270];L.dataset.key=k;
   (e.objects||[]).forEach((o,i)=>{const[x,y,w,h]=o.bbox;const box=document.createElement('div');
     box.className='ob'+(o.sprite?'':' anchor');Object.assign(box.style,{left:x*100+'%',top:y*100+'%',width:w*100+'%',height:h*100+'%'});
-    box.dataset.sid=o.state_id||'';box.dataset.label=o.label;
+    box.dataset.sid=o.state_id||'';box.dataset.label=o.label;box.dataset.homeL=String(x*100);box.dataset.homeT=String(y*100);
     if(o.sprite){ if(o.patch){const pa=new Image();pa.className='patch';pa.alt='';pa.src=o.patch;box.appendChild(pa);}
       const sp=new Image();sp.className='sp m-'+(/sandal|shoe|slipper/i.test(o.label)?'hop':(o.motion||'sway'));sp.alt=o.label;sp.src=o.sprite;sp.style.animationDelay=(-i*1.7)+'s';
       if(/door|street|window/i.test(o.label))sp.classList.add('small');
