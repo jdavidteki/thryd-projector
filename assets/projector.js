@@ -140,6 +140,9 @@ function cmFly(b, toL, toT, opts){
         lift=Math.max(0,0.45*(1-u));}
       const bx=dx*e, by=dy*e - Math.sin(Math.PI*e)*arc;
       cmSetXform(b,bx,by,sc,lift);
+      if(o.trail&&!CM_REDUCED&&now-(b._lastDot||0)>70){b._lastDot=now;const bw=parseFloat(b.style.width)||0,bh=parseFloat(b.style.height)||0;
+        const dl=fromL+bw/2+(bx/W*100),dt=fromT+bh*0.85+(by/H*100);const dot=document.createElement('i');dot.className='cmdot';dot.style.left=dl+'%';dot.style.top=dt+'%';
+        parent.appendChild(dot);setTimeout(()=>dot.remove(),3200);}
       b.style.opacity=String(fadeFrom+(fadeTo-fadeFrom)*e);
       if(raw<1){cmRaf=requestAnimationFrame(step);}
       else{
@@ -166,7 +169,8 @@ async function sceneAnim(label,place,xy){const boxes=cmFindBoxes(label);if(!boxe
       const k=objLayer.dataset.key;if(k){DPOS[k+'|'+b.dataset.label]=[+cl.toFixed(3),+ct.toFixed(3)];try{localStorage.setItem('thryd_dpos',JSON.stringify(DPOS));}catch(e){}}
       const curL=parseFloat(b.style.left)||0,curT=parseFloat(b.style.top)||0;
       if(Math.abs(curL-cl)<1.5&&Math.abs(curT-ct)<1.5&&(Math.abs(hl-cl)>=1.5||Math.abs(ht-ct)>=1.5)){await cmFly(b,hl,ht,{label:'',arcSign:hl>=curL?-1:1});await new Promise(z=>setTimeout(z,CM_REDUCED?60:500));}
-      await cmFly(b,cl,ct,{label:'',arcSign:cl>=(parseFloat(b.style.left)||0)?-1:1});
+      {const ag=cmAgo(xy.at);await cmFly(b,cl,ct,{label:ag?('moved '+ag):'',trail:true,arcSign:cl>=(parseFloat(b.style.left)||0)?-1:1});
+       if(ag)setTimeout(()=>{const tg=b.querySelector('.cmto');if(tg)tg.classList.remove('on');},1800);}
       b.classList.remove('pulse');void b.offsetWidth;b.classList.add('pulse');
     }else if(!atHere){
       if(b.classList.contains('cm-out')||(parseFloat(b.style.opacity||'1')<0.5)){ // already gone: come back in first so every loop shows the move
@@ -197,6 +201,7 @@ function cmResetLayers(){if(!objLayer)return Promise.resolve();const fl=[];
   else if(Math.abs(cl-hl)>0.3||Math.abs(ct-ht)>0.3){fl.push(cmFly(b,hl,ht,{label:'',arcSign:hl>=cl?-1:1}).then(()=>{cmPatchAway(b,false);}));}
   else{cmPatchAway(b,false);cmIdle(b,true);}});
   return Promise.all(fl);}
+function cmAgo(t){const d=(Date.now()-Date.parse(t||''))/1000;if(!(d>=0))return '';if(d<60)return 'just now';if(d<3600)return Math.round(d/60)+'m ago';if(d<86400)return Math.round(d/3600)+'h ago';return Math.round(d/86400)+'d ago';}
 function cmTicker(e,idx,n){const lab=cmLabel(e.object),pl=short(e.place||'');
   const line=$('cmove');if(line){line.textContent=`${lab} → ${pl} · move ${idx+1} of ${n}`;line.style.display=n?'':'none';}
   const meta=$('meta');if(meta&&(!scEv.length||scPaused))meta.textContent=`customer · move ${idx+1}/${n}`;}
@@ -204,7 +209,7 @@ function applyCustMove(e){if(!e)return Promise.resolve();const lab=cmLabel(e.obj
   if(pl&&!scNames.includes(pl))scNames.push(pl); if(typeof PFULL!=='undefined')PFULL[pl]=PFULL[pl]||full;
   cmPos[lab]=pl;
   if(scChars[lab]!==undefined)scChars[lab]=pl; else scObjs[lab]=pl;
-  const xy=(e.x!=null&&e.y!=null)?{x:+e.x,y:+e.y}:null;
+  const xy=(e.x!=null&&e.y!=null)?{x:+e.x,y:+e.y,at:e.at}:null;
   const id=cmEnsure(lab,pl);if(id&&lastM){setReg(id,pl);pulse(lab);}
   // only exact customer drops (x,y in this scene) move cut-outs; place-only moves stay on the chips + ticker, nothing walks off-frame
   if(!cmVisible(e))return new Promise(z=>setTimeout(z,CM_REDUCED?60:900));
