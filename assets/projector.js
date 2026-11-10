@@ -606,6 +606,7 @@ const WS=new WeakMap();
 const wPaused=()=>scPaused||document.hidden||document.body.classList.contains('dragmode')||document.body.classList.contains('cerebro')||document.body.classList.contains('lovemap');
 const wOwned=b=>b.dataset.held==='1'||['lifting','cm-fly','cm-live','cm-out','visitor'].some(c=>b.classList.contains(c));
 const wPerson=b=>(b.dataset.id||'').startsWith('c:')&&!/stall|sign|table|tray|cooler|stool|bench|shelter|door|street|window|lamp|board|umbrella|car|bus|danfo|wall|tree/i.test(b.dataset.label||'');
+const wRoam=b=>!/stall|sign|table|shelter|door|street|window|board|wall|tree|gate|house|building|kiosk/i.test(b.dataset.label||'');
 function wFace(b,dx){const w=b.querySelector('.spw');if(!w||Math.abs(dx)<0.6||Math.random()>0.4)return;  // an occasional turn as it sets off
   const nf=b.dataset.flip==='1'?'':'1';b.dataset.flip=nf;w.style.scale=nf?'-1 1':'';}
 // glide along points [[l,t],...] in layer %, total eased, ~pace %/s; holds while paused, aborts if something else takes the box
@@ -626,15 +627,16 @@ async function wMove(b){const st=WS.get(b)||{};st.busy=true;WS.set(b,st);const L
       const vc=q=>visClamp(L,q[0],q[1],bw,bh),fwd=path&&path.length>=2?path.map(vc):wArc([hl,ht],drop,10).map(vc);fwd[fwd.length-1]=drop;
       const back=fwd.slice().reverse();back[0]=cur;wFace(b,back[back.length-1][0]-cur[0]);
       if(await wGlide(b,back,2.6)){await new Promise(z=>setTimeout(z,900+Math.random()*1800));if(!wOwned(b)){wFace(b,drop[0]-fwd[0][0]);ok=await wGlide(b,fwd,2.4);}}
-    }else if(wPerson(b)){const home=Math.random()<0.35||Math.hypot(cur[0]-hl,cur[1]-ht)>4.5;
-      const to=home?[hl,ht]:cl(hl+(Math.random()*2-1)*(2+Math.min(3,10*bw/100)),ht+(Math.random()*-1.6+0.3));
+    }else if(wRoam(b)){const away=Math.hypot(cur[0]-hl,cur[1]-ht),home=away>8&&Math.random()<0.25;
+      // travel across the frame (Jesuye 11-10: move around the frame, not rock in place)
+      const to=home?[hl,ht]:visClamp(L,4+Math.random()*(92-bw),ht+(Math.random()*5-3),bw,bh);
       wFace(b,to[0]-cur[0]);cmPatchAway(b,true);
-      ok=await wGlide(b,[cur,[(cur[0]+to[0])/2,Math.min(cur[1],to[1])-0.25],to],0.9+Math.random()*0.8);
+      ok=await wGlide(b,[cur,[(cur[0]+to[0])/2,Math.min(cur[1],to[1])-0.6],to],(wPerson(b)?2.2:1.6)+Math.random()*1.2);
       if(home&&ok&&!wOwned(b)){b.style.left=hl+'%';b.style.top=ht+'%';cmPatchAway(b,false);}}
-  }finally{st.busy=false;st.next=performance.now()+(b.dataset.dp?14000+Math.random()*16000:3000+Math.random()*7000);}return ok;}
+  }finally{st.busy=false;st.next=performance.now()+(b.dataset.dp?14000+Math.random()*16000:1500+Math.random()*4000);}return ok;}
 setInterval(()=>{if(CM_REDUCED||!objLayer||wPaused())return;const now=performance.now();
   objLayer.querySelectorAll('.dob').forEach(b=>{if(wOwned(b))return;let st=WS.get(b);if(!st){st={next:now+1500+Math.random()*6000};WS.set(b,st);}
-    if(st.busy||now<st.next)return;if(!b.dataset.dp&&!wPerson(b)){st.next=now+60000;return;}wMove(b);});},700);
+    if(st.busy||now<st.next)return;if(!b.dataset.dp&&!wRoam(b)){st.next=now+60000;return;}wMove(b);});},700);
 window.thrydWander={paths:()=>DPATH,move:b=>wMove(b),state:b=>WS.get(b)};
 // ---------- drag a person/object INSIDE the scene (cut-out layers from objects_map 'draggable') -> same setlocation path as chips
 (function(){let d=null;
