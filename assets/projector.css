@@ -177,3 +177,10 @@ body.cerebro #slide,body.cerebro #addgif,body.cerebro #rpause,body.cerebro #mute
 
 /* autonomous motion: turning toward travel (individual `scale` composes with the sway/breath transforms) */
 #objs .dob .spw{transition:scale .6s ease-in-out}
+
+/* ---------- Lovemap (full-screen mode, same pattern as cerebro) ---------- */
+#lovemap{display:none;position:fixed;inset:0;z-index:8;background:#050505;overflow:hidden}
+body.lovemap #lovemap{display:block}
+body.lovemap #stage,body.lovemap #vignette,body.lovemap #map,body.lovemap #ents,body.lovemap #ticker,body.lovemap #user,body.lovemap #bubble,body.lovemap #objs{visibility:hidden;pointer-events:none}
+body.lovemap #slide,body.lovemap #addgif,body.lovemap #rpause,body.lovemap #mute,body.lovemap #zoomui,body.lovemap #sndgate{display:none!important}
+#lovemap iframe{position:absolute;inset:5.2vh 0 0;width:100%;height:calc(100% - 5.2vh);border:0;background:#050505}

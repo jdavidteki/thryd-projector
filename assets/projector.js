@@ -3,7 +3,7 @@ const LIVE_STATE=async()=>{try{const r=await fetch('https://raw.githubuserconten
 (()=>{
 const Q=new URLSearchParams(location.search);
 const SPEED=Math.max(1,parseFloat(Q.get('speed')||'8'))*1000, POLL=10000;
-let MODE=(()=>{const m=(Q.get('mode')||'live').toLowerCase();return (m==='replay'||m==='cerebro')?m:'live';})();
+let MODE=(()=>{const m=(Q.get('mode')||'live').toLowerCase();return (m==='replay'||m==='cerebro'||m==='lovemap')?m:'live';})();
 const BAD=/sex|nasty|dirt|iud|adult|daddy|position|hookup|benefit|porn|nude|naked|horny|kiss|\bbed|breast|moan|lick|bang|thrust|sessy|\bhard\b|body|\bwet\b|strip|fuck|pussy|dick|cock|\bass\b|boob|bitch|nyash|prick|suck|condom|virgin|orgasm|<real/i;
 const ok=s=>!!s&&!BAD.test(s);
 const $=id=>document.getElementById(id);
@@ -469,12 +469,13 @@ async function replay(){
 }
 window.thrydSay=say; window.thrydChoose=choose;
 // ---------- UI
-function setMode(m){if(m!=='live'&&m!=='replay'&&m!=='cerebro')m='live';
+function setMode(m){if(m!=='live'&&m!=='replay'&&m!=='cerebro'&&m!=='lovemap')m='live';
   MODE=m;Q.set('mode',m);history.replaceState(null,'','?'+Q.toString());
   document.querySelectorAll('#modes button[data-m]').forEach(b=>b.classList.toggle('on',b.dataset.m===m));
   $('pick').style.display=m==='replay'?'':'none';
+  document.body.classList.remove('cerebro','lovemap');stopCerebro();stopLovemap();
   if(m==='cerebro'){bgSet=null;clearScene();document.body.classList.add('cerebro');startCerebro();return;}
-  document.body.classList.remove('cerebro');stopCerebro();
+  if(m==='lovemap'){bgSet=null;clearScene();document.body.classList.add('lovemap');startLovemap();return;}
   bgSet=null;clearScene();(m==='replay'?replay:live)();}
 document.querySelectorAll('#modes button[data-m]').forEach(b=>b.onclick=ev=>{ev.stopPropagation();setMode(b.dataset.m);});
 // ---------- CEREBRO
@@ -510,6 +511,11 @@ function openCere(it){const box=$('clight'),img=$('climg'),cap=$('clcap');if(!bo
 function closeCere(){if(CERE.lit&&CERE.lit.timer)clearTimeout(CERE.lit.timer);CERE.lit=null;
   const box=$('clight');if(box)box.classList.remove('on');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&document.body.classList.contains('cerebro')&&$('clight')&&$('clight').classList.contains('on')){e.preventDefault();closeCere();}});
+// ---------- LOVEMAP
+function stopLovemap(){const f=$('lmframe');if(f){f.src='about:blank';}const box=$('lovemap');if(box)box.setAttribute('aria-hidden','true');}
+function startLovemap(){const md=$('mode'),rn=$('run');if(md)md.textContent='lovemap';if(rn)rn.textContent='map';
+  const box=$('lovemap'),f=$('lmframe');if(box)box.setAttribute('aria-hidden','false');
+  if(f)f.src='assets/lovemap.html?t='+Date.now();}
 
 const _rp=$('rpause'); if(_rp)_rp.onclick=ev=>{ev.stopPropagation();if(!scEv.length&&!cmEv.length)return;scPaused=!scPaused;document.body.classList.toggle('cm-paused',scPaused);syncPauseBtn();if(!scPaused){if(scEv.length)sceneStep();cmPump();if(cmEv.length&&!cmBusy&&!cmQ.length)cmStep();}else{if(cmRestT){clearTimeout(cmRestT);cmRestT=null;}}};
 $('pick').onclick=e=>e.stopPropagation();
@@ -597,7 +603,7 @@ const DPATH=(()=>{try{return JSON.parse(localStorage.getItem('thryd_dpath')||'{}
 function saveDPath(k,lab,path){if(!k||!path||path.length<2)return;DPATH[k+'|'+lab]=path;const ks=Object.keys(DPATH);if(ks.length>80)delete DPATH[ks[0]];try{localStorage.setItem('thryd_dpath',JSON.stringify(DPATH));}catch(e){}}
 function thinPath(p,n){n=n||24;if(p.length<=n)return p.map(q=>[+q[0].toFixed(2),+q[1].toFixed(2)]);const o=[];for(let i=0;i<n;i++){const q=p[Math.round(i*(p.length-1)/(n-1))];o.push([+q[0].toFixed(2),+q[1].toFixed(2)]);}return o;}
 const WS=new WeakMap();
-const wPaused=()=>scPaused||document.hidden||document.body.classList.contains('dragmode')||document.body.classList.contains('cerebro');
+const wPaused=()=>scPaused||document.hidden||document.body.classList.contains('dragmode')||document.body.classList.contains('cerebro')||document.body.classList.contains('lovemap');
 const wOwned=b=>b.dataset.held==='1'||['lifting','cm-fly','cm-live','cm-out','visitor'].some(c=>b.classList.contains(c));
 const wPerson=b=>(b.dataset.id||'').startsWith('c:')&&!/stall|sign|table|tray|cooler|stool|bench|shelter|door|street|window|lamp|board|umbrella|car|bus|danfo|wall|tree/i.test(b.dataset.label||'');
 function wFace(b,dx){const w=b.querySelector('.spw');if(!w||Math.abs(dx)<0.6||Math.random()>0.4)return;  // an occasional turn as it sets off
@@ -672,7 +678,7 @@ window.thrydWander={paths:()=>DPATH,move:b=>wMove(b),state:b=>WS.get(b)};
   // client px -> untransformed stage px (scene space) for drop math
   window.thrydZoom={get:()=>({z,tx,ty}),reset,zoomAt,toScene:(x,y)=>{const o=sr();return [(x-o.l-tx)/z,(y-o.t-ty)/z];}};
   const onItem=t=>t&&t.closest&&t.closest('.chip,#bar,#zoomui,#user,.ph,#sndgate,#toast');
-  addEventListener('wheel',ev=>{const t=ev.target;if(t.closest&&t.closest('#bar,#zoomui,#user,select,#cerebro'))return;ev.preventDefault();zoomAt(z*Math.exp(-ev.deltaY*(ev.ctrlKey?0.01:0.0015)),ev.clientX,ev.clientY);},{passive:false});
+  addEventListener('wheel',ev=>{const t=ev.target;if(t.closest&&t.closest('#bar,#zoomui,#user,select,#cerebro,#lovemap'))return;ev.preventDefault();zoomAt(z*Math.exp(-ev.deltaY*(ev.ctrlKey?0.01:0.0015)),ev.clientX,ev.clientY);},{passive:false});
   const P=new Map();let pan=null,pinch=null,moved=0,lastTap=0,lastXY=[0,0];
   document.addEventListener('pointerdown',ev=>{if(onItem(ev.target))return;if(ev.pointerType==='mouse'&&ev.button!==0)return;
     P.set(ev.pointerId,[ev.clientX,ev.clientY]);if(P.size===1)moved=0;
