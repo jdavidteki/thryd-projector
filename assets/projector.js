@@ -264,7 +264,7 @@ function objsFor(set){const [k,e0]=set?lookup(set):[null,null]; if(k===objKey&&o
   const L=document.createElement('div');L.id='objs';L._fs=e.frame_size||[480,270];L.dataset.key=k;
   (e.objects||[]).forEach((o,i)=>{const[x,y,w,h]=o.bbox;const box=document.createElement('div');
     box.className='ob'+(o.sprite?'':' anchor');Object.assign(box.style,{left:x*100+'%',top:y*100+'%',width:w*100+'%',height:h*100+'%'});
-    box.dataset.sid=o.state_id||'';box.dataset.label=o.label;
+    box.dataset.sid=o.state_id||'';box.dataset.label=o.label;if(o.name){box.dataset.name=o.name;box.title=o.name;}
     if(o.sprite){ if(o.patch){const pa=new Image();pa.className='patch';pa.alt='';pa.src=o.patch;box.appendChild(pa);}
       const sp=new Image();sp.className='sp m-'+(/sandal|shoe|slipper/i.test(o.label)?'hop':(o.motion||'sway'));sp.alt=o.label;sp.src=o.sprite;sp.style.animationDelay=(-i*1.7)+'s';
       if(/door|street|window/i.test(o.label))sp.classList.add('small');
@@ -676,12 +676,24 @@ async function dropTo(id,from,to,xy){
   const headFor=p=>[...document.querySelectorAll('#map .ph')].find(h=>plEq(h.dataset.name,p)||(window.thrydCtx&&plEq(thrydCtx().PFULL[h.dataset.name],p)));
   function make(label,place,ghost,near){const t={kind:'miracle.target',object:label,place,...(near?{near}:{}),assert:asrt(label,place),run:(st&&st.run)||(typeof CUR_RUN!=='undefined'?CUR_RUN:'')||'',j:(st&&st.current_card)||'',at:new Date().toISOString()};
     const a=T().filter(x=>!(objEq(x.object,label)&&x.status==='open'));a.push({...t,status:'open',ghost:{...ghost,label}});save(a);draw();setTimeout(()=>pchip(t,ghost),60);return t;}
-  async function scene(b,k,cl,ct){const label=b.dataset.label,L=b.parentNode,R=b.getBoundingClientRect();let other=null,best=0;
-    L.querySelectorAll('.ob:not(.dpatch)').forEach(o=>{if(o===b)return;const r=o.getBoundingClientRect();const v=Math.max(0,Math.min(R.right,r.right)-Math.max(R.left,r.left))*Math.max(0,Math.min(R.bottom,r.bottom)-Math.max(R.top,r.top));if(v>best){best=v;other=o.dataset.label;}});
+  // contact on drop (Jesuye 11-10: drags are tracked foreshadows; the server adds them to <run>/foreshadows.json, foreshadow.py checks the story)
+  // kiss = top 30% (heads) of both boxes overlap; touch = boxes overlap; next to = no overlap, gap < 6% of the scene width
+  function contact(b,L){const R=b.getBoundingClientRect(),LR=L.getBoundingClientRect(),hd=r=>({l:r.left,r:r.right,t:r.top,b:r.top+(r.bottom-r.top)*.3});
+    const ov=(a,c)=>Math.max(0,Math.min(a.r,c.r)-Math.max(a.l,c.l))*Math.max(0,Math.min(a.b,c.b)-Math.max(a.t,c.t));const box=r=>({l:r.left,r:r.right,t:r.top,b:r.bottom});
+    const A=(R.right-R.left)*(R.bottom-R.top)||1;let best=null;
+    L.querySelectorAll('.ob:not(.dpatch)').forEach(o=>{if(o===b||o.classList.contains('visitor'))return;const r=o.getBoundingClientRect(),B=(r.right-r.left)*(r.bottom-r.top)||1;
+      const v=ov(box(R),box(r)),h=ov(hd(R),hd(r)),hmin=Math.min(A,B)*.3,gap=Math.max(0,Math.max(R.left,r.left)-Math.min(R.right,r.right),Math.max(R.top,r.top)-Math.min(R.bottom,r.bottom))/(LR.width||1);
+      const c={with:o.dataset.name||o.dataset.label,with_cut:o.dataset.label,overlap:+(v/Math.min(A,B)).toFixed(3),head_overlap:+(h/hmin).toFixed(3),gap:+gap.toFixed(3)};
+      c.kind=c.head_overlap>=.05?'kiss':v>0?'touch':gap<.06?'next to':null;const sc=(c.kind==='kiss'?3:c.kind==='touch'?2:c.kind?1:0)+c.overlap+c.head_overlap-c.gap;
+      if(c.kind&&(!best||sc>best._s))best={...c,_s:sc};});if(best)delete best._s;return best;}
+  async function scene(b,k,cl,ct){const label=b.dataset.label,name=b.dataset.name||label,L=b.parentNode;const ct0=contact(b,L);
     const C=window.thrydCtx?thrydCtx():{};const place=(st&&st.current_place)||(C.lastM&&C.PFULL[C.lastM.here])||'';
-    const t=make(label,place,{type:'sprite',key:k,left:cl,top:ct,w:b.style.width,h:b.style.height,src:(b.querySelector('.sp')||{}).src||''},other?`on top of ${other}`:null);
-    try{const DG=C.DRAG;if(DG&&DG.endpoint)fetch(DG.endpoint,{method:'POST',body:JSON.stringify({key:DG.key,object:label,place,x:+(+cl).toFixed(3),y:+(+ct).toFixed(3),target:t,rid:Math.random().toString(36).slice(2,12)})}).catch(()=>{});}catch(e){}
-    if(C.toast)C.toast('🔮 prophecy: '+t.assert);}
+    const near=ct0?(ct0.kind==='next to'?'next to ':ct0.kind==='kiss'?'lips to ':'on top of ')+ct0.with:null;
+    const t=make(name,place,{type:'sprite',key:k,left:cl,top:ct,w:b.style.width,h:b.style.height,src:(b.querySelector('.sp')||{}).src||''},near);
+    const scard=(/_(j\d+)$/.exec(k||'')||[])[1]||'';
+    try{const DG=C.DRAG;if(DG&&DG.endpoint)fetch(DG.endpoint,{method:'POST',body:JSON.stringify({key:DG.key,object:name,cut:label,place,x:+(+cl).toFixed(3),y:+(+ct).toFixed(3),
+      w:parseFloat(b.style.width)||0,h:parseFloat(b.style.height)||0,scene:String(k||'').slice(0,160),scene_card:scard,contact:ct0,target:t,rid:Math.random().toString(36).slice(2,12)})}).catch(()=>{});}catch(e){}
+    if(C.toast)C.toast(ct0&&b.dataset.name&&ct0.with!==ct0.with_cut?`👁 tracking: ${name} ↔ ${ct0.with} · ${ct0.kind} (logged only if the story does it)`:'drag saved: '+name+(near?' · '+near:''));}
   async function copy(x){try{await navigator.clipboard.writeText(x);return true;}catch(e){const ta=document.createElement('textarea');ta.value=x;ta.style.cssText='position:fixed;left:-9999px;top:0';document.body.appendChild(ta);ta.select();let ok=false;try{ok=document.execCommand('copy');}catch(e2){}ta.remove();return ok;}}
   function pchip(t,g){document.querySelectorAll('.prophchip').forEach(x=>x.remove());const txt=MT(t.object,t.place);const c=document.createElement('button');c.className='prophchip';c.textContent='🔮 prophesy';c.title=txt;c.dataset.text=txt;
     let r=null;if(g.type==='sprite'){const L=document.getElementById('objs');const b=L&&L.querySelector(`.dob[data-label="${CSS.escape(g.label||t.object)}"]`);r=b&&b.getBoundingClientRect();}else{const h=headFor(t.place);r=h&&h.getBoundingClientRect();}
@@ -710,10 +722,33 @@ async function dropTo(id,from,to,xy){
     e.classList.add('done');const c=document.createElement('div');c.className='prophcap';c.textContent='✨ prophecy fulfilled: '+asrt(labelOf(m.object),m.place);lay().appendChild(c);
     setTimeout(()=>{e.classList.add('fade');c.classList.add('fade');},4200);setTimeout(()=>{e.remove();c.remove();},5600);
     if(l){const a=T();a.forEach(t=>{if(t.at===l.at)t.status='fulfilled';});save(a);}}
-  function fromState(s){if(!s)return;st=s;const mi=s.miracles;
+  function fromState(s){if(!s)return;st=s;try{window.thrydFS&&thrydFS(s);}catch(e){}const mi=s.miracles;
     M=mi&&typeof mi==='object'&&!Array.isArray(mi)?{open:Array.isArray(mi.open)?mi.open:[],fulfilled:Array.isArray(mi.fulfilled)?mi.fulfilled:[],error:mi.error||null}:{open:[],fulfilled:[],error:null};
     if(M.error){document.querySelectorAll('[data-proph],.prophcap').forEach(e=>e.remove());return;}
     M.fulfilled.forEach(m=>{const k=m.id||(m.object+'|'+m.place+'|'+(m.fulfilled_card||''));if(seen.has(k))return;mark(k);fulfil(m);});draw();}
   window.thrydTarget={make,scene,fromState,list:T,text:MT,state:()=>M};
   const poll=async()=>{try{fromState(await LIVE_STATE());}catch(e){}draw();};
   poll();setInterval(poll,20000);setInterval(draw,1200);addEventListener('resize',draw);})();
+
+// ---------- foreshadows (read-only view of <run>/foreshadows.json; foreshadow.py alone decides paid_off). Open = faint pin where it was dragged
+// (or a faint 'watching' line when no drop spot is known); paid_off = one gold highlight + the posted line that matched, once per entry.
+(function(){const SEEN='thryd_fs_seen';let F={open:[],paid_off:[]};
+  const seen=new Set((()=>{try{return JSON.parse(localStorage.getItem(SEEN)||'[]');}catch(e){return [];}})());
+  const mark=k=>{seen.add(k);try{localStorage.setItem(SEEN,JSON.stringify([...seen].slice(-200)));}catch(e){}};
+  const kind=f=>(f.drop&&f.drop.contact&&f.drop.contact.kind)||((f.words||[]).some(w=>/^kiss/.test(w))?'kiss':(f.words||[]).some(w=>/hug|embrac/.test(w))?'touch':'next to');
+  const txt=f=>`${(f.actors||[]).join(' ↔ ')} · ${kind(f)}`;
+  const lay=()=>{let g=document.getElementById('prophs');if(!g){g=document.createElement('div');g.id='prophs';document.body.appendChild(g);}return g;};
+  function pin(f){const d=f.drop,L=document.getElementById('objs');let e=document.querySelector(`[data-fs="${CSS.escape(f.id)}"]`);
+    if(!d||!L||L.dataset.key!==d.scene){if(e&&!e.classList.contains('done'))e.remove();return null;}
+    if(!e||e.parentNode!==L){if(e)e.remove();e=document.createElement('div');e.className='fspin';e.dataset.fs=f.id;const t=document.createElement('span');t.textContent='👁 '+txt(f);e.appendChild(t);L.appendChild(e);}
+    Object.assign(e.style,{left:((+d.x||0)+(+d.w||0)/2)+'%',top:((+d.y||0)+(+d.h||0)*.12)+'%'});return e;}
+  function line(){let w=document.getElementById('fswatch');const o=(F.open||[]).filter(f=>!(f.drop&&document.querySelector(`[data-fs="${CSS.escape(f.id)}"]`)));
+    if(!o.length){if(w)w.remove();return;}if(!w){w=document.createElement('div');w.id='fswatch';lay().appendChild(w);}
+    const t='👁 watching: '+o.map(txt).join(' · ');if(w.textContent!==t)w.textContent=t;w.title='tracked from projector drags; logged only if the agenda writes it';}
+  function paid(f){let e=pin(f);if(e)e.classList.add('done');const c=document.createElement('div');c.className='prophcap';
+    c.textContent=`✨ came true${f.card?' · '+f.card:''}: `+(f.evidence?`“${f.evidence}”`:txt(f));lay().appendChild(c);
+    setTimeout(()=>{c.classList.add('fade');if(e)e.classList.add('fade');},6000);setTimeout(()=>{c.remove();if(e)e.remove();},7400);}
+  function draw(){(F.open||[]).forEach(pin);const ids=new Set((F.open||[]).map(f=>f.id));document.querySelectorAll('[data-fs]').forEach(e=>{if(!ids.has(e.dataset.fs)&&!e.classList.contains('done'))e.remove();});line();}
+  window.thrydFS=s=>{const x=s&&s.foreshadows;F=x&&!x.error?{open:Array.isArray(x.open)?x.open:[],paid_off:Array.isArray(x.paid_off)?x.paid_off:[]}:{open:[],paid_off:[]};
+    F.paid_off.forEach(f=>{const k=s.run+'|'+f.id;if(seen.has(k))return;mark(k);paid(f);});draw();};
+  window.thrydFSstate=()=>F;setInterval(draw,1500);})();
