@@ -275,7 +275,21 @@ function objsFor(set){const [k,e0]=set?lookup(set):[null,null]; if(k===objKey&&o
   $('stage').insertBefore(L,$('cap')); objLayer=L; fitLayer(); applyPlaces();
   // stamp home positions for in-scene replay; if a customer-move place is already known, leave/arrive once
   L.querySelectorAll('.ob:not(.dpatch)').forEach(b=>{cmHome(b);cmIdle(b,true);});
-  requestAnimationFrame(()=>{L.classList.add('on');Object.entries(cmPos).forEach(([lab,pl])=>cmEnqueue(async()=>{await sceneAnim(lab,pl,null);}));});}
+  requestAnimationFrame(()=>{L.classList.add('on');Object.entries(cmPos).forEach(([lab,pl])=>cmEnqueue(async()=>{await sceneAnim(lab,pl,null);}));});
+  if(Math.random()<0.5)setTimeout(()=>{if(objLayer===L)addVisitor(L,k);},4000+Math.random()*8000);}
+// visitors (Jesuye 2026-11-10, "objects from one frame show up in other frames, keeps the stories interesting"):
+// now and then one draggable cut-out from ANOTHER scene walks in from the nearer edge and stays (draggable) until the scene changes
+function addVisitor(L,k){const pool=[];const seen=new Set();Object.entries(OMAP).forEach(([kk,v])=>{if(!v||seen.has(v)||kk===k||v===(OMAP[k]))return;seen.add(v);
+    (v.objects||[]).forEach(o=>{if(o.sprite&&o.bbox&&o.bbox[2]*o.bbox[3]<0.12)pool.push([kk,v,o]);});});
+  if(!pool.length||L.querySelector('.visitor'))return 'pool '+pool.length; const [vk,v,o]=pool[Math.floor(Math.random()*pool.length)];
+  const [,,w,h]=o.bbox, x=8+Math.random()*(84-w*100), y=Math.min(96-h*100,Math.max(30,88-h*100));
+  const box=document.createElement('div');box.className='ob dob visitor';Object.assign(box.style,{left:x+'%',top:y+'%',width:w*100+'%',height:h*100+'%',zIndex:'6'});
+  const lab='visitor:'+o.label;box.dataset.label=lab;box.dataset.id='v:'+o.label;box.dataset.from=v.run?(v.run+(v.jN?' · '+v.jN:'')):vk;box.title=o.label+' (from '+box.dataset.from+')';
+  const sp=new Image();sp.className='sp m-'+(o.motion||'sway');sp.alt=o.label;sp.src=o.sprite;
+  const wr=document.createElement('div');wr.className='spw';wr.style.setProperty('--vx',(x+w*50<50?-1:1)*(160+Math.random()*80)+'%');wr.appendChild(sp);box.appendChild(wr);
+  const t=document.createElement('span');t.className='vfrom';t.textContent='from '+box.dataset.from;box.appendChild(t);
+  L.appendChild(box);cmHome(box);return box.title;}
+window.thrydVisitor=()=>objLayer?addVisitor(objLayer,objLayer.dataset.key):'no layer';
 // cover math: the layer is the full frame scaled by k=max(W/fw,H/fh) and centred, so the visible window in layer % is
 // x in [ox, 100-ox], y in [oy, 100-oy]; keep a dropped box (w%,h%) at least partly inside it
 function visClamp(L,l,t,w,h){const st=$('stage'),W=st.clientWidth,H=st.clientHeight,[fw,fh]=L._fs||[480,270],k=Math.max(W/fw,H/fh);
