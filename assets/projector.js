@@ -282,7 +282,7 @@ function objsFor(set){const [k,e0]=set?lookup(set):[null,null]; if(k===objKey&&o
 function addVisitor(L,k){const pool=[];const seen=new Set();Object.entries(OMAP).forEach(([kk,v])=>{if(!v||seen.has(v)||kk===k||v===(OMAP[k]))return;seen.add(v);
     (v.objects||[]).forEach(o=>{if(o.sprite&&o.bbox&&o.bbox[2]*o.bbox[3]<0.12)pool.push([kk,v,o]);});});
   if(!pool.length||L.querySelector('.visitor'))return 'pool '+pool.length; const [vk,v,o]=pool[Math.floor(Math.random()*pool.length)];
-  const [,,w,h]=o.bbox, x=8+Math.random()*(84-w*100), y=Math.min(96-h*100,Math.max(30,88-h*100));
+  const [,,w,h]=o.bbox, x=8+Math.random()*(84-w*100), y=Math.max(22,Math.min(66,80-h*100));
   const box=document.createElement('div');box.className='ob dob visitor';Object.assign(box.style,{left:x+'%',top:y+'%',width:w*100+'%',height:h*100+'%',zIndex:'6'});
   const lab='visitor:'+o.label;box.dataset.label=lab;box.dataset.id='v:'+o.label;box.dataset.from=v.run?(v.run+(v.jN?' · '+v.jN:'')):vk;box.title=o.label+' (from '+box.dataset.from+')';
   const sp=new Image();sp.className='sp m-'+(o.motion||'sway');sp.alt=o.label;sp.src=o.sprite;
