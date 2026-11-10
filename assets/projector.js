@@ -589,6 +589,47 @@ async function dropTo(id,from,to,xy){
   document.addEventListener('dragstart',ev=>{if(ev.target.closest&&ev.target.closest('.chip'))ev.preventDefault();});})();
 
 
+// ---------- autonomous motion (Jesuye 11-10: "make the objects naturally move themselves ... if they've been dragged, they should move using the established trajectory")
+// undragged people: small eased drifts around home with random pauses; static props only keep their sway. Dragged: replay the recorded drag path
+// (back to its start, pause, forward to the drop) or, with only a drop point, an arc home -> drop. Paused while dragging / Pause / cerebro / hidden tab;
+// off for prefers-reduced-motion. Customer moves (cm-live / cm-fly / cm-out) own their box and are skipped.
+const DPATH=(()=>{try{return JSON.parse(localStorage.getItem('thryd_dpath')||'{}');}catch(e){return {};}})();
+function saveDPath(k,lab,path){if(!k||!path||path.length<2)return;DPATH[k+'|'+lab]=path;const ks=Object.keys(DPATH);if(ks.length>80)delete DPATH[ks[0]];try{localStorage.setItem('thryd_dpath',JSON.stringify(DPATH));}catch(e){}}
+function thinPath(p,n){n=n||24;if(p.length<=n)return p.map(q=>[+q[0].toFixed(2),+q[1].toFixed(2)]);const o=[];for(let i=0;i<n;i++){const q=p[Math.round(i*(p.length-1)/(n-1))];o.push([+q[0].toFixed(2),+q[1].toFixed(2)]);}return o;}
+const WS=new WeakMap();
+const wPaused=()=>scPaused||document.hidden||document.body.classList.contains('dragmode')||document.body.classList.contains('cerebro');
+const wOwned=b=>b.dataset.held==='1'||['lifting','cm-fly','cm-live','cm-out','visitor'].some(c=>b.classList.contains(c));
+const wPerson=b=>(b.dataset.id||'').startsWith('c:')&&!/stall|sign|table|tray|cooler|stool|bench|shelter|door|street|window|lamp|board|umbrella|car|bus|danfo|wall|tree/i.test(b.dataset.label||'');
+function wFace(b,dx){const w=b.querySelector('.spw');if(!w||Math.abs(dx)<0.6||Math.random()>0.4)return;  // an occasional turn as it sets off
+  const nf=b.dataset.flip==='1'?'':'1';b.dataset.flip=nf;w.style.scale=nf?'-1 1':'';}
+// glide along points [[l,t],...] in layer %, total eased, ~pace %/s; holds while paused, aborts if something else takes the box
+function wGlide(b,pts,pace){return new Promise(res=>{const L=b.parentNode;if(!L||pts.length<2){res(false);return;}
+  const seg=[];let tot=0;for(let i=1;i<pts.length;i++){const d=Math.hypot(pts[i][0]-pts[i-1][0],pts[i][1]-pts[i-1][1]);seg.push(d);tot+=d;}
+  if(tot<0.05){res(false);return;}const dur=Math.max(1600,tot/(pace||2.2)*1000);let el=0,last=performance.now();
+  const step=now=>{if(!b.isConnected||b.parentNode!==objLayer||wOwned(b)){res(false);return;}
+    const dt=now-last;last=now;if(!wPaused())el+=Math.min(dt,100);const u=CM_EASE(Math.min(1,el/dur));let want=u*tot,i=0;
+    while(i<seg.length-1&&want>seg[i]){want-=seg[i];i++;}const f=seg[i]?Math.min(1,want/seg[i]):1;
+    b.style.left=(pts[i][0]+(pts[i+1][0]-pts[i][0])*f).toFixed(3)+'%';b.style.top=(pts[i][1]+(pts[i+1][1]-pts[i][1])*f).toFixed(3)+'%';
+    if(el>=dur){res(true);return;}requestAnimationFrame(step);};requestAnimationFrame(step);});}
+function wArc(a,c,n){const o=[],dx=c[0]-a[0],dy=c[1]-a[1],len=Math.hypot(dx,dy)||1,bend=Math.min(6,len*.18)*(Math.random()<.5?-1:1);
+  for(let i=0;i<=n;i++){const u=i/n,s=Math.sin(Math.PI*u)*bend;o.push([a[0]+dx*u-dy/len*s*.4,a[1]+dy*u+Math.abs(s)*-.35]);}return o;}
+async function wMove(b){const st=WS.get(b)||{};st.busy=true;WS.set(b,st);const L=b.parentNode,k=L&&L.dataset.key,lab=b.dataset.label;
+  const[hl,ht]=cmHome(b),bw=parseFloat(b.style.width)||1,bh=parseFloat(b.style.height)||1,cur=[parseFloat(b.style.left)||0,parseFloat(b.style.top)||0];
+  const cl=(l,t)=>visClamp(L,l,Math.min(t,ht+0.5),bw,bh);let ok=false;
+  try{if(b.dataset.dp){const drop=DPOS[k+'|'+lab]||cur,path=DPATH[k+'|'+lab];
+      const vc=q=>visClamp(L,q[0],q[1],bw,bh),fwd=path&&path.length>=2?path.map(vc):wArc([hl,ht],drop,10).map(vc);fwd[fwd.length-1]=drop;
+      const back=fwd.slice().reverse();back[0]=cur;wFace(b,back[back.length-1][0]-cur[0]);
+      if(await wGlide(b,back,2.6)){await new Promise(z=>setTimeout(z,900+Math.random()*1800));if(!wOwned(b)){wFace(b,drop[0]-fwd[0][0]);ok=await wGlide(b,fwd,2.4);}}
+    }else if(wPerson(b)){const home=Math.random()<0.35||Math.hypot(cur[0]-hl,cur[1]-ht)>4.5;
+      const to=home?[hl,ht]:cl(hl+(Math.random()*2-1)*(2+Math.min(3,10*bw/100)),ht+(Math.random()*-1.6+0.3));
+      wFace(b,to[0]-cur[0]);cmPatchAway(b,true);
+      ok=await wGlide(b,[cur,[(cur[0]+to[0])/2,Math.min(cur[1],to[1])-0.25],to],0.9+Math.random()*0.8);
+      if(home&&ok&&!wOwned(b)){b.style.left=hl+'%';b.style.top=ht+'%';cmPatchAway(b,false);}}
+  }finally{st.busy=false;st.next=performance.now()+(b.dataset.dp?14000+Math.random()*16000:3000+Math.random()*7000);}return ok;}
+setInterval(()=>{if(CM_REDUCED||!objLayer||wPaused())return;const now=performance.now();
+  objLayer.querySelectorAll('.dob').forEach(b=>{if(wOwned(b))return;let st=WS.get(b);if(!st){st={next:now+1500+Math.random()*6000};WS.set(b,st);}
+    if(st.busy||now<st.next)return;if(!b.dataset.dp&&!wPerson(b)){st.next=now+60000;return;}wMove(b);});},700);
+window.thrydWander={paths:()=>DPATH,move:b=>wMove(b),state:b=>WS.get(b)};
 // ---------- drag a person/object INSIDE the scene (cut-out layers from objects_map 'draggable') -> same setlocation path as chips
 (function(){let d=null;
   const regOf=id=>{if(!lastM)return null;const nm=id.slice(2);const x=(id[0]==='c'?lastM.chars:lastM.objs).find(z=>(z.name||z.label)===nm);return x?x.region:null;};
@@ -599,21 +640,21 @@ async function dropTo(id,from,to,xy){
   const AC=new WeakMap();
   const opaque=(b,x,y)=>{const im=b.querySelector('img');if(!im||!im.naturalWidth)return true;const r=im.getBoundingClientRect();if(x<r.left||x>r.right||y<r.top||y>r.bottom)return false;
     let c=AC.get(im);if(!c){c=document.createElement('canvas');c.width=im.naturalWidth;c.height=im.naturalHeight;try{c.getContext('2d',{willReadFrequently:true}).drawImage(im,0,0);}catch(e){return true;}AC.set(im,c);}
-    try{const px=c.getContext('2d').getImageData(Math.floor((x-r.left)/r.width*c.width),Math.floor((y-r.top)/r.height*c.height),1,1).data;return px[3]>40;}catch(e){return true;}};
+    try{const px=c.getContext('2d').getImageData(Math.floor((b.dataset.flip==='1'?(r.right-x):(x-r.left))/r.width*c.width),Math.floor((y-r.top)/r.height*c.height),1,1).data;return px[3]>40;}catch(e){return true;}};
   const pickDob=(x,y)=>{const u=[...new Set(document.elementsFromPoint(x,y).map(e=>e.closest&&e.closest('#objs:not(.gone) .dob')).filter(Boolean))];return u.find(b=>opaque(b,x,y))||null;};
   document.addEventListener('pointerdown',ev=>{const b0=ev.target.closest&&ev.target.closest('#objs:not(.gone) .dob');const pk=b0?pickDob(ev.clientX,ev.clientY):null;if(b0&&!pk&&window.thrydZoom&&thrydZoom.get().z>1)return; /* zoomed: transparent bbox area pans */const b=b0?(pk||b0):null;if(!b||d)return;if(ev.pointerType==='mouse'&&ev.button!==0)return;
     ev.preventDefault();ev.stopPropagation();window.thrydHold(60000);const r=b.getBoundingClientRect();
-    d={b,pid:ev.pointerId,x:ev.clientX,y:ev.clientY,l0:parseFloat(b.style.left),t0:parseFloat(b.style.top),on:false};try{b.setPointerCapture(ev.pointerId);}catch(e){}},{passive:false,capture:true});
+    b.dataset.held='1';d={b,pid:ev.pointerId,x:ev.clientX,y:ev.clientY,l0:parseFloat(b.style.left),t0:parseFloat(b.style.top),on:false,path:[[parseFloat(b.style.left),parseFloat(b.style.top)]],pt:0};try{b.setPointerCapture(ev.pointerId);}catch(e){}},{passive:false,capture:true});
   document.addEventListener('pointermove',ev=>{if(!d||ev.pointerId!==d.pid)return;const dx=ev.clientX-d.x,dy=ev.clientY-d.y;
     if(!d.on){if(dx*dx+dy*dy<25)return;d.on=true;d.b.classList.add('lifting','away');{const q=d.b.parentNode.querySelector(`.dpatch[data-label="${CSS.escape(d.b.dataset.label)}"]`);if(q)q.classList.add('away');}document.body.classList.add('dragmode');d.b.parentNode.appendChild(d.b);}
-    ev.preventDefault();const L=d.b.parentNode.getBoundingClientRect();d.b.style.left=(d.l0+dx/L.width*100)+'%';d.b.style.top=(d.t0+dy/L.height*100)+'%';
+    ev.preventDefault();const L=d.b.parentNode.getBoundingClientRect();d.b.style.left=(d.l0+dx/L.width*100)+'%';d.b.style.top=(d.t0+dy/L.height*100)+'%';{const n=performance.now();if(n-d.pt>45&&d.path.length<400){d.pt=n;d.path.push([parseFloat(d.b.style.left),parseFloat(d.b.style.top)]);}}
     clr();const h=hit(ev.clientX,ev.clientY);if(h)h.classList.add('drop');},{passive:false});
-  const end=ev=>{if(!d||ev.pointerId!==d.pid)return;const dd=d;d=null;try{dd.b.releasePointerCapture(dd.pid);}catch(e){}
+  const end=ev=>{if(!d||ev.pointerId!==d.pid)return;const dd=d;d=null;try{dd.b.releasePointerCapture(dd.pid);}catch(e){}delete dd.b.dataset.held;
     dd.b.classList.remove('lifting');document.body.classList.remove('dragmode');clr();if(!dd.on){window.thrydHold(0);return;}
     window.thrydHold(30000);const Lp=dd.b.parentNode,k=Lp&&Lp.dataset.key;const[cl,ct]=visClamp(Lp,parseFloat(dd.b.style.left),parseFloat(dd.b.style.top),parseFloat(dd.b.style.width),parseFloat(dd.b.style.height));
-    dd.b.style.left=cl+'%';dd.b.style.top=ct+'%';dd.b.dataset.dp='1';DPOS[k+'|'+dd.b.dataset.label]=[+cl.toFixed(3),+ct.toFixed(3)];
+    dd.b.style.left=cl+'%';dd.b.style.top=ct+'%';dd.b.dataset.dp='1';DPOS[k+'|'+dd.b.dataset.label]=[+cl.toFixed(3),+ct.toFixed(3)];dd.path.push([cl,ct]);const dpath=thinPath(dd.path.map(q=>visClamp(Lp,q[0],q[1],parseFloat(dd.b.style.width),parseFloat(dd.b.style.height))),24);saveDPath(k,dd.b.dataset.label,dpath);{const w=WS.get(dd.b);if(w)w.next=performance.now()+9000;}
     try{localStorage.setItem('thryd_dpos',JSON.stringify(DPOS));}catch(e){}
-    const h=hit(ev.clientX,ev.clientY),id=dd.b.dataset.id,from=regOf(id);if(!h){toast('dropped in the scene — drop on a place name to move them');if(window.thrydTarget)thrydTarget.scene(dd.b,k,cl,ct);noteLocalDrag(dd.b.dataset.label,(window.thrydCtx&&thrydCtx().lastM&&thrydCtx().PFULL[thrydCtx().lastM.here])||'',{x:+cl.toFixed(3),y:+ct.toFixed(3)});return;}
+    const h=hit(ev.clientX,ev.clientY),id=dd.b.dataset.id,from=regOf(id);if(!h){toast('dropped in the scene — drop on a place name to move them');if(window.thrydTarget)thrydTarget.scene(dd.b,k,cl,ct,dpath);noteLocalDrag(dd.b.dataset.label,(window.thrydCtx&&thrydCtx().lastM&&thrydCtx().PFULL[thrydCtx().lastM.here])||'',{x:+cl.toFixed(3),y:+ct.toFixed(3)});return;}
     if(h.dataset.name===from){toast(`${id.slice(2)} is already at ${from}`);return;}
     dropTo(id,from,h.dataset.name,{x:+cl.toFixed(3),y:+ct.toFixed(3)});};
   document.addEventListener('pointerup',end);document.addEventListener('pointercancel',end);})();
@@ -686,13 +727,13 @@ async function dropTo(id,from,to,xy){
       const c={with:o.dataset.name||o.dataset.label,with_cut:o.dataset.label,overlap:+(v/Math.min(A,B)).toFixed(3),head_overlap:+(h/hmin).toFixed(3),gap:+gap.toFixed(3)};
       c.kind=c.head_overlap>=.05?'kiss':v>0?'touch':gap<.06?'next to':null;const sc=(c.kind==='kiss'?3:c.kind==='touch'?2:c.kind?1:0)+c.overlap+c.head_overlap-c.gap;
       if(c.kind&&(!best||sc>best._s))best={...c,_s:sc};});if(best)delete best._s;return best;}
-  async function scene(b,k,cl,ct){const label=b.dataset.label,name=b.dataset.name||label,L=b.parentNode;const ct0=contact(b,L);
+  async function scene(b,k,cl,ct,path){const label=b.dataset.label,name=b.dataset.name||label,L=b.parentNode;const ct0=contact(b,L);
     const C=window.thrydCtx?thrydCtx():{};const place=(st&&st.current_place)||(C.lastM&&C.PFULL[C.lastM.here])||'';
     const near=ct0?(ct0.kind==='next to'?'next to ':ct0.kind==='kiss'?'lips to ':'on top of ')+ct0.with:null;
     const t=make(name,place,{type:'sprite',key:k,left:cl,top:ct,w:b.style.width,h:b.style.height,src:(b.querySelector('.sp')||{}).src||''},near);
     const scard=(/_(j\d+)$/.exec(k||'')||[])[1]||'';
     try{const DG=C.DRAG;if(DG&&DG.endpoint)fetch(DG.endpoint,{method:'POST',body:JSON.stringify({key:DG.key,object:name,cut:label,place,x:+(+cl).toFixed(3),y:+(+ct).toFixed(3),
-      w:parseFloat(b.style.width)||0,h:parseFloat(b.style.height)||0,scene:String(k||'').slice(0,160),scene_card:scard,contact:ct0,target:t,rid:Math.random().toString(36).slice(2,12)})}).catch(()=>{});}catch(e){}
+      w:parseFloat(b.style.width)||0,h:parseFloat(b.style.height)||0,scene:String(k||'').slice(0,160),scene_card:scard,contact:ct0,path:Array.isArray(path)?path.slice(0,24):undefined,target:t,rid:Math.random().toString(36).slice(2,12)})}).catch(()=>{});}catch(e){}
     if(C.toast)C.toast(ct0&&b.dataset.name&&ct0.with!==ct0.with_cut?`👁 tracking: ${name} ↔ ${ct0.with} · ${ct0.kind} (logged only if the story does it)`:'drag saved: '+name+(near?' · '+near:''));}
   async function copy(x){try{await navigator.clipboard.writeText(x);return true;}catch(e){const ta=document.createElement('textarea');ta.value=x;ta.style.cssText='position:fixed;left:-9999px;top:0';document.body.appendChild(ta);ta.select();let ok=false;try{ok=document.execCommand('copy');}catch(e2){}ta.remove();return ok;}}
   function pchip(t,g){document.querySelectorAll('.prophchip').forEach(x=>x.remove());const txt=MT(t.object,t.place);const c=document.createElement('button');c.className='prophchip';c.textContent='🔮 prophesy';c.title=txt;c.dataset.text=txt;

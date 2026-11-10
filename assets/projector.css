@@ -174,3 +174,6 @@ body.cerebro #slide,body.cerebro #addgif,body.cerebro #rpause,body.cerebro #mute
 .fspin.done{animation:none;opacity:1;border-style:solid;border-color:#ffe08a;box-shadow:0 0 18px 6px rgba(255,214,120,.75)}
 .fspin.fade{opacity:0!important;box-shadow:none}
 #fswatch{position:fixed;left:50%;top:8px;transform:translateX(-50%);font-size:11px;color:#fff3d0;opacity:.45;text-shadow:0 1px 3px #000;white-space:nowrap;max-width:80vw;overflow:hidden;text-overflow:ellipsis}
+
+/* autonomous motion: turning toward travel (individual `scale` composes with the sway/breath transforms) */
+#objs .dob .spw{transition:scale .6s ease-in-out}
