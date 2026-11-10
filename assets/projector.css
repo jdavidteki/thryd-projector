@@ -188,3 +188,7 @@ body.lovemap #slide,body.lovemap #addgif,body.lovemap #rpause,body.lovemap #mute
 #objs .sp,#objs .ob .sp,#objs .sp.small{animation:none!important;transform:none}
 #objs .ob.cm-idle .spw{animation:none!important}
 #objs .dob.notice .sp{animation:notice 1.1s ease-out 1 both!important}
+
+/* Jesuye 11-10: no mirror flip in the one-shot notice either, and clear any old flip */
+@keyframes notice{0%{transform:none}35%{transform:translateY(-4%)}70%{transform:translateY(0)}100%{transform:none}}
+#objs .ob .spw{scale:none!important}

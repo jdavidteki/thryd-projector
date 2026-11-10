@@ -607,7 +607,7 @@ const wPaused=()=>scPaused||document.hidden||document.body.classList.contains('d
 const wOwned=b=>b.dataset.held==='1'||['lifting','cm-fly','cm-live','cm-out','visitor'].some(c=>b.classList.contains(c));
 const wPerson=b=>(b.dataset.id||'').startsWith('c:')&&!/stall|sign|table|tray|cooler|stool|bench|shelter|door|street|window|lamp|board|umbrella|car|bus|danfo|wall|tree/i.test(b.dataset.label||'');
 const wRoam=b=>!/stall|sign|table|shelter|door|street|window|board|wall|tree|gate|house|building|kiosk/i.test(b.dataset.label||'');
-function wFace(b,dx){const w=b.querySelector('.spw');if(!w||Math.abs(dx)<0.6||Math.random()>0.4)return;  // an occasional turn as it sets off
+function wFace(b,dx){return; /* Jesuye 11-10: no sudden left/right flips; cut-outs keep the way they face */ const w=b.querySelector('.spw');if(!w||Math.abs(dx)<0.6||Math.random()>0.4)return;  // an occasional turn as it sets off
   const nf=b.dataset.flip==='1'?'':'1';b.dataset.flip=nf;w.style.scale=nf?'-1 1':'';}
 // glide along points [[l,t],...] in layer %, total eased, ~pace %/s; holds while paused, aborts if something else takes the box
 function wGlide(b,pts,pace){return new Promise(res=>{const L=b.parentNode;if(!L||pts.length<2){res(false);return;}
