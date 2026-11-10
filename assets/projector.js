@@ -61,7 +61,8 @@ function sceneStep(){if(scPaused||!scEv.length)return;const n=scEv.length,idx=sc
 function bindScene(set){
   const card=cardOfSet(set);const keys=altKeys(card);const keyStr=[...keys].sort().join('|');
   if(keyStr===scKey){syncPauseBtn();return;}
-  scKey=keyStr;scEv=eventsFor(card);scI=0;scChars={};scObjs={};scPaused=false;syncPauseBtn();
+  scKey=keyStr;scEv=(set&&set.run&&TL.run&&set.run!==TL.run)?[]:eventsFor(card); // another agenda's view never borrows this timeline's captions
+  if(set&&set.run&&TL.run&&set.run!==TL.run)scKey=set.run+'|'+keyStr;scI=0;scChars={};scObjs={};scPaused=false;syncPauseBtn();
   if(!scEv.length)return;sceneStep();
 }
 function clearScene(){scKey='';scEv=[];scI=0;scChars={};scObjs={};scPaused=false;syncPauseBtn();}
@@ -415,9 +416,11 @@ async function live(){
   apply(s);
   const lines=()=>[...(cur.moves||[]).flatMap(m=>(m.precisions||[]).map(p=>({line:p.line,src:'seat '+p.seat,move:/\[\[/.test(p.line)}))),...localPrec];
   const upd=()=>{if(scEv.length)return;const mv=(cur.moves||[]).slice(-10), re=(cur.recent_events||[]).slice(-6);
-    const items=[...mv.map(m=>m.move),...re.map(e=>`${e.card||''} ${e.ev}${e.status?' · '+e.status:''}`)];
+    const items=[...mv.map(m=>m.move),...re.filter(e=>!/^(cardgen|live_view|tick|export)/.test(e.ev||'')&&e.status).map(e=>`${e.card||''} ${e.ev} · ${e.status}`)];
     const it=(items.length?String(items[step++%items.length]):'waiting').replace(/ ?\(undefined\)/g,'');
-    ticker(cur.story_time_label,ok(it)?it:'move (cut away)',`${cur.current_card} · ${cur.seats||''} · state ${String(cur.exported_at||'').slice(11,16)} ET`);
+    const away=bgSet&&bgSet.run&&cur.run&&bgSet.run!==cur.run; // on stage: a view from another agenda, so say so instead of this agenda's clock
+    if(away)ticker(`from ${String(bgSet.run).replace(/^run-/,'agenda ')} · ${bgSet.card||''}`,'now playing: '+(cur.current_place||'')+' · '+(cur.story_time_label||''),`${cur.current_card} · state ${String(cur.exported_at||'').slice(11,16)} ET`);
+    else ticker(cur.story_time_label,ok(it)?it:'move (cut away)',`${cur.current_card} · ${cur.seats||''} · state ${String(cur.exported_at||'').slice(11,16)} ET`);
     const m=fromState(cur); maybeBubble(lines(),m.chars.filter(c=>!c.off).map(c=>c.name).concat(m.chars.length?[]:[]).slice(0,4).length?m.chars.filter(c=>!c.off).map(c=>c.name):m.chars.map(c=>c.name));};
   upd(); everyS(upd);
   every(async()=>{try{const n=await LIVE_STATE();if(g!==gen)return;const k=JSON.stringify([n.current_place,n.characters,n.objects,n.current_card,n.seated_count]);
