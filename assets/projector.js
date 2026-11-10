@@ -289,7 +289,11 @@ function addVisitor(L,k){const pool=[];const seen=new Set();Object.entries(OMAP)
   const sp=new Image();sp.className='sp m-'+(o.motion||'sway');sp.alt=o.label;sp.src=o.sprite;
   const wr=document.createElement('div');wr.className='spw';wr.style.setProperty('--vx',(x+w*50<50?-1:1)*(160+Math.random()*80)+'%');wr.appendChild(sp);box.appendChild(wr);
   const t=document.createElement('span');t.className='vfrom';t.textContent='from '+box.dataset.from;box.appendChild(t);
-  L.appendChild(box);cmHome(box);return box.title;}
+  L.appendChild(box);cmHome(box);
+  // the scene notices: once it has walked in, the cut-outs already here hop and turn toward it
+  setTimeout(()=>{if(objLayer!==L||!box.isConnected)return;const vx=box.getBoundingClientRect().left;
+    L.querySelectorAll('.dob:not(.visitor)').forEach((o,i)=>{const sp=o.querySelector('.sp');if(!sp)return;o.classList.remove('notice');void o.offsetWidth;o.style.setProperty('--face',o.getBoundingClientRect().left>vx?'-1':'1');setTimeout(()=>{o.classList.add('notice');setTimeout(()=>o.classList.remove('notice'),1300);},i*180);});},3400); // no spoken line: a random line rarely fits the scene (Jesuye 11-10: only say it if it works with the context)
+  return box.title;}
 window.thrydVisitor=()=>objLayer?addVisitor(objLayer,objLayer.dataset.key):'no layer';
 // cover math: the layer is the full frame scaled by k=max(W/fw,H/fh) and centred, so the visible window in layer % is
 // x in [ox, 100-ox], y in [oy, 100-oy]; keep a dropped box (w%,h%) at least partly inside it
