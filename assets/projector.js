@@ -3,7 +3,7 @@ const LIVE_STATE=async()=>{try{const r=await fetch('https://raw.githubuserconten
 (()=>{
 const Q=new URLSearchParams(location.search);
 const SPEED=Math.max(1,parseFloat(Q.get('speed')||'8'))*1000, POLL=10000;
-let MODE=(Q.get('mode')||'live').toLowerCase()==='replay'?'replay':'live';
+let MODE=(()=>{const m=(Q.get('mode')||'live').toLowerCase();return (m==='replay'||m==='cerebro')?m:'live';})();
 const BAD=/sex|nasty|dirt|iud|adult|daddy|position|hookup|benefit|porn|nude|naked|horny|kiss|\bbed|breast|moan|lick|bang|thrust|sessy|\bhard\b|body|\bwet\b|strip|fuck|pussy|dick|cock|\bass\b|boob|bitch|nyash|prick|suck|condom|virgin|orgasm|<real/i;
 const ok=s=>!!s&&!BAD.test(s);
 const $=id=>document.getElementById(id);
@@ -469,10 +469,48 @@ async function replay(){
 }
 window.thrydSay=say; window.thrydChoose=choose;
 // ---------- UI
-function setMode(m){MODE=m;Q.set('mode',m);history.replaceState(null,'','?'+Q.toString());
+function setMode(m){if(m!=='live'&&m!=='replay'&&m!=='cerebro')m='live';
+  MODE=m;Q.set('mode',m);history.replaceState(null,'','?'+Q.toString());
   document.querySelectorAll('#modes button[data-m]').forEach(b=>b.classList.toggle('on',b.dataset.m===m));
-  $('pick').style.display=m==='replay'?'':'none'; bgSet=null; clearScene(); (m==='replay'?replay:live)();}
+  $('pick').style.display=m==='replay'?'':'none';
+  if(m==='cerebro'){bgSet=null;clearScene();document.body.classList.add('cerebro');startCerebro();return;}
+  document.body.classList.remove('cerebro');stopCerebro();
+  bgSet=null;clearScene();(m==='replay'?replay:live)();}
 document.querySelectorAll('#modes button[data-m]').forEach(b=>b.onclick=ev=>{ev.stopPropagation();setMode(b.dataset.m);});
+// ---------- CEREBRO
+let CERE={items:[],poll:null,ids:'',lit:null};
+function stopCerebro(){if(CERE.poll){clearInterval(CERE.poll);CERE.poll=null;}
+  const w=$('cwall');if(w)w.innerHTML='';closeCere();CERE.ids='';}
+function startCerebro(){const md=$('mode'),rn=$('run');if(md)md.textContent='cerebro';if(rn)rn.textContent='all';
+  loadCerebro(true);if(!CERE.poll)CERE.poll=setInterval(()=>loadCerebro(false),30000);}
+async function loadCerebro(first){let data;try{data=await J('data/cerebro.json');}catch(e){return;}
+  const items=data.items||[];const ids=items.map(x=>x.id).join('|');
+  if(ids===CERE.ids&&!first)return;const prev=new Set((CERE.items||[]).map(x=>x.id));
+  CERE.items=items;CERE.ids=ids;renderCerebro(first?new Set():prev);}
+function renderCerebro(prevIds){const wall=$('cwall');if(!wall)return;wall.innerHTML='';
+  const items=CERE.items||[];const fresh=new Set(items.slice(0,8).map(x=>x.id));
+  items.forEach((it,i)=>{const t=document.createElement('button');t.type='button';
+    t.className='ctile'+(fresh.has(it.id)&&!prevIds.has(it.id)?' fresh':'');
+    t.style.setProperty('--d',((i*37)%11-5)+'px');t.style.setProperty('--e',((i*19)%9-4)+'px');
+    t.style.setProperty('--t',(16+(i*5)%16)+'s');t.style.setProperty('--k',((i*13)%10)+'s');
+    const img=document.createElement('img');img.loading='lazy';img.alt=it.label||it.kind||'';
+    img.src=it.path;t.appendChild(img);
+    t.onclick=ev=>{ev.stopPropagation();openCere(it);};wall.appendChild(t);});}
+function openCere(it){const box=$('clight'),img=$('climg'),cap=$('clcap');if(!box||!img)return;
+  if(box.classList.contains('on')&&CERE.lit&&CERE.lit.id===it.id){closeCere();return;}
+  closeCere();CERE.lit={id:it.id,i:0,timer:null};
+  const capText=(it.label||it.kind||'')+(it.room?' · '+it.room:'');if(cap)cap.textContent=capText;
+  if(it.frame_dir&&(it.frames|0)>1){const n=it.frames|0,durs=it.durs||[];
+    const tick=()=>{if(!CERE.lit||CERE.lit.id!==it.id)return;
+      img.src=it.frame_dir+'/f'+String(CERE.lit.i).padStart(3,'0')+'.webp';
+      const ms=Math.max(40,durs[CERE.lit.i]||100);CERE.lit.i=(CERE.lit.i+1)%n;
+      CERE.lit.timer=setTimeout(tick,ms);};tick();}
+  else img.src=it.path;
+  box.classList.add('on');box.onclick=ev=>{ev.stopPropagation();closeCere();};}
+function closeCere(){if(CERE.lit&&CERE.lit.timer)clearTimeout(CERE.lit.timer);CERE.lit=null;
+  const box=$('clight');if(box)box.classList.remove('on');}
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&document.body.classList.contains('cerebro')&&$('clight')&&$('clight').classList.contains('on')){e.preventDefault();closeCere();}});
+
 const _rp=$('rpause'); if(_rp)_rp.onclick=ev=>{ev.stopPropagation();if(!scEv.length&&!cmEv.length)return;scPaused=!scPaused;document.body.classList.toggle('cm-paused',scPaused);syncPauseBtn();if(!scPaused){if(scEv.length)sceneStep();cmPump();if(cmEv.length&&!cmBusy&&!cmQ.length)cmStep();}else{if(cmRestT){clearTimeout(cmRestT);cmRestT=null;}}};
 $('pick').onclick=e=>e.stopPropagation();
 $('pick').onchange=e=>{Q.set('run',e.target.value);history.replaceState(null,'','?'+Q.toString());reset();replay();};
@@ -593,7 +631,7 @@ async function dropTo(id,from,to,xy){
   // client px -> untransformed stage px (scene space) for drop math
   window.thrydZoom={get:()=>({z,tx,ty}),reset,zoomAt,toScene:(x,y)=>{const o=sr();return [(x-o.l-tx)/z,(y-o.t-ty)/z];}};
   const onItem=t=>t&&t.closest&&t.closest('.chip,#bar,#zoomui,#user,.ph,#sndgate,#toast');
-  addEventListener('wheel',ev=>{const t=ev.target;if(t.closest&&t.closest('#bar,#zoomui,#user,select'))return;ev.preventDefault();zoomAt(z*Math.exp(-ev.deltaY*(ev.ctrlKey?0.01:0.0015)),ev.clientX,ev.clientY);},{passive:false});
+  addEventListener('wheel',ev=>{const t=ev.target;if(t.closest&&t.closest('#bar,#zoomui,#user,select,#cerebro'))return;ev.preventDefault();zoomAt(z*Math.exp(-ev.deltaY*(ev.ctrlKey?0.01:0.0015)),ev.clientX,ev.clientY);},{passive:false});
   const P=new Map();let pan=null,pinch=null,moved=0,lastTap=0,lastXY=[0,0];
   document.addEventListener('pointerdown',ev=>{if(onItem(ev.target))return;if(ev.pointerType==='mouse'&&ev.button!==0)return;
     P.set(ev.pointerId,[ev.clientX,ev.clientY]);if(P.size===1)moved=0;
