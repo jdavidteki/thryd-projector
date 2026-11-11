@@ -60,14 +60,21 @@ function backdrop(set,force){ if(!libPin.allow(set))return; if(Date.now()<HOLD)r
         else done(ap);
       }catch(e){ finishCuts(false); }
     };
-    whenReady(on,()=>{
-      if(bgSet!==set||shown||cutsDone) return;
+    let capArmed=false;
+    const armCap=()=>{
+      if(capArmed||bgSet!==set||shown||cutsDone||!on.naturalWidth) return;
+      capArmed=true;
       setTimeout(()=>{
         if(bgSet!==set||shown||cutsDone) return;
         setCutsHint(true);
         flip();
       }, CUTS_WAIT_MS);
-    });
+    };
+    whenReady(on, armCap);
+    const capPoll=setInterval(()=>{
+      if(bgSet!==set||shown||cutsDone){clearInterval(capPoll);return;}
+      if(on.naturalWidth){clearInterval(capPoll);armCap();}
+    }, 100);
     startAttach();
     return;
   }
@@ -79,13 +86,14 @@ function backdrop(set,force){ if(!libPin.allow(set))return; if(Date.now()<HOLD)r
   bgTimer=setInterval(tick,Math.max(80,set.ms||120));
   bindScene(set);
 }
-let POOL=[],poolI=0,slideCursor='',LXTRA=[],CUR_RUN=null; const RUNX=()=>LXTRA.filter(x=>CUR_RUN&&x.run===CUR_RUN);
+let POOL=[],poolI=0,slideCursor='',LXTRA=[],CUR_RUN=null,coldBooting=false; const RUNX=()=>LXTRA.filter(x=>CUR_RUN&&x.run===CUR_RUN);
 // slide speed: 8s default, 30s, 60s (?slide=30 or the bar select; remembered)
 let kept=null; try{kept=window.ThrydKeep&&ThrydKeep.settings();}catch(e){kept=null;} if(kept&&(kept.mute===0||kept.mute===1)){try{localStorage.setItem('thryd_mute',kept.mute?'1':'0');}catch(e){}} let SLIDE=+(Q.get('slide')||(kept&&kept.slide)||localStorage.getItem('thryd_slide')||8); if(![8,30,60].includes(SLIDE))SLIDE=8; let slideT=null;
 const NEWEST=()=>RUNX().length?RUNX().slice().sort((a,b)=>(b.mtime||0)-(a.mtime||0))[0]:null;
 // after ten slideshow changes, return to whatever the newest live view is then
 const slideCycle=window.ThrydLiveReturn.create(10);
 function startSlide(){clearInterval(slideT);slideT=setInterval(()=>{
+  if(coldBooting)return;
   const moved=ThrydLiveReturn.step(slideCycle,{pool:POOL,poolI,cursor:slideCursor,hold:libPin.pinned(),newest:()=>MODE==='live'?NEWEST():null});
   if(moved.action==='idle'||moved.action==='hold')return;
   poolI=moved.poolI; if(moved.cursor)slideCursor=moved.cursor; backdrop(moved.set,true);
@@ -477,6 +485,7 @@ function fromState(s){
 }
 async function bootColdFirst(st){
   // cold load: prefer a smaller ready cut pack so the first scene can decode and attach quickly (no ?mlib= pin)
+  coldBooting=true;
   let set=NEWEST()||(POOL&&POOL[0])||liveBackdrop(st&&st.current_place);
   try{
     const man=window.ThrydMediumCuts?await ThrydMediumCuts.loadManifest():await J('data/medium_cuts.json');
@@ -488,9 +497,11 @@ async function bootColdFirst(st){
       set=cands[0];
     }
   }catch(e){}
-  if(!set) return;
-  if(!slideCursor){poolI=Math.max(0,POOL.indexOf(set));slideCursor=set.dir||'';}
-  backdrop(set,true);
+  try{
+    if(!set) return;
+    if(!slideCursor){poolI=Math.max(0,POOL.indexOf(set));slideCursor=set.dir||'';}
+    backdrop(set,true);
+  }finally{coldBooting=false;}
 }
 async function live(){
   reset(); const g=gen; $('mode').textContent='live';
@@ -610,7 +621,7 @@ addEventListener('resize',()=>{regionsKey='';});
 (async()=>{
   try{media=await J('data/media.json');}catch(e){}
   try{LXTRA=(await J('data/live_extra.json')).sets||[];}catch(e){}
-  await loadOmap(); await loadRGifs(); setTimeout(()=>{if(MODE==='live'&&NEWEST()){const nw=NEWEST();POOL=livePool();if(!slideCursor){poolI=Math.max(0,POOL.indexOf(nw));slideCursor=nw.dir||'';}backdrop(nw,true);}},2500); setInterval(async()=>{if(MODE==='live'){loadOmap();loadRGifs();try{const n=(await J('data/live_extra.json?t='+Date.now())).sets||[];const o=NEWEST();LXTRA=n;const nw=NEWEST();POOL=livePool();if(nw&&(!o||o.dir!==nw.dir||o.mtime!==nw.mtime)){backdrop(nw,true);}}catch(e){}}},60000);
+  await loadOmap(); await loadRGifs(); setTimeout(()=>{if(MODE==='live'&&NEWEST()&&!Q.get('mlib')&&!coldBooting&&!viewUp&&!bgSet){const nw=NEWEST();POOL=livePool();if(!slideCursor){poolI=Math.max(0,POOL.indexOf(nw));slideCursor=nw.dir||'';}backdrop(nw,true);}},2500); setInterval(async()=>{if(MODE==='live'){loadOmap();loadRGifs();try{const n=(await J('data/live_extra.json?t='+Date.now())).sets||[];const o=NEWEST();LXTRA=n;const nw=NEWEST();POOL=livePool();if(nw&&(!o||o.dir!==nw.dir||o.mtime!==nw.mtime)){backdrop(nw,true);}}catch(e){}}},60000);
   const ss=$('slide');if(ss){ss.value=String(SLIDE);ss.onclick=e=>e.stopPropagation();ss.onchange=e=>{SLIDE=+e.target.value;if(window.ThrydKeep)try{ThrydKeep.saveSettings({slide:SLIDE});}catch(err){}else try{localStorage.setItem('thryd_slide',SLIDE);}catch(err){}Q.set('slide',SLIDE);history.replaceState(null,'','?'+Q.toString());startSlide();};}
   const ml=$('mlib'); if(ml){ml.onclick=e=>e.stopPropagation(); const go=e=>{if(e.type==='keydown'&&e.key!=='Enter')return; e.stopPropagation(); const q=ml.value.trim(); if(!q){libPin.clear();slideCycle.reset();return;} const hit=window.thrydLibrary&&thrydLibrary.show(q); if(!hit){$('cap').textContent='library · not in inventory';}}; ml.addEventListener('keydown',go); ml.addEventListener('change',go);}
   const choice=window.ThrydKeep?ThrydKeep.stageChoice(Q.get('mlib'),ThrydKeep.settings().lastGif,Q.get('resume')==='1'):{id:Q.get('mlib')||null,why:Q.get('mlib')?'query':'live'}; if(choice.id&&ml){ml.value=choice.id; const hit=window.thrydLibrary&&thrydLibrary.show(choice.id); if(!hit){$('cap').textContent='library · not in inventory';}}
@@ -642,6 +653,8 @@ function qaLog(rec){
   try{ const u=window.__THRYD_QA_LOG_URL; if(u) fetch(u,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(row)}).catch(()=>{}); }catch(e){}
   return row;
 }
+// prophecy / zoom IIFEs sit outside the main closure — they must use the window handle
+window.thrydQA={on:qaOn, log:qaLog, file:'thryd_qa_log', field:'source'};
 async function dragSend(body){
   if(qaOn()){ qaLog({kind:'dragSend', ...body, source:'qa'}); return {ok:true, qa:true, skipped:'customer-endpoint'}; }
   if(DRAG.transport!=='ntfy'){const r=await fetch(DRAG.endpoint,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify(body)});const j=await r.json().catch(()=>({}));return {status:r.status,...j};}
@@ -812,6 +825,8 @@ window.thrydWander={paths:()=>DPATH,move:b=>wMove(b),state:b=>WS.get(b)};
 // ---------- prophecies (contract: Chief of Staff cd521af). Every drag = open-ended #thryd.miracle.target(assert(<object>.place == "<place>")).
 // Page records drags + draws ghosts; ONLY state.miracles {open:[],fulfilled:[],error?} decides open/fulfilled. miracles.error -> show nothing.
 (function(){const LS='thryd_targets',SEEN='thryd_targets_seen';
+  const qaOn=()=>window.thrydQA&&window.thrydQA.on();
+  const qaLog=rec=>window.thrydQA&&window.thrydQA.log(rec);
   const T=()=>{try{return JSON.parse(localStorage.getItem(LS)||'[]');}catch(e){return [];}};const save=a=>{try{localStorage.setItem(LS,JSON.stringify(a.slice(-60)));}catch(e){}};
   const seen=new Set((()=>{try{return JSON.parse(localStorage.getItem(SEEN)||'[]');}catch(e){return [];}})());
   const mark=k=>{seen.add(k);try{localStorage.setItem(SEEN,JSON.stringify([...seen].slice(-200)));}catch(e){}};
