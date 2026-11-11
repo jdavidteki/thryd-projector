@@ -23,15 +23,25 @@ function showUser(u){clearInterval(bgTimer);bgSet={dir:'user:'+u.id};const w=$('
 let HOLD=0; // in-scene drag pins the current scene (slideshow paused while dragging + 30s after a drop)
 window.thrydHold=ms=>{HOLD=ms?Math.max(HOLD,Date.now()+ms):0;};
 function remoteSet(set){return !!(set&&set.how==='medium'&&set.remote&&set.url);}
+// same path+mtime (or same url/src when no mtime) is a no-op, even with force — prevents tearing
+// on a true remount. A newer mtime (or a changed url) is a new live view at that path and must show.
+function sameView(a,b){
+  if(!a||!b) return false;
+  if((a.dir||'')!==(b.dir||'')) return false;
+  if(a.mtime!=null||b.mtime!=null) return String(a.mtime)===String(b.mtime);
+  const au=a.url||a.src||'', bu=b.url||b.src||'';
+  if(au||bu) return au===bu;
+  return true;
+}
 const libPin=window.ThrydMlibPin.create();
-function backdrop(set,force){ if(!libPin.allow(set))return; if(Date.now()<HOLD)return; if(bgSet&&set&&bgSet.dir===set.dir)return; stageN++;
+function backdrop(set,force){ if(!libPin.allow(set))return; if(Date.now()<HOLD)return; if(sameView(bgSet,set))return; stageN++;
   const ug=window.THRYD_UG; if(ug.length&&stageN%3===0){return showUser(ug[Math.floor(stageN/3)%ug.length]);}
-  if(!set||(!force&&bgSet&&bgSet.dir===set.dir))return; bgSet=set;bgI=0; $('ug').classList.remove('on');
+  if(!set)return; bgSet=set;bgI=0; $('ug').classList.remove('on');
   if(window.ThrydMediumCuts) try{ ThrydMediumCuts.detach(); }catch(e){}
   clearInterval(bgTimer); bgTimer=null; const imgs=[$('bgA'),$('bgB')];
   // load into the hidden image; the visible one stays up until the new view is decoded (no black/partial frame)
   const vis=imgs.findIndex(i=>i.classList.contains('on')); bgFlip=vis===0?1:(vis===1?0:bgFlip^1); const on=imgs[bgFlip],off=imgs[bgFlip^1];
-  let shown=false; const flip=()=>{if(shown)return; if(!(bgSet===set||(bgSet&&set&&bgSet.dir===set.dir)))return; shown=true; const ready=[on,off].find(i=>i&&i.naturalWidth>0)||on; ready.classList.add('on'); (ready===on?off:on).classList.remove('on'); revealStage();};
+  let shown=false; const flip=()=>{if(shown)return; if(!(bgSet===set||sameView(bgSet,set)))return; shown=true; const ready=[on,off].find(i=>i&&i.naturalWidth>0)||on; ready.classList.add('on'); (ready===on?off:on).classList.remove('on'); revealStage();};
   const whenReady=(img,go)=>{const ok=()=>{if(bgSet!==set||!img.naturalWidth)return; go();}; if(img.complete&&img.naturalWidth)return ok(); img.addEventListener('load',ok,{once:true}); if(img.decode)img.decode().then(ok,()=>{});};
   on.onerror=null; off.onerror=null; on.onload=null;
   if(remoteSet(set)){
@@ -61,7 +71,7 @@ function backdrop(set,force){ if(!libPin.allow(set))return; if(Date.now()<HOLD)r
       }catch(e){ finishCuts(false); }
     };
     let capArmed=false, capAt=0;
-    const stillThis=()=>bgSet===set||(bgSet&&set&&bgSet.dir===set.dir);
+    const stillThis=()=>bgSet===set||sameView(bgSet,set);
     const decoded=()=>!!((on&&on.naturalWidth)||(off&&off.naturalWidth));
     const armCap=()=>{
       if(capArmed||shown||cutsDone||!stillThis()||!decoded()) return;
@@ -383,7 +393,8 @@ function applyPlaces(){const m=lastM;if(!objLayer||!m)return;const reg={},cr={};
     if(off){const x=parseFloat(b.style.left)||0,bw=parseFloat(b.style.width)||1,left=x+bw/2<50;
       w.style.setProperty('--ox',((left?-(x+bw):(100-x))/bw*100+30)*(left?1:1)+'%');w.classList.add('offstage');}
     else w.classList.remove('offstage');});}
-window.thrydApplyPlaces=applyPlaces; window.thrydDebug=()=>({run:CUR_RUN,pool:POOL.length,views:LXTRA.length,bg:bgSet&&bgSet.dir});
+window.thrydApplyPlaces=applyPlaces; window.thrydDebug=()=>({run:CUR_RUN,pool:POOL.length,views:LXTRA.length,bg:bgSet&&bgSet.dir,mtime:bgSet&&bgSet.mtime,stageN,url:bgSet&&(bgSet.url||bgSet.src||'')});
+if(QA_MODE){ window.thrydBackdrop=(set,force)=>backdrop(set,force); window.thrydBgSet=()=>bgSet; }
 setInterval(()=>{if(!objLayer)return;const bs=[...objLayer.querySelectorAll('.ob')];if(bs.length){const b=bs[Math.floor(Math.random()*bs.length)];objChanged(b.dataset.sid||b.dataset.label);}},3000);
 // LXTRA (data/live_extra.json): original unblurred live views, play as-is
 // live loop = clean stills only (no baked terminal panel); replay-mode GIF frames stay out of it
