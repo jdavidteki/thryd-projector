@@ -1,9 +1,12 @@
-// Official post embed for the speech bubble. The archive line stays on screen.
+// Official post embed for the speech bubble. The archive line is fallback
+// only (no id, purged, or the widget failed or timed out) and is hidden
+// while an embed is loading or on screen. Never invent author, avatar, or metrics.
 // A status id is a decimal string from the archive, never parsed out of prose.
 (function(root){
   var HANDLE = 'notnotnotnotyn';
   var WIDGETS = 'https://platform.twitter.com/widgets.js';
   var READ_MS = 20000;
+  var EMBED_WIDTH = 340;
 
   function statusId(value){
     if(typeof value !== 'string') return '';
@@ -97,12 +100,22 @@
       a.textContent = url;
     }
 
+    function showArchive(host){
+      host.classList.remove('embed-wait');
+      host.classList.remove('embed-on');
+    }
+
+    function hideArchive(host){
+      host.classList.add('embed-wait');
+      host.classList.remove('embed-on');
+    }
+
     function arm(host, ms, my){
       clearTimeout(host._hide);
       host._hide = setTimeout(function(){
         if(host._tw !== my) return;
         host.classList.remove('on');
-        host.classList.remove('embed-on');
+        showArchive(host);
         clearSlot(host);
       }, ms);
     }
@@ -110,7 +123,7 @@
     function mount(host, item, baseMs){
       var my = ++seq;
       host._tw = my;
-      host.classList.remove('embed-on');
+      showArchive(host);
       clearSlot(host);
       var id = statusId(item && item.id);
       var purged = !!(item && item.purged);
@@ -124,6 +137,7 @@
         arm(host, baseMs, my);
         return Promise.resolve({ok: false, reason: id ? 'purged' : 'no_id'});
       }
+      hideArchive(host);
       linkFor(host, '');
       arm(host, readMs, my);
       var started = Date.now();
@@ -135,12 +149,13 @@
         if(settled || host._tw !== my) return {ok: false, reason: 'stale'};
         settled = true;
         if(!res || !res.ok){
-          host.classList.remove('embed-on');
+          showArchive(host);
           if(target.parentNode === slot) slot.removeChild(target);
           linkFor(host, id);
           arm(host, Math.max(0, baseMs - (Date.now() - started)), my);
           return {ok: false, reason: (res && res.reason) || 'unavailable'};
         }
+        host.classList.remove('embed-wait');
         host.classList.add('embed-on');
         return {ok: true, reason: 'embed'};
       }
@@ -155,7 +170,7 @@
           theme: 'light',
           conversation: 'none',
           cards: 'hidden',
-          width: 250
+          width: EMBED_WIDTH
         })).then(function(el){
           if(host._tw !== my) return finish({ok: false, reason: 'stale'});
           if(!el) return finish({ok: false, reason: 'unavailable'});
@@ -168,7 +183,7 @@
     function dismiss(host){
       if(!host) return;
       host._tw = ++seq;
-      host.classList.remove('embed-on');
+      showArchive(host);
       clearSlot(host);
       linkFor(host, '');
       clearTimeout(host._hide);
@@ -177,7 +192,7 @@
     return {mount: mount, dismiss: dismiss, loadCount: function(){ return loads; }, loads: function(){ return loads; }};
   }
 
-  var api = {create: create, statusId: statusId, postUrl: postUrl, deckRow: deckRow, HANDLE: HANDLE, WIDGETS: WIDGETS};
+  var api = {create: create, statusId: statusId, postUrl: postUrl, deckRow: deckRow, HANDLE: HANDLE, WIDGETS: WIDGETS, EMBED_WIDTH: EMBED_WIDTH};
   if(typeof module !== 'undefined' && module.exports) module.exports = api;
   root.ThrydTweet = api;
   if(typeof document !== 'undefined'){
