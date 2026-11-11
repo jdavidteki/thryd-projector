@@ -137,13 +137,110 @@
 
   // moved[k] false: object k sits at its own spot, so the original frame pixels stay under it
   // (no hole, the setting is drawn). moved[k] true or no moved list: its former spot takes the
-  // stored plate fill where known, else stays transparent. Never a duplicate at the old spot.
+  // stored plate fill where known, else a darkened, blurred copy of this same frame (a soft
+  // shadow, not a black void and not a full-opacity duplicate of the subject).
+  const SHADOW_BRIGHT = 0.45;
+  const SHADOW_BLUR = 10;
+  function boxBlur(src, w, h, r){
+    const tmp = new Uint8ClampedArray(src.length);
+    const out = new Uint8ClampedArray(src.length);
+    function pass(inp, dst, horiz){
+      const len = horiz ? w : h, lines = horiz ? h : w;
+      const pref = new Uint32Array((len + 1) * 4);
+      const diam = r * 2 + 1;
+      for(let line = 0; line < lines; line++){
+        for(let i = 0; i < len; i++){
+          const x = horiz ? i : line, y = horiz ? line : i, p = (y * w + x) * 4, o = (i + 1) * 4;
+          pref[o] = pref[o - 4] + inp[p];
+          pref[o + 1] = pref[o - 3] + inp[p + 1];
+          pref[o + 2] = pref[o - 2] + inp[p + 2];
+          pref[o + 3] = pref[o - 1] + inp[p + 3];
+        }
+        for(let i = 0; i < len; i++){
+          const lo = i - r, hi = i + r;
+          let s0 = 0, s1 = 0, s2 = 0, s3 = 0;
+          if(lo < 0){
+            const n = -lo, e = 4;
+            s0 = pref[e] * n; s1 = pref[e + 1] * n; s2 = pref[e + 2] * n; s3 = pref[e + 3] * n;
+          }
+          if(hi >= len){
+            const n = hi - len + 1, e = len * 4;
+            s0 += (pref[e] - pref[e - 4]) * n;
+            s1 += (pref[e + 1] - pref[e - 3]) * n;
+            s2 += (pref[e + 2] - pref[e - 2]) * n;
+            s3 += (pref[e + 3] - pref[e - 1]) * n;
+          }
+          const a = lo < 0 ? 0 : lo, b = hi >= len ? len - 1 : hi;
+          if(a <= b){
+            const hb = (b + 1) * 4, ha = a * 4;
+            s0 += pref[hb] - pref[ha]; s1 += pref[hb + 1] - pref[ha + 1];
+            s2 += pref[hb + 2] - pref[ha + 2]; s3 += pref[hb + 3] - pref[ha + 3];
+          }
+          const x = horiz ? i : line, y = horiz ? line : i, p = (y * w + x) * 4;
+          dst[p] = (s0 + diam / 2) / diam;
+          dst[p + 1] = (s1 + diam / 2) / diam;
+          dst[p + 2] = (s2 + diam / 2) / diam;
+          dst[p + 3] = (s3 + diam / 2) / diam;
+        }
+      }
+    }
+    pass(src, tmp, true);
+    pass(tmp, out, false);
+    return out;
+  }
+  function cpuShadow(src, w, h){
+    let cur = src instanceof Uint8ClampedArray ? src : Uint8ClampedArray.from(src);
+    for(let n = 0; n < 3; n++) cur = boxBlur(cur, w, h, SHADOW_BLUR);
+    const out = new Uint8ClampedArray(cur.length);
+    for(let i = 0; i < cur.length; i += 4){
+      out[i] = Math.round(cur[i] * SHADOW_BRIGHT);
+      out[i + 1] = Math.round(cur[i + 1] * SHADOW_BRIGHT);
+      out[i + 2] = Math.round(cur[i + 2] * SHADOW_BRIGHT);
+      out[i + 3] = cur[i + 3];
+    }
+    return out;
+  }
+  function canvasShadow(src, w, h){
+    const pad = SHADOW_BLUR * 3;
+    const make = (cw, ch)=>{
+      if(typeof OffscreenCanvas !== 'undefined') return new OffscreenCanvas(cw, ch);
+      const c = document.createElement('canvas'); c.width = cw; c.height = ch; return c;
+    };
+    const px = src instanceof Uint8ClampedArray ? src : Uint8ClampedArray.from(src);
+    const pw = w + pad * 2, ph = h + pad * 2;
+    const padded = new Uint8ClampedArray(pw * ph * 4);
+    for(let y = 0; y < ph; y++){
+      const sy = y < pad ? 0 : (y >= pad + h ? h - 1 : y - pad);
+      for(let x = 0; x < pw; x++){
+        const sx = x < pad ? 0 : (x >= pad + w ? w - 1 : x - pad);
+        const d = (y * pw + x) * 4, s = (sy * w + sx) * 4;
+        padded[d] = px[s]; padded[d + 1] = px[s + 1]; padded[d + 2] = px[s + 2]; padded[d + 3] = px[s + 3];
+      }
+    }
+    const padC = make(pw, ph);
+    padC.getContext('2d').putImageData(new ImageData(padded, pw, ph), 0, 0);
+    const outC = make(pw, ph);
+    const octx = outC.getContext('2d');
+    octx.filter = 'blur(' + SHADOW_BLUR + 'px) brightness(' + SHADOW_BRIGHT + ')';
+    octx.drawImage(padC, 0, 0);
+    return octx.getImageData(pad, pad, w, h).data;
+  }
+  function shadowFill(src, w, h){
+    try{
+      if(typeof ImageData !== 'undefined' && (typeof OffscreenCanvas !== 'undefined' || (typeof document !== 'undefined' && document.createElement))){
+        const got = canvasShadow(src, w, h);
+        if(got && got.length === w * h * 4) return got;
+      }
+    }catch(e){}
+    return cpuShadow(src, w, h);
+  }
   function compose(rgba, w, h, masks, plate, moved){
     const src = rgba instanceof Uint8ClampedArray ? rgba : Uint8ClampedArray.from(rgba);
     const plateOut = new Uint8ClampedArray(src);
     const known = plate && plate.known;
     const fill = plate && plate.rgba;
     const sprites = [];
+    const holeNeed = new Uint8Array(w * h);
     (masks || []).forEach((raw, k)=>{
       const mask = asMask(raw, w, h);
       const box = inkBox(mask, w, h);
@@ -158,12 +255,23 @@
         if(!hole) continue;
         if(known && known[i] && fill){
           plateOut[p] = fill[p]; plateOut[p+1] = fill[p+1]; plateOut[p+2] = fill[p+2]; plateOut[p+3] = fill[p+3];
+          holeNeed[i] = 0;
         }else{
-          plateOut[p+3] = 0;
+          holeNeed[i] = 1;
         }
       }
       sprites.push({x:box.x, y:box.y, w:box.w, h:box.h, rgba:sprite});
     });
+    let any = 0;
+    for(let i = 0; i < holeNeed.length; i++) if(holeNeed[i]){ any = 1; break; }
+    if(any){
+      const shade = shadowFill(src, w, h);
+      for(let i = 0; i < holeNeed.length; i++){
+        if(!holeNeed[i]) continue;
+        const p = i * 4;
+        plateOut[p] = shade[p]; plateOut[p+1] = shade[p+1]; plateOut[p+2] = shade[p+2]; plateOut[p+3] = 255;
+      }
+    }
     return {plate:plateOut, sprites};
   }
 
@@ -506,7 +614,7 @@
     return out;
   }
   // background under the cuts: the original frame where nothing moved; a hole (plate fill or
-  // transparent) only at the former spot of an object that was dragged or restored to a new place
+  // a soft shadow from this same frame) only at the former spot of an object that was dragged or restored to a new place
   function plateFor(layer, frame){
     if(!frame.src || !frame.masks) return frame.plate;
     const moved = movedFlags(layer, frame.masks.length);
@@ -677,7 +785,7 @@
     });
   }
 
-  const api = {CAP, USED, RESERVE, roomBytes, admit, isMedium, coverage, forSet, compose, planFrames, decodeGif, delaysMatch, playMs, attach, detach, loadManifest, inkBox, unpackMask, frameHoldBytes, expandObject, expandRow, plateFor, movedFlags, fillBuilder, framesFill, grow};
+  const api = {CAP, USED, RESERVE, roomBytes, admit, isMedium, coverage, forSet, compose, planFrames, decodeGif, delaysMatch, playMs, attach, detach, loadManifest, inkBox, unpackMask, frameHoldBytes, expandObject, expandRow, plateFor, movedFlags, fillBuilder, framesFill, grow, shadowFill, SHADOW_BRIGHT, SHADOW_BLUR};
   if(typeof module !== 'undefined' && module.exports) module.exports = api;
   root.ThrydMediumCuts = api;
 })(typeof window !== 'undefined' ? window : globalThis);

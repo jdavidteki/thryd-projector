@@ -53,7 +53,14 @@ for(const withPlate of [true, false]){
             const dup = bg[p] === SUBJ[0] && bg[p+1] === SUBJ[1] && bg[p+2] === SUBJ[2] && bg[p+3] > 0;
             assert.equal(dup, false, 'subject pixel duplicated at old spot');
             if(withPlate && i === 1 * w + 1) assert.deepEqual(Array.from(bg.slice(p, p + 4)), [90, 120, 160, 255], 'stored plate fill used');
-            else assert.equal(bg[p+3], 0, 'no fill: transparent');
+            else {
+              assert.equal(bg[p+3], 255, 'uncovered hole is opaque shadow, not a void');
+              const dup = bg[p] === SUBJ[0] && bg[p+1] === SUBJ[1] && bg[p+2] === SUBJ[2];
+              assert.equal(dup, false, 'full-opacity subject left in the hole');
+              const luma = bg[p] + bg[p+1] + bg[p+2];
+              assert.ok(luma >= 30, 'shadow is not a black void');
+              assert.ok(bg[p] + bg[p+1] + bg[p+2] < SUBJ[0] + SUBJ[1] + SUBJ[2], 'shadow is darker than the subject');
+            }
           }else{
             assert.deepEqual(Array.from(bg.slice(p, p + 4)), Array.from(frames[f].rgba.slice(p, p + 4)), 'setting kept outside the hole');
           }
@@ -68,7 +75,10 @@ test('two cuts: only the dragged one opens a hole; the unmoved one keeps the set
   const a = new Uint8Array(n), b = new Uint8Array(n); a[0] = 1; b[n - 1] = 1;
   const got = M.compose(rgba, w, h, [a, b], null, [false, true]);
   assert.equal(got.plate[3], 150);
-  assert.equal(got.plate[(n - 1) * 4 + 3], 0);
+  const q = (n - 1) * 4;
+  assert.equal(got.plate[q + 3], 255, 'dragged cut leaves an opaque shadow');
+  assert.ok(got.plate[q] < 150 && got.plate[q + 1] < 150 && got.plate[q + 2] < 150, 'shadow is darkened');
+  assert.equal(got.plate[0], 150, 'unmoved cut keeps the setting under it');
   assert.equal(M.movedFlags({_off:[{x:0, y:0}, {x:1, y:0}]}, 2).join(), 'false,true');
 });
 
@@ -129,4 +139,32 @@ test('fill prefers the stored plate pixel, and the guard band keeps mask edges o
       assert.equal(frames[g].mask[yy * W + xx], 0, 'fill pixel taken next to the subject edge');
     }
   }
+});
+
+test('uncovered hole uses a darkened blur of the same frame, never a void or a duplicate', () => {
+  const rgba = new Uint8ClampedArray(n * 4);
+  for(let i = 0; i < n; i++) rgba.set([80, 160, 200, 255], i * 4);
+  const mask = new Uint8Array(n);
+  for(const i of [1 * w + 1, 1 * w + 2, 2 * w + 1, 2 * w + 2]){ mask[i] = 1; rgba.set(SUBJ, i * 4); }
+  const shade = M.shadowFill(rgba, w, h);
+  const got = M.compose(rgba, w, h, [mask], null, [true]);
+  for(let i = 0; i < n; i++){
+    const p = i * 4;
+    if(mask[i]){
+      assert.deepEqual(Array.from(got.plate.slice(p, p + 4)), [shade[p], shade[p+1], shade[p+2], 255]);
+      assert.notDeepEqual(Array.from(got.plate.slice(p, p + 4)), SUBJ);
+    }else{
+      assert.deepEqual(Array.from(got.plate.slice(p, p + 4)), [80, 160, 200, 255], 'pixels outside the hole are untouched');
+    }
+  }
+  // sprites stay the original subject
+  const sp = got.sprites[0];
+  let subjectPx = 0;
+  for(let i = 0; i < sp.rgba.length; i += 4){
+    if(sp.rgba[i]===SUBJ[0] && sp.rgba[i+1]===SUBJ[1] && sp.rgba[i+2]===SUBJ[2] && sp.rgba[i+3]===255) subjectPx++;
+  }
+  assert.equal(subjectPx, 4);
+  // rest state is the exact original
+  const rest = M.plateFor({_w:w,_h:h,_off:[{x:0,y:0}]}, {src:rgba, masks:[mask], plate:got.plate, plateSrc:null});
+  assert.deepEqual(Array.from(rest), Array.from(rgba));
 });

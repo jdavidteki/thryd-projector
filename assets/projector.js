@@ -26,13 +26,13 @@ function backdrop(set,force){ if(!libPin.allow(set))return; if(Date.now()<HOLD)r
   // load into the hidden image; the visible one stays up until the new view is decoded (no black/partial frame)
   const vis=imgs.findIndex(i=>i.classList.contains('on')); bgFlip=vis===0?1:(vis===1?0:bgFlip^1); const on=imgs[bgFlip],off=imgs[bgFlip^1];
   let shown=false; const flip=()=>{if(bgSet!==set||shown)return; shown=true; on.classList.add('on'); off.classList.remove('on');};
-  const whenReady=(img,go)=>{if(img.complete&&img.naturalWidth)return go(); if(img.decode)img.decode().then(go,()=>{}); else img.addEventListener('load',go,{once:true});};
+  const whenReady=(img,go)=>{const ok=()=>{if(bgSet!==set)return; if(img.naturalWidth)go();}; if(img.complete&&img.naturalWidth)return ok(); const waitLoad=()=>{if(img.complete&&img.naturalWidth)ok(); else img.addEventListener('load',ok,{once:true});}; if(img.decode)img.decode().then(ok,waitLoad); else waitLoad();};
   on.onerror=null; off.onerror=null; on.onload=null;
   if(remoteSet(set)){
     // original Medium file, one request. The browser plays a GIF's own timing. No frame split, no retry loop.
     on.onload=function(){if(bgSet!==set)return; on.dataset.fail='';};
     on.onerror=function(){if(bgSet!==set)return; on.dataset.fail='1'; const c=$('cap'); if(c)c.textContent=(set.medium_image_id||set.label||'medium')+' · unavailable';};
-    on.src=set.url; if(vis<0)flip(); whenReady(on,flip);
+    on.src=set.url; whenReady(on,flip);
     $('cap').textContent=(set.medium_image_id||set.label||'')+viewTag(set);
     objsFor(null); clearScene();
     if(window.ThrydMediumCuts) try{ ThrydMediumCuts.attach(set,{image:on, stage:$('stage')}); }catch(e){}
@@ -42,7 +42,7 @@ function backdrop(set,force){ if(!libPin.allow(set))return; if(Date.now()<HOLD)r
   const pre=[]; const preload=()=>{if(bgSet!==set||pre.length)return; for(let i=0;i<set.frames;i++){const im=new Image();im.src=`${set.dir}/f${String(i).padStart(3,'0')}.webp`;pre.push(im);}};
   // advance only to a frame that has fully arrived; otherwise hold the current frame (never a half-loaded black frame)
   const tick=()=>{if(bgI>0&&!shown)return; const im=pre[bgI%set.frames]; if(bgI>0&&!(im&&im.complete&&im.naturalWidth))return; on.src=im?im.src:`${set.dir}/f${String(bgI%set.frames).padStart(3,'0')}.webp`;bgI++;};
-  tick(); if(vis<0)flip(); whenReady(on,()=>{flip();preload();}); $('cap').textContent=(set.label||'')+viewTag(set); objsFor(set);
+  tick(); whenReady(on,()=>{flip();preload();}); $('cap').textContent=(set.label||'')+viewTag(set); objsFor(set);
   bgTimer=setInterval(tick,Math.max(80,set.ms||120));
   bindScene(set);
 }
