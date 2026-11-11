@@ -404,15 +404,17 @@ function maybeBubble(lines,speakers){ CUR.lines=lines; CUR.speakers=speakers; si
   const L=choose(lines); if(!L||!speakers.length)return; say(L,speakers[Math.floor(Math.random()*speakers.length)]);
 }
 function choose(lines){const pool=lines.filter(l=>ok(l.line)); if(!pool.length)return null;
-  if(TDECK.length&&Math.random()<.75){for(let i=0;i<TDECK.length;i++){const t=TDECK[TI++%TDECK.length];if(ok(t.line))return t;}}
+  // only official post embeds are ever shown, so prefer deck rows that can embed (decimal id, not purged)
+  if(TDECK.length){for(let i=0;i<TDECK.length;i++){const t=TDECK[TI++%TDECK.length];if(t.id&&!t.purged&&ok(t.line))return t;}}
   const mv=pool.filter(l=>l.move); const src=(mv.length&&Math.random()<.3)?mv:pool; return src[Math.floor(Math.random()*src.length)];}
 let TDECK=[],TI=0;
 function say(L,who){ const e=ents['c:'+who]; if(!e)return;
   const r=e.getBoundingClientRect(), b=$('bubble'), right=e.classList.contains('r');
-  b.querySelector('.who').textContent=who+(L.src?' · '+L.src:''); b.querySelector('.txt').textContent=L.line;
-  b.classList.toggle('r',right); b.style.left=(right?r.left-innerWidth*.006:r.right+innerWidth*.006)+'px';
-  b.style.top=Math.min(innerHeight*.8,Math.max(innerHeight*.08,r.top+r.height/2))+'px';
-  b.classList.add('on'); const base=Math.min(Math.max(SLIDE*900,4000),7000); if(window.ThrydTweet)ThrydTweet.mount(b,L,base); else {clearTimeout(b._hide); b._hide=setTimeout(()=>b.classList.remove('on'),base);}
+  // never write the speaker label or archive line: the bubble only ever holds the official embed
+  const BW=160,BH=132,M=12; b.querySelector('.who').textContent=''; b.querySelector('.txt').textContent='';
+  b.classList.toggle('r',right); let x=right?r.left-6:r.right+6; x=right?Math.max(BW+M,innerWidth*.75+BW,Math.min(innerWidth-M,x)):Math.max(M,Math.min(innerWidth*.25-BW,innerWidth-BW-M,x)); // keep out of the scene's center half b.style.left=x+'px';
+  b.style.top=Math.min(innerHeight-BH/2-M,Math.max(BH/2+M,r.top+r.height/2))+'px';
+  const base=Math.min(Math.max(SLIDE*900,4000),7000); if(window.ThrydTweet)ThrydTweet.mount(b,L,base); else b.classList.remove('on');
 }
 const everyS=f=>{const g=gen;const run=()=>{const t=setTimeout(()=>{if(g!==gen)return;f();run();},SLIDE*1000);timers.push(t);};run();};
 const every=(f,ms)=>{const g=gen;const t=setInterval(()=>{if(g===gen)f();},ms);timers.push(t);};

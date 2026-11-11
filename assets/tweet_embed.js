@@ -1,14 +1,15 @@
-// Official post embed for the speech bubble. Once an embed is loading or on
-// screen, hide every non-embed node in the bubble (.who, .txt, and .twlink).
-// Archive text and the speaker label are fallback only (no id, purged, or the
-// widget failed or timed out) and never stack with the embed.
+// Official post embed for the speech bubble. The bubble only ever shows the
+// official embed: the speaker label (.who), the archive line (.txt) and the
+// link (.twlink) are never shown in any state. With no id, a purged post, or a
+// widget that fails or times out, the bubble is hidden entirely (no fallback).
+// The bubble only becomes visible (.on) once the embed has rendered.
 // Never invent author, avatar, or metrics.
 // A status id is a decimal string from the archive, never parsed out of prose.
 (function(root){
   var HANDLE = 'notnotnotnotyn';
   var WIDGETS = 'https://platform.twitter.com/widgets.js';
   var READ_MS = 20000;
-  var EMBED_WIDTH = 340;
+  var EMBED_WIDTH = 250; // X clamps createTweet to >=250px; the box is 260x220
 
   function statusId(value){
     if(typeof value !== 'string') return '';
@@ -33,7 +34,7 @@
     deps = deps || {};
     var doc = deps.document || null;
     var twttr = deps.twttr || null;
-    var timeoutMs = deps.timeoutMs == null ? 6000 : deps.timeoutMs;
+    var timeoutMs = deps.timeoutMs == null ? 15000 : deps.timeoutMs;
     var readMs = deps.readMs == null ? READ_MS : deps.readMs;
     var loads = 0;
     var widgetsP = null;
@@ -117,10 +118,18 @@
       for(i=0;i<nodes.length;i++) nodes[i].hidden = !show;
     }
 
+    function blank(host){
+      var n = host.querySelector && host.querySelector('.who'); if(n) n.textContent = '';
+      n = host.querySelector && host.querySelector('.txt'); if(n) n.textContent = '';
+    }
+
+    // no archive fallback: hide the whole bubble and keep the chrome hidden
     function showArchive(host){
       host.classList.remove('embed-wait');
       host.classList.remove('embed-on');
-      setChrome(host, true);
+      host.classList.remove('on');
+      setChrome(host, false);
+      blank(host);
     }
 
     function hideArchive(host){
@@ -144,6 +153,7 @@
       host._tw = my;
       showArchive(host);
       clearSlot(host);
+      linkFor(host, '');
       var id = statusId(item && item.id);
       var purged = !!(item && item.purged);
       if(!host._twStop){
@@ -152,8 +162,7 @@
         host.addEventListener('click', function(ev){ ev.stopPropagation(); });
       }
       if(!id || purged){
-        linkFor(host, id);
-        arm(host, baseMs, my);
+        clearTimeout(host._hide);
         return Promise.resolve({ok: false, reason: id ? 'purged' : 'no_id'});
       }
       hideArchive(host);
@@ -170,13 +179,15 @@
         if(!res || !res.ok){
           showArchive(host);
           if(target.parentNode === slot) slot.removeChild(target);
-          linkFor(host, id);
-          arm(host, Math.max(0, baseMs - (Date.now() - started)), my);
+          clearSlot(host);
+          clearTimeout(host._hide);
           return {ok: false, reason: (res && res.reason) || 'unavailable'};
         }
         host.classList.remove('embed-wait');
         host.classList.add('embed-on');
+        host.classList.add('on');
         setChrome(host, false);
+        arm(host, readMs, my);
         return {ok: true, reason: 'embed'};
       }
       var timed = new Promise(function(resolve){

@@ -53,6 +53,17 @@ function chromeHidden(h, hidden){
   assert.equal(h.txt.hidden, hidden);
 }
 
+
+function isHidden(h){
+  assert.equal(h.bubble.classList.contains('on'), false, 'bubble must be hidden');
+  assert.equal(h.bubble.classList.contains('embed-on'), false);
+  assert.equal(h.bubble.classList.contains('embed-wait'), false);
+  chromeHidden(h, true);
+  assert.equal(h.who.textContent, '');
+  assert.equal(h.txt.textContent, '');
+  assert.equal(h.bubble.querySelector('.twlink'), null);
+}
+
 test('deck rows keep the archive line and only a decimal string id', () => {
   const row = Tw.deckRow({line: 'exact', src: 'tweet 2022', id: '1537852396017180673', purged: false, extra: 1});
   assert.equal(row.line, 'exact');
@@ -65,31 +76,25 @@ test('deck rows keep the archive line and only a decimal string id', () => {
   assert.equal(plain.id, undefined);
   assert.equal(Tw.deckRow({line: 'x', src: 'tweet 2020', id: 20}).id, undefined);
   assert.equal(Tw.postUrl('20'), 'https://x.com/notnotnotnotyn/status/20');
-  assert.equal(Tw.EMBED_WIDTH, 340);
+  assert.equal(Tw.EMBED_WIDTH, 250);
 });
 
-test('no id and a purged id leave the archive text and do not load the script', async () => {
+test('no id and a purged id hide the bubble entirely and do not load the script', async () => {
   const h = host();
+  h.bubble.classList.add('on');
   const api = Tw.create({document: h.doc, timeoutMs: 50, readMs: 1000});
   const none = await api.mount(h.bubble, {line: 'archive line'}, 4000);
   assert.equal(none.reason, 'no_id');
-  assert.equal(h.txt.textContent, 'archive line');
-  assert.equal(h.who.textContent, 'speaker · tweet 2022');
-  assert.equal(h.bubble.classList.contains('embed-on'), false);
-  assert.equal(h.bubble.classList.contains('embed-wait'), false);
-  chromeHidden(h, false);
+  isHidden(h);
   assert.equal(api.loadCount(), 0);
+  h.bubble.classList.add('on');
   const purged = await api.mount(h.bubble, {id: '1537852396017180673', purged: true, line: 'archive line'}, 4000);
   assert.equal(purged.reason, 'purged');
-  assert.equal(h.bubble.querySelector('.twlink').textContent, 'https://x.com/notnotnotnotyn/status/1537852396017180673');
-  assert.equal(h.bubble.classList.contains('embed-on'), false);
-  assert.equal(h.bubble.classList.contains('embed-wait'), false);
-  assert.equal(h.txt.textContent, 'archive line');
-  chromeHidden(h, false);
+  isHidden(h);
   assert.equal(api.loadCount(), 0);
 });
 
-test('a failed widget and a reply after close leave the archive line', async () => {
+test('a failed widget and a reply after close hide the bubble, no archive fallback', async () => {
   const h = host();
   const tw = {widgets: {createTweet(id, target){
     assert.equal(typeof id, 'string');
@@ -99,31 +104,24 @@ test('a failed widget and a reply after close leave the archive line', async () 
   const api = Tw.create({document: h.doc, twttr: tw, timeoutMs: 1000, readMs: 5000});
   const failed = await api.mount(h.bubble, {id: '20'}, 4000);
   assert.equal(failed.reason, 'unavailable');
-  assert.equal(h.txt.textContent, 'archive line');
-  assert.equal(h.who.textContent, 'speaker · tweet 2022');
-  assert.equal(h.bubble.classList.contains('embed-on'), false);
-  assert.equal(h.bubble.classList.contains('embed-wait'), false);
-  chromeHidden(h, false);
+  isHidden(h);
   let late = null;
   const hanging = {widgets: {createTweet(){ return new Promise(function(resolve){ late = resolve; }); }}};
   const api2 = Tw.create({document: h.doc, twttr: hanging, timeoutMs: 1000, readMs: 5000});
   const opened = api2.mount(h.bubble, {id: '1628307842821234689'}, 4000);
   assert.equal(h.bubble.classList.contains('embed-wait'), true);
-  assert.equal(h.bubble.classList.contains('embed-on'), false);
+  assert.equal(h.bubble.classList.contains('on'), false, 'not visible while loading');
   chromeHidden(h, true);
   await new Promise(function(resolve){ setTimeout(resolve, 0); });
   api2.dismiss(h.bubble);
   late(h.doc.createElement('iframe'));
   const closed = await opened;
   assert.equal(closed.reason, 'stale');
-  assert.equal(h.bubble.classList.contains('embed-on'), false);
-  assert.equal(h.bubble.classList.contains('embed-wait'), false);
   assert.equal(h.bubble.querySelector('.twembed').children.length, 0);
-  assert.equal(h.txt.textContent, 'archive line');
-  chromeHidden(h, false);
+  isHidden(h);
 });
 
-test('the widgets script is inserted once', async () => {
+test('the widgets script is inserted once and a timeout hides the bubble', async () => {
   const h = host();
   const api = Tw.create({document: h.doc, timeoutMs: 20, readMs: 100});
   const first = api.mount(h.bubble, {id: '20'}, 4000);
@@ -134,13 +132,15 @@ test('the widgets script is inserted once', async () => {
   const b = await second;
   assert.equal(a.reason, 'stale');
   assert.equal(b.reason, 'timeout');
-  assert.equal(h.txt.textContent, 'archive line');
-  assert.equal(h.bubble.classList.contains('embed-on'), false);
-  assert.equal(h.bubble.classList.contains('embed-wait'), false);
-  chromeHidden(h, false);
+  isHidden(h);
 });
 
-test('a rendered post hides the archive line and uses a fixed width', async () => {
+test('default embed timeout is about 15s', () => {
+  const src = fs.readFileSync(path.join(root, 'assets/tweet_embed.js'), 'utf8');
+  assert.match(src, /deps\.timeoutMs == null \? 15000 :/);
+});
+
+test('a rendered post shows only the embed at width 250', async () => {
   const h = host();
   let calls = 0;
   const tw = {ready(fn){ fn(tw); }, widgets: {createTweet(id, target, opts){
@@ -148,68 +148,63 @@ test('a rendered post hides the archive line and uses a fixed width', async () =
     assert.equal(opts.dnt, true);
     assert.equal(opts.conversation, 'none');
     assert.equal(opts.cards, 'hidden');
-    assert.equal(opts.width, 340);
-    const frame = h.doc.createElement('iframe');
-    target.appendChild(frame);
-    return Promise.resolve(frame);
-  }}};
-  const api = Tw.create({document: h.doc, twttr: tw, timeoutMs: 1000, readMs: 5000});
-  const pending = api.mount(h.bubble, {id: '1450727828719390723'}, 4000);
-  assert.equal(h.bubble.classList.contains('embed-wait'), true);
-  assert.equal(h.bubble.classList.contains('embed-on'), false);
-  assert.equal(h.txt.textContent, 'archive line');
-  assert.equal(h.who.textContent, 'speaker · tweet 2022');
-  chromeHidden(h, true);
-  const a = await pending;
-  const b = await api.mount(h.bubble, {id: '1450727828719390723'}, 4000);
-  assert.equal(a.ok, true);
-  assert.equal(b.ok, true);
-  assert.equal(calls, 2);
-  assert.equal(api.loadCount(), 0);
-  assert.equal(h.txt.textContent, 'archive line');
-  assert.equal(h.who.textContent, 'speaker · tweet 2022');
-  assert.equal(h.bubble.classList.contains('embed-on'), true);
-  assert.equal(h.bubble.classList.contains('embed-wait'), false);
-  chromeHidden(h, true);
-  assert.equal(!!h.bubble.querySelector('.twembed'), true);
-  assert.equal(h.bubble.querySelector('.twembed').hidden, false);
-});
-
-test('the bubble box is fixed and hides the archive line while an embed is up', () => {
-  const css = fs.readFileSync(path.join(root, 'assets/projector.css'), 'utf8');
-  assert.match(css, /\.bubble\.embed-wait,\.bubble\.embed-on\{[^}]*width:min\(340px,calc\(100vw - 24px\)\)/);
-  assert.match(css, /\.bubble\.embed-wait,\.bubble\.embed-on\{[^}]*height:min\(300px,calc\(100vh - 24px\)\)/);
-  assert.match(css, /\.bubble\.embed-wait,\.bubble\.embed-on\{[^}]*overflow:hidden/);
-  assert.match(css, /\.bubble\.embed-wait > :not\(\.twembed\),\.bubble\.embed-on > :not\(\.twembed\)\{display:none\}/);
-  assert.match(css, /\.bubble\.embed-wait \.twembed,\.bubble\.embed-on \.twembed\{[^}]*height:100%/);
-  assert.match(css, /\.bubble\.embed-wait \.twembed,\.bubble\.embed-on \.twembed\{[^}]*overflow:auto/);
-  assert.doesNotMatch(css, /\.bubble\.embed-on\{max-width:min\(280px,92vw\)/);
-});
-
-test('an official embed never stacks the speaker label or archive line above it', async () => {
-  const h = host();
-  const tw = {widgets: {createTweet(id, target){
+    assert.equal(opts.width, 250);
     const frame = h.doc.createElement('iframe');
     target.appendChild(frame);
     return Promise.resolve(frame);
   }}};
   const api = Tw.create({document: h.doc, twttr: tw, timeoutMs: 1000, readMs: 5000});
   const pending = api.mount(h.bubble, {id: '1450727828719390723', line: 'archive line'}, 4000);
-  // nothing but the embed slot is shown while it loads
-  assert.equal(h.who.hidden, true);
-  assert.equal(h.txt.hidden, true);
   assert.equal(h.bubble.classList.contains('embed-wait'), true);
-  const res = await pending;
-  assert.equal(res.ok, true);
-  assert.equal(h.who.hidden, true);
-  assert.equal(h.txt.hidden, true);
+  assert.equal(h.bubble.classList.contains('on'), false);
+  chromeHidden(h, true);
+  assert.equal(h.txt.textContent, '');
+  assert.equal(h.who.textContent, '');
+  const a = await pending;
+  assert.equal(a.ok, true);
+  assert.equal(h.bubble.classList.contains('on'), true);
   assert.equal(h.bubble.classList.contains('embed-on'), true);
-  // fallback replaces the embed instead of stacking
+  chromeHidden(h, true);
+  assert.equal(h.txt.textContent, '');
+  assert.equal(h.who.textContent, '');
+  assert.equal(h.bubble.querySelector('.twlink'), null);
+  const b = await api.mount(h.bubble, {id: '1450727828719390723'}, 4000);
+  assert.equal(b.ok, true);
+  assert.equal(calls, 2);
+  assert.equal(api.loadCount(), 0);
+  // a later failure replaces the embed with nothing (hidden), never with text
   const failApi = Tw.create({document: h.doc, twttr: {widgets:{createTweet(){ return Promise.resolve(null); }}}, timeoutMs: 1000, readMs: 5000});
   const fallback = await failApi.mount(h.bubble, {id: '20', line: 'archive line'}, 4000);
   assert.equal(fallback.ok, false);
-  assert.equal(h.who.hidden, false);
-  assert.equal(h.txt.hidden, false);
-  assert.equal(h.bubble.classList.contains('embed-on'), false);
   assert.equal(h.bubble.querySelector('.twembed').children.length, 0);
+  isHidden(h);
+});
+
+test('the bubble is a small fixed 160x132 box in every state and never shows label, line or link', () => {
+  const css = fs.readFileSync(path.join(root, 'assets/projector.css'), 'utf8');
+  const base = css.match(/\.bubble\{[^}]*\}/)[0];
+  for (const r of [/width:160px/, /height:132px/, /max-width:160px/, /max-height:132px/, /overflow:hidden/]) assert.match(base, r);
+  assert.doesNotMatch(base, /\d(vw|vh)/, 'no viewport units on the bubble box, so full screen cannot grow it');
+  assert.match(css, /\.bubble\.on\{opacity:\.82/);
+  assert.match(css, /:fullscreen \.bubble[^{]*\{width:160px!important;height:132px!important/);
+  assert.match(css, /\.bubble \.who,\.bubble \.txt,\.bubble \.twlink,\.bubble > :not\(\.twembed\)\{display:none!important\}/);
+  assert.match(css, /\.bubble \.twembed\{[^}]*zoom:\.6;width:250px;height:203px;overflow-x:hidden;overflow-y:auto/);
+  assert.doesNotMatch(css, /embed-wait,\.bubble\.embed-on\{width:min\(340px/);
+});
+
+test('projector keeps the popup out of the scene center half', () => {
+  const js = fs.readFileSync(path.join(root, 'assets/projector.js'), 'utf8');
+  assert.match(js, /const BW=160,BH=132,M=12;/);
+  assert.match(js, /innerWidth\*\.75\+BW/);
+  assert.match(js, /innerWidth\*\.25-BW/);
+});
+
+test('projector say() never writes the speaker label or archive line', () => {
+  const js = fs.readFileSync(path.join(root, 'assets/projector.js'), 'utf8');
+  const say = js.slice(js.indexOf('function say('), js.indexOf('const everyS='));
+  assert.doesNotMatch(say, /\.who'\)\.textContent=who/);
+  assert.doesNotMatch(say, /\.txt'\)\.textContent=L\.line/);
+  assert.match(say, /\.who'\)\.textContent=''/);
+  assert.match(say, /\.txt'\)\.textContent=''/);
+  assert.doesNotMatch(say, /classList\.add\('on'\)/, 'only tweet_embed shows the bubble, after the embed renders');
 });
