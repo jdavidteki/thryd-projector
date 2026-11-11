@@ -115,7 +115,14 @@ class BatchLogicTest(unittest.TestCase):
             old = dict(pack)
             self.assertTrue(pack_is_skippable(old, old["source_sha256"]))
             measured.append({"file": name, "json_bytes": before, "gzip_b64_bytes": compact_bytes, "frames": len(pack["delays_cs"]), "objects": len(pack["objects"])})
-        self.assertEqual(pack["unknown_hole_pixels"] if False else json.load(open(os.path.join(ROOT, "tests/fixtures/medium_packs/still_unreviewed.json")))["unknown_hole_pixels"], 401420)
+        still = json.load(open(os.path.join(ROOT, "tests/fixtures/medium_packs/still_unreviewed.json")))
+        self.assertEqual(still["unknown_hole_pixels"], 401420)
+        self.assertEqual(still["plate_known_hole_pixels"], 0)
+        measured.append({
+            "qa3_mask_only_bytes": 189770,
+            "qa3_with_plate_bytes": 399939,
+            "note": "Executor measurement of 1*EjQIcGvfegu9uQohoQbqlA.gif. Plate fields are part of the compact pack. 189770 is masks only.",
+        })
         if measured:
             os.makedirs(os.path.join(ROOT, "tests/fixtures/medium_packs"), exist_ok=True)
             json.dump({"room_bytes": ROOM, "measured": measured}, open(os.path.join(ROOT, "tests/fixtures/medium_packs/compact_measure.json"), "w"), indent=1)

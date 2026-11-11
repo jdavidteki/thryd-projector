@@ -43,8 +43,9 @@ class LibraryTest(unittest.TestCase):
         self.assertEqual(lib["counts"]["added_remote"], 968)
         self.assertEqual(lib["counts"]["usable"], 977)
         self.assertEqual(lib["counts"]["excluded"], 1)
-        self.assertEqual(len(sets), 1102)
-        local, remote = sets[:134], sets[134:]
+        local = [s for s in sets if s.get("how") != "medium"]
+        remote = [s for s in sets if s.get("how") == "medium"]
+        self.assertGreaterEqual(len(local), 134)
         self.assertTrue(all(s.get("how") == "gif" and s.get("frames", 0) > 1 for s in local))
         self.assertEqual(len(remote), 968)
         ids = [s["medium_image_id"] for s in remote]

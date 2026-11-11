@@ -115,7 +115,14 @@
       const why = checkObject(objects[i], kind, frameCount, w, h);
       if(why) return reject(why);
     }
-    return {ok:true, reason:null, kind, frameCount, width:w, height:h, delays_cs: kind === 'gif' ? row.delays_cs.slice() : [0], objects};
+    let plate = null, plateKnown = null;
+    const plateB64 = row.plate_gzip_b64 || row.plate_deflate_b64;
+    const rawPlate = row.plate_rgba || (plateB64 ? gunzip(b64bytes(plateB64)) : null);
+    if(rawPlate && row.plate_known_bits){
+      const known = unpackMask(row.plate_known_bits, w, h);
+      if(rawPlate.length === w * h * 4 && known){ plate = rawPlate; plateKnown = known; }
+    }
+    return {ok:true, reason:null, kind, frameCount, width:w, height:h, delays_cs: kind === 'gif' ? row.delays_cs.slice() : [0], objects, plate, plateKnown};
   }
 
   function delaysMatch(parsed, delays){
@@ -166,8 +173,9 @@
       const rgba = source[f] && source[f].rgba;
       if(!rgba || rgba.length < plan.width * plan.height * 4) return reject('mask_size');
       const masks = plan.objects.map(obj=> (obj.masks || [obj.mask])[plan.kind === 'gif' ? f : 0]);
-      const plateSrc = plan.objects.find(o=>o.plate);
-      const drawn = compose(source[f].rgba, plan.width, plan.height, masks, plateSrc ? {rgba:plateSrc.plate, known:plateSrc.plate_known} : null);
+      const objPlate = plan.objects.find(o=>o.plate && o.plate_known);
+      const plateSrc = plan.plate ? {rgba:plan.plate, known:plan.plateKnown} : (objPlate ? {rgba:objPlate.plate, known:objPlate.plate_known} : null);
+      const drawn = compose(source[f].rgba, plan.width, plan.height, masks, plateSrc);
       frames.push({delayCs: plan.kind === 'gif' ? plan.delays_cs[f] : 0, playMs: playMs(plan.kind === 'gif' ? plan.delays_cs[f] : 0), plate:drawn.plate, sprites:drawn.sprites});
     }
     return {ok:true, reason:null, width:plan.width, height:plan.height, frames};
@@ -251,6 +259,16 @@
         raw = new Uint8Array(await new Response(stream).arrayBuffer());
       }
       if(raw) obj.masks = readMaskBlob(raw, obj.mask_count || 0);
+    }
+    const plateB64 = row && (row.plate_gzip_b64 || row.plate_deflate_b64);
+    if(plateB64 && !row.plate_rgba){
+      let raw = gunzip(b64bytes(plateB64));
+      if(!raw && typeof DecompressionStream === 'function'){
+        const ds = new DecompressionStream('gzip');
+        const stream = new Blob([b64bytes(plateB64)]).stream().pipeThrough(ds);
+        raw = new Uint8Array(await new Response(stream).arrayBuffer());
+      }
+      if(raw) row.plate_rgba = raw;
     }
     return row;
   }
@@ -457,7 +475,7 @@
             const one = decodeGif(playback.bytes, {only: shown});
             const rgba = one.frames[one.frames.length - 1].rgba;
             const masks = playback.plan.objects.map(obj=>obj.masks[shown]);
-            const drawn = compose(rgba, playback.width, playback.height, masks, null);
+            const drawn = compose(rgba, playback.width, playback.height, masks, playback.plan.plate ? {rgba:playback.plan.plate, known:playback.plan.plateKnown} : null);
             frame = {plate: drawn.plate, sprites: drawn.sprites, playMs: playback.frames[shown].playMs};
           }
           paintFrame(layer, frame);

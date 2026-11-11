@@ -519,13 +519,14 @@ def build_pack(path, job, segmenter, proof_dir=None):
     }
     if kind == "still":
         pack.pop("delays_cs")
-    if proof_dir and int(known_hole.sum()):
-        # store only the known-hole colors, zlib, so the loader can fill those pixels
-        import zlib
+    if int(known_hole.sum()):
+        # Observed colors only. gzip so the browser DecompressionStream('gzip') can read it.
+        import gzip
         raw = np.ascontiguousarray(plate).tobytes()
         known_bits = _pack_full(known_hole)
-        pack["plate_deflate_b64"] = base64.b64encode(zlib.compress(raw, 9)).decode("ascii")
+        pack["plate_gzip_b64"] = base64.b64encode(gzip.compress(raw, compresslevel=9)).decode("ascii")
         pack["plate_known_bits"] = known_bits
+        pack["plate_encoding"] = "gzip-rgba-v1"
     if proof_dir:
         _write_proof(proof_dir, decoded_path=path, kind=kind, unions=unions, plate=plate, known_hole=known_hole, objects_masks=[tr["masks"] for tr in stable])
     return pack

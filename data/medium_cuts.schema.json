@@ -29,7 +29,8 @@
   "sprite": "The visible sprite is the mask's ink, cropped tight. Pixels outside the mask are not copied. A bbox without a mask is rejected. A mask that covers 99.5% or more of the frame is rejected.",
   "storage_gate": "admit(measuredBytes) allows a pack only when measuredBytes <= 1073741824 - 791846092 - 41943040 = 239952692. Those three figures are the published byte count, the 1024MiB cap, and the 40MiB reserve. Unmeasured packs are not admitted. Over-budget packs stay budget_failed. An automatic pack is unreviewed, not ready. Per-frame full images are not a mask pack.",
   "statuses_from_builder": ["unreviewed", "no_object", "unstable", "unusable_near_full", "budget_failed", "failed", "partial"],
-  "ready": "ready is not set because a file exists. A reviewer has to mark reviewed true.",
+  "ready": "ready is not set because a file exists. A reviewer has to mark reviewed true. Fringe, halo, and leftover pixels keep a pack unreviewed.",
+  "decompress": "Masks and plates are gzip (bytes 1f 8b). The page uses zlib.gunzipSync in Node and DecompressionStream('gzip') in the browser (Chrome 80+, Firefox 113+, Safari 16.4+). Without that stream the original image stays on screen and the cut is not mounted.",
   "at_rest": "Until a pack is ready, the original Medium URL plays in the img, including a GIF's own timing. A ready pack replaces that view with the same pixels: the plate is the frame with the subject removed, and the sprite is the subject's original pixels at the home position.",
   "ghost": "Dragging changes only the sprite offset. The plate is already without the subject, so the backdrop does not keep a copy. A static patch is not used on an animated subject."
 }

@@ -123,6 +123,34 @@ test('an invented plate is refused and an observed plate fills only known pixels
   assert.equal(play.frames[0].plate[other+2], 255);
 });
 
+test('a gzip plate fills only known pixels and leaves the rest transparent', () => {
+  const zlib = require('node:zlib');
+  const w = 2, h = 2;
+  const rgba = Uint8ClampedArray.from([10, 0, 0, 255, 20, 0, 0, 255, 30, 0, 0, 255, 40, 0, 0, 255]);
+  const mask = [1, 0, 1, 0];
+  const known = [1, 0, 0, 0];
+  const fill = Uint8ClampedArray.from([1, 2, 3, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
+  const drawn = M.compose(rgba, w, h, [mask], {rgba: fill, known});
+  assert.equal(drawn.plate[0], 1);
+  assert.equal(drawn.plate[3], 255);
+  assert.equal(drawn.plate[8 + 3], 0);
+  assert.notEqual(drawn.plate[8], 255);
+  const gz = zlib.gzipSync(Buffer.from(fill));
+  assert.equal(gz[0], 0x1f);
+  assert.equal(gz[1], 0x8b);
+  const row = {
+    medium_image_id: '1*cut.gif', kind: 'gif', status: 'ready', frame_size: [2, 2], delays_cs: [10],
+    plate_gzip_b64: gz.toString('base64'),
+    plate_known_bits: {x: 0, y: 0, w: 2, h: 1, bits: Buffer.from([0b10000000]).toString('base64')},
+    objects: [{label: 'cut1', masks: [mask]}],
+  };
+  const plan = M.forSet(set, {assets: [row]});
+  assert.equal(plan.ok, true);
+  assert.equal(plan.plate[0], 1);
+  assert.equal(plan.plateKnown[0], 1);
+  assert.equal(plan.plateKnown[2], 0);
+});
+
 test('an unreviewed pack is not mounted and a packed mask round-trips', () => {
   const held = row({status:'unreviewed'});
   assert.equal(M.forSet(set, {assets:[held]}).reason, 'unreviewed');
