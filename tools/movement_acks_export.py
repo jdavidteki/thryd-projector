@@ -1,12 +1,12 @@
 """Copy movement acks into a state export only for the same run.
 
-The live export_state.py is not in this repo (only historical .bak copies).
-The persistent source pipeline should call movement_acks_for_state(RUN, doc)
-and set state["movement_acks"] to the result. A file whose run differs from
-the state run contributes no event ids.
+export_state.py is not published (the sync excludes *.py). The box patch
+patches/export_state_acks.patch calls load_movement_acks(state_run, path)
+with path f"{run_dir}/run/movement_acks.json" and stores the returned
+envelope on state["movement_acks"]. A file whose run differs from the
+state run contributes no event ids.
 
-  ack_path = f"{RUN}/run/movement_acks.json"   # {run, movement_acks:[event_id, ...]}
-  state["movement_acks"] = movement_acks_for_state(RUN, json.load(open(ack_path)))
+  {"run": "<same as state.run>", "movement_acks": ["<event_id>", ...]}
 """
 import json
 import os

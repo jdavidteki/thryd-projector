@@ -1,0 +1,15 @@
+--- a/restart.sh	2026-11-11 14:04:21.193982396 +0000
++++ b/restart.sh	2026-11-11 14:04:21.197982399 +0000
+@@ -1,5 +1,12 @@
+ #!/bin/bash
+ # restart the thryd drag validator (127.0.0.1:8787) + HTTPS relay via ntfy.sh; publishes endpoint info to the projector's data/drag.json
++# Hold file is checked on every invocation. The running sync calls this path, so this applies
++# even when sync_pages.sh is still the copy loaded in memory. Absent file keeps the old behavior.
++HOLD="${THRYD_DRAG_RESTART_HOLD:-/workspace/thryd-drag/RESTART_HOLD}"
++if [ -f "$HOLD" ]; then
++  echo "restart skipped: $HOLD" >&2
++  exit 0
++fi
+ D=/workspace/thryd-drag; cd $D
+ pkill -f "$D/server.py"; pkill -f "$D/relay.py"; pkill -f "cloudflared tunnel"; sleep 1
+ nohup python3 $D/server.py >>$D/server.log 2>&1 &

@@ -1,0 +1,22 @@
+--- a/export_state.py	2026-11-11 14:04:21.193982396 +0000
++++ b/export_state.py	2026-11-11 14:04:21.197982399 +0000
+@@ -253,8 +253,18 @@
+         if f.get("status")=="paid_off": o["evidence"]=evidence(f)
+         out.append(o)
+     return {"source":"foreshadows.json (foreshadow.py)","open":[o for o in out if o["status"]=="open"],"paid_off":[o for o in out if o["status"]=="paid_off"]}
++def _movement_acks(d):
++    """Attach RUN/run/movement_acks.json only when its run matches this state. Never invent ids."""
++    run = d.get("run") if isinstance(d, dict) else None
++    try:
++        sys.path.insert(0, os.path.join(HERE, "tools"))
++        from movement_acks_export import load_movement_acks
++        d["movement_acks"] = load_movement_acks(run, f"{R}/run/movement_acks.json")
++    except Exception:
++        d["movement_acks"] = {"run": run, "movement_acks": []}
++    return d
+ def write(out):
+-    d=export()
++    d=_movement_acks(export())
+     try:  # prophecy targets (tools/miracles.py): open + fulfilled, from real state only
+         sys.path.insert(0,os.path.join(HERE,"tools")); import miracles
+         d["miracles"]=miracles.for_state(miracles.run(R,sys.modules[__name__]))

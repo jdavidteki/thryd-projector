@@ -1,0 +1,15 @@
+--- a/sync_pages.sh	2026-11-11 14:04:21.193982396 +0000
++++ b/sync_pages.sh	2026-11-11 14:04:21.197982399 +0000
+@@ -2,7 +2,11 @@
+ # Builds a publish copy of the projector into /workspace/thryd-pages and pushes changes.
+ SRC=/workspace/thryd-projector; DST=/workspace/thryd-pages
+ build() {
+-  { pgrep -f /workspace/thryd-drag/server.py && pgrep -f /workspace/thryd-drag/relay.py; } >/dev/null || bash /workspace/thryd-drag/restart.sh >/dev/null 2>&1
++  # RESTART_HOLD is read from disk each build. Skip restart.sh only; publishing below still runs.
++  # The already-loaded build() may not see this edit. restart.sh checks the same file.
++  if [ ! -f "${THRYD_DRAG_RESTART_HOLD:-/workspace/thryd-drag/RESTART_HOLD}" ]; then
++    { pgrep -f /workspace/thryd-drag/server.py && pgrep -f /workspace/thryd-drag/relay.py; } >/dev/null || bash /workspace/thryd-drag/restart.sh >/dev/null 2>&1
++  fi
+   python3 "$SRC/export_state.py" >/dev/null 2>&1 || true
+   python3 "$SRC/tools/export_live_extra.py" >/dev/null 2>&1 || true
+   bash "$SRC/tools/autocut_new.sh" >/dev/null 2>&1 || true
