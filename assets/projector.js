@@ -35,10 +35,18 @@ function backdrop(set,force){ if(!libPin.allow(set))return; if(Date.now()<HOLD)r
     // original Medium file, one request. The browser plays a GIF's own timing. No frame split, no retry loop.
     on.onload=function(){if(bgSet!==set)return; on.dataset.fail='';};
     on.onerror=function(){if(bgSet!==set)return; on.dataset.fail='1'; const c=$('cap'); if(c)c.textContent=(set.medium_image_id||set.label||'medium')+' · unavailable';};
-    on.src=set.url; whenReady(on,flip);
+    on.src=set.url;
     $('cap').textContent=(set.medium_image_id||set.label||'')+viewTag(set);
     objsFor(null); clearScene();
-    if(window.ThrydMediumCuts) try{ const ap=ThrydMediumCuts.attach(set,{image:on, stage:$('stage')}); if(ap&&ap.then)ap.then(r=>{if(r&&r.ok)revealStage();}); }catch(e){}
+    // keep loading, and don't flip the raw GIF, until cut layers are on stage (or attach fails)
+    const afterCuts=r=>{ if(r&&r.ok) revealStage(); else whenReady(on,flip); };
+    if(window.ThrydMediumCuts){
+      try{
+        const ap=ThrydMediumCuts.attach(set,{image:on, stage:$('stage')});
+        if(ap&&ap.then) ap.then(afterCuts,()=>whenReady(on,flip));
+        else afterCuts();
+      }catch(e){ whenReady(on,flip); }
+    }else whenReady(on,flip);
     return;
   }
   // frame 0 first (it goes straight into the hidden image); the rest preload once it is up, so a slow link isn't split 40 ways

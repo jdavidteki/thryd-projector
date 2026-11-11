@@ -670,7 +670,11 @@
     const image = opts.image;
     const ready = opts.manifest ? Promise.resolve(opts.manifest) : loadManifest(opts.fetch);
     return ready.then(async manifest=>{
-      if(manifest && manifest.assets) await Promise.all(manifest.assets.map(expandRow));
+      if(manifest && manifest.assets){
+        const need=manifest.assets.find(a=>a && a.medium_image_id===set.medium_image_id);
+        if(need) await expandRow(need);
+        Promise.all(manifest.assets.map(a=>a===need?null:expandRow(a))).catch(()=>{});
+      }
       const plan = forSet(set, manifest);
       if(!plan.ok || my !== token) return plan;
       const hold = frameHoldBytes(plan.width, plan.height, plan.frameCount);
