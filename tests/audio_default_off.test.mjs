@@ -46,19 +46,25 @@ function loadExtras(opts){
     removeItem(k){ delete store[k]; },
   };
   const fakeIDBRequest = () => {
-    const store = {
+    const storeObj = {
       put(){},
       delete(){},
       getAll(){ return { result: [] }; },
     };
-    const tx = { objectStore(){ return store; }, oncomplete: null, onerror: null };
+    const tx = { objectStore(){ return storeObj; }, oncomplete: null, onerror: null };
     const db = { transaction(){ return tx; } };
     const r = { result: db, onupgradeneeded: null, onsuccess: null, onerror: null };
-    queueMicrotask(() => { if(r.onsuccess) r.onsuccess(); });
     return r;
   };
   const ctx = {
-    console, Date, Math, JSON, Promise, Object, Array, String, Number, Boolean, Error, TypeError, setTimeout, clearTimeout, setInterval, clearInterval, queueMicrotask, URLSearchParams, URL,
+    console, Date, Math, JSON, Promise, Object, Array, String, Number, Boolean, Error, TypeError,
+    // Do not schedule real timers: extras starts a speech loop that would keep the test process alive.
+    setTimeout(){ return 0; },
+    clearTimeout(){},
+    setInterval(){ return 0; },
+    clearInterval(){},
+    queueMicrotask(){},
+    URLSearchParams, URL,
     location: { search: (opts && opts.search) || '' },
     document: {
       getElementById(id){ return ids[id] || null; },
