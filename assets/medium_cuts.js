@@ -495,6 +495,7 @@
             const drawn = compose(rgba, playback.width, playback.height, masks, playback.plan.plate ? {rgba:playback.plan.plate, known:playback.plan.plateKnown} : null);
             frame = {plate: drawn.plate, sprites: drawn.sprites, playMs: playback.frames[shown].playMs};
           }
+          layer._frame = frame;
           paintFrame(layer, frame);
           const wait = playback.frames[shown].playMs;
           shown = (shown + 1) % playback.frames.length;
@@ -510,7 +511,7 @@
         layer.addEventListener('pointermove', ev=>{
           const d = layer._drag; if(!d) return;
           layer._off[d.i] = {x:d.ox + (ev.clientX - d.sx), y:d.oy + (ev.clientY - d.sy)};
-          paintFrame(layer, playback.frames[layer._shown || 0]);
+          if(layer._frame) paintFrame(layer, layer._frame);
         });
         layer.addEventListener('pointerup', ()=>{ layer._drag = null; });
         layer.addEventListener('pointercancel', ()=>{ layer._drag = null; });
