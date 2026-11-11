@@ -241,10 +241,13 @@ test('missing ok or committed is not a durable accept', async () => {
 test('verified rows map only the two run-5a58c4 cuts and no places', async () => {
   const doc = JSON.parse(fs.readFileSync(path.join(root, 'data/object_map_rows_v1.json'), 'utf8'));
   const loaded = M.loadMapDoc(doc);
-  assert.equal(loaded.cuts.length, 4);
-  assert.deepEqual([...new Set(loaded.cuts.map(c => c.object_id))].sort(), ['dez_5a58c4', 'marisol_5a58c4']);
-  assert.ok(loaded.cuts.every(c => c.run === 'run-5a58c4'));
+  assert.equal(loaded.cuts.length, 2);
+  assert.deepEqual(loaded.cuts.map(c => c.object_id).sort(), ['dez_5a58c4', 'marisol_5a58c4']);
+  assert.ok(loaded.cuts.every(c => c.run === 'run-5a58c4' && !c.scene.startsWith('run-')));
   assert.deepEqual(loaded.placeIds, {});
+  const aliasDoc = JSON.parse(fs.readFileSync(path.join(root, 'tests/fixtures/object_map_rows_alias_fixture.json'), 'utf8'));
+  assert.equal(aliasDoc.cuts.length, 4);
+  assert.notDeepEqual(doc, aliasDoc);
   const { api } = mv({ cutMap: [], placeIds: null });
   assert.equal(api.loadMap(doc), true);
   const current = await api.commit({
@@ -260,7 +263,14 @@ test('verified rows map only the two run-5a58c4 cuts and no places', async () =>
   assert.equal(dez.body.frame, 'j6');
   assert.equal(dez.body.scene, '/workspace/run-5a58c4/run/views/j6.gif');
   assert.equal(dez.body.cut, 'Dez');
-  const alias = await api.commit({
+  const notInExport = await api.commit({
+    kind: 'scene', sceneKey: 'run-5a58c4/j6', cut: 'Dez',
+    fromPercent: { x: 12, y: 12 }, toPercent: { x: 22, y: 14 },
+  });
+  assert.equal(notInExport.hold, 'unmapped');
+  const aliasApi = mv({ cutMap: [], placeIds: null }).api;
+  assert.equal(aliasApi.loadMap(aliasDoc), true);
+  const alias = await aliasApi.commit({
     kind: 'scene', sceneKey: 'run-5a58c4/j6', cut: 'Dez',
     fromPercent: { x: 12, y: 12 }, toPercent: { x: 22, y: 14 },
   });
