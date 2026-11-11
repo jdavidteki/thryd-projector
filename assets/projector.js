@@ -20,6 +20,7 @@ function remoteSet(set){return !!(set&&set.how==='medium'&&set.remote&&set.url);
 function backdrop(set,force){ if(Date.now()<HOLD)return; stageN++;
   const ug=window.THRYD_UG; if(ug.length&&stageN%3===0){return showUser(ug[Math.floor(stageN/3)%ug.length]);}
   if(!set||(!force&&bgSet&&bgSet.dir===set.dir))return; bgSet=set;bgI=0; $('ug').classList.remove('on');
+  if(window.ThrydMediumCuts) try{ ThrydMediumCuts.detach(); }catch(e){}
   clearInterval(bgTimer); bgTimer=null; const imgs=[$('bgA'),$('bgB')];
   bgFlip^=1; const on=imgs[bgFlip],off=imgs[bgFlip^1];
   on.onerror=null; off.onerror=null; on.onload=null;
@@ -29,7 +30,9 @@ function backdrop(set,force){ if(Date.now()<HOLD)return; stageN++;
     on.onerror=function(){if(bgSet!==set)return; on.dataset.fail='1'; const c=$('cap'); if(c)c.textContent=(set.medium_image_id||set.label||'medium')+' · unavailable';};
     on.src=set.url; on.classList.add('on'); off.classList.remove('on');
     $('cap').textContent=(set.medium_image_id||set.label||'')+viewTag(set);
-    objsFor(null); clearScene(); return;
+    objsFor(null); clearScene();
+    if(window.ThrydMediumCuts) try{ ThrydMediumCuts.attach(set,{image:on, stage:$('stage')}); }catch(e){}
+    return;
   }
   for(let i=0;i<set.frames;i++){const im=new Image();im.src=`${set.dir}/f${String(i).padStart(3,'0')}.webp`;}
   const tick=()=>{on.src=`${set.dir}/f${String(bgI%set.frames).padStart(3,'0')}.webp`;bgI++;};
@@ -269,7 +272,7 @@ async function loadRGifs(){try{(await J('data/replays.json')).runs.forEach(r=>RG
 function fitLayer(){if(!objLayer||!objLayer._fs)return;const st=$('stage'),W=st.clientWidth,H=st.clientHeight,[fw,fh]=objLayer._fs;
   const k=Math.max(W/fw,H/fh),w=fw*k,h=fh*k;Object.assign(objLayer.style,{width:w+'px',height:h+'px',left:(W-w)/2+'px',top:(H-h)/2+'px'});} // cover
 const DPOS=JSON.parse(localStorage.getItem('thryd_dpos')||'{}');
-function objsFor(set){const [k,e0]=set?lookup(set):[null,null]; if(k===objKey&&objLayer)return; objKey=k;
+function objsFor(set){ if(set&&remoteSet(set)) set=null; const [k,e0]=set?lookup(set):[null,null]; if(k===objKey&&objLayer)return; objKey=k;
   if(objLayer){const old=objLayer;old.classList.remove('on');old.classList.add('gone');setTimeout(()=>old.remove(),2600);objLayer=null;}
   const e=e0; if(!e)return;
   const L=document.createElement('div');L.id='objs';L._fs=e.frame_size||[480,270];L.dataset.key=k;
