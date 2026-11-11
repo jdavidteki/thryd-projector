@@ -412,11 +412,11 @@ function say(L,who){ const e=ents['c:'+who]; if(!e)return;
   b.querySelector('.who').textContent=who+(L.src?' · '+L.src:''); b.querySelector('.txt').textContent=L.line;
   b.classList.toggle('r',right); b.style.left=(right?r.left-innerWidth*.006:r.right+innerWidth*.006)+'px';
   b.style.top=Math.min(innerHeight*.8,Math.max(innerHeight*.08,r.top+r.height/2))+'px';
-  b.classList.add('on'); setTimeout(()=>b.classList.remove('on'),Math.min(Math.max(SLIDE*900,4000),7000));
+  b.classList.add('on'); const base=Math.min(Math.max(SLIDE*900,4000),7000); if(window.ThrydTweet)ThrydTweet.mount(b,L,base); else {clearTimeout(b._hide); b._hide=setTimeout(()=>b.classList.remove('on'),base);}
 }
 const everyS=f=>{const g=gen;const run=()=>{const t=setTimeout(()=>{if(g!==gen)return;f();run();},SLIDE*1000);timers.push(t);};run();};
 const every=(f,ms)=>{const g=gen;const t=setInterval(()=>{if(g===gen)f();},ms);timers.push(t);};
-function reset(){gen++;timers.forEach(t=>{clearInterval(t);clearTimeout(t);});timers=[];Object.keys(ents).forEach(k=>{ents[k].remove();delete ents[k];});regionsKey='';$('bubble').classList.remove('on');}
+function reset(){gen++;timers.forEach(t=>{clearInterval(t);clearTimeout(t);});timers=[];Object.keys(ents).forEach(k=>{ents[k].remove();delete ents[k];});regionsKey='';$('bubble').classList.remove('on'); if(window.ThrydTweet)ThrydTweet.dismiss($('bubble'));}
 // ---------- LIVE from state.json
 let localPrec=[];
 const PFULL={}, PEND={};  // short heading -> full place; pending drags {id:{region,until}}
@@ -556,7 +556,7 @@ addEventListener('resize',()=>{regionsKey='';});
   const mu=$('mute'); if(mu){mu.addEventListener('click',()=>{if(!window.ThrydKeep)return; const off=String(mu.textContent||'').indexOf('off')>=0; try{ThrydKeep.saveSettings({mute:off?1:0});}catch(err){}});}
   try{(await J('assets/runs/media.json')).runs.forEach(r=>runMedia[r.run]=r.media);}catch(e){}
   try{localPrec=(await J('data/precisions.json')).map(p=>({line:p.line,src:p.src,move:p.move}));}catch(e){}
-  try{const T=(await J('data/tweets_all.json')).map(p=>({line:p.line,src:p.src,move:false}));for(let i=T.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[T[i],T[j]]=[T[j],T[i]];}TDECK=T;TI=0;}catch(e){}
+  try{const T=(await J('data/tweets_all.json')).map(p=>window.ThrydTweet?ThrydTweet.deckRow(p):{line:p.line,src:p.src,move:false});for(let i=T.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[T[i],T[j]]=[T[j],T[i]];}TDECK=T;TI=0;}catch(e){}
   await loadTimeline(); ensureSceneTimer(); setInterval(()=>{loadTimeline();},30000);
   await loadDrags(); ensureCmTimer(); setInterval(()=>{loadDrags();},60000);
   setInterval(()=>{pollNtfyDrags();},30000); setTimeout(()=>{pollNtfyDrags();},2500);
