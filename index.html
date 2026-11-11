@@ -13,7 +13,7 @@
 <div id="user"></div>
 <div id="ticker"><div class="world" id="world">—</div><div class="upd" id="upd">loading</div><div class="meta" id="meta"></div><div class="cmove" id="cmove" style="display:none"></div></div>
 
-<script>/* loader: fresh JS on every load, in order */(function(){var t=Date.now();['projector.js?v=57','extras.js?v=50','alive.js?v=50'].forEach(function(f){var e=document.createElement('script');e.src='assets/'+f+'&t='+t;e.async=false;document.body.appendChild(e);});})();</script>
+<script>/* loader: fresh JS on every load, in order */(function(){var t=Date.now();['slide_clock.js?v=1','projector.js?v=57','extras.js?v=50','alive.js?v=50'].forEach(function(f){var e=document.createElement('script');e.src='assets/'+f+'&t='+t;e.async=false;document.body.appendChild(e);});})();</script>
 <script>/* auto-update: reload when shipped code changes (checks every 45s; waits until nobody is dragging) */(function(){var CV='c63cae2153';if(CV.indexOf('__')===0)return;
 function idle(){var b=document.body.classList;return !b.contains('dragmode')&&!document.querySelector('#objs .dob.lifting,#objs .dob[data-held="1"]');}
 setInterval(function(){fetch('https://raw.githubusercontent.com/jdavidteki/thryd-projector/main/data/codever.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).then(function(j){if(j&&j.v&&j.v!==CV&&idle()){var u=new URL(location.href);u.searchParams.set('v',j.v);location.replace(u.toString());}}).catch(function(){});},45000);})();</script>

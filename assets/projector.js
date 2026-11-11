@@ -28,12 +28,37 @@ function backdrop(set,force){ if(Date.now()<HOLD)return; stageN++;
   bindScene(set);
 }
 let POOL=[],poolI=0,LXTRA=[],CUR_RUN=null; const RUNX=()=>LXTRA.filter(x=>CUR_RUN&&x.run===CUR_RUN);
-// slide speed: 8s default, 30s, 60s (?slide=30 or the bar select; remembered)
-let SLIDE=+(Q.get('slide')||localStorage.getItem('thryd_slide')||8); if(![8,30,60].includes(SLIDE))SLIDE=8; let slideT=null;
+// slide speed: 8s default, 30s, 60s (?slide= or the bar select; remembered).
+// Bind the control here, before any fetch. The menu's first option is 8s, so waiting
+// until media JSON loads left "8s" showing while a stored 30s interval was already armed.
+// Choosing that already-shown 8s does not fire change, so the 30s interval kept running.
+const SlideClock=window.ThrydSlideClock;
+let SLIDE=(function(){let stored=null;try{stored=localStorage.getItem('thryd_slide');}catch(e){}
+  const raw=Q.get('slide')||stored||8; return SlideClock?SlideClock.parseSlide(raw,8):([8,30,60].includes(+raw)?+raw:8);})();
+let slideClock=null, onSlideDurationChange=()=>{};
 const NEWEST=()=>RUNX().length?RUNX().slice().sort((a,b)=>(b.mtime||0)-(a.mtime||0))[0]:null; let slideN=0;
 // newest live view comes back every 3rd slide; others cycle in between
-function startSlide(){clearInterval(slideT);slideT=setInterval(()=>{if(POOL.length>1){slideN++;const nw=MODE==='live'&&NEWEST();if(nw&&slideN%3===0&&bgSet&&bgSet.dir!==nw.dir){backdrop(nw,true);return;}poolI=(poolI+1)%POOL.length;if(nw&&POOL[poolI]===nw&&POOL.length>2)poolI=(poolI+1)%POOL.length;backdrop(POOL[poolI],true);}},SLIDE*1000);}
+function advanceSlide(){if(POOL.length>1){slideN++;const nw=MODE==='live'&&NEWEST();if(nw&&slideN%3===0&&bgSet&&bgSet.dir!==nw.dir){backdrop(nw,true);return;}poolI=(poolI+1)%POOL.length;if(nw&&POOL[poolI]===nw&&POOL.length>2)poolI=(poolI+1)%POOL.length;backdrop(POOL[poolI],true);}}
+function startSlide(){
+  if(SlideClock){if(!slideClock)slideClock=SlideClock.createClock({duration:SLIDE,onTick:advanceSlide});else slideClock.setDuration(SLIDE);}
+  else{clearInterval(slideClock);slideClock=setInterval(advanceSlide,SLIDE*1000);}
+  onSlideDurationChange();
+}
+function persistSlide(){try{localStorage.setItem('thryd_slide',String(SLIDE));}catch(e){}
+  try{Q.set('slide',String(SLIDE));history.replaceState(null,'','?'+Q.toString());}catch(e){}}
+function bindSlideControl(){const ss=$('slide');if(!ss)return; ss.value=String(SLIDE);
+  ss.onclick=e=>e.stopPropagation();
+  const commit=()=>{const next=SlideClock?SlideClock.parseSlide(ss.value,SLIDE):([8,30,60].includes(+ss.value)?+ss.value:SLIDE);SLIDE=next;persistSlide();startSlide();};
+  ss.onchange=commit;
+  ss.addEventListener('pointerup',()=>{const shown=+ss.value;if(slideClock&&slideClock.getDuration&&slideClock.getDuration()!==shown&&[8,30,60].includes(shown))commit();});
+}
+bindSlideControl();
 startSlide();
+let slideRaf=0;
+function slideWatch(){slideRaf=0;if(document.hidden||!slideClock||!slideClock.poke)return;slideClock.poke();slideRaf=requestAnimationFrame(slideWatch);}
+function armSlideWatch(){if(slideRaf||document.hidden)return;slideRaf=requestAnimationFrame(slideWatch);}
+armSlideWatch();
+addEventListener('visibilitychange',armSlideWatch);
 
 // ---------- per-GIF scene updates: loop data/timeline.json events for the GIF on stage
 let TL={run:null,events:[]}, scKey='', scEv=[], scI=0, scPaused=false, scChars={}, scObjs={}, scNames=[], scHere='', scTimer=null;
@@ -394,7 +419,9 @@ function say(L,who){ const e=ents['c:'+who]; if(!e)return;
   b.style.top=Math.min(innerHeight*.8,Math.max(innerHeight*.08,r.top+r.height/2))+'px';
   b.classList.add('on'); setTimeout(()=>b.classList.remove('on'),Math.min(Math.max(SLIDE*900,4000),7000));
 }
-const everyS=f=>{const g=gen;const run=()=>{const t=setTimeout(()=>{if(g!==gen)return;f();run();},SLIDE*1000);timers.push(t);};run();};
+let everySRuns=[];
+const everyS=f=>{const g=gen;const rec={g,t:0,seq:0};const run=()=>{if(g!==gen)return;const my=rec.seq;rec.t=setTimeout(()=>{if(g!==gen||my!==rec.seq)return;f();if(g!==gen||my!==rec.seq)return;run();},SLIDE*1000);timers.push(rec.t);};rec.run=run;everySRuns.push(rec);run();};
+onSlideDurationChange=()=>{everySRuns=everySRuns.filter(r=>r.g===gen);everySRuns.forEach(r=>{r.seq++;clearTimeout(r.t);r.run();});};
 const every=(f,ms)=>{const g=gen;const t=setInterval(()=>{if(g===gen)f();},ms);timers.push(t);};
 function reset(){gen++;timers.forEach(t=>{clearInterval(t);clearTimeout(t);});timers=[];Object.keys(ents).forEach(k=>{ents[k].remove();delete ents[k];});regionsKey='';$('bubble').classList.remove('on');}
 // ---------- LIVE from state.json
@@ -528,7 +555,6 @@ addEventListener('resize',()=>{regionsKey='';});
   try{media=await J('data/media.json');}catch(e){}
   try{LXTRA=(await J('data/live_extra.json')).sets||[];}catch(e){}
   await loadOmap(); await loadRGifs(); setTimeout(()=>{if(MODE==='live'&&NEWEST()){const nw=NEWEST();POOL=livePool();poolI=Math.max(0,POOL.indexOf(nw));backdrop(nw,true);}},2500); setInterval(async()=>{if(MODE==='live'){loadOmap();loadRGifs();try{const n=(await J('data/live_extra.json?t='+Date.now())).sets||[];const o=NEWEST();LXTRA=n;const nw=NEWEST();POOL=livePool();if(nw&&(!o||o.dir!==nw.dir||o.mtime!==nw.mtime)){poolI=Math.max(0,POOL.indexOf(nw));backdrop(nw,true);}}catch(e){}}},60000);
-  const ss=$('slide');if(ss){ss.value=String(SLIDE);ss.onclick=e=>e.stopPropagation();ss.onchange=e=>{SLIDE=+e.target.value;localStorage.setItem('thryd_slide',SLIDE);Q.set('slide',SLIDE);history.replaceState(null,'','?'+Q.toString());startSlide();};}
   try{(await J('assets/runs/media.json')).runs.forEach(r=>runMedia[r.run]=r.media);}catch(e){}
   try{localPrec=(await J('data/precisions.json')).map(p=>({line:p.line,src:p.src,move:p.move}));}catch(e){}
   try{const T=(await J('data/tweets_all.json')).map(p=>({line:p.line,src:p.src,move:false}));for(let i=T.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[T[i],T[j]]=[T[j],T[i]];}TDECK=T;TI=0;}catch(e){}
