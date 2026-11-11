@@ -412,7 +412,7 @@ function say(L,who){ const e=ents['c:'+who]; if(!e)return;
   const r=e.getBoundingClientRect(), b=$('bubble'), right=e.classList.contains('r');
   // never write the speaker label or archive line: the bubble only ever holds the official embed
   const BW=160,BH=132,M=12; b.querySelector('.who').textContent=''; b.querySelector('.txt').textContent='';
-  b.classList.toggle('r',right); let x=right?r.left-6:r.right+6; x=right?Math.max(BW+M,innerWidth*.75+BW,Math.min(innerWidth-M,x)):Math.max(M,Math.min(innerWidth*.25-BW,innerWidth-BW-M,x)); // keep out of the scene's center half b.style.left=x+'px';
+  b.classList.toggle('r',right); let x=right?r.left-6:r.right+6; x=right?Math.max(BW+M,innerWidth*.75+BW,Math.min(innerWidth-M,x)):Math.max(M,Math.min(innerWidth*.25-BW,innerWidth-BW-M,x)); b.style.left=x+'px'; /* x clamp keeps it out of the scene's center half */
   b.style.top=Math.min(innerHeight-BH/2-M,Math.max(BH/2+M,r.top+r.height/2))+'px';
   const base=Math.min(Math.max(SLIDE*900,4000),7000); if(window.ThrydTweet)ThrydTweet.mount(b,L,base); else b.classList.remove('on');
 }
