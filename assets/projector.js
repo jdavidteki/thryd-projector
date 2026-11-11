@@ -24,14 +24,14 @@ let HOLD=0; // in-scene drag pins the current scene (slideshow paused while drag
 window.thrydHold=ms=>{HOLD=ms?Math.max(HOLD,Date.now()+ms):0;};
 function remoteSet(set){return !!(set&&set.how==='medium'&&set.remote&&set.url);}
 const libPin=window.ThrydMlibPin.create();
-function backdrop(set,force){ if(!libPin.allow(set))return; if(Date.now()<HOLD)return; stageN++;
+function backdrop(set,force){ if(!libPin.allow(set))return; if(Date.now()<HOLD)return; if(bgSet&&set&&bgSet.dir===set.dir)return; stageN++;
   const ug=window.THRYD_UG; if(ug.length&&stageN%3===0){return showUser(ug[Math.floor(stageN/3)%ug.length]);}
   if(!set||(!force&&bgSet&&bgSet.dir===set.dir))return; bgSet=set;bgI=0; $('ug').classList.remove('on');
   if(window.ThrydMediumCuts) try{ ThrydMediumCuts.detach(); }catch(e){}
   clearInterval(bgTimer); bgTimer=null; const imgs=[$('bgA'),$('bgB')];
   // load into the hidden image; the visible one stays up until the new view is decoded (no black/partial frame)
   const vis=imgs.findIndex(i=>i.classList.contains('on')); bgFlip=vis===0?1:(vis===1?0:bgFlip^1); const on=imgs[bgFlip],off=imgs[bgFlip^1];
-  let shown=false; const flip=()=>{if(bgSet!==set||shown)return; shown=true; on.classList.add('on'); off.classList.remove('on'); revealStage();};
+  let shown=false; const flip=()=>{if(bgSet!==set||shown)return; shown=true; const ready=[on,off].find(i=>i&&i.naturalWidth>0)||on; ready.classList.add('on'); (ready===on?off:on).classList.remove('on'); revealStage();};
   const whenReady=(img,go)=>{const ok=()=>{if(bgSet!==set||!img.naturalWidth)return; go();}; if(img.complete&&img.naturalWidth)return ok(); img.addEventListener('load',ok,{once:true}); if(img.decode)img.decode().then(ok,()=>{});};
   on.onerror=null; off.onerror=null; on.onload=null;
   if(remoteSet(set)){
@@ -62,7 +62,8 @@ function backdrop(set,force){ if(!libPin.allow(set))return; if(Date.now()<HOLD)r
     };
     let capArmed=false;
     const armCap=()=>{
-      if(capArmed||bgSet!==set||shown||cutsDone||!on.naturalWidth) return;
+      if(capArmed||bgSet!==set||shown||cutsDone) return;
+      if(!((on&&on.naturalWidth)||(off&&off.naturalWidth))) return;
       capArmed=true;
       setTimeout(()=>{
         if(bgSet!==set||shown||cutsDone) return;
@@ -73,7 +74,7 @@ function backdrop(set,force){ if(!libPin.allow(set))return; if(Date.now()<HOLD)r
     whenReady(on, armCap);
     const capPoll=setInterval(()=>{
       if(bgSet!==set||shown||cutsDone){clearInterval(capPoll);return;}
-      if(on.naturalWidth){clearInterval(capPoll);armCap();}
+      if((on&&on.naturalWidth)||(off&&off.naturalWidth)){clearInterval(capPoll);armCap();}
     }, 100);
     startAttach();
     return;
@@ -621,6 +622,8 @@ addEventListener('resize',()=>{regionsKey='';});
 (async()=>{
   try{media=await J('data/media.json');}catch(e){}
   try{LXTRA=(await J('data/live_extra.json')).sets||[];}catch(e){}
+  POOL=livePool();
+  if(MODE==='live'&&!Q.get('mlib')&&!bgSet) void bootColdFirst(null);
   await loadOmap(); await loadRGifs(); setTimeout(()=>{if(MODE==='live'&&NEWEST()&&!Q.get('mlib')&&!coldBooting&&!viewUp&&!bgSet){const nw=NEWEST();POOL=livePool();if(!slideCursor){poolI=Math.max(0,POOL.indexOf(nw));slideCursor=nw.dir||'';}backdrop(nw,true);}},2500); setInterval(async()=>{if(MODE==='live'){loadOmap();loadRGifs();try{const n=(await J('data/live_extra.json?t='+Date.now())).sets||[];const o=NEWEST();LXTRA=n;const nw=NEWEST();POOL=livePool();if(nw&&(!o||o.dir!==nw.dir||o.mtime!==nw.mtime)){backdrop(nw,true);}}catch(e){}}},60000);
   const ss=$('slide');if(ss){ss.value=String(SLIDE);ss.onclick=e=>e.stopPropagation();ss.onchange=e=>{SLIDE=+e.target.value;if(window.ThrydKeep)try{ThrydKeep.saveSettings({slide:SLIDE});}catch(err){}else try{localStorage.setItem('thryd_slide',SLIDE);}catch(err){}Q.set('slide',SLIDE);history.replaceState(null,'','?'+Q.toString());startSlide();};}
   const ml=$('mlib'); if(ml){ml.onclick=e=>e.stopPropagation(); const go=e=>{if(e.type==='keydown'&&e.key!=='Enter')return; e.stopPropagation(); const q=ml.value.trim(); if(!q){libPin.clear();slideCycle.reset();return;} const hit=window.thrydLibrary&&thrydLibrary.show(q); if(!hit){$('cap').textContent='library · not in inventory';}}; ml.addEventListener('keydown',go); ml.addEventListener('change',go);}
