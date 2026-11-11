@@ -1,0 +1,18 @@
+Data-only overlay for the four provisional GIFs. Apply on the persistent
+source that already has the QA5 overlay, the pin patch (53050f75), and the
+ten-frame return (e34208e6). Do not replace JS or index.html. Do not deploy
+from here; the standing sync publishes.
+
+  patch -p1 --dry-run < release/next4-early/next4-data.patch
+  patch -p1 < release/next4-early/next4-data.patch
+  sha256sum -c release/next4-early/SHA256SUMS
+
+Ready rows after apply: QA5 plus
+  ?mlib=1%2ARsUH6hRZMu8g1gDOm4UE_w.gif
+  ?mlib=1%2AmLI9DdjeK7bjQNUNI9SZ3A.gif
+  ?mlib=1%2Au3S2J-ivnMgJ7O47y14ayQ.gif
+  ?mlib=1%2A7_tJmvly2Fh5nQh7LBY5WQ.gif
+
+The four pack files stay unreviewed. The manifest marks them ready, with
+clean false and browser_verified false. Holes may be transparent. The other
+originals are not ready.
