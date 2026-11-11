@@ -78,6 +78,7 @@
       case 'noop': return 'no move · not sent';
       case 'bad_coord': return 'bad coordinates · not sent';
       case 'id_collision': return 'failed · id collision';
+      case 'bad_rid': return 'failed · rid longer than 80';
       default: break;
     }
     if(ev.transport_status==='pending'&&ev.reason==='bridge_off') return 'pending · bridge off · not accepted'+aside+tail;
@@ -125,6 +126,10 @@
       input=input||{};
       const event_id=newId();
       const rid=event_id+'-r';
+      if(rid.length>80){
+        const ev={event_id, rid, hold:'bad_rid', schema:null, transport_status:'failed', story_status:'unread', reason:'rid_max_80', body:null, captured:null, canonical:null, attempts:0, seq:box.order.length+1, text:''};
+        touch(ev); return publicView(ev);
+      }
       if(box.events[event_id]){
         const ev={event_id, rid, hold:'id_collision', schema:null, transport_status:'failed', story_status:'unread', reason:'id_collision', body:null, captured:null, canonical:null, attempts:0, seq:box.order.length+1, text:''};
         touch(ev); return publicView(ev);

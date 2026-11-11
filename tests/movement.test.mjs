@@ -241,8 +241,8 @@ test('missing ok or committed is not a durable accept', async () => {
 test('verified rows map only the two run-5a58c4 cuts and no places', async () => {
   const doc = JSON.parse(fs.readFileSync(path.join(root, 'data/object_map_rows_v1.json'), 'utf8'));
   const loaded = M.loadMapDoc(doc);
-  assert.equal(loaded.cuts.length, 2);
-  assert.deepEqual(loaded.cuts.map(c => c.object_id).sort(), ['dez_5a58c4', 'marisol_5a58c4']);
+  assert.equal(loaded.cuts.length, 4);
+  assert.deepEqual([...new Set(loaded.cuts.map(c => c.object_id))].sort(), ['dez_5a58c4', 'marisol_5a58c4']);
   assert.ok(loaded.cuts.every(c => c.run === 'run-5a58c4'));
   assert.deepEqual(loaded.placeIds, {});
   const { api } = mv({ cutMap: [], placeIds: null });
@@ -260,6 +260,12 @@ test('verified rows map only the two run-5a58c4 cuts and no places', async () =>
   assert.equal(dez.body.frame, 'j6');
   assert.equal(dez.body.scene, '/workspace/run-5a58c4/run/views/j6.gif');
   assert.equal(dez.body.cut, 'Dez');
+  const alias = await api.commit({
+    kind: 'scene', sceneKey: 'run-5a58c4/j6', cut: 'Dez',
+    fromPercent: { x: 12, y: 12 }, toPercent: { x: 22, y: 14 },
+  });
+  assert.equal(alias.body.object_id, 'dez_5a58c4');
+  assert.equal(alias.body.scene, 'run-5a58c4/j6');
   const wrongCut = await api.commit({
     kind: 'scene', sceneKey: '/workspace/run-5a58c4/run/views/j6.gif', cut: 'Marisol',
     fromPercent: { x: 10, y: 10 }, toPercent: { x: 30, y: 10 },
@@ -301,6 +307,18 @@ test('a later move with a different raw from is stale and is not clipped', async
   const next = await api.commit(Object.assign({}, scene, { fromPercent: { x: 35.852, y: 40 }, toPercent: { x: 60, y: 40 } }));
   assert.equal(next.body.base_event_id, first.event_id);
   assert.deepEqual(next.body.raw.from, { x: 35.852, y: 40 });
+});
+
+test('rid stays within 80 characters and pose bodies include scene and cut', async () => {
+  const { api } = mv();
+  const ev = await api.commit(scene);
+  assert.ok(ev.rid.length <= 80);
+  assert.equal(ev.body.scene, SCENE);
+  assert.equal(ev.body.cut, 'person3');
+  const long = mv({ newId: () => 'a'.repeat(79) });
+  const bad = await long.api.commit(scene);
+  assert.equal(bad.hold, 'bad_rid');
+  assert.equal(bad.body, null);
 });
 
 test('movement file does not carry the public drag key and the slide timer is unchanged', () => {

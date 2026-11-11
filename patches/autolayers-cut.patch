@@ -1,0 +1,32 @@
+--- /tmp/id-src/cut.py.orig	2026-11-11 13:54:59.530463058 +0000
++++ /tmp/id-src/cut.py	2026-11-11 13:54:59.546463007 +0000
+@@ -66,6 +66,19 @@
+ def comps(m,minfrac):
+     n,lab,st,_=cv2.connectedComponentsWithStats(m,8); H,W=m.shape
+     return [(lab==i).astype(np.uint8)*255 for i in range(1,n) if st[i,4]>minfrac*H*W]
++
++def _engine_state_id(label):
++    """Engine id only from a reviewed authored-tag binding file. personN stays unset. Hint text is not an id."""
++    path = os.environ.get("CAST_BINDINGS")
++    if not path or not isinstance(label, str) or not label or re.fullmatch(r"person\d+", label):
++        return None
++    try:
++        doc = json.load(open(path))
++    except Exception:
++        return None
++    hits = [b for b in (doc.get("bindings") or []) if b.get("tag") == label and b.get("object_id") and (b.get("provenance") or {}).get("source") == "authored_spec_tag"]
++    return hits[0]["object_id"] if len(hits) == 1 else None
++
+ def run(key,d,force=False):
+     out=f'{OUT}/{key}'
+     if os.path.exists(f'{out}/manifest.json') and not force: return
+@@ -182,7 +195,8 @@
+         pa=(mk[y0:y1,x0:x1]>0).astype(np.uint8)*255
+         Image.fromarray(np.dstack([bg[y0:y1,x0:x1],pa])).save(f'{out}/{lab}.patch.png')
+         rel=f'assets/sprites/autolayers/{key}'
+-        objs.append(dict(label=name or lab,state_id=name,kind='char' if kind=='person' else 'obj',
++        sid=name if not os.environ.get('CAST_BINDINGS') else _engine_state_id(name)
++        objs.append(dict(label=name or lab,state_id=sid,kind='char' if kind=='person' else 'obj',
+           bbox=[round(x0/W,4),round(y0/H,4),round((x1-x0)/W,4),round((y1-y0)/H,4)],x=int(x0),y=int(y0),
+           sprite=f'{rel}/{lab}.png',patch=f'{rel}/{lab}.patch.png',motion='sway',draggable=True,sprite_source=os.path.relpath(src,'/workspace')+('#frame0' if src.endswith('.gif') else '')))
+     run_,_,jn=key.rpartition('_')
