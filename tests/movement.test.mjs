@@ -31,7 +31,7 @@ function mv(extra){
   const transport = (extra && extra.transport) || { async send(body){
     calls.push(body);
     if(gate) return gate.promise;
-    return { event_id: body.event_id, rid: body.rid, status: 'accepted', committed: true };
+    return { event_id: body.event_id, rid: body.rid, ok: true, status: 'accepted', committed: true };
   } };
   const api = M.createMovement(Object.assign({
     storage, transport, bridge: { enabled: false }, cutMap: CUTS, placeIds: ['place_okeayo'],
@@ -47,6 +47,8 @@ const scene = {
 test('raw percent anchors stay beside a labeled normalized copy', async () => {
   const { api } = mv();
   const ev = await api.commit(scene);
+  assert.equal(ev.body.scene, SCENE);
+  assert.equal(ev.body.cut, 'person3');
   assert.deepEqual(ev.body.raw, { unit: 'percent', from: { x: 10.18, y: 11.59 }, to: { x: 35.852, y: 40 } });
   assert.deepEqual(ev.body.normalized.from, { x: 0.1018, y: 0.1159 });
   assert.equal(ev.body.normalized.clamped, false);
@@ -83,12 +85,15 @@ test('anchors outside [-50,150] are not sent and are not clipped into a body', a
 test('server canonical coordinates stay beside the raw anchors', async () => {
   const { api } = mv({
     bridge: { enabled: true },
-    transport: { async send(body){ return { event_id: body.event_id, rid: body.rid, status: 'accepted', committed: true, canonical: { from: { x: 0.11, y: 0.12 }, to: { x: 1.4, y: -0.2 } } }; } },
+    transport: { async send(body){ return { event_id: body.event_id, rid: body.rid, ok: true, status: 'accepted', committed: true, canonical: { unit: 'frame', from: { x: body.raw.from.x / 100, y: body.raw.from.y / 100 }, to: { x: body.raw.to.x / 100, y: body.raw.to.y / 100 } } }; } },
   });
-  const ev = await api.commit(scene);
-  assert.deepEqual(ev.body.raw.to, { x: 35.852, y: 40 });
-  assert.deepEqual(ev.canonical.to, { x: 1.4, y: -0.2 });
+  const ev = await api.commit(Object.assign({}, scene, { toPercent: { x: 35.852, y: -1.47 } }));
+  assert.equal(ev.body.raw.to.y, -1.47);
+  assert.equal(ev.body.normalized.to.y, 0);
+  assert.equal(ev.body.normalized.clamped, true);
+  assert.ok(Math.abs(ev.canonical.to.y - (-0.0147)) < 1e-9);
   assert.equal(ev.canonical_outside, true);
+  assert.equal(ev.canonical_note, 'unclamped raw/100');
   assert.match(ev.text, /db commit accepted/);
   assert.doesNotMatch(ev.text, /story consumed/);
 });
@@ -145,7 +150,7 @@ test('accepted and duplicate replies must echo event_id and rid', async () => {
   const pending = api.commit(scene);
   await Promise.resolve();
   assert.match(api.get('id-1').text, /not accepted/);
-  gate.release({ event_id: 'id-1', rid: 'id-1-r', status: 'accepted', committed: true });
+  gate.release({ event_id: 'id-1', rid: 'id-1-r', ok: true, status: 'accepted', committed: true });
   const ev = await pending;
   assert.equal(ev.transport_status, 'accepted');
   assert.equal(ev.story_status, 'unread');
@@ -153,7 +158,7 @@ test('accepted and duplicate replies must echo event_id and rid', async () => {
   setGate(mismatch);
   const again = api.retry('id-1');
   await Promise.resolve();
-  mismatch.release({ event_id: 'id-1', rid: 'other-rid', status: 'duplicate', committed: true });
+  mismatch.release({ event_id: 'id-1', rid: 'other-rid', ok: true, status: 'duplicate', committed: true });
   const bad = await again;
   assert.equal(bad.transport_status, 'failed');
   assert.equal(bad.reason, 'reply_event_mismatch');
@@ -161,7 +166,7 @@ test('accepted and duplicate replies must echo event_id and rid', async () => {
   setGate(dupGate);
   const third = api.retry('id-1');
   await Promise.resolve();
-  dupGate.release({ event_id: 'id-1', rid: 'id-1-r', status: 'duplicate', committed: true });
+  dupGate.release({ event_id: 'id-1', rid: 'id-1-r', ok: true, status: 'duplicate', committed: true });
   const dup = await third;
   assert.equal(dup.transport_status, 'duplicate');
   assert.equal(api.lines().length, 1);
@@ -191,15 +196,15 @@ test('reload, out-of-order story ack, reject and failed retry', async () => {
   await a.commit(Object.assign({}, scene, { toPercent: { x: 80, y: 20 } }));
   const b = make();
   assert.equal(b.lines().length, 2);
-  b.readback(['e2']);
+  b.readback(['e2'], 'run-0ae93c');
   assert.equal(b.get('e2').story_status, 'consumed');
   assert.equal(b.get('e1').story_status, 'unread');
   assert.equal(b.get('e1').transport_status, 'pending');
   let mode = 'reject';
   const live = make({ async send(body){
-    if(mode==='reject') return { event_id: body.event_id, rid: body.rid, status: 'rejected', reason: 'unknown_object', committed: true };
+    if(mode==='reject') return { event_id: body.event_id, rid: body.rid, ok: false, status: 'rejected', reason: 'unknown_object' };
     if(mode==='boom') throw new Error('relay down');
-    return { event_id: body.event_id, rid: body.rid, status: 'accepted', committed: true };
+    return { event_id: body.event_id, rid: body.rid, ok: true, status: 'accepted', committed: true };
   } });
   const rejected = await live.retry('e1');
   assert.equal(rejected.transport_status, 'rejected');
@@ -220,6 +225,82 @@ test('stale run does not borrow another scene cut row', async () => {
   const ev = await api.commit(Object.assign({}, scene, { sceneKey: 'assets/webp/live/run-7c51d3_j9', run: 'run-0ae93c' }));
   assert.equal(ev.hold, 'stale');
   assert.equal(ev.body, null);
+});
+
+test('missing ok or committed is not a durable accept', async () => {
+  const { api } = mv({
+    bridge: { enabled: true },
+    transport: { async send(body){ return { event_id: body.event_id, rid: body.rid, status: 'accepted' }; } },
+  });
+  const ev = await api.commit(scene);
+  assert.equal(ev.transport_status, 'failed');
+  assert.equal(ev.reason, 'not_committed');
+  assert.doesNotMatch(ev.text, /db commit/);
+});
+
+test('verified rows map only the two run-5a58c4 cuts and no places', async () => {
+  const doc = JSON.parse(fs.readFileSync(path.join(root, 'data/object_map_rows_v1.json'), 'utf8'));
+  const loaded = M.loadMapDoc(doc);
+  assert.equal(loaded.cuts.length, 2);
+  assert.deepEqual(loaded.cuts.map(c => c.object_id).sort(), ['dez_5a58c4', 'marisol_5a58c4']);
+  assert.ok(loaded.cuts.every(c => c.run === 'run-5a58c4'));
+  assert.deepEqual(loaded.placeIds, {});
+  const { api } = mv({ cutMap: [], placeIds: null });
+  assert.equal(api.loadMap(doc), true);
+  const current = await api.commit({
+    kind: 'scene', sceneKey: 'assets/webp/live/run-2eb42d_j2', cut: 'person3', name: 'Ronke',
+    fromPercent: { x: 10, y: 10 }, toPercent: { x: 20, y: 20 },
+  });
+  assert.equal(current.hold, 'unmapped');
+  const dez = await api.commit({
+    kind: 'scene', sceneKey: '/workspace/run-5a58c4/run/views/j6.gif', cut: 'Dez', name: 'someone else',
+    fromPercent: { x: 10, y: 10 }, toPercent: { x: 20, y: 12 },
+  });
+  assert.equal(dez.body.object_id, 'dez_5a58c4');
+  assert.equal(dez.body.frame, 'j6');
+  assert.equal(dez.body.scene, '/workspace/run-5a58c4/run/views/j6.gif');
+  assert.equal(dez.body.cut, 'Dez');
+  const wrongCut = await api.commit({
+    kind: 'scene', sceneKey: '/workspace/run-5a58c4/run/views/j6.gif', cut: 'Marisol',
+    fromPercent: { x: 10, y: 10 }, toPercent: { x: 30, y: 10 },
+  });
+  assert.equal(wrongCut.hold, 'unmapped');
+  const place = await api.commit({
+    kind: 'place', place: 'Oke-Ayo bus stop', placeId: 'place_okeayo', cut: 'Dez',
+    sceneKey: '/workspace/run-5a58c4/run/views/j6.gif',
+  });
+  assert.equal(place.hold, 'place_id_unvalidated');
+  assert.equal(place.body, null);
+});
+
+test('acks apply only when the envelope run matches the event run', async () => {
+  const { api } = mv({ cutMap: [], placeIds: null });
+  api.loadMap(JSON.parse(fs.readFileSync(path.join(root, 'data/object_map_rows_v1.json'), 'utf8')));
+  const dez = await api.commit({
+    kind: 'scene', sceneKey: '/workspace/run-5a58c4/run/views/j6.gif', cut: 'Dez',
+    fromPercent: { x: 5, y: 5 }, toPercent: { x: 15, y: 8 },
+  });
+  api.observeState({ run: 'run-2eb42d', movement_acks: { run: 'run-2eb42d', movement_acks: [dez.event_id] } });
+  assert.equal(api.get(dez.event_id).story_status, 'unread');
+  api.observeState({ run: 'run-5a58c4', movement_acks: ['bare-array-is-ignored'] });
+  assert.equal(api.get(dez.event_id).story_status, 'unread');
+  api.observeState({ run: 'run-5a58c4', movement_acks: { run: 'run-2eb42d', movement_acks: [dez.event_id] } });
+  assert.equal(api.get(dez.event_id).story_status, 'unread');
+  api.observeState({ run: 'run-5a58c4', movement_acks: { run: 'run-5a58c4', movement_acks: [dez.event_id] } });
+  assert.equal(api.get(dez.event_id).story_status, 'consumed');
+});
+
+test('a later move with a different raw from is stale and is not clipped', async () => {
+  const { api } = mv({ bridge: { enabled: true } });
+  const first = await api.commit(scene);
+  assert.equal(first.transport_status, 'accepted');
+  const drifted = await api.commit(Object.assign({}, scene, { fromPercent: { x: 1, y: 1 }, toPercent: { x: 80, y: 80 } }));
+  assert.equal(drifted.hold, 'stale');
+  assert.equal(drifted.reason, 'stale_raw_from');
+  assert.equal(drifted.body, null);
+  const next = await api.commit(Object.assign({}, scene, { fromPercent: { x: 35.852, y: 40 }, toPercent: { x: 60, y: 40 } }));
+  assert.equal(next.body.base_event_id, first.event_id);
+  assert.deepEqual(next.body.raw.from, { x: 35.852, y: 40 });
 });
 
 test('movement file does not carry the public drag key and the slide timer is unchanged', () => {

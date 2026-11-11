@@ -32,18 +32,34 @@
     if(cardFrame&&parsed.frame&&cardFrame!==parsed.frame) return {frame:null, conflict:true};
     return {frame:parsed.frame||cardFrame||null, conflict:false};
   }
-  // object_id only from an explicit {scene, cut, object_id} row. Names are ignored.
-  function resolveCut(sceneKey, cut, cutMap, sceneRun){
+  // object_id only from an explicit {scene, cut, run, frame, object_id} row. Names are ignored.
+  function resolveCut(sceneKey, cut, cutMap, sceneRun, frame){
     if(!Array.isArray(cutMap)||!sceneKey||cut==null||cut==='') return {id:null, stale:false};
     const hit=cutMap.find(r=>r&&r.scene===sceneKey&&r.cut===cut&&typeof r.object_id==='string'&&r.object_id);
     if(!hit) return {id:null, stale:false};
     if(hit.run&&sceneRun&&hit.run!==sceneRun) return {id:null, stale:true};
+    if(hit.frame&&frame&&hit.frame!==frame) return {id:null, stale:false};
     return {id:hit.object_id, stale:false};
   }
-  function resolvePlace(placeId, allow){
+  function placeBucket(allow, run){
+    if(Array.isArray(allow)) return allow;
+    if(!allow||typeof allow!=='object'||!run) return null;
+    const bucket=allow[run];
+    if(Array.isArray(bucket)) return bucket;
+    if(bucket&&typeof bucket==='object') return Object.keys(bucket);
+    return [];
+  }
+  function resolvePlace(placeId, allow, run){
     if(placeId==null||placeId==='') return {id:null, reason:'place_id_missing'};
-    if(!Array.isArray(allow)||!allow.includes(placeId)) return {id:null, reason:'place_id_unvalidated'};
+    const ids=placeBucket(allow, run);
+    if(!ids||!ids.includes(placeId)) return {id:null, reason:'place_id_unvalidated'};
     return {id:placeId, reason:null};
+  }
+  function loadMapDoc(doc){
+    if(!doc||doc.version!==1||!Array.isArray(doc.cuts)) return null;
+    const cuts=doc.cuts.filter(r=>r&&typeof r.scene==='string'&&typeof r.cut==='string'&&typeof r.run==='string'&&FRAME_RE.test(r.frame||'')&&typeof r.object_id==='string'&&r.object_id);
+    const placeIds=doc.place_ids&&typeof doc.place_ids==='object'&&!Array.isArray(doc.place_ids)?doc.place_ids:{};
+    return {cuts, placeIds};
   }
   function empty(){return {events:{}, order:[]};}
   function fmtRaw(p){return p?(p.x+','+p.y):'';}
@@ -87,7 +103,7 @@
     function persist(){try{storage.save(box); return true;}catch(e){return false;}}
     function touch(ev){ev.stored=persist(); ev.text=statusText(ev); try{onChange(publicView(ev));}catch(e){}}
     function publicView(ev){
-      return {event_id:ev.event_id, rid:ev.rid, hold:ev.hold, schema:ev.schema, transport_status:ev.transport_status, story_status:ev.story_status, reason:ev.reason, body:ev.body, captured:ev.captured, canonical:ev.canonical, canonical_outside:ev.canonical_outside, text:ev.text, attempts:ev.attempts, seq:ev.seq};
+      return {event_id:ev.event_id, rid:ev.rid, hold:ev.hold, schema:ev.schema, transport_status:ev.transport_status, story_status:ev.story_status, reason:ev.reason, body:ev.body, captured:ev.captured, canonical:ev.canonical, canonical_outside:ev.canonical_outside, canonical_note:ev.canonical_note||null, text:ev.text, attempts:ev.attempts, seq:ev.seq};
     }
     function canSend(ev){return bridge&&transport&&ev.body&&!ev.hold&&(ev.transport_status==='pending'||ev.transport_status==='failed'||ev.transport_status==='rejected');}
     async function send(ev){
@@ -97,13 +113,13 @@
     }
     function applyReply(ev, reply){
       if(!reply||reply.event_id!==ev.event_id||reply.rid!==ev.rid){ev.transport_status='failed'; ev.reason='reply_event_mismatch'; touch(ev); return;}
-      if(reply.committed===false){ev.transport_status='failed'; ev.reason='not_committed'; touch(ev); return;}
       const canonical=readCanonical(reply);
-      if(canonical){ev.canonical=canonical.pair; ev.canonical_outside=canonical.outside;}
-      if(reply.status==='accepted'||reply.status==='duplicate'){ev.transport_status=reply.status; ev.reason=null;}
-      else if(reply.status==='rejected'){ev.transport_status='rejected'; ev.reason=reply.reason||'rejected';}
-      else {ev.transport_status='failed'; ev.reason='bad_reply';}
-      touch(ev);
+      if(canonical){ev.canonical=canonical.pair; ev.canonical_outside=canonical.outside; ev.canonical_note='unclamped raw/100';}
+      if(reply.status==='rejected'){ev.transport_status='rejected'; ev.reason=reply.reason||reply.code||'rejected'; touch(ev); return;}
+      if(reply.ok!==true||reply.committed!==true||(reply.status!=='accepted'&&reply.status!=='duplicate')){
+        ev.transport_status='failed'; ev.reason=reply.committed!==true?'not_committed':(reply.reason||'not_accepted'); touch(ev); return;
+      }
+      ev.transport_status=reply.status; ev.reason=null; touch(ev);
     }
     async function commit(input){
       input=input||{};
@@ -128,15 +144,15 @@
       const fr=frameOf(input.sceneCard, parsed);
       if(input.kind==='place'){
         base.schema='setlocation';
-        const place=resolvePlace(input.placeId, placeIds);
-        const id=resolveCut(input.sceneKey, input.cut, cutMap, parsed.run);
+        const place=resolvePlace(input.placeId, placeIds, parsed.run);
+        const id=resolveCut(input.sceneKey, input.cut, cutMap, parsed.run, fr.frame);
         base.captured={place:input.place||null, placeId:input.placeId||null, cut:input.cut||null, name:input.name||null, scene:parsed};
         if(fr.conflict){base.hold='stale'; base.transport_status='held'; base.reason='stale_context'; return base;}
         if(!place.id){base.hold=place.reason; base.transport_status='held'; base.reason=place.reason; return base;}
         if(id.stale){base.hold='stale'; base.transport_status='held'; base.reason='stale_context'; return base;}
         if(!id.id){base.hold='unmapped'; base.transport_status='held'; return base;}
         if(!parsed.run||!fr.frame){base.hold=!parsed.run?'missing_run':'missing_frame'; base.transport_status='held'; return base;}
-        base.body={event_id, rid, schema:'setlocation', run:parsed.run, frame:fr.frame, object_id:id.id, place_id:place.id};
+        base.body={event_id, rid, schema:'setlocation', run:parsed.run, frame:fr.frame, object_id:id.id, place_id:place.id, scene:input.sceneKey, cut:input.cut};
         return base;
       }
       const fromA=anchors(input.fromPercent), toA=anchors(input.toPercent);
@@ -149,11 +165,14 @@
       const run=parsed.run||(RUN_RE.test(input.run||'')?input.run:null);
       if(!run){base.hold='missing_run'; base.transport_status='held'; return base;}
       if(!fr.frame){base.hold='missing_frame'; base.transport_status='held'; return base;}
-      const id=resolveCut(input.sceneKey, input.cut, cutMap, run);
+      const id=resolveCut(input.sceneKey, input.cut, cutMap, run, fr.frame);
       if(id.stale){base.hold='stale'; base.transport_status='held'; base.reason='stale_context'; return base;}
       if(!id.id){base.hold='unmapped'; base.transport_status='held'; return base;}
+      const prior=lastAccepted(id.id, input.sceneKey);
+      if(prior&&rawGap(prior.body.raw.to, fromA.raw)>0.001){base.hold='stale'; base.transport_status='held'; base.reason='stale_raw_from'; return base;}
       const clamped=fromA.clamped||toA.clamped;
-      base.body={event_id, rid, run, frame:fr.frame, object_id:id.id, raw:{unit:'percent', from:fromA.raw, to:toA.raw}, normalized:{unit:'frame', from:fromA.normalized, to:toA.normalized, clamped}};
+      base.body={event_id, rid, run, frame:fr.frame, object_id:id.id, scene:input.sceneKey, cut:input.cut, raw:{unit:'percent', from:fromA.raw, to:toA.raw}, normalized:{unit:'frame', from:fromA.normalized, to:toA.normalized, clamped}};
+      if(prior) base.body.base_event_id=prior.event_id;
       return base;
     }
     async function retry(event_id){
@@ -162,20 +181,34 @@
       if(!bridge||!transport){ev.transport_status='pending'; ev.reason='bridge_off'; touch(ev); return publicView(ev);}
       return send(ev);
     }
-    function readback(ids){
+    function eventRun(ev){return (ev.body&&ev.body.run)||(ev.captured&&ev.captured.scene&&ev.captured.scene.run)||null;}
+    function lastAccepted(objectId, scene){
+      let last=null;
+      box.order.forEach(id=>{const ev=box.events[id]; if(!ev||!ev.body||ev.schema!=='pose') return; if(ev.transport_status!=='accepted'&&ev.transport_status!=='duplicate') return; if(ev.body.object_id!==objectId||ev.body.scene!==scene) return; last=ev;});
+      return last;
+    }
+    function rawGap(a,b){if(!a||!b) return Infinity; return Math.max(Math.abs(a.x-b.x), Math.abs(a.y-b.y));}
+    function readback(ids, run){
+      if(!run) return;
       const set=new Set(ids||[]);
-      box.order.forEach(id=>{const ev=box.events[id]; if(ev&&set.has(ev.event_id)){ev.story_status='consumed'; ev.text=statusText(ev);}});
+      box.order.forEach(id=>{const ev=box.events[id]; if(ev&&set.has(ev.event_id)&&eventRun(ev)===run){ev.story_status='consumed'; ev.text=statusText(ev);}});
       persist(); try{onChange(null);}catch(e){}
     }
     function observeState(state){
       if(!state||typeof state!=='object') return;
-      if(state.run) catalog=Object.assign({}, catalog, {run:state.run});
-      const raw=(state.movement_acks)||(state.movements&&state.movements.acknowledged)||null;
-      if(Array.isArray(raw)) readback(raw.map(x=>typeof x==='string'?x:(x&&x.event_id)).filter(Boolean));
+      const ack=state.movement_acks;
+      if(!ack||typeof ack!=='object'||Array.isArray(ack)) return;
+      if(ack.run!==state.run||!Array.isArray(ack.movement_acks)) return;
+      readback(ack.movement_acks.filter(x=>typeof x==='string'&&x), state.run);
+    }
+    function loadMap(doc){
+      const parsed=loadMapDoc(doc);
+      if(!parsed) return false;
+      cutMap=parsed.cuts; placeIds=parsed.placeIds; return true;
     }
     function lines(){return box.order.map(id=>box.events[id]).filter(Boolean).map(publicView);}
     function summary(){const evs=lines(); return evs.length?evs.slice(-4).map(e=>e.text).join('\n'):'';}
-    return {commit, retry, readback, observeState, setCutMap:(rows)=>{cutMap=Array.isArray(rows)?rows:[];}, setPlaceIds:(ids)=>{placeIds=Array.isArray(ids)?ids:null;}, get:(id)=>box.events[id]?publicView(box.events[id]):null, lines, summary, setBridge:(on)=>{bridge=!!on;}, bridgeEnabled:()=>bridge};
+    return {commit, retry, readback, observeState, loadMap, setCutMap:(rows)=>{cutMap=Array.isArray(rows)?rows:[];}, setPlaceIds:(ids)=>{placeIds=ids==null?null:ids;}, get:(id)=>box.events[id]?publicView(box.events[id]):null, lines, summary, setBridge:(on)=>{bridge=!!on;}, bridgeEnabled:()=>bridge};
   }
   function readCanonical(reply){
     const c=reply&&reply.canonical; if(!c||!c.from||!c.to) return null;
@@ -193,6 +226,7 @@
     };
     let el=null;
     const mv=createMovement({storage, bridge:{enabled:!!(opts.bridge&&opts.bridge.enabled)}, transport:opts.transport||null, cutMap:opts.cutMap||[], placeIds:opts.placeIds||null, onChange:paint});
+    if(!opts.skipLoad&&typeof fetch==='function'){fetch('data/object_map_rows_v1.json?t='+Date.now(),{cache:'no-store'}).then(r=>r.ok?r.json():null).then(doc=>{if(doc&&mv.loadMap(doc))paint();}).catch(()=>{});}
     function paint(){
       if(typeof document==='undefined') return;
       if(!el){el=document.getElementById('mvstatus'); if(!el&&document.body){el=document.createElement('div'); el.id='mvstatus'; document.body.appendChild(el);}}
@@ -203,7 +237,7 @@
     paint();
     return mv;
   }
-  const api={createMovement, attach, anchors, parseScene, resolveCut, resolvePlace, statusText, RAW_MIN, RAW_MAX};
+  const api={createMovement, attach, anchors, parseScene, resolveCut, resolvePlace, loadMapDoc, statusText, RAW_MIN, RAW_MAX};
   if(typeof module!=='undefined'&&module.exports) module.exports=api;
   root.ThrydMovement=api;
 })(typeof window!=='undefined'?window:globalThis);
