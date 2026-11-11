@@ -257,7 +257,31 @@
     obj.masks = readMaskBlob(raw, obj.mask_count || 0);
     return obj;
   }
+  async function absorbPack(row){
+    if(!row || !row.pack || (row.objects && row.objects.length)) return row;
+    if(typeof fetch !== 'function') return row;
+    let pack;
+    try{
+      const res = await fetch(row.pack, {cache:'no-store'});
+      if(!res.ok){ row.plate_error = 'pack_missing'; return row; }
+      pack = await res.json();
+    }catch(e){ row.plate_error = 'pack_missing'; return row; }
+    const keep = {status: row.status, reviewed: row.reviewed, review: row.review, mlib: row.mlib, select: row.select, pack: row.pack};
+    Object.keys(pack).forEach(function(k){
+      if(k === 'object_id' || k === 'state_id' || k === 'run' || k === 'card' || k === 'jN') return;
+      row[k] = pack[k];
+    });
+    row.status = keep.status;
+    row.reviewed = keep.reviewed;
+    if(keep.review) row.review = keep.review;
+    if(keep.mlib) row.mlib = keep.mlib;
+    if(keep.select) row.select = keep.select;
+    row.pack = keep.pack;
+    (row.objects || []).forEach(function(o){ if(!o) return; delete o.object_id; delete o.state_id; });
+    return row;
+  }
   async function expandRow(row){
+    await absorbPack(row);
     const objects = (row && row.objects) || [];
     for(let i = 0; i < objects.length; i++){
       const obj = objects[i];
@@ -528,7 +552,7 @@
     });
   }
 
-  const api = {CAP, USED, RESERVE, roomBytes, admit, isMedium, coverage, forSet, compose, planFrames, decodeGif, delaysMatch, playMs, attach, detach, loadManifest, inkBox, unpackMask, frameHoldBytes, expandObject};
+  const api = {CAP, USED, RESERVE, roomBytes, admit, isMedium, coverage, forSet, compose, planFrames, decodeGif, delaysMatch, playMs, attach, detach, loadManifest, inkBox, unpackMask, frameHoldBytes, expandObject, expandRow};
   if(typeof module !== 'undefined' && module.exports) module.exports = api;
   root.ThrydMediumCuts = api;
 })(typeof window !== 'undefined' ? window : globalThis);

@@ -1,0 +1,19 @@
+QA5 early release overlay. Apply on the persistent source that matches
+release-source-20261111-1239. Do not deploy, merge, or push Pages from here.
+The standing box sync publishes after this patch is in that tree.
+
+From the source root, under /tmp/thryd-sync.lock:
+
+  patch -p1 --dry-run < release/qa5-early/qa5-on-source.patch
+  patch -p1 < release/qa5-early/qa5-on-source.patch
+  sha256sum -c release/qa5-early/SHA256SUMS
+
+The patch adds the cut player, one ready manifest row, and the exact rembg
+pack. index.html keeps __CODEVER__. #mlib stays. live_extra.json is not in
+the patch. Open the cut with the #mlib field or this query:
+
+  ?mlib=1%2AUQolGv9h9_i7sWsk3lDLCA.gif
+
+reviewed true on the manifest row records the 12:39 EST acceptance of the
+faint edge. It is not a clean-mask claim. Browser verification is still pending.
+The pack file itself stays status unreviewed. Other originals are not ready.

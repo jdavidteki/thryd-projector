@@ -263,6 +263,40 @@ test('budget gate uses the measured published bytes and does not admit an unmeas
   assert.equal(M.admit(undefined).reason, 'unmeasured');
 });
 
+test('a ready manifest row loads its pack and another id stays on the original', async () => {
+  const mask = new Array(4).fill(0); mask[0] = 1;
+  const pack = {
+    medium_image_id: '1*UQolGv9h9_i7sWsk3lDLCA.gif', kind: 'gif', status: 'unreviewed', reviewed: false,
+    frame_size: [2, 2], delays_cs: Array(18).fill(10),
+    source_sha256: '2f57c9b45511072dd367237c13ac19c353e0be230285720904da5ee2e1bcfa2e',
+    objects: [{label: 'cut1', model_class: 'foreground', masks: Array(18).fill(mask)}],
+  };
+  const row = {
+    medium_image_id: pack.medium_image_id, kind: 'gif', status: 'ready', reviewed: true,
+    review: {clean: false, browser_verified: false},
+    pack: 'assets/medium_cuts/1_UQolGv9h9_i7sWsk3lDLCA.gif.json',
+    mlib: pack.medium_image_id,
+  };
+  globalThis.fetch = async (url) => {
+    assert.equal(String(url), row.pack);
+    return {ok: true, json: async () => JSON.parse(JSON.stringify(pack))};
+  };
+  await M.expandRow(row);
+  assert.equal(row.status, 'ready');
+  assert.equal(row.reviewed, true);
+  assert.equal(row.review.clean, false);
+  assert.equal(row.source_sha256, pack.source_sha256);
+  assert.equal(row.delays_cs.length, 18);
+  assert.equal(pack.status, 'unreviewed');
+  const set = {how: 'medium', remote: true, url: 'https://miro.medium.com/1*UQolGv9h9_i7sWsk3lDLCA.gif', medium_image_id: pack.medium_image_id, extension: 'gif'};
+  const plan = M.forSet(set, {assets: [row]});
+  assert.equal(plan.ok, true);
+  assert.equal(plan.frameCount, 18);
+  assert.deepEqual(plan.delays_cs, Array(18).fill(10));
+  const other = {how: 'medium', remote: true, url: 'https://miro.medium.com/1*other.gif', medium_image_id: '1*other.gif', extension: 'gif'};
+  assert.equal(M.forSet(other, {assets: [row]}).reason, 'awaiting_manifest');
+});
+
 test('coverage of the committed list is the full library and nothing is ready', () => {
   const live = JSON.parse(fs.readFileSync(path.join(root, 'data/live_extra.json'), 'utf8'));
   const man = JSON.parse(fs.readFileSync(path.join(root, 'data/medium_cuts.json'), 'utf8'));
