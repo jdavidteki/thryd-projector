@@ -1,0 +1,17 @@
+Rotation resume for the public ten-return. Apply on the tree that already
+has qa5-on-source, the pin patch (53050f75), and the ten-frame return
+(e34208e6). This is not the next4 data patch and it does not replace it.
+The two patches touch different files, so either order works. Do not deploy
+from here; the standing source sync publishes.
+
+  patch -p1 --dry-run < release/rotation-resume/rotation-resume.patch
+  patch -p1 < release/rotation-resume/rotation-resume.patch
+  sha256sum -c release/rotation-resume/SHA256SUMS
+
+Normal autoplay shows ten other library items, then whatever the newest
+live view is at that moment, then the next unseen library item. The return
+does not move the cursor back onto the anchor, and a rebuilt pool is
+resumed by dir. An explicit library pin holds the count. A mode button
+clears the cursor and the count; the new walk still continues past its
+own tenth item. GIF frame timing and the 8/30/60 second interval are
+unchanged. The QA5 pack is not in this patch.
