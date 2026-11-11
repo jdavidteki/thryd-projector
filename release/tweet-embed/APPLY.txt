@@ -1,0 +1,22 @@
+Official post embed for the speech bubble. Apply on the public tree whose
+projector.js is the device-keep player (538a69e0) and whose
+data/tweets_all.json is the 3617-line archive. Do not deploy from here.
+This patch does not touch medium cut manifests, packs, or the GIF player.
+
+  patch -p1 --dry-run < release/tweet-embed/tweet-embed.patch
+  patch -p1 < release/tweet-embed/tweet-embed.patch
+  sha256sum -c release/tweet-embed/SHA256SUMS
+
+The bubble is the tweet surface. say() still writes the archive line.
+A status id is kept only when the archive text matches exactly one post,
+or exactly one post in the same year. 53 same-text same-year lines stay
+without an id. Ids are decimal strings. The account is notnotnotnotyn,
+so the archive link is https://x.com/notnotnotnotyn/status/{id}.
+
+A purged id does not load the widget and is not described as still up.
+The exact line stays. A live id uses one widgets.js script and
+createTweet in a container that is not moved. If the script is blocked,
+the post is missing, or the request times out, the exact line stays.
+Text-only bubbles still hide after the existing 4–7 seconds. A post that
+is actually rendering can stay up to 20 seconds. Story motion, the pin,
+the ten-return, and device storage are unchanged.
