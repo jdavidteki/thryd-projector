@@ -332,6 +332,63 @@
   }
   function frameHoldBytes(w, h, n){ return w * h * 4 * n; }
 
+  // Hole fill for a moved object, from exact posted pixels only. Per pixel: the stored plate pixel
+  // if known, else the pixel from the first frame of the same GIF where that spot is outside every
+  // object's mask (grown by FILL_GUARD px so rough mask edges don't carry the subject along), else
+  // nothing (transparent). One static fill per cut, built in a single pass over the frames.
+  const FILL_GUARD = 2;
+  function grow(mask, w, h, r){
+    if(!r) return mask;
+    const a = new Uint8Array(w * h), b = new Uint8Array(w * h);
+    for(let y = 0; y < h; y++){
+      const row = y * w; let last = -1e9;
+      for(let x = 0; x < w; x++){ if(mask[row + x]) last = x; if(x - last <= r) a[row + x] = 1; }
+      last = 1e9;
+      for(let x = w - 1; x >= 0; x--){ if(mask[row + x]) last = x; if(last - x <= r) a[row + x] = 1; }
+    }
+    for(let x = 0; x < w; x++){
+      let last = -1e9;
+      for(let y = 0; y < h; y++){ if(a[y * w + x]) last = y; if(y - last <= r) b[y * w + x] = 1; }
+      last = 1e9;
+      for(let y = h - 1; y >= 0; y--){ if(a[y * w + x]) last = y; if(last - y <= r) b[y * w + x] = 1; }
+    }
+    return b;
+  }
+  function fillBuilder(w, h, plate, plateKnown, guard){
+    const n = w * h;
+    const rgba = new Uint8ClampedArray(n * 4);
+    const known = new Uint8Array(n);
+    const from = new Int32Array(n).fill(-1); // frame each temporal pixel came from (-2 = stored plate)
+    let left = n;
+    if(plate && plateKnown){
+      for(let i = 0; i < n; i++) if(plateKnown[i]){
+        const p = i * 4; rgba[p] = plate[p]; rgba[p+1] = plate[p+1]; rgba[p+2] = plate[p+2]; rgba[p+3] = plate[p+3];
+        known[i] = 1; from[i] = -2; left--;
+      }
+    }
+    return {
+      add(f, src, masks){
+        if(!left) return;
+        const cover = new Uint8Array(n);
+        (masks || []).forEach(raw=>{ const m = asMask(raw, w, h); if(m) for(let i = 0; i < n; i++) if(m[i]) cover[i] = 1; });
+        const block = grow(cover, w, h, guard == null ? FILL_GUARD : guard);
+        for(let i = 0; i < n; i++){
+          if(known[i] || block[i]) continue;
+          const p = i * 4;
+          if(src[p+3] < 255) continue;
+          rgba[p] = src[p]; rgba[p+1] = src[p+1]; rgba[p+2] = src[p+2]; rgba[p+3] = 255;
+          known[i] = 1; from[i] = f; left--;
+        }
+      },
+      done(){ return {rgba, known, from}; }
+    };
+  }
+  function framesFill(plan, frameRgba){
+    const fb = fillBuilder(plan.width, plan.height, plan.plate, plan.plateKnown);
+    for(let f = 0; f < plan.frameCount; f++) fb.add(f, frameRgba[f], plan.objects.map(o=>(o.masks || [o.mask])[plan.kind === 'gif' ? f : 0]));
+    return fb.done();
+  }
+
   function decodeGif(bytes, opts){
     const u = bytes instanceof Uint8Array ? bytes : new Uint8Array(bytes);
     const sig = String.fromCharCode.apply(null, u.subarray(0, 6));
@@ -395,6 +452,7 @@
         const o = (y * width + x) * 4, c = ci * 3;
         canvas[o] = ct[c]; canvas[o+1] = ct[c+1]; canvas[o+2] = ct[c+2]; canvas[o+3] = 255;
       }
+      if(opts && opts.visit) opts.visit(seen, canvas);
       if(only === null || seen === only) frames.push({rgba: canvas.slice(), delayCs, width, height});
       else frames.push({delayCs, width, height});
       seen++;
@@ -524,11 +582,21 @@
         if(my !== token) return {ok:false, reason:'stale'};
         const bytes = new Uint8Array(buf);
         if(plan.kind === 'gif' && plan.stream){
-          const walked = decodeGif(bytes, {only: plan.frameCount - 1});
+          const fb = fillBuilder(plan.width, plan.height, plan.plate, plan.plateKnown);
+          const walked = decodeGif(bytes, {only: plan.frameCount - 1, visit:(f, canvas)=>{
+            if(f < plan.frameCount) fb.add(f, canvas, plan.objects.map(o=>o.masks[f]));
+          }});
           if(!delaysMatch(walked, plan.delays_cs)) return {plan, mismatch:true};
+          const fill = fb.done(); plan.plate = fill.rgba; plan.plateKnown = fill.known;
           return {plan, bytes, stream:true};
         }
-        if(plan.kind === 'gif') return {decoded: decodeGif(bytes), plan};
+        if(plan.kind === 'gif'){
+          const decoded = decodeGif(bytes);
+          if(delaysMatch(decoded, plan.delays_cs) && decoded.width === plan.width && decoded.height === plan.height){
+            const fill = framesFill(plan, decoded.frames.map(fr=>fr.rgba)); plan.plate = fill.rgba; plan.plateKnown = fill.known;
+          }
+          return {decoded, plan};
+        }
         if(opts.stillRgba) return {decoded:{rgba:opts.stillRgba, width:plan.width, height:plan.height}, plan};
         return stillRgba(bytes, plan.width, plan.height).then(rgba=>({decoded:{rgba, width:plan.width, height:plan.height}, plan}));
       }).then(got=>{
@@ -609,7 +677,7 @@
     });
   }
 
-  const api = {CAP, USED, RESERVE, roomBytes, admit, isMedium, coverage, forSet, compose, planFrames, decodeGif, delaysMatch, playMs, attach, detach, loadManifest, inkBox, unpackMask, frameHoldBytes, expandObject, expandRow, plateFor, movedFlags};
+  const api = {CAP, USED, RESERVE, roomBytes, admit, isMedium, coverage, forSet, compose, planFrames, decodeGif, delaysMatch, playMs, attach, detach, loadManifest, inkBox, unpackMask, frameHoldBytes, expandObject, expandRow, plateFor, movedFlags, fillBuilder, framesFill, grow};
   if(typeof module !== 'undefined' && module.exports) module.exports = api;
   root.ThrydMediumCuts = api;
 })(typeof window !== 'undefined' ? window : globalThis);
