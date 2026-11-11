@@ -35,7 +35,8 @@
 body.idle #bar{opacity:0;transform:translateY(-100%);pointer-events:none}body.idle{cursor:none}
 #title{font-size:1.7vh;color:var(--dim)}#title b{color:var(--ink);font-weight:500}
 #modes{display:flex;gap:.4vw;align-items:center}
-#modes button,#modes select{background:#000a;color:var(--dim);border:1px solid #444;font:inherit;font-size:1.4vh;padding:.25em .7em;border-radius:.4em;cursor:pointer}
+#modes button,#modes select,#modes input{background:#000a;color:var(--dim);border:1px solid #444;font:inherit;font-size:1.4vh;padding:.25em .7em;border-radius:.4em;cursor:pointer}
+#mlib{max-width:18vw;color:var(--ink)}
 #modes button.on{color:#000;background:var(--acc);border-color:var(--acc)}#modes select{max-width:24vw;color:var(--ink)}
 #user{position:fixed;left:1vw;bottom:1.5vh;max-width:11vw;display:flex;flex-direction:column;gap:.4vh;z-index:5}
 .uchip{display:flex;gap:.3vw;align-items:center;font-size:1.4vh;background:#111c;border:1px dashed var(--acc);border-radius:99px;padding:.2vh .5vw}
