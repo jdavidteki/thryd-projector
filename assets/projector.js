@@ -20,6 +20,7 @@ function remoteSet(set){return !!(set&&set.how==='medium'&&set.remote&&set.url);
 function backdrop(set,force){ if(Date.now()<HOLD)return; stageN++;
   const ug=window.THRYD_UG; if(ug.length&&stageN%3===0){return showUser(ug[Math.floor(stageN/3)%ug.length]);}
   if(!set||(!force&&bgSet&&bgSet.dir===set.dir))return; bgSet=set;bgI=0; $('ug').classList.remove('on');
+  if(window.ThrydMediumCuts) try{ ThrydMediumCuts.detach(); }catch(e){}
   clearInterval(bgTimer); bgTimer=null; const imgs=[$('bgA'),$('bgB')];
   bgFlip^=1; const on=imgs[bgFlip],off=imgs[bgFlip^1];
   on.onerror=null; off.onerror=null; on.onload=null;
@@ -29,7 +30,9 @@ function backdrop(set,force){ if(Date.now()<HOLD)return; stageN++;
     on.onerror=function(){if(bgSet!==set)return; on.dataset.fail='1'; const c=$('cap'); if(c)c.textContent=(set.medium_image_id||set.label||'medium')+' · unavailable';};
     on.src=set.url; on.classList.add('on'); off.classList.remove('on');
     $('cap').textContent=(set.medium_image_id||set.label||'')+viewTag(set);
-    objsFor(null); clearScene(); return;
+    objsFor(null); clearScene();
+    if(window.ThrydMediumCuts) try{ ThrydMediumCuts.attach(set,{image:on, stage:$('stage')}); }catch(e){}
+    return;
   }
   for(let i=0;i<set.frames;i++){const im=new Image();im.src=`${set.dir}/f${String(i).padStart(3,'0')}.webp`;}
   const tick=()=>{on.src=`${set.dir}/f${String(bgI%set.frames).padStart(3,'0')}.webp`;bgI++;};
@@ -541,6 +544,7 @@ addEventListener('resize',()=>{regionsKey='';});
   await loadOmap(); await loadRGifs(); setTimeout(()=>{if(MODE==='live'&&NEWEST()){const nw=NEWEST();POOL=livePool();poolI=Math.max(0,POOL.indexOf(nw));backdrop(nw,true);}},2500); setInterval(async()=>{if(MODE==='live'){loadOmap();loadRGifs();try{const n=(await J('data/live_extra.json?t='+Date.now())).sets||[];const o=NEWEST();LXTRA=n;const nw=NEWEST();POOL=livePool();if(nw&&(!o||o.dir!==nw.dir||o.mtime!==nw.mtime)){poolI=Math.max(0,POOL.indexOf(nw));backdrop(nw,true);}}catch(e){}}},60000);
   const ss=$('slide');if(ss){ss.value=String(SLIDE);ss.onclick=e=>e.stopPropagation();ss.onchange=e=>{SLIDE=+e.target.value;localStorage.setItem('thryd_slide',SLIDE);Q.set('slide',SLIDE);history.replaceState(null,'','?'+Q.toString());startSlide();};}
   const ml=$('mlib'); if(ml){ml.onclick=e=>e.stopPropagation(); const go=e=>{if(e.type==='keydown'&&e.key!=='Enter')return; e.stopPropagation(); const hit=window.thrydLibrary&&thrydLibrary.show(ml.value); if(!hit&&ml.value.trim()){$('cap').textContent='library · not in inventory';}}; ml.addEventListener('keydown',go); ml.addEventListener('change',go);}
+  const preset=Q.get('mlib'); if(preset&&ml){ml.value=preset; const hit=window.thrydLibrary&&thrydLibrary.show(preset); if(!hit){$('cap').textContent='library · not in inventory';}}
   try{(await J('assets/runs/media.json')).runs.forEach(r=>runMedia[r.run]=r.media);}catch(e){}
   try{localPrec=(await J('data/precisions.json')).map(p=>({line:p.line,src:p.src,move:p.move}));}catch(e){}
   try{const T=(await J('data/tweets_all.json')).map(p=>({line:p.line,src:p.src,move:false}));for(let i=T.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[T[i],T[j]]=[T[j],T[i]];}TDECK=T;TI=0;}catch(e){}
