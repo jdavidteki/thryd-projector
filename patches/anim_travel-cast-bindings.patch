@@ -1,0 +1,20 @@
+--- /tmp/id-src/anim_travel.py.orig	2026-11-11 13:54:59.530463058 +0000
++++ /tmp/id-src/anim_travel.py	2026-11-11 13:54:59.546463007 +0000
+@@ -494,6 +494,17 @@
+     }
+     with open(scene.spec_path, "w") as fh:
+         json.dump(spec, fh, indent=1)
++    cast_path = os.environ.get("CAST_OBJECTS")
++    if cast_path:
++        # JSON only. Does not rebuild frames. Bindings are a review file, not a registered map.
++        import importlib.util
++        spec_mod = importlib.util.spec_from_file_location("bind_cast_ids", os.environ.get("BIND_CAST_IDS", "/workspace/thryd-projector/tools/bind_cast_ids.py"))
++        if spec_mod and spec_mod.loader:
++            mod = importlib.util.module_from_spec(spec_mod); spec_mod.loader.exec_module(mod)
++            doc = mod.bind_authored_tags(spec, json.load(open(cast_path, encoding="utf-8")))
++            side = scene.spec_path.replace("_spec.json", "_cast_bindings.json")
++            json.dump(doc, open(side, "w"), indent=1)
++            print("wrote", side)
+     print("wrote", scene.out_path, "frames", N, "bytes", nbytes)
+     return scene.out_path, nbytes, frames
+ 
