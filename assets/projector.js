@@ -15,7 +15,7 @@ const short=p=>(p||'elsewhere').replace(/,? (in )?Miami(, Florida)?/g,'').replac
 // ---------- stage: current scene GIF, large & centered, crossfaded
 let bgSet=null,bgI=0,bgFlip=0,bgTimer=null,stageN=0; window.THRYD_UG=window.THRYD_UG||[];
 // keep the ticker 'loading' label up until the first scene is decoded and on stage
-let viewUp=false, heldTicker=null, cutsHintOn=false;
+let viewUp=false, heldTicker=null, cutsHintOn=false, flipPending=false;
 function setCutsHint(on){ cutsHintOn=!!on; const u=$('upd'); if(!u)return; if(on){ u.textContent='loading cuts'; u.style.opacity=1; } else if(u.textContent==='loading cuts') u.textContent=''; }
 function revealStage(){ if(viewUp)return; viewUp=true; if(heldTicker){ const t=heldTicker; heldTicker=null; ticker(t[0],t[1],t[2]); } else { const u=$('upd'); if(u&&(u.textContent==='loading'||u.textContent==='loading cuts')&&!cutsHintOn) u.textContent=''; } }
 function showUser(u){clearInterval(bgTimer);bgSet={dir:'user:'+u.id};const w=$('ug');w.innerHTML='';w.appendChild(u.vis);
@@ -36,23 +36,42 @@ function sameView(a,b){
 const libPin=window.ThrydMlibPin.create();
 function backdrop(set,force){ if(!libPin.allow(set))return; if(Date.now()<HOLD)return; if(sameView(bgSet,set))return; stageN++;
   const ug=window.THRYD_UG; if(ug.length&&stageN%3===0){return showUser(ug[Math.floor(stageN/3)%ug.length]);}
-  if(!set)return; bgSet=set;bgI=0; $('ug').classList.remove('on');
-  if(window.ThrydMediumCuts) try{ ThrydMediumCuts.detach(); }catch(e){}
+  if(!set)return; const isCold=!viewUp; bgSet=set;bgI=0; flipPending=true; $('ug').classList.remove('on');
+  // on a switch, keep the outgoing GIF (and #mcut) on stage until the incoming image is decoded.
+  // detach immediately only on cold boot, when there is nothing to hold.
+  if(isCold&&window.ThrydMediumCuts) try{ ThrydMediumCuts.detach(); }catch(e){}
   clearInterval(bgTimer); bgTimer=null; const imgs=[$('bgA'),$('bgB')];
   // load into the hidden image; the visible one stays up until the new view is decoded (no black/partial frame)
   const vis=imgs.findIndex(i=>i.classList.contains('on')); bgFlip=vis===0?1:(vis===1?0:bgFlip^1); const on=imgs[bgFlip],off=imgs[bgFlip^1];
-  let shown=false; const flip=()=>{if(shown)return; if(!(bgSet===set||sameView(bgSet,set)))return; shown=true; const ready=[on,off].find(i=>i&&i.naturalWidth>0)||on; ready.classList.add('on'); (ready===on?off:on).classList.remove('on'); revealStage();};
+  const capText=(remoteSet(set)?(set.medium_image_id||set.label||''):(set.label||''))+viewTag(set);
+  let shown=false; const flip=()=>{
+    if(shown)return; if(!(bgSet===set||sameView(bgSet,set)))return;
+    // never flip to a slot without pixels (keeps the outgoing GIF up on a slow switch)
+    if(!(on&&on.naturalWidth>0)) return;
+    shown=true;
+    const hadCut=!!document.getElementById('mcut');
+    on.classList.add('on');
+    if(hadCut){ on.style.transition='none'; on.style.opacity='1'; }
+    if(off) off.classList.remove('on');
+    if(!isCold&&window.ThrydMediumCuts) try{ ThrydMediumCuts.detach(); }catch(e){}
+    if(hadCut){ const el=on; requestAnimationFrame(()=>{ el.style.transition=''; el.style.opacity=''; }); }
+    const c=$('cap'); if(c)c.textContent=capText;
+    if(remoteSet(set)){ objsFor(null); clearScene(); } else objsFor(set);
+    flipPending=false;
+    revealStage();
+    if(heldTicker){ const t=heldTicker; heldTicker=null; ticker(t[0],t[1],t[2]); }
+  };
   const whenReady=(img,go)=>{const ok=()=>{if(bgSet!==set||!img.naturalWidth)return; go();}; if(img.complete&&img.naturalWidth)return ok(); img.addEventListener('load',ok,{once:true}); if(img.decode)img.decode().then(ok,()=>{});};
   on.onerror=null; off.onerror=null; on.onload=null;
   if(remoteSet(set)){
     // original Medium file, one request. The browser plays a GIF's own timing. No frame split, no retry loop.
     on.onload=function(){if(bgSet!==set)return; on.dataset.fail='';};
-    on.onerror=function(){if(bgSet!==set)return; on.dataset.fail='1'; const c=$('cap'); if(c)c.textContent=(set.medium_image_id||set.label||'medium')+' · unavailable';};
+    on.onerror=function(){if(bgSet!==set)return; on.dataset.fail='1'; flipPending=false; const c=$('cap'); if(c)c.textContent=(set.medium_image_id||set.label||'medium')+' · unavailable';};
     on.src=set.url;
-    $('cap').textContent=(set.medium_image_id||set.label||'')+viewTag(set);
-    objsFor(null); clearScene();
-    // wait for cuts, but cap at CUTS_WAIT_MS after the image is decoded: flip the GIF (no black),
-    // keep a 'loading cuts' hint, and let attach finish so the first scene and later switches stay grabbable
+    // caption waits for flip, so a slow switch doesn't label a still-outgoing (or black) stage as the next scene
+    if(isCold){ objsFor(null); clearScene(); }
+    // 4s cap is cold-boot only: flip the decoded first GIF rather than sit on black. On later
+    // switches the outgoing view stays until the incoming one is decoded; never cap-flip an empty slot.
     let cutsDone=false;
     const finishCuts=ok=>{
       if(bgSet!==set) return;
@@ -72,26 +91,30 @@ function backdrop(set,force){ if(!libPin.allow(set))return; if(Date.now()<HOLD)r
     };
     let capArmed=false, capAt=0;
     const stillThis=()=>bgSet===set||sameView(bgSet,set);
-    const decoded=()=>!!((on&&on.naturalWidth)||(off&&off.naturalWidth));
+    const decoded=()=>!!(on&&on.naturalWidth);
     const armCap=()=>{
-      if(capArmed||shown||cutsDone||!stillThis()||!decoded()) return;
+      if(!isCold||capArmed||shown||cutsDone||!stillThis()||!decoded()) return;
       capArmed=true;
       capAt=Date.now()+CUTS_WAIT_MS;
     };
-    whenReady(on, armCap);
-    const capPoll=setInterval(()=>{
-      if(!stillThis()||shown||cutsDone){clearInterval(capPoll);return;}
-      if(!capArmed&&decoded()) armCap();
-      if(capArmed&&Date.now()>=capAt){ clearInterval(capPoll); setCutsHint(true); flip(); }
-    }, 100);
-    startAttach();
+    if(isCold){
+      whenReady(on, armCap);
+      const capPoll=setInterval(()=>{
+        if(!stillThis()||shown||cutsDone){clearInterval(capPoll);return;}
+        if(!capArmed&&decoded()) armCap();
+        if(capArmed&&Date.now()>=capAt){ clearInterval(capPoll); setCutsHint(true); flip(); }
+      }, 100);
+      startAttach();
+    } else {
+      whenReady(on, ()=>{ flip(); startAttach(); });
+    }
     return;
   }
   // frame 0 first (it goes straight into the hidden image); the rest preload once it is up, so a slow link isn't split 40 ways
   const pre=[]; const preload=()=>{if(bgSet!==set||pre.length)return; for(let i=0;i<set.frames;i++){const im=new Image();im.src=`${set.dir}/f${String(i).padStart(3,'0')}.webp`;pre.push(im);}};
   // advance only to a frame that has fully arrived; otherwise hold the current frame (never a half-loaded black frame)
   const tick=()=>{if(bgI>0&&!shown)return; const im=pre[bgI%set.frames]; if(bgI>0&&!(im&&im.complete&&im.naturalWidth))return; on.src=im?im.src:`${set.dir}/f${String(bgI%set.frames).padStart(3,'0')}.webp`;bgI++;};
-  tick(); whenReady(on,()=>{flip();preload();}); $('cap').textContent=(set.label||'')+viewTag(set); objsFor(set);
+  tick(); whenReady(on,()=>{flip();preload();});
   bgTimer=setInterval(tick,Math.max(80,set.ms||120));
   bindScene(set);
 }
@@ -393,7 +416,7 @@ function applyPlaces(){const m=lastM;if(!objLayer||!m)return;const reg={},cr={};
     if(off){const x=parseFloat(b.style.left)||0,bw=parseFloat(b.style.width)||1,left=x+bw/2<50;
       w.style.setProperty('--ox',((left?-(x+bw):(100-x))/bw*100+30)*(left?1:1)+'%');w.classList.add('offstage');}
     else w.classList.remove('offstage');});}
-window.thrydApplyPlaces=applyPlaces; window.thrydDebug=()=>({run:CUR_RUN,pool:POOL.length,views:LXTRA.length,bg:bgSet&&bgSet.dir,mtime:bgSet&&bgSet.mtime,stageN,url:bgSet&&(bgSet.url||bgSet.src||'')});
+window.thrydApplyPlaces=applyPlaces; window.thrydDebug=()=>({run:CUR_RUN,pool:POOL.length,views:LXTRA.length,bg:bgSet&&bgSet.dir,mtime:bgSet&&bgSet.mtime,stageN,url:bgSet&&(bgSet.url||bgSet.src||''),viewUp,flipPending,cap:($('cap')&&$('cap').textContent)||''});
 if(QA_MODE){ window.thrydBackdrop=(set,force)=>backdrop(set,force); window.thrydBgSet=()=>bgSet; }
 setInterval(()=>{if(!objLayer)return;const bs=[...objLayer.querySelectorAll('.ob')];if(bs.length){const b=bs[Math.floor(Math.random()*bs.length)];objChanged(b.dataset.sid||b.dataset.label);}},3000);
 // LXTRA (data/live_extra.json): original unblurred live views, play as-is
@@ -455,7 +478,7 @@ function place(m){
   const a=ids[Math.floor(Math.random()*ids.length)],b=ids[Math.floor(Math.random()*ids.length)];
   order[a]=Math.random()*10;order[b]=Math.random()*10; place(lastM); Object.values(ents).forEach(x=>x.style.setProperty('--j',((Math.random()-.5)*1.2).toFixed(2)+'vw')); const e=ents[a]; if(e)pulse(e.title);}}}catch(e){} drift();},4000+Math.random()*2000);})();
 function ticker(world,upd,meta){
-  if(!viewUp){ heldTicker=[world,upd,meta]; const u=$('upd'); if(u){u.textContent='loading';u.style.opacity=1;} $('world').textContent=world||'—'; $('meta').textContent=meta||''; return; }
+  if(!viewUp||flipPending){ heldTicker=[world,upd,meta]; if(!viewUp){ const u=$('upd'); if(u){u.textContent='loading';u.style.opacity=1;} $('world').textContent=world||'—'; $('meta').textContent=meta||''; } return; }
   $('world').textContent=world||'';const u=$('upd');
   if(cutsHintOn){ u.textContent='loading cuts'; u.style.opacity=1; $('meta').textContent=meta||''; return; }
   u.style.opacity=0;
