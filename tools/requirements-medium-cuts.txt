@@ -1,0 +1,11 @@
+# Box worker: use the existing interpreter. Do not add torch or a GPU provider.
+#   /workspace/.segenv/bin/python
+# Already there: Pillow 13, numpy, opencv, onnxruntime 1.31 (CPUExecutionProvider only), rembg 2.0.86.
+# Models already on that machine: u2net, u2net_human_seg, isnet-general-use, SAM, yolox_s.
+# This environment had no rembg weights, so the sample packs were made with yolov8n-seg (CPU, imgsz 640).
+# Install that optional segmenter only where torch is acceptable:
+#   pip install ultralytics
+# The batch selects yolov8n-seg when ultralytics imports, otherwise rembg u2net_human_seg.
+pillow
+numpy
+opencv-python-headless

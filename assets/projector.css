@@ -194,6 +194,7 @@ body.lovemap #slide,body.lovemap #addgif,body.lovemap #rpause,body.lovemap #mute
 @keyframes notice{0%{transform:none}35%{transform:translateY(-4%)}70%{transform:translateY(0)}100%{transform:none}}
 #objs .ob .spw{scale:none!important}
 #mcut{position:absolute;inset:0;z-index:2;pointer-events:none}
+#stage:has(#mcut) > img{opacity:0!important;transition:none!important}
 #mcut canvas.plate{position:absolute;pointer-events:none}
 #mcut canvas.sprite{position:absolute;pointer-events:auto;touch-action:none;cursor:grab}
 body.cerebro #mcut,body.lovemap #mcut{display:none}

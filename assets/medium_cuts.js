@@ -2,12 +2,12 @@
 // A cut is drawn only from a mask that belongs to that medium id.
 // Agenda scenes, engine ids, and a still patch on an animated subject are refused.
 (function(root){
-  const CAP = 1024 * 1024 * 1024;
-  const USED = 785 * 1024 * 1024;
-  const GRACE = 40 * 1024 * 1024;
+  const CAP = 1073741824;
+  const USED = 791846092;
+  const RESERVE = 41943040;
   const WHOLE = 0.995;
 
-  function roomBytes(){ return CAP - USED - GRACE; }
+  function roomBytes(){ return CAP - USED - RESERVE; }
   function admit(measuredBytes){
     const room = roomBytes();
     if(typeof measuredBytes !== 'number' || !Number.isFinite(measuredBytes) || measuredBytes < 0) return {ok:false, reason:'unmeasured', room};
@@ -23,7 +23,7 @@
     const assets = (manifest && manifest.assets) || [];
     const byId = new Map();
     assets.forEach(a=>{ if(a && a.medium_image_id) byId.set(a.medium_image_id, a); });
-    const counts = {medium:0, gif:0, still:0, ready:0, awaiting_manifest:0, no_object:0, unavailable:0, blocked_budget:0, missing:0, other:0};
+    const counts = {medium:0, gif:0, still:0, ready:0, awaiting_manifest:0, no_object:0, unavailable:0, blocked_budget:0, budget_failed:0, unreviewed:0, unstable:0, unusable_near_full:0, missing:0, other:0};
     (sets || []).forEach(set=>{
       if(!isMedium(set)) return;
       counts.medium++;
@@ -45,7 +45,29 @@
     return {x:x0, y:y0, w:x1 - x0, h:y1 - y0, ink:n};
   }
 
+  function b64bytes(s){
+    if(typeof Buffer !== 'undefined') return new Uint8Array(Buffer.from(s, 'base64'));
+    const bin = atob(s);
+    const out = new Uint8Array(bin.length);
+    for(let i = 0; i < bin.length; i++) out[i] = bin.charCodeAt(i);
+    return out;
+  }
+  function unpackMask(spec, w, h){
+    if(!spec || typeof spec !== 'object' || spec.length != null || !spec.bits) return null;
+    const bw = spec.w, bh = spec.h, x0 = spec.x, y0 = spec.y;
+    if(!bw || !bh || x0 < 0 || y0 < 0 || x0 + bw > w || y0 + bh > h) return null;
+    const raw = b64bytes(spec.bits);
+    const stride = (bw + 7) >> 3;
+    if(raw.length < bh * stride) return null;
+    const mask = new Uint8Array(w * h);
+    for(let y = 0; y < bh; y++) for(let x = 0; x < bw; x++){
+      if(raw[y * stride + (x >> 3)] & (0x80 >> (x & 7))) mask[(y0 + y) * w + (x0 + x)] = 1;
+    }
+    return mask;
+  }
   function asMask(mask, w, h){
+    const packed = unpackMask(mask, w, h);
+    if(packed) return packed;
     if(!mask || mask.length !== w * h) return null;
     const out = new Uint8Array(w * h);
     for(let i = 0; i < out.length; i++) out[i] = mask[i] ? 1 : 0;
@@ -392,7 +414,7 @@
         });
         layer.addEventListener('pointerup', ()=>{ layer._drag = null; });
         layer.addEventListener('pointercancel', ()=>{ layer._drag = null; });
-        if(image) image.classList.remove('on');
+        if(image){ image.classList.remove('on'); image.style.transition = 'none'; image.style.opacity = '0'; }
         step();
         return {ok:true, reason:null, frames:playback.frames.length};
       });
@@ -405,7 +427,7 @@
     });
   }
 
-  const api = {CAP, USED, GRACE, roomBytes, admit, isMedium, coverage, forSet, compose, planFrames, decodeGif, delaysMatch, playMs, attach, detach, loadManifest, inkBox};
+  const api = {CAP, USED, RESERVE, roomBytes, admit, isMedium, coverage, forSet, compose, planFrames, decodeGif, delaysMatch, playMs, attach, detach, loadManifest, inkBox, unpackMask};
   if(typeof module !== 'undefined' && module.exports) module.exports = api;
   root.ThrydMediumCuts = api;
 })(typeof window !== 'undefined' ? window : globalThis);

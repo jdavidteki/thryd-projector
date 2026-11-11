@@ -113,9 +113,21 @@ test('an invented plate is refused and an observed plate fills only known pixels
   assert.equal(play.frames[0].plate[other+2], 255);
 });
 
-test('budget gate uses the stated remaining room and does not admit an unmeasured pack', () => {
+test('an unreviewed pack is not mounted and a packed mask round-trips', () => {
+  const held = row({status:'unreviewed'});
+  assert.equal(M.forSet(set, {assets:[held]}).reason, 'unreviewed');
+  const bits = Buffer.alloc(1); bits[0] = 0b11000000;
+  const spec = {x:1, y:1, w:2, h:1, bits: bits.toString('base64')};
+  const mask = M.unpackMask(spec, 8, 8);
+  assert.equal(mask[1 * 8 + 1], 1);
+  assert.equal(mask[1 * 8 + 2], 1);
+  assert.equal(mask[0], 0);
+});
+
+test('budget gate uses the measured published bytes and does not admit an unmeasured pack', () => {
   const room = M.roomBytes();
-  assert.equal(room, (1024 - 785 - 40) * 1024 * 1024);
+  assert.equal(room, 1073741824 - 791846092 - 41943040);
+  assert.equal(room, 239952692);
   assert.equal(M.admit(room).ok, true);
   assert.equal(M.admit(room + 1).reason, 'blocked_budget');
   assert.equal(M.admit(undefined).reason, 'unmeasured');

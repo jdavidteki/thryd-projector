@@ -27,7 +27,9 @@
   },
   "mask_bytes": "Row-major, 1 bit per pixel, MSB first, padded to a byte per row is the worker's file form. The client also accepts a 0/1 array of length width*height.",
   "sprite": "The visible sprite is the mask's ink, cropped tight. Pixels outside the mask are not copied. A bbox without a mask is rejected. A mask that covers 99.5% or more of the frame is rejected.",
-  "storage_gate": "admit(measuredBytes) allows a pack only when measuredBytes <= 1024MiB - 785MiB - 40MiB. 785MiB is the stated site size, not a new measurement. Unmeasured packs are not admitted. Over-budget packs stay blocked_budget. Per-frame full images are not a mask pack.",
+  "storage_gate": "admit(measuredBytes) allows a pack only when measuredBytes <= 1073741824 - 791846092 - 41943040 = 239952692. Those three figures are the published byte count, the 1024MiB cap, and the 40MiB reserve. Unmeasured packs are not admitted. Over-budget packs stay budget_failed. An automatic pack is unreviewed, not ready. Per-frame full images are not a mask pack.",
+  "statuses_from_builder": ["unreviewed", "no_object", "unstable", "unusable_near_full", "budget_failed", "failed", "partial"],
+  "ready": "ready is not set because a file exists. A reviewer has to mark reviewed true.",
   "at_rest": "Until a pack is ready, the original Medium URL plays in the img, including a GIF's own timing. A ready pack replaces that view with the same pixels: the plate is the frame with the subject removed, and the sprite is the subject's original pixels at the home position.",
   "ghost": "Dragging changes only the sprite offset. The plate is already without the subject, so the backdrop does not keep a copy. A static patch is not used on an animated subject."
 }
