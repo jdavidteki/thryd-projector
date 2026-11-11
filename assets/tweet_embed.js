@@ -1,6 +1,8 @@
-// Official post embed for the speech bubble. The archive line is fallback
-// only (no id, purged, or the widget failed or timed out) and is hidden
-// while an embed is loading or on screen. Never invent author, avatar, or metrics.
+// Official post embed for the speech bubble. Once an embed is loading or on
+// screen, hide every non-embed node in the bubble (.who, .txt, and .twlink).
+// Archive text and the speaker label are fallback only (no id, purged, or the
+// widget failed or timed out) and never stack with the embed.
+// Never invent author, avatar, or metrics.
 // A status id is a decimal string from the archive, never parsed out of prose.
 (function(root){
   var HANDLE = 'notnotnotnotyn';
@@ -100,14 +102,31 @@
       a.textContent = url;
     }
 
+    function chromeNodes(host){
+      var out = [], sels = ['.who', '.txt', '.twlink'], i, el;
+      if(!host || !host.querySelector) return out;
+      for(i=0;i<sels.length;i++){
+        el = host.querySelector(sels[i]);
+        if(el) out.push(el);
+      }
+      return out;
+    }
+
+    function setChrome(host, show){
+      var nodes = chromeNodes(host), i;
+      for(i=0;i<nodes.length;i++) nodes[i].hidden = !show;
+    }
+
     function showArchive(host){
       host.classList.remove('embed-wait');
       host.classList.remove('embed-on');
+      setChrome(host, true);
     }
 
     function hideArchive(host){
       host.classList.add('embed-wait');
       host.classList.remove('embed-on');
+      setChrome(host, false);
     }
 
     function arm(host, ms, my){
@@ -157,6 +176,7 @@
         }
         host.classList.remove('embed-wait');
         host.classList.add('embed-on');
+        setChrome(host, false);
         return {ok: true, reason: 'embed'};
       }
       var timed = new Promise(function(resolve){
