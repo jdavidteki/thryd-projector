@@ -414,7 +414,7 @@ async function live(){
   let s=null; try{s=await LIVE_STATE();}catch(e){}
   if(!s||!(s.characters||[]).length){return loopTimeline();}
   let last='', step=0, cur=s;
-  let first=true; const apply=st=>{CUR_RUN=st.run||CUR_RUN;cur=st;trackObjs(st);if(!scEv.length){const m=fromState(st);render(m);}
+  let first=true; const apply=st=>{try{window.thrydMoves&&thrydMoves.observeState(st);}catch(e){}CUR_RUN=st.run||CUR_RUN;cur=st;trackObjs(st);if(!scEv.length){const m=fromState(st);render(m);}
     POOL=livePool(); if(first){first=false;const nw=NEWEST();if(nw){poolI=Math.max(0,POOL.indexOf(nw));backdrop(nw,true);}else if(POOL.length){poolI=0;backdrop(POOL[0],true);}else backdrop(liveBackdrop(st.current_place));}
     $('run').textContent=st.run||'';};
   apply(s);
@@ -552,9 +552,11 @@ async function dragSend(body){
     try{const tx=await (await fetch(DRAG.reply+'/json?poll=1&since='+t0,{cache:'no-store'})).text();
       for(const l of tx.split('\n')){if(!l)continue;let m;try{m=JSON.parse(l);m=JSON.parse(m.message||'{}');}catch(e){continue;}if(m.rid===rid)return m;}}catch(e){}}
   throw new Error('no reply from box (timeout)');}
+const Moves=(window.ThrydMovement&&ThrydMovement.attach({bridge:{enabled:false}}))||null; window.thrydMoves=Moves;
 async function dropTo(id,from,to,xy){
   if(!DRAG||!DRAG.endpoint){toast('drag endpoint not available',1);return;}
   const label=id.slice(2); PEND[id]={region:to,until:Date.now()+8*60e3}; setReg(id,to); toast(`moving ${label} → ${to}…`);
+  if(Moves&&!(xy&&typeof xy.x==='number')){const layer=document.getElementById('objs'); try{Moves.commit({kind:'place', place:PFULL[to]||to, cut:label, name:label, sceneKey:layer&&layer.dataset.key});}catch(e){}}
   const tg=window.thrydTarget&&thrydTarget.make(label,PFULL[to]||to,{type:'chip',id,place:to,...(xy||{})});
   const body={key:DRAG.key,object:label,place:PFULL[to]||to,...(tg?{target:tg}:{})};
   if(xy&&typeof xy.x==='number'){body.x=xy.x;body.y=xy.y;}
@@ -662,6 +664,7 @@ window.thrydWander={paths:()=>DPATH,move:b=>wMove(b),state:b=>WS.get(b)};
     window.thrydHold(30000);const Lp=dd.b.parentNode,k=Lp&&Lp.dataset.key;const[cl,ct]=visClamp(Lp,parseFloat(dd.b.style.left),parseFloat(dd.b.style.top),parseFloat(dd.b.style.width),parseFloat(dd.b.style.height));
     dd.b.style.left=cl+'%';dd.b.style.top=ct+'%';dd.b.dataset.dp='1';DPOS[k+'|'+dd.b.dataset.label]=[+cl.toFixed(3),+ct.toFixed(3)];dd.path.push([cl,ct]);const dpath=thinPath(dd.path.map(q=>visClamp(Lp,q[0],q[1],parseFloat(dd.b.style.width),parseFloat(dd.b.style.height))),24);saveDPath(k,dd.b.dataset.label,dpath);{const w=WS.get(dd.b);if(w)w.next=performance.now()+9000;}
     try{localStorage.setItem('thryd_dpos',JSON.stringify(DPOS));}catch(e){}
+    if(window.thrydMoves){try{thrydMoves.commit({kind:'scene', sceneKey:k, cut:dd.b.dataset.label||'', name:dd.b.dataset.name||'', fromPercent:{x:dd.l0,y:dd.t0}, toPercent:{x:cl,y:ct}});}catch(e){}} /* records raw anchors; does not move the sprite */
     const h=hit(ev.clientX,ev.clientY),id=dd.b.dataset.id,from=regOf(id);if(!h){toast('dropped in the scene — drop on a place name to move them');if(window.thrydTarget)thrydTarget.scene(dd.b,k,cl,ct,dpath);noteLocalDrag(dd.b.dataset.label,(window.thrydCtx&&thrydCtx().lastM&&thrydCtx().PFULL[thrydCtx().lastM.here])||'',{x:+cl.toFixed(3),y:+ct.toFixed(3)});return;}
     if(h.dataset.name===from){toast(`${id.slice(2)} is already at ${from}`);return;}
     dropTo(id,from,h.dataset.name,{x:+cl.toFixed(3),y:+ct.toFixed(3)});};
@@ -771,7 +774,7 @@ window.thrydWander={paths:()=>DPATH,move:b=>wMove(b),state:b=>WS.get(b)};
     e.classList.add('done');const c=document.createElement('div');c.className='prophcap';c.textContent='✨ prophecy fulfilled: '+asrt(labelOf(m.object),m.place);lay().appendChild(c);
     setTimeout(()=>{e.classList.add('fade');c.classList.add('fade');},4200);setTimeout(()=>{e.remove();c.remove();},5600);
     if(l){const a=T();a.forEach(t=>{if(t.at===l.at)t.status='fulfilled';});save(a);}}
-  function fromState(s){if(!s)return;st=s;try{window.thrydFS&&thrydFS(s);}catch(e){}const mi=s.miracles;
+  function fromState(s){if(!s)return;st=s;try{window.thrydMoves&&thrydMoves.observeState(s);}catch(e){}try{window.thrydFS&&thrydFS(s);}catch(e){}const mi=s.miracles;
     M=mi&&typeof mi==='object'&&!Array.isArray(mi)?{open:Array.isArray(mi.open)?mi.open:[],fulfilled:Array.isArray(mi.fulfilled)?mi.fulfilled:[],error:mi.error||null}:{open:[],fulfilled:[],error:null};
     if(M.error){document.querySelectorAll('[data-proph],.prophcap').forEach(e=>e.remove());return;}
     M.fulfilled.forEach(m=>{const k=m.id||(m.object+'|'+m.place+'|'+(m.fulfilled_card||''));if(seen.has(k))return;mark(k);fulfil(m);});draw();}

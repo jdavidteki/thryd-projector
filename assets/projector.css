@@ -173,6 +173,9 @@ body.cerebro #slide,body.cerebro #addgif,body.cerebro #rpause,body.cerebro #mute
 .fspin span{position:absolute;left:50%;top:20px;transform:translateX(-50%);white-space:nowrap;font-size:11px;color:#fff3d0;text-shadow:0 1px 3px #000}
 .fspin.done{animation:none;opacity:1;border-style:solid;border-color:#ffe08a;box-shadow:0 0 18px 6px rgba(255,214,120,.75)}
 .fspin.fade{opacity:0!important;box-shadow:none}
+#mvstatus{position:fixed;left:1.2vw;bottom:4.4vh;z-index:12;max-width:36vw;font:1.15vh/1.35 ui-monospace,monospace;color:#d7d2c4;text-shadow:0 1px 2px #000;pointer-events:none;white-space:pre-wrap}
+#mvstatus.bad{color:#f3b4b4}#mvstatus.pend{color:#f0d7a2}
+body.cerebro #mvstatus,body.lovemap #mvstatus{display:none}
 #fswatch{position:fixed;left:1.2vw;bottom:1.2vh;font-size:1.25vh;color:#fff3d0;opacity:.4;text-shadow:0 1px 3px #000;white-space:nowrap;max-width:24vw;overflow:hidden;text-overflow:ellipsis} /* Jesuye 11-10: watching must not be bigger than LIVE; moved off the top to the bottom-left corner */body.cerebro #fswatch,body.lovemap #fswatch{display:none}
 
 /* autonomous motion: turning toward travel (individual `scale` composes with the sway/breath transforms) */
