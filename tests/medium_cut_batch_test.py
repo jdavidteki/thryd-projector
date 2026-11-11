@@ -177,6 +177,77 @@ class BatchLogicTest(unittest.TestCase):
             self.assertEqual(rows[0]["compact_bytes"], full)
             self.assertTrue(rows[0]["has_plate"])
 
+    def test_a_missed_edge_does_not_stay_on_the_plate(self):
+        from medium_cut_batch import repair_masks, repeated_plate, subject_left_behind, wall_reference
+        frames = []
+        masks = []
+        for i in range(6):
+            fr = np.zeros((24, 24, 4), np.uint8)
+            fr[:, :] = (180, 180, 180, 255)
+            x0 = 2 + i
+            fr[8:14, x0:x0 + 6] = (0, 0, 0, 255)
+            # The segmenter misses the top row of the square. That row is the ghost.
+            mask = np.zeros((24, 24), np.uint8)
+            mask[9:14, x0:x0 + 6] = 1
+            frames.append(fr)
+            masks.append(mask)
+        ref = wall_reference(frames, masks)
+        self.assertIsNotNone(ref)
+        repaired = repair_masks(frames, masks, ref)
+        plate, known, need = repeated_plate(frames, ref)
+        self.assertGreaterEqual(need, 2)
+        for fr, mask in zip(frames, repaired):
+            black = np.all(fr[:, :, :3] == 0, axis=2)
+            self.assertTrue(np.all(mask[black] == 1))
+            self.assertEqual(subject_left_behind(fr, mask, ref), 0)
+        # The stored plate is the wall that was actually seen, never the black square.
+        self.assertEqual(int(np.any((known == 1) & np.all(plate[:, :, :3] == 0, axis=2))), 0)
+        self.assertGreater(int(known.sum()), 0)
+        self.assertTrue(np.all(np.abs(plate[known == 1][:, :3].astype(int) - 180).max() <= 16))
+
+    def test_one_wall_like_frame_is_not_a_plate(self):
+        from medium_cut_batch import repeated_plate
+        frames = []
+        for i in range(6):
+            fr = np.zeros((16, 16, 4), np.uint8)
+            fr[:, :] = (180, 180, 180, 255)
+            if i < 5:
+                fr[4:12, 4:12] = (20, 20, 20, 255)
+            frames.append(fr)
+        ref = np.full((16, 16, 3), 180, np.uint8)
+        _plate, known, need = repeated_plate(frames, ref)
+        self.assertEqual(need, 4)
+        self.assertEqual(int(known[6, 6]), 0)
+        self.assertEqual(int(known[0, 0]), 1)
+
+    def test_reconcile_rejects_a_garbage_plate_gzip(self):
+        import gzip
+        from medium_cut_batch import reconcile_pack
+        raw = {
+            "medium_image_id": "1*qa.gif",
+            "kind": "gif",
+            "status": "unreviewed",
+            "reviewed": False,
+            "source_sha256": "abc",
+            "frame_size": [4, 4],
+            "delays_cs": [10],
+            "objects": [],
+            "plate_gzip_b64": base64.b64encode(b"this is not a plate").decode("ascii"),
+        }
+        with self.assertRaises(ValueError):
+            reconcile_pack(raw)
+        wrong = gzip.compress(b"\x00" * 8)
+        raw["plate_gzip_b64"] = base64.b64encode(wrong).decode("ascii")
+        with self.assertRaises(ValueError):
+            reconcile_pack(raw)
+        plate = np.zeros((4, 4, 4), np.uint8)
+        plate[0, 0] = (1, 2, 3, 255)
+        raw["plate_gzip_b64"] = base64.b64encode(gzip.compress(plate.tobytes())).decode("ascii")
+        got = reconcile_pack(raw)
+        self.assertEqual(gzip.decompress(base64.b64decode(got["plate_gzip_b64"])), plate.tobytes())
+        self.assertEqual(got["status"], "unreviewed")
+        self.assertFalse(got["reviewed"])
+
     def test_isolate_core_drops_a_detached_speck(self):
         from medium_cut_batch import isolate_core
         mask = np.zeros((40, 40), np.uint8)

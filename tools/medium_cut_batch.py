@@ -15,9 +15,10 @@ One id, local file instead of the box path:
     --only '1*example.gif' --local '1*example.gif=/path/to/file.gif'
 
 CPU only. Prefers yolov8n-seg instance masks when ultralytics is installed.
-Otherwise rembg u2net_human_seg connected components, via onnxruntime
-CPUExecutionProvider. A file on disk is unreviewed, not ready. Telea inpaint
-is not used. A GIF gets one mask per displayed frame. Delays are the file's
+Otherwise rembg u2net_human_seg, via onnxruntime CPUExecutionProvider. A file
+on disk is unreviewed, not ready. Telea inpaint is not used. A plate pixel is
+kept only when most frames match the still border; otherwise the hole is
+transparent. A GIF gets one mask per displayed frame. Delays are the file's
 graphic-control centiseconds.
 """
 import argparse
@@ -290,20 +291,161 @@ def iou(a, b):
     return float(inter) / float(union) if union else 0.0
 
 
-def observed_plate(frames, unions):
-    """Background color only where the same pixel is unmasked in this file."""
-    h, w = frames[0].shape[:2]
-    known = np.zeros((h, w), np.uint8)
+# A plate sample has to match the still wall, and it has to do that in most
+# frames. One frame of hair or a light shoulder is not a background.
+WALL_MATCH = 16
+SUBJECT_DELTA = 24
+WALL_RANGE = 18
+SEED_GAP = 32
+SEED_COLOR = 40
+GROW_LIMIT = 160
+
+
+def _need_frames(n):
+    return max(2, (int(n) * 2) // 3)
+
+
+def wall_reference(frames, masks):
+    """Color of the still border, or None when this file has no such border.
+
+    The reference is only a test. Plate pixels are copied from this file.
+    Seeds sit on the border, away from pixels that move, and near the border's
+    own median so a dark gap is not treated as the wall.
+    """
+    import cv2
+    if len(frames) < 2 or len(frames) != len(masks):
+        return None
+    rgb = np.stack([fr[:, :, :3] for fr in frames]).astype(np.int16)
+    rng = (rgb.max(0) - rgb.min(0)).max(-1)
+    always = np.ones(rng.shape, np.uint8)
+    for mask in masks:
+        always &= (mask == 0).astype(np.uint8)
+    stable = ((always == 1) & (rng <= WALL_RANGE)).astype(np.uint8)
+    count, lab = cv2.connectedComponents(stable, connectivity=8)
+    if count < 2:
+        return None
+    border = np.zeros(count, np.uint8)
+    border[np.unique(lab[0, :])] = 1
+    border[np.unique(lab[-1, :])] = 1
+    border[np.unique(lab[:, 0])] = 1
+    border[np.unique(lab[:, -1])] = 1
+    border[0] = 0
+    if not border.any():
+        return None
+    seed = np.isin(lab, np.flatnonzero(border))
+    med = np.median(rgb, 0)
+    tone = np.median(med[seed], 0)
+    seed = seed & (np.abs(med - tone).max(-1) <= SEED_COLOR)
+    gap = cv2.distanceTransform((rng <= 22).astype(np.uint8), cv2.DIST_L2, 3)
+    clean = seed & (gap >= SEED_GAP)
+    if int(clean.sum()) < 64:
+        clean = seed
+    if int(clean.sum()) < 64:
+        return None
+    src = np.where(clean, 0, 255).astype(np.uint8)
+    _dist, labels = cv2.distanceTransformWithLabels(src, cv2.DIST_L2, 5, labelType=cv2.DIST_LABEL_PIXEL)
+    cols = np.median(rgb[:, clean], 0).astype(np.uint8)
+    lut = np.zeros((int(labels.max()) + 1, 3), np.uint8)
+    lut[labels[clean]] = cols
+    return lut[labels]
+
+
+def repeated_plate(frames, ref):
+    """Keep a pixel only when most frames match the wall. Otherwise unknown."""
+    h, w = ref.shape[:2]
+    need = _need_frames(len(frames))
+    counts = np.zeros((h, w), np.int16)
+    best = np.full((h, w), 9999, np.int16)
     plate = np.zeros((h, w, 4), np.uint8)
-    for rgba, union in zip(frames, unions):
-        see = union == 0
-        take = see & (known == 0)
-        plate[take] = rgba[take]
-        known[take] = 1
-    # A hole pixel is known only if some frame did not cover it.
+    ref16 = ref.astype(np.int16)
+    for fr in frames:
+        delta = np.abs(fr[:, :, :3].astype(np.int16) - ref16).max(-1)
+        hit = delta <= WALL_MATCH
+        counts += hit.astype(np.int16)
+        take = hit & (delta < best)
+        plate[take] = fr[take]
+        best[take] = delta[take]
+    known = (counts >= need).astype(np.uint8)
+    plate[known == 0] = 0
+    return plate, known, need
+
+
+def repair_masks(frames, masks, ref):
+    """Pull missed subject into the mask. Stop at the wall. Do not paint pixels."""
+    import cv2
+    rgb = np.stack([fr[:, :, :3] for fr in frames]).astype(np.int16)
+    rng = (rgb.max(0) - rgb.min(0)).max(-1)
+    ref16 = ref.astype(np.int16)
+    kernel = np.ones((3, 3), np.uint8)
+    out = []
+    for fr, mask in zip(frames, masks):
+        delta = np.abs(fr[:, :, :3].astype(np.int16) - ref16).max(-1)
+        near = cv2.distanceTransform((mask == 0).astype(np.uint8), cv2.DIST_L2, 3) <= GROW_LIMIT
+        nonwall = ((delta > SUBJECT_DELTA) & near).astype(np.uint8)
+        # Bridge a one-pixel gap so a missed shoulder edge is not left outside the cut.
+        nonwall = cv2.dilate(nonwall, kernel) & near.astype(np.uint8)
+        blob = ((nonwall == 1) | (mask == 1)).astype(np.uint8)
+        _n, lab = cv2.connectedComponents(blob, connectivity=8)
+        ids = np.unique(lab[mask == 1])
+        ids = ids[ids != 0]
+        cur = np.isin(lab, ids).astype(np.uint8) if len(ids) else mask.copy()
+        inv = (cur == 0).astype(np.uint8)
+        n2, lab2 = cv2.connectedComponents(inv, connectivity=4)
+        border = np.zeros(n2, np.uint8)
+        border[np.unique(lab2[0, :])] = 1
+        border[np.unique(lab2[-1, :])] = 1
+        border[np.unique(lab2[:, 0])] = 1
+        border[np.unique(lab2[:, -1])] = 1
+        border[0] = 0
+        cur[(inv == 1) & (border[lab2] == 0) & (nonwall == 1)] = 1
+        stable_wall = (delta <= WALL_MATCH) & (rng <= WALL_RANGE)
+        for _ in range(12):
+            touch = cv2.dilate((cur == 0).astype(np.uint8), kernel) & (cur == 1) & stable_wall
+            if not int(touch.sum()):
+                break
+            cur[touch] = 0
+        if int(cur.sum()) < max(1, int(0.5 * int(mask.sum()))):
+            cur = mask.copy()
+        out.append(cur)
+    return out
+
+
+def subject_left_behind(frame, mask, ref):
+    delta = np.abs(frame[:, :, :3].astype(np.int16) - ref.astype(np.int16)).max(-1)
+    return int(((mask == 0) & (delta > SUBJECT_DELTA)).sum())
+
+
+def observed_plate(frames, unions):
+    """Background only where a wall reference is seen in most frames.
+
+    Without that reference, unmasked samples must agree with each other.
+    A single disagreeing sample is unknown, not the plate. No new pixels.
+    """
+    h, w = frames[0].shape[:2]
     hole = np.zeros((h, w), np.uint8)
     for union in unions:
-        hole |= union
+        hole |= (union > 0).astype(np.uint8)
+    ref = wall_reference(frames, [(union > 0).astype(np.uint8) for union in unions])
+    if ref is not None:
+        plate, known, _need = repeated_plate(frames, ref)
+    else:
+        plate = np.zeros((h, w, 4), np.uint8)
+        known = np.zeros((h, w), np.uint8)
+        if len(frames) >= 2:
+            lo = np.full((h, w, 3), 255, np.int16)
+            hi = np.zeros((h, w, 3), np.int16)
+            count = np.zeros((h, w), np.int16)
+            for fr, union in zip(frames, unions):
+                see = union == 0
+                pix = fr[:, :, :3].astype(np.int16)
+                lo[see] = np.minimum(lo[see], pix[see])
+                hi[see] = np.maximum(hi[see], pix[see])
+                count[see] += 1
+            span = (hi - lo).max(-1)
+            known = ((count >= _need_frames(len(frames))) & (span <= WALL_MATCH)).astype(np.uint8)
+            for fr, union in zip(frames, unions):
+                take = (union == 0) & (known == 1) & (plate[:, :, 3] == 0)
+                plate[take] = fr[take]
     known_hole = (known == 1) & (hole == 1)
     return plate, known_hole
 
@@ -345,7 +487,10 @@ class YoloSeg:
         import cv2
         h, w = rgb.shape[:2]
         t0 = time.perf_counter()
-        result = self.model.predict(Image.fromarray(np.ascontiguousarray(rgb[:, :, :3])), imgsz=640, device="cpu", verbose=False, conf=0.35)[0]
+        # 0.25 keeps a person through frames whose score falls just under 0.35.
+        # QA5's last frames score 0.344 and 0.426. A one-frame false box does not
+        # become a cut: track_instances drops any track that misses a frame.
+        result = self.model.predict(Image.fromarray(np.ascontiguousarray(rgb[:, :, :3])), imgsz=640, device="cpu", verbose=False, conf=0.25)[0]
         sec = time.perf_counter() - t0
         out = []
         if result.masks is None or result.boxes is None:
@@ -478,6 +623,31 @@ def build_pack(path, job, segmenter, proof_dir=None):
         if proof_dir:
             _write_track_proof(proof_dir, path, kind, unstable[0]["masks"])
         return pack
+    held = [fr["rgba"] for fr in decoded2["frames"]]
+    rough = []
+    for frame_i in range(len(per)):
+        union = np.zeros((h, w), np.uint8)
+        for tr in stable:
+            m = tr["masks"][frame_i] if frame_i < len(tr["masks"]) else None
+            if m is not None:
+                union |= m
+        rough.append(union)
+    ref = wall_reference(held, rough) if len(held) > 1 else None
+    ghost_max = None
+    plate_need = None
+    if ref is not None:
+        for tr in stable:
+            tr["masks"] = repair_masks(held, tr["masks"], ref)
+        plate, known, plate_need = repeated_plate(held, ref)
+        ghost_max = 0
+        for fr, trs in zip(held, range(len(held))):
+            union = np.zeros((h, w), np.uint8)
+            for tr in stable:
+                union |= tr["masks"][trs]
+            ghost_max = max(ghost_max, subject_left_behind(fr, union, ref))
+    else:
+        plate = np.zeros((h, w, 4), np.uint8)
+        known = np.zeros((h, w), np.uint8)
     objects = []
     unions = []
     for frame_i in range(len(per)):
@@ -487,19 +657,17 @@ def build_pack(path, job, segmenter, proof_dir=None):
             if m is not None:
                 union |= m
         unions.append(union)
-    plate = np.zeros((h, w, 4), np.uint8)
-    known_hole = np.zeros((h, w), np.uint8)
     hole = np.zeros((h, w), np.uint8)
     for union in unions:
         hole |= union
-    known = np.zeros((h, w), np.uint8)
-    for fr, union in zip(decoded2["frames"], unions):
-        see = union == 0
-        take = see & (known == 0)
-        plate[take] = fr["rgba"][take]
-        known[take] = 1
-        del fr["rgba"]
-    known_hole = (known == 1) & (hole == 1)
+    if ref is None and len(held) > 1:
+        plate, known_hole = observed_plate(held, unions)
+        known = (known_hole == 1).astype(np.uint8)
+    else:
+        known_hole = (known == 1) & (hole == 1)
+    for fr in decoded2["frames"]:
+        fr.pop("rgba", None)
+    del held
     for n, tr in enumerate(stable, 1):
         masks = []
         for m in tr["masks"]:
@@ -519,7 +687,9 @@ def build_pack(path, job, segmenter, proof_dir=None):
         "delays_cs": delays if kind == "gif" else None,
         "objects": objects,
         "plate_known_hole_pixels": int(known_hole.sum()),
-        "unknown_hole_pixels": int((hole == 1).sum() - known_hole.sum()),
+        "unknown_hole_pixels": int((hole == 1).sum() - int(known_hole.sum())),
+        "ghost_pixels_max": ghost_max,
+        "plate_match_frames": plate_need,
         "seconds_per_frame": [round(s, 4) for s in seconds],
         "seconds_per_frame_mean": round(sum(seconds) / len(seconds), 4) if seconds else None,
         "model": segmenter.name,
@@ -529,7 +699,7 @@ def build_pack(path, job, segmenter, proof_dir=None):
             "medium_image_id": job.get("medium_image_id") if job else None,
             "source_url": (job or {}).get("unsized_body_url") or (job or {}).get("representative_url"),
             "pipeline": "medium_cut_batch.py %s per displayed frame" % segmenter.name,
-            "plate": "same-pixel observed in another moment of this file, else unknown",
+            "plate": "a pixel of this file kept only when most frames match the still border; otherwise transparent",
             "inpaint": False,
             "engine_id": None,
         },
@@ -624,10 +794,15 @@ def _write_proof(proof_dir, decoded_path, kind, unions, plate, known_hole, objec
         # observed plate where known
         fill = known_hole & (union == 1)
         dragged[fill] = plate[fill]
-        # sprite shifted right by 24px, clipped
+        backdrop = np.zeros_like(rgba)
+        backdrop[:, :] = (255, 0, 255, 255)
+        backdrop[union == 0] = rgba[union == 0]
+        backdrop[fill] = plate[fill]
+        Image.fromarray(backdrop[:, :, :3]).save(os.path.join(proof_dir, "frame%d_plate.png" % fi))
+        # sprite shifted right by 40px, clipped
         ys, xs = np.nonzero(union)
         if len(xs):
-            shift = 40
+            shift = max(40, rgba.shape[1] // 3)
             for y, x in zip(ys.tolist(), xs.tolist()):
                 nx = x + shift
                 if 0 <= nx < rgba.shape[1]:
@@ -662,10 +837,45 @@ def pack_is_skippable(pack, source_sha):
     return True
 
 
-def reconcile_pack(pack):
-    """Lossless copy. Raw mask bits and a zlib plate become gzip. Identity fields stay."""
+def _decoded_plate(b64):
     import gzip
     import zlib
+    raw = base64.b64decode(b64)
+    if raw[:2] == b"\x1f\x8b":
+        return gzip.decompress(raw)
+    if raw[:1] == b"\x78":
+        return zlib.decompress(raw)
+    raise ValueError("plate encoding")
+
+
+def assert_plate_bytes(pack):
+    """Reject a plate that the player cannot gunzip into width*height*4 bytes."""
+    w, h = (pack.get("frame_size") or [0, 0])[:2]
+    expect = int(w) * int(h) * 4
+    decoded = {}
+    for key in ("plate_gzip_b64", "plate_deflate_b64"):
+        if not pack.get(key):
+            continue
+        try:
+            pixels = _decoded_plate(pack[key])
+        except Exception as exc:
+            raise ValueError("plate decode %s" % key) from exc
+        if expect <= 0 or len(pixels) != expect:
+            raise ValueError("plate size %s" % key)
+        decoded[key] = pixels
+    if "plate_gzip_b64" in decoded and "plate_deflate_b64" in decoded:
+        if decoded["plate_gzip_b64"] != decoded["plate_deflate_b64"]:
+            raise ValueError("plate mismatch")
+    return decoded
+
+
+def reconcile_pack(pack):
+    """Lossless copy. Raw mask bits and a zlib plate become gzip. Identity fields stay.
+
+    An existing plate_gzip_b64 is decoded and checked against frame_size.
+    Garbage that the player would reject does not pass through.
+    """
+    import gzip
     out = json.loads(json.dumps(pack))
     for obj in out.get("objects") or []:
         if obj.get("masks") and not obj.get("masks_deflate"):
@@ -679,18 +889,14 @@ def reconcile_pack(pack):
             obj["masks_encoding"] = "bbox1bit-gzip-v1"
             del obj["masks"]
     if out.get("plate_deflate_b64") and not out.get("plate_gzip_b64"):
-        wrapped = base64.b64decode(out["plate_deflate_b64"])
-        if wrapped[:2] == b"\x1f\x8b":
-            pixels = gzip.decompress(wrapped)
-        elif wrapped[:1] == b"\x78":
-            pixels = zlib.decompress(wrapped)
-        else:
-            raise ValueError("plate encoding")
+        pixels = _decoded_plate(out["plate_deflate_b64"])
         out["plate_gzip_b64"] = base64.b64encode(gzip.compress(pixels, compresslevel=9)).decode("ascii")
         if gzip.decompress(base64.b64decode(out["plate_gzip_b64"])) != pixels:
             raise ValueError("plate pixel mismatch")
         del out["plate_deflate_b64"]
         out["plate_encoding"] = "gzip-rgba-v1"
+    if out.get("plate_gzip_b64") or out.get("plate_deflate_b64"):
+        assert_plate_bytes(out)
     return out
 
 
