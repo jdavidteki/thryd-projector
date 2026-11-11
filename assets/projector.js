@@ -43,7 +43,7 @@ function backdrop(set,force){ if(!libPin.allow(set))return; if(Date.now()<HOLD)r
 }
 let POOL=[],poolI=0,slideCursor='',LXTRA=[],CUR_RUN=null; const RUNX=()=>LXTRA.filter(x=>CUR_RUN&&x.run===CUR_RUN);
 // slide speed: 8s default, 30s, 60s (?slide=30 or the bar select; remembered)
-let SLIDE=+(Q.get('slide')||localStorage.getItem('thryd_slide')||8); if(![8,30,60].includes(SLIDE))SLIDE=8; let slideT=null;
+let kept=null; try{kept=window.ThrydKeep&&ThrydKeep.settings();}catch(e){kept=null;} if(kept&&(kept.mute===0||kept.mute===1)){try{localStorage.setItem('thryd_mute',kept.mute?'1':'0');}catch(e){}} let SLIDE=+(Q.get('slide')||(kept&&kept.slide)||localStorage.getItem('thryd_slide')||8); if(![8,30,60].includes(SLIDE))SLIDE=8; let slideT=null;
 const NEWEST=()=>RUNX().length?RUNX().slice().sort((a,b)=>(b.mtime||0)-(a.mtime||0))[0]:null;
 // after ten slideshow changes, return to whatever the newest live view is then
 const slideCycle=window.ThrydLiveReturn.create(10);
@@ -52,7 +52,7 @@ function startSlide(){clearInterval(slideT);slideT=setInterval(()=>{
   if(moved.action==='idle'||moved.action==='hold')return;
   poolI=moved.poolI; if(moved.cursor)slideCursor=moved.cursor; backdrop(moved.set,true);
 },SLIDE*1000);}
-window.thrydLibrary={show(id){const q=String(id||'').trim(); const s=LXTRA.find(x=>x&&x.how==='medium'&&(x.medium_image_id===q||x.dir==='medium/'+q||x.url===q)); if(!s)return null; libPin.hold(s); backdrop(s,true); return s.dir;}, showSet(set){if(!remoteSet(set))return null; backdrop(set,true); return set.dir;}, counts(){const m=LXTRA.filter(x=>x&&x.how==='medium'); return {medium:m.length, gif:m.filter(x=>x.extension==='gif').length, still:m.filter(x=>x.extension!=='gif').length};}};
+window.thrydLibrary={show(id){const q=String(id||'').trim(); const s=LXTRA.find(x=>x&&x.how==='medium'&&(x.medium_image_id===q||x.dir==='medium/'+q||x.url===q)); if(!s)return null; libPin.hold(s); if(window.ThrydKeep)try{ThrydKeep.rememberGif(s.medium_image_id||q);}catch(e){} backdrop(s,true); return s.dir;}, showSet(set){if(!remoteSet(set))return null; backdrop(set,true); return set.dir;}, counts(){const m=LXTRA.filter(x=>x&&x.how==='medium'); return {medium:m.length, gif:m.filter(x=>x.extension==='gif').length, still:m.filter(x=>x.extension!=='gif').length};}};
 startSlide();
 
 // ---------- per-GIF scene updates: loop data/timeline.json events for the GIF on stage
@@ -548,9 +548,12 @@ addEventListener('resize',()=>{regionsKey='';});
   try{media=await J('data/media.json');}catch(e){}
   try{LXTRA=(await J('data/live_extra.json')).sets||[];}catch(e){}
   await loadOmap(); await loadRGifs(); setTimeout(()=>{if(MODE==='live'&&NEWEST()){const nw=NEWEST();POOL=livePool();if(!slideCursor){poolI=Math.max(0,POOL.indexOf(nw));slideCursor=nw.dir||'';}backdrop(nw,true);}},2500); setInterval(async()=>{if(MODE==='live'){loadOmap();loadRGifs();try{const n=(await J('data/live_extra.json?t='+Date.now())).sets||[];const o=NEWEST();LXTRA=n;const nw=NEWEST();POOL=livePool();if(nw&&(!o||o.dir!==nw.dir||o.mtime!==nw.mtime)){backdrop(nw,true);}}catch(e){}}},60000);
-  const ss=$('slide');if(ss){ss.value=String(SLIDE);ss.onclick=e=>e.stopPropagation();ss.onchange=e=>{SLIDE=+e.target.value;localStorage.setItem('thryd_slide',SLIDE);Q.set('slide',SLIDE);history.replaceState(null,'','?'+Q.toString());startSlide();};}
+  const ss=$('slide');if(ss){ss.value=String(SLIDE);ss.onclick=e=>e.stopPropagation();ss.onchange=e=>{SLIDE=+e.target.value;if(window.ThrydKeep)try{ThrydKeep.saveSettings({slide:SLIDE});}catch(err){}else try{localStorage.setItem('thryd_slide',SLIDE);}catch(err){}Q.set('slide',SLIDE);history.replaceState(null,'','?'+Q.toString());startSlide();};}
   const ml=$('mlib'); if(ml){ml.onclick=e=>e.stopPropagation(); const go=e=>{if(e.type==='keydown'&&e.key!=='Enter')return; e.stopPropagation(); const q=ml.value.trim(); if(!q){libPin.clear();slideCycle.reset();return;} const hit=window.thrydLibrary&&thrydLibrary.show(q); if(!hit){$('cap').textContent='library · not in inventory';}}; ml.addEventListener('keydown',go); ml.addEventListener('change',go);}
-  const preset=Q.get('mlib'); if(preset&&ml){ml.value=preset; const hit=window.thrydLibrary&&thrydLibrary.show(preset); if(!hit){$('cap').textContent='library · not in inventory';}}
+  const choice=window.ThrydKeep?ThrydKeep.stageChoice(Q.get('mlib'),ThrydKeep.settings().lastGif,Q.get('resume')==='1'):{id:Q.get('mlib')||null,why:Q.get('mlib')?'query':'live'}; if(choice.id&&ml){ml.value=choice.id; const hit=window.thrydLibrary&&thrydLibrary.show(choice.id); if(!hit){$('cap').textContent='library · not in inventory';}}
+  const kr=$('kresume'); if(kr){kr.onclick=e=>{e.stopPropagation(); const id=window.ThrydKeep&&ThrydKeep.settings().lastGif; if(!id){if($('cap'))$('cap').textContent='library · nothing remembered'; return;} if(ml)ml.value=id; const hit=window.thrydLibrary&&thrydLibrary.show(id); if(!hit&&$('cap'))$('cap').textContent='library · not in inventory';};}
+  const kz=$('kreset'); if(kz){kz.onclick=async e=>{e.stopPropagation(); if(window.ThrydKeep)try{await ThrydKeep.resetLocal();}catch(err){} const layer=document.getElementById('mcut'); if(layer&&layer._off)layer._off=layer._off.map(()=>({x:0,y:0})); if(ml&&!Q.get('mlib'))ml.value=''; libPin.clear(); slideCycle.reset(); if($('cap'))$('cap').textContent='device cache cleared';};}
+  const mu=$('mute'); if(mu){mu.addEventListener('click',()=>{if(!window.ThrydKeep)return; const off=String(mu.textContent||'').indexOf('off')>=0; try{ThrydKeep.saveSettings({mute:off?1:0});}catch(err){}});}
   try{(await J('assets/runs/media.json')).runs.forEach(r=>runMedia[r.run]=r.media);}catch(e){}
   try{localPrec=(await J('data/precisions.json')).map(p=>({line:p.line,src:p.src,move:p.move}));}catch(e){}
   try{const T=(await J('data/tweets_all.json')).map(p=>({line:p.line,src:p.src,move:false}));for(let i=T.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[T[i],T[j]]=[T[j],T[i]];}TDECK=T;TI=0;}catch(e){}

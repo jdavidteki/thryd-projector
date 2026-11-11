@@ -271,7 +271,10 @@
     if(typeof fetch !== 'function') return row;
     let pack;
     try{
-      const res = await fetch(row.pack, {cache:'no-store'});
+      const ver = row.pack_version || '1';
+      const key = row.source_sha256 ? ('pack:' + row.source_sha256 + ':' + ver) : '';
+      const keep = root.ThrydKeep;
+      const res = (keep && key && keep.mayCache(row.pack)) ? await keep.fetchCached(row.pack, {cache:'no-store'}, key) : await fetch(row.pack, {cache:'no-store'});
       if(!res.ok){ row.plate_error = 'pack_missing'; return row; }
       pack = await res.json();
     }catch(e){ row.plate_error = 'pack_missing'; return row; }
@@ -484,7 +487,14 @@
       if(!plan.ok || my !== token) return plan;
       const hold = frameHoldBytes(plan.width, plan.height, plan.frameCount);
       if(hold > 16 * 1024 * 1024) plan.stream = true;
-      const fetchFn = opts.fetch || fetch;
+      const srcRow = ((manifest && manifest.assets) || []).find(a => a && a.medium_image_id === set.medium_image_id) || {};
+      const sha = srcRow.source_sha256 || '';
+      const ver = srcRow.pack_version || '1';
+      const keep = root.ThrydKeep;
+      const fetchFn = opts.fetch || function(url, init){
+        if(keep && sha && keep.mayCache(url)) return keep.fetchCached(url, init, 'gif:' + sha + ':' + ver);
+        return fetch(url, init);
+      };
       return fetchFn(set.url, {cache:'force-cache'}).then(r=>{
         if(!r.ok) throw new Error('fetch');
         return r.arrayBuffer();
@@ -510,7 +520,15 @@
         layer.id = 'mcut'; layer._w = playback.width; layer._h = playback.height; layer._token = my;
         layer._box = coverBox(stage, playback.width, playback.height);
         const nsprite = playback.stream ? playback.plan.objects.length : playback.frames[0].sprites.length;
-        layer._off = Array.from({length:nsprite}, ()=>({x:0, y:0}));
+        const labels = (playback.stream ? playback.plan.objects : (plan.objects || [])).map(o => o && o.label);
+        const keep = root.ThrydKeep;
+        layer._placeKey = [];
+        layer._off = [];
+        for(let i = 0; i < nsprite; i++){
+          const k = keep ? keep.placeKey(sha, labels[i] || ('cut' + (i + 1)), ver) : '';
+          layer._placeKey.push(k);
+          layer._off.push((keep && k && keep.loadPlace(k)) || {x:0, y:0});
+        }
         const plate = document.createElement('canvas');
         plate.className = 'plate'; plate.width = playback.width; plate.height = playback.height;
         Object.assign(plate.style, {width:layer._box.width + 'px', height:layer._box.height + 'px', left:layer._box.left + 'px', top:layer._box.top + 'px'});
@@ -546,8 +564,15 @@
           layer._off[d.i] = {x:d.ox + (ev.clientX - d.sx), y:d.oy + (ev.clientY - d.sy)};
           if(layer._frame) paintFrame(layer, layer._frame);
         });
-        layer.addEventListener('pointerup', ()=>{ layer._drag = null; });
-        layer.addEventListener('pointercancel', ()=>{ layer._drag = null; });
+        const endDrag = ()=>{
+          const d = layer._drag;
+          layer._drag = null;
+          if(!d || !root.ThrydKeep) return;
+          const k = layer._placeKey && layer._placeKey[d.i];
+          if(k) root.ThrydKeep.savePlace(k, layer._off[d.i]);
+        };
+        layer.addEventListener('pointerup', endDrag);
+        layer.addEventListener('pointercancel', endDrag);
         if(image){ image.classList.remove('on'); image.style.transition = 'none'; image.style.opacity = '0'; }
         step();
         return {ok:true, reason:null, frames:playback.frames.length};
