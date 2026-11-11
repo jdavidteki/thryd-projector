@@ -17,7 +17,8 @@ function showUser(u){clearInterval(bgTimer);bgSet={dir:'user:'+u.id};const w=$('
 let HOLD=0; // in-scene drag pins the current scene (slideshow paused while dragging + 30s after a drop)
 window.thrydHold=ms=>{HOLD=ms?Math.max(HOLD,Date.now()+ms):0;};
 function remoteSet(set){return !!(set&&set.how==='medium'&&set.remote&&set.url);}
-function backdrop(set,force){ if(Date.now()<HOLD)return; stageN++;
+const libPin=window.ThrydMlibPin.create();
+function backdrop(set,force){ if(!libPin.allow(set))return; if(Date.now()<HOLD)return; stageN++;
   const ug=window.THRYD_UG; if(ug.length&&stageN%3===0){return showUser(ug[Math.floor(stageN/3)%ug.length]);}
   if(!set||(!force&&bgSet&&bgSet.dir===set.dir))return; bgSet=set;bgI=0; $('ug').classList.remove('on');
   if(window.ThrydMediumCuts) try{ ThrydMediumCuts.detach(); }catch(e){}
@@ -46,7 +47,7 @@ let SLIDE=+(Q.get('slide')||localStorage.getItem('thryd_slide')||8); if(![8,30,6
 const NEWEST=()=>RUNX().length?RUNX().slice().sort((a,b)=>(b.mtime||0)-(a.mtime||0))[0]:null; let slideN=0;
 // newest live view comes back every 3rd slide; others cycle in between
 function startSlide(){clearInterval(slideT);slideT=setInterval(()=>{if(POOL.length>1){slideN++;const nw=MODE==='live'&&NEWEST();if(nw&&slideN%3===0&&bgSet&&bgSet.dir!==nw.dir){backdrop(nw,true);return;}poolI=(poolI+1)%POOL.length;if(nw&&POOL[poolI]===nw&&POOL.length>2)poolI=(poolI+1)%POOL.length;backdrop(POOL[poolI],true);}},SLIDE*1000);}
-window.thrydLibrary={show(id){const q=String(id||'').trim(); const s=LXTRA.find(x=>x&&x.how==='medium'&&(x.medium_image_id===q||x.dir==='medium/'+q||x.url===q)); if(!s)return null; backdrop(s,true); return s.dir;}, showSet(set){if(!remoteSet(set))return null; backdrop(set,true); return set.dir;}, counts(){const m=LXTRA.filter(x=>x&&x.how==='medium'); return {medium:m.length, gif:m.filter(x=>x.extension==='gif').length, still:m.filter(x=>x.extension!=='gif').length};}};
+window.thrydLibrary={show(id){const q=String(id||'').trim(); const s=LXTRA.find(x=>x&&x.how==='medium'&&(x.medium_image_id===q||x.dir==='medium/'+q||x.url===q)); if(!s)return null; libPin.hold(s); backdrop(s,true); return s.dir;}, showSet(set){if(!remoteSet(set))return null; backdrop(set,true); return set.dir;}, counts(){const m=LXTRA.filter(x=>x&&x.how==='medium'); return {medium:m.length, gif:m.filter(x=>x.extension==='gif').length, still:m.filter(x=>x.extension!=='gif').length};}};
 startSlide();
 
 // ---------- per-GIF scene updates: loop data/timeline.json events for the GIF on stage
@@ -491,7 +492,7 @@ function setMode(m){if(m!=='live'&&m!=='replay'&&m!=='cerebro'&&m!=='lovemap')m=
   if(m==='cerebro'){bgSet=null;clearScene();document.body.classList.add('cerebro');startCerebro();return;}
   if(m==='lovemap'){bgSet=null;clearScene();document.body.classList.add('lovemap');startLovemap();return;}
   bgSet=null;clearScene();(m==='replay'?replay:live)();}
-document.querySelectorAll('#modes button[data-m]').forEach(b=>b.onclick=ev=>{ev.stopPropagation();setMode(b.dataset.m);});
+document.querySelectorAll('#modes button[data-m]').forEach(b=>b.onclick=ev=>{ev.stopPropagation();libPin.clear();setMode(b.dataset.m);});
 // ---------- CEREBRO
 let CERE={items:[],poll:null,ids:'',lit:null};
 function stopCerebro(){if(CERE.poll){clearInterval(CERE.poll);CERE.poll=null;}
@@ -543,7 +544,7 @@ addEventListener('resize',()=>{regionsKey='';});
   try{LXTRA=(await J('data/live_extra.json')).sets||[];}catch(e){}
   await loadOmap(); await loadRGifs(); setTimeout(()=>{if(MODE==='live'&&NEWEST()){const nw=NEWEST();POOL=livePool();poolI=Math.max(0,POOL.indexOf(nw));backdrop(nw,true);}},2500); setInterval(async()=>{if(MODE==='live'){loadOmap();loadRGifs();try{const n=(await J('data/live_extra.json?t='+Date.now())).sets||[];const o=NEWEST();LXTRA=n;const nw=NEWEST();POOL=livePool();if(nw&&(!o||o.dir!==nw.dir||o.mtime!==nw.mtime)){poolI=Math.max(0,POOL.indexOf(nw));backdrop(nw,true);}}catch(e){}}},60000);
   const ss=$('slide');if(ss){ss.value=String(SLIDE);ss.onclick=e=>e.stopPropagation();ss.onchange=e=>{SLIDE=+e.target.value;localStorage.setItem('thryd_slide',SLIDE);Q.set('slide',SLIDE);history.replaceState(null,'','?'+Q.toString());startSlide();};}
-  const ml=$('mlib'); if(ml){ml.onclick=e=>e.stopPropagation(); const go=e=>{if(e.type==='keydown'&&e.key!=='Enter')return; e.stopPropagation(); const hit=window.thrydLibrary&&thrydLibrary.show(ml.value); if(!hit&&ml.value.trim()){$('cap').textContent='library · not in inventory';}}; ml.addEventListener('keydown',go); ml.addEventListener('change',go);}
+  const ml=$('mlib'); if(ml){ml.onclick=e=>e.stopPropagation(); const go=e=>{if(e.type==='keydown'&&e.key!=='Enter')return; e.stopPropagation(); const q=ml.value.trim(); if(!q){libPin.clear();return;} const hit=window.thrydLibrary&&thrydLibrary.show(q); if(!hit){$('cap').textContent='library · not in inventory';}}; ml.addEventListener('keydown',go); ml.addEventListener('change',go);}
   const preset=Q.get('mlib'); if(preset&&ml){ml.value=preset; const hit=window.thrydLibrary&&thrydLibrary.show(preset); if(!hit){$('cap').textContent='library · not in inventory';}}
   try{(await J('assets/runs/media.json')).runs.forEach(r=>runMedia[r.run]=r.media);}catch(e){}
   try{localPrec=(await J('data/precisions.json')).map(p=>({line:p.line,src:p.src,move:p.move}));}catch(e){}

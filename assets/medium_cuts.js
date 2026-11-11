@@ -237,6 +237,15 @@
     }
     return null;
   }
+  function bytesToB64(u8){
+    if(typeof Buffer !== 'undefined') return Buffer.from(u8).toString('base64');
+    let s = '';
+    const step = 0x8000;
+    for(let i = 0; i < u8.length; i += step){
+      s += String.fromCharCode.apply(null, u8.subarray(i, Math.min(u8.length, i + step)));
+    }
+    return btoa(s);
+  }
   function readMaskBlob(raw, count){
     const view = new DataView(raw.buffer, raw.byteOffset, raw.byteLength);
     const out = [];
@@ -245,7 +254,7 @@
       const x = view.getUint16(p, true), y = view.getUint16(p + 2, true), w = view.getUint16(p + 4, true), h = view.getUint16(p + 6, true);
       const n = view.getUint32(p + 8, true);
       p += 12;
-      out.push({x, y, w, h, bits: (typeof Buffer !== 'undefined' ? Buffer.from(raw.subarray(p, p + n)).toString('base64') : btoa(String.fromCharCode.apply(null, raw.subarray(p, p + n))))});
+      out.push({x, y, w, h, bits: bytesToB64(raw.subarray(p, p + n))});
       p += n;
     }
     return out;
