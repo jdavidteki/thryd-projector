@@ -29,7 +29,7 @@ function backdrop(set,force){ if(!libPin.allow(set))return; if(Date.now()<HOLD)r
   // load into the hidden image; the visible one stays up until the new view is decoded (no black/partial frame)
   const vis=imgs.findIndex(i=>i.classList.contains('on')); bgFlip=vis===0?1:(vis===1?0:bgFlip^1); const on=imgs[bgFlip],off=imgs[bgFlip^1];
   let shown=false; const flip=()=>{if(bgSet!==set||shown)return; shown=true; on.classList.add('on'); off.classList.remove('on'); revealStage();};
-  const whenReady=(img,go)=>{const ok=()=>{if(bgSet!==set)return; if(img.naturalWidth)go();}; if(img.complete&&img.naturalWidth)return ok(); const waitLoad=()=>{if(img.complete&&img.naturalWidth)ok(); else img.addEventListener('load',ok,{once:true});}; if(img.decode)img.decode().then(ok,waitLoad); else waitLoad();};
+  const whenReady=(img,go)=>{const ok=()=>{if(bgSet!==set||!img.naturalWidth)return; go();}; if(img.complete&&img.naturalWidth)return ok(); img.addEventListener('load',ok,{once:true}); if(img.decode)img.decode().then(ok,()=>{});};
   on.onerror=null; off.onerror=null; on.onload=null;
   if(remoteSet(set)){
     // original Medium file, one request. The browser plays a GIF's own timing. No frame split, no retry loop.
