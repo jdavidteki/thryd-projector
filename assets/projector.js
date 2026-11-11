@@ -14,7 +14,7 @@ const short=p=>(p||'elsewhere').replace(/,? (in )?Miami(, Florida)?/g,'').replac
 let bgSet=null,bgI=0,bgFlip=0,bgTimer=null,stageN=0; window.THRYD_UG=window.THRYD_UG||[];
 // keep the ticker 'loading' label up until the first scene is decoded and on stage
 let viewUp=false, heldTicker=null;
-function revealStage(){ if(viewUp)return; viewUp=true; if(heldTicker){ const t=heldTicker; heldTicker=null; ticker(t[0],t[1],t[2]); } }
+function revealStage(){ if(viewUp)return; viewUp=true; if(heldTicker){ const t=heldTicker; heldTicker=null; ticker(t[0],t[1],t[2]); } else { const u=$('upd'); if(u&&u.textContent==='loading') u.textContent=''; } }
 function showUser(u){clearInterval(bgTimer);bgSet={dir:'user:'+u.id};const w=$('ug');w.innerHTML='';w.appendChild(u.vis);
   w.classList.add('on');objsFor(null);$('bgA').classList.remove('on');$('bgB').classList.remove('on');$('cap').textContent=u.label;clearScene();revealStage();}
 let HOLD=0; // in-scene drag pins the current scene (slideshow paused while dragging + 30s after a drop)
