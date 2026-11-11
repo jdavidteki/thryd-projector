@@ -135,15 +135,19 @@
 
   function playMs(delayCs){ return delayCs === 0 ? 100 : delayCs * 10; }
 
-  function compose(rgba, w, h, masks, plate){
+  // moved[k] false: object k sits at its own spot, so the original frame pixels stay under it
+  // (no hole, the setting is drawn). moved[k] true or no moved list: its former spot takes the
+  // stored plate fill where known, else stays transparent. Never a duplicate at the old spot.
+  function compose(rgba, w, h, masks, plate, moved){
     const src = rgba instanceof Uint8ClampedArray ? rgba : Uint8ClampedArray.from(rgba);
     const plateOut = new Uint8ClampedArray(src);
     const known = plate && plate.known;
     const fill = plate && plate.rgba;
     const sprites = [];
-    (masks || []).forEach(raw=>{
+    (masks || []).forEach((raw, k)=>{
       const mask = asMask(raw, w, h);
       const box = inkBox(mask, w, h);
+      const hole = !moved || !!moved[k];
       const sprite = new Uint8ClampedArray(box.w * box.h * 4);
       for(let y = 0; y < h; y++) for(let x = 0; x < w; x++){
         const i = y * w + x;
@@ -151,6 +155,7 @@
         const s = ((y - box.y) * box.w + (x - box.x)) * 4;
         const p = i * 4;
         sprite[s] = src[p]; sprite[s+1] = src[p+1]; sprite[s+2] = src[p+2]; sprite[s+3] = src[p+3];
+        if(!hole) continue;
         if(known && known[i] && fill){
           plateOut[p] = fill[p]; plateOut[p+1] = fill[p+1]; plateOut[p+2] = fill[p+2]; plateOut[p+3] = fill[p+3];
         }else{
@@ -178,7 +183,7 @@
       const objPlate = plan.objects.find(o=>o.plate && o.plate_known);
       const plateSrc = plan.plate ? {rgba:plan.plate, known:plan.plateKnown} : (objPlate ? {rgba:objPlate.plate, known:objPlate.plate_known} : null);
       const drawn = compose(source[f].rgba, plan.width, plan.height, masks, plateSrc);
-      frames.push({delayCs: plan.kind === 'gif' ? plan.delays_cs[f] : 0, playMs: playMs(plan.kind === 'gif' ? plan.delays_cs[f] : 0), plate:drawn.plate, sprites:drawn.sprites});
+      frames.push({delayCs: plan.kind === 'gif' ? plan.delays_cs[f] : 0, playMs: playMs(plan.kind === 'gif' ? plan.delays_cs[f] : 0), plate:drawn.plate, sprites:drawn.sprites, src:source[f].rgba, masks, plateSrc});
     }
     return {ok:true, reason:null, width:plan.width, height:plan.height, frames};
   }
@@ -437,10 +442,27 @@
     return {width:w, height:h, left:(W - w) / 2, top:(H - h) / 2};
   }
 
+  function movedFlags(layer, n){
+    const out = [];
+    for(let i = 0; i < n; i++){ const o = layer._off && layer._off[i]; out.push(!!(o && (o.x || o.y))); }
+    return out;
+  }
+  // background under the cuts: the original frame where nothing moved; a hole (plate fill or
+  // transparent) only at the former spot of an object that was dragged or restored to a new place
+  function plateFor(layer, frame){
+    if(!frame.src || !frame.masks) return frame.plate;
+    const moved = movedFlags(layer, frame.masks.length);
+    if(!moved.some(Boolean)) return frame.src;
+    if(frame.plate && moved.every(Boolean)) return frame.plate;
+    const key = moved.map(m=>m ? 1 : 0).join('');
+    if(frame._key !== key){ frame._mixed = compose(frame.src, layer._w, layer._h, frame.masks, frame.plateSrc, moved).plate; frame._key = key; }
+    return frame._mixed;
+  }
   function paintFrame(layer, frame){
     const plate = layer.querySelector('canvas.plate');
     const ctx = plate.getContext('2d');
-    ctx.putImageData(new ImageData(frame.plate, layer._w, layer._h), 0, 0);
+    const px = plateFor(layer, frame);
+    ctx.putImageData(new ImageData(px instanceof Uint8ClampedArray ? px : new Uint8ClampedArray(px.buffer, px.byteOffset, px.length), layer._w, layer._h), 0, 0);
     const box = layer._box;
     frame.sprites.forEach((sp, i)=>{
       let node = layer.querySelector('canvas.sprite[data-i="' + i + '"]');
@@ -543,8 +565,9 @@
             const one = decodeGif(playback.bytes, {only: shown});
             const rgba = one.frames[one.frames.length - 1].rgba;
             const masks = playback.plan.objects.map(obj=>obj.masks[shown]);
-            const drawn = compose(rgba, playback.width, playback.height, masks, playback.plan.plate ? {rgba:playback.plan.plate, known:playback.plan.plateKnown} : null);
-            frame = {plate: drawn.plate, sprites: drawn.sprites, playMs: playback.frames[shown].playMs};
+            const plateSrc = playback.plan.plate ? {rgba:playback.plan.plate, known:playback.plan.plateKnown} : null;
+            const drawn = compose(rgba, playback.width, playback.height, masks, plateSrc);
+            frame = {plate: drawn.plate, sprites: drawn.sprites, playMs: playback.frames[shown].playMs, src: rgba, masks, plateSrc};
           }
           layer._frame = frame;
           paintFrame(layer, frame);
@@ -586,7 +609,7 @@
     });
   }
 
-  const api = {CAP, USED, RESERVE, roomBytes, admit, isMedium, coverage, forSet, compose, planFrames, decodeGif, delaysMatch, playMs, attach, detach, loadManifest, inkBox, unpackMask, frameHoldBytes, expandObject, expandRow};
+  const api = {CAP, USED, RESERVE, roomBytes, admit, isMedium, coverage, forSet, compose, planFrames, decodeGif, delaysMatch, playMs, attach, detach, loadManifest, inkBox, unpackMask, frameHoldBytes, expandObject, expandRow, plateFor, movedFlags};
   if(typeof module !== 'undefined' && module.exports) module.exports = api;
   root.ThrydMediumCuts = api;
 })(typeof window !== 'undefined' ? window : globalThis);
