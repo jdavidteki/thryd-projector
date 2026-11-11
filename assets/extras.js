@@ -1,7 +1,7 @@
 // audio: browser speechSynthesis (main); data/audio.json clips only with ?audio=clips (no fetch otherwise). Plus local "Add GIF" sprites (IndexedDB, this browser only)
 (()=>{
 const Q=new URLSearchParams(location.search), $=id=>document.getElementById(id);
-let muted=Q.get('audio')==='0'||localStorage.getItem('thryd_mute')==='1', clips=null;
+let muted=true, clips=null; // start muted every load; saved unmute is not applied until the sound button is used this session
 const btn=$('mute'); const show=()=>btn.textContent=muted?'🔇 audio off':'🔊 audio on'; show();
 btn.onclick=e=>{e.stopPropagation();muted=!muted;localStorage.setItem('thryd_mute',muted?'1':'0');if(muted)speechSynthesis?.cancel();else{unlocked=true;gate.classList.add('off');}show();};
 const loadClips=()=>fetch('data/audio.json?_='+Date.now(),{cache:'no-store'}).then(r=>r.ok?r.json():null).then(m=>{
@@ -19,7 +19,7 @@ function speakText(t){if(muted||!unlocked||!('speechSynthesis' in window))return
   const parts=(t.replace(/\[\[|\]\]/g,'').match(/[^.!?;,]{1,140}[.!?;,]?/g)||[t]).map(x=>x.trim()).filter(Boolean).slice(0,4);
   speechSynthesis.cancel();speechSynthesis.resume();
   parts.forEach(x=>{const u=new SpeechSynthesisUtterance(x);if(VOICE){u.voice=VOICE;u.lang=VOICE.lang;}else u.lang='en-US';u.rate=.95;u.pitch=.9;speechSynthesis.speak(u);});}
-const unlock=()=>{if(unlocked)return;unlocked=true;gate.classList.add('off');if(muted){muted=false;localStorage.setItem('thryd_mute','0');show();}
+const unlock=()=>{if(muted||unlocked)return;unlocked=true;gate.classList.add('off');
   try{pickVoice();speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(' ');u.volume=0;speechSynthesis.speak(u);}catch(e){}
   setTimeout(()=>{try{speakOnce();}catch(e){}},2500);};
 addEventListener('pointerdown',unlock,{capture:true});addEventListener('touchend',unlock,{capture:true});addEventListener('keydown',unlock,{capture:true});
