@@ -96,6 +96,19 @@ class Qa5OverlayTest(unittest.TestCase):
             self.assertIn("0x8000", cuts)
             self.assertNotIn("fromCharCode.apply(null, raw.subarray", cuts)
             subprocess.check_call(["sha256sum", "-c", os.path.join(ROOT, "release/qa5-early/SHA256SUMS-pin")], cwd=tmp)
+            third = os.path.join(ROOT, "release", "qa5-early", "qa5-live-return.patch")
+            subprocess.check_call(["patch", "-p1"], cwd=tmp, stdin=open(third, "rb"))
+            self.assertEqual(open(os.path.join(tmp, "assets/medium_cuts/1_UQolGv9h9_i7sWsk3lDLCA.gif.json"), "rb").read(), member)
+            html3 = open(os.path.join(tmp, "index.html"), encoding="utf-8").read()
+            self.assertIn("__CODEVER__", html3)
+            self.assertIn("live_return.js?v=1", html3)
+            js3 = open(os.path.join(tmp, "assets/projector.js"), encoding="utf-8").read()
+            self.assertIn("ThrydLiveReturn.step", js3)
+            self.assertIn("slideCycle.reset()", js3)
+            self.assertNotIn("slideN%3", js3)
+            self.assertIn("SLIDE*1000", js3)
+            self.assertIn("const NEWEST=", js3)
+            subprocess.check_call(["sha256sum", "-c", os.path.join(ROOT, "release/qa5-early/SHA256SUMS-live")], cwd=tmp)
 
 
 if __name__ == "__main__":

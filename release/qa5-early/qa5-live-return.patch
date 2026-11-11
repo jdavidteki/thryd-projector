@@ -1,0 +1,93 @@
+diff -ruN rel-pin2/assets/live_return.js rel-live/assets/live_return.js
+--- a/assets/live_return.js	1970-01-01 00:00:00.000000000 +0000
++++ b/assets/live_return.js	2026-11-11 18:12:39.429704888 +0000
+@@ -0,0 +1,38 @@
++// After ten slideshow steps, the next tick returns to whatever the newest
++// live view is at that moment. The count then starts over. Ten means ten
++// changes of the slideshow, not ten frames inside one GIF.
++(function(root){
++  function create(limit){
++    const every = limit == null ? 10 : limit;
++    let n = 0;
++    return {
++      reset(){ n = 0; },
++      count(){ return n; },
++      tick(){
++        if(n >= every){ n = 0; return 'live'; }
++        n += 1;
++        return 'advance';
++      }
++    };
++  }
++  function step(cycle, opts){
++    const pool = opts.pool || [];
++    let poolI = opts.poolI || 0;
++    if(pool.length <= 1) return {poolI: poolI, action: 'idle', set: pool[0] || null};
++    const kind = cycle.tick();
++    if(kind === 'live'){
++      const nw = opts.newest ? opts.newest() : null;
++      if(nw){
++        const at = pool.indexOf(nw);
++        return {poolI: at < 0 ? poolI : at, action: 'live', set: nw};
++      }
++    }
++    poolI = (poolI + 1) % pool.length;
++    const nw = opts.newest ? opts.newest() : null;
++    if(nw && pool[poolI] === nw && pool.length > 2) poolI = (poolI + 1) % pool.length;
++    return {poolI: poolI, action: 'advance', set: pool[poolI]};
++  }
++  const api = {create, step};
++  if(typeof module !== 'undefined' && module.exports) module.exports = api;
++  root.ThrydLiveReturn = api;
++})(typeof window !== 'undefined' ? window : globalThis);
+diff -ruN rel-pin2/assets/projector.js rel-live/assets/projector.js
+--- a/assets/projector.js	2026-11-11 18:04:18.775254317 +0000
++++ b/assets/projector.js	2026-11-11 18:12:39.429704888 +0000
+@@ -44,9 +44,14 @@
+ let POOL=[],poolI=0,LXTRA=[],CUR_RUN=null; const RUNX=()=>LXTRA.filter(x=>CUR_RUN&&x.run===CUR_RUN);
+ // slide speed: 8s default, 30s, 60s (?slide=30 or the bar select; remembered)
+ let SLIDE=+(Q.get('slide')||localStorage.getItem('thryd_slide')||8); if(![8,30,60].includes(SLIDE))SLIDE=8; let slideT=null;
+-const NEWEST=()=>RUNX().length?RUNX().slice().sort((a,b)=>(b.mtime||0)-(a.mtime||0))[0]:null; let slideN=0;
+-// newest live view comes back every 3rd slide; others cycle in between
+-function startSlide(){clearInterval(slideT);slideT=setInterval(()=>{if(POOL.length>1){slideN++;const nw=MODE==='live'&&NEWEST();if(nw&&slideN%3===0&&bgSet&&bgSet.dir!==nw.dir){backdrop(nw,true);return;}poolI=(poolI+1)%POOL.length;if(nw&&POOL[poolI]===nw&&POOL.length>2)poolI=(poolI+1)%POOL.length;backdrop(POOL[poolI],true);}},SLIDE*1000);}
++const NEWEST=()=>RUNX().length?RUNX().slice().sort((a,b)=>(b.mtime||0)-(a.mtime||0))[0]:null;
++// after ten slideshow changes, return to whatever the newest live view is then
++const slideCycle=window.ThrydLiveReturn.create(10);
++function startSlide(){clearInterval(slideT);slideT=setInterval(()=>{
++  const moved=ThrydLiveReturn.step(slideCycle,{pool:POOL,poolI,mode:MODE,newest:()=>MODE==='live'?NEWEST():null});
++  if(moved.action==='idle')return;
++  poolI=moved.poolI; backdrop(moved.set,true);
++},SLIDE*1000);}
+ window.thrydLibrary={show(id){const q=String(id||'').trim(); const s=LXTRA.find(x=>x&&x.how==='medium'&&(x.medium_image_id===q||x.dir==='medium/'+q||x.url===q)); if(!s)return null; libPin.hold(s); backdrop(s,true); return s.dir;}, showSet(set){if(!remoteSet(set))return null; backdrop(set,true); return set.dir;}, counts(){const m=LXTRA.filter(x=>x&&x.how==='medium'); return {medium:m.length, gif:m.filter(x=>x.extension==='gif').length, still:m.filter(x=>x.extension!=='gif').length};}};
+ startSlide();
+ 
+@@ -492,7 +497,7 @@
+   if(m==='cerebro'){bgSet=null;clearScene();document.body.classList.add('cerebro');startCerebro();return;}
+   if(m==='lovemap'){bgSet=null;clearScene();document.body.classList.add('lovemap');startLovemap();return;}
+   bgSet=null;clearScene();(m==='replay'?replay:live)();}
+-document.querySelectorAll('#modes button[data-m]').forEach(b=>b.onclick=ev=>{ev.stopPropagation();libPin.clear();setMode(b.dataset.m);});
++document.querySelectorAll('#modes button[data-m]').forEach(b=>b.onclick=ev=>{ev.stopPropagation();libPin.clear();slideCycle.reset();setMode(b.dataset.m);});
+ // ---------- CEREBRO
+ let CERE={items:[],poll:null,ids:'',lit:null};
+ function stopCerebro(){if(CERE.poll){clearInterval(CERE.poll);CERE.poll=null;}
+@@ -544,7 +549,7 @@
+   try{LXTRA=(await J('data/live_extra.json')).sets||[];}catch(e){}
+   await loadOmap(); await loadRGifs(); setTimeout(()=>{if(MODE==='live'&&NEWEST()){const nw=NEWEST();POOL=livePool();poolI=Math.max(0,POOL.indexOf(nw));backdrop(nw,true);}},2500); setInterval(async()=>{if(MODE==='live'){loadOmap();loadRGifs();try{const n=(await J('data/live_extra.json?t='+Date.now())).sets||[];const o=NEWEST();LXTRA=n;const nw=NEWEST();POOL=livePool();if(nw&&(!o||o.dir!==nw.dir||o.mtime!==nw.mtime)){poolI=Math.max(0,POOL.indexOf(nw));backdrop(nw,true);}}catch(e){}}},60000);
+   const ss=$('slide');if(ss){ss.value=String(SLIDE);ss.onclick=e=>e.stopPropagation();ss.onchange=e=>{SLIDE=+e.target.value;localStorage.setItem('thryd_slide',SLIDE);Q.set('slide',SLIDE);history.replaceState(null,'','?'+Q.toString());startSlide();};}
+-  const ml=$('mlib'); if(ml){ml.onclick=e=>e.stopPropagation(); const go=e=>{if(e.type==='keydown'&&e.key!=='Enter')return; e.stopPropagation(); const q=ml.value.trim(); if(!q){libPin.clear();return;} const hit=window.thrydLibrary&&thrydLibrary.show(q); if(!hit){$('cap').textContent='library · not in inventory';}}; ml.addEventListener('keydown',go); ml.addEventListener('change',go);}
++  const ml=$('mlib'); if(ml){ml.onclick=e=>e.stopPropagation(); const go=e=>{if(e.type==='keydown'&&e.key!=='Enter')return; e.stopPropagation(); const q=ml.value.trim(); if(!q){libPin.clear();slideCycle.reset();return;} const hit=window.thrydLibrary&&thrydLibrary.show(q); if(!hit){$('cap').textContent='library · not in inventory';}}; ml.addEventListener('keydown',go); ml.addEventListener('change',go);}
+   const preset=Q.get('mlib'); if(preset&&ml){ml.value=preset; const hit=window.thrydLibrary&&thrydLibrary.show(preset); if(!hit){$('cap').textContent='library · not in inventory';}}
+   try{(await J('assets/runs/media.json')).runs.forEach(r=>runMedia[r.run]=r.media);}catch(e){}
+   try{localPrec=(await J('data/precisions.json')).map(p=>({line:p.line,src:p.src,move:p.move}));}catch(e){}
+diff -ruN rel-pin2/index.html rel-live/index.html
+--- a/index.html	2026-11-11 18:04:18.775254317 +0000
++++ b/index.html	2026-11-11 18:12:39.429704888 +0000
+@@ -13,7 +13,7 @@
+ <div id="user"></div>
+ <div id="ticker"><div class="world" id="world">—</div><div class="upd" id="upd">loading</div><div class="meta" id="meta"></div><div class="cmove" id="cmove" style="display:none"></div></div>
+ 
+-<script>/* loader: fresh JS on every load, in order */(function(){var t=Date.now();['mlib_pin.js?v=1','medium_cuts.js?v=1','projector.js?v=58','extras.js?v=50','alive.js?v=50'].forEach(function(f){var e=document.createElement('script');e.src='assets/'+f+'&t='+t;e.async=false;document.body.appendChild(e);});})();</script>
++<script>/* loader: fresh JS on every load, in order */(function(){var t=Date.now();['mlib_pin.js?v=1','live_return.js?v=1','medium_cuts.js?v=1','projector.js?v=58','extras.js?v=50','alive.js?v=50'].forEach(function(f){var e=document.createElement('script');e.src='assets/'+f+'&t='+t;e.async=false;document.body.appendChild(e);});})();</script>
+ <script>/* auto-update: reload when shipped code changes (checks every 45s; waits until nobody is dragging) */(function(){var CV='__CODEVER__';if(CV.indexOf('__')===0)return;
+ function idle(){var b=document.body.classList;return !b.contains('dragmode')&&!document.querySelector('#objs .dob.lifting,#objs .dob[data-held="1"]');}
+ setInterval(function(){fetch('https://raw.githubusercontent.com/jdavidteki/thryd-projector/main/data/codever.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).then(function(j){if(j&&j.v&&j.v!==CV&&idle()){var u=new URL(location.href);u.searchParams.set('v',j.v);location.replace(u.toString());}}).catch(function(){});},45000);})();</script>

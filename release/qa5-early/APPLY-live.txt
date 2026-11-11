@@ -1,0 +1,11 @@
+Third overlay. Apply only after qa5-pin-and-foreground.patch (head 53050f75).
+Do not deploy from here.
+
+  patch -p1 --dry-run < release/qa5-early/qa5-live-return.patch
+  patch -p1 < release/qa5-early/qa5-live-return.patch
+  sha256sum -c release/qa5-early/SHA256SUMS-live
+
+The slideshow shows ten frames, then the newest live view at that moment,
+then starts the ten again. The 8/30/60 second interval is unchanged.
+A pinned library preview is not replaced. Leaving that mode, or clearing
+the field, resets the count. __CODEVER__ stays. The QA5 pack is not in this patch.
