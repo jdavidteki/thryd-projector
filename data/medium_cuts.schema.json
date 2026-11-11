@@ -25,7 +25,7 @@
       "plate_known": "1 only for pixels actually seen without the subject. Other hole pixels stay transparent."
     }]
   },
-  "mask_bytes": "Row-major, 1 bit per pixel, MSB first, padded to a byte per row is the worker's file form. The client also accepts a 0/1 array of length width*height.",
+  "mask_bytes": "Each frame is a bbox of row-major 1-bit pixels, MSB first. masks_encoding bbox1bit-gzip-v1 stores every frame of one object in one gzip blob (masks_deflate, mask_count). Older packs with masks[].bits stay valid and are not rebuilt. The player reads both.",
   "sprite": "The visible sprite is the mask's ink, cropped tight. Pixels outside the mask are not copied. A bbox without a mask is rejected. A mask that covers 99.5% or more of the frame is rejected.",
   "storage_gate": "admit(measuredBytes) allows a pack only when measuredBytes <= 1073741824 - 791846092 - 41943040 = 239952692. Those three figures are the published byte count, the 1024MiB cap, and the 40MiB reserve. Unmeasured packs are not admitted. Over-budget packs stay budget_failed. An automatic pack is unreviewed, not ready. Per-frame full images are not a mask pack.",
   "statuses_from_builder": ["unreviewed", "no_object", "unstable", "unusable_near_full", "budget_failed", "failed", "partial"],

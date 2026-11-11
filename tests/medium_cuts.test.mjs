@@ -30,6 +30,16 @@ function reds(rgba, w){
   return n;
 }
 
+test('one requested GIF frame matches the full decode and does not keep earlier pixels', () => {
+  const full = M.decodeGif(gif);
+  const mid = M.decodeGif(gif, {only: 1});
+  assert.equal(mid.frames.length, 2);
+  assert.equal(mid.frames[0].rgba, undefined);
+  assert.deepEqual(Array.from(mid.frames[1].rgba), Array.from(full.frames[1].rgba));
+  assert.equal(M.frameHoldBytes(600, 360, 105) > 16 * 1024 * 1024, true);
+  assert.equal(M.frameHoldBytes(8, 8, 2) > 16 * 1024 * 1024, false);
+});
+
 test('decoded fixture keeps the file delays and the original colors', () => {
   const d = M.decodeGif(gif);
   assert.equal(d.frames.length, 2);

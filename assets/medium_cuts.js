@@ -109,7 +109,7 @@
     if(kind === 'gif' && frameCount < 1) return reject('delay_mismatch');
     const w = row.frame_size && row.frame_size[0], h = row.frame_size && row.frame_size[1];
     if(!w || !h) return reject('mask_size');
-    const objects = row.objects || [];
+    const objects = (row.objects || []).map(expandObject);
     if(!objects.length) return reject('no_object');
     for(let i = 0; i < objects.length; i++){
       const why = checkObject(objects[i], kind, frameCount, w, h);
@@ -213,7 +213,50 @@
     return out;
   }
 
-  function decodeGif(bytes){
+  function gunzip(u8){
+    if(typeof require === 'function'){
+      try{ return new Uint8Array(require('zlib').gunzipSync(u8)); }catch(e){ return null; }
+    }
+    return null;
+  }
+  function readMaskBlob(raw, count){
+    const view = new DataView(raw.buffer, raw.byteOffset, raw.byteLength);
+    const out = [];
+    let p = 0;
+    for(let i = 0; i < count; i++){
+      const x = view.getUint16(p, true), y = view.getUint16(p + 2, true), w = view.getUint16(p + 4, true), h = view.getUint16(p + 6, true);
+      const n = view.getUint32(p + 8, true);
+      p += 12;
+      out.push({x, y, w, h, bits: (typeof Buffer !== 'undefined' ? Buffer.from(raw.subarray(p, p + n)).toString('base64') : btoa(String.fromCharCode.apply(null, raw.subarray(p, p + n))))});
+      p += n;
+    }
+    return out;
+  }
+  function expandObject(obj){
+    if(!obj || obj.masks || !obj.masks_deflate) return obj;
+    const raw = gunzip(b64bytes(obj.masks_deflate));
+    if(!raw) return obj;
+    obj.masks = readMaskBlob(raw, obj.mask_count || 0);
+    return obj;
+  }
+  async function expandRow(row){
+    const objects = (row && row.objects) || [];
+    for(let i = 0; i < objects.length; i++){
+      const obj = objects[i];
+      if(!obj || obj.masks || !obj.masks_deflate) continue;
+      let raw = gunzip(b64bytes(obj.masks_deflate));
+      if(!raw && typeof DecompressionStream === 'function'){
+        const ds = new DecompressionStream('gzip');
+        const stream = new Blob([b64bytes(obj.masks_deflate)]).stream().pipeThrough(ds);
+        raw = new Uint8Array(await new Response(stream).arrayBuffer());
+      }
+      if(raw) obj.masks = readMaskBlob(raw, obj.mask_count || 0);
+    }
+    return row;
+  }
+  function frameHoldBytes(w, h, n){ return w * h * 4 * n; }
+
+  function decodeGif(bytes, opts){
     const u = bytes instanceof Uint8Array ? bytes : new Uint8Array(bytes);
     const sig = String.fromCharCode.apply(null, u.subarray(0, 6));
     if(sig !== 'GIF87a' && sig !== 'GIF89a') throw new Error('not_gif');
@@ -229,7 +272,8 @@
     }
     const canvas = new Uint8ClampedArray(width * height * 4);
     const frames = [];
-    let delayCs = 0, trans = -1, dispose = 0;
+    const only = opts && Number.isInteger(opts.only) ? opts.only : null;
+    let delayCs = 0, trans = -1, dispose = 0, seen = 0;
     while(p < u.length){
       const b = u[p++];
       if(b === 0x3b) break;
@@ -275,7 +319,10 @@
         const o = (y * width + x) * 4, c = ci * 3;
         canvas[o] = ct[c]; canvas[o+1] = ct[c+1]; canvas[o+2] = ct[c+2]; canvas[o+3] = 255;
       }
-      frames.push({rgba: canvas.slice(), delayCs, width, height});
+      if(only === null || seen === only) frames.push({rgba: canvas.slice(), delayCs, width, height});
+      else frames.push({delayCs, width, height});
+      seen++;
+      if(only !== null && seen === only + 1) break;
       if(dispose === 2){
         for(let y = 0; y < fh; y++) for(let x = 0; x < fw; x++){
           const o = ((top + y) * width + (left + x)) * 4;
@@ -363,9 +410,12 @@
     const stage = opts.stage || (typeof document !== 'undefined' && document.getElementById('stage'));
     const image = opts.image;
     const ready = opts.manifest ? Promise.resolve(opts.manifest) : loadManifest(opts.fetch);
-    return ready.then(manifest=>{
+    return ready.then(async manifest=>{
+      if(manifest && manifest.assets) await Promise.all(manifest.assets.map(expandRow));
       const plan = forSet(set, manifest);
       if(!plan.ok || my !== token) return plan;
+      const hold = frameHoldBytes(plan.width, plan.height, plan.frameCount);
+      if(hold > 16 * 1024 * 1024) plan.stream = true;
       const fetchFn = opts.fetch || fetch;
       return fetchFn(set.url, {cache:'force-cache'}).then(r=>{
         if(!r.ok) throw new Error('fetch');
@@ -373,19 +423,26 @@
       }).then(buf=>{
         if(my !== token) return {ok:false, reason:'stale'};
         const bytes = new Uint8Array(buf);
+        if(plan.kind === 'gif' && plan.stream){
+          const walked = decodeGif(bytes, {only: plan.frameCount - 1});
+          if(!delaysMatch(walked, plan.delays_cs)) return {plan, mismatch:true};
+          return {plan, bytes, stream:true};
+        }
         if(plan.kind === 'gif') return {decoded: decodeGif(bytes), plan};
         if(opts.stillRgba) return {decoded:{rgba:opts.stillRgba, width:plan.width, height:plan.height}, plan};
         return stillRgba(bytes, plan.width, plan.height).then(rgba=>({decoded:{rgba, width:plan.width, height:plan.height}, plan}));
       }).then(got=>{
         if(!got || my !== token) return got || {ok:false, reason:'stale'};
-        const playback = planFrames(got.decoded, got.plan);
+        if(got.mismatch) return reject('delay_mismatch');
+        const playback = got.stream ? {ok:true, width:got.plan.width, height:got.plan.height, frames: got.plan.delays_cs.map(d=>({playMs:playMs(d)})), stream:true, bytes:got.bytes, plan:got.plan} : planFrames(got.decoded, got.plan);
         if(!playback.ok || typeof document === 'undefined' || !stage) return playback;
         const old = document.getElementById('mcut');
         if(old){ clearTimeout(old._timer); old.remove(); }
         const layer = document.createElement('div');
         layer.id = 'mcut'; layer._w = playback.width; layer._h = playback.height; layer._token = my;
         layer._box = coverBox(stage, playback.width, playback.height);
-        layer._off = playback.frames[0].sprites.map(()=>({x:0, y:0}));
+        const nsprite = playback.stream ? playback.plan.objects.length : playback.frames[0].sprites.length;
+        layer._off = Array.from({length:nsprite}, ()=>({x:0, y:0}));
         const plate = document.createElement('canvas');
         plate.className = 'plate'; plate.width = playback.width; plate.height = playback.height;
         Object.assign(plate.style, {width:layer._box.width + 'px', height:layer._box.height + 'px', left:layer._box.left + 'px', top:layer._box.top + 'px'});
@@ -395,7 +452,15 @@
         const step = ()=>{
           if(my !== token) return;
           layer._shown = shown;
-          paintFrame(layer, playback.frames[shown]);
+          let frame = playback.frames[shown];
+          if(playback.stream){
+            const one = decodeGif(playback.bytes, {only: shown});
+            const rgba = one.frames[one.frames.length - 1].rgba;
+            const masks = playback.plan.objects.map(obj=>obj.masks[shown]);
+            const drawn = compose(rgba, playback.width, playback.height, masks, null);
+            frame = {plate: drawn.plate, sprites: drawn.sprites, playMs: playback.frames[shown].playMs};
+          }
+          paintFrame(layer, frame);
           const wait = playback.frames[shown].playMs;
           shown = (shown + 1) % playback.frames.length;
           layer._timer = setTimeout(step, wait);
@@ -427,7 +492,7 @@
     });
   }
 
-  const api = {CAP, USED, RESERVE, roomBytes, admit, isMedium, coverage, forSet, compose, planFrames, decodeGif, delaysMatch, playMs, attach, detach, loadManifest, inkBox, unpackMask};
+  const api = {CAP, USED, RESERVE, roomBytes, admit, isMedium, coverage, forSet, compose, planFrames, decodeGif, delaysMatch, playMs, attach, detach, loadManifest, inkBox, unpackMask, frameHoldBytes, expandObject};
   if(typeof module !== 'undefined' && module.exports) module.exports = api;
   root.ThrydMediumCuts = api;
 })(typeof window !== 'undefined' ? window : globalThis);

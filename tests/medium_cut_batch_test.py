@@ -68,6 +68,58 @@ class BatchLogicTest(unittest.TestCase):
         official = json.load(open(os.path.join(ROOT, "data/medium_cuts.json")))
         self.assertEqual(official["counts"]["ready"], 0)
 
+    def test_proof_writes_the_middle_frame_of_a_105_frame_gif(self):
+        import tempfile
+        from PIL import Image
+        from medium_cut_batch import _write_proof
+        frames = [Image.new("RGB", (8, 8), (i % 200, 10, 20)) for i in range(105)]
+        with tempfile.TemporaryDirectory() as tmp:
+            path = os.path.join(tmp, "long.gif")
+            frames[0].save(path, save_all=True, append_images=frames[1:], duration=100, loop=0, disposal=1)
+            unions = []
+            for _ in range(105):
+                m = np.zeros((8, 8), np.uint8)
+                m[1, 1] = 1
+                unions.append(m)
+            plate = np.zeros((8, 8, 4), np.uint8)
+            known = np.zeros((8, 8), np.uint8)
+            out = os.path.join(tmp, "proof")
+            _write_proof(out, path, "gif", unions, plate, known, [unions])
+            self.assertTrue(os.path.isfile(os.path.join(out, "frame0_original.png")))
+            self.assertTrue(os.path.isfile(os.path.join(out, "frame52_original.png")))
+            self.assertTrue(os.path.isfile(os.path.join(out, "frame52_dragged.png")))
+
+    def test_compact_masks_match_the_real_packs_and_old_json_still_skips(self):
+        from medium_cut_batch import compact_masks, expand_masks
+        uploads = "/home/ubuntu/.cursor/projects/workspace/uploads"
+        names = [
+            "1_qY4BvUuiNiJh-4S-yYWgUA.gif_795f.json",
+            "1_fskbzXlSjZ5z4INByMFdlQ.gif_f44c.json",
+        ]
+        measured = []
+        for name in names:
+            path = os.path.join(uploads, name)
+            if not os.path.isfile(path):
+                continue
+            pack = json.load(open(path))
+            before = os.path.getsize(path)
+            compact_bytes = 0
+            for obj in pack["objects"]:
+                blob, n = compact_masks(obj["masks"])
+                self.assertEqual(n, len(pack["delays_cs"]))
+                back = expand_masks(blob, n)
+                self.assertEqual(len(back), n)
+                self.assertEqual(back[0]["bits"], obj["masks"][0]["bits"])
+                self.assertEqual(back[-1]["bits"], obj["masks"][-1]["bits"])
+                compact_bytes += len(blob)
+            old = dict(pack)
+            self.assertTrue(pack_is_skippable(old, old["source_sha256"]))
+            measured.append({"file": name, "json_bytes": before, "gzip_b64_bytes": compact_bytes, "frames": len(pack["delays_cs"]), "objects": len(pack["objects"])})
+        self.assertEqual(pack["unknown_hole_pixels"] if False else json.load(open(os.path.join(ROOT, "tests/fixtures/medium_packs/still_unreviewed.json")))["unknown_hole_pixels"], 401420)
+        if measured:
+            os.makedirs(os.path.join(ROOT, "tests/fixtures/medium_packs"), exist_ok=True)
+            json.dump({"room_bytes": ROOM, "measured": measured}, open(os.path.join(ROOT, "tests/fixtures/medium_packs/compact_measure.json"), "w"), indent=1)
+
     def test_room_is_the_measured_published_budget(self):
         self.assertEqual(ROOM, 239952692)
         self.assertEqual(admit(100, 0)["ok"], True)

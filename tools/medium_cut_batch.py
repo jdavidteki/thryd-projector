@@ -231,6 +231,47 @@ def pack_mask(mask):
     return {"x": x0, "y": y0, "w": bw, "h": bh, "bits": base64.b64encode(raw).decode("ascii")}
 
 
+def compact_masks(masks):
+    """Lossless bbox 1-bit masks. gzip, not a new image. Same pixels and frame count."""
+    import gzip
+    import struct
+    parts = []
+    for m in masks:
+        raw = base64.b64decode(m["bits"])
+        parts.append(struct.pack("<HHHHI", m["x"], m["y"], m["w"], m["h"], len(raw)) + raw)
+    blob = gzip.compress(b"".join(parts), compresslevel=9)
+    return base64.b64encode(blob).decode("ascii"), len(masks)
+
+
+def expand_masks(b64, count):
+    import gzip
+    import struct
+    data = gzip.decompress(base64.b64decode(b64))
+    out = []
+    p = 0
+    for _ in range(count):
+        x, y, w, h, n = struct.unpack_from("<HHHHI", data, p)
+        p += 12
+        raw = data[p:p + n]
+        p += n
+        out.append({"x": x, "y": y, "w": w, "h": h, "bits": base64.b64encode(raw).decode("ascii")})
+    if p != len(data):
+        raise ValueError("mask blob length")
+    return out
+
+
+def store_compact(objects):
+    for obj in objects:
+        if not obj.get("masks"):
+            continue
+        blob, n = compact_masks(obj["masks"])
+        obj["masks_deflate"] = blob
+        obj["mask_count"] = n
+        obj["masks_encoding"] = "bbox1bit-gzip-v1"
+        del obj["masks"]
+    return objects
+
+
 def unpack_mask(spec, w, h):
     bw, bh, x0, y0 = spec["w"], spec["h"], spec["x"], spec["y"]
     raw = base64.b64decode(spec["bits"])
@@ -451,6 +492,7 @@ def build_pack(path, job, segmenter, proof_dir=None):
             masks.append(packed)
         obj = {"label": "cut%d" % n, "model_class": tr["model_class"], "masks": masks}
         objects.append(obj)
+    store_compact(objects)
     pack = {
         "medium_image_id": job.get("medium_image_id") if job else os.path.basename(path),
         "kind": kind,
@@ -573,8 +615,8 @@ def _write_proof(proof_dir, decoded_path, kind, unions, plate, known_hole, objec
                 if 0 <= nx < rgba.shape[1]:
                     dragged[y, nx] = rgba[y, x]
         Image.fromarray(dragged[:, :, :3]).save(os.path.join(proof_dir, "frame%d_dragged.png" % fi))
-        for fr in decoded["frames"]:
-            fr.pop("rgba", None)
+    for fr in decoded["frames"]:
+        fr.pop("rgba", None)
 
 
 def pack_is_skippable(pack, source_sha):
@@ -596,7 +638,8 @@ def pack_is_skippable(pack, source_sha):
         if n < 1:
             return False
         for obj in pack.get("objects") or []:
-            if len(obj.get("masks") or []) != n:
+            have = obj.get("mask_count") if obj.get("masks_deflate") else len(obj.get("masks") or [])
+            if have != n:
                 return False
     return True
 
