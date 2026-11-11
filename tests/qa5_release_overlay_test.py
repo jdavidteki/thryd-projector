@@ -81,6 +81,21 @@ class Qa5OverlayTest(unittest.TestCase):
             sums = subprocess.check_output(["sha256sum", "-c", SUMS], cwd=tmp, text=True)
             self.assertIn("index.html: OK", sums)
             self.assertIn("assets/medium_cuts/1_UQolGv9h9_i7sWsk3lDLCA.gif.json: OK", sums)
+            pin = os.path.join(ROOT, "release", "qa5-early", "qa5-pin-and-foreground.patch")
+            subprocess.check_call(["patch", "-p1"], cwd=tmp, stdin=open(pin, "rb"))
+            self.assertEqual(open(os.path.join(tmp, "assets/medium_cuts/1_UQolGv9h9_i7sWsk3lDLCA.gif.json"), "rb").read(), member)
+            html2 = open(os.path.join(tmp, "index.html"), encoding="utf-8").read()
+            self.assertIn("__CODEVER__", html2)
+            self.assertIn("mlib_pin.js?v=1", html2)
+            js2 = open(os.path.join(tmp, "assets/projector.js"), encoding="utf-8").read()
+            self.assertIn("libPin.allow(set)", js2)
+            self.assertIn("libPin.hold(s)", js2)
+            self.assertIn("libPin.clear()", js2)
+            self.assertIn("const NEWEST=", js2)
+            cuts = open(os.path.join(tmp, "assets/medium_cuts.js"), encoding="utf-8").read()
+            self.assertIn("0x8000", cuts)
+            self.assertNotIn("fromCharCode.apply(null, raw.subarray", cuts)
+            subprocess.check_call(["sha256sum", "-c", os.path.join(ROOT, "release/qa5-early/SHA256SUMS-pin")], cwd=tmp)
 
 
 if __name__ == "__main__":

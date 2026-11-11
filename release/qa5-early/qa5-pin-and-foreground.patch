@@ -1,0 +1,108 @@
+diff -ruN rel-apply/assets/medium_cuts.js rel-pin/assets/medium_cuts.js
+--- a/assets/medium_cuts.js	2026-11-11 17:44:41.376536481 +0000
++++ b/assets/medium_cuts.js	2026-11-11 18:04:18.735254282 +0000
+@@ -237,6 +237,15 @@
+     }
+     return null;
+   }
++  function bytesToB64(u8){
++    if(typeof Buffer !== 'undefined') return Buffer.from(u8).toString('base64');
++    let s = '';
++    const step = 0x8000;
++    for(let i = 0; i < u8.length; i += step){
++      s += String.fromCharCode.apply(null, u8.subarray(i, Math.min(u8.length, i + step)));
++    }
++    return btoa(s);
++  }
+   function readMaskBlob(raw, count){
+     const view = new DataView(raw.buffer, raw.byteOffset, raw.byteLength);
+     const out = [];
+@@ -245,7 +254,7 @@
+       const x = view.getUint16(p, true), y = view.getUint16(p + 2, true), w = view.getUint16(p + 4, true), h = view.getUint16(p + 6, true);
+       const n = view.getUint32(p + 8, true);
+       p += 12;
+-      out.push({x, y, w, h, bits: (typeof Buffer !== 'undefined' ? Buffer.from(raw.subarray(p, p + n)).toString('base64') : btoa(String.fromCharCode.apply(null, raw.subarray(p, p + n))))});
++      out.push({x, y, w, h, bits: bytesToB64(raw.subarray(p, p + n))});
+       p += n;
+     }
+     return out;
+diff -ruN rel-apply/assets/mlib_pin.js rel-pin/assets/mlib_pin.js
+--- a/assets/mlib_pin.js	1970-01-01 00:00:00.000000000 +0000
++++ b/assets/mlib_pin.js	2026-11-11 18:04:18.739254286 +0000
+@@ -0,0 +1,17 @@
++// Keeps an explicit library choice on stage. Live boot, NEWEST, and the
++// slideshow call backdrop with other sets; those must not replace a pin.
++// A mode button clears it. No query and no manual choice: nothing is pinned.
++(function(root){
++  function create(){
++    let pin = null;
++    return {
++      hold(set){ pin = set || null; return pin; },
++      clear(){ pin = null; },
++      pinned(){ return pin; },
++      allow(set){ return !pin || set === pin; }
++    };
++  }
++  const api = {create};
++  if(typeof module !== 'undefined' && module.exports) module.exports = api;
++  root.ThrydMlibPin = api;
++})(typeof window !== 'undefined' ? window : globalThis);
+diff -ruN rel-apply/assets/projector.js rel-pin/assets/projector.js
+--- a/assets/projector.js	2026-11-11 17:44:41.376536481 +0000
++++ b/assets/projector.js	2026-11-11 18:04:18.731254278 +0000
+@@ -17,7 +17,8 @@
+ let HOLD=0; // in-scene drag pins the current scene (slideshow paused while dragging + 30s after a drop)
+ window.thrydHold=ms=>{HOLD=ms?Math.max(HOLD,Date.now()+ms):0;};
+ function remoteSet(set){return !!(set&&set.how==='medium'&&set.remote&&set.url);}
+-function backdrop(set,force){ if(Date.now()<HOLD)return; stageN++;
++const libPin=window.ThrydMlibPin.create();
++function backdrop(set,force){ if(!libPin.allow(set))return; if(Date.now()<HOLD)return; stageN++;
+   const ug=window.THRYD_UG; if(ug.length&&stageN%3===0){return showUser(ug[Math.floor(stageN/3)%ug.length]);}
+   if(!set||(!force&&bgSet&&bgSet.dir===set.dir))return; bgSet=set;bgI=0; $('ug').classList.remove('on');
+   if(window.ThrydMediumCuts) try{ ThrydMediumCuts.detach(); }catch(e){}
+@@ -46,7 +47,7 @@
+ const NEWEST=()=>RUNX().length?RUNX().slice().sort((a,b)=>(b.mtime||0)-(a.mtime||0))[0]:null; let slideN=0;
+ // newest live view comes back every 3rd slide; others cycle in between
+ function startSlide(){clearInterval(slideT);slideT=setInterval(()=>{if(POOL.length>1){slideN++;const nw=MODE==='live'&&NEWEST();if(nw&&slideN%3===0&&bgSet&&bgSet.dir!==nw.dir){backdrop(nw,true);return;}poolI=(poolI+1)%POOL.length;if(nw&&POOL[poolI]===nw&&POOL.length>2)poolI=(poolI+1)%POOL.length;backdrop(POOL[poolI],true);}},SLIDE*1000);}
+-window.thrydLibrary={show(id){const q=String(id||'').trim(); const s=LXTRA.find(x=>x&&x.how==='medium'&&(x.medium_image_id===q||x.dir==='medium/'+q||x.url===q)); if(!s)return null; backdrop(s,true); return s.dir;}, showSet(set){if(!remoteSet(set))return null; backdrop(set,true); return set.dir;}, counts(){const m=LXTRA.filter(x=>x&&x.how==='medium'); return {medium:m.length, gif:m.filter(x=>x.extension==='gif').length, still:m.filter(x=>x.extension!=='gif').length};}};
++window.thrydLibrary={show(id){const q=String(id||'').trim(); const s=LXTRA.find(x=>x&&x.how==='medium'&&(x.medium_image_id===q||x.dir==='medium/'+q||x.url===q)); if(!s)return null; libPin.hold(s); backdrop(s,true); return s.dir;}, showSet(set){if(!remoteSet(set))return null; backdrop(set,true); return set.dir;}, counts(){const m=LXTRA.filter(x=>x&&x.how==='medium'); return {medium:m.length, gif:m.filter(x=>x.extension==='gif').length, still:m.filter(x=>x.extension!=='gif').length};}};
+ startSlide();
+ 
+ // ---------- per-GIF scene updates: loop data/timeline.json events for the GIF on stage
+@@ -491,7 +492,7 @@
+   if(m==='cerebro'){bgSet=null;clearScene();document.body.classList.add('cerebro');startCerebro();return;}
+   if(m==='lovemap'){bgSet=null;clearScene();document.body.classList.add('lovemap');startLovemap();return;}
+   bgSet=null;clearScene();(m==='replay'?replay:live)();}
+-document.querySelectorAll('#modes button[data-m]').forEach(b=>b.onclick=ev=>{ev.stopPropagation();setMode(b.dataset.m);});
++document.querySelectorAll('#modes button[data-m]').forEach(b=>b.onclick=ev=>{ev.stopPropagation();libPin.clear();setMode(b.dataset.m);});
+ // ---------- CEREBRO
+ let CERE={items:[],poll:null,ids:'',lit:null};
+ function stopCerebro(){if(CERE.poll){clearInterval(CERE.poll);CERE.poll=null;}
+@@ -543,7 +544,7 @@
+   try{LXTRA=(await J('data/live_extra.json')).sets||[];}catch(e){}
+   await loadOmap(); await loadRGifs(); setTimeout(()=>{if(MODE==='live'&&NEWEST()){const nw=NEWEST();POOL=livePool();poolI=Math.max(0,POOL.indexOf(nw));backdrop(nw,true);}},2500); setInterval(async()=>{if(MODE==='live'){loadOmap();loadRGifs();try{const n=(await J('data/live_extra.json?t='+Date.now())).sets||[];const o=NEWEST();LXTRA=n;const nw=NEWEST();POOL=livePool();if(nw&&(!o||o.dir!==nw.dir||o.mtime!==nw.mtime)){poolI=Math.max(0,POOL.indexOf(nw));backdrop(nw,true);}}catch(e){}}},60000);
+   const ss=$('slide');if(ss){ss.value=String(SLIDE);ss.onclick=e=>e.stopPropagation();ss.onchange=e=>{SLIDE=+e.target.value;localStorage.setItem('thryd_slide',SLIDE);Q.set('slide',SLIDE);history.replaceState(null,'','?'+Q.toString());startSlide();};}
+-  const ml=$('mlib'); if(ml){ml.onclick=e=>e.stopPropagation(); const go=e=>{if(e.type==='keydown'&&e.key!=='Enter')return; e.stopPropagation(); const hit=window.thrydLibrary&&thrydLibrary.show(ml.value); if(!hit&&ml.value.trim()){$('cap').textContent='library · not in inventory';}}; ml.addEventListener('keydown',go); ml.addEventListener('change',go);}
++  const ml=$('mlib'); if(ml){ml.onclick=e=>e.stopPropagation(); const go=e=>{if(e.type==='keydown'&&e.key!=='Enter')return; e.stopPropagation(); const q=ml.value.trim(); if(!q){libPin.clear();return;} const hit=window.thrydLibrary&&thrydLibrary.show(q); if(!hit){$('cap').textContent='library · not in inventory';}}; ml.addEventListener('keydown',go); ml.addEventListener('change',go);}
+   const preset=Q.get('mlib'); if(preset&&ml){ml.value=preset; const hit=window.thrydLibrary&&thrydLibrary.show(preset); if(!hit){$('cap').textContent='library · not in inventory';}}
+   try{(await J('assets/runs/media.json')).runs.forEach(r=>runMedia[r.run]=r.media);}catch(e){}
+   try{localPrec=(await J('data/precisions.json')).map(p=>({line:p.line,src:p.src,move:p.move}));}catch(e){}
+diff -ruN rel-apply/index.html rel-pin/index.html
+--- a/index.html	2026-11-11 17:44:41.376536481 +0000
++++ b/index.html	2026-11-11 18:04:18.731254278 +0000
+@@ -1,5 +1,5 @@
+ <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><meta http-equiv="Cache-Control" content="no-cache">
+-<title>#thryd projector</title><link rel="icon" href="data:,"><link rel="stylesheet" href="assets/projector.css?v=57"><link rel="stylesheet" href="assets/alive.css?v=12"></head>
++<title>#thryd projector</title><link rel="icon" href="data:,"><link rel="stylesheet" href="assets/projector.css?v=58"><link rel="stylesheet" href="assets/alive.css?v=12"></head>
+ <body>
+ <div id="stage"><img id="bgA" alt=""><img id="bgB" alt=""><div id="ug"></div><div id="cap"></div></div>
+ <div id="vignette"></div>
+@@ -13,7 +13,7 @@
+ <div id="user"></div>
+ <div id="ticker"><div class="world" id="world">—</div><div class="upd" id="upd">loading</div><div class="meta" id="meta"></div><div class="cmove" id="cmove" style="display:none"></div></div>
+ 
+-<script>/* loader: fresh JS on every load, in order */(function(){var t=Date.now();['medium_cuts.js?v=1','projector.js?v=57','extras.js?v=50','alive.js?v=50'].forEach(function(f){var e=document.createElement('script');e.src='assets/'+f+'&t='+t;e.async=false;document.body.appendChild(e);});})();</script>
++<script>/* loader: fresh JS on every load, in order */(function(){var t=Date.now();['mlib_pin.js?v=1','medium_cuts.js?v=1','projector.js?v=58','extras.js?v=50','alive.js?v=50'].forEach(function(f){var e=document.createElement('script');e.src='assets/'+f+'&t='+t;e.async=false;document.body.appendChild(e);});})();</script>
+ <script>/* auto-update: reload when shipped code changes (checks every 45s; waits until nobody is dragging) */(function(){var CV='__CODEVER__';if(CV.indexOf('__')===0)return;
+ function idle(){var b=document.body.classList;return !b.contains('dragmode')&&!document.querySelector('#objs .dob.lifting,#objs .dob[data-held="1"]');}
+ setInterval(function(){fetch('https://raw.githubusercontent.com/jdavidteki/thryd-projector/main/data/codever.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).then(function(j){if(j&&j.v&&j.v!==CV&&idle()){var u=new URL(location.href);u.searchParams.set('v',j.v);location.replace(u.toString());}}).catch(function(){});},45000);})();</script>

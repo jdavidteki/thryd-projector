@@ -263,6 +263,32 @@ test('budget gate uses the measured published bytes and does not admit an unmeas
   assert.equal(M.admit(undefined).reason, 'unmeasured');
 });
 
+test('a browser-sized mask unpacks without a single apply', () => {
+  const zlib = require('node:zlib');
+  const w = 1024, h = 200;
+  const stride = (w + 7) >> 3;
+  const bits = Buffer.alloc(h * stride, 0xff);
+  const header = Buffer.alloc(12);
+  header.writeUInt16LE(0, 0); header.writeUInt16LE(0, 2);
+  header.writeUInt16LE(w, 4); header.writeUInt16LE(h, 6);
+  header.writeUInt32LE(bits.length, 8);
+  const gz = zlib.gzipSync(Buffer.concat([header, bits]));
+  const obj = {masks_deflate: gz.toString('base64'), mask_count: 1};
+  const saved = global.Buffer;
+  global.Buffer = undefined;
+  try {
+    M.expandObject(obj);
+  } finally {
+    global.Buffer = saved;
+  }
+  assert.equal(obj.masks.length, 1);
+  assert.equal(obj.masks[0].w, w);
+  assert.equal(obj.masks[0].h, h);
+  const mask = M.unpackMask(obj.masks[0], w, h);
+  assert.equal(mask[0], 1);
+  assert.equal(mask.length, w * h);
+});
+
 test('a ready manifest row loads its pack and another id stays on the original', async () => {
   const mask = new Array(4).fill(0); mask[0] = 1;
   const pack = {
