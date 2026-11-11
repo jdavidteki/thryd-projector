@@ -32,3 +32,15 @@ clean false and browser_verified false. Masks are the ones already measured.
 The plate is only background observed in this file; holes may be transparent.
 The original Medium URL stays the fallback. The helper snapshot that came
 with the handoff is not replaced.
+
+Later batches that already have masks, and no plate, use this. It does
+not segment and it does not mark anything ready:
+
+  python3 tools/medium_cut_plate.py \
+    --packs RAW_PACKS \
+    --originals ORIGINALS \
+    --out DEST
+
+python3 tools/medium_cut_reconcile.py --in SRC --out DEST only gzip-compacts.
+It does not create a missing plate. A budget_failed stub is skipped.
+
