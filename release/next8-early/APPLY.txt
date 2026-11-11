@@ -1,0 +1,34 @@
+Data-only overlay for eight provisional GIFs. Apply on the manifest
+that already has five ready rows (QA5 plus the four from next4). Do not
+replace JS, index.html, storage, or the rotation. Do not deploy from here.
+
+  patch -p1 --dry-run < release/next8-early/next8-data.patch
+  patch -p1 < release/next8-early/next8-data.patch
+  sha256sum -c release/next8-early/SHA256SUMS
+
+Ready rows after apply: the previous five, plus these eight. Result:
+ready 13. Those five rows are the attached current-source snapshot, not a
+raw budget_failed stub. The other originals stay out of the file.
+
+  ?mlib=1%2Au2biyOtr9ZlPhQXs9lBHlw.gif
+  https://miro.medium.com/1*u2biyOtr9ZlPhQXs9lBHlw.gif
+  ?mlib=1%2A1KZ0RuyDgxOgfLDJes6pgw.gif
+  https://miro.medium.com/1*1KZ0RuyDgxOgfLDJes6pgw.gif
+  ?mlib=1%2Ara3XWe8lZL5Fy2cCOXEpSg.gif
+  https://miro.medium.com/1*ra3XWe8lZL5Fy2cCOXEpSg.gif
+  ?mlib=1%2Ac6w4Q9cimRqFJghd5HxSww.gif
+  https://miro.medium.com/1*c6w4Q9cimRqFJghd5HxSww.gif
+  ?mlib=1%2A_567k2mm95I5IEWpl0nVrg.gif
+  https://miro.medium.com/1*_567k2mm95I5IEWpl0nVrg.gif
+  ?mlib=1%2AubGNThBbHFM_0OLyVAfKYw.gif
+  https://miro.medium.com/1*ubGNThBbHFM_0OLyVAfKYw.gif
+  ?mlib=1%2AUmpEdNHIUE0PbFptnquSig.gif
+  https://miro.medium.com/1*UmpEdNHIUE0PbFptnquSig.gif
+  ?mlib=1%2Az6frToRs3rAs_p7nhPE0Ng.gif
+  https://miro.medium.com/1*z6frToRs3rAs_p7nhPE0Ng.gif
+
+The eight pack files stay unreviewed. The manifest marks them ready, with
+clean false and browser_verified false. Masks are the ones already measured.
+The plate is only background observed in this file; holes may be transparent.
+The original Medium URL stays the fallback. The helper snapshot that came
+with the handoff is not replaced.
