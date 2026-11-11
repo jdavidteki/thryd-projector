@@ -205,6 +205,55 @@ class BatchLogicTest(unittest.TestCase):
         self.assertGreater(int(known.sum()), 0)
         self.assertTrue(np.all(np.abs(plate[known == 1][:, :3].astype(int) - 180).max() <= 16))
 
+    def test_a_light_moving_fringe_joins_the_cut_and_specks_do_not(self):
+        from medium_cut_batch import repair_masks, suppress_plate_islands, wall_reference
+        frames = []
+        masks = []
+        for i in range(6):
+            fr = np.zeros((40, 40, 4), np.uint8)
+            fr[:, :] = (180, 180, 180, 255)
+            x0 = 4 + i
+            fr[12:28, x0:x0 + 12] = (30, 30, 30, 255)
+            # Two-pixel edge, close to the wall color, moves with the square.
+            fr[10:12, x0:x0 + 12] = (160, 160, 160, 255)
+            mask = np.zeros((40, 40), np.uint8)
+            mask[12:28, x0:x0 + 12] = 1
+            frames.append(fr)
+            masks.append(mask)
+        ref = wall_reference(frames, masks)
+        self.assertIsNotNone(ref)
+        repaired = repair_masks(frames, masks, ref)
+        edge = np.zeros((40, 40), np.uint8)
+        edge[10:12, 4:16] = 1
+        self.assertTrue(np.all(repaired[0][edge == 1] == 1))
+        hole = np.zeros((40, 40), np.uint8)
+        hole[8:36, 8:36] = 1
+        known = np.zeros((40, 40), np.uint8)
+        known[8:36, 0:16] = 1
+        known[20, 30] = 1
+        known[21, 30] = 1
+        kept = suppress_plate_islands(known, hole)
+        self.assertEqual(int(kept[20, 30]), 0)
+        self.assertEqual(int(kept[12, 12]), 1)
+
+    def test_peel_does_not_delete_the_top_rows(self):
+        from medium_cut_batch import repair_masks, wall_reference
+        frames = []
+        masks = []
+        for i in range(6):
+            fr = np.zeros((48, 48, 4), np.uint8)
+            fr[:, :] = (180, 180, 180, 255)
+            fr[0:20, 10:30] = (20, 20, 20, 255)
+            mask = np.zeros((48, 48), np.uint8)
+            mask[0:20, 10:30] = 1
+            frames.append(fr)
+            masks.append(mask)
+        ref = wall_reference(frames, masks)
+        self.assertIsNotNone(ref)
+        got = repair_masks(frames, masks, ref)[0]
+        self.assertEqual(int(got[0, 16]), 1)
+        self.assertEqual(int(got[1, 16]), 1)
+
     def test_one_wall_like_frame_is_not_a_plate(self):
         from medium_cut_batch import repeated_plate
         frames = []

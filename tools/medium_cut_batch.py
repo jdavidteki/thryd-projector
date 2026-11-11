@@ -299,6 +299,7 @@ WALL_RANGE = 18
 SEED_GAP = 32
 SEED_COLOR = 40
 GROW_LIMIT = 160
+FRINGE = 4
 
 
 def _need_frames(n):
@@ -336,10 +337,15 @@ def wall_reference(frames, masks):
     med = np.median(rgb, 0)
     tone = np.median(med[seed], 0)
     seed = seed & (np.abs(med - tone).max(-1) <= SEED_COLOR)
+    occupied = np.zeros(rng.shape, np.uint8)
+    for mask in masks:
+        occupied |= (mask > 0).astype(np.uint8)
+    away = cv2.distanceTransform((occupied == 0).astype(np.uint8), cv2.DIST_L2, 3)
     gap = cv2.distanceTransform((rng <= 22).astype(np.uint8), cv2.DIST_L2, 3)
-    clean = seed & (gap >= SEED_GAP)
+    clean = seed & (away >= SEED_GAP) & (gap >= SEED_GAP)
     if int(clean.sum()) < 64:
-        clean = seed
+        # Still stay off the subject. A seed on the shoulder becomes a false wall.
+        clean = seed & (away >= 8)
     if int(clean.sum()) < 64:
         return None
     src = np.where(clean, 0, 255).astype(np.uint8)
@@ -397,16 +403,42 @@ def repair_masks(frames, masks, ref):
         border[np.unique(lab2[:, 0])] = 1
         border[np.unique(lab2[:, -1])] = 1
         border[0] = 0
-        cur[(inv == 1) & (border[lab2] == 0) & (nonwall == 1)] = 1
+        cur[(inv == 1) & (border[lab2] == 0)] = 1
+        dist = cv2.distanceTransform((cur == 0).astype(np.uint8), cv2.DIST_L2, 3)
+        # A thin moving edge reads as an outline if it stays outside the cut.
+        # Its pixels are the file's own. The hole behind them stays transparent
+        # unless the wall itself was seen there.
+        fringe = (cur == 0) & (dist <= FRINGE) & ((rng > WALL_RANGE) | (delta > WALL_MATCH))
+        cur[fringe] = 1
         stable_wall = (delta <= WALL_MATCH) & (rng <= WALL_RANGE)
         for _ in range(12):
-            touch = cv2.dilate((cur == 0).astype(np.uint8), kernel) & (cur == 1) & stable_wall
+            touch = (cv2.dilate((cur == 0).astype(np.uint8), kernel) > 0) & (cur == 1) & stable_wall
             if not int(touch.sum()):
                 break
             cur[touch] = 0
         if int(cur.sum()) < max(1, int(0.5 * int(mask.sum()))):
             cur = mask.copy()
         out.append(cur)
+    return out
+
+
+def suppress_plate_islands(known, hole):
+    """Drop wall specks inside the subject. A real reveal touches the outside."""
+    import cv2
+    show = ((known == 1) & (hole == 1)).astype(np.uint8)
+    if not int(show.sum()):
+        return show
+    count, lab, stats, _ = cv2.connectedComponentsWithStats(show, connectivity=8)
+    if count < 2:
+        return show
+    exterior = (hole == 0).astype(np.uint8)
+    touch = cv2.dilate(exterior, np.ones((3, 3), np.uint8)) & show
+    keep = set(int(x) for x in np.unique(lab[touch == 1]) if x)
+    out = np.zeros_like(show)
+    for i in range(1, count):
+        area = int(stats[i, cv2.CC_STAT_AREA])
+        if i in keep and area >= 64:
+            out[lab == i] = 1
     return out
 
 
@@ -446,7 +478,7 @@ def observed_plate(frames, unions):
             for fr, union in zip(frames, unions):
                 take = (union == 0) & (known == 1) & (plate[:, :, 3] == 0)
                 plate[take] = fr[take]
-    known_hole = (known == 1) & (hole == 1)
+    known_hole = suppress_plate_islands(known, hole)
     return plate, known_hole
 
 
@@ -662,9 +694,8 @@ def build_pack(path, job, segmenter, proof_dir=None):
         hole |= union
     if ref is None and len(held) > 1:
         plate, known_hole = observed_plate(held, unions)
-        known = (known_hole == 1).astype(np.uint8)
     else:
-        known_hole = (known == 1) & (hole == 1)
+        known_hole = suppress_plate_islands(known, hole)
     for fr in decoded2["frames"]:
         fr.pop("rgba", None)
     del held
@@ -777,8 +808,11 @@ def _write_proof(proof_dir, decoded_path, kind, unions, plate, known_hole, objec
     os.makedirs(proof_dir, exist_ok=True)
     decoded = decode_gif(decoded_path) if kind == "gif" else decode_still(decoded_path)
     indexes = [0]
-    if len(decoded["frames"]) > 1:
+    if len(decoded["frames"]) > 2:
         indexes.append(len(decoded["frames"]) // 2)
+        indexes.append(len(decoded["frames"]) - 1)
+    elif len(decoded["frames"]) > 1:
+        indexes.append(len(decoded["frames"]) - 1)
     for fi in indexes:
         rgba = decoded["frames"][fi]["rgba"]
         Image.fromarray(rgba[:, :, :3]).save(os.path.join(proof_dir, "frame%d_original.png" % fi))
