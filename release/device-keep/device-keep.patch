@@ -1,0 +1,361 @@
+diff -ruN a/assets/medium_cuts.js b/assets/medium_cuts.js
+--- a/assets/medium_cuts.js	2026-11-11 18:04:18.775254317 +0000
++++ b/assets/medium_cuts.js	2026-11-11 18:40:00.456577991 +0000
+@@ -271,7 +271,10 @@
+     if(typeof fetch !== 'function') return row;
+     let pack;
+     try{
+-      const res = await fetch(row.pack, {cache:'no-store'});
++      const ver = row.pack_version || '1';
++      const key = row.source_sha256 ? ('pack:' + row.source_sha256 + ':' + ver) : '';
++      const keep = root.ThrydKeep;
++      const res = (keep && key && keep.mayCache(row.pack)) ? await keep.fetchCached(row.pack, {cache:'no-store'}, key) : await fetch(row.pack, {cache:'no-store'});
+       if(!res.ok){ row.plate_error = 'pack_missing'; return row; }
+       pack = await res.json();
+     }catch(e){ row.plate_error = 'pack_missing'; return row; }
+@@ -484,7 +487,14 @@
+       if(!plan.ok || my !== token) return plan;
+       const hold = frameHoldBytes(plan.width, plan.height, plan.frameCount);
+       if(hold > 16 * 1024 * 1024) plan.stream = true;
+-      const fetchFn = opts.fetch || fetch;
++      const srcRow = ((manifest && manifest.assets) || []).find(a => a && a.medium_image_id === set.medium_image_id) || {};
++      const sha = srcRow.source_sha256 || '';
++      const ver = srcRow.pack_version || '1';
++      const keep = root.ThrydKeep;
++      const fetchFn = opts.fetch || function(url, init){
++        if(keep && sha && keep.mayCache(url)) return keep.fetchCached(url, init, 'gif:' + sha + ':' + ver);
++        return fetch(url, init);
++      };
+       return fetchFn(set.url, {cache:'force-cache'}).then(r=>{
+         if(!r.ok) throw new Error('fetch');
+         return r.arrayBuffer();
+@@ -510,7 +520,15 @@
+         layer.id = 'mcut'; layer._w = playback.width; layer._h = playback.height; layer._token = my;
+         layer._box = coverBox(stage, playback.width, playback.height);
+         const nsprite = playback.stream ? playback.plan.objects.length : playback.frames[0].sprites.length;
+-        layer._off = Array.from({length:nsprite}, ()=>({x:0, y:0}));
++        const labels = (playback.stream ? playback.plan.objects : (plan.objects || [])).map(o => o && o.label);
++        const keep = root.ThrydKeep;
++        layer._placeKey = [];
++        layer._off = [];
++        for(let i = 0; i < nsprite; i++){
++          const k = keep ? keep.placeKey(sha, labels[i] || ('cut' + (i + 1)), ver) : '';
++          layer._placeKey.push(k);
++          layer._off.push((keep && k && keep.loadPlace(k)) || {x:0, y:0});
++        }
+         const plate = document.createElement('canvas');
+         plate.className = 'plate'; plate.width = playback.width; plate.height = playback.height;
+         Object.assign(plate.style, {width:layer._box.width + 'px', height:layer._box.height + 'px', left:layer._box.left + 'px', top:layer._box.top + 'px'});
+@@ -546,8 +564,15 @@
+           layer._off[d.i] = {x:d.ox + (ev.clientX - d.sx), y:d.oy + (ev.clientY - d.sy)};
+           if(layer._frame) paintFrame(layer, layer._frame);
+         });
+-        layer.addEventListener('pointerup', ()=>{ layer._drag = null; });
+-        layer.addEventListener('pointercancel', ()=>{ layer._drag = null; });
++        const endDrag = ()=>{
++          const d = layer._drag;
++          layer._drag = null;
++          if(!d || !root.ThrydKeep) return;
++          const k = layer._placeKey && layer._placeKey[d.i];
++          if(k) root.ThrydKeep.savePlace(k, layer._off[d.i]);
++        };
++        layer.addEventListener('pointerup', endDrag);
++        layer.addEventListener('pointercancel', endDrag);
+         if(image){ image.classList.remove('on'); image.style.transition = 'none'; image.style.opacity = '0'; }
+         step();
+         return {ok:true, reason:null, frames:playback.frames.length};
+diff -ruN a/assets/projector.css b/assets/projector.css
+--- a/assets/projector.css	2026-11-11 17:44:41.376536481 +0000
++++ b/assets/projector.css	2026-11-11 18:40:00.476577915 +0000
+@@ -149,7 +149,7 @@
+ #cerebro{display:none;position:fixed;inset:0;z-index:8;background:radial-gradient(ellipse at 50% 42%,#0a1630 0%,#02040a 58%,#000 100%);overflow:hidden}
+ body.cerebro #cerebro{display:block}
+ body.cerebro #stage,body.cerebro #vignette,body.cerebro #map,body.cerebro #ents,body.cerebro #ticker,body.cerebro #user,body.cerebro #bubble,body.cerebro #objs{visibility:hidden;pointer-events:none}
+-body.cerebro #slide,body.cerebro #addgif,body.cerebro #rpause,body.cerebro #mute,body.cerebro #zoomui,body.cerebro #sndgate{display:none!important}
++body.cerebro #slide,body.cerebro #addgif,body.cerebro #rpause,body.cerebro #mute,body.cerebro #kresume,body.cerebro #kreset,body.cerebro #zoomui,body.cerebro #sndgate{display:none!important}
+ #cwall{position:absolute;inset:5.2vh .8vw 1vh;display:flex;flex-wrap:wrap;align-content:flex-start;justify-content:center;gap:.55vh .4vw;overflow:auto;padding:.6vh;scrollbar-width:thin}
+ .ctile{position:relative;border:0;padding:0;background:#000;cursor:pointer;overflow:hidden;border-radius:.35vh;width:12.2vw;height:8.6vw;flex:0 0 auto;box-shadow:0 0 0 1px #ffffff12,0 0 1.6vh #000c;animation:cdrift var(--t,22s) var(--k,0s) ease-in-out infinite alternate,cpulse 6s ease-in-out infinite}
+ .ctile:nth-child(3n){width:15vw;height:10vw}
+@@ -183,7 +183,7 @@
+ #lovemap{display:none;position:fixed;inset:0;z-index:8;background:#050505;overflow:hidden}
+ body.lovemap #lovemap{display:block}
+ body.lovemap #stage,body.lovemap #vignette,body.lovemap #map,body.lovemap #ents,body.lovemap #ticker,body.lovemap #user,body.lovemap #bubble,body.lovemap #objs{visibility:hidden;pointer-events:none}
+-body.lovemap #slide,body.lovemap #addgif,body.lovemap #rpause,body.lovemap #mute,body.lovemap #zoomui,body.lovemap #sndgate{display:none!important}
++body.lovemap #slide,body.lovemap #addgif,body.lovemap #rpause,body.lovemap #mute,body.lovemap #kresume,body.lovemap #kreset,body.lovemap #zoomui,body.lovemap #sndgate{display:none!important}
+ #lovemap iframe{position:absolute;inset:5.2vh 0 0;width:100%;height:calc(100% - 5.2vh);border:0;background:#050505}
+ /* Jesuye 11-10 "the rocking is still happening": no in-place sway/bob/slide/hop/breath on ANY object or person; they only travel around the frame. The one-shot .dob.notice stays. */
+ #objs .sp,#objs .ob .sp,#objs .sp.small{animation:none!important;transform:none}
+diff -ruN a/assets/projector.js b/assets/projector.js
+--- a/assets/projector.js	2026-11-11 18:34:24.798191273 +0000
++++ b/assets/projector.js	2026-11-11 18:40:00.476577915 +0000
+@@ -43,7 +43,7 @@
+ }
+ let POOL=[],poolI=0,slideCursor='',LXTRA=[],CUR_RUN=null; const RUNX=()=>LXTRA.filter(x=>CUR_RUN&&x.run===CUR_RUN);
+ // slide speed: 8s default, 30s, 60s (?slide=30 or the bar select; remembered)
+-let SLIDE=+(Q.get('slide')||localStorage.getItem('thryd_slide')||8); if(![8,30,60].includes(SLIDE))SLIDE=8; let slideT=null;
++let kept=null; try{kept=window.ThrydKeep&&ThrydKeep.settings();}catch(e){kept=null;} if(kept&&(kept.mute===0||kept.mute===1)){try{localStorage.setItem('thryd_mute',kept.mute?'1':'0');}catch(e){}} let SLIDE=+(Q.get('slide')||(kept&&kept.slide)||localStorage.getItem('thryd_slide')||8); if(![8,30,60].includes(SLIDE))SLIDE=8; let slideT=null;
+ const NEWEST=()=>RUNX().length?RUNX().slice().sort((a,b)=>(b.mtime||0)-(a.mtime||0))[0]:null;
+ // after ten slideshow changes, return to whatever the newest live view is then
+ const slideCycle=window.ThrydLiveReturn.create(10);
+@@ -52,7 +52,7 @@
+   if(moved.action==='idle'||moved.action==='hold')return;
+   poolI=moved.poolI; if(moved.cursor)slideCursor=moved.cursor; backdrop(moved.set,true);
+ },SLIDE*1000);}
+-window.thrydLibrary={show(id){const q=String(id||'').trim(); const s=LXTRA.find(x=>x&&x.how==='medium'&&(x.medium_image_id===q||x.dir==='medium/'+q||x.url===q)); if(!s)return null; libPin.hold(s); backdrop(s,true); return s.dir;}, showSet(set){if(!remoteSet(set))return null; backdrop(set,true); return set.dir;}, counts(){const m=LXTRA.filter(x=>x&&x.how==='medium'); return {medium:m.length, gif:m.filter(x=>x.extension==='gif').length, still:m.filter(x=>x.extension!=='gif').length};}};
++window.thrydLibrary={show(id){const q=String(id||'').trim(); const s=LXTRA.find(x=>x&&x.how==='medium'&&(x.medium_image_id===q||x.dir==='medium/'+q||x.url===q)); if(!s)return null; libPin.hold(s); if(window.ThrydKeep)try{ThrydKeep.rememberGif(s.medium_image_id||q);}catch(e){} backdrop(s,true); return s.dir;}, showSet(set){if(!remoteSet(set))return null; backdrop(set,true); return set.dir;}, counts(){const m=LXTRA.filter(x=>x&&x.how==='medium'); return {medium:m.length, gif:m.filter(x=>x.extension==='gif').length, still:m.filter(x=>x.extension!=='gif').length};}};
+ startSlide();
+ 
+ // ---------- per-GIF scene updates: loop data/timeline.json events for the GIF on stage
+@@ -548,9 +548,12 @@
+   try{media=await J('data/media.json');}catch(e){}
+   try{LXTRA=(await J('data/live_extra.json')).sets||[];}catch(e){}
+   await loadOmap(); await loadRGifs(); setTimeout(()=>{if(MODE==='live'&&NEWEST()){const nw=NEWEST();POOL=livePool();if(!slideCursor){poolI=Math.max(0,POOL.indexOf(nw));slideCursor=nw.dir||'';}backdrop(nw,true);}},2500); setInterval(async()=>{if(MODE==='live'){loadOmap();loadRGifs();try{const n=(await J('data/live_extra.json?t='+Date.now())).sets||[];const o=NEWEST();LXTRA=n;const nw=NEWEST();POOL=livePool();if(nw&&(!o||o.dir!==nw.dir||o.mtime!==nw.mtime)){backdrop(nw,true);}}catch(e){}}},60000);
+-  const ss=$('slide');if(ss){ss.value=String(SLIDE);ss.onclick=e=>e.stopPropagation();ss.onchange=e=>{SLIDE=+e.target.value;localStorage.setItem('thryd_slide',SLIDE);Q.set('slide',SLIDE);history.replaceState(null,'','?'+Q.toString());startSlide();};}
++  const ss=$('slide');if(ss){ss.value=String(SLIDE);ss.onclick=e=>e.stopPropagation();ss.onchange=e=>{SLIDE=+e.target.value;if(window.ThrydKeep)try{ThrydKeep.saveSettings({slide:SLIDE});}catch(err){}else try{localStorage.setItem('thryd_slide',SLIDE);}catch(err){}Q.set('slide',SLIDE);history.replaceState(null,'','?'+Q.toString());startSlide();};}
+   const ml=$('mlib'); if(ml){ml.onclick=e=>e.stopPropagation(); const go=e=>{if(e.type==='keydown'&&e.key!=='Enter')return; e.stopPropagation(); const q=ml.value.trim(); if(!q){libPin.clear();slideCycle.reset();return;} const hit=window.thrydLibrary&&thrydLibrary.show(q); if(!hit){$('cap').textContent='library · not in inventory';}}; ml.addEventListener('keydown',go); ml.addEventListener('change',go);}
+-  const preset=Q.get('mlib'); if(preset&&ml){ml.value=preset; const hit=window.thrydLibrary&&thrydLibrary.show(preset); if(!hit){$('cap').textContent='library · not in inventory';}}
++  const choice=window.ThrydKeep?ThrydKeep.stageChoice(Q.get('mlib'),ThrydKeep.settings().lastGif,Q.get('resume')==='1'):{id:Q.get('mlib')||null,why:Q.get('mlib')?'query':'live'}; if(choice.id&&ml){ml.value=choice.id; const hit=window.thrydLibrary&&thrydLibrary.show(choice.id); if(!hit){$('cap').textContent='library · not in inventory';}}
++  const kr=$('kresume'); if(kr){kr.onclick=e=>{e.stopPropagation(); const id=window.ThrydKeep&&ThrydKeep.settings().lastGif; if(!id){if($('cap'))$('cap').textContent='library · nothing remembered'; return;} if(ml)ml.value=id; const hit=window.thrydLibrary&&thrydLibrary.show(id); if(!hit&&$('cap'))$('cap').textContent='library · not in inventory';};}
++  const kz=$('kreset'); if(kz){kz.onclick=async e=>{e.stopPropagation(); if(window.ThrydKeep)try{await ThrydKeep.resetLocal();}catch(err){} const layer=document.getElementById('mcut'); if(layer&&layer._off)layer._off=layer._off.map(()=>({x:0,y:0})); if(ml&&!Q.get('mlib'))ml.value=''; libPin.clear(); slideCycle.reset(); if($('cap'))$('cap').textContent='device cache cleared';};}
++  const mu=$('mute'); if(mu){mu.addEventListener('click',()=>{if(!window.ThrydKeep)return; const off=String(mu.textContent||'').indexOf('off')>=0; try{ThrydKeep.saveSettings({mute:off?1:0});}catch(err){}});}
+   try{(await J('assets/runs/media.json')).runs.forEach(r=>runMedia[r.run]=r.media);}catch(e){}
+   try{localPrec=(await J('data/precisions.json')).map(p=>({line:p.line,src:p.src,move:p.move}));}catch(e){}
+   try{const T=(await J('data/tweets_all.json')).map(p=>({line:p.line,src:p.src,move:false}));for(let i=T.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[T[i],T[j]]=[T[j],T[i]];}TDECK=T;TI=0;}catch(e){}
+diff -ruN a/assets/thryd_keep.js b/assets/thryd_keep.js
+--- a/assets/thryd_keep.js	1970-01-01 00:00:00.000000000 +0000
++++ b/assets/thryd_keep.js	2026-11-11 18:40:00.460577976 +0000
+@@ -0,0 +1,215 @@
++// Device-local settings, cut positions, and repeat-visit bytes.
++// Live state, the agenda, and the cut manifest stay on the network.
++// Positions are visual only. Nothing here is sent to the story engine.
++(function(root){
++  var SETTINGS = 'thryd_keep_v1';
++  var PLACES = 'thryd_keep_pos_v1';
++  var BUDGET = 40 * 1024 * 1024;
++  var PLACE_CAP = 40;
++
++  function defaults(){ return {slide: null, mute: null, lastGif: ''}; }
++
++  function readJson(storage, key){
++    try{
++      var raw = storage.getItem(key);
++      if(!raw) return null;
++      return JSON.parse(raw);
++    }catch(e){ return null; }
++  }
++
++  function writeJson(storage, key, value){
++    try{ storage.setItem(key, JSON.stringify(value)); return true; }
++    catch(e){ return false; }
++  }
++
++  function settings(storage){
++    var o = readJson(storage, SETTINGS) || {};
++    var slide = [8, 30, 60].indexOf(+o.slide) >= 0 ? +o.slide : null;
++    var mute = o.mute === 0 || o.mute === 1 ? o.mute : null;
++    if(mute === null){
++      try{ var old = storage.getItem('thryd_mute'); if(old === '0' || old === '1') mute = old === '1' ? 1 : 0; }catch(e){}
++    }
++    if(slide === null){
++      try{ var s = +storage.getItem('thryd_slide'); if([8, 30, 60].indexOf(s) >= 0) slide = s; }catch(e){}
++    }
++    var lastGif = typeof o.lastGif === 'string' && o.lastGif.length > 0 && o.lastGif.length < 180 ? o.lastGif : '';
++    return {slide: slide, mute: mute, lastGif: lastGif};
++  }
++
++  function saveSettings(storage, patch){
++    var cur = settings(storage);
++    if(patch.slide != null && [8, 30, 60].indexOf(+patch.slide) >= 0) cur.slide = +patch.slide;
++    if(patch.mute === 0 || patch.mute === 1) cur.mute = patch.mute;
++    if(typeof patch.lastGif === 'string') cur.lastGif = patch.lastGif.slice(0, 179);
++    var ok = writeJson(storage, SETTINGS, {v: 1, slide: cur.slide, mute: cur.mute, lastGif: cur.lastGif});
++    try{
++      if(cur.slide != null) storage.setItem('thryd_slide', String(cur.slide));
++      if(cur.mute != null) storage.setItem('thryd_mute', cur.mute ? '1' : '0');
++    }catch(e){}
++    return ok;
++  }
++
++  function placeKey(sha, label, version){
++    return String(sha || '') + '|' + String(label || 'cut') + '|' + String(version || '1');
++  }
++
++  function loadPlaces(storage){
++    var o = readJson(storage, PLACES);
++    return o && typeof o === 'object' && !Array.isArray(o) ? o : {};
++  }
++
++  function loadPlace(storage, key){
++    var hit = loadPlaces(storage)[key];
++    if(!hit || typeof hit.x !== 'number' || typeof hit.y !== 'number') return null;
++    if(!isFinite(hit.x) || !isFinite(hit.y)) return null;
++    return {x: hit.x, y: hit.y};
++  }
++
++  function savePlace(storage, key, xy){
++    if(!key || !xy || typeof xy.x !== 'number' || typeof xy.y !== 'number') return false;
++    var all = loadPlaces(storage);
++    var keys = Object.keys(all);
++    if(!all[key] && keys.length >= PLACE_CAP) delete all[keys[0]];
++    all[key] = {x: xy.x, y: xy.y};
++    if(writeJson(storage, PLACES, all)) return true;
++    var left = Object.keys(all);
++    if(left.length) delete all[left[0]];
++    return writeJson(storage, PLACES, all);
++  }
++
++  function stageChoice(queryMlib, lastGif, explicitResume){
++    if(queryMlib) return {id: String(queryMlib), why: 'query'};
++    if(explicitResume && lastGif) return {id: String(lastGif), why: 'resume'};
++    return {id: null, why: 'live'};
++  }
++
++  function mayCache(url){
++    var u = String(url || '');
++    if(/\/data\/|state\.json|live_extra\.json|medium_cuts\.json|codever\.json|timeline\.json|replays?\.json|drag\.json|movement/.test(u)) return false;
++    return true;
++  }
++
++  function byteLength(buf){
++    if(!buf) return 0;
++    if(buf.byteLength != null) return buf.byteLength;
++    return buf.length || 0;
++  }
++
++  async function trim(db, budget){
++    var rows = await db.all();
++    rows.sort(function(a, b){ return (a.at || 0) - (b.at || 0); });
++    var total = 0;
++    rows.forEach(function(r){ total += r.n || byteLength(r.bytes); });
++    var i = 0;
++    while(total > budget && i < rows.length){
++      await db.del(rows[i].key);
++      total -= rows[i].n || byteLength(rows[i].bytes);
++      i++;
++    }
++  }
++
++  function create(deps){
++    deps = deps || {};
++    var storage = deps.storage;
++    var db = deps.db || null;
++    var budget = deps.budget || BUDGET;
++    var net = deps.fetch || (typeof fetch === 'function' ? fetch : null);
++    return {
++      settings: function(){ return storage ? settings(storage) : defaults(); },
++      saveSettings: function(patch){ return storage ? saveSettings(storage, patch) : false; },
++      rememberGif: function(id){ return storage ? saveSettings(storage, {lastGif: id || ''}) : false; },
++      placeKey: placeKey,
++      loadPlace: function(key){ return storage ? loadPlace(storage, key) : null; },
++      savePlace: function(key, xy){ return storage ? savePlace(storage, key, xy) : false; },
++      stageChoice: stageChoice,
++      mayCache: mayCache,
++      fetchCached: async function(url, init, key){
++        if(!mayCache(url) || !key) return net(url, init);
++        var hit = null;
++        try{ if(db) hit = await db.get(key); }catch(e){ hit = null; }
++        if(hit && hit.bytes){
++          var copy = hit.bytes.slice ? hit.bytes.slice(0) : hit.bytes;
++          var parsed = null, jsonOk = false;
++          try{ parsed = JSON.parse(new TextDecoder().decode(copy)); jsonOk = true; }catch(e){}
++          if(/\.json(\?|$)/.test(String(url)) && !jsonOk){
++            try{ await db.del(key); }catch(e2){}
++          }else{
++            return {ok: true, status: 200, arrayBuffer: function(){ return Promise.resolve(copy); }, json: function(){ return jsonOk ? Promise.resolve(parsed) : Promise.reject(new Error('bad json')); }};
++          }
++        }
++        var res = await net(url, init);
++        if(!res || !res.ok || !db) return res;
++        try{
++          var buf = await res.arrayBuffer();
++          var rec = {bytes: buf, at: Date.now(), n: byteLength(buf)};
++          var putOk = false;
++          try{ putOk = await db.put(key, rec); }catch(e){ putOk = false; }
++          if(!putOk){
++            try{ await trim(db, budget / 2); putOk = await db.put(key, rec); }catch(e2){}
++          }
++          try{ await trim(db, budget); }catch(e3){}
++          return {ok: true, status: res.status, arrayBuffer: function(){ return Promise.resolve(buf); }, json: function(){ return Promise.resolve(JSON.parse(new TextDecoder().decode(buf))); }};
++        }catch(e){ return res; }
++      },
++      resetLocal: async function(){
++        if(storage){
++          try{ storage.removeItem(PLACES); }catch(e){}
++          saveSettings(storage, {lastGif: ''});
++        }
++        if(!db) return true;
++        try{
++          var rows = await db.all();
++          for(var i = 0; i < rows.length; i++) await db.del(rows[i].key);
++          return true;
++        }catch(e){ return false; }
++      }
++    };
++  }
++
++  function browserDb(){
++    if(typeof indexedDB === 'undefined') return null;
++    var opened = new Promise(function(res){
++      try{
++        var r = indexedDB.open('thryd-keep', 1);
++        r.onupgradeneeded = function(){ r.result.createObjectStore('blobs'); };
++        r.onsuccess = function(){ res(r.result); };
++        r.onerror = function(){ res(null); };
++      }catch(e){ res(null); }
++    });
++    function run(mode, fn){
++      return opened.then(function(db){
++        if(!db) return null;
++        return new Promise(function(res){
++          try{
++            var t = db.transaction('blobs', mode);
++            var out = fn(t.objectStore('blobs'), res);
++            t.oncomplete = function(){ if(out === undefined) res(null); };
++            t.onerror = function(){ res(null); };
++          }catch(e){ res(null); }
++        });
++      });
++    }
++    return {
++      get: function(key){ return run('readonly', function(store, res){ var q = store.get(key); q.onsuccess = function(){ res(q.result || null); }; q.onerror = function(){ res(null); }; return q; }); },
++      put: function(key, rec){ return run('readwrite', function(store, res){ var q = store.put(rec, key); q.onsuccess = function(){ res(true); }; q.onerror = function(){ res(null); }; return q; }); },
++      del: function(key){ return run('readwrite', function(store, res){ var q = store.delete(key); q.onsuccess = function(){ res(true); }; q.onerror = function(){ res(null); }; return q; }); },
++      all: function(){ return run('readonly', function(store, res){ var q = store.getAllKeys(); q.onsuccess = function(){
++        var keys = q.result || [];
++        if(!keys.length){ res([]); return; }
++        var left = keys.length, rows = [];
++        keys.forEach(function(k){
++          var g = store.get(k);
++          g.onsuccess = function(){ rows.push(Object.assign({key: k}, g.result || {})); if(--left === 0) res(rows); };
++          g.onerror = function(){ if(--left === 0) res(rows); };
++        });
++      }; q.onerror = function(){ res([]); }; return q; }); }
++    };
++  }
++
++  var api = {create: create, settings: settings, saveSettings: saveSettings, placeKey: placeKey, stageChoice: stageChoice, mayCache: mayCache, BUDGET: BUDGET};
++  if(typeof localStorage !== 'undefined'){
++    try{ root.ThrydKeep = create({storage: localStorage, db: browserDb()}); }
++    catch(e){ root.ThrydKeep = create({storage: null, db: null}); }
++  }
++  if(typeof module !== 'undefined' && module.exports) module.exports = api;
++})(typeof window !== 'undefined' ? window : globalThis);
+diff -ruN a/index.html b/index.html
+--- a/index.html	2026-11-11 18:12:47.705701584 +0000
++++ b/index.html	2026-11-11 18:40:00.476577915 +0000
+@@ -7,13 +7,13 @@
+ <div id="ents"></div>
+ <div id="bubble" class="bubble"><div class="who"></div><div class="txt"></div></div>
+ <div id="bar"><div id="title">#thryd · <b id="run">run</b> · <span id="mode">…</span></div>
+-<div id="modes"><button data-m="live">LIVE</button><button data-m="replay">REPLAY</button><button data-m="cerebro">CEREBRO</button><button data-m="lovemap">LOVEMAP</button><button id="rpause" type="button" title="Pause or play scene updates" style="display:none">Pause</button><select id="pick" style="display:none"></select><select id="slide" title="GIF slide speed"><option value="8">8s</option><option value="30">30s</option><option value="60">60s</option></select><input id="mlib" type="search" placeholder="medium id" title="Open an original Medium file by its exact id" autocomplete="off"><button id="mute"></button><button id="addgif">+ GIF</button><input id="gifin" type="file" accept="image/gif,image/webp,image/png" multiple hidden></div></div>
++<div id="modes"><button data-m="live">LIVE</button><button data-m="replay">REPLAY</button><button data-m="cerebro">CEREBRO</button><button data-m="lovemap">LOVEMAP</button><button id="rpause" type="button" title="Pause or play scene updates" style="display:none">Pause</button><select id="pick" style="display:none"></select><select id="slide" title="GIF slide speed"><option value="8">8s</option><option value="30">30s</option><option value="60">60s</option></select><input id="mlib" type="search" placeholder="medium id" title="Open an original Medium file by its exact id" autocomplete="off"><button id="kresume" type="button" title="Show the last library GIF saved on this device. A normal visit stays on the live view.">Resume</button><button id="kreset" type="button" title="Clear saved cut positions, the remembered library GIF, and cached GIF bytes on this device. Sound and slide speed stay.">Reset</button><button id="mute"></button><button id="addgif">+ GIF</button><input id="gifin" type="file" accept="image/gif,image/webp,image/png" multiple hidden></div></div>
+ <div id="cerebro" aria-hidden="true"><div id="cwall"></div><div id="clight"><img id="climg" alt=""><div id="clcap"></div></div></div>
+ <div id="lovemap" aria-hidden="true"><iframe id="lmframe" title="lovemap" src="about:blank"></iframe></div>
+ <div id="user"></div>
+ <div id="ticker"><div class="world" id="world">—</div><div class="upd" id="upd">loading</div><div class="meta" id="meta"></div><div class="cmove" id="cmove" style="display:none"></div></div>
+ 
+-<script>/* loader: fresh JS on every load, in order */(function(){var t=Date.now();['mlib_pin.js?v=1','live_return.js?v=1','medium_cuts.js?v=1','projector.js?v=58','extras.js?v=50','alive.js?v=50'].forEach(function(f){var e=document.createElement('script');e.src='assets/'+f+'&t='+t;e.async=false;document.body.appendChild(e);});})();</script>
++<script>/* loader: fresh JS on every load, in order */(function(){var t=Date.now();['thryd_keep.js?v=1','mlib_pin.js?v=1','live_return.js?v=1','medium_cuts.js?v=1','projector.js?v=58','extras.js?v=50','alive.js?v=50'].forEach(function(f){var e=document.createElement('script');e.src='assets/'+f+'&t='+t;e.async=false;document.body.appendChild(e);});})();</script>
+ <script>/* auto-update: reload when shipped code changes (checks every 45s; waits until nobody is dragging) */(function(){var CV='__CODEVER__';if(CV.indexOf('__')===0)return;
+ function idle(){var b=document.body.classList;return !b.contains('dragmode')&&!document.querySelector('#objs .dob.lifting,#objs .dob[data-held="1"]');}
+ setInterval(function(){fetch('https://raw.githubusercontent.com/jdavidteki/thryd-projector/main/data/codever.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).then(function(j){if(j&&j.v&&j.v!==CV&&idle()){var u=new URL(location.href);u.searchParams.set('v',j.v);location.replace(u.toString());}}).catch(function(){});},45000);})();</script>

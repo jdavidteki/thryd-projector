@@ -163,6 +163,7 @@ test('attach mounts a ready remote GIF and drag does not move the plate', async 
   mask[1 * 8 + 1] = 1;
   const row = {
     medium_image_id: '1*cut.gif', kind: 'gif', status: 'ready', frame_size: [8, 8], delays_cs: [10, 20],
+    source_sha256: 'abc', pack_version: '2',
     objects: [{label: 'cut1', masks: [mask, mask]}],
   };
   const els = {};
@@ -191,6 +192,14 @@ test('attach mounts a ready remote GIF and drag does not move the plate', async 
   const g = globalThis;
   g.document = { getElementById(id){ return id === 'mcut' ? els.mcut || null : null; }, createElement: () => node('el') };
   g.ImageData = class { constructor(data, w, h){ this.data = data; this.width = w; this.height = h; } };
+  const writes = [];
+  let saved = null;
+  g.ThrydKeep = {
+    mayCache(){ return false; },
+    placeKey(sha, label, ver){ return [sha, label, ver].join('|'); },
+    loadPlace(){ return saved; },
+    savePlace(k, xy){ writes.push({k, xy: {x: xy.x, y: xy.y}}); saved = {x: xy.x, y: xy.y}; return true; },
+  };
   const mounted = await M.attach({
     how: 'medium', remote: true, url: 'https://miro.medium.com/1*cut.gif', medium_image_id: '1*cut.gif', extension: 'gif',
   }, {
@@ -209,8 +218,23 @@ test('attach mounts a ready remote GIF and drag does not move the plate', async 
   assert.equal(layer._off[0].x, 20);
   assert.equal(layer._off[0].y, 3);
   assert.equal(layer.querySelector('canvas.plate'), plateBefore);
-  assert.equal(JSON.stringify(row).includes('object_id'), false);
+  assert.equal(writes.length, 0);
+  layer.onpointerup();
+  assert.equal(writes.length, 1);
+  assert.equal(writes[0].k, 'abc|cut1|2');
+  assert.deepEqual(writes[0].xy, {x: 20, y: 3});
   clearTimeout(layer._timer);
+  const again = await M.attach({
+    how: 'medium', remote: true, url: 'https://miro.medium.com/1*cut.gif', medium_image_id: '1*cut.gif', extension: 'gif',
+  }, {
+    manifest: {assets: [row]}, image, stage,
+    fetch: async () => ({ok: true, arrayBuffer: async () => gif.buffer.slice(gif.byteOffset, gif.byteOffset + gif.byteLength)}),
+  });
+  assert.equal(again.ok, true);
+  assert.deepEqual(els.mcut._off[0], {x: 20, y: 3});
+  delete g.ThrydKeep;
+  assert.equal(JSON.stringify(row).includes('object_id'), false);
+  clearTimeout(els.mcut._timer);
   M.detach();
   assert.equal(decoded.frames.length, 2);
 });

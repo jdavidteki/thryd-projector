@@ -1,0 +1,30 @@
+Device-local settings, cut positions, and repeat-visit bytes.
+Apply on the public tree that already has the QA5 overlay, the pin
+patch (53050f75), the ten-frame return (e34208e6), and the rotation
+resume (5eb18e45). The next4 data patch is separate and does not
+depend on this one. Either data-then-keep or keep-then-data works.
+This patch does not replace the manifest or the pack files.
+Do not deploy from here; the standing source sync publishes.
+
+  patch -p1 --dry-run < release/device-keep/device-keep.patch
+  patch -p1 < release/device-keep/device-keep.patch
+
+SHA256SUMS is the tree after this patch AND next4-data.patch.
+Check it only once both are applied:
+
+  sha256sum -c release/device-keep/SHA256SUMS
+
+What it stores on this device only:
+- slide speed (8/30/60) and mute, in one small localStorage record
+- the last library GIF, used by Resume and by ?resume=1
+- cut positions, keyed by source sha256, the pack label, and pack
+  version, written when a drag ends
+- GIF and cut-pack bytes in IndexedDB, keyed by source sha256 and
+  pack version, dropped oldest-first at 40MB
+
+A normal visit stays on the live view. ?mlib= wins over the remembered
+GIF. Resume is the explicit control. Live state, live_extra, the cut
+manifest, and the agenda are always fetched from the network. Positions
+are visual and are not sent to the story engine. Reset clears positions,
+the remembered GIF, and the byte cache. Sound, slide speed, the pin
+rules, the ten-return, and the library cursor stay.
