@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "file": "data/medium_cuts.json",
+  "key": "medium_image_id must equal the live_extra set's medium_image_id. run, card, and jN are rejected.",
+  "statuses": ["awaiting_manifest", "ready", "no_object", "unavailable", "blocked_budget"],
+  "engine_ids": "object_id and state_id must be absent or null. A label is not an id.",
+  "still": {
+    "kind": "still",
+    "frame_size": ["width", "height"],
+    "objects": [{
+      "label": "short name for this picture only",
+      "masks": ["one array or packed mask, length width*height, 1 on the subject"],
+      "plate": "optional RGBA of observed background, same length as the frame",
+      "plate_known": "required with plate. 1 only where a real frame showed that pixel without the subject"
+    }]
+  },
+  "gif": {
+    "kind": "gif",
+    "frame_size": ["width", "height"],
+    "delays_cs": "one integer per displayed frame, copied from the GIF graphic-control delay. The player uses delay*10 ms, and 0 as 100 ms, which is the usual browser rule. A mismatch refuses the pack and leaves the original image.",
+    "objects": [{
+      "label": "short name",
+      "masks": "one mask per displayed frame, in display order, after GIF disposal. A single mask, or one patch image, is rejected for a multi-frame GIF.",
+      "plate": "optional. One observed background, not a per-frame inpaint and not a new drawing.",
+      "plate_known": "1 only for pixels actually seen without the subject. Other hole pixels stay transparent."
+    }]
+  },
+  "mask_bytes": "Row-major, 1 bit per pixel, MSB first, padded to a byte per row is the worker's file form. The client also accepts a 0/1 array of length width*height.",
+  "sprite": "The visible sprite is the mask's ink, cropped tight. Pixels outside the mask are not copied. A bbox without a mask is rejected. A mask that covers 99.5% or more of the frame is rejected.",
+  "storage_gate": "admit(measuredBytes) allows a pack only when measuredBytes <= 1024MiB - 785MiB - 40MiB. 785MiB is the stated site size, not a new measurement. Unmeasured packs are not admitted. Over-budget packs stay blocked_budget. Per-frame full images are not a mask pack.",
+  "at_rest": "Until a pack is ready, the original Medium URL plays in the img, including a GIF's own timing. A ready pack replaces that view with the same pixels: the plate is the frame with the subject removed, and the sprite is the subject's original pixels at the home position.",
+  "ghost": "Dragging changes only the sprite offset. The plate is already without the subject, so the backdrop does not keep a copy. A static patch is not used on an animated subject."
+}
