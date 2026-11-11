@@ -312,6 +312,28 @@ def _frac(mask):
     return float(mask.mean()) if mask.size else 0.0
 
 
+def isolate_core(mask):
+    """Drop speck islands and a one-pixel fringe. The body pixels stay. Not a new drawing."""
+    import cv2
+    mask = (mask > 0).astype(np.uint8)
+    if int(mask.sum()) < 12 * 12:
+        return mask
+    n, lab, stats, _ = cv2.connectedComponentsWithStats(mask, connectivity=8)
+    if n > 2:
+        areas = sorted(((int(stats[i, cv2.CC_STAT_AREA]), i) for i in range(1, n)), reverse=True)
+        keep = areas[0][0]
+        core = np.zeros_like(mask)
+        for area, i in areas:
+            if area >= max(64, int(0.15 * keep)):
+                core[lab == i] = 1
+    else:
+        core = mask
+    opened = cv2.morphologyEx(core, cv2.MORPH_OPEN, np.ones((3, 3), np.uint8))
+    if int(opened.sum()) >= 12 * 12 and int(opened.sum()) >= int(0.85 * core.sum()):
+        return opened
+    return core
+
+
 class YoloSeg:
     name = "yolov8n-seg"
 
@@ -337,6 +359,7 @@ class YoloSeg:
                 continue
             mask = np.zeros((h, w), np.uint8)
             cv2.fillPoly(mask, [np.round(poly).astype(np.int32)], 1)
+            mask = isolate_core(mask)
             frac = _frac(mask)
             if frac < 0.008 or frac >= 0.85:
                 continue
@@ -357,24 +380,18 @@ class RembgHuman:
         self._ort = ort
 
     def instances(self, rgb):
-        import cv2
         from rembg import remove
         h, w = rgb.shape[:2]
         t0 = time.perf_counter()
         im = Image.fromarray(rgb[:, :, :3])
         raw = np.array(remove(im, session=self.session, only_mask=True))
         sec = time.perf_counter() - t0
-        binary = (raw > 110).astype(np.uint8)
-        n, lab, stats, _ = cv2.connectedComponentsWithStats(binary, connectivity=8)
+        # One foreground, not a list of people. Connected pieces are not persons.
+        binary = isolate_core((raw > 160).astype(np.uint8))
+        frac = _frac(binary)
         out = []
-        area = h * w
-        for i in range(1, n):
-            x, y, bw, bh, a = stats[i]
-            frac = a / area
-            if frac < 0.01 or frac >= 0.85 or bw < 12 or bh < 12:
-                continue
-            mask = (lab == i).astype(np.uint8)
-            out.append({"mask": mask, "model_class": "person", "conf": None, "near_full": False})
+        if 0.01 <= frac < 0.85 and int(binary.sum()) >= 12 * 12:
+            out.append({"mask": binary, "model_class": "foreground", "conf": None, "near_full": False})
         return out, sec
 
 
@@ -643,6 +660,62 @@ def pack_is_skippable(pack, source_sha):
             if have != n:
                 return False
     return True
+
+
+def reconcile_pack(pack):
+    """Lossless copy. Raw mask bits and a zlib plate become gzip. Identity fields stay."""
+    import gzip
+    import zlib
+    out = json.loads(json.dumps(pack))
+    for obj in out.get("objects") or []:
+        if obj.get("masks") and not obj.get("masks_deflate"):
+            blob, n = compact_masks(obj["masks"])
+            back = expand_masks(blob, n)
+            for src, got in zip(obj["masks"], back):
+                if src["bits"] != got["bits"] or src["x"] != got["x"] or src["y"] != got["y"] or src["w"] != got["w"] or src["h"] != got["h"]:
+                    raise ValueError("mask pixel mismatch")
+            obj["masks_deflate"] = blob
+            obj["mask_count"] = n
+            obj["masks_encoding"] = "bbox1bit-gzip-v1"
+            del obj["masks"]
+    if out.get("plate_deflate_b64") and not out.get("plate_gzip_b64"):
+        wrapped = base64.b64decode(out["plate_deflate_b64"])
+        if wrapped[:2] == b"\x1f\x8b":
+            pixels = gzip.decompress(wrapped)
+        elif wrapped[:1] == b"\x78":
+            pixels = zlib.decompress(wrapped)
+        else:
+            raise ValueError("plate encoding")
+        out["plate_gzip_b64"] = base64.b64encode(gzip.compress(pixels, compresslevel=9)).decode("ascii")
+        if gzip.decompress(base64.b64decode(out["plate_gzip_b64"])) != pixels:
+            raise ValueError("plate pixel mismatch")
+        del out["plate_deflate_b64"]
+        out["plate_encoding"] = "gzip-rgba-v1"
+    return out
+
+
+def reconcile_dir(src, dest):
+    os.makedirs(dest, exist_ok=True)
+    rows = []
+    for name in sorted(os.listdir(src)):
+        if not name.endswith(".json") or name == "state.json":
+            continue
+        path = os.path.join(src, name)
+        pack = json.load(open(path))
+        got = reconcile_pack(pack)
+        raw = json.dumps(got).encode("utf-8")
+        json.dump(got, open(os.path.join(dest, name), "w"))
+        rows.append({
+            "file": name,
+            "medium_image_id": got.get("medium_image_id"),
+            "status": got.get("status"),
+            "reviewed": got.get("reviewed"),
+            "source_sha256": got.get("source_sha256"),
+            "orig_bytes": os.path.getsize(path),
+            "compact_bytes": len(raw),
+            "has_plate": bool(got.get("plate_gzip_b64")),
+        })
+    return rows
 
 
 def _safe_name(mid):

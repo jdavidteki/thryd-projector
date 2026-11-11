@@ -1,3 +1,4 @@
+import base64
 import json
 import os
 import sys
@@ -126,6 +127,64 @@ class BatchLogicTest(unittest.TestCase):
         if measured:
             os.makedirs(os.path.join(ROOT, "tests/fixtures/medium_packs"), exist_ok=True)
             json.dump({"room_bytes": ROOM, "measured": measured}, open(os.path.join(ROOT, "tests/fixtures/medium_packs/compact_measure.json"), "w"), indent=1)
+
+    def test_reconcile_keeps_identity_and_reads_a_zlib_plate(self):
+        import gzip
+        import tempfile
+        import zlib
+        from medium_cut_batch import expand_masks, reconcile_pack
+        mask = np.zeros((4, 4), np.uint8)
+        mask[1, 1] = 1
+        spec = pack_mask(mask)
+        plate = np.zeros((4, 4, 4), np.uint8)
+        plate[1, 1] = (9, 8, 7, 255)
+        zlib_b64 = base64.b64encode(zlib.compress(plate.tobytes())).decode("ascii")
+        self.assertTrue(base64.b64decode(zlib_b64).startswith(b"\x78"))
+        raw = {
+            "medium_image_id": "1*qa3.gif",
+            "kind": "gif",
+            "status": "unreviewed",
+            "reviewed": False,
+            "source_sha256": "abc",
+            "frame_size": [4, 4],
+            "delays_cs": [10, 10],
+            "objects": [{"label": "cut1", "model_class": "foreground", "masks": [spec, spec]}],
+            "plate_deflate_b64": zlib_b64,
+            "plate_known_bits": pack_mask(mask),
+        }
+        got = reconcile_pack(raw)
+        self.assertEqual(got["source_sha256"], "abc")
+        self.assertEqual(got["delays_cs"], [10, 10])
+        self.assertEqual(got["status"], "unreviewed")
+        self.assertFalse(got["reviewed"])
+        self.assertNotIn("plate_deflate_b64", got)
+        self.assertNotIn("masks", got["objects"][0])
+        pixels = gzip.decompress(base64.b64decode(got["plate_gzip_b64"]))
+        self.assertEqual(pixels, plate.tobytes())
+        back = expand_masks(got["objects"][0]["masks_deflate"], got["objects"][0]["mask_count"])
+        self.assertEqual(back[0]["bits"], spec["bits"])
+        full = len(json.dumps(got).encode("utf-8"))
+        masks_only = dict(got)
+        masks_only.pop("plate_gzip_b64")
+        masks_only.pop("plate_known_bits")
+        slim = len(json.dumps(masks_only).encode("utf-8"))
+        self.assertGreater(full, slim)
+        with tempfile.TemporaryDirectory() as tmp:
+            json.dump(raw, open(os.path.join(tmp, "a.json"), "w"))
+            dest = os.path.join(tmp, "out")
+            from medium_cut_batch import reconcile_dir
+            rows = reconcile_dir(tmp, dest)
+            self.assertEqual(rows[0]["compact_bytes"], full)
+            self.assertTrue(rows[0]["has_plate"])
+
+    def test_isolate_core_drops_a_detached_speck(self):
+        from medium_cut_batch import isolate_core
+        mask = np.zeros((40, 40), np.uint8)
+        mask[8:32, 8:32] = 1
+        mask[0, 0] = 1
+        out = isolate_core(mask)
+        self.assertEqual(int(out[0, 0]), 0)
+        self.assertEqual(int(out[16, 16]), 1)
 
     def test_room_is_the_measured_published_budget(self):
         self.assertEqual(ROOM, 239952692)

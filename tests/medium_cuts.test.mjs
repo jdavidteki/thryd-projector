@@ -30,6 +30,16 @@ function reds(rgba, w){
   return n;
 }
 
+test('remote wiring keeps the original fallback and the current-agenda newest pick', () => {
+  const fs = require('node:fs');
+  const src = fs.readFileSync(new URL('../assets/projector.js', import.meta.url), 'utf8');
+  assert.match(src, /const NEWEST=\(\)=>RUNX\(\)/);
+  assert.match(src, /objsFor\(null\); clearScene\(\)/);
+  assert.match(src, /ThrydMediumCuts\.attach\(set/);
+  assert.equal(src.includes('ThrydMovement'), false);
+  assert.equal(src.includes('object_id'), false);
+});
+
 test('one requested GIF frame matches the full decode and does not keep earlier pixels', () => {
   const full = M.decodeGif(gif);
   const mid = M.decodeGif(gif, {only: 1});
@@ -121,6 +131,88 @@ test('an invented plate is refused and an observed plate fills only known pixels
   assert.equal(play.frames[0].plate[o+3], 255);
   const other = (4 * 8 + 4) * 4;
   assert.equal(play.frames[0].plate[other+2], 255);
+});
+
+test('a zlib plate is read and a gzip plate is not dropped', () => {
+  const zlib = require('node:zlib');
+  const w = 2, h = 2;
+  const fill = Buffer.alloc(w * h * 4, 0);
+  fill[0] = 9; fill[3] = 255;
+  const z = zlib.deflateSync(fill);
+  assert.equal(z[0], 0x78);
+  assert.throws(() => zlib.gunzipSync(z));
+  const row = {
+    medium_image_id: '1*cut.gif', kind: 'gif', status: 'ready', frame_size: [2, 2], delays_cs: [10],
+    plate_deflate_b64: z.toString('base64'),
+    plate_known_bits: {x: 0, y: 0, w: 2, h: 1, bits: Buffer.from([0b10000000]).toString('base64')},
+    objects: [{label: 'cut1', masks: [[1, 0, 0, 0]]}],
+  };
+  const plan = M.forSet(set, {assets: [row]});
+  assert.equal(plan.ok, true);
+  assert.equal(plan.plate[0], 9);
+  assert.equal(plan.plateKnown[2], 0);
+  const broken = Object.assign({}, row, {plate_deflate_b64: Buffer.from([1, 2, 3]).toString('base64')});
+  assert.equal(M.forSet(set, {assets: [broken]}).reason, 'plate_decode_failed');
+});
+
+test('attach mounts a ready remote GIF and drag does not move the plate', async () => {
+  const fs = require('node:fs');
+  const gif = fs.readFileSync(new URL('./fixtures/cut_two.gif', import.meta.url));
+  const decoded = M.decodeGif(gif);
+  const mask = new Array(64).fill(0);
+  mask[1 * 8 + 1] = 1;
+  const row = {
+    medium_image_id: '1*cut.gif', kind: 'gif', status: 'ready', frame_size: [8, 8], delays_cs: [10, 20],
+    objects: [{label: 'cut1', masks: [mask, mask]}],
+  };
+  const els = {};
+  function node(name){
+    return {
+      id: name, className: '', style: {}, children: [], dataset: {},
+      classList: { removed: [], remove(c){ this.removed.push(c); }, add(){} },
+      appendChild(c){ this.children.push(c); c.parent = this; },
+      querySelector(sel){
+        if(sel === 'canvas.plate') return this.children.find(c => c.className === 'plate') || null;
+        const m = /canvas\.sprite\[data-i="(\d+)"\]/.exec(sel);
+        if(m) return this.children.find(c => c.className === 'sprite' && c.dataset.i === m[1]) || null;
+        return null;
+      },
+      addEventListener(type, fn){ this['on' + type] = fn; },
+      getContext(){ return { putImageData(){} }; },
+      closest(sel){ return sel.indexOf('sprite') >= 0 && this.className === 'sprite' ? this : null; },
+      remove(){ this.removedNode = true; if(els.mcut === this) els.mcut = null; },
+    };
+  }
+  const stage = node('stage');
+  stage.clientWidth = 80; stage.clientHeight = 80;
+  stage.insertBefore = (n) => { stage.children.push(n); els.mcut = n; };
+  const image = node('img');
+  image.classList.add = () => {};
+  const g = globalThis;
+  g.document = { getElementById(id){ return id === 'mcut' ? els.mcut || null : null; }, createElement: () => node('el') };
+  g.ImageData = class { constructor(data, w, h){ this.data = data; this.width = w; this.height = h; } };
+  const mounted = await M.attach({
+    how: 'medium', remote: true, url: 'https://miro.medium.com/1*cut.gif', medium_image_id: '1*cut.gif', extension: 'gif',
+  }, {
+    manifest: {assets: [row]}, image, stage,
+    fetch: async () => ({ok: true, arrayBuffer: async () => gif.buffer.slice(gif.byteOffset, gif.byteOffset + gif.byteLength)}),
+  });
+  assert.equal(mounted.ok, true);
+  assert.ok(image.classList.removed.includes('on'));
+  assert.equal(image.style.opacity, '0');
+  const layer = els.mcut;
+  assert.ok(layer);
+  const sprite = layer.querySelector('canvas.sprite[data-i="0"]');
+  const plateBefore = layer.querySelector('canvas.plate');
+  layer.onpointerdown({target: sprite, clientX: 5, clientY: 6, preventDefault(){}});
+  layer.onpointermove({clientX: 25, clientY: 9});
+  assert.equal(layer._off[0].x, 20);
+  assert.equal(layer._off[0].y, 3);
+  assert.equal(layer.querySelector('canvas.plate'), plateBefore);
+  assert.equal(JSON.stringify(row).includes('object_id'), false);
+  clearTimeout(layer._timer);
+  M.detach();
+  assert.equal(decoded.frames.length, 2);
 });
 
 test('a gzip plate fills only known pixels and leaves the rest transparent', () => {

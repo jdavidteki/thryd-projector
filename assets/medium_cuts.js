@@ -117,7 +117,9 @@
     }
     let plate = null, plateKnown = null;
     const plateB64 = row.plate_gzip_b64 || row.plate_deflate_b64;
-    const rawPlate = row.plate_rgba || (plateB64 ? gunzip(b64bytes(plateB64)) : null);
+    if(plateB64 && row.plate_error) return reject(row.plate_error);
+    const rawPlate = row.plate_rgba || (plateB64 ? inflateAny(b64bytes(plateB64)) : null);
+    if(plateB64 && !rawPlate) return reject('plate_decode_failed');
     if(rawPlate && row.plate_known_bits){
       const known = unpackMask(row.plate_known_bits, w, h);
       if(rawPlate.length === w * h * 4 && known){ plate = rawPlate; plateKnown = known; }
@@ -227,6 +229,14 @@
     }
     return null;
   }
+  function inflateAny(u8){
+    if(!u8 || !u8.length) return null;
+    if(u8[0] === 0x1f && u8[1] === 0x8b) return gunzip(u8);
+    if(u8[0] === 0x78 && typeof require === 'function'){
+      try{ return new Uint8Array(require('zlib').inflateSync(u8)); }catch(e){ return null; }
+    }
+    return null;
+  }
   function readMaskBlob(raw, count){
     const view = new DataView(raw.buffer, raw.byteOffset, raw.byteLength);
     const out = [];
@@ -252,23 +262,30 @@
     for(let i = 0; i < objects.length; i++){
       const obj = objects[i];
       if(!obj || obj.masks || !obj.masks_deflate) continue;
-      let raw = gunzip(b64bytes(obj.masks_deflate));
+      let raw = inflateAny(b64bytes(obj.masks_deflate));
       if(!raw && typeof DecompressionStream === 'function'){
-        const ds = new DecompressionStream('gzip');
-        const stream = new Blob([b64bytes(obj.masks_deflate)]).stream().pipeThrough(ds);
+        const bytes = b64bytes(obj.masks_deflate);
+        const format = bytes[0] === 0x78 ? 'deflate' : 'gzip';
+        const ds = new DecompressionStream(format);
+        const stream = new Blob([bytes]).stream().pipeThrough(ds);
         raw = new Uint8Array(await new Response(stream).arrayBuffer());
       }
       if(raw) obj.masks = readMaskBlob(raw, obj.mask_count || 0);
     }
     const plateB64 = row && (row.plate_gzip_b64 || row.plate_deflate_b64);
     if(plateB64 && !row.plate_rgba){
-      let raw = gunzip(b64bytes(plateB64));
+      let raw = inflateAny(b64bytes(plateB64));
       if(!raw && typeof DecompressionStream === 'function'){
-        const ds = new DecompressionStream('gzip');
-        const stream = new Blob([b64bytes(plateB64)]).stream().pipeThrough(ds);
-        raw = new Uint8Array(await new Response(stream).arrayBuffer());
+        const bytes = b64bytes(plateB64);
+        const format = bytes[0] === 0x78 ? 'deflate' : 'gzip';
+        try{
+          const ds = new DecompressionStream(format);
+          const stream = new Blob([bytes]).stream().pipeThrough(ds);
+          raw = new Uint8Array(await new Response(stream).arrayBuffer());
+        }catch(e){ raw = null; }
       }
       if(raw) row.plate_rgba = raw;
+      else row.plate_error = 'plate_decode_failed';
     }
     return row;
   }
