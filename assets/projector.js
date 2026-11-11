@@ -31,7 +31,7 @@ function backdrop(set,force){ if(!libPin.allow(set))return; if(Date.now()<HOLD)r
   clearInterval(bgTimer); bgTimer=null; const imgs=[$('bgA'),$('bgB')];
   // load into the hidden image; the visible one stays up until the new view is decoded (no black/partial frame)
   const vis=imgs.findIndex(i=>i.classList.contains('on')); bgFlip=vis===0?1:(vis===1?0:bgFlip^1); const on=imgs[bgFlip],off=imgs[bgFlip^1];
-  let shown=false; const flip=()=>{if(bgSet!==set||shown)return; shown=true; const ready=[on,off].find(i=>i&&i.naturalWidth>0)||on; ready.classList.add('on'); (ready===on?off:on).classList.remove('on'); revealStage();};
+  let shown=false; const flip=()=>{if(shown)return; if(!(bgSet===set||(bgSet&&set&&bgSet.dir===set.dir)))return; shown=true; const ready=[on,off].find(i=>i&&i.naturalWidth>0)||on; ready.classList.add('on'); (ready===on?off:on).classList.remove('on'); revealStage();};
   const whenReady=(img,go)=>{const ok=()=>{if(bgSet!==set||!img.naturalWidth)return; go();}; if(img.complete&&img.naturalWidth)return ok(); img.addEventListener('load',ok,{once:true}); if(img.decode)img.decode().then(ok,()=>{});};
   on.onerror=null; off.onerror=null; on.onload=null;
   if(remoteSet(set)){
@@ -60,21 +60,19 @@ function backdrop(set,force){ if(!libPin.allow(set))return; if(Date.now()<HOLD)r
         else done(ap);
       }catch(e){ finishCuts(false); }
     };
-    let capArmed=false;
+    let capArmed=false, capAt=0;
+    const stillThis=()=>bgSet===set||(bgSet&&set&&bgSet.dir===set.dir);
+    const decoded=()=>!!((on&&on.naturalWidth)||(off&&off.naturalWidth));
     const armCap=()=>{
-      if(capArmed||bgSet!==set||shown||cutsDone) return;
-      if(!((on&&on.naturalWidth)||(off&&off.naturalWidth))) return;
+      if(capArmed||shown||cutsDone||!stillThis()||!decoded()) return;
       capArmed=true;
-      setTimeout(()=>{
-        if(bgSet!==set||shown||cutsDone) return;
-        setCutsHint(true);
-        flip();
-      }, CUTS_WAIT_MS);
+      capAt=Date.now()+CUTS_WAIT_MS;
     };
     whenReady(on, armCap);
     const capPoll=setInterval(()=>{
-      if(bgSet!==set||shown||cutsDone){clearInterval(capPoll);return;}
-      if((on&&on.naturalWidth)||(off&&off.naturalWidth)){clearInterval(capPoll);armCap();}
+      if(!stillThis()||shown||cutsDone){clearInterval(capPoll);return;}
+      if(!capArmed&&decoded()) armCap();
+      if(capArmed&&Date.now()>=capAt){ clearInterval(capPoll); setCutsHint(true); flip(); }
     }, 100);
     startAttach();
     return;
@@ -491,7 +489,8 @@ async function bootColdFirst(st){
   try{
     const man=window.ThrydMediumCuts?await ThrydMediumCuts.loadManifest():await J('data/medium_cuts.json');
     const ready=new Map((man.assets||[]).filter(a=>a&&a.status==='ready').map(a=>[a.medium_image_id,a]));
-    const cands=(POOL||[]).filter(s=>s&&s.how==='medium'&&ready.has(s.medium_image_id));
+    let cands=(POOL||[]).filter(s=>s&&s.how==='medium'&&ready.has(s.medium_image_id));
+    if(!cands.length) cands=(LXTRA||[]).filter(s=>s&&s.how==='medium'&&ready.has(s.medium_image_id));
     if(cands.length){
       const score=s=>{const a=ready.get(s.medium_image_id)||{}; const fs=a.frame_size||[1024,1024]; return (fs[0]||1024)*(fs[1]||1024)*((a.delays_cs||[1]).length);};
       cands.sort((a,b)=>score(a)-score(b));
@@ -571,7 +570,9 @@ function setMode(m){if(m!=='live'&&m!=='replay'&&m!=='cerebro'&&m!=='lovemap')m=
   document.body.classList.remove('cerebro','lovemap');stopCerebro();stopLovemap();
   if(m==='cerebro'){bgSet=null;clearScene();document.body.classList.add('cerebro');startCerebro();return;}
   if(m==='lovemap'){bgSet=null;clearScene();document.body.classList.add('lovemap');startLovemap();return;}
-  bgSet=null;clearScene();(m==='replay'?replay:live)();}
+  // keep a first scene already started (mlib pin or cold-first pack); wiping bgSet kills the 4s cut-wait cap
+  if(!(m==='live'&&bgSet&&(Q.get('mlib')||(typeof libPin!=='undefined'&&libPin.pinned&&libPin.pinned())||viewUp))){ bgSet=null;clearScene(); }
+  (m==='replay'?replay:live)();}
 document.querySelectorAll('#modes button[data-m]').forEach(b=>b.onclick=ev=>{ev.stopPropagation();libPin.clear();slideCycle.reset();slideCursor='';setMode(b.dataset.m);});
 // ---------- CEREBRO
 let CERE={items:[],poll:null,ids:'',lit:null};
