@@ -12,8 +12,11 @@ let media={backdrops:{},sprites:{}}, runMedia={}, timers=[], gen=0;
 const short=p=>(p||'elsewhere').replace(/,? (in )?Miami(, Florida)?/g,'').replace(/^(the|a) /i,'').replace(/ outside the apartment.*$/,'').replace(/^apartment Marisol and Calla share in /,'').slice(0,34);
 // ---------- stage: current scene GIF, large & centered, crossfaded
 let bgSet=null,bgI=0,bgFlip=0,bgTimer=null,stageN=0; window.THRYD_UG=window.THRYD_UG||[];
+// keep the ticker 'loading' label up until the first scene is decoded and on stage
+let viewUp=false, heldTicker=null;
+function revealStage(){ if(viewUp)return; viewUp=true; if(heldTicker){ const t=heldTicker; heldTicker=null; ticker(t[0],t[1],t[2]); } }
 function showUser(u){clearInterval(bgTimer);bgSet={dir:'user:'+u.id};const w=$('ug');w.innerHTML='';w.appendChild(u.vis);
-  w.classList.add('on');objsFor(null);$('bgA').classList.remove('on');$('bgB').classList.remove('on');$('cap').textContent=u.label;clearScene();}
+  w.classList.add('on');objsFor(null);$('bgA').classList.remove('on');$('bgB').classList.remove('on');$('cap').textContent=u.label;clearScene();revealStage();}
 let HOLD=0; // in-scene drag pins the current scene (slideshow paused while dragging + 30s after a drop)
 window.thrydHold=ms=>{HOLD=ms?Math.max(HOLD,Date.now()+ms):0;};
 function remoteSet(set){return !!(set&&set.how==='medium'&&set.remote&&set.url);}
@@ -25,7 +28,7 @@ function backdrop(set,force){ if(!libPin.allow(set))return; if(Date.now()<HOLD)r
   clearInterval(bgTimer); bgTimer=null; const imgs=[$('bgA'),$('bgB')];
   // load into the hidden image; the visible one stays up until the new view is decoded (no black/partial frame)
   const vis=imgs.findIndex(i=>i.classList.contains('on')); bgFlip=vis===0?1:(vis===1?0:bgFlip^1); const on=imgs[bgFlip],off=imgs[bgFlip^1];
-  let shown=false; const flip=()=>{if(bgSet!==set||shown)return; shown=true; on.classList.add('on'); off.classList.remove('on');};
+  let shown=false; const flip=()=>{if(bgSet!==set||shown)return; shown=true; on.classList.add('on'); off.classList.remove('on'); revealStage();};
   const whenReady=(img,go)=>{const ok=()=>{if(bgSet!==set)return; if(img.naturalWidth)go();}; if(img.complete&&img.naturalWidth)return ok(); const waitLoad=()=>{if(img.complete&&img.naturalWidth)ok(); else img.addEventListener('load',ok,{once:true});}; if(img.decode)img.decode().then(ok,waitLoad); else waitLoad();};
   on.onerror=null; off.onerror=null; on.onload=null;
   if(remoteSet(set)){
@@ -35,7 +38,7 @@ function backdrop(set,force){ if(!libPin.allow(set))return; if(Date.now()<HOLD)r
     on.src=set.url; whenReady(on,flip);
     $('cap').textContent=(set.medium_image_id||set.label||'')+viewTag(set);
     objsFor(null); clearScene();
-    if(window.ThrydMediumCuts) try{ ThrydMediumCuts.attach(set,{image:on, stage:$('stage')}); }catch(e){}
+    if(window.ThrydMediumCuts) try{ const ap=ThrydMediumCuts.attach(set,{image:on, stage:$('stage')}); if(ap&&ap.then)ap.then(r=>{if(r&&r.ok)revealStage();}); }catch(e){}
     return;
   }
   // frame 0 first (it goes straight into the hidden image); the rest preload once it is up, so a slow link isn't split 40 ways
@@ -401,7 +404,9 @@ function place(m){
 (function drift(){setTimeout(()=>{try{if(lastM){const ids=Object.keys(ents);if(ids.length>1){
   const a=ids[Math.floor(Math.random()*ids.length)],b=ids[Math.floor(Math.random()*ids.length)];
   order[a]=Math.random()*10;order[b]=Math.random()*10; place(lastM); Object.values(ents).forEach(x=>x.style.setProperty('--j',((Math.random()-.5)*1.2).toFixed(2)+'vw')); const e=ents[a]; if(e)pulse(e.title);}}}catch(e){} drift();},4000+Math.random()*2000);})();
-function ticker(world,upd,meta){$('world').textContent=world||'';const u=$('upd');u.style.opacity=0;
+function ticker(world,upd,meta){
+  if(!viewUp){ heldTicker=[world,upd,meta]; const u=$('upd'); if(u){u.textContent='loading';u.style.opacity=1;} $('world').textContent=world||'—'; $('meta').textContent=meta||''; return; }
+  $('world').textContent=world||'';const u=$('upd');u.style.opacity=0;
   setTimeout(()=>{u.textContent=upd||'';u.style.opacity=1;},400);$('meta').textContent=meta||'';}
 function pulse(name){const e=ents['o:'+name]||ents['c:'+name];if(e){e.classList.remove('pulse');void e.offsetWidth;e.classList.add('pulse');}}
 let sinceBubble=0, nextBubble=4; window.CUR={lines:[],speakers:[]};
