@@ -3,6 +3,8 @@ const LIVE_STATE=async()=>{try{const r=await fetch('https://raw.githubuserconten
 (()=>{
 const Q=new URLSearchParams(location.search);
 const SPEED=Math.max(1,parseFloat(Q.get('speed')||'8'))*1000, POLL=10000;
+const QA_MODE=Q.get('qa')==='1';
+const CUTS_WAIT_MS=4000;
 let MODE=(()=>{const m=(Q.get('mode')||'live').toLowerCase();return (m==='replay'||m==='cerebro'||m==='lovemap')?m:'live';})();
 const BAD=/sex|nasty|dirt|iud|adult|daddy|position|hookup|benefit|porn|nude|naked|horny|kiss|\bbed|breast|moan|lick|bang|thrust|sessy|\bhard\b|body|\bwet\b|strip|fuck|pussy|dick|cock|\bass\b|boob|bitch|nyash|prick|suck|condom|virgin|orgasm|<real/i;
 const ok=s=>!!s&&!BAD.test(s);
@@ -13,8 +15,9 @@ const short=p=>(p||'elsewhere').replace(/,? (in )?Miami(, Florida)?/g,'').replac
 // ---------- stage: current scene GIF, large & centered, crossfaded
 let bgSet=null,bgI=0,bgFlip=0,bgTimer=null,stageN=0; window.THRYD_UG=window.THRYD_UG||[];
 // keep the ticker 'loading' label up until the first scene is decoded and on stage
-let viewUp=false, heldTicker=null;
-function revealStage(){ if(viewUp)return; viewUp=true; if(heldTicker){ const t=heldTicker; heldTicker=null; ticker(t[0],t[1],t[2]); } else { const u=$('upd'); if(u&&u.textContent==='loading') u.textContent=''; } }
+let viewUp=false, heldTicker=null, cutsHintOn=false;
+function setCutsHint(on){ cutsHintOn=!!on; const u=$('upd'); if(!u)return; if(on){ u.textContent='loading cuts'; u.style.opacity=1; } else if(u.textContent==='loading cuts') u.textContent=''; }
+function revealStage(){ if(viewUp)return; viewUp=true; if(heldTicker){ const t=heldTicker; heldTicker=null; ticker(t[0],t[1],t[2]); } else { const u=$('upd'); if(u&&(u.textContent==='loading'||u.textContent==='loading cuts')&&!cutsHintOn) u.textContent=''; } }
 function showUser(u){clearInterval(bgTimer);bgSet={dir:'user:'+u.id};const w=$('ug');w.innerHTML='';w.appendChild(u.vis);
   w.classList.add('on');objsFor(null);$('bgA').classList.remove('on');$('bgB').classList.remove('on');$('cap').textContent=u.label;clearScene();revealStage();}
 let HOLD=0; // in-scene drag pins the current scene (slideshow paused while dragging + 30s after a drop)
@@ -38,15 +41,34 @@ function backdrop(set,force){ if(!libPin.allow(set))return; if(Date.now()<HOLD)r
     on.src=set.url;
     $('cap').textContent=(set.medium_image_id||set.label||'')+viewTag(set);
     objsFor(null); clearScene();
-    // keep loading, and don't flip the raw GIF, until cut layers are on stage (or attach fails)
-    const afterCuts=r=>{ if(r&&r.ok) revealStage(); else whenReady(on,flip); };
-    if(window.ThrydMediumCuts){
+    // wait for cuts, but cap at CUTS_WAIT_MS after the image is decoded: flip the GIF (no black),
+    // keep a 'loading cuts' hint, and let attach finish so the first scene and later switches stay grabbable
+    let cutsDone=false;
+    const finishCuts=ok=>{
+      if(bgSet!==set) return;
+      cutsDone=true;
+      setCutsHint(false);
+      if(ok){ if(!shown) revealStage(); whenReady(on,flip); }
+      else whenReady(on,flip);
+    };
+    const startAttach=()=>{
+      if(!window.ThrydMediumCuts){ whenReady(on,flip); return; }
       try{
         const ap=ThrydMediumCuts.attach(set,{image:on, stage:$('stage')});
-        if(ap&&ap.then) ap.then(afterCuts,()=>whenReady(on,flip));
-        else afterCuts();
-      }catch(e){ whenReady(on,flip); }
-    }else whenReady(on,flip);
+        const done=r=>finishCuts(!!(r&&r.ok));
+        if(ap&&ap.then) ap.then(done,()=>finishCuts(false));
+        else done(ap);
+      }catch(e){ finishCuts(false); }
+    };
+    whenReady(on,()=>{
+      if(bgSet!==set||shown||cutsDone) return;
+      setTimeout(()=>{
+        if(bgSet!==set||shown||cutsDone) return;
+        setCutsHint(true);
+        flip();
+      }, CUTS_WAIT_MS);
+    });
+    startAttach();
     return;
   }
   // frame 0 first (it goes straight into the hidden image); the rest preload once it is up, so a slow link isn't split 40 ways
@@ -257,14 +279,16 @@ async function pollNtfyDrags(){if(!DRAG||!DRAG.endpoint||DRAG.transport!=='ntfy'
       if(m.event!=='message')continue;if(m.id)cmLastNtfy=m.id;
       let body;try{body=JSON.parse(m.message||'{}');}catch(e){continue;}
       if(!DRAG.key||body.key!==DRAG.key)continue;
+      if(body.source==='qa'||(body.target&&body.target.source==='qa'))continue;
       let obj=body.object,place=body.place,target=body.target,x=body.x,y=body.y;
       if(target&&typeof target==='object'){obj=obj||target.object;place=place||target.place;if(x==null&&target.x!=null)x=target.x;if(y==null&&target.y!=null)y=target.y;}
       const at=(target&&target.at)||(m.time?new Date(m.time*1000).toISOString():new Date().toISOString());
       const e={at,object:cmLabel(obj||''),place:place||'',src:'ntfy',id:m.id};
       if(target!=null)e.target=target;if(typeof x==='number')e.x=x;if(typeof y==='number')e.y=y;
       if(cmAppend(e)){/* newly stacked — visible on next loop pass */}}}catch(e){}}
-function noteLocalDrag(label,place,xy){const e={at:new Date().toISOString(),object:cmLabel(label),place,src:'local'};
+function noteLocalDrag(label,place,xy){const e={at:new Date().toISOString(),object:cmLabel(label),place,src:qaOn()?'qa':'local',source:qaOn()?'qa':'local'};
   if(xy&&typeof xy.x==='number')e.x=xy.x;if(xy&&typeof xy.y==='number')e.y=xy.y;
+  if(qaOn()){ qaLog(e); return; }
   cmAppend(e);}
 // ---------- in-place object sprites (data/objects_map.json): patch at bbox, sprite on top, gentle motion
 let OMAP={}, objLayer=null, objKey=null, objState={};
@@ -414,8 +438,10 @@ function place(m){
   order[a]=Math.random()*10;order[b]=Math.random()*10; place(lastM); Object.values(ents).forEach(x=>x.style.setProperty('--j',((Math.random()-.5)*1.2).toFixed(2)+'vw')); const e=ents[a]; if(e)pulse(e.title);}}}catch(e){} drift();},4000+Math.random()*2000);})();
 function ticker(world,upd,meta){
   if(!viewUp){ heldTicker=[world,upd,meta]; const u=$('upd'); if(u){u.textContent='loading';u.style.opacity=1;} $('world').textContent=world||'—'; $('meta').textContent=meta||''; return; }
-  $('world').textContent=world||'';const u=$('upd');u.style.opacity=0;
-  setTimeout(()=>{u.textContent=upd||'';u.style.opacity=1;},400);$('meta').textContent=meta||'';}
+  $('world').textContent=world||'';const u=$('upd');
+  if(cutsHintOn){ u.textContent='loading cuts'; u.style.opacity=1; $('meta').textContent=meta||''; return; }
+  u.style.opacity=0;
+  setTimeout(()=>{ if(cutsHintOn) return; u.textContent=upd||'';u.style.opacity=1;},400);$('meta').textContent=meta||'';}
 function pulse(name){const e=ents['o:'+name]||ents['c:'+name];if(e){e.classList.remove('pulse');void e.offsetWidth;e.classList.add('pulse');}}
 let sinceBubble=0, nextBubble=4; window.CUR={lines:[],speakers:[]};
 function maybeBubble(lines,speakers){ CUR.lines=lines; CUR.speakers=speakers; sinceBubble++; if(sinceBubble<nextBubble)return; sinceBubble=0; nextBubble=3+Math.floor(Math.random()*3);
@@ -449,13 +475,30 @@ function fromState(s){
   const objs=(s.objects||[]).map(o=>({label:o.label,region:pend('o:'+o.label,add(o.place)),holder:o.holder||o.held_by||null}));
   return {regions:names,here,chars,objs};
 }
+async function bootColdFirst(st){
+  // cold load: prefer a smaller ready cut pack so the first scene can decode and attach quickly (no ?mlib= pin)
+  let set=NEWEST()||(POOL&&POOL[0])||liveBackdrop(st&&st.current_place);
+  try{
+    const man=window.ThrydMediumCuts?await ThrydMediumCuts.loadManifest():await J('data/medium_cuts.json');
+    const ready=new Map((man.assets||[]).filter(a=>a&&a.status==='ready').map(a=>[a.medium_image_id,a]));
+    const cands=(POOL||[]).filter(s=>s&&s.how==='medium'&&ready.has(s.medium_image_id));
+    if(cands.length){
+      const score=s=>{const a=ready.get(s.medium_image_id)||{}; const fs=a.frame_size||[1024,1024]; return (fs[0]||1024)*(fs[1]||1024)*((a.delays_cs||[1]).length);};
+      cands.sort((a,b)=>score(a)-score(b));
+      set=cands[0];
+    }
+  }catch(e){}
+  if(!set) return;
+  if(!slideCursor){poolI=Math.max(0,POOL.indexOf(set));slideCursor=set.dir||'';}
+  backdrop(set,true);
+}
 async function live(){
   reset(); const g=gen; $('mode').textContent='live';
   let s=null; try{s=await LIVE_STATE();}catch(e){}
   if(!s||!(s.characters||[]).length){return loopTimeline();}
   let last='', step=0, cur=s;
   let first=true; const apply=st=>{CUR_RUN=st.run||CUR_RUN;cur=st;trackObjs(st);if(!scEv.length){const m=fromState(st);render(m);}
-    POOL=livePool(); if(first){first=false;const nw=NEWEST();if(nw){if(!slideCursor){poolI=Math.max(0,POOL.indexOf(nw));slideCursor=nw.dir||'';}backdrop(nw,true);}else if(POOL.length){poolI=0;backdrop(POOL[0],true);}else backdrop(liveBackdrop(st.current_place));}
+    POOL=livePool(); if(first){first=false; if(!Q.get('mlib')) void bootColdFirst(st);}
     $('run').textContent=st.run||'';};
   apply(s);
   const lines=()=>[...(cur.moves||[]).flatMap(m=>(m.precisions||[]).map(p=>({line:p.line,src:'seat '+p.seat,move:/\[\[/.test(p.line)}))),...localPrec];
@@ -589,7 +632,18 @@ function toast(msg,bad){let t=document.getElementById('toast');if(!t){t=document
 window.thrydCtx=()=>({toast,DRAG,PFULL:typeof PFULL!=='undefined'?PFULL:{},lastM:typeof lastM!=='undefined'?lastM:null}); // prophecy module lives outside this scope
 function setReg(id,r){if(!lastM)return;const nm=id.slice(2);(id[0]==='c'?lastM.chars:lastM.objs).forEach(x=>{if((x.name||x.label)===nm){x.region=r;if(x.off!==undefined)x.off=r!==lastM.here;}});
   if(!lastM.regions.includes(r))lastM.regions.push(r);place(lastM);}
+function qaOn(){ return QA_MODE||!!(typeof window!=='undefined'&&window.__THRYD_QA); }
+function qaLog(rec){
+  const row=Object.assign({source:'qa', at:rec&&rec.at||new Date().toISOString()}, rec||{});
+  row.source='qa';
+  try{ const k='thryd_qa_log'; const a=JSON.parse(localStorage.getItem(k)||'[]'); a.push(row); localStorage.setItem(k, JSON.stringify(a.slice(-200))); }catch(e){}
+  try{ window.__THRYD_QA_LOG=window.__THRYD_QA_LOG||[]; window.__THRYD_QA_LOG.push(row); }catch(e){}
+  try{ console.info('[thryd-qa]', row); }catch(e){}
+  try{ const u=window.__THRYD_QA_LOG_URL; if(u) fetch(u,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(row)}).catch(()=>{}); }catch(e){}
+  return row;
+}
 async function dragSend(body){
+  if(qaOn()){ qaLog({kind:'dragSend', ...body, source:'qa'}); return {ok:true, qa:true, skipped:'customer-endpoint'}; }
   if(DRAG.transport!=='ntfy'){const r=await fetch(DRAG.endpoint,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify(body)});const j=await r.json().catch(()=>({}));return {status:r.status,...j};}
   const rid=Math.random().toString(36).slice(2,12), t0=Math.floor(Date.now()/1000)-5;
   const r=await fetch(DRAG.endpoint,{method:'POST',body:JSON.stringify({...body,rid})});if(!r.ok)throw new Error('relay HTTP '+r.status);
@@ -601,7 +655,8 @@ async function dropTo(id,from,to,xy){
   if(!DRAG||!DRAG.endpoint){toast('drag endpoint not available',1);return;}
   const label=id.slice(2); PEND[id]={region:to,until:Date.now()+8*60e3}; setReg(id,to); toast(`moving ${label} → ${to}…`);
   const tg=window.thrydTarget&&thrydTarget.make(label,PFULL[to]||to,{type:'chip',id,place:to,...(xy||{})});
-  const body={key:DRAG.key,object:label,place:PFULL[to]||to,...(tg?{target:tg}:{})};
+  if(tg&&qaOn()) tg.source='qa';
+  const body={key:DRAG.key,object:label,place:PFULL[to]||to,...(tg?{target:tg}:{}),...(qaOn()?{source:'qa'}:{})};
   if(xy&&typeof xy.x==='number'){body.x=xy.x;body.y=xy.y;}
   try{const j=await dragSend(body);if(!j.ok)throw new Error(j.error||('HTTP '+j.status));toast(`${label} → ${to} ✓`);pulse(label);noteLocalDrag(label,PFULL[to]||to,xy);}
   catch(e){delete PEND[id];setReg(id,from);toast(`couldn't move ${label}: ${e.message}`,1);}}
@@ -768,7 +823,8 @@ window.thrydWander={paths:()=>DPATH,move:b=>wMove(b),state:b=>WS.get(b)};
   const asrt=(o,p)=>`${o}.place == "${p}"`; const MT=(o,p)=>`#thryd.miracle.target(assert(${asrt(o,p)}))`;
   const labelOf=o=>{const L=(st&&st.objects||[]).map(x=>x.label).concat((st&&st.characters||[]).map(c=>c.name));return L.find(l=>objEq(l,o))||o;};
   const headFor=p=>[...document.querySelectorAll('#map .ph')].find(h=>plEq(h.dataset.name,p)||(window.thrydCtx&&plEq(thrydCtx().PFULL[h.dataset.name],p)));
-  function make(label,place,ghost,near){const t={kind:'miracle.target',object:label,place,...(near?{near}:{}),assert:asrt(label,place),run:(st&&st.run)||(typeof CUR_RUN!=='undefined'?CUR_RUN:'')||'',j:(st&&st.current_card)||'',at:new Date().toISOString()};
+  function make(label,place,ghost,near){const t={kind:'miracle.target',object:label,place,...(near?{near}:{}),assert:asrt(label,place),run:(st&&st.run)||(typeof CUR_RUN!=='undefined'?CUR_RUN:'')||'',j:(st&&st.current_card)||'',at:new Date().toISOString(),...(qaOn()?{source:'qa'}:{})};
+    if(qaOn()){ qaLog({kind:'miracle.target', target:t, ghost, source:'qa'}); return t; }
     const a=T().filter(x=>!(objEq(x.object,label)&&x.status==='open'));a.push({...t,status:'open',ghost:{...ghost,label}});save(a);draw();setTimeout(()=>pchip(t,ghost),60);return t;}
   // contact on drop (Jesuye 11-10: drags are tracked foreshadows; the server adds them to <run>/foreshadows.json, foreshadow.py checks the story)
   // kiss = top 30% (heads) of both boxes overlap; touch = boxes overlap; next to = no overlap, gap < 6% of the scene width
@@ -785,8 +841,11 @@ window.thrydWander={paths:()=>DPATH,move:b=>wMove(b),state:b=>WS.get(b)};
     const near=ct0?(ct0.kind==='next to'?'next to ':ct0.kind==='kiss'?'lips to ':'on top of ')+ct0.with:null;
     const t=make(name,place,{type:'sprite',key:k,left:cl,top:ct,w:b.style.width,h:b.style.height,src:(b.querySelector('.sp')||{}).src||''},near);
     const scard=(/_(j\d+)$/.exec(k||'')||[])[1]||'';
-    try{const DG=C.DRAG;if(DG&&DG.endpoint)fetch(DG.endpoint,{method:'POST',body:JSON.stringify({key:DG.key,object:name,cut:label,place,x:+(+cl).toFixed(3),y:+(+ct).toFixed(3),
-      w:parseFloat(b.style.width)||0,h:parseFloat(b.style.height)||0,scene:String(k||'').slice(0,160),scene_card:scard,contact:ct0,path:Array.isArray(path)?path.slice(0,24):undefined,target:t,rid:Math.random().toString(36).slice(2,12)})}).catch(()=>{});}catch(e){}
+    try{const rec={key:(C.DRAG&&C.DRAG.key)||'',object:name,cut:label,place,x:+(+cl).toFixed(3),y:+(+ct).toFixed(3),
+      w:parseFloat(b.style.width)||0,h:parseFloat(b.style.height)||0,scene:String(k||'').slice(0,160),scene_card:scard,contact:ct0,path:Array.isArray(path)?path.slice(0,24):undefined,target:t,rid:Math.random().toString(36).slice(2,12)};
+      if(qaOn()){ rec.source='qa'; if(t) t.source='qa'; qaLog({kind:'projector-drag', ...rec}); }
+      else { const DG=C.DRAG; if(DG&&DG.endpoint) fetch(DG.endpoint,{method:'POST',body:JSON.stringify(rec)}).catch(()=>{}); }
+    }catch(e){}
     if(C.toast)C.toast(ct0&&b.dataset.name&&ct0.with!==ct0.with_cut?`👁 tracking: ${name} ↔ ${ct0.with} · ${ct0.kind} (logged only if the story does it)`:'drag saved: '+name+(near?' · '+near:''));}
   async function copy(x){try{await navigator.clipboard.writeText(x);return true;}catch(e){const ta=document.createElement('textarea');ta.value=x;ta.style.cssText='position:fixed;left:-9999px;top:0';document.body.appendChild(ta);ta.select();let ok=false;try{ok=document.execCommand('copy');}catch(e2){}ta.remove();return ok;}}
   function pchip(t,g){document.querySelectorAll('.prophchip').forEach(x=>x.remove());const txt=MT(t.object,t.place);const c=document.createElement('button');c.className='prophchip';c.textContent='🔮 prophesy';c.title=txt;c.dataset.text=txt;
