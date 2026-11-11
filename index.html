@@ -1,5 +1,5 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><meta http-equiv="Cache-Control" content="no-cache">
-<title>#thryd projector</title><link rel="icon" href="data:,"><link rel="stylesheet" href="assets/projector.css?v=faf205e142"><link rel="stylesheet" href="assets/alive.css?v=faf205e142"></head>
+<title>#thryd projector</title><link rel="icon" href="data:,"><link rel="stylesheet" href="assets/projector.css?v=fd7518709f"><link rel="stylesheet" href="assets/alive.css?v=fd7518709f"></head>
 <body>
 <div id="stage"><img id="bgA" alt=""><img id="bgB" alt=""><div id="ug"></div><div id="cap"></div></div>
 <div id="vignette"></div>
@@ -14,7 +14,7 @@
 <div id="ticker"><div class="world" id="world">—</div><div class="upd" id="upd">loading</div><div class="meta" id="meta"></div><div class="cmove" id="cmove" style="display:none"></div></div>
 
 <script>/* loader: fresh JS on every load, in order */(function(){var t=Date.now();['thryd_keep.js?v=1','mlib_pin.js?v=1','live_return.js?v=1','medium_cuts.js?v=1','tweet_embed.js?v=1','projector.js?v=58','extras.js?v=50','alive.js?v=50'].forEach(function(f){var e=document.createElement('script');e.src='assets/'+f+'&t='+t;e.async=false;document.body.appendChild(e);});})();</script>
-<script>/* auto-update: reload when shipped code changes (checks every 45s; waits until nobody is dragging) */(function(){var CV='faf205e142';if(CV.indexOf('__')===0)return;
+<script>/* auto-update: reload when shipped code changes (checks every 45s; waits until nobody is dragging) */(function(){var CV='fd7518709f';if(CV.indexOf('__')===0)return;
 function idle(){var b=document.body.classList;return !b.contains('dragmode')&&!document.querySelector('#objs .dob.lifting,#objs .dob[data-held="1"]');}
 setInterval(function(){fetch('https://raw.githubusercontent.com/jdavidteki/thryd-projector/main/data/codever.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).then(function(j){if(j&&j.v&&j.v!==CV&&idle()){var u=new URL(location.href);u.searchParams.set('v',j.v);location.replace(u.toString());}}).catch(function(){});},45000);})();</script>
 </body></html>

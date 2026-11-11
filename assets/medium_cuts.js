@@ -673,7 +673,6 @@
       if(manifest && manifest.assets){
         const need=manifest.assets.find(a=>a && a.medium_image_id===set.medium_image_id);
         if(need) await expandRow(need);
-        Promise.all(manifest.assets.map(a=>a===need?null:expandRow(a))).catch(()=>{});
       }
       const plan = forSet(set, manifest);
       if(!plan.ok || my !== token) return plan;
