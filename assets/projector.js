@@ -16,12 +16,22 @@ function showUser(u){clearInterval(bgTimer);bgSet={dir:'user:'+u.id};const w=$('
   w.classList.add('on');objsFor(null);$('bgA').classList.remove('on');$('bgB').classList.remove('on');$('cap').textContent=u.label;clearScene();}
 let HOLD=0; // in-scene drag pins the current scene (slideshow paused while dragging + 30s after a drop)
 window.thrydHold=ms=>{HOLD=ms?Math.max(HOLD,Date.now()+ms):0;};
+function remoteSet(set){return !!(set&&set.how==='medium'&&set.remote&&set.url);}
 function backdrop(set,force){ if(Date.now()<HOLD)return; stageN++;
   const ug=window.THRYD_UG; if(ug.length&&stageN%3===0){return showUser(ug[Math.floor(stageN/3)%ug.length]);}
   if(!set||(!force&&bgSet&&bgSet.dir===set.dir))return; bgSet=set;bgI=0; $('ug').classList.remove('on');
-  clearInterval(bgTimer); const imgs=[$('bgA'),$('bgB')];
-  for(let i=0;i<set.frames;i++){const im=new Image();im.src=`${set.dir}/f${String(i).padStart(3,'0')}.webp`;}
+  clearInterval(bgTimer); bgTimer=null; const imgs=[$('bgA'),$('bgB')];
   bgFlip^=1; const on=imgs[bgFlip],off=imgs[bgFlip^1];
+  on.onerror=null; off.onerror=null; on.onload=null;
+  if(remoteSet(set)){
+    // original Medium file, one request. The browser plays a GIF's own timing. No frame split, no retry loop.
+    on.onload=function(){if(bgSet!==set)return; on.dataset.fail='';};
+    on.onerror=function(){if(bgSet!==set)return; on.dataset.fail='1'; const c=$('cap'); if(c)c.textContent=(set.medium_image_id||set.label||'medium')+' · unavailable';};
+    on.src=set.url; on.classList.add('on'); off.classList.remove('on');
+    $('cap').textContent=(set.medium_image_id||set.label||'')+viewTag(set);
+    objsFor(null); clearScene(); return;
+  }
+  for(let i=0;i<set.frames;i++){const im=new Image();im.src=`${set.dir}/f${String(i).padStart(3,'0')}.webp`;}
   const tick=()=>{on.src=`${set.dir}/f${String(bgI%set.frames).padStart(3,'0')}.webp`;bgI++;};
   tick(); on.classList.add('on'); off.classList.remove('on'); $('cap').textContent=(set.label||'')+viewTag(set); objsFor(set);
   bgTimer=setInterval(tick,Math.max(80,set.ms||120));
@@ -33,6 +43,7 @@ let SLIDE=+(Q.get('slide')||localStorage.getItem('thryd_slide')||8); if(![8,30,6
 const NEWEST=()=>RUNX().length?RUNX().slice().sort((a,b)=>(b.mtime||0)-(a.mtime||0))[0]:null; let slideN=0;
 // newest live view comes back every 3rd slide; others cycle in between
 function startSlide(){clearInterval(slideT);slideT=setInterval(()=>{if(POOL.length>1){slideN++;const nw=MODE==='live'&&NEWEST();if(nw&&slideN%3===0&&bgSet&&bgSet.dir!==nw.dir){backdrop(nw,true);return;}poolI=(poolI+1)%POOL.length;if(nw&&POOL[poolI]===nw&&POOL.length>2)poolI=(poolI+1)%POOL.length;backdrop(POOL[poolI],true);}},SLIDE*1000);}
+window.thrydLibrary={show(id){const q=String(id||'').trim(); const s=LXTRA.find(x=>x&&x.how==='medium'&&(x.medium_image_id===q||x.dir==='medium/'+q||x.url===q)); if(!s)return null; backdrop(s,true); return s.dir;}, showSet(set){if(!remoteSet(set))return null; backdrop(set,true); return set.dir;}, counts(){const m=LXTRA.filter(x=>x&&x.how==='medium'); return {medium:m.length, gif:m.filter(x=>x.extension==='gif').length, still:m.filter(x=>x.extension!=='gif').length};}};
 startSlide();
 
 // ---------- per-GIF scene updates: loop data/timeline.json events for the GIF on stage
@@ -529,6 +540,7 @@ addEventListener('resize',()=>{regionsKey='';});
   try{LXTRA=(await J('data/live_extra.json')).sets||[];}catch(e){}
   await loadOmap(); await loadRGifs(); setTimeout(()=>{if(MODE==='live'&&NEWEST()){const nw=NEWEST();POOL=livePool();poolI=Math.max(0,POOL.indexOf(nw));backdrop(nw,true);}},2500); setInterval(async()=>{if(MODE==='live'){loadOmap();loadRGifs();try{const n=(await J('data/live_extra.json?t='+Date.now())).sets||[];const o=NEWEST();LXTRA=n;const nw=NEWEST();POOL=livePool();if(nw&&(!o||o.dir!==nw.dir||o.mtime!==nw.mtime)){poolI=Math.max(0,POOL.indexOf(nw));backdrop(nw,true);}}catch(e){}}},60000);
   const ss=$('slide');if(ss){ss.value=String(SLIDE);ss.onclick=e=>e.stopPropagation();ss.onchange=e=>{SLIDE=+e.target.value;localStorage.setItem('thryd_slide',SLIDE);Q.set('slide',SLIDE);history.replaceState(null,'','?'+Q.toString());startSlide();};}
+  const ml=$('mlib'); if(ml){ml.onclick=e=>e.stopPropagation(); const go=e=>{if(e.type==='keydown'&&e.key!=='Enter')return; e.stopPropagation(); const hit=window.thrydLibrary&&thrydLibrary.show(ml.value); if(!hit&&ml.value.trim()){$('cap').textContent='library · not in inventory';}}; ml.addEventListener('keydown',go); ml.addEventListener('change',go);}
   try{(await J('assets/runs/media.json')).runs.forEach(r=>runMedia[r.run]=r.media);}catch(e){}
   try{localPrec=(await J('data/precisions.json')).map(p=>({line:p.line,src:p.src,move:p.move}));}catch(e){}
   try{const T=(await J('data/tweets_all.json')).map(p=>({line:p.line,src:p.src,move:false}));for(let i=T.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[T[i],T[j]]=[T[j],T[i]];}TDECK=T;TI=0;}catch(e){}
