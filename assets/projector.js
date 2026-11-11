@@ -41,16 +41,16 @@ function backdrop(set,force){ if(!libPin.allow(set))return; if(Date.now()<HOLD)r
   bgTimer=setInterval(tick,Math.max(80,set.ms||120));
   bindScene(set);
 }
-let POOL=[],poolI=0,LXTRA=[],CUR_RUN=null; const RUNX=()=>LXTRA.filter(x=>CUR_RUN&&x.run===CUR_RUN);
+let POOL=[],poolI=0,slideCursor='',LXTRA=[],CUR_RUN=null; const RUNX=()=>LXTRA.filter(x=>CUR_RUN&&x.run===CUR_RUN);
 // slide speed: 8s default, 30s, 60s (?slide=30 or the bar select; remembered)
 let SLIDE=+(Q.get('slide')||localStorage.getItem('thryd_slide')||8); if(![8,30,60].includes(SLIDE))SLIDE=8; let slideT=null;
 const NEWEST=()=>RUNX().length?RUNX().slice().sort((a,b)=>(b.mtime||0)-(a.mtime||0))[0]:null;
 // after ten slideshow changes, return to whatever the newest live view is then
 const slideCycle=window.ThrydLiveReturn.create(10);
 function startSlide(){clearInterval(slideT);slideT=setInterval(()=>{
-  const moved=ThrydLiveReturn.step(slideCycle,{pool:POOL,poolI,mode:MODE,newest:()=>MODE==='live'?NEWEST():null});
-  if(moved.action==='idle')return;
-  poolI=moved.poolI; backdrop(moved.set,true);
+  const moved=ThrydLiveReturn.step(slideCycle,{pool:POOL,poolI,cursor:slideCursor,hold:libPin.pinned(),newest:()=>MODE==='live'?NEWEST():null});
+  if(moved.action==='idle'||moved.action==='hold')return;
+  poolI=moved.poolI; if(moved.cursor)slideCursor=moved.cursor; backdrop(moved.set,true);
 },SLIDE*1000);}
 window.thrydLibrary={show(id){const q=String(id||'').trim(); const s=LXTRA.find(x=>x&&x.how==='medium'&&(x.medium_image_id===q||x.dir==='medium/'+q||x.url===q)); if(!s)return null; libPin.hold(s); backdrop(s,true); return s.dir;}, showSet(set){if(!remoteSet(set))return null; backdrop(set,true); return set.dir;}, counts(){const m=LXTRA.filter(x=>x&&x.how==='medium'); return {medium:m.length, gif:m.filter(x=>x.extension==='gif').length, still:m.filter(x=>x.extension!=='gif').length};}};
 startSlide();
@@ -341,7 +341,7 @@ setInterval(()=>{if(!objLayer)return;const bs=[...objLayer.querySelectorAll('.ob
 // LXTRA (data/live_extra.json): original unblurred live views, play as-is
 // live loop = clean stills only (no baked terminal panel); replay-mode GIF frames stay out of it
 // every posted live view of every run (exact posted GIF frames from data/live_extra.json, no cap); current run first, newest first.
-// weighting: startSlide() brings the current run's NEWEST() back every 3rd slide; with no current-run view it rotates through all.
+// weighting: startSlide() interrupts on the current newest, then resumes the next library item.
 function livePool(){const seen=new Set(),cur=[],oth=[];LXTRA.slice().sort((a,b)=>(b.mtime||0)-(a.mtime||0)).forEach(x=>{if(!x||!x.dir||seen.has(x.dir))return;seen.add(x.dir);(CUR_RUN&&x.run===CUR_RUN?cur:oth).push(x);});const k=oth.map(x=>x.dir).join('|');if(k!==SHUF.k){const a=oth.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}SHUF={k,a};}return cur.concat(SHUF.a);}
 let SHUF={k:null,a:[]};
 // caption counter: which of the N posted views is on screen
@@ -435,7 +435,7 @@ async function live(){
   if(!s||!(s.characters||[]).length){return loopTimeline();}
   let last='', step=0, cur=s;
   let first=true; const apply=st=>{CUR_RUN=st.run||CUR_RUN;cur=st;trackObjs(st);if(!scEv.length){const m=fromState(st);render(m);}
-    POOL=livePool(); if(first){first=false;const nw=NEWEST();if(nw){poolI=Math.max(0,POOL.indexOf(nw));backdrop(nw,true);}else if(POOL.length){poolI=0;backdrop(POOL[0],true);}else backdrop(liveBackdrop(st.current_place));}
+    POOL=livePool(); if(first){first=false;const nw=NEWEST();if(nw){if(!slideCursor){poolI=Math.max(0,POOL.indexOf(nw));slideCursor=nw.dir||'';}backdrop(nw,true);}else if(POOL.length){poolI=0;backdrop(POOL[0],true);}else backdrop(liveBackdrop(st.current_place));}
     $('run').textContent=st.run||'';};
   apply(s);
   const lines=()=>[...(cur.moves||[]).flatMap(m=>(m.precisions||[]).map(p=>({line:p.line,src:'seat '+p.seat,move:/\[\[/.test(p.line)}))),...localPrec];
@@ -497,7 +497,7 @@ function setMode(m){if(m!=='live'&&m!=='replay'&&m!=='cerebro'&&m!=='lovemap')m=
   if(m==='cerebro'){bgSet=null;clearScene();document.body.classList.add('cerebro');startCerebro();return;}
   if(m==='lovemap'){bgSet=null;clearScene();document.body.classList.add('lovemap');startLovemap();return;}
   bgSet=null;clearScene();(m==='replay'?replay:live)();}
-document.querySelectorAll('#modes button[data-m]').forEach(b=>b.onclick=ev=>{ev.stopPropagation();libPin.clear();slideCycle.reset();setMode(b.dataset.m);});
+document.querySelectorAll('#modes button[data-m]').forEach(b=>b.onclick=ev=>{ev.stopPropagation();libPin.clear();slideCycle.reset();slideCursor='';setMode(b.dataset.m);});
 // ---------- CEREBRO
 let CERE={items:[],poll:null,ids:'',lit:null};
 function stopCerebro(){if(CERE.poll){clearInterval(CERE.poll);CERE.poll=null;}
@@ -547,7 +547,7 @@ addEventListener('resize',()=>{regionsKey='';});
 (async()=>{
   try{media=await J('data/media.json');}catch(e){}
   try{LXTRA=(await J('data/live_extra.json')).sets||[];}catch(e){}
-  await loadOmap(); await loadRGifs(); setTimeout(()=>{if(MODE==='live'&&NEWEST()){const nw=NEWEST();POOL=livePool();poolI=Math.max(0,POOL.indexOf(nw));backdrop(nw,true);}},2500); setInterval(async()=>{if(MODE==='live'){loadOmap();loadRGifs();try{const n=(await J('data/live_extra.json?t='+Date.now())).sets||[];const o=NEWEST();LXTRA=n;const nw=NEWEST();POOL=livePool();if(nw&&(!o||o.dir!==nw.dir||o.mtime!==nw.mtime)){poolI=Math.max(0,POOL.indexOf(nw));backdrop(nw,true);}}catch(e){}}},60000);
+  await loadOmap(); await loadRGifs(); setTimeout(()=>{if(MODE==='live'&&NEWEST()){const nw=NEWEST();POOL=livePool();if(!slideCursor){poolI=Math.max(0,POOL.indexOf(nw));slideCursor=nw.dir||'';}backdrop(nw,true);}},2500); setInterval(async()=>{if(MODE==='live'){loadOmap();loadRGifs();try{const n=(await J('data/live_extra.json?t='+Date.now())).sets||[];const o=NEWEST();LXTRA=n;const nw=NEWEST();POOL=livePool();if(nw&&(!o||o.dir!==nw.dir||o.mtime!==nw.mtime)){backdrop(nw,true);}}catch(e){}}},60000);
   const ss=$('slide');if(ss){ss.value=String(SLIDE);ss.onclick=e=>e.stopPropagation();ss.onchange=e=>{SLIDE=+e.target.value;localStorage.setItem('thryd_slide',SLIDE);Q.set('slide',SLIDE);history.replaceState(null,'','?'+Q.toString());startSlide();};}
   const ml=$('mlib'); if(ml){ml.onclick=e=>e.stopPropagation(); const go=e=>{if(e.type==='keydown'&&e.key!=='Enter')return; e.stopPropagation(); const q=ml.value.trim(); if(!q){libPin.clear();slideCycle.reset();return;} const hit=window.thrydLibrary&&thrydLibrary.show(q); if(!hit){$('cap').textContent='library · not in inventory';}}; ml.addEventListener('keydown',go); ml.addEventListener('change',go);}
   const preset=Q.get('mlib'); if(preset&&ml){ml.value=preset; const hit=window.thrydLibrary&&thrydLibrary.show(preset); if(!hit){$('cap').textContent='library · not in inventory';}}
