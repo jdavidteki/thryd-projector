@@ -610,7 +610,7 @@ const MOVES=(()=>{const KEY='thryd_moves_v1',MAX=400;let box=null;
     if(!ev.from||!ev.to)return {hold:'bad_coord'};if(!ev.object_id)return {hold:'unmapped'};if(!s.run||!/^run-[A-Za-z0-9]+$/.test(s.run)||!s.frame)return {hold:'no_run_frame'};
     const f=n01(ev.from),t=n01(ev.to),out=v=>v<0||v>100,cl=[ev.from.x,ev.from.y,ev.to.x,ev.to.y].some(out);if([ev.from.x,ev.from.y,ev.to.x,ev.to.y].some(v=>!isFinite(v)||v<-50||v>150))return {hold:'raw_out_of_range'};
     return {body:{event_id:ev.event_id,rid:ev.event_id+'-r',run:s.run,frame:s.frame,object_id:ev.object_id,scene:s.scene,cut:s.cut,
-      raw:{unit:'percent',from:ev.from,to:ev.to},normalized:{unit:'frame',from:f,to:t,clamped:cl},current_card:(ev.agenda&&ev.agenda.card)||null,client_ts:ev.client_ts}};};
+      raw:{unit:'percent',from:ev.from,to:ev.to},normalized:{unit:'frame',from:f,to:t,clamped:cl},current_card:(ev.agenda&&ev.agenda.card)||s.frame,client_ts:ev.client_ts}};};
   const ntfySend=async body=>{if(!DRAG||!DRAG.endpoint||DRAG.transport!=='ntfy')throw new Error('no drag endpoint');
     const t0=Math.floor(Date.now()/1000)-5;const r=await fetch(DRAG.endpoint,{method:'POST',body:JSON.stringify(body)});if(!r.ok)throw new Error('ntfy HTTP '+r.status);
     for(const w of [2000,4000,8000,16000,30000]){await new Promise(z=>setTimeout(z,w));   // light polling, stops on the ack
@@ -629,7 +629,7 @@ const MOVES=(()=>{const KEY='thryd_moves_v1',MAX=400;let box=null;
   setInterval(()=>{box.events.filter(e=>e.emit&&(e.emit.status==='no_reply'||e.emit.status==='failed'||e.emit.status==='sending')&&(e.emit.attempts||0)<6&&Date.now()-Date.parse(e.emit.at||0)>110000).slice(0,3).forEach(e=>emit(e));},120000);
   function record(inp){try{
     const scene=inp.scene||null, ev={v:1,type:inp.type||'move',event_id:uid(),client_ts:new Date().toISOString(),
-      source:{scene,scene_kind:inp.scene_kind||null,cut:inp.cut||null,cut_index:inp.cut_index==null?null:inp.cut_index,klass:inp.klass||null,source_frame_index:inp.source_frame_index==null?null:inp.source_frame_index,frame_count:inp.frame_count||null,run:inp.run||runOfKey(scene)||null,frame:((String(scene||'').match(/\b(j\d+)\b/)||[])[1])||null,place_key:inp.place_key||null},
+      source:{scene,scene_kind:inp.scene_kind||null,cut:inp.cut||null,cut_index:inp.cut_index==null?null:inp.cut_index,klass:inp.klass||null,source_frame_index:inp.source_frame_index==null?null:inp.source_frame_index,frame_count:inp.frame_count||null,run:inp.run||runOfKey(scene)||null,frame:((String(scene||'').match(/(?:^|[^A-Za-z0-9])(j\d+)(?![0-9])/)||[])[1])||null,place_key:inp.place_key||null},
       agenda:{run:CUR_RUN||null,card:window.__thrydCard||null,view_card:(bgSet&&bgSet.card)||null,state_at:window.__thrydStateAt||null},
       object_id:inp.object_id||null,object_key:norm(inp.object_key||inp.klass||inp.cut),label:inp.label||inp.cut||null,
       from:inp.from||null,to:inp.to||null,unit:inp.from?'percent_of_source_frame':null,place:inp.place||hereFull(),from_place:inp.from_place||null,
