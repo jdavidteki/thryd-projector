@@ -560,12 +560,37 @@ function hdr(name){let h=$('map').querySelector(`[data-name="${CSS.escape(name)}
   if(!h){h=document.createElement('div');h.className='ph';h.dataset.name=name;h.textContent=name;h.title=name;$('map').appendChild(h);}return h;}
 // model: {regions[],here,chars[{name,region,off,note}],objs[{label,region,holder}]}
 function render(m){ lastM=m; place(m); applyPlaces(); }
+// ---------- side gutters also draw from the whole library (Jesuye 11-12 2:11 PM: "more places and things and people").
+// data/side_pool.json: every live scene's title + its own cut labels, and #thryd story places/people/things. Text chips only, never drop targets.
+const SIDES=(()=>{let P=null,cur=[],rot=0,nSc=0;const D={};
+  const shuf=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
+  const draw=(k,src,skip)=>{for(let t=0;t<40;t++){if(!D[k]||!D[k].length)D[k]=shuf(src);const v=D[k].pop();if(v!=null&&!(skip&&skip(v)))return v;}return null;};
+  const nameOf=x=>short(x).toLowerCase();
+  const make=busy=>{if(!P)return null;const S=P.story||{};const useScene=(nSc++%2===0)&&(P.scenes||[]).length;
+    if(useScene){const s=draw('sc',P.scenes,v=>!ok(v.place)||busy.has(nameOf(v.place)));if(s)return {name:short(s.place),items:s.items.filter(ok).map(t=>({label:t,kind:/^person|^man |^woman |figure/.test(t)?'char':'obj'}))};}
+    const pl=draw('pl',S.places||[],v=>!ok(v)||busy.has(nameOf(v)));if(!pl)return null;
+    const it=[];[['pe','char'],['pe','char'],['th','obj']].forEach(([k,kind])=>{const v=draw(k,k==='pe'?(S.people||[]):(S.things||[]),v=>!ok(v)||it.some(x=>x.label===v));if(v)it.push({label:v,kind});});
+    return {name:short(pl),items:it};};
+  const stageReg=()=>{if(!P||!bgSet||!bgSet.medium_image_id)return null;const s=(P.byId||{})[bgSet.medium_image_id];return s&&ok(s.place)?{name:short(s.place),items:s.items.filter(ok).map(t=>({label:t,kind:/^person|^man |^woman |figure/.test(t)?'char':'obj'})),stage:true}:null;};
+  const liveN=()=>(lastM?[lastM.here,...(lastM.regions||[])]:[]).filter(Boolean).map(n=>String(n).toLowerCase());
+  const fill=()=>{const busy=new Set([...cur.map(r=>r.name.toLowerCase()),...liveN()]);while(cur.length<3){const r=make(busy);if(!r)break;busy.add(r.name.toLowerCase());cur.push(r);}};
+  const step=()=>{if(!P)return;if(cur.length>=3){const busy=new Set([...cur.map(r=>r.name.toLowerCase()),...liveN()]);const r=make(busy);if(r)cur[rot++%3]=r;}else fill();
+    try{place(lastM||{regions:[],here:'',chars:[],objs:[]});}catch(e){}};
+  const load=async()=>{try{const d=await J('data/side_pool.json');d.byId={};(d.scenes||[]).forEach(s=>d.byId[s.id]=s);if(d.story&&d.story.places){const sn=new Set();d.story.places=d.story.places.filter(p=>{const k=nameOf(p);if(sn.has(k))return false;sn.add(k);return true;});}P=d;fill();step();}catch(e){}};
+  if(MODE==='live'&&Q.get('sides')!=='0'&&!/phone\.html$/.test(location.pathname)){load();setInterval(load,600000);(function tick(){setTimeout(()=>{step();tick();},Math.max(6000,SLIDE*900));})();}
+  return {augment(m){if(!P||!m)return m;const have=new Set([m.here,...(m.regions||[])].filter(Boolean).map(n=>String(n).toLowerCase()));const libs=[],regs=[];
+    const st=stageReg();[...(st?[st]:[]),...cur].forEach(r=>{const k=r.name.toLowerCase();if(have.has(k))return;have.add(k);regs.push(r.name);r.items.forEach(i=>libs.push({region:r.name,label:i.label,kind:i.kind}));});
+    return Object.assign({},m,{regions:[...(m.regions||[]),...regs],libs});},
+    debug(){return {loaded:!!P,scenes:P?(P.scenes||[]).length:0,cur:cur.map(r=>r.name)};}};})();
+window.thrydSides=()=>SIDES.debug();
 function sidSprite(id){if(!id)return null;const hit=L=>{for(const o of L||[])if(o&&o.sprite&&(o.state_id===id||(!o.state_id&&o.label===id)))return o.sprite;return null;};
   const cur=objLayer&&OMAP[objLayer.dataset.key];let r=hit(cur&&cur.objects);if(r)return r;
   for(const v of Object.values(OMAP)){if(v&&(r=hit((v.objects||[]).filter(o=>o.state_id===id))))return r;}return null;}
 const chipSp=n=>media.sprites[n]||sidSprite(n);
 function place(m){
+  m=SIDES.augment(m); const libN=new Set((m.libs||[]).map(l=>l.region));
   const groups={}; const charReg={}; m.chars.forEach(c=>charReg[c.name]=c.region);
+  (m.libs||[]).forEach(l=>(groups[l.region]=groups[l.region]||[]).push({id:'l:'+l.region+'|'+l.label,kind:l.kind+' lib',label:l.label,sp:null,l}));
   const add=(g,it)=>(groups[g]=groups[g]||[]).push(it);
   m.chars.forEach(c=>add(c.region,{id:'c:'+c.name,kind:'char',label:c.name,sp:chipSp(c.name),c}));
   m.objs.forEach(o=>add((o.holder&&charReg[o.holder])||o.region,{id:'o:'+o.label,kind:'obj',label:o.label,sp:chipSp(o.label),o}));
@@ -577,9 +602,10 @@ function place(m){
   const vh=innerHeight/100,vw=innerWidth/100, top=7*vh, bot=86*vh, seen=new Set(), hs=new Set();
   side.forEach((ns,k)=>{ const units=cnt[k]||1, u=Math.min(5.4*vh,(bot-top)/units), sc=u/(5.4*vh); let y=top;
     const x=k?88*vw:1*vw, w=11*vw;
-    ns.forEach(n=>{const h=hdr(n);hs.add(n);Object.assign(h.style,{left:x+'px',top:y+'px',width:w+'px',fontSize:Math.max(1.2,1.6*sc)+'vh'});h.classList.toggle('here',n===m.here);h.classList.toggle('r',!!k);y+=1.3*u;
+    ns.forEach(n=>{const h=hdr(n);hs.add(n);h.classList.toggle('lib',libN.has(n));h.style.pointerEvents=libN.has(n)?'none':'';Object.assign(h.style,{left:x+'px',top:y+'px',width:w+'px',fontSize:Math.max(1.2,1.6*sc)+'vh'});h.classList.toggle('here',n===m.here);h.classList.toggle('r',!!k);y+=1.3*u;
       groups[n].forEach(it=>{const e=ent(it.id,it.kind,it.label,it.sp);if(it.sp&&!e.querySelector('img')){const d0=e.querySelector('.dot');const im=new Image();im.alt='';im.draggable=false;im.src=it.sp;d0?d0.replaceWith(im):e.prepend(im);}seen.add(it.id);e.dataset.id=it.id;e.dataset.reg=n;
         const held=it.o&&it.o.holder; e.classList.toggle('held',!!held);e.classList.toggle('r',!!k);
+        if(it.l){e.style.pointerEvents='none';Object.assign(e.style,{left:x+'px',top:y+'px',width:w+'px',height:(u*.86)+'px',fontSize:(1.75*sc)+'vh'});y+=u;return;}
         Object.assign(e.style,{left:(x+(held?(k?0:1.2*vw):0))+'px',top:y+'px',width:(w-(held?1.2*vw:0))+'px',height:(u*.86)+'px',fontSize:(1.75*sc)+'vh'});
         const r=it.c?it.c.region:(held?'held':it.o.region); if(prevReg[it.id]!==undefined&&prevReg[it.id]!==r)pulse(it.label); prevReg[it.id]=r;
         if(it.c){e.classList.toggle('off',!!it.c.off);e.querySelector('.note').textContent=it.c.note||'';}
@@ -829,9 +855,9 @@ async function dropTo(id,from,to,xy){
   catch(e){delete PEND[id];setReg(id,from);toast(`couldn't move ${label}: ${e.message}`,1);}}
 (function(){let d=null;
   const hit=(x,y)=>{document.body.classList.add('dragging');let el=null;try{el=document.elementFromPoint(x,y);}finally{document.body.classList.remove('dragging');}
-    let h=el&&el.closest&&el.closest('.ph');if(h)return h;
+    let h=el&&el.closest&&el.closest('.ph:not(.lib)');if(h)return h;
     const c=el&&el.closest&&el.closest('.chip:not(.ghost)');if(c&&c.dataset.reg)return $('map').querySelector(`[data-name="${CSS.escape(c.dataset.reg)}"]`);
-    for(const q of $('map').querySelectorAll('.ph')){const r=q.getBoundingClientRect();if(x>=r.left-10&&x<=r.right+10&&y>=r.top-12&&y<=r.bottom+12)return q;}return null;};
+    for(const q of $('map').querySelectorAll('.ph:not(.lib)')){const r=q.getBoundingClientRect();if(x>=r.left-10&&x<=r.right+10&&y>=r.top-12&&y<=r.bottom+12)return q;}return null;};
   const clr=()=>document.querySelectorAll('.ph.drop').forEach(h=>h.classList.remove('drop'));
   const start=dd=>{dd.on=true;const r=dd.c.getBoundingClientRect();dd.g=dd.c.cloneNode(true);dd.g.className=dd.c.className+' ghost lift';dd.g.classList.remove('pulse','sel');
     Object.assign(dd.g.style,{left:r.left+'px',top:r.top+'px',width:r.width+'px',height:r.height+'px',opacity:''});document.body.appendChild(dd.g);
@@ -908,7 +934,7 @@ window.thrydWander={paths:()=>DPATH,move:b=>wMove(b),state:b=>WS.get(b)};
 // ---------- drag a person/object INSIDE the scene (cut-out layers from objects_map 'draggable') -> same setlocation path as chips
 (function(){let d=null;
   const regOf=id=>{if(!lastM)return null;const nm=id.slice(2);const x=(id[0]==='c'?lastM.chars:lastM.objs).find(z=>(z.name||z.label)===nm);return x?x.region:null;};
-  const hit=(x,y)=>{for(const q of $('map').querySelectorAll('.ph')){const r=q.getBoundingClientRect();if(x>=r.left-10&&x<=r.right+10&&y>=r.top-12&&y<=r.bottom+12)return q;}
+  const hit=(x,y)=>{for(const q of $('map').querySelectorAll('.ph:not(.lib)')){const r=q.getBoundingClientRect();if(x>=r.left-10&&x<=r.right+10&&y>=r.top-12&&y<=r.bottom+12)return q;}
     const el=document.elementsFromPoint(x,y).find(e=>e.closest&&e.closest('.chip:not(.ghost)')&&!e.closest('.dob'));const c=el&&el.closest('.chip');
     return c&&c.dataset.reg?$('map').querySelector(`[data-name="${CSS.escape(c.dataset.reg)}"]`):null;};
   const clr=()=>document.querySelectorAll('.ph.drop').forEach(h=>h.classList.remove('drop'));
