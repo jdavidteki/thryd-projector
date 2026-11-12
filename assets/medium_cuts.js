@@ -807,6 +807,7 @@
         let shown = 0;
         const step = ()=>{
           if(my !== token) return;
+          if(layer._drag || layer._dragPaused){ layer._timer = setTimeout(step, 120); return; }
           layer._shown = shown;
           let frame = playback.frames[shown];
           if(playback.stream){
@@ -833,20 +834,42 @@
           const node = ev.target.closest && ev.target.closest('canvas.sprite');
           if(!node) return;
           const i = +node.dataset.i;
-          layer._drag = {i, sx:ev.clientX, sy:ev.clientY, ox:layer._off[i].x, oy:layer._off[i].y};
+          if(layer._timer){ clearTimeout(layer._timer); layer._timer = null; }
+          layer._dragPaused = true;
+          layer._drag = {i, sx:ev.clientX, sy:ev.clientY, ox:layer._off[i].x, oy:layer._off[i].y, node, dx:0, dy:0, raf:0};
+          layer.classList.add('dragging');
+          try{ document.body.classList.add('dragmode'); }catch(e){}
+          node.dataset.dragging = '1';
+          node.style.willChange = 'transform';
           ev.preventDefault();
+          try{ node.setPointerCapture(ev.pointerId); }catch(e){}
         });
         layer.addEventListener('pointermove', ev=>{
           const d = layer._drag; if(!d) return;
-          layer._off[d.i] = {x:d.ox + (ev.clientX - d.sx), y:d.oy + (ev.clientY - d.sy)};
-          if(layer._frame) paintFrame(layer, layer._frame);
+          d.dx = ev.clientX - d.sx; d.dy = ev.clientY - d.sy;
+          if(d.raf) return;
+          d.raf = requestAnimationFrame(()=>{
+            d.raf = 0;
+            if(layer._drag !== d) return;
+            d.node.style.transform = 'translate(' + d.dx + 'px,' + d.dy + 'px)';
+          });
         });
         const endDrag = ()=>{
           const d = layer._drag;
+          if(!d) return;
+          if(d.raf) cancelAnimationFrame(d.raf);
           layer._drag = null;
-          if(!d || !root.ThrydKeep) return;
-          const k = layer._placeKey && layer._placeKey[d.i];
-          if(k) root.ThrydKeep.savePlace(k, layer._off[d.i]);
+          layer._off[d.i] = {x:d.ox + (d.dx||0), y:d.oy + (d.dy||0)};
+          if(d.node){ d.node.style.transform = ''; d.node.style.willChange = ''; delete d.node.dataset.dragging; }
+          layer.classList.remove('dragging');
+          try{ document.body.classList.remove('dragmode'); }catch(e){}
+          if(layer._frame) paintFrame(layer, layer._frame);
+          if(root.ThrydKeep){
+            const k = layer._placeKey && layer._placeKey[d.i];
+            if(k) root.ThrydKeep.savePlace(k, layer._off[d.i]);
+          }
+          layer._dragPaused = false;
+          if(my === token && !layer._timer) layer._timer = setTimeout(step, 0);
         };
         layer.addEventListener('pointerup', endDrag);
         layer.addEventListener('pointercancel', endDrag);

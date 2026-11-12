@@ -124,81 +124,106 @@ function backdrop(set,force){ if(!libPin.allow(set))return; if(Date.now()<HOLD)r
     return cur===wantUrl || (tail(cur)===tail(wantUrl) && tail(cur).length>0);
   };
   const capText=(remoteSet(set)?(set.medium_image_id||set.label||''):(set.label||''))+viewTag(set);
-  let shown=false; const flip=()=>{
+  let shown=false; const markShown=()=>{
+    if(shown)return;
+    shown=true;
+    const c=$('cap'); if(c)c.textContent=capText;
+    if(remoteSet(set)){ objsFor(null); clearScene(); } else objsFor(set);
+    finishSwitch(true);
+    retainView(set, on);
+    revealStage();
+    if(heldTicker){ const t=heldTicker; heldTicker=null; ticker(t[0],t[1],t[2]); }
+  };
+  const flip=()=>{
     if(shown)return; if(!(bgSet===set||sameView(bgSet,set)))return;
     // never flip to a slot without the incoming pixels (keeps the outgoing GIF up on a slow switch).
     // naturalWidth alone is not enough: a reused <img> can still report the previous file after src is changed.
     if(!srcIs(on)) return;
-    shown=true;
     const hadCut=!!document.getElementById('mcut');
-    on.classList.add('on');
-    if(hadCut){ on.style.transition='none'; on.style.opacity='1'; }
-    if(off) off.classList.remove('on');
-    if(!isCold&&window.ThrydMediumCuts) try{ ThrydMediumCuts.detach(); }catch(e){}
-    if(hadCut){ const el=on; requestAnimationFrame(()=>{ el.style.transition=''; el.style.opacity=''; }); }
-    const c=$('cap'); if(c)c.textContent=capText;
-    if(remoteSet(set)){ objsFor(null); clearScene(); } else objsFor(set);
+    // If a plate is already on stage, leave it up until attach() swaps in a
+    // painted replacement. Flipping the raw incoming GIF under/over the plate
+    // is a jump or a black flash (and decodes a second full-size GIF).
+    if(!hadCut){
+      on.classList.add('on');
+      if(off && off!==on) off.classList.remove('on');
+    }
     const outKey=viewKey(outgoingSet);
-    finishSwitch(true);
-    retainView(set, on);
-    // Keep the incoming bitmap; drop the hidden outgoing GIF so a long session
-    // cannot pile decoded frames. During the next switch the hidden slot reloads.
-    if(outKey) releasePre(outKey);
-    if(off && off!==on) releaseImgSlot(off);
-    revealStage();
-    if(heldTicker){ const t=heldTicker; heldTicker=null; ticker(t[0],t[1],t[2]); }
+    markShown();
+    if(!hadCut){
+      if(outKey) releasePre(outKey);
+      if(off && off!==on) releaseImgSlot(off);
+    }
   };
   const whenReady=(img,go)=>{const ok=()=>{if(!(bgSet===set||sameView(bgSet,set))||!srcIs(img))return; go();}; img.addEventListener('load',ok,{once:true}); if(img.decode)img.decode().then(ok,()=>{}); if(img.complete&&srcIs(img)) ok();};
   on.onerror=null; off.onerror=null; on.onload=null;
   if(remoteSet(set)){
-    // original Medium file, one request. The browser plays a GIF's own timing. No frame split, no retry loop.
-    on.onload=function(){if(bgSet!==set)return; on.dataset.fail='';};
-    on.onerror=function(){if(bgSet!==set)return; on.dataset.fail='1';
-      // Incoming file failed: keep the outgoing view and its caption.
-      finishSwitch(false);};
-    // Re-setting the same URL can abort and blank the slot. Only assign when needed.
-    if(!(srcIs(on)&&on.complete)) on.src=set.url;
-    // caption waits for flip, so a slow switch doesn't label a still-outgoing (or black) stage as the next scene
-    if(isCold){ objsFor(null); clearScene(); }
-    // 4s cap is cold-boot only: flip the decoded first GIF rather than sit on black. On later
-    // switches the outgoing view stays until the incoming one is decoded; never cap-flip an empty slot.
-    let cutsDone=false;
-    const finishCuts=ok=>{
-      if(bgSet!==set) return;
-      cutsDone=true;
-      setCutsHint(false);
-      if(ok){ if(!shown) revealStage(); whenReady(on,flip); }
-      else whenReady(on,flip);
+    const beginRemote=cutReady=>{
+      if(!(bgSet===set||sameView(bgSet,set))) return;
+      // original Medium file, one request. The browser plays a GIF's own timing. No frame split, no retry loop.
+      // If a ready cut will attach, do not also decode the animated GIF into <img> — Chrome keeps every
+      // frame of that hidden GIF and the tab OOMs (Aw, Snap! code 9) after a cold load or a few switches.
+      on.onload=function(){if(bgSet!==set)return; on.dataset.fail='';};
+      on.onerror=function(){if(bgSet!==set)return; on.dataset.fail='1';
+        if(!cutReady) finishSwitch(false);};
+      if(!cutReady){
+        if(!(srcIs(on)&&on.complete)) on.src=set.url;
+      }
+      if(isCold){ objsFor(null); clearScene(); }
+      let cutsDone=false;
+      const finishCuts=ok=>{
+        if(bgSet!==set) return;
+        cutsDone=true;
+        setCutsHint(false);
+        if(ok){
+          markShown();
+          const outKey=viewKey(outgoingSet);
+          if(outKey) releasePre(outKey);
+          if(off && off!==on) releaseImgSlot(off);
+        } else if(cutReady && set.url){
+          if(!(srcIs(on)&&on.complete)) on.src=set.url;
+          whenReady(on,flip);
+        } else {
+          whenReady(on,flip);
+        }
+      };
+      const startAttach=()=>{
+        if(!window.ThrydMediumCuts){ if(!cutReady) whenReady(on,flip); else finishSwitch(false); return; }
+        try{
+          const ap=ThrydMediumCuts.attach(set,{image:on, stage:$('stage')});
+          const done=r=>finishCuts(!!(r&&r.ok));
+          if(ap&&ap.then) ap.then(done,()=>finishCuts(false));
+          else done(ap);
+        }catch(e){ finishCuts(false); }
+      };
+      let capArmed=false, capAt=0;
+      const stillThis=()=>bgSet===set||sameView(bgSet,set);
+      const decoded=()=>srcIs(on);
+      const armCap=()=>{
+        if(!isCold||capArmed||shown||cutsDone||!stillThis()||!decoded()) return;
+        capArmed=true;
+        capAt=Date.now()+CUTS_WAIT_MS;
+      };
+      if(isCold){
+        if(!cutReady) whenReady(on, armCap);
+        const capPoll=setInterval(()=>{
+          if(!stillThis()||shown||cutsDone){clearInterval(capPoll);return;}
+          if(!cutReady && !capArmed && decoded()) armCap();
+          if(capArmed&&Date.now()>=capAt){ clearInterval(capPoll); setCutsHint(true); flip(); }
+        }, 100);
+        startAttach();
+      } else if(cutReady){
+        // Keep the outgoing plate on stage; attach swaps #mcut only after the incoming plate has painted.
+        startAttach();
+      } else {
+        whenReady(on, ()=>{ flip(); if(shown) startAttach(); });
+      }
     };
-    const startAttach=()=>{
-      if(!window.ThrydMediumCuts){ whenReady(on,flip); return; }
-      try{
-        const ap=ThrydMediumCuts.attach(set,{image:on, stage:$('stage')});
-        const done=r=>finishCuts(!!(r&&r.ok));
-        if(ap&&ap.then) ap.then(done,()=>finishCuts(false));
-        else done(ap);
-      }catch(e){ finishCuts(false); }
-    };
-    let capArmed=false, capAt=0;
-    const stillThis=()=>bgSet===set||sameView(bgSet,set);
-    const decoded=()=>srcIs(on);
-    const armCap=()=>{
-      if(!isCold||capArmed||shown||cutsDone||!stillThis()||!decoded()) return;
-      capArmed=true;
-      capAt=Date.now()+CUTS_WAIT_MS;
-    };
-    if(isCold){
-      whenReady(on, armCap);
-      const capPoll=setInterval(()=>{
-        if(!stillThis()||shown||cutsDone){clearInterval(capPoll);return;}
-        if(!capArmed&&decoded()) armCap();
-        if(capArmed&&Date.now()>=capAt){ clearInterval(capPoll); setCutsHint(true); flip(); }
-      }, 100);
-      startAttach();
-    } else {
-      // flip first, and only attach (which may hide the img / replace #mcut) after a real flip
-      whenReady(on, ()=>{ flip(); if(shown) startAttach(); });
-    }
+    if(window.ThrydMediumCuts && ThrydMediumCuts.loadManifest){
+      ThrydMediumCuts.loadManifest().then(man=>{
+        const row=((man&&man.assets)||[]).find(a=>a && a.medium_image_id===set.medium_image_id);
+        beginRemote(!!(row && row.status==='ready'));
+      }).catch(()=>beginRemote(false));
+    } else beginRemote(false);
     return;
   }
   // frame 0 first (it goes straight into the hidden image); the rest preload once it is up, so a slow link isn't split 40 ways
@@ -216,7 +241,7 @@ const NEWEST=()=>RUNX().length?RUNX().slice().sort((a,b)=>(b.mtime||0)-(a.mtime|
 // after ten slideshow changes, return to whatever the newest live view is then
 const slideCycle=window.ThrydLiveReturn.create(10);
 function startSlide(){clearInterval(slideT);slideT=setInterval(()=>{
-  if(coldBooting||flipPending)return;
+  if(coldBooting||flipPending||document.body.classList.contains('dragmode'))return;
   const moved=ThrydLiveReturn.step(slideCycle,{pool:POOL,poolI,cursor:slideCursor,hold:libPin.pinned(),newest:()=>MODE==='live'?NEWEST():null});
   if(moved.action==='idle'||moved.action==='hold')return;
   poolI=moved.poolI; if(moved.cursor)slideCursor=moved.cursor; backdrop(moved.set,true);
@@ -750,7 +775,7 @@ addEventListener('resize',()=>{regionsKey='';});
   try{LXTRA=(await J('data/live_extra.json')).sets||[];}catch(e){}
   POOL=livePool();
   if(MODE==='live'&&!Q.get('mlib')&&!bgSet) void bootColdFirst(null);
-  await loadOmap(); await loadRGifs(); setTimeout(()=>{if(MODE==='live'&&NEWEST()&&!Q.get('mlib')&&!coldBooting&&!viewUp&&!bgSet){const nw=NEWEST();POOL=livePool();if(!slideCursor){poolI=Math.max(0,POOL.indexOf(nw));slideCursor=nw.dir||'';}backdrop(nw,true);}},2500); setInterval(async()=>{if(MODE==='live'){loadOmap();loadRGifs();try{const n=(await J('data/live_extra.json?t='+Date.now())).sets||[];const o=NEWEST();LXTRA=n;const nw=NEWEST();POOL=livePool();if(nw&&(!o||o.dir!==nw.dir||o.mtime!==nw.mtime)){backdrop(nw,true);}}catch(e){}}},60000);
+  await loadOmap(); await loadRGifs(); setTimeout(()=>{if(MODE==='live'&&NEWEST()&&!Q.get('mlib')&&!coldBooting&&!viewUp&&!bgSet){const nw=NEWEST();POOL=livePool();if(!slideCursor){poolI=Math.max(0,POOL.indexOf(nw));slideCursor=nw.dir||'';}backdrop(nw,true);}},2500); setInterval(async()=>{if(MODE==='live'){loadOmap();loadRGifs();try{const n=(await J('data/live_extra.json?t='+Date.now())).sets||[];LXTRA=n;POOL=livePool();/* new views join the pool for the next natural slide; never yank the current scene, drags, or tweet bubble */}catch(e){}}},60000);
   const ss=$('slide');if(ss){ss.value=String(SLIDE);ss.onclick=e=>e.stopPropagation();ss.onchange=e=>{SLIDE=+e.target.value;if(window.ThrydKeep)try{ThrydKeep.saveSettings({slide:SLIDE});}catch(err){}else try{localStorage.setItem('thryd_slide',SLIDE);}catch(err){}Q.set('slide',SLIDE);history.replaceState(null,'','?'+Q.toString());startSlide();};}
   const ml=$('mlib'); if(ml){ml.onclick=e=>e.stopPropagation(); const go=e=>{if(e.type==='keydown'&&e.key!=='Enter')return; e.stopPropagation(); const q=ml.value.trim(); if(!q){libPin.clear();slideCycle.reset();return;} const hit=window.thrydLibrary&&thrydLibrary.show(q); if(!hit){$('cap').textContent='library · not in inventory';}}; ml.addEventListener('keydown',go); ml.addEventListener('change',go);}
   const choice=window.ThrydKeep?ThrydKeep.stageChoice(Q.get('mlib'),ThrydKeep.settings().lastGif,Q.get('resume')==='1'):{id:Q.get('mlib')||null,why:Q.get('mlib')?'query':'live'}; if(choice.id&&ml){ml.value=choice.id; const hit=window.thrydLibrary&&thrydLibrary.show(choice.id); if(!hit){$('cap').textContent='library · not in inventory';}}

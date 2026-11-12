@@ -6,6 +6,10 @@
 // only ever shows the official embed (no names). Nothing is posted.
 (function(root){
   var TICK_MS = 4000;
+  var FEED_DEBUG = false;
+  try{ FEED_DEBUG = /(?:^|[?&])debug=1(?:&|$)/.test(String((typeof location!=='undefined'&&location.search)||'')); }catch(e){}
+  function feedLog(){ if(!FEED_DEBUG) return; try{ console.info.apply(console, ['[thryd-feed]'].concat([].slice.call(arguments))); }catch(e){} }
+
   var TOP_N = 8;
   var TOP_K = 8;
   var NO_REPEAT = 10;
@@ -406,7 +410,7 @@
         if(d) d.feed = row;
       }
     }catch(e){}
-    try{ console.info('[thryd-feed]', row.reason, row.changed, row.picked && row.picked[0] && row.picked[0].id, row.scene && row.scene.signature); }catch(e){}
+    try{ feedLog(row.reason, row.changed, row.picked && row.picked[0] && row.picked[0].id, row.scene && row.scene.signature); }catch(e){}
     return row;
   }
 
@@ -542,10 +546,13 @@
     return ctx;
   }
   function fetchSidecars(mid){
-    if(!mid || (packMeta[mid] && packMeta[mid].sidecarTried)) return;
-    packMeta[mid] = packMeta[mid] || {labels:[], klasses:[]};
-    packMeta[mid].sidecarTried = true;
     var key = midKey(mid);
+    if(!mid || !key) return;
+    var meta = packMeta[key] || packMeta[mid];
+    if(meta && meta.sidecarTried) return;
+    packMeta[key] = meta || {labels:[], klasses:[]};
+    packMeta[mid] = packMeta[key];
+    packMeta[key].sidecarTried = true;
     var paths = [
       'assets/medium_cuts/' + key + '.objects.json',
       'assets/medium_cuts/' + key.replace(/\.gif$/,'') + '.objects.json',
@@ -798,10 +805,20 @@
     setTimeout(function(){ evaluate('drag'); }, 30);
   }
 
+  var jsonMemo = Object.create(null);
+  var jsonMiss = Object.create(null);
   function loadJson(path){
-    return fetch(path + (path.indexOf('?') >= 0 ? '&' : '?') + 't=' + Date.now(), {cache: 'no-store'})
-      .then(function(r){ return r.ok ? r.json() : null; })
-      .catch(function(){ return null; });
+    var key = String(path || '').split('?')[0];
+    if(!key) return Promise.resolve(null);
+    if(jsonMiss[key]) return Promise.resolve(null);
+    if(jsonMemo[key]) return jsonMemo[key];
+    jsonMemo[key] = fetch(key, {cache: 'default'})
+      .then(function(r){
+        if(!r.ok){ jsonMiss[key] = 1; return null; }
+        return r.json();
+      })
+      .catch(function(){ jsonMiss[key] = 1; return null; });
+    return jsonMemo[key];
   }
 
   function ingestTweets(rows){
@@ -839,6 +856,7 @@
     timer = setInterval(function(){
       hookMount(); hookChoose(); hookDebug();
       rememberCutMeta();
+      try{ if(document.body.classList.contains('dragmode')) return; }catch(e){}
       evaluate('tick');
     }, TICK_MS);
   }

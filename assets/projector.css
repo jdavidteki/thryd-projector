@@ -205,5 +205,7 @@ body.lovemap #slide,body.lovemap #addgif,body.lovemap #rpause,body.lovemap #mute
 #mcut{position:absolute;inset:0;z-index:2;pointer-events:none}
 #stage:has(#mcut) > img{opacity:0!important;transition:none!important}
 #mcut canvas.plate{position:absolute;pointer-events:none}
-#mcut canvas.sprite{position:absolute;pointer-events:auto;touch-action:none;cursor:grab}
+#mcut canvas.sprite{position:absolute;pointer-events:auto;touch-action:none;cursor:grab;z-index:3}
+#mcut.dragging canvas.sprite{cursor:grabbing}
+#mcut.dragging canvas.sprite[data-dragging="1"]{will-change:transform;z-index:4}
 body.cerebro #mcut,body.lovemap #mcut{display:none}
