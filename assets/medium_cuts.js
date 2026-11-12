@@ -795,6 +795,7 @@
         const keep = root.ThrydKeep;
         layer._placeKey = [];
         layer._off = [];
+        layer._labels = labels; layer._klass = (playback.stream ? playback.plan.objects : (plan.objects || [])).map(o => o && (o.model_class || o.label));
         for(let i = 0; i < nsprite; i++){
           const k = keep ? keep.placeKey(sha, labels[i] || ('cut' + (i + 1)), ver) : '';
           layer._placeKey.push(k);
@@ -868,6 +869,17 @@
             const k = layer._placeKey && layer._placeKey[d.i];
             if(k) root.ThrydKeep.savePlace(k, layer._off[d.i]);
           }
+          // movement link (Jesuye 11-12 2:33 PM): announce the committed drop with the exact cut identity; projector.js records it
+          try{
+            const W = layer._w, H = layer._h, bx = layer._box || {}, bw = bx.width || W, bh = bx.height || H;
+            const sp = layer._frame && layer._frame.masks && layer._frame.masks[d.i];
+            const cx = sp && typeof sp.x === 'number' ? sp.x + sp.w / 2 : W / 2, cy = sp && typeof sp.y === 'number' ? sp.y + sp.h / 2 : H / 2;
+            const P = (ox, oy) => ({x: +((cx + ox * W / bw) / W * 100).toFixed(3), y: +((cy + oy * H / bh) / H * 100).toFixed(3)});
+            if((d.dx || d.dy) && typeof window !== 'undefined' && window.dispatchEvent) window.dispatchEvent(new CustomEvent('thryd:cutmove', {detail: {
+              scene: layer._mid, cut: (layer._labels && layer._labels[d.i]) || ('cut' + (d.i + 1)), cut_index: d.i, klass: (layer._klass && layer._klass[d.i]) || null,
+              source_frame_index: layer._shown | 0, frame_count: (playback.frames || []).length, from: P(d.ox, d.oy), to: P(d.ox + (d.dx || 0), d.oy + (d.dy || 0)),
+              place_key: (layer._placeKey && layer._placeKey[d.i]) || null}}));
+          }catch(e){}
           layer._dragPaused = false;
           if(my === token && !layer._timer) layer._timer = setTimeout(step, 0);
         };

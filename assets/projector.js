@@ -577,18 +577,102 @@ const SIDES=(()=>{let P=null,cur=[],rot=0,nSc=0;const D={};
   const step=()=>{if(!P)return;if(cur.length>=3){const busy=new Set([...cur.map(r=>r.name.toLowerCase()),...liveN()]);const r=make(busy);if(r)cur[rot++%3]=r;}else fill();
     try{place(lastM||{regions:[],here:'',chars:[],objs:[]});}catch(e){}};
   const load=async()=>{try{const d=await J('data/side_pool.json');d.byId={};(d.scenes||[]).forEach(s=>d.byId[s.id]=s);if(d.story&&d.story.places){const sn=new Set();d.story.places=d.story.places.filter(p=>{const k=nameOf(p);if(sn.has(k))return false;sn.add(k);return true;});}P=d;fill();step();}catch(e){}};
+  const sceneOf=id=>P&&P.byId&&P.byId[id]||null;
   if(MODE==='live'&&Q.get('sides')!=='0'&&!/phone\.html$/.test(location.pathname)){load();setInterval(load,600000);(function tick(){setTimeout(()=>{step();tick();},Math.max(6000,SLIDE*900));})();}
   return {augment(m){if(!P||!m)return m;const have=new Set([m.here,...(m.regions||[])].filter(Boolean).map(n=>String(n).toLowerCase()));const libs=[],regs=[];
     const st=stageReg();[...(st?[st]:[]),...cur].forEach(r=>{const k=r.name.toLowerCase();if(have.has(k))return;have.add(k);regs.push(r.name);r.items.forEach(i=>libs.push({region:r.name,label:i.label,kind:i.kind}));});
     return Object.assign({},m,{regions:[...(m.regions||[]),...regs],libs});},
-    debug(){return {loaded:!!P,scenes:P?(P.scenes||[]).length:0,cur:cur.map(r=>r.name)};}};})();
+    sceneOf, debug(){return {loaded:!!P,scenes:P?(P.scenes||[]).length:0,cur:cur.map(r=>r.name)};}};})();
 window.thrydSides=()=>SIDES.debug();
-function sidSprite(id){if(!id)return null;const hit=L=>{for(const o of L||[])if(o&&o.sprite&&(o.state_id===id||(!o.state_id&&o.label===id)))return o.sprite;return null;};
+// ---------- movement link, projector side (Jesuye 11-12 2:33 PM "do it"): every drag/move is recorded with the exact scene + cut identity,
+// kept in localStorage (thryd_moves_v1, spec: /workspace/thryd-projector-movement/EVENT_SPEC.md), carried into later scenes that share
+// the object, place or person, and linked (caused_by / consequence). Emit is a swappable adapter: local-only until #thryd's contract is plugged
+// in via window.thrydMoveEmit = async ev => reply. Nothing here moves pixels in other scenes or generates imagery.
+const MOVES=(()=>{const KEY='thryd_moves_v1',MAX=400;let box=null;
+  try{box=JSON.parse(localStorage.getItem(KEY)||'null');}catch(e){} if(!box||box.v!==1||!Array.isArray(box.events))box={v:1,events:[]};
+  const save=()=>{try{if(box.events.length>MAX)box.events=box.events.slice(-MAX);localStorage.setItem(KEY,JSON.stringify(box));return true;}catch(e){return false;}};
+  const norm=s=>String(s||'').toLowerCase().replace(/^[oc]:/,'').replace(/_[0-9a-f]{4,}$/,'').replace(/[_\s]*\d+$/,'').replace(/_/g,' ').trim();
+  const uid=()=>{try{if(crypto.randomUUID)return crypto.randomUUID();}catch(e){}return 'mv-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,10);};
+  let MAN=null;(async()=>{try{const m=window.ThrydMediumCuts?await ThrydMediumCuts.loadManifest():await J('data/medium_cuts.json');MAN=new Map((m.assets||[]).map(a=>[a.medium_image_id,a]));}catch(e){}})();
+  const hereFull=()=>{const h=lastM&&lastM.here;return h?(PFULL[h]||h):null;};
+  const people=()=>((lastM&&lastM.chars)||[]).filter(c=>!c.off).map(c=>c.name);
+  const runOfKey=k=>((String(k||'').match(/(run-[A-Za-z0-9]+)/)||[])[1])||null;
+  const storyOf=scene=>{const a=MAN&&MAN.get(scene),sp=SIDES.sceneOf(scene),o={place:hereFull(),card:(bgSet&&bgSet.card)||null,title:sp?sp.place:null};
+    if(a&&a.source==='x'&&a.x){const pid=(String(a.x.post_url||'').match(/(\d{8,})/)||[])[1];o.x_post_url=pid?'https://x.com/notnotnotnotyn/status/'+pid:null;o.x_media_key=a.x.media_key||null;}
+    else if(/^\d\*|^0\*/.test(String(scene||'')))o.medium_url='https://miro.medium.com/'+scene;
+    return o;};
+  const keysOf=ev=>{const k=new Set();if(ev.object_key)k.add('o:'+ev.object_key);if(ev.place)k.add('p:'+String(ev.place).toLowerCase());((ev.story&&ev.story.people)||[]).forEach(n=>k.add('c:'+String(n).toLowerCase()));return k;};
+  let line=null,lineT=null;const show=t=>{if(/phone\.html$/.test(location.pathname))return;if(!line){line=document.createElement('div');line.id='mvcarry';Object.assign(line.style,{position:'fixed',left:'1.2vw',bottom:'4.4vh',zIndex:12,maxWidth:'34vw',font:'1.25vh/1.4 ui-monospace,monospace',color:'#f0d7a2',textShadow:'0 1px 2px #000',pointerEvents:'none',whiteSpace:'pre-wrap',transition:'opacity 1.2s',opacity:0});document.body.appendChild(line);}
+    line.textContent=t;line.style.opacity=1;clearTimeout(lineT);lineT=setTimeout(()=>{line.style.opacity=0;},9000);};
+  // engine body (MOVEMENT_CONTRACT_V1 / EVENT_SPEC "Engine ingest contract"): positions only in raw (percent) + normalized (0-1)
+  const n01=p=>({x:Math.min(1,Math.max(0,p.x/100)),y:Math.min(1,Math.max(0,p.y/100))});
+  const bodyFor=ev=>{const s=ev.source||{};if(ev.type!=='move')return {hold:ev.type==='setlocation'?'place_id_missing':'not_a_move'};
+    if(!ev.from||!ev.to)return {hold:'bad_coord'};if(!ev.object_id)return {hold:'unmapped'};if(!s.run||!/^run-[A-Za-z0-9]+$/.test(s.run)||!s.frame)return {hold:'no_run_frame'};
+    const f=n01(ev.from),t=n01(ev.to),out=v=>v<0||v>100,cl=[ev.from.x,ev.from.y,ev.to.x,ev.to.y].some(out);if([ev.from.x,ev.from.y,ev.to.x,ev.to.y].some(v=>!isFinite(v)||v<-50||v>150))return {hold:'raw_out_of_range'};
+    return {body:{event_id:ev.event_id,rid:ev.event_id+'-r',run:s.run,frame:s.frame,object_id:ev.object_id,scene:s.scene,cut:s.cut,
+      raw:{unit:'percent',from:ev.from,to:ev.to},normalized:{unit:'frame',from:f,to:t,clamped:cl},current_card:(ev.agenda&&ev.agenda.card)||null,client_ts:ev.client_ts}};};
+  const ntfySend=async body=>{if(!DRAG||!DRAG.endpoint||DRAG.transport!=='ntfy')throw new Error('no drag endpoint');
+    const t0=Math.floor(Date.now()/1000)-5;const r=await fetch(DRAG.endpoint,{method:'POST',body:JSON.stringify(body)});if(!r.ok)throw new Error('ntfy HTTP '+r.status);
+    for(const w of [2000,4000,8000,16000,30000]){await new Promise(z=>setTimeout(z,w));   // light polling, stops on the ack
+      try{const tx=await (await fetch(DRAG.reply+'/json?poll=1&since='+t0,{cache:'no-store'})).text();
+        for(const l of tx.split('\n')){if(!l)continue;let m;try{m=JSON.parse(l);m=JSON.parse(m.message||'{}');}catch(e){continue;}if(m.rid===body.rid||m.event_id===body.event_id)return m;}}catch(e){}}
+    return null;};
+  const emit=async ev=>{try{
+    if(typeof window.thrydMoveEmit==='function'){const r=await window.thrydMoveEmit(JSON.parse(JSON.stringify(ev)));ev.emit={status:(r&&r.status)||'sent',reply:r||null,at:new Date().toISOString()};save();return;}
+    const b=bodyFor(ev);if(!b.body){ev.emit={status:'held',reason:b.hold};save();return;}
+    if(qaOn()){ev.emit={status:'qa_not_sent',body:b.body};save();return;}
+    ev.emit=Object.assign({},ev.emit||{},{status:'sending',attempts:((ev.emit&&ev.emit.attempts)||0)+1,at:new Date().toISOString()});save();
+    const m=await ntfySend(b.body);
+    ev.emit=Object.assign(ev.emit,m?{status:m.status||(m.ok?'accepted':'rejected'),committed:m.committed===true,reply:m}:{status:'no_reply'});
+  }catch(e){ev.emit=Object.assign({},ev.emit||{},{status:'failed',reason:String(e&&e.message||e)});}save();};
+  // retry queue: unanswered sends go again (idempotent by event_id), at most 6 tries, every 2 minutes
+  setInterval(()=>{box.events.filter(e=>e.emit&&(e.emit.status==='no_reply'||e.emit.status==='failed'||e.emit.status==='sending')&&(e.emit.attempts||0)<6&&Date.now()-Date.parse(e.emit.at||0)>110000).slice(0,3).forEach(e=>emit(e));},120000);
+  function record(inp){try{
+    const scene=inp.scene||null, ev={v:1,type:inp.type||'move',event_id:uid(),client_ts:new Date().toISOString(),
+      source:{scene,scene_kind:inp.scene_kind||null,cut:inp.cut||null,cut_index:inp.cut_index==null?null:inp.cut_index,klass:inp.klass||null,source_frame_index:inp.source_frame_index==null?null:inp.source_frame_index,frame_count:inp.frame_count||null,run:inp.run||runOfKey(scene)||null,frame:((String(scene||'').match(/\b(j\d+)\b/)||[])[1])||null,place_key:inp.place_key||null},
+      agenda:{run:CUR_RUN||null,card:window.__thrydCard||null,view_card:(bgSet&&bgSet.card)||null,state_at:window.__thrydStateAt||null},
+      object_id:inp.object_id||null,object_key:norm(inp.object_key||inp.klass||inp.cut),label:inp.label||inp.cut||null,
+      from:inp.from||null,to:inp.to||null,unit:inp.from?'percent_of_source_frame':null,place:inp.place||hereFull(),from_place:inp.from_place||null,
+      story:Object.assign(storyOf(scene),{people:people()}),caused_by:[],applied_in:[]};
+    const ks=keysOf(ev);ev.caused_by=box.events.filter(p=>p.type!=='consequence'&&p.object_key===ev.object_key&&p.event_id!==ev.event_id).slice(-3).map(p=>p.event_id);
+    box.events.push(ev);save();emit(ev);
+    const n=box.events.filter(p=>p.type!=='consequence'&&p.object_key===ev.object_key).length;
+    show(`● ${ev.label||ev.object_key} ${ev.type==='setlocation'?'→ '+short(ev.place||''):'moved'} · saved${n>1?' · move '+n+' for '+ev.object_key:''}`);
+    return ev;}catch(e){return null;}}
+  // consequences: when a later scene shares the moved object, place or person, the earlier move fires here
+  let lastScene='';
+  function sceneNow(){const mc=document.getElementById('mcut');return (mc&&mc._mid)||(objLayer&&objLayer.dataset.key)||(bgSet&&(bgSet.medium_image_id||bgSet.dir))||'';}
+  function sceneKeys(){const k=new Set();const mc=document.getElementById('mcut');((mc&&mc._klass)||[]).forEach(x=>x&&k.add('o:'+norm(x)));((mc&&mc._labels)||[]).forEach(x=>x&&!/^cut\d+$/.test(x)&&k.add('o:'+norm(x)));
+    if(objLayer)objLayer.querySelectorAll('.ob[data-label]').forEach(b=>k.add('o:'+norm(b.dataset.label)));
+    const h=hereFull();if(h)k.add('p:'+h.toLowerCase());people().forEach(n=>k.add('c:'+n.toLowerCase()));((lastM&&lastM.objs)||[]).forEach(o=>k.add('o:'+norm(o.label)));return k;}
+  function fire(){const sc=sceneNow();if(!sc||sc===lastScene)return;lastScene=sc;const here=sceneKeys();if(!here.size)return;
+    const hits=box.events.filter(e=>e.type!=='consequence'&&e.source&&e.source.scene!==sc).filter(e=>[...keysOf(e)].some(k=>here.has(k))).slice(-2);
+    if(!hits.length)return;const at=new Date().toISOString();
+    const c={v:1,type:'consequence',event_id:uid(),client_ts:at,source:{scene:sc,scene_kind:document.getElementById('mcut')?'medium_cut':(objLayer?'run_view':'backdrop'),run:runOfKey(sc)},agenda:{run:CUR_RUN||null,card:(bgSet&&bgSet.card)||null,state_at:window.__thrydStateAt||null},
+      caused_by:hits.map(e=>e.event_id),shared:[...new Set(hits.flatMap(e=>[...keysOf(e)].filter(k=>here.has(k))))],story:Object.assign(storyOf(sc),{people:people()})};
+    hits.forEach(e=>{e.applied_in.push({scene:sc,at,consequence:c.event_id});if(e.applied_in.length>20)e.applied_in=e.applied_in.slice(-20);});
+    box.events.push(c);save();emit(c);
+    const e=hits[hits.length-1],when=new Date(e.client_ts).toLocaleTimeString([],{hour:'numeric',minute:'2-digit'});
+    const why=c.shared[0]||'';const whyT=why.startsWith('o:')?'same '+why.slice(2):why.startsWith('p:')?'same place':why.startsWith('c:')?why.slice(2)+' is here':'linked';
+    show(`↺ carried over: ${e.label||e.object_key} was ${e.type==='setlocation'?'sent to '+short(e.place||''):'moved'} at ${when}${e.story&&e.story.title?' in “'+e.story.title+'”':''} · ${whyT}`);
+    hits.forEach(h=>{try{pulse(h.label||'');pulse(h.object_key||'');}catch(err){}});}
+  setInterval(()=>{try{fire();}catch(e){}},1500);
+  // chips moved to a place stay there on this device until a newer state.json says otherwise
+  function carryPlaces(m){if(!m||!m.chars)return m;const st=Date.parse(window.__thrydStateAt||'')||0;const last={};
+    box.events.forEach(e=>{if(e.type==='setlocation'&&e.label&&e.place&&Date.parse(e.client_ts)>st)last[e.label]=e;});if(!Object.keys(last).length)return m;
+    const regs=(m.regions||[]).slice();const fix=(name,r)=>{const e=last[name];if(!e)return r;const s=short(e.place);PFULL[s]=PFULL[s]||e.place;if(!regs.includes(s))regs.push(s);return s;};
+    return Object.assign({},m,{regions:regs,chars:m.chars.map(c=>{const r=fix(c.name,c.region);return r===c.region?c:Object.assign({},c,{region:r,off:r!==m.here});}),objs:(m.objs||[]).map(o=>{const r=fix(o.label,o.region);return r===o.region?o:Object.assign({},o,{region:r});})});}
+  window.addEventListener('thryd:cutmove',ev=>{const d=ev.detail||{};record(Object.assign({type:'move',scene_kind:'medium_cut',label:d.klass&&d.klass!=='object'?d.klass:d.cut},d));});
+  function observeState(st){const a=st&&st.movement_acks;if(!a||a.run!==st.run||!Array.isArray(a.movement_acks)||!a.movement_acks.length)return;const ids=new Set(a.movement_acks);let ch=false;
+    box.events.forEach(e=>{if(ids.has(e.event_id)&&e.story_status!=='consumed'){e.story_status='consumed';e.consumed_run=st.run;ch=true;}});if(ch)save();}
+  return {record,carryPlaces,fire,observeState,list:()=>box.events.slice(),key:KEY};})();
+window.thrydMoves=MOVES;
+function sidSprite(id){if(!id)return null;const hit=L=>{for(const o of L||[])if(o&&o.sprite&&(o.state_id===id||o.label===id))return o.sprite;return null;};
   const cur=objLayer&&OMAP[objLayer.dataset.key];let r=hit(cur&&cur.objects);if(r)return r;
   for(const v of Object.values(OMAP)){if(v&&(r=hit((v.objects||[]).filter(o=>o.state_id===id))))return r;}return null;}
 const chipSp=n=>media.sprites[n]||sidSprite(n);
 function place(m){
-  m=SIDES.augment(m); const libN=new Set((m.libs||[]).map(l=>l.region));
+  m=MOVES.carryPlaces(m); m=SIDES.augment(m); const libN=new Set((m.libs||[]).map(l=>l.region));
   const groups={}; const charReg={}; m.chars.forEach(c=>charReg[c.name]=c.region);
   (m.libs||[]).forEach(l=>(groups[l.region]=groups[l.region]||[]).push({id:'l:'+l.region+'|'+l.label,kind:l.kind+' lib',label:l.label,sp:null,l}));
   const add=(g,it)=>(groups[g]=groups[g]||[]).push(it);
@@ -684,7 +768,7 @@ async function live(){
   let s=null; try{s=await LIVE_STATE();}catch(e){}
   if(!s||!(s.characters||[]).length){return loopTimeline();}
   let last='', step=0, cur=s;
-  let first=true; const apply=st=>{CUR_RUN=st.run||CUR_RUN;cur=st;trackObjs(st);if(!scEv.length){const m=fromState(st);render(m);}
+  let first=true; const apply=st=>{CUR_RUN=st.run||CUR_RUN;window.__thrydStateAt=st.exported_at||null;window.__thrydCard=st.current_card||null;try{MOVES.observeState(st);}catch(e){}cur=st;trackObjs(st);if(!scEv.length){const m=fromState(st);render(m);}
     POOL=livePool(); if(first){first=false; if(!Q.get('mlib')) void bootColdFirst(st);}
     $('run').textContent=st.run||'';};
   apply(s);
@@ -847,6 +931,7 @@ async function dragSend(body){
 async function dropTo(id,from,to,xy){
   if(!DRAG||!DRAG.endpoint){toast('drag endpoint not available',1);return;}
   const label=id.slice(2); PEND[id]={region:to,until:Date.now()+8*60e3}; setReg(id,to); toast(`moving ${label} → ${to}…`);
+  try{MOVES.record({type:'setlocation',scene_kind:(xy&&typeof xy.x==='number')?'run_view':'chip',scene:(objLayer&&objLayer.dataset.key)||((document.getElementById('mcut')||{})._mid)||(bgSet&&(bgSet.medium_image_id||bgSet.dir))||null,cut:label,label,object_key:label,place:PFULL[to]||to,from_place:from?(PFULL[from]||from):null,to:xy&&typeof xy.x==='number'?{x:xy.x,y:xy.y}:null});}catch(e){}
   const tg=window.thrydTarget&&thrydTarget.make(label,PFULL[to]||to,{type:'chip',id,place:to,...(xy||{})});
   if(tg&&qaOn()) tg.source='qa';
   const body={key:DRAG.key,object:label,place:PFULL[to]||to,...(tg?{target:tg}:{}),...(qaOn()?{source:'qa'}:{})};
@@ -955,7 +1040,8 @@ window.thrydWander={paths:()=>DPATH,move:b=>wMove(b),state:b=>WS.get(b)};
     window.thrydHold(30000);const Lp=dd.b.parentNode,k=Lp&&Lp.dataset.key;const[cl,ct]=visClamp(Lp,parseFloat(dd.b.style.left),parseFloat(dd.b.style.top),parseFloat(dd.b.style.width),parseFloat(dd.b.style.height));
     dd.b.style.left=cl+'%';dd.b.style.top=ct+'%';dd.b.dataset.dp='1';DPOS[k+'|'+dd.b.dataset.label]=[+cl.toFixed(3),+ct.toFixed(3)];dd.path.push([cl,ct]);const dpath=thinPath(dd.path.map(q=>visClamp(Lp,q[0],q[1],parseFloat(dd.b.style.width),parseFloat(dd.b.style.height))),24);saveDPath(k,dd.b.dataset.label,dpath);{const w=WS.get(dd.b);if(w)w.next=performance.now()+9000;}
     try{localStorage.setItem('thryd_dpos',JSON.stringify(DPOS));}catch(e){}
-    const h=hit(ev.clientX,ev.clientY),id=dd.b.dataset.id,from=regOf(id);if(!h){toast('dropped in the scene — drop on a place name to move them');if(window.thrydTarget)thrydTarget.scene(dd.b,k,cl,ct,dpath);noteLocalDrag(dd.b.dataset.label,(window.thrydCtx&&thrydCtx().lastM&&thrydCtx().PFULL[thrydCtx().lastM.here])||'',{x:+cl.toFixed(3),y:+ct.toFixed(3)});return;}
+    const h=hit(ev.clientX,ev.clientY),id=dd.b.dataset.id,from=regOf(id);
+    if(!h&&window.thrydMoves){try{thrydMoves.record({type:'move',scene_kind:'run_view',scene:k,cut:dd.b.dataset.label||'',label:dd.b.dataset.name||dd.b.dataset.label||'',object_id:dd.b.dataset.sid||null,object_key:dd.b.dataset.name||dd.b.dataset.label,from:{x:+(+dd.l0).toFixed(3),y:+(+dd.t0).toFixed(3)},to:{x:+cl.toFixed(3),y:+ct.toFixed(3)}});}catch(e){}}if(!h){toast('dropped in the scene — drop on a place name to move them');if(window.thrydTarget)thrydTarget.scene(dd.b,k,cl,ct,dpath);noteLocalDrag(dd.b.dataset.label,(window.thrydCtx&&thrydCtx().lastM&&thrydCtx().PFULL[thrydCtx().lastM.here])||'',{x:+cl.toFixed(3),y:+ct.toFixed(3)});return;}
     if(h.dataset.name===from){toast(`${id.slice(2)} is already at ${from}`);return;}
     dropTo(id,from,h.dataset.name,{x:+cl.toFixed(3),y:+ct.toFixed(3)});};
   document.addEventListener('pointerup',end);document.addEventListener('pointercancel',end);})();
