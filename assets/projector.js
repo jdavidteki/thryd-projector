@@ -16,9 +16,20 @@ const short=p=>(p||'elsewhere').replace(/,? (in )?Miami(, Florida)?/g,'').replac
 let bgSet=null,bgI=0,bgFlip=0,bgTimer=null,stageN=0; window.THRYD_UG=window.THRYD_UG||[];
 // keep the ticker 'loading' label up until the first scene is decoded and on stage
 let viewUp=false, heldTicker=null, cutsHintOn=false, flipPending=false;
+let queuedSet=null, outgoingSet=null, switchWait=null;
+const FLIP_WAIT_MS=25000;
+function clearSwitchWait(){ if(switchWait){ clearTimeout(switchWait); switchWait=null; } }
+function finishSwitch(ok){
+  clearSwitchWait();
+  flipPending=false;
+  if(!ok && outgoingSet && !sameView(bgSet, outgoingSet)) bgSet=outgoingSet;
+  outgoingSet=null;
+  const q=queuedSet; queuedSet=null;
+  if(q && !sameView(bgSet, q)) setTimeout(()=>{ try{ backdrop(q,true); }catch(e){} }, 0);
+}
 function setCutsHint(on){ cutsHintOn=!!on; const u=$('upd'); if(!u)return; if(on){ u.textContent='loading cuts'; u.style.opacity=1; } else if(u.textContent==='loading cuts') u.textContent=''; }
 function revealStage(){ if(viewUp)return; viewUp=true; if(heldTicker){ const t=heldTicker; heldTicker=null; ticker(t[0],t[1],t[2]); } else { const u=$('upd'); if(u&&(u.textContent==='loading'||u.textContent==='loading cuts')&&!cutsHintOn) u.textContent=''; } }
-function showUser(u){clearInterval(bgTimer);bgSet={dir:'user:'+u.id};const w=$('ug');w.innerHTML='';w.appendChild(u.vis);
+function showUser(u){clearSwitchWait();queuedSet=null;outgoingSet=null;flipPending=false;clearInterval(bgTimer);bgSet={dir:'user:'+u.id};const w=$('ug');w.innerHTML='';w.appendChild(u.vis);
   w.classList.add('on');objsFor(null);$('bgA').classList.remove('on');$('bgB').classList.remove('on');$('cap').textContent=u.label;clearScene();revealStage();}
 let HOLD=0; // in-scene drag pins the current scene (slideshow paused while dragging + 30s after a drop)
 window.thrydHold=ms=>{HOLD=ms?Math.max(HOLD,Date.now()+ms):0;};
@@ -34,9 +45,15 @@ function sameView(a,b){
   return true;
 }
 const libPin=window.ThrydMlibPin.create();
-function backdrop(set,force){ if(!libPin.allow(set))return; if(Date.now()<HOLD)return; if(sameView(bgSet,set))return; stageN++;
+function backdrop(set,force){ if(!libPin.allow(set))return; if(Date.now()<HOLD)return; if(sameView(bgSet,set))return;
+  // Never start a second switch while the incoming file is still loading.
+  // Stacked fetches + streamed GIF walks on Slow 4G blew the tab (thryd3 r10).
+  if(flipPending){ queuedSet=set; return; }
+  stageN++;
   const ug=window.THRYD_UG; if(ug.length&&stageN%3===0){return showUser(ug[Math.floor(stageN/3)%ug.length]);}
-  if(!set)return; const isCold=!viewUp; bgSet=set;bgI=0; flipPending=true; setCutsHint(false); $('ug').classList.remove('on');
+  if(!set)return; const isCold=!viewUp; outgoingSet=bgSet; bgSet=set;bgI=0; flipPending=true; setCutsHint(false); $('ug').classList.remove('on');
+  clearSwitchWait();
+  switchWait=setTimeout(()=>{ if(!flipPending||!(bgSet===set||sameView(bgSet,set))) return; finishSwitch(false); }, FLIP_WAIT_MS);
   // on a switch, keep the outgoing GIF (and #mcut) on stage until the incoming image is decoded.
   // detach immediately only on cold boot, when there is nothing to hold.
   if(isCold&&window.ThrydMediumCuts) try{ ThrydMediumCuts.detach(); }catch(e){}
@@ -72,7 +89,7 @@ function backdrop(set,force){ if(!libPin.allow(set))return; if(Date.now()<HOLD)r
     if(hadCut){ const el=on; requestAnimationFrame(()=>{ el.style.transition=''; el.style.opacity=''; }); }
     const c=$('cap'); if(c)c.textContent=capText;
     if(remoteSet(set)){ objsFor(null); clearScene(); } else objsFor(set);
-    flipPending=false;
+    finishSwitch(true);
     revealStage();
     if(heldTicker){ const t=heldTicker; heldTicker=null; ticker(t[0],t[1],t[2]); }
   };
@@ -83,7 +100,7 @@ function backdrop(set,force){ if(!libPin.allow(set))return; if(Date.now()<HOLD)r
     on.onload=function(){if(bgSet!==set)return; on.dataset.fail='';};
     on.onerror=function(){if(bgSet!==set)return; on.dataset.fail='1';
       // Incoming file failed: keep the outgoing view and its caption.
-      flipPending=false;};
+      finishSwitch(false);};
     // Re-setting the same URL can abort and blank the slot. Only assign when needed.
     if(!(srcIs(on)&&on.complete)) on.src=set.url;
     // caption waits for flip, so a slow switch doesn't label a still-outgoing (or black) stage as the next scene
@@ -144,7 +161,7 @@ const NEWEST=()=>RUNX().length?RUNX().slice().sort((a,b)=>(b.mtime||0)-(a.mtime|
 // after ten slideshow changes, return to whatever the newest live view is then
 const slideCycle=window.ThrydLiveReturn.create(10);
 function startSlide(){clearInterval(slideT);slideT=setInterval(()=>{
-  if(coldBooting)return;
+  if(coldBooting||flipPending)return;
   const moved=ThrydLiveReturn.step(slideCycle,{pool:POOL,poolI,cursor:slideCursor,hold:libPin.pinned(),newest:()=>MODE==='live'?NEWEST():null});
   if(moved.action==='idle'||moved.action==='hold')return;
   poolI=moved.poolI; if(moved.cursor)slideCursor=moved.cursor; backdrop(moved.set,true);
@@ -378,7 +395,7 @@ function fitLayer(){if(!objLayer||!objLayer._fs)return;const st=$('stage'),W=st.
   const k=Math.max(W/fw,H/fh),w=fw*k,h=fh*k;Object.assign(objLayer.style,{width:w+'px',height:h+'px',left:(W-w)/2+'px',top:(H-h)/2+'px'});} // cover
 const DPOS=JSON.parse(localStorage.getItem('thryd_dpos')||'{}');
 function objsFor(set){const [k,e0]=set?lookup(set):[null,null]; if(k===objKey&&objLayer)return; objKey=k;
-  if(objLayer){const old=objLayer;old.classList.remove('on');old.classList.add('gone');setTimeout(()=>old.remove(),2600);objLayer=null;}
+  if(objLayer){const old=objLayer;const st=$('stage'); if(st)[...st.children].forEach(n=>{ if(n.id==='objs'&&n!==old) n.remove(); }); old.classList.remove('on');old.classList.add('gone');setTimeout(()=>{if(old.isConnected)old.remove();},2600);objLayer=null;}
   const e=e0; if(!e)return;
   const L=document.createElement('div');L.id='objs';L._fs=e.frame_size||[480,270];L.dataset.key=k;
   (e.objects||[]).forEach((o,i)=>{const[x,y,w,h]=o.bbox;const box=document.createElement('div');
@@ -435,7 +452,7 @@ function applyPlaces(){const m=lastM;if(!objLayer||!m)return;const reg={},cr={};
     if(off){const x=parseFloat(b.style.left)||0,bw=parseFloat(b.style.width)||1,left=x+bw/2<50;
       w.style.setProperty('--ox',((left?-(x+bw):(100-x))/bw*100+30)*(left?1:1)+'%');w.classList.add('offstage');}
     else w.classList.remove('offstage');});}
-window.thrydApplyPlaces=applyPlaces; window.thrydDebug=()=>({run:CUR_RUN,pool:POOL.length,views:LXTRA.length,bg:bgSet&&bgSet.dir,mtime:bgSet&&bgSet.mtime,stageN,url:bgSet&&(bgSet.url||bgSet.src||''),viewUp,flipPending,cap:($('cap')&&$('cap').textContent)||''});
+window.thrydApplyPlaces=applyPlaces; window.thrydDebug=()=>{const st=$('stage'); const objs=[...((st&&st.children)||[])].filter(n=>n.id==='objs').length; return {run:CUR_RUN,pool:POOL.length,views:LXTRA.length,bg:bgSet&&bgSet.dir,mtime:bgSet&&bgSet.mtime,stageN,url:bgSet&&(bgSet.url||bgSet.src||''),viewUp,flipPending,cap:($('cap')&&$('cap').textContent)||'',stageKids:st?st.childElementCount:0,imgs:document.images.length,canvases:document.querySelectorAll('canvas').length,mcut:!!document.getElementById('mcut'),objs};};
 if(QA_MODE){ window.thrydBackdrop=(set,force)=>backdrop(set,force); window.thrydBgSet=()=>bgSet; }
 setInterval(()=>{if(!objLayer)return;const bs=[...objLayer.querySelectorAll('.ob')];if(bs.length){const b=bs[Math.floor(Math.random()*bs.length)];objChanged(b.dataset.sid||b.dataset.label);}},3000);
 // LXTRA (data/live_extra.json): original unblurred live views, play as-is
@@ -448,7 +465,7 @@ let SHUF={k:null,a:[]};
 function viewTag(set){const i=POOL.findIndex(x=>x&&set&&x.dir===set.dir);return i<0?'':'  · view '+(i+1)+'/'+POOL.length;}
 // no live view for the current run yet -> plain neutral stage (never another run's view)
 function liveBackdrop(place){const nw=NEWEST();if(nw)return nw;neutralStage(place);return null;}
-function neutralStage(place){if(bgSet&&bgSet.neutral)return;clearInterval(bgTimer);bgSet={dir:'neutral',neutral:1};
+function neutralStage(place){if(bgSet&&bgSet.neutral)return;clearSwitchWait();queuedSet=null;outgoingSet=null;flipPending=false;clearInterval(bgTimer);bgSet={dir:'neutral',neutral:1};
   [$('bgA'),$('bgB')].forEach(i=>{i.classList.remove('on');i.removeAttribute('src');});$('ug').classList.remove('on');$('cap').textContent=place?short(place):'';objsFor(null);}
 // ---------- gutters: chips grouped by place, left & right of the stage, never over it
 const ents={}; let lastM=null, prevReg={}, order={}, regionsKey='';

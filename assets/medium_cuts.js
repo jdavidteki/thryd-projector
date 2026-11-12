@@ -510,7 +510,7 @@
     return fb.done();
   }
 
-  function decodeGif(bytes, opts){
+  function createGifDecoder(bytes){
     const u = bytes instanceof Uint8Array ? bytes : new Uint8Array(bytes);
     const sig = String.fromCharCode.apply(null, u.subarray(0, 6));
     if(sig !== 'GIF87a' && sig !== 'GIF89a') throw new Error('not_gif');
@@ -524,69 +524,105 @@
       const n = 1 << ((packed & 7) + 1);
       gct = u.subarray(p, p + n * 3); p += n * 3;
     }
+    const headerP = p;
     const canvas = new Uint8ClampedArray(width * height * 4);
+    let delayCs = 0, trans = -1, dispose = 0, seen = 0, ended = false, pendingDispose = null;
+    function reset(){
+      p = headerP;
+      canvas.fill(0);
+      delayCs = 0; trans = -1; dispose = 0; seen = 0; ended = false; pendingDispose = null;
+    }
+    function next(){
+      if(ended) return null;
+      if(pendingDispose){ pendingDispose(); pendingDispose = null; }
+      while(p < u.length){
+        const b = u[p++];
+        if(b === 0x3b) break;
+        if(b === 0x21){
+          const label = u[p++];
+          if(label === 0xf9){
+            p++;
+            const gp = u[p++];
+            delayCs = dv.getUint16(p, true); p += 2;
+            const ti = u[p++]; dispose = (gp >> 2) & 7; trans = (gp & 1) ? ti : -1;
+            p++;
+          }else{
+            let sz = u[p++];
+            while(sz){ p += sz; sz = u[p++]; }
+          }
+          continue;
+        }
+        if(b !== 0x2c) throw new Error('bad_block');
+        const left = dv.getUint16(p, true); p += 2;
+        const top = dv.getUint16(p, true); p += 2;
+        const fw = dv.getUint16(p, true); p += 2;
+        const fh = dv.getUint16(p, true); p += 2;
+        const ipacked = u[p++];
+        let ct = gct;
+        if(ipacked & 0x80){
+          const n = 1 << ((ipacked & 7) + 1);
+          ct = u.subarray(p, p + n * 3); p += n * 3;
+        }
+        const snapshot = dispose === 3 ? canvas.slice() : null;
+        const minSize = u[p++];
+        const comp = [];
+        let sz = u[p++];
+        while(sz){ for(let i = 0; i < sz; i++) comp.push(u[p++]); sz = u[p++]; }
+        const idx = lzwDecode(minSize, Uint8Array.from(comp));
+        const interlace = ipacked & 0x40;
+        const rows = interlace ? interlacedRows(fh) : null;
+        for(let i = 0; i < fw * fh && i < idx.length; i++){
+          const lx = i % fw, ly = rows ? rows[(i / fw) | 0] : (i / fw) | 0;
+          const ci = idx[i];
+          if(ci === trans) continue;
+          const x = left + lx, y = top + ly;
+          if(x < 0 || y < 0 || x >= width || y >= height || !ct) continue;
+          const o = (y * width + x) * 4, c = ci * 3;
+          canvas[o] = ct[c]; canvas[o+1] = ct[c+1]; canvas[o+2] = ct[c+2]; canvas[o+3] = 255;
+        }
+        const rgba = canvas.slice();
+        const index = seen;
+        const delay = delayCs;
+        seen++;
+        const d2 = dispose, sl = snapshot, t = top, l = left, fww = fw, fhh = fh;
+        pendingDispose = ()=>{
+          if(d2 === 2){
+            for(let y = 0; y < fhh; y++) for(let x = 0; x < fww; x++){
+              const o = ((t + y) * width + (l + x)) * 4;
+              canvas[o] = canvas[o+1] = canvas[o+2] = canvas[o+3] = 0;
+            }
+          }else if(d2 === 3 && sl) canvas.set(sl);
+        };
+        delayCs = 0; trans = -1; dispose = 0;
+        return {rgba, delayCs: delay, width, height, index, canvas};
+      }
+      ended = true;
+      return null;
+    }
+    function until(n){
+      let last = null;
+      while(seen <= n){
+        const fr = next();
+        if(!fr) break;
+        last = fr;
+      }
+      return last;
+    }
+    return {width, height, next, until, reset, get seen(){ return seen; }};
+  }
+
+  function decodeGif(bytes, opts){
+    const dec = createGifDecoder(bytes);
     const frames = [];
     const only = opts && Number.isInteger(opts.only) ? opts.only : null;
-    let delayCs = 0, trans = -1, dispose = 0, seen = 0;
-    while(p < u.length){
-      const b = u[p++];
-      if(b === 0x3b) break;
-      if(b === 0x21){
-        const label = u[p++];
-        if(label === 0xf9){
-          p++; // block size
-          const gp = u[p++];
-          delayCs = dv.getUint16(p, true); p += 2;
-          const ti = u[p++]; dispose = (gp >> 2) & 7; trans = (gp & 1) ? ti : -1;
-          p++; // terminator
-        }else{
-          let sz = u[p++];
-          while(sz){ p += sz; sz = u[p++]; }
-        }
-        continue;
-      }
-      if(b !== 0x2c) throw new Error('bad_block');
-      const left = dv.getUint16(p, true); p += 2;
-      const top = dv.getUint16(p, true); p += 2;
-      const fw = dv.getUint16(p, true); p += 2;
-      const fh = dv.getUint16(p, true); p += 2;
-      const ipacked = u[p++];
-      let ct = gct;
-      if(ipacked & 0x80){
-        const n = 1 << ((ipacked & 7) + 1);
-        ct = u.subarray(p, p + n * 3); p += n * 3;
-      }
-      const snapshot = dispose === 3 ? canvas.slice() : null;
-      const minSize = u[p++];
-      const comp = [];
-      let sz = u[p++];
-      while(sz){ for(let i = 0; i < sz; i++) comp.push(u[p++]); sz = u[p++]; }
-      const idx = lzwDecode(minSize, Uint8Array.from(comp));
-      const interlace = ipacked & 0x40;
-      const rows = interlace ? interlacedRows(fh) : null;
-      for(let i = 0; i < fw * fh && i < idx.length; i++){
-        const lx = i % fw, ly = rows ? rows[(i / fw) | 0] : (i / fw) | 0;
-        const ci = idx[i];
-        if(ci === trans) continue;
-        const x = left + lx, y = top + ly;
-        if(x < 0 || y < 0 || x >= width || y >= height || !ct) continue;
-        const o = (y * width + x) * 4, c = ci * 3;
-        canvas[o] = ct[c]; canvas[o+1] = ct[c+1]; canvas[o+2] = ct[c+2]; canvas[o+3] = 255;
-      }
-      if(opts && opts.visit) opts.visit(seen, canvas);
-      if(only === null || seen === only) frames.push({rgba: canvas.slice(), delayCs, width, height});
-      else frames.push({delayCs, width, height});
-      seen++;
-      if(only !== null && seen === only + 1) break;
-      if(dispose === 2){
-        for(let y = 0; y < fh; y++) for(let x = 0; x < fw; x++){
-          const o = ((top + y) * width + (left + x)) * 4;
-          canvas[o] = canvas[o+1] = canvas[o+2] = canvas[o+3] = 0;
-        }
-      }else if(dispose === 3 && snapshot) canvas.set(snapshot);
-      delayCs = 0; trans = -1; dispose = 0;
+    let fr;
+    while((fr = dec.next())){
+      if(opts && opts.visit) opts.visit(fr.index, fr.canvas);
+      if(only === null || fr.index === only) frames.push({rgba: fr.rgba, delayCs: fr.delayCs, width: fr.width, height: fr.height});
+      else frames.push({delayCs: fr.delayCs, width: fr.width, height: fr.height});
+      if(only !== null && fr.index === only) break;
     }
-    return {width, height, frames};
+    return {width: dec.width, height: dec.height, frames};
   }
 
   function interlacedRows(h){
@@ -612,7 +648,7 @@
     token++;
     if(typeof document === 'undefined') return;
     const old = document.getElementById('mcut');
-    if(old) old.remove();
+    if(old){ clearTimeout(old._timer); old.remove(); }
   }
 
   function coverBox(stage, fw, fh){
@@ -767,8 +803,14 @@
           layer._shown = shown;
           let frame = playback.frames[shown];
           if(playback.stream){
-            const one = decodeGif(playback.bytes, {only: shown});
-            const rgba = one.frames[one.frames.length - 1].rgba;
+            // Walk forward from the previous frame. Re-decoding 0..N on every
+            // tick was O(n^2) and allocated a full canvas each time — that
+            // crashed the tab after a handful of large streamed GIFs.
+            if(!playback.decoder) playback.decoder = createGifDecoder(playback.bytes);
+            if(playback.decoder.seen > shown) playback.decoder.reset();
+            const one = playback.decoder.until(shown);
+            const rgba = one && one.rgba;
+            if(!rgba) return;
             const masks = playback.plan.objects.map(obj=>obj.masks[shown]);
             const plateSrc = playback.plan.plate ? {rgba:playback.plan.plate, known:playback.plan.plateKnown} : null;
             const drawn = compose(rgba, playback.width, playback.height, masks, plateSrc);
