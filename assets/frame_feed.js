@@ -17,11 +17,12 @@
     had:1, our:1, out:1, now:1, one:1, two:1, new:1, any:1, still:1, even:1,
     over:1, only:1, very:1, like:1, get:1, got:1, don:1, dont:1, did:1,
     didn:1, does:1, his:1, her:1, she:1, him:1, here:1, there:1, too:1,
-    via:1, http:1, https:1, www:1, com:1, gif:1, src:1, safe:1
+    via:1, http:1, https:1, www:1, com:1, gif:1, src:1, safe:1,
+    say:1, because:1, where:1, pls:1, just:1, him:1, let:1, going:1,
+    view:1, una:1, dey:1, wan:1, tok:1, make:1, see:1, na:1
   };
   // light class/place expansions so a "person" cut can match "people"/"man"
   var SYN = {
-    person:['person','people','man','men','woman','women','child','children','boy','girl','crowd'],
     chair:['chair','seat','stool','bench'],
     bowl:['bowl','plate','dish'],
     laptop:['laptop','computer','screen'],
@@ -35,17 +36,21 @@
 
   function words(s){
     if(!s) return [];
-    return String(s).toLowerCase().replace(/[#@]/g, ' ').match(/[a-z0-9']{3,}/g) || [];
+    return String(s).toLowerCase().replace(/[#@\[\]]/g, ' ').match(/[a-z0-9']{3,}/g) || [];
   }
   function tokens(s){
-    var out = [], seen = Object.create(null), i, w;
-    var list = Array.isArray(s) ? s : words(s);
+    var out = [], seen = Object.create(null), i, j, parts, w;
+    var list = Array.isArray(s) ? s : [s];
     for(i = 0; i < list.length; i++){
-      w = String(list[i] || '').toLowerCase().replace(/'+/g, "'").replace(/^'+|'+$/g, '');
-      if(!w || w.length < 3 || STOP[w] || /^cut\d+$/.test(w) || /^\d+$/.test(w)) continue;
-      if(seen[w]) continue;
-      seen[w] = 1;
-      out.push(w);
+      parts = words(list[i]);
+      for(j = 0; j < parts.length; j++){
+        w = parts[j].replace(/'+/g, "'").replace(/^'+|'+$/g, '');
+        if(!w || w.length < 3 || STOP[w] || /^cut\d+$/.test(w) || /^\d+$/.test(w)) continue;
+        if(w.length > 14 && /\d/.test(w)) continue; // medium hashes, not scene words
+        if(seen[w]) continue;
+        seen[w] = 1;
+        out.push(w);
+      }
     }
     return out;
   }
@@ -101,11 +106,11 @@
     var bag = Object.create(null);
     addTok(bag, [frame.card, frame.place, frame.cap], 2);
     objects.forEach(function(o){
-      var w = o.dragged ? 4 : 2;
+      var distinctive = o.klass && o.klass !== 'person' && o.klass !== 'foreground';
+      var w = (o.dragged ? 8 : 6) + (distinctive ? 4 : 0);
       addTok(bag, [o.klass, o.label, o.name], w);
-      addTok(bag, [o.zone.split('-')[0], o.zone.split('-')[1]], o.dragged ? 2 : 1);
+      addTok(bag, [o.zone.split('-')[0], o.zone.split('-')[1]], o.dragged ? 3 : 1);
     });
-    safes.forEach(function(s){ addTok(bag, s.line, 3); });
     if(input.extra) addTok(bag, input.extra, 2);
     var tokList = Object.keys(bag);
     var sig = [frame.id || frame.dir || frame.cap || '', frame.card || '', frame.place || '']
@@ -134,12 +139,22 @@
       if(bag[w]){ s += bag[w]; hits.push(w); }
     }
     if(tweet.card && state.card && String(tweet.card) === String(state.card)) s += 5;
-    // bonus: a dragged object class or zone still matching
+    if(state.safes && state.safes.length){
+      var safeScore = 0;
+      state.safes.forEach(function(safe){
+        var st = tokens(safe.line).filter(function(w){ return w.length >= 5; });
+        var n = 0, k;
+        for(k = 0; k < st.length; k++){ if(tw.indexOf(st[k]) >= 0) n++; }
+        if(n >= 2){ safeScore += 2 * n; hits.push('safe:' + n); }
+      });
+      if(safeScore > 8) safeScore = 8;
+      s += safeScore;
+    }
     if(state.objects){
       state.objects.forEach(function(o){
         if(!o.dragged) return;
         var k = tokens([o.klass, o.label, o.name, o.zone]);
-        k.forEach(function(tok){ if(bag[tok] && tw.indexOf(tok) >= 0) s += 2; });
+        k.forEach(function(tok){ if(tw.indexOf(tok) >= 0) s += 2; });
       });
     }
     return {score: Math.round(s * 100) / 100, hits: hits};
@@ -169,6 +184,7 @@
 
   var tweets = [];
   var safesAll = [];
+  var story = null;
   var cutsManifest = null;
   var packMeta = {}; // medium_image_id -> {labels, klasses}
   var lastSig = '';
@@ -277,10 +293,10 @@
       if(m && m.chars) m.chars.forEach(function(c){ if(c && c.name) names.push(c.name); });
       if(m && m.objs) m.objs.forEach(function(o){ if(o && o.label) names.push(o.label); });
     }catch(e){}
-    document.querySelectorAll('#ents .chip, #map .ph').forEach(function(e){
-      var n = e.title || e.dataset.name || (e.querySelector && e.querySelector('.lab') && e.querySelector('.lab').textContent) || e.textContent;
-      if(n) names.push(String(n).trim());
-    });
+    try{
+      if(story && Array.isArray(story.characters)) story.characters.forEach(function(c){ if(c && c.name) names.push(c.name); });
+      if(story && Array.isArray(story.objects)) story.objects.forEach(function(o){ if(o && o.label) names.push(o.label); });
+    }catch(e){}
     return names;
   }
 
@@ -295,12 +311,21 @@
     var world = (document.getElementById('world') || {}).textContent || '';
     if(world && !/^from /i.test(world) && world !== '—') place = world;
     var extra = readChars();
+    if(story && story.current_card && !card) card = String(story.current_card).toLowerCase();
+    if(story && story.current_place && !place) place = story.current_place;
     var safes = safesAll.filter(function(s){ return !card || String(s.card || '').toLowerCase() === card; });
     try{
       (root.CUR && root.CUR.lines || []).forEach(function(l){
         if(l && l.line) safes.push({line: l.line, card: l.card || card, src: l.src || 'cur'});
       });
     }catch(e){}
+    var seenSafe = Object.create(null);
+    safes = safes.filter(function(s){
+      var k = String(s.line || '').replace(/\s+/g, ' ').trim();
+      if(!k || seenSafe[k]) return false;
+      seenSafe[k] = 1;
+      return true;
+    });
     return buildState({
       id: id,
       url: url,
@@ -493,10 +518,11 @@
     hookMount(); hookChoose(); hookDebug();
     document.addEventListener('pointerup', onPointerUp, true);
     document.addEventListener('pointercancel', onPointerUp, true);
-    Promise.all([loadJson('data/tweets_all.json'), loadJson('data/precisions.json'), loadJson('data/medium_cuts.json')]).then(function(pair){
+    Promise.all([loadJson('data/tweets_all.json'), loadJson('data/precisions.json'), loadJson('data/medium_cuts.json'), loadJson('data/state.json')]).then(function(pair){
       ingestTweets(pair[0]);
       safesAll = Array.isArray(pair[1]) ? pair[1] : [];
       cutsManifest = pair[2] || {assets:[]};
+      story = pair[3] && !Array.isArray(pair[3]) ? pair[3] : null;
       hookMount(); hookChoose(); hookDebug();
       rememberCutMeta();
       evaluate('start');

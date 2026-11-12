@@ -42,12 +42,27 @@ function backdrop(set,force){ if(!libPin.allow(set))return; if(Date.now()<HOLD)r
   if(isCold&&window.ThrydMediumCuts) try{ ThrydMediumCuts.detach(); }catch(e){}
   clearInterval(bgTimer); bgTimer=null; const imgs=[$('bgA'),$('bgB')];
   // load into the hidden image; the visible one stays up until the new view is decoded (no black/partial frame)
-  const vis=imgs.findIndex(i=>i.classList.contains('on')); bgFlip=vis===0?1:(vis===1?0:bgFlip^1); const on=imgs[bgFlip],off=imgs[bgFlip^1];
+  const vis=imgs.findIndex(i=>i.classList.contains('on'));
+  // After cuts attach, neither img has .on (the plate is what is showing). Keep the
+  // last shown slot as outgoing and always load the incoming GIF into the other one.
+  let next=(vis===0||vis===1)?vis^1:bgFlip^1;
+  if(imgs[next]&&imgs[next].classList.contains('on')) next^=1;
+  bgFlip=next; const on=imgs[bgFlip],off=imgs[bgFlip^1];
+  const wantUrl=remoteSet(set)?(set.url||''):'';
+  const srcIs=img=>{
+    if(!img||!img.naturalWidth) return false;
+    if(!wantUrl) return true;
+    const cur=img.currentSrc||img.src||'';
+    if(!cur) return false;
+    const tail=u=>{try{return decodeURIComponent((String(u).split('?')[0].split('#')[0].split('/').pop()||'')).toLowerCase();}catch(e){return String(u).toLowerCase();}};
+    return cur===wantUrl || (tail(cur)===tail(wantUrl) && tail(cur).length>0);
+  };
   const capText=(remoteSet(set)?(set.medium_image_id||set.label||''):(set.label||''))+viewTag(set);
   let shown=false; const flip=()=>{
     if(shown)return; if(!(bgSet===set||sameView(bgSet,set)))return;
-    // never flip to a slot without pixels (keeps the outgoing GIF up on a slow switch)
-    if(!(on&&on.naturalWidth>0)) return;
+    // never flip to a slot without the incoming pixels (keeps the outgoing GIF up on a slow switch).
+    // naturalWidth alone is not enough: a reused <img> can still report the previous file after src is changed.
+    if(!srcIs(on)) return;
     shown=true;
     const hadCut=!!document.getElementById('mcut');
     on.classList.add('on');
@@ -61,7 +76,7 @@ function backdrop(set,force){ if(!libPin.allow(set))return; if(Date.now()<HOLD)r
     revealStage();
     if(heldTicker){ const t=heldTicker; heldTicker=null; ticker(t[0],t[1],t[2]); }
   };
-  const whenReady=(img,go)=>{const ok=()=>{if(bgSet!==set||!img.naturalWidth)return; go();}; if(img.complete&&img.naturalWidth)return ok(); img.addEventListener('load',ok,{once:true}); if(img.decode)img.decode().then(ok,()=>{});};
+  const whenReady=(img,go)=>{const ok=()=>{if(!(bgSet===set||sameView(bgSet,set))||!srcIs(img))return; go();}; img.addEventListener('load',ok,{once:true}); if(img.decode)img.decode().then(ok,()=>{}); if(img.complete&&srcIs(img)) ok();};
   on.onerror=null; off.onerror=null; on.onload=null;
   if(remoteSet(set)){
     // original Medium file, one request. The browser plays a GIF's own timing. No frame split, no retry loop.
@@ -91,7 +106,7 @@ function backdrop(set,force){ if(!libPin.allow(set))return; if(Date.now()<HOLD)r
     };
     let capArmed=false, capAt=0;
     const stillThis=()=>bgSet===set||sameView(bgSet,set);
-    const decoded=()=>!!(on&&on.naturalWidth);
+    const decoded=()=>srcIs(on);
     const armCap=()=>{
       if(!isCold||capArmed||shown||cutsDone||!stillThis()||!decoded()) return;
       capArmed=true;
@@ -106,7 +121,8 @@ function backdrop(set,force){ if(!libPin.allow(set))return; if(Date.now()<HOLD)r
       }, 100);
       startAttach();
     } else {
-      whenReady(on, ()=>{ flip(); startAttach(); });
+      // flip first, and only attach (which may hide the img / replace #mcut) after a real flip
+      whenReady(on, ()=>{ flip(); if(shown) startAttach(); });
     }
     return;
   }

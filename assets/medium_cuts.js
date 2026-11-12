@@ -102,10 +102,11 @@
     if(row.jN || row.card || row.run) return reject('agenda_bind');
     if(row.object_id || row.state_id) return reject('unproven_id');
     if(row.status !== 'ready') return reject(row.status || 'awaiting_manifest');
-    const kind = row.kind === 'gif' || row.kind === 'still' ? row.kind : (set.extension === 'gif' ? 'gif' : 'still');
+    const kind = row.kind === 'gif' || row.kind === 'still' ? row.kind : (row.still ? 'still' : (set.extension === 'gif' ? 'gif' : 'still'));
     if(kind === 'gif' && set.extension && set.extension !== 'gif') return reject('kind_mismatch');
-    if(kind === 'still' && set.extension === 'gif') return reject('kind_mismatch');
+    // A still pack may be one exact frame cut from a GIF; the live set can still be that GIF.
     const frameCount = kind === 'gif' ? (row.delays_cs || []).length : 1;
+    const stillFrame = kind === 'still' ? Math.max(0, row.still_frame|0) : 0;
     if(kind === 'gif' && frameCount < 1) return reject('delay_mismatch');
     const w = row.frame_size && row.frame_size[0], h = row.frame_size && row.frame_size[1];
     if(!w || !h) return reject('mask_size');
@@ -124,7 +125,7 @@
       const known = unpackMask(row.plate_known_bits, w, h);
       if(rawPlate.length === w * h * 4 && known){ plate = rawPlate; plateKnown = known; }
     }
-    return {ok:true, reason:null, kind, frameCount, width:w, height:h, delays_cs: kind === 'gif' ? row.delays_cs.slice() : [0], objects, plate, plateKnown};
+    return {ok:true, reason:null, kind, frameCount, width:w, height:h, delays_cs: kind === 'gif' ? row.delays_cs.slice() : [0], still: kind === 'still', still_frame: stillFrame, objects, plate, plateKnown};
   }
 
   function delaysMatch(parsed, delays){
@@ -241,6 +242,7 @@
     const fill = plate && plate.rgba;
     const sprites = [];
     const holeNeed = new Uint8Array(w * h);
+    const holeKnown = new Uint8Array(w * h);
     (masks || []).forEach((raw, k)=>{
       const mask = asMask(raw, w, h);
       const box = inkBox(mask, w, h);
@@ -253,15 +255,26 @@
         const p = i * 4;
         sprite[s] = src[p]; sprite[s+1] = src[p+1]; sprite[s+2] = src[p+2]; sprite[s+3] = src[p+3];
         if(!hole) continue;
-        if(known && known[i] && fill){
-          plateOut[p] = fill[p]; plateOut[p+1] = fill[p+1]; plateOut[p+2] = fill[p+2]; plateOut[p+3] = fill[p+3];
-          holeNeed[i] = 0;
-        }else{
-          holeNeed[i] = 1;
-        }
+        // remember known plate samples; apply them only if they cover the hole cleanly
+        if(known && known[i] && fill && fill[p+3] === 255) holeKnown[i] = 1;
+        holeNeed[i] = 1;
       }
       sprites.push({x:box.x, y:box.y, w:box.w, h:box.h, rgba:sprite});
     });
+    let needN = 0, knownN = 0;
+    for(let i = 0; i < holeNeed.length; i++) if(holeNeed[i]){ needN++; if(holeKnown[i]) knownN++; }
+    // Sparse plate in a hole shows as ragged white or subject islands beside the shadow.
+    // Use plate (or a clean other-frame fill already baked into it) only when it covers the hole;
+    // otherwise the whole hole gets the darkened blurred fill.
+    const usePlate = needN && knownN * 10 >= needN * 9;
+    if(usePlate){
+      for(let i = 0; i < holeNeed.length; i++){
+        if(!holeNeed[i] || !holeKnown[i]) continue;
+        const p = i * 4;
+        plateOut[p] = fill[p]; plateOut[p+1] = fill[p+1]; plateOut[p+2] = fill[p+2]; plateOut[p+3] = fill[p+3];
+        holeNeed[i] = 0;
+      }
+    }
     let any = 0;
     for(let i = 0; i < holeNeed.length; i++) if(holeNeed[i]){ any = 1; break; }
     if(any){
@@ -707,6 +720,22 @@
             const fill = framesFill(plan, decoded.frames.map(fr=>fr.rgba)); plan.plate = fill.rgba; plan.plateKnown = fill.known;
           }
           return {decoded, plan};
+        }
+        if(plan.kind === 'still'){
+          // One exact packed frame: if the source is a GIF, pick still_frame; otherwise decode the still.
+          try{
+            const g = decodeGif(bytes);
+            if(g && g.frames && g.frames.length && g.width === plan.width && g.height === plan.height){
+              const fi = Math.max(0, Math.min(g.frames.length - 1, plan.still_frame|0));
+              const fr = g.frames[fi];
+              if(fr && fr.rgba){
+                const decoded = {rgba:fr.rgba, width:g.width, height:g.height};
+                const fill = framesFill(Object.assign({}, plan, {kind:'still', frameCount:1}), [decoded.rgba]);
+                plan.plate = fill.rgba; plan.plateKnown = fill.known;
+                return {decoded, plan};
+              }
+            }
+          }catch(e){}
         }
         if(opts.stillRgba) return {decoded:{rgba:opts.stillRgba, width:plan.width, height:plan.height}, plan};
         return stillRgba(bytes, plan.width, plan.height).then(rgba=>({decoded:{rgba, width:plan.width, height:plan.height}, plan}));
