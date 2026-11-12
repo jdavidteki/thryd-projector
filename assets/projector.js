@@ -28,12 +28,13 @@ const viewPre=new Map();
 function viewKey(set){ return (set && (set.dir || set.url || set.medium_image_id || set.src || '')) || ''; }
 function releaseImgSlot(img){
   if(!img) return;
-  try{ img.removeAttribute('src'); img.src=''; img.srcset=''; img.style.opacity=''; img.style.transition=''; }catch(e){}
+  // Do not assign src='' — the browser resolves that to the page URL and keeps a slot "loaded".
+  try{ img.removeAttribute('src'); img.removeAttribute('srcset'); img.style.opacity=''; img.style.transition=''; }catch(e){}
 }
 function releasePre(key){
   const pres=viewPre.get(key);
   if(!pres) return;
-  pres.forEach(im=>{ try{ im.src=''; im.srcset=''; }catch(e){} });
+  pres.forEach(im=>{ try{ im.removeAttribute('src'); im.removeAttribute('srcset'); }catch(e){} });
   viewPre.delete(key);
 }
 function releaseView(key, keepImgs){
