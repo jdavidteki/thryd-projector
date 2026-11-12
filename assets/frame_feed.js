@@ -5,15 +5,16 @@
 // end re-evaluate so these functions keep firing. The 160x132 bubble still
 // only ever shows the official embed (no names). Nothing is posted.
 (function(root){
-  var TICK_MS = 4000;
+  var TICK_MS = 4000;            // quiet re-check interval
+  var POP_HOLD_MS = TICK_MS + 3000; // a popped tweet now stays 7000 ms (was replaced by the next 4000 ms tick) before anything replaces it
   var FEED_DEBUG = false;
   try{ FEED_DEBUG = /(?:^|[?&])debug=1(?:&|$)/.test(String((typeof location!=='undefined'&&location.search)||'')); }catch(e){}
   function feedLog(){ if(!FEED_DEBUG) return; try{ console.info.apply(console, ['[thryd-feed]'].concat([].slice.call(arguments))); }catch(e){} }
 
   var TOP_N = 8;
   var TOP_K = 8;
-  var NO_REPEAT = 10;
-  var MIN_CANDIDATES = 5;
+  var NO_REPEAT = 3;     // skip anything among the last 3 popped
+  var MIN_SCORE = 6;     // a genuine match needs at least this much object/attribute/theme overlap
   var BUBBLE_W = 160;
   var BUBBLE_H = 132;
   var STOP = {
@@ -68,6 +69,17 @@
     police:['sars','endsars','officer']
   };
   var SYN = RELATED;
+  // Terms that never make a match on their own: frame zones, motion and size words, and the
+  // generic person family (almost every frame has a person). They can add to a real match's score.
+  var WEAK = {
+    left:1, right:1, center:1, centre:1, top:1, middle:1, bottom:1, moving:1, motion:1,
+    large:1, small:1, medium:1, tiny:1, big:1, huge:1,
+    person:1, people:1, crowd:1, someone:1, body:1, figure:1, foreground:1, object:1,
+    man:1, men:1, woman:1, women:1, guest:1, friend:1, stranger:1, guy:1,
+    want:1, know:1, think:1, said:1, come:1, take:1, need:1, look:1, thing:1, things:1, time:1, good:1, really:1
+  };
+  function weakTerm(w){ return !!(WEAK[w] || WEAK[stem(w)]); }
+  function isDirect(q, w){ var d = q && q.__direct; return !!(d && (d[w] || d[stem(w)])); }
 
   function words(s){
     if(!s) return [];
@@ -205,13 +217,18 @@
     if(input.extra) addTok(bag, input.extra, 2);
     if(input.related) addTok(bag, input.related, 2);
     if(input.theme) addTok(bag, input.theme, 3);
+    // words that only come from the card's safe lines (not the frame, its objects or its theme)
+    var sceneTerms = Object.create(null);
+    Object.keys(bag).forEach(function(k){ expand(k).forEach(function(ex){ if(ex.note !== 'related') sceneTerms[ex.term] = 1; }); });
     safes.forEach(function(s){ addTok(bag, s.line, 1.2); });
+    var lineOnly = Object.create(null);
+    Object.keys(bag).forEach(function(k){ expand(k).forEach(function(ex){ if(ex.note !== 'related' && !sceneTerms[ex.term]) lineOnly[ex.term] = 1; }); });
     var tokList = Object.keys(bag);
     var sig = [frame.id || frame.dir || frame.cap || '', frame.card || '', frame.place || '']
       .concat(objects.map(function(o){ return [o.id, o.klass, o.zone, o.dragged ? 'd' : 's', Math.round(o.x/10), Math.round(o.y/10)].join(':'); }))
       .concat(safes.map(function(s){ return 'safe:' + String(s.line).slice(0, 40); }))
       .join('|');
-    return {frame: frame, objects: objects, safes: safes, card: frame.card || '', tokens: tokList, weights: bag, signature: sig};
+    return {frame: frame, objects: objects, safes: safes, card: frame.card || '', tokens: tokList, weights: bag, lineOnly: lineOnly, signature: sig};
   }
 
   function tweetOk(t){
@@ -241,6 +258,8 @@
   }
   function compileQuery(state){
     var q = Object.create(null);
+    var direct = Object.create(null); // the scene's own terms (exact or stem), not related-map neighbours
+    Object.defineProperty(q, '__direct', {value: direct, enumerable: false});
     function put(term, weight, src){
       if(!term) return;
       tokens(term).forEach(function(w){
@@ -248,6 +267,7 @@
           var factor = ex.note === 'exact' ? 1 : (ex.note === 'stem' ? 0.8 : 0.55);
           var wt = (weight || 1) * factor;
           if(!q[ex.term] || q[ex.term].weight < wt) q[ex.term] = {weight: wt, src: src || 'scene', how: ex.note};
+          if(ex.note !== 'related') direct[ex.term] = 1;
         });
       });
     }
@@ -260,7 +280,7 @@
     if(!state.query) state.query = compileQuery(state);
     var line = tweet.line || '';
     var tw = tokens(line);
-    var i, w, s = 0, hits = [], seen = Object.create(null);
+    var i, w, s = 0, hits = [], seen = Object.create(null), content = 0, terms = [], seenT = Object.create(null);
     for(i = 0; i < tw.length; i++){
       w = tw[i];
       var hit = lookupQuery(state.query, w);
@@ -268,6 +288,16 @@
       var add = hit.weight * idfOf(w);
       s += add;
       if(!seen[w]){ seen[w] = 1; hits.push(w); }
+      // genuine overlap: the tweet uses one of the scene's own object, attribute or theme terms
+      // (exact or stem). Related-map neighbours, prefix partials and zone/motion/size/person-family
+      // words can raise a real match's rank but never make a match on their own.
+      var lo = state.lineOnly || {};
+      var fromLines = !!(lo[w] || (lo[stem(w)] && !(state.weights && state.weights[w] && !lo[w])));
+      // words found only in the card's lines count through the 2+ shared-words line check below, never alone
+      if(hit.how !== 'partial' && hit.how !== 'related' && isDirect(state.query, w) && !weakTerm(w) && !fromLines){
+        content += add;
+        if(!seenT[w]){ seenT[w] = 1; terms.push(w); }
+      }
     }
     if(tweet.card && state.card && String(tweet.card) === String(state.card)) s += 5;
     if(state.safes && state.safes.length){
@@ -280,6 +310,8 @@
       });
       if(safeScore > 8) safeScore = 8;
       s += safeScore;
+      // 2+ distinctive words shared with one of the card's lines is a real theme match
+      if(safeScore > 0){ content += Math.max(safeScore, MIN_SCORE); terms.push('safe'); }
     }
     // every object in the frame scores; a dragged one gets a bonus
     if(state.objects){
@@ -296,11 +328,16 @@
         });
       });
     }
-    return {score: Math.round(s * 100) / 100, hits: hits};
+    return {score: Math.round(s * 100) / 100, hits: hits, content: Math.round(content * 100) / 100, terms: terms};
   }
 
   function rowOf(t, r){
-    return {id: String(t.id), score: r.score, hits: r.hits, line: t.line, src: t.src, purged: !!t.purged, card: t.card || null, tweet: t};
+    return {id: String(t.id), score: r.score, content: r.content || 0, terms: r.terms || [], hits: r.hits, line: t.line, src: t.src, purged: !!t.purged, card: t.card || null, tweet: t};
+  }
+  // A genuine scene match: real object/attribute/theme overlap with a sensible minimum score.
+  function qualifies(r, minScore){
+    var min = minScore == null ? MIN_SCORE : minScore;
+    return !!(r && r.terms && r.terms.length && r.content >= min && r.score >= min);
   }
   function rankTweets(list, state){
     if(!idfMap || idfN !== (list || []).filter(tweetOk).length) buildIdf(list);
@@ -337,36 +374,22 @@
     recent = recent || [];
     return (items || []).filter(function(r){ return recent.indexOf(String(r.id)) < 0; });
   }
-  // Widen score tiers until at least MIN_CANDIDATES connected tweets remain.
-  // Never return an unrelated (zero-score) tweet.
-  function widen(matched, need){
-    need = need || MIN_CANDIDATES;
-    var floors = [6, 3, 1.5, 0.5, 0.0001];
-    var i, pool = [];
-    for(i = 0; i < floors.length; i++){
-      pool = (matched || []).filter(function(r){ return r.score >= floors[i]; });
-      if(pool.length >= need) return pool;
-    }
-    return (matched || []).filter(function(r){ return r.score > 0; });
-  }
+  // No quota and no widening: only genuine matches qualify, anything among the last 3 popped
+  // is skipped, and when nothing is left the feed stays quiet (choice null) for this tick.
   function chooseOne(list, state, opts){
     opts = opts || {};
-    var recent = (opts.recent || []).map(String);
+    var recent = (opts.recent || []).map(String).slice(-NO_REPEAT);
     var k = opts.k || TOP_K;
-    var need = opts.min || MIN_CANDIDATES;
     var rng = opts.rng || Math.random;
     var ranked = rankTweets(list, state);
-    var connected = widen(ranked.matched, need);
-    var pool = notRecent(connected, recent);
-    if(pool.length > k) pool = pool.slice(0, Math.max(k, need));
-    if(!pool.length) pool = notRecent(ranked.matched, recent);
-    if(!pool.length) pool = connected.slice(0, Math.max(k, need)); // all recent: still a connected tweet, never a zero-score fallback
-    if(!pool.length) return {choice: null, pool: [], matched: ranked.matched, fallback: false, cursor: opts.cursor || 0};
+    var genuine = ranked.matched.filter(function(r){ return qualifies(r, opts.minScore); });
+    var pool = notRecent(genuine, recent).slice(0, k);
+    if(!pool.length) return {choice: null, quiet: true, pool: [], genuine: genuine.length, matched: ranked.matched, fallback: false, cursor: opts.cursor || 0, terms: []};
     var chosen = weightedPick(pool, rng);
-    return {choice: chosen, pool: pool, matched: ranked.matched, fallback: false, cursor: opts.cursor || 0, terms: (chosen && chosen.hits) || []};
+    return {choice: chosen, quiet: false, pool: pool, genuine: genuine.length, matched: ranked.matched, fallback: false, cursor: opts.cursor || 0, terms: (chosen && (chosen.terms && chosen.terms.length ? chosen.terms : chosen.hits)) || []};
   }
 
-  var api = {TICK_MS: TICK_MS, TOP_N: TOP_N, TOP_K: TOP_K, NO_REPEAT: NO_REPEAT, MIN_CANDIDATES: MIN_CANDIDATES, BUBBLE_W: BUBBLE_W, BUBBLE_H: BUBBLE_H, tokens: tokens, stem: stem, expand: expand, score: score, pick: pick, rankTweets: rankTweets, weightedPick: weightedPick, chooseOne: chooseOne, widen: widen, buildState: buildState, buildIdf: buildIdf, tweetOk: tweetOk, zoneOf: zoneOf};
+  var api = {TICK_MS: TICK_MS, POP_HOLD_MS: POP_HOLD_MS, TOP_N: TOP_N, TOP_K: TOP_K, NO_REPEAT: NO_REPEAT, MIN_SCORE: MIN_SCORE, BUBBLE_W: BUBBLE_W, BUBBLE_H: BUBBLE_H, tokens: tokens, stem: stem, expand: expand, score: score, pick: pick, rankTweets: rankTweets, weightedPick: weightedPick, chooseOne: chooseOne, qualifies: qualifies, weakTerm: weakTerm, buildState: buildState, buildIdf: buildIdf, tweetOk: tweetOk, zoneOf: zoneOf};
   if(typeof module !== 'undefined' && module.exports) module.exports = api;
   root.ThrydFrameFeed = api;
 
@@ -382,6 +405,9 @@
   var lastSig = '';
   var lastPick = null;
   var recentIds = [];
+  var shownAt = 0;          // when the current popup was mounted
+  var pendingChoice = null; // a pick handed to the projector's say(); mounted as-is
+  var nextTimer = null;
   var rotateCursor = 0;
   var rawMount = null;
   var timer = null;
@@ -494,6 +520,7 @@
     return names;
   }
 
+  function mcutMid(){ var l = document.getElementById('mcut'); return (l && l._mid) || ''; }
   function midKey(id){
     return String(id || '').replace(/\*/g, '_');
   }
@@ -577,7 +604,7 @@
     try{ dbg = (root.thrydDebug && root.thrydDebug()) || {}; }catch(e){ dbg = {}; }
     var cap = (dbg.cap) || ((document.getElementById('cap') || {}).textContent || '');
     var url = dbg.url || '';
-    var id = gifFrom(url) || gifFrom(cap) || gifFrom(dbg.bg || '');
+    var id = gifFrom(url) || gifFrom(cap) || gifFrom(dbg.bg || '') || mcutMid();
     var card = metaCard();
     var place = '';
     var world = (document.getElementById('world') || {}).textContent || '';
@@ -634,7 +661,7 @@
   function rememberCutMeta(){
     var dbg = {};
     try{ dbg = (root.thrydDebug && root.thrydDebug()) || {}; }catch(e){}
-    var mid = gifFrom(dbg.url || '') || gifFrom(dbg.cap || '') || gifFrom((document.getElementById('cap') || {}).textContent || '');
+    var mid = gifFrom(dbg.url || '') || gifFrom(dbg.cap || '') || gifFrom((document.getElementById('cap') || {}).textContent || '') || mcutMid();
     if(!mid) return;
     if(packMeta[mid] && !packMeta[mid].pending){ applyPackMeta(mid); return; }
     if(packMeta[mid] && packMeta[mid].pending) return;
@@ -693,7 +720,17 @@
     b.style.left = x + 'px';
     b.style.top = Math.min(innerHeight - BH / 2 - M, Math.max(BH / 2 + M, (r.top + r.height / 2) || (innerHeight * 0.25))) + 'px';
     var item = choice.tweet || {id: choice.id, line: choice.line, src: choice.src, purged: choice.purged};
-    rawMount(b, item, baseMs == null ? 5000 : baseMs);
+    shownAt = Date.now();
+    rawMount(b, item, baseMs == null ? 8000 : baseMs); // was 5000; +3000 (nominal: the embed's own timer and POP_HOLD_MS set the stay)
+  }
+  // While a popup is up and younger than POP_HOLD_MS, nothing replaces it.
+  function holdLeft(){
+    var b = document.getElementById('bubble');
+    if(!b || !shownAt) return 0;
+    var up = b.classList.contains('on') || b.classList.contains('embed-wait');
+    if(!up) return 0;
+    var left = shownAt + POP_HOLD_MS - Date.now();
+    return left > 0 ? left : 0;
   }
 
   function rememberShown(id){
@@ -716,6 +753,12 @@
   }
   function evaluate(reason){
     if(!tweets.length) return null;
+    var held = holdLeft();
+    if(held > 0){
+      // the current tweet keeps its full stay; a drag re-checks the moment the stay ends
+      if(reason === 'drag'){ clearTimeout(api._dragT); api._dragT = setTimeout(function(){ evaluate('drag-after-hold'); }, held + 30); }
+      return record({at: new Date().toISOString(), reason: reason || 'tick', changed: false, quiet: false, held: true, hold_left_ms: held, picked: []});
+    }
     var shown = nextShown(reason || 'tick');
     var state = shown.state;
     var res = shown.res;
@@ -725,6 +768,8 @@
       at: new Date().toISOString(),
       reason: reason || 'tick',
       changed: !!(top && true),
+      quiet: !top,
+      genuine: res.genuine || 0,
       fallback: false,
       matched_terms: (top && top.hits) || res.terms || [],
       populated: {
@@ -745,7 +790,7 @@
         tokens: state.tokens.slice(0, 24),
         signature: state.signature
       },
-      picked: (top ? [top] : []).concat(pool.filter(function(r){ return !top || r.id !== top.id; })).slice(0, TOP_K).map(function(r){ return {id: r.id, score: r.score, hits: (r.hits || []).slice(0, 8), line: String(r.line || '').slice(0, 80)}; })
+      picked: (top ? [top] : []).concat(pool.filter(function(r){ return !top || r.id !== top.id; })).slice(0, TOP_K).map(function(r){ return {id: r.id, score: r.score, content: r.content, terms: (r.terms || []).slice(0, 8), hits: (r.hits || []).slice(0, 8), line: String(r.line || '').slice(0, 80)}; })
     };
     record(row);
     if(top){
@@ -759,9 +804,17 @@
     if(root.ThrydTweet._feedHooked) return;
     rawMount = root.ThrydTweet.mount.bind(root.ThrydTweet);
     root.ThrydTweet.mount = function(host, item, baseMs){
-      if(host && host.id === 'bubble' && tweets.length){
-        var shown = nextShown('bubble');
-        if(shown.choice && shown.choice.tweet) return rawMount(host, shown.choice.tweet, baseMs);
+      if(host && host.id === 'bubble'){
+        // the scene feed owns the popup: a genuine match or nothing (no random deck fallback)
+        var choice = (pendingChoice && Date.now() - pendingChoice.at < 2000) ? pendingChoice.choice : null; pendingChoice = null;
+        if(!choice){
+          if(holdLeft() > 0) return Promise.resolve({ok: false, reason: 'hold'});
+          var shown = tweets.length ? nextShown('bubble') : null;
+          choice = shown && shown.choice;
+          if(shown) record({at: new Date().toISOString(), reason: 'bubble', changed: !!choice, quiet: !choice, picked: choice ? [{id: choice.id, score: choice.score, terms: choice.terms}] : []});
+        }
+        if(choice && choice.tweet){ shownAt = Date.now(); return rawMount(host, choice.tweet, baseMs); }
+        return Promise.resolve({ok: false, reason: 'quiet'});
       }
       return rawMount(host, item, baseMs);
     };
@@ -772,11 +825,11 @@
     if(typeof root.thrydChoose !== 'function' || root.thrydChoose._feedHooked) return;
     var prev = root.thrydChoose;
     root.thrydChoose = function(lines){
-      if(tweets.length){
-        var shown = nextShown('choose');
-        if(shown.choice && shown.choice.tweet && shown.choice.score > 0) return shown.choice.tweet;
-      }
-      return prev(lines);
+      // quiet unless the scene has a genuine, not-recent match; never the shuffled deck
+      if(!tweets.length || holdLeft() > 0) return null;
+      var shown = nextShown('choose');
+      if(shown.choice && shown.choice.tweet){ pendingChoice = {choice: shown.choice, at: Date.now()}; return shown.choice.tweet; }
+      return null;
     };
     root.thrydChoose._feedHooked = true;
   }
@@ -853,12 +906,21 @@
       rememberCutMeta();
       evaluate('start');
     });
-    timer = setInterval(function(){
-      hookMount(); hookChoose(); hookDebug();
-      rememberCutMeta();
-      try{ if(document.body.classList.contains('dragmode')) return; }catch(e){}
-      evaluate('tick');
-    }, TICK_MS);
+    // quiet ticks re-check every TICK_MS; after a pop the next check waits the full POP_HOLD_MS
+    function loop(){
+      var wait = TICK_MS;
+      try{
+        hookMount(); hookChoose(); hookDebug();
+        rememberCutMeta();
+        if(!document.body.classList.contains('dragmode')){
+          var row = evaluate('tick');
+          if(row && row.held) wait = Math.max(250, row.hold_left_ms + 30);
+          else if(row && row.changed) wait = POP_HOLD_MS;
+        }
+      }catch(e){}
+      timer = setTimeout(loop, wait);
+    }
+    timer = setTimeout(loop, TICK_MS);
   }
 
   api.evaluate = function(reason){ return evaluate(reason || 'api'); };

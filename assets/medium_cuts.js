@@ -787,7 +787,7 @@
         const playback = got.stream ? {ok:true, width:got.plan.width, height:got.plan.height, frames: got.plan.delays_cs.map(d=>({playMs:playMs(d)})), stream:true, bytes:got.bytes, plan:got.plan} : planFrames(got.decoded, got.plan);
         if(!playback.ok || typeof document === 'undefined' || !stage) return playback;
         const layer = document.createElement('div');
-        layer.id = 'mcut'; layer._w = playback.width; layer._h = playback.height; layer._token = my;
+        layer.id = 'mcut'; layer._mid = set.medium_image_id; layer._w = playback.width; layer._h = playback.height; layer._token = my;
         layer._playback = playback;
         layer._box = coverBox(stage, playback.width, playback.height);
         const nsprite = playback.stream ? playback.plan.objects.length : playback.frames[0].sprites.length;

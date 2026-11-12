@@ -8,7 +8,7 @@
 (function(root){
   var HANDLE = 'notnotnotnotyn';
   var WIDGETS = 'https://platform.twitter.com/widgets.js';
-  var READ_MS = 20000;
+  var READ_MS = 23000; // was 20000; +3000 so tweets stay 3s longer
   var EMBED_WIDTH = 250; // X clamps createTweet to >=250px; the box is 260x220
 
   function statusId(value){

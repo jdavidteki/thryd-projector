@@ -158,26 +158,25 @@ test('stems and related words connect (horse -> horses/riding/stable, chair -> s
   assert.ok(/chair|seat|sit|stool|bench/.test(cblob), 'chair-related terms: ' + cblob.slice(0,200));
 });
 
-test('safes-only ties do not collapse to the complain tweet; picks stay connected', () => {
+test('safes-only: a pop needs 2+ distinctive words shared with one card line; otherwise quiet', () => {
   const state = safesOnly();
-  const top = Feed.pick(tweets, state, 8);
-  assert.ok(top.length >= 2, 'several connected tweets');
   const recent = [];
   const ids = [];
   for(let i = 0; i < 20; i++){
     const res = Feed.chooseOne(tweets, state, {recent, k: 8});
-    assert.ok(res.choice && res.choice.score > 0, 'every pick must be a non-zero match');
+    if(!res.choice){ assert.equal(res.quiet, true); continue; }
+    assert.ok(Feed.qualifies(res.choice) && (res.choice.terms || []).includes('safe'), 'line pop must share 2+ words with a card line');
     assert.notEqual(res.fallback, 'rotate');
     ids.push(res.choice.id);
     recent.push(res.choice.id);
-    if(recent.length > 10) recent.shift();
+    if(recent.length > 3) recent.shift();
   }
-  const unique = new Set(ids);
-  assert.ok(unique.size >= 8, '20 safes-only picks should yield many tweets, got ' + unique.size);
-  assert.ok(!ids.every(id => id === COMPLAIN), 'complain tweet is not the only winner');
+  assert.ok(ids.length >= 1, 'some line matches still pop');
+  const quietRes = Feed.chooseOne(tweets, state, {recent: ids.slice(-3)});
+  assert.ok(quietRes.choice === null || !ids.slice(-3).includes(quietRes.choice.id));
 });
 
-test('no-repeat window skips the last 10 shown', () => {
+test('no-repeat window skips the last 3 popped', () => {
   const state = weddingState();
   const recent = [];
   const ids = [];
@@ -185,42 +184,98 @@ test('no-repeat window skips the last 10 shown', () => {
     const res = Feed.chooseOne(tweets, state, {recent, k: 8});
     assert.ok(res.choice && res.choice.score > 0);
     const id = res.choice.id;
-    assert.equal(recent.includes(id), false, 'picked a recently shown id ' + id);
+    assert.equal(recent.slice(-3).includes(id), false, 'picked one of the last 3 popped ' + id);
     ids.push(id);
     recent.push(id);
-    if(recent.length > 10) recent.shift();
+    if(recent.length > 3) recent.shift();
   }
-  assert.ok(new Set(ids).size >= 8);
+  assert.equal(Feed.NO_REPEAT, 3);
+  assert.ok(new Set(ids).size >= 4);
 });
 
-test('20 consecutive picks over several scenes are all connected and mostly distinct', () => {
+test('20 consecutive ticks over several scenes: every pop is a genuine match, otherwise quiet', () => {
   const scenes = [weddingState(), chairState(), laptopState(), horseState(), safesOnly()];
   const w = weddingState(), c = chairState();
   assert.ok(w.tokens.includes('kunle') && w.tokens.includes('wedding') && w.safes.length);
   assert.ok(c.tokens.includes('chair'));
-  assert.ok(w.objects.some(o => o.x != null && o.klass));
   const wTop = Feed.pick(tweets, w, 8).map(r => r.id).join(',');
   const cTop = Feed.pick(tweets, c, 8).map(r => r.id).join(',');
   assert.notEqual(wTop, cTop, 'top-K sets must differ across scenes');
-
   const recent = [];
   const ids = [];
-  const lines = [];
-  const termLog = [];
+  let quiet = 0;
   for(let i = 0; i < 20; i++){
     const res = Feed.chooseOne(tweets, scenes[i % scenes.length], {recent, k: 8});
-    assert.ok(res.choice && res.choice.id, 'got a pick');
-    assert.ok(res.choice.score > 0, 'pick must be a non-zero match, got ' + res.choice.score + ' ' + (res.choice.line||'').slice(0,60));
-    assert.ok((res.choice.hits || []).length || (res.terms || []).length, 'matched terms logged');
+    if(!res.choice){ quiet++; assert.equal(res.quiet, true); continue; }
+    assert.ok(Feed.qualifies(res.choice), 'pop must be a genuine match: ' + res.choice.score + ' ' + (res.choice.line||'').slice(0,60));
+    assert.ok((res.choice.terms || []).length, 'matched scene terms logged');
+    assert.equal(recent.slice(-3).includes(res.choice.id), false);
     ids.push(res.choice.id);
-    lines.push(String(res.choice.line || '').split('\n')[0].slice(0, 60));
-    termLog.push((res.choice.hits || res.terms || []).slice(0, 6).join(','));
     recent.push(res.choice.id);
-    if(recent.length > 10) recent.shift();
+    if(recent.length > 3) recent.shift();
   }
-  const unique = new Set(ids);
-  assert.ok(unique.size >= 10, 'expected many distinct tweets in 20 picks, got ' + unique.size + ': ' + lines.join(' | '));
+  assert.ok(ids.length >= 10, 'most ticks on these scenes still pop, got ' + ids.length);
+  assert.ok(new Set(ids).size >= 8, 'pops stay varied, got ' + new Set(ids).size);
   assert.ok(!ids.every(id => id === COMPLAIN));
-  console.log('20-pick unique', unique.size, 'ids', ids);
-  console.log('20-pick terms', termLog);
+  console.log('20-tick pops', ids.length, 'quiet', quiet);
+});
+
+// ---- quiet rule (no quota, no widening) ----
+test('a genuine scene match pops and names the scene term it shares', () => {
+  const res = Feed.chooseOne(tweets, chairState(), {recent: [], k: 8, rng: () => 0});
+  assert.ok(res.choice, 'chair scene should pop');
+  assert.equal(res.quiet, false);
+  assert.ok(Feed.qualifies(res.choice));
+  assert.ok(res.choice.content >= Feed.MIN_SCORE);
+  assert.ok(/chair|brown/.test((res.choice.terms || []).join(' ')), 'shares a chair-scene term: ' + (res.choice.terms || []).join(','));
+});
+
+test('no genuine match stays quiet: no widening to zone, person-family or partial words', () => {
+  // zebra is not in the deck; before, the matcher widened to "center"/"middle" tweets to fill a quota
+  const zebra = Feed.buildState({objects:[{id:'cut1', label:'cut1', klass:'zebra', x:50, y:50}]});
+  const ranked = Feed.rankTweets(tweets, zebra);
+  assert.ok(ranked.matched.length > 0, 'the old matcher would have found zone-word matches');
+  const res = Feed.chooseOne(tweets, zebra, {recent: [], k: 8});
+  assert.equal(res.choice, null);
+  assert.equal(res.quiet, true);
+  assert.equal(res.pool.length, 0);
+  // two plain people in a frame is not a scene match on its own
+  const people = Feed.buildState({objects:[{id:'cut1', label:'cut1', klass:'person', x:50, y:50}, {id:'cut2', label:'cut2', klass:'person', x:20, y:60}]});
+  assert.equal(Feed.chooseOne(tweets, people, {recent: []}).choice, null);
+  // a frame with nothing readable is quiet
+  assert.equal(Feed.chooseOne(tweets, Feed.buildState({cap: '1*qwertyuiop.gif'}), {recent: []}).choice, null);
+  assert.equal(typeof Feed.widen, 'undefined', 'quota widening is gone');
+  assert.equal(Feed.MIN_CANDIDATES, undefined);
+});
+
+test('last-3 rule: once every genuine match is among the last 3 popped, the feed goes quiet', () => {
+  const laptop = laptopState();
+  const genuine = Feed.rankTweets(tweets, laptop).matched.filter(r => Feed.qualifies(r));
+  assert.ok(genuine.length >= 1 && genuine.length <= 3, 'laptop scene has a small genuine set: ' + genuine.length);
+  const recent = [];
+  for(let i = 0; i < genuine.length; i++){
+    const res = Feed.chooseOne(tweets, laptop, {recent});
+    assert.ok(res.choice, 'pop ' + i);
+    assert.equal(recent.includes(res.choice.id), false);
+    recent.push(res.choice.id);
+  }
+  const after = Feed.chooseOne(tweets, laptop, {recent});
+  assert.equal(after.choice, null, 'all genuine matches were just shown: stay quiet');
+  // a 4th pop elsewhere pushes the oldest out of the window, so it may show again
+  const again = Feed.chooseOne(tweets, laptop, {recent: recent.slice(1).concat(['999', '998', '997']).slice(-3)});
+  assert.ok(again.choice, 'out of the last-3 window it can pop again');
+});
+
+test('popups stay 3 s longer and the bubble stays 160x132', () => {
+  assert.equal(Feed.TICK_MS, 4000);
+  assert.equal(Feed.POP_HOLD_MS, 7000);
+  assert.equal(Feed.BUBBLE_W, 160);
+  assert.equal(Feed.BUBBLE_H, 132);
+  const emb = fs.readFileSync(path.join(root, 'assets/tweet_embed.js'), 'utf8');
+  assert.match(emb, /var READ_MS = 23000;/);
+  const proj = fs.readFileSync(path.join(root, 'assets/projector.js'), 'utf8');
+  assert.match(proj, /const base=Math\.min\(Math\.max\(SLIDE\*900,4000\),7000\)\+3000;/);
+  const ff = fs.readFileSync(path.join(root, 'assets/frame_feed.js'), 'utf8');
+  assert.match(ff, /baseMs == null \? 8000 : baseMs/);
+  assert.doesNotMatch(ff, /return rawMount\(host, item, baseMs\);\n      \}\n      return rawMount/, 'no random deck fallback on the bubble');
 });
