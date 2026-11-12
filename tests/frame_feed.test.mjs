@@ -312,3 +312,61 @@ test('session picker never repeats a tweet across scenes and is not top-1', () =
   assert.ok(firsts.size >= 2, 'first pick varies between visits');
   assert.ok(new Set(ids).size >= Math.min(ids.length, 10));
 });
+
+// ---- 30-day cross-visit cooldown (localStorage) ----
+test('cross-visit cooldown: ids popped on an earlier visit stay out for 30 days, then the oldest come back', () => {
+  const mem = {};
+  globalThis.localStorage = {getItem: k => (k in mem ? mem[k] : null), setItem: (k, v) => { mem[k] = String(v); }};
+  const ids = ['1537852396017180673','2027060942098317616','1749623574619373762'];
+  let t = Date.parse('2026-11-12T15:00:00Z');
+  const now = () => t;
+  // visit 1 shows all three
+  const v1 = Feed.newSession({store: Feed.loadStore(), persist: true, now});
+  const shown1 = [];
+  for(let i = 0; i < 3; i++){ const r = Feed.chooseArchive(ids, v1); shown1.push(r.choice.id); Feed.markShown(v1, r.choice.id); t += 60000; }
+  assert.equal(new Set(shown1).size, 3);
+  assert.equal(Object.keys(JSON.parse(mem[Feed.STORE_KEY])).length, 3, 'persisted');
+  // visit 2, a day later: everything is cooling down -> quiet, never a repeat
+  t += 24 * 3600 * 1000;
+  const v2 = Feed.newSession({store: Feed.loadStore(), persist: true, now});
+  assert.equal(Feed.chooseArchive(ids, v2).choice, null);
+  // a never-shown id beats everything
+  const fresh = Feed.chooseArchive(ids.concat(['1766804820235595909']), v2);
+  assert.equal(fresh.choice.id, '1766804820235595909');
+  // 31 days later: past cooldown, the one shown longest ago comes back first
+  t += 31 * 24 * 3600 * 1000;
+  const v3 = Feed.newSession({store: Feed.loadStore(), persist: true, now});
+  const back = Feed.chooseArchive(ids, v3, () => 0);
+  assert.equal(back.choice.id, shown1[0]);
+  delete globalThis.localStorage;
+});
+
+test('local fallback stays quiet when every genuine match is in cooldown', () => {
+  const st = chairState();
+  const genuine = Feed.rankTweets(tweets, st).matched.filter(r => Feed.qualifies(r));
+  assert.ok(genuine.length > 0);
+  const t = Date.now(); const store = {};
+  genuine.forEach(r => { store[r.id] = t - 1000; });
+  const sess = Feed.newSession({store, now: () => t});
+  const res = Feed.chooseOne(tweets, st, {session: sess});
+  assert.equal(res.choice, null);
+  assert.equal(res.quiet, true);
+  const later = Feed.newSession({store, now: () => t + Feed.COOLDOWN_MS + 1});
+  assert.ok(Feed.chooseOne(tweets, st, {session: later}).choice, 'past cooldown it may pop again');
+});
+
+test('store is capped and blocked storage does not break picking', () => {
+  const big = {}; const base = 1e12;
+  for(let i = 0; i < Feed.STORE_MAX + 50; i++) big[String(1000000 + i)] = base + i;
+  const sess = Feed.newSession({store: big});
+  Feed.markShown(sess, '1537852396017180673');
+  assert.ok(Object.keys(sess.shown).length <= Feed.STORE_MAX);
+  assert.equal(sess.shown['1000000'], undefined, 'oldest dropped first');
+  globalThis.localStorage = {getItem(){ throw new Error('blocked'); }, setItem(){ throw new Error('blocked'); }};
+  assert.deepEqual(Object.keys(Feed.loadStore()), []);
+  assert.equal(Feed.saveStore({'1': 1}), false);
+  const s2 = Feed.newSession({store: Feed.loadStore(), persist: true});
+  const r = Feed.chooseArchive(['1537852396017180673'], s2);
+  assert.ok(r.choice); Feed.markShown(s2, r.choice.id);
+  delete globalThis.localStorage;
+});

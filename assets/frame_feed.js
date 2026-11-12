@@ -419,23 +419,59 @@
   }
   // No quota and no widening: only genuine matches qualify, anything among the last 3 popped
   // is skipped, and when nothing is left the feed stays quiet (choice null) for this tick.
-  // One page visit: every tweet shown, how many different scenes each was a genuine match in.
-  function newSession(){ return {shown: Object.create(null), order: [], elig: Object.create(null), eligScenes: Object.create(null), resets: 0}; }
+  // Long-term memory: every popped id with the time it popped, kept in localStorage across visits.
+  // A tweet can only pop again 30 days after it last popped; the store keeps the newest 3000 ids.
+  var COOLDOWN_MS = 30 * 24 * 3600 * 1000;
+  var STORE_KEY = 'thryd.feed.shown.v1';
+  var STORE_MAX = 3000;
+  var OLDEST_K = 5; // past cooldown: random among the 5 shown longest ago
+  function loadStore(){
+    try{
+      var ls = root.localStorage; if(!ls) return {};
+      var o = JSON.parse(ls.getItem(STORE_KEY) || '{}');
+      var out = Object.create(null);
+      if(o && typeof o === 'object') Object.keys(o).forEach(function(k){ var t = +o[k]; if(/^\d{1,22}$/.test(k) && isFinite(t) && t > 0) out[k] = t; });
+      return out;
+    }catch(e){ return {}; }
+  }
+  function capStore(m){
+    var ids = Object.keys(m);
+    if(ids.length <= STORE_MAX) return m;
+    ids.sort(function(a, b){ return m[a] - m[b]; });
+    ids.slice(0, ids.length - STORE_MAX).forEach(function(k){ delete m[k]; });
+    return m;
+  }
+  function saveStore(m){
+    try{ var ls = root.localStorage; if(!ls) return false; capStore(m); ls.setItem(STORE_KEY, JSON.stringify(m)); return true; }catch(e){ return false; }
+  }
+  // One page visit, seeded with the long-term store: id -> last time it popped.
+  function newSession(opts){
+    opts = opts || {};
+    var shown = Object.create(null), st = opts.store || {};
+    Object.keys(st).forEach(function(k){ shown[k] = +st[k]; });
+    return {shown: shown, order: [], elig: Object.create(null), eligScenes: Object.create(null), resets: 0,
+      now: typeof opts.now === 'function' ? opts.now : function(){ return Date.now(); }, persist: !!opts.persist};
+  }
   function markShown(sess, id){
     if(!sess || id == null) return;
     id = String(id);
-    sess.shown[id] = 1; sess.order.push(id);
+    sess.shown[id] = sess.now(); sess.order.push(id);
     if(sess.order.length > 400) sess.order.splice(0, sess.order.length - 400);
+    capStore(sess.shown);
+    if(sess.persist) saveStore(sess.shown);
   }
-  // From a pool of candidates: drop anything shown this visit; only when every candidate was
-  // already shown may one come back, and never one of the last NO_REPEAT shown.
+  // From a scene's genuine matches: random among never-shown first; then only those past the
+  // 30-day cooldown, the ones shown longest ago; if every match is still cooling down, quiet.
   function freshPool(items, sess, recent){
     var last = (sess ? sess.order : []).slice(-NO_REPEAT).concat(recent || []);
     var notLast = (items || []).filter(function(r){ return last.indexOf(String(r.id)) < 0; });
     if(!sess) return {pool: notLast, reset: false};
     var unseen = notLast.filter(function(r){ return !sess.shown[String(r.id)]; });
     if(unseen.length) return {pool: unseen, reset: false};
-    return {pool: notLast, reset: notLast.length > 0};
+    var now = sess.now();
+    var cooled = notLast.filter(function(r){ return now - sess.shown[String(r.id)] >= COOLDOWN_MS; });
+    cooled.sort(function(a, b){ return sess.shown[String(a.id)] - sess.shown[String(b.id)]; });
+    return {pool: cooled.slice(0, OLDEST_K), reset: cooled.length > 0};
   }
   function chooseOne(list, state, opts){
     opts = opts || {};
@@ -456,7 +492,7 @@
       genuine = genuine.slice().sort(function(a, b){ return (b.content || 0) - (a.content || 0); });
       var fp = freshPool(genuine, sess, recent);
       var spool = fp.pool.slice(0, k);
-      if(!spool.length) return {choice: null, quiet: true, pool: [], genuine: genuine.length, matched: ranked.matched, fallback: false, cursor: 0, terms: []};
+      if(!spool.length) return {choice: null, quiet: true, cooling: genuine.length > 0, pool: [], genuine: genuine.length, matched: ranked.matched, fallback: false, cursor: 0, terms: []};
       if(fp.reset) sess.resets++;
       // weighted random (not the top-1): sqrt of the match strength, split by how widely the tweet matches
       var wts = spool.map(function(r){ return {r: r, score: Math.sqrt(Math.max(r.content || 0, 1)) / Math.sqrt(sess.elig[r.id] || 1)}; });
@@ -484,7 +520,7 @@
     return {choice: choice, quiet: false, pool: fp.pool, archive: true, reset: fp.reset, genuine: items.length, matched: [], terms: ['archive']};
   }
 
-  var api = {TICK_MS: TICK_MS, POP_HOLD_MS: POP_HOLD_MS, TOP_N: TOP_N, TOP_K: TOP_K, NO_REPEAT: NO_REPEAT, MIN_SCORE: MIN_SCORE, BUBBLE_W: BUBBLE_W, BUBBLE_H: BUBBLE_H, tokens: tokens, stem: stem, expand: expand, score: score, pick: pick, rankTweets: rankTweets, weightedPick: weightedPick, chooseOne: chooseOne, qualifies: qualifies, weakTerm: weakTerm, buildState: buildState, buildIdf: buildIdf, tweetOk: tweetOk, zoneOf: zoneOf, POOL_K: POOL_K, ELIG_CAP: ELIG_CAP, SCENE_DF_MAX: SCENE_DF_MAX, newSession: newSession, markShown: markShown, chooseArchive: chooseArchive, addSceneTerms: addSceneTerms, resetSceneDf: resetSceneDf, sceneFactor: sceneFactor};
+  var api = {TICK_MS: TICK_MS, POP_HOLD_MS: POP_HOLD_MS, TOP_N: TOP_N, TOP_K: TOP_K, NO_REPEAT: NO_REPEAT, MIN_SCORE: MIN_SCORE, BUBBLE_W: BUBBLE_W, BUBBLE_H: BUBBLE_H, tokens: tokens, stem: stem, expand: expand, score: score, pick: pick, rankTweets: rankTweets, weightedPick: weightedPick, chooseOne: chooseOne, qualifies: qualifies, weakTerm: weakTerm, buildState: buildState, buildIdf: buildIdf, tweetOk: tweetOk, zoneOf: zoneOf, POOL_K: POOL_K, ELIG_CAP: ELIG_CAP, SCENE_DF_MAX: SCENE_DF_MAX, newSession: newSession, markShown: markShown, loadStore: loadStore, saveStore: saveStore, COOLDOWN_MS: COOLDOWN_MS, STORE_KEY: STORE_KEY, STORE_MAX: STORE_MAX, chooseArchive: chooseArchive, addSceneTerms: addSceneTerms, resetSceneDf: resetSceneDf, sceneFactor: sceneFactor};
   if(typeof module !== 'undefined' && module.exports) module.exports = api;
   root.ThrydFrameFeed = api;
 
@@ -500,7 +536,7 @@
   var lastSig = '';
   var lastPick = null;
   var recentIds = [];
-  var session = newSession(); // this page visit: nothing repeats until a scene's whole pool was shown
+  var session = newSession({store: loadStore(), persist: true}); // this visit + every earlier visit on this device (30-day cooldown)
   var sceneTweets = null;     // data/scene_tweets.json: medium id -> {ids:[...]} from the archive search
   var shownAt = 0;          // when the current popup was mounted
   var pendingChoice = null; // a pick handed to the projector's say(); mounted as-is
