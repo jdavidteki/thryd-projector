@@ -81,8 +81,11 @@ function backdrop(set,force){ if(!libPin.allow(set))return; if(Date.now()<HOLD)r
   if(remoteSet(set)){
     // original Medium file, one request. The browser plays a GIF's own timing. No frame split, no retry loop.
     on.onload=function(){if(bgSet!==set)return; on.dataset.fail='';};
-    on.onerror=function(){if(bgSet!==set)return; on.dataset.fail='1'; flipPending=false; const c=$('cap'); if(c)c.textContent=(set.medium_image_id||set.label||'medium')+' · unavailable';};
-    on.src=set.url;
+    on.onerror=function(){if(bgSet!==set)return; on.dataset.fail='1';
+      // Incoming file failed: keep the outgoing view and its caption.
+      flipPending=false;};
+    // Re-setting the same URL can abort and blank the slot. Only assign when needed.
+    if(!(srcIs(on)&&on.complete)) on.src=set.url;
     // caption waits for flip, so a slow switch doesn't label a still-outgoing (or black) stage as the next scene
     if(isCold){ objsFor(null); clearScene(); }
     // 4s cap is cold-boot only: flip the decoded first GIF rather than sit on black. On later

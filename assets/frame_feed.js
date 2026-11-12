@@ -309,7 +309,7 @@
     var card = metaCard();
     var place = '';
     var world = (document.getElementById('world') || {}).textContent || '';
-    if(world && !/^from /i.test(world) && world !== '—') place = world;
+    if(world && !/^from /i.test(world) && world !== '—' && !/\d{1,2}:\d{2}\s*(am|pm)/i.test(world) && !/\b(monday|tuesday|wednesday|thursday|friday|saturday|sunday)\b/i.test(world)) place = world;
     var extra = readChars();
     if(story && story.current_card && !card) card = String(story.current_card).toLowerCase();
     if(story && story.current_place && !place) place = story.current_place;

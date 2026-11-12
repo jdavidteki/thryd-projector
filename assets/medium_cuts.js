@@ -744,8 +744,6 @@
         if(got.mismatch) return reject('delay_mismatch');
         const playback = got.stream ? {ok:true, width:got.plan.width, height:got.plan.height, frames: got.plan.delays_cs.map(d=>({playMs:playMs(d)})), stream:true, bytes:got.bytes, plan:got.plan} : planFrames(got.decoded, got.plan);
         if(!playback.ok || typeof document === 'undefined' || !stage) return playback;
-        const old = document.getElementById('mcut');
-        if(old){ clearTimeout(old._timer); old.remove(); }
         const layer = document.createElement('div');
         layer.id = 'mcut'; layer._w = playback.width; layer._h = playback.height; layer._token = my;
         layer._box = coverBox(stage, playback.width, playback.height);
@@ -763,7 +761,6 @@
         plate.className = 'plate'; plate.width = playback.width; plate.height = playback.height;
         Object.assign(plate.style, {width:layer._box.width + 'px', height:layer._box.height + 'px', left:layer._box.left + 'px', top:layer._box.top + 'px'});
         layer.appendChild(plate);
-        stage.insertBefore(layer, stage.querySelector('#cap') || null);
         let shown = 0;
         const step = ()=>{
           if(my !== token) return;
@@ -804,8 +801,21 @@
         };
         layer.addEventListener('pointerup', endDrag);
         layer.addEventListener('pointercancel', endDrag);
-        if(image){ image.classList.remove('on'); image.style.transition = 'none'; image.style.opacity = '0'; }
+        // Paint the first frame while #mcut is still off-document, then swap it in
+        // and only then hide the GIF. An empty #mcut in the DOM triggers
+        // #stage:has(#mcut)>img{opacity:0} and leaves a black stage.
         step();
+        const prev = typeof document !== 'undefined' && document.getElementById('mcut');
+        if(prev && prev !== layer){ clearTimeout(prev._timer); prev.remove(); }
+        stage.insertBefore(layer, stage.querySelector('#cap') || null);
+        if(image){
+          requestAnimationFrame(()=>{
+            if(document.getElementById('mcut') !== layer) return;
+            image.classList.remove('on');
+            image.style.transition = 'none';
+            image.style.opacity = '0';
+          });
+        }
         return {ok:true, reason:null, frames:playback.frames.length};
       });
     }).catch(()=>{
