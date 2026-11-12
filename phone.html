@@ -1,0 +1,20 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><meta http-equiv="Cache-Control" content="no-cache">
+<title>#thryd projector · phone prototype</title><link rel="icon" href="data:,"><link rel="stylesheet" href="assets/projector.css?v=350539043e"><link rel="stylesheet" href="assets/alive.css?v=350539043e"></head>
+<body>
+<div id="stage"><img id="bgA" alt=""><img id="bgB" alt=""><div id="ug"></div><div id="cap"></div></div>
+<div id="vignette"></div>
+<div id="map"></div>
+<div id="ents"></div>
+<div id="bubble" class="bubble"><div class="who"></div><div class="txt"></div></div>
+<div id="bar"><div id="title">#thryd · <b id="run">run</b> · <span id="mode">…</span></div>
+<div id="modes"><button data-m="live">LIVE</button><button data-m="replay">REPLAY</button><button data-m="cerebro">CEREBRO</button><button data-m="lovemap">LOVEMAP</button><button id="rpause" type="button" title="Pause or play scene updates" style="display:none">Pause</button><select id="pick" style="display:none"></select><select id="slide" title="GIF slide speed"><option value="8">8s</option><option value="30">30s</option><option value="60">60s</option></select><input id="mlib" type="search" placeholder="medium id" title="Open an original Medium file by its exact id" autocomplete="off"><button id="kresume" type="button" title="Show the last library GIF saved on this device. A normal visit stays on the live view.">Resume</button><button id="kreset" type="button" title="Clear saved cut positions, the remembered library GIF, and cached GIF bytes on this device. Sound and slide speed stay.">Reset</button><button id="mute"></button><button id="addgif">+ GIF</button><input id="gifin" type="file" accept="image/gif,image/webp,image/png" multiple hidden></div></div>
+<div id="cerebro" aria-hidden="true"><div id="cwall"></div><div id="clight"><img id="climg" alt=""><div id="clcap"></div></div></div>
+<div id="lovemap" aria-hidden="true"><iframe id="lmframe" title="lovemap" src="about:blank"></iframe></div>
+<div id="user"></div>
+<div id="ticker"><div class="world" id="world">—</div><div class="upd" id="upd">loading</div><div class="meta" id="meta"></div><div class="cmove" id="cmove" style="display:none"></div></div>
+
+<script>/* loader: fresh JS on every load, in order */(function(){var t=Date.now();['thryd_keep.js?v=1','mlib_pin.js?v=1','live_return.js?v=1','medium_cuts.js?v=1','tweet_embed.js?v=1','projector.js?v=58','frame_feed.js?v=1','extras.js?v=50','alive.js?v=50'].forEach(function(f){var e=document.createElement('script');e.src='assets/'+f+'&t='+t;e.async=false;document.body.appendChild(e);});})();</script>
+<script>/* phone prototype only: the 3310 tap hook loads after the projector scripts. index.html never loads it. */(function(){var e=document.createElement('script');e.src='assets/phone3310.js?v=1';e.async=false;document.body.appendChild(e);})();</script>
+<div id="p3310hint" style="position:fixed;left:50%;top:7vh;transform:translateX(-50%);z-index:8999;padding:5px 12px;border-radius:12px;background:#1d242ee6;color:#cfe79a;font:600 12px/1.3 ui-monospace,monospace;pointer-events:none;transition:opacity 1.2s">phone prototype · tap a character to open their phone</div><script>setTimeout(function(){var h=document.getElementById('p3310hint');if(h){h.style.opacity='0';setTimeout(function(){h.remove();},1400);}},7000);</script>
+<!-- Open pages never auto-reload when a new build is published. A new codever applies on the next fresh load only. -->
+</body></html>
