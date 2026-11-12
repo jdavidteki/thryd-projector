@@ -690,6 +690,12 @@
       if(!node){
         node = document.createElement('canvas');
         node.className = 'sprite'; node.dataset.i = String(i);
+        // idle float like the run-view objects (CSS .fl in projector.css); phone.html keeps its still cuts
+        if(!(root.location && /phone\.html$/.test(root.location.pathname))){
+          node.classList.add('fl');
+          node.style.setProperty('--fd', (5.5 + ((i * 1.7 + (layer._w % 7)) % 3.5)).toFixed(2) + 's');
+          node.style.setProperty('--fdl', (-((i * 2.3) % 6)).toFixed(2) + 's');
+        }
         layer.appendChild(node);
       }
       node.width = sp.w; node.height = sp.h;

@@ -209,3 +209,9 @@ body.lovemap #slide,body.lovemap #addgif,body.lovemap #rpause,body.lovemap #mute
 #mcut.dragging canvas.sprite{cursor:grabbing}
 #mcut.dragging canvas.sprite[data-dragging="1"]{will-change:transform;z-index:4}
 body.cerebro #mcut,body.lovemap #mcut{display:none}
+
+/* idle float for every Medium/X cut (stills had none; GIF cuts only moved with their source frames). Gentle so the sprite keeps covering its own spot. */
+#mcut canvas.sprite.fl{animation:mcfloat var(--fd,7s) ease-in-out var(--fdl,0s) infinite;transform-origin:50% 85%}
+@keyframes mcfloat{0%,100%{transform:translate(-1.4%,.9%) rotate(-1.8deg) scale(1.045)}50%{transform:translate(1.4%,-1.8%) rotate(1.8deg) scale(1.06)}}
+#mcut canvas.sprite[data-dragging="1"]{animation:none}
+@media (prefers-reduced-motion:reduce){#mcut canvas.sprite.fl{animation:none}}
