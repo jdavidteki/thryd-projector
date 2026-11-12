@@ -36,7 +36,7 @@ function sameView(a,b){
 const libPin=window.ThrydMlibPin.create();
 function backdrop(set,force){ if(!libPin.allow(set))return; if(Date.now()<HOLD)return; if(sameView(bgSet,set))return; stageN++;
   const ug=window.THRYD_UG; if(ug.length&&stageN%3===0){return showUser(ug[Math.floor(stageN/3)%ug.length]);}
-  if(!set)return; const isCold=!viewUp; bgSet=set;bgI=0; flipPending=true; $('ug').classList.remove('on');
+  if(!set)return; const isCold=!viewUp; bgSet=set;bgI=0; flipPending=true; setCutsHint(false); $('ug').classList.remove('on');
   // on a switch, keep the outgoing GIF (and #mcut) on stage until the incoming image is decoded.
   // detach immediately only on cold boot, when there is nothing to hold.
   if(isCold&&window.ThrydMediumCuts) try{ ThrydMediumCuts.detach(); }catch(e){}
