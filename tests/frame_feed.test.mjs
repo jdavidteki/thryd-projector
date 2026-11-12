@@ -370,3 +370,35 @@ test('store is capped and blocked storage does not break picking', () => {
   assert.ok(r.choice); Feed.markShown(s2, r.choice.id);
   delete globalThis.localStorage;
 });
+
+test('quiet by default: archive gate pops with the scene p (1 always, 0 never, unset = old behaviour)', () => {
+  assert.equal(Feed.archiveGate({ids: ['1'], p: 1}, () => 0.999), true);
+  assert.equal(Feed.archiveGate({ids: ['1'], p: 0}, () => 0), false);
+  assert.equal(Feed.archiveGate({ids: ['1']}, () => 0.999), true);
+  assert.equal(Feed.archiveGate({ids: ['1'], p: 0.4}, () => 0.39), true);
+  assert.equal(Feed.archiveGate({ids: ['1'], p: 0.4}, () => 0.41), false);
+  const sess = Feed.newSession();
+  const weak = Feed.chooseScene({ids: ['1537852396017180673'], p: 0}, [], {}, {session: sess, rng: () => 0});
+  assert.equal(weak.choice, null); assert.equal(weak.gated, true);
+  const strong = Feed.chooseScene({ids: ['1537852396017180673'], p: 1}, [], {}, {session: sess, rng: () => 0.5});
+  assert.equal(strong.choice.id, '1537852396017180673');
+  const empty = Feed.chooseScene({ids: [], p: 1}, [], {}, {session: sess, rng: () => 0.5});
+  assert.equal(empty.choice, null, 'a scene row with no strong ids stays quiet, never falls back');
+});
+
+test('local fallback needs a strong match (FALLBACK_MIN) and never pops a broad tweet', () => {
+  assert.ok(Feed.FALLBACK_MIN >= 30);
+  const ranked = {matched: [
+    {id: '11', content: 12, score: 12, terms: ['a']},
+    {id: '22', content: 80, score: 80, terms: ['b']},
+    {id: '33', content: 90, score: 90, terms: ['c']}]};
+  const st = {frame: {id: 'x'}, signature: 'x'};
+  const ids = new Set();
+  for(let i = 0; i < 20; i++){
+    const r = Feed.chooseScene(null, [], st, {session: Feed.newSession(), rng: Math.random, ranked, exclude: {'33': 1}});
+    assert.ok(r.choice); ids.add(r.choice.id);
+  }
+  assert.deepEqual([...ids], ['22']);
+  const weakOnly = {matched: [{id: '11', content: 12, score: 12, terms: ['a']}]};
+  assert.equal(Feed.chooseScene(null, [], st, {session: Feed.newSession(), ranked: weakOnly}).choice, null);
+});

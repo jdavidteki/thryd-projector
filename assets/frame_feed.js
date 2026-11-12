@@ -19,6 +19,7 @@
   var SCENE_DF_MAX = 0.08; // a scene term found in more than 8% of known scenes can raise a match but never make one on its own
   var SCENE_DF_FULL = 0.01; // terms in at most 1% of scenes count in full; between, they count less (IDF over scenes)
   var MIN_SCORE = 6;     // a genuine match needs at least this much object/attribute/theme overlap
+  var FALLBACK_MIN = 40; // the live local matcher (scenes with no archive row) pops only on a strong overlap; quiet otherwise
   // Scene document frequency: how many known scenes carry each term (scene_context.json rows
   // plus every scene seen during the visit). Built at runtime; empty means no down-weighting.
   var sceneDf = Object.create(null), sceneDfN = 0, sceneDfSeen = Object.create(null);
@@ -480,7 +481,8 @@
     var k = opts.k || (sess ? POOL_K : TOP_K);
     var rng = opts.rng || Math.random;
     var ranked = opts.ranked || rankTweets(list, state);
-    var genuine = ranked.matched.filter(function(r){ return qualifies(r, opts.minScore); });
+    var excl = opts.exclude || null;
+    var genuine = ranked.matched.filter(function(r){ return qualifies(r, opts.minScore) && !(excl && excl[String(r.id)]); });
     if(sess){
       // a tweet that matches scene after scene is a generic matcher: after ELIG_CAP scenes it leaves the pool
       var key = (state && state.frame && (state.frame.id || state.frame.cap)) || (state && state.signature) || '';
@@ -520,7 +522,27 @@
     return {choice: choice, quiet: false, pool: fp.pool, archive: true, reset: fp.reset, genuine: items.length, matched: [], terms: ['archive']};
   }
 
-  var api = {TICK_MS: TICK_MS, POP_HOLD_MS: POP_HOLD_MS, TOP_N: TOP_N, TOP_K: TOP_K, NO_REPEAT: NO_REPEAT, MIN_SCORE: MIN_SCORE, BUBBLE_W: BUBBLE_W, BUBBLE_H: BUBBLE_H, tokens: tokens, stem: stem, expand: expand, score: score, pick: pick, rankTweets: rankTweets, weightedPick: weightedPick, chooseOne: chooseOne, qualifies: qualifies, weakTerm: weakTerm, buildState: buildState, buildIdf: buildIdf, tweetOk: tweetOk, zoneOf: zoneOf, POOL_K: POOL_K, ELIG_CAP: ELIG_CAP, SCENE_DF_MAX: SCENE_DF_MAX, newSession: newSession, markShown: markShown, loadStore: loadStore, saveStore: saveStore, COOLDOWN_MS: COOLDOWN_MS, STORE_KEY: STORE_KEY, STORE_MAX: STORE_MAX, chooseArchive: chooseArchive, addSceneTerms: addSceneTerms, resetSceneDf: resetSceneDf, sceneFactor: sceneFactor};
+  // Quiet is the normal state. An archive scene carries p (0..1): how strongly its keywords match
+  // its tweets (rare, scene-specific words found in the tweet text). Each tick pops with chance p;
+  // strong scenes (p = 1) always pop, weak ones (p = 0) stay quiet. Rows without p keep the old behaviour.
+  function archiveGate(row, rng){
+    if(!row || typeof row.p !== 'number' || !isFinite(row.p)) return true;
+    var p = Math.max(0, Math.min(1, row.p));
+    if(p >= 1) return true;
+    if(p <= 0) return false;
+    return (rng || Math.random)() < p;
+  }
+  function chooseScene(row, list, state, opts){
+    opts = opts || {};
+    if(row){
+      if(!archiveGate(row, opts.rng)) return {choice: null, quiet: true, gated: true, pool: [], archive: true, p: row.p};
+      return chooseArchive(row.ids || [], opts.session, opts.rng, opts.recent);
+    }
+    return chooseOne(list, state, {session: opts.session, recent: opts.recent, cursor: opts.cursor, rng: opts.rng,
+      minScore: opts.minScore == null ? FALLBACK_MIN : opts.minScore, exclude: opts.exclude, ranked: opts.ranked});
+  }
+
+  var api = {TICK_MS: TICK_MS, POP_HOLD_MS: POP_HOLD_MS, TOP_N: TOP_N, TOP_K: TOP_K, NO_REPEAT: NO_REPEAT, MIN_SCORE: MIN_SCORE, BUBBLE_W: BUBBLE_W, BUBBLE_H: BUBBLE_H, tokens: tokens, stem: stem, expand: expand, score: score, pick: pick, rankTweets: rankTweets, weightedPick: weightedPick, chooseOne: chooseOne, qualifies: qualifies, weakTerm: weakTerm, buildState: buildState, buildIdf: buildIdf, tweetOk: tweetOk, zoneOf: zoneOf, POOL_K: POOL_K, ELIG_CAP: ELIG_CAP, SCENE_DF_MAX: SCENE_DF_MAX, newSession: newSession, markShown: markShown, loadStore: loadStore, saveStore: saveStore, COOLDOWN_MS: COOLDOWN_MS, STORE_KEY: STORE_KEY, STORE_MAX: STORE_MAX, chooseArchive: chooseArchive, archiveGate: archiveGate, chooseScene: chooseScene, FALLBACK_MIN: FALLBACK_MIN, addSceneTerms: addSceneTerms, resetSceneDf: resetSceneDf, sceneFactor: sceneFactor};
   if(typeof module !== 'undefined' && module.exports) module.exports = api;
   root.ThrydFrameFeed = api;
 
@@ -537,7 +559,8 @@
   var lastPick = null;
   var recentIds = [];
   var session = newSession({store: loadStore(), persist: true}); // this visit + every earlier visit on this device (30-day cooldown)
-  var sceneTweets = null;     // data/scene_tweets.json: medium id -> {ids:[...]} from the archive search
+  var sceneTweets = null;     // data/scene_tweets.json: medium id -> {ids:[...], p} from the archive search
+  var fallbackBroad = null;   // local-deck ids that match more than 5% of scenes: never popped by the local matcher
   var shownAt = 0;          // when the current popup was mounted
   var pendingChoice = null; // a pick handed to the projector's say(); mounted as-is
   var nextTimer = null;
@@ -884,9 +907,7 @@
     var state = liveState();
     try{ if(state.frame && state.frame.id) addSceneTerms(state.frame.id, state.own); }catch(e){}
     var arch = sceneTweets && state.frame && state.frame.id ? rowForMid(sceneTweets, state.frame.id) : null;
-    var res = (arch && arch.ids && arch.ids.length)
-      ? chooseArchive(arch.ids, session, Math.random, recentIds)
-      : chooseOne(tweets, state, {session: session, recent: recentIds, cursor: rotateCursor});
+    var res = chooseScene(arch, tweets, state, {session: session, recent: recentIds, cursor: rotateCursor, rng: Math.random, exclude: fallbackBroad});
     if(res.fallback === 'rotate') rotateCursor = res.cursor;
     if(res.choice){
       lastPick = res.choice;
@@ -1048,6 +1069,8 @@
       sceneContext = pair[4] && typeof pair[4] === 'object' ? pair[4] : null;
       objectsIndex = pair[5] && typeof pair[5] === 'object' ? pair[5] : null;
       sceneTweets = pair[6] && pair[6].scenes && typeof pair[6].scenes === 'object' ? pair[6].scenes : null;
+      fallbackBroad = null;
+      if(pair[6] && Array.isArray(pair[6].fallback_broad)){ fallbackBroad = Object.create(null); pair[6].fallback_broad.forEach(function(id){ fallbackBroad[String(id)] = 1; }); }
       // scene frequency table from every scene_context row (more scenes join as the visit sees them)
       try{
         if(sceneContext) Object.keys(sceneContext).forEach(function(k){
