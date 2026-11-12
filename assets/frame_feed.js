@@ -13,8 +13,33 @@
 
   var TOP_N = 8;
   var TOP_K = 8;
-  var NO_REPEAT = 3;     // skip anything among the last 3 popped
+  var NO_REPEAT = 10;    // a page visit never repeats a tweet; only after a scene's whole genuine pool was shown may one come back, and never one of the last 10
+  var POOL_K = 24;       // random, weighted pick among up to 24 genuine matches (not the top-1)
+  var ELIG_CAP = 6;      // a tweet that is a genuine match in more than 6 different scenes of one visit is a generic matcher and leaves the pool
+  var SCENE_DF_MAX = 0.08; // a scene term found in more than 8% of known scenes can raise a match but never make one on its own
+  var SCENE_DF_FULL = 0.01; // terms in at most 1% of scenes count in full; between, they count less (IDF over scenes)
   var MIN_SCORE = 6;     // a genuine match needs at least this much object/attribute/theme overlap
+  // Scene document frequency: how many known scenes carry each term (scene_context.json rows
+  // plus every scene seen during the visit). Built at runtime; empty means no down-weighting.
+  var sceneDf = Object.create(null), sceneDfN = 0, sceneDfSeen = Object.create(null);
+  function addSceneTerms(key, terms){
+    if(!key || sceneDfSeen[key]) return false;
+    sceneDfSeen[key] = 1; sceneDfN++;
+    var seen = Object.create(null);
+    (terms || []).forEach(function(w){ [w, stem(w)].forEach(function(k){ if(k && !seen[k]){ seen[k] = 1; sceneDf[k] = (sceneDf[k] || 0) + 1; } }); });
+    return true;
+  }
+  function resetSceneDf(){ sceneDf = Object.create(null); sceneDfN = 0; sceneDfSeen = Object.create(null); }
+  // 1 for a rare scene term, 0 for one in more than SCENE_DF_MAX of scenes, log-scaled between.
+  function sceneFactor(w){
+    if(sceneDfN < 20) return 1;
+    var df = Math.max(sceneDf[w] || 0, sceneDf[stem(w)] || 0);
+    if(!df) return 1;
+    var r = df / sceneDfN;
+    if(r > SCENE_DF_MAX) return 0;
+    if(r <= SCENE_DF_FULL) return 1;
+    return Math.log(SCENE_DF_MAX / r) / Math.log(SCENE_DF_MAX / SCENE_DF_FULL);
+  }
   var BUBBLE_W = 160;
   var BUBBLE_H = 132;
   var STOP = {
@@ -201,11 +226,14 @@
       card: input.card || '',
       place: input.place || ''
     };
+    var shared = input.shared || {};
     var safes = (input.safes || []).map(function(s){
       return {line: s.line || s, card: s.card || frame.card || '', src: s.src || 'safe'};
-    }).filter(function(s){ return s.line; });
+    }).concat((shared.safes || []).map(function(s){
+      return {line: s.line || s, card: s.card || frame.card || '', src: s.src || 'shared', shared: true};
+    })).filter(function(s){ return s.line; });
     var bag = Object.create(null);
-    addTok(bag, [frame.card, frame.place, frame.cap, input.theme, input.title], 2);
+    addTok(bag, [frame.card, input.placeShared ? '' : frame.place, frame.cap, input.theme, input.title], 2);
     objects.forEach(function(o){
       var distinctive = o.klass && o.klass !== 'person' && o.klass !== 'foreground';
       var w = (o.dragged ? 8 : 6) + (distinctive ? 4 : 0);
@@ -217,6 +245,15 @@
     if(input.extra) addTok(bag, input.extra, 2);
     if(input.related) addTok(bag, input.related, 2);
     if(input.theme) addTok(bag, input.theme, 3);
+    // this scene's own terms (frame, objects, theme, title, related); used for the scene-frequency table
+    var own = Object.keys(bag).filter(function(k){ return !/^(?:left|right|center|centre|top|middle|bottom|moving|motion)$/.test(k); });
+    var ownSet = Object.create(null);
+    Object.keys(bag).forEach(function(k){ expand(k).forEach(function(ex){ if(ex.note !== 'related') ownSet[ex.term] = 1; }); });
+    // agenda-wide words (story place, cast names): identical on every scene, so they rank but never make a match
+    var sharedTerms = [].concat(shared.terms || [], input.placeShared && frame.place ? [frame.place] : []);
+    if(sharedTerms.length) addTok(bag, sharedTerms, 2);
+    var sharedOnly = Object.create(null);
+    Object.keys(bag).forEach(function(k){ expand(k).forEach(function(ex){ if(ex.note !== 'related' && !ownSet[ex.term]) sharedOnly[ex.term] = 1; }); });
     // words that only come from the card's safe lines (not the frame, its objects or its theme)
     var sceneTerms = Object.create(null);
     Object.keys(bag).forEach(function(k){ expand(k).forEach(function(ex){ if(ex.note !== 'related') sceneTerms[ex.term] = 1; }); });
@@ -228,7 +265,7 @@
       .concat(objects.map(function(o){ return [o.id, o.klass, o.zone, o.dragged ? 'd' : 's', Math.round(o.x/10), Math.round(o.y/10)].join(':'); }))
       .concat(safes.map(function(s){ return 'safe:' + String(s.line).slice(0, 40); }))
       .join('|');
-    return {frame: frame, objects: objects, safes: safes, card: frame.card || '', tokens: tokList, weights: bag, lineOnly: lineOnly, signature: sig};
+    return {frame: frame, objects: objects, safes: safes, card: frame.card || '', tokens: tokList, weights: bag, lineOnly: lineOnly, sharedOnly: sharedOnly, own: own, signature: sig};
   }
 
   function tweetOk(t){
@@ -293,25 +330,31 @@
       // words can raise a real match's rank but never make a match on their own.
       var lo = state.lineOnly || {};
       var fromLines = !!(lo[w] || (lo[stem(w)] && !(state.weights && state.weights[w] && !lo[w])));
-      // words found only in the card's lines count through the 2+ shared-words line check below, never alone
-      if(hit.how !== 'partial' && hit.how !== 'related' && isDirect(state.query, w) && !weakTerm(w) && !fromLines){
-        content += add;
+      var so = state.sharedOnly || {};
+      var fromShared = !!(so[w] || (so[stem(w)] && !so[w] && !(state.weights && state.weights[w] && !so[w])));
+      // words found only in the card's lines count through the 2+ shared-words line check below, never alone;
+      // agenda-wide words count nowhere toward a match, and words common to many scenes count less (or not at all)
+      var sf = sceneFactor(w);
+      if(hit.how !== 'partial' && hit.how !== 'related' && isDirect(state.query, w) && !weakTerm(w) && !fromLines && !fromShared && sf > 0){
+        content += add * sf;
         if(!seenT[w]){ seenT[w] = 1; terms.push(w); }
       }
     }
     if(tweet.card && state.card && String(tweet.card) === String(state.card)) s += 5;
     if(state.safes && state.safes.length){
-      var safeScore = 0;
+      var safeScore = 0, ownSafe = 0;
       state.safes.forEach(function(safe){
         var st = tokens(safe.line).filter(function(x){ return x.length >= 5; });
         var n = 0, k;
         for(k = 0; k < st.length; k++){ if(tw.indexOf(st[k]) >= 0 || tw.indexOf(stem(st[k])) >= 0) n++; }
-        if(n >= 2){ safeScore += 2 * n; if(!seen['safe']){ seen['safe'] = 1; hits.push('safe:' + n); } }
+        if(n >= 2){ safeScore += 2 * n; if(!safe.shared) ownSafe += 2 * n; if(!seen['safe']){ seen['safe'] = 1; hits.push('safe:' + n); } }
       });
       if(safeScore > 8) safeScore = 8;
       s += safeScore;
       // 2+ distinctive words shared with one of the card's lines is a real theme match
-      if(safeScore > 0){ content += Math.max(safeScore, MIN_SCORE); terms.push('safe'); }
+      // (only this scene's own lines: the agenda's card lines are the same on every scene)
+      if(ownSafe > 8) ownSafe = 8;
+      if(ownSafe > 0){ content += Math.max(ownSafe, MIN_SCORE); terms.push('safe'); }
     }
     // every object in the frame scores; a dragged one gets a bonus
     if(state.objects){
@@ -376,20 +419,72 @@
   }
   // No quota and no widening: only genuine matches qualify, anything among the last 3 popped
   // is skipped, and when nothing is left the feed stays quiet (choice null) for this tick.
+  // One page visit: every tweet shown, how many different scenes each was a genuine match in.
+  function newSession(){ return {shown: Object.create(null), order: [], elig: Object.create(null), eligScenes: Object.create(null), resets: 0}; }
+  function markShown(sess, id){
+    if(!sess || id == null) return;
+    id = String(id);
+    sess.shown[id] = 1; sess.order.push(id);
+    if(sess.order.length > 400) sess.order.splice(0, sess.order.length - 400);
+  }
+  // From a pool of candidates: drop anything shown this visit; only when every candidate was
+  // already shown may one come back, and never one of the last NO_REPEAT shown.
+  function freshPool(items, sess, recent){
+    var last = (sess ? sess.order : []).slice(-NO_REPEAT).concat(recent || []);
+    var notLast = (items || []).filter(function(r){ return last.indexOf(String(r.id)) < 0; });
+    if(!sess) return {pool: notLast, reset: false};
+    var unseen = notLast.filter(function(r){ return !sess.shown[String(r.id)]; });
+    if(unseen.length) return {pool: unseen, reset: false};
+    return {pool: notLast, reset: notLast.length > 0};
+  }
   function chooseOne(list, state, opts){
     opts = opts || {};
+    var sess = opts.session || null;
     var recent = (opts.recent || []).map(String).slice(-NO_REPEAT);
-    var k = opts.k || TOP_K;
+    var k = opts.k || (sess ? POOL_K : TOP_K);
     var rng = opts.rng || Math.random;
-    var ranked = rankTweets(list, state);
+    var ranked = opts.ranked || rankTweets(list, state);
     var genuine = ranked.matched.filter(function(r){ return qualifies(r, opts.minScore); });
+    if(sess){
+      // a tweet that matches scene after scene is a generic matcher: after ELIG_CAP scenes it leaves the pool
+      var key = (state && state.frame && (state.frame.id || state.frame.cap)) || (state && state.signature) || '';
+      genuine.forEach(function(r){
+        var m = sess.eligScenes[r.id] || (sess.eligScenes[r.id] = Object.create(null));
+        if(!m[key]){ m[key] = 1; sess.elig[r.id] = (sess.elig[r.id] || 0) + 1; }
+      });
+      genuine = genuine.filter(function(r){ return sess.elig[r.id] <= ELIG_CAP; });
+      genuine = genuine.slice().sort(function(a, b){ return (b.content || 0) - (a.content || 0); });
+      var fp = freshPool(genuine, sess, recent);
+      var spool = fp.pool.slice(0, k);
+      if(!spool.length) return {choice: null, quiet: true, pool: [], genuine: genuine.length, matched: ranked.matched, fallback: false, cursor: 0, terms: []};
+      if(fp.reset) sess.resets++;
+      // weighted random (not the top-1): sqrt of the match strength, split by how widely the tweet matches
+      var wts = spool.map(function(r){ return {r: r, score: Math.sqrt(Math.max(r.content || 0, 1)) / Math.sqrt(sess.elig[r.id] || 1)}; });
+      var got = weightedPick(wts, rng);
+      var ch = got && got.r;
+      return {choice: ch, quiet: false, pool: spool, genuine: genuine.length, matched: ranked.matched, fallback: false, reset: fp.reset, cursor: 0, terms: (ch && (ch.terms && ch.terms.length ? ch.terms : ch.hits)) || []};
+    }
     var pool = notRecent(genuine, recent).slice(0, k);
     if(!pool.length) return {choice: null, quiet: true, pool: [], genuine: genuine.length, matched: ranked.matched, fallback: false, cursor: opts.cursor || 0, terms: []};
     var chosen = weightedPick(pool, rng);
     return {choice: chosen, quiet: false, pool: pool, genuine: genuine.length, matched: ranked.matched, fallback: false, cursor: opts.cursor || 0, terms: (chosen && (chosen.terms && chosen.terms.length ? chosen.terms : chosen.hits)) || []};
   }
 
-  var api = {TICK_MS: TICK_MS, POP_HOLD_MS: POP_HOLD_MS, TOP_N: TOP_N, TOP_K: TOP_K, NO_REPEAT: NO_REPEAT, MIN_SCORE: MIN_SCORE, BUBBLE_W: BUBBLE_W, BUBBLE_H: BUBBLE_H, tokens: tokens, stem: stem, expand: expand, score: score, pick: pick, rankTweets: rankTweets, weightedPick: weightedPick, chooseOne: chooseOne, qualifies: qualifies, weakTerm: weakTerm, buildState: buildState, buildIdf: buildIdf, tweetOk: tweetOk, zoneOf: zoneOf};
+  // Archive hits for a scene (data/scene_tweets.json, built on the box by searching the account
+  // with 2-4 of the frame's keywords). Random among the scene's ids, never one shown this visit.
+  function chooseArchive(ids, sess, rng, recent){
+    rng = rng || Math.random;
+    var items = (ids || []).map(function(id){ return {id: String(id)}; }).filter(function(r){ return /^\d{1,22}$/.test(r.id); });
+    if(!items.length) return {choice: null, quiet: true, pool: [], archive: true};
+    var fp = freshPool(items, sess, recent);
+    if(!fp.pool.length) return {choice: null, quiet: true, pool: [], archive: true};
+    if(fp.reset && sess) sess.resets++;
+    var r = fp.pool[Math.floor(rng() * fp.pool.length)] || fp.pool[0];
+    var choice = {id: r.id, score: 1, content: 1, terms: ['archive'], hits: ['archive'], line: '', src: 'archive', tweet: {id: r.id, line: '', src: 'archive', move: false}};
+    return {choice: choice, quiet: false, pool: fp.pool, archive: true, reset: fp.reset, genuine: items.length, matched: [], terms: ['archive']};
+  }
+
+  var api = {TICK_MS: TICK_MS, POP_HOLD_MS: POP_HOLD_MS, TOP_N: TOP_N, TOP_K: TOP_K, NO_REPEAT: NO_REPEAT, MIN_SCORE: MIN_SCORE, BUBBLE_W: BUBBLE_W, BUBBLE_H: BUBBLE_H, tokens: tokens, stem: stem, expand: expand, score: score, pick: pick, rankTweets: rankTweets, weightedPick: weightedPick, chooseOne: chooseOne, qualifies: qualifies, weakTerm: weakTerm, buildState: buildState, buildIdf: buildIdf, tweetOk: tweetOk, zoneOf: zoneOf, POOL_K: POOL_K, ELIG_CAP: ELIG_CAP, SCENE_DF_MAX: SCENE_DF_MAX, newSession: newSession, markShown: markShown, chooseArchive: chooseArchive, addSceneTerms: addSceneTerms, resetSceneDf: resetSceneDf, sceneFactor: sceneFactor};
   if(typeof module !== 'undefined' && module.exports) module.exports = api;
   root.ThrydFrameFeed = api;
 
@@ -405,6 +500,8 @@
   var lastSig = '';
   var lastPick = null;
   var recentIds = [];
+  var session = newSession(); // this page visit: nothing repeats until a scene's whole pool was shown
+  var sceneTweets = null;     // data/scene_tweets.json: medium id -> {ids:[...]} from the archive search
   var shownAt = 0;          // when the current popup was mounted
   var pendingChoice = null; // a pick handed to the projector's say(); mounted as-is
   var nextTimer = null;
@@ -609,9 +706,11 @@
     var place = '';
     var world = (document.getElementById('world') || {}).textContent || '';
     if(world && !/^from /i.test(world) && world !== '—' && !/\d{1,2}:\d{2}\s*(am|pm)/i.test(world) && !/\b(monday|tuesday|wednesday|thursday|friday|saturday|sunday)\b/i.test(world)) place = world;
-    var extra = readChars();
+    var sharedNames = readChars();
+    var extra = [];
     if(story && story.current_card && !card) card = String(story.current_card).toLowerCase();
     if(story && story.current_place && !place) place = story.current_place;
+    var placeFromCtx = false;
     var safes = safesAll.filter(function(s){ return !card || String(s.card || '').toLowerCase() === card; });
     try{
       (root.CUR && root.CUR.lines || []).forEach(function(l){
@@ -628,12 +727,13 @@
     var objects = readCuts();
     fetchSidecars(id);
     var ctx = mergeContext(objects, id);
+    var ownSafes = [];
     (ctx.lines || []).forEach(function(l){
       var line = typeof l === 'string' ? l : (l && l.line);
-      if(line) safes.push({line: line, card: (l && l.card) || card, src: 'context'});
+      if(line) ownSafes.push({line: line, card: (l && l.card) || card, src: 'context'});
     });
     extra = extra.concat(tokens(ctx.theme), tokens(ctx.title), tokens(ctx.related));
-    if(ctx.theme && !place) place = ctx.theme;
+    if(ctx.theme && !place){ place = ctx.theme; placeFromCtx = true; }
     return buildState({
       id: id,
       url: url,
@@ -642,7 +742,10 @@
       card: card,
       place: place,
       objects: objects,
-      safes: safes,
+      safes: ownSafes,
+      // the agenda's card lines, place and cast are the same on every scene: they rank, never make a match
+      shared: {terms: sharedNames, safes: safes},
+      placeShared: !placeFromCtx,
       extra: extra,
       theme: ctx.theme,
       title: ctx.title,
@@ -735,6 +838,7 @@
 
   function rememberShown(id){
     if(!id) return;
+    markShown(session, id);
     recentIds.push(String(id));
     if(recentIds.length > NO_REPEAT) recentIds.splice(0, recentIds.length - NO_REPEAT);
   }
@@ -742,7 +846,11 @@
   function nextShown(reason){
     rememberCutMeta();
     var state = liveState();
-    var res = chooseOne(tweets, state, {recent: recentIds, cursor: rotateCursor, k: TOP_K});
+    try{ if(state.frame && state.frame.id) addSceneTerms(state.frame.id, state.own); }catch(e){}
+    var arch = sceneTweets && state.frame && state.frame.id ? rowForMid(sceneTweets, state.frame.id) : null;
+    var res = (arch && arch.ids && arch.ids.length)
+      ? chooseArchive(arch.ids, session, Math.random, recentIds)
+      : chooseOne(tweets, state, {session: session, recent: recentIds, cursor: rotateCursor});
     if(res.fallback === 'rotate') rotateCursor = res.cursor;
     if(res.choice){
       lastPick = res.choice;
@@ -894,7 +1002,8 @@
       loadJson('data/medium_cuts.json'),
       loadJson('data/state.json'),
       loadJson('data/scene_context.json'),
-      loadJson('data/objects.json')
+      loadJson('data/objects.json'),
+      loadJson('data/scene_tweets.json')
     ]).then(function(pair){
       ingestTweets(pair[0] || []);
       safesAll = Array.isArray(pair[1]) ? pair[1] : [];
@@ -902,6 +1011,16 @@
       story = pair[3] && !Array.isArray(pair[3]) ? pair[3] : null;
       sceneContext = pair[4] && typeof pair[4] === 'object' ? pair[4] : null;
       objectsIndex = pair[5] && typeof pair[5] === 'object' ? pair[5] : null;
+      sceneTweets = pair[6] && pair[6].scenes && typeof pair[6].scenes === 'object' ? pair[6].scenes : null;
+      // scene frequency table from every scene_context row (more scenes join as the visit sees them)
+      try{
+        if(sceneContext) Object.keys(sceneContext).forEach(function(k){
+          var row = sceneContext[k];
+          if(!row || typeof row !== 'object' || !/\.(?:gif|webp|png)$/.test(k)) return;
+          var st = buildState({objects: row.objects || [], theme: row.theme || '', title: row.title || '', related: row.related || []});
+          addSceneTerms(k, st.own);
+        });
+      }catch(e){}
       hookMount(); hookChoose(); hookDebug();
       rememberCutMeta();
       evaluate('start');

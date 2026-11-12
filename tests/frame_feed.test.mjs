@@ -189,7 +189,7 @@ test('no-repeat window skips the last 3 popped', () => {
     recent.push(id);
     if(recent.length > 3) recent.shift();
   }
-  assert.equal(Feed.NO_REPEAT, 3);
+  assert.equal(Feed.NO_REPEAT, 10); // after a pool reset, never one of the last 10
   assert.ok(new Set(ids).size >= 4);
 });
 
@@ -278,4 +278,37 @@ test('popups stay 3 s longer and the bubble stays 160x132', () => {
   const ff = fs.readFileSync(path.join(root, 'assets/frame_feed.js'), 'utf8');
   assert.match(ff, /baseMs == null \? 8000 : baseMs/);
   assert.doesNotMatch(ff, /return rawMount\(host, item, baseMs\);\n      \}\n      return rawMount/, 'no random deck fallback on the bubble');
+});
+
+// ---- archive search + visit-long no-repeat ----
+test('archive ids: random pick, never repeated within a visit, quiet when empty', () => {
+  const sess = Feed.newSession();
+  const ids = ['1537852396017180673','2027060942098317616','1749623574619373762','1743859643665752205'];
+  const seen = [];
+  for(let i = 0; i < ids.length; i++){
+    const r = Feed.chooseArchive(ids, sess, Math.random);
+    assert.ok(r.choice && ids.includes(r.choice.id));
+    assert.equal(seen.includes(r.choice.id), false, 'no repeat within the visit');
+    assert.equal(r.choice.tweet.line, '', 'embed only, no text');
+    seen.push(r.choice.id); Feed.markShown(sess, r.choice.id);
+  }
+  assert.equal(Feed.chooseArchive([], sess).choice, null);
+  // pool exhausted and every id is among the last 10 shown: quiet
+  assert.equal(Feed.chooseArchive(ids, sess).choice, null);
+});
+
+test('session picker never repeats a tweet across scenes and is not top-1', () => {
+  const sess = Feed.newSession();
+  const scenes = [weddingState(), chairState(), horseState(), safesOnly()];
+  const ids = [], firsts = new Set();
+  for(let i = 0; i < 24; i++){
+    const res = Feed.chooseOne(tweets, scenes[i % scenes.length], {session: sess});
+    if(!res.choice) continue;
+    assert.ok(Feed.qualifies(res.choice));
+    if(!res.reset) assert.equal(ids.includes(res.choice.id), false, 'repeat ' + res.choice.id);
+    ids.push(res.choice.id); Feed.markShown(sess, res.choice.id);
+  }
+  for(let v = 0; v < 6; v++){ const r = Feed.chooseOne(tweets, weddingState(), {session: Feed.newSession()}); if(r.choice) firsts.add(r.choice.id); }
+  assert.ok(firsts.size >= 2, 'first pick varies between visits');
+  assert.ok(new Set(ids).size >= Math.min(ids.length, 10));
 });
