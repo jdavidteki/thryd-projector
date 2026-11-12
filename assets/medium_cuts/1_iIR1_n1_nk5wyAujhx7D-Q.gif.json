@@ -1,0 +1,49 @@
+{
+ "medium_image_id": "1*iIR1_n1_nk5wyAujhx7D-Q.gif",
+ "kind": "still",
+ "status": "unreviewed",
+ "reviewed": false,
+ "frame_size": [
+  1024,
+  960
+ ],
+ "objects": [
+  {
+   "label": "cut1",
+   "model_class": "woman's silver gray hair",
+   "masks_deflate": "H4sIANRB9WoC/+3cvXHbMBjGcTIoWHIEjpAR2GacNClylztygqyQVTBHKoyAEgWOiGM7tCzx4/2/ChCcLqj9Oxrk81ASJPDjh8/N9/ZL+/NTszHa9DxiIxxf058xi/6+T29DdpDpQqQAD/E07Clo34PkT0V3JZYzYNL1OPu3xhsR6CFSOhbDhnBYRCyO5z5uiSBOiCSP3SY4OkjaGdIQCk7wHtg9wWZX7M293xcBXL7DuU8Hwknadz53cyQ2w9UdCs9O1U7fj8XWvzUci4BF4sLJ+nc49zNxe5Ap0YOcipvMnwuLhZN2djdb5yKAemyWxOQQCynUVhjziJlUUCksKpROOFaom2BNWUTAIt4pBOAqili0EpHuE0YkZizsXaITCXeX6EXCYxFgoTQiYrHA0mpE4mK+R0yJBkso3D1CBi6DhUUrFAGLiMUCa64RCdZcJWZW88tgcTFIhdOLMdFgiUWA9dCICOvxFqw2o0g0umuwuOjkwmLhYHQ1wsPorjHhYpSLiMUCo6sRCYZ9jUleYWE9XoUhwmHhYdhfY9LnFRFG9zUmXIxEJBrEl5hwgcDvmLRMOI0wTHiN6JgIMFYaEWGslGIsIKYCIv0XGcX0CCLg7BYSQ33Ca0RfpejqE04jTJWirU9YjWhKiKk6MRcSY5ViyCwaleirFOiGtZQSpkrR1iYiXjXQiqkyEehKUUExVCY8XR1Ui66AMAUEKaFTiiar8HiZM2iXUklBuHDKgpDwLlgkHN6X1VckPH6VCgVec57fLzHh6GvOy0TousFDiLCe3R9AdEj4Ne09uIKDUkygIOy9vq32E0hu0VQrMn+SWvCd+lE+gUSd6KoUmb/vU4qhNuFxB5UCrfw4nUg1irY6YWnNi4iZ1rxi0RcQQ5Wizrc+6Fai+NFEKZHyC3YrWaoVpoDoqhR9ATFUKcbMIuLS1ivSA4iAZ64TYwExZBYe99zju49OmAIi92qiUqAoWvzBa8YCL4XHAt/8WLwUjn91v2Dh8e4BS/c0JP2+iRHFEF30hu58iXg/jsO7hGa6dylebwCdzw7mrna4uYOHU/QXmVqnvnsxd56D8G33RJ8++sNQ8DSlZZ2N5PEl71MDRK8VUS66d6XOKhIXMxZWLMxGWP+2aOWhuhIBi1hALP9O/AKhPyGE5kgAAA==",
+   "mask_count": 1,
+   "masks_encoding": "bbox1bit-gzip-v1"
+  }
+ ],
+ "plate_known_hole_pixels": 0,
+ "unknown_hole_pixels": 119640,
+ "ghost_pixels_max": null,
+ "plate_match_frames": null,
+ "seconds_per_frame": [
+  1.4269
+ ],
+ "seconds_per_frame_mean": 1.4269,
+ "model": "yolox_s-box(conf>=0.6)+u2net_human_seg/isnet-general-use-tight+postrepair-cap40+track90-hold",
+ "source_sha256": "a8b07d04e425fa8f192bb793db89e558bb42cebba496389c4917366b41e2b932",
+ "job_source_sha256": "a8b07d04e425fa8f192bb793db89e558bb42cebba496389c4917366b41e2b932",
+ "provenance": {
+  "medium_image_id": "1*iIR1_n1_nk5wyAujhx7D-Q.gif",
+  "source_url": null,
+  "pipeline": "medium_cut_batch.py yolox_s-box(conf>=0.6)+u2net_human_seg/isnet-general-use-tight+postrepair-cap40+track90-hold per displayed frame",
+  "plate": "a pixel of this file kept only when most frames match the still border; otherwise transparent",
+  "inpaint": false,
+  "engine_id": null,
+  "still_fallback": {
+   "source_frame_index": 0,
+   "reason": "skipped-precheck {\"sample_frames\": 5, \"best_track_frac\": 0.4, \"est_cov_max\": null, \"why\": [\"tracking clearly under 90% on sample (best track 0.40 < 0.75)\"]}",
+   "frame_choice": {
+    "frame_index": 0,
+    "n_cuts": 1,
+    "best_conf": 0.8005,
+    "max_cut_cov": 0.1216,
+    "sharpness": 266.4
+   }
+  }
+ }
+}

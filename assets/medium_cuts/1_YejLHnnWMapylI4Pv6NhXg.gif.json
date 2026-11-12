@@ -1,0 +1,48 @@
+{
+ "medium_image_id": "1*YejLHnnWMapylI4Pv6NhXg.gif",
+ "kind": "still",
+ "status": "unreviewed",
+ "reviewed": false,
+ "frame_size": [
+  1024,
+  1024
+ ],
+ "objects": [
+  {
+   "label": "cut1",
+   "model_class": "hand holding small brush",
+   "masks_deflate": "H4sIAGZB9WoC/+3XMW7jMBAFUE1YsGQVbMmj8Eq5wQhIn9Okj26wbUreIOqiBRRPFmt7PX8tjUaEUywQdg8GJPGTHI6f6P7uoXum1x8djCxaBcQg0SJQAEVQAmVQATFItAgUQBGUQBlUQAySdREogCIoGcpuFbe4UeIVNSq4Fd1KhrJbxRAbknWRoWAoGkqGMqgYYkOyLgIFQ9FQMpQX9CZ6Cj8XxQs6P0W8oiW9iJ4eSrYVDSW3slvFLTYkXpGh4FY0lNzKbhVD7Jbs1MdRp5B+gSYUa43H2/AUWc3rGo46BThErf6oU2Q9yazUcdXarBhGVbDOegHx+tn7uwV6WOYelmtRE2tV0FAu+t3eaB1Ac8cg/S0jgYJWPSf/R0PW6ovWOcEBJl9h8hWOd4UEKxzFCglWSHCEBEfIbIRNPcLGRU37xB7N8C2WDtfKbqXGchLdWitt/ZWoUZd4h31it4pbGTZaq1Kj4k0UvkAER8evrlXcqNKo7Fa6iWKjwqKmTdFuzXAd7harMmWr3ER5W//04T0sy17F3bKWbN4ULd6q2+paxfo2/hIZb7dmFBxa6jYsJYf2ForWUsTrZZGg2wigCEqGstHBQK9DoMt1P0ObMEN7McM/kmsVEINkXWQoNCo2Cp5SQRPoAJJH0DtI/j9Nxm8HkKAqaJLv8T2axycFqiT75BcAAA==",
+   "mask_count": 1,
+   "masks_encoding": "bbox1bit-gzip-v1"
+  }
+ ],
+ "plate_known_hole_pixels": 0,
+ "unknown_hole_pixels": 30137,
+ "ghost_pixels_max": null,
+ "plate_match_frames": null,
+ "seconds_per_frame": [
+  1.7065
+ ],
+ "seconds_per_frame_mean": 1.7065,
+ "model": "yolox_s-box(conf>=0.6)+u2net_human_seg/isnet-general-use-tight+postrepair-cap40+track90-hold",
+ "source_sha256": "98709e39d7f63f5f35f426dd61fc0ac4eded2cfc28a90181baec2e5cac466ffd",
+ "job_source_sha256": "98709e39d7f63f5f35f426dd61fc0ac4eded2cfc28a90181baec2e5cac466ffd",
+ "provenance": {
+  "medium_image_id": "1*YejLHnnWMapylI4Pv6NhXg.gif",
+  "source_url": null,
+  "pipeline": "medium_cut_batch.py yolox_s-box(conf>=0.6)+u2net_human_seg/isnet-general-use-tight+postrepair-cap40+track90-hold per displayed frame",
+  "plate": "a pixel of this file kept only when most frames match the still border; otherwise transparent",
+  "inpaint": false,
+  "engine_id": null,
+  "still_fallback": {
+   "source_frame_index": 9,
+   "reason": "skipped-precheck {\"sample_frames\": 5, \"best_track_frac\": 0.6, \"est_cov_max\": null, \"why\": [\"tracking clearly under 90% on sample (best track 0.60 < 0.75)\"]}",
+   "frame_choice": {
+    "best_conf": 0.6156,
+    "sharpness": 220.4,
+    "frame_index": 9
+   },
+   "search": "all-frames sharpness order after sample miss"
+  }
+ }
+}

@@ -1,0 +1,49 @@
+{
+ "medium_image_id": "1*LKPOt_RPYAbZIRtu4aeXWw.gif",
+ "kind": "still",
+ "status": "unreviewed",
+ "reviewed": false,
+ "frame_size": [
+  600,
+  600
+ ],
+ "objects": [
+  {
+   "label": "cut1",
+   "model_class": "giant figure in striped hat",
+   "masks_deflate": "H4sIAFE/9WoC/+3WMVKEMBTG8TAUKTOegJvI0WALz+ExLGXGAzjjBaSzUzozI5OnrCubkD9CHNjKlL8i+RJC3ntSB3WnHtTNlQqGiIJRidhYtXyNOuJy4C7iQeNZsiM7nDrOUnxzTSuKNLSiSEsrRglPK04TmhP3GGQavGSWn4FBJpwza+Zi5JqCTLgaucF8AZ/zBUeYM5/zBSdrkrhYZIubDFiQsyT2Nul/ep3EJom9Tfr3p9yCqx1Z/HF5djtyvyNbvILetV/DbRI3W3C9Bav92G3B/eIDof7M3eW5xRIQcME1wAgWEi1YjfIldsw9l0XLRbRTWNJarMSTpqDAsnhmLv7CrYJjnrQKOeee4Ux4Fvm94RC1ZpuaDyXjIxyP1vKa67hK2s9Sp1QzN8xtEnd8OWfYJt3wIPgyz/Rb3XK/pfn9Mfi2+X99z2+EYxZ+aPz9rKglM1XNYhs2xz22YV5CI5iwEEwYckt796IEOkbJQnYUe0h4DbFFDg5iizy6qMPzZq+QM0HWzIa5ZK6Q4xWPrJkNcEdTi3M0tThpDXJfIOP453hY5pa5uTg/Y5IPSeNX4jfmpBO8l1vgd+aXgT8BnQA7WpERAAA=",
+   "mask_count": 1,
+   "masks_encoding": "bbox1bit-gzip-v1"
+  }
+ ],
+ "plate_known_hole_pixels": 0,
+ "unknown_hole_pixels": 20590,
+ "ghost_pixels_max": null,
+ "plate_match_frames": null,
+ "seconds_per_frame": [
+  1.51
+ ],
+ "seconds_per_frame_mean": 1.51,
+ "model": "yolox_s-box(conf>=0.6)+u2net_human_seg/isnet-general-use-tight+postrepair-cap40+track90-hold",
+ "source_sha256": "481ed89c25bd408fb26ab459c430930d12a9c4e1c221b329634251bfd246aa2a",
+ "job_source_sha256": "481ed89c25bd408fb26ab459c430930d12a9c4e1c221b329634251bfd246aa2a",
+ "provenance": {
+  "medium_image_id": "1*LKPOt_RPYAbZIRtu4aeXWw.gif",
+  "source_url": null,
+  "pipeline": "medium_cut_batch.py yolox_s-box(conf>=0.6)+u2net_human_seg/isnet-general-use-tight+postrepair-cap40+track90-hold per displayed frame",
+  "plate": "a pixel of this file kept only when most frames match the still border; otherwise transparent",
+  "inpaint": false,
+  "engine_id": null,
+  "still_fallback": {
+   "source_frame_index": 16,
+   "reason": "skipped-precheck {\"sample_frames\": 5, \"best_track_frac\": 0.2, \"est_cov_max\": null, \"why\": [\"tracking clearly under 90% on sample (best track 0.20 < 0.75)\"]}",
+   "frame_choice": {
+    "frame_index": 16,
+    "n_cuts": 1,
+    "best_conf": 0.709,
+    "max_cut_cov": 0.0579,
+    "sharpness": 3036.0
+   }
+  }
+ }
+}

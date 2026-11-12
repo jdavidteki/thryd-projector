@@ -1,0 +1,49 @@
+{
+ "medium_image_id": "1*Fc_eCwdnwGeOY8lZll6uEw.gif",
+ "kind": "still",
+ "status": "unreviewed",
+ "reviewed": false,
+ "frame_size": [
+  600,
+  542
+ ],
+ "objects": [
+  {
+   "label": "cut1",
+   "model_class": "man in striped shirt",
+   "masks_deflate": "H4sIAAVF9WoC/8XaPW4UMRQHcI+2mHIugDQ9J0AC4SvRg/BIFGm5Qc5BxUgU6eACSDHaYku8SoELx4/5YJNZjz/eP5MVqX+A/d7fz54IKV5X76u9+PxSJH4qWvx0oviz2+L7sq9B32zxuuzbC3u59Kbs1YX9kpN9dn8WN3JYfMi3PeTLOw69hdY/rAj0BNWTEWkVeA16j+STceZbAhYkqV95my2mbkLv8rPkB/E3vFpLoWMy6jt27UsdjvJ0Qau4t9zslwrUxD1h5UxvWBK24QRPJaJKeWLcRIwNtIQtSBG0oF2aRxfUZrwBqpmIRJ3zkTMgs17zmxXPdH4564q2Bd8B1Yl0YAf6BvSqwA8aqSbRjYaqSZ800Nwhb5WBqtkJw67mceruO3Zz9+s4Z6t5sz6/2bV/XR2vYhj0tjCUqk9glr3AwuOwoxiWpwXLowg6u4Xlq3C7+eX71Xbzy79fbTffreOqu/nl34Hd2mPbHdIPbXd4blkonG1YnkJvZeAL2/WhL2zXqcAXzqIN21sozzFMc6E8hzAOqtQuzF+FnkrtOvdVsV0EtUsFvjA6XTjcirOHbjf5Qhz+kH+BzTYrNnkJznLUK9ATeFcQtt/iVUR6ky/e1MFpKXuxyddg+Zv/7dE4o0+B4G6XYL8kmE/Uq2f32LsZnOb48UWPowF9B/o34DR3WJwv7g0Yfw16NP4d7A3mz3Zcjj/B/s5gvgX9ckEM/XtqmWH7uWWAH09wA/gxoa3meztYBXgz2FPsWPvVw63YAb4bjrmAvHRP8xXx/oA0kL+67TH/U0D+ume/Ns6HBNcLzPun+prnHegt6AXm5+W/Yvt5OR9Y18Xj/HFsP53dHegby7peHtIzHQHATxOF5X07DgdiezcO9Gr6VyTHf5knkOD6q9HXnu2vR9840Fv2dTQFdB7Qin1e5oHL/ft7SfzxSXS4+XcGiP0zeg14e2GvpyuY779j3nvMOy8qwx3/o3dih3jvxidEhdRzeEIAvhOqh/z4JNgB8ZGQd2IcQ6iv+eWpMW+a+VnDjtv0azK+94T5eUg0l/QW9OYt6D9i/pfH/DfPvO4eM4p5B3p7YW9Ar0Hf57yPjZSM18sPwtMlmfZ+OQoOpxspfV33u+X75JR/mW7l4ug5dcq/TJd64c3Dq0+mp+siuvuHG0ymL7d2+YF6epWp9N0pY49ilX4uq7BzPum76EvBpbyLvyxMytv4h1Of8C7xodIlvAn8/eIbIP1pU4fhtHFvU79HMnFvUr6P+z7l402h/H+CS39oVdEq/wUp3J6/nCoAAA==",
+   "mask_count": 1,
+   "masks_encoding": "bbox1bit-gzip-v1"
+  }
+ ],
+ "plate_known_hole_pixels": 0,
+ "unknown_hole_pixels": 61322,
+ "ghost_pixels_max": null,
+ "plate_match_frames": null,
+ "seconds_per_frame": [
+  1.2154
+ ],
+ "seconds_per_frame_mean": 1.2154,
+ "model": "yolox_s-box(conf>=0.6)+u2net_human_seg/isnet-general-use-tight+postrepair-cap40+track90-hold",
+ "source_sha256": "d34f401989d118e5042cab2c77273320295bd45d098b30f947918ab687dc64c9",
+ "job_source_sha256": "d34f401989d118e5042cab2c77273320295bd45d098b30f947918ab687dc64c9",
+ "provenance": {
+  "medium_image_id": "1*Fc_eCwdnwGeOY8lZll6uEw.gif",
+  "source_url": null,
+  "pipeline": "medium_cut_batch.py yolox_s-box(conf>=0.6)+u2net_human_seg/isnet-general-use-tight+postrepair-cap40+track90-hold per displayed frame",
+  "plate": "a pixel of this file kept only when most frames match the still border; otherwise transparent",
+  "inpaint": false,
+  "engine_id": null,
+  "still_fallback": {
+   "source_frame_index": 0,
+   "reason": "skipped-precheck {\"sample_frames\": 16, \"best_track_frac\": 0.625, \"est_cov_max\": null, \"why\": [\"tracking clearly under 90% on sample (best track 0.62 < 0.75)\"]}",
+   "frame_choice": {
+    "frame_index": 0,
+    "n_cuts": 1,
+    "best_conf": 0.7288,
+    "max_cut_cov": 0.076,
+    "sharpness": 1576.6
+   }
+  }
+ }
+}
