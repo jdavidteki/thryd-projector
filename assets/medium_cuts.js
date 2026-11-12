@@ -665,7 +665,7 @@
 
   function movedFlags(layer, n){
     const out = [];
-    for(let i = 0; i < n; i++){ const o = layer._off && layer._off[i]; out.push(!!(o && (o.x || o.y))); }
+    for(let i = 0; i < n; i++){ const o = layer._off && layer._off[i]; out.push(!!((o && (o.x || o.y)) || (layer._wan && layer._wan[i]) || (layer._gone && layer._gone[i]))); }
     return out;
   }
   // background under the cuts: the original frame where nothing moved; a hole (plate fill or
@@ -705,6 +705,138 @@
       node.style.left = (box.left + (sp.x / layer._w) * box.width + layer._off[i].x) + 'px';
       node.style.top = (box.top + (sp.y / layer._h) * box.height + layer._off[i].y) + 'px';
     });
+  }
+
+  // ---------- cut life (Jesuye 11-12 5:07 PM: "behave like the other objects"): the run-scene objects' wander / drift-off / visitor
+  // behaviours for Medium/X cuts. Moves are CSS `translate` (so the idle float on `transform` keeps running); while a cut is away its
+  // home spot gets the same hole fill a dragged cut gets (plateFor), so the photo underneath never shows a double. Automatic trips are
+  // reported through window.thrydDrift (kind "drift", never a customer move). Off on phone.html and for prefers-reduced-motion.
+  const LIFE_OFF = ()=> typeof window === 'undefined' || (root.location && /phone\.html$/.test(root.location.pathname)) ||
+    (root.matchMedia && root.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  const STILL_RX = /stall|sign|table|shelter|door|street|window|board|wall|tree|gate|house|building|kiosk|road|sky|floor|bed|couch|sofa|counter|shelf/i;
+  const TRAVEL_KEY = 'thryd_travel_v1';
+  const lifePaused = ()=> (typeof document !== 'undefined') && (document.hidden || document.body.classList.contains('dragmode') || document.body.classList.contains('cm-paused') || document.body.classList.contains('cerebro') || document.body.classList.contains('lovemap'));
+  function drift(info){ try{ if(root.thrydDrift) root.thrydDrift(info); }catch(e){} }
+  function spriteInfo(layer, i){
+    const f = layer._frame, sp = f && f.sprites && f.sprites[i], bx = layer._box;
+    if(!sp || !bx) return null;
+    const area = (sp.w * sp.h) / (layer._w * layer._h);
+    return {sp, area, label: (layer._labels && layer._labels[i]) || ('cut' + (i + 1)), klass: (layer._klass && layer._klass[i]) || null,
+      cx: (sp.x + sp.w / 2) / layer._w * 100, cy: (sp.y + sp.h / 2) / layer._h * 100};
+  }
+  function foldWander(layer, i, node){
+    if(!layer._wan || !layer._wan[i]) return;
+    const t = (getComputedStyle(node).translate || '').split(/\s+/).map(parseFloat);
+    const tx = isFinite(t[0]) ? t[0] : 0, ty = isFinite(t[1]) ? t[1] : 0;
+    layer._off[i] = {x: layer._off[i].x + tx, y: layer._off[i].y + ty};
+    node.style.transition = 'none'; node.style.translate = ''; layer._wan[i] = false;
+    if(layer._frame) paintFrame(layer, layer._frame);
+  }
+  function nodeOf(layer, i){ return layer.querySelector('canvas.sprite[data-i="' + i + '"]'); }
+  function roams(layer, i, maxArea){
+    const inf = spriteInfo(layer, i); const n = nodeOf(layer, i);
+    if(!inf || !n || n.dataset.dragging === '1' || (layer._gone && layer._gone[i]) || (layer._wan && layer._wan[i])) return null;
+    if(inf.area > (maxArea || 0.3) || STILL_RX.test(inf.label + ' ' + (inf.klass || ''))) return null;
+    return Object.assign(inf, {node: n});
+  }
+  // wander: travel to another spot in the frame and back after a pause (run objects: wMove "move around the frame, not rock in place")
+  function wander(layer){
+    const n = (layer._labels || []).length; if(!n) return;
+    const order = Array.from({length:n}, (_, k)=>k).sort(()=>Math.random() - 0.5);
+    for(const i of order){
+      const r = roams(layer, i, 0.3); if(!r) continue;
+      const bx = layer._box, W = bx.width, H = bx.height;
+      const nw = parseFloat(r.node.style.width) || 0, nh = parseFloat(r.node.style.height) || 0;
+      const L0 = parseFloat(r.node.style.left) || 0, T0 = parseFloat(r.node.style.top) || 0;
+      const stage = layer.parentNode, SW = (stage && stage.clientWidth) || W, SH = (stage && stage.clientHeight) || H;
+      let dx = (Math.random() < 0.5 ? -1 : 1) * (0.04 + Math.random() * 0.12) * SW, dy = (Math.random() * 2 - 1) * 0.03 * SH;
+      dx = Math.max(-L0 + 0.02 * SW, Math.min(SW * 0.98 - nw - L0, dx)); dy = Math.max(-T0 + 0.05 * SH, Math.min(SH * 0.92 - nh - T0, dy));
+      if(Math.abs(dx) < 0.02 * SW) continue;
+      layer._wan = layer._wan || []; layer._wan[i] = true;
+      if(layer._frame) paintFrame(layer, layer._frame);
+      const node = r.node, dur = 3.2 + Math.abs(dx) / SW * 14;
+      node.style.transition = 'translate ' + dur.toFixed(2) + 's cubic-bezier(.45,.05,.35,1)';
+      requestAnimationFrame(()=>{ node.style.translate = dx.toFixed(1) + 'px ' + dy.toFixed(1) + 'px'; });
+      drift({kind:'wander', scene: layer._mid, scene_kind:'medium_cut', cut: r.label, cut_index: i, klass: r.klass,
+        from: {x: +r.cx.toFixed(2), y: +r.cy.toFixed(2)}, to: {x: +(r.cx + dx / W * 100).toFixed(2), y: +(r.cy + dy / H * 100).toFixed(2)}});
+      const back = ()=>{
+        if(!node.isConnected || !layer._wan || !layer._wan[i]) return;
+        if(lifePaused() || layer._drag){ setTimeout(back, 1500); return; }
+        node.style.translate = '0px 0px';
+        setTimeout(()=>{ if(node.isConnected && layer._wan && layer._wan[i]){ layer._wan[i] = false; node.style.transition = ''; node.style.translate = ''; if(layer._frame) paintFrame(layer, layer._frame); } }, dur * 1000 + 80);
+      };
+      setTimeout(back, dur * 1000 + 2500 + Math.random() * 6000);
+      return;
+    }
+  }
+  // drift off: one small cut leaves through the nearer edge, its snapshot joins the traveller pool and turns up in a later scene
+  function travelPool(){ try{ return JSON.parse(sessionStorage.getItem(TRAVEL_KEY) || '[]') || []; }catch(e){ return []; } }
+  function savePool(a){ try{ sessionStorage.setItem(TRAVEL_KEY, JSON.stringify(a.slice(-8))); }catch(e){ try{ sessionStorage.setItem(TRAVEL_KEY, JSON.stringify(a.slice(-3))); }catch(e2){} } }
+  function snapshot(node){
+    const k = Math.min(1, 220 / Math.max(node.width, node.height));
+    const c = document.createElement('canvas'); c.width = Math.max(1, Math.round(node.width * k)); c.height = Math.max(1, Math.round(node.height * k));
+    c.getContext('2d').drawImage(node, 0, 0, c.width, c.height); return c.toDataURL('image/png');
+  }
+  function driftOff(layer, title){
+    const n = (layer._labels || []).length; let best = null;
+    for(let i = 0; i < n; i++){ const r = roams(layer, i, 0.12); if(r && (!best || r.area < best.area)) best = Object.assign(r, {i}); }
+    if(!best) return;
+    const i = best.i, node = best.node, stage = layer.parentNode, SW = (stage && stage.clientWidth) || 1000;
+    const L0 = parseFloat(node.style.left) || 0, nw = parseFloat(node.style.width) || 0, left = (L0 + nw / 2) < SW / 2;
+    let img = null; try{ img = snapshot(node); }catch(e){ return; }
+    const pool = travelPool().filter(t => !(t.from === layer._mid && t.label === best.label));
+    pool.push({img, label: best.label, klass: best.klass, from: layer._mid, title: title || null, wf: nw / SW, at: Date.now()}); savePool(pool);
+    layer._gone = layer._gone || []; layer._gone[i] = true;
+    if(layer._frame) paintFrame(layer, layer._frame);
+    const dx = left ? -(L0 + nw + 40) : (SW - L0 + 40);
+    node.style.transition = 'translate 5.5s cubic-bezier(.5,0,.3,1), opacity 2.2s ease-in 3.4s';
+    requestAnimationFrame(()=>{ node.style.translate = dx.toFixed(0) + 'px ' + (-0.02 * SW).toFixed(0) + 'px'; node.style.opacity = '0'; node.style.pointerEvents = 'none'; });
+    drift({kind:'leave', scene: layer._mid, scene_kind:'medium_cut', cut: best.label, cut_index: i, klass: best.klass,
+      from: {x: +best.cx.toFixed(2), y: +best.cy.toFixed(2)}, to: {x: left ? -10 : 110, y: +best.cy.toFixed(2)}, edge: left ? 'left' : 'right'});
+  }
+  // visitor: a traveller from another scene walks in from the nearer edge, stays (draggable) until the scene changes; the cuts here notice
+  function visit(layer){
+    if(layer.querySelector('.mcvisit')) return;
+    const pool = travelPool().filter(t => t.from !== layer._mid && t.img); if(!pool.length) return;
+    const t = pool[Math.floor(Math.random() * pool.length)];
+    const stage = layer.parentNode, SW = (stage && stage.clientWidth) || 1000, SH = (stage && stage.clientHeight) || 600;
+    const w = Math.max(60, Math.min(0.16 * SW, (t.wf || 0.08) * SW));
+    const im = new Image(); im.className = 'mcvisit'; im.alt = t.label; im.draggable = false; im.src = t.img;
+    const x = (0.12 + Math.random() * 0.62) * SW, fromLeft = x < SW / 2;
+    Object.assign(im.style, {position:'absolute', width: w + 'px', left: x + 'px', bottom: (8 + Math.random() * 14) + '%', zIndex: 3});
+    im.style.setProperty('--vx', (fromLeft ? -1 : 1) * (x + w + 40) + 'px');
+    im.style.setProperty('--fd', (6 + Math.random() * 3).toFixed(2) + 's');
+    const from = t.title || t.from;
+    const tag = document.createElement('span'); tag.className = 'mcvfrom'; tag.textContent = 'from ' + String(from).slice(0, 48);
+    layer.appendChild(im); layer.appendChild(tag);
+    const place = ()=>{ tag.style.left = (parseFloat(im.style.left) + w / 2) + 'px'; tag.style.top = (im.offsetTop + im.offsetHeight + 6) + 'px'; };
+    im.onload = place; setTimeout(place, 50);
+    drift({kind:'arrive', scene: layer._mid, scene_kind:'medium_cut', cut: t.label, klass: t.klass, from_scene: t.from, from_title: t.title || null,
+      to: {x: +((x + w / 2) / SW * 100).toFixed(2), y: null}});
+    setTimeout(()=>{ if(!im.isConnected) return; const vx = im.getBoundingClientRect().left;
+      layer.querySelectorAll('canvas.sprite').forEach((c, k)=>{ if(c.dataset.dragging === '1' || (layer._wan && layer._wan[+c.dataset.i])) return;
+        setTimeout(()=>{ c.classList.remove('mcnotice'); void c.offsetWidth; c.classList.add('mcnotice'); setTimeout(()=>c.classList.remove('mcnotice'), 1300); }, k * 180); }); }, 3400);
+    // customer drag of a visitor stays a customer move, bound to where it came from
+    let d = null;
+    im.addEventListener('pointerdown', ev=>{ ev.preventDefault(); ev.stopPropagation(); d = {sx: ev.clientX, sy: ev.clientY, l: parseFloat(im.style.left), b: im.getBoundingClientRect()}; im.style.animation = 'none'; im.classList.add('mcvdrag'); try{ im.setPointerCapture(ev.pointerId); document.body.classList.add('dragmode'); }catch(e){} });
+    im.addEventListener('pointermove', ev=>{ if(!d) return; im.style.transform = 'translate(' + (ev.clientX - d.sx) + 'px,' + (ev.clientY - d.sy) + 'px)'; });
+    const end = ev=>{ if(!d) return; const dx = ev.clientX - d.sx, dy = ev.clientY - d.sy, sb = stage.getBoundingClientRect();
+      im.style.transform = ''; im.style.left = (d.l + dx) + 'px'; im.style.bottom = ''; im.style.top = (d.b.top - sb.top + dy) + 'px'; im.classList.remove('mcvdrag'); im.style.animation = '';
+      try{ document.body.classList.remove('dragmode'); }catch(e){} place();
+      if(dx || dy) try{ window.dispatchEvent(new CustomEvent('thryd:cutmove', {detail: {scene: t.from, cut: t.label, cut_index: null, klass: t.klass || null, visitor_in: layer._mid,
+        source_frame_index: 0, frame_count: 1, from: {x: +((d.b.left - sb.left + d.b.width / 2) / SW * 100).toFixed(3), y: +((d.b.top - sb.top + d.b.height / 2) / SH * 100).toFixed(3)},
+        to: {x: +((d.b.left - sb.left + d.b.width / 2 + dx) / SW * 100).toFixed(3), y: +((d.b.top - sb.top + d.b.height / 2 + dy) / SH * 100).toFixed(3)}, place_key: null}})); }catch(e){}
+      d = null; };
+    im.addEventListener('pointerup', end); im.addEventListener('pointercancel', end);
+  }
+  function cutLife(layer, my, set){
+    if(LIFE_OFF()) return;
+    const title = (root.thrydSceneTitle && root.thrydSceneTitle(set && set.medium_image_id)) || (set && (set.title || set.label)) || null;
+    const alive = ()=> layer.isConnected && layer._token === my && document.getElementById('mcut') === layer;
+    const tick = ()=>{ if(!alive()) return; if(!lifePaused() && !layer._drag) wander(layer); setTimeout(tick, 5000 + Math.random() * 9000); };
+    setTimeout(tick, 2500 + Math.random() * 5000);
+    if(Math.random() < 0.55) setTimeout(()=>{ if(alive()) visit(layer); }, 4000 + Math.random() * 8000);
+    if(Math.random() < 0.4) setTimeout(function off(){ if(!alive()) return; if(lifePaused() || layer._drag){ setTimeout(off, 3000); return; } driftOff(layer, title); }, 12000 + Math.random() * 16000);
   }
 
   function stillRgba(buf, w, h){
@@ -841,6 +973,8 @@
           const node = ev.target.closest && ev.target.closest('canvas.sprite');
           if(!node) return;
           const i = +node.dataset.i;
+          if(layer._gone && layer._gone[i]) return;
+          foldWander(layer, i, node);
           if(layer._timer){ clearTimeout(layer._timer); layer._timer = null; }
           layer._dragPaused = true;
           layer._drag = {i, sx:ev.clientX, sy:ev.clientY, ox:layer._off[i].x, oy:layer._off[i].y, node, dx:0, dy:0, raf:0};
@@ -904,6 +1038,7 @@
           prev.remove();
         }
         stage.insertBefore(layer, stage.querySelector('#cap') || null);
+        try{ cutLife(layer, my, set); }catch(e){}
         if(image){
           requestAnimationFrame(()=>{
             if(document.getElementById('mcut') !== layer) return;
@@ -934,7 +1069,8 @@
     });
   }
 
-  const api = {CAP, USED, RESERVE, roomBytes, admit, isMedium, coverage, forSet, compose, planFrames, decodeGif, delaysMatch, playMs, attach, detach, loadManifest, inkBox, unpackMask, frameHoldBytes, expandObject, expandRow, plateFor, movedFlags, fillBuilder, framesFill, grow, shadowFill, SHADOW_BRIGHT, SHADOW_BLUR};
+  const life = {wander, driftOff, visit, pool: travelPool};
+  const api = {life, CAP, USED, RESERVE, roomBytes, admit, isMedium, coverage, forSet, compose, planFrames, decodeGif, delaysMatch, playMs, attach, detach, loadManifest, inkBox, unpackMask, frameHoldBytes, expandObject, expandRow, plateFor, movedFlags, fillBuilder, framesFill, grow, shadowFill, SHADOW_BRIGHT, SHADOW_BLUR};
   if(typeof module !== 'undefined' && module.exports) module.exports = api;
   root.ThrydMediumCuts = api;
 })(typeof window !== 'undefined' ? window : globalThis);

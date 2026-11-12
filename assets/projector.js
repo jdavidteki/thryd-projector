@@ -506,6 +506,7 @@ function addVisitor(L,k){const pool=[];const seen=new Set();Object.entries(OMAP)
   const wr=document.createElement('div');wr.className='spw';wr.style.setProperty('--vx',(x+w*50<50?-1:1)*(160+Math.random()*80)+'%');wr.appendChild(sp);box.appendChild(wr);
   const t=document.createElement('span');t.className='vfrom';t.textContent='from '+box.dataset.from;box.appendChild(t);
   L.appendChild(box);cmHome(box);
+  try{if(window.thrydDrift)thrydDrift({kind:'arrive',scene:k,scene_kind:'run_view',cut:o.label,label:o.label,from_scene:vk,from_title:box.dataset.from});}catch(e){}
   // the scene notices: once it has walked in, the cut-outs already here hop and turn toward it
   setTimeout(()=>{if(objLayer!==L||!box.isConnected)return;const vx=box.getBoundingClientRect().left;
     L.querySelectorAll('.dob:not(.visitor)').forEach((o,i)=>{const sp=o.querySelector('.sp');if(!sp)return;o.classList.remove('notice');void o.offsetWidth;o.style.setProperty('--face',o.getBoundingClientRect().left>vx?'-1':'1');setTimeout(()=>{o.classList.add('notice');setTimeout(()=>o.classList.remove('notice'),1300);},i*180);});},3400); // no spoken line: a random line rarely fits the scene (Jesuye 11-10: only say it if it works with the context)
@@ -606,7 +607,13 @@ const MOVES=(()=>{const KEY='thryd_moves_v1',MAX=400;let box=null;
     line.textContent=t;line.style.opacity=1;clearTimeout(lineT);lineT=setTimeout(()=>{line.style.opacity=0;},9000);};
   // engine body (MOVEMENT_CONTRACT_V1 / EVENT_SPEC "Engine ingest contract"): positions only in raw (percent) + normalized (0-1)
   const n01=p=>({x:Math.min(1,Math.max(0,p.x/100)),y:Math.min(1,Math.max(0,p.y/100))});
-  const bodyFor=ev=>{const s=ev.source||{};if(ev.type!=='move')return {hold:ev.type==='setlocation'?'place_id_missing':'not_a_move'};
+  const driftBody=ev=>{const s=ev.source||{},d=ev.drift||{},o={v:1,type:'drift',event_id:ev.event_id,rid:ev.event_id+'-r'};
+    const put=(k,v)=>{if(v!=null&&v!=='')o[k]=String(v).slice(0,200);};
+    put('run',s.run);if(ev.object_id)put('object_id',ev.object_id);else put('cut',s.cut||ev.label||'object');
+    put('from_scene',d.kind==='arrive'?d.from_scene:s.scene);put('to_scene',d.kind==='leave'?'(travelling)':s.scene);
+    put('from_frame',d.kind==='arrive'?((String(d.from_scene||'').match(/(?:^|[^A-Za-z0-9])(j\d+)(?![0-9])/)||[])[1]):s.frame);put('to_frame',d.kind==='leave'?null:s.frame);put('client_ts',ev.client_ts);
+    return {body:o};};
+  const bodyFor=ev=>{const s=ev.source||{};if(ev.type==='drift')return driftBody(ev);if(ev.type!=='move')return {hold:ev.type==='setlocation'?'place_id_missing':'not_a_move'};
     if(!ev.from||!ev.to)return {hold:'bad_coord'};if(!ev.object_id)return {hold:'unmapped'};if(!s.run||!/^run-[A-Za-z0-9]+$/.test(s.run)||!s.frame)return {hold:'no_run_frame'};
     const f=n01(ev.from),t=n01(ev.to),out=v=>v<0||v>100,cl=[ev.from.x,ev.from.y,ev.to.x,ev.to.y].some(out);if([ev.from.x,ev.from.y,ev.to.x,ev.to.y].some(v=>!isFinite(v)||v<-50||v>150))return {hold:'raw_out_of_range'};
     return {body:{event_id:ev.event_id,rid:ev.event_id+'-r',run:s.run,frame:s.frame,object_id:ev.object_id,scene:s.scene,cut:s.cut,
@@ -624,19 +631,24 @@ const MOVES=(()=>{const KEY='thryd_moves_v1',MAX=400;let box=null;
     ev.emit=Object.assign({},ev.emit||{},{status:'sending',attempts:((ev.emit&&ev.emit.attempts)||0)+1,at:new Date().toISOString()});save();
     const m=await ntfySend(b.body);
     ev.emit=Object.assign(ev.emit,m?{status:m.status||(m.ok?'accepted':'rejected'),committed:m.committed===true,reply:m}:{status:'no_reply'});
+    if(m&&m.kind==='drift'&&m.code&&!/phone\.html$/.test(location.pathname)){(window.__thrydDriftLines=window.__thrydDriftLines||[]).push({t:String(m.code).slice(0,160)+';',a:true,note:'drift ack · engine logged it · no consequence'});}
   }catch(e){ev.emit=Object.assign({},ev.emit||{},{status:'failed',reason:String(e&&e.message||e)});}save();};
   // retry queue: unanswered sends go again (idempotent by event_id), at most 6 tries, every 2 minutes
   setInterval(()=>{box.events.filter(e=>e.emit&&(e.emit.status==='no_reply'||e.emit.status==='failed'||e.emit.status==='sending')&&(e.emit.attempts||0)<6&&Date.now()-Date.parse(e.emit.at||0)>110000).slice(0,3).forEach(e=>emit(e));},120000);
+  let lastDE=0;
   function record(inp){try{
     const scene=inp.scene||null, ev={v:1,type:inp.type||'move',event_id:uid(),client_ts:new Date().toISOString(),
-      source:{scene,scene_kind:inp.scene_kind||null,cut:inp.cut||null,cut_index:inp.cut_index==null?null:inp.cut_index,klass:inp.klass||null,source_frame_index:inp.source_frame_index==null?null:inp.source_frame_index,frame_count:inp.frame_count||null,run:inp.run||runOfKey(scene)||null,frame:((String(scene||'').match(/(?:^|[^A-Za-z0-9])(j\d+)(?![0-9])/)||[])[1])||null,place_key:inp.place_key||null},
+      source:{scene,scene_kind:inp.scene_kind||null,cut:inp.cut||null,cut_index:inp.cut_index==null?null:inp.cut_index,klass:inp.klass||null,source_frame_index:inp.source_frame_index==null?null:inp.source_frame_index,frame_count:inp.frame_count||null,run:inp.run||runOfKey(scene)||null,...(inp.visitor_in?{visitor_in:inp.visitor_in}:{}),frame:((String(scene||'').match(/(?:^|[^A-Za-z0-9])(j\d+)(?![0-9])/)||[])[1])||null,place_key:inp.place_key||null},
       agenda:{run:CUR_RUN||null,card:window.__thrydCard||null,view_card:(bgSet&&bgSet.card)||null,state_at:window.__thrydStateAt||null},
       object_id:inp.object_id||null,object_key:norm(inp.object_key||inp.klass||inp.cut),label:inp.label||inp.cut||null,
       from:inp.from||null,to:inp.to||null,unit:inp.from?'percent_of_source_frame':null,place:inp.place||hereFull(),from_place:inp.from_place||null,
       story:Object.assign(storyOf(scene),{people:people()}),caused_by:[],applied_in:[]};
-    const ks=keysOf(ev);ev.caused_by=box.events.filter(p=>p.type!=='consequence'&&p.object_key===ev.object_key&&p.event_id!==ev.event_id).slice(-3).map(p=>p.event_id);
-    box.events.push(ev);save();emit(ev);
-    const n=box.events.filter(p=>p.type!=='consequence'&&p.object_key===ev.object_key).length;
+    if(ev.type==='drift')ev.drift={kind:inp.kind||'wander',from_scene:inp.from_scene||null,from_title:inp.from_title||null,edge:inp.edge||null,note:'automatic trip: recorded and shown as code, never a customer move, never changes the story'};
+    const ks=keysOf(ev);if(ev.type!=='drift')ev.caused_by=box.events.filter(p=>p.type!=='consequence'&&p.type!=='drift'&&p.object_key===ev.object_key&&p.event_id!==ev.event_id).slice(-3).map(p=>p.event_id);
+    box.events.push(ev);save();
+    if(ev.type==='drift'){if(ev.drift&&ev.drift.kind==='wander'&&Date.now()-lastDE<60000){ev.emit={status:'held',reason:'drift_throttle'};save();}else{if(ev.drift&&ev.drift.kind==='wander')lastDE=Date.now();emit(ev);}return ev;}
+    emit(ev);
+    const n=box.events.filter(p=>p.type!=='consequence'&&p.type!=='drift'&&p.object_key===ev.object_key).length;
     show(`● ${ev.label||ev.object_key} ${ev.type==='setlocation'?'→ '+short(ev.place||''):'moved'} · saved${n>1?' · move '+n+' for '+ev.object_key:''}`);
     return ev;}catch(e){return null;}}
   // consequences: when a later scene shares the moved object, place or person, the earlier move fires here
@@ -646,7 +658,7 @@ const MOVES=(()=>{const KEY='thryd_moves_v1',MAX=400;let box=null;
     if(objLayer)objLayer.querySelectorAll('.ob[data-label]').forEach(b=>k.add('o:'+norm(b.dataset.label)));
     const h=hereFull();if(h)k.add('p:'+h.toLowerCase());people().forEach(n=>k.add('c:'+n.toLowerCase()));((lastM&&lastM.objs)||[]).forEach(o=>k.add('o:'+norm(o.label)));return k;}
   function fire(){const sc=sceneNow();if(!sc||sc===lastScene)return;lastScene=sc;const here=sceneKeys();if(!here.size)return;
-    const hits=box.events.filter(e=>e.type!=='consequence'&&e.source&&e.source.scene!==sc).filter(e=>[...keysOf(e)].some(k=>here.has(k))).slice(-2);
+    const hits=box.events.filter(e=>e.type!=='consequence'&&e.type!=='drift'&&e.source&&e.source.scene!==sc).filter(e=>[...keysOf(e)].some(k=>here.has(k))).slice(-2);
     if(!hits.length)return;const at=new Date().toISOString();
     const c={v:1,type:'consequence',event_id:uid(),client_ts:at,source:{scene:sc,scene_kind:document.getElementById('mcut')?'medium_cut':(objLayer?'run_view':'backdrop'),run:runOfKey(sc)},agenda:{run:CUR_RUN||null,card:(bgSet&&bgSet.card)||null,state_at:window.__thrydStateAt||null},
       caused_by:hits.map(e=>e.event_id),shared:[...new Set(hits.flatMap(e=>[...keysOf(e)].filter(k=>here.has(k))))],story:Object.assign(storyOf(sc),{people:people()})};
@@ -662,6 +674,19 @@ const MOVES=(()=>{const KEY='thryd_moves_v1',MAX=400;let box=null;
     box.events.forEach(e=>{if(e.type==='setlocation'&&e.label&&e.place&&Date.parse(e.client_ts)>st)last[e.label]=e;});if(!Object.keys(last).length)return m;
     const regs=(m.regions||[]).slice();const fix=(name,r)=>{const e=last[name];if(!e)return r;const s=short(e.place);PFULL[s]=PFULL[s]||e.place;if(!regs.includes(s))regs.push(s);return s;};
     return Object.assign({},m,{regions:regs,chars:m.chars.map(c=>{const r=fix(c.name,c.region);return r===c.region?c:Object.assign({},c,{region:r,off:r!==m.here});}),objs:(m.objs||[]).map(o=>{const r=fix(o.label,o.region);return r===o.region?o:Object.assign({},o,{region:r});})});}
+  // automatic trips (cut life wander / leave / arrive, run-object wander, visitors) = kind "drift": stored here, typed into the #code column,
+  // sent only as {kind:'drift'} bodies (throttled), never as customer moves and never as a consequence source (Jesuye/#thryd 11-12 5:07 PM)
+  let lastDR=0,lastDL=0;window.__thrydDriftLines=window.__thrydDriftLines||[];
+  window.thrydDrift=inf=>{try{if(!inf||/phone\.html$/.test(location.pathname))return null;const now=Date.now(),big=inf.kind==='leave'||inf.kind==='arrive';
+    const lab=String(inf.label||inf.cut||'object').replace(/\s+/g,'_'),ttl=s=>String(s||'').slice(0,40);
+    if(big||now-lastDL>6000){lastDL=now;const tt=window.thrydSceneTitle&&thrydSceneTitle(inf.scene);
+      const t=inf.kind==='leave'?`drift ${lab}.leave(${inf.edge||'edge'});`:inf.kind==='arrive'?`drift ${lab}.arrive(from ${ttl(inf.from_title||(window.thrydSceneTitle&&thrydSceneTitle(inf.from_scene))||inf.from_scene)});`
+        :`drift ${lab}.wander(${inf.from&&inf.to?((inf.to.x-inf.from.x).toFixed(1)+', '+(inf.to.y-inf.from.y).toFixed(1)):''});`;
+      window.__thrydDriftLines.push({t,a:true,note:(inf.kind==='leave'?'off the frame'+(tt?' of “'+ttl(tt)+'”':'')+', turns up in a later scene':inf.kind==='arrive'?'walked in from another scene':(tt?ttl(tt):'automatic'))+' · not a customer move'});
+      if(window.__thrydDriftLines.length>6)window.__thrydDriftLines.splice(0,window.__thrydDriftLines.length-6);}
+    if(!big&&now-lastDR<20000)return null;lastDR=now;
+    return record(Object.assign({},inf,{type:'drift',label:inf.label||inf.cut}));}catch(e){return null;}};
+  window.thrydSceneTitle=mid=>{try{const sp=mid&&SIDES.sceneOf(mid);return (sp&&sp.place)||null;}catch(e){return null;}};
   window.addEventListener('thryd:cutmove',ev=>{const d=ev.detail||{};record(Object.assign({type:'move',scene_kind:'medium_cut',label:d.klass&&d.klass!=='object'?d.klass:d.cut},d));});
   function observeState(st){const a=st&&st.movement_acks;if(!a||a.run!==st.run||!Array.isArray(a.movement_acks)||!a.movement_acks.length)return;const ids=new Set(a.movement_acks);let ch=false;
     box.events.forEach(e=>{if(ids.has(e.event_id)&&e.story_status!=='consumed'){e.story_status='consumed';e.consumed_run=st.run;ch=true;}});if(ch)save();}
@@ -1010,6 +1035,7 @@ async function wMove(b){const st=WS.get(b)||{};st.busy=true;WS.set(b,st);const L
       const to=home?[hl,ht]:visClamp(L,4+Math.random()*(92-bw),ht+(Math.random()*5-3),bw,bh);
       wFace(b,to[0]-cur[0]);cmPatchAway(b,true);
       ok=await wGlide(b,[cur,[(cur[0]+to[0])/2,Math.min(cur[1],to[1])-0.6],to],(wPerson(b)?2.2:1.6)+Math.random()*1.2);
+      if(ok&&window.thrydDrift)thrydDrift({kind:'wander',scene:k,scene_kind:'run_view',cut:lab,label:b.dataset.name||lab,object_id:b.dataset.sid||null,from:{x:+cur[0].toFixed(3),y:+cur[1].toFixed(3)},to:{x:+to[0].toFixed(3),y:+to[1].toFixed(3)}});
       if(home&&ok&&!wOwned(b)){b.style.left=hl+'%';b.style.top=ht+'%';cmPatchAway(b,false);}}
   }finally{st.busy=false;st.next=performance.now()+(b.dataset.dp?14000+Math.random()*16000:1500+Math.random()*4000);}return ok;}
 setInterval(()=>{if(CM_REDUCED||!objLayer||wPaused())return;const now=performance.now();

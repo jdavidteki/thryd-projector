@@ -23,7 +23,7 @@ async function load(first){const [st,tl,cf]=await Promise.all([get('data/state.j
  }
  pulse=false; tick();}
 const syn=()=>{const j='j'+(1+Math.random()*30|0);return R([`>> thryd.db.seat(${j}) ok`,`scanning archive... ${900+Math.random()*600|0} lines`,`cooldown(line) = ${2+Math.random()*6|0} agendas`,`fetch state.json 200 ${20+Math.random()*80|0}ms`,`dice.roll(d20) = ${1+Math.random()*20|0}`,`${runId}.heartbeat()`,`gc: freed ${Math.random()*9|0}.${Math.random()*9|0}MB`,`seated ${seatN||'?'}/30 · queue ${Math.random()*4|0}`])};
-let ri=0,mvTurn=0;const next=()=>{const mv=(++mvTurn%2===0&&window.thrydMoveNext)?window.thrydMoveNext():null;if(mv)return mv;return Math.random()<.55&&real.length?{t:real[ri++%real.length],a:true}:{t:syn(),a:false};};
+let ri=0,mvTurn=0;const next=()=>{const dl=window.__thrydDriftLines;if(dl&&dl.length&&!/phone\.html$/.test(location.pathname))return dl.shift();const mv=(++mvTurn%2===0&&window.thrydMoveNext)?window.thrydMoveNext():null;if(mv)return mv;return Math.random()<.55&&real.length?{t:real[ri++%real.length],a:true}:{t:syn(),a:false};};
 function type(){const n=next(),d=document.createElement('div');d.className=(n.a?'a ':'')+'cur';code.appendChild(d);
  while(code.children.length>60)code.firstChild.remove();let i=0;const s=n.t;
  const step=()=>{d.textContent=s.slice(0,++i);if(i<s.length)setTimeout(step,14+Math.random()*40);else{d.classList.remove('cur');if(n.note){const e=document.createElement('span');e.className='d';e.textContent='  // '+n.note;d.appendChild(e);}setTimeout(type,250+Math.random()*900)}};step();}

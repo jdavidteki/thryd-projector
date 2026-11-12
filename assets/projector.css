@@ -215,3 +215,11 @@ body.cerebro #mcut,body.lovemap #mcut{display:none}
 @keyframes mcfloat{0%,100%{transform:translate(-1.4%,.9%) rotate(-1.8deg) scale(1.045)}50%{transform:translate(1.4%,-1.8%) rotate(1.8deg) scale(1.06)}}
 #mcut canvas.sprite[data-dragging="1"]{animation:none}
 @media (prefers-reduced-motion:reduce){#mcut canvas.sprite.fl{animation:none}}
+/* cut life: visitors from other scenes walk in, the cuts here notice (mirrors .visitor / .notice for run objects) */
+#mcut .mcvisit{pointer-events:auto;touch-action:none;cursor:grab;user-select:none;transform-origin:50% 85%;animation:mcvin 3.2s cubic-bezier(.3,.1,.3,1) both,mcfloat var(--fd,7s) ease-in-out 3.2s infinite}
+#mcut .mcvisit.mcvdrag{cursor:grabbing;z-index:4!important}
+@keyframes mcvin{from{translate:var(--vx,-180%) 0;opacity:0}25%{opacity:1}to{translate:0 0;opacity:1}}
+#mcut .mcvfrom{position:absolute;transform:translateX(-50%);font:1.1vh ui-monospace,Menlo,monospace;color:#fff;background:#000a;padding:.1vh .4vw;border-radius:.6vh;white-space:nowrap;pointer-events:none;z-index:3;opacity:0;animation:vlab 6s 3s both}
+#mcut canvas.sprite.mcnotice{animation:mcnotice 1.1s ease-out 1 both}
+@keyframes mcnotice{0%{transform:none}35%{transform:translateY(-4%) scale(1.04)}70%{transform:translateY(0) rotate(1.5deg)}100%{transform:none}}
+@media (prefers-reduced-motion:reduce){#mcut .mcvisit{animation:none}}
