@@ -19,10 +19,58 @@ let viewUp=false, heldTicker=null, cutsHintOn=false, flipPending=false;
 let queuedSet=null, outgoingSet=null, switchWait=null;
 const FLIP_WAIT_MS=25000;
 function clearSwitchWait(){ if(switchWait){ clearTimeout(switchWait); switchWait=null; } }
+// At most 3 decoded view rasters (current + 2 recent). The catalog (POOL/LXTRA)
+// is metadata only and can be 1000+; we never pre-decode it. Evicting a view
+// drops img.src and any frame preloads so Chrome can release the GIF frames.
+const VIEW_CACHE_MAX=3;
+let viewCache=[];
+const viewPre=new Map();
+function viewKey(set){ return (set && (set.dir || set.url || set.medium_image_id || set.src || '')) || ''; }
+function releaseImgSlot(img){
+  if(!img) return;
+  try{ img.removeAttribute('src'); img.src=''; img.srcset=''; img.style.opacity=''; img.style.transition=''; }catch(e){}
+}
+function releasePre(key){
+  const pres=viewPre.get(key);
+  if(!pres) return;
+  pres.forEach(im=>{ try{ im.src=''; im.srcset=''; }catch(e){} });
+  viewPre.delete(key);
+}
+function releaseView(key, keepImgs){
+  if(!key) return;
+  releasePre(key);
+  const keep=new Set(keepImgs||[]);
+  ['bgA','bgB'].forEach(id=>{
+    const im=$(id);
+    if(!im || keep.has(im) || im.classList.contains('on')) return;
+    const cur=im.currentSrc||im.src||'';
+    if(!cur) return;
+    const tail=(key.split('/').pop()||'').toLowerCase();
+    if((tail && cur.toLowerCase().indexOf(tail)>=0) || cur.indexOf(key)>=0) releaseImgSlot(im);
+  });
+}
+function retainView(set, keepImg){
+  const k=viewKey(set);
+  if(!k) return;
+  const i=viewCache.indexOf(k);
+  if(i>=0) viewCache.splice(i,1);
+  viewCache.push(k);
+  const keep=[];
+  if(keepImg) keep.push(keepImg);
+  ['bgA','bgB'].forEach(id=>{ const im=$(id); if(im&&im.classList.contains('on')&&!keep.includes(im)) keep.push(im); });
+  while(viewCache.length>VIEW_CACHE_MAX){
+    const ev=viewCache.shift();
+    if(ev!==k) releaseView(ev, keep);
+  }
+}
 function finishSwitch(ok){
   clearSwitchWait();
   flipPending=false;
-  if(!ok && outgoingSet && !sameView(bgSet, outgoingSet)) bgSet=outgoingSet;
+  if(!ok){
+    // Drop a timed-out or failed incoming decode sitting in the hidden slot.
+    ['bgA','bgB'].forEach(id=>{ const im=$(id); if(im&&!im.classList.contains('on')) releaseImgSlot(im); });
+    if(outgoingSet && !sameView(bgSet, outgoingSet)) bgSet=outgoingSet;
+  }
   outgoingSet=null;
   const q=queuedSet; queuedSet=null;
   if(q && !sameView(bgSet, q)) setTimeout(()=>{ try{ backdrop(q,true); }catch(e){} }, 0);
@@ -89,7 +137,13 @@ function backdrop(set,force){ if(!libPin.allow(set))return; if(Date.now()<HOLD)r
     if(hadCut){ const el=on; requestAnimationFrame(()=>{ el.style.transition=''; el.style.opacity=''; }); }
     const c=$('cap'); if(c)c.textContent=capText;
     if(remoteSet(set)){ objsFor(null); clearScene(); } else objsFor(set);
+    const outKey=viewKey(outgoingSet);
     finishSwitch(true);
+    retainView(set, on);
+    // Keep the incoming bitmap; drop the hidden outgoing GIF so a long session
+    // cannot pile decoded frames. During the next switch the hidden slot reloads.
+    if(outKey) releasePre(outKey);
+    if(off && off!==on) releaseImgSlot(off);
     revealStage();
     if(heldTicker){ const t=heldTicker; heldTicker=null; ticker(t[0],t[1],t[2]); }
   };
@@ -147,7 +201,7 @@ function backdrop(set,force){ if(!libPin.allow(set))return; if(Date.now()<HOLD)r
     return;
   }
   // frame 0 first (it goes straight into the hidden image); the rest preload once it is up, so a slow link isn't split 40 ways
-  const pre=[]; const preload=()=>{if(bgSet!==set||pre.length)return; for(let i=0;i<set.frames;i++){const im=new Image();im.src=`${set.dir}/f${String(i).padStart(3,'0')}.webp`;pre.push(im);}};
+  const pre=[]; const preload=()=>{if(bgSet!==set||pre.length)return; for(let i=0;i<set.frames;i++){const im=new Image();im.src=`${set.dir}/f${String(i).padStart(3,'0')}.webp`;pre.push(im);} const k=viewKey(set); if(k) viewPre.set(k,pre); retainView(set,on);};
   // advance only to a frame that has fully arrived; otherwise hold the current frame (never a half-loaded black frame)
   const tick=()=>{if(bgI>0&&!shown)return; const im=pre[bgI%set.frames]; if(bgI>0&&!(im&&im.complete&&im.naturalWidth))return; on.src=im?im.src:`${set.dir}/f${String(bgI%set.frames).padStart(3,'0')}.webp`;bgI++;};
   tick(); whenReady(on,()=>{flip();preload();});
@@ -452,7 +506,7 @@ function applyPlaces(){const m=lastM;if(!objLayer||!m)return;const reg={},cr={};
     if(off){const x=parseFloat(b.style.left)||0,bw=parseFloat(b.style.width)||1,left=x+bw/2<50;
       w.style.setProperty('--ox',((left?-(x+bw):(100-x))/bw*100+30)*(left?1:1)+'%');w.classList.add('offstage');}
     else w.classList.remove('offstage');});}
-window.thrydApplyPlaces=applyPlaces; window.thrydDebug=()=>{const st=$('stage'); const objs=[...((st&&st.children)||[])].filter(n=>n.id==='objs').length; return {run:CUR_RUN,pool:POOL.length,views:LXTRA.length,bg:bgSet&&bgSet.dir,mtime:bgSet&&bgSet.mtime,stageN,url:bgSet&&(bgSet.url||bgSet.src||''),viewUp,flipPending,cap:($('cap')&&$('cap').textContent)||'',stageKids:st?st.childElementCount:0,imgs:document.images.length,canvases:document.querySelectorAll('canvas').length,mcut:!!document.getElementById('mcut'),objs};};
+window.thrydApplyPlaces=applyPlaces; window.thrydDebug=()=>{const st=$('stage'); const objs=[...((st&&st.children)||[])].filter(n=>n.id==='objs').length; return {run:CUR_RUN,pool:POOL.length,views:LXTRA.length,bg:bgSet&&bgSet.dir,mtime:bgSet&&bgSet.mtime,stageN,url:bgSet&&(bgSet.url||bgSet.src||''),viewUp,flipPending,cap:($('cap')&&$('cap').textContent)||'',stageKids:st?st.childElementCount:0,imgs:document.images.length,canvases:document.querySelectorAll('canvas').length,mcut:!!document.getElementById('mcut'),objs,decoded:viewCache.length,decodedMax:VIEW_CACHE_MAX,preloads:[...viewPre.values()].reduce((n,a)=>n+a.length,0)};};
 if(QA_MODE){ window.thrydBackdrop=(set,force)=>backdrop(set,force); window.thrydBgSet=()=>bgSet; }
 setInterval(()=>{if(!objLayer)return;const bs=[...objLayer.querySelectorAll('.ob')];if(bs.length){const b=bs[Math.floor(Math.random()*bs.length)];objChanged(b.dataset.sid||b.dataset.label);}},3000);
 // LXTRA (data/live_extra.json): original unblurred live views, play as-is

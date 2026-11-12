@@ -648,7 +648,13 @@
     token++;
     if(typeof document === 'undefined') return;
     const old = document.getElementById('mcut');
-    if(old){ clearTimeout(old._timer); old.remove(); }
+    if(old){
+      clearTimeout(old._timer);
+      if(old._playback){ old._playback.decoder=null; old._playback.bytes=null; old._playback.frames=null; old._playback=null; }
+      old._frame=null;
+      old.querySelectorAll('canvas').forEach(c=>{ try{ c.width=0; c.height=0; }catch(e){} });
+      old.remove();
+    }
   }
 
   function coverBox(stage, fw, fh){
@@ -782,6 +788,7 @@
         if(!playback.ok || typeof document === 'undefined' || !stage) return playback;
         const layer = document.createElement('div');
         layer.id = 'mcut'; layer._w = playback.width; layer._h = playback.height; layer._token = my;
+        layer._playback = playback;
         layer._box = coverBox(stage, playback.width, playback.height);
         const nsprite = playback.stream ? playback.plan.objects.length : playback.frames[0].sprites.length;
         const labels = (playback.stream ? playback.plan.objects : (plan.objects || [])).map(o => o && o.label);
@@ -848,7 +855,13 @@
         // #stage:has(#mcut)>img{opacity:0} and leaves a black stage.
         step();
         const prev = typeof document !== 'undefined' && document.getElementById('mcut');
-        if(prev && prev !== layer){ clearTimeout(prev._timer); prev.remove(); }
+        if(prev && prev !== layer){
+          clearTimeout(prev._timer);
+          if(prev._playback){ prev._playback.decoder=null; prev._playback.bytes=null; prev._playback.frames=null; prev._playback=null; }
+          prev._frame=null;
+          prev.querySelectorAll('canvas').forEach(c=>{ try{ c.width=0; c.height=0; }catch(e){} });
+          prev.remove();
+        }
         stage.insertBefore(layer, stage.querySelector('#cap') || null);
         if(image){
           requestAnimationFrame(()=>{

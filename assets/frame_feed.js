@@ -6,7 +6,10 @@
 // only ever shows the official embed (no names). Nothing is posted.
 (function(root){
   var TICK_MS = 4000;
-  var TOP_N = 5;
+  var TOP_N = 8;
+  var TOP_K = 8;
+  var NO_REPEAT = 10;
+  var MIN_CANDIDATES = 5;
   var BUBBLE_W = 160;
   var BUBBLE_H = 132;
   var STOP = {
@@ -21,18 +24,46 @@
     say:1, because:1, where:1, pls:1, just:1, him:1, let:1, going:1,
     view:1, una:1, dey:1, wan:1, tok:1, make:1, see:1, na:1
   };
-  // light class/place expansions so a "person" cut can match "people"/"man"
-  var SYN = {
-    chair:['chair','seat','stool','bench'],
-    bowl:['bowl','plate','dish'],
-    laptop:['laptop','computer','screen'],
-    cup:['cup','glass','drink'],
-    clock:['clock','time','watch'],
-    umbrella:['umbrella','rain'],
-    ring:['ring','wedding','bride','groom','marriage'],
-    wedding:['wedding','bride','groom','ring','marriage'],
-    tent:['tent','canopy']
+  // Related-word map (objects, themes, stems). Horse -> horses/riding/stable, chair -> seat/sit.
+  var RELATED = {
+    chair:['seat','sit','sitting','stool','bench','furniture'],
+    seat:['chair','sit','sitting','stool','bench'],
+    sit:['chair','seat','sitting','stool'],
+    stool:['chair','seat','bench'],
+    bench:['chair','seat','stool'],
+    bowl:['plate','dish','food','eat','soup'],
+    plate:['bowl','dish','food'],
+    laptop:['computer','screen','keyboard','typing','tech'],
+    computer:['laptop','screen','keyboard','typing'],
+    cup:['glass','drink','tea','coffee','mug'],
+    clock:['time','watch','hour','minute'],
+    umbrella:['rain','wet','weather'],
+    ring:['wedding','bride','groom','marriage','gold','finger'],
+    wedding:['bride','groom','ring','marriage','tent','church','wife','husband'],
+    tent:['canopy','camp','wedding','shelter'],
+    horse:['horses','riding','ride','rider','stable','stallion','pony','mare'],
+    horses:['horse','riding','ride','stable','pony'],
+    riding:['horse','horses','rider','stable'],
+    person:['people','crowd','someone','body','figure'],
+    people:['person','crowd'],
+    church:['chapel','prayer','pastor','altar','wedding'],
+    nigeria:['nigerian','naija','9ja','lagos','kano','africa'],
+    nigerian:['nigeria','naija','9ja','africa'],
+    kano:['nigeria','nigerian','city','north'],
+    phone:['mobile','call','screen','text'],
+    car:['vehicle','road','drive','bus'],
+    road:['roads','street','drive','car','travel'],
+    table:['desk','furniture','eat'],
+    book:['read','page','story'],
+    child:['children','kid','kids','boy','girl'],
+    children:['child','kid','kids'],
+    rain:['umbrella','wet','water'],
+    food:['eat','bowl','plate','rice'],
+    money:['naira','rich','poor','pay'],
+    protest:['endsars','sars','street','police'],
+    police:['sars','endsars','officer']
   };
+  var SYN = RELATED;
 
   function words(s){
     if(!s) return [];
@@ -54,14 +85,61 @@
     }
     return out;
   }
+  function stem(w){
+    w = String(w || '').toLowerCase();
+    if(w.length <= 3) return w;
+    if(/ies$/.test(w) && w.length > 5) return w.slice(0, -3) + 'y';
+    if(/ing$/.test(w) && w.length > 5){
+      var b = w.slice(0, -3);
+      if(b.length > 3 && b.charAt(b.length - 1) === b.charAt(b.length - 2)) return b.slice(0, -1);
+      return b;
+    }
+    if(/ied$/.test(w) && w.length > 5) return w.slice(0, -3) + 'y';
+    if(/ed$/.test(w) && w.length > 4){
+      var e = w.slice(0, -2);
+      if(e.length > 3 && e.charAt(e.length - 1) === e.charAt(e.length - 2)) return e.slice(0, -1);
+      return e;
+    }
+    if(/es$/.test(w) && w.length > 4) return w.slice(0, -2);
+    if(/s$/.test(w) && !/ss$/.test(w) && w.length > 4) return w.slice(0, -1);
+    return w;
+  }
+  function relatedOf(w){
+    var s = stem(w);
+    return RELATED[w] || RELATED[s] || [];
+  }
+  function expand(term){
+    var out = [], seen = Object.create(null);
+    function add(x, note){ if(!x || seen[x] || STOP[x] || x.length < 3) return; seen[x] = 1; out.push({term: x, note: note || 'exact'}); }
+    add(term, 'exact');
+    add(stem(term), 'stem');
+    relatedOf(term).forEach(function(x){ add(x, 'related'); add(stem(x), 'related'); });
+    return out;
+  }
+  var idfMap = null, idfN = 0;
+  function buildIdf(list){
+    var df = Object.create(null), n = 0;
+    (list || []).forEach(function(t){
+      if(!tweetOk(t)) return;
+      n++;
+      var seen = Object.create(null);
+      tokens(t.line).forEach(function(w){
+        [w, stem(w)].forEach(function(k){ if(!seen[k]){ seen[k] = 1; df[k] = (df[k] || 0) + 1; } });
+      });
+    });
+    idfMap = Object.create(null);
+    idfN = n;
+    Object.keys(df).forEach(function(k){ idfMap[k] = Math.log((n + 1) / (df[k] + 1)) + 1; });
+  }
+  function idfOf(w){ return (idfMap && (idfMap[w] || idfMap[stem(w)])) || 1; }
   function addTok(bag, list, weight){
-    var i, w, t = tokens(list);
+    var i, w, t = tokens(list), ex;
     for(i = 0; i < t.length; i++){
       w = t[i];
-      bag[w] = (bag[w] || 0) + (weight || 1);
-      if(SYN[w]){
-        SYN[w].forEach(function(x){ if(x !== w) bag[x] = (bag[x] || 0) + (weight || 1) * 0.6; });
-      }
+      expand(w).forEach(function(ex){
+        var factor = ex.note === 'exact' ? 1 : (ex.note === 'stem' ? 0.8 : 0.55);
+        bag[ex.term] = (bag[ex.term] || 0) + (weight || 1) * factor;
+      });
     }
     return bag;
   }
@@ -81,11 +159,18 @@
     var objects = (input.objects || []).map(function(o, i){
       var x = o.x == null ? 50 : +o.x, y = o.y == null ? 50 : +o.y;
       var z = zoneOf(x, y);
+      var colors = o.colors || o.color || o.colour || '';
+      if(Array.isArray(colors)) colors = colors.join(' ');
       return {
         id: o.id || o.label || ('obj-' + i),
         label: o.label || '',
         klass: o.klass || o.model_class || o.class || '',
         name: o.name || '',
+        colors: colors,
+        size: o.size || '',
+        count: o.count,
+        moving: !!(o.moving || o.dragged),
+        related: o.related || o.words || o.scene_words || [],
         x: +x.toFixed(2),
         y: +y.toFixed(2),
         zone: z.token,
@@ -104,14 +189,18 @@
       return {line: s.line || s, card: s.card || frame.card || '', src: s.src || 'safe'};
     }).filter(function(s){ return s.line; });
     var bag = Object.create(null);
-    addTok(bag, [frame.card, frame.place, frame.cap], 2);
+    addTok(bag, [frame.card, frame.place, frame.cap, input.theme, input.title], 2);
     objects.forEach(function(o){
       var distinctive = o.klass && o.klass !== 'person' && o.klass !== 'foreground';
       var w = (o.dragged ? 8 : 6) + (distinctive ? 4 : 0);
       addTok(bag, [o.klass, o.label, o.name], w);
+      addTok(bag, [o.colors, o.size, o.related, o.count ? String(o.count) : ''], Math.max(2, w * 0.5));
       addTok(bag, [o.zone.split('-')[0], o.zone.split('-')[1]], o.dragged ? 3 : 1);
+      if(o.moving || o.dragged) addTok(bag, ['moving', 'motion'], 1);
     });
     if(input.extra) addTok(bag, input.extra, 2);
+    if(input.related) addTok(bag, input.related, 2);
+    if(input.theme) addTok(bag, input.theme, 3);
     var tokList = Object.keys(bag);
     var sig = [frame.id || frame.dir || frame.cap || '', frame.card || '', frame.place || '']
       .concat(objects.map(function(o){ return [o.id, o.klass, o.zone, o.dragged ? 'd' : 's', Math.round(o.x/10), Math.round(o.y/10)].join(':'); }))
@@ -128,55 +217,151 @@
     return true;
   }
 
+  function lookupQuery(q, w){
+    if(!q) return null;
+    if(q[w]) return q[w];
+    var st = stem(w);
+    if(q[st]) return q[st];
+    var rel = relatedOf(w), i;
+    for(i = 0; i < rel.length; i++){ if(q[rel[i]]) return {weight: q[rel[i]].weight * 0.55, src: q[rel[i]].src, how: 'related'}; }
+    if(w.length >= 4){
+      var keys = Object.keys(q), k, ks;
+      for(i = 0; i < keys.length; i++){
+        k = keys[i]; ks = stem(k);
+        if(k.length >= 4 && (w.indexOf(k) === 0 || k.indexOf(w) === 0 || st === ks || (st.length >= 4 && (ks.indexOf(st) === 0 || st.indexOf(ks) === 0))))
+          return {weight: q[k].weight * 0.4, src: q[k].src, how: 'partial'};
+      }
+    }
+    return null;
+  }
+  function compileQuery(state){
+    var q = Object.create(null);
+    function put(term, weight, src){
+      if(!term) return;
+      tokens(term).forEach(function(w){
+        expand(w).forEach(function(ex){
+          var factor = ex.note === 'exact' ? 1 : (ex.note === 'stem' ? 0.8 : 0.55);
+          var wt = (weight || 1) * factor;
+          if(!q[ex.term] || q[ex.term].weight < wt) q[ex.term] = {weight: wt, src: src || 'scene', how: ex.note};
+        });
+      });
+    }
+    var bag = (state && state.weights) || {};
+    Object.keys(bag).forEach(function(k){ put(k, bag[k], 'bag'); });
+    return q;
+  }
   function score(tweet, state){
-    if(!tweetOk(tweet) || !state) return 0;
+    if(!tweetOk(tweet) || !state) return {score: 0, hits: []};
+    if(!state.query) state.query = compileQuery(state);
     var line = tweet.line || '';
     var tw = tokens(line);
-    var i, w, s = 0, hits = [];
-    var bag = state.weights || {};
+    var i, w, s = 0, hits = [], seen = Object.create(null);
     for(i = 0; i < tw.length; i++){
       w = tw[i];
-      if(bag[w]){ s += bag[w]; hits.push(w); }
+      var hit = lookupQuery(state.query, w);
+      if(!hit) continue;
+      var add = hit.weight * idfOf(w);
+      s += add;
+      if(!seen[w]){ seen[w] = 1; hits.push(w); }
     }
     if(tweet.card && state.card && String(tweet.card) === String(state.card)) s += 5;
     if(state.safes && state.safes.length){
       var safeScore = 0;
       state.safes.forEach(function(safe){
-        var st = tokens(safe.line).filter(function(w){ return w.length >= 5; });
+        var st = tokens(safe.line).filter(function(x){ return x.length >= 5; });
         var n = 0, k;
-        for(k = 0; k < st.length; k++){ if(tw.indexOf(st[k]) >= 0) n++; }
-        if(n >= 2){ safeScore += 2 * n; hits.push('safe:' + n); }
+        for(k = 0; k < st.length; k++){ if(tw.indexOf(st[k]) >= 0 || tw.indexOf(stem(st[k])) >= 0) n++; }
+        if(n >= 2){ safeScore += 2 * n; if(!seen['safe']){ seen['safe'] = 1; hits.push('safe:' + n); } }
       });
       if(safeScore > 8) safeScore = 8;
       s += safeScore;
     }
+    // every object in the frame scores; a dragged one gets a bonus
     if(state.objects){
       state.objects.forEach(function(o){
-        if(!o.dragged) return;
-        var k = tokens([o.klass, o.label, o.name, o.zone]);
-        k.forEach(function(tok){ if(tw.indexOf(tok) >= 0) s += 2; });
+        var bonus = o.dragged ? 3 : 1;
+        var k = tokens([o.klass, o.label, o.name, o.colors, o.size, o.related, o.zone]);
+        k.forEach(function(tok){
+          var ok = tw.indexOf(tok) >= 0 || tw.indexOf(stem(tok)) >= 0;
+          if(!ok){
+            var rel = relatedOf(tok);
+            ok = rel.some(function(r){ return tw.indexOf(r) >= 0 || tw.indexOf(stem(r)) >= 0; });
+          }
+          if(ok) s += bonus;
+        });
       });
     }
     return {score: Math.round(s * 100) / 100, hits: hits};
   }
 
-  function pick(tweets, state, n){
-    n = n || TOP_N;
-    var ranked = (tweets || []).filter(tweetOk).map(function(t){
-      var r = score(t, state);
-      return {id: String(t.id), score: r.score, hits: r.hits, line: t.line, src: t.src, purged: !!t.purged, card: t.card || null, tweet: t};
-    });
+  function rowOf(t, r){
+    return {id: String(t.id), score: r.score, hits: r.hits, line: t.line, src: t.src, purged: !!t.purged, card: t.card || null, tweet: t};
+  }
+  function rankTweets(list, state){
+    if(!idfMap || idfN !== (list || []).filter(tweetOk).length) buildIdf(list);
+    if(state) state.query = compileQuery(state);
+    var ranked = (list || []).filter(tweetOk).map(function(t){ return rowOf(t, score(t, state)); });
     ranked.sort(function(a, b){
       if(b.score !== a.score) return b.score - a.score;
       return String(a.id) < String(b.id) ? -1 : 1;
     });
-    // if nothing overlapped, keep a stable fallback so a popup can still appear
-    var top = ranked.filter(function(r){ return r.score > 0; });
-    if(!top.length) top = ranked;
-    return top.slice(0, n);
+    return {ranked: ranked, matched: ranked.filter(function(r){ return r.score > 0; })};
+  }
+  // Ranked matches only (never the whole deck sorted by id). Empty when nothing scored.
+  function pick(list, state, n){
+    n = n || TOP_N;
+    return rankTweets(list, state).matched.slice(0, n);
+  }
+  function weightedPick(items, rng){
+    rng = rng || Math.random;
+    if(!items || !items.length) return null;
+    var i, sum = 0, w, r, weights = [];
+    for(i = 0; i < items.length; i++){
+      w = items[i].score > 0 ? items[i].score : 1;
+      weights.push(w);
+      sum += w;
+    }
+    r = rng() * sum;
+    for(i = 0; i < items.length; i++){
+      r -= weights[i];
+      if(r <= 0) return items[i];
+    }
+    return items[items.length - 1];
+  }
+  function notRecent(items, recent){
+    recent = recent || [];
+    return (items || []).filter(function(r){ return recent.indexOf(String(r.id)) < 0; });
+  }
+  // Widen score tiers until at least MIN_CANDIDATES connected tweets remain.
+  // Never return an unrelated (zero-score) tweet.
+  function widen(matched, need){
+    need = need || MIN_CANDIDATES;
+    var floors = [6, 3, 1.5, 0.5, 0.0001];
+    var i, pool = [];
+    for(i = 0; i < floors.length; i++){
+      pool = (matched || []).filter(function(r){ return r.score >= floors[i]; });
+      if(pool.length >= need) return pool;
+    }
+    return (matched || []).filter(function(r){ return r.score > 0; });
+  }
+  function chooseOne(list, state, opts){
+    opts = opts || {};
+    var recent = (opts.recent || []).map(String);
+    var k = opts.k || TOP_K;
+    var need = opts.min || MIN_CANDIDATES;
+    var rng = opts.rng || Math.random;
+    var ranked = rankTweets(list, state);
+    var connected = widen(ranked.matched, need);
+    var pool = notRecent(connected, recent);
+    if(pool.length > k) pool = pool.slice(0, Math.max(k, need));
+    if(!pool.length) pool = notRecent(ranked.matched, recent);
+    if(!pool.length) pool = connected.slice(0, Math.max(k, need)); // all recent: still a connected tweet, never a zero-score fallback
+    if(!pool.length) return {choice: null, pool: [], matched: ranked.matched, fallback: false, cursor: opts.cursor || 0};
+    var chosen = weightedPick(pool, rng);
+    return {choice: chosen, pool: pool, matched: ranked.matched, fallback: false, cursor: opts.cursor || 0, terms: (chosen && chosen.hits) || []};
   }
 
-  var api = {TICK_MS: TICK_MS, TOP_N: TOP_N, BUBBLE_W: BUBBLE_W, BUBBLE_H: BUBBLE_H, tokens: tokens, score: score, pick: pick, buildState: buildState, tweetOk: tweetOk, zoneOf: zoneOf};
+  var api = {TICK_MS: TICK_MS, TOP_N: TOP_N, TOP_K: TOP_K, NO_REPEAT: NO_REPEAT, MIN_CANDIDATES: MIN_CANDIDATES, BUBBLE_W: BUBBLE_W, BUBBLE_H: BUBBLE_H, tokens: tokens, stem: stem, expand: expand, score: score, pick: pick, rankTweets: rankTweets, weightedPick: weightedPick, chooseOne: chooseOne, widen: widen, buildState: buildState, buildIdf: buildIdf, tweetOk: tweetOk, zoneOf: zoneOf};
   if(typeof module !== 'undefined' && module.exports) module.exports = api;
   root.ThrydFrameFeed = api;
 
@@ -189,6 +374,8 @@
   var packMeta = {}; // medium_image_id -> {labels, klasses}
   var lastSig = '';
   var lastPick = null;
+  var recentIds = [];
+  var rotateCursor = 0;
   var rawMount = null;
   var timer = null;
   var started = false;
@@ -352,7 +539,8 @@
     try{ dbg = (root.thrydDebug && root.thrydDebug()) || {}; }catch(e){}
     var mid = gifFrom(dbg.url || '') || gifFrom(dbg.cap || '') || gifFrom((document.getElementById('cap') || {}).textContent || '');
     if(!mid) return;
-    if(packMeta[mid]){ applyPackMeta(mid); return; }
+    if(packMeta[mid] && !packMeta[mid].pending){ applyPackMeta(mid); return; }
+    if(packMeta[mid] && packMeta[mid].pending) return;
     var man = cutsManifest;
     if(!man || !man.assets){
       if(root.ThrydMediumCuts && typeof ThrydMediumCuts.loadManifest === 'function'){
@@ -411,17 +599,44 @@
     rawMount(b, item, baseMs == null ? 5000 : baseMs);
   }
 
-  function evaluate(reason){
-    if(!tweets.length) return null;
+  function rememberShown(id){
+    if(!id) return;
+    recentIds.push(String(id));
+    if(recentIds.length > NO_REPEAT) recentIds.splice(0, recentIds.length - NO_REPEAT);
+  }
+  // Fresh pick for this bubble: never reuse lastPick.
+  function nextShown(reason){
     rememberCutMeta();
     var state = liveState();
-    var ranked = pick(tweets, state, TOP_N);
-    var top = ranked[0] || null;
-    var changed = !!(top && (!lastPick || lastPick.id !== top.id || lastSig !== state.signature));
+    var res = chooseOne(tweets, state, {recent: recentIds, cursor: rotateCursor, k: TOP_K});
+    if(res.fallback === 'rotate') rotateCursor = res.cursor;
+    if(res.choice){
+      lastPick = res.choice;
+      lastSig = state.signature;
+      rememberShown(res.choice.id);
+    }
+    return {choice: res.choice, state: state, res: res, reason: reason || 'bubble'};
+  }
+  function evaluate(reason){
+    if(!tweets.length) return null;
+    var shown = nextShown(reason || 'tick');
+    var state = shown.state;
+    var res = shown.res;
+    var top = shown.choice;
+    var pool = (res.pool && res.pool.length) ? res.pool : (res.matched || []).slice(0, TOP_K);
     var row = {
       at: new Date().toISOString(),
       reason: reason || 'tick',
-      changed: changed,
+      changed: !!(top && true),
+      fallback: res.fallback || false,
+      populated: {
+        labels: state.objects.some(function(o){ return !!(o.label && !/^cut\d+$/.test(o.label)); }),
+        klasses: state.objects.some(function(o){ return !!o.klass; }),
+        positions: state.objects.some(function(o){ return o.x != null && o.y != null; }),
+        safes: !!(state.safes && state.safes.length),
+        place: !!(state.frame && state.frame.place),
+        card: !!state.card
+      },
       scene: {
         id: state.frame.id,
         cap: state.frame.cap,
@@ -431,16 +646,11 @@
         tokens: state.tokens.slice(0, 24),
         signature: state.signature
       },
-      picked: ranked.map(function(r){ return {id: r.id, score: r.score, hits: r.hits.slice(0, 8), line: String(r.line || '').slice(0, 80)}; })
+      picked: (top ? [top] : []).concat(pool.filter(function(r){ return !top || r.id !== top.id; })).slice(0, TOP_K).map(function(r){ return {id: r.id, score: r.score, hits: (r.hits || []).slice(0, 8), line: String(r.line || '').slice(0, 80)}; })
     };
     record(row);
-    if(top && (changed || reason === 'drag' || reason === 'start')){
-      lastPick = top;
-      lastSig = state.signature;
+    if(top){
       try{ showPick(top); }catch(e){}
-    }else if(top){
-      lastPick = top;
-      lastSig = state.signature;
     }
     return row;
   }
@@ -450,13 +660,9 @@
     if(root.ThrydTweet._feedHooked) return;
     rawMount = root.ThrydTweet.mount.bind(root.ThrydTweet);
     root.ThrydTweet.mount = function(host, item, baseMs){
-      // #bubble always shows the scene-scored tweet; other hosts pass through
-      if(host && host.id === 'bubble' && lastPick && lastPick.tweet){
-        return rawMount(host, lastPick.tweet, baseMs);
-      }
       if(host && host.id === 'bubble' && tweets.length){
-        var ranked = pick(tweets, liveState(), 1);
-        if(ranked[0]) return rawMount(host, ranked[0].tweet, baseMs);
+        var shown = nextShown('bubble');
+        if(shown.choice && shown.choice.tweet) return rawMount(host, shown.choice.tweet, baseMs);
       }
       return rawMount(host, item, baseMs);
     };
@@ -467,9 +673,16 @@
     if(typeof root.thrydChoose !== 'function' || root.thrydChoose._feedHooked) return;
     var prev = root.thrydChoose;
     root.thrydChoose = function(lines){
-      if(lastPick && lastPick.tweet) return lastPick.tweet;
-      var ranked = tweets.length ? pick(tweets, liveState(), 1) : [];
-      if(ranked[0]) return ranked[0].tweet;
+      if(tweets.length){
+        rememberCutMeta();
+        var matched = rankTweets(tweets, liveState()).matched;
+        // only consume a feed pick when the scene actually scored; otherwise
+        // the original random chooser runs, not a lowest-id fallback
+        if(matched.length){
+          var shown = nextShown('choose');
+          if(shown.choice && shown.choice.tweet) return shown.choice.tweet;
+        }
+      }
       return prev(lines);
     };
     root.thrydChoose._feedHooked = true;
