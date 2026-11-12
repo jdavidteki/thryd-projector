@@ -869,6 +869,17 @@
             image.classList.remove('on');
             image.style.transition = 'none';
             image.style.opacity = '0';
+            // Once the plate is on stage, replace the animated GIF in <img>
+            // with a single still. Chrome otherwise keeps every decoded GIF
+            // frame (hundreds of MB) in the hidden slot and the tab OOMs
+            // after a handful of switches (Aw, Snap! code 9).
+            try{
+              const plate = layer.querySelector('canvas.plate');
+              if(plate && plate.width>0){
+                const url = plate.toDataURL('image/jpeg', 0.72);
+                image.src = url;
+              }
+            }catch(e){}
           });
         }
         return {ok:true, reason:null, frames:playback.frames.length};

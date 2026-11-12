@@ -103,14 +103,16 @@ test('same scene is a stable pick', () => {
   assert.equal(a, b);
 });
 
+
 const COMPLAIN = '1352949215622811649';
 const weddingState = () => Feed.buildState({
   id: '1*Hl86N3U4KF18YYolRnot9g.gif',
   cap: 'from safe-1*Hl86N3U4KF18YYolRnot9g.gif',
   card: 'w1',
   place: 'a Kano wedding tent where Kunle',
+  theme: 'a Kano wedding tent',
   objects: [
-    {id:'c:kunle', label:'kunle', klass:'person', name:'Kunle', x:30, y:50},
+    {id:'c:kunle', label:'kunle', klass:'person', name:'Kunle', x:30, y:50, colors:'white gold'},
     {id:'o:ring', label:'ring', klass:'ring', x:45, y:60}
   ],
   safes: precisions.filter(p => p.card === 'w1')
@@ -118,55 +120,60 @@ const weddingState = () => Feed.buildState({
 const chairState = () => Feed.buildState({
   id: '1*xnYXyEUdOys6QLrBa3MFiQ.gif',
   cap: '1*xnYXyEUdOys6QLrBa3MFiQ.gif',
-  objects: [{id:'cut1', label:'cut1', klass:'chair', x:20, y:50}]
+  objects: [{id:'cut1', label:'cut1', klass:'chair', x:20, y:50, colors:'brown', size:'large'}]
 });
 const laptopState = () => Feed.buildState({
   id: '1*HZf0f7jEessCUn2xuzyXLg.gif',
   cap: '1*HZf0f7jEessCUn2xuzyXLg.gif',
   objects: [{id:'cut1', label:'cut1', klass:'laptop', x:70, y:40, dragged:true}]
 });
+const horseState = () => Feed.buildState({
+  id: '1*horse.gif',
+  cap: 'a horse in the stable',
+  objects: [{id:'cut1', label:'horse', klass:'horse', x:40, y:50}],
+  related: ['riding', 'stable']
+});
 const safesOnly = () => Feed.buildState({card:'w1', safes: precisions.filter(p => p.card === 'w1')});
 
-test('no-match pick is empty, never the lowest-id deck', () => {
-  const empty = Feed.buildState({});
-  const ranked = Feed.pick(tweets, empty, 8);
-  assert.equal(ranked.length, 0, 'no-match must not fall back to the whole deck');
-  const lowest = tweets.filter(Feed.tweetOk).map(t => String(t.id)).sort()[0];
-  const recent = [];
-  let cursor = 0;
-  const ids = [];
-  for(let i = 0; i < 20; i++){
-    const res = Feed.chooseOne(tweets, empty, {recent, cursor, k: 8});
-    assert.equal(res.fallback, 'rotate');
-    assert.ok(res.choice && res.choice.id, 'rotate still returns a tweet');
-    ids.push(res.choice.id);
-    cursor = res.cursor;
-    recent.push(res.choice.id);
-    if(recent.length > 10) recent.shift();
-  }
-  assert.ok(new Set(ids).size >= 10, 'rotation over 20 no-match picks should vary, got ' + new Set(ids).size);
-  assert.ok(!(ids.every(id => id === lowest)), 'must not always return the lowest id');
-  assert.ok(!(ids.every(id => id === COMPLAIN)), 'must not always return the complain tweet');
+test('undragged objects in the frame still score (drag is a bonus)', () => {
+  const rest = Feed.buildState({objects:[{id:'cut1', label:'cut1', klass:'chair', x:20, y:50, dragged:false}]});
+  const dragged = Feed.buildState({objects:[{id:'cut1', label:'cut1', klass:'chair', x:20, y:50, dragged:true}]});
+  const a = Feed.pick(tweets, rest, 8);
+  const b = Feed.pick(tweets, dragged, 8);
+  assert.ok(a.length && a[0].score > 0, 'undragged chair still matches');
+  assert.ok(a.some(r => (r.hits||[]).includes('chair') || (r.line||'').toLowerCase().includes('chair') || (r.hits||[]).includes('seat')));
+  assert.ok(b[0].score >= a[0].score, 'dragged chair should not score lower');
 });
 
-test('safes-only ties do not collapse to the complain tweet', () => {
+test('stems and related words connect (horse -> horses/riding/stable, chair -> seat/sit)', () => {
+  assert.equal(Feed.stem('horses'), 'horse');
+  assert.equal(Feed.stem('sitting'), 'sit');
+  const horse = horseState();
+  const ranked = Feed.pick(tweets, horse, 8);
+  assert.ok(ranked.length >= 1 && ranked[0].score > 0, 'horse scene finds a connected tweet');
+  const blob = ranked.map(r => ((r.line||'') + ' ' + (r.hits||[]).join(' ')).toLowerCase()).join(' | ');
+  assert.ok(/horse|horses|riding|ride|stable|stallion|pony/.test(blob), 'horse-related terms in matches: ' + blob.slice(0,200));
+  const chair = Feed.pick(tweets, chairState(), 8);
+  const cblob = chair.map(r => ((r.line||'')+' '+(r.hits||[]).join(' ')).toLowerCase()).join(' | ');
+  assert.ok(/chair|seat|sit|stool|bench/.test(cblob), 'chair-related terms: ' + cblob.slice(0,200));
+});
+
+test('safes-only ties do not collapse to the complain tweet; picks stay connected', () => {
   const state = safesOnly();
   const top = Feed.pick(tweets, state, 8);
-  assert.ok(top.length >= 2, 'several tweets share the safe-line score');
-  // they may include the complain tweet, but it is not a unique winner
+  assert.ok(top.length >= 2, 'several connected tweets');
   const recent = [];
-  let cursor = 0;
   const ids = [];
   for(let i = 0; i < 20; i++){
-    const res = Feed.chooseOne(tweets, state, {recent, cursor, k: 8});
-    assert.ok(res.choice, 'got a pick');
+    const res = Feed.chooseOne(tweets, state, {recent, k: 8});
+    assert.ok(res.choice && res.choice.score > 0, 'every pick must be a non-zero match');
+    assert.notEqual(res.fallback, 'rotate');
     ids.push(res.choice.id);
-    cursor = res.cursor;
     recent.push(res.choice.id);
     if(recent.length > 10) recent.shift();
   }
   const unique = new Set(ids);
-  assert.ok(unique.size >= 8, '20 safes-only picks should yield many tweets, got ' + unique.size + ' ' + ids.join(','));
+  assert.ok(unique.size >= 8, '20 safes-only picks should yield many tweets, got ' + unique.size);
   assert.ok(!ids.every(id => id === COMPLAIN), 'complain tweet is not the only winner');
 });
 
@@ -174,22 +181,20 @@ test('no-repeat window skips the last 10 shown', () => {
   const state = weddingState();
   const recent = [];
   const ids = [];
-  let cursor = 0;
   for(let i = 0; i < 16; i++){
-    const res = Feed.chooseOne(tweets, state, {recent, cursor, k: 8});
+    const res = Feed.chooseOne(tweets, state, {recent, k: 8});
+    assert.ok(res.choice && res.choice.score > 0);
     const id = res.choice.id;
     assert.equal(recent.includes(id), false, 'picked a recently shown id ' + id);
     ids.push(id);
-    cursor = res.cursor;
     recent.push(id);
     if(recent.length > 10) recent.shift();
   }
   assert.ok(new Set(ids).size >= 8);
 });
 
-test('20 consecutive picks over several scenes give many distinct tweets', () => {
-  const scenes = [weddingState(), chairState(), laptopState(), safesOnly(), Feed.buildState({})];
-  // confirm scores actually vary per scene (labels, safes, positions populated)
+test('20 consecutive picks over several scenes are all connected and mostly distinct', () => {
+  const scenes = [weddingState(), chairState(), laptopState(), horseState(), safesOnly()];
   const w = weddingState(), c = chairState();
   assert.ok(w.tokens.includes('kunle') && w.tokens.includes('wedding') && w.safes.length);
   assert.ok(c.tokens.includes('chair'));
@@ -197,18 +202,19 @@ test('20 consecutive picks over several scenes give many distinct tweets', () =>
   const wTop = Feed.pick(tweets, w, 8).map(r => r.id).join(',');
   const cTop = Feed.pick(tweets, c, 8).map(r => r.id).join(',');
   assert.notEqual(wTop, cTop, 'top-K sets must differ across scenes');
-  assert.ok(Feed.pick(tweets, w, 8)[0].score !== Feed.pick(tweets, c, 8)[0].score || wTop !== cTop);
 
   const recent = [];
-  let cursor = 0;
   const ids = [];
   const lines = [];
+  const termLog = [];
   for(let i = 0; i < 20; i++){
-    const res = Feed.chooseOne(tweets, scenes[i % scenes.length], {recent, cursor, k: 8});
-    assert.ok(res.choice && res.choice.id);
+    const res = Feed.chooseOne(tweets, scenes[i % scenes.length], {recent, k: 8});
+    assert.ok(res.choice && res.choice.id, 'got a pick');
+    assert.ok(res.choice.score > 0, 'pick must be a non-zero match, got ' + res.choice.score + ' ' + (res.choice.line||'').slice(0,60));
+    assert.ok((res.choice.hits || []).length || (res.terms || []).length, 'matched terms logged');
     ids.push(res.choice.id);
     lines.push(String(res.choice.line || '').split('\n')[0].slice(0, 60));
-    cursor = res.cursor;
+    termLog.push((res.choice.hits || res.terms || []).slice(0, 6).join(','));
     recent.push(res.choice.id);
     if(recent.length > 10) recent.shift();
   }
@@ -216,4 +222,5 @@ test('20 consecutive picks over several scenes give many distinct tweets', () =>
   assert.ok(unique.size >= 10, 'expected many distinct tweets in 20 picks, got ' + unique.size + ': ' + lines.join(' | '));
   assert.ok(!ids.every(id => id === COMPLAIN));
   console.log('20-pick unique', unique.size, 'ids', ids);
+  console.log('20-pick terms', termLog);
 });

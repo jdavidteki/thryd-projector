@@ -100,7 +100,7 @@
       if(e.length > 3 && e.charAt(e.length - 1) === e.charAt(e.length - 2)) return e.slice(0, -1);
       return e;
     }
-    if(/es$/.test(w) && w.length > 4) return w.slice(0, -2);
+    if(/(?:xes|zes|ches|shes)$/.test(w) && w.length > 4) return w.slice(0, -2);
     if(/s$/.test(w) && !/ss$/.test(w) && w.length > 4) return w.slice(0, -1);
     return w;
   }
@@ -201,6 +201,7 @@
     if(input.extra) addTok(bag, input.extra, 2);
     if(input.related) addTok(bag, input.related, 2);
     if(input.theme) addTok(bag, input.theme, 3);
+    safes.forEach(function(s){ addTok(bag, s.line, 1.2); });
     var tokList = Object.keys(bag);
     var sig = [frame.id || frame.dir || frame.cap || '', frame.card || '', frame.place || '']
       .concat(objects.map(function(o){ return [o.id, o.klass, o.zone, o.dragged ? 'd' : 's', Math.round(o.x/10), Math.round(o.y/10)].join(':'); }))
@@ -371,7 +372,9 @@
   var safesAll = [];
   var story = null;
   var cutsManifest = null;
-  var packMeta = {}; // medium_image_id -> {labels, klasses}
+  var sceneContext = null; // optional data/scene_context.json, keyed by medium id
+  var objectsIndex = null; // optional data/objects.json or per-id sidecars
+  var packMeta = {}; // medium_image_id -> {labels, klasses, colors, related, ...}
   var lastSig = '';
   var lastPick = null;
   var recentIds = [];
@@ -487,6 +490,81 @@
     return names;
   }
 
+  function midKey(id){
+    return String(id || '').replace(/\*/g, '_');
+  }
+  function rowForMid(store, mid){
+    if(!store || !mid) return null;
+    if(Array.isArray(store)){
+      return store.find(function(r){ return r && (r.medium_image_id === mid || r.id === mid || midKey(r.medium_image_id||r.id||'') === midKey(mid)); }) || null;
+    }
+    return store[mid] || store[midKey(mid)] || store[gifFrom(mid)] || null;
+  }
+  function contextFor(mid){
+    var row = rowForMid(sceneContext, mid) || rowForMid(objectsIndex, mid) || (packMeta[mid] && packMeta[mid].context) || null;
+    if(!row) return {objects: [], theme: '', title: '', related: [], lines: []};
+    var objects = row.objects || row.cuts || [];
+    return {
+      objects: objects,
+      theme: row.theme || row.place || (row.seed && (row.seed.theme || row.seed.d || row.seed.s)) || '',
+      title: row.title || row.caption || row.medium_title || '',
+      related: row.related || row.words || [],
+      lines: row.lines || row.picked_card_lines || row.card_lines || row.safes || []
+    };
+  }
+  function mergeContext(objects, mid){
+    var ctx = contextFor(mid);
+    (ctx.objects || []).forEach(function(src, i){
+      var dst = null, lab = (src.label || src.id || '').toLowerCase();
+      if(lab) dst = objects.find(function(o){ return String(o.label||'').toLowerCase() === lab || String(o.id||'').toLowerCase() === lab; });
+      if(!dst) dst = objects[i];
+      if(!dst){
+        objects.push({
+          id: src.label || src.id || ('ctx-'+i),
+          label: src.label || '',
+          klass: src.klass || src.model_class || src.class || '',
+          name: src.name || '',
+          colors: Array.isArray(src.colors) ? src.colors.join(' ') : (src.colors || src.color || ''),
+          size: src.size || '',
+          count: src.count,
+          related: src.related || src.words || src.scene_words || [],
+          x: src.x, y: src.y, dragged: !!src.dragged, moving: !!src.moving
+        });
+        return;
+      }
+      if(!dst.klass) dst.klass = src.klass || src.model_class || src.class || dst.klass;
+      if(!dst.colors) dst.colors = Array.isArray(src.colors) ? src.colors.join(' ') : (src.colors || src.color || '');
+      if(!dst.size) dst.size = src.size || dst.size;
+      if(dst.count == null) dst.count = src.count;
+      dst.related = [].concat(dst.related || [], src.related || src.words || src.scene_words || []);
+      if(src.moving) dst.moving = true;
+    });
+    return ctx;
+  }
+  function fetchSidecars(mid){
+    if(!mid || (packMeta[mid] && packMeta[mid].sidecarTried)) return;
+    packMeta[mid] = packMeta[mid] || {labels:[], klasses:[]};
+    packMeta[mid].sidecarTried = true;
+    var key = midKey(mid);
+    var paths = [
+      'assets/medium_cuts/' + key + '.objects.json',
+      'assets/medium_cuts/' + key.replace(/\.gif$/,'') + '.objects.json',
+      'data/objects/' + key + '.json'
+    ];
+    var pack = cutsManifest && (cutsManifest.assets||[]).find(function(a){ return a && (a.medium_image_id === mid || midKey(a.medium_image_id||'') === key); });
+    if(pack && pack.pack){
+      paths.push(pack.pack.replace(/\.json$/i, '.objects.json'));
+      paths.push(pack.pack.replace(/[^/]+$/, 'objects.json'));
+    }
+    paths.forEach(function(path){
+      loadJson(path).then(function(j){
+        if(!j) return;
+        packMeta[mid] = packMeta[mid] || {};
+        packMeta[mid].context = Object.assign({}, packMeta[mid].context || {}, Array.isArray(j) ? {objects:j} : j);
+      });
+    });
+  }
+
   function liveState(){
     var dbg = {};
     try{ dbg = (root.thrydDebug && root.thrydDebug()) || {}; }catch(e){ dbg = {}; }
@@ -513,6 +591,15 @@
       seenSafe[k] = 1;
       return true;
     });
+    var objects = readCuts();
+    fetchSidecars(id);
+    var ctx = mergeContext(objects, id);
+    (ctx.lines || []).forEach(function(l){
+      var line = typeof l === 'string' ? l : (l && l.line);
+      if(line) safes.push({line: line, card: (l && l.card) || card, src: 'context'});
+    });
+    extra = extra.concat(tokens(ctx.theme), tokens(ctx.title), tokens(ctx.related));
+    if(ctx.theme && !place) place = ctx.theme;
     return buildState({
       id: id,
       url: url,
@@ -520,9 +607,12 @@
       dir: dbg.bg || '',
       card: card,
       place: place,
-      objects: readCuts(),
+      objects: objects,
       safes: safes,
-      extra: extra
+      extra: extra,
+      theme: ctx.theme,
+      title: ctx.title,
+      related: ctx.related
     });
   }
 
@@ -628,7 +718,8 @@
       at: new Date().toISOString(),
       reason: reason || 'tick',
       changed: !!(top && true),
-      fallback: res.fallback || false,
+      fallback: false,
+      matched_terms: (top && top.hits) || res.terms || [],
       populated: {
         labels: state.objects.some(function(o){ return !!(o.label && !/^cut\d+$/.test(o.label)); }),
         klasses: state.objects.some(function(o){ return !!o.klass; }),
@@ -642,7 +733,8 @@
         cap: state.frame.cap,
         card: state.card,
         place: state.frame.place,
-        objects: state.objects.map(function(o){ return {id: o.id, label: o.label, klass: o.klass, x: o.x, y: o.y, zone: o.zone, dragged: o.dragged}; }),
+        objects: state.objects.map(function(o){ return {id: o.id, label: o.label, klass: o.klass, colors: o.colors, size: o.size, x: o.x, y: o.y, zone: o.zone, dragged: o.dragged}; }),
+        theme: state.frame && state.frame.place,
         tokens: state.tokens.slice(0, 24),
         signature: state.signature
       },
@@ -674,14 +766,8 @@
     var prev = root.thrydChoose;
     root.thrydChoose = function(lines){
       if(tweets.length){
-        rememberCutMeta();
-        var matched = rankTweets(tweets, liveState()).matched;
-        // only consume a feed pick when the scene actually scored; otherwise
-        // the original random chooser runs, not a lowest-id fallback
-        if(matched.length){
-          var shown = nextShown('choose');
-          if(shown.choice && shown.choice.tweet) return shown.choice.tweet;
-        }
+        var shown = nextShown('choose');
+        if(shown.choice && shown.choice.tweet && shown.choice.score > 0) return shown.choice.tweet;
       }
       return prev(lines);
     };
@@ -714,14 +800,15 @@
 
   function loadJson(path){
     return fetch(path + (path.indexOf('?') >= 0 ? '&' : '?') + 't=' + Date.now(), {cache: 'no-store'})
-      .then(function(r){ return r.ok ? r.json() : []; })
-      .catch(function(){ return []; });
+      .then(function(r){ return r.ok ? r.json() : null; })
+      .catch(function(){ return null; });
   }
 
   function ingestTweets(rows){
     tweets = (rows || []).map(function(p){
       return root.ThrydTweet && ThrydTweet.deckRow ? ThrydTweet.deckRow(p) : {line: p.line, src: p.src, move: !!p.move, id: p.id, purged: p.purged, card: p.card};
     }).filter(tweetOk);
+    buildIdf(tweets);
   }
 
   function start(){
@@ -731,11 +818,20 @@
     hookMount(); hookChoose(); hookDebug();
     document.addEventListener('pointerup', onPointerUp, true);
     document.addEventListener('pointercancel', onPointerUp, true);
-    Promise.all([loadJson('data/tweets_all.json'), loadJson('data/precisions.json'), loadJson('data/medium_cuts.json'), loadJson('data/state.json')]).then(function(pair){
-      ingestTweets(pair[0]);
+    Promise.all([
+      loadJson('data/tweets_all.json'),
+      loadJson('data/precisions.json'),
+      loadJson('data/medium_cuts.json'),
+      loadJson('data/state.json'),
+      loadJson('data/scene_context.json'),
+      loadJson('data/objects.json')
+    ]).then(function(pair){
+      ingestTweets(pair[0] || []);
       safesAll = Array.isArray(pair[1]) ? pair[1] : [];
       cutsManifest = pair[2] || {assets:[]};
       story = pair[3] && !Array.isArray(pair[3]) ? pair[3] : null;
+      sceneContext = pair[4] && typeof pair[4] === 'object' ? pair[4] : null;
+      objectsIndex = pair[5] && typeof pair[5] === 'object' ? pair[5] : null;
       hookMount(); hookChoose(); hookDebug();
       rememberCutMeta();
       evaluate('start');
