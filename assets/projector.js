@@ -5,7 +5,7 @@ const Q=new URLSearchParams(location.search);
 const SPEED=Math.max(1,parseFloat(Q.get('speed')||'8'))*1000, POLL=10000;
 const QA_MODE=Q.get('qa')==='1';
 const CUTS_WAIT_MS=4000;
-let MODE=(()=>{const m=(Q.get('mode')||'live').toLowerCase();return (m==='replay'||m==='cerebro'||m==='lovemap')?m:'live';})();
+let MODE=(()=>{const m=(Q.get('mode')||'live').toLowerCase();return (m==='replay'||m==='lovemap')?m:'live';})();
 const BAD=/sex|nasty|dirt|iud|adult|daddy|position|hookup|benefit|porn|nude|naked|horny|kiss|\bbed|breast|moan|lick|bang|thrust|sessy|\bhard\b|body|\bwet\b|strip|fuck|pussy|dick|cock|\bass\b|boob|bitch|nyash|prick|suck|condom|virgin|orgasm|<real/i;
 const ok=s=>!!s&&!BAD.test(s);
 const $=id=>document.getElementById(id);
@@ -873,50 +873,17 @@ async function replay(){
 }
 window.thrydSay=say; window.thrydChoose=choose;
 // ---------- UI
-function setMode(m){if(m!=='live'&&m!=='replay'&&m!=='cerebro'&&m!=='lovemap')m='live';
+function setMode(m){if(m!=='live'&&m!=='replay'&&m!=='lovemap')m='live';
   MODE=m;Q.set('mode',m);history.replaceState(null,'','?'+Q.toString());
   document.querySelectorAll('#modes button[data-m]').forEach(b=>b.classList.toggle('on',b.dataset.m===m));
   $('pick').style.display=m==='replay'?'':'none';
-  document.body.classList.remove('cerebro','lovemap');stopCerebro();stopLovemap();
-  if(m==='cerebro'){bgSet=null;clearScene();document.body.classList.add('cerebro');startCerebro();return;}
+  document.body.classList.remove('lovemap');stopLovemap();
   if(m==='lovemap'){bgSet=null;clearScene();document.body.classList.add('lovemap');startLovemap();return;}
   // keep a first scene already started (mlib pin or cold-first pack); wiping bgSet kills the 4s cut-wait cap
   if(!(m==='live'&&bgSet&&(Q.get('mlib')||(typeof libPin!=='undefined'&&libPin.pinned&&libPin.pinned())||viewUp))){ bgSet=null;clearScene(); }
   (m==='replay'?replay:live)();}
 document.querySelectorAll('#modes button[data-m]').forEach(b=>b.onclick=ev=>{ev.stopPropagation();libPin.clear();slideCycle.reset();slideCursor='';setMode(b.dataset.m);});
-// ---------- CEREBRO
-let CERE={items:[],poll:null,ids:'',lit:null};
-function stopCerebro(){if(CERE.poll){clearInterval(CERE.poll);CERE.poll=null;}
-  const w=$('cwall');if(w)w.innerHTML='';closeCere();CERE.ids='';}
-function startCerebro(){const md=$('mode'),rn=$('run');if(md)md.textContent='cerebro';if(rn)rn.textContent='all';
-  loadCerebro(true);if(!CERE.poll)CERE.poll=setInterval(()=>loadCerebro(false),30000);}
-async function loadCerebro(first){let data;try{data=await J('data/cerebro.json');}catch(e){return;}
-  const items=data.items||[];const ids=items.map(x=>x.id).join('|');
-  if(ids===CERE.ids&&!first)return;const prev=new Set((CERE.items||[]).map(x=>x.id));
-  CERE.items=items;CERE.ids=ids;renderCerebro(first?new Set():prev);}
-function renderCerebro(prevIds){const wall=$('cwall');if(!wall)return;wall.innerHTML='';
-  const items=CERE.items||[];const fresh=new Set(items.slice(0,8).map(x=>x.id));
-  items.forEach((it,i)=>{const t=document.createElement('button');t.type='button';
-    t.className='ctile'+(fresh.has(it.id)&&!prevIds.has(it.id)?' fresh':'');
-    t.style.setProperty('--d',((i*37)%11-5)+'px');t.style.setProperty('--e',((i*19)%9-4)+'px');
-    t.style.setProperty('--t',(16+(i*5)%16)+'s');t.style.setProperty('--k',((i*13)%10)+'s');
-    const img=document.createElement('img');img.loading='lazy';img.alt=it.label||it.kind||'';
-    img.src=it.path;t.appendChild(img);
-    t.onclick=ev=>{ev.stopPropagation();openCere(it);};wall.appendChild(t);});}
-function openCere(it){const box=$('clight'),img=$('climg'),cap=$('clcap');if(!box||!img)return;
-  if(box.classList.contains('on')&&CERE.lit&&CERE.lit.id===it.id){closeCere();return;}
-  closeCere();CERE.lit={id:it.id,i:0,timer:null};
-  const capText=(it.label||it.kind||'')+(it.room?' · '+it.room:'');if(cap)cap.textContent=capText;
-  if(it.frame_dir&&(it.frames|0)>1){const n=it.frames|0,durs=it.durs||[];
-    const tick=()=>{if(!CERE.lit||CERE.lit.id!==it.id)return;
-      img.src=it.frame_dir+'/f'+String(CERE.lit.i).padStart(3,'0')+'.webp';
-      const ms=Math.max(40,durs[CERE.lit.i]||100);CERE.lit.i=(CERE.lit.i+1)%n;
-      CERE.lit.timer=setTimeout(tick,ms);};tick();}
-  else img.src=it.path;
-  box.classList.add('on');box.onclick=ev=>{ev.stopPropagation();closeCere();};}
-function closeCere(){if(CERE.lit&&CERE.lit.timer)clearTimeout(CERE.lit.timer);CERE.lit=null;
-  const box=$('clight');if(box)box.classList.remove('on');}
-document.addEventListener('keydown',e=>{if(e.key==='Escape'&&document.body.classList.contains('cerebro')&&$('clight')&&$('clight').classList.contains('on')){e.preventDefault();closeCere();}});
+// CEREBRO removed from the projector (Jesuye 11-13 12:43 AM "you can remove cerebro now"); ?mode=cerebro opens LIVE.
 // ---------- LOVEMAP
 function stopLovemap(){const f=$('lmframe');if(f){f.src='about:blank';}const box=$('lovemap');if(box)box.setAttribute('aria-hidden','true');}
 function startLovemap(){const md=$('mode'),rn=$('run');if(md)md.textContent='lovemap';if(rn)rn.textContent='map';

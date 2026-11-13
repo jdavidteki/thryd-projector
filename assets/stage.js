@@ -623,7 +623,7 @@
   };
   S.stats = ()=>({groups: S.groups.length, stories: [...new Set(S.groups.map(g => g.mid))], cuts: S.cuts.length, cap: CAP, maxSeen: S.maxSeen, mb: +(S.bytes / 1048576).toFixed(1), spawned: S.spawned, left: S.left, fails: S.fails, carries: S.carries || 0, loading: S.loading, visible: S.groups.filter(g => { const v = view(); return g.x < v.x + v.w && g.x + g.w > v.x && g.y < v.y + v.h && g.y + g.h > v.y; }).length, cam: {x: Math.round(cam.x), y: Math.round(cam.y)}, ready: S.ready.length, fill: S.fill(), loop: S.loop, worker: WK.off ? 'off' : 'on', decodeMs: WK.ms.length ? Math.round(WK.ms.reduce((a, b) => a + b, 0) / WK.ms.length) : null, focus: focus && focus.mid, rm: RM, phone: PHONE});
 
-  // ---------- black / white stage (Jesuye 12:03 AM "add a switch for black or white"): a button beside mute/reset, saved per device
+  // ---------- black / white stage (Jesuye 12:03 AM "add a switch for black or white"; white default since 12:43 AM): a button beside mute/reset, saved per device
   // (localStorage thryd_stage_bg). White turns the page, the stage and the dark overlays white and flips light text to dark.
   const BGK = 'thryd_stage_bg';
   const wcss = document.createElement('style'); wcss.id = 'stagewhite';
@@ -639,15 +639,17 @@
     WS + ' #live,' + WS + ' #live *{text-shadow:0 0 3px #fff,0 0 6px #fff}',
     WS + ' #clk{color:#111!important}',
     WS + ' #live b{color:#c00000!important}',
-    WS + ' #code{text-shadow:0 0 3px #fff,0 0 6px #fff}',
-    WS + ' #code,' + WS + ' #code div{color:#0b6b16!important}',
-    WS + ' #code .d{color:#2e6b34!important}',
-    WS + ' #code .a{color:#8a4b00!important}',
+    // #code on white (Jesuye 12:46 AM "we cant read the code"): its own near-solid dark panel, original green/amber text, no glow
+    WS + ' #code{background:rgba(10,10,10,.86)!important;border-radius:.8vh;padding:.6vh .6vw!important;box-shadow:0 0 0 1px #0004,0 .4vh 1.6vh #0003;text-shadow:none!important}',
+    WS + ' #code *{text-shadow:none!important}',
+    WS + ' #code,' + WS + '.idle #code{opacity:1!important;background:rgba(10,10,10,.9)!important}',
+    WS + ' #code .d{color:#8e8!important}',
+    WS + ' #mvcarry{background:rgba(10,10,10,.86);padding:.4vh .6vw;border-radius:.6vh;text-shadow:none!important}',
+    WS + ' #cmove{background:rgba(10,10,10,.86);color:#9cf!important;padding:0 .5vw;border-radius:.5vh;text-shadow:none!important;display:inline-block}',
     WS + ' #ticker,' + WS + ' #ticker *{text-shadow:0 0 4px #fff,0 0 8px #fff!important}',
     WS + ' #world{color:#8a4b00!important}',
     WS + ' #upd{color:#1a1a1a!important}',
     WS + ' #meta{color:#4a4a4a!important}',
-    WS + ' #cmove{color:#0b4f9a!important}',
     WS + ' #map .ph{color:#4a4a4a!important;text-shadow:0 0 3px #fff,0 0 6px #fff}',
     WS + ' #map .ph.here{color:#8a4b00!important}',
     WS + ' #zlvl{color:#333!important}',
@@ -665,7 +667,8 @@
     mute.parentNode.insertBefore(b, mute.nextSibling);
     b.addEventListener('click', ev => { ev.stopPropagation(); setWhite(!document.body.classList.contains('stage-white'), true); });
     let v = null; try{ v = localStorage.getItem(BGK); }catch(e){}
-    setWhite(v === 'white', false);
+    // white is the default (Jesuye 11-13 12:43 AM). Only a click ever saved this key, so a stored 'black' is a deliberate choice and stays.
+    setWhite(v !== 'black', false);
   })(0);
 
   // ---------- panels: REPLAY uses the classic single-scene view; LIVE comes back to the stage; CEREBRO/LOVEMAP overlay either
