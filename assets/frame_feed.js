@@ -758,9 +758,12 @@
   function liveState(){
     var dbg = {};
     try{ dbg = (root.thrydDebug && root.thrydDebug()) || {}; }catch(e){ dbg = {}; }
-    var cap = (dbg.cap) || ((document.getElementById('cap') || {}).textContent || '');
-    var url = dbg.url || '';
-    var id = gifFrom(url) || gifFrom(cap) || gifFrom(dbg.bg || '') || mcutMid();
+    // ?stage=1 (assets/stage.js): the story group in focus on the shared stage stands in for the single scene
+    var SF = null;
+    try{ if(typeof root.thrydStageFocus === 'function') SF = root.thrydStageFocus() || {id: '', title: '', objects: []}; }catch(e){ SF = null; }
+    var cap = SF ? (SF.title || '') : ((dbg.cap) || ((document.getElementById('cap') || {}).textContent || ''));
+    var url = SF ? '' : (dbg.url || '');
+    var id = SF ? (SF.id || '') : (gifFrom(url) || gifFrom(cap) || gifFrom(dbg.bg || '') || mcutMid());
     var card = metaCard();
     var place = '';
     var world = (document.getElementById('world') || {}).textContent || '';
@@ -783,7 +786,7 @@
       seenSafe[k] = 1;
       return true;
     });
-    var objects = readCuts();
+    var objects = SF ? (SF.objects || []).slice() : readCuts();
     fetchSidecars(id);
     var ctx = mergeContext(objects, id);
     var ownSafes = [];
@@ -869,8 +872,11 @@
       }
       if(!who) who = document.querySelector('#ents .chip, #ents [data-id^="c:"]');
     }catch(e){}
-    var r = who ? who.getBoundingClientRect() : {left: 12, right: 12, top: 80, height: 20};
-    var right = who && who.classList.contains('r');
+    var SB = null;
+    try{ if(typeof root.thrydStageBubble === 'function') SB = root.thrydStageBubble(); }catch(e){ SB = null; }
+    if(SB) who = null;
+    var r = SB ? SB : (who ? who.getBoundingClientRect() : {left: 12, right: 12, top: 80, height: 20});
+    var right = SB ? !!SB.r : (who && who.classList.contains('r'));
     var M = 12, BW = BUBBLE_W, BH = BUBBLE_H;
     if(b.querySelector('.who')) b.querySelector('.who').textContent = '';
     if(b.querySelector('.txt')) b.querySelector('.txt').textContent = '';
@@ -878,7 +884,7 @@
     var x = right ? r.left - 6 : r.right + 6;
     x = right ? Math.max(BW + M, Math.min(innerWidth - M, x)) : Math.max(M, Math.min(innerWidth - BW - M, x));
     // keep the box out of the scene's center half when we have no speaker
-    if(!who) x = M;
+    if(!who && !SB) x = M;
     b.style.left = x + 'px';
     b.style.top = Math.min(innerHeight - BH / 2 - M, Math.max(BH / 2 + M, (r.top + r.height / 2) || (innerHeight * 0.25))) + 'px';
     var item = choice.tweet || {id: choice.id, line: choice.line, src: choice.src, purged: choice.purged};

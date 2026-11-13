@@ -1073,7 +1073,7 @@
   }
 
   const life = {wander, driftOff, visit, pool: travelPool};
-  const api = {life, CAP, USED, RESERVE, roomBytes, admit, isMedium, coverage, forSet, compose, planFrames, decodeGif, delaysMatch, playMs, attach, detach, loadManifest, inkBox, unpackMask, frameHoldBytes, expandObject, expandRow, plateFor, movedFlags, fillBuilder, framesFill, grow, shadowFill, SHADOW_BRIGHT, SHADOW_BLUR};
+  const api = {life, CAP, USED, RESERVE, roomBytes, admit, isMedium, coverage, forSet, compose, planFrames, decodeGif, createGifDecoder, delaysMatch, playMs, attach, detach, loadManifest, inkBox, unpackMask, frameHoldBytes, expandObject, expandRow, plateFor, movedFlags, fillBuilder, framesFill, grow, shadowFill, SHADOW_BRIGHT, SHADOW_BLUR};
   if(typeof module !== 'undefined' && module.exports) module.exports = api;
   root.ThrydMediumCuts = api;
 })(typeof window !== 'undefined' ? window : globalThis);
