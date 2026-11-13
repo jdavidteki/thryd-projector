@@ -4,14 +4,16 @@
 // Pixels: only the existing cuts (exact source frames + their masks) and a faded, hole-filled copy of the same frame behind
 // each group. Nothing generated, no blur on faces. Engine link unchanged: drags dispatch 'thryd:cutmove' and automatic trips go
 // through window.thrydDrift, exactly like assets/medium_cuts.js. Tweets: frame_feed.js asks window.thrydStageFocus() for the
-// story group in focus (same quiet/no-repeat/cooldown rules). index.html loads this file only when ?stage=1 is in the URL.
+// story group in focus (same quiet/no-repeat/cooldown rules). Production default since 11-12 11:16 PM ("merge to production"):
+// index.html loads this file unless ?slides=1 (the old slideshow, kept as the fallback). phone.html never loads it.
+// REPLAY (and a ?mode=replay link) hands the screen back to the classic single-scene view; LIVE returns to the stage.
 (function(root){
   if(typeof document === 'undefined' || typeof location === 'undefined') return;
-  if(!/(?:^|[?&])stage=1(?:&|$)/.test(location.search)) return;
+  if(/(?:^|[?&])slides=1(?:&|$)/.test(location.search) || /phone\.html$/.test(location.pathname)) return;
   const MC = root.ThrydMediumCuts;
   if(!MC || !MC.createGifDecoder) return;
 
-  const S = root.__thrydStage = {on:true, hold:true, groups:[], cuts:[], bytes:0, loading:false, spawned:0, left:0, fails:0, recent:[], bad:new Set(), log:[], maxSeen:0};
+  const S = root.__thrydStage = {on:true, hold:true, groups:[], cuts:[], bytes:0, loading:0, near:null, spawned:0, left:0, fails:0, recent:[], bad:new Set(), log:[], maxSeen:0};
   const note = (...a)=>{ S.log.push([new Date().toISOString().slice(11,19)].concat(a).join(' ')); if(S.log.length > 120) S.log.splice(0, S.log.length - 120); };
 
   // 1. the slideshow stays parked: every backdrop() call is refused while stage mode is on, so no GIF is fetched for the hidden #stage
@@ -26,20 +28,25 @@
     };
   }
   // and no single-scene #mcut layer is built
-  MC.attach = function(){ return Promise.resolve({ok:false, reason:'stage_mode'}); };
+  const origAttach = MC.attach;
+  MC.attach = function(){ return S.hold ? Promise.resolve({ok:false, reason:'stage_mode'}) : origAttach.apply(this, arguments); };
 
   const RM = !!(root.matchMedia && root.matchMedia('(prefers-reduced-motion: reduce)').matches);
   const PHONE = (root.innerWidth || 1000) < 760 || !!(root.matchMedia && root.matchMedia('(pointer:coarse)').matches);
-  const CAP = PHONE ? 15 : 22;               // cuts on screen at once
-  const MAX_GROUPS = PHONE ? 5 : 8;
+  // busy (Jesuye 11-12 11:09 PM "make it very busy"): many small story groups at once, arriving in quick overlapping waves
+  const CAP = PHONE ? 28 : 56;               // cuts on screen at once
+  const MAX_GROUPS = PHONE ? 15 : 30;     // most scenes carry 1-2 cuts, so the cut count comes from many groups
   const PER_GROUP = PHONE ? 4 : 6;
-  const MAXF = PHONE ? 24 : 40;              // stored frames per animated cut (longer GIFs keep every k-th frame, delays summed)
-  const BUDGET = (PHONE ? 48 : 140) * 1048576; // decoded bitmap bytes held by the stage
-  const DPR = Math.min(root.devicePixelRatio || 1, PHONE ? 1.25 : 1.5);
+  const MAXF = PHONE ? 10 : 20;              // stored frames per animated cut (longer GIFs keep every k-th frame, delays summed)
+  const BUDGET = (PHONE ? 90 : 260) * 1048576; // decoded bitmap bytes held by the stage
+  const PG_MAX = (PHONE ? 6 : 16) * 1048576;  // one group's sprite frames; bigger ones are drawn at a lower resolution
+  const INFLIGHT = 2;                         // groups decoding at the same time (each decodes one frame per task)
+  const BG_P = PHONE ? 0.35 : 0.55;           // share of groups that get the faded source-frame backdrop
+  const DPR = Math.min(root.devicePixelRatio || 1, PHONE ? 1 : 1.25);
   const vw = ()=> root.innerWidth || 1280, vh = ()=> root.innerHeight || 720;
   const R = (a, b)=> a + Math.random() * (b - a);
   const sleep = ms => new Promise(z => setTimeout(z, ms));
-  const paused = ()=> document.hidden || document.body.classList.contains('dragmode') || document.body.classList.contains('cerebro') || document.body.classList.contains('lovemap');
+  const paused = ()=> document.hidden || document.body.classList.contains('stage-replay') || document.body.classList.contains('dragmode') || document.body.classList.contains('cerebro') || document.body.classList.contains('lovemap');
   const drift = info => { try{ if(root.thrydDrift) root.thrydDrift(info); }catch(e){} };
   const titleOf = mid => { try{ return (root.thrydSceneTitle && root.thrydSceneTitle(mid)) || null; }catch(e){ return null; } };
   const STILL_RX = /stall|sign|table|shelter|door|street|window|board|wall|tree|gate|house|building|kiosk|road|sky|floor|bed|couch|sofa|counter|shelf/i;
@@ -47,20 +54,22 @@
   // ---------- DOM
   const css = document.createElement('style');
   css.textContent = [
-    'body.stage1 #stage,body.stage1 #ents,body.stage1 #map{display:none!important}',
-    'body.stage1 #slide{display:none!important}', // no slides on the stage, so no slide-speed menu (Jesuye 11-12 10:51 PM)
+    'body.stage1:not(.stage-replay) #stage{display:none!important}',
+    'body.stage1:not(.stage-replay) #slide{display:none!important}', // no slides on the stage, so no slide-speed menu (Jesuye 11-12 10:51 PM)
+    'body.stage-replay #gstage{display:none}',
     '#gstage{position:fixed;inset:0;overflow:hidden;z-index:1;background:#050607}',
     'body.cerebro #gstage,body.lovemap #gstage{display:none}',
     '#gworld{position:absolute;left:0;top:0;will-change:transform}',
     '#gbgs,#gcuts{position:absolute;left:0;top:0}',
     '#gstage .gbg{position:absolute;pointer-events:none;opacity:0;transition:opacity 3.5s ease;-webkit-mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 45%,transparent 100%);mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 45%,transparent 100%)}',
-    '#gstage .gbg.on{opacity:.36}',
+    '#gstage .gbg.on{opacity:.28}',
     '#gstage .gcut{position:absolute;pointer-events:auto;touch-action:none;cursor:grab;transform-origin:50% 85%;user-select:none}',
     '#gstage .gcut.fl{animation:mcfloat var(--fd,7s) ease-in-out var(--fdl,0s) infinite}',
     '#gstage .gcut[data-dragging="1"]{animation:none;cursor:grabbing;z-index:9999!important}',
     '#gstage .gcut.gnotice{animation:mcnotice 1.1s ease-out 1 both}',
     '#gstage .gtag{position:absolute;transform:translateX(-50%);font:1.15vh ui-monospace,Menlo,monospace;color:#fff;background:#000a;padding:.15vh .5vw;border-radius:.6vh;white-space:nowrap;pointer-events:none;opacity:0;transition:opacity 1.6s;max-width:40vw;overflow:hidden;text-overflow:ellipsis}',
     '#gstage .gtag.on{opacity:.85}',
+    '#gstage .gtag.gcarry{color:#f0d7a2;z-index:9998}',
     '@media (prefers-reduced-motion:reduce){#gstage .gcut.fl,#gstage .gcut.gnotice{animation:none}}'
   ].join('\n');
   document.head.appendChild(css);
@@ -74,7 +83,7 @@
 
   // ---------- camera: a slow drift across a world about 2.2 x 1.7 screens
   const W = {w:0, h:0};
-  const sizeWorld = ()=>{ W.w = Math.round(vw() * (PHONE ? 2.0 : 2.2)); W.h = Math.round(vh() * (PHONE ? 1.5 : 1.7)); world.style.width = W.w + 'px'; world.style.height = W.h + 'px'; };
+  const sizeWorld = ()=>{ W.w = Math.round(vw() * (PHONE ? 1.6 : 1.7)); W.h = Math.round(vh() * (PHONE ? 1.3 : 1.35)); world.style.width = W.w + 'px'; world.style.height = W.h + 'px'; };
   sizeWorld();
   const cam = {x:(W.w - vw()) / 2, y:(W.h - vh()) / 2, fx:0, fy:0, tx:0, ty:0, t0:0, dur:1, paused:0};
   cam.fx = cam.tx = cam.x; cam.fy = cam.ty = cam.y;
@@ -163,9 +172,12 @@
   }
   function placeGroup(Dw, Dh){
     const v = view(); let best = null;
+    // now and then a story lands right beside another one, so clusters of stories share a corner of the stage
+    const nb = S.near && !S.near.gone ? S.near : null; S.near = null;
     for(let t = 0; t < 14; t++){
-      const gx = Math.max(0, Math.min(W.w - Dw, R(v.x - Dw * 0.15, v.x + v.w - Dw * 0.85)));
-      const gy = Math.max(0, Math.min(W.h - Dh, R(v.y + v.h * 0.04, v.y + v.h * 0.9 - Dh)));
+      let gx = R(v.x - Dw * 0.15, v.x + v.w - Dw * 0.85), gy = R(v.y + v.h * 0.04, v.y + v.h * 0.9 - Dh);
+      if(nb && t < 8){ gx = nb.x + (Math.random() < .5 ? -Dw * R(.55, .85) : nb.w * R(.55, .85)); gy = nb.y + R(-.25, .25) * Dh; }
+      gx = Math.max(0, Math.min(W.w - Dw, gx)); gy = Math.max(0, Math.min(W.h - Dh, gy));
       let ov = 0;
       S.groups.forEach(g => { const ix = Math.max(0, Math.min(gx + Dw, g.x + g.w) - Math.max(gx, g.x)), iy = Math.max(0, Math.min(gy + Dh, g.y + g.h) - Math.max(gy, g.y)); ov += ix * iy; });
       if(!best || ov < best.ov) best = {gx, gy, ov};
@@ -186,13 +198,16 @@
     objs = objs.slice(0, Math.min(room, PER_GROUP));
     if(!objs.length) throw new Error('no_object');
     // on-screen size of the whole source frame for this group
-    let Dh = vh() * (PHONE ? R(0.30, 0.42) : R(0.38, 0.58)), k = Dh / fh;
-    if(fw * k > vw() * (PHONE ? 0.85 : 0.6)) k = vw() * (PHONE ? 0.85 : 0.6) / fw;
-    Dh = fh * k; const Dw = fw * k, s = Math.min(1, k * DPR);
+    let Dh = vh() * (PHONE ? R(0.17, 0.28) : R(0.20, 0.36)), k = Dh / fh;
+    if(fw * k > vw() * (PHONE ? 0.6 : 0.42)) k = vw() * (PHONE ? 0.6 : 0.42) / fw;
+    Dh = fh * k; const Dw = fw * k; let s = Math.min(1, k * DPR);
     const animated = plan.kind === 'gif' && plan.frameCount > 1;
     const step = animated ? Math.max(1, Math.ceil(plan.frameCount / MAXF)) : 1;
-    const est = objs.reduce((n, x) => n + Math.ceil(x.U.w * s) * Math.ceil(x.U.h * s) * 4, 0) * (animated ? Math.ceil(plan.frameCount / step) : 1);
+    const nf = animated ? Math.ceil(plan.frameCount / step) : 1;
+    let est = objs.reduce((n, x) => n + Math.ceil(x.U.w * s) * Math.ceil(x.U.h * s) * 4, 0) * nf;
+    if(est > PG_MAX){ s *= Math.sqrt(PG_MAX / est); est = PG_MAX; }
     if(S.bytes + est > BUDGET) throw new Error('budget');
+    const wantBg = Math.random() < BG_P;
     const bytes = await fetchBytes(row);
     const isGif = bytes[0] === 0x47 && bytes[1] === 0x49 && bytes[2] === 0x46;
     const frames = objs.map(() => []), delays = [];
@@ -204,7 +219,7 @@
         frames[j].push(await bitmapOf(img, Math.max(1, Math.round(x.U.w * s)), Math.max(1, Math.round(x.U.h * s))));
       }
       delays.push(ms);
-      if(!bg){ // the same frame with every staged cut's spot hole-filled (stored plate or a darkened copy of this frame), faded behind the group
+      if(!bg && wantBg){ // the same frame with every staged cut's spot hole-filled (stored plate or a darkened copy of this frame), faded behind the group
         try{
           const drawn = MC.compose(rgba, fw, fh, objs.map(x => x.o.masks[mi]), plateSrc);
           const bs = Math.min(1, k * 0.75);
@@ -239,7 +254,7 @@
   function spawn(row, L){
     const pos = placeGroup(L.Dw, L.Dh); const v = view();
     const g = {mid: row.medium_image_id, row, kind: L.kind, x: pos.gx, y: pos.gy, w: L.Dw, h: L.Dh, k: L.k, fw: L.fw, fh: L.fh,
-      title: titleOf(row.medium_image_id), born: Date.now(), life: (PHONE ? R(32, 55) : R(40, 80)) * 1000, cuts: [], gone: false, offSince: 0, sha: row.source_sha256 || '', ver: row.pack_version || '1'};
+      title: titleOf(row.medium_image_id), born: Date.now(), life: (PHONE ? R(30, 50) : R(35, 70)) * 1000, cuts: [], gone: false, offSince: 0, sha: row.source_sha256 || '', ver: row.pack_version || '1'};
     if(L.bg){
       const c = document.createElement('canvas'); c.className = 'gbg'; c.width = L.bg.width; c.height = L.bg.height;
       c.getContext('2d').drawImage(L.bg, 0, 0); L.bg.close && L.bg.close();
@@ -277,10 +292,35 @@
       }, delay + 80);
     });
     S.groups.push(g); S.spawned++;
-    S.recent.push(g.mid); if(S.recent.length > 60) S.recent.shift();
+    if(g.cuts.length <= 2 && Math.random() < 0.5) S.near = g;
+    S.recent.push(g.mid); if(S.recent.length > 40) S.recent.shift();
     S.maxSeen = Math.max(S.maxSeen, S.cuts.length);
     note('spawn', g.mid, L.kind, g.cuts.length + ' cuts', 'on stage ' + S.cuts.length + '/' + CAP, g.title || '');
     if(L.animated) animate(g, L.delays);
+    setTimeout(()=> carry(g), 6000 + Math.random() * 3000); // once it has walked in, earlier moves of the same object carry over here
+  }
+  // ---------- move carry-over: projector.js thrydMoves.fireFor(scene, objects) is the default page's consequence step
+  // (earlier customer moves that share an object with this scene). Records + emits the consequence; here the group reacts.
+  let lastCarry = 0;
+  const nkey = x => String(x || '').toLowerCase().replace(/^[oc]:/, '').replace(/_[0-9a-f]{4,}$/, '').replace(/[_\s]*\d+$/, '').replace(/_/g, ' ').trim();
+  function carry(g, why){
+    if(!g || g.gone || !g.cuts.length || g.carried || !root.thrydMoves || typeof root.thrydMoves.fireFor !== 'function') return null;
+    if(Date.now() - lastCarry < 8000) return null; // a busy stage would otherwise fire one for every arriving group
+    const objs = g.cuts.map(c => c.klass).concat(g.cuts.map(c => c.label));
+    let r = null; try{ r = root.thrydMoves.fireFor(g.mid, objs); }catch(e){ r = null; }
+    if(!r || !r.consequence) return null;
+    lastCarry = Date.now(); g.carried = true; g.life += 15000;
+    const keys = new Set((r.shared || []).filter(k => k.startsWith('o:')).map(k => k.slice(2)));
+    const hit = g.cuts.filter(c => keys.has(nkey(c.klass)) || keys.has(nkey(c.label)));
+    (hit.length ? hit : g.cuts).forEach((c, n) => setTimeout(()=>{ if(!c.el.isConnected) return; c.el.classList.remove('gnotice'); void c.el.offsetWidth; c.el.classList.add('gnotice'); setTimeout(()=> c.el.classList.remove('gnotice'), 1300); }, n * 220));
+    const h = r.hits[r.hits.length - 1] || {}, at = h.at ? new Date(h.at).toLocaleTimeString([], {hour:'numeric', minute:'2-digit'}) : '';
+    const t = document.createElement('div'); t.className = 'gtag gcarry';
+    t.textContent = '↺ ' + (h.label || h.object_key || 'it') + ' was moved' + (at ? ' at ' + at : '') + (h.title ? ' in “' + String(h.title).slice(0, 32) + '”' : '') + ' · carried over';
+    Object.assign(t.style, {left: (g.x + g.w / 2) + 'px', top: (g.y - 18) + 'px'}); cutsL.appendChild(t);
+    requestAnimationFrame(()=> t.classList.add('on')); setTimeout(()=> t.classList.remove('on'), 8000); setTimeout(()=> t.remove(), 10000);
+    g.carryEvent = r.consequence.event_id; S.carries = (S.carries || 0) + 1;
+    note('carry', g.mid, (r.shared || []).join(','), why || 'arrival', r.consequence.event_id);
+    return r;
   }
   function animate(g, delays){
     let f = 0;
@@ -372,6 +412,9 @@
         source_frame_index: 0, frame_count: cut.frames.length || 1, from, to: framePct(cut, g),
         place_key: (!visitor && root.ThrydKeep && cut.home.sha) ? root.ThrydKeep.placeKey(cut.home.sha, cut.label, cut.home.ver) : null
       }, visitor ? {visitor_in: g.mid} : {})})); }catch(e){}
+      const k = nkey(cut.klass || cut.label);
+      setTimeout(()=>{ const other = S.groups.find(o => o !== cut.home && !o.gone && !o.carried && o.cuts.some(c => nkey(c.klass) === k || nkey(c.label) === k));
+        if(other){ lastCarry = 0; carry(other, 'drag'); } }, 3000);
     };
     el.addEventListener('pointerup', end); el.addEventListener('pointercancel', end);
     el.addEventListener('click', ev => { ev.stopPropagation(); }); // a drop never toggles fullscreen
@@ -438,17 +481,18 @@
 
   // ---------- spawner / housekeeping
   async function spawnOne(){
-    if(S.loading || !manifest) return;
-    if(S.groups.length >= MAX_GROUPS || S.cuts.length >= CAP) return;
+    if(S.loading >= INFLIGHT || !manifest) return;
+    if(S.groups.length + S.loading >= MAX_GROUPS || S.cuts.length >= CAP) return;
     const row = pickRow(); if(!row) return;
-    S.loading = true;
+    S.recent.push(row.medium_image_id); if(S.recent.length > 40) S.recent.shift(); // never picked twice while it decodes
+    S.loading++;
     try{ const L = await loadGroup(row); if(S.cuts.length >= CAP){ L.frames.forEach(f => f.forEach(b => b.close && b.close())); } else spawn(row, L); }
     catch(e){ const why = String(e && e.message || e); if(why !== 'cap' && why !== 'budget') S.bad.add(row.medium_image_id); else S.recent.push(row.medium_image_id); S.fails++; note('skip', row.medium_image_id, why); }
-    finally{ S.loading = false; }
+    finally{ S.loading--; }
   }
   function spawner(){
-    const wait = S.groups.length < 2 ? R(1200, 2600) : R(4500, 10000);
-    setTimeout(async ()=>{ if(!paused()) await spawnOne(); spawner(); }, wait);
+    const wait = S.groups.length < MAX_GROUPS * 0.4 ? R(250, 700) : R(900, 2200);
+    setTimeout(()=>{ if(!paused()) spawnOne(); spawner(); }, wait); // overlapping: the next wave does not wait for this one to decode
   }
   function house(){
     const now = Date.now(), v = view();
@@ -464,13 +508,19 @@
   }
   setInterval(house, 1000);
   // the centre ticker line has no single scene to report here: show what is on the stage instead of a stuck "loading"
-  setInterval(()=>{ const u = document.getElementById('upd'); if(!u) return; const t = u.textContent || '';
-    if(t && t !== 'loading' && !t.startsWith('on stage')) return;
+  // (projector.js keeps writing "loading" because no single view ever comes up in stage mode, so this also replaces it the moment it is written)
+  let updBusy = false;
+  const upd = ()=>{ const u = document.getElementById('upd'); if(!u || updBusy) return; const t = u.textContent || '';
+    if(t && t !== 'loading' && t !== 'loading cuts' && !t.startsWith('on stage')) return;
     const n = S.groups.length, f = focus && !focus.gone ? (focus.title || '') : '';
-    u.textContent = n ? 'on stage: ' + n + (n === 1 ? ' story' : ' stories') + (f ? ' · ' + String(f).slice(0, 48) : '') : 'loading'; }, 3000);
+    const want = n ? 'on stage: ' + n + (n === 1 ? ' story' : ' stories') + (f ? ' · ' + String(f).slice(0, 48) : '') : 'loading';
+    if(t !== want){ updBusy = true; u.textContent = want; updBusy = false; } };
+  setInterval(upd, 2000);
+  (function watch(){ const u = document.getElementById('upd'); if(!u || typeof MutationObserver !== 'function'){ setTimeout(watch, 500); return; }
+    new MutationObserver(upd).observe(u, {childList:true, characterData:true, subtree:true}); })();
   if(!RM){
-    (function w(){ setTimeout(()=>{ if(!paused()) try{ wander(); }catch(e){} w(); }, R(4000, 9000)); })();
-    (function x(){ setTimeout(()=>{ if(!paused()) try{ crossover(); }catch(e){} x(); }, R(22000, 40000)); })();
+    (function w(){ setTimeout(()=>{ if(!paused()) try{ wander(); }catch(e){} w(); }, PHONE ? R(1800, 4000) : R(1000, 2600)); })();
+    (function x(){ setTimeout(()=>{ if(!paused()) try{ crossover(); }catch(e){} x(); }, R(8000, 16000)); })();
   }
 
   // ---------- tweets: frame_feed.js reads the story group in focus (rotates about every 14 s among settled groups)
@@ -494,7 +544,39 @@
     const right = (l + r) / 2 > vw() / 2;
     return {left: l, right: r, top: t, height: b - t, r: right};
   };
-  S.stats = ()=>({groups: S.groups.length, stories: [...new Set(S.groups.map(g => g.mid))], cuts: S.cuts.length, cap: CAP, maxSeen: S.maxSeen, mb: +(S.bytes / 1048576).toFixed(1), spawned: S.spawned, left: S.left, fails: S.fails, loading: S.loading, cam: {x: Math.round(cam.x), y: Math.round(cam.y)}, focus: focus && focus.mid, rm: RM, phone: PHONE});
+  S.stats = ()=>({groups: S.groups.length, stories: [...new Set(S.groups.map(g => g.mid))], cuts: S.cuts.length, cap: CAP, maxSeen: S.maxSeen, mb: +(S.bytes / 1048576).toFixed(1), spawned: S.spawned, left: S.left, fails: S.fails, carries: S.carries || 0, loading: S.loading, visible: S.groups.filter(g => { const v = view(); return g.x < v.x + v.w && g.x + g.w > v.x && g.y < v.y + v.h && g.y + g.h > v.y; }).length, cam: {x: Math.round(cam.x), y: Math.round(cam.y)}, focus: focus && focus.mid, rm: RM, phone: PHONE});
 
-  MC.loadManifest().then(m => { manifest = m || {assets: []}; note('manifest', (manifest.assets || []).length + ' assets'); spawner(); }).catch(()=>{ manifest = {assets: []}; });
+  // ---------- panels: REPLAY uses the classic single-scene view; LIVE comes back to the stage; CEREBRO/LOVEMAP overlay either
+  const toReplay = on => { S.hold = !on; document.body.classList.toggle('stage-replay', !!on);
+    if(!on){ try{ MC.detach && MC.detach(); }catch(e){} } note(on ? 'mode replay (classic view)' : 'mode live (stage)'); };
+  try{ if(/(?:^|[?&])mode=replay(?:&|$)/.test(location.search)) toReplay(true); }catch(e){}
+  document.querySelectorAll('#modes button[data-m]').forEach(b => b.addEventListener('click', ()=>{
+    const m = b.dataset.m; if(m === 'replay') toReplay(true); else if(m === 'live') toReplay(false); }, true));
+  // the medium-id search and Resume put that exact scene on the stage (as its own group) instead of pinning a slide
+  async function showOnStage(mid){
+    if(!manifest) return null;
+    const row = (manifest.assets || []).find(a => a && a.medium_image_id === mid && a.status === 'ready'); if(!row) return null;
+    let g = S.groups.find(x => x.mid === mid && !x.gone);
+    if(!g){
+      while(S.cuts.length > CAP - PER_GROUP && S.groups.length) exitGroup(S.groups.slice().sort((a, b) => a.born - b.born)[0], true);
+      S.loading++;
+      try{ spawn(row, await loadGroup(row)); }catch(e){ note('library skip', mid, String(e && e.message || e)); return null; } finally{ S.loading--; }
+      g = S.groups.find(x => x.mid === mid && !x.gone); if(g) g.life += 60000;
+    }
+    if(g && !RM){ cam.fx = cam.x; cam.fy = cam.y; cam.tx = Math.max(0, Math.min(W.w - vw(), g.x + g.w / 2 - vw() / 2)); cam.ty = Math.max(0, Math.min(W.h - vh(), g.y + g.h / 2 - vh() / 2)); cam.t0 = performance.now(); cam.dur = 6000; }
+    return g ? g.mid : null;
+  }
+  S.showOnStage = showOnStage;
+  (function wrapLib(n){
+    const L = root.thrydLibrary; if(!L || !L.show){ if(n < 200) setTimeout(()=> wrapLib(n + 1), 100); return; }
+    if(L._stage) return; const orig = L.show.bind(L);
+    L.show = function(id){ if(!S.hold) return orig(id); const q = String(id || '').trim();
+      const ok = manifest && (manifest.assets || []).some(a => a && a.medium_image_id === q && a.status === 'ready');
+      if(!manifest){ S.pendingLib = q; return 'stage:' + q; }
+      if(!ok) return orig(id); showOnStage(q); try{ root.ThrydKeep && root.ThrydKeep.rememberGif(q); }catch(e){} return 'stage:' + q; };
+    L._stage = true;
+  })(0);
+
+  MC.loadManifest().then(m => { manifest = m || {assets: []}; note('manifest', (manifest.assets || []).length + ' assets'); spawner();
+    let q = S.pendingLib; try{ q = q || new URLSearchParams(location.search).get('mlib'); }catch(e){} if(q) showOnStage(String(q).trim()); }).catch(()=>{ manifest = {assets: []}; });
 })(typeof window !== 'undefined' ? window : globalThis);

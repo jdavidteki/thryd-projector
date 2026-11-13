@@ -614,10 +614,26 @@ const MOVES=(()=>{const KEY='thryd_moves_v1',MAX=400;let box=null;
     put('from_frame',d.kind==='arrive'?((String(d.from_scene||'').match(/(?:^|[^A-Za-z0-9])(j\d+)(?![0-9])/)||[])[1]):s.frame);put('to_frame',d.kind==='leave'?null:s.frame);put('client_ts',ev.client_ts);
     return {body:o};};
   const bodyFor=ev=>{const s=ev.source||{};if(ev.type==='drift')return driftBody(ev);if(ev.type!=='move')return {hold:ev.type==='setlocation'?'place_id_missing':'not_a_move'};
-    if(!ev.from||!ev.to)return {hold:'bad_coord'};if(!ev.object_id)return {hold:'unmapped'};if(!s.run||!/^run-[A-Za-z0-9]+$/.test(s.run)||!s.frame)return {hold:'no_run_frame'};
+    if(!ev.from||!ev.to)return {hold:'bad_coord'};if(!ev.object_id)return mediumBody(ev);if(!s.run||!/^run-[A-Za-z0-9]+$/.test(s.run)||!s.frame)return {hold:'no_run_frame'};
     const f=n01(ev.from),t=n01(ev.to),out=v=>v<0||v>100,cl=[ev.from.x,ev.from.y,ev.to.x,ev.to.y].some(out);if([ev.from.x,ev.from.y,ev.to.x,ev.to.y].some(v=>!isFinite(v)||v<-50||v>150))return {hold:'raw_out_of_range'};
     return {body:{event_id:ev.event_id,rid:ev.event_id+'-r',run:s.run,frame:s.frame,object_id:ev.object_id,scene:s.scene,cut:s.cut,
       raw:{unit:'percent',from:ev.from,to:ev.to},normalized:{unit:'frame',from:f,to:t,clamped:cl},current_card:(ev.agenda&&ev.agenda.card)||s.frame,client_ts:ev.client_ts}};};
+  // unmapped Medium/X cut drags (Jesuye 11-12 11:16 PM): sent to the engine with the exact scene + cut + source frame so it can create/map
+  // the object on the spot (same contract shape as mapped moves, object_id left out). The agenda's run and its jN stand in for the frame.
+  // A rejection (engine not mapping yet) keeps the local hold and is retried later; nothing is lost.
+  const mediumBody=ev=>{const s=ev.source||{},a=ev.agenda||{},st=ev.story||{};if(s.scene_kind!=='medium_cut'||!s.scene||!s.cut)return {hold:'unmapped'};
+    const run=a.run||s.run||null,fr=s.frame||((String(a.card||'').match(/^j\d{1,3}$/i)||[])[0]||'').toLowerCase()||null;
+    if(!run||!/^run-[A-Za-z0-9_-]+$/.test(run))return {hold:'unmapped',reason2:'no_run'};
+    if([ev.from.x,ev.from.y,ev.to.x,ev.to.y].some(v=>!isFinite(v)||v<-50||v>150))return {hold:'raw_out_of_range'};
+    const f=n01(ev.from),t=n01(ev.to),cl=[ev.from.x,ev.from.y,ev.to.x,ev.to.y].some(v=>v<0||v>100);
+    const x=/^x_/.test(String(s.scene)),url=st.x_post_url||st.medium_url||null;
+    const meta={kind:x?'x_cut':'medium_cut',label:ev.label||s.cut};const put=(k,v)=>{if(v!=null&&v!=='')meta[k]=v;};
+    put('klass',s.klass);put('title',st.title?String(st.title).slice(0,160):null);if(url&&/^https:\/\/([a-z0-9-]+\.)*(medium\.com|x\.com|twimg\.com)\//.test(url))meta.url=url;
+    put('place',st.place?String(st.place).slice(0,120):null);if(Array.isArray(st.people)&&st.people.length)meta.people=st.people.slice(0,8).map(n=>String(n).slice(0,60));
+    if(s.source_frame_index!=null)meta.frame_index=s.source_frame_index;if(s.frame_count)meta.frame_count=s.frame_count;if(ev.qa_send)meta.test=true;
+    const b={event_id:ev.event_id,rid:ev.event_id+'-r',run,frame:fr,object_id:null,scene:s.scene,cut:s.cut,raw:{unit:'percent',from:ev.from,to:ev.to},normalized:{unit:'frame',from:f,to:t,clamped:cl},
+      current_card:a.card?String(a.card).toLowerCase():null,client_ts:ev.client_ts,cut_meta:meta};
+    return {body:b,medium:true};};
   const ntfySend=async body=>{if(!DRAG||!DRAG.endpoint||DRAG.transport!=='ntfy')throw new Error('no drag endpoint');
     const t0=Math.floor(Date.now()/1000)-5;const r=await fetch(DRAG.endpoint,{method:'POST',body:JSON.stringify(body)});if(!r.ok)throw new Error('ntfy HTTP '+r.status);
     for(const w of [2000,4000,8000,16000,30000]){await new Promise(z=>setTimeout(z,w));   // light polling, stops on the ack
@@ -626,15 +642,20 @@ const MOVES=(()=>{const KEY='thryd_moves_v1',MAX=400;let box=null;
     return null;};
   const emit=async ev=>{try{
     if(typeof window.thrydMoveEmit==='function'){const r=await window.thrydMoveEmit(JSON.parse(JSON.stringify(ev)));ev.emit={status:(r&&r.status)||'sent',reply:r||null,at:new Date().toISOString()};save();return;}
-    const b=bodyFor(ev);if(!b.body){ev.emit={status:'held',reason:b.hold};save();return;}
-    if(qaOn()){ev.emit={status:'qa_not_sent',body:b.body};save();return;}
-    ev.emit=Object.assign({},ev.emit||{},{status:'sending',attempts:((ev.emit&&ev.emit.attempts)||0)+1,at:new Date().toISOString()});save();
+    const b=bodyFor(ev);if(!b.body){ev.emit=Object.assign({},ev.emit||{},{status:'held',reason:b.hold});save();return;}
+    // QA: nothing is sent, except an explicit QA test of the Medium create path (window.__THRYD_QA_SEND_MEDIUM), flagged cut_meta.test:true
+    if(qaOn()&&!(b.medium&&window.__THRYD_QA_SEND_MEDIUM&&(ev.qa_send=true)&&(b.body=bodyFor(ev).body))){ev.emit={status:'qa_not_sent',body:b.body,medium:!!b.medium};save();return;}
+    ev.emit=Object.assign({},ev.emit||{},{status:'sending',attempts:((ev.emit&&ev.emit.attempts)||0)+1,at:new Date().toISOString()});if(b.medium)ev.emit.medium=true;save();
     const m=await ntfySend(b.body);
     ev.emit=Object.assign(ev.emit,m?{status:m.status||(m.ok?'accepted':'rejected'),committed:m.committed===true,reply:m}:{status:'no_reply'});
+    if(b.medium&&m){if(m.ok&&m.object_id){ev.object_id=String(m.object_id);ev.emit.mapped=true;ev.emit.object_created=m.object_created===true;}
+      else if(!m.ok){ev.emit.status='held';ev.emit.reason='unmapped';ev.emit.engine_code=m.code||m.reason||null;ev.emit.retry=true;}}
     if(m&&m.kind==='drift'&&m.code&&!/phone\.html$/.test(location.pathname)){(window.__thrydDriftLines=window.__thrydDriftLines||[]).push({t:String(m.code).slice(0,160)+';',a:true,note:'drift ack · engine logged it · no consequence'});}
   }catch(e){ev.emit=Object.assign({},ev.emit||{},{status:'failed',reason:String(e&&e.message||e)});}save();};
   // retry queue: unanswered sends go again (idempotent by event_id), at most 6 tries, every 2 minutes
-  setInterval(()=>{box.events.filter(e=>e.emit&&(e.emit.status==='no_reply'||e.emit.status==='failed'||e.emit.status==='sending')&&(e.emit.attempts||0)<6&&Date.now()-Date.parse(e.emit.at||0)>110000).slice(0,3).forEach(e=>emit(e));},120000);
+  setInterval(()=>{box.events.filter(e=>e.emit&&(e.emit.status==='no_reply'||e.emit.status==='failed'||e.emit.status==='sending')&&(e.emit.attempts||0)<6&&Date.now()-Date.parse(e.emit.at||0)>110000).slice(0,3).forEach(e=>emit(e));
+    // unmapped Medium drags the engine could not map yet: try again every 10 min, up to 30 tries (only ones this build sent, never older holds)
+    box.events.filter(e=>e.emit&&e.emit.retry&&e.emit.status==='held'&&e.emit.reason==='unmapped'&&(e.emit.attempts||0)<30&&Date.now()-Date.parse(e.emit.at||0)>600000).slice(0,2).forEach(e=>emit(e));},120000);
   let lastDE=0;
   function record(inp){try{
     const scene=inp.scene||null, ev={v:1,type:inp.type||'move',event_id:uid(),client_ts:new Date().toISOString(),
@@ -657,17 +678,21 @@ const MOVES=(()=>{const KEY='thryd_moves_v1',MAX=400;let box=null;
   function sceneKeys(){const k=new Set();const mc=document.getElementById('mcut');((mc&&mc._klass)||[]).forEach(x=>x&&k.add('o:'+norm(x)));((mc&&mc._labels)||[]).forEach(x=>x&&!/^cut\d+$/.test(x)&&k.add('o:'+norm(x)));
     if(objLayer)objLayer.querySelectorAll('.ob[data-label]').forEach(b=>k.add('o:'+norm(b.dataset.label)));
     const h=hereFull();if(h)k.add('p:'+h.toLowerCase());people().forEach(n=>k.add('c:'+n.toLowerCase()));((lastM&&lastM.objs)||[]).forEach(o=>k.add('o:'+norm(o.label)));return k;}
-  function fire(){const sc=sceneNow();if(!sc||sc===lastScene)return;lastScene=sc;const here=sceneKeys();if(!here.size)return;
+  function fire(){const sc=sceneNow();if(!sc||sc===lastScene)return;lastScene=sc;const here=sceneKeys();if(!here.size)return;return fireAt(sc,here,null);}
+  // ?stage=1 (assets/stage.js): many scenes share the stage, so each story group asks for its own carry-over by scene + object keys
+  function fireFor(sc,objs){if(!sc)return null;const here=new Set();(objs||[]).forEach(x=>{const n=norm(x);if(n&&!/^cut\d*$/.test(n))here.add('o:'+n);});if(!here.size)return null;return fireAt(sc,here,'stage_group');}
+  function fireAt(sc,here,kind){
     const hits=box.events.filter(e=>e.type!=='consequence'&&e.type!=='drift'&&e.source&&e.source.scene!==sc).filter(e=>[...keysOf(e)].some(k=>here.has(k))).slice(-2);
     if(!hits.length)return;const at=new Date().toISOString();
-    const c={v:1,type:'consequence',event_id:uid(),client_ts:at,source:{scene:sc,scene_kind:document.getElementById('mcut')?'medium_cut':(objLayer?'run_view':'backdrop'),run:runOfKey(sc)},agenda:{run:CUR_RUN||null,card:(bgSet&&bgSet.card)||null,state_at:window.__thrydStateAt||null},
+    const c={v:1,type:'consequence',event_id:uid(),client_ts:at,source:{scene:sc,scene_kind:kind||(document.getElementById('mcut')?'medium_cut':(objLayer?'run_view':'backdrop')),run:runOfKey(sc)},agenda:{run:CUR_RUN||null,card:(bgSet&&bgSet.card)||null,state_at:window.__thrydStateAt||null},
       caused_by:hits.map(e=>e.event_id),shared:[...new Set(hits.flatMap(e=>[...keysOf(e)].filter(k=>here.has(k))))],story:Object.assign(storyOf(sc),{people:people()})};
     hits.forEach(e=>{e.applied_in.push({scene:sc,at,consequence:c.event_id});if(e.applied_in.length>20)e.applied_in=e.applied_in.slice(-20);});
     box.events.push(c);save();emit(c);
     const e=hits[hits.length-1],when=new Date(e.client_ts).toLocaleTimeString([],{hour:'numeric',minute:'2-digit'});
     const why=c.shared[0]||'';const whyT=why.startsWith('o:')?'same '+why.slice(2):why.startsWith('p:')?'same place':why.startsWith('c:')?why.slice(2)+' is here':'linked';
     show(`↺ carried over: ${e.label||e.object_key} was ${e.type==='setlocation'?'sent to '+short(e.place||''):'moved'} at ${when}${e.story&&e.story.title?' in “'+e.story.title+'”':''} · ${whyT}`);
-    hits.forEach(h=>{try{pulse(h.label||'');pulse(h.object_key||'');}catch(err){}});}
+    hits.forEach(h=>{try{pulse(h.label||'');pulse(h.object_key||'');}catch(err){}});
+    return {consequence:c,hits:hits.map(h=>({event_id:h.event_id,label:h.label,object_key:h.object_key,scene:h.source&&h.source.scene,at:h.client_ts,title:h.story&&h.story.title})),shared:c.shared};}
   setInterval(()=>{try{fire();}catch(e){}},1500);
   // chips moved to a place stay there on this device until a newer state.json says otherwise
   function carryPlaces(m){if(!m||!m.chars)return m;const st=Date.parse(window.__thrydStateAt||'')||0;const last={};
@@ -690,7 +715,7 @@ const MOVES=(()=>{const KEY='thryd_moves_v1',MAX=400;let box=null;
   window.addEventListener('thryd:cutmove',ev=>{const d=ev.detail||{};record(Object.assign({type:'move',scene_kind:'medium_cut',label:d.klass&&d.klass!=='object'?d.klass:d.cut},d));});
   function observeState(st){const a=st&&st.movement_acks;if(!a||a.run!==st.run||!Array.isArray(a.movement_acks)||!a.movement_acks.length)return;const ids=new Set(a.movement_acks);let ch=false;
     box.events.forEach(e=>{if(ids.has(e.event_id)&&e.story_status!=='consumed'){e.story_status='consumed';e.consumed_run=st.run;ch=true;}});if(ch)save();}
-  return {record,carryPlaces,fire,observeState,list:()=>box.events.slice(),key:KEY};})();
+  return {record,carryPlaces,fire,fireFor,observeState,list:()=>box.events.slice(),key:KEY};})();
 window.thrydMoves=MOVES;
 function sidSprite(id){if(!id)return null;const hit=L=>{for(const o of L||[])if(o&&o.sprite&&(o.state_id===id||o.label===id))return o.sprite;return null;};
   const cur=objLayer&&OMAP[objLayer.dataset.key];let r=hit(cur&&cur.objects);if(r)return r;
