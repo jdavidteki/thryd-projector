@@ -64,7 +64,7 @@
     'body.cerebro #gstage,body.lovemap #gstage{display:none}',
     '#gworld{position:absolute;left:0;top:0;will-change:transform}',
     '#gbgs,#gcuts{position:absolute;left:0;top:0}',
-    '#gstage .gbg{position:absolute;pointer-events:none;opacity:0;transition:opacity 3.5s ease}',
+    '#gstage .gbg{position:absolute;pointer-events:none;opacity:0;transition:opacity 3.5s ease;will-change:transform;backface-visibility:hidden}',
     '#gstage .gbg.on{opacity:1}',
     '#gstage .gbg.gm{-webkit-mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 45%,transparent 100%);mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 45%,transparent 100%)}', // main-thread fallback only
     '#gstage .gbg.gm.on{opacity:.34}',
@@ -113,6 +113,48 @@
   function camHold(){ const a = cam.a; if(!a) return; const p = paused(); if(p && a.playState === 'running') a.pause(); else if(!p && a.playState === 'paused') a.play(); }
   world.style.transform = tr(cam.x, cam.y); setTimeout(()=> camGo(), 1500);
   root.addEventListener('resize', ()=>{ sizeWorld(); camGo(); });
+  // faded .gbg wander (Jesuye 13 Nov 2026 5:05 PM ET): the hole-filled scene plates drift around the stage on
+  // their own, while cuts stay at the group's home and still migrate as before. There was no independent plate
+  // motion before this (plates were pinned with left/top only). Speed is set at 2.67× the camera drift
+  // (camera uses vw*0.006 px/s, min 14s legs, 400–2500ms pauses, trying to travel 0.45 of the small pan range).
+  const BG_SPEED_K = PHONE ? 0.015 : 0.016;          // px/s = k * vw  (camera: 0.006; 0.016 ≈ 2.67×)
+  const BG_TURN = PHONE ? [1600, 3200] : [1800, 3600]; // ms between heading changes (camera legs are ≥14s)
+  const BG_TRAVEL = PHONE ? 0.42 : 0.50;             // max offset from the group's home, as a fraction of min(vw,vh)
+  const BG_EASE = 0.35;                              // seconds to ease into a new heading (no jitter)
+  S.bg = {speedK: BG_SPEED_K, turn: BG_TURN, travel: BG_TRAVEL, ease: BG_EASE, camSpeedK: 0.006};
+  function bgRetarget(g, now, ang){
+    const sp = BG_SPEED_K * vw();
+    const a = ang == null ? Math.random() * Math.PI * 2 : ang;
+    g.btx = Math.cos(a) * sp; g.bty = Math.sin(a) * sp;
+    g.bTurn = now + R(BG_TURN[0], BG_TURN[1]);
+  }
+  function tickBgs(now){
+    const prev = tickBgs.t; tickBgs.t = now;
+    if(RM || !prev) return;
+    if(paused()) return;
+    const dt = Math.min(0.05, (now - prev) / 1000);
+    const rad = BG_TRAVEL * Math.min(vw(), vh());
+    const k = 1 - Math.exp(-dt / BG_EASE);
+    const E = PHONE ? 0.22 : 0.28;
+    for(let i = 0; i < S.groups.length; i++){
+      const g = S.groups[i], el = g.bgEl; if(!el || g.gone) continue;
+      if(g.bx == null){ g.bx = 0; g.by = 0; g.bvx = 0; g.bvy = 0; bgRetarget(g, now); }
+      if(now >= (g.bTurn || 0)) bgRetarget(g, now);
+      g.bvx += (g.btx - g.bvx) * k; g.bvy += (g.bty - g.bvy) * k;
+      g.bx += g.bvx * dt; g.by += g.bvy * dt;
+      const d = Math.hypot(g.bx, g.by);
+      if(d > rad && d > 1){
+        const s = rad / d; g.bx *= s; g.by *= s;
+        bgRetarget(g, now, Math.atan2(-g.by, -g.bx) + R(-0.8, 0.8));
+      }
+      const left = g.x - g.w * E, top = g.y - g.h * E, bw = g.w * (1 + 2 * E), bh = g.h * (1 + 2 * E);
+      // only clamp an axis the plate actually fits on, so an oversized faded frame cannot flip between edges
+      if(bw < W.w){ if(g.bx + left < 0) g.bx = -left; else if(g.bx + left + bw > W.w) g.bx = W.w - bw - left; }
+      if(bh < W.h){ if(g.by + top < 0) g.by = -top; else if(g.by + top + bh > W.h) g.by = W.h - bh - top; }
+      el.style.transform = 'translate3d(' + g.bx.toFixed(1) + 'px,' + g.by.toFixed(1) + 'px,0)';
+    }
+  }
+
   // one rAF loop: GIF frames of every group advance here, on the display's own clock (no per-group timers)
   const anims = new Set(); S.loop = {n:0, slow:0, max:0};
   function frame(now){
@@ -126,7 +168,8 @@
         for(let i = 0; i < S.cuts.length; i++){ const cut = S.cuts[i]; if(cut.home !== g || !cut.frames[A.f] || !cut.ctx) continue;
           cut.ctx.clearRect(0, 0, cut.el.width, cut.el.height); cut.ctx.drawImage(cut.frames[A.f], 0, 0); }
       });
-    }
+      tickBgs(now);
+    } else { tickBgs.t = 0; }
     const dt = performance.now() - t0; S.loop.n++; if(dt > 8) S.loop.slow++; if(dt > S.loop.max) S.loop.max = +dt.toFixed(1);
     requestAnimationFrame(frame);
   }
@@ -345,6 +388,7 @@
       const E = PHONE ? 0.22 : 0.28; // the faded frame reaches well past the group, so neighbouring stories meet instead of black gaps
       Object.assign(c.style, {left: (g.x - g.w * E) + 'px', top: (g.y - g.h * E) + 'px', width: (g.w * (1 + 2 * E)) + 'px', height: (g.h * (1 + 2 * E)) + 'px'});
       bgs.appendChild(c); g.bgEl = c; S.bytes += c.width * c.height * 4; g.bgBytes = c.width * c.height * 4;
+      g.bx = 0; g.by = 0; g.bvx = 0; g.bvy = 0; bgRetarget(g, performance.now());
       setTimeout(()=> c.classList.add('on'), 60);
     }
     if(g.title){ const t = document.createElement('div'); t.className = 'gtag'; t.textContent = String(g.title).slice(0, 60); Object.assign(t.style, {left: (g.x + g.w / 2) + 'px', top: (g.y + g.h + 6) + 'px'}); cutsL.appendChild(t); g.tag = t;
