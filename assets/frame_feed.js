@@ -111,7 +111,14 @@
     if(!s) return [];
     return String(s).toLowerCase().replace(/[#@\[\]]/g, ' ').match(/[a-z0-9']{3,}/g) || [];
   }
+  var TOKC = Object.create(null), TOKN = 0;
   function tokens(s){
+    if(typeof s !== 'string') return tokens0(s);
+    var r = TOKC[s]; if(r) return r.slice();
+    if(++TOKN > 20000){ TOKC = Object.create(null); TOKN = 1; }
+    r = TOKC[s] = tokens0(s); return r.slice();
+  }
+  function tokens0(s){
     var out = [], seen = Object.create(null), i, j, parts, w;
     var list = Array.isArray(s) ? s : [s];
     for(i = 0; i < list.length; i++){
@@ -127,7 +134,15 @@
     }
     return out;
   }
+  // memoised (11-13, stage smoothness): the feed re-scores the same words thousands of times per focus change; a profile showed
+  // stem/tokens as the main cause of ~1 s main-thread stalls. Pure functions, so results are identical.
+  var STEMC = Object.create(null), STEMN = 0;
   function stem(w){
+    var k = String(w || ''), r = STEMC[k]; if(r !== undefined) return r;
+    if(++STEMN > 60000){ STEMC = Object.create(null); STEMN = 1; }
+    return (STEMC[k] = stem0(k));
+  }
+  function stem0(w){
     w = String(w || '').toLowerCase();
     if(w.length <= 3) return w;
     if(/ies$/.test(w) && w.length > 5) return w.slice(0, -3) + 'y';
@@ -343,11 +358,11 @@
     }
     if(tweet.card && state.card && String(tweet.card) === String(state.card)) s += 5;
     if(state.safes && state.safes.length){
-      var safeScore = 0, ownSafe = 0;
+      var safeScore = 0, ownSafe = 0, twS = Object.create(null); for(i = 0; i < tw.length; i++) twS[tw[i]] = 1;
       state.safes.forEach(function(safe){
         var st = tokens(safe.line).filter(function(x){ return x.length >= 5; });
         var n = 0, k;
-        for(k = 0; k < st.length; k++){ if(tw.indexOf(st[k]) >= 0 || tw.indexOf(stem(st[k])) >= 0) n++; }
+        for(k = 0; k < st.length; k++){ if(twS[st[k]] || twS[stem(st[k])]) n++; }
         if(n >= 2){ safeScore += 2 * n; if(!safe.shared) ownSafe += 2 * n; if(!seen['safe']){ seen['safe'] = 1; hits.push('safe:' + n); } }
       });
       if(safeScore > 8) safeScore = 8;
