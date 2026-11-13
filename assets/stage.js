@@ -263,7 +263,7 @@
     const animated0 = plan.kind === 'gif';
     if(!WK.off){ // the worker also fetches the file itself (HTTP cache), so multi-MB GIF bytes never pass through the page thread
       const bs = Math.min(1, k * (PHONE ? 0.55 : 0.7));
-      const msg = {url: row.url, fw, fh, gif: animated0, frameCount: plan.frameCount, stillFrame: plan.still_frame | 0, step, delays_cs: plan.delays_cs,
+      const msg = {url: new URL(row.url, location.href).href, fw, fh, gif: animated0, frameCount: plan.frameCount, stillFrame: plan.still_frame | 0, step, delays_cs: plan.delays_cs,
         objs: objs.map(x => ({U: x.U, dw: Math.max(1, Math.round(x.U.w * s)), dh: Math.max(1, Math.round(x.U.h * s)),
           masks: animated0 ? x.o.masks.map((m, i) => i % step === 0 ? lite(m) : null) : [lite(x.o.masks[0])]})),
         bg: wantBg ? {w: Math.max(1, Math.round(fw * bs)), h: Math.max(1, Math.round(fh * bs)), plate: plan.plate || null, known: plan.plate ? plan.plateKnown : null} : null};
@@ -329,7 +329,7 @@
   function spawn(row, L){
     const pos = placeGroup(L.Dw, L.Dh); const v = view();
     const g = {mid: row.medium_image_id, row, kind: L.kind, x: pos.gx, y: pos.gy, w: L.Dw, h: L.Dh, k: L.k, fw: L.fw, fh: L.fh,
-      title: titleOf(row.medium_image_id), born: Date.now(), life: (PHONE ? R(30, 50) : R(35, 70)) * 1000, cuts: [], gone: false, offSince: 0, sha: row.source_sha256 || '', ver: row.pack_version || '1'};
+      title: row.title || titleOf(row.medium_image_id), agenda: !!row.agenda, run: row.run || null, card: row.card || null, born: Date.now(), life: (PHONE ? R(30, 50) : R(35, 70)) * 1000, cuts: [], gone: false, offSince: 0, sha: row.source_sha256 || '', ver: row.pack_version || '1'};
     if(L.bg){
       const c = document.createElement('canvas'); c.className = 'gbg' + (L.bgMask ? ' gm' : ''); c.width = L.bg.width; c.height = L.bg.height;
       c.getContext('2d').drawImage(L.bg, 0, 0); L.bg.close && L.bg.close();
@@ -346,7 +346,7 @@
       const fr = L.frames[j]; if(!fr.length) return;
       const c = document.createElement('canvas'); c.className = 'gcut' + (RM ? '' : ' fl'); c.width = fr[0].width; c.height = fr[0].height;
       const ctx = c.getContext('2d'); ctx.drawImage(fr[0], 0, 0);
-      const cut = {ctx, g, home: g, el: c, frames: fr, label: x.o.label || ('cut' + (x.k + 1)), klass: x.o.model_class || x.o.label || null, i: x.k, U: x.U,
+      const cut = {ctx, sid: x.o.state_id || null, g, home: g, el: c, frames: fr, label: x.o.label || ('cut' + (x.k + 1)), klass: x.o.model_class || x.o.label || null, i: x.k, U: x.U,
         w: x.U.w * g.k, h: x.U.h * g.k, hx: g.x + x.U.x * g.k, hy: g.y + x.U.y * g.k, entering: true, bytes: bytesOf(fr), area: (x.U.w * x.U.h) / (g.fw * g.fh)};
       cut.left = cut.hx; cut.top = cut.hy;
       Object.assign(c.style, {left: cut.left + 'px', top: cut.top + 'px', width: cut.w + 'px', height: cut.h + 'px', zIndex: String(10 + Math.round(x.U.y + x.U.h))});
@@ -469,6 +469,11 @@
       if(!moved) return;
       cut.dragged = true; if(cut.g && !cut.g.gone) cut.g.life += 20000; // a story someone is playing with stays a little longer
       const g = cut.g, visitor = g !== cut.home;
+      if(cut.home.agenda){ try{ const H = cut.home, to = framePct(cut, H);
+          if(root.thrydMoves && root.thrydMoves.record) root.thrydMoves.record({type: 'move', scene: H.row && H.row.chips ? (H.run || '') + '/' + (H.card || '') : H.mid, scene_kind: H.row && H.row.chips ? 'agenda_chip' : 'run_view',
+            cut: cut.label, klass: cut.klass, object_id: cut.sid, object_key: cut.label, label: cut.label, run: H.run, from, to}); }catch(e){}
+        const k2 = nkey(cut.klass || cut.label); setTimeout(()=>{ const other = S.groups.find(o => o !== cut.home && !o.gone && !o.carried && o.cuts.some(c => nkey(c.klass) === k2 || nkey(c.label) === k2)); if(other){ lastCarry = 0; carry(other, 'drag'); } }, 3000);
+        return; }
       try{ root.dispatchEvent(new CustomEvent('thryd:cutmove', {detail: Object.assign({
         scene: cut.home.mid, cut: cut.label, cut_index: visitor ? null : cut.i, klass: cut.klass || null,
         source_frame_index: 0, frame_count: cut.frames.length || 1, from, to: framePct(cut, g),
@@ -544,6 +549,89 @@
   }
 
   // ---------- spawner / housekeeping
+  // ---------- agenda objects (Jesuye 12:59 AM "the agendas objects are not showing, only the safe and tweets objects"): the stage
+  // only read the Medium/X cut catalog. Now it also brings in the agendas' own objects: every run-view scene in data/objects_map.json
+  // with real sprite crops (assets/sprites/run-*/jN/*.png, cut from that scene's frame) becomes a group of its run, and the live
+  // agenda's characters and objects in state.json that have no picture come on as plain text chips (never invented imagery).
+  // Both drag (a normal mapped move with the object's state_id), carry over and take typed commands like any cut.
+  // Every run's own objects (/workspace/run-*/run/objects.json, exported as data/agenda_objects.json, active run first) come on as
+  // story groups of their run; the active run is weighted 4x. An object whose run has a real sprite crop of the same name uses it.
+  const AG = S.agenda = {map: null, state: null, runs: [], active: null, keys: [], spawned: 0, chips: 0, avail: 0, availChips: 0, sprite: new Map(), turn: {}};
+  const AG_P = 0.35; // share of new groups that are agenda groups
+  const runOfK = k => (String(k).match(/run-[0-9a-f]{4,}/) || String(k).match(/live\/([a-z0-9-]+?)_(?:[jw]\d+)/) || [])[0] || null;
+  const cardOfK = k => (String(k).match(/(?:^|[\/_])([jw]\d{1,3})(?:\.gif|$|[^0-9])/) || [])[1] || null;
+  Promise.all([fetch('data/objects_map.json?t=' + Date.now(), {cache: 'no-store'}).then(r => r.ok ? r.json() : null).catch(()=> null),
+    fetch('https://raw.githubusercontent.com/jdavidteki/thryd-projector/main/data/state.json?t=' + Date.now(), {cache: 'no-store'}).then(r => r.ok ? r.json() : null).catch(()=> null)
+      .then(j => j || fetch('data/state.json?t=' + Date.now(), {cache: 'no-store'}).then(r => r.ok ? r.json() : null).catch(()=> null)),
+    fetch('data/agenda_objects.json?t=' + Date.now(), {cache: 'no-store'}).then(r => r.ok ? r.json() : null).catch(()=> null)]).then(([m, st, ao]) => {
+    if(ao && Array.isArray(ao.runs)){ AG.runs = ao.runs.filter(r => r && ((r.objects || []).length || (r.characters || []).length)); AG.active = ao.active_run || (AG.runs[0] && AG.runs[0].run); }
+    AG.map = m || {}; AG.state = st || null;
+    AG.keys = Object.keys(AG.map).filter(k => (AG.map[k].objects || []).some(o => o && o.sprite && Array.isArray(o.bbox)));
+    AG.avail = AG.keys.reduce((n, k) => n + AG.map[k].objects.filter(o => o && o.sprite && Array.isArray(o.bbox)).length, 0);
+    AG.keys.forEach(k => { const r = runOfK(k); (AG.map[k].objects || []).forEach(o => { if(o && o.sprite && r) AG.sprite.set(r + '|' + ckey(o.label), o.sprite); }); });
+    AG.availChips = st ? ((st.characters || []).length + (st.objects || []).length) : 0;
+    note('agenda', AG.keys.length + ' scenes', AG.avail + ' sprites', AG.availChips + ' chips');
+  });
+  function pickAgenda(){
+    const ok = AG.keys.filter(k => !S.groups.some(g => g.mid === k) && !S.recent.includes(k) && !S.bad.has(k));
+    return ok.length ? ok[Math.random() * ok.length | 0] : null;
+  }
+  async function loadAgenda(key){
+    const e = AG.map[key], fs = e.frame_size || [480, 270], fw = fs[0], fh = fs[1];
+    let objs = (e.objects || []).filter(o => o && o.sprite && Array.isArray(o.bbox)).map((o, k) => ({o: {label: o.label, model_class: o.label, state_id: o.state_id || null}, k,
+      U: {x: Math.round(o.bbox[0] * fw), y: Math.round(o.bbox[1] * fh), w: Math.max(3, Math.round(o.bbox[2] * fw)), h: Math.max(3, Math.round(o.bbox[3] * fh))}, src: o.sprite}));
+    objs.sort((a, b) => b.U.w * b.U.h - a.U.w * a.U.h); objs = objs.slice(0, Math.min(PER_GROUP, CAP - S.cuts.length)); if(!objs.length) throw new Error('cap');
+    let Dh = vh() * (PHONE ? R(0.2, 0.32) : R(0.24, 0.40)), k = Dh / fh; if(fw * k > vw() * (PHONE ? 0.62 : 0.44)) k = vw() * (PHONE ? 0.62 : 0.44) / fw;
+    Dh = fh * k; const Dw = fw * k, s = Math.min(2.5, k * DPR);
+    const frames = await Promise.all(objs.map(async x => { const r = await fetch(x.src, {cache: 'force-cache'}); if(!r.ok) throw new Error('sprite'); const b = await r.blob();
+      return [await createImageBitmap(b, {resizeWidth: Math.max(1, Math.round(x.U.w * s)), resizeHeight: Math.max(1, Math.round(x.U.h * s)), resizeQuality: 'medium'})]; }));
+    const run = e.run || runOfK(key), card = e.jN || cardOfK(key);
+    return {row: {medium_image_id: key, agenda: true, run, card, title: (run || 'agenda') + (card ? ' · ' + card : '') + ' · objects'}, L: {plan: {}, fw, fh, k, Dw, Dh, s, objs, frames, delays: [0], bg: null, animated: false, kind: 'agenda'}};
+  }
+  function chipBitmap(text, sub){
+    const fz = Math.round(Math.max(12, vh() * (PHONE ? 0.018 : 0.02)) * DPR), c = document.createElement('canvas'), g = c.getContext('2d');
+    g.font = '600 ' + fz + 'px ui-monospace,Menlo,monospace'; const w = Math.ceil(g.measureText(text).width) + fz * 1.6, h = Math.round(fz * (sub ? 2.5 : 1.8));
+    c.width = w; c.height = h; g.font = '600 ' + fz + 'px ui-monospace,Menlo,monospace';
+    g.fillStyle = 'rgba(18,18,18,.88)'; const r = h / 2.4; g.beginPath(); g.moveTo(r, 0); g.arcTo(w, 0, w, h, r); g.arcTo(w, h, 0, h, r); g.arcTo(0, h, 0, 0, r); g.arcTo(0, 0, w, 0, r); g.fill();
+    g.fillStyle = '#f0b35a'; g.textBaseline = 'middle'; g.fillText(text, fz * .8, sub ? h * .36 : h / 2);
+    if(sub){ g.font = Math.round(fz * .7) + 'px ui-monospace,Menlo,monospace'; g.fillStyle = '#b9b2a2'; g.fillText(sub, fz * .8, h * .74); }
+    return c;
+  }
+  function pickRun(){
+    const on = new Set(S.groups.filter(g => g.row && g.row.chips).map(g => g.run));
+    const pool = AG.runs.filter(r => !on.has(r.run) || r.run === AG.active); if(!pool.length) return null;
+    let tot = 0; const w = pool.map(r => { const x = r.run === AG.active ? 4 : 1; tot += x; return x; });
+    let q = Math.random() * tot; for(let i = 0; i < pool.length; i++){ q -= w[i]; if(q <= 0) return pool[i]; } return pool[0];
+  }
+  async function loadChips(){
+    let items = [], run = null, card = null, title = null;
+    const R0 = AG.runs.length ? pickRun() : null;
+    if(R0){ run = R0.run; title = R0.title;
+      const all = [].concat((R0.characters || []).map(c => ({label: c.name, id: c.id, kind: 'character'})), (R0.objects || []).map(o => ({label: o.name, id: o.id ? o.id + '_' + run.slice(4) : null, kind: 'object', card: o.source_card, code: o.code_title})));
+      // walk each run's list in turn, so every object gets its time on stage
+      const t = AG.turn[run] = (AG.turn[run] || 0); const n = Math.min(PER_GROUP, all.length);
+      for(let i = 0; i < n; i++) items.push(all[(t + i) % all.length]); AG.turn[run] = (t + n) % Math.max(1, all.length);
+      card = (items.find(i => i.card) || {}).card || null;
+    } else {
+      const st = AG.state; if(!st) throw new Error('no_state'); run = st.run || null; card = st.current_card || null;
+      items = [].concat((st.characters || []).map(c => ({label: c.name || c.id, id: c.id || null, kind: 'character'})), (st.objects || []).map(o => ({label: o.label, id: o.db_id || null, kind: 'object'})));
+    }
+    if(!items.length) throw new Error('no_items');
+    const pick = items.slice(0, Math.min(PER_GROUP, CAP - S.cuts.length)); if(!pick.length) throw new Error('cap');
+    // a real sprite crop of the same object in the same run is used when there is one; otherwise a plain text chip
+    const bms = await Promise.all(pick.map(async i => { const sp = run && AG.sprite.get(run + '|' + ckey(i.label));
+      if(sp){ try{ const r = await fetch(sp, {cache: 'force-cache'}); if(r.ok){ const b = await createImageBitmap(await r.blob()); const sc = Math.min(1, (vh() * .16 * DPR) / Math.max(b.width, b.height));
+        if(sc < 1){ const b2 = await createImageBitmap(b, {resizeWidth: Math.max(1, Math.round(b.width * sc)), resizeHeight: Math.max(1, Math.round(b.height * sc))}); b.close && b.close(); return b2; } return b; } }catch(e){} }
+      return chipBitmap(String(i.label).slice(0, 28), i.kind + (i.code ? ' · ' + String(i.code).slice(0, 24) : '')); }));
+    const fw = 1000, fh = 600, cols = 2; let U = [];
+    const bw = Math.max(...bms.map(b => b.width)), bh = Math.max(...bms.map(b => b.height));
+    const k = Math.min((vw() * (PHONE ? .6 : .3)) / fw, 1), unitW = fw / cols, rows = Math.ceil(pick.length / cols), unitH = fh / Math.max(1, rows);
+    pick.forEach((it, n) => { const w = bms[n].width / DPR / k, h = bms[n].height / DPR / k; U.push({x: Math.round((n % cols) * unitW + R(0, Math.max(0, unitW - w))), y: Math.round(((n / cols) | 0) * unitH + R(0, Math.max(0, unitH - h))), w: Math.max(4, Math.round(w)), h: Math.max(4, Math.round(h))}); });
+    const objs = pick.map((it, n) => ({o: {label: it.label, model_class: it.kind, state_id: it.id}, k: n, U: U[n]}));
+    const key = 'chips:' + (run || 'agenda') + ':' + Date.now();
+    return {row: {medium_image_id: key, agenda: true, chips: true, run, card, title: (title ? title + ' · ' : '') + (run || 'agenda') + (run === AG.active ? ' (now)' : '')}, L: {plan: {}, fw, fh, k, Dw: fw * k, Dh: fh * k, s: DPR, objs, frames: bms.map(b => [b]), delays: [0], bg: null, animated: false, kind: 'chips'}};
+  }
+
   // decoding fills a small queue of ready groups; a group goes on stage the moment there is room (cap, budget, an empty patch)
   S.ready = []; S.pend = [];
   function place(item){
@@ -557,9 +645,15 @@
     if(S.loading >= INFLIGHT || !manifest) return;
     if(S.ready.length >= READY || S.cuts.length >= CAP || S.bytes > BUDGET * .9) return;
     if(S.groups.length + S.ready.length >= MAX_GROUPS && S.cuts.length >= CAP - 2) return;
-    const row = pickRow(); if(!row) return;
-    S.recent.push(row.medium_image_id); if(S.recent.length > 40) S.recent.shift(); // never picked twice while it decodes
+    let agKey = null, chips = false;
+    if((AG.keys.length || AG.runs.length) && Math.random() < AG_P){ chips = (AG.runs.length || AG.state) && (Math.random() < .6 || !AG.keys.length); if(!chips) agKey = pickAgenda(); }
+    const row = (agKey || chips) ? null : pickRow(); if(!row && !agKey && !chips) return;
+    if(row || agKey){ S.recent.push(row ? row.medium_image_id : agKey); if(S.recent.length > 40) S.recent.shift(); } // never picked twice while it decodes
     S.loading++;
+    if(agKey || chips){ try{ const A = chips ? await loadChips() : await loadAgenda(agKey); const held = A.L.frames.reduce((n, f) => n + bytesOf(f), 0);
+        const item = {row: A.row, L: A.L, held}; S.bytes += held; S.ready.push(item); place(item); if(chips) AG.chips++; else AG.spawned++; }
+      catch(e){ const why = String(e && e.message || e); if(agKey && why !== 'cap') S.bad.add(agKey); note('agenda skip', agKey || 'chips', why); }
+      finally{ S.loading--; } if(!paused()) setTimeout(spawnOne, 50); return; }
     try{ const L = await loadGroup(row); const held = L.frames.reduce((n, f) => n + bytesOf(f), 0) + (L.bg ? L.bg.width * L.bg.height * 4 : 0);
       const item = {row, L, held}; S.bytes += held; S.ready.push(item); place(item); }
     catch(e){ const why = String(e && e.message || e); if(why !== 'cap' && why !== 'budget') S.bad.add(row.medium_image_id); else S.recent.push(row.medium_image_id); S.fails++; note('skip', row.medium_image_id, why); }
@@ -621,7 +715,112 @@
     const right = (l + r) / 2 > vw() / 2;
     return {left: l, right: r, top: t, height: b - t, r: right};
   };
-  S.stats = ()=>({groups: S.groups.length, stories: [...new Set(S.groups.map(g => g.mid))], cuts: S.cuts.length, cap: CAP, maxSeen: S.maxSeen, mb: +(S.bytes / 1048576).toFixed(1), spawned: S.spawned, left: S.left, fails: S.fails, carries: S.carries || 0, loading: S.loading, visible: S.groups.filter(g => { const v = view(); return g.x < v.x + v.w && g.x + g.w > v.x && g.y < v.y + v.h && g.y + g.h > v.y; }).length, cam: {x: Math.round(cam.x), y: Math.round(cam.y)}, ready: S.ready.length, fill: S.fill(), loop: S.loop, worker: WK.off ? 'off' : 'on', decodeMs: WK.ms.length ? Math.round(WK.ms.reduce((a, b) => a + b, 0) / WK.ms.length) : null, focus: focus && focus.mid, rm: RM, phone: PHONE});
+  S.stats = ()=>({groups: S.groups.length, stories: [...new Set(S.groups.map(g => g.mid))], cuts: S.cuts.length, cap: CAP, maxSeen: S.maxSeen, mb: +(S.bytes / 1048576).toFixed(1), spawned: S.spawned, left: S.left, fails: S.fails, carries: S.carries || 0, loading: S.loading, visible: S.groups.filter(g => { const v = view(); return g.x < v.x + v.w && g.x + g.w > v.x && g.y < v.y + v.h && g.y + g.h > v.y; }).length, cam: {x: Math.round(cam.x), y: Math.round(cam.y)}, ready: S.ready.length, fill: S.fill(), cmd: {calls: CMD.calls, looks: CMD.looks.size, applied: CMD.applied, src: CMD.src, cast: S.cuts.filter(c => c.castAs).length}, agenda: {active: AG.active, runs: AG.runs.length, runObjects: AG.runs.reduce((n, r) => n + (r.objects || []).length + (r.characters || []).length, 0), activeOnStage: S.cuts.filter(c => c.home && c.home.agenda && c.home.run === AG.active).length, scenes: AG.keys.length, sprites: AG.avail, chipsAvail: AG.availChips, groupsSpawned: AG.spawned, chipGroups: AG.chips, onStageGroups: S.groups.filter(g => g.agenda).length, onStageCuts: S.cuts.filter(c => c.home && c.home.agenda).length}, loop: S.loop, worker: WK.off ? 'off' : 'on', decodeMs: WK.ms.length ? Math.round(WK.ms.reduce((a, b) => a + b, 0) / WK.ms.length) : null, focus: focus && focus.mid, rm: RM, phone: PHONE});
+
+  // ---------- typed commands on the stage (Jesuye 11-13 12:43 AM "if dapo was on the screens i did dapo.setskincomplexion(light),
+  // it should show on the projector"). Source: #thryd's typed_calls.json (every seated typed call of every agenda), published
+  // data-only as data/commands.json by tools/cmd_loop.sh. The latest setX(value) per subject+key is the subject's look; it lasts,
+  // and every later group with that subject on stage gets it too. Subjects bind to cuts by exact name/class (lamp, phone, Kunle),
+  // and a character with no cut of its own name is cast onto up to two person cuts on stage (stable while they stay; a newcomer
+  // takes the part when one leaves). Calls new since this page opened type into #code and pulse their cuts.
+  // Looks are CSS filters / scale / opacity on the cut only: never a blur, never on faces alone.
+  const CMD = S.cmd = {looks: new Map(), seen: new Set(), chars: new Set(['dapo']), first: true, calls: 0, at: null, applied: 0, src: null};
+  const TONE = {light: 'brightness(1.22) saturate(.86) contrast(.96)', fair: 'brightness(1.22) saturate(.86) contrast(.96)', pale: 'brightness(1.3) saturate(.7)',
+    lighter: 'brightness(1.22) saturate(.86)', medium: 'brightness(1.05) saturate(1.05) sepia(.12)', tan: 'brightness(.98) sepia(.28) saturate(1.2)', brown: 'brightness(.9) sepia(.3) saturate(1.15)',
+    dark: 'brightness(.74) saturate(1.12) contrast(1.05)', darker: 'brightness(.74) saturate(1.12) contrast(1.05)', ebony: 'brightness(.62) saturate(1.1) contrast(1.08)'};
+  const HUE = {red: 0, orange: 30, yellow: 55, gold: 45, green: 120, teal: 170, cyan: 185, blue: 220, purple: 275, violet: 275, pink: 320, magenta: 300};
+  const lowv = v => String(v == null ? '' : v).toLowerCase().replace(/[\[\]"']/g, '').trim();
+  const isOff = v => /^(false|no|off|0|none|hidden)$/.test(lowv(v));
+  // key -> how it looks. Returns {filter?, scale?, opacity?} or null (unknown: shown in #code with a pulse only)
+  const VERBS = {
+    skincomplexion: v => TONE[lowv(v)] ? {filter: TONE[lowv(v)]} : null, complexion: v => VERBS.skincomplexion(v), skin: v => VERBS.skincomplexion(v), skintone: v => VERBS.skincomplexion(v),
+    brightness: v => { const n = parseFloat(v); return {filter: 'brightness(' + (isFinite(n) ? Math.max(.3, Math.min(2, n > 3 ? n / 100 : n)) : (/dim|low/.test(lowv(v)) ? .7 : 1.3)) + ')'}; },
+    glow: v => isOff(v) ? {filter: ''} : {filter: 'drop-shadow(0 0 .9vh ' + (HUE[lowv(v)] != null ? 'hsl(' + HUE[lowv(v)] + ',100%,60%)' : '#ffd76a') + ') drop-shadow(0 0 .3vh #fff8)'},
+    colour: v => HUE[lowv(v)] != null ? {filter: 'sepia(.55) saturate(2.4) hue-rotate(' + (HUE[lowv(v)] - 35) + 'deg)'} : (lowv(v) === 'black' ? {filter: 'brightness(.45) saturate(.6)'} : lowv(v) === 'white' ? {filter: 'brightness(1.45) saturate(.4)'} : null),
+    color: v => VERBS.colour(v), tint: v => VERBS.colour(v),
+    size: v => { const x = lowv(v), n = parseFloat(x); return {scale: isFinite(n) ? Math.max(.4, Math.min(2.2, n)) : /big|large|tall|huge|giant/.test(x) ? 1.35 : /small|tiny|short|little/.test(x) ? .72 : 1}; },
+    visible: v => ({opacity: isOff(v) ? .14 : 1}), hidden: v => ({opacity: isOff(v) ? 1 : .14}),
+    mood: v => /sad|blue|down/.test(lowv(v)) ? {filter: 'saturate(.45) brightness(.9)'} : /happy|joy|glad/.test(lowv(v)) ? {filter: 'saturate(1.35) brightness(1.08)'} : /angry|mad/.test(lowv(v)) ? {filter: 'sepia(.4) saturate(2) hue-rotate(-30deg)'} : null
+  };
+  // non-set verbs that are a look too: grow(), shrink(), hide(), show(), glow(), dim(), brighten()
+  const FNS = {grow: ['size', 'big'], shrink: ['size', 'small'], hide: ['visible', 'false'], show: ['visible', 'true'], appear: ['visible', 'true'], vanish: ['visible', 'false'],
+    glow: ['glow', 'true'], dim: ['brightness', 'dim'], brighten: ['brightness', 'bright'], lighten: ['skincomplexion', 'light'], darken: ['skincomplexion', 'dark']};
+  S.cmdVerbs = ()=>({set: Object.keys(VERBS), fns: Object.keys(FNS), tones: Object.keys(TONE), colours: Object.keys(HUE)});
+  const ckey = x => String(x || '').toLowerCase().replace(/^[oc]:/, '').replace(/[^a-z0-9]+/g, '');
+  const PERSON = /^(person|man|woman|boy|girl|child|kid|people|human|figure|lady|guy)$/i;
+  function subjCuts(sk){
+    const own = S.cuts.filter(c => !c.leaving && (ckey(c.label) === sk || ckey(c.klass) === sk || ckey(nkey(c.label)) === sk || ckey(nkey(c.klass)) === sk));
+    const L = CMD.looks.get(sk);
+    // a text chip naming the character is not a body: it gets the look too, but a person cut still plays the part
+    if(own.length && (!L || !L.cast || own.some(c => !(c.home && c.home.row && c.home.row.chips)))) return own;
+    if(!L || !L.cast) return own;
+    // a character: up to two person cuts play the part
+    let mine = S.cuts.filter(c => !c.leaving && c.castAs === sk);
+    if(mine.length < 2){ const v0 = view(), free = S.cuts.filter(c => !c.leaving && !c.castAs && PERSON.test(String(c.klass || c.label || '')) && !c.entering && !c.dragging && c.g && !c.g.gone && inView(c, v0));
+      if(!free.length) S.cuts.forEach(c => { if(!c.leaving && !c.castAs && !c.dragging && PERSON.test(String(c.klass || c.label || ''))) free.push(c); }); // nobody settled in view yet: take any figure
+      const v = view(); free.sort((a, b) => b.w * b.h * (inView(b, v) ? 3 : 1) - a.w * a.h * (inView(a, v) ? 3 : 1)); // a big, visible figure plays the part
+      while(mine.length < 2 && free.length){ const c = free.splice(Math.random() * Math.min(3, free.length) | 0, 1)[0]; c.castAs = sk; c.castNew = true; mine.push(c); } }
+    return own.concat(mine);
+  }
+  const inView = (c, v)=> c.left < v.x + v.w && c.left + c.w > v.x && c.top < v.y + v.h && c.top + c.h > v.y;
+  function paint(c, L){
+    const f = [], parts = L.parts; let sc = 1, op = 1;
+    Object.keys(parts).forEach(k => { const p = parts[k]; if(p.filter) f.push(p.filter); if(p.scale) sc *= p.scale; if(p.opacity != null) op = Math.min(op, p.opacity); });
+    const ff = f.join(' ').trim(); if(c.el.style.filter !== ff) c.el.style.filter = ff;
+    const ss = sc === 1 ? '' : String(sc); if(c.el.style.scale !== ss) c.el.style.scale = ss;
+    if(!c.entering && !c.leaving){ const oo = op === 1 ? '' : String(op); if(c.el.style.opacity !== oo && !(c.el.style.opacity === '1' && oo === '')) c.el.style.opacity = oo || '1'; }
+    c.look = L;
+  }
+  function tagAt(c, text){ const t = document.createElement('div'); t.className = 'gtag gcarry'; t.textContent = text;
+    Object.assign(t.style, {left: (c.left + c.w / 2) + 'px', top: (c.top - 16) + 'px'}); cutsL.appendChild(t);
+    requestAnimationFrame(()=> t.classList.add('on')); setTimeout(()=> t.classList.remove('on'), 6000); setTimeout(()=> t.remove(), 8000); }
+  function pulse(c){ c.el.classList.remove('gnotice'); void c.el.offsetWidth; c.el.classList.add('gnotice'); setTimeout(()=> c.el.classList.remove('gnotice'), 1300); }
+  function codeLine(t, note){ const dl = root.__thrydDriftLines = root.__thrydDriftLines || []; dl.unshift({t, a: true, note}); if(dl.length > 8) dl.length = 8; }
+  function ingest(calls, quiet){
+    const fresh = [];
+    (calls || []).forEach(e => {
+      if(!e || !e.id || CMD.seen.has(e.id)) return; CMD.seen.add(e.id);
+      const sk = ckey(e.subject_key || e.subject); if(!sk) return;
+      let key = e.change && e.change.key ? String(e.change.key).toLowerCase() : null, val = e.change ? e.change.value : null;
+      const fn = String(e.fn || '').toLowerCase();
+      if(!key && FNS[fn]){ key = FNS[fn][0]; val = (e.args && e.args[0] != null && fn === 'glow') ? e.args[0] : FNS[fn][1]; }
+      if(key){ let L = CMD.looks.get(sk); if(!L){ L = {sk, name: e.subject, parts: {}, keys: {}, cast: false}; CMD.looks.set(sk, L); }
+        const look = VERBS[key] ? VERBS[key](val) : null;
+        L.keys[key] = {value: val, raw: e.raw, at: e.first_seen, run: e.run, card: e.card, known: !!look};
+        if(look) L.parts[key] = look; else delete L.parts[key];
+        // only a character (thryd.db kind 'character', or a person-only key like skin) is cast onto person cuts; a thing such as
+        // lamp.setcolour(red) shows only on cuts named for it
+        L.cast = L.cast || (!!look && (CMD.chars.has(sk) || /^(skincomplexion|complexion|skin|skintone|mood)$/.test(key)));
+        L.at = e.first_seen; }
+      if(!quiet) fresh.push({e, sk, key, known: !!(key && VERBS[key] && VERBS[key](val))});
+    });
+    return fresh;
+  }
+  function applyLooks(){
+    CMD.looks.forEach((L, sk) => { const cuts = Object.keys(L.parts).length ? subjCuts(sk) : [];
+      cuts.forEach(c => { if(c.look !== L || c.lookN !== Object.keys(L.keys).length){ paint(c, L); c.lookN = Object.keys(L.keys).length; CMD.applied++; }
+        if(c.castNew){ c.castNew = false; tagAt(c, String(L.name || sk) + ' · ' + Object.keys(L.keys).filter(k => L.keys[k].known).map(k => k + '=' + lowv(L.keys[k].value)).join(', ')); } }); });
+    // a cut whose part was dropped goes back to its own look
+    S.cuts.forEach(c => { if(c.castAs && !CMD.looks.has(c.castAs)) c.castAs = null; });
+  }
+  function announce(fresh){
+    fresh.slice(-6).forEach(({e, sk, key, known}) => {
+      const cuts = subjCuts(sk);
+      codeLine(String(e.raw || (e.subject + '.' + e.fn + '()')).replace(/;?$/, ';'), (known ? 'typed in ' : 'typed (no look yet) in ') + (e.run || '') + (e.card ? '/' + e.card : '') + ' · ' + (cuts.length ? cuts.length + ' on stage' : 'shows when it comes on stage'));
+      cuts.forEach((c, n) => setTimeout(()=>{ if(c.el.isConnected){ pulse(c); if(n === 0) tagAt(c, String(e.raw || '').slice(0, 60)); } }, n * 250));
+      note('cmd', e.id, e.raw, known ? 'look' : 'code-only', cuts.length + ' cuts');
+    });
+  }
+  const CMD_URLS = ['https://raw.githubusercontent.com/jdavidteki/thryd-projector/main/data/commands.json', 'data/commands.json'];
+  async function pollCmds(){
+    let d = null;
+    for(const u of CMD_URLS){ try{ const r = await fetch(u + '?t=' + Date.now(), {cache: 'no-store'}); if(r.ok){ d = await r.json(); CMD.src = u.startsWith('http') ? 'raw' : 'pages'; break; } }catch(e){} }
+    if(d && Array.isArray(d.characters)) d.characters.forEach(k => CMD.chars.add(ckey(k)));
+    if(d && Array.isArray(d.calls)){ CMD.calls = d.calls.length; CMD.at = d.generated || null; const fresh = ingest(d.calls, CMD.first); CMD.first = false; applyLooks(); announce(fresh); }
+  }
+  // test hook (and for #thryd): feed calls straight in, e.g. thrydStageCmd([{id:'qa1',subject:'dapo',subject_key:'dapo',fn:'setskincomplexion',args:['light'],change:{key:'skincomplexion',value:'light'},raw:'dapo.setskincomplexion(light)'}])
+  root.thrydStageCmd = calls => { const fresh = ingest(calls, false); applyLooks(); announce(fresh); return fresh.length; };
+  pollCmds(); setInterval(pollCmds, 20000); setInterval(applyLooks, 1000);
 
   // ---------- black / white stage (Jesuye 12:03 AM "add a switch for black or white"; white default since 12:43 AM): a button beside mute/reset, saved per device
   // (localStorage thryd_stage_bg). White turns the page, the stage and the dark overlays white and flips light text to dark.
@@ -639,11 +838,11 @@
     WS + ' #live,' + WS + ' #live *{text-shadow:0 0 3px #fff,0 0 6px #fff}',
     WS + ' #clk{color:#111!important}',
     WS + ' #live b{color:#c00000!important}',
-    // #code on white (Jesuye 12:46 AM "we cant read the code"): its own near-solid dark panel, original green/amber text, no glow
-    WS + ' #code{background:rgba(10,10,10,.86)!important;border-radius:.8vh;padding:.6vh .6vw!important;box-shadow:0 0 0 1px #0004,0 .4vh 1.6vh #0003;text-shadow:none!important}',
-    WS + ' #code *{text-shadow:none!important}',
-    WS + ' #code,' + WS + '.idle #code{opacity:1!important;background:rgba(10,10,10,.9)!important}',
-    WS + ' #code .d{color:#8e8!important}',
+    // #code (Jesuye 12:59 AM): a see-through panel whose left edge fades into the page (transparent -> panel over the left ~38 %),
+    // so cuts show through; the text carries a dark halo, readable on white and on black
+    WS + ' #code,' + WS + '.idle #code{opacity:1!important;background:linear-gradient(90deg,rgba(10,10,10,0) 0%,rgba(10,10,10,.22) 18%,rgba(10,10,10,.42) 38%,rgba(10,10,10,.48) 100%)!important;border-radius:0!important;box-shadow:none!important;padding:1vh 1vw 1vh 3.2vw!important}',
+    WS + ' #code,' + WS + ' #code *{text-shadow:0 0 2px #000,0 0 4px #000,0 0 7px #000d!important}',
+    WS + ' #code .d{color:#9f9!important}',
     WS + ' #mvcarry{background:rgba(10,10,10,.86);padding:.4vh .6vw;border-radius:.6vh;text-shadow:none!important}',
     WS + ' #cmove{background:rgba(10,10,10,.86);color:#9cf!important;padding:0 .5vw;border-radius:.5vh;text-shadow:none!important;display:inline-block}',
     WS + ' #ticker,' + WS + ' #ticker *{text-shadow:0 0 4px #fff,0 0 8px #fff!important}',
@@ -655,6 +854,8 @@
     WS + ' #zlvl{color:#333!important}',
     WS + ' #ents .chip{background:#1d1d1deb!important}', // chips keep a solid dark pill on white, so their own light label colours stay readable
     '@media (max-width:760px){body.stage1 #modes{max-width:100vw;overflow-x:auto;scrollbar-width:none}}', // phones: the bar scrolls so the black/white switch and + GIF are reachable
+    'body.stage1:not(.stage-white) #code{background:linear-gradient(90deg,rgba(0,0,0,0) 0%,rgba(0,0,0,.25) 18%,rgba(0,0,0,.5) 38%,rgba(0,0,0,.55) 100%)!important;padding-left:3.2vw!important;opacity:.92!important}',
+    'body.stage1:not(.stage-white) #code,body.stage1:not(.stage-white) #code *{text-shadow:0 0 2px #000,0 0 5px #000!important}',
     '#bgmode{min-width:5.5em}'
   ].join('\n');
   document.head.appendChild(wcss);
