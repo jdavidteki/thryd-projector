@@ -198,15 +198,24 @@
   }
 
   // ---------- groups
+  // deck (11-13): every ready cut is shown once before any comes back, remembered across visits in localStorage
+  const SEEN_K = 'thryd_seen_cuts_v1';
+  let SEEN = new Set(); try{ SEEN = new Set(JSON.parse(localStorage.getItem(SEEN_K) || '[]')); }catch(e){}
+  const saveSeen = ()=>{ try{ localStorage.setItem(SEEN_K, JSON.stringify([...SEEN])); }catch(e){} };
   function pickRow(){
-    const ok = (manifest.assets || []).filter(a => a && a.status === 'ready' && a.url && !S.bad.has(a.medium_image_id) &&
+    const live = (manifest.assets || []).filter(a => a && a.status === 'ready' && a.url && !S.bad.has(a.medium_image_id) &&
       !S.recent.includes(a.medium_image_id) && !S.groups.some(g => g.mid === a.medium_image_id));
-    if(!ok.length){ S.recent = S.recent.slice(-5); return null; }
+    if(!live.length){ S.recent = S.recent.slice(-5); return null; }
+    let ok = live.filter(a => !SEEN.has(a.medium_image_id));
+    if(!ok.length){ SEEN = new Set(); saveSeen(); ok = live; }
     const gifsOn = S.groups.filter(g => g.kind === 'gif').length;
-    const wantGif = gifsOn < (PHONE ? 1 : 2) && Math.random() < 0.45;
+    const gifShare = ok.filter(a => a.kind === 'gif').length / ok.length; // GIFs come up in proportion to how many are left, so 109 GIFs don't loop
+    const wantGif = gifsOn < (PHONE ? 1 : 2) && Math.random() < gifShare;
     const pool = ok.filter(a => (a.kind === 'gif') === wantGif);
     const from = pool.length ? pool : ok;
-    return from[Math.random() * from.length | 0];
+    const row = from[Math.random() * from.length | 0];
+    SEEN.add(row.medium_image_id); saveSeen();
+    return row;
   }
   // fill (11-12 11:41 PM): a coarse grid over the camera view; each new story goes where the screen is emptiest
   const GX = PHONE ? 6 : 10, GY = PHONE ? 9 : 7;
