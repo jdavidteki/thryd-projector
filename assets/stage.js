@@ -651,7 +651,8 @@
     WS + ' #map .ph{color:#4a4a4a!important;text-shadow:0 0 3px #fff,0 0 6px #fff}',
     WS + ' #map .ph.here{color:#8a4b00!important}',
     WS + ' #zlvl{color:#333!important}',
-    WS + ' #ents .lab{color:#ffe0b0!important}',
+    WS + ' #ents .lab{color:#111!important;text-shadow:0 0 2px #fff,0 0 4px #fff,0 0 6px #fff!important}',
+    '@media (max-width:760px){body.stage1 #modes{max-width:100vw;overflow-x:auto;scrollbar-width:none}}', // phones: the bar scrolls so the black/white switch and + GIF are reachable
     '#bgmode{min-width:5.5em}'
   ].join('\n');
   document.head.appendChild(wcss);
