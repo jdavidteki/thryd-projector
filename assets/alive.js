@@ -28,9 +28,34 @@ function type(){const n=next(),d=document.createElement('div');d.className=(n.a?
  while(code.children.length>60)code.firstChild.remove();let i=0;const s=n.t;
  const step=()=>{d.textContent=s.slice(0,++i);if(i<s.length)setTimeout(step,14+Math.random()*40);else{d.classList.remove('cur');if(n.note){const e=document.createElement('span');e.className='d';e.textContent='  // '+n.note;d.appendChild(e);}setTimeout(type,250+Math.random()*900)}};step();}
 function tick(){const c=document.getElementById('clk');if(c)c.textContent=new Date().toLocaleTimeString('en-US',{timeZone:'America/New_York',hour12:false})+' ET';const k=document.getElementById('sclk');if(k&&storyT&&!isNaN(storyT))k.textContent='· story '+new Date(storyT.getTime()+Date.now()-storyAt).toLocaleString('en-US',{weekday:'short',day:'numeric',month:'short',hour:'numeric',minute:'2-digit',second:'2-digit'})}
-let span,x=0;function crawlNext(){if(!span){const t=document.createElement('i');t.textContent='[[the news]]';crawl.appendChild(t);span=document.createElement('span');crawl.appendChild(span)}span.textContent=(arch.length?arch:['#thryd archive']).join('   ·   ');x=innerWidth;}
-function anim(){if(span){x-=1.1;span.style.transform=`translateX(${x}px)`;if(x<-span.offsetWidth)crawlNext();}requestAnimationFrame(anim)}
-load(true).then(()=>{crawlNext();anim();type()});setInterval(tick,1000);setInterval(()=>load(false),120000);})();
+// bottom ticker: real station names reporting #thryd news (Jesuye 11-12 7:05/7:06 PM). Events are only real #thryd data
+// (data/thryd_news.json from the state export: seats, typed jobs, major moves, drift; plus this page's own drift events). Names are text only.
+const ST=['CHANNELS TV','ARISE NEWS','TVC NEWS','AIT','NTA','PUNCH','VANGUARD','PREMIUM TIMES','THE GUARDIAN NIGERIA','CHANNELS TV','ARISE NEWS','TVC NEWS','BBC','CNN'];
+let NEWS=null,stI=0;const sceneT=s=>{try{return (window.thrydSceneTitle&&thrydSceneTitle(s))||null;}catch(e){return null;}};
+const nm=s=>String(s||'').replace(/^(?:assets\/webp\/live\/|medium\/)/,'').slice(0,46);
+function bulletin(i){const at=i.card?`${i.card}`:'the frame';
+  switch(i.kind){
+   case 'move':return R([`BREAKING: Reports reaching us from ${at} say ${i.code}`,`Live from ${at}: ${i.code}`,`JUST IN from ${at}: ${i.code}`])+(i.note?` — ${i.note}`:'');
+   case 'typed':return R([`A customer has typed ${i.code} at ${at}, our correspondent confirms`,`Live from the frame: ${i.code} entered at ${at}`,`Sources at ${at} report the command ${i.code}`]);
+   case 'mood':return `A new mood has been imported into ${at}; the room is shifting, more details soon`;
+   case 'seat':return R([`Seat confirmed at ${at}: ${i.picks} picks locked in`,`Reports from ${at}: ${i.picks} lines seated as the agenda moves on`]);
+   case 'drift':{const f=sceneT(i.from_scene)||nm(i.from_scene),t=i.to_scene==='(travelling)'?null:(sceneT(i.to_scene)||nm(i.to_scene));
+     return i.to_scene==='(travelling)'?`JUST IN: ${i.what} has been sighted leaving “${f}”; sources say it is travelling`
+       :(i.from_scene===i.to_scene?`Eyewitnesses report ${i.what} wandering across “${f}”`:`BREAKING: ${i.what} has turned up in “${t}”, all the way from “${f}”`);}
+  }return null;}
+async function loadNews(){const j=await get('data/thryd_news.json');if(j&&Array.isArray(j.items)&&j.items.length)NEWS=j;}
+function localDrifts(){try{return (window.thrydMoves?thrydMoves.list():[]).filter(e=>e.type==='drift'&&Date.now()-Date.parse(e.client_ts)<3600e3).slice(-6).map(e=>({kind:'drift',what:(e.source&&e.source.cut)||e.label||'an object',
+  from_scene:e.drift&&e.drift.kind==='arrive'?e.drift.from_scene:(e.source&&e.source.scene),to_scene:e.drift&&e.drift.kind==='leave'?'(travelling)':(e.source&&e.source.scene)}));}catch(e){return [];}}
+function lines(){if(/phone\.html$/.test(location.pathname))return null;const it=[...(NEWS?NEWS.items:[])].sort(()=>Math.random()-.5).slice(0,10).concat(localDrifts());if(!it.length)return null;
+  return it.map(bulletin).filter(Boolean).slice(0,14).map(b=>({st:ST[stI++%ST.length],b}));}
+let span,x=0,lastT=0;const SPEED=/phone\.html$/.test(location.pathname)?66:26; // px per second (was 1.1px per animation frame ≈ 66px/s at 60Hz)
+function crawlNext(){if(!span){const t=document.createElement('i');t.textContent='#thryd news';crawl.appendChild(t);span=document.createElement('span');crawl.appendChild(span)}
+  const L=lines();span.textContent='';
+  if(L){L.forEach((l,k)=>{const e=document.createElement('b');e.className='nb';e.innerHTML='';const s1=document.createElement('strong');s1.textContent=l.st+' — ';e.append(s1,document.createTextNode(l.b));span.appendChild(e);});}
+  else span.textContent=(arch.length?arch:['#thryd archive']).join('   ·   ');
+  x=innerWidth;}
+function anim(now){if(span){const dt=lastT?Math.min(250,now-lastT):16;x-=SPEED*dt/1000;span.style.transform=`translateX(${x.toFixed(1)}px)`;if(x<-span.offsetWidth)crawlNext();}lastT=now;requestAnimationFrame(anim)}
+Promise.all([load(true),loadNews()]).then(()=>{crawlNext();requestAnimationFrame(anim);type()});setInterval(loadNews,300000);setInterval(tick,1000);setInterval(()=>load(false),120000);})();
 // 🧭 [[move]] major moves (data/moves.json, from RUN/run/major_moves.json via export_state) feed the #code column above as ordinary lines.
 // Synced to the jN scene on stage when it belongs to the moves' run, else a fresh state.json card, else cycling j1..jN. Not on phone.html.
 (()=>{if(/phone\.html$/.test(location.pathname))return;

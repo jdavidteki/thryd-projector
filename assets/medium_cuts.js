@@ -798,7 +798,8 @@
   function visit(layer){
     if(layer.querySelector('.mcvisit')) return;
     const pool = travelPool().filter(t => t.from !== layer._mid && t.img); if(!pool.length) return;
-    const t = pool[Math.floor(Math.random() * pool.length)];
+    const t = pool.sort((p, q)=> q.at - p.at)[0];
+    savePool(travelPool().filter(p => !(p.from === t.from && p.label === t.label)));
     const stage = layer.parentNode, SW = (stage && stage.clientWidth) || 1000, SH = (stage && stage.clientHeight) || 600;
     const w = Math.max(60, Math.min(0.16 * SW, (t.wf || 0.08) * SW));
     const im = new Image(); im.className = 'mcvisit'; im.alt = t.label; im.draggable = false; im.src = t.img;
@@ -835,8 +836,10 @@
     const alive = ()=> layer.isConnected && layer._token === my && document.getElementById('mcut') === layer;
     const tick = ()=>{ if(!alive()) return; if(!lifePaused() && !layer._drag) wander(layer); setTimeout(tick, 5000 + Math.random() * 9000); };
     setTimeout(tick, 2500 + Math.random() * 5000);
-    if(Math.random() < 0.55) setTimeout(()=>{ if(alive()) visit(layer); }, 4000 + Math.random() * 8000);
-    if(Math.random() < 0.4) setTimeout(function off(){ if(!alive()) return; if(lifePaused() || layer._drag){ setTimeout(off, 3000); return; } driftOff(layer, title); }, 12000 + Math.random() * 16000);
+    // trips fit normal scene lengths (Jesuye 11-12 7:02 PM): a waiting traveller walks in 1.5-4 s after the scene starts,
+    // and in most scenes one small cut leaves 3-8 s in, so it can turn up in the next scene or two
+    if(travelPool().some(t => t.from !== layer._mid)) setTimeout(()=>{ if(alive()) visit(layer); }, 1500 + Math.random() * 2500);
+    if(Math.random() < 0.7) setTimeout(function off(){ if(!alive()) return; if(lifePaused() || layer._drag){ setTimeout(off, 1500); return; } driftOff(layer, title); }, 3000 + Math.random() * 5000);
   }
 
   function stillRgba(buf, w, h){
