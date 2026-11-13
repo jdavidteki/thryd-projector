@@ -598,8 +598,9 @@
     return c;
   }
   function pickRun(){
-    const on = new Set(S.groups.filter(g => g.row && g.row.chips).map(g => g.run));
-    const pool = AG.runs.filter(r => !on.has(r.run) || r.run === AG.active); if(!pool.length) return null;
+    // one chip group per run on stage, two for the active run, so the same object never shows three or four times over
+    const on = {}; S.groups.concat(S.ready.map(x => x.g || x)).forEach(g => { if(g && g.row && g.row.chips) on[g.row.run] = (on[g.row.run] || 0) + 1; });
+    const pool = AG.runs.filter(r => (on[r.run] || 0) < (r.run === AG.active ? 2 : 1)); if(!pool.length) return null;
     let tot = 0; const w = pool.map(r => { const x = r.run === AG.active ? 4 : 1; tot += x; return x; });
     let q = Math.random() * tot; for(let i = 0; i < pool.length; i++){ q -= w[i]; if(q <= 0) return pool[i]; } return pool[0];
   }
@@ -646,7 +647,8 @@
     if(S.ready.length >= READY || S.cuts.length >= CAP || S.bytes > BUDGET * .9) return;
     if(S.groups.length + S.ready.length >= MAX_GROUPS && S.cuts.length >= CAP - 2) return;
     let agKey = null, chips = false;
-    if((AG.keys.length || AG.runs.length) && Math.random() < AG_P){ chips = (AG.runs.length || AG.state) && (Math.random() < .6 || !AG.keys.length); if(!chips) agKey = pickAgenda(); }
+    const agOn = S.cuts.filter(c => c.home && c.home.agenda).length; // agenda cuts keep to ~40 % of the stage; Medium and X cuts keep the rest
+    if((AG.keys.length || AG.runs.length) && agOn < CAP * .4 && Math.random() < AG_P){ chips = (AG.runs.length || AG.state) && (Math.random() < .6 || !AG.keys.length); if(!chips) agKey = pickAgenda(); }
     const row = (agKey || chips) ? null : pickRow(); if(!row && !agKey && !chips) return;
     if(row || agKey){ S.recent.push(row ? row.medium_image_id : agKey); if(S.recent.length > 40) S.recent.shift(); } // never picked twice while it decodes
     S.loading++;
