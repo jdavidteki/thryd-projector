@@ -1121,6 +1121,18 @@
 "card": "j8",
 "other": "ikeja_laundromat"
 }
+],
+"bird": [
+{
+"id": "wf_3aef9c1662",
+"kind": "consequence",
+"text": "The bird leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "red_white_cap.interactwith(bird){ bird.receives(red_white_cap.envelope); bird.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j6",
+"other": "red_white_cap"
+}
 ]
 },
 "consequences": [
@@ -1365,6 +1377,17 @@
 "author": "cos",
 "run": "run-b9b963",
 "card": "j8"
+},
+{
+"id": "wf_3aef9c1662",
+"ts": "2026-11-14T15:56:32-0500",
+"a": "red_white_cap",
+"b": "bird",
+"code": "red_white_cap.interactwith(bird){ bird.receives(red_white_cap.envelope); bird.remembers(bisola, 'brown envelope'); }",
+"text": "The bird leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j6"
 }
 ],
 "memories": [
@@ -1402,5 +1425,5 @@
 "card": "j3"
 }
 ],
-"updated": "2026-11-14T15:49:28-0500"
+"updated": "2026-11-14T15:56:32-0500"
 }
