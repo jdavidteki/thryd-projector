@@ -977,26 +977,6 @@
 ],
 "yaba_bukka_counter": [
 {
-"id": "wf_3b79b99dc1",
-"kind": "memory",
-"text": "6:35am, Friday 14 March 2053: Bisola stands at the counter with a steaming plate of jollof rice in both hands. The yaba bukka counter keeps it on file.",
-"code": "yaba_bukka_counter.remembers(bisola, 'plate of jollof rice');",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j4",
-"other": null
-},
-{
-"id": "wf_8d9cb33c87",
-"kind": "memory",
-"text": "6:35am, Friday 14 March 2053: Taiwo counts coins into a small tin. The yaba bukka counter keeps it on file.",
-"code": "yaba_bukka_counter.remembers(taiwo, 'coins');",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j4",
-"other": null
-},
-{
 "id": "wf_32a2cb6c0c",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, turns up inside the plate of jollof rice at the yaba bukka counter, and Bisola reads the name twice.",
@@ -1015,6 +995,36 @@
 "run": "run-b9b963",
 "card": "j2",
 "other": "people_scene"
+},
+{
+"id": "wf_20ca3bc397",
+"kind": "consequence",
+"text": "A Kerosene lamp note with Ronke's name and 'plastic sheet' on it, turns up inside the juju code at the yaba bukka counter, and Ejiro reads the name twice.",
+"code": "imm.interactwith(yaba_bukka_counter){ yaba_bukka_counter.receives(imm.sheet); … }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j4",
+"other": "imm"
+},
+{
+"id": "wf_a99bf506a1",
+"kind": "consequence",
+"text": "A Kerosene lamp note with Ronke's name and 'plastic sheet' on it, turns up inside the plastic sheet at the yaba bukka counter, and Ronke reads the name twice.",
+"code": "kerosene_lamp.interactwith(yaba_bukka_counter){ yaba_bukka_counter.receives(kerosene_lamp.sheet); … }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j4",
+"other": "kerosene_lamp"
+},
+{
+"id": "wf_269522e7aa",
+"kind": "consequence",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the plastic sheet at the yaba bukka counter, and Ronke reads the name twice.",
+"code": "wwgbtaycbmba.interactwith(yaba_bukka_counter){ yaba_bukka_counter.receives(wwgbtaycbmba.code); … }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j2",
+"other": "wwgbtaycbmba"
 }
 ],
 "festac_bead_stall": [
@@ -1269,6 +1279,16 @@
 "run": "run-b9b963",
 "card": "w6",
 "other": "streetlights"
+},
+{
+"id": "wf_cb6fd04ba2",
+"kind": "consequence",
+"text": "A Kerosene lamp note with Ronke's name and 'plastic sheet' on it, turns up with the streetlights, which is still all dead since 7:35pm.",
+"code": "imm.interactwith(bicycle){ bicycle.receives(imm.sheet); bicycle.remembers(ronke, 'plastic sheet'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j4",
+"other": "imm"
 }
 ],
 "ronke": [
@@ -1460,64 +1480,21 @@
 "card": "j2",
 "other": "yaba_bukka_counter"
 }
+],
+"no_me_go": [
+{
+"id": "wf_d6cc695a8e",
+"kind": "consequence",
+"text": "The no me go leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
+"code": "pure_water_cooler.interactwith(no_me_go){ no_me_go.receives(pure_water_cooler.code); no_me_go.remembers(ejiro, 'juju code'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j2",
+"other": "pure_water_cooler"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_4d7c0d738b",
-"ts": "2026-11-14T15:45:33-0500",
-"a": "yaba_bookshop",
-"b": "b",
-"code": "yaba_bookshop.interactwith(b){ b.receives(yaba_bookshop.envelope); b.remembers(bisola, 'brown envelope'); }",
-"text": "The b leaves with a Nla agbara figure receipt with Bisola's name and 'brown envelope' on it.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j4"
-},
-{
-"id": "wf_e73a22a4c7",
-"ts": "2026-11-14T15:46:20-0500",
-"a": "imm",
-"b": "agbada",
-"code": "imm.interactwith(agbada){ agbada.receives(imm.sheet); agbada.remembers(ronke, 'plastic sheet'); }",
-"text": "A Kerosene lamp note with Ronke's name and 'plastic sheet' on it, turns up with the agbada, which is still worn by a stranger haggler.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j4"
-},
-{
-"id": "wf_cb4c8e6fa3",
-"ts": "2026-11-14T15:47:07-0500",
-"a": "people_scene",
-"b": "notnotnotnotyn_jan",
-"code": "people_scene.interactwith(notnotnotnotyn_jan){ notnotnotnotyn_jan.receives(people_scene.code); notnotnotnotyn_jan.remembers(ejiro, 'juju code'); }",
-"text": "The notnotnotnotyn jan leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j2"
-},
-{
-"id": "wf_36b942a5e8",
-"ts": "2026-11-14T15:47:10-0500",
-"a": "streetlights",
-"b": "reality",
-"code": "streetlights.interactwith(reality){ streetlights.db.copyto(reality); reality.keeps(streetlights, 'streetlights, still all dead since 7:35pm'); }",
-"text": "The streetlights ends up with the reality, still all dead since 7:35pm.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "w6"
-},
-{
-"id": "wf_5849a4df55",
-"ts": "2026-11-14T15:47:54-0500",
-"a": "streetlights",
-"b": "bicycle",
-"code": "streetlights.interactwith(bicycle){ streetlights.db.copyto(bicycle); bicycle.keeps(streetlights, 'streetlights, still all dead since 7:35pm'); }",
-"text": "The streetlights ends up with the bicycle, still all dead since 7:35pm.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "w6"
-},
 {
 "id": "wf_506b0033c6",
 "ts": "2026-11-14T15:49:28-0500",
@@ -1902,6 +1879,61 @@
 "author": "cos",
 "run": "run-b9b963",
 "card": "j2"
+},
+{
+"id": "wf_20ca3bc397",
+"ts": "2026-11-14T17:09:21-0500",
+"a": "imm",
+"b": "yaba_bukka_counter",
+"code": "imm.interactwith(yaba_bukka_counter){ yaba_bukka_counter.receives(imm.sheet); … }",
+"text": "A Kerosene lamp note with Ronke's name and 'plastic sheet' on it, turns up inside the juju code at the yaba bukka counter, and Ejiro reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j4"
+},
+{
+"id": "wf_d6cc695a8e",
+"ts": "2026-11-14T17:10:07-0500",
+"a": "pure_water_cooler",
+"b": "no_me_go",
+"code": "pure_water_cooler.interactwith(no_me_go){ no_me_go.receives(pure_water_cooler.code); no_me_go.remembers(ejiro, 'juju code'); }",
+"text": "The no me go leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j2"
+},
+{
+"id": "wf_a99bf506a1",
+"ts": "2026-11-14T17:10:54-0500",
+"a": "kerosene_lamp",
+"b": "yaba_bukka_counter",
+"code": "kerosene_lamp.interactwith(yaba_bukka_counter){ yaba_bukka_counter.receives(kerosene_lamp.sheet); … }",
+"text": "A Kerosene lamp note with Ronke's name and 'plastic sheet' on it, turns up inside the plastic sheet at the yaba bukka counter, and Ronke reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j4"
+},
+{
+"id": "wf_cb6fd04ba2",
+"ts": "2026-11-14T17:11:41-0500",
+"a": "imm",
+"b": "bicycle",
+"code": "imm.interactwith(bicycle){ bicycle.receives(imm.sheet); bicycle.remembers(ronke, 'plastic sheet'); }",
+"text": "A Kerosene lamp note with Ronke's name and 'plastic sheet' on it, turns up with the streetlights, which is still all dead since 7:35pm.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j4"
+},
+{
+"id": "wf_269522e7aa",
+"ts": "2026-11-14T17:12:28-0500",
+"a": "wwgbtaycbmba",
+"b": "yaba_bukka_counter",
+"code": "wwgbtaycbmba.interactwith(yaba_bukka_counter){ yaba_bukka_counter.receives(wwgbtaycbmba.code); … }",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the plastic sheet at the yaba bukka counter, and Ronke reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j2"
 }
 ],
 "memories": [
@@ -1950,5 +1982,5 @@
 "card": "j4"
 }
 ],
-"updated": "2026-11-14T17:06:46-0500"
+"updated": "2026-11-14T17:12:28-0500"
 }
