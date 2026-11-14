@@ -529,26 +529,6 @@
 "objects": {
 "ikeja_laundromat": [
 {
-"id": "wf_d06495da3a",
-"kind": "memory",
-"text": "10:15am, Thursday 6 May 2060: Bisola holds a folded green shirt that is not hers. The ikeja laundromat keeps it on file.",
-"code": "ikeja_laundromat.remembers(bisola, 'green shirt');",
-"author": "cos",
-"run": "run-9e3e84",
-"card": "j8",
-"other": null
-},
-{
-"id": "wf_5d82bad186",
-"kind": "memory",
-"text": "10:15am, Thursday 6 May 2060: Taiwo watches the last dryer turn. The ikeja laundromat keeps it on file.",
-"code": "ikeja_laundromat.remembers(taiwo, 'dryer');",
-"author": "cos",
-"run": "run-9e3e84",
-"card": "j8",
-"other": null
-},
-{
 "id": "wf_cfe483381b",
 "kind": "memory",
 "text": "10:15am, Thursday 6 May 2060: A coin sits on the lid.",
@@ -577,6 +557,26 @@
 "run": "run-b9b963",
 "card": "j3",
 "other": "isl"
+},
+{
+"id": "wf_ba56b50930",
+"kind": "memory",
+"text": "10:15am, Thursday 6 May 2060: Bisola holds a folded green shirt that is not hers. The ikeja laundromat keeps it on file.",
+"code": "ikeja_laundromat.remembers(bisola, 'green shirt');",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j8",
+"other": null
+},
+{
+"id": "wf_d441dd55da",
+"kind": "memory",
+"text": "10:15am, Thursday 6 May 2060: Taiwo watches the last dryer turn. The ikeja laundromat keeps it on file.",
+"code": "ikeja_laundromat.remembers(taiwo, 'dryer');",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j8",
+"other": null
 }
 ],
 "yaba_bookshop": [
@@ -1047,6 +1047,16 @@
 "run": "run-b9b963",
 "card": "j5",
 "other": null
+},
+{
+"id": "wt_8b3a8717b8",
+"kind": "memory",
+"text": "11:10am, 19 August 2054: Bisola held blue glass beads to the light while Taiwo weighed a bag on the brass scale, and four miracles were logged before the needle settled.",
+"code": "festac_bead_stall.remembers(bisola, \"blue glass beads\"); festac_bead_stall.set(\"scale\", \"settled\");",
+"author": "thryd",
+"run": "run-b9b963",
+"card": "j5",
+"other": null
 }
 ],
 "tailor_shop": [
@@ -1492,31 +1502,33 @@
 "card": "j2",
 "other": "pure_water_cooler"
 }
+],
+"can_model_hear": [
+{
+"id": "wf_d99695929e",
+"kind": "consequence",
+"text": "The can model hear leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
+"code": "people_scene.interactwith(can_model_hear){ can_model_hear.receives(people_scene.code); can_model_hear.remembers(ejiro, 'juju code'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j2",
+"other": "people_scene"
+}
+],
+"wells_fargo": [
+{
+"id": "wf_c5aada8e60",
+"kind": "consequence",
+"text": "The wells fargo leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
+"code": "people_scene.interactwith(wells_fargo){ wells_fargo.receives(people_scene.code); wells_fargo.remembers(ejiro, 'juju code'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j2",
+"other": "people_scene"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_506b0033c6",
-"ts": "2026-11-14T15:49:28-0500",
-"a": "ikeja_laundromat",
-"b": "ronke",
-"code": "ikeja_laundromat.interactwith(ronke){ ronke.receives(ikeja_laundromat.shirt); ronke.remembers(bisola, 'green shirt'); }",
-"text": "The ronke leaves with an Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j8"
-},
-{
-"id": "wf_3aef9c1662",
-"ts": "2026-11-14T15:56:32-0500",
-"a": "red_white_cap",
-"b": "bird",
-"code": "red_white_cap.interactwith(bird){ bird.receives(red_white_cap.envelope); bird.remembers(bisola, 'brown envelope'); }",
-"text": "The bird leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j6"
-},
 {
 "id": "wf_d490052926",
 "ts": "2026-11-14T16:00:29-0500",
@@ -1934,6 +1946,28 @@
 "author": "cos",
 "run": "run-b9b963",
 "card": "j2"
+},
+{
+"id": "wf_d99695929e",
+"ts": "2026-11-14T17:14:10-0500",
+"a": "people_scene",
+"b": "can_model_hear",
+"code": "people_scene.interactwith(can_model_hear){ can_model_hear.receives(people_scene.code); can_model_hear.remembers(ejiro, 'juju code'); }",
+"text": "The can model hear leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j2"
+},
+{
+"id": "wf_c5aada8e60",
+"ts": "2026-11-14T17:17:17-0500",
+"a": "people_scene",
+"b": "wells_fargo",
+"code": "people_scene.interactwith(wells_fargo){ wells_fargo.receives(people_scene.code); wells_fargo.remembers(ejiro, 'juju code'); }",
+"text": "The wells fargo leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j2"
 }
 ],
 "memories": [
@@ -1980,7 +2014,18 @@
 "author": "thryd",
 "run": "run-b9b963",
 "card": "j4"
+},
+{
+"id": "wt_8b3a8717b8",
+"ts": "2026-11-14T17:16:40-0500",
+"a": null,
+"b": "festac_bead_stall",
+"code": "festac_bead_stall.remembers(bisola, \"blue glass beads\"); festac_bead_stall.set(\"scale\", \"settled\");",
+"text": "11:10am, 19 August 2054: Bisola held blue glass beads to the light while Taiwo weighed a bag on the brass scale, and four miracles were logged before the needle settled.",
+"author": "thryd",
+"run": "run-b9b963",
+"card": "j5"
 }
 ],
-"updated": "2026-11-14T17:12:28-0500"
+"updated": "2026-11-14T17:17:17-0500"
 }
