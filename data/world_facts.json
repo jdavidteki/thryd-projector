@@ -696,6 +696,16 @@
 "run": "run-b9b963",
 "card": "w4",
 "other": null
+},
+{
+"id": "wf_e73a22a4c7",
+"kind": "consequence",
+"text": "A Kerosene lamp note with Ronke's name and 'plastic sheet' on it, turns up with the agbada, which is still worn by a stranger haggler.",
+"code": "imm.interactwith(agbada){ agbada.receives(imm.sheet); agbada.remembers(ronke, 'plastic sheet'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j4",
+"other": "imm"
 }
 ],
 "danfo_speaker": [
@@ -1039,6 +1049,78 @@
 "card": "j4",
 "other": "yaba_bookshop"
 }
+],
+"voice_god": [
+{
+"id": "wf_a1a0387303",
+"kind": "consequence",
+"text": "The voice god leaves with a Nla agbara figure receipt with Bisola's name and 'brown envelope' on it.",
+"code": "yaba_bookshop.interactwith(voice_god){ voice_god.receives(yaba_bookshop.envelope); voice_god.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j4",
+"other": "yaba_bookshop"
+}
+],
+"b": [
+{
+"id": "wf_4d7c0d738b",
+"kind": "consequence",
+"text": "The b leaves with a Nla agbara figure receipt with Bisola's name and 'brown envelope' on it.",
+"code": "yaba_bookshop.interactwith(b){ b.receives(yaba_bookshop.envelope); b.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j4",
+"other": "yaba_bookshop"
+}
+],
+"notnotnotnotyn_jan": [
+{
+"id": "wf_cb4c8e6fa3",
+"kind": "consequence",
+"text": "The notnotnotnotyn jan leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
+"code": "people_scene.interactwith(notnotnotnotyn_jan){ notnotnotnotyn_jan.receives(people_scene.code); notnotnotnotyn_jan.remembers(ejiro, 'juju code'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j2",
+"other": "people_scene"
+}
+],
+"reality": [
+{
+"id": "wf_36b942a5e8",
+"kind": "consequence",
+"text": "The streetlights ends up with the reality, still all dead since 7:35pm.",
+"code": "streetlights.interactwith(reality){ streetlights.db.copyto(reality); reality.keeps(streetlights, 'streetlights, still all dead since 7:35pm'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "w6",
+"other": "streetlights"
+}
+],
+"bicycle": [
+{
+"id": "wf_5849a4df55",
+"kind": "consequence",
+"text": "The streetlights ends up with the bicycle, still all dead since 7:35pm.",
+"code": "streetlights.interactwith(bicycle){ streetlights.db.copyto(bicycle); bicycle.keeps(streetlights, 'streetlights, still all dead since 7:35pm'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "w6",
+"other": "streetlights"
+}
+],
+"ronke": [
+{
+"id": "wf_506b0033c6",
+"kind": "consequence",
+"text": "The ronke leaves with an Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am.",
+"code": "ikeja_laundromat.interactwith(ronke){ ronke.receives(ikeja_laundromat.shirt); ronke.remembers(bisola, 'green shirt'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j8",
+"other": "ikeja_laundromat"
+}
 ]
 },
 "consequences": [
@@ -1206,6 +1288,83 @@
 "author": "cos",
 "run": "run-b9b963",
 "card": "j4"
+},
+{
+"id": "wf_a1a0387303",
+"ts": "2026-11-14T15:45:06-0500",
+"a": "yaba_bookshop",
+"b": "voice_god",
+"code": "yaba_bookshop.interactwith(voice_god){ voice_god.receives(yaba_bookshop.envelope); voice_god.remembers(bisola, 'brown envelope'); }",
+"text": "The voice god leaves with a Nla agbara figure receipt with Bisola's name and 'brown envelope' on it.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j4"
+},
+{
+"id": "wf_4d7c0d738b",
+"ts": "2026-11-14T15:45:33-0500",
+"a": "yaba_bookshop",
+"b": "b",
+"code": "yaba_bookshop.interactwith(b){ b.receives(yaba_bookshop.envelope); b.remembers(bisola, 'brown envelope'); }",
+"text": "The b leaves with a Nla agbara figure receipt with Bisola's name and 'brown envelope' on it.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j4"
+},
+{
+"id": "wf_e73a22a4c7",
+"ts": "2026-11-14T15:46:20-0500",
+"a": "imm",
+"b": "agbada",
+"code": "imm.interactwith(agbada){ agbada.receives(imm.sheet); agbada.remembers(ronke, 'plastic sheet'); }",
+"text": "A Kerosene lamp note with Ronke's name and 'plastic sheet' on it, turns up with the agbada, which is still worn by a stranger haggler.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j4"
+},
+{
+"id": "wf_cb4c8e6fa3",
+"ts": "2026-11-14T15:47:07-0500",
+"a": "people_scene",
+"b": "notnotnotnotyn_jan",
+"code": "people_scene.interactwith(notnotnotnotyn_jan){ notnotnotnotyn_jan.receives(people_scene.code); notnotnotnotyn_jan.remembers(ejiro, 'juju code'); }",
+"text": "The notnotnotnotyn jan leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j2"
+},
+{
+"id": "wf_36b942a5e8",
+"ts": "2026-11-14T15:47:10-0500",
+"a": "streetlights",
+"b": "reality",
+"code": "streetlights.interactwith(reality){ streetlights.db.copyto(reality); reality.keeps(streetlights, 'streetlights, still all dead since 7:35pm'); }",
+"text": "The streetlights ends up with the reality, still all dead since 7:35pm.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "w6"
+},
+{
+"id": "wf_5849a4df55",
+"ts": "2026-11-14T15:47:54-0500",
+"a": "streetlights",
+"b": "bicycle",
+"code": "streetlights.interactwith(bicycle){ streetlights.db.copyto(bicycle); bicycle.keeps(streetlights, 'streetlights, still all dead since 7:35pm'); }",
+"text": "The streetlights ends up with the bicycle, still all dead since 7:35pm.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "w6"
+},
+{
+"id": "wf_506b0033c6",
+"ts": "2026-11-14T15:49:28-0500",
+"a": "ikeja_laundromat",
+"b": "ronke",
+"code": "ikeja_laundromat.interactwith(ronke){ ronke.receives(ikeja_laundromat.shirt); ronke.remembers(bisola, 'green shirt'); }",
+"text": "The ronke leaves with an Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j8"
 }
 ],
 "memories": [
@@ -1243,5 +1402,5 @@
 "card": "j3"
 }
 ],
-"updated": "2026-11-14T15:44:42-0500"
+"updated": "2026-11-14T15:49:28-0500"
 }
