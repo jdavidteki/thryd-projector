@@ -570,36 +570,6 @@
 ],
 "yaba_bookshop": [
 {
-"id": "wf_da87c8eec4",
-"kind": "memory",
-"text": "7:40am, Wednesday 12 January 2056: Taiwo is shelving paperbacks by the window. The yaba bookshop keeps it on file.",
-"code": "yaba_bookshop.remembers(taiwo, 'paperbacks');",
-"author": "cos",
-"run": "run-9e3e84",
-"card": "j6",
-"other": null
-},
-{
-"id": "wf_092f0f920c",
-"kind": "consequence",
-"text": "A Pure water cooler note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the yaba bookshop, and Bisola reads the name twice.",
-"code": "yaba_bookshop.remembers(ejiro, 'juju code');",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j2",
-"other": "pure_water_cooler"
-},
-{
-"id": "wf_d490052926",
-"kind": "consequence",
-"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the yaba bookshop, and Bisola reads the name twice.",
-"code": "ttb.interactwith(yaba_bookshop){ yaba_bookshop.receives(ttb.code); … }",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j2",
-"other": "ttb"
-},
-{
 "id": "wf_4062ac4b09",
 "kind": "consequence",
 "text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the yaba bookshop, and Bisola reads the name twice.",
@@ -608,6 +578,36 @@
 "run": "run-b9b963",
 "card": "j2",
 "other": "pure_water_cooler"
+},
+{
+"id": "wf_7ed973c0ea",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the yaba bookshop, and Bisola reads the name twice.",
+"code": "red_white_cap.interactwith(yaba_bookshop){ yaba_bookshop.receives(red_white_cap.envelope); … }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j6",
+"other": "red_white_cap"
+},
+{
+"id": "wf_979bb08b13",
+"kind": "memory",
+"text": "4:25pm, Monday 23 September 2058: Bisola stands at the counter with a brown envelope. The yaba bookshop keeps it on file.",
+"code": "yaba_bookshop.remembers(bisola, 'brown envelope');",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j7",
+"other": null
+},
+{
+"id": "wf_37c885e8ee",
+"kind": "memory",
+"text": "4:25pm, Monday 23 September 2058: Taiwo is shelving paperbacks by the window. The yaba bookshop keeps it on file.",
+"code": "yaba_bookshop.remembers(taiwo, 'paperbacks');",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j7",
+"other": null
 },
 {
 "id": "wt_ad3997f7d4",
@@ -1337,20 +1337,21 @@
 "card": "j2",
 "other": "ttb"
 }
+],
+"yaba_bukka": [
+{
+"id": "wt_96b0eb287d",
+"kind": "memory",
+"text": "6:35am, 14 March 2053: Taiwo stopped counting coins mid-tin when the [[ac]] code ran, and Bisola left her jollof untouched on the counter.",
+"code": "yaba_bukka.remembers(taiwo, \"coin tin\"); yaba_bukka.remembers(bisola, \"jollof rice\");",
+"author": "thryd",
+"run": "run-b9b963",
+"card": "j4",
+"other": null
+}
 ]
 },
 "consequences": [
-{
-"id": "wt_ad3997f7d4",
-"ts": "2026-11-14T15:34:35-0500",
-"a": "nla_agbara_figure",
-"b": "yaba_bookshop",
-"code": "nla_agbara_figure.asks(yaba_bookshop, 'brown envelope');",
-"text": "The nla agbara figure walks into the Yaba bookshop asking for whoever left a brown envelope at the counter, and Taiwo pretends not to know Bisola's name.",
-"author": "thryd",
-"run": "run-b9b963",
-"card": "j4"
-},
 {
 "id": "wt_7a2b23aa13",
 "ts": "2026-11-14T15:34:35-0500",
@@ -1779,6 +1780,17 @@
 "author": "cos",
 "run": "run-b9b963",
 "card": "j2"
+},
+{
+"id": "wf_7ed973c0ea",
+"ts": "2026-11-14T16:51:22-0500",
+"a": "red_white_cap",
+"b": "yaba_bookshop",
+"code": "red_white_cap.interactwith(yaba_bookshop){ yaba_bookshop.receives(red_white_cap.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the yaba bookshop, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j6"
 }
 ],
 "memories": [
@@ -1814,7 +1826,18 @@
 "author": "thryd",
 "run": "run-b9b963",
 "card": "j3"
+},
+{
+"id": "wt_96b0eb287d",
+"ts": "2026-11-14T16:52:00-0500",
+"a": null,
+"b": "yaba_bukka",
+"code": "yaba_bukka.remembers(taiwo, \"coin tin\"); yaba_bukka.remembers(bisola, \"jollof rice\");",
+"text": "6:35am, 14 March 2053: Taiwo stopped counting coins mid-tin when the [[ac]] code ran, and Bisola left her jollof untouched on the counter.",
+"author": "thryd",
+"run": "run-b9b963",
+"card": "j4"
 }
 ],
-"updated": "2026-11-14T16:50:28-0500"
+"updated": "2026-11-14T16:52:08-0500"
 }
