@@ -77,7 +77,7 @@ function crop(rgba, fw, spec, U){
       const p = (sy * fw + sx) * 4, o = (oy * U.w + ox) * 4; d[o] = rgba[p]; d[o+1] = rgba[p+1]; d[o+2] = rgba[p+2]; d[o+3] = rgba[p+3]; } }
   return out;
 }
-function backdrop(rgba, fw, fh, specs, plate, known){
+function backdrop(rgba, fw, fh, specs, plate, known, A0, solid0){
   // the same frame with each staged cut's own pixels taken out: stored plate pixels where they are known, else transparent
   const out = new ImageData(new Uint8ClampedArray(rgba), fw, fh), d = out.data;
   specs.forEach(spec => { if(!spec || !(spec.bits || spec.raw)) return; const raw = maskRaw(spec), stride = (spec.w + 7) >> 3;
@@ -87,10 +87,11 @@ function backdrop(rgba, fw, fh, specs, plate, known){
         if(plate && known && known[i] && plate[p + 3] === 255){ d[p] = plate[p]; d[p+1] = plate[p+1]; d[p+2] = plate[p+2]; d[p+3] = 255; } else d[p + 3] = 0; } } });
   // the soft oval fade and the faint level are baked into the pixels here: a CSS mask-image on ~30 big layers cost the page
   // more than half its frame rate (measured 18 -> 47 fps headless). Same shape as the old mask: solid to 45 %, gone at the rim.
-  const A = 0.34, rx = fw / 2, ry = fh / 2;
+  // fresh live-view plates (Jesuye 14 Nov 2026 9:08 AM ET) pass a stronger alpha and a wider solid core; everything else keeps 0.34 / 45 %
+  const A = A0 > 0 && A0 <= 1 ? A0 : 0.34, S0 = solid0 > 0 && solid0 < 1 ? solid0 : .45, rx = fw / 2, ry = fh / 2;
   for(let y = 0; y < fh; y++){ const qy = (y + .5 - ry) / ry, qy2 = qy * qy;
     for(let x = 0, p = y * fw * 4; x < fw; x++, p += 4){ const qx = (x + .5 - rx) / rx, r = Math.sqrt(qx * qx + qy2);
-      const f = r <= .45 ? 1 : r >= 1 ? 0 : 1 - (r - .45) / .55; d[p + 3] = d[p + 3] * f * A; } }
+      const f = r <= S0 ? 1 : r >= 1 ? 0 : 1 - (r - S0) / (1 - S0); d[p + 3] = d[p + 3] * f * A; } }
   return out;
 }
 const bm = (img, w, h) => createImageBitmap(img, {resizeWidth: Math.max(1, w), resizeHeight: Math.max(1, h), resizeQuality: 'medium'});
@@ -104,7 +105,7 @@ async function job(m){
   const take = async (rgba, mi, ms)=>{
     for(let j = 0; j < objs.length; j++){ const o = objs[j]; frames[j].push(await bm(crop(rgba, fw, o.masks[mi] || o.masks[0], o.U), o.dw, o.dh)); }
     delays.push(ms);
-    if(bg && !bgBm){ firstMi = mi; bgBm = await bm(backdrop(rgba, fw, fh, objs.map(o => o.masks[mi] || o.masks[0]), bg.plate, bg.known), bg.w, bg.h); }
+    if(bg && !bgBm){ firstMi = mi; bgBm = await bm(backdrop(rgba, fw, fh, objs.map(o => o.masks[mi] || o.masks[0]), bg.plate, bg.known, bg.A, bg.solid), bg.w, bg.h); }
   };
   let bytes = m.bytes;
   if(!bytes){ const r = await fetch(m.url, {cache: 'force-cache'}); if(!r.ok) throw new Error('fetch'); bytes = await r.arrayBuffer(); }

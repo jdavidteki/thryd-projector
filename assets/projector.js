@@ -612,6 +612,7 @@ const MOVES=(()=>{const KEY='thryd_moves_v1',MAX=400;let box=null;
     put('run',s.run);if(ev.object_id)put('object_id',ev.object_id);else put('cut',s.cut||ev.label||'object');
     put('from_scene',d.kind==='arrive'?d.from_scene:s.scene);put('to_scene',d.kind==='leave'?'(travelling)':s.scene);
     put('from_frame',d.kind==='arrive'?((String(d.from_scene||'').match(/(?:^|[^A-Za-z0-9])(j\d+)(?![0-9])/)||[])[1]):s.frame);put('to_frame',d.kind==='leave'?null:s.frame);put('client_ts',ev.client_ts);
+    if(d.kind==='meet'){put('kind','meet');put('a',ev.label);put('with',d.with);put('verb',d.verb);put('with_scene',d.with_scene);}
     return {body:o};};
   const bodyFor=ev=>{const s=ev.source||{};if(ev.type==='drift')return driftBody(ev);if(ev.type!=='move')return {hold:ev.type==='setlocation'?'place_id_missing':'not_a_move'};
     if(!ev.from||!ev.to)return {hold:'bad_coord'};if(!ev.object_id)return mediumBody(ev);if(!s.run||!/^run-[A-Za-z0-9]+$/.test(s.run)||!s.frame)return {hold:'no_run_frame'};
@@ -650,7 +651,7 @@ const MOVES=(()=>{const KEY='thryd_moves_v1',MAX=400;let box=null;
     ev.emit=Object.assign(ev.emit,m?{status:m.status||(m.ok?'accepted':'rejected'),committed:m.committed===true,reply:m}:{status:'no_reply'});
     if(b.medium&&m){if(m.ok&&m.object_id){ev.object_id=String(m.object_id);ev.emit.mapped=true;ev.emit.object_created=m.object_created===true;}
       else if(!m.ok){ev.emit.status='held';ev.emit.reason='unmapped';ev.emit.engine_code=m.code||m.reason||null;ev.emit.retry=true;}}
-    if(m&&m.kind==='drift'&&m.code&&!/phone\.html$/.test(location.pathname)){(window.__thrydDriftLines=window.__thrydDriftLines||[]).push({t:String(m.code).slice(0,160)+';',a:true,note:'drift ack · engine logged it · no consequence'});}
+    if(m&&m.kind==='drift'&&m.code&&!/phone\.html$/.test(location.pathname)&&/\.(?:meets|interactwith|passes|approaches|leaves|leavesfrom|arrivesat|remembers)\(/.test(String(m.code))&&!/\bcut\d+\b/.test(String(m.code))){(window.__thrydDriftLines=window.__thrydDriftLines||[]).push({t:String(m.code).slice(0,160)+';',a:true,note:'drift ack · engine logged it · no consequence'});}
   }catch(e){ev.emit=Object.assign({},ev.emit||{},{status:'failed',reason:String(e&&e.message||e)});}save();};
   // retry queue: unanswered sends go again (idempotent by event_id), at most 6 tries, every 2 minutes
   setInterval(()=>{box.events.filter(e=>e.emit&&(e.emit.status==='no_reply'||e.emit.status==='failed'||e.emit.status==='sending')&&(e.emit.attempts||0)<6&&Date.now()-Date.parse(e.emit.at||0)>110000).slice(0,3).forEach(e=>emit(e));
@@ -664,7 +665,7 @@ const MOVES=(()=>{const KEY='thryd_moves_v1',MAX=400;let box=null;
       object_id:inp.object_id||null,object_key:norm(inp.object_key||inp.klass||inp.cut),label:inp.label||inp.cut||null,
       from:inp.from||null,to:inp.to||null,unit:inp.from?'percent_of_source_frame':null,place:inp.place||hereFull(),from_place:inp.from_place||null,
       story:Object.assign(storyOf(scene),{people:people()}),caused_by:[],applied_in:[]};
-    if(ev.type==='drift')ev.drift={kind:inp.kind||'wander',from_scene:inp.from_scene||null,from_title:inp.from_title||null,edge:inp.edge||null,note:'automatic trip: recorded and shown as code, never a customer move, never changes the story'};
+    if(ev.type==='drift')ev.drift={kind:inp.kind||'wander',from_scene:inp.from_scene||null,from_title:inp.from_title||null,edge:inp.edge||null,...(inp.kind==='meet'?{with:inp.with||null,verb:inp.verb||null,with_scene:inp.with_scene||null}:{}),note:'automatic trip: recorded and shown as code, never a customer move, never changes the story'};
     const ks=keysOf(ev);if(ev.type!=='drift')ev.caused_by=box.events.filter(p=>p.type!=='consequence'&&p.type!=='drift'&&p.object_key===ev.object_key&&p.event_id!==ev.event_id).slice(-3).map(p=>p.event_id);
     box.events.push(ev);save();
     if(ev.type==='drift'){if(ev.drift&&ev.drift.kind==='wander'&&Date.now()-lastDE<60000){ev.emit={status:'held',reason:'drift_throttle'};save();}else{if(ev.drift&&ev.drift.kind==='wander')lastDE=Date.now();emit(ev);}return ev;}
@@ -704,13 +705,19 @@ const MOVES=(()=>{const KEY='thryd_moves_v1',MAX=400;let box=null;
   let lastDR=0,lastDL=0;window.__thrydDriftLines=window.__thrydDriftLines||[];
   window.thrydDrift=inf=>{try{if(!inf||/phone\.html$/.test(location.pathname))return null;const now=Date.now(),big=inf.kind==='leave'||inf.kind==='arrive';
     const lab=String(inf.label||inf.cut||'object').replace(/\s+/g,'_'),ttl=s=>String(s||'').slice(0,40);
-    if(big||now-lastDL>6000){lastDL=now;const tt=window.thrydSceneTitle&&thrydSceneTitle(inf.scene);
+    // 14 Nov 9:12 AM ET (Jesuye): the panel shows meetings (stage.js, a.meets(b)), not drift; wander / leave / arrive are still
+    // recorded and sent as before, never typed into the panel; engine drift acks show only when they are meetings
+    if(false){lastDL=now; // drift lines no longer go to the panel (kept for reference)const tt=window.thrydSceneTitle&&thrydSceneTitle(inf.scene);
       const t=inf.kind==='leave'?`drift ${lab}.leave(${inf.edge||'edge'});`:inf.kind==='arrive'?`drift ${lab}.arrive(from ${ttl(inf.from_title||(window.thrydSceneTitle&&thrydSceneTitle(inf.from_scene))||inf.from_scene)});`
         :`drift ${lab}.wander(${inf.from&&inf.to?((inf.to.x-inf.from.x).toFixed(1)+', '+(inf.to.y-inf.from.y).toFixed(1)):''});`;
       window.__thrydDriftLines.push({t,a:true,note:(inf.kind==='leave'?'off the frame'+(tt?' of “'+ttl(tt)+'”':'')+', turns up in a later scene':inf.kind==='arrive'?'walked in from another scene':(tt?ttl(tt):'automatic'))+' · not a customer move'});
       if(window.__thrydDriftLines.length>6)window.__thrydDriftLines.splice(0,window.__thrydDriftLines.length-6);}
     if(!big&&now-lastDR<20000)return null;lastDR=now;
     return record(Object.assign({},inf,{type:'drift',label:inf.label||inf.cut}));}catch(e){return null;}};
+  // meetings from stage.js -> the same drift bridge (kind 'meet', both names), at most one a minute; never a customer move
+  let lastMeet=0;
+  window.thrydMeet=inf=>{try{if(!inf||!inf.a||!inf.b||/phone\.html$/.test(location.pathname))return null;const now=Date.now();if(now-lastMeet<60000)return null;lastMeet=now;
+    return record({type:'drift',kind:'meet',scene:inf.scene||null,scene_kind:'stage',cut:inf.a,label:inf.a,with:inf.b,verb:inf.verb||'meets',with_scene:inf.with_scene||null,run:inf.run||null});}catch(e){return null;}};
   window.thrydSceneTitle=mid=>{try{const sp=mid&&SIDES.sceneOf(mid);return (sp&&sp.place)||null;}catch(e){return null;}};
   window.addEventListener('thryd:cutmove',ev=>{const d=ev.detail||{};record(Object.assign({type:'move',scene_kind:'medium_cut',label:d.klass&&d.klass!=='object'?d.klass:d.cut},d));});
   function observeState(st){const a=st&&st.movement_acks;if(!a||a.run!==st.run||!Array.isArray(a.movement_acks)||!a.movement_acks.length)return;const ids=new Set(a.movement_acks);let ch=false;

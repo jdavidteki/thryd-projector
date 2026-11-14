@@ -50,6 +50,15 @@
   const LIVE_POLL_MS = 45000;                  // at most as often as the data loop; do not poll faster
   const LIVE_KEEP = 3;                         // most recent 1–3 of the current agenda recur more often than ordinary cuts
   S.LIVE_DWELL_K = LIVE_DWELL_K; S.LIVE_POLL_MS = LIVE_POLL_MS; S.LIVE_KEEP = LIVE_KEEP;
+  // live-view cutouts (Jesuye 14 Nov 2026 9:05 AM ET "cut them as they come"): a view with a pack (tools/cut_live_views.py, same
+  // per-frame mask pack as the Medium cuts) comes on as animated cutouts over its own faded plate; no pack yet = the whole frame.
+  // fresh plates (9:08 AM ET "less blurry and faded ... so customers can tell where they are"): the current agenda's newest 1–3
+  // live views get a sharper, stronger plate. Normal plates: alpha 0.34, solid to 45% of the oval, drawn at 0.7× (phone 0.55×) of
+  // the group scale then stretched ~2.2–2.6× (the soft look). Fresh: alpha 0.80, solid to 70%, drawn at 2.8× (phone 2.2×), i.e. ~4×
+  // the pixels per side (a quarter of the softness), capped at the source size. Older live views and regular cuts keep the normal look.
+  const BG_NORMAL = {A: 0.34, solid: 0.45, res: PHONE ? 0.55 : 0.7};
+  const BG_FRESH = {A: 0.80, solid: 0.70, res: PHONE ? 2.2 : 2.8};
+  S.BG_NORMAL = BG_NORMAL; S.BG_FRESH = BG_FRESH;
   const DPR = Math.min(root.devicePixelRatio || 1, PHONE ? 1 : 1.25);
   const vw = ()=> root.innerWidth || 1280, vh = ()=> root.innerHeight || 720;
   const R = (a, b)=> a + Math.random() * (b - a);
@@ -74,6 +83,7 @@
     '#gstage .gbg.gm{-webkit-mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 45%,transparent 100%);mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 45%,transparent 100%)}', // main-thread fallback only
     '#gstage .gbg.gm.on{opacity:.34}',
     '#gstage .gbg.glive.on{opacity:.34;filter:saturate(.9)}',
+    '#gstage .gbg.gm.gfresh.on,#gstage .gbg.glive.gfresh.on{opacity:.8;filter:none}',
     '#gstage img.gcut,#gstage img.gbg{display:block;max-width:none;-webkit-user-drag:none}',
     '#gstage .gcut{position:absolute;pointer-events:auto;touch-action:none;cursor:grab;transform-origin:50% 85%;user-select:none;will-change:transform,translate,opacity;backface-visibility:hidden}',
     '#gstage .gcut.fl{animation:mcfloat var(--fd,7s) ease-in-out var(--fdl,0s) infinite}',
@@ -296,11 +306,12 @@
     });
     return best;
   }
-  async function loadGroup(row){
+  async function loadGroup(row, man, lo){
+    lo = lo || {};
     await MC.expandRow(row);
     const ext = ((String(row.url).split('?')[0].match(/\.([A-Za-z0-9]+)$/) || [])[1] || '').toLowerCase();
     const set = {how:'medium', remote:true, url:row.url, medium_image_id:row.medium_image_id, extension:ext, animated: row.kind === 'gif'};
-    const plan = MC.forSet(set, manifest);
+    const plan = MC.forSet(set, man || manifest);
     if(!plan.ok) throw new Error(plan.reason || 'plan');
     const fw = plan.width, fh = plan.height;
     const room = CAP - S.cuts.length; if(room < 1) throw new Error('cap');
@@ -309,8 +320,9 @@
     objs = objs.slice(0, Math.min(room, PER_GROUP));
     if(!objs.length) throw new Error('no_object');
     // on-screen size of the whole source frame for this group
-    let Dh = vh() * (PHONE ? R(0.18, 0.30) : R(0.22, 0.40)), k = Dh / fh;
-    if(fw * k > vw() * (PHONE ? 0.6 : 0.42)) k = vw() * (PHONE ? 0.6 : 0.42) / fw;
+    let Dh = lo.live ? vh() * (PHONE ? R(0.28, 0.42) : R(0.32, 0.50)) : vh() * (PHONE ? R(0.18, 0.30) : R(0.22, 0.40)), k = Dh / fh;
+    const wmax = lo.live ? (PHONE ? 0.72 : 0.55) : (PHONE ? 0.6 : 0.42);
+    if(fw * k > vw() * wmax) k = vw() * wmax / fw;
     Dh = fh * k; const Dw = fw * k; let s = Math.min(1, k * DPR);
     const animated = plan.kind === 'gif' && plan.frameCount > 1;
     const step = animated ? Math.max(1, Math.ceil(plan.frameCount / MAXF)) : 1;
@@ -318,18 +330,19 @@
     let est = objs.reduce((n, x) => n + Math.ceil(x.U.w * s) * Math.ceil(x.U.h * s) * 4, 0) * nf;
     if(est > PG_MAX){ s *= Math.sqrt(PG_MAX / est); est = PG_MAX; }
     if(S.bytes + est > BUDGET) throw new Error('budget');
-    const wantBg = Math.random() < BG_P;
+    const wantBg = lo.live ? true : Math.random() < BG_P;
+    const BGL = lo.fresh ? BG_FRESH : BG_NORMAL;
     const animated0 = plan.kind === 'gif';
     if(!WK.off){ // the worker also fetches the file itself (HTTP cache), so multi-MB GIF bytes never pass through the page thread
-      const bs = Math.min(1, k * (PHONE ? 0.55 : 0.7));
+      const bs = Math.min(1, k * BGL.res);
       const msg = {url: new URL(row.url, location.href).href, fw, fh, gif: animated0, frameCount: plan.frameCount, stillFrame: plan.still_frame | 0, step, delays_cs: plan.delays_cs,
         objs: objs.map(x => ({U: x.U, dw: Math.max(1, Math.round(x.U.w * s)), dh: Math.max(1, Math.round(x.U.h * s)),
           masks: animated0 ? x.o.masks.map((m, i) => i % step === 0 ? lite(m) : null) : [lite(x.o.masks[0])]})),
-        bg: wantBg ? {w: Math.max(1, Math.round(fw * bs)), h: Math.max(1, Math.round(fh * bs)), plate: plan.plate || null, known: plan.plate ? plan.plateKnown : null} : null};
+        bg: wantBg ? {w: Math.max(1, Math.round(fw * bs)), h: Math.max(1, Math.round(fh * bs)), plate: plan.plate || null, known: plan.plate ? plan.plateKnown : null, A: BGL.A, solid: BGL.solid} : null};
       try{
         const r = await offDecode(msg, []);
-        return {plan, fw, fh, k, Dw, Dh, s, objs, frames: r.frames, delays: r.delays, bg: r.bg || null, animated, kind: plan.kind};
-      }catch(e){ if(!/worker_off|worker_down/.test(String(e && e.message))) throw e; note('worker off, main-thread decode'); return loadGroup(row); }
+        return {plan, fw, fh, k, Dw, Dh, s, objs, frames: r.frames, delays: r.delays, bg: r.bg || null, animated, kind: plan.kind, fresh: !!lo.fresh};
+      }catch(e){ if(!/worker_off|worker_down/.test(String(e && e.message))) throw e; note('worker off, main-thread decode'); return loadGroup(row, man, lo); }
     }
     const bytes = await fetchBytes(row);
     const isGif = bytes[0] === 0x47 && bytes[1] === 0x49 && bytes[2] === 0x46;
@@ -345,7 +358,7 @@
       if(!bg && wantBg){ // the same frame with every staged cut's spot hole-filled (stored plate or a darkened copy of this frame), faded behind the group
         try{
           const drawn = MC.compose(rgba, fw, fh, objs.map(x => x.o.masks[mi]), plateSrc);
-          const bs = Math.min(1, k * 0.75);
+          const bs = Math.min(1, k * (lo.fresh ? BG_FRESH.res : 0.75));
           bg = await bitmapOf(new ImageData(drawn.plate instanceof Uint8ClampedArray ? drawn.plate : new Uint8ClampedArray(drawn.plate), fw, fh), Math.max(1, Math.round(fw * bs)), Math.max(1, Math.round(fh * bs)));
         }catch(e){ bg = null; }
       }
@@ -370,7 +383,7 @@
     } else {
       await take(await stillPixels(bytes, fw, fh), 0, 0);
     }
-    return {plan, fw, fh, k, Dw, Dh, s, objs, frames, delays, bg, bgMask: true, animated, kind: plan.kind};
+    return {plan, fw, fh, k, Dw, Dh, s, objs, frames, delays, bg, bgMask: true, animated, kind: plan.kind, fresh: !!lo.fresh};
   }
 
   // the shift that takes a box at screen (sx, sy, w, h) fully off the screen along heading a (radians, 0 = right, y down)
@@ -388,9 +401,9 @@
   function spawn(row, L){
     const pos = placeGroup(L.Dw, L.Dh); const v = view();
     const g = {mid: row.medium_image_id, row, kind: L.kind, x: pos.gx, y: pos.gy, w: L.Dw, h: L.Dh, k: L.k, fw: L.fw, fh: L.fh,
-      title: row.title || titleOf(row.medium_image_id), agenda: !!row.agenda, live: !!row.live_view, run: row.run || null, card: row.card || null, born: Date.now(), life: (PHONE ? R(30, 50) : R(35, 70)) * 1000 * (row.live_view ? LIVE_DWELL_K : 1), cuts: [], gone: false, offSince: 0, sha: row.source_sha256 || '', ver: row.pack_version || '1'};
+      title: row.title || titleOf(row.medium_image_id), agenda: !!row.agenda, live: !!row.live_view, run: row.run || null, card: row.card || null, born: Date.now(), life: (PHONE ? R(30, 50) : R(35, 70)) * 1000 * (row.live_view ? LIVE_DWELL_K : 1), cuts: [], gone: false, offSince: 0, sha: row.source_sha256 || '', ver: row.pack_version || '1', place: row.place || null, fresh: !!(L.fresh || row.fresh)};
     if(L.bg){
-      const c = document.createElement('canvas'); c.className = 'gbg' + (L.bgMask ? ' gm' : ''); c.width = L.bg.width; c.height = L.bg.height;
+      const c = document.createElement('canvas'); c.className = 'gbg' + (L.bgMask ? ' gm' : '') + (L.bgMask && g.fresh ? ' gfresh' : ''); c.width = L.bg.width; c.height = L.bg.height;
       c.getContext('2d').drawImage(L.bg, 0, 0); L.bg.close && L.bg.close();
       const E = PHONE ? 0.22 : 0.28; // the faded frame reaches well past the group, so neighbouring stories meet instead of black gaps
       Object.assign(c.style, {left: (g.x - g.w * E) + 'px', top: (g.y - g.h * E) + 'px', width: (g.w * (1 + 2 * E)) + 'px', height: (g.h * (1 + 2 * E)) + 'px'});
@@ -398,7 +411,7 @@
       g.bx = 0; g.by = 0; g.bvx = 0; g.bvy = 0; bgRetarget(g, performance.now());
       setTimeout(()=> c.classList.add('on'), 60);
     } else if(L.kind === 'live_view' && row.url){
-      const c = document.createElement('img'); c.className = 'gbg glive'; c.alt = ''; c.draggable = false; c.src = row.url;
+      const c = document.createElement('img'); c.className = 'gbg glive' + (g.fresh ? ' gfresh' : ''); c.alt = ''; c.draggable = false; c.src = row.url;
       const E = PHONE ? 0.22 : 0.28;
       Object.assign(c.style, {left: (g.x - g.w * E) + 'px', top: (g.y - g.h * E) + 'px', width: (g.w * (1 + 2 * E)) + 'px', height: (g.h * (1 + 2 * E)) + 'px'});
       bgs.appendChild(c); g.bgEl = c; g.bgBytes = 0;
@@ -765,7 +778,27 @@
     if(on.length < Math.min(LIVE_KEEP, rec.length) && Math.random() < 0.45) return free[0];
     return null;
   }
+  // a cut live view: the same pack format and loader as a ready Medium cut (masks per displayed frame + plate), so it moves,
+  // drags and fades like every other cutout; the manifest row lives only here (never in medium_cuts.json or the no-repeat deck)
+  async function loadLiveCut(v, fresh){
+    const c = v.cut; if(!c || !c.pack || !/^assets\/live_views\/[^?#]+\.cut\.json$/.test(String(c.pack))) throw new Error('no_cut');
+    const id = liveId(v);
+    const mrow = {medium_image_id: id, kind: 'gif', status: 'ready', url: v.url, pack: c.pack, pack_version: c.pack_version || '1', source_sha256: v.sha256 || ''};
+    if(c.frame_size) mrow.frame_size = c.frame_size; if(c.delays_cs) mrow.delays_cs = c.delays_cs;
+    roomForLive();
+    const L = await loadGroup(mrow, {assets: [mrow]}, {live: true, fresh});
+    const row = {medium_image_id: id, title: v.title || ((v.card || '') + ' · ' + (v.run || '')), agenda: false, live_view: true, live_cut: true, run: v.run, card: v.card, url: v.url, mtime: v.mtime, place: v.place || null, fresh, source_sha256: v.sha256 || '', pack_version: mrow.pack_version};
+    return {row, L};
+  }
+  const isFresh = v => recentLive(LIVE_KEEP).some(x => liveId(x) === liveId(v));
   function loadLiveView(v){
+    const fresh = isFresh(v);
+    if(v && v.cut && v.cut.pack && !S.badCut.has(liveId(v)))
+      return loadLiveCut(v, fresh).catch(e => { S.badCut.add(liveId(v)); note('live cut fallback', liveId(v), String(e && e.message || e)); return loadLiveFrame(v, fresh); });
+    return loadLiveFrame(v, fresh);
+  }
+  S.badCut = new Set();
+  function loadLiveFrame(v, fresh){
     return new Promise((ok, no) => {
       const img = new Image();
       img.decoding = 'async';
@@ -776,7 +809,7 @@
         if(fw * k > vw() * (PHONE ? 0.72 : 0.55)) k = vw() * (PHONE ? 0.72 : 0.55) / fw;
         Dh = fh * k; const Dw = fw * k;
         const U = {x: 0, y: 0, w: fw, h: fh};
-        const row = {medium_image_id: liveId(v), title: v.title || ((v.card || '') + ' · ' + (v.run || '')), agenda: false, live_view: true, run: v.run, card: v.card, url: v.url, mtime: v.mtime};
+        const row = {medium_image_id: liveId(v), title: v.title || ((v.card || '') + ' · ' + (v.run || '')), agenda: false, live_view: true, run: v.run, card: v.card, url: v.url, mtime: v.mtime, place: v.place || null, fresh: !!fresh};
         const L = {plan: {}, fw, fh, k, Dw, Dh, s: 1, objs: [{o: {label: v.card || 'view', model_class: 'live_view', state_id: null}, k: 0, U}], frames: [[]], delays: [0], bg: null, animated: true, kind: 'live_view', img};
         ok({row, L});
       };
@@ -793,6 +826,7 @@
       const A = await loadLiveView(v);
       if(paused() || S.groups.some(g => !g.gone && g.mid === A.row.medium_image_id)){
         try{ A.L.img && (A.L.img.src = ''); }catch(e){}
+        try{ (A.L.frames || []).forEach(f => (f || []).forEach(b => b && b.close && b.close())); A.L.bg && A.L.bg.close && A.L.bg.close(); }catch(e){}
         return false;
       }
       roomForLive();
@@ -900,6 +934,106 @@
     (function w(){ setTimeout(()=>{ if(!paused()) try{ wander(); }catch(e){} w(); }, PHONE ? R(600, 1500) : R(250, 800)); })();
     (function x(){ setTimeout(()=>{ if(!paused()) try{ crossover(); }catch(e){} x(); }, R(8000, 16000)); })();
   }
+
+  // ---------- meetings (Jesuye 14 Nov 2026 9:12 AM ET): the code column shows stories touching, not drift.
+  // When two named cutouts from different stories come close or overlap on screen, one calm line:
+  //   a.approaches(b)  drifting toward each other     a.meets(b) / a.interactwith(b)  overlapping
+  //   a.passes(b)      a moving cut crosses over b    a.leaves(b)  separating after a touch
+  //   a.arrivesat(place) / a.leavesfrom(place)  when one side is a live view (its place from the card)
+  //   a.remembers(b|place)  now and then, when a pair meets a second time
+  // Names are real object / character names (agenda labels, the Medium sidecar class, a figure from a titled scene); no ids, no
+  // numbers, never cutN; a cut with no name says nothing. Per-pair cooldown, at most one new line every ~4.5 s.
+  const SIDE = new Map(); // pack url -> {cut1: 'tie', ...}
+  const GENERIC = /^(?:object|objects|foreground|background|thing|live_view|view|blurred.*|unknown|item|character)$/;
+  const PERSONISH = /^(?:person|people|man|woman|figure)(?:[\s_]*\d*)$/;
+  const snk = t => String(t || '').toLowerCase().replace(/['\u2019]s\b/g, '').replace(/[^a-z]+/g, ' ').trim().split(/\s+/).filter(w => w && !/^(?:the|a|an|of|in|on|at)$/.test(w)).slice(0, 3).join('_');
+  function sideFor(g){
+    const row = g && g.row; if(!row || !row.pack || row.live_view || g.agenda) return;
+    const u = String(row.pack).replace(/\.json$/, '.objects.json'); if(SIDE.has(u)){ g.side = SIDE.get(u); return; }
+    SIDE.set(u, null);
+    fetch(u).then(r => r.ok ? r.json() : null).then(d => { const m = {}; ((d && d.objects) || []).forEach(o => { if(o && o.label) m[o.label] = o.klass || o.model_class || ''; }); SIDE.set(u, m); if(!g.gone) g.side = m; }).catch(()=>{});
+  }
+  function nameOf(c){
+    const g = c.home; if(!g || g.live) return null;
+    if(c._nm !== undefined && c._nmSide === !!g.side) return c._nm;
+    let n = null; const lab = String(c.label || '');
+    if(lab && !/^cut\d*$/i.test(lab) && !GENERIC.test(lab.toLowerCase()) && !PERSONISH.test(lab.toLowerCase())) n = snk(lab);
+    else if(lab && PERSONISH.test(lab.toLowerCase()) && g.title && !/[·\d]/.test(g.title)){ const t = snk(g.title); if(t) n = 'figure_from_' + t; }
+    if(!n){
+      const k = String((g.side && g.side[lab]) || '').toLowerCase().trim();
+      if(k && !GENERIC.test(k) && !PERSONISH.test(k)) n = snk(k);
+      else if(k && PERSONISH.test(k) && g.title && !/[·\d]/.test(g.title)){ const t = snk(g.title); if(t) n = 'figure_from_' + t; }
+    }
+    if(n && (GENERIC.test(n) || PERSONISH.test(n) || /^(?:person|people)_/.test(n))) n = null; // "person 2" and the like are not names
+    c._nm = n || null; c._nmSide = !!g.side; return c._nm;
+  }
+  const placeOf = c => c.home && c.home.live && c.home.place ? snk(String(c.home.place).replace(/_/g, ' ')) || null : null;
+  const MEET = S.meet = {pairs: new Map(), place: {}, q: [], lastOut: 0, lines: [], GAP: 0.35, OV: 0.12, OFF: 0.02, PAIR_CD: 40000, OUT_MS: 4500};
+  const PRI = {remembers: 4, meets: 3, interactwith: 3, arrivesat: 3, passes: 3, leaves: 2, leavesfrom: 2, approaches: 1};
+  function say(verb, a, b, info){
+    const t = a + '.' + verb + '(' + b + ');';
+    MEET.q.push({t, verb, at: Date.now(), info}); MEET.q.sort((x, y) => (PRI[y.verb] || 0) - (PRI[x.verb] || 0) || x.at - y.at);
+    if(MEET.q.length > 4) MEET.q.length = 4;
+  }
+  function flushMeet(){
+    const now = Date.now(); MEET.q = MEET.q.filter(x => now - x.at < 12000);
+    if(!MEET.q.length || now - MEET.lastOut < MEET.OUT_MS) return;
+    const x = MEET.q.shift(); MEET.lastOut = now;
+    const dl = root.__thrydDriftLines = root.__thrydDriftLines || [];
+    dl.push({t: x.t, a: true, note: x.verb === 'remembers' ? 'they have met before' : x.info && x.info.live ? 'a live view of the agenda' : 'two stories touch on the stage'});
+    if(dl.length > 6) dl.splice(0, dl.length - 6);
+    MEET.lines.push(new Date().toTimeString().slice(0, 8) + ' ' + x.t); if(MEET.lines.length > 40) MEET.lines.shift();
+    if(x.info && x.info.touch && typeof root.thrydMeet === 'function'){ try{ root.thrydMeet({a: x.info.a, b: x.info.b, verb: x.verb, scene: x.info.scene, with_scene: x.info.with_scene, run: x.info.run}); }catch(e){} }
+  }
+  function meetTick(){
+    if(paused()) return;
+    const W0 = vw(), H0 = vh(), now = Date.now(), pts = [];
+    S.groups.forEach(g => { if(!g.side && !g.live && !g.agenda) sideFor(g); });
+    S.cuts.forEach(c => {
+      if(c.entering || c.leaving || !c.el || !c.el.isConnected || !c.home || c.home.gone) return;
+      const nm = nameOf(c), pl = placeOf(c); if(!nm && !pl) return;
+      const r = c.el.getBoundingClientRect(); if(r.width < 8 || r.height < 8 || r.right < 0 || r.bottom < 0 || r.left > W0 || r.top > H0) return;
+      pts.push({c, nm, pl, r, z: +c.el.style.zIndex || 0, moving: !!(c.wan || c.dragging)});
+    });
+    const seen = new Set();
+    for(let i = 0; i < pts.length; i++) for(let j = i + 1; j < pts.length; j++){
+      const A = pts[i], B = pts[j]; if(A.c.home === B.c.home) continue;
+      if(!A.nm && !B.nm) continue; // two places with no named object between them: nothing to say
+      const an = A.nm || A.pl, bn = B.nm || B.pl; if(an === bn) continue;
+      const key = [A.c.home.mid + '|' + A.c.label, B.c.home.mid + '|' + B.c.label].sort().join('~'); seen.add(key);
+      const ix = Math.max(0, Math.min(A.r.right, B.r.right) - Math.max(A.r.left, B.r.left)), iy = Math.max(0, Math.min(A.r.bottom, B.r.bottom) - Math.max(A.r.top, B.r.top));
+      const ov = ix * iy / Math.max(1, Math.min(A.r.width * A.r.height, B.r.width * B.r.height));
+      const dx = Math.max(0, A.r.left - B.r.right, B.r.left - A.r.right), dy = Math.max(0, A.r.top - B.r.bottom, B.r.top - A.r.bottom);
+      const gap = Math.hypot(dx, dy) / Math.max(1, Math.min(Math.max(A.r.width, A.r.height), Math.max(B.r.width, B.r.height)));
+      let P = MEET.pairs.get(key); if(!P){ P = {touch: false, since: 0, met: 0, gap, last: {}, seen: now}; MEET.pairs.set(key, P); }
+      const live = A.pl && !A.nm ? A : B.pl && !B.nm ? B : null, obj = live ? (live === A ? B : A) : null;
+      const info = {a: an, b: bn, live: !!live, touch: true, scene: A.c.home.mid, with_scene: B.c.home.mid, run: (A.c.home.run || B.c.home.run || null)};
+      const cool = v => now - (P.last[v] || 0) > MEET.PAIR_CD;
+      if(!P.touch && ov > MEET.OV){
+        P.touch = true; P.since = now; P.met++;
+        if(cool('touch')){
+          P.last.touch = now;
+          if(live){ if(now - (MEET.place[live.pl] || 0) > 15000){ MEET.place[live.pl] = now; say('arrivesat', obj.nm, live.pl, Object.assign({}, info, {a: obj.nm, b: live.pl})); } }
+          else {
+            const mover = A.moving && !B.moving ? A : B.moving && !A.moving ? B : null;
+            if(mover && mover.z >= (mover === A ? B : A).z) say('passes', mover.nm, (mover === A ? B : A).nm || (mover === A ? B : A).pl, info);
+            else say(Math.random() < .6 ? 'meets' : 'interactwith', an, bn, info);
+          }
+          if(P.met >= 2 && Math.random() < .5 && cool('remembers')){ P.last.remembers = now; const o = obj || (Math.random() < .5 ? A : B), other = live ? live.pl : (o === A ? bn : an); if(o.nm) say('remembers', o.nm, other, {live: !!live}); }
+        }
+      } else if(P.touch && ov < MEET.OFF && gap > 0.04){
+        const held = now - P.since; P.touch = false;
+        if(held > 2500 && cool('leave')){ P.last.leave = now; if(live) say('leavesfrom', obj.nm, live.pl, {live: true}); else say('leaves', an, bn, {}); }
+      } else if(!P.touch && gap < MEET.GAP && P.gap - gap > 0.05 && cool('approach') && cool('touch')){
+        P.last.approach = now; const a1 = A.moving || !B.nm ? A : B, b1 = a1 === A ? B : A; if(a1.nm) say('approaches', a1.nm, b1.nm || b1.pl, {live: !!live});
+      }
+      P.gap = gap; P.seen = now;
+    }
+    MEET.pairs.forEach((P, k) => { if(!seen.has(k) && now - P.seen > 120000) MEET.pairs.delete(k); });
+    flushMeet();
+  }
+  S.meetTick = meetTick; S.nameOf = nameOf;
+  setInterval(()=>{ try{ meetTick(); }catch(e){} }, 1500);
 
   // ---------- tweets: frame_feed.js reads the story group in focus (rotates about every 14 s among settled groups)
   let focus = null, focusAt = 0, focusI = 0;

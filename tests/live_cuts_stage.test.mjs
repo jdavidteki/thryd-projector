@@ -1,0 +1,26 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import path from 'node:path';
+import test from 'node:test';
+const root = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
+const src = fs.readFileSync(path.join(root, 'assets/stage.js'), 'utf8');
+const wk = fs.readFileSync(path.join(root, 'assets/stage_worker.js'), 'utf8');
+const pj = fs.readFileSync(path.join(root, 'assets/projector.js'), 'utf8');
+test('live views load as cutouts from their pack, whole frame as fallback', () => {
+  assert.match(src, /async function loadLiveCut\(v, fresh\)/);
+  assert.match(src, /loadGroup\(mrow, \{assets: \[mrow\]\}, \{live: true, fresh\}\)/);
+  assert.match(src, /return loadLiveFrame\(v, fresh\)/);
+  assert.ok(src.includes('.cut\\.json$/.test(String(c.pack))'));
+});
+test('fresh live plates are sharper and stronger; normal plates unchanged', () => {
+  assert.match(src, /BG_NORMAL = \{A: 0\.34, solid: 0\.45/);
+  assert.match(src, /BG_FRESH = \{A: 0\.80, solid: 0\.70/);
+  assert.match(wk, /A0 > 0 && A0 <= 1 \? A0 : 0\.34/);
+});
+test('panel shows meetings, never cutN', () => {
+  assert.match(src, /function meetTick\(\)/);
+  assert.match(src, /arrivesat/);
+  assert.match(src, /\/\^cut\\d\*\$\/i\.test\(lab\)/);
+  assert.match(pj, /window\.thrydMeet=/);
+  assert.match(pj, /put\('kind','meet'\)/);
+});
