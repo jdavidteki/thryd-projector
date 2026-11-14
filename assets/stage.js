@@ -976,22 +976,63 @@
   }
   const placeOf = c => c.home && c.home.live && c.home.place ? snk(String(c.home.place).replace(/_/g, ' ')) || null : null;
   const MEET = S.meet = {pairs: new Map(), place: {}, q: [], lastOut: 0, lines: [], GAP: 0.35, OV: 0.12, OFF: 0.02, PAIR_CD: 40000, OUT_MS: 4500};
-  const PRI = {remembers: 4, meets: 3, interactwith: 3, arrivesat: 3, passes: 3, leaves: 2, leavesfrom: 2, approaches: 1};
+  const PRI = {remembers: 4, meets: 3, interactwith: 3, arrivesat: 3, passes: 3, leaves: 2, leavesfrom: 2, consequence: 3, approaches: 1}; // a consequence ties with the meeting and follows it (older first)
   function say(verb, a, b, info){
     const t = a + '.' + verb + '(' + b + ');';
     MEET.q.push({t, verb, at: Date.now(), info}); MEET.q.sort((x, y) => (PRI[y.verb] || 0) - (PRI[x.verb] || 0) || x.at - y.at);
     if(MEET.q.length > 4) MEET.q.length = 4;
+    if(WM_TOUCH.test(verb) && b) wmOnMeet(a, b);
   }
   function flushMeet(){
     const now = Date.now(); MEET.q = MEET.q.filter(x => now - x.at < 12000);
     if(!MEET.q.length || now - MEET.lastOut < MEET.OUT_MS) return;
     const x = MEET.q.shift(); MEET.lastOut = now;
     const dl = root.__thrydDriftLines = root.__thrydDriftLines || [];
-    dl.push({t: x.t, a: true, note: x.verb === 'remembers' ? 'they have met before' : x.info && x.info.live ? 'a live view of the agenda' : 'two stories touch on the stage'});
+    dl.push({t: x.t, a: true, note: x.verb === 'consequence' && x.info && x.info.wm ? 'world memory · ' + String(x.info.wm.text || '').slice(0, 140) : x.verb === 'remembers' ? 'they have met before' : x.info && x.info.live ? 'a live view of the agenda' : 'two stories touch on the stage'});
     if(dl.length > 6) dl.splice(0, dl.length - 6);
     MEET.lines.push(new Date().toTimeString().slice(0, 8) + ' ' + x.t); if(MEET.lines.length > 40) MEET.lines.shift();
     if(x.info && x.info.touch && typeof root.thrydMeet === 'function'){ try{ root.thrydMeet({a: x.info.a, b: x.info.b, verb: x.verb, scene: x.info.scene, with_scene: x.info.with_scene, run: x.info.run}); }catch(e){} }
   }
+  // ---------- world memory (Jesuye 14 Nov 2026 3:24 PM ET: "stories should be naturally happening ... the laundromat has her data
+  // somewhere in their database"): tools/world_memory.py (cmd_loop) keeps every object's facts in a shared append-only store
+  // (#thryd and the box both write; #thryd wins) and publishes data/world_facts.json. When a pair that has a consequence meets
+  // again on the stage, its consequence line follows the meeting line, e.g. yaba_bookshop.receives(ikeja_laundromat.receipt);
+  // now and then (at most every ~2 min, only when the column is quiet) the newest unseen consequence shows on its own.
+  // Lines go through the same queue as the meetings, so the column still gets at most one line every 4.5 s. No tags, no engine calls.
+  const WM = S.worldMem = {cons: [], alias: {}, shown: new Map(), pair: new Map(), lastAmb: Date.now(), PAIR_CD: 90000, LINE_CD: 600000, AMB_MS: 120000, at: 0};
+  const WM_TOUCH = /^(?:meets|interactwith|arrivesat|passes|remembers)$/;
+  function loadWM(){ fetch('data/world_facts.json?t=' + Date.now(), {cache: 'no-store'}).then(r => r.ok ? r.json() : null).then(d => {
+    if(!d || !Array.isArray(d.consequences)) return;
+    const ok = c => c && c.id && /^[a-z][a-z0-9_]*\.[a-z]+\(/.test(String(c.code || '')) && !/\bcut\d+\b/.test(String(c.code));
+    WM.cons = d.consequences.concat(Array.isArray(d.memories) ? d.memories : []).filter(ok).sort((x, y) => String(x.ts || '') < String(y.ts || '') ? -1 : 1);
+    WM.alias = d.alias || {}; WM.at = Date.now(); }).catch(()=>{}); }
+  loadWM(); setInterval(loadWM, 300000);
+  const wmName = n => (WM.alias && WM.alias[n]) || n;
+  function wmPick(a, b){
+    const A = a == null ? null : wmName(a), B = b == null ? null : wmName(b), now = Date.now(); let best = null;
+    for(let i = WM.cons.length - 1; i >= 0; i--){
+      const c = WM.cons[i]; if(now - (WM.shown.get(c.id) || 0) < WM.LINE_CD) continue;
+      const h = A == null ? 1 : ((c.a === A && c.b === B) || (c.a === B && c.b === A)) ? 2 : (c.a === A || c.b === A || c.a === B || c.b === B) ? 1 : 0;
+      if(h && (!best || h > best.h)) best = {c, h}; if(best && (best.h === 2 || A == null)) break;
+    }
+    return best;
+  }
+  function wmSay(c){
+    WM.shown.set(c.id, Date.now());
+    MEET.q.push({t: String(c.code).replace(/;?\s*$/, ';').slice(0, 160), verb: 'consequence', at: Date.now(), info: {wm: c}});
+    MEET.q.sort((x, y) => (PRI[y.verb] || 0) - (PRI[x.verb] || 0) || x.at - y.at); if(MEET.q.length > 4) MEET.q.length = 4;
+  }
+  function wmOnMeet(a, b){
+    if(!WM.cons.length) return; const k = [wmName(a), wmName(b)].sort().join('~'), now = Date.now();
+    if(now - (WM.pair.get(k) || 0) < WM.PAIR_CD) return;
+    const p = wmPick(a, b); if(!p || (p.h < 2 && Math.random() < .5)) return;
+    WM.pair.set(k, now); wmSay(p.c);
+  }
+  function wmAmbient(now){
+    if(!WM.cons.length || now - WM.lastAmb < WM.AMB_MS || MEET.q.length || now - MEET.lastOut < 20000 || Math.random() > .1) return;
+    WM.lastAmb = now; const p = wmPick(null, null); if(p) wmSay(p.c);
+  }
+  S.wmPick = wmPick; S.meetSay = say;
   function meetTick(){
     if(paused()) return;
     const W0 = vw(), H0 = vh(), now = Date.now(), pts = [];
@@ -1037,6 +1078,7 @@
       P.gap = gap; P.seen = now;
     }
     MEET.pairs.forEach((P, k) => { if(!seen.has(k) && now - P.seen > 120000) MEET.pairs.delete(k); });
+    try{ wmAmbient(now); }catch(e){}
     flushMeet();
   }
   S.meetTick = meetTick; S.nameOf = nameOf;
@@ -1090,7 +1132,8 @@
     if(el.textContent !== text) el.textContent = text;
     return el;
   }
-  const SHOWN = S.shownTags = new Map(), TAG_MS = 3000, FADE_MS = 800; // cut -> shown at let tapD = null;
+  const SHOWN = S.shownTags = new Map(), TAG_MS = 3000, FADE_MS = 800; // cut -> shown at
+  let tapD = null; // (was swallowed by the comment above: every pointerdown threw 'tapD is not defined')
   function cutAt(t){ if(!t || !t.closest) return null; let best = null; S.cuts.forEach(c => { if(!best && c.el && c.el.isConnected && (c.el === t || c.el.contains(t))) best = c; }); return best; }
   addEventListener('pointerdown', e => { if(e.isPrimary === false) return; tapD = {x: e.clientX, y: e.clientY, t: performance.now(), c: cutAt(e.target), m: false}; }, {capture: true, passive: true});
   addEventListener('pointermove', e => { if(tapD && Math.hypot(e.clientX - tapD.x, e.clientY - tapD.y) >= 6) tapD.m = true; }, {capture: true, passive: true});
