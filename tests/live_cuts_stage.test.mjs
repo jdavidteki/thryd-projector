@@ -39,3 +39,6 @@ test('every cut and frame gets a name tag with no click, tap or hover', () => {
   const tags = src.slice(src.indexOf('// ---------- name tags'), src.indexOf('// ---------- tweets'));
   assert.doesNotMatch(tags, /addEventListener\(|onclick|pointerdown|mouseenter|:hover/);
 });
+test('a regenerated version keeps its name with a ·N marker', () => {
+  assert.ok(src.includes("n.replace(/\\u00b7\\d+$/, '')"));
+});

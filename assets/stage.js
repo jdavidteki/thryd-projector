@@ -1067,7 +1067,7 @@
     if(!n && g && /^chips:/.test(String(g.mid))) n = snk(lab);
     if(!n) n = nameOf(c);
     if(!n && f) n = f + (PERSONISH.test(String(c.klass || '').toLowerCase()) ? '_figure' : '_subject');
-    if(n && (/^cut\d*$/.test(n) || /\d/.test(n))) n = f ? f + '_subject' : null;
+    if(n && (/^cut\d*$/.test(n) || /\d/.test(n.replace(/\u00b7\d+$/, '')))) n = f ? f + '_subject' : null; // a ·N version marker is allowed
     return (c._tag = n || null);
   }
   S.tagName = tagName; S.frameName = frameName;
