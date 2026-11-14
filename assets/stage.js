@@ -45,6 +45,11 @@
   const PG_MAX = (PHONE ? 6 : 16) * 1048576;  // one group's sprite frames; bigger ones are drawn at a lower resolution
   const INFLIGHT = PHONE ? 1 : 2;             // groups decoding at the same time (in the decode worker, off the main thread)
   const BG_P = PHONE ? 0.8 : 0.9;             // share of groups that get the faded source-frame backdrop (covers the gaps)
+  // live views (Jesuye 14 Nov 2026 8:52 AM ET): newest final jN GIFs jump the queue and stay ~2.5× as long as a normal cut
+  const LIVE_DWELL_K = 2.5;                    // vs a normal group life of 30–50s (phone) or 35–70s (desktop)
+  const LIVE_POLL_MS = 45000;                  // at most as often as the data loop; do not poll faster
+  const LIVE_KEEP = 3;                         // most recent 1–3 of the current agenda recur more often than ordinary cuts
+  S.LIVE_DWELL_K = LIVE_DWELL_K; S.LIVE_POLL_MS = LIVE_POLL_MS; S.LIVE_KEEP = LIVE_KEEP;
   const DPR = Math.min(root.devicePixelRatio || 1, PHONE ? 1 : 1.25);
   const vw = ()=> root.innerWidth || 1280, vh = ()=> root.innerHeight || 720;
   const R = (a, b)=> a + Math.random() * (b - a);
@@ -68,6 +73,8 @@
     '#gstage .gbg.on{opacity:1}',
     '#gstage .gbg.gm{-webkit-mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 45%,transparent 100%);mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 45%,transparent 100%)}', // main-thread fallback only
     '#gstage .gbg.gm.on{opacity:.34}',
+    '#gstage .gbg.glive.on{opacity:.34;filter:saturate(.9)}',
+    '#gstage img.gcut,#gstage img.gbg{display:block;max-width:none;-webkit-user-drag:none}',
     '#gstage .gcut{position:absolute;pointer-events:auto;touch-action:none;cursor:grab;transform-origin:50% 85%;user-select:none;will-change:transform,translate,opacity;backface-visibility:hidden}',
     '#gstage .gcut.fl{animation:mcfloat var(--fd,7s) ease-in-out var(--fdl,0s) infinite}',
     '#gstage .gcut[data-dragging="1"]{animation:none;cursor:grabbing;z-index:9999!important}',
@@ -381,7 +388,7 @@
   function spawn(row, L){
     const pos = placeGroup(L.Dw, L.Dh); const v = view();
     const g = {mid: row.medium_image_id, row, kind: L.kind, x: pos.gx, y: pos.gy, w: L.Dw, h: L.Dh, k: L.k, fw: L.fw, fh: L.fh,
-      title: row.title || titleOf(row.medium_image_id), agenda: !!row.agenda, run: row.run || null, card: row.card || null, born: Date.now(), life: (PHONE ? R(30, 50) : R(35, 70)) * 1000, cuts: [], gone: false, offSince: 0, sha: row.source_sha256 || '', ver: row.pack_version || '1'};
+      title: row.title || titleOf(row.medium_image_id), agenda: !!row.agenda, live: !!row.live_view, run: row.run || null, card: row.card || null, born: Date.now(), life: (PHONE ? R(30, 50) : R(35, 70)) * 1000 * (row.live_view ? LIVE_DWELL_K : 1), cuts: [], gone: false, offSince: 0, sha: row.source_sha256 || '', ver: row.pack_version || '1'};
     if(L.bg){
       const c = document.createElement('canvas'); c.className = 'gbg' + (L.bgMask ? ' gm' : ''); c.width = L.bg.width; c.height = L.bg.height;
       c.getContext('2d').drawImage(L.bg, 0, 0); L.bg.close && L.bg.close();
@@ -390,17 +397,32 @@
       bgs.appendChild(c); g.bgEl = c; S.bytes += c.width * c.height * 4; g.bgBytes = c.width * c.height * 4;
       g.bx = 0; g.by = 0; g.bvx = 0; g.bvy = 0; bgRetarget(g, performance.now());
       setTimeout(()=> c.classList.add('on'), 60);
+    } else if(L.kind === 'live_view' && row.url){
+      const c = document.createElement('img'); c.className = 'gbg glive'; c.alt = ''; c.draggable = false; c.src = row.url;
+      const E = PHONE ? 0.22 : 0.28;
+      Object.assign(c.style, {left: (g.x - g.w * E) + 'px', top: (g.y - g.h * E) + 'px', width: (g.w * (1 + 2 * E)) + 'px', height: (g.h * (1 + 2 * E)) + 'px'});
+      bgs.appendChild(c); g.bgEl = c; g.bgBytes = 0;
+      g.bx = 0; g.by = 0; g.bvx = 0; g.bvy = 0; bgRetarget(g, performance.now());
+      setTimeout(()=> c.classList.add('on'), 60);
     }
     if(g.title){ const t = document.createElement('div'); t.className = 'gtag'; t.textContent = String(g.title).slice(0, 60); Object.assign(t.style, {left: (g.x + g.w / 2) + 'px', top: (g.y + g.h + 6) + 'px'}); cutsL.appendChild(t); g.tag = t;
       setTimeout(()=> t.classList.add('on'), 2500); setTimeout(()=> t.classList.remove('on'), 11000); }
     // directions (11-12 11:41 PM): each story walks in along a random heading from any edge or corner (no left-to-right bias)
     const ang = g.inAng = Math.random() * Math.PI * 2;
     L.objs.forEach((x, j) => {
-      const fr = L.frames[j]; if(!fr.length) return;
-      const c = document.createElement('canvas'); c.className = 'gcut' + (RM ? '' : ' fl'); c.width = fr[0].width; c.height = fr[0].height;
-      const ctx = c.getContext('2d'); ctx.drawImage(fr[0], 0, 0);
-      const cut = {ctx, sid: x.o.state_id || null, g, home: g, el: c, frames: fr, label: x.o.label || ('cut' + (x.k + 1)), klass: x.o.model_class || x.o.label || null, i: x.k, U: x.U,
-        w: x.U.w * g.k, h: x.U.h * g.k, hx: g.x + x.U.x * g.k, hy: g.y + x.U.y * g.k, entering: true, bytes: bytesOf(fr), area: (x.U.w * x.U.h) / (g.fw * g.fh)};
+      const fr = L.frames[j] || []; const isLive = L.kind === 'live_view';
+      if(!isLive && !fr.length) return;
+      let c, ctx = null;
+      if(isLive){
+        c = (j === 0 && L.img) ? L.img : document.createElement('img');
+        if(c !== L.img) c.src = (L.img && L.img.src) || row.url;
+        c.className = 'gcut' + (RM ? '' : ' fl'); c.alt = ''; c.draggable = false;
+      } else {
+        c = document.createElement('canvas'); c.className = 'gcut' + (RM ? '' : ' fl'); c.width = fr[0].width; c.height = fr[0].height;
+        ctx = c.getContext('2d'); ctx.drawImage(fr[0], 0, 0);
+      }
+      const cut = {ctx, sid: x.o.state_id || null, g, home: g, el: c, frames: isLive ? [] : fr, label: x.o.label || ('cut' + (x.k + 1)), klass: x.o.model_class || x.o.label || null, i: x.k, U: x.U,
+        w: x.U.w * g.k, h: x.U.h * g.k, hx: g.x + x.U.x * g.k, hy: g.y + x.U.y * g.k, entering: true, bytes: isLive ? 0 : bytesOf(fr), area: (x.U.w * x.U.h) / (g.fw * g.fh)};
       cut.left = cut.hx; cut.top = cut.hy;
       Object.assign(c.style, {left: cut.left + 'px', top: cut.top + 'px', width: cut.w + 'px', height: cut.h + 'px', zIndex: String(10 + Math.round(x.U.y + x.U.h))});
       c.style.setProperty('--fd', R(5.5, 9).toFixed(2) + 's'); c.style.setProperty('--fdl', (-R(0, 6)).toFixed(2) + 's');
@@ -424,7 +446,7 @@
     S.recent.push(g.mid); if(S.recent.length > 40) S.recent.shift();
     S.maxSeen = Math.max(S.maxSeen, S.cuts.length);
     note('spawn', g.mid, L.kind, g.cuts.length + ' cuts', 'on stage ' + S.cuts.length + '/' + CAP, g.title || '');
-    if(L.animated) animate(g, L.delays);
+    if(L.animated && L.kind !== 'live_view') animate(g, L.delays);
     setTimeout(()=> carry(g), 6000 + Math.random() * 3000); // once it has walked in, earlier moves of the same object carry over here
   }
   // ---------- move carry-over: projector.js thrydMoves.fireFor(scene, objects) is the default page's consequence step
@@ -695,10 +717,140 @@
     return true;
   }
   function refill(){ if(paused()) return; while(S.ready.length && place(S.ready[0])); spawnOne(); }
+
+  // ---------- live views (data/live_views.json, published by the 45 s cmd loop). A view the device has not
+  // seen yet is shown next, without waiting for the no-repeat Medium deck to cycle. The most recent 1–3 of
+  // the current agenda (or the newest views overall if that agenda has none yet) come back more often.
+  // Ids live in their own space, so they never write thryd_seen_cuts_v1 or steal a deck slot.
+  const LV_URLS = ['data/live_views.json', 'https://raw.githubusercontent.com/jdavidteki/thryd-projector/main/data/live_views.json'];
+  const LV = S.liveViews = {list: [], seen: {}, pending: [], activeRun: null, at: 0, src: ''};
+  function liveId(v){ return (v && (v.id || ('live:' + v.run + ':' + v.card))) || ''; }
+  function liveOk(v){
+    if(!v || !v.url || !v.card) return false;
+    const card = String(v.card), url = String(v.url);
+    if(!/^j\d+$/.test(card)) return false;
+    if(/(cartoon|preview|plate|_src|_diff)/i.test(url) || /(?:cartoon|preview|plate|_src|_diff)/i.test(card)) return false;
+    return true;
+  }
+  function recentLive(n){
+    const run = LV.activeRun;
+    let pool = LV.list.filter(v => run && v.run === run);
+    if(!pool.length) pool = LV.list.slice();
+    return pool.slice().sort((a, b) => (b.mtime || 0) - (a.mtime || 0)).slice(0, n || LIVE_KEEP);
+  }
+  function liveOn(id){
+    return S.groups.some(g => !g.gone && g.mid === id) || S.ready.some(it => it.row && it.row.medium_image_id === id) || LV.pending.some(v => liveId(v) === id);
+  }
+  function roomForLive(){
+    while((S.cuts.length + 1 > CAP || S.groups.length >= MAX_GROUPS) && S.groups.length){
+      const old = S.groups.filter(g => !g.live && !g.cuts.some(c => c.dragging)).sort((a, b) => a.born - b.born)[0];
+      if(!old) break;
+      exitGroup(old, true);
+    }
+  }
+  function enqueueLive(v, front){
+    if(!v || !liveOk(v)) return;
+    const id = liveId(v); v.id = id;
+    if(liveOn(id) || S.bad.has(id)) return;
+    if(LV.pending.some(p => liveId(p) === id)) return;
+    if(front) LV.pending.unshift(v); else LV.pending.push(v);
+  }
+  function wantLive(){
+    const rec = recentLive(LIVE_KEEP);
+    if(!rec.length) return null;
+    const on = rec.filter(v => liveOn(liveId(v)));
+    const free = rec.filter(v => !liveOn(liveId(v)) && !S.bad.has(liveId(v)));
+    if(!free.length) return null;
+    if(on.length === 0) return free[0];
+    if(on.length < Math.min(LIVE_KEEP, rec.length) && Math.random() < 0.45) return free[0];
+    return null;
+  }
+  function loadLiveView(v){
+    return new Promise((ok, no) => {
+      const img = new Image();
+      img.decoding = 'async';
+      img.onload = () => {
+        const fw = img.naturalWidth || img.width, fh = img.naturalHeight || img.height;
+        if(!fw || !fh) return no(new Error('live_view_size'));
+        let Dh = vh() * (PHONE ? R(0.28, 0.42) : R(0.32, 0.50)), k = Dh / fh;
+        if(fw * k > vw() * (PHONE ? 0.72 : 0.55)) k = vw() * (PHONE ? 0.72 : 0.55) / fw;
+        Dh = fh * k; const Dw = fw * k;
+        const U = {x: 0, y: 0, w: fw, h: fh};
+        const row = {medium_image_id: liveId(v), title: v.title || ((v.card || '') + ' · ' + (v.run || '')), agenda: false, live_view: true, run: v.run, card: v.card, url: v.url, mtime: v.mtime};
+        const L = {plan: {}, fw, fh, k, Dw, Dh, s: 1, objs: [{o: {label: v.card || 'view', model_class: 'live_view', state_id: null}, k: 0, U}], frames: [[]], delays: [0], bg: null, animated: true, kind: 'live_view', img};
+        ok({row, L});
+      };
+      img.onerror = () => no(new Error('live_view_fetch'));
+      img.src = v.url;
+    });
+  }
+  async function spawnLive(v){
+    const id = liveId(v);
+    if(!id || liveOn(id) || S.bad.has(id)) return false;
+    if(S.loading >= INFLIGHT){ enqueueLive(v, true); return false; }
+    S.loading++;
+    try{
+      const A = await loadLiveView(v);
+      if(paused() || S.groups.some(g => !g.gone && g.mid === A.row.medium_image_id)){
+        try{ A.L.img && (A.L.img.src = ''); }catch(e){}
+        return false;
+      }
+      roomForLive();
+      spawn(A.row, A.L);
+      note('live view', A.row.medium_image_id, A.row.title || '');
+      return true;
+    }catch(e){
+      S.bad.add(id); note('live view skip', id, String(e && e.message || e));
+      return false;
+    }finally{ S.loading--; }
+  }
+  async function pollLiveViews(){
+    let d = null, src = '';
+    for(const u of LV_URLS){
+      try{ const r = await fetch(u + '?t=' + Date.now(), {cache: 'no-store'}); if(r.ok){ d = await r.json(); src = u.startsWith('http') ? 'raw' : 'pages'; break; } }catch(e){}
+    }
+    if(!d || !Array.isArray(d.views)) return;
+    LV.src = src; LV.at = Date.now(); LV.activeRun = d.active_run || null;
+    const list = d.views.filter(liveOk).map(v => { v.id = liveId(v); return v; });
+    LV.list = list;
+    const first = !Object.keys(LV.seen).length;
+    const fresh = [];
+    list.forEach(v => {
+      const prev = LV.seen[v.id];
+      const newer = !prev || ((v.mtime || 0) > (prev.mtime || 0)) || (v.sha256 && prev.sha256 && v.sha256 !== prev.sha256);
+      if(newer) fresh.push(v);
+    });
+    if(first){
+      list.forEach(v => { LV.seen[v.id] = {mtime: v.mtime || 0, sha256: v.sha256 || ''}; });
+      recentLive(LIVE_KEEP).slice().reverse().forEach(v => enqueueLive(v, true));
+    } else {
+      fresh.sort((a, b) => (b.mtime || 0) - (a.mtime || 0)).forEach(v => {
+        LV.seen[v.id] = {mtime: v.mtime || 0, sha256: v.sha256 || ''};
+        enqueueLive(v, true);
+      });
+    }
+    if(LV.pending.length && !paused()) spawnOne();
+  }
+  S.pollLiveViews = pollLiveViews; S.enqueueLive = enqueueLive; S.recentLive = recentLive;
+
   async function spawnOne(){
-    if(S.loading >= INFLIGHT || !manifest) return;
+    if(S.loading >= INFLIGHT) return;
+    // newest live views go first, even if the Medium deck is mid-cycle or the manifest is still loading
+    if(LV.pending.length){
+      const v = LV.pending.shift();
+      await spawnLive(v);
+      if(!paused()) setTimeout(spawnOne, 50);
+      return;
+    }
+    if(!manifest) return;
     if(S.ready.length >= READY || S.cuts.length >= CAP || S.bytes > BUDGET * .9) return;
     if(S.groups.length + S.ready.length >= MAX_GROUPS && S.cuts.length >= CAP - 2) return;
+    const prefer = wantLive();
+    if(prefer){
+      await spawnLive(prefer);
+      if(!paused()) setTimeout(spawnOne, 50);
+      return;
+    }
     let agKey = null, chips = false;
     const agOn = S.cuts.filter(c => c.home && c.home.agenda).length; // agenda cuts keep to ~40 % of the stage; Medium and X cuts keep the rest
     if((AG.keys.length || AG.runs.length) && agOn < CAP * .4 && Math.random() < AG_P){ chips = (AG.runs.length || AG.state) && (Math.random() < .6 || !AG.keys.length); if(!chips) agKey = pickAgenda(); }
@@ -958,6 +1110,7 @@
     L._stage = true;
   })(0);
 
+  pollLiveViews(); setInterval(pollLiveViews, LIVE_POLL_MS);
   MC.loadManifest().then(m => { manifest = m || {assets: []}; note('manifest', (manifest.assets || []).length + ' assets'); spawner();
     let q = S.pendingLib; try{ q = q || new URLSearchParams(location.search).get('mlib'); }catch(e){} if(q) showOnStage(String(q).trim()); }).catch(()=>{ manifest = {assets: []}; });
 })(typeof window !== 'undefined' ? window : globalThis);
