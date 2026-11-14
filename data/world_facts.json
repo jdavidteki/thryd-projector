@@ -580,6 +580,16 @@
 "other": null
 },
 {
+"id": "wf_092f0f920c",
+"kind": "consequence",
+"text": "A Pure water cooler note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the yaba bookshop, and Bisola reads the name twice.",
+"code": "yaba_bookshop.remembers(ejiro, 'juju code');",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j2",
+"other": "pure_water_cooler"
+},
+{
 "id": "wt_ad3997f7d4",
 "kind": "consequence",
 "text": "The nla agbara figure walks into the Yaba bookshop asking for whoever left a brown envelope at the counter, and Taiwo pretends not to know Bisola's name.",
@@ -969,6 +979,66 @@
 "card": "j8",
 "other": "ikeja_laundromat"
 }
+],
+"people_scene": [
+{
+"id": "wf_2736b6263e",
+"kind": "consequence",
+"text": "The people scene leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
+"code": "people_scene.receives(ttb.note);",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j2",
+"other": "ttb"
+}
+],
+"ronke_tray": [
+{
+"id": "wf_bfceb5b216",
+"kind": "consequence",
+"text": "The ronke tray leaves with an Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am.",
+"code": "ronke_tray.receives(ikeja_laundromat.receipt);",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j8",
+"other": "ikeja_laundromat"
+}
+],
+"president_nigeria": [
+{
+"id": "wf_8c9f8376ae",
+"kind": "consequence",
+"text": "The president nigeria leaves with an Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am.",
+"code": "president_nigeria.receives(ikeja_laundromat.receipt);",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j8",
+"other": "ikeja_laundromat"
+}
+],
+"imm": [
+{
+"id": "wf_a90fa856d1",
+"kind": "consequence",
+"text": "The imm leaves with a Kerosene lamp note with Ronke's name and 'plastic sheet' on it.",
+"code": "imm.receives(kerosene_lamp.note);",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j4",
+"other": "kerosene_lamp"
+}
+],
+"off_key": [
+{
+"id": "wf_329888ce21",
+"kind": "consequence",
+"text": "The off key leaves with a Nla agbara figure receipt with Bisola's name and 'brown envelope' on it.",
+"code": "yaba_bookshop.interactwith(off_key){ off_key.receives(yaba_bookshop.envelope); off_key.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j4",
+"other": "yaba_bookshop"
+}
 ]
 },
 "consequences": [
@@ -1070,6 +1140,72 @@
 "author": "cos",
 "run": "run-b9b963",
 "card": "j8"
+},
+{
+"id": "wf_2736b6263e",
+"ts": "2026-11-14T15:39:11-0500",
+"a": "ttb",
+"b": "people_scene",
+"code": "people_scene.receives(ttb.note);",
+"text": "The people scene leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j2"
+},
+{
+"id": "wf_bfceb5b216",
+"ts": "2026-11-14T15:39:58-0500",
+"a": "ikeja_laundromat",
+"b": "ronke_tray",
+"code": "ronke_tray.receives(ikeja_laundromat.receipt);",
+"text": "The ronke tray leaves with an Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j8"
+},
+{
+"id": "wf_8c9f8376ae",
+"ts": "2026-11-14T15:40:45-0500",
+"a": "ikeja_laundromat",
+"b": "president_nigeria",
+"code": "president_nigeria.receives(ikeja_laundromat.receipt);",
+"text": "The president nigeria leaves with an Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j8"
+},
+{
+"id": "wf_092f0f920c",
+"ts": "2026-11-14T15:41:32-0500",
+"a": "pure_water_cooler",
+"b": "yaba_bookshop",
+"code": "yaba_bookshop.remembers(ejiro, 'juju code');",
+"text": "A Pure water cooler note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the yaba bookshop, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j2"
+},
+{
+"id": "wf_a90fa856d1",
+"ts": "2026-11-14T15:42:19-0500",
+"a": "kerosene_lamp",
+"b": "imm",
+"code": "imm.receives(kerosene_lamp.note);",
+"text": "The imm leaves with a Kerosene lamp note with Ronke's name and 'plastic sheet' on it.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j4"
+},
+{
+"id": "wf_329888ce21",
+"ts": "2026-11-14T15:44:42-0500",
+"a": "yaba_bookshop",
+"b": "off_key",
+"code": "yaba_bookshop.interactwith(off_key){ off_key.receives(yaba_bookshop.envelope); off_key.remembers(bisola, 'brown envelope'); }",
+"text": "The off key leaves with a Nla agbara figure receipt with Bisola's name and 'brown envelope' on it.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j4"
 }
 ],
 "memories": [
@@ -1107,5 +1243,5 @@
 "card": "j3"
 }
 ],
-"updated": "2026-11-14T15:39:02-0500"
+"updated": "2026-11-14T15:44:42-0500"
 }
