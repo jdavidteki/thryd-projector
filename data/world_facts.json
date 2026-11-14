@@ -1329,6 +1329,16 @@
 "run": "run-b9b963",
 "card": "j4",
 "other": "imm"
+},
+{
+"id": "wf_40c03caeb2",
+"kind": "consequence",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the plastic sheet at the bicycle, and Ronke reads the name twice.",
+"code": "game.interactwith(bicycle){ bicycle.receives(game.code); bicycle.remembers(ejiro, 'juju code'); bicycle.tucks(game, 'ttb note into the plastic sheet'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j2",
+"other": "game"
 }
 ],
 "ronke": [
@@ -1433,6 +1443,16 @@
 "run": "run-b9b963",
 "card": "w7",
 "other": "matches"
+},
+{
+"id": "wf_4a4dc4749d",
+"kind": "consequence",
+"text": "A Kerosene lamp note with Ronke's name and 'plastic sheet' on it, turns up with the matches, which is still found.",
+"code": "imm.interactwith(laptop){ laptop.receives(imm.sheet); laptop.remembers(ronke, 'plastic sheet'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j4",
+"other": "imm"
 }
 ],
 "game": [
@@ -1605,28 +1625,6 @@
 ]
 },
 "consequences": [
-{
-"id": "wf_ef697af083",
-"ts": "2026-11-14T16:19:34-0500",
-"a": "ikeja_laundromat",
-"b": "danfo_speaker",
-"code": "ikeja_laundromat.interactwith(danfo_speaker){ danfo_speaker.receives(ikeja_laundromat.code); danfo_speaker.remembers(ejiro, 'juju code'); }",
-"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up with the streetlights, which is still all dead since 7:35pm.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j2"
-},
-{
-"id": "wf_0dbe823f82",
-"ts": "2026-11-14T16:28:21-0500",
-"a": "matches",
-"b": "tie",
-"code": "matches.interactwith(tie){ matches.db.copyto(tie); tie.keeps(matches, 'matches, still found'); }",
-"text": "The matches ends up with the tie, still found.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "w7"
-},
 {
 "id": "wf_23c7eb7afb",
 "ts": "2026-11-14T16:31:06-0500",
@@ -2044,6 +2042,28 @@
 "author": "cos",
 "run": "run-b9b963",
 "card": "j6"
+},
+{
+"id": "wf_4a4dc4749d",
+"ts": "2026-11-14T17:43:37-0500",
+"a": "imm",
+"b": "laptop",
+"code": "imm.interactwith(laptop){ laptop.receives(imm.sheet); laptop.remembers(ronke, 'plastic sheet'); }",
+"text": "A Kerosene lamp note with Ronke's name and 'plastic sheet' on it, turns up with the matches, which is still found.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j4"
+},
+{
+"id": "wf_40c03caeb2",
+"ts": "2026-11-14T17:48:23-0500",
+"a": "game",
+"b": "bicycle",
+"code": "game.interactwith(bicycle){ bicycle.receives(game.code); bicycle.remembers(ejiro, 'juju code'); bicycle.tucks(game, 'ttb note into the plastic sheet'); }",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the plastic sheet at the bicycle, and Ronke reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j2"
 }
 ],
 "memories": [
@@ -2114,5 +2134,5 @@
 "card": "j6"
 }
 ],
-"updated": "2026-11-14T17:38:45-0500"
+"updated": "2026-11-14T17:48:23-0500"
 }
