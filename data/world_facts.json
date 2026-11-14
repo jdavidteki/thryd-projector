@@ -570,16 +570,6 @@
 ],
 "yaba_bookshop": [
 {
-"id": "wf_3c64d4cd41",
-"kind": "memory",
-"text": "7:40am, Wednesday 12 January 2056: Bisola stands at the counter with a brown envelope. The yaba bookshop keeps it on file.",
-"code": "yaba_bookshop.remembers(bisola, 'brown envelope');",
-"author": "cos",
-"run": "run-9e3e84",
-"card": "j6",
-"other": null
-},
-{
 "id": "wf_da87c8eec4",
 "kind": "memory",
 "text": "7:40am, Wednesday 12 January 2056: Taiwo is shelving paperbacks by the window. The yaba bookshop keeps it on file.",
@@ -610,6 +600,16 @@
 "other": "ttb"
 },
 {
+"id": "wf_4062ac4b09",
+"kind": "consequence",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the yaba bookshop, and Bisola reads the name twice.",
+"code": "pure_water_cooler.interactwith(yaba_bookshop){ yaba_bookshop.receives(pure_water_cooler.code); … }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j2",
+"other": "pure_water_cooler"
+},
+{
 "id": "wt_ad3997f7d4",
 "kind": "consequence",
 "text": "The nla agbara figure walks into the Yaba bookshop asking for whoever left a brown envelope at the counter, and Taiwo pretends not to know Bisola's name.",
@@ -621,16 +621,6 @@
 }
 ],
 "oshodi_bus_shelter": [
-{
-"id": "wf_3ece5fb4fb",
-"kind": "memory",
-"text": "6:10pm, Thursday 12 November 2026: Iffy sits on the bench with a phone at ten percent. The oshodi bus shelter keeps it on file.",
-"code": "oshodi_bus_shelter.remembers(iffy, 'phone');",
-"author": "cos",
-"run": "run-9e3e84",
-"card": "j2",
-"other": null
-},
 {
 "id": "wf_cacb0d6656",
 "kind": "memory",
@@ -660,6 +650,16 @@
 "run": "run-b9b963",
 "card": "j1",
 "other": "egbe"
+},
+{
+"id": "wf_d323d06c91",
+"kind": "consequence",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the timetable at the oshodi bus shelter, and Kunle reads the name twice.",
+"code": "ttb.interactwith(oshodi_bus_shelter){ oshodi_bus_shelter.receives(ttb.code); … }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j2",
+"other": "ttb"
 },
 {
 "id": "wt_e2a4bd1320",
@@ -832,6 +832,16 @@
 "run": "run-b9b963",
 "card": "j6",
 "other": "isl"
+},
+{
+"id": "wf_2f28f3815c",
+"kind": "consequence",
+"text": "An Oshodi bus shelter ticket stub with Kunle's name and 'timetable' on it, turns up inside the brown envelope at the red white cap, and Bisola reads the name twice.",
+"code": "matches.interactwith(red_white_cap){ red_white_cap.receives(matches.timetable); … }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j4",
+"other": "matches"
 }
 ],
 "streetlights": [
@@ -1295,31 +1305,21 @@
 "card": "j2",
 "other": "ikeja_laundromat"
 }
+],
+"sheep": [
+{
+"id": "wf_636ce19541",
+"kind": "consequence",
+"text": "The sheep leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
+"code": "ttb.interactwith(sheep){ sheep.receives(ttb.code); sheep.remembers(ejiro, 'juju code'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j2",
+"other": "ttb"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_461478dd0d",
-"ts": "2026-11-14T15:33:42-0500",
-"a": "yaba_bookshop",
-"b": "plastic_sheet",
-"code": "plastic_sheet.receives(yaba_bookshop.receipt);",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the plastic sheet, which is still wet.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j6"
-},
-{
-"id": "wf_c89c54d265",
-"ts": "2026-11-14T15:33:42-0500",
-"a": "yaba_bookshop",
-"b": "isl",
-"code": "isl.receives(yaba_bookshop.receipt);",
-"text": "The isl leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j6"
-},
 {
 "id": "wf_f55c447e7a",
 "ts": "2026-11-14T15:33:42-0500",
@@ -1715,6 +1715,50 @@
 "author": "cos",
 "run": "run-b9b963",
 "card": "j4"
+},
+{
+"id": "wf_d323d06c91",
+"ts": "2026-11-14T16:40:58-0500",
+"a": "ttb",
+"b": "oshodi_bus_shelter",
+"code": "ttb.interactwith(oshodi_bus_shelter){ oshodi_bus_shelter.receives(ttb.code); … }",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the timetable at the oshodi bus shelter, and Kunle reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j2"
+},
+{
+"id": "wf_4062ac4b09",
+"ts": "2026-11-14T16:42:32-0500",
+"a": "pure_water_cooler",
+"b": "yaba_bookshop",
+"code": "pure_water_cooler.interactwith(yaba_bookshop){ yaba_bookshop.receives(pure_water_cooler.code); … }",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the yaba bookshop, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j2"
+},
+{
+"id": "wf_2f28f3815c",
+"ts": "2026-11-14T16:44:06-0500",
+"a": "matches",
+"b": "red_white_cap",
+"code": "matches.interactwith(red_white_cap){ red_white_cap.receives(matches.timetable); … }",
+"text": "An Oshodi bus shelter ticket stub with Kunle's name and 'timetable' on it, turns up inside the brown envelope at the red white cap, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j4"
+},
+{
+"id": "wf_636ce19541",
+"ts": "2026-11-14T16:44:53-0500",
+"a": "ttb",
+"b": "sheep",
+"code": "ttb.interactwith(sheep){ sheep.receives(ttb.code); sheep.remembers(ejiro, 'juju code'); }",
+"text": "The sheep leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j2"
 }
 ],
 "memories": [
@@ -1752,5 +1796,5 @@
 "card": "j3"
 }
 ],
-"updated": "2026-11-14T16:37:39-0500"
+"updated": "2026-11-14T16:44:53-0500"
 }
