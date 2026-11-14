@@ -987,16 +987,6 @@
 ],
 "yaba_bukka_counter": [
 {
-"id": "wf_1484a43722",
-"kind": "consequence",
-"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the yaba bukka counter, and Bisola reads the name twice.",
-"code": "people_scene.interactwith(yaba_bukka_counter){ yaba_bukka_counter.receives(people_scene.code); … }",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j2",
-"other": "people_scene"
-},
-{
 "id": "wf_20ca3bc397",
 "kind": "consequence",
 "text": "A Kerosene lamp note with Ronke's name and 'plastic sheet' on it, turns up inside the juju code at the yaba bukka counter, and Ejiro reads the name twice.",
@@ -1035,6 +1025,16 @@
 "run": "run-b9b963",
 "card": "j6",
 "other": "red_white_cap"
+},
+{
+"id": "wf_b57aee45bf",
+"kind": "consequence",
+"text": "An Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997, turns up inside the brown envelope at the yaba bukka counter, and Bisola reads the name twice.",
+"code": "agbada.interactwith(yaba_bukka_counter){ yaba_bukka_counter.receives(agbada.joke); … }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j1",
+"other": "agbada"
 }
 ],
 "festac_bead_stall": [
@@ -1572,17 +1572,6 @@
 },
 "consequences": [
 {
-"id": "wf_68131df973",
-"ts": "2026-11-14T16:14:46-0500",
-"a": "reality",
-"b": "danfo_speaker",
-"code": "reality.interactwith(danfo_speaker){ reality.db.copyto(danfo_speaker); danfo_speaker.keeps(reality, 'streetlights, still all dead since 7:35pm'); }",
-"text": "The streetlights ends up with the danfo speaker, still all dead since 7:35pm.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "w6"
-},
-{
 "id": "wf_795c95df4f",
 "ts": "2026-11-14T16:15:40-0500",
 "a": "wwgbtaycbmba",
@@ -2010,6 +1999,17 @@
 "author": "cos",
 "run": "run-b9b963",
 "card": "j1"
+},
+{
+"id": "wf_b57aee45bf",
+"ts": "2026-11-14T17:25:14-0500",
+"a": "agbada",
+"b": "yaba_bukka_counter",
+"code": "agbada.interactwith(yaba_bukka_counter){ yaba_bukka_counter.receives(agbada.joke); … }",
+"text": "An Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997, turns up inside the brown envelope at the yaba bukka counter, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j1"
 }
 ],
 "memories": [
@@ -2069,5 +2069,5 @@
 "card": "j5"
 }
 ],
-"updated": "2026-11-14T17:22:48-0500"
+"updated": "2026-11-14T17:25:14-0500"
 }
