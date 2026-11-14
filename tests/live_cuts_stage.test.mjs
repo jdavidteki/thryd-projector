@@ -30,3 +30,12 @@ test('live cut groups do not use the Medium GIF slots, and a live view cools dow
   assert.match(src, /if\(g\.live\)\{ try\{ LV\.left\[g\.mid\] = Date\.now\(\); \}catch\(e\)\{\} \}/);
   assert.match(src, /!cooling\(liveId\(v\)\)/);
 });
+test('every cut and frame gets a name tag with no click, tap or hover', () => {
+  assert.match(src, /data\/frame_objects\.json/);
+  assert.match(src, /#gnames \.gn\{position:absolute;left:0;top:0;pointer-events:none/);
+  assert.match(src, /text-shadow:0 0 2px #000/);
+  assert.match(src, /function tagName\(c\)/);
+  assert.match(src, /function frameName\(g\)/);
+  const tags = src.slice(src.indexOf('// ---------- name tags'), src.indexOf('// ---------- tweets'));
+  assert.doesNotMatch(tags, /addEventListener\(|onclick|pointerdown|mouseenter|:hover/);
+});

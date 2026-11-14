@@ -953,7 +953,7 @@
   const SIDE = new Map(); // pack url -> {cut1: 'tie', ...}
   const GENERIC = /^(?:object|objects|foreground|background|thing|live_view|view|blurred.*|unknown|item|character)$/;
   const PERSONISH = /^(?:person|people|man|woman|figure)(?:[\s_]*\d*)$/;
-  const snk = t => String(t || '').toLowerCase().replace(/['\u2019]s\b/g, '').replace(/[^a-z]+/g, ' ').trim().split(/\s+/).filter(w => w && !/^(?:the|a|an|of|in|on|at)$/.test(w)).slice(0, 3).join('_');
+  const snk = t => String(t || '').toLowerCase().replace(/['\u2019]s\b/g, '').replace(/['\u2019]/g, '').replace(/[^a-z]+/g, ' ').trim().split(/\s+/).filter(w => w && !/^(?:the|a|an|of|in|on|at)$/.test(w)).slice(0, 3).join('_');
   function sideFor(g){
     const row = g && g.row; if(!row || !row.pack || row.live_view || g.agenda) return;
     const u = String(row.pack).replace(/\.json$/, '.objects.json'); if(SIDE.has(u)){ g.side = SIDE.get(u); return; }
@@ -998,7 +998,7 @@
     S.groups.forEach(g => { if(!g.side && !g.live && !g.agenda) sideFor(g); });
     S.cuts.forEach(c => {
       if(c.entering || c.leaving || !c.el || !c.el.isConnected || !c.home || c.home.gone) return;
-      const nm = nameOf(c), pl = placeOf(c); if(!nm && !pl) return;
+      const nm = c.home.live ? null : tagName(c), pl = placeOf(c); if(!nm && !pl) return; // same names as the tags
       const r = c.el.getBoundingClientRect(); if(r.width < 8 || r.height < 8 || r.right < 0 || r.bottom < 0 || r.left > W0 || r.top > H0) return;
       pts.push({c, nm, pl, r, z: +c.el.style.zIndex || 0, moving: !!(c.wan || c.dragging)});
     });
@@ -1041,6 +1041,77 @@
   }
   S.meetTick = meetTick; S.nameOf = nameOf;
   setInterval(()=>{ try{ meetTick(); }catch(e){} }, 1500);
+
+  // ---------- name tags (Jesuye 14 Nov 2026 10:11 AM ET): every cutout carries its object name under it and every frame / plate its
+  // frame name in a corner, lowercase snake_case, so a customer can type frame.object.method(). Names come from data/frame_objects.json
+  // (tools/export_frame_objects.py: live-view place, safe / scene title, sidecar class, objects_map / agenda labels); never cutN, no
+  // real people's names. No click, tap or hover: tags are pointer-events:none and only follow the pixels (read rects, then write).
+  const FO = S.frameObjects = {by: {}, chips: null, at: 0};
+  function loadFO(){ fetch('data/frame_objects.json?t=' + Date.now(), {cache: 'no-store'}).then(r => r.ok ? r.json() : null).then(d => {
+    if(!d || !d.by_scene) return; FO.by = d.by_scene; FO.at = Date.now();
+    FO.chips = null; Object.keys(d.frames || {}).forEach(f => { if((d.frames[f].scenes || []).some(x => /^chips:/.test(x))) FO.chips = f; });
+    S.cuts.forEach(c => { c._tag = undefined; }); S.groups.forEach(g => { g._ftag = undefined; }); }).catch(()=>{}); }
+  loadFO(); setInterval(loadFO, 300000);
+  function frameName(g){
+    if(g._ftag !== undefined) return g._ftag;
+    const e = FO.by[g.mid]; let f = e && e.frame;
+    if(!f && g.live && g.place) f = snk(String(g.place).replace(/_/g, ' '));
+    if(!f && /^chips:/.test(String(g.mid))) f = FO.chips || 'the_cast';
+    if(!f && g.title && !/[·\d]/.test(g.title)) f = snk(g.title);
+    return (g._ftag = f || null);
+  }
+  function tagName(c){
+    if(c._tag !== undefined) return c._tag;
+    const g = c.home, f = g ? frameName(g) : null, e = g && FO.by[g.mid], lab = String(c.label || '');
+    let n = e && e.objects ? (e.objects[lab] || (Object.keys(e.objects).length ? Object.values(e.objects)[Math.min(c.i | 0, Object.keys(e.objects).length - 1)] : null)) : null;
+    if(!n && g && /^chips:/.test(String(g.mid))) n = snk(lab);
+    if(!n) n = nameOf(c);
+    if(!n && f) n = f + (PERSONISH.test(String(c.klass || '').toLowerCase()) ? '_figure' : '_subject');
+    if(n && (/^cut\d*$/.test(n) || /\d/.test(n))) n = f ? f + '_subject' : null;
+    return (c._tag = n || null);
+  }
+  S.tagName = tagName; S.frameName = frameName;
+  const TAGS = document.createElement('div'); TAGS.id = 'gnames'; stage.appendChild(TAGS);
+  const tcss = document.createElement('style');
+  tcss.textContent = [
+    '#gnames{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:2}',
+    '#gnames .gn{position:absolute;left:0;top:0;pointer-events:none;white-space:nowrap;font:600 ' + (PHONE ? 'max(10px,1.45vh)' : 'max(10px,1.3vh)') + ' ui-monospace,Menlo,Consolas,monospace;letter-spacing:.02em;color:#fff;' +
+      'text-shadow:0 0 2px #000,0 0 3px #000,0 1px 2px #000,0 0 6px rgba(0,0,0,.55);transition:opacity .8s;will-change:transform;user-select:none}',
+    '#gnames .gn.gf{color:#ffe7a8;font-size:' + (PHONE ? 'max(10px,1.35vh)' : 'max(10px,1.2vh)') + '}'
+  ].join('\n');
+  document.head.appendChild(tcss);
+  const tagEls = new Map(); // key (cut or group) -> el
+  function tagEl(key, text, frame){
+    let el = tagEls.get(key);
+    if(!el){ el = document.createElement('div'); el.className = 'gn' + (frame ? ' gf' : ''); el.style.opacity = '0'; TAGS.appendChild(el); tagEls.set(key, el); }
+    if(el.textContent !== text) el.textContent = text;
+    return el;
+  }
+  let tagT = 0;
+  function tickTags(now){
+    if(now - tagT < 50) return; tagT = now;
+    const W0 = vw(), H0 = vh(), jobs = [], live = new Set();
+    // reads first
+    S.cuts.forEach(c => {
+      if(!c.el || !c.el.isConnected) return; const n = tagName(c); if(!n) return;
+      const r = c.el.getBoundingClientRect(); if(r.right < -50 || r.left > W0 + 50 || r.bottom < -30 || r.top > H0 + 30 || r.width < 6) return;
+      live.add(c); jobs.push({k: c, t: n, x: r.left + r.width / 2, y: r.bottom + 2, on: !c.leaving && !c.entering && c.el.style.opacity !== '0', mid: true});
+    });
+    let wr = null;
+    S.groups.forEach(g => {
+      if(g.gone) return; const f = frameName(g); if(!f) return; let x, y;
+      if(g.bgEl && g.bgEl.isConnected){ const r = g.bgEl.getBoundingClientRect(); const E = PHONE ? 0.22 : 0.28, k0 = E / (1 + 2 * E); x = r.left + r.width * k0 + 4; y = r.top + r.height * k0 + 2; }
+      else { wr = wr || world.getBoundingClientRect(); x = wr.left + g.x + 4; y = wr.top + g.y + 2; }
+      if(x < -200 || x > W0 || y < -20 || y > H0) return;
+      live.add(g); jobs.push({k: g, t: f, x, y, on: Date.now() - g.born > 2500, frame: true});
+    });
+    // then writes
+    jobs.forEach(j => { const el = tagEl(j.k, j.t, j.frame); el.style.transform = 'translate3d(' + (j.mid ? 'calc(' + j.x.toFixed(1) + 'px - 50%)' : j.x.toFixed(1) + 'px') + ',' + j.y.toFixed(1) + 'px,0)';
+      const o = j.on ? '1' : '0'; if(el.style.opacity !== o) el.style.opacity = o; });
+    tagEls.forEach((el, k) => { if(!live.has(k)){ el.remove(); tagEls.delete(k); } });
+  }
+  S.tickTags = tickTags;
+  (function tagLoop(now){ try{ if(!paused()) tickTags(now || performance.now()); }catch(e){} requestAnimationFrame(tagLoop); })();
 
   // ---------- tweets: frame_feed.js reads the story group in focus (rotates about every 14 s among settled groups)
   let focus = null, focusAt = 0, focusI = 0;
