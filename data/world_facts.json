@@ -853,6 +853,16 @@
 "run": "run-b9b963",
 "card": "j4",
 "other": "matches"
+},
+{
+"id": "wf_d190614a42",
+"kind": "consequence",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the red white cap, and Bisola reads the name twice.",
+"code": "ttb.interactwith(red_white_cap){ red_white_cap.receives(ttb.code); … }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j2",
+"other": "ttb"
 }
 ],
 "streetlights": [
@@ -865,6 +875,16 @@
 "run": "run-b9b963",
 "card": "w6",
 "other": null
+},
+{
+"id": "wf_50bbff9f62",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, turns up with the streetlights, which is still all dead since 7:35pm.",
+"code": "yaba_bookshop.interactwith(streetlights){ streetlights.receives(yaba_bookshop.envelope); streetlights.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j4",
+"other": "yaba_bookshop"
 }
 ],
 "kerosene_lamp": [
@@ -975,6 +995,16 @@
 "run": "run-b9b963",
 "card": "j4",
 "other": null
+},
+{
+"id": "wf_32a2cb6c0c",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, turns up inside the plate of jollof rice at the yaba bukka counter, and Bisola reads the name twice.",
+"code": "streetlights.interactwith(yaba_bukka_counter){ yaba_bukka_counter.receives(streetlights.envelope); … }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j4",
+"other": "streetlights"
 }
 ],
 "festac_bead_stall": [
@@ -1360,53 +1390,21 @@
 "card": "j4",
 "other": null
 }
+],
+"clock_second": [
+{
+"id": "wf_05abf8eafb",
+"kind": "consequence",
+"text": "The clock second leaves with an Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997.",
+"code": "danfo_speaker.interactwith(clock_second){ clock_second.receives(danfo_speaker.joke); clock_second.remembers(bisola, 'boss joke'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j1",
+"other": "danfo_speaker"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_93c5acc86f",
-"ts": "2026-11-14T15:36:20-0500",
-"a": "ttb",
-"b": "pure_water_cooler",
-"code": "pure_water_cooler.receives(ttb.note);",
-"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up with the pure-water cooler, which is still carried home through the flood.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j2"
-},
-{
-"id": "wf_1f64e6d4a6",
-"ts": "2026-11-14T15:39:02-0500",
-"a": "ikeja_laundromat",
-"b": "safe_scene",
-"code": "safe_scene.receives(ikeja_laundromat.receipt);",
-"text": "The safe scene leaves with an Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j8"
-},
-{
-"id": "wf_2736b6263e",
-"ts": "2026-11-14T15:39:11-0500",
-"a": "ttb",
-"b": "people_scene",
-"code": "people_scene.receives(ttb.note);",
-"text": "The people scene leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j2"
-},
-{
-"id": "wf_bfceb5b216",
-"ts": "2026-11-14T15:39:58-0500",
-"a": "ikeja_laundromat",
-"b": "ronke_tray",
-"code": "ronke_tray.receives(ikeja_laundromat.receipt);",
-"text": "The ronke tray leaves with an Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j8"
-},
 {
 "id": "wf_8c9f8376ae",
 "ts": "2026-11-14T15:40:45-0500",
@@ -1802,6 +1800,50 @@
 "author": "cos",
 "run": "run-b9b963",
 "card": "j3"
+},
+{
+"id": "wf_50bbff9f62",
+"ts": "2026-11-14T16:57:12-0500",
+"a": "yaba_bookshop",
+"b": "streetlights",
+"code": "yaba_bookshop.interactwith(streetlights){ streetlights.receives(yaba_bookshop.envelope); streetlights.remembers(bisola, 'brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, turns up with the streetlights, which is still all dead since 7:35pm.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j4"
+},
+{
+"id": "wf_d190614a42",
+"ts": "2026-11-14T16:57:59-0500",
+"a": "ttb",
+"b": "red_white_cap",
+"code": "ttb.interactwith(red_white_cap){ red_white_cap.receives(ttb.code); … }",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the red white cap, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j2"
+},
+{
+"id": "wf_32a2cb6c0c",
+"ts": "2026-11-14T16:59:40-0500",
+"a": "streetlights",
+"b": "yaba_bukka_counter",
+"code": "streetlights.interactwith(yaba_bukka_counter){ yaba_bukka_counter.receives(streetlights.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, turns up inside the plate of jollof rice at the yaba bukka counter, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j4"
+},
+{
+"id": "wf_05abf8eafb",
+"ts": "2026-11-14T17:00:27-0500",
+"a": "danfo_speaker",
+"b": "clock_second",
+"code": "danfo_speaker.interactwith(clock_second){ clock_second.receives(danfo_speaker.joke); clock_second.remembers(bisola, 'boss joke'); }",
+"text": "The clock second leaves with an Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j1"
 }
 ],
 "memories": [
@@ -1850,5 +1892,5 @@
 "card": "j4"
 }
 ],
-"updated": "2026-11-14T16:55:33-0500"
+"updated": "2026-11-14T17:00:27-0500"
 }
