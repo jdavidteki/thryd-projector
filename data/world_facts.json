@@ -1590,20 +1590,21 @@
 "card": "j6",
 "other": null
 }
+],
+"seen": [
+{
+"id": "wf_6846c55b4f",
+"kind": "consequence",
+"text": "The seen leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "plastic_sheet.interactwith(seen){ seen.receives(plastic_sheet.envelope); seen.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j6",
+"other": "plastic_sheet"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_b744cc44b3",
-"ts": "2026-11-14T16:17:14-0500",
-"a": "egbe",
-"b": "oshodi_bus_shelter",
-"code": "egbe.interactwith(oshodi_bus_shelter){ oshodi_bus_shelter.receives(egbe.joke); … }",
-"text": "An Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997, turns up inside the timetable at the oshodi bus shelter, and Kunle reads the name twice.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j1"
-},
 {
 "id": "wf_ef697af083",
 "ts": "2026-11-14T16:19:34-0500",
@@ -2032,6 +2033,17 @@
 "author": "cos",
 "run": "run-b9b963",
 "card": "j3"
+},
+{
+"id": "wf_6846c55b4f",
+"ts": "2026-11-14T17:38:45-0500",
+"a": "plastic_sheet",
+"b": "seen",
+"code": "plastic_sheet.interactwith(seen){ seen.receives(plastic_sheet.envelope); seen.remembers(bisola, 'brown envelope'); }",
+"text": "The seen leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j6"
 }
 ],
 "memories": [
@@ -2102,5 +2114,5 @@
 "card": "j6"
 }
 ],
-"updated": "2026-11-14T17:37:02-0500"
+"updated": "2026-11-14T17:38:45-0500"
 }
