@@ -622,16 +622,6 @@
 ],
 "oshodi_bus_shelter": [
 {
-"id": "wf_cacb0d6656",
-"kind": "memory",
-"text": "6:10pm, Thursday 12 November 2026: Kunle reads the timetable aloud. The oshodi bus shelter keeps it on file.",
-"code": "oshodi_bus_shelter.remembers(kunle, 'timetable');",
-"author": "cos",
-"run": "run-9e3e84",
-"card": "j2",
-"other": null
-},
-{
 "id": "wf_15977b866d",
 "kind": "memory",
 "text": "6:10pm, Thursday 12 November 2026: A bus is two stops away.",
@@ -660,6 +650,16 @@
 "run": "run-b9b963",
 "card": "j2",
 "other": "ttb"
+},
+{
+"id": "wf_d2c2b74079",
+"kind": "consequence",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the timetable at the oshodi bus shelter, and Kunle reads the name twice.",
+"code": "wwgbtaycbmba.interactwith(oshodi_bus_shelter){ oshodi_bus_shelter.receives(wwgbtaycbmba.code); … }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j2",
+"other": "wwgbtaycbmba"
 },
 {
 "id": "wt_e2a4bd1320",
@@ -1186,6 +1186,26 @@
 "run": "run-b9b963",
 "card": "w6",
 "other": "streetlights"
+},
+{
+"id": "wf_4d975a457a",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the streetlights, which is still all dead since 7:35pm.",
+"code": "plastic_sheet.interactwith(reality){ reality.receives(plastic_sheet.envelope); reality.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j6",
+"other": "plastic_sheet"
+},
+{
+"id": "wf_40bbce0a85",
+"kind": "consequence",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the reality, and Bisola reads the name twice.",
+"code": "game.interactwith(reality){ reality.receives(game.code); reality.remembers(ejiro, 'juju code'); reality.tucks(game, 'ttb note into the brown envelope'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j2",
+"other": "game"
 }
 ],
 "bicycle": [
@@ -1320,39 +1340,6 @@
 ]
 },
 "consequences": [
-{
-"id": "wf_f55c447e7a",
-"ts": "2026-11-14T15:33:42-0500",
-"a": "isl",
-"b": "red_white_cap",
-"code": "red_white_cap.receives(isl.receipt);",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the red and white cap, which is still worn.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j6"
-},
-{
-"id": "wf_88b4c97de5",
-"ts": "2026-11-14T15:33:42-0500",
-"a": "yaba_bookshop",
-"b": "hybrid",
-"code": "hybrid.receives(yaba_bookshop.receipt);",
-"text": "The hybrid leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j6"
-},
-{
-"id": "wt_e2a4bd1320",
-"ts": "2026-11-14T15:34:35-0500",
-"a": "plastic_sheet",
-"b": "oshodi_bus_shelter",
-"code": "oshodi_bus_shelter.receives(plastic_sheet.water);",
-"text": "The wet plastic sheet from Oke-Ayo ends up over the Oshodi shelter bench, and the timetable Kunle read aloud in 2026 is now smudged where the water ran.",
-"author": "thryd",
-"run": "run-b9b963",
-"card": "j4"
-},
 {
 "id": "wt_ad3997f7d4",
 "ts": "2026-11-14T15:34:35-0500",
@@ -1759,6 +1746,39 @@
 "author": "cos",
 "run": "run-b9b963",
 "card": "j2"
+},
+{
+"id": "wf_4d975a457a",
+"ts": "2026-11-14T16:46:32-0500",
+"a": "plastic_sheet",
+"b": "reality",
+"code": "plastic_sheet.interactwith(reality){ reality.receives(plastic_sheet.envelope); reality.remembers(bisola, 'brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the streetlights, which is still all dead since 7:35pm.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j6"
+},
+{
+"id": "wf_40bbce0a85",
+"ts": "2026-11-14T16:47:19-0500",
+"a": "game",
+"b": "reality",
+"code": "game.interactwith(reality){ reality.receives(game.code); reality.remembers(ejiro, 'juju code'); reality.tucks(game, 'ttb note into the brown envelope'); }",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the reality, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j2"
+},
+{
+"id": "wf_d2c2b74079",
+"ts": "2026-11-14T16:50:28-0500",
+"a": "wwgbtaycbmba",
+"b": "oshodi_bus_shelter",
+"code": "wwgbtaycbmba.interactwith(oshodi_bus_shelter){ oshodi_bus_shelter.receives(wwgbtaycbmba.code); … }",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the timetable at the oshodi bus shelter, and Kunle reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j2"
 }
 ],
 "memories": [
@@ -1796,5 +1816,5 @@
 "card": "j3"
 }
 ],
-"updated": "2026-11-14T16:44:53-0500"
+"updated": "2026-11-14T16:50:28-0500"
 }
