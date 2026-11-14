@@ -987,16 +987,6 @@
 ],
 "yaba_bukka_counter": [
 {
-"id": "wf_20ca3bc397",
-"kind": "consequence",
-"text": "A Kerosene lamp note with Ronke's name and 'plastic sheet' on it, turns up inside the juju code at the yaba bukka counter, and Ejiro reads the name twice.",
-"code": "imm.interactwith(yaba_bukka_counter){ yaba_bukka_counter.receives(imm.sheet); … }",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j4",
-"other": "imm"
-},
-{
 "id": "wf_a99bf506a1",
 "kind": "consequence",
 "text": "A Kerosene lamp note with Ronke's name and 'plastic sheet' on it, turns up inside the plastic sheet at the yaba bukka counter, and Ronke reads the name twice.",
@@ -1035,6 +1025,16 @@
 "run": "run-b9b963",
 "card": "j1",
 "other": "agbada"
+},
+{
+"id": "wf_7c154b60c0",
+"kind": "consequence",
+"text": "An Isl note with Kunle's name and 'worm question' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the yaba bukka counter, and Bisola reads the name twice.",
+"code": "isl.interactwith(yaba_bukka_counter){ yaba_bukka_counter.receives(isl.question); … }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j3",
+"other": "isl"
 }
 ],
 "festac_bead_stall": [
@@ -1086,6 +1086,16 @@
 "text": "7:40am, Wednesday 12 January 2056: Taiwo sweeps the doorstep with a short broom. The tailor shop keeps it on file.",
 "code": "tailor_shop.remembers(taiwo, 'broom');",
 "author": "cos",
+"run": "run-b9b963",
+"card": "j6",
+"other": null
+},
+{
+"id": "wt_23c0fd0989",
+"kind": "memory",
+"text": "7:40am, 12 January 2056: Taiwo washed his hands before taking the ring of keys from Bisola at the Gbagi Street shutter.",
+"code": "tailor_shop.remembers(taiwo, \"ring of keys\"); tailor_shop.set(\"shutter\", \"open\");",
+"author": "thryd",
 "run": "run-b9b963",
 "card": "j6",
 "other": null
@@ -1568,20 +1578,21 @@
 "card": "j4",
 "other": "matches"
 }
+],
+"hands": [
+{
+"id": "wf_8cdc82d60e",
+"kind": "memory",
+"text": "The hands at bowl at Mama Ronke's door: washed before he ate with the elders.",
+"code": "hands.state('washed before he ate with the elders');",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j6",
+"other": null
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_795c95df4f",
-"ts": "2026-11-14T16:15:40-0500",
-"a": "wwgbtaycbmba",
-"b": "agbada",
-"code": "wwgbtaycbmba.interactwith(agbada){ agbada.receives(wwgbtaycbmba.joke); … }",
-"text": "An Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997, turns up inside the plastic sheet at the agbada, and Ronke reads the name twice.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j1"
-},
 {
 "id": "wf_b744cc44b3",
 "ts": "2026-11-14T16:17:14-0500",
@@ -2010,6 +2021,17 @@
 "author": "cos",
 "run": "run-b9b963",
 "card": "j1"
+},
+{
+"id": "wf_7c154b60c0",
+"ts": "2026-11-14T17:37:02-0500",
+"a": "isl",
+"b": "yaba_bukka_counter",
+"code": "isl.interactwith(yaba_bukka_counter){ yaba_bukka_counter.receives(isl.question); … }",
+"text": "An Isl note with Kunle's name and 'worm question' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the yaba bukka counter, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j3"
 }
 ],
 "memories": [
@@ -2067,7 +2089,18 @@
 "author": "thryd",
 "run": "run-b9b963",
 "card": "j5"
+},
+{
+"id": "wt_23c0fd0989",
+"ts": "2026-11-14T17:36:24-0500",
+"a": null,
+"b": "tailor_shop",
+"code": "tailor_shop.remembers(taiwo, \"ring of keys\"); tailor_shop.set(\"shutter\", \"open\");",
+"text": "7:40am, 12 January 2056: Taiwo washed his hands before taking the ring of keys from Bisola at the Gbagi Street shutter.",
+"author": "thryd",
+"run": "run-b9b963",
+"card": "j6"
 }
 ],
-"updated": "2026-11-14T17:25:14-0500"
+"updated": "2026-11-14T17:37:02-0500"
 }
