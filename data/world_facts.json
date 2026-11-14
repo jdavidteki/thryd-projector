@@ -987,16 +987,6 @@
 ],
 "yaba_bukka_counter": [
 {
-"id": "wf_a99bf506a1",
-"kind": "consequence",
-"text": "A Kerosene lamp note with Ronke's name and 'plastic sheet' on it, turns up inside the plastic sheet at the yaba bukka counter, and Ronke reads the name twice.",
-"code": "kerosene_lamp.interactwith(yaba_bukka_counter){ yaba_bukka_counter.receives(kerosene_lamp.sheet); … }",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j4",
-"other": "kerosene_lamp"
-},
-{
 "id": "wf_269522e7aa",
 "kind": "consequence",
 "text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the plastic sheet at the yaba bukka counter, and Ronke reads the name twice.",
@@ -1035,6 +1025,16 @@
 "run": "run-b9b963",
 "card": "j3",
 "other": "isl"
+},
+{
+"id": "wf_85af633615",
+"kind": "consequence",
+"text": "A Kerosene lamp note with Ronke's name and 'plastic sheet' on it, turns up inside the brown envelope at the yaba bukka counter, and Bisola reads the name twice.",
+"code": "kerosene_lamp.interactwith(yaba_bukka_counter){ yaba_bukka_counter.receives(kerosene_lamp.sheet); … }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j4",
+"other": "kerosene_lamp"
 }
 ],
 "festac_bead_stall": [
@@ -1626,17 +1626,6 @@
 },
 "consequences": [
 {
-"id": "wf_23c7eb7afb",
-"ts": "2026-11-14T16:31:06-0500",
-"a": "danfo_speaker",
-"b": "wwgbtaycbmba",
-"code": "danfo_speaker.interactwith(wwgbtaycbmba){ wwgbtaycbmba.receives(danfo_speaker.code); … }",
-"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the boss joke at the wwgbtaycbmba, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j2"
-},
-{
 "id": "wf_dbe1cf9df4",
 "ts": "2026-11-14T16:31:53-0500",
 "a": "matches",
@@ -2064,6 +2053,17 @@
 "author": "cos",
 "run": "run-b9b963",
 "card": "j2"
+},
+{
+"id": "wf_85af633615",
+"ts": "2026-11-14T17:59:22-0500",
+"a": "kerosene_lamp",
+"b": "yaba_bukka_counter",
+"code": "kerosene_lamp.interactwith(yaba_bukka_counter){ yaba_bukka_counter.receives(kerosene_lamp.sheet); … }",
+"text": "A Kerosene lamp note with Ronke's name and 'plastic sheet' on it, turns up inside the brown envelope at the yaba bukka counter, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j4"
 }
 ],
 "memories": [
@@ -2134,5 +2134,5 @@
 "card": "j6"
 }
 ],
-"updated": "2026-11-14T17:48:23-0500"
+"updated": "2026-11-14T17:59:22-0500"
 }
