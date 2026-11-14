@@ -2,7 +2,7 @@
 "v": 1,
 "note": "World memory: each object's facts and the newest consequences of meetings (shared store /workspace/thryd-projector/data/world_facts.jsonl, tools/world_memory.py). The stage shows a consequence code line when the same pair meets again, and now and then on its own; #thryd memories show now and then too.",
 "alias": {
-"yaba_bukka_counter_subject": "yaba_bukka_counter",
+"yaba_bukka_counter_figures": "yaba_bukka_counter",
 "ikeja_laundromat_figures": "ikeja_laundromat",
 "yaba_bookshop_figures": "yaba_bookshop",
 "oshodi_bus_shelter_subject": "oshodi_bus_shelter",
@@ -567,6 +567,16 @@
 "run": "run-b9b963",
 "card": "j2",
 "other": "pure_water_cooler"
+},
+{
+"id": "wf_37f42c8c43",
+"kind": "consequence",
+"text": "An Isl note with Kunle's name and 'worm question' on it, 5:30pm, 13 Nov 2026, turns up inside the juju code at the ikeja laundromat, and Ejiro reads the name twice.",
+"code": "isl.interactwith(ikeja_laundromat){ ikeja_laundromat.receives(isl.question); … }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j3",
+"other": "isl"
 }
 ],
 "yaba_bookshop": [
@@ -1354,17 +1364,6 @@
 },
 "consequences": [
 {
-"id": "wt_7a2b23aa13",
-"ts": "2026-11-14T15:34:35-0500",
-"a": "plastic_sheet",
-"b": "kerosene_lamp",
-"code": "plastic_sheet.covers(kerosene_lamp);",
-"text": "Ronke drapes the wet plastic sheet over Mama Ronke's kerosene lamp to keep the rain off, and the only light on the street turns green.",
-"author": "thryd",
-"run": "run-b9b963",
-"card": "j4"
-},
-{
 "id": "wf_93c5acc86f",
 "ts": "2026-11-14T15:36:20-0500",
 "a": "ttb",
@@ -1792,6 +1791,17 @@
 "author": "cos",
 "run": "run-b9b963",
 "card": "j6"
+},
+{
+"id": "wf_37f42c8c43",
+"ts": "2026-11-14T16:55:33-0500",
+"a": "isl",
+"b": "ikeja_laundromat",
+"code": "isl.interactwith(ikeja_laundromat){ ikeja_laundromat.receives(isl.question); … }",
+"text": "An Isl note with Kunle's name and 'worm question' on it, 5:30pm, 13 Nov 2026, turns up inside the juju code at the ikeja laundromat, and Ejiro reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j3"
 }
 ],
 "memories": [
@@ -1840,5 +1850,5 @@
 "card": "j4"
 }
 ],
-"updated": "2026-11-14T16:54:36-0500"
+"updated": "2026-11-14T16:55:33-0500"
 }
