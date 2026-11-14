@@ -24,3 +24,9 @@ test('panel shows meetings, never cutN', () => {
   assert.match(pj, /window\.thrydMeet=/);
   assert.match(pj, /put\('kind','meet'\)/);
 });
+test('live cut groups do not use the Medium GIF slots, and a live view cools down after it leaves', () => {
+  assert.match(src, /g\.kind === 'gif' && !g\.live/);
+  assert.match(src, /LIVE_COOL_MS = \(PHONE \? 120 : 150\) \* 1000/);
+  assert.match(src, /if\(g\.live\)\{ try\{ LV\.left\[g\.mid\] = Date\.now\(\); \}catch\(e\)\{\} \}/);
+  assert.match(src, /!cooling\(liveId\(v\)\)/);
+});

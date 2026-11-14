@@ -49,6 +49,9 @@
   const LIVE_DWELL_K = 2.5;                    // vs a normal group life of 30–50s (phone) or 35–70s (desktop)
   const LIVE_POLL_MS = 45000;                  // at most as often as the data loop; do not poll faster
   const LIVE_KEEP = 3;                         // most recent 1–3 of the current agenda recur more often than ordinary cuts
+  // a live view that has left stays off for a while before it recurs (fix 14 Nov 9:45 AM ET: they came straight back, so they
+  // looked pinned). A brand-new view still comes on at once; the rest still return far sooner than a Medium cut (one per deck cycle).
+  const LIVE_COOL_MS = (PHONE ? 120 : 150) * 1000;
   S.LIVE_DWELL_K = LIVE_DWELL_K; S.LIVE_POLL_MS = LIVE_POLL_MS; S.LIVE_KEEP = LIVE_KEEP;
   // live-view cutouts (Jesuye 14 Nov 2026 9:05 AM ET "cut them as they come"): a view with a pack (tools/cut_live_views.py, same
   // per-frame mask pack as the Medium cuts) comes on as animated cutouts over its own faded plate; no pack yet = the whole frame.
@@ -268,7 +271,8 @@
     if(!live.length){ S.recent = S.recent.slice(-5); return null; }
     let ok = live.filter(a => !SEEN.has(a.medium_image_id));
     if(!ok.length){ SEEN = new Set(); saveSeen(); ok = live; }
-    const gifsOn = S.groups.filter(g => g.kind === 'gif').length;
+    // live-view cut groups are kind 'gif' too (v505) but have their own lane: they must not use up the Medium GIF slots (fix 14 Nov 9:45 AM ET)
+    const gifsOn = S.groups.filter(g => g.kind === 'gif' && !g.live).length;
     const gifShare = ok.filter(a => a.kind === 'gif').length / ok.length; // GIFs come up in proportion to how many are left, so 109 GIFs don't loop
     const wantGif = gifsOn < (PHONE ? 1 : 2) && Math.random() < gifShare;
     const pool = ok.filter(a => (a.kind === 'gif') === wantGif);
@@ -502,6 +506,7 @@
   }
   function exitGroup(g, quick){
     if(g.gone) return; g.gone = true;
+    if(g.live){ try{ LV.left[g.mid] = Date.now(); }catch(e){} }
     const at = S.groups.indexOf(g); if(at >= 0) S.groups.splice(at, 1);
     const v = view(), outAng = Math.random() * Math.PI * 2; if(!quick) DIRS.out[oct(outAng)]++;
     g.cuts.slice().forEach((cut, j) => {
@@ -736,7 +741,9 @@
   // the current agenda (or the newest views overall if that agenda has none yet) come back more often.
   // Ids live in their own space, so they never write thryd_seen_cuts_v1 or steal a deck slot.
   const LV_URLS = ['data/live_views.json', 'https://raw.githubusercontent.com/jdavidteki/thryd-projector/main/data/live_views.json'];
-  const LV = S.liveViews = {list: [], seen: {}, pending: [], activeRun: null, at: 0, src: ''};
+  const LV = S.liveViews = {list: [], seen: {}, pending: [], activeRun: null, at: 0, src: '', left: {}};
+  const cooling = id => now0() - (LV.left[id] || 0) < LIVE_COOL_MS;
+  function now0(){ return Date.now(); }
   function liveId(v){ return (v && (v.id || ('live:' + v.run + ':' + v.card))) || ''; }
   function liveOk(v){
     if(!v || !v.url || !v.card) return false;
@@ -772,7 +779,7 @@
     const rec = recentLive(LIVE_KEEP);
     if(!rec.length) return null;
     const on = rec.filter(v => liveOn(liveId(v)));
-    const free = rec.filter(v => !liveOn(liveId(v)) && !S.bad.has(liveId(v)));
+    const free = rec.filter(v => !liveOn(liveId(v)) && !S.bad.has(liveId(v)) && !cooling(liveId(v)));
     if(!free.length) return null;
     if(on.length === 0) return free[0];
     if(on.length < Math.min(LIVE_KEEP, rec.length) && Math.random() < 0.45) return free[0];
