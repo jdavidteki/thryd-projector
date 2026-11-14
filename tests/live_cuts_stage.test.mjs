@@ -30,14 +30,18 @@ test('live cut groups do not use the Medium GIF slots, and a live view cools dow
   assert.match(src, /if\(g\.live\)\{ try\{ LV\.left\[g\.mid\] = Date\.now\(\); \}catch\(e\)\{\} \}/);
   assert.match(src, /!cooling\(liveId\(v\)\)/);
 });
-test('every cut and frame gets a name tag with no click, tap or hover', () => {
+test('name tags are hidden until a plain tap toggles one (drags untouched)', () => {
   assert.match(src, /data\/frame_objects\.json/);
   assert.match(src, /#gnames \.gn\{position:absolute;left:0;top:0;pointer-events:none/);
   assert.match(src, /text-shadow:0 0 2px #000/);
   assert.match(src, /function tagName\(c\)/);
   assert.match(src, /function frameName\(g\)/);
   const tags = src.slice(src.indexOf('// ---------- name tags'), src.indexOf('// ---------- tweets'));
-  assert.doesNotMatch(tags, /addEventListener\(|onclick|pointerdown|mouseenter|:hover/);
+  // tap-to-toggle only: passive listeners, never preventDefault / stopPropagation, no hover, no menus, no engine calls
+  assert.doesNotMatch(tags, /preventDefault|stopPropagation|onclick|mouseenter|:hover|contextmenu|thrydMeet|ntfy|fetch\('(?!data\/frame_objects)/);
+  for(const m of tags.matchAll(/addEventListener\('(\w+)'[^\n]*\{capture: true, passive: true\}/g)) assert.ok(['pointerdown','pointermove','pointerup','pointercancel'].includes(m[1]));
+  assert.ok(tags.includes('toggleTag(d.c)') && /TAG_MS = 3000/.test(tags) && /function toggleTag\(c\)\{ SHOWN.set\(c, Date.now\(\)\)/.test(tags));
+  assert.ok(/>= 6/.test(tags) && />= 300/.test(tags));
 });
 test('a regenerated version keeps its name with a ·N marker', () => {
   assert.ok(src.includes("n.replace(/\\u00b7\\d+$/, '')"));

@@ -1045,7 +1045,10 @@
   // ---------- name tags (Jesuye 14 Nov 2026 10:11 AM ET): every cutout carries its object name under it and every frame / plate its
   // frame name in a corner, lowercase snake_case, so a customer can type frame.object.method(). Names come from data/frame_objects.json
   // (tools/export_frame_objects.py: live-view place, safe / scene title, sidecar class, objects_map / agenda labels); never cutN, no
-  // real people's names. No click, tap or hover: tags are pointer-events:none and only follow the pixels (read rects, then write).
+  // real people's names. Jesuye 10:22-10:24 AM ET: tags are hidden by default; a plain tap/click on a cutout (moved < 6 px, < 300 ms)
+  // shows that object's name, which follows it and fades by itself after ~3 s (or when it leaves); tapping it again only restarts
+  // the timer (no tap-to-hide); several may show at a time.
+  // Listeners are passive capture listeners that never cancel or stop the event, so drags are untouched; no menus, no engine calls.
   const FO = S.frameObjects = {by: {}, chips: null, at: 0};
   function loadFO(){ fetch('data/frame_objects.json?t=' + Date.now(), {cache: 'no-store'}).then(r => r.ok ? r.json() : null).then(d => {
     if(!d || !d.by_scene) return; FO.by = d.by_scene; FO.at = Date.now();
@@ -1087,17 +1090,30 @@
     if(el.textContent !== text) el.textContent = text;
     return el;
   }
+  const SHOWN = S.shownTags = new Map(), TAG_MS = 3000, FADE_MS = 800; // cut -> shown at let tapD = null;
+  function cutAt(t){ if(!t || !t.closest) return null; let best = null; S.cuts.forEach(c => { if(!best && c.el && c.el.isConnected && (c.el === t || c.el.contains(t))) best = c; }); return best; }
+  addEventListener('pointerdown', e => { if(e.isPrimary === false) return; tapD = {x: e.clientX, y: e.clientY, t: performance.now(), c: cutAt(e.target), m: false}; }, {capture: true, passive: true});
+  addEventListener('pointermove', e => { if(tapD && Math.hypot(e.clientX - tapD.x, e.clientY - tapD.y) >= 6) tapD.m = true; }, {capture: true, passive: true});
+  addEventListener('pointercancel', () => { tapD = null; }, {capture: true, passive: true});
+  addEventListener('pointerup', e => { const d = tapD; tapD = null; if(!d || !d.c || d.m) return;
+    if(Math.hypot(e.clientX - d.x, e.clientY - d.y) >= 6 || performance.now() - d.t >= 300) return;
+    if(!tagName(d.c)) return; toggleTag(d.c); }, {capture: true, passive: true});
+  function toggleTag(c){ SHOWN.set(c, Date.now()); tagT = 0; } // show (or restart the ~3 s timer); never hides
+  S.toggleTag = toggleTag;
   let tagT = 0;
   function tickTags(now){
     if(now - tagT < 50) return; tagT = now;
     const W0 = vw(), H0 = vh(), jobs = [], live = new Set();
     // reads first
-    S.cuts.forEach(c => {
-      if(!c.el || !c.el.isConnected) return; const n = tagName(c); if(!n) return;
+    const tnow = Date.now();
+    SHOWN.forEach((t, c) => { if(!c.el || !c.el.isConnected || c.gone || S.cuts.indexOf(c) < 0 || tnow - t > TAG_MS + FADE_MS) SHOWN.delete(c); });
+    SHOWN.forEach((t, c) => {
+      const n = tagName(c); if(!n) return;
       const r = c.el.getBoundingClientRect(); if(r.right < -50 || r.left > W0 + 50 || r.bottom < -30 || r.top > H0 + 30 || r.width < 6) return;
-      live.add(c); jobs.push({k: c, t: n, x: r.left + r.width / 2, y: r.bottom + 2, on: !c.leaving && !c.entering && c.el.style.opacity !== '0', mid: true});
+      live.add(c); jobs.push({k: c, t: n, x: r.left + r.width / 2, y: r.bottom + 2, on: tnow - t < TAG_MS && !c.leaving && c.el.style.opacity !== '0', mid: true});
     });
     let wr = null;
+    if(false) // frame tags stay hidden (Jesuye 10:22 AM ET: always-on tags were too noisy)
     S.groups.forEach(g => {
       if(g.gone) return; const f = frameName(g); if(!f) return; let x, y;
       if(g.bgEl && g.bgEl.isConnected){ const r = g.bgEl.getBoundingClientRect(); const E = PHONE ? 0.22 : 0.28, k0 = E / (1 + 2 * E); x = r.left + r.width * k0 + 4; y = r.top + r.height * k0 + 2; }
