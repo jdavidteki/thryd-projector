@@ -652,6 +652,16 @@
 "other": null
 },
 {
+"id": "wf_b744cc44b3",
+"kind": "consequence",
+"text": "An Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997, turns up inside the timetable at the oshodi bus shelter, and Kunle reads the name twice.",
+"code": "egbe.interactwith(oshodi_bus_shelter){ oshodi_bus_shelter.receives(egbe.joke); … }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j1",
+"other": "egbe"
+},
+{
 "id": "wt_e2a4bd1320",
 "kind": "consequence",
 "text": "The wet plastic sheet from Oke-Ayo ends up over the Oshodi shelter bench, and the timetable Kunle read aloud in 2026 is now smudged where the water ran.",
@@ -726,6 +736,16 @@
 "run": "run-b9b963",
 "card": "j4",
 "other": "imm"
+},
+{
+"id": "wf_795c95df4f",
+"kind": "consequence",
+"text": "An Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997, turns up inside the plastic sheet at the agbada, and Ronke reads the name twice.",
+"code": "wwgbtaycbmba.interactwith(agbada){ agbada.receives(wwgbtaycbmba.joke); … }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j1",
+"other": "wwgbtaycbmba"
 }
 ],
 "danfo_speaker": [
@@ -748,6 +768,16 @@
 "run": "run-b9b963",
 "card": "w6",
 "other": "reality"
+},
+{
+"id": "wf_ef697af083",
+"kind": "consequence",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up with the streetlights, which is still all dead since 7:35pm.",
+"code": "ikeja_laundromat.interactwith(danfo_speaker){ danfo_speaker.receives(ikeja_laundromat.code); danfo_speaker.remembers(ejiro, 'juju code'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j2",
+"other": "ikeja_laundromat"
 }
 ],
 "plastic_sheet": [
@@ -1520,6 +1550,39 @@
 "author": "cos",
 "run": "run-b9b963",
 "card": "w6"
+},
+{
+"id": "wf_795c95df4f",
+"ts": "2026-11-14T16:15:40-0500",
+"a": "wwgbtaycbmba",
+"b": "agbada",
+"code": "wwgbtaycbmba.interactwith(agbada){ agbada.receives(wwgbtaycbmba.joke); … }",
+"text": "An Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997, turns up inside the plastic sheet at the agbada, and Ronke reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j1"
+},
+{
+"id": "wf_b744cc44b3",
+"ts": "2026-11-14T16:17:14-0500",
+"a": "egbe",
+"b": "oshodi_bus_shelter",
+"code": "egbe.interactwith(oshodi_bus_shelter){ oshodi_bus_shelter.receives(egbe.joke); … }",
+"text": "An Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997, turns up inside the timetable at the oshodi bus shelter, and Kunle reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j1"
+},
+{
+"id": "wf_ef697af083",
+"ts": "2026-11-14T16:19:34-0500",
+"a": "ikeja_laundromat",
+"b": "danfo_speaker",
+"code": "ikeja_laundromat.interactwith(danfo_speaker){ danfo_speaker.receives(ikeja_laundromat.code); danfo_speaker.remembers(ejiro, 'juju code'); }",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up with the streetlights, which is still all dead since 7:35pm.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j2"
 }
 ],
 "memories": [
@@ -1557,5 +1620,5 @@
 "card": "j3"
 }
 ],
-"updated": "2026-11-14T16:14:46-0500"
+"updated": "2026-11-14T16:19:34-0500"
 }
