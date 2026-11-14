@@ -1229,6 +1229,18 @@
 "card": "j2",
 "other": "ikeja_laundromat"
 }
+],
+"tie": [
+{
+"id": "wf_0dbe823f82",
+"kind": "consequence",
+"text": "The matches ends up with the tie, still found.",
+"code": "matches.interactwith(tie){ matches.db.copyto(tie); tie.keeps(matches, 'matches, still found'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "w7",
+"other": "matches"
+}
 ]
 },
 "consequences": [
@@ -1583,6 +1595,17 @@
 "author": "cos",
 "run": "run-b9b963",
 "card": "j2"
+},
+{
+"id": "wf_0dbe823f82",
+"ts": "2026-11-14T16:28:21-0500",
+"a": "matches",
+"b": "tie",
+"code": "matches.interactwith(tie){ matches.db.copyto(tie); tie.keeps(matches, 'matches, still found'); }",
+"text": "The matches ends up with the tie, still found.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "w7"
 }
 ],
 "memories": [
@@ -1620,5 +1643,5 @@
 "card": "j3"
 }
 ],
-"updated": "2026-11-14T16:19:34-0500"
+"updated": "2026-11-14T16:28:21-0500"
 }
