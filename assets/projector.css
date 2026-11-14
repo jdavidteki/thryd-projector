@@ -223,3 +223,7 @@ body.cerebro #mcut,body.lovemap #mcut{display:none}
 #mcut canvas.sprite.mcnotice{animation:mcnotice 1.1s ease-out 1 both}
 @keyframes mcnotice{0%{transform:none}35%{transform:translateY(-4%) scale(1.04)}70%{transform:translateY(0) rotate(1.5deg)}100%{transform:none}}
 @media (prefers-reduced-motion:reduce){#mcut .mcvisit{animation:none}}
+/* ABM Lofi credit (audio on only; Jesuye 14 Nov 2026 4:54 PM ET) */
+#lofi_credit{position:fixed;top:5.6vh;right:1.5vw;z-index:9;font-size:max(10px,1.25vh);color:inherit;opacity:.45;text-decoration:none;letter-spacing:.02em;transition:opacity .6s}
+#lofi_credit:hover{opacity:.9;text-decoration:underline}#lofi_credit.off{display:none}
+body.cerebro #lofi_credit,body.lovemap #lofi_credit{display:none!important}

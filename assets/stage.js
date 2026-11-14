@@ -1019,7 +1019,7 @@
   }
   function wmSay(c){
     WM.shown.set(c.id, Date.now());
-    MEET.q.push({t: String(c.code).replace(/;?\s*$/, ';').slice(0, 160), verb: 'consequence', at: Date.now(), info: {wm: c}});
+    MEET.q.push({t: String(c.code).replace(/;?\s*$/, m => /\}\s*$/.test(String(c.code)) ? '' : ';').slice(0, 170), verb: 'consequence', at: Date.now(), info: {wm: c}});
     MEET.q.sort((x, y) => (PRI[y.verb] || 0) - (PRI[x.verb] || 0) || x.at - y.at); if(MEET.q.length > 4) MEET.q.length = 4;
   }
   function wmOnMeet(a, b){

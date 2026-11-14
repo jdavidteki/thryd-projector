@@ -40,6 +40,7 @@ function loadExtras(opts){
   const listeners = {};
   const spoken = [];
   const audioPlays = [];
+  const audios = [];
   const ls = {
     getItem(k){ return Object.prototype.hasOwnProperty.call(store, k) ? store[k] : null; },
     setItem(k, v){ store[k] = String(v); },
@@ -81,7 +82,9 @@ function loadExtras(opts){
       addEventListener(){},
     },
     SpeechSynthesisUtterance: class { constructor(t){ this.text = t; this.volume = 1; this.lang = ''; this.rate = 1; this.pitch = 1; } },
-    Audio: class { constructor(src){ this.src = src; } play(){ audioPlays.push(this.src); return Promise.resolve(); } },
+    Audio: class { constructor(src){ this.src = src || ''; this.paused = true; this.ev = {}; this.currentTime = 0; audios.push(this); }
+      play(){ audioPlays.push(this.src); if(opts && opts.block){ const e = new Error('blocked'); e.name = 'NotAllowedError'; return Promise.reject(e); } this.paused = false; return Promise.resolve(); }
+      pause(){ this.paused = true; } load(){} setAttribute(){} removeAttribute(k){ if(k === 'src') this.src = ''; } addEventListener(t, f){ this.ev[t] = f; } },
     fetch: async () => ({ ok: false, json: async () => null }),
     indexedDB: { open(){ return fakeIDBRequest(); } },
     addEventListener(type, fn, cap){ (listeners[type] = listeners[type] || []).push(fn); },
@@ -92,50 +95,81 @@ function loadExtras(opts){
   ctx.window = ctx;
   ctx.globalThis = ctx;
   vm.runInNewContext(extrasSrc, ctx, { filename: 'extras.js' });
-  return { ids, body, store, listeners, spoken, audioPlays, ctx };
+  return { ids, body, store, listeners, spoken, audioPlays, audios, ctx };
 }
 
 function fire(listeners, type, ev){
   for(const fn of (listeners[type] || [])) fn(ev || { stopPropagation(){}, preventDefault(){} });
 }
 
-test('page load starts muted even when a saved setting says unmuted', () => {
-  const { ids, body, store } = loadExtras({ store: { thryd_mute: '0' } });
-  assert.equal(store.thryd_mute, '0', 'saved unmute preference is left in storage');
+const STREAM = 'https://stream.audiobookmanager.com/listen/lofi/radio.mp3';
+const tick = () => new Promise(r => setImmediate(r));
+
+test('page load shows audio off until the stream really plays, and saved off never plays', async () => {
+  const { ids, body, audioPlays } = loadExtras({ store: { thryd_mute: '1' } });
   assert.equal(ids.mute.textContent, '🔇 audio off');
+  await tick();
+  assert.equal(audioPlays.length, 0, 'saved off: nothing plays');
   const gate = body.children.find(c => c.id === 'sndgate');
-  assert.ok(gate, 'sound gate exists');
-  assert.equal(gate.classList.contains('off'), true, 'gate stays hidden while muted at load');
+  assert.ok(gate && gate.classList.contains('off'), 'gate hidden');
 });
 
-test('saved muted preference also starts muted with the off button', () => {
-  const { ids } = loadExtras({ store: { thryd_mute: '1' } });
+test('no saved choice means sound stays off (default off)', async () => {
+  const { ids, audioPlays } = loadExtras({ store: { thryd_mute: undefined } });
+  await tick(); assert.equal(audioPlays.length, 0);
   assert.equal(ids.mute.textContent, '🔇 audio off');
 });
 
-test('a first pointerdown does not unmute a muted load', () => {
-  const { ids, store, listeners } = loadExtras({ store: { thryd_mute: '0' } });
-  fire(listeners, 'pointerdown', { stopPropagation(){} });
-  fire(listeners, 'keydown', { stopPropagation(){} });
-  assert.equal(ids.mute.textContent, '🔇 audio off');
-  assert.equal(store.thryd_mute, '0', 'saved on-preference is not rewritten by a background click');
-});
-
-test('the sound button unmutes for the session and still saves the preference', () => {
-  const { ids, store } = loadExtras({ store: { thryd_mute: '1' } });
-  assert.equal(ids.mute.textContent, '🔇 audio off');
-  ids.mute.onclick({ stopPropagation(){} });
+test('saved on: a reload resumes the lofi stream when the browser allows it', async () => {
+  const { ids, audioPlays } = loadExtras({ store: { thryd_mute: '0' } });
+  assert.equal(ids.mute.textContent, '🔇 audio off', 'off until it plays');
+  await tick(); await tick();
+  assert.equal(audioPlays[0], STREAM);
   assert.equal(ids.mute.textContent, '🔊 audio on');
-  assert.equal(store.thryd_mute, '0');
-  ids.mute.onclick({ stopPropagation(){} });
+});
+
+test('saved on but autoplay blocked: stays off, then the next tap anywhere resumes', async () => {
+  const L = loadExtras({ store: { thryd_mute: '0' }, block: true });
+  await tick(); await tick();
+  assert.equal(L.ids.mute.textContent, '🔇 audio off');
+  const gate = L.body.children.find(c => c.id === 'sndgate');
+  assert.equal(gate.classList.contains('off'), false, 'a quiet hint to tap');
+  const n = L.audioPlays.length;
+  fire(L.listeners, 'pointerdown', { target: {}, stopPropagation(){} });
+  assert.equal(L.audioPlays.length, n + 1, 'the tap retries play');
+  assert.equal(L.store.thryd_mute, '0', 'a background tap does not rewrite the saved choice');
+});
+
+test('a background tap never turns on sound that was saved off', async () => {
+  const { ids, store, listeners, audioPlays } = loadExtras({ store: { thryd_mute: '1' } });
+  fire(listeners, 'pointerdown', { target: {}, stopPropagation(){} });
+  fire(listeners, 'keydown', { target: {}, stopPropagation(){} });
+  await tick();
+  assert.equal(audioPlays.length, 0);
   assert.equal(ids.mute.textContent, '🔇 audio off');
   assert.equal(store.thryd_mute, '1');
 });
 
-test('a later page load stays muted after a session unmute was saved', () => {
-  const first = loadExtras({ store: { thryd_mute: '0' } });
-  first.ids.mute.onclick({ stopPropagation(){} });
-  assert.equal(first.store.thryd_mute, '0');
-  const second = loadExtras({ store: { thryd_mute: first.store.thryd_mute } });
-  assert.equal(second.ids.mute.textContent, '🔇 audio off');
+test('the sound button plays the ABM Lofi stream, saves the choice, and stops it', async () => {
+  const { ids, store, audios, audioPlays, body } = loadExtras({ store: { thryd_mute: '1' } });
+  ids.mute.onclick({ stopPropagation(){} });
+  assert.equal(ids.mute.textContent, '🔊 audio on');
+  assert.equal(store.thryd_mute, '0');
+  assert.equal(audioPlays[0], STREAM);
+  await tick();
+  const credit = body.children.find(c => c.id === 'lofi_credit');
+  assert.ok(credit && credit.textContent === 'ABM Lofi · CC-licensed' && credit.href === 'https://radio.audiobookmanager.com/');
+  ids.mute.onclick({ stopPropagation(){} });
+  assert.equal(ids.mute.textContent, '🔇 audio off');
+  assert.equal(store.thryd_mute, '1');
+  assert.equal(audios[0].paused, true);
+  assert.equal(audios[0].src, '', 'the stream connection is dropped');
+  assert.equal(audios.length, 1, 'one audio element, never two streams');
+});
+
+test('spoken lines stay off by default (they would talk over the music)', async () => {
+  const { ids, spoken } = loadExtras({ store: { thryd_mute: '1' } });
+  ids.mute.onclick({ stopPropagation(){} });
+  await tick();
+  assert.equal(spoken.filter(x => typeof x === 'object').length, 0);
 });
