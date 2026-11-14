@@ -1216,6 +1216,16 @@
 "run": "run-b9b963",
 "card": "j1",
 "other": "egbe"
+},
+{
+"id": "wf_23c7eb7afb",
+"kind": "consequence",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the boss joke at the wwgbtaycbmba, and Bisola reads the name twice.",
+"code": "danfo_speaker.interactwith(wwgbtaycbmba){ wwgbtaycbmba.receives(danfo_speaker.code); … }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j2",
+"other": "danfo_speaker"
 }
 ],
 "dez": [
@@ -1236,6 +1246,18 @@
 "kind": "consequence",
 "text": "The matches ends up with the tie, still found.",
 "code": "matches.interactwith(tie){ matches.db.copyto(tie); tie.keeps(matches, 'matches, still found'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "w7",
+"other": "matches"
+}
+],
+"laptop": [
+{
+"id": "wf_dbe1cf9df4",
+"kind": "consequence",
+"text": "The matches ends up with the laptop, still found.",
+"code": "matches.interactwith(laptop){ matches.db.copyto(laptop); laptop.keeps(matches, 'matches, still found'); }",
 "author": "cos",
 "run": "run-b9b963",
 "card": "w7",
@@ -1606,6 +1628,28 @@
 "author": "cos",
 "run": "run-b9b963",
 "card": "w7"
+},
+{
+"id": "wf_23c7eb7afb",
+"ts": "2026-11-14T16:31:06-0500",
+"a": "danfo_speaker",
+"b": "wwgbtaycbmba",
+"code": "danfo_speaker.interactwith(wwgbtaycbmba){ wwgbtaycbmba.receives(danfo_speaker.code); … }",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the boss joke at the wwgbtaycbmba, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j2"
+},
+{
+"id": "wf_dbe1cf9df4",
+"ts": "2026-11-14T16:31:53-0500",
+"a": "matches",
+"b": "laptop",
+"code": "matches.interactwith(laptop){ matches.db.copyto(laptop); laptop.keeps(matches, 'matches, still found'); }",
+"text": "The matches ends up with the laptop, still found.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "w7"
 }
 ],
 "memories": [
@@ -1643,5 +1687,5 @@
 "card": "j3"
 }
 ],
-"updated": "2026-11-14T16:28:21-0500"
+"updated": "2026-11-14T16:31:53-0500"
 }
