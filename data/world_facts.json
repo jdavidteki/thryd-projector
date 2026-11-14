@@ -778,6 +778,16 @@
 "run": "run-b9b963",
 "card": "j2",
 "other": "ikeja_laundromat"
+},
+{
+"id": "wf_fda42139b3",
+"kind": "consequence",
+"text": "An Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997, turns up inside the juju code at the danfo speaker, and Ejiro reads the name twice.",
+"code": "agbada.interactwith(danfo_speaker){ danfo_speaker.receives(agbada.joke); … }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j1",
+"other": "agbada"
 }
 ],
 "plastic_sheet": [
@@ -868,6 +878,16 @@
 "run": "run-b9b963",
 "card": "w7",
 "other": null
+},
+{
+"id": "wf_79b0290c2c",
+"kind": "consequence",
+"text": "An Oshodi bus shelter ticket stub with Kunle's name and 'timetable' on it, turns up with the matches, which is still found.",
+"code": "oshodi_bus_shelter.interactwith(matches){ matches.receives(oshodi_bus_shelter.timetable); matches.remembers(kunle, 'timetable'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j4",
+"other": "oshodi_bus_shelter"
 }
 ],
 "gbagada_hospital_waiting": [
@@ -1263,6 +1283,18 @@
 "card": "w7",
 "other": "matches"
 }
+],
+"game": [
+{
+"id": "wf_2c2d6403b4",
+"kind": "consequence",
+"text": "The game leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
+"code": "ikeja_laundromat.interactwith(game){ game.receives(ikeja_laundromat.code); game.remembers(ejiro, 'juju code'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j2",
+"other": "ikeja_laundromat"
+}
 ]
 },
 "consequences": [
@@ -1650,6 +1682,39 @@
 "author": "cos",
 "run": "run-b9b963",
 "card": "w7"
+},
+{
+"id": "wf_fda42139b3",
+"ts": "2026-11-14T16:34:30-0500",
+"a": "agbada",
+"b": "danfo_speaker",
+"code": "agbada.interactwith(danfo_speaker){ danfo_speaker.receives(agbada.joke); … }",
+"text": "An Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997, turns up inside the juju code at the danfo speaker, and Ejiro reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j1"
+},
+{
+"id": "wf_2c2d6403b4",
+"ts": "2026-11-14T16:35:17-0500",
+"a": "ikeja_laundromat",
+"b": "game",
+"code": "ikeja_laundromat.interactwith(game){ game.receives(ikeja_laundromat.code); game.remembers(ejiro, 'juju code'); }",
+"text": "The game leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j2"
+},
+{
+"id": "wf_79b0290c2c",
+"ts": "2026-11-14T16:37:39-0500",
+"a": "oshodi_bus_shelter",
+"b": "matches",
+"code": "oshodi_bus_shelter.interactwith(matches){ matches.receives(oshodi_bus_shelter.timetable); matches.remembers(kunle, 'timetable'); }",
+"text": "An Oshodi bus shelter ticket stub with Kunle's name and 'timetable' on it, turns up with the matches, which is still found.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j4"
 }
 ],
 "memories": [
@@ -1687,5 +1752,5 @@
 "card": "j3"
 }
 ],
-"updated": "2026-11-14T16:31:53-0500"
+"updated": "2026-11-14T16:37:39-0500"
 }
