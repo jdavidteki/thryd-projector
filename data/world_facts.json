@@ -1153,6 +1153,42 @@
 "card": "j6",
 "other": "red_white_cap"
 }
+],
+"agenda_scene": [
+{
+"id": "wf_b1f2dfda3d",
+"kind": "consequence",
+"text": "The agenda scene leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it.",
+"code": "yaba_bookshop.interactwith(agenda_scene){ agenda_scene.receives(yaba_bookshop.envelope); agenda_scene.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j4",
+"other": "yaba_bookshop"
+}
+],
+"wwgbtaycbmba": [
+{
+"id": "wf_4a70d52ae9",
+"kind": "consequence",
+"text": "The wwgbtaycbmba leaves with an Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997.",
+"code": "egbe.interactwith(wwgbtaycbmba){ wwgbtaycbmba.receives(egbe.joke); wwgbtaycbmba.remembers(bisola, 'boss joke'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j1",
+"other": "egbe"
+}
+],
+"dez": [
+{
+"id": "wf_aaa46bbb82",
+"kind": "consequence",
+"text": "The dez leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
+"code": "ikeja_laundromat.interactwith(dez){ dez.receives(ikeja_laundromat.code); dez.remembers(ejiro, 'juju code'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j2",
+"other": "ikeja_laundromat"
+}
 ]
 },
 "consequences": [
@@ -1430,6 +1466,39 @@
 "author": "cos",
 "run": "run-b9b963",
 "card": "j2"
+},
+{
+"id": "wf_b1f2dfda3d",
+"ts": "2026-11-14T16:03:46-0500",
+"a": "yaba_bookshop",
+"b": "agenda_scene",
+"code": "yaba_bookshop.interactwith(agenda_scene){ agenda_scene.receives(yaba_bookshop.envelope); agenda_scene.remembers(bisola, 'brown envelope'); }",
+"text": "The agenda scene leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j4"
+},
+{
+"id": "wf_4a70d52ae9",
+"ts": "2026-11-14T16:05:19-0500",
+"a": "egbe",
+"b": "wwgbtaycbmba",
+"code": "egbe.interactwith(wwgbtaycbmba){ wwgbtaycbmba.receives(egbe.joke); wwgbtaycbmba.remembers(bisola, 'boss joke'); }",
+"text": "The wwgbtaycbmba leaves with an Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j1"
+},
+{
+"id": "wf_aaa46bbb82",
+"ts": "2026-11-14T16:07:40-0500",
+"a": "ikeja_laundromat",
+"b": "dez",
+"code": "ikeja_laundromat.interactwith(dez){ dez.receives(ikeja_laundromat.code); dez.remembers(ejiro, 'juju code'); }",
+"text": "The dez leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j2"
 }
 ],
 "memories": [
@@ -1467,5 +1536,5 @@
 "card": "j3"
 }
 ],
-"updated": "2026-11-14T16:02:03-0500"
+"updated": "2026-11-14T16:07:40-0500"
 }
