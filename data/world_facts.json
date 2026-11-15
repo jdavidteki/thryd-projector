@@ -2292,20 +2292,21 @@
 "card": "j9",
 "other": "kerosene_lamp"
 }
+],
+"wser": [
+{
+"id": "wf_7d5211a064",
+"kind": "consequence",
+"text": "The wser leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "called.interactwith(wser){ wser.receives(called.envelope); wser.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j6",
+"other": "called"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_c12b579887",
-"ts": "2026-11-15T04:18:06-0500",
-"a": "cell_phone",
-"b": "tie",
-"code": "cell_phone.interactwith(tie){ tie.receives(cell_phone.joke); tie.remembers(bisola, 'boss joke'); tie.tucks(cell_phone, 'egbe note into the brown envelope'); }",
-"text": "An Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997, turns up inside the brown envelope at the tie, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j1"
-},
 {
 "id": "wf_a0af069270",
 "ts": "2026-11-15T04:19:40-0500",
@@ -2734,6 +2735,17 @@
 "author": "cos",
 "run": "run-b9b963",
 "card": "j2"
+},
+{
+"id": "wf_7d5211a064",
+"ts": "2026-11-15T09:50:04-0500",
+"a": "called",
+"b": "wser",
+"code": "called.interactwith(wser){ wser.receives(called.envelope); wser.remembers(bisola, 'brown envelope'); }",
+"text": "The wser leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j6"
 }
 ],
 "memories": [
@@ -2826,5 +2838,5 @@
 "card": "j8"
 }
 ],
-"updated": "2026-11-15T08:31:29-0500"
+"updated": "2026-11-15T09:50:04-0500"
 }
