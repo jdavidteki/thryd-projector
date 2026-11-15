@@ -1715,6 +1715,16 @@
 "run": "run-b9b963",
 "card": "j6",
 "other": "hands"
+},
+{
+"id": "wf_5b964cf49f",
+"kind": "consequence",
+"text": "A Kerosene lamp note with Ronke's name and 'plastic sheet' on it, turns up inside the brown envelope at the play, and Bisola reads the name twice.",
+"code": "imm.interactwith(play){ play.receives(imm.sheet); play.remembers(ronke, 'plastic sheet'); play.tucks(imm, 'kerosene lamp note into the brown envelope'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j4",
+"other": "imm"
 }
 ],
 "freaky_freaky": [
@@ -2095,17 +2105,6 @@
 ]
 },
 "consequences": [
-{
-"id": "wf_c2de559008",
-"ts": "2026-11-15T00:42:47-0500",
-"a": "ikeja_laundromat",
-"b": "tailor_shop",
-"code": "ikeja_laundromat.interactwith(tailor_shop){ tailor_shop.receives(ikeja_laundromat, 'green shirt'); tailor_shop.remembers(taiwo, 'unclaimed green shirt ticket'); }",
-"text": "Nobody ever comes back for the green shirt, so the Ikeja laundromat sends its ticket along to Taiwo's tailor shop, and the mended shirt is now officially his to keep or give.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j8"
-},
 {
 "id": "wf_44fc2d9842",
 "ts": "2026-11-15T00:46:56-0500",
@@ -2534,6 +2533,17 @@
 "author": "cos",
 "run": "run-b9b963",
 "card": "j6"
+},
+{
+"id": "wf_5b964cf49f",
+"ts": "2026-11-15T04:55:15-0500",
+"a": "imm",
+"b": "play",
+"code": "imm.interactwith(play){ play.receives(imm.sheet); play.remembers(ronke, 'plastic sheet'); play.tucks(imm, 'kerosene lamp note into the brown envelope'); }",
+"text": "A Kerosene lamp note with Ronke's name and 'plastic sheet' on it, turns up inside the brown envelope at the play, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j4"
 }
 ],
 "memories": [
@@ -2626,5 +2636,5 @@
 "card": "j8"
 }
 ],
-"updated": "2026-11-15T04:51:16-0500"
+"updated": "2026-11-15T04:55:15-0500"
 }
