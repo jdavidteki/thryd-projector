@@ -917,6 +917,16 @@
 "run": "run-b9b963",
 "card": "j6",
 "other": "hands"
+},
+{
+"id": "wt_41a77e553b",
+"kind": "consequence",
+"text": "The coins Taiwo counted into the pharmacy dish come back as change, and on the way home he spends them on kerosene, so the lamp at Mama Ronke's gate is full again by evening.",
+"code": "lekki_pharmacy.interactwith(kerosene_lamp){ kerosene_lamp.receives(lekki_pharmacy.change); kerosene_lamp.set('oil', 'topped up'); }",
+"author": "thryd",
+"run": "run-b9b963",
+"card": "j9",
+"other": "lekki_pharmacy"
 }
 ],
 "matches": [
@@ -1705,6 +1715,16 @@
 "run": "run-b9b963",
 "card": "j9",
 "other": null
+},
+{
+"id": "wt_825a1245a2",
+"kind": "consequence",
+"text": "Bisola waits at the Lekki pharmacy till in the green shirt Taiwo mended, and the pharmacist keeps glancing at the one blue bead where the top button used to be.",
+"code": "tailor_shop.interactwith(lekki_pharmacy){ lekki_pharmacy.receives(tailor_shop, 'blue glass bead button'); … }",
+"author": "thryd",
+"run": "run-b9b963",
+"card": "j9",
+"other": "tailor_shop"
 }
 ],
 "cup": [
@@ -1717,43 +1737,20 @@
 "run": "run-b9b963",
 "card": "j2",
 "other": "ttb"
+},
+{
+"id": "wt_9a530635c7",
+"kind": "consequence",
+"text": "Someone sets the cup down beside the steady green lamp, and the note folded under it, with Ejiro's name and juju code, finally gets read in a good light.",
+"code": "kerosene_lamp.interactwith(cup){ cup.state('warm and green-lit'); kerosene_lamp.remembers(ejiro, 'juju code'); }",
+"author": "thryd",
+"run": "run-b9b963",
+"card": "j2",
+"other": "kerosene_lamp"
 }
 ]
 },
 "consequences": [
-{
-"id": "wf_7ed973c0ea",
-"ts": "2026-11-14T16:51:22-0500",
-"a": "red_white_cap",
-"b": "yaba_bookshop",
-"code": "red_white_cap.interactwith(yaba_bookshop){ yaba_bookshop.receives(red_white_cap.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the yaba bookshop, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j6"
-},
-{
-"id": "wf_37f42c8c43",
-"ts": "2026-11-14T16:55:33-0500",
-"a": "isl",
-"b": "ikeja_laundromat",
-"code": "isl.interactwith(ikeja_laundromat){ ikeja_laundromat.receives(isl.question); … }",
-"text": "An Isl note with Kunle's name and 'worm question' on it, 5:30pm, 13 Nov 2026, turns up inside the juju code at the ikeja laundromat, and Ejiro reads the name twice.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j3"
-},
-{
-"id": "wf_50bbff9f62",
-"ts": "2026-11-14T16:57:12-0500",
-"a": "yaba_bookshop",
-"b": "streetlights",
-"code": "yaba_bookshop.interactwith(streetlights){ streetlights.receives(yaba_bookshop.envelope); streetlights.remembers(bisola, 'brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, turns up with the streetlights, which is still all dead since 7:35pm.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j4"
-},
 {
 "id": "wf_d190614a42",
 "ts": "2026-11-14T16:57:59-0500",
@@ -2160,6 +2157,39 @@
 "author": "cos",
 "run": "run-b9b963",
 "card": "j2"
+},
+{
+"id": "wt_825a1245a2",
+"ts": "2026-11-14T23:55:23-0500",
+"a": "tailor_shop",
+"b": "lekki_pharmacy",
+"code": "tailor_shop.interactwith(lekki_pharmacy){ lekki_pharmacy.receives(tailor_shop, 'blue glass bead button'); … }",
+"text": "Bisola waits at the Lekki pharmacy till in the green shirt Taiwo mended, and the pharmacist keeps glancing at the one blue bead where the top button used to be.",
+"author": "thryd",
+"run": "run-b9b963",
+"card": "j9"
+},
+{
+"id": "wt_41a77e553b",
+"ts": "2026-11-14T23:55:23-0500",
+"a": "lekki_pharmacy",
+"b": "kerosene_lamp",
+"code": "lekki_pharmacy.interactwith(kerosene_lamp){ kerosene_lamp.receives(lekki_pharmacy.change); kerosene_lamp.set('oil', 'topped up'); }",
+"text": "The coins Taiwo counted into the pharmacy dish come back as change, and on the way home he spends them on kerosene, so the lamp at Mama Ronke's gate is full again by evening.",
+"author": "thryd",
+"run": "run-b9b963",
+"card": "j9"
+},
+{
+"id": "wt_9a530635c7",
+"ts": "2026-11-14T23:55:23-0500",
+"a": "kerosene_lamp",
+"b": "cup",
+"code": "kerosene_lamp.interactwith(cup){ cup.state('warm and green-lit'); kerosene_lamp.remembers(ejiro, 'juju code'); }",
+"text": "Someone sets the cup down beside the steady green lamp, and the note folded under it, with Ejiro's name and juju code, finally gets read in a good light.",
+"author": "thryd",
+"run": "run-b9b963",
+"card": "j2"
 }
 ],
 "memories": [
@@ -2230,5 +2260,5 @@
 "card": "j6"
 }
 ],
-"updated": "2026-11-14T20:37:17-0500"
+"updated": "2026-11-14T23:55:26-0500"
 }
