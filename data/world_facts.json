@@ -915,16 +915,6 @@
 ],
 "red_white_cap": [
 {
-"id": "wf_2f28f3815c",
-"kind": "consequence",
-"text": "An Oshodi bus shelter ticket stub with Kunle's name and 'timetable' on it, turns up inside the brown envelope at the red white cap, and Bisola reads the name twice.",
-"code": "matches.interactwith(red_white_cap){ red_white_cap.receives(matches.timetable); … }",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j4",
-"other": "matches"
-},
-{
 "id": "wf_d190614a42",
 "kind": "consequence",
 "text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the red white cap, and Bisola reads the name twice.",
@@ -963,6 +953,16 @@
 "run": "run-0bd7c0",
 "card": "j5",
 "other": "omo"
+},
+{
+"id": "wf_bb83a4d101",
+"kind": "consequence",
+"text": "A Danfo speaker note with Bisola's name and 'egbe note' on it, turns up inside the brown envelope at the red white cap, and Bisola reads the name twice.",
+"code": "danfo_speaker.interactwith(red_white_cap){ red_white_cap.receives(danfo_speaker.note); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "w",
+"other": "danfo_speaker"
 }
 ],
 "streetlights": [
@@ -3330,17 +3330,6 @@
 },
 "consequences": [
 {
-"id": "wf_5b74aeb2e2",
-"ts": "2026-11-15T15:49:11-0500",
-"a": "agbada",
-"b": "bicycle",
-"code": "agbada.interactwith(bicycle){ bicycle.receives(agbada.joke); bicycle.remembers(bisola, 'boss joke'); bicycle.tucks(agbada, 'egbe note into the boss joke'); }",
-"text": "An Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997, turns up inside the boss joke at the bicycle, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j1"
-},
-{
 "id": "wf_cde04c5d4c",
 "ts": "2026-11-15T15:58:57-0500",
 "a": "yaba_bookshop",
@@ -3768,6 +3757,17 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j6"
+},
+{
+"id": "wf_bb83a4d101",
+"ts": "2026-11-15T17:14:04-0500",
+"a": "danfo_speaker",
+"b": "red_white_cap",
+"code": "danfo_speaker.interactwith(red_white_cap){ red_white_cap.receives(danfo_speaker.note); … }",
+"text": "A Danfo speaker note with Bisola's name and 'egbe note' on it, turns up inside the brown envelope at the red white cap, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "w"
 }
 ],
 "memories": [
@@ -3871,5 +3871,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-15T17:11:15-0500"
+"updated": "2026-11-15T17:14:04-0500"
 }
