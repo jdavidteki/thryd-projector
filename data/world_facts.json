@@ -935,6 +935,16 @@
 "run": "run-b9b963",
 "card": "j6",
 "other": "plastic_sheet"
+},
+{
+"id": "wf_73bd8c614c",
+"kind": "consequence",
+"text": "A Kerosene lamp note with Ronke's name and 'plastic sheet' on it, turns up inside the brown envelope at the streetlights, and Bisola reads the name twice.",
+"code": "diss.interactwith(streetlights){ streetlights.receives(diss.sheet); … }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j4",
+"other": "diss"
 }
 ],
 "kerosene_lamp": [
@@ -1959,6 +1969,16 @@
 "run": "run-b9b963",
 "card": "j6",
 "other": "reality"
+},
+{
+"id": "wf_8b744ec7a2",
+"kind": "consequence",
+"text": "An Isl note with Kunle's name and 'worm question' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the chair, and Bisola reads the name twice.",
+"code": "isl.interactwith(chair){ chair.receives(isl.question); chair.remembers(kunle, 'worm question'); chair.tucks(isl, 'isl note into the brown envelope'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j3",
+"other": "isl"
 }
 ],
 "cell_phone": [
@@ -2143,6 +2163,16 @@
 "run": "run-b9b963",
 "card": "j2",
 "other": "bicycle"
+},
+{
+"id": "wf_0044ec8668",
+"kind": "consequence",
+"text": "A Kerosene lamp note with Ronke's name and 'plastic sheet' on it, turns up inside the juju code at the diss, and Ejiro reads the name twice.",
+"code": "imm.interactwith(diss){ diss.receives(imm.sheet); diss.remembers(ronke, 'plastic sheet'); diss.tucks(imm, 'kerosene lamp note into the juju code'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j4",
+"other": "imm"
 }
 ],
 "called": [
@@ -2195,39 +2225,6 @@
 ]
 },
 "consequences": [
-{
-"id": "wf_5ec67adce1",
-"ts": "2026-11-15T02:24:42-0500",
-"a": "matches",
-"b": "game",
-"code": "matches.interactwith(game){ game.receives(matches.joke); game.remembers(bisola, 'boss joke'); game.tucks(matches, 'egbe note into the juju code'); }",
-"text": "An Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997, turns up inside the juju code at the game, and Ejiro reads the name twice.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j1"
-},
-{
-"id": "wf_f9dfb4e1f1",
-"ts": "2026-11-15T02:27:02-0500",
-"a": "danfo_speaker",
-"b": "yaba_bukka_counter",
-"code": "danfo_speaker.interactwith(yaba_bukka_counter){ yaba_bukka_counter.receives(danfo_speaker.joke); … }",
-"text": "An Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997, turns up inside the brown envelope at the yaba bukka counter, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j1"
-},
-{
-"id": "wf_f8ac78e924",
-"ts": "2026-11-15T02:27:49-0500",
-"a": "streetlights",
-"b": "laptop",
-"code": "streetlights.interactwith(laptop){ laptop.receives(streetlights.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, turns up inside the juju code at the laptop, and Ejiro reads the name twice.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j4"
-},
 {
 "id": "wf_ef11b0a714",
 "ts": "2026-11-15T02:39:37-0500",
@@ -2634,6 +2631,39 @@
 "author": "cos",
 "run": "run-b9b963",
 "card": "j6"
+},
+{
+"id": "wf_8b744ec7a2",
+"ts": "2026-11-15T05:26:18-0500",
+"a": "isl",
+"b": "chair",
+"code": "isl.interactwith(chair){ chair.receives(isl.question); chair.remembers(kunle, 'worm question'); chair.tucks(isl, 'isl note into the brown envelope'); }",
+"text": "An Isl note with Kunle's name and 'worm question' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the chair, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j3"
+},
+{
+"id": "wf_0044ec8668",
+"ts": "2026-11-15T05:28:39-0500",
+"a": "imm",
+"b": "diss",
+"code": "imm.interactwith(diss){ diss.receives(imm.sheet); diss.remembers(ronke, 'plastic sheet'); diss.tucks(imm, 'kerosene lamp note into the juju code'); }",
+"text": "A Kerosene lamp note with Ronke's name and 'plastic sheet' on it, turns up inside the juju code at the diss, and Ejiro reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j4"
+},
+{
+"id": "wf_73bd8c614c",
+"ts": "2026-11-15T05:29:26-0500",
+"a": "diss",
+"b": "streetlights",
+"code": "diss.interactwith(streetlights){ streetlights.receives(diss.sheet); … }",
+"text": "A Kerosene lamp note with Ronke's name and 'plastic sheet' on it, turns up inside the brown envelope at the streetlights, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j4"
 }
 ],
 "memories": [
@@ -2726,5 +2756,5 @@
 "card": "j8"
 }
 ],
-"updated": "2026-11-15T05:22:18-0500"
+"updated": "2026-11-15T05:29:26-0500"
 }
