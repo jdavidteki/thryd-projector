@@ -735,6 +735,16 @@
 "run": "run-b9b963",
 "card": "j4",
 "other": "called"
+},
+{
+"id": "wf_4de7ccc97f",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the pure water cooler, and Bisola reads the name twice.",
+"code": "tie.interactwith(pure_water_cooler){ pure_water_cooler.receives(tie.envelope); … }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j6",
+"other": "tie"
 }
 ],
 "agbada": [
@@ -1117,16 +1127,6 @@
 ],
 "yaba_bukka_counter": [
 {
-"id": "wf_30eddcc615",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, turns up inside the love at the yaba bukka counter, and Kunle reads the name twice.",
-"code": "pure_water_cooler.interactwith(yaba_bukka_counter){ yaba_bukka_counter.receives(pure_water_cooler.envelope); … }",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j4",
-"other": "pure_water_cooler"
-},
-{
 "id": "wf_24634c7e74",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it, turns up inside the love at the yaba bukka counter, and Kunle reads the name twice.",
@@ -1155,6 +1155,16 @@
 "run": "run-b9b963",
 "card": "j9",
 "other": "diss"
+},
+{
+"id": "wf_7224496963",
+"kind": "consequence",
+"text": "An Isl note with Kunle's name and 'worm question' on it, 5:30pm, 13 Nov 2026, turns up inside the love at the yaba bukka counter, and Kunle reads the name twice.",
+"code": "isl.interactwith(yaba_bukka_counter){ yaba_bukka_counter.receives(isl.question); … }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j3",
+"other": "isl"
 },
 {
 "id": "wt_4e525b9c48",
@@ -1411,6 +1421,16 @@
 "run": "run-b9b963",
 "card": "j1",
 "other": "agbada"
+},
+{
+"id": "wf_3b1d9b9b2b",
+"kind": "consequence",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the boss joke at the people scene, and Bisola reads the name twice.",
+"code": "cell_phone.interactwith(people_scene){ people_scene.receives(cell_phone.code); … }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j2",
+"other": "cell_phone"
 }
 ],
 "ronke_tray": [
@@ -2181,6 +2201,16 @@
 "run": "run-b9b963",
 "card": "j1",
 "other": "egbe"
+},
+{
+"id": "wf_2e06c0c541",
+"kind": "consequence",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the boss joke at the cell phone, and Bisola reads the name twice.",
+"code": "wwgbtaycbmba.interactwith(cell_phone){ cell_phone.receives(wwgbtaycbmba.code); … }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j2",
+"other": "wwgbtaycbmba"
 }
 ],
 "lowaleechelons": [
@@ -2215,6 +2245,16 @@
 "run": "run-b9b963",
 "card": "w",
 "other": "kerosene_lamp"
+},
+{
+"id": "wf_c02cd0fa3e",
+"kind": "consequence",
+"text": "An Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997, turns up inside the brown envelope at the juss, and Bisola reads the name twice.",
+"code": "people_scene.interactwith(juss){ juss.receives(people_scene.joke); juss.remembers(bisola, 'boss joke'); juss.tucks(people_scene, 'egbe note into the brown envelope'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j1",
+"other": "people_scene"
 }
 ],
 "suitcase": [
@@ -2521,6 +2561,16 @@
 "run": "run-b9b963",
 "card": "j3",
 "other": "isl"
+},
+{
+"id": "wf_592bc34060",
+"kind": "consequence",
+"text": "A Danfo speaker note with Bisola's name and 'egbe note' on it, turns up inside the worm question at the love, and Kunle reads the name twice.",
+"code": "danfo_speaker.interactwith(love){ love.receives(danfo_speaker.note); … }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "w",
+"other": "danfo_speaker"
 }
 ],
 "wser": [
@@ -2727,72 +2777,6 @@
 ]
 },
 "consequences": [
-{
-"id": "wf_5e9721ac04",
-"ts": "2026-11-15T12:12:27-0500",
-"a": "agbada",
-"b": "tie",
-"code": "agbada.interactwith(tie){ tie.receives(agbada.joke); tie.remembers(bisola, 'boss joke'); tie.tucks(agbada, 'egbe note into the brown envelope'); }",
-"text": "An Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997, turns up inside the brown envelope at the tie, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j1"
-},
-{
-"id": "wf_dcfb42425e",
-"ts": "2026-11-15T12:13:26-0500",
-"a": "people_scene",
-"b": "indomie_egg",
-"code": "people_scene.interactwith(indomie_egg){ indomie_egg.receives(people_scene.code); indomie_egg.remembers(ejiro, 'juju code'); }",
-"text": "The indomie egg leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j2"
-},
-{
-"id": "wf_900c73f1b1",
-"ts": "2026-11-15T12:14:14-0500",
-"a": "red_white",
-"b": "streetlights",
-"code": "red_white.interactwith(streetlights){ streetlights.receives(red_white.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the streetlights, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j6"
-},
-{
-"id": "wf_a6b7d385b5",
-"ts": "2026-11-15T12:15:01-0500",
-"a": "bed",
-"b": "yaba_bookshop",
-"code": "bed.interactwith(yaba_bookshop){ yaba_bookshop.receives(bed.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the blue glass bead at the yaba bookshop, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j6"
-},
-{
-"id": "wf_96c90924fc",
-"ts": "2026-11-15T12:15:49-0500",
-"a": "kerosene_lamp",
-"b": "yaba_bookshop",
-"code": "kerosene_lamp.interactwith(yaba_bookshop){ yaba_bookshop.receives(kerosene_lamp.change); … }",
-"text": "A Kerosene lamp note with Taiwo's name and 'change' on it, turns up inside the blue glass bead at the yaba bookshop, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "w"
-},
-{
-"id": "wf_3e185379a6",
-"ts": "2026-11-15T12:16:36-0500",
-"a": "called",
-"b": "reality",
-"code": "called.interactwith(reality){ reality.receives(called.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the reality, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j6"
-},
 {
 "id": "wf_f92ec922d1",
 "ts": "2026-11-15T12:17:31-0500",
@@ -3166,6 +3150,72 @@
 "author": "cos",
 "run": "run-b9b963",
 "card": "j6"
+},
+{
+"id": "wf_2e06c0c541",
+"ts": "2026-11-15T13:08:37-0500",
+"a": "wwgbtaycbmba",
+"b": "cell_phone",
+"code": "wwgbtaycbmba.interactwith(cell_phone){ cell_phone.receives(wwgbtaycbmba.code); … }",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the boss joke at the cell phone, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j2"
+},
+{
+"id": "wf_592bc34060",
+"ts": "2026-11-15T13:09:32-0500",
+"a": "danfo_speaker",
+"b": "love",
+"code": "danfo_speaker.interactwith(love){ love.receives(danfo_speaker.note); … }",
+"text": "A Danfo speaker note with Bisola's name and 'egbe note' on it, turns up inside the worm question at the love, and Kunle reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "w"
+},
+{
+"id": "wf_c02cd0fa3e",
+"ts": "2026-11-15T13:10:27-0500",
+"a": "people_scene",
+"b": "juss",
+"code": "people_scene.interactwith(juss){ juss.receives(people_scene.joke); juss.remembers(bisola, 'boss joke'); juss.tucks(people_scene, 'egbe note into the brown envelope'); }",
+"text": "An Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997, turns up inside the brown envelope at the juss, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j1"
+},
+{
+"id": "wf_4de7ccc97f",
+"ts": "2026-11-15T13:11:14-0500",
+"a": "tie",
+"b": "pure_water_cooler",
+"code": "tie.interactwith(pure_water_cooler){ pure_water_cooler.receives(tie.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the pure water cooler, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j6"
+},
+{
+"id": "wf_7224496963",
+"ts": "2026-11-15T13:12:09-0500",
+"a": "isl",
+"b": "yaba_bukka_counter",
+"code": "isl.interactwith(yaba_bukka_counter){ yaba_bukka_counter.receives(isl.question); … }",
+"text": "An Isl note with Kunle's name and 'worm question' on it, 5:30pm, 13 Nov 2026, turns up inside the love at the yaba bukka counter, and Kunle reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j3"
+},
+{
+"id": "wf_3b1d9b9b2b",
+"ts": "2026-11-15T13:13:03-0500",
+"a": "cell_phone",
+"b": "people_scene",
+"code": "cell_phone.interactwith(people_scene){ people_scene.receives(cell_phone.code); … }",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the boss joke at the people scene, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j2"
 }
 ],
 "memories": [
@@ -3269,5 +3319,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-15T13:07:46-0500"
+"updated": "2026-11-15T13:13:03-0500"
 }
