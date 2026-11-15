@@ -1758,20 +1758,21 @@
 "card": "j2",
 "other": "kerosene_lamp"
 }
+],
+"chair": [
+{
+"id": "wf_44fc2d9842",
+"kind": "consequence",
+"text": "The chair leaves with a Kerosene lamp note with Ronke's name and 'plastic sheet' on it.",
+"code": "imm.interactwith(chair){ chair.receives(imm.sheet); chair.remembers(ronke, 'plastic sheet'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j4",
+"other": "imm"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_1484a43722",
-"ts": "2026-11-14T17:03:38-0500",
-"a": "people_scene",
-"b": "yaba_bukka_counter",
-"code": "people_scene.interactwith(yaba_bukka_counter){ yaba_bukka_counter.receives(people_scene.code); … }",
-"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the yaba bukka counter, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j2"
-},
 {
 "id": "wf_ba6391323e",
 "ts": "2026-11-14T17:04:25-0500",
@@ -2200,6 +2201,17 @@
 "author": "cos",
 "run": "run-b9b963",
 "card": "j8"
+},
+{
+"id": "wf_44fc2d9842",
+"ts": "2026-11-15T00:46:56-0500",
+"a": "imm",
+"b": "chair",
+"code": "imm.interactwith(chair){ chair.receives(imm.sheet); chair.remembers(ronke, 'plastic sheet'); }",
+"text": "The chair leaves with a Kerosene lamp note with Ronke's name and 'plastic sheet' on it.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j4"
 }
 ],
 "memories": [
@@ -2270,5 +2282,5 @@
 "card": "j6"
 }
 ],
-"updated": "2026-11-15T00:42:56-0500"
+"updated": "2026-11-15T00:46:56-0500"
 }
