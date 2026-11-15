@@ -1854,20 +1854,21 @@
 "card": "j6",
 "other": "yaba_bukka_counter"
 }
+],
+"juss": [
+{
+"id": "wf_ef11b0a714",
+"kind": "consequence",
+"text": "The juss leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "yaba_bukka_counter.interactwith(juss){ juss.receives(yaba_bukka_counter.envelope); juss.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j6",
+"other": "yaba_bukka_counter"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_1c5f4fe7ba",
-"ts": "2026-11-14T17:18:08-0500",
-"a": "play",
-"b": "reality",
-"code": "play.interactwith(reality){ reality.receives(play.code); reality.remembers(ejiro, 'juju code'); reality.tucks(play, 'ttb note into the brown envelope'); }",
-"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the reality, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j2"
-},
 {
 "id": "wf_b6e4ae4445",
 "ts": "2026-11-14T17:18:54-0500",
@@ -2296,6 +2297,17 @@
 "author": "cos",
 "run": "run-b9b963",
 "card": "j4"
+},
+{
+"id": "wf_ef11b0a714",
+"ts": "2026-11-15T02:39:37-0500",
+"a": "yaba_bukka_counter",
+"b": "juss",
+"code": "yaba_bukka_counter.interactwith(juss){ juss.receives(yaba_bukka_counter.envelope); juss.remembers(bisola, 'brown envelope'); }",
+"text": "The juss leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j6"
 }
 ],
 "memories": [
@@ -2366,5 +2378,5 @@
 "card": "j6"
 }
 ],
-"updated": "2026-11-15T02:27:49-0500"
+"updated": "2026-11-15T02:39:37-0500"
 }
