@@ -1667,6 +1667,16 @@
 "run": "run-b9b963",
 "card": "j4",
 "other": "matches"
+},
+{
+"id": "wf_2007777284",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, turns up inside the timetable at the bus, and Kunle reads the name twice.",
+"code": "streetlights.interactwith(bus){ bus.receives(streetlights.envelope); … }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j4",
+"other": "streetlights"
 }
 ],
 "hands": [
@@ -1807,17 +1817,6 @@
 ]
 },
 "consequences": [
-{
-"id": "wf_d6cc695a8e",
-"ts": "2026-11-14T17:10:07-0500",
-"a": "pure_water_cooler",
-"b": "no_me_go",
-"code": "pure_water_cooler.interactwith(no_me_go){ no_me_go.receives(pure_water_cooler.code); no_me_go.remembers(ejiro, 'juju code'); }",
-"text": "The no me go leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j2"
-},
 {
 "id": "wf_a99bf506a1",
 "ts": "2026-11-14T17:10:54-0500",
@@ -2246,6 +2245,17 @@
 "author": "cos",
 "run": "run-b9b963",
 "card": "j6"
+},
+{
+"id": "wf_2007777284",
+"ts": "2026-11-15T02:13:20-0500",
+"a": "streetlights",
+"b": "bus",
+"code": "streetlights.interactwith(bus){ bus.receives(streetlights.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, turns up inside the timetable at the bus, and Kunle reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j4"
 }
 ],
 "memories": [
@@ -2316,5 +2326,5 @@
 "card": "j6"
 }
 ],
-"updated": "2026-11-15T02:08:32-0500"
+"updated": "2026-11-15T02:13:20-0500"
 }
