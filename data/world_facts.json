@@ -831,6 +831,26 @@
 "run": "run-b9b963",
 "card": "j6",
 "other": "red_white_cap"
+},
+{
+"id": "wf_89d3b6d817",
+"kind": "consequence",
+"text": "An Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997, turns up inside the brown envelope at the plastic sheet, and Bisola reads the name twice.",
+"code": "game.interactwith(plastic_sheet){ plastic_sheet.receives(game.joke); … }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j1",
+"other": "game"
+},
+{
+"id": "wf_16449b28ce",
+"kind": "consequence",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the plastic sheet, and Bisola reads the name twice.",
+"code": "wwgbtaycbmba.interactwith(plastic_sheet){ plastic_sheet.receives(wwgbtaycbmba.code); … }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j2",
+"other": "wwgbtaycbmba"
 }
 ],
 "red_white_cap": [
@@ -1926,28 +1946,6 @@
 },
 "consequences": [
 {
-"id": "wf_6846c55b4f",
-"ts": "2026-11-14T17:38:45-0500",
-"a": "plastic_sheet",
-"b": "seen",
-"code": "plastic_sheet.interactwith(seen){ seen.receives(plastic_sheet.envelope); seen.remembers(bisola, 'brown envelope'); }",
-"text": "The seen leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j6"
-},
-{
-"id": "wf_4a4dc4749d",
-"ts": "2026-11-14T17:43:37-0500",
-"a": "imm",
-"b": "laptop",
-"code": "imm.interactwith(laptop){ laptop.receives(imm.sheet); laptop.remembers(ronke, 'plastic sheet'); }",
-"text": "A Kerosene lamp note with Ronke's name and 'plastic sheet' on it, turns up with the matches, which is still found.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j4"
-},
-{
 "id": "wf_40c03caeb2",
 "ts": "2026-11-14T17:48:23-0500",
 "a": "game",
@@ -2364,6 +2362,28 @@
 "author": "cos",
 "run": "run-b9b963",
 "card": "j6"
+},
+{
+"id": "wf_89d3b6d817",
+"ts": "2026-11-15T04:07:46-0500",
+"a": "game",
+"b": "plastic_sheet",
+"code": "game.interactwith(plastic_sheet){ plastic_sheet.receives(game.joke); … }",
+"text": "An Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997, turns up inside the brown envelope at the plastic sheet, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j1"
+},
+{
+"id": "wf_16449b28ce",
+"ts": "2026-11-15T04:10:08-0500",
+"a": "wwgbtaycbmba",
+"b": "plastic_sheet",
+"code": "wwgbtaycbmba.interactwith(plastic_sheet){ plastic_sheet.receives(wwgbtaycbmba.code); … }",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the plastic sheet, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j2"
 }
 ],
 "memories": [
@@ -2434,5 +2454,5 @@
 "card": "j6"
 }
 ],
-"updated": "2026-11-15T04:04:27-0500"
+"updated": "2026-11-15T04:10:08-0500"
 }
