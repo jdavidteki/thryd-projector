@@ -2567,6 +2567,16 @@
 "run": "run-b9b963",
 "card": "j1",
 "other": "game"
+},
+{
+"id": "wf_c32fe3a62d",
+"kind": "consequence",
+"text": "An Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997, turns up inside the brown envelope at the notnotnotnotyn dec, and Bisola reads the name twice.",
+"code": "agbada.interactwith(notnotnotnotyn_dec){ notnotnotnotyn_dec.receives(agbada.joke); … }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j1",
+"other": "agbada"
 }
 ],
 "cassette_spine": [
@@ -2885,17 +2895,6 @@
 ]
 },
 "consequences": [
-{
-"id": "wf_0ae9b65eb2",
-"ts": "2026-11-15T12:30:35-0500",
-"a": "matches",
-"b": "notnotnotnotyn_dec",
-"code": "matches.interactwith(notnotnotnotyn_dec){ notnotnotnotyn_dec.receives(matches.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the notnotnotnotyn dec, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j6"
-},
 {
 "id": "wf_769ec785e1",
 "ts": "2026-11-15T12:31:29-0500",
@@ -3324,6 +3323,17 @@
 "author": "cos",
 "run": "run-b9b963",
 "card": "w"
+},
+{
+"id": "wf_c32fe3a62d",
+"ts": "2026-11-15T13:45:54-0500",
+"a": "agbada",
+"b": "notnotnotnotyn_dec",
+"code": "agbada.interactwith(notnotnotnotyn_dec){ notnotnotnotyn_dec.receives(agbada.joke); … }",
+"text": "An Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997, turns up inside the brown envelope at the notnotnotnotyn dec, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j1"
 }
 ],
 "memories": [
@@ -3427,5 +3437,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-15T13:45:03-0500"
+"updated": "2026-11-15T13:45:54-0500"
 }
