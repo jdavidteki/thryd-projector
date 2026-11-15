@@ -529,16 +529,6 @@
 "objects": {
 "ikeja_laundromat": [
 {
-"id": "wf_cfe483381b",
-"kind": "memory",
-"text": "10:15am, Thursday 6 May 2060: A coin sits on the lid.",
-"code": "ikeja_laundromat.remembers('coin');",
-"author": "cos",
-"run": "run-9e3e84",
-"card": "j8",
-"other": null
-},
-{
 "id": "wf_edaa2b06b5",
 "kind": "consequence",
 "text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the green shirt at the ikeja laundromat, and Bisola reads the name twice.",
@@ -574,6 +564,16 @@
 "text": "10:15am, Thursday 6 May 2060: Taiwo watches the last dryer turn. The ikeja laundromat keeps it on file.",
 "code": "ikeja_laundromat.remembers(taiwo, 'dryer');",
 "author": "cos",
+"run": "run-b9b963",
+"card": "j8",
+"other": null
+},
+{
+"id": "wt_6ca10e8a6f",
+"kind": "memory",
+"text": "At 10:15am the Ikeja laundromat kept the green shirt that was not Bisola's, and it came out of the dryer humming callmemaybe.",
+"code": "ikeja_laundromat.remembers(Bisola,'green shirt'); ikeja_laundromat.set('theme','callmemaybe')",
+"author": "thryd",
 "run": "run-b9b963",
 "card": "j8",
 "other": null
@@ -633,26 +633,6 @@
 ],
 "oshodi_bus_shelter": [
 {
-"id": "wf_15977b866d",
-"kind": "memory",
-"text": "6:10pm, Thursday 12 November 2026: A bus is two stops away.",
-"code": "oshodi_bus_shelter.remembers('bus');",
-"author": "cos",
-"run": "run-9e3e84",
-"card": "j2",
-"other": null
-},
-{
-"id": "wf_b744cc44b3",
-"kind": "consequence",
-"text": "An Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997, turns up inside the timetable at the oshodi bus shelter, and Kunle reads the name twice.",
-"code": "egbe.interactwith(oshodi_bus_shelter){ oshodi_bus_shelter.receives(egbe.joke); … }",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j1",
-"other": "egbe"
-},
-{
 "id": "wf_d323d06c91",
 "kind": "consequence",
 "text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the timetable at the oshodi bus shelter, and Kunle reads the name twice.",
@@ -671,6 +651,26 @@
 "run": "run-b9b963",
 "card": "j2",
 "other": "wwgbtaycbmba"
+},
+{
+"id": "wf_a09e6595f3",
+"kind": "memory",
+"text": "9:05am, Tuesday 9 April 2075: Bisola sits on the bench with a phone at ten percent. The oshodi bus shelter keeps it on file.",
+"code": "oshodi_bus_shelter.remembers(bisola, 'phone');",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j11",
+"other": null
+},
+{
+"id": "wf_4a7d94e061",
+"kind": "memory",
+"text": "9:05am, Tuesday 9 April 2075: Taiwo reads the timetable aloud. The oshodi bus shelter keeps it on file.",
+"code": "oshodi_bus_shelter.remembers(taiwo, 'timetable');",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j11",
+"other": null
 },
 {
 "id": "wt_e2a4bd1320",
@@ -2593,7 +2593,18 @@
 "author": "thryd",
 "run": "run-b9b963",
 "card": "j7"
+},
+{
+"id": "wt_6ca10e8a6f",
+"ts": "2026-11-15T04:40:54-0500",
+"a": null,
+"b": "ikeja_laundromat",
+"code": "ikeja_laundromat.remembers(Bisola,'green shirt'); ikeja_laundromat.set('theme','callmemaybe')",
+"text": "At 10:15am the Ikeja laundromat kept the green shirt that was not Bisola's, and it came out of the dryer humming callmemaybe.",
+"author": "thryd",
+"run": "run-b9b963",
+"card": "j8"
 }
 ],
-"updated": "2026-11-15T04:37:33-0500"
+"updated": "2026-11-15T04:41:36-0500"
 }
