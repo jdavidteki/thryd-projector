@@ -3241,6 +3241,16 @@
 "run": "run-0bd7c0",
 "card": "j5",
 "other": "yaba_bookshop"
+},
+{
+"id": "wf_580f294adf",
+"kind": "consequence",
+"text": "A Kerosene lamp note with Taiwo's name and 'change' on it, turns up inside the blue glass bead at the morir r, and Bisola reads the name twice.",
+"code": "kerosene_lamp.interactwith(morir_r){ morir_r.receives(kerosene_lamp.change); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "w",
+"other": "kerosene_lamp"
 }
 ],
 "ats": [
@@ -3360,31 +3370,33 @@
 "card": "j6",
 "other": "truth"
 }
+],
+"sports_ball": [
+{
+"id": "wf_f62ffcc3d6",
+"kind": "consequence",
+"text": "The sports ball leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "ats.interactwith(sports_ball){ sports_ball.receives(ats.envelope); sports_ball.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "ats"
+}
+],
+"danfo_stuck": [
+{
+"id": "wf_c1b46134e7",
+"kind": "memory",
+"text": "9:40pm, Wednesday 8 March 2062: Titi drives with one hand while a stranger in the back keeps asking to be let out at a stop that no longer exists, and the conductor counts the fares twice. The danfo stuck keeps it on file.",
+"code": "danfo_stuck.remembers(titi, 'hand');",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j9",
+"other": null
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_9f2332f24e",
-"ts": "2026-11-15T16:22:13-0500",
-"a": "agbada",
-"b": "laptop",
-"code": "agbada.interactwith(laptop){ laptop.receives(agbada.change); laptop.remembers(taiwo, 'change'); laptop.tucks(agbada, 'kerosene lamp note into the change'); }",
-"text": "A Kerosene lamp note with Taiwo's name and 'change' on it, turns up inside the change at the laptop, and Taiwo reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "w"
-},
-{
-"id": "wf_bd31fef54d",
-"ts": "2026-11-15T16:24:43-0500",
-"a": "yaba_bookshop",
-"b": "omo",
-"code": "yaba_bookshop.interactwith(omo){ omo.receives(yaba_bookshop.bead); omo.remembers(bisola, 'blue glass bead'); }",
-"text": "The omo leaves with a Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j5"
-},
 {
 "id": "wf_94a4c0fc3a",
 "ts": "2026-11-15T16:25:30-0500",
@@ -3802,6 +3814,28 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j6"
+},
+{
+"id": "wf_580f294adf",
+"ts": "2026-11-15T18:24:50-0500",
+"a": "kerosene_lamp",
+"b": "morir_r",
+"code": "kerosene_lamp.interactwith(morir_r){ morir_r.receives(kerosene_lamp.change); … }",
+"text": "A Kerosene lamp note with Taiwo's name and 'change' on it, turns up inside the blue glass bead at the morir r, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "w"
+},
+{
+"id": "wf_f62ffcc3d6",
+"ts": "2026-11-15T18:25:45-0500",
+"a": "ats",
+"b": "sports_ball",
+"code": "ats.interactwith(sports_ball){ sports_ball.receives(ats.envelope); sports_ball.remembers(bisola, 'brown envelope'); }",
+"text": "The sports ball leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
 }
 ],
 "memories": [
@@ -3905,5 +3939,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-15T18:23:50-0500"
+"updated": "2026-11-15T18:26:39-0500"
 }
