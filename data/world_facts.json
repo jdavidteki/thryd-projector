@@ -2169,6 +2169,16 @@
 "other": "ttb"
 },
 {
+"id": "wf_ff94d31b89",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the juju code at the cup, and Ejiro reads the name twice.",
+"code": "called.interactwith(cup){ cup.receives(called.envelope); cup.remembers(bisola, 'brown envelope'); cup.tucks(called, 'yaba bookshop receipt into the juju code'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j6",
+"other": "called"
+},
+{
 "id": "wt_9a530635c7",
 "kind": "consequence",
 "text": "Someone sets the cup down beside the steady green lamp, and the note folded under it, with Ejiro's name and juju code, finally gets read in a good light.",
@@ -2896,17 +2906,6 @@
 },
 "consequences": [
 {
-"id": "wf_769ec785e1",
-"ts": "2026-11-15T12:31:29-0500",
-"a": "play",
-"b": "kerosene_lamp",
-"code": "play.interactwith(kerosene_lamp){ kerosene_lamp.receives(play.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the change at the kerosene lamp, and Taiwo reads the name twice.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j6"
-},
-{
 "id": "wf_3caf79339b",
 "ts": "2026-11-15T12:32:24-0500",
 "a": "people_scene",
@@ -3334,6 +3333,17 @@
 "author": "cos",
 "run": "run-b9b963",
 "card": "j1"
+},
+{
+"id": "wf_ff94d31b89",
+"ts": "2026-11-15T13:56:13-0500",
+"a": "called",
+"b": "cup",
+"code": "called.interactwith(cup){ cup.receives(called.envelope); cup.remembers(bisola, 'brown envelope'); cup.tucks(called, 'yaba bookshop receipt into the juju code'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the juju code at the cup, and Ejiro reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j6"
 }
 ],
 "memories": [
@@ -3437,5 +3447,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-15T13:45:54-0500"
+"updated": "2026-11-15T13:56:13-0500"
 }
