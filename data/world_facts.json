@@ -937,16 +937,6 @@
 ],
 "streetlights": [
 {
-"id": "wf_2577831d92",
-"kind": "memory",
-"text": "The streetlights at the street: all dead since 7:35pm.",
-"code": "streetlights.remembers('all dead since 7:35pm');",
-"author": "cos",
-"run": "run-b9b963",
-"card": "w6",
-"other": null
-},
-{
 "id": "wf_50bbff9f62",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, turns up with the streetlights, which is still all dead since 7:35pm.",
@@ -985,6 +975,16 @@
 "run": "run-b9b963",
 "card": "j6",
 "other": "red_white"
+},
+{
+"id": "wf_75c71e3f86",
+"kind": "consequence",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the streetlights, and Bisola reads the name twice.",
+"code": "wwgbtaycbmba.interactwith(streetlights){ streetlights.receives(wwgbtaycbmba.code); … }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j2",
+"other": "wwgbtaycbmba"
 }
 ],
 "kerosene_lamp": [
@@ -2858,42 +2858,33 @@
 "card": "j5",
 "other": "yaba_bookshop"
 }
+],
+"dapo": [
+{
+"id": "wf_32c16e6198",
+"kind": "consequence",
+"text": "The dapo leaves with a Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it.",
+"code": "yaba_bookshop.interactwith(dapo){ dapo.receives(yaba_bookshop.bead); dapo.remembers(bisola, 'blue glass bead'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j5",
+"other": "yaba_bookshop"
+}
+],
+"might_rich_but": [
+{
+"id": "wf_5d46ecd55f",
+"kind": "consequence",
+"text": "The might rich but leaves with a Danfo speaker note with Bisola's name and 'egbe note' on it.",
+"code": "danfo_speaker.interactwith(might_rich_but){ might_rich_but.receives(danfo_speaker.note); might_rich_but.remembers(bisola, 'egbe note'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "w",
+"other": "danfo_speaker"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_174d4ec18b",
-"ts": "2026-11-15T12:27:44-0500",
-"a": "notnotnotnotyn_nov",
-"b": "juniorboys",
-"code": "notnotnotnotyn_nov.interactwith(juniorboys){ juniorboys.receives(notnotnotnotyn_nov.code); … }",
-"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the boss joke at the juniorboys, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j2"
-},
-{
-"id": "wf_24634c7e74",
-"ts": "2026-11-15T12:28:39-0500",
-"a": "divorce",
-"b": "yaba_bukka_counter",
-"code": "divorce.interactwith(yaba_bukka_counter){ yaba_bukka_counter.receives(divorce.bead); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it, turns up inside the love at the yaba bukka counter, and Kunle reads the name twice.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j5"
-},
-{
-"id": "wf_f6531e62d8",
-"ts": "2026-11-15T12:29:40-0500",
-"a": "wwgbtaycbmba",
-"b": "replenish_earth",
-"code": "wwgbtaycbmba.interactwith(replenish_earth){ replenish_earth.receives(wwgbtaycbmba.code); … }",
-"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the replenish earth, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j2"
-},
 {
 "id": "wf_0ae9b65eb2",
 "ts": "2026-11-15T12:30:35-0500",
@@ -3300,6 +3291,39 @@
 "author": "cos",
 "run": "run-b9b963",
 "card": "j6"
+},
+{
+"id": "wf_32c16e6198",
+"ts": "2026-11-15T13:41:07-0500",
+"a": "yaba_bookshop",
+"b": "dapo",
+"code": "yaba_bookshop.interactwith(dapo){ dapo.receives(yaba_bookshop.bead); dapo.remembers(bisola, 'blue glass bead'); }",
+"text": "The dapo leaves with a Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j5"
+},
+{
+"id": "wf_75c71e3f86",
+"ts": "2026-11-15T13:43:28-0500",
+"a": "wwgbtaycbmba",
+"b": "streetlights",
+"code": "wwgbtaycbmba.interactwith(streetlights){ streetlights.receives(wwgbtaycbmba.code); … }",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the streetlights, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j2"
+},
+{
+"id": "wf_5d46ecd55f",
+"ts": "2026-11-15T13:45:03-0500",
+"a": "danfo_speaker",
+"b": "might_rich_but",
+"code": "danfo_speaker.interactwith(might_rich_but){ might_rich_but.receives(danfo_speaker.note); might_rich_but.remembers(bisola, 'egbe note'); }",
+"text": "The might rich but leaves with a Danfo speaker note with Bisola's name and 'egbe note' on it.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "w"
 }
 ],
 "memories": [
@@ -3403,5 +3427,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-15T13:40:02-0500"
+"updated": "2026-11-15T13:45:03-0500"
 }
