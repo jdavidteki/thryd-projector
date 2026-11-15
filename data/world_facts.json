@@ -1357,6 +1357,16 @@
 "run": "run-b9b963",
 "card": "j4",
 "other": "kerosene_lamp"
+},
+{
+"id": "wf_a41c482162",
+"kind": "consequence",
+"text": "An Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997, turns up inside the plastic sheet at the imm, and Ronke reads the name twice.",
+"code": "game.interactwith(imm){ imm.receives(game.joke); imm.remembers(bisola, 'boss joke'); imm.tucks(game, 'egbe note into the plastic sheet'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j1",
+"other": "game"
 }
 ],
 "off_key": [
@@ -2286,17 +2296,6 @@
 },
 "consequences": [
 {
-"id": "wf_e46192a184",
-"ts": "2026-11-15T04:15:41-0500",
-"a": "red_white_cap",
-"b": "bed",
-"code": "red_white_cap.interactwith(bed){ bed.receives(red_white_cap.envelope); bed.remembers(bisola, 'brown envelope'); }",
-"text": "The bed leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j6"
-},
-{
 "id": "wf_0d27790dd9",
 "ts": "2026-11-15T04:16:32-0500",
 "a": "play",
@@ -2724,6 +2723,17 @@
 "author": "cos",
 "run": "run-b9b963",
 "card": "j9"
+},
+{
+"id": "wf_a41c482162",
+"ts": "2026-11-15T06:00:50-0500",
+"a": "game",
+"b": "imm",
+"code": "game.interactwith(imm){ imm.receives(game.joke); imm.remembers(bisola, 'boss joke'); imm.tucks(game, 'egbe note into the plastic sheet'); }",
+"text": "An Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997, turns up inside the plastic sheet at the imm, and Ronke reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j1"
 }
 ],
 "memories": [
@@ -2816,5 +2826,5 @@
 "card": "j8"
 }
 ],
-"updated": "2026-11-15T05:55:51-0500"
+"updated": "2026-11-15T06:00:50-0500"
 }
