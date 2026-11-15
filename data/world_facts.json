@@ -1477,6 +1477,16 @@
 "run": "run-b9b963",
 "card": "j1",
 "other": "game"
+},
+{
+"id": "wf_279edb7298",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the boss joke at the imm, and Bisola reads the name twice.",
+"code": "streetlights.interactwith(imm){ imm.receives(streetlights.envelope); … }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j6",
+"other": "streetlights"
 }
 ],
 "off_key": [
@@ -2852,17 +2862,6 @@
 },
 "consequences": [
 {
-"id": "wf_87228043ef",
-"ts": "2026-11-15T12:26:56-0500",
-"a": "red_white",
-"b": "matches",
-"code": "red_white.interactwith(matches){ matches.receives(red_white.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the boss joke at the matches, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j6"
-},
-{
 "id": "wf_174d4ec18b",
 "ts": "2026-11-15T12:27:44-0500",
 "a": "notnotnotnotyn_nov",
@@ -3290,6 +3289,17 @@
 "author": "cos",
 "run": "run-b9b963",
 "card": "w"
+},
+{
+"id": "wf_279edb7298",
+"ts": "2026-11-15T13:40:02-0500",
+"a": "streetlights",
+"b": "imm",
+"code": "streetlights.interactwith(imm){ imm.receives(streetlights.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the boss joke at the imm, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j6"
 }
 ],
 "memories": [
@@ -3393,5 +3403,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-15T13:27:27-0500"
+"updated": "2026-11-15T13:40:02-0500"
 }
