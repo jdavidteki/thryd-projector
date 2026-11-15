@@ -2239,16 +2239,6 @@
 ],
 "cup": [
 {
-"id": "wf_00dc7a0d06",
-"kind": "consequence",
-"text": "The cup leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
-"code": "ttb.interactwith(cup){ cup.receives(ttb.code); cup.remembers(ejiro, 'juju code'); }",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j2",
-"other": "ttb"
-},
-{
 "id": "wf_ff94d31b89",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the juju code at the cup, and Ejiro reads the name twice.",
@@ -2277,6 +2267,16 @@
 "run": "run-b9b963",
 "card": "j3",
 "other": "isl"
+},
+{
+"id": "wf_d57f721947",
+"kind": "consequence",
+"text": "An Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997, turns up inside the juju code at the cup, and Ejiro reads the name twice.",
+"code": "agbada.interactwith(cup){ cup.receives(agbada.joke); cup.remembers(bisola, 'boss joke'); cup.tucks(agbada, 'egbe note into the juju code'); }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j1",
+"other": "agbada"
 },
 {
 "id": "wt_9a530635c7",
@@ -3140,42 +3140,33 @@
 "card": "j4",
 "other": null
 }
+],
+"morir_r": [
+{
+"id": "wf_cde04c5d4c",
+"kind": "consequence",
+"text": "The morir r leaves with a Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it.",
+"code": "yaba_bookshop.interactwith(morir_r){ morir_r.receives(yaba_bookshop.bead); morir_r.remembers(bisola, 'blue glass bead'); }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j5",
+"other": "yaba_bookshop"
+}
+],
+"ats": [
+{
+"id": "wf_c925458406",
+"kind": "consequence",
+"text": "The ats leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "streetlights.interactwith(ats){ ats.receives(streetlights.envelope); ats.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "streetlights"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_10d6c0c18c",
-"ts": "2026-11-15T13:19:32-0500",
-"a": "agenda_scene",
-"b": "or_something",
-"code": "agenda_scene.interactwith(or_something){ or_something.receives(agenda_scene.envelope); or_something.remembers(bisola, 'brown envelope'); }",
-"text": "The or something leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j4"
-},
-{
-"id": "wf_aee128e06b",
-"ts": "2026-11-15T13:20:19-0500",
-"a": "play",
-"b": "game",
-"code": "play.interactwith(game){ game.receives(play.envelope); game.remembers(bisola, 'brown envelope'); game.tucks(play, 'yaba bookshop receipt into the boss joke'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the boss joke at the game, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j6"
-},
-{
-"id": "wf_46024aec0a",
-"ts": "2026-11-15T13:21:06-0500",
-"a": "yaba_bookshop",
-"b": "neck_ostrich",
-"code": "yaba_bookshop.interactwith(neck_ostrich){ neck_ostrich.receives(yaba_bookshop.bead); neck_ostrich.remembers(bisola, 'blue glass bead'); }",
-"text": "The neck ostrich leaves with a Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j5"
-},
 {
 "id": "wf_95c4a897f7",
 "ts": "2026-11-15T13:27:27-0500",
@@ -3582,6 +3573,39 @@
 "author": "cos",
 "run": "run-b9b963",
 "card": "j1"
+},
+{
+"id": "wf_cde04c5d4c",
+"ts": "2026-11-15T15:58:57-0500",
+"a": "yaba_bookshop",
+"b": "morir_r",
+"code": "yaba_bookshop.interactwith(morir_r){ morir_r.receives(yaba_bookshop.bead); morir_r.remembers(bisola, 'blue glass bead'); }",
+"text": "The morir r leaves with a Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j5"
+},
+{
+"id": "wf_d57f721947",
+"ts": "2026-11-15T15:59:44-0500",
+"a": "agbada",
+"b": "cup",
+"code": "agbada.interactwith(cup){ cup.receives(agbada.joke); cup.remembers(bisola, 'boss joke'); cup.tucks(agbada, 'egbe note into the juju code'); }",
+"text": "An Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997, turns up inside the juju code at the cup, and Ejiro reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j1"
+},
+{
+"id": "wf_c925458406",
+"ts": "2026-11-15T16:02:05-0500",
+"a": "streetlights",
+"b": "ats",
+"code": "streetlights.interactwith(ats){ ats.receives(streetlights.envelope); ats.remembers(bisola, 'brown envelope'); }",
+"text": "The ats leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
 }
 ],
 "memories": [
@@ -3685,5 +3709,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-15T15:57:16-0500"
+"updated": "2026-11-15T16:02:05-0500"
 }
