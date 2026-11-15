@@ -1077,16 +1077,6 @@
 ],
 "yaba_bukka_counter": [
 {
-"id": "wf_4b15bebee7",
-"kind": "consequence",
-"text": "An Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997, turns up inside the brown envelope at the yaba bukka counter, and Bisola reads the name twice.",
-"code": "egbe.interactwith(yaba_bukka_counter){ yaba_bukka_counter.receives(egbe.joke); … }",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j1",
-"other": "egbe"
-},
-{
 "id": "wf_0d27790dd9",
 "kind": "consequence",
 "text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the yaba bukka counter, and Bisola reads the name twice.",
@@ -1115,6 +1105,16 @@
 "run": "run-b9b963",
 "card": "j1",
 "other": "matches"
+},
+{
+"id": "wf_8e99f2cc40",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the love at the yaba bukka counter, and Kunle reads the name twice.",
+"code": "red_white_cap.interactwith(yaba_bukka_counter){ yaba_bukka_counter.receives(red_white_cap.envelope); … }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j6",
+"other": "red_white_cap"
 },
 {
 "id": "wt_4e525b9c48",
@@ -2246,17 +2246,6 @@
 },
 "consequences": [
 {
-"id": "wf_8bcccc319a",
-"ts": "2026-11-15T02:50:14-0500",
-"a": "notnotnotnotyn_jan",
-"b": "suitcase",
-"code": "notnotnotnotyn_jan.interactwith(suitcase){ suitcase.receives(notnotnotnotyn_jan.code); suitcase.remembers(ejiro, 'juju code'); }",
-"text": "The suitcase leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j2"
-},
-{
 "id": "wf_b4fb86ef8f",
 "ts": "2026-11-15T02:53:26-0500",
 "a": "yaba_bukka_counter",
@@ -2684,6 +2673,17 @@
 "author": "cos",
 "run": "run-b9b963",
 "card": "j1"
+},
+{
+"id": "wf_8e99f2cc40",
+"ts": "2026-11-15T05:37:32-0500",
+"a": "red_white_cap",
+"b": "yaba_bukka_counter",
+"code": "red_white_cap.interactwith(yaba_bukka_counter){ yaba_bukka_counter.receives(red_white_cap.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the love at the yaba bukka counter, and Kunle reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j6"
 }
 ],
 "memories": [
@@ -2776,5 +2776,5 @@
 "card": "j8"
 }
 ],
-"updated": "2026-11-15T05:35:04-0500"
+"updated": "2026-11-15T05:37:32-0500"
 }
