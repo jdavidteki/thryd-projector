@@ -581,16 +581,6 @@
 ],
 "yaba_bookshop": [
 {
-"id": "wf_7ed973c0ea",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the yaba bookshop, and Bisola reads the name twice.",
-"code": "red_white_cap.interactwith(yaba_bookshop){ yaba_bookshop.receives(red_white_cap.envelope); … }",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j6",
-"other": "red_white_cap"
-},
-{
 "id": "wf_979bb08b13",
 "kind": "memory",
 "text": "4:25pm, Monday 23 September 2058: Bisola stands at the counter with a brown envelope. The yaba bookshop keeps it on file.",
@@ -609,6 +599,16 @@
 "run": "run-b9b963",
 "card": "j7",
 "other": null
+},
+{
+"id": "wf_40ff907c1e",
+"kind": "consequence",
+"text": "Taiwo carries a loose thread from the resewn collar to the Yaba bookshop and uses it to mark the page where the blue bead fell out, so the bookshop now remembers both hands.",
+"code": "tailor_shop.interactwith(yaba_bookshop){ yaba_bookshop.receives(tailor_shop.collar); yaba_bookshop.remembers(taiwo, 'resewn collar'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j8",
+"other": "tailor_shop"
 },
 {
 "id": "wt_ad3997f7d4",
@@ -997,16 +997,6 @@
 ],
 "yaba_bukka_counter": [
 {
-"id": "wf_269522e7aa",
-"kind": "consequence",
-"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the plastic sheet at the yaba bukka counter, and Ronke reads the name twice.",
-"code": "wwgbtaycbmba.interactwith(yaba_bukka_counter){ yaba_bukka_counter.receives(wwgbtaycbmba.code); … }",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j2",
-"other": "wwgbtaycbmba"
-},
-{
 "id": "wf_17d74cf291",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the juju code at the yaba bukka counter, and Ejiro reads the name twice.",
@@ -1044,6 +1034,16 @@
 "author": "cos",
 "run": "run-b9b963",
 "card": "j4",
+"other": "kerosene_lamp"
+},
+{
+"id": "wf_29aff44c07",
+"kind": "consequence",
+"text": "With the wick trimmed, the lamp's green light holds steady over the bukka counter long enough for Bisola to read Ronke's note in the brown envelope all the way through.",
+"code": "kerosene_lamp.interactwith(yaba_bukka_counter){ yaba_bukka_counter.remembers(ronke, 'trimmed wick'); yaba_bukka_counter.state('lit green and steady'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j6",
 "other": "kerosene_lamp"
 }
 ],
@@ -1099,6 +1099,16 @@
 "run": "run-b9b963",
 "card": "j6",
 "other": null
+},
+{
+"id": "wf_1a23d71ddb",
+"kind": "consequence",
+"text": "The stray blue bead from the bookshop shelf ends up on Taiwo's cutting table, and he sews it onto the green shirt as the missing top button, the same blue Bisola once held to the light.",
+"code": "yaba_bookshop.interactwith(tailor_shop){ tailor_shop.receives(yaba_bookshop.beads); tailor_shop.find('green shirt').add('blue glass bead button'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j5",
+"other": "yaba_bookshop"
 },
 {
 "id": "wt_23c0fd0989",
@@ -1473,6 +1483,16 @@
 "run": "run-b9b963",
 "card": "j4",
 "other": "imm"
+},
+{
+"id": "wf_5b3c2ce974",
+"kind": "consequence",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the plastic sheet at the laptop, and Ronke reads the name twice.",
+"code": "play.interactwith(laptop){ laptop.receives(play.code); laptop.remembers(ejiro, 'juju code'); laptop.tucks(play, 'ttb note into the plastic sheet'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j2",
+"other": "play"
 }
 ],
 "game": [
@@ -1654,53 +1674,31 @@
 "card": "j6",
 "other": "reality"
 }
+],
+"lekki_pharmacy": [
+{
+"id": "wf_15c66145f9",
+"kind": "memory",
+"text": "3:50pm, Wednesday 8 March 2062: Bisola waits by the till with a small paper bag. The lekki pharmacy keeps it on file.",
+"code": "lekki_pharmacy.remembers(bisola, 'paper bag');",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j9",
+"other": null
+},
+{
+"id": "wf_671be63a17",
+"kind": "memory",
+"text": "3:50pm, Wednesday 8 March 2062: Taiwo counts change into a dish. The lekki pharmacy keeps it on file.",
+"code": "lekki_pharmacy.remembers(taiwo, 'change');",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j9",
+"other": null
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_d323d06c91",
-"ts": "2026-11-14T16:40:58-0500",
-"a": "ttb",
-"b": "oshodi_bus_shelter",
-"code": "ttb.interactwith(oshodi_bus_shelter){ oshodi_bus_shelter.receives(ttb.code); … }",
-"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the timetable at the oshodi bus shelter, and Kunle reads the name twice.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j2"
-},
-{
-"id": "wf_4062ac4b09",
-"ts": "2026-11-14T16:42:32-0500",
-"a": "pure_water_cooler",
-"b": "yaba_bookshop",
-"code": "pure_water_cooler.interactwith(yaba_bookshop){ yaba_bookshop.receives(pure_water_cooler.code); … }",
-"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the yaba bookshop, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j2"
-},
-{
-"id": "wf_2f28f3815c",
-"ts": "2026-11-14T16:44:06-0500",
-"a": "matches",
-"b": "red_white_cap",
-"code": "matches.interactwith(red_white_cap){ red_white_cap.receives(matches.timetable); … }",
-"text": "An Oshodi bus shelter ticket stub with Kunle's name and 'timetable' on it, turns up inside the brown envelope at the red white cap, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j4"
-},
-{
-"id": "wf_636ce19541",
-"ts": "2026-11-14T16:44:53-0500",
-"a": "ttb",
-"b": "sheep",
-"code": "ttb.interactwith(sheep){ sheep.receives(ttb.code); sheep.remembers(ejiro, 'juju code'); }",
-"text": "The sheep leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j2"
-},
 {
 "id": "wf_4d975a457a",
 "ts": "2026-11-14T16:46:32-0500",
@@ -2096,6 +2094,50 @@
 "author": "cos",
 "run": "run-b9b963",
 "card": "j6"
+},
+{
+"id": "wf_40ff907c1e",
+"ts": "2026-11-14T20:28:54-0500",
+"a": "tailor_shop",
+"b": "yaba_bookshop",
+"code": "tailor_shop.interactwith(yaba_bookshop){ yaba_bookshop.receives(tailor_shop.collar); yaba_bookshop.remembers(taiwo, 'resewn collar'); }",
+"text": "Taiwo carries a loose thread from the resewn collar to the Yaba bookshop and uses it to mark the page where the blue bead fell out, so the bookshop now remembers both hands.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j8"
+},
+{
+"id": "wf_1a23d71ddb",
+"ts": "2026-11-14T20:28:54-0500",
+"a": "yaba_bookshop",
+"b": "tailor_shop",
+"code": "yaba_bookshop.interactwith(tailor_shop){ tailor_shop.receives(yaba_bookshop.beads); tailor_shop.find('green shirt').add('blue glass bead button'); }",
+"text": "The stray blue bead from the bookshop shelf ends up on Taiwo's cutting table, and he sews it onto the green shirt as the missing top button, the same blue Bisola once held to the light.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j5"
+},
+{
+"id": "wf_29aff44c07",
+"ts": "2026-11-14T20:28:54-0500",
+"a": "kerosene_lamp",
+"b": "yaba_bukka_counter",
+"code": "kerosene_lamp.interactwith(yaba_bukka_counter){ yaba_bukka_counter.remembers(ronke, 'trimmed wick'); yaba_bukka_counter.state('lit green and steady'); }",
+"text": "With the wick trimmed, the lamp's green light holds steady over the bukka counter long enough for Bisola to read Ronke's note in the brown envelope all the way through.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j6"
+},
+{
+"id": "wf_5b3c2ce974",
+"ts": "2026-11-14T20:31:41-0500",
+"a": "play",
+"b": "laptop",
+"code": "play.interactwith(laptop){ laptop.receives(play.code); laptop.remembers(ejiro, 'juju code'); laptop.tucks(play, 'ttb note into the plastic sheet'); }",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the plastic sheet at the laptop, and Ronke reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j2"
 }
 ],
 "memories": [
@@ -2166,5 +2208,5 @@
 "card": "j6"
 }
 ],
-"updated": "2026-11-14T20:27:36-0500"
+"updated": "2026-11-14T20:33:16-0500"
 }
