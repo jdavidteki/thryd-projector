@@ -581,16 +581,6 @@
 ],
 "yaba_bookshop": [
 {
-"id": "wf_cc27e48e12",
-"kind": "consequence",
-"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the blue glass bead at the yaba bookshop, and Bisola reads the name twice.",
-"code": "people_scene.interactwith(yaba_bookshop){ yaba_bookshop.receives(people_scene.code); … }",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j2",
-"other": "people_scene"
-},
-{
 "id": "wf_2a3c30b85f",
 "kind": "consequence",
 "text": "A Kerosene lamp note with Taiwo's name and 'change' on it, turns up inside the blue glass bead at the yaba bookshop, and Bisola reads the name twice.",
@@ -599,6 +589,16 @@
 "run": "run-b9b963",
 "card": "j9",
 "other": "diss"
+},
+{
+"id": "wf_04a1711b3e",
+"kind": "consequence",
+"text": "An Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997, turns up inside the blue glass bead at the yaba bookshop, and Bisola reads the name twice.",
+"code": "egbe.interactwith(yaba_bookshop){ yaba_bookshop.receives(egbe.joke); … }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j1",
+"other": "egbe"
 },
 {
 "id": "wt_ad3997f7d4",
@@ -2716,17 +2716,6 @@
 },
 "consequences": [
 {
-"id": "wf_10d6112892",
-"ts": "2026-11-15T12:07:43-0500",
-"a": "people_scene",
-"b": "notnotnotnotyn_nov",
-"code": "people_scene.interactwith(notnotnotnotyn_nov){ notnotnotnotyn_nov.receives(people_scene.code); notnotnotnotyn_nov.remembers(ejiro, 'juju code'); }",
-"text": "The notnotnotnotyn nov leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j2"
-},
-{
 "id": "wf_35268c24a2",
 "ts": "2026-11-15T12:10:05-0500",
 "a": "yaba_bookshop",
@@ -3154,6 +3143,17 @@
 "author": "cos",
 "run": "run-b9b963",
 "card": "j6"
+},
+{
+"id": "wf_04a1711b3e",
+"ts": "2026-11-15T13:02:12-0500",
+"a": "egbe",
+"b": "yaba_bookshop",
+"code": "egbe.interactwith(yaba_bookshop){ yaba_bookshop.receives(egbe.joke); … }",
+"text": "An Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997, turns up inside the blue glass bead at the yaba bookshop, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j1"
 }
 ],
 "memories": [
@@ -3257,5 +3257,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-15T12:51:09-0500"
+"updated": "2026-11-15T13:02:12-0500"
 }
