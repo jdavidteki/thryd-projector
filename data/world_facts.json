@@ -915,16 +915,6 @@
 ],
 "red_white_cap": [
 {
-"id": "wf_f55c447e7a",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the red and white cap, which is still worn.",
-"code": "red_white_cap.receives(isl.receipt);",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j6",
-"other": "isl"
-},
-{
 "id": "wf_2f28f3815c",
 "kind": "consequence",
 "text": "An Oshodi bus shelter ticket stub with Kunle's name and 'timetable' on it, turns up inside the brown envelope at the red white cap, and Bisola reads the name twice.",
@@ -963,6 +953,16 @@
 "run": "run-0bd7c0",
 "card": "w6",
 "other": null
+},
+{
+"id": "wf_23121dac07",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it, turns up inside the brown envelope at the red white cap, and Bisola reads the name twice.",
+"code": "omo.interactwith(red_white_cap){ red_white_cap.receives(omo.bead); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j5",
+"other": "omo"
 }
 ],
 "streetlights": [
@@ -3244,17 +3244,6 @@
 },
 "consequences": [
 {
-"id": "wf_3cd91593e6",
-"ts": "2026-11-15T14:21:05-0500",
-"a": "wwgbtaycbmba",
-"b": "yaba_bukka_counter",
-"code": "wwgbtaycbmba.interactwith(yaba_bukka_counter){ yaba_bukka_counter.receives(wwgbtaycbmba.code); … }",
-"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the love at the yaba bukka counter, and Kunle reads the name twice.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j2"
-},
-{
 "id": "wf_872d2840d9",
 "ts": "2026-11-15T14:24:14-0500",
 "a": "oyinboman",
@@ -3682,6 +3671,17 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j6"
+},
+{
+"id": "wf_23121dac07",
+"ts": "2026-11-15T16:33:11-0500",
+"a": "omo",
+"b": "red_white_cap",
+"code": "omo.interactwith(red_white_cap){ red_white_cap.receives(omo.bead); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it, turns up inside the brown envelope at the red white cap, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j5"
 }
 ],
 "memories": [
@@ -3785,5 +3785,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-15T16:30:16-0500"
+"updated": "2026-11-15T16:33:11-0500"
 }
