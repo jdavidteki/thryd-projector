@@ -2285,6 +2285,16 @@
 "run": "run-b9b963",
 "card": "j1",
 "other": "people_scene"
+},
+{
+"id": "wf_6376e88da3",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the juss, and Bisola reads the name twice.",
+"code": "seen.interactwith(juss){ juss.receives(seen.envelope); juss.remembers(bisola, 'brown envelope'); juss.tucks(seen, 'yaba bookshop receipt into the brown envelope'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j6",
+"other": "seen"
 }
 ],
 "suitcase": [
@@ -2906,17 +2916,6 @@
 },
 "consequences": [
 {
-"id": "wf_7feb4fa37b",
-"ts": "2026-11-15T12:33:20-0500",
-"a": "kerosene_lamp",
-"b": "bus",
-"code": "kerosene_lamp.interactwith(bus){ bus.receives(kerosene_lamp.change); … }",
-"text": "A Kerosene lamp note with Taiwo's name and 'change' on it, turns up inside the brown envelope at the bus, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "w"
-},
-{
 "id": "wf_2a3c30b85f",
 "ts": "2026-11-15T12:34:15-0500",
 "a": "diss",
@@ -3344,6 +3343,17 @@
 "author": "cos",
 "run": "run-b9b963",
 "card": "j6"
+},
+{
+"id": "wf_6376e88da3",
+"ts": "2026-11-15T14:05:47-0500",
+"a": "seen",
+"b": "juss",
+"code": "seen.interactwith(juss){ juss.receives(seen.envelope); juss.remembers(bisola, 'brown envelope'); juss.tucks(seen, 'yaba bookshop receipt into the brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the juss, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j6"
 }
 ],
 "memories": [
@@ -3447,5 +3457,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-15T14:03:22-0500"
+"updated": "2026-11-15T14:05:47-0500"
 }
