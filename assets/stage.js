@@ -30,7 +30,7 @@
       isNet: w => NET.test(String(w || '')), entries: () => [...m.entries()]
     }; }
   const S = root.__thrydStage = {on:true, hold:true, groups:[], cuts:[], bytes:0, loading:0, near:null, spawned:0, left:0, fails:0, recent:[], bad:Cooldown(), log:[], maxSeen:0,
-    net: {hold: 0, k: 0, fails: [], holds: 0}, lastMedia: Date.now(), releases: 0};
+    net: {hold: 0, k: 0, fails: [], holds: 0}, lastMedia: Date.now(), mediaAt: Date.now(), releases: 0};
   // network breaker: 4 network failures inside 30 s (or the browser saying it is offline) pause media loads 15 s, doubling to 5 min;
   // the items that failed are not blamed for it. Back online or a good load resets it.
   function netFail(){ const t = Date.now(), N = S.net; N.fails = N.fails.filter(x => t - x < 30000); N.fails.push(t);
@@ -303,7 +303,10 @@
     const gifShare = ok.filter(a => a.kind === 'gif').length / ok.length; // GIFs come up in proportion to how many are left, so 109 GIFs don't loop
     const wantGif = gifsOn < (PHONE ? 1 : 2) && Math.random() < gifShare;
     const pool = ok.filter(a => (a.kind === 'gif') === wantGif);
-    const from = pool.length ? pool : ok;
+    let from = pool.length ? pool : ok;
+    // end of the deck: only GIFs are left unseen. Keep the GIF limit anyway (30 GIF groups at once, ~155 MB, was seen live) and
+    // take a still that was already shown instead
+    if(!pool.length && !wantGif){ const st = live.filter(a => a.kind !== 'gif'); if(st.length) from = st; }
     const row = from[Math.random() * from.length | 0];
     SEEN.add(row.medium_image_id); saveSeen();
     return row;
@@ -337,13 +340,17 @@
     });
     return best;
   }
-  async function loadGroup(row, man, lo){
+  async function loadGroup(row0, man, lo){
     lo = lo || {};
+    // long-session fix (15 Nov 2026, 2nd starvation report): expand the pack onto a throwaway copy of the row. Expanding onto the shared
+    // manifest row kept every decoded pack (masks, plate) in memory for the whole session (~0.5 GB+ after one pass of the deck), until
+    // fetches and decodes started failing and only the text chips (no network, no big buffers) still came on.
+    const row = Object.assign({}, row0); if(Array.isArray(row.objects)) row.objects = row.objects.map(o => o ? Object.assign({}, o) : o);
     await MC.expandRow(row);
     const ext = ((String(row.url).split('?')[0].match(/\.([A-Za-z0-9]+)$/) || [])[1] || '').toLowerCase();
     const set = {how:'medium', remote:true, url:row.url, medium_image_id:row.medium_image_id, extension:ext, animated: row.kind === 'gif'};
     if(row.pack && row.plate_error === 'pack_missing' && !(row.objects && row.objects.length)) throw new Error('pack_fetch_missing'); // network class: short cooldown, retried
-    const plan = MC.forSet(set, man || manifest);
+    const plan = MC.forSet(set, {assets: [row]});
     if(!plan.ok) throw new Error(plan.reason || 'plan');
     const fw = plan.width, fh = plan.height;
     const room = CAP - S.cuts.length; if(room < 1) throw new Error('cap');
@@ -486,7 +493,7 @@
       }, delay + 80);
     });
     DIRS.in[oct(ang)]++;
-    S.groups.push(g); S.spawned++; if(!(row && row.chips)) S.lastMedia = Date.now();
+    S.groups.push(g); S.spawned++; if(!(row && row.chips)){ S.lastMedia = Date.now(); S.mediaAt = S.lastMedia; }
     if(g.cuts.length <= 2 && Math.random() < 0.5) S.near = g;
     S.recent.push(g.mid); if(S.recent.length > 40) S.recent.shift();
     S.maxSeen = Math.max(S.maxSeen, S.cuts.length);
@@ -957,7 +964,16 @@
     S.maxSeen = Math.max(S.maxSeen, S.cuts.length);
     // starvation guard: no GIF / image / agenda group for 4 min while online and running -> lift every cooldown and retry
     if(!paused() && !netHeld() && manifest && (manifest.assets || []).length && now - S.lastMedia > 240000){
-      const n = S.bad.release(); S.recent = S.recent.slice(-5); S.lastMedia = now; S.releases++; note('starve guard: released', n, 'cooled items');
+      const n = S.bad.release(); S.badCut.clear(); S.recent = S.recent.slice(-5); S.lastMedia = now; S.releases++; note('starve guard: released', n, 'cooled items');
+    }
+    // last resort: no media at all for 12 min while online and visible (whatever the cause: memory, a wedged decoder, a stuck load)
+    // -> reload the page once, which frees everything; at most once per 30 min per tab, never while a cut is held
+    if(!paused() && navigator.onLine !== false && manifest && (manifest.assets || []).length && now - S.mediaAt > 12 * 60e3 && !S.cuts.some(c => c.dragging)){
+      let last = 0; try{ last = +sessionStorage.getItem('thryd_starve_reload') || 0; }catch(e){}
+      S.mediaAt = now - 6 * 60e3; // checked again in 6 min if this one does not reload
+      // only reload when the site answers: reloading during a real outage would leave an error page with no way back
+      if(now - last > 30 * 60e3 && !S.reloading) fetch('data/version.json?t=' + now, {cache: 'no-store'}).then(r => { r.text().catch(()=>{}); if(!r.ok) return;
+        try{ sessionStorage.setItem('thryd_starve_reload', String(Date.now())); }catch(e){} note('starve guard: reloading page'); S.reloading = true; setTimeout(()=> location.reload(), 200); }).catch(()=>{});
     }
     camHold();
   }

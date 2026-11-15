@@ -641,7 +641,8 @@
     if(manifestCache) return manifestCache;
     const f = fetchFn || (typeof fetch === 'function' ? fetch : null);
     if(!f) return Promise.resolve({assets:[]});
-    manifestCache = f('data/medium_cuts.json?t=' + Date.now(), {cache:'no-store'}).then(r=>r.ok ? r.json() : {assets:[]}).catch(()=>({assets:[]}));
+    manifestCache = f('data/medium_cuts.json?t=' + Date.now(), {cache:'no-store'}).then(r=>r.ok ? r.json() : {assets:[]}).catch(()=>({assets:[]}))
+      .then(m=>{ if(!m || !(m.assets || []).length) manifestCache = null; return m; }); // a failed load is not cached, so a retry really fetches again
     return manifestCache;
   }
 

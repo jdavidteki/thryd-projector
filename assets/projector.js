@@ -1,3 +1,10 @@
+// drag / ntfy requests (Jesuye 15 Nov 2026 4:47 PM ET "no images anymore", page open ~5 h): a stalled ntfy.sh request never ended, they
+// piled up for hours until Chrome refused every new request on the page (net::ERR_INSUFFICIENT_RESOURCES), images included. Every
+// call to the drag endpoint now gives up after 20 s (body included) and at most 4 are open at once; extra calls are skipped, not queued.
+window.thrydNetFetch=window.thrydNetFetch||(()=>{let open=0;return (url,opt,ms)=>{if(open>=4)return Promise.reject(new Error('ntfy_busy'));open++;
+  const ac=typeof AbortController==='function'?new AbortController():null;const t=setTimeout(()=>{try{ac&&ac.abort();}catch(e){}},ms||20000);
+  return fetch(url,Object.assign({},opt||{},ac?{signal:ac.signal}:{})).then(r=>r.text().then(tx=>({ok:r.ok,status:r.status,text:()=>Promise.resolve(tx),json:()=>Promise.resolve().then(()=>JSON.parse(tx))})))
+    .finally(()=>{clearTimeout(t);open--;});};})();
 const LIVE_STATE=async()=>{try{const r=await fetch('https://raw.githubusercontent.com/jdavidteki/thryd-projector/main/data/state.json?t='+Date.now(),{cache:'no-store'});if(!r.ok)throw 0;return await r.json();}catch(e){try{const r=await fetch('data/state.json?_='+Date.now(),{cache:'no-store'});if(!r.ok)throw 0;return await r.json();}catch(e2){throw e2;}}};
 // #thryd projector: live (data/state.json) · timeline loop (data/timeline.json) · replay (data/replays.json + replay_<run>.json)
 (()=>{
@@ -430,7 +437,7 @@ async function loadDrags(){try{const D=await J('data/drags.json');DRAGS_RUN=D.ru
   else{list.forEach(e=>cmAppend(e));}}catch(e){}}
 async function pollNtfyDrags(){if(!DRAG||!DRAG.endpoint||DRAG.transport!=='ntfy')return;
   try{const since=cmLastNtfy||'all';const url=DRAG.endpoint.replace(/\/?$/,'')+'/json?poll=1&since='+encodeURIComponent(since);
-    const tx=await(await fetch(url,{cache:'no-store'})).text();
+    const tx=await(await thrydNetFetch(url,{cache:'no-store'})).text();
     for(const l of tx.split('\n')){if(!l)continue;let m;try{m=JSON.parse(l);}catch(e){continue;}
       if(m.event!=='message')continue;if(m.id)cmLastNtfy=m.id;
       let body;try{body=JSON.parse(m.message||'{}');}catch(e){continue;}
@@ -636,9 +643,9 @@ const MOVES=(()=>{const KEY='thryd_moves_v1',MAX=400;let box=null;
       current_card:a.card?String(a.card).toLowerCase():null,client_ts:ev.client_ts,cut_meta:meta};
     return {body:b,medium:true};};
   const ntfySend=async body=>{if(!DRAG||!DRAG.endpoint||DRAG.transport!=='ntfy')throw new Error('no drag endpoint');
-    const t0=Math.floor(Date.now()/1000)-5;const r=await fetch(DRAG.endpoint,{method:'POST',body:JSON.stringify(body)});if(!r.ok)throw new Error('ntfy HTTP '+r.status);
+    const t0=Math.floor(Date.now()/1000)-5;const r=await thrydNetFetch(DRAG.endpoint,{method:'POST',body:JSON.stringify(body)});if(!r.ok)throw new Error('ntfy HTTP '+r.status);
     for(const w of [2000,4000,8000,16000,30000]){await new Promise(z=>setTimeout(z,w));   // light polling, stops on the ack
-      try{const tx=await (await fetch(DRAG.reply+'/json?poll=1&since='+t0,{cache:'no-store'})).text();
+      try{const tx=await (await thrydNetFetch(DRAG.reply+'/json?poll=1&since='+t0,{cache:'no-store'})).text();
         for(const l of tx.split('\n')){if(!l)continue;let m;try{m=JSON.parse(l);m=JSON.parse(m.message||'{}');}catch(e){continue;}if(m.rid===body.rid||m.event_id===body.event_id)return m;}}catch(e){}}
     return null;};
   const emit=async ev=>{try{
@@ -945,11 +952,11 @@ function qaLog(rec){
 window.thrydQA={on:qaOn, log:qaLog, file:'thryd_qa_log', field:'source'};
 async function dragSend(body){
   if(qaOn()){ qaLog({kind:'dragSend', ...body, source:'qa'}); return {ok:true, qa:true, skipped:'customer-endpoint'}; }
-  if(DRAG.transport!=='ntfy'){const r=await fetch(DRAG.endpoint,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify(body)});const j=await r.json().catch(()=>({}));return {status:r.status,...j};}
+  if(DRAG.transport!=='ntfy'){const r=await thrydNetFetch(DRAG.endpoint,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify(body)});const j=await r.json().catch(()=>({}));return {status:r.status,...j};}
   const rid=Math.random().toString(36).slice(2,12), t0=Math.floor(Date.now()/1000)-5;
-  const r=await fetch(DRAG.endpoint,{method:'POST',body:JSON.stringify({...body,rid})});if(!r.ok)throw new Error('relay HTTP '+r.status);
+  const r=await thrydNetFetch(DRAG.endpoint,{method:'POST',body:JSON.stringify({...body,rid})});if(!r.ok)throw new Error('relay HTTP '+r.status);
   for(let i=0;i<20;i++){await new Promise(z=>setTimeout(z,1500));
-    try{const tx=await (await fetch(DRAG.reply+'/json?poll=1&since='+t0,{cache:'no-store'})).text();
+    try{const tx=await (await thrydNetFetch(DRAG.reply+'/json?poll=1&since='+t0,{cache:'no-store'})).text();
       for(const l of tx.split('\n')){if(!l)continue;let m;try{m=JSON.parse(l);m=JSON.parse(m.message||'{}');}catch(e){continue;}if(m.rid===rid)return m;}}catch(e){}}
   throw new Error('no reply from box (timeout)');}
 async function dropTo(id,from,to,xy){
@@ -1150,7 +1157,7 @@ window.thrydWander={paths:()=>DPATH,move:b=>wMove(b),state:b=>WS.get(b)};
     try{const rec={key:(C.DRAG&&C.DRAG.key)||'',object:name,cut:label,place,x:+(+cl).toFixed(3),y:+(+ct).toFixed(3),
       w:parseFloat(b.style.width)||0,h:parseFloat(b.style.height)||0,scene:String(k||'').slice(0,160),scene_card:scard,contact:ct0,path:Array.isArray(path)?path.slice(0,24):undefined,target:t,rid:Math.random().toString(36).slice(2,12)};
       if(qaOn()){ rec.source='qa'; if(t) t.source='qa'; qaLog({kind:'projector-drag', ...rec}); }
-      else { const DG=C.DRAG; if(DG&&DG.endpoint) fetch(DG.endpoint,{method:'POST',body:JSON.stringify(rec)}).catch(()=>{}); }
+      else { const DG=C.DRAG; if(DG&&DG.endpoint) thrydNetFetch(DG.endpoint,{method:'POST',body:JSON.stringify(rec)}).catch(()=>{}); }
     }catch(e){}
     if(C.toast)C.toast(ct0&&b.dataset.name&&ct0.with!==ct0.with_cut?`👁 tracking: ${name} ↔ ${ct0.with} · ${ct0.kind} (logged only if the story does it)`:'drag saved: '+name+(near?' · '+near:''));}
   async function copy(x){try{await navigator.clipboard.writeText(x);return true;}catch(e){const ta=document.createElement('textarea');ta.value=x;ta.style.cssText='position:fixed;left:-9999px;top:0';document.body.appendChild(ta);ta.select();let ok=false;try{ok=document.execCommand('copy');}catch(e2){}ta.remove();return ok;}}

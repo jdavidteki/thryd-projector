@@ -32,3 +32,38 @@ test('the stage wiring: no permanent Set, breaker, worker timeout, starvation gu
   assert.ok(/manifest failed, retrying'\); spawner\(\)/.test(src));
   assert.ok(!/S\.bad\.add\(row\.medium_image_id\)/.test(src) && !/S\.bad\.add\(id\)/.test(src), 'every failure goes through failed()');
 });
+
+// second report (Jesuye 15 Nov 2026 4:47 PM ET, page open ~5 h): memory grew with every pack expanded onto the shared manifest rows
+test('long sessions: packs expand onto a copy, GIF limit holds at the end of the deck, reload self-heal is guarded', () => {
+  assert.ok(/const row = Object\.assign\(\{\}, row0\)/.test(src) && /MC\.forSet\(set, \{assets: \[row\]\}\)/.test(src), 'loadGroup never mutates the manifest row');
+  assert.ok(!/MC\.expandRow\(row0\)/.test(src));
+  assert.ok(/if\(!pool\.length && !wantGif\)\{ const st = live\.filter\(a => a\.kind !== 'gif'\)/.test(src), 'deck tail does not flood GIFs');
+  assert.ok(/12 \* 60e3/.test(src) && /thryd_starve_reload/.test(src) && /30 \* 60e3/.test(src), 'reload at most once per 30 min');
+  assert.ok(/fetch\('data\/version\.json\?t=' \+ now/.test(src), 'reload only when the site answers');
+  assert.ok(/S\.badCut\.clear\(\)/.test(src));
+});
+
+test('a failed manifest load is not cached, so the retry fetches again', async () => {
+  const require = (await import('node:module')).createRequire(import.meta.url);
+  const MC = require('../assets/medium_cuts.js');
+  let n = 0; const bad = async () => { n++; return {ok: false}; }, good = async () => { n++; return {ok: true, json: async () => ({assets: [{medium_image_id: 'x'}]})}; };
+  const m1 = await MC.loadManifest(bad); assert.equal((m1.assets || []).length, 0);
+  const m2 = await MC.loadManifest(good); assert.equal(m2.assets.length, 1, 'second call fetched again');
+  const m3 = await MC.loadManifest(bad); assert.equal(m3.assets.length, 1, 'a good manifest stays cached'); assert.equal(n, 2);
+});
+
+test('drag / ntfy requests time out and are capped, so stalled ones cannot pile up and block image loads', async () => {
+  const pj = fs.readFileSync(new URL('../assets/projector.js', import.meta.url), 'utf8');
+  assert.ok(!/fetch\((?:DRAG|DG)\./.test(pj), 'no bare fetch to the drag endpoint');
+  assert.ok(/await\(await thrydNetFetch\(url,\{cache:'no-store'\}\)\)\.text\(\)/.test(pj), 'the 30 s poll uses it');
+  const src0 = pj.slice(0, pj.indexOf('const LIVE_STATE='));
+  let pending = [];
+  const win = {}; const fakeFetch = (u, o) => new Promise((ok, no) => { pending.push({u, o}); o.signal.addEventListener('abort', () => no(new Error('aborted'))); });
+  new Function('window', 'fetch', 'AbortController', 'setTimeout', 'clearTimeout', src0)(win, fakeFetch, AbortController, (f, ms) => setTimeout(f, 30), clearTimeout);
+  const calls = [1, 2, 3, 4, 5].map(i => win.thrydNetFetch('https://ntfy.example/x' + i, {}).then(() => 'ok', e => e.message));
+  const res = await Promise.all(calls);
+  assert.equal(pending.length, 4, 'at most 4 open');
+  assert.deepEqual(res, ['aborted', 'aborted', 'aborted', 'aborted', 'ntfy_busy']);
+  const again = await win.thrydNetFetch('https://ntfy.example/y', {}).then(() => 'ok', e => e.message);
+  assert.equal(again, 'aborted', 'slots are freed after a timeout');
+});
