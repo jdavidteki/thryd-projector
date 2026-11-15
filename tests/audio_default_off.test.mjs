@@ -41,6 +41,7 @@ function loadExtras(opts){
   const spoken = [];
   const audioPlays = [];
   const audios = [];
+  const fetches = [];
   const ls = {
     getItem(k){ return Object.prototype.hasOwnProperty.call(store, k) ? store[k] : null; },
     setItem(k, v){ store[k] = String(v); },
@@ -85,7 +86,10 @@ function loadExtras(opts){
     Audio: class { constructor(src){ this.src = src || ''; this.paused = true; this.ev = {}; this.currentTime = 0; audios.push(this); }
       play(){ audioPlays.push(this.src); if(opts && opts.block){ const e = new Error('blocked'); e.name = 'NotAllowedError'; return Promise.reject(e); } this.paused = false; return Promise.resolve(); }
       pause(){ this.paused = true; } load(){} setAttribute(){} removeAttribute(k){ if(k === 'src') this.src = ''; } addEventListener(t, f){ this.ev[t] = f; } },
-    fetch: async () => ({ ok: false, json: async () => null }),
+    fetch: async (u) => { fetches.push(String(u));
+      if(opts && opts.songs && /songs\.json/.test(String(u)) && !(opts.failFirst && /africariyoki\.com/.test(String(u)))) return { ok: true, json: async () => ({ songs: opts.songs }) };
+      if(opts && opts.songs && /\.lrc$/.test(String(u))) return { ok: true, text: async () => '[00:00.00]first line\n[00:01.00]second line\n' };
+      return { ok: false, json: async () => null, text: async () => '' }; },
     indexedDB: { open(){ return fakeIDBRequest(); } },
     addEventListener(type, fn, cap){ (listeners[type] = listeners[type] || []).push(fn); },
     window: {},
@@ -95,7 +99,7 @@ function loadExtras(opts){
   ctx.window = ctx;
   ctx.globalThis = ctx;
   vm.runInNewContext(extrasSrc, ctx, { filename: 'extras.js' });
-  return { ids, body, store, listeners, spoken, audioPlays, audios, ctx };
+  return { ids, body, store, listeners, spoken, audioPlays, audios, fetches, ctx };
 }
 
 function fire(listeners, type, ev){
@@ -103,73 +107,83 @@ function fire(listeners, type, ev){
 }
 
 const STREAM = 'https://stream.audiobookmanager.com/listen/lofi/radio.mp3';
-const tick = () => new Promise(r => setImmediate(r));
+const SONGS = [{ id: 'a1', title: 'Song A', artist: 'Artist A', audio: 'https://storage.googleapis.com/x/music/a1.mp3', lrc: 'lrc/a1.lrc' },
+               { id: 'b2', title: 'Song B', artist: 'Artist B', audio: 'https://storage.googleapis.com/x/music/b2.mp3', lrc: null }];
+const tick = async (n = 4) => { for(let i = 0; i < n; i++) await new Promise(r => setImmediate(r)); };
+const sel = L => L.body.children.find(c => c.id === 'sound') || null;
 
-test('page load shows audio off until the stream really plays, and saved off never plays', async () => {
-  const { ids, body, audioPlays } = loadExtras({ store: { thryd_mute: '1' } });
-  assert.equal(ids.mute.textContent, '🔇 audio off');
+test('default is off: no saved choice, nothing plays, the old button is hidden', async () => {
+  const L = loadExtras({ store: { thryd_mute: undefined } });
   await tick();
-  assert.equal(audioPlays.length, 0, 'saved off: nothing plays');
-  const gate = body.children.find(c => c.id === 'sndgate');
-  assert.ok(gate && gate.classList.contains('off'), 'gate hidden');
-});
-
-test('no saved choice means sound stays off (default off)', async () => {
-  const { ids, audioPlays } = loadExtras({ store: { thryd_mute: undefined } });
-  await tick(); assert.equal(audioPlays.length, 0);
-  assert.equal(ids.mute.textContent, '🔇 audio off');
-});
-
-test('saved on: a reload resumes the lofi stream when the browser allows it', async () => {
-  const { ids, audioPlays } = loadExtras({ store: { thryd_mute: '0' } });
-  assert.equal(ids.mute.textContent, '🔇 audio off', 'off until it plays');
-  await tick(); await tick();
-  assert.equal(audioPlays[0], STREAM);
-  assert.equal(ids.mute.textContent, '🔊 audio on');
-});
-
-test('saved on but autoplay blocked: stays off, then the next tap anywhere resumes', async () => {
-  const L = loadExtras({ store: { thryd_mute: '0' }, block: true });
-  await tick(); await tick();
-  assert.equal(L.ids.mute.textContent, '🔇 audio off');
+  assert.equal(L.audioPlays.length, 0);
+  assert.equal(L.ids.mute.style.display, 'none');
   const gate = L.body.children.find(c => c.id === 'sndgate');
-  assert.equal(gate.classList.contains('off'), false, 'a quiet hint to tap');
+  assert.ok(gate && gate.classList.contains('off'));
+});
+
+test('saved off (thryd_mute 1) never plays, and a background tap does not turn it on', async () => {
+  const L = loadExtras({ store: { thryd_mute: '1' } });
+  fire(L.listeners, 'pointerdown', { target: {}, stopPropagation(){} });
+  await tick();
+  assert.equal(L.audioPlays.length, 0);
+  assert.equal(L.store.thryd_mute, '1');
+});
+
+test('migration: thryd_mute 0 resumes lofi on reload when allowed', async () => {
+  const L = loadExtras({ store: { thryd_mute: '0' } });
+  await tick();
+  assert.equal(L.audioPlays[0], STREAM);
+  assert.equal(L.ctx.thrydSound.state().mode, 'lofi');
+});
+
+test('saved mode but autoplay blocked: waits, then the next tap anywhere resumes', async () => {
+  const L = loadExtras({ store: { thryd_sound: 'lofi' }, block: true });
+  await tick();
+  const gate = L.body.children.find(c => c.id === 'sndgate');
+  assert.equal(gate.classList.contains('off'), false);
   const n = L.audioPlays.length;
   fire(L.listeners, 'pointerdown', { target: {}, stopPropagation(){} });
-  assert.equal(L.audioPlays.length, n + 1, 'the tap retries play');
-  assert.equal(L.store.thryd_mute, '0', 'a background tap does not rewrite the saved choice');
+  assert.equal(L.audioPlays.length, n + 1);
+  assert.equal(L.store.thryd_sound, 'lofi', 'a background tap does not rewrite the choice');
 });
 
-test('a background tap never turns on sound that was saved off', async () => {
-  const { ids, store, listeners, audioPlays } = loadExtras({ store: { thryd_mute: '1' } });
-  fire(listeners, 'pointerdown', { target: {}, stopPropagation(){} });
-  fire(listeners, 'keydown', { target: {}, stopPropagation(){} });
-  await tick();
-  assert.equal(audioPlays.length, 0);
-  assert.equal(ids.mute.textContent, '🔇 audio off');
-  assert.equal(store.thryd_mute, '1');
+test('picking lofi plays the ABM stream with its credit; off stops it and drops the connection', async () => {
+  const L = loadExtras({ store: { thryd_mute: '1' } });
+  await L.ctx.thrydSound.set('lofi'); await tick();
+  assert.equal(L.audioPlays[0], STREAM);
+  assert.equal(L.store.thryd_sound, 'lofi'); assert.equal(L.store.thryd_mute, '0');
+  const credit = L.body.children.find(c => c.id === 'lofi_credit');
+  assert.equal(credit.textContent, 'ABM Lofi · CC-licensed'); assert.equal(credit.href, 'https://radio.audiobookmanager.com/');
+  await L.ctx.thrydSound.set('off');
+  assert.equal(L.audios[0].paused, true); assert.equal(L.audios[0].src, '');
+  assert.equal(L.store.thryd_sound, 'off'); assert.equal(L.store.thryd_mute, '1');
+  assert.equal(L.audios.length, 1, 'one audio element, never two players');
 });
 
-test('the sound button plays the ABM Lofi stream, saves the choice, and stops it', async () => {
-  const { ids, store, audios, audioPlays, body } = loadExtras({ store: { thryd_mute: '1' } });
-  ids.mute.onclick({ stopPropagation(){} });
-  assert.equal(ids.mute.textContent, '🔊 audio on');
-  assert.equal(store.thryd_mute, '0');
-  assert.equal(audioPlays[0], STREAM);
-  await tick();
-  const credit = body.children.find(c => c.id === 'lofi_credit');
-  assert.ok(credit && credit.textContent === 'ABM Lofi · CC-licensed' && credit.href === 'https://radio.audiobookmanager.com/');
-  ids.mute.onclick({ stopPropagation(){} });
-  assert.equal(ids.mute.textContent, '🔇 audio off');
-  assert.equal(store.thryd_mute, '1');
-  assert.equal(audios[0].paused, true);
-  assert.equal(audios[0].src, '', 'the stream connection is dropped');
-  assert.equal(audios.length, 1, 'one audio element, never two streams');
+test('picking yoki shuffles africariyoki songs from the API with a song credit and LRC', async () => {
+  const L = loadExtras({ store: { thryd_mute: '1' }, songs: SONGS });
+  await L.ctx.thrydSound.set('yoki'); await tick(8);
+  assert.ok(L.fetches.some(u => u === 'https://www.africariyoki.com/api/songs.json'));
+  assert.ok(SONGS.some(s => s.audio === L.audioPlays[0]), 'plays a song from the API');
+  const st = L.ctx.thrydSound.state();
+  const credit = L.body.children.find(c => c.id === 'lofi_credit');
+  assert.ok(/ · africariyoki$/.test(credit.textContent) && credit.href === 'https://www.africariyoki.com/');
+  assert.equal(L.store.thryd_sound, 'yoki');
+  // ended -> next song
+  L.audios[0].ev.ended(); await tick();
+  assert.equal(L.audioPlays.length, 2);
+  assert.ok(SONGS.some(s => s.audio === L.audioPlays[1]));
+});
+
+test('yoki falls back to the second songs URL when the first fails', async () => {
+  const L = loadExtras({ store: { thryd_mute: '1' }, songs: SONGS, failFirst: true });
+  await L.ctx.thrydSound.set('yoki'); await tick(8);
+  assert.ok(L.fetches.some(u => /raw\.githubusercontent\.com/.test(u)));
+  assert.ok(SONGS.some(s => s.audio === L.audioPlays[0]));
 });
 
 test('spoken lines stay off by default (they would talk over the music)', async () => {
-  const { ids, spoken } = loadExtras({ store: { thryd_mute: '1' } });
-  ids.mute.onclick({ stopPropagation(){} });
-  await tick();
-  assert.equal(spoken.filter(x => typeof x === 'object').length, 0);
+  const L = loadExtras({ store: { thryd_mute: '1' } });
+  await L.ctx.thrydSound.set('lofi'); await tick();
+  assert.equal(L.spoken.filter(x => typeof x === 'object').length, 0);
 });
