@@ -1473,6 +1473,16 @@
 "run": "run-b9b963",
 "card": "j6",
 "other": "seen"
+},
+{
+"id": "wf_2499e13320",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bird, and Bisola reads the name twice.",
+"code": "reality.interactwith(bird){ bird.receives(reality.envelope); … }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j6",
+"other": "reality"
 }
 ],
 "agenda_scene": [
@@ -2086,17 +2096,6 @@
 },
 "consequences": [
 {
-"id": "wf_baf9311fbc",
-"ts": "2026-11-15T00:42:47-0500",
-"a": "kerosene_lamp",
-"b": "yaba_bookshop",
-"code": "kerosene_lamp.interactwith(yaba_bookshop){ yaba_bookshop.receives(kerosene_lamp, 'juju code'); yaba_bookshop.state('open late under a green lamp'); }",
-"text": "The note with Ejiro's name, finally read by the green lamp, gets slipped between the pages Taiwo marked with collar thread, so the Yaba bookshop stays open late under the same green light.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j2"
-},
-{
 "id": "wf_c2de559008",
 "ts": "2026-11-15T00:42:47-0500",
 "a": "ikeja_laundromat",
@@ -2524,6 +2523,17 @@
 "author": "thryd",
 "run": "run-b9b963",
 "card": "j7"
+},
+{
+"id": "wf_2499e13320",
+"ts": "2026-11-15T04:51:16-0500",
+"a": "reality",
+"b": "bird",
+"code": "reality.interactwith(bird){ bird.receives(reality.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bird, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j6"
 }
 ],
 "memories": [
@@ -2616,5 +2626,5 @@
 "card": "j8"
 }
 ],
-"updated": "2026-11-15T04:48:45-0500"
+"updated": "2026-11-15T04:51:16-0500"
 }
