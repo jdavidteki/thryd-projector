@@ -1037,16 +1037,6 @@
 ],
 "yaba_bukka_counter": [
 {
-"id": "wf_2f35ccfbce",
-"kind": "consequence",
-"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the yaba bukka counter, and Bisola reads the name twice.",
-"code": "ttb.interactwith(yaba_bukka_counter){ yaba_bukka_counter.receives(ttb.code); … }",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j2",
-"other": "ttb"
-},
-{
 "id": "wf_9caa612a87",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the yaba bukka counter, and Bisola reads the name twice.",
@@ -1085,6 +1075,16 @@
 "run": "run-b9b963",
 "card": "j1",
 "other": "egbe"
+},
+{
+"id": "wf_0d27790dd9",
+"kind": "consequence",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the yaba bukka counter, and Bisola reads the name twice.",
+"code": "play.interactwith(yaba_bukka_counter){ yaba_bukka_counter.receives(play.code); … }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j2",
+"other": "play"
 }
 ],
 "festac_bead_stall": [
@@ -1225,6 +1225,16 @@
 "run": "run-b9b963",
 "card": "j9",
 "other": "kerosene_lamp"
+},
+{
+"id": "wf_9b842b2c30",
+"kind": "consequence",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the boss joke at the egbe, and Bisola reads the name twice.",
+"code": "pure_water_cooler.interactwith(egbe){ egbe.receives(pure_water_cooler.code); … }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j2",
+"other": "pure_water_cooler"
 },
 {
 "id": "wt_22a5a9b2e2",
@@ -1541,6 +1551,16 @@
 "run": "run-b9b963",
 "card": "j2",
 "other": "wwgbtaycbmba"
+},
+{
+"id": "wf_c12b579887",
+"kind": "consequence",
+"text": "An Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997, turns up inside the brown envelope at the tie, and Bisola reads the name twice.",
+"code": "cell_phone.interactwith(tie){ tie.receives(cell_phone.joke); tie.remembers(bisola, 'boss joke'); tie.tucks(cell_phone, 'egbe note into the brown envelope'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j1",
+"other": "cell_phone"
 }
 ],
 "laptop": [
@@ -1976,53 +1996,21 @@
 "card": "j6",
 "other": "red_white_cap"
 }
+],
+"art_making_money": [
+{
+"id": "wf_a0af069270",
+"kind": "consequence",
+"text": "The art making money leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "red_white.interactwith(art_making_money){ art_making_money.receives(red_white.envelope); art_making_money.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j6",
+"other": "red_white"
+}
 ]
 },
 "consequences": [
-{
-"id": "wt_32a1b9f226",
-"ts": "2026-11-14T19:54:19-0500",
-"a": "hands",
-"b": "kerosene_lamp",
-"code": "hands.interactwith(kerosene_lamp){ kerosene_lamp.remembers(ronke, \"trimmed wick\"); kerosene_lamp.set(\"wick\", \"trimmed\"); }",
-"text": "Before the elders eat at Mama Ronke's door, still-wet hands trim the wick under the green plastic sheet, and the lamp burns a little steadier.",
-"author": "thryd",
-"run": "run-b9b963",
-"card": "j6"
-},
-{
-"id": "wf_21ce5e6905",
-"ts": "2026-11-14T20:27:36-0500",
-"a": "reality",
-"b": "red_white",
-"code": "reality.interactwith(red_white){ red_white.receives(reality.envelope); red_white.remembers(bisola, 'brown envelope'); }",
-"text": "The red white leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j6"
-},
-{
-"id": "wf_40ff907c1e",
-"ts": "2026-11-14T20:28:54-0500",
-"a": "tailor_shop",
-"b": "yaba_bookshop",
-"code": "tailor_shop.interactwith(yaba_bookshop){ yaba_bookshop.receives(tailor_shop.collar); yaba_bookshop.remembers(taiwo, 'resewn collar'); }",
-"text": "Taiwo carries a loose thread from the resewn collar to the Yaba bookshop and uses it to mark the page where the blue bead fell out, so the bookshop now remembers both hands.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j8"
-},
-{
-"id": "wf_1a23d71ddb",
-"ts": "2026-11-14T20:28:54-0500",
-"a": "yaba_bookshop",
-"b": "tailor_shop",
-"code": "yaba_bookshop.interactwith(tailor_shop){ tailor_shop.receives(yaba_bookshop.beads); tailor_shop.find('green shirt').add('blue glass bead button'); }",
-"text": "The stray blue bead from the bookshop shelf ends up on Taiwo's cutting table, and he sews it onto the green shirt as the missing top button, the same blue Bisola once held to the light.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j5"
-},
 {
 "id": "wf_29aff44c07",
 "ts": "2026-11-14T20:28:54-0500",
@@ -2418,6 +2406,50 @@
 "author": "cos",
 "run": "run-b9b963",
 "card": "j6"
+},
+{
+"id": "wf_0d27790dd9",
+"ts": "2026-11-15T04:16:32-0500",
+"a": "play",
+"b": "yaba_bukka_counter",
+"code": "play.interactwith(yaba_bukka_counter){ yaba_bukka_counter.receives(play.code); … }",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the yaba bukka counter, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j2"
+},
+{
+"id": "wf_9b842b2c30",
+"ts": "2026-11-15T04:17:19-0500",
+"a": "pure_water_cooler",
+"b": "egbe",
+"code": "pure_water_cooler.interactwith(egbe){ egbe.receives(pure_water_cooler.code); … }",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the boss joke at the egbe, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j2"
+},
+{
+"id": "wf_c12b579887",
+"ts": "2026-11-15T04:18:06-0500",
+"a": "cell_phone",
+"b": "tie",
+"code": "cell_phone.interactwith(tie){ tie.receives(cell_phone.joke); tie.remembers(bisola, 'boss joke'); tie.tucks(cell_phone, 'egbe note into the brown envelope'); }",
+"text": "An Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997, turns up inside the brown envelope at the tie, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j1"
+},
+{
+"id": "wf_a0af069270",
+"ts": "2026-11-15T04:19:40-0500",
+"a": "red_white",
+"b": "art_making_money",
+"code": "red_white.interactwith(art_making_money){ art_making_money.receives(red_white.envelope); art_making_money.remembers(bisola, 'brown envelope'); }",
+"text": "The art making money leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j6"
 }
 ],
 "memories": [
@@ -2488,5 +2520,5 @@
 "card": "j6"
 }
 ],
-"updated": "2026-11-15T04:15:41-0500"
+"updated": "2026-11-15T04:19:40-0500"
 }
