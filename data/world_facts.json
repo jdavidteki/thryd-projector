@@ -2187,6 +2187,16 @@
 "run": "run-b9b963",
 "card": "j6",
 "other": "play"
+},
+{
+"id": "wf_29c9f7ad52",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bus, and Bisola reads the name twice.",
+"code": "kweshon.interactwith(bus){ bus.receives(kweshon.envelope); bus.remembers(bisola, 'brown envelope'); bus.tucks(kweshon, 'yaba bookshop receipt into the brown envelope'); }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "kweshon"
 }
 ],
 "hands": [
@@ -3354,17 +3364,6 @@
 },
 "consequences": [
 {
-"id": "wf_57846399dd",
-"ts": "2026-11-15T16:17:25-0500",
-"a": "danfo_speaker",
-"b": "laptop",
-"code": "danfo_speaker.interactwith(laptop){ laptop.receives(danfo_speaker.note); … }",
-"text": "A Danfo speaker note with Bisola's name and 'egbe note' on it, turns up inside the change at the laptop, and Taiwo reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "w"
-},
-{
 "id": "wf_71003c0aa4",
 "ts": "2026-11-15T16:21:26-0500",
 "a": "morir_r",
@@ -3792,6 +3791,17 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j6"
+},
+{
+"id": "wf_29c9f7ad52",
+"ts": "2026-11-15T18:16:31-0500",
+"a": "kweshon",
+"b": "bus",
+"code": "kweshon.interactwith(bus){ bus.receives(kweshon.envelope); bus.remembers(bisola, 'brown envelope'); bus.tucks(kweshon, 'yaba bookshop receipt into the brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bus, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
 }
 ],
 "memories": [
@@ -3895,5 +3905,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-15T18:10:56-0500"
+"updated": "2026-11-15T18:16:31-0500"
 }
