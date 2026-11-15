@@ -1780,31 +1780,33 @@
 "card": "j4",
 "other": "imm"
 }
+],
+"cell_phone": [
+{
+"id": "wf_ab66700b73",
+"kind": "consequence",
+"text": "The cell phone leaves with an Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997.",
+"code": "egbe.interactwith(cell_phone){ cell_phone.receives(egbe.joke); cell_phone.remembers(bisola, 'boss joke'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j1",
+"other": "egbe"
+}
+],
+"lowaleechelons": [
+{
+"id": "wf_76625cd9d1",
+"kind": "consequence",
+"text": "The lowaleechelons leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "yaba_bukka_counter.interactwith(lowaleechelons){ lowaleechelons.receives(yaba_bukka_counter.envelope); lowaleechelons.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j6",
+"other": "yaba_bukka_counter"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_79fe3a91ee",
-"ts": "2026-11-14T17:06:46-0500",
-"a": "yaba_bukka_counter",
-"b": "there_something_out",
-"code": "yaba_bukka_counter.interactwith(there_something_out){ there_something_out.receives(yaba_bukka_counter.code); there_something_out.remembers(ejiro, 'juju code'); }",
-"text": "The there something out leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j2"
-},
-{
-"id": "wf_20ca3bc397",
-"ts": "2026-11-14T17:09:21-0500",
-"a": "imm",
-"b": "yaba_bukka_counter",
-"code": "imm.interactwith(yaba_bukka_counter){ yaba_bukka_counter.receives(imm.sheet); … }",
-"text": "A Kerosene lamp note with Ronke's name and 'plastic sheet' on it, turns up inside the juju code at the yaba bukka counter, and Ejiro reads the name twice.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j4"
-},
 {
 "id": "wf_d6cc695a8e",
 "ts": "2026-11-14T17:10:07-0500",
@@ -2222,6 +2224,28 @@
 "author": "cos",
 "run": "run-b9b963",
 "card": "j6"
+},
+{
+"id": "wf_ab66700b73",
+"ts": "2026-11-15T02:06:58-0500",
+"a": "egbe",
+"b": "cell_phone",
+"code": "egbe.interactwith(cell_phone){ cell_phone.receives(egbe.joke); cell_phone.remembers(bisola, 'boss joke'); }",
+"text": "The cell phone leaves with an Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j1"
+},
+{
+"id": "wf_76625cd9d1",
+"ts": "2026-11-15T02:08:32-0500",
+"a": "yaba_bukka_counter",
+"b": "lowaleechelons",
+"code": "yaba_bukka_counter.interactwith(lowaleechelons){ lowaleechelons.receives(yaba_bukka_counter.envelope); lowaleechelons.remembers(bisola, 'brown envelope'); }",
+"text": "The lowaleechelons leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j6"
 }
 ],
 "memories": [
@@ -2292,5 +2316,5 @@
 "card": "j6"
 }
 ],
-"updated": "2026-11-15T02:04:27-0500"
+"updated": "2026-11-15T02:08:32-0500"
 }
