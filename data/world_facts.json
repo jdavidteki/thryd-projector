@@ -707,16 +707,6 @@
 ],
 "pure_water_cooler": [
 {
-"id": "wf_5823550f35",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, turns up inside the juju code at the pure water cooler, and Ejiro reads the name twice.",
-"code": "called.interactwith(pure_water_cooler){ pure_water_cooler.receives(called.envelope); … }",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j4",
-"other": "called"
-},
-{
 "id": "wf_4de7ccc97f",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the pure water cooler, and Bisola reads the name twice.",
@@ -755,6 +745,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "bed"
+},
+{
+"id": "wf_5dc5651547",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the pure water cooler, and Bisola reads the name twice.",
+"code": "bow.interactwith(pure_water_cooler){ pure_water_cooler.receives(bow.envelope); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "bow"
 }
 ],
 "agbada": [
@@ -3364,17 +3364,6 @@
 },
 "consequences": [
 {
-"id": "wf_71003c0aa4",
-"ts": "2026-11-15T16:21:26-0500",
-"a": "morir_r",
-"b": "yaba_bukka_counter",
-"code": "morir_r.interactwith(yaba_bukka_counter){ yaba_bukka_counter.receives(morir_r.bead); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it, turns up inside the brown envelope at the yaba bukka counter, and Kunle reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j5"
-},
-{
 "id": "wf_9f2332f24e",
 "ts": "2026-11-15T16:22:13-0500",
 "a": "agbada",
@@ -3802,6 +3791,17 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j6"
+},
+{
+"id": "wf_5dc5651547",
+"ts": "2026-11-15T18:23:50-0500",
+"a": "bow",
+"b": "pure_water_cooler",
+"code": "bow.interactwith(pure_water_cooler){ pure_water_cooler.receives(bow.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the pure water cooler, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
 }
 ],
 "memories": [
@@ -3905,5 +3905,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-15T18:16:31-0500"
+"updated": "2026-11-15T18:23:50-0500"
 }
