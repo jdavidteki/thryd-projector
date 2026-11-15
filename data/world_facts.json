@@ -1007,16 +1007,6 @@
 ],
 "yaba_bukka_counter": [
 {
-"id": "wf_85af633615",
-"kind": "consequence",
-"text": "A Kerosene lamp note with Ronke's name and 'plastic sheet' on it, turns up inside the brown envelope at the yaba bukka counter, and Bisola reads the name twice.",
-"code": "kerosene_lamp.interactwith(yaba_bukka_counter){ yaba_bukka_counter.receives(kerosene_lamp.sheet); … }",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j4",
-"other": "kerosene_lamp"
-},
-{
 "id": "wf_29aff44c07",
 "kind": "consequence",
 "text": "With the wick trimmed, the lamp's green light holds steady over the bukka counter long enough for Bisola to read Ronke's note in the brown envelope all the way through.",
@@ -1055,6 +1045,16 @@
 "run": "run-b9b963",
 "card": "j6",
 "other": "seen"
+},
+{
+"id": "wf_f9dfb4e1f1",
+"kind": "consequence",
+"text": "An Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997, turns up inside the brown envelope at the yaba bukka counter, and Bisola reads the name twice.",
+"code": "danfo_speaker.interactwith(yaba_bukka_counter){ yaba_bukka_counter.receives(danfo_speaker.joke); … }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j1",
+"other": "danfo_speaker"
 }
 ],
 "festac_bead_stall": [
@@ -1491,6 +1491,16 @@
 "run": "run-b9b963",
 "card": "j6",
 "other": "reality"
+},
+{
+"id": "wf_52d521f2a7",
+"kind": "consequence",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the tie, and Bisola reads the name twice.",
+"code": "wwgbtaycbmba.interactwith(tie){ tie.receives(wwgbtaycbmba.code); tie.remembers(ejiro, 'juju code'); tie.tucks(wwgbtaycbmba, 'ttb note into the brown envelope'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j2",
+"other": "wwgbtaycbmba"
 }
 ],
 "laptop": [
@@ -1523,6 +1533,16 @@
 "run": "run-b9b963",
 "card": "j2",
 "other": "play"
+},
+{
+"id": "wf_f8ac78e924",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, turns up inside the juju code at the laptop, and Ejiro reads the name twice.",
+"code": "streetlights.interactwith(laptop){ laptop.receives(streetlights.envelope); … }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j4",
+"other": "streetlights"
 }
 ],
 "game": [
@@ -1535,6 +1555,16 @@
 "run": "run-b9b963",
 "card": "j2",
 "other": "ikeja_laundromat"
+},
+{
+"id": "wf_5ec67adce1",
+"kind": "consequence",
+"text": "An Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997, turns up inside the juju code at the game, and Ejiro reads the name twice.",
+"code": "matches.interactwith(game){ game.receives(matches.joke); game.remembers(bisola, 'boss joke'); game.tucks(matches, 'egbe note into the juju code'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j1",
+"other": "matches"
 }
 ],
 "sheep": [
@@ -1827,50 +1857,6 @@
 ]
 },
 "consequences": [
-{
-"id": "wf_cb6fd04ba2",
-"ts": "2026-11-14T17:11:41-0500",
-"a": "imm",
-"b": "bicycle",
-"code": "imm.interactwith(bicycle){ bicycle.receives(imm.sheet); bicycle.remembers(ronke, 'plastic sheet'); }",
-"text": "A Kerosene lamp note with Ronke's name and 'plastic sheet' on it, turns up with the streetlights, which is still all dead since 7:35pm.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j4"
-},
-{
-"id": "wf_269522e7aa",
-"ts": "2026-11-14T17:12:28-0500",
-"a": "wwgbtaycbmba",
-"b": "yaba_bukka_counter",
-"code": "wwgbtaycbmba.interactwith(yaba_bukka_counter){ yaba_bukka_counter.receives(wwgbtaycbmba.code); … }",
-"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the plastic sheet at the yaba bukka counter, and Ronke reads the name twice.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j2"
-},
-{
-"id": "wf_d99695929e",
-"ts": "2026-11-14T17:14:10-0500",
-"a": "people_scene",
-"b": "can_model_hear",
-"code": "people_scene.interactwith(can_model_hear){ can_model_hear.receives(people_scene.code); can_model_hear.remembers(ejiro, 'juju code'); }",
-"text": "The can model hear leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j2"
-},
-{
-"id": "wf_c5aada8e60",
-"ts": "2026-11-14T17:17:17-0500",
-"a": "people_scene",
-"b": "wells_fargo",
-"code": "people_scene.interactwith(wells_fargo){ wells_fargo.receives(people_scene.code); wells_fargo.remembers(ejiro, 'juju code'); }",
-"text": "The wells fargo leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j2"
-},
 {
 "id": "wf_1c5f4fe7ba",
 "ts": "2026-11-14T17:18:08-0500",
@@ -2266,6 +2252,50 @@
 "author": "cos",
 "run": "run-b9b963",
 "card": "j6"
+},
+{
+"id": "wf_52d521f2a7",
+"ts": "2026-11-15T02:23:55-0500",
+"a": "wwgbtaycbmba",
+"b": "tie",
+"code": "wwgbtaycbmba.interactwith(tie){ tie.receives(wwgbtaycbmba.code); tie.remembers(ejiro, 'juju code'); tie.tucks(wwgbtaycbmba, 'ttb note into the brown envelope'); }",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the tie, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j2"
+},
+{
+"id": "wf_5ec67adce1",
+"ts": "2026-11-15T02:24:42-0500",
+"a": "matches",
+"b": "game",
+"code": "matches.interactwith(game){ game.receives(matches.joke); game.remembers(bisola, 'boss joke'); game.tucks(matches, 'egbe note into the juju code'); }",
+"text": "An Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997, turns up inside the juju code at the game, and Ejiro reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j1"
+},
+{
+"id": "wf_f9dfb4e1f1",
+"ts": "2026-11-15T02:27:02-0500",
+"a": "danfo_speaker",
+"b": "yaba_bukka_counter",
+"code": "danfo_speaker.interactwith(yaba_bukka_counter){ yaba_bukka_counter.receives(danfo_speaker.joke); … }",
+"text": "An Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997, turns up inside the brown envelope at the yaba bukka counter, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j1"
+},
+{
+"id": "wf_f8ac78e924",
+"ts": "2026-11-15T02:27:49-0500",
+"a": "streetlights",
+"b": "laptop",
+"code": "streetlights.interactwith(laptop){ laptop.receives(streetlights.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, turns up inside the juju code at the laptop, and Ejiro reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j4"
 }
 ],
 "memories": [
@@ -2336,5 +2366,5 @@
 "card": "j6"
 }
 ],
-"updated": "2026-11-15T02:19:46-0500"
+"updated": "2026-11-15T02:27:49-0500"
 }
