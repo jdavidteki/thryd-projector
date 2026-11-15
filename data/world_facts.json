@@ -1413,6 +1413,16 @@
 "run": "run-b9b963",
 "card": "j6",
 "other": "red_white_cap"
+},
+{
+"id": "wf_183806ceb9",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bird, and Bisola reads the name twice.",
+"code": "seen.interactwith(bird){ bird.receives(seen.envelope); bird.remembers(bisola, 'brown envelope'); bird.tucks(seen, 'yaba bookshop receipt into the brown envelope'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j6",
+"other": "seen"
 }
 ],
 "agenda_scene": [
@@ -1773,17 +1783,6 @@
 ]
 },
 "consequences": [
-{
-"id": "wf_ba6391323e",
-"ts": "2026-11-14T17:04:25-0500",
-"a": "people_scene",
-"b": "steal_god",
-"code": "people_scene.interactwith(steal_god){ steal_god.receives(people_scene.code); steal_god.remembers(ejiro, 'juju code'); }",
-"text": "The steal god leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j2"
-},
 {
 "id": "wf_93dd89624a",
 "ts": "2026-11-14T17:05:12-0500",
@@ -2212,6 +2211,17 @@
 "author": "cos",
 "run": "run-b9b963",
 "card": "j4"
+},
+{
+"id": "wf_183806ceb9",
+"ts": "2026-11-15T01:54:38-0500",
+"a": "seen",
+"b": "bird",
+"code": "seen.interactwith(bird){ bird.receives(seen.envelope); bird.remembers(bisola, 'brown envelope'); bird.tucks(seen, 'yaba bookshop receipt into the brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bird, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j6"
 }
 ],
 "memories": [
@@ -2282,5 +2292,5 @@
 "card": "j6"
 }
 ],
-"updated": "2026-11-15T00:46:56-0500"
+"updated": "2026-11-15T01:54:38-0500"
 }
