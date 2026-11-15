@@ -771,16 +771,6 @@
 ],
 "danfo_speaker": [
 {
-"id": "wf_6724e59f45",
-"kind": "memory",
-"text": "The danfo speaker at danfo at the curb, song heard again at Mama Ronke's gate: playing the same love song.",
-"code": "danfo_speaker.remembers('playing the same love song');",
-"author": "cos",
-"run": "run-b9b963",
-"card": "w5",
-"other": null
-},
-{
 "id": "wf_68131df973",
 "kind": "consequence",
 "text": "The streetlights ends up with the danfo speaker, still all dead since 7:35pm.",
@@ -809,6 +799,16 @@
 "run": "run-b9b963",
 "card": "j1",
 "other": "agbada"
+},
+{
+"id": "wf_3e8ab3b864",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the danfo speaker, and Bisola reads the name twice.",
+"code": "juss.interactwith(danfo_speaker){ danfo_speaker.receives(juss.envelope); … }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j6",
+"other": "juss"
 },
 {
 "id": "wt_c1a9e05d21",
@@ -2370,17 +2370,6 @@
 },
 "consequences": [
 {
-"id": "wt_5aa9fba827",
-"ts": "2026-11-15T04:48:31-0500",
-"a": "ikeja_laundromat",
-"b": "ikorodu_marina_ferry",
-"code": "ikeja_laundromat.interactwith(ikorodu_marina_ferry){ ikorodu_marina_ferry.receives(ikeja_laundromat.shirt); … }",
-"text": "In the nylon bag Bisola holds at the ferry rail, the green shirt that was not hers sits folded between her own, still smelling of the Ikeja dryer.",
-"author": "thryd",
-"run": "run-b9b963",
-"card": "j10"
-},
-{
 "id": "wt_9a3c4c4e4b",
 "ts": "2026-11-15T04:48:31-0500",
 "a": "yaba_bookshop",
@@ -2808,6 +2797,17 @@
 "author": "cos",
 "run": "run-b9b963",
 "card": "j6"
+},
+{
+"id": "wf_3e8ab3b864",
+"ts": "2026-11-15T12:01:50-0500",
+"a": "juss",
+"b": "danfo_speaker",
+"code": "juss.interactwith(danfo_speaker){ danfo_speaker.receives(juss.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the danfo speaker, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j6"
 }
 ],
 "memories": [
@@ -2900,5 +2900,5 @@
 "card": "j8"
 }
 ],
-"updated": "2026-11-15T10:49:09-0500"
+"updated": "2026-11-15T12:01:50-0500"
 }
