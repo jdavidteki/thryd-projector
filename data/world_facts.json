@@ -2305,6 +2305,16 @@
 "run": "run-b9b963",
 "card": "j6",
 "other": "play"
+},
+{
+"id": "wf_605efc54f8",
+"kind": "consequence",
+"text": "An Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997, turns up inside the brown envelope at the called, and Bisola reads the name twice.",
+"code": "juniorboys.interactwith(called){ called.receives(juniorboys.joke); called.remembers(bisola, 'boss joke'); called.tucks(juniorboys, 'egbe note into the brown envelope'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j1",
+"other": "juniorboys"
 }
 ],
 "notnotnotnotyn_dec": [
@@ -2341,6 +2351,16 @@
 "run": "run-b9b963",
 "card": "j9",
 "other": "kerosene_lamp"
+},
+{
+"id": "wf_f93e8b65a5",
+"kind": "consequence",
+"text": "An Isl note with Kunle's name and 'worm question' on it, 5:30pm, 13 Nov 2026, turns up inside the change at the love, and Taiwo reads the name twice.",
+"code": "isl.interactwith(love){ love.receives(isl.question); love.remembers(kunle, 'worm question'); love.tucks(isl, 'isl note into the change'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j3",
+"other": "isl"
 }
 ],
 "wser": [
@@ -2366,53 +2386,33 @@
 "card": "j4",
 "other": "pure_water_cooler"
 }
+],
+"inside_odunlade_brain": [
+{
+"id": "wf_b541c11b0a",
+"kind": "consequence",
+"text": "The inside odunlade brain leaves with a Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it.",
+"code": "yaba_bookshop.interactwith(inside_odunlade_brain){ inside_odunlade_brain.receives(yaba_bookshop.bead); inside_odunlade_brain.remembers(bisola, 'blue glass bead'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j5",
+"other": "yaba_bookshop"
+}
+],
+"pain_suffering": [
+{
+"id": "wf_1a84e3304d",
+"kind": "consequence",
+"text": "The pain suffering leaves with an Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997.",
+"code": "agbada.interactwith(pain_suffering){ pain_suffering.receives(agbada.joke); pain_suffering.remembers(bisola, 'boss joke'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j1",
+"other": "agbada"
+}
 ]
 },
 "consequences": [
-{
-"id": "wt_9a3c4c4e4b",
-"ts": "2026-11-15T04:48:31-0500",
-"a": "yaba_bookshop",
-"b": "oshodi_bus_shelter",
-"code": "yaba_bookshop.interactwith(oshodi_bus_shelter){ oshodi_bus_shelter.receives(yaba_bookshop.receipt); oshodi_bus_shelter.remembers(Taiwo, 'senator receipt'); }",
-"text": "Taiwo stops reading the timetable aloud when a bookshop receipt with [[love]] written across it slides out of the timetable frame at the Oshodi shelter.",
-"author": "thryd",
-"run": "run-b9b963",
-"card": "j11"
-},
-{
-"id": "wt_4e525b9c48",
-"ts": "2026-11-15T04:48:31-0500",
-"a": "love",
-"b": "yaba_bukka_counter",
-"code": "love.interactwith(yaba_bukka_counter){ yaba_bukka_counter.remembers(Kunle, 'love under the worm question'); yaba_bukka_counter.writes(love, 'love on the isl note'); }",
-"text": "When the love reaches the Yaba bukka counter, someone writes it in pencil under Kunle's worm question on the note in the brown envelope.",
-"author": "thryd",
-"run": "run-b9b963",
-"card": "j7"
-},
-{
-"id": "wf_2499e13320",
-"ts": "2026-11-15T04:51:16-0500",
-"a": "reality",
-"b": "bird",
-"code": "reality.interactwith(bird){ bird.receives(reality.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bird, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j6"
-},
-{
-"id": "wf_5b964cf49f",
-"ts": "2026-11-15T04:55:15-0500",
-"a": "imm",
-"b": "play",
-"code": "imm.interactwith(play){ play.receives(imm.sheet); play.remembers(ronke, 'plastic sheet'); play.tucks(imm, 'kerosene lamp note into the brown envelope'); }",
-"text": "A Kerosene lamp note with Ronke's name and 'plastic sheet' on it, turns up inside the brown envelope at the play, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j4"
-},
 {
 "id": "wf_fd73b74eff",
 "ts": "2026-11-15T05:04:01-0500",
@@ -2808,6 +2808,50 @@
 "author": "cos",
 "run": "run-b9b963",
 "card": "j6"
+},
+{
+"id": "wf_b541c11b0a",
+"ts": "2026-11-15T12:02:54-0500",
+"a": "yaba_bookshop",
+"b": "inside_odunlade_brain",
+"code": "yaba_bookshop.interactwith(inside_odunlade_brain){ inside_odunlade_brain.receives(yaba_bookshop.bead); inside_odunlade_brain.remembers(bisola, 'blue glass bead'); }",
+"text": "The inside odunlade brain leaves with a Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j5"
+},
+{
+"id": "wf_1a84e3304d",
+"ts": "2026-11-15T12:04:28-0500",
+"a": "agbada",
+"b": "pain_suffering",
+"code": "agbada.interactwith(pain_suffering){ pain_suffering.receives(agbada.joke); pain_suffering.remembers(bisola, 'boss joke'); }",
+"text": "The pain suffering leaves with an Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j1"
+},
+{
+"id": "wf_f93e8b65a5",
+"ts": "2026-11-15T12:05:16-0500",
+"a": "isl",
+"b": "love",
+"code": "isl.interactwith(love){ love.receives(isl.question); love.remembers(kunle, 'worm question'); love.tucks(isl, 'isl note into the change'); }",
+"text": "An Isl note with Kunle's name and 'worm question' on it, 5:30pm, 13 Nov 2026, turns up inside the change at the love, and Taiwo reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j3"
+},
+{
+"id": "wf_605efc54f8",
+"ts": "2026-11-15T12:06:50-0500",
+"a": "juniorboys",
+"b": "called",
+"code": "juniorboys.interactwith(called){ called.receives(juniorboys.joke); called.remembers(bisola, 'boss joke'); called.tucks(juniorboys, 'egbe note into the brown envelope'); }",
+"text": "An Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997, turns up inside the brown envelope at the called, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j1"
 }
 ],
 "memories": [
@@ -2900,5 +2944,5 @@
 "card": "j8"
 }
 ],
-"updated": "2026-11-15T12:01:50-0500"
+"updated": "2026-11-15T12:06:50-0500"
 }
