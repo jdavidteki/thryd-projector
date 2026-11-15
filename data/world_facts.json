@@ -529,16 +529,6 @@
 "objects": {
 "ikeja_laundromat": [
 {
-"id": "wf_b9915f3995",
-"kind": "consequence",
-"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the senator receipt at the ikeja laundromat, and Taiwo reads the name twice.",
-"code": "people_scene.interactwith(ikeja_laundromat){ ikeja_laundromat.receives(people_scene.code); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j2",
-"other": "people_scene"
-},
-{
 "id": "wf_7ce6fdc04f",
 "kind": "consequence",
 "text": "A Danfo speaker note with Bisola's name and 'egbe note' on it, turns up inside the senator receipt at the ikeja laundromat, and Taiwo reads the name twice.",
@@ -557,6 +547,16 @@
 "run": "run-0bd7c0",
 "card": "j5",
 "other": "omo"
+},
+{
+"id": "wf_5a858f119c",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the senator receipt at the ikeja laundromat, and Taiwo reads the name twice.",
+"code": "let.interactwith(ikeja_laundromat){ ikeja_laundromat.receives(let.envelope); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "let"
 },
 {
 "id": "wt_6ca10e8a6f",
@@ -1019,14 +1019,14 @@
 ],
 "kerosene_lamp": [
 {
-"id": "wf_bcb2238c27",
-"kind": "memory",
-"text": "The kerosene lamp at Mama Ronke's gate: lit; the only light on the street after the blackout.",
-"code": "kerosene_lamp.state('lit');",
+"id": "wf_af51693eb2",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the change at the kerosene lamp, and Taiwo reads the name twice.",
+"code": "bow.interactwith(kerosene_lamp){ kerosene_lamp.receives(bow.envelope); … }",
 "author": "cos",
 "run": "run-0bd7c0",
-"card": "w7",
-"other": null
+"card": "j6",
+"other": "bow"
 },
 {
 "id": "wt_7a2b23aa13",
@@ -3342,28 +3342,6 @@
 },
 "consequences": [
 {
-"id": "wf_d57f721947",
-"ts": "2026-11-15T15:59:44-0500",
-"a": "agbada",
-"b": "cup",
-"code": "agbada.interactwith(cup){ cup.receives(agbada.joke); cup.remembers(bisola, 'boss joke'); cup.tucks(agbada, 'egbe note into the juju code'); }",
-"text": "An Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997, turns up inside the juju code at the cup, and Ejiro reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j1"
-},
-{
-"id": "wf_c925458406",
-"ts": "2026-11-15T16:02:05-0500",
-"a": "streetlights",
-"b": "ats",
-"code": "streetlights.interactwith(ats){ ats.receives(streetlights.envelope); ats.remembers(bisola, 'brown envelope'); }",
-"text": "The ats leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
-{
 "id": "wf_72f9e2b22a",
 "ts": "2026-11-15T16:03:47-0500",
 "a": "red_white_cap",
@@ -3780,6 +3758,28 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j6"
+},
+{
+"id": "wf_af51693eb2",
+"ts": "2026-11-15T17:24:14-0500",
+"a": "bow",
+"b": "kerosene_lamp",
+"code": "bow.interactwith(kerosene_lamp){ kerosene_lamp.receives(bow.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the change at the kerosene lamp, and Taiwo reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
+},
+{
+"id": "wf_5a858f119c",
+"ts": "2026-11-15T17:27:54-0500",
+"a": "let",
+"b": "ikeja_laundromat",
+"code": "let.interactwith(ikeja_laundromat){ ikeja_laundromat.receives(let.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the senator receipt at the ikeja laundromat, and Taiwo reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
 }
 ],
 "memories": [
@@ -3883,5 +3883,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-15T17:21:26-0500"
+"updated": "2026-11-15T17:27:54-0500"
 }
