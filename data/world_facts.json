@@ -1898,31 +1898,33 @@
 "card": "j2",
 "other": "notnotnotnotyn_jan"
 }
+],
+"dele_woli_agba": [
+{
+"id": "wf_b4fb86ef8f",
+"kind": "consequence",
+"text": "The dele woli agba leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "yaba_bukka_counter.interactwith(dele_woli_agba){ dele_woli_agba.receives(yaba_bukka_counter.envelope); dele_woli_agba.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j6",
+"other": "yaba_bukka_counter"
+}
+],
+"laakl": [
+{
+"id": "wf_5cb5038129",
+"kind": "consequence",
+"text": "The laakl leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "yaba_bukka_counter.interactwith(laakl){ laakl.receives(yaba_bukka_counter.envelope); laakl.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j6",
+"other": "yaba_bukka_counter"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_b57aee45bf",
-"ts": "2026-11-14T17:25:14-0500",
-"a": "agbada",
-"b": "yaba_bukka_counter",
-"code": "agbada.interactwith(yaba_bukka_counter){ yaba_bukka_counter.receives(agbada.joke); … }",
-"text": "An Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997, turns up inside the brown envelope at the yaba bukka counter, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j1"
-},
-{
-"id": "wf_7c154b60c0",
-"ts": "2026-11-14T17:37:02-0500",
-"a": "isl",
-"b": "yaba_bukka_counter",
-"code": "isl.interactwith(yaba_bukka_counter){ yaba_bukka_counter.receives(isl.question); … }",
-"text": "An Isl note with Kunle's name and 'worm question' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the yaba bukka counter, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j3"
-},
 {
 "id": "wf_6846c55b4f",
 "ts": "2026-11-14T17:38:45-0500",
@@ -2340,6 +2342,28 @@
 "author": "cos",
 "run": "run-b9b963",
 "card": "j2"
+},
+{
+"id": "wf_b4fb86ef8f",
+"ts": "2026-11-15T02:53:26-0500",
+"a": "yaba_bukka_counter",
+"b": "dele_woli_agba",
+"code": "yaba_bukka_counter.interactwith(dele_woli_agba){ dele_woli_agba.receives(yaba_bukka_counter.envelope); dele_woli_agba.remembers(bisola, 'brown envelope'); }",
+"text": "The dele woli agba leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j6"
+},
+{
+"id": "wf_5cb5038129",
+"ts": "2026-11-15T04:04:27-0500",
+"a": "yaba_bukka_counter",
+"b": "laakl",
+"code": "yaba_bukka_counter.interactwith(laakl){ laakl.receives(yaba_bukka_counter.envelope); laakl.remembers(bisola, 'brown envelope'); }",
+"text": "The laakl leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j6"
 }
 ],
 "memories": [
@@ -2410,5 +2434,5 @@
 "card": "j6"
 }
 ],
-"updated": "2026-11-15T02:50:14-0500"
+"updated": "2026-11-15T04:04:27-0500"
 }
