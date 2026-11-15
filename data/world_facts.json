@@ -1037,16 +1037,6 @@
 ],
 "yaba_bukka_counter": [
 {
-"id": "wf_326f04505f",
-"kind": "consequence",
-"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the yaba bukka counter, and Bisola reads the name twice.",
-"code": "pure_water_cooler.interactwith(yaba_bukka_counter){ yaba_bukka_counter.receives(pure_water_cooler.code); … }",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j2",
-"other": "pure_water_cooler"
-},
-{
 "id": "wf_2f35ccfbce",
 "kind": "consequence",
 "text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the yaba bukka counter, and Bisola reads the name twice.",
@@ -1085,6 +1075,16 @@
 "run": "run-b9b963",
 "card": "j6",
 "other": "reality"
+},
+{
+"id": "wf_4b15bebee7",
+"kind": "consequence",
+"text": "An Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997, turns up inside the brown envelope at the yaba bukka counter, and Bisola reads the name twice.",
+"code": "egbe.interactwith(yaba_bukka_counter){ yaba_bukka_counter.receives(egbe.joke); … }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j1",
+"other": "egbe"
 }
 ],
 "festac_bead_stall": [
@@ -1769,6 +1769,16 @@
 "run": "run-b9b963",
 "card": "j2",
 "other": "laptop"
+},
+{
+"id": "wf_593c0e05c0",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the juju code at the hands, and Ejiro reads the name twice.",
+"code": "plastic_sheet.interactwith(hands){ hands.receives(plastic_sheet.envelope); … }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j6",
+"other": "plastic_sheet"
 }
 ],
 "seen": [
@@ -1942,53 +1952,33 @@
 "card": "j6",
 "other": "yaba_bukka_counter"
 }
+],
+"juniorboys": [
+{
+"id": "wf_f5f8fb43f8",
+"kind": "consequence",
+"text": "The juniorboys leaves with an Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997.",
+"code": "matches.interactwith(juniorboys){ juniorboys.receives(matches.joke); juniorboys.remembers(bisola, 'boss joke'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j1",
+"other": "matches"
+}
+],
+"bed": [
+{
+"id": "wf_e46192a184",
+"kind": "consequence",
+"text": "The bed leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "red_white_cap.interactwith(bed){ bed.receives(red_white_cap.envelope); bed.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j6",
+"other": "red_white_cap"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_40c03caeb2",
-"ts": "2026-11-14T17:48:23-0500",
-"a": "game",
-"b": "bicycle",
-"code": "game.interactwith(bicycle){ bicycle.receives(game.code); bicycle.remembers(ejiro, 'juju code'); bicycle.tucks(game, 'ttb note into the plastic sheet'); }",
-"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the plastic sheet at the bicycle, and Ronke reads the name twice.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j2"
-},
-{
-"id": "wf_85af633615",
-"ts": "2026-11-14T17:59:22-0500",
-"a": "kerosene_lamp",
-"b": "yaba_bukka_counter",
-"code": "kerosene_lamp.interactwith(yaba_bukka_counter){ yaba_bukka_counter.receives(kerosene_lamp.sheet); … }",
-"text": "A Kerosene lamp note with Ronke's name and 'plastic sheet' on it, turns up inside the brown envelope at the yaba bukka counter, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j4"
-},
-{
-"id": "wt_5f066503ab",
-"ts": "2026-11-14T19:54:19-0500",
-"a": "ikeja_laundromat",
-"b": "tailor_shop",
-"code": "ikeja_laundromat.interactwith(tailor_shop){ tailor_shop.receives(ikeja_laundromat.shirt); … }",
-"text": "The folded green shirt that was never Bisola's leaves the Ikeja laundromat and lands on Taiwo's cutting table on Gbagi Street, where he sees the collar was resewn by somebody else's hand.",
-"author": "thryd",
-"run": "run-b9b963",
-"card": "j8"
-},
-{
-"id": "wt_60e7e9ec7d",
-"ts": "2026-11-14T19:54:19-0500",
-"a": "festac_bead_stall",
-"b": "yaba_bookshop",
-"code": "festac_bead_stall.interactwith(yaba_bookshop){ yaba_bookshop.receives(festac_bead_stall.beads); yaba_bookshop.remembers(bisola, \"blue glass beads\"); }",
-"text": "A loose blue glass bead from the Festac stall rolls out from between the paperbacks Taiwo is shelving at the Yaba bookshop, the same blue Bisola once held up to the light.",
-"author": "thryd",
-"run": "run-b9b963",
-"card": "j5"
-},
 {
 "id": "wt_32a1b9f226",
 "ts": "2026-11-14T19:54:19-0500",
@@ -2384,6 +2374,50 @@
 "author": "cos",
 "run": "run-b9b963",
 "card": "j2"
+},
+{
+"id": "wf_4b15bebee7",
+"ts": "2026-11-15T04:11:46-0500",
+"a": "egbe",
+"b": "yaba_bukka_counter",
+"code": "egbe.interactwith(yaba_bukka_counter){ yaba_bukka_counter.receives(egbe.joke); … }",
+"text": "An Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997, turns up inside the brown envelope at the yaba bukka counter, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j1"
+},
+{
+"id": "wf_f5f8fb43f8",
+"ts": "2026-11-15T04:14:07-0500",
+"a": "matches",
+"b": "juniorboys",
+"code": "matches.interactwith(juniorboys){ juniorboys.receives(matches.joke); juniorboys.remembers(bisola, 'boss joke'); }",
+"text": "The juniorboys leaves with an Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j1"
+},
+{
+"id": "wf_593c0e05c0",
+"ts": "2026-11-15T04:14:54-0500",
+"a": "plastic_sheet",
+"b": "hands",
+"code": "plastic_sheet.interactwith(hands){ hands.receives(plastic_sheet.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the juju code at the hands, and Ejiro reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j6"
+},
+{
+"id": "wf_e46192a184",
+"ts": "2026-11-15T04:15:41-0500",
+"a": "red_white_cap",
+"b": "bed",
+"code": "red_white_cap.interactwith(bed){ bed.receives(red_white_cap.envelope); bed.remembers(bisola, 'brown envelope'); }",
+"text": "The bed leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j6"
 }
 ],
 "memories": [
@@ -2454,5 +2488,5 @@
 "card": "j6"
 }
 ],
-"updated": "2026-11-15T04:10:08-0500"
+"updated": "2026-11-15T04:15:41-0500"
 }
