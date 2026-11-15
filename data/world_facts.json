@@ -957,16 +957,6 @@
 ],
 "streetlights": [
 {
-"id": "wf_900c73f1b1",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the streetlights, and Bisola reads the name twice.",
-"code": "red_white.interactwith(streetlights){ streetlights.receives(red_white.envelope); … }",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j6",
-"other": "red_white"
-},
-{
 "id": "wf_75c71e3f86",
 "kind": "consequence",
 "text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the streetlights, and Bisola reads the name twice.",
@@ -1005,6 +995,16 @@
 "run": "run-0bd7c0",
 "card": "w6",
 "other": null
+},
+{
+"id": "wf_3b6bbf93f6",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it, turns up inside the brown envelope at the streetlights, and Bisola reads the name twice.",
+"code": "morir_r.interactwith(streetlights){ streetlights.receives(morir_r.bead); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j5",
+"other": "morir_r"
 }
 ],
 "kerosene_lamp": [
@@ -1783,16 +1783,6 @@
 ],
 "tie": [
 {
-"id": "wf_52d521f2a7",
-"kind": "consequence",
-"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the tie, and Bisola reads the name twice.",
-"code": "wwgbtaycbmba.interactwith(tie){ tie.receives(wwgbtaycbmba.code); tie.remembers(ejiro, 'juju code'); tie.tucks(wwgbtaycbmba, 'ttb note into the brown envelope'); }",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j2",
-"other": "wwgbtaycbmba"
-},
-{
 "id": "wf_c12b579887",
 "kind": "consequence",
 "text": "An Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997, turns up inside the brown envelope at the tie, and Bisola reads the name twice.",
@@ -1831,6 +1821,16 @@
 "run": "run-b9b963",
 "card": "j6",
 "other": "imm"
+},
+{
+"id": "wf_72f9e2b22a",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the tie, and Bisola reads the name twice.",
+"code": "red_white_cap.interactwith(tie){ tie.receives(red_white_cap.envelope); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "red_white_cap"
 }
 ],
 "laptop": [
@@ -3168,28 +3168,6 @@
 },
 "consequences": [
 {
-"id": "wf_95c4a897f7",
-"ts": "2026-11-15T13:27:27-0500",
-"a": "danfo_speaker",
-"b": "yaba_bookshop",
-"code": "danfo_speaker.interactwith(yaba_bookshop){ yaba_bookshop.receives(danfo_speaker.note); … }",
-"text": "A Danfo speaker note with Bisola's name and 'egbe note' on it, turns up inside the blue glass bead at the yaba bookshop, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "w"
-},
-{
-"id": "wf_279edb7298",
-"ts": "2026-11-15T13:40:02-0500",
-"a": "streetlights",
-"b": "imm",
-"code": "streetlights.interactwith(imm){ imm.receives(streetlights.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the boss joke at the imm, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j6"
-},
-{
 "id": "wf_32c16e6198",
 "ts": "2026-11-15T13:41:07-0500",
 "a": "yaba_bookshop",
@@ -3606,6 +3584,28 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j6"
+},
+{
+"id": "wf_72f9e2b22a",
+"ts": "2026-11-15T16:03:47-0500",
+"a": "red_white_cap",
+"b": "tie",
+"code": "red_white_cap.interactwith(tie){ tie.receives(red_white_cap.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the tie, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
+},
+{
+"id": "wf_3b6bbf93f6",
+"ts": "2026-11-15T16:07:43-0500",
+"a": "morir_r",
+"b": "streetlights",
+"code": "morir_r.interactwith(streetlights){ streetlights.receives(morir_r.bead); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it, turns up inside the brown envelope at the streetlights, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j5"
 }
 ],
 "memories": [
@@ -3709,5 +3709,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-15T16:02:05-0500"
+"updated": "2026-11-15T16:07:43-0500"
 }
