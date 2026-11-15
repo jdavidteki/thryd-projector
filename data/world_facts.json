@@ -1795,16 +1795,6 @@
 ],
 "laptop": [
 {
-"id": "wf_f8ac78e924",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, turns up inside the juju code at the laptop, and Ejiro reads the name twice.",
-"code": "streetlights.interactwith(laptop){ laptop.receives(streetlights.envelope); … }",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j4",
-"other": "streetlights"
-},
-{
 "id": "wf_9775a208d7",
 "kind": "consequence",
 "text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the laptop, and Bisola reads the name twice.",
@@ -1833,6 +1823,16 @@
 "run": "run-b9b963",
 "card": "w",
 "other": "love"
+},
+{
+"id": "wf_1b17a671e1",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the change at the laptop, and Taiwo reads the name twice.",
+"code": "seen.interactwith(laptop){ laptop.receives(seen.envelope); laptop.remembers(bisola, 'brown envelope'); laptop.tucks(seen, 'yaba bookshop receipt into the change'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j6",
+"other": "seen"
 },
 {
 "id": "wt_00586a397c",
@@ -2505,6 +2505,16 @@
 "run": "run-b9b963",
 "card": "j1",
 "other": "danfo_speaker"
+},
+{
+"id": "wf_c462f89df2",
+"kind": "consequence",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the bed, and Bisola reads the name twice.",
+"code": "pdm.interactwith(bed){ bed.receives(pdm.code); bed.remembers(ejiro, 'juju code'); bed.tucks(pdm, 'ttb note into the brown envelope'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j2",
+"other": "pdm"
 }
 ],
 "art_making_money": [
@@ -3038,28 +3048,6 @@
 },
 "consequences": [
 {
-"id": "wf_954c2f820b",
-"ts": "2026-11-15T13:15:29-0500",
-"a": "danfo_speaker",
-"b": "fake_nigerian",
-"code": "danfo_speaker.interactwith(fake_nigerian){ fake_nigerian.receives(danfo_speaker.note); … }",
-"text": "A Danfo speaker note with Bisola's name and 'egbe note' on it, turns up inside the boss joke at the fake nigerian, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "w"
-},
-{
-"id": "wf_aac367e6a3",
-"ts": "2026-11-15T13:16:16-0500",
-"a": "pure_water_cooler",
-"b": "yaba_bookshop",
-"code": "pure_water_cooler.interactwith(yaba_bookshop){ yaba_bookshop.receives(pure_water_cooler.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the blue glass bead at the yaba bookshop, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j6"
-},
-{
 "id": "wf_d5b403b12e",
 "ts": "2026-11-15T13:17:03-0500",
 "a": "sheep",
@@ -3476,6 +3464,28 @@
 "author": "cos",
 "run": "run-b9b963",
 "card": "j1"
+},
+{
+"id": "wf_1b17a671e1",
+"ts": "2026-11-15T15:41:14-0500",
+"a": "seen",
+"b": "laptop",
+"code": "seen.interactwith(laptop){ laptop.receives(seen.envelope); laptop.remembers(bisola, 'brown envelope'); laptop.tucks(seen, 'yaba bookshop receipt into the change'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the change at the laptop, and Taiwo reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j6"
+},
+{
+"id": "wf_c462f89df2",
+"ts": "2026-11-15T15:43:36-0500",
+"a": "pdm",
+"b": "bed",
+"code": "pdm.interactwith(bed){ bed.receives(pdm.code); bed.remembers(ejiro, 'juju code'); bed.tucks(pdm, 'ttb note into the brown envelope'); }",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the bed, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j2"
 }
 ],
 "memories": [
@@ -3579,5 +3589,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-15T15:39:32-0500"
+"updated": "2026-11-15T15:43:36-0500"
 }
