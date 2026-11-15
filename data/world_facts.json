@@ -2213,6 +2213,16 @@
 "run": "run-b9b963",
 "card": "j4",
 "other": "imm"
+},
+{
+"id": "wf_d63f9c5b8f",
+"kind": "consequence",
+"text": "A Kerosene lamp note with Taiwo's name and 'change' on it, turns up inside the plastic sheet at the diss, and Ronke reads the name twice.",
+"code": "love.interactwith(diss){ diss.receives(love.change); diss.remembers(taiwo, 'change'); diss.tucks(love, 'kerosene lamp note into the plastic sheet'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j9",
+"other": "love"
 }
 ],
 "called": [
@@ -2275,17 +2285,6 @@
 ]
 },
 "consequences": [
-{
-"id": "wf_593c0e05c0",
-"ts": "2026-11-15T04:14:54-0500",
-"a": "plastic_sheet",
-"b": "hands",
-"code": "plastic_sheet.interactwith(hands){ hands.receives(plastic_sheet.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the juju code at the hands, and Ejiro reads the name twice.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j6"
-},
 {
 "id": "wf_e46192a184",
 "ts": "2026-11-15T04:15:41-0500",
@@ -2714,6 +2713,17 @@
 "author": "cos",
 "run": "run-b9b963",
 "card": "j2"
+},
+{
+"id": "wf_d63f9c5b8f",
+"ts": "2026-11-15T05:55:51-0500",
+"a": "love",
+"b": "diss",
+"code": "love.interactwith(diss){ diss.receives(love.change); diss.remembers(taiwo, 'change'); diss.tucks(love, 'kerosene lamp note into the plastic sheet'); }",
+"text": "A Kerosene lamp note with Taiwo's name and 'change' on it, turns up inside the plastic sheet at the diss, and Ronke reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j9"
 }
 ],
 "memories": [
@@ -2806,5 +2816,5 @@
 "card": "j8"
 }
 ],
-"updated": "2026-11-15T05:54:12-0500"
+"updated": "2026-11-15T05:55:51-0500"
 }
