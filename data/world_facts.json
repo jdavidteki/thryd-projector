@@ -581,16 +581,6 @@
 ],
 "yaba_bookshop": [
 {
-"id": "wf_8315ed28c7",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the blue glass bead at the yaba bookshop, and Bisola reads the name twice.",
-"code": "streetlights.interactwith(yaba_bookshop){ yaba_bookshop.receives(streetlights.envelope); … }",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j6",
-"other": "streetlights"
-},
-{
 "id": "wf_812028fe79",
 "kind": "consequence",
 "text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the blue glass bead at the yaba bookshop, and Bisola reads the name twice.",
@@ -599,6 +589,16 @@
 "run": "run-b9b963",
 "card": "j2",
 "other": "wwgbtaycbmba"
+},
+{
+"id": "wf_0ad8ad53db",
+"kind": "consequence",
+"text": "A Nla agbara figure receipt with Bisola's name and 'brown envelope' on it, turns up inside the blue glass bead at the yaba bookshop, and Bisola reads the name twice.",
+"code": "off_key.interactwith(yaba_bookshop){ yaba_bookshop.receives(off_key.envelope); … }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j4",
+"other": "off_key"
 },
 {
 "id": "wt_ad3997f7d4",
@@ -1653,16 +1653,6 @@
 ],
 "tie": [
 {
-"id": "wf_0dbe823f82",
-"kind": "consequence",
-"text": "The matches ends up with the tie, still found.",
-"code": "matches.interactwith(tie){ matches.db.copyto(tie); tie.keeps(matches, 'matches, still found'); }",
-"author": "cos",
-"run": "run-b9b963",
-"card": "w7",
-"other": "matches"
-},
-{
 "id": "wf_bc934bb026",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the matches, which is still found.",
@@ -1701,6 +1691,16 @@
 "run": "run-b9b963",
 "card": "j1",
 "other": "juniorboys"
+},
+{
+"id": "wf_5e9721ac04",
+"kind": "consequence",
+"text": "An Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997, turns up inside the brown envelope at the tie, and Bisola reads the name twice.",
+"code": "agbada.interactwith(tie){ tie.receives(agbada.joke); tie.remembers(bisola, 'boss joke'); tie.tucks(agbada, 'egbe note into the brown envelope'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j1",
+"other": "agbada"
 }
 ],
 "laptop": [
@@ -2410,64 +2410,45 @@
 "card": "j1",
 "other": "agbada"
 }
+],
+"notnotnotnotyn_nov": [
+{
+"id": "wf_10d6112892",
+"kind": "consequence",
+"text": "The notnotnotnotyn nov leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
+"code": "people_scene.interactwith(notnotnotnotyn_nov){ notnotnotnotyn_nov.receives(people_scene.code); notnotnotnotyn_nov.remembers(ejiro, 'juju code'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j2",
+"other": "people_scene"
+}
+],
+"divorce": [
+{
+"id": "wf_35268c24a2",
+"kind": "consequence",
+"text": "The divorce leaves with a Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it.",
+"code": "yaba_bookshop.interactwith(divorce){ divorce.receives(yaba_bookshop.bead); divorce.remembers(bisola, 'blue glass bead'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j5",
+"other": "yaba_bookshop"
+}
+],
+"replenish_earth": [
+{
+"id": "wf_8c59477e22",
+"kind": "consequence",
+"text": "The replenish earth leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "tie.interactwith(replenish_earth){ replenish_earth.receives(tie.envelope); replenish_earth.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j6",
+"other": "tie"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_fd73b74eff",
-"ts": "2026-11-15T05:04:01-0500",
-"a": "bicycle",
-"b": "diss",
-"code": "bicycle.interactwith(diss){ diss.receives(bicycle.code); diss.remembers(ejiro, 'juju code'); }",
-"text": "The diss leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j2"
-},
-{
-"id": "wf_4faa693e56",
-"ts": "2026-11-15T05:08:45-0500",
-"a": "pure_water_cooler",
-"b": "laakl",
-"code": "pure_water_cooler.interactwith(laakl){ laakl.receives(pure_water_cooler.code); … }",
-"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the laakl, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j2"
-},
-{
-"id": "wf_b9d12da12e",
-"ts": "2026-11-15T05:09:37-0500",
-"a": "matches",
-"b": "yaba_bookshop",
-"code": "matches.interactwith(yaba_bookshop){ yaba_bookshop.receives(matches.joke); … }",
-"text": "An Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997, turns up inside the blue glass bead at the yaba bookshop, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j1"
-},
-{
-"id": "wf_e6ce0f6467",
-"ts": "2026-11-15T05:11:59-0500",
-"a": "streetlights",
-"b": "called",
-"code": "streetlights.interactwith(called){ called.receives(streetlights.envelope); called.remembers(bisola, 'brown envelope'); }",
-"text": "The called leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j4"
-},
-{
-"id": "wf_00c2b59044",
-"ts": "2026-11-15T05:14:20-0500",
-"a": "notnotnotnotyn_jan",
-"b": "notnotnotnotyn_dec",
-"code": "notnotnotnotyn_jan.interactwith(notnotnotnotyn_dec){ notnotnotnotyn_dec.receives(notnotnotnotyn_jan.code); notnotnotnotyn_dec.remembers(ejiro, 'juju code'); }",
-"text": "The notnotnotnotyn dec leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j2"
-},
 {
 "id": "wf_5823550f35",
 "ts": "2026-11-15T05:16:44-0500",
@@ -2852,6 +2833,61 @@
 "author": "cos",
 "run": "run-b9b963",
 "card": "j1"
+},
+{
+"id": "wf_10d6112892",
+"ts": "2026-11-15T12:07:43-0500",
+"a": "people_scene",
+"b": "notnotnotnotyn_nov",
+"code": "people_scene.interactwith(notnotnotnotyn_nov){ notnotnotnotyn_nov.receives(people_scene.code); notnotnotnotyn_nov.remembers(ejiro, 'juju code'); }",
+"text": "The notnotnotnotyn nov leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j2"
+},
+{
+"id": "wf_35268c24a2",
+"ts": "2026-11-15T12:10:05-0500",
+"a": "yaba_bookshop",
+"b": "divorce",
+"code": "yaba_bookshop.interactwith(divorce){ divorce.receives(yaba_bookshop.bead); divorce.remembers(bisola, 'blue glass bead'); }",
+"text": "The divorce leaves with a Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j5"
+},
+{
+"id": "wf_8c59477e22",
+"ts": "2026-11-15T12:10:53-0500",
+"a": "tie",
+"b": "replenish_earth",
+"code": "tie.interactwith(replenish_earth){ replenish_earth.receives(tie.envelope); replenish_earth.remembers(bisola, 'brown envelope'); }",
+"text": "The replenish earth leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j6"
+},
+{
+"id": "wf_0ad8ad53db",
+"ts": "2026-11-15T12:11:40-0500",
+"a": "off_key",
+"b": "yaba_bookshop",
+"code": "off_key.interactwith(yaba_bookshop){ yaba_bookshop.receives(off_key.envelope); … }",
+"text": "A Nla agbara figure receipt with Bisola's name and 'brown envelope' on it, turns up inside the blue glass bead at the yaba bookshop, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j4"
+},
+{
+"id": "wf_5e9721ac04",
+"ts": "2026-11-15T12:12:27-0500",
+"a": "agbada",
+"b": "tie",
+"code": "agbada.interactwith(tie){ tie.receives(agbada.joke); tie.remembers(bisola, 'boss joke'); tie.tucks(agbada, 'egbe note into the brown envelope'); }",
+"text": "An Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997, turns up inside the brown envelope at the tie, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j1"
 }
 ],
 "memories": [
@@ -2944,5 +2980,5 @@
 "card": "j8"
 }
 ],
-"updated": "2026-11-15T12:06:50-0500"
+"updated": "2026-11-15T12:12:27-0500"
 }
