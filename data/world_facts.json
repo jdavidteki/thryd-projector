@@ -581,16 +581,6 @@
 ],
 "yaba_bookshop": [
 {
-"id": "wf_979bb08b13",
-"kind": "memory",
-"text": "4:25pm, Monday 23 September 2058: Bisola stands at the counter with a brown envelope. The yaba bookshop keeps it on file.",
-"code": "yaba_bookshop.remembers(bisola, 'brown envelope');",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j7",
-"other": null
-},
-{
 "id": "wf_37c885e8ee",
 "kind": "memory",
 "text": "4:25pm, Monday 23 September 2058: Taiwo is shelving paperbacks by the window. The yaba bookshop keeps it on file.",
@@ -609,6 +599,16 @@
 "run": "run-b9b963",
 "card": "j8",
 "other": "tailor_shop"
+},
+{
+"id": "wf_baf9311fbc",
+"kind": "consequence",
+"text": "The note with Ejiro's name, finally read by the green lamp, gets slipped between the pages Taiwo marked with collar thread, so the Yaba bookshop stays open late under the same green light.",
+"code": "kerosene_lamp.interactwith(yaba_bookshop){ yaba_bookshop.receives(kerosene_lamp, 'juju code'); yaba_bookshop.state('open late under a green lamp'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j2",
+"other": "kerosene_lamp"
 },
 {
 "id": "wt_ad3997f7d4",
@@ -1079,6 +1079,16 @@
 "other": null
 },
 {
+"id": "wf_e732741b1e",
+"kind": "consequence",
+"text": "The pharmacist's glance at the lone blue button sends Bisola back to the Festac stall, which knows its own bead at once and writes down that she wants one more to match it.",
+"code": "lekki_pharmacy.interactwith(festac_bead_stall){ festac_bead_stall.receives(lekki_pharmacy, 'blue glass bead button'); … }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j9",
+"other": "lekki_pharmacy"
+},
+{
 "id": "wt_8b3a8717b8",
 "kind": "memory",
 "text": "11:10am, 19 August 2054: Bisola held blue glass beads to the light while Taiwo weighed a bag on the brass scale, and four miracles were logged before the needle settled.",
@@ -1090,16 +1100,6 @@
 }
 ],
 "tailor_shop": [
-{
-"id": "wf_8f54aa9478",
-"kind": "memory",
-"text": "7:40am, Wednesday 12 January 2056: Bisola stands at the shop shutter with a ring of keys in one hand. The tailor shop keeps it on file.",
-"code": "tailor_shop.remembers(bisola, 'ring of keys');",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j6",
-"other": null
-},
 {
 "id": "wf_8cbdaecf32",
 "kind": "memory",
@@ -1119,6 +1119,16 @@
 "run": "run-b9b963",
 "card": "j5",
 "other": "yaba_bookshop"
+},
+{
+"id": "wf_c2de559008",
+"kind": "consequence",
+"text": "Nobody ever comes back for the green shirt, so the Ikeja laundromat sends its ticket along to Taiwo's tailor shop, and the mended shirt is now officially his to keep or give.",
+"code": "ikeja_laundromat.interactwith(tailor_shop){ tailor_shop.receives(ikeja_laundromat, 'green shirt'); tailor_shop.remembers(taiwo, 'unclaimed green shirt ticket'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j8",
+"other": "ikeja_laundromat"
 },
 {
 "id": "wt_23c0fd0989",
@@ -1752,39 +1762,6 @@
 },
 "consequences": [
 {
-"id": "wf_d190614a42",
-"ts": "2026-11-14T16:57:59-0500",
-"a": "ttb",
-"b": "red_white_cap",
-"code": "ttb.interactwith(red_white_cap){ red_white_cap.receives(ttb.code); … }",
-"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the red white cap, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j2"
-},
-{
-"id": "wf_32a2cb6c0c",
-"ts": "2026-11-14T16:59:40-0500",
-"a": "streetlights",
-"b": "yaba_bukka_counter",
-"code": "streetlights.interactwith(yaba_bukka_counter){ yaba_bukka_counter.receives(streetlights.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, turns up inside the plate of jollof rice at the yaba bukka counter, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j4"
-},
-{
-"id": "wf_05abf8eafb",
-"ts": "2026-11-14T17:00:27-0500",
-"a": "danfo_speaker",
-"b": "clock_second",
-"code": "danfo_speaker.interactwith(clock_second){ clock_second.receives(danfo_speaker.joke); clock_second.remembers(bisola, 'boss joke'); }",
-"text": "The clock second leaves with an Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j1"
-},
-{
 "id": "wf_1484a43722",
 "ts": "2026-11-14T17:03:38-0500",
 "a": "people_scene",
@@ -2190,6 +2167,39 @@
 "author": "thryd",
 "run": "run-b9b963",
 "card": "j2"
+},
+{
+"id": "wf_e732741b1e",
+"ts": "2026-11-15T00:42:47-0500",
+"a": "lekki_pharmacy",
+"b": "festac_bead_stall",
+"code": "lekki_pharmacy.interactwith(festac_bead_stall){ festac_bead_stall.receives(lekki_pharmacy, 'blue glass bead button'); … }",
+"text": "The pharmacist's glance at the lone blue button sends Bisola back to the Festac stall, which knows its own bead at once and writes down that she wants one more to match it.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j9"
+},
+{
+"id": "wf_baf9311fbc",
+"ts": "2026-11-15T00:42:47-0500",
+"a": "kerosene_lamp",
+"b": "yaba_bookshop",
+"code": "kerosene_lamp.interactwith(yaba_bookshop){ yaba_bookshop.receives(kerosene_lamp, 'juju code'); yaba_bookshop.state('open late under a green lamp'); }",
+"text": "The note with Ejiro's name, finally read by the green lamp, gets slipped between the pages Taiwo marked with collar thread, so the Yaba bookshop stays open late under the same green light.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j2"
+},
+{
+"id": "wf_c2de559008",
+"ts": "2026-11-15T00:42:47-0500",
+"a": "ikeja_laundromat",
+"b": "tailor_shop",
+"code": "ikeja_laundromat.interactwith(tailor_shop){ tailor_shop.receives(ikeja_laundromat, 'green shirt'); tailor_shop.remembers(taiwo, 'unclaimed green shirt ticket'); }",
+"text": "Nobody ever comes back for the green shirt, so the Ikeja laundromat sends its ticket along to Taiwo's tailor shop, and the mended shirt is now officially his to keep or give.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j8"
 }
 ],
 "memories": [
@@ -2260,5 +2270,5 @@
 "card": "j6"
 }
 ],
-"updated": "2026-11-14T23:55:26-0500"
+"updated": "2026-11-15T00:42:56-0500"
 }
