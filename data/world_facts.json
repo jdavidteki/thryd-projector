@@ -1007,16 +1007,6 @@
 ],
 "yaba_bukka_counter": [
 {
-"id": "wf_29aff44c07",
-"kind": "consequence",
-"text": "With the wick trimmed, the lamp's green light holds steady over the bukka counter long enough for Bisola to read Ronke's note in the brown envelope all the way through.",
-"code": "kerosene_lamp.interactwith(yaba_bukka_counter){ yaba_bukka_counter.remembers(ronke, 'trimmed wick'); yaba_bukka_counter.state('lit green and steady'); }",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j6",
-"other": "kerosene_lamp"
-},
-{
 "id": "wf_326f04505f",
 "kind": "consequence",
 "text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the yaba bukka counter, and Bisola reads the name twice.",
@@ -1055,6 +1045,16 @@
 "run": "run-b9b963",
 "card": "j1",
 "other": "danfo_speaker"
+},
+{
+"id": "wf_47363806f2",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the yaba bukka counter, and Bisola reads the name twice.",
+"code": "reality.interactwith(yaba_bukka_counter){ yaba_bukka_counter.receives(reality.envelope); … }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j6",
+"other": "reality"
 }
 ],
 "festac_bead_stall": [
@@ -1880,17 +1880,6 @@
 },
 "consequences": [
 {
-"id": "wf_17d74cf291",
-"ts": "2026-11-14T17:19:41-0500",
-"a": "red_white_cap",
-"b": "yaba_bukka_counter",
-"code": "red_white_cap.interactwith(yaba_bukka_counter){ yaba_bukka_counter.receives(red_white_cap.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the juju code at the yaba bukka counter, and Ejiro reads the name twice.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j6"
-},
-{
 "id": "wf_bc934bb026",
 "ts": "2026-11-14T17:22:02-0500",
 "a": "reality",
@@ -2318,6 +2307,17 @@
 "author": "cos",
 "run": "run-b9b963",
 "card": "j9"
+},
+{
+"id": "wf_47363806f2",
+"ts": "2026-11-15T02:42:57-0500",
+"a": "reality",
+"b": "yaba_bukka_counter",
+"code": "reality.interactwith(yaba_bukka_counter){ yaba_bukka_counter.receives(reality.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the yaba bukka counter, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j6"
 }
 ],
 "memories": [
@@ -2388,5 +2388,5 @@
 "card": "j6"
 }
 ],
-"updated": "2026-11-15T02:42:07-0500"
+"updated": "2026-11-15T02:42:57-0500"
 }
