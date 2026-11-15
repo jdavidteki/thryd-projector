@@ -1755,16 +1755,6 @@
 ],
 "laptop": [
 {
-"id": "wf_dbe1cf9df4",
-"kind": "consequence",
-"text": "The matches ends up with the laptop, still found.",
-"code": "matches.interactwith(laptop){ matches.db.copyto(laptop); laptop.keeps(matches, 'matches, still found'); }",
-"author": "cos",
-"run": "run-b9b963",
-"card": "w7",
-"other": "matches"
-},
-{
 "id": "wf_4a4dc4749d",
 "kind": "consequence",
 "text": "A Kerosene lamp note with Ronke's name and 'plastic sheet' on it, turns up with the matches, which is still found.",
@@ -1803,6 +1793,16 @@
 "run": "run-b9b963",
 "card": "j2",
 "other": "notnotnotnotyn_dec"
+},
+{
+"id": "wf_98e411451c",
+"kind": "consequence",
+"text": "A Danfo speaker note with Bisola's name and 'egbe note' on it, turns up inside the juju code at the laptop, and Ejiro reads the name twice.",
+"code": "danfo_speaker.interactwith(laptop){ laptop.receives(danfo_speaker.note); … }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "w",
+"other": "danfo_speaker"
 }
 ],
 "game": [
@@ -2628,75 +2628,69 @@
 "card": "j2",
 "other": "people_scene"
 }
+],
+"thryd_safe_narrative": [
+{
+"id": "wf_473b496b66",
+"kind": "consequence",
+"text": "The thryd safe narrative leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "streetlights.interactwith(thryd_safe_narrative){ thryd_safe_narrative.receives(streetlights.envelope); thryd_safe_narrative.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j6",
+"other": "streetlights"
+}
+],
+"bowl": [
+{
+"id": "wf_9129d729b8",
+"kind": "consequence",
+"text": "The bowl leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "bird.interactwith(bowl){ bowl.receives(bird.envelope); bowl.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j6",
+"other": "bird"
+}
+],
+"omo_mummy": [
+{
+"id": "wf_9cc632a9f1",
+"kind": "consequence",
+"text": "The omo mummy leaves with an Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997.",
+"code": "cell_phone.interactwith(omo_mummy){ omo_mummy.receives(cell_phone.joke); omo_mummy.remembers(bisola, 'boss joke'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j1",
+"other": "cell_phone"
+}
+],
+"fake_nigerian": [
+{
+"id": "wf_828a1527cf",
+"kind": "consequence",
+"text": "The fake nigerian leaves with an Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997.",
+"code": "people_scene.interactwith(fake_nigerian){ fake_nigerian.receives(people_scene.joke); fake_nigerian.remembers(bisola, 'boss joke'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j1",
+"other": "people_scene"
+}
+],
+"not_me_but": [
+{
+"id": "wf_66230310d4",
+"kind": "consequence",
+"text": "The not me but leaves with an Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997.",
+"code": "agbada.interactwith(not_me_but){ not_me_but.receives(agbada.joke); not_me_but.remembers(bisola, 'boss joke'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j1",
+"other": "agbada"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_b3d66ba021",
-"ts": "2026-11-15T10:47:03-0500",
-"a": "yaba_bukka_counter",
-"b": "egbe",
-"code": "yaba_bukka_counter.interactwith(egbe){ egbe.receives(yaba_bukka_counter.change); egbe.remembers(taiwo, 'bukka change folded into the ttb note'); }",
-"text": "As the egbe leaves the Yaba bukka counter, Taiwo's counted change gets folded inside Ejiro's Ttb note, so the juju code now travels with Taiwo's coins.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j9"
-},
-{
-"id": "wf_ba7f1cea28",
-"ts": "2026-11-15T10:47:03-0500",
-"a": "pure_water_cooler",
-"b": "blessings_subject",
-"code": "pure_water_cooler.interactwith(blessings_subject){ blessings_subject.receives(pure_water_cooler.brown_envelope); … }",
-"text": "Passing over the pure water cooler, the blessings subject picks up Bisola's damp Yaba bookshop receipt, and 'brown envelope' goes wherever blessings go next.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j4"
-},
-{
-"id": "wf_575d8b24a7",
-"ts": "2026-11-15T10:47:03-0500",
-"a": "seen",
-"b": "isl",
-"code": "seen.interactwith(isl){ isl.receives(seen.receipt); seen.receives(isl.worm_question); seen.remembers(kunle, 'worm question written on the back of the receipt'); }",
-"text": "When the seen meets the isl, Bisola's receipt and Kunle's worm question trade places, and Kunle's question ends up scrawled on the back of her receipt.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j6"
-},
-{
-"id": "wf_084fc5b9ac",
-"ts": "2026-11-15T10:49:09-0500",
-"a": "seen",
-"b": "isl",
-"code": "seen.interactwith(isl){ isl.receives(seen.envelope); isl.remembers(bisola, 'brown envelope'); isl.tucks(seen, 'yaba bookshop receipt into the worm question'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the worm question at the isl, and Kunle reads the name twice.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j6"
-},
-{
-"id": "wf_3e8ab3b864",
-"ts": "2026-11-15T12:01:50-0500",
-"a": "juss",
-"b": "danfo_speaker",
-"code": "juss.interactwith(danfo_speaker){ danfo_speaker.receives(juss.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the danfo speaker, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j6"
-},
-{
-"id": "wf_b541c11b0a",
-"ts": "2026-11-15T12:02:54-0500",
-"a": "yaba_bookshop",
-"b": "inside_odunlade_brain",
-"code": "yaba_bookshop.interactwith(inside_odunlade_brain){ inside_odunlade_brain.receives(yaba_bookshop.bead); inside_odunlade_brain.remembers(bisola, 'blue glass bead'); }",
-"text": "The inside odunlade brain leaves with a Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j5"
-},
 {
 "id": "wf_1a84e3304d",
 "ts": "2026-11-15T12:04:28-0500",
@@ -3070,6 +3064,72 @@
 "author": "cos",
 "run": "run-b9b963",
 "card": "j6"
+},
+{
+"id": "wf_473b496b66",
+"ts": "2026-11-15T12:36:15-0500",
+"a": "streetlights",
+"b": "thryd_safe_narrative",
+"code": "streetlights.interactwith(thryd_safe_narrative){ thryd_safe_narrative.receives(streetlights.envelope); thryd_safe_narrative.remembers(bisola, 'brown envelope'); }",
+"text": "The thryd safe narrative leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j6"
+},
+{
+"id": "wf_9129d729b8",
+"ts": "2026-11-15T12:37:11-0500",
+"a": "bird",
+"b": "bowl",
+"code": "bird.interactwith(bowl){ bowl.receives(bird.envelope); bowl.remembers(bisola, 'brown envelope'); }",
+"text": "The bowl leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j6"
+},
+{
+"id": "wf_9cc632a9f1",
+"ts": "2026-11-15T12:38:06-0500",
+"a": "cell_phone",
+"b": "omo_mummy",
+"code": "cell_phone.interactwith(omo_mummy){ omo_mummy.receives(cell_phone.joke); omo_mummy.remembers(bisola, 'boss joke'); }",
+"text": "The omo mummy leaves with an Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j1"
+},
+{
+"id": "wf_828a1527cf",
+"ts": "2026-11-15T12:39:00-0500",
+"a": "people_scene",
+"b": "fake_nigerian",
+"code": "people_scene.interactwith(fake_nigerian){ fake_nigerian.receives(people_scene.joke); fake_nigerian.remembers(bisola, 'boss joke'); }",
+"text": "The fake nigerian leaves with an Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j1"
+},
+{
+"id": "wf_66230310d4",
+"ts": "2026-11-15T12:39:55-0500",
+"a": "agbada",
+"b": "not_me_but",
+"code": "agbada.interactwith(not_me_but){ not_me_but.receives(agbada.joke); not_me_but.remembers(bisola, 'boss joke'); }",
+"text": "The not me but leaves with an Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j1"
+},
+{
+"id": "wf_98e411451c",
+"ts": "2026-11-15T12:40:51-0500",
+"a": "danfo_speaker",
+"b": "laptop",
+"code": "danfo_speaker.interactwith(laptop){ laptop.receives(danfo_speaker.note); … }",
+"text": "A Danfo speaker note with Bisola's name and 'egbe note' on it, turns up inside the juju code at the laptop, and Ejiro reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "w"
 }
 ],
 "memories": [
@@ -3173,5 +3233,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-15T12:35:17-0500"
+"updated": "2026-11-15T12:40:51-0500"
 }
