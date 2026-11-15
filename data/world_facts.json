@@ -2105,6 +2105,16 @@
 "run": "run-b9b963",
 "card": "j9",
 "other": "tailor_shop"
+},
+{
+"id": "wt_31fd2cd8c5",
+"kind": "memory",
+"text": "At 3:50pm the Lekki pharmacy watched Bisola hold a paper bag she would not open, while someone drew a line nobody should cross.",
+"code": "lekki_pharmacy.remembers(Bisola,'paper bag'); lekki_pharmacy.state('a line drawn at the till')",
+"author": "thryd",
+"run": "run-b9b963",
+"card": "j9",
+"other": null
 }
 ],
 "cup": [
@@ -2271,6 +2281,16 @@
 "run": "run-b9b963",
 "card": "j6",
 "other": "juss"
+},
+{
+"id": "wf_20e9c9e333",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the laakl, and Bisola reads the name twice.",
+"code": "reality.interactwith(laakl){ laakl.receives(reality.envelope); … }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j6",
+"other": "reality"
 }
 ],
 "juniorboys": [
@@ -2611,17 +2631,6 @@
 ]
 },
 "consequences": [
-{
-"id": "wt_c1a9e05d23",
-"ts": "2026-11-15T09:52:00-0500",
-"a": "yaba_bukka_counter",
-"b": "kerosene_lamp",
-"code": "yaba_bukka_counter.interactwith(kerosene_lamp){ kerosene_lamp.receives(yaba_bukka_counter.change); kerosene_lamp.state('refilled with the dish coins'); }",
-"text": "The coins Taiwo counted into the bukka dish come back to him as change, and he spends them on kerosene, so the lamp burns tonight on the same money that paid for lunch.",
-"author": "thryd",
-"run": "world",
-"card": "w"
-},
 {
 "id": "wf_b3d66ba021",
 "ts": "2026-11-15T10:47:03-0500",
@@ -3050,6 +3059,17 @@
 "author": "cos",
 "run": "run-b9b963",
 "card": "j9"
+},
+{
+"id": "wf_20e9c9e333",
+"ts": "2026-11-15T12:35:17-0500",
+"a": "reality",
+"b": "laakl",
+"code": "reality.interactwith(laakl){ laakl.receives(reality.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the laakl, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j6"
 }
 ],
 "memories": [
@@ -3140,7 +3160,18 @@
 "author": "thryd",
 "run": "run-b9b963",
 "card": "j8"
+},
+{
+"id": "wt_31fd2cd8c5",
+"ts": "2026-11-15T12:35:14-0500",
+"a": null,
+"b": "lekki_pharmacy",
+"code": "lekki_pharmacy.remembers(Bisola,'paper bag'); lekki_pharmacy.state('a line drawn at the till')",
+"text": "At 3:50pm the Lekki pharmacy watched Bisola hold a paper bag she would not open, while someone drew a line nobody should cross.",
+"author": "thryd",
+"run": "run-b9b963",
+"card": "j9"
 }
 ],
-"updated": "2026-11-15T12:34:15-0500"
+"updated": "2026-11-15T12:35:17-0500"
 }
