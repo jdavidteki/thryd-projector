@@ -1813,16 +1813,6 @@
 ],
 "tie": [
 {
-"id": "wf_c12b579887",
-"kind": "consequence",
-"text": "An Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997, turns up inside the brown envelope at the tie, and Bisola reads the name twice.",
-"code": "cell_phone.interactwith(tie){ tie.receives(cell_phone.joke); tie.remembers(bisola, 'boss joke'); tie.tucks(cell_phone, 'egbe note into the brown envelope'); }",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j1",
-"other": "cell_phone"
-},
-{
 "id": "wf_1f1564f877",
 "kind": "consequence",
 "text": "An Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997, turns up inside the brown envelope at the tie, and Bisola reads the name twice.",
@@ -1861,6 +1851,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "red_white_cap"
+},
+{
+"id": "wf_b9f0877762",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the tie, and Bisola reads the name twice.",
+"code": "plastic_sheet.interactwith(tie){ tie.receives(plastic_sheet.envelope); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "plastic_sheet"
 }
 ],
 "laptop": [
@@ -3394,20 +3394,21 @@
 "card": "j9",
 "other": null
 }
+],
+"surulere_wedding_reception": [
+{
+"id": "wf_ce4e2196fa",
+"kind": "memory",
+"text": "1:20pm, Sunday 2 November 2064: Kunle stands up for a toast that keeps turning into a roast, Titi stares at her jollof at the high table, and the MC can't find a way to take the mic back. The surulere wedding reception keeps it on file.",
+"code": "surulere_wedding_reception.remembers(kunle, 'up for a toast');",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j10",
+"other": null
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_94a4c0fc3a",
-"ts": "2026-11-15T16:25:30-0500",
-"a": "matches",
-"b": "yaba_bookshop",
-"code": "matches.interactwith(yaba_bookshop){ yaba_bookshop.receives(matches.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the blue glass bead at the yaba bookshop, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
 {
 "id": "wf_ae931cbabf",
 "ts": "2026-11-15T16:26:17-0500",
@@ -3836,6 +3837,17 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j6"
+},
+{
+"id": "wf_b9f0877762",
+"ts": "2026-11-15T18:28:33-0500",
+"a": "plastic_sheet",
+"b": "tie",
+"code": "plastic_sheet.interactwith(tie){ tie.receives(plastic_sheet.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the tie, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
 }
 ],
 "memories": [
@@ -3939,5 +3951,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-15T18:26:39-0500"
+"updated": "2026-11-15T18:29:29-0500"
 }
