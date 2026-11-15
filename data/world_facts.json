@@ -1007,16 +1007,6 @@
 ],
 "yaba_bukka_counter": [
 {
-"id": "wf_7c154b60c0",
-"kind": "consequence",
-"text": "An Isl note with Kunle's name and 'worm question' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the yaba bukka counter, and Bisola reads the name twice.",
-"code": "isl.interactwith(yaba_bukka_counter){ yaba_bukka_counter.receives(isl.question); … }",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j3",
-"other": "isl"
-},
-{
 "id": "wf_85af633615",
 "kind": "consequence",
 "text": "A Kerosene lamp note with Ronke's name and 'plastic sheet' on it, turns up inside the brown envelope at the yaba bukka counter, and Bisola reads the name twice.",
@@ -1055,6 +1045,16 @@
 "run": "run-b9b963",
 "card": "j2",
 "other": "ttb"
+},
+{
+"id": "wf_9caa612a87",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the yaba bukka counter, and Bisola reads the name twice.",
+"code": "seen.interactwith(yaba_bukka_counter){ yaba_bukka_counter.receives(seen.envelope); … }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j6",
+"other": "seen"
 }
 ],
 "festac_bead_stall": [
@@ -1784,17 +1784,6 @@
 },
 "consequences": [
 {
-"id": "wf_9f8f3b358f",
-"ts": "2026-11-14T17:05:59-0500",
-"a": "tie",
-"b": "freaky_freaky",
-"code": "tie.interactwith(freaky_freaky){ tie.db.copyto(freaky_freaky); freaky_freaky.keeps(tie, 'matches, still found'); }",
-"text": "The matches ends up with the freaky freaky, still found.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "w7"
-},
-{
 "id": "wf_79fe3a91ee",
 "ts": "2026-11-14T17:06:46-0500",
 "a": "yaba_bukka_counter",
@@ -2222,6 +2211,17 @@
 "author": "cos",
 "run": "run-b9b963",
 "card": "j2"
+},
+{
+"id": "wf_9caa612a87",
+"ts": "2026-11-15T02:04:27-0500",
+"a": "seen",
+"b": "yaba_bukka_counter",
+"code": "seen.interactwith(yaba_bukka_counter){ yaba_bukka_counter.receives(seen.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the yaba bukka counter, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j6"
 }
 ],
 "memories": [
@@ -2292,5 +2292,5 @@
 "card": "j6"
 }
 ],
-"updated": "2026-11-15T02:00:17-0500"
+"updated": "2026-11-15T02:04:27-0500"
 }
