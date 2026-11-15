@@ -633,16 +633,6 @@
 ],
 "oshodi_bus_shelter": [
 {
-"id": "wf_d323d06c91",
-"kind": "consequence",
-"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the timetable at the oshodi bus shelter, and Kunle reads the name twice.",
-"code": "ttb.interactwith(oshodi_bus_shelter){ oshodi_bus_shelter.receives(ttb.code); … }",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j2",
-"other": "ttb"
-},
-{
 "id": "wf_d2c2b74079",
 "kind": "consequence",
 "text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the timetable at the oshodi bus shelter, and Kunle reads the name twice.",
@@ -681,6 +671,16 @@
 "run": "run-b9b963",
 "card": "j4",
 "other": "plastic_sheet"
+},
+{
+"id": "wt_9a3c4c4e4b",
+"kind": "consequence",
+"text": "Taiwo stops reading the timetable aloud when a bookshop receipt with [[love]] written across it slides out of the timetable frame at the Oshodi shelter.",
+"code": "yaba_bookshop.interactwith(oshodi_bus_shelter){ oshodi_bus_shelter.receives(yaba_bookshop.receipt); oshodi_bus_shelter.remembers(Taiwo, 'senator receipt'); }",
+"author": "thryd",
+"run": "run-b9b963",
+"card": "j11",
+"other": "yaba_bookshop"
 }
 ],
 "club_terrace_admiralty": [
@@ -1037,16 +1037,6 @@
 ],
 "yaba_bukka_counter": [
 {
-"id": "wf_f9dfb4e1f1",
-"kind": "consequence",
-"text": "An Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997, turns up inside the brown envelope at the yaba bukka counter, and Bisola reads the name twice.",
-"code": "danfo_speaker.interactwith(yaba_bukka_counter){ yaba_bukka_counter.receives(danfo_speaker.joke); … }",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j1",
-"other": "danfo_speaker"
-},
-{
 "id": "wf_47363806f2",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the yaba bukka counter, and Bisola reads the name twice.",
@@ -1085,6 +1075,16 @@
 "run": "run-b9b963",
 "card": "j3",
 "other": "isl"
+},
+{
+"id": "wt_4e525b9c48",
+"kind": "consequence",
+"text": "When the love reaches the Yaba bukka counter, someone writes it in pencil under Kunle's worm question on the note in the brown envelope.",
+"code": "love.interactwith(yaba_bukka_counter){ yaba_bukka_counter.remembers(Kunle, 'love under the worm question'); yaba_bukka_counter.writes(love, 'love on the isl note'); }",
+"author": "thryd",
+"run": "run-b9b963",
+"card": "j7",
+"other": "love"
 }
 ],
 "festac_bead_stall": [
@@ -2071,43 +2071,20 @@
 "run": "run-b9b963",
 "card": "j10",
 "other": null
+},
+{
+"id": "wt_5aa9fba827",
+"kind": "consequence",
+"text": "In the nylon bag Bisola holds at the ferry rail, the green shirt that was not hers sits folded between her own, still smelling of the Ikeja dryer.",
+"code": "ikeja_laundromat.interactwith(ikorodu_marina_ferry){ ikorodu_marina_ferry.receives(ikeja_laundromat.shirt); … }",
+"author": "thryd",
+"run": "run-b9b963",
+"card": "j10",
+"other": "ikeja_laundromat"
 }
 ]
 },
 "consequences": [
-{
-"id": "wt_41a77e553b",
-"ts": "2026-11-14T23:55:23-0500",
-"a": "lekki_pharmacy",
-"b": "kerosene_lamp",
-"code": "lekki_pharmacy.interactwith(kerosene_lamp){ kerosene_lamp.receives(lekki_pharmacy.change); kerosene_lamp.set('oil', 'topped up'); }",
-"text": "The coins Taiwo counted into the pharmacy dish come back as change, and on the way home he spends them on kerosene, so the lamp at Mama Ronke's gate is full again by evening.",
-"author": "thryd",
-"run": "run-b9b963",
-"card": "j9"
-},
-{
-"id": "wt_9a530635c7",
-"ts": "2026-11-14T23:55:23-0500",
-"a": "kerosene_lamp",
-"b": "cup",
-"code": "kerosene_lamp.interactwith(cup){ cup.state('warm and green-lit'); kerosene_lamp.remembers(ejiro, 'juju code'); }",
-"text": "Someone sets the cup down beside the steady green lamp, and the note folded under it, with Ejiro's name and juju code, finally gets read in a good light.",
-"author": "thryd",
-"run": "run-b9b963",
-"card": "j2"
-},
-{
-"id": "wf_e732741b1e",
-"ts": "2026-11-15T00:42:47-0500",
-"a": "lekki_pharmacy",
-"b": "festac_bead_stall",
-"code": "lekki_pharmacy.interactwith(festac_bead_stall){ festac_bead_stall.receives(lekki_pharmacy, 'blue glass bead button'); … }",
-"text": "The pharmacist's glance at the lone blue button sends Bisola back to the Festac stall, which knows its own bead at once and writes down that she wants one more to match it.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j9"
-},
 {
 "id": "wf_baf9311fbc",
 "ts": "2026-11-15T00:42:47-0500",
@@ -2514,6 +2491,39 @@
 "author": "cos",
 "run": "run-b9b963",
 "card": "j6"
+},
+{
+"id": "wt_5aa9fba827",
+"ts": "2026-11-15T04:48:31-0500",
+"a": "ikeja_laundromat",
+"b": "ikorodu_marina_ferry",
+"code": "ikeja_laundromat.interactwith(ikorodu_marina_ferry){ ikorodu_marina_ferry.receives(ikeja_laundromat.shirt); … }",
+"text": "In the nylon bag Bisola holds at the ferry rail, the green shirt that was not hers sits folded between her own, still smelling of the Ikeja dryer.",
+"author": "thryd",
+"run": "run-b9b963",
+"card": "j10"
+},
+{
+"id": "wt_9a3c4c4e4b",
+"ts": "2026-11-15T04:48:31-0500",
+"a": "yaba_bookshop",
+"b": "oshodi_bus_shelter",
+"code": "yaba_bookshop.interactwith(oshodi_bus_shelter){ oshodi_bus_shelter.receives(yaba_bookshop.receipt); oshodi_bus_shelter.remembers(Taiwo, 'senator receipt'); }",
+"text": "Taiwo stops reading the timetable aloud when a bookshop receipt with [[love]] written across it slides out of the timetable frame at the Oshodi shelter.",
+"author": "thryd",
+"run": "run-b9b963",
+"card": "j11"
+},
+{
+"id": "wt_4e525b9c48",
+"ts": "2026-11-15T04:48:31-0500",
+"a": "love",
+"b": "yaba_bukka_counter",
+"code": "love.interactwith(yaba_bukka_counter){ yaba_bukka_counter.remembers(Kunle, 'love under the worm question'); yaba_bukka_counter.writes(love, 'love on the isl note'); }",
+"text": "When the love reaches the Yaba bukka counter, someone writes it in pencil under Kunle's worm question on the note in the brown envelope.",
+"author": "thryd",
+"run": "run-b9b963",
+"card": "j7"
 }
 ],
 "memories": [
@@ -2606,5 +2616,5 @@
 "card": "j8"
 }
 ],
-"updated": "2026-11-15T04:41:36-0500"
+"updated": "2026-11-15T04:48:45-0500"
 }
