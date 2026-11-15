@@ -2859,6 +2859,16 @@
 "run": "run-b9b963",
 "card": "j6",
 "other": "juss"
+},
+{
+"id": "wf_a755fdd451",
+"kind": "consequence",
+"text": "A Kerosene lamp note with Taiwo's name and 'change' on it, turns up inside the brown envelope at the friend, and Bisola reads the name twice.",
+"code": "kerosene_lamp.interactwith(friend){ friend.receives(kerosene_lamp.change); … }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "w",
+"other": "kerosene_lamp"
 }
 ],
 "oyinboman": [
@@ -2957,17 +2967,6 @@
 ]
 },
 "consequences": [
-{
-"id": "wf_0891f9628c",
-"ts": "2026-11-15T12:48:24-0500",
-"a": "juss",
-"b": "friend",
-"code": "juss.interactwith(friend){ friend.receives(juss.envelope); friend.remembers(bisola, 'brown envelope'); }",
-"text": "The friend leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j6"
-},
 {
 "id": "wf_0126770d35",
 "ts": "2026-11-15T12:51:09-0500",
@@ -3396,6 +3395,17 @@
 "author": "cos",
 "run": "run-b9b963",
 "card": "j6"
+},
+{
+"id": "wf_a755fdd451",
+"ts": "2026-11-15T14:36:14-0500",
+"a": "kerosene_lamp",
+"b": "friend",
+"code": "kerosene_lamp.interactwith(friend){ friend.receives(kerosene_lamp.change); … }",
+"text": "A Kerosene lamp note with Taiwo's name and 'change' on it, turns up inside the brown envelope at the friend, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "w"
 }
 ],
 "memories": [
@@ -3499,5 +3509,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-15T14:29:02-0500"
+"updated": "2026-11-15T14:36:14-0500"
 }
