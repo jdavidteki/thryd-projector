@@ -529,16 +529,6 @@
 "objects": {
 "ikeja_laundromat": [
 {
-"id": "wf_edaa2b06b5",
-"kind": "consequence",
-"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the green shirt at the ikeja laundromat, and Bisola reads the name twice.",
-"code": "pure_water_cooler.interactwith(ikeja_laundromat){ ikeja_laundromat.receives(pure_water_cooler.code); … }",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j2",
-"other": "pure_water_cooler"
-},
-{
 "id": "wf_37f42c8c43",
 "kind": "consequence",
 "text": "An Isl note with Kunle's name and 'worm question' on it, 5:30pm, 13 Nov 2026, turns up inside the juju code at the ikeja laundromat, and Ejiro reads the name twice.",
@@ -569,6 +559,16 @@
 "other": null
 },
 {
+"id": "wf_7ae422d222",
+"kind": "consequence",
+"text": "Kunle leaves the brown envelope with Bisola's bookshop receipt at the Ikeja laundromat, where it waits in the folding bin beside the green shirt.",
+"code": "yaba_bukka_counter.interactwith(ikeja_laundromat){ ikeja_laundromat.receives(yaba_bukka_counter.brown_envelope); ikeja_laundromat.state('holding the brown envelope'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j6",
+"other": "yaba_bukka_counter"
+},
+{
 "id": "wt_6ca10e8a6f",
 "kind": "memory",
 "text": "At 10:15am the Ikeja laundromat kept the green shirt that was not Bisola's, and it came out of the dryer humming callmemaybe.",
@@ -581,16 +581,6 @@
 ],
 "yaba_bookshop": [
 {
-"id": "wf_b9d12da12e",
-"kind": "consequence",
-"text": "An Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997, turns up inside the blue glass bead at the yaba bookshop, and Bisola reads the name twice.",
-"code": "matches.interactwith(yaba_bookshop){ yaba_bookshop.receives(matches.joke); … }",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j1",
-"other": "matches"
-},
-{
 "id": "wf_b29181cb88",
 "kind": "consequence",
 "text": "An Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997, turns up inside the blue glass bead at the yaba bookshop, and Bisola reads the name twice.",
@@ -599,6 +589,16 @@
 "run": "run-b9b963",
 "card": "j1",
 "other": "juniorboys"
+},
+{
+"id": "wf_55825cc388",
+"kind": "consequence",
+"text": "The Ikeja laundromat's lost-property ledger ends up on the Yaba bookshop's counter, so the green shirt that was never Bisola's now sits on the same shelf as her boss-joke note, and a green thread is found in the blue glass bead.",
+"code": "ikeja_laundromat.interactwith(yaba_bookshop){ ikeja_laundromat.db.copyto(yaba_bookshop); yaba_bookshop.find('blue glass bead').add('green thread'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j8",
+"other": "ikeja_laundromat"
 },
 {
 "id": "wt_ad3997f7d4",
@@ -1077,16 +1077,6 @@
 ],
 "yaba_bukka_counter": [
 {
-"id": "wf_0d27790dd9",
-"kind": "consequence",
-"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the yaba bukka counter, and Bisola reads the name twice.",
-"code": "play.interactwith(yaba_bukka_counter){ yaba_bukka_counter.receives(play.code); … }",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j2",
-"other": "play"
-},
-{
 "id": "wf_0484a72937",
 "kind": "consequence",
 "text": "An Isl note with Kunle's name and 'worm question' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the yaba bukka counter, and Bisola reads the name twice.",
@@ -1115,6 +1105,16 @@
 "run": "run-b9b963",
 "card": "j6",
 "other": "red_white_cap"
+},
+{
+"id": "wf_6d85b496ff",
+"kind": "consequence",
+"text": "Taiwo rides the bicycle to the Yaba bukka and pays with the change he counted into a dish, so the counter now remembers his coins next to Bisola's envelope.",
+"code": "bicycle.interactwith(yaba_bukka_counter){ yaba_bukka_counter.receives(bicycle.change); yaba_bukka_counter.remembers(taiwo, 'change'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j9",
+"other": "bicycle"
 },
 {
 "id": "wt_4e525b9c48",
@@ -2081,6 +2081,16 @@
 "run": "run-b9b963",
 "card": "j2",
 "other": "pure_water_cooler"
+},
+{
+"id": "wf_2a648fca15",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the laakl, and Bisola reads the name twice.",
+"code": "juss.interactwith(laakl){ laakl.receives(juss.envelope); laakl.remembers(bisola, 'brown envelope'); laakl.tucks(juss, 'yaba bookshop receipt into the brown envelope'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j6",
+"other": "juss"
 }
 ],
 "juniorboys": [
@@ -2205,6 +2215,16 @@
 "run": "run-b9b963",
 "card": "j4",
 "other": "streetlights"
+},
+{
+"id": "wf_e9595d7352",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the called, and Bisola reads the name twice.",
+"code": "play.interactwith(called){ called.receives(play.envelope); … }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j6",
+"other": "play"
 }
 ],
 "notnotnotnotyn_dec": [
@@ -2245,61 +2265,6 @@
 ]
 },
 "consequences": [
-{
-"id": "wf_b4fb86ef8f",
-"ts": "2026-11-15T02:53:26-0500",
-"a": "yaba_bukka_counter",
-"b": "dele_woli_agba",
-"code": "yaba_bukka_counter.interactwith(dele_woli_agba){ dele_woli_agba.receives(yaba_bukka_counter.envelope); dele_woli_agba.remembers(bisola, 'brown envelope'); }",
-"text": "The dele woli agba leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j6"
-},
-{
-"id": "wf_5cb5038129",
-"ts": "2026-11-15T04:04:27-0500",
-"a": "yaba_bukka_counter",
-"b": "laakl",
-"code": "yaba_bukka_counter.interactwith(laakl){ laakl.receives(yaba_bukka_counter.envelope); laakl.remembers(bisola, 'brown envelope'); }",
-"text": "The laakl leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j6"
-},
-{
-"id": "wf_89d3b6d817",
-"ts": "2026-11-15T04:07:46-0500",
-"a": "game",
-"b": "plastic_sheet",
-"code": "game.interactwith(plastic_sheet){ plastic_sheet.receives(game.joke); … }",
-"text": "An Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997, turns up inside the brown envelope at the plastic sheet, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j1"
-},
-{
-"id": "wf_16449b28ce",
-"ts": "2026-11-15T04:10:08-0500",
-"a": "wwgbtaycbmba",
-"b": "plastic_sheet",
-"code": "wwgbtaycbmba.interactwith(plastic_sheet){ plastic_sheet.receives(wwgbtaycbmba.code); … }",
-"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the plastic sheet, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j2"
-},
-{
-"id": "wf_4b15bebee7",
-"ts": "2026-11-15T04:11:46-0500",
-"a": "egbe",
-"b": "yaba_bukka_counter",
-"code": "egbe.interactwith(yaba_bukka_counter){ yaba_bukka_counter.receives(egbe.joke); … }",
-"text": "An Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997, turns up inside the brown envelope at the yaba bukka counter, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j1"
-},
 {
 "id": "wf_f5f8fb43f8",
 "ts": "2026-11-15T04:14:07-0500",
@@ -2684,6 +2649,61 @@
 "author": "cos",
 "run": "run-b9b963",
 "card": "j6"
+},
+{
+"id": "wf_55825cc388",
+"ts": "2026-11-15T05:42:29-0500",
+"a": "ikeja_laundromat",
+"b": "yaba_bookshop",
+"code": "ikeja_laundromat.interactwith(yaba_bookshop){ ikeja_laundromat.db.copyto(yaba_bookshop); yaba_bookshop.find('blue glass bead').add('green thread'); }",
+"text": "The Ikeja laundromat's lost-property ledger ends up on the Yaba bookshop's counter, so the green shirt that was never Bisola's now sits on the same shelf as her boss-joke note, and a green thread is found in the blue glass bead.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j8"
+},
+{
+"id": "wf_7ae422d222",
+"ts": "2026-11-15T05:42:29-0500",
+"a": "yaba_bukka_counter",
+"b": "ikeja_laundromat",
+"code": "yaba_bukka_counter.interactwith(ikeja_laundromat){ ikeja_laundromat.receives(yaba_bukka_counter.brown_envelope); ikeja_laundromat.state('holding the brown envelope'); }",
+"text": "Kunle leaves the brown envelope with Bisola's bookshop receipt at the Ikeja laundromat, where it waits in the folding bin beside the green shirt.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j6"
+},
+{
+"id": "wf_6d85b496ff",
+"ts": "2026-11-15T05:42:29-0500",
+"a": "bicycle",
+"b": "yaba_bukka_counter",
+"code": "bicycle.interactwith(yaba_bukka_counter){ yaba_bukka_counter.receives(bicycle.change); yaba_bukka_counter.remembers(taiwo, 'change'); }",
+"text": "Taiwo rides the bicycle to the Yaba bukka and pays with the change he counted into a dish, so the counter now remembers his coins next to Bisola's envelope.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j9"
+},
+{
+"id": "wf_2a648fca15",
+"ts": "2026-11-15T05:44:41-0500",
+"a": "juss",
+"b": "laakl",
+"code": "juss.interactwith(laakl){ laakl.receives(juss.envelope); laakl.remembers(bisola, 'brown envelope'); laakl.tucks(juss, 'yaba bookshop receipt into the brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the laakl, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j6"
+},
+{
+"id": "wf_e9595d7352",
+"ts": "2026-11-15T05:45:28-0500",
+"a": "play",
+"b": "called",
+"code": "play.interactwith(called){ called.receives(play.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the called, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j6"
 }
 ],
 "memories": [
@@ -2776,5 +2796,5 @@
 "card": "j8"
 }
 ],
-"updated": "2026-11-15T05:37:32-0500"
+"updated": "2026-11-15T05:45:28-0500"
 }
