@@ -937,16 +937,6 @@
 ],
 "streetlights": [
 {
-"id": "wf_3b5f726f55",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the streetlights, and Bisola reads the name twice.",
-"code": "plastic_sheet.interactwith(streetlights){ streetlights.receives(plastic_sheet.envelope); … }",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j6",
-"other": "plastic_sheet"
-},
-{
 "id": "wf_73bd8c614c",
 "kind": "consequence",
 "text": "A Kerosene lamp note with Ronke's name and 'plastic sheet' on it, turns up inside the brown envelope at the streetlights, and Bisola reads the name twice.",
@@ -985,6 +975,16 @@
 "run": "run-b9b963",
 "card": "j6",
 "other": "oyinboman"
+},
+{
+"id": "wf_6b893b832f",
+"kind": "consequence",
+"text": "An Isl note with Kunle's name and 'worm question' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the streetlights, and Bisola reads the name twice.",
+"code": "isl.interactwith(streetlights){ streetlights.receives(isl.question); … }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j3",
+"other": "isl"
 }
 ],
 "kerosene_lamp": [
@@ -1877,6 +1877,16 @@
 "run": "run-b9b963",
 "card": "j2",
 "other": "ttb"
+},
+{
+"id": "wf_01e494bef4",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the juju code at the sheep, and Ejiro reads the name twice.",
+"code": "oyinboman.interactwith(sheep){ sheep.receives(oyinboman.envelope); … }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j6",
+"other": "oyinboman"
 }
 ],
 "yaba_bukka": [
@@ -2968,28 +2978,6 @@
 },
 "consequences": [
 {
-"id": "wf_0126770d35",
-"ts": "2026-11-15T12:51:09-0500",
-"a": "bed",
-"b": "oyinboman",
-"code": "bed.interactwith(oyinboman){ oyinboman.receives(bed.envelope); oyinboman.remembers(bisola, 'brown envelope'); }",
-"text": "The oyinboman leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j6"
-},
-{
-"id": "wf_04a1711b3e",
-"ts": "2026-11-15T13:02:12-0500",
-"a": "egbe",
-"b": "yaba_bookshop",
-"code": "egbe.interactwith(yaba_bookshop){ yaba_bookshop.receives(egbe.joke); … }",
-"text": "An Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997, turns up inside the blue glass bead at the yaba bookshop, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j1"
-},
-{
 "id": "wf_a1718a0ab9",
 "ts": "2026-11-15T13:03:18-0500",
 "a": "wwgbtaycbmba",
@@ -3406,6 +3394,28 @@
 "author": "cos",
 "run": "run-b9b963",
 "card": "w"
+},
+{
+"id": "wf_01e494bef4",
+"ts": "2026-11-15T14:40:37-0500",
+"a": "oyinboman",
+"b": "sheep",
+"code": "oyinboman.interactwith(sheep){ sheep.receives(oyinboman.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the juju code at the sheep, and Ejiro reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j6"
+},
+{
+"id": "wf_6b893b832f",
+"ts": "2026-11-15T14:41:50-0500",
+"a": "isl",
+"b": "streetlights",
+"code": "isl.interactwith(streetlights){ streetlights.receives(isl.question); … }",
+"text": "An Isl note with Kunle's name and 'worm question' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the streetlights, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j3"
 }
 ],
 "memories": [
@@ -3509,5 +3519,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-15T14:36:14-0500"
+"updated": "2026-11-15T14:41:50-0500"
 }
