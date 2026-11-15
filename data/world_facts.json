@@ -2,6 +2,8 @@
 "v": 1,
 "note": "World memory: each object's facts and the newest consequences of meetings (shared store /workspace/thryd-projector/data/world_facts.jsonl, tools/world_memory.py). The stage shows a consequence code line when the same pair meets again, and now and then on its own; #thryd memories show now and then too.",
 "alias": {
+"yaba_bookshop_subject": "yaba_bookshop",
+"yaba_bookshop_figures": "yaba_bookshop",
 "ikeja_laundromat_figures": "ikeja_laundromat",
 "yaba_bukka_counter_figures": "yaba_bukka_counter",
 "lekki_rooftop_subject": "lekki_rooftop",
@@ -9,7 +11,6 @@
 "kano_wedding_tent_figures": "kano_wedding_tent",
 "kano_wedding_tent_figure": "kano_wedding_tent",
 "kano_wedding_tent_figure_second": "kano_wedding_tent",
-"yaba_bookshop_figures": "yaba_bookshop",
 "top_deck_charter_figures": "top_deck_charter",
 "front_step_house_figures": "front_step_house",
 "club_terrace_admiralty_figures": "club_terrace_admiralty",
@@ -2008,20 +2009,21 @@
 "card": "j6",
 "other": "red_white"
 }
+],
+"hand_holding_small": [
+{
+"id": "wf_e3b326fcf1",
+"kind": "consequence",
+"text": "The hand holding small leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
+"code": "notnotnotnotyn_jan.interactwith(hand_holding_small){ hand_holding_small.receives(notnotnotnotyn_jan.code); hand_holding_small.remembers(ejiro, 'juju code'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j2",
+"other": "notnotnotnotyn_jan"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_29aff44c07",
-"ts": "2026-11-14T20:28:54-0500",
-"a": "kerosene_lamp",
-"b": "yaba_bukka_counter",
-"code": "kerosene_lamp.interactwith(yaba_bukka_counter){ yaba_bukka_counter.remembers(ronke, 'trimmed wick'); yaba_bukka_counter.state('lit green and steady'); }",
-"text": "With the wick trimmed, the lamp's green light holds steady over the bukka counter long enough for Bisola to read Ronke's note in the brown envelope all the way through.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j6"
-},
 {
 "id": "wf_5b3c2ce974",
 "ts": "2026-11-14T20:31:41-0500",
@@ -2450,6 +2452,17 @@
 "author": "cos",
 "run": "run-b9b963",
 "card": "j6"
+},
+{
+"id": "wf_e3b326fcf1",
+"ts": "2026-11-15T04:22:53-0500",
+"a": "notnotnotnotyn_jan",
+"b": "hand_holding_small",
+"code": "notnotnotnotyn_jan.interactwith(hand_holding_small){ hand_holding_small.receives(notnotnotnotyn_jan.code); hand_holding_small.remembers(ejiro, 'juju code'); }",
+"text": "The hand holding small leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j2"
 }
 ],
 "memories": [
@@ -2520,5 +2533,5 @@
 "card": "j6"
 }
 ],
-"updated": "2026-11-15T04:19:40-0500"
+"updated": "2026-11-15T04:26:01-0500"
 }
