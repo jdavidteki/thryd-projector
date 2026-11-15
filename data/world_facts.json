@@ -821,6 +821,16 @@
 "run": "run-b9b963",
 "card": "j6",
 "other": "yaba_bookshop"
+},
+{
+"id": "wf_01ca8e0923",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the plastic sheet, and Bisola reads the name twice.",
+"code": "red_white_cap.interactwith(plastic_sheet){ plastic_sheet.receives(red_white_cap.envelope); … }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j6",
+"other": "red_white_cap"
 }
 ],
 "red_white_cap": [
@@ -1876,31 +1886,21 @@
 "card": "j6",
 "other": "yaba_bukka_counter"
 }
+],
+"suitcase": [
+{
+"id": "wf_8bcccc319a",
+"kind": "consequence",
+"text": "The suitcase leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
+"code": "notnotnotnotyn_jan.interactwith(suitcase){ suitcase.receives(notnotnotnotyn_jan.code); suitcase.remembers(ejiro, 'juju code'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j2",
+"other": "notnotnotnotyn_jan"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_bc934bb026",
-"ts": "2026-11-14T17:22:02-0500",
-"a": "reality",
-"b": "tie",
-"code": "reality.interactwith(tie){ tie.receives(reality.envelope); tie.remembers(bisola, 'brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the matches, which is still found.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j6"
-},
-{
-"id": "wf_cdfc6de01e",
-"ts": "2026-11-14T17:22:48-0500",
-"a": "agbada",
-"b": "matches",
-"code": "agbada.interactwith(matches){ matches.receives(agbada.joke); matches.remembers(bisola, 'boss joke'); matches.tucks(agbada, 'egbe note into the timetable'); }",
-"text": "An Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997, turns up inside the timetable at the matches, and Kunle reads the name twice.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j1"
-},
 {
 "id": "wf_b57aee45bf",
 "ts": "2026-11-14T17:25:14-0500",
@@ -2318,6 +2318,28 @@
 "author": "cos",
 "run": "run-b9b963",
 "card": "j6"
+},
+{
+"id": "wf_01ca8e0923",
+"ts": "2026-11-15T02:47:49-0500",
+"a": "red_white_cap",
+"b": "plastic_sheet",
+"code": "red_white_cap.interactwith(plastic_sheet){ plastic_sheet.receives(red_white_cap.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the plastic sheet, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j6"
+},
+{
+"id": "wf_8bcccc319a",
+"ts": "2026-11-15T02:50:14-0500",
+"a": "notnotnotnotyn_jan",
+"b": "suitcase",
+"code": "notnotnotnotyn_jan.interactwith(suitcase){ suitcase.receives(notnotnotnotyn_jan.code); suitcase.remembers(ejiro, 'juju code'); }",
+"text": "The suitcase leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j2"
 }
 ],
 "memories": [
@@ -2388,5 +2410,5 @@
 "card": "j6"
 }
 ],
-"updated": "2026-11-15T02:42:57-0500"
+"updated": "2026-11-15T02:50:14-0500"
 }
