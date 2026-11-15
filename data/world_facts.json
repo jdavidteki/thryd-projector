@@ -581,16 +581,6 @@
 ],
 "yaba_bookshop": [
 {
-"id": "wf_b29181cb88",
-"kind": "consequence",
-"text": "An Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997, turns up inside the blue glass bead at the yaba bookshop, and Bisola reads the name twice.",
-"code": "juniorboys.interactwith(yaba_bookshop){ yaba_bookshop.receives(juniorboys.joke); … }",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j1",
-"other": "juniorboys"
-},
-{
 "id": "wf_55825cc388",
 "kind": "consequence",
 "text": "The Ikeja laundromat's lost-property ledger ends up on the Yaba bookshop's counter, so the green shirt that was never Bisola's now sits on the same shelf as her boss-joke note, and a green thread is found in the blue glass bead.",
@@ -599,6 +589,16 @@
 "run": "run-b9b963",
 "card": "j8",
 "other": "ikeja_laundromat"
+},
+{
+"id": "wf_8315ed28c7",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the blue glass bead at the yaba bookshop, and Bisola reads the name twice.",
+"code": "streetlights.interactwith(yaba_bookshop){ yaba_bookshop.receives(streetlights.envelope); … }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j6",
+"other": "streetlights"
 },
 {
 "id": "wt_ad3997f7d4",
@@ -2296,17 +2296,6 @@
 },
 "consequences": [
 {
-"id": "wf_0d27790dd9",
-"ts": "2026-11-15T04:16:32-0500",
-"a": "play",
-"b": "yaba_bukka_counter",
-"code": "play.interactwith(yaba_bukka_counter){ yaba_bukka_counter.receives(play.code); … }",
-"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the yaba bukka counter, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j2"
-},
-{
 "id": "wf_9b842b2c30",
 "ts": "2026-11-15T04:17:19-0500",
 "a": "pure_water_cooler",
@@ -2734,6 +2723,17 @@
 "author": "cos",
 "run": "run-b9b963",
 "card": "j1"
+},
+{
+"id": "wf_8315ed28c7",
+"ts": "2026-11-15T07:02:31-0500",
+"a": "streetlights",
+"b": "yaba_bookshop",
+"code": "streetlights.interactwith(yaba_bookshop){ yaba_bookshop.receives(streetlights.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the blue glass bead at the yaba bookshop, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j6"
 }
 ],
 "memories": [
@@ -2826,5 +2826,5 @@
 "card": "j8"
 }
 ],
-"updated": "2026-11-15T06:00:50-0500"
+"updated": "2026-11-15T07:02:31-0500"
 }
