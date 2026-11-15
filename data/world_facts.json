@@ -2575,6 +2575,16 @@
 "run": "run-b9b963",
 "card": "j2",
 "other": "pdm"
+},
+{
+"id": "wf_2fca3ecff8",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bed, and Bisola reads the name twice.",
+"code": "pure_water_cooler.interactwith(bed){ bed.receives(pure_water_cooler.envelope); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "pure_water_cooler"
 }
 ],
 "art_making_money": [
@@ -3218,31 +3228,21 @@
 "card": "j5",
 "other": "yaba_bookshop"
 }
+],
+"truth": [
+{
+"id": "wf_be91daa086",
+"kind": "consequence",
+"text": "The truth leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "streetlights.interactwith(truth){ truth.receives(streetlights.envelope); truth.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "streetlights"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_e97e3e8ce7",
-"ts": "2026-11-15T14:15:30-0500",
-"a": "love",
-"b": "juss",
-"code": "love.interactwith(juss){ juss.receives(love.note); juss.remembers(bisola, 'egbe note'); juss.tucks(love, 'danfo speaker note into the brown envelope'); }",
-"text": "A Danfo speaker note with Bisola's name and 'egbe note' on it, turns up inside the brown envelope at the juss, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "w"
-},
-{
-"id": "wf_6fe03f5b41",
-"ts": "2026-11-15T14:19:26-0500",
-"a": "isl",
-"b": "mean",
-"code": "isl.interactwith(mean){ mean.receives(isl.question); mean.remembers(kunle, 'worm question'); mean.tucks(isl, 'isl note into the brown envelope'); }",
-"text": "An Isl note with Kunle's name and 'worm question' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the mean, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j3"
-},
 {
 "id": "wf_3cd91593e6",
 "ts": "2026-11-15T14:21:05-0500",
@@ -3660,6 +3660,28 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j6"
+},
+{
+"id": "wf_be91daa086",
+"ts": "2026-11-15T16:29:29-0500",
+"a": "streetlights",
+"b": "truth",
+"code": "streetlights.interactwith(truth){ truth.receives(streetlights.envelope); truth.remembers(bisola, 'brown envelope'); }",
+"text": "The truth leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
+},
+{
+"id": "wf_2fca3ecff8",
+"ts": "2026-11-15T16:30:16-0500",
+"a": "pure_water_cooler",
+"b": "bed",
+"code": "pure_water_cooler.interactwith(bed){ bed.receives(pure_water_cooler.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bed, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
 }
 ],
 "memories": [
@@ -3763,5 +3785,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-15T16:26:17-0500"
+"updated": "2026-11-15T16:30:16-0500"
 }
