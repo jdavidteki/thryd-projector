@@ -1533,6 +1533,16 @@
 "run": "run-b9b963",
 "card": "j6",
 "other": "reality"
+},
+{
+"id": "wf_115f4296c1",
+"kind": "consequence",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the bird, and Bisola reads the name twice.",
+"code": "ttb.interactwith(bird){ bird.receives(ttb.code); bird.remembers(ejiro, 'juju code'); bird.tucks(ttb, 'ttb note into the brown envelope'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j2",
+"other": "ttb"
 }
 ],
 "agenda_scene": [
@@ -2266,17 +2276,6 @@
 },
 "consequences": [
 {
-"id": "wf_f5f8fb43f8",
-"ts": "2026-11-15T04:14:07-0500",
-"a": "matches",
-"b": "juniorboys",
-"code": "matches.interactwith(juniorboys){ juniorboys.receives(matches.joke); juniorboys.remembers(bisola, 'boss joke'); }",
-"text": "The juniorboys leaves with an Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j1"
-},
-{
 "id": "wf_593c0e05c0",
 "ts": "2026-11-15T04:14:54-0500",
 "a": "plastic_sheet",
@@ -2704,6 +2703,17 @@
 "author": "cos",
 "run": "run-b9b963",
 "card": "j6"
+},
+{
+"id": "wf_115f4296c1",
+"ts": "2026-11-15T05:54:12-0500",
+"a": "ttb",
+"b": "bird",
+"code": "ttb.interactwith(bird){ bird.receives(ttb.code); bird.remembers(ejiro, 'juju code'); bird.tucks(ttb, 'ttb note into the brown envelope'); }",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the bird, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j2"
 }
 ],
 "memories": [
@@ -2796,5 +2806,5 @@
 "card": "j8"
 }
 ],
-"updated": "2026-11-15T05:45:28-0500"
+"updated": "2026-11-15T05:54:12-0500"
 }
