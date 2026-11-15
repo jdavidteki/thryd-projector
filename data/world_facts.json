@@ -745,6 +745,16 @@
 "run": "run-b9b963",
 "card": "j6",
 "other": "tie"
+},
+{
+"id": "wf_6d56e6d67f",
+"kind": "memory",
+"text": "The pure-water cooler at Mama Ronke's house: carried home through the flood; dinner is over.",
+"code": "pure_water_cooler.state('carried home through the flood');",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "w1",
+"other": null
 }
 ],
 "agbada": [
@@ -777,19 +787,19 @@
 "run": "run-b9b963",
 "card": "j1",
 "other": "wwgbtaycbmba"
+},
+{
+"id": "wf_ad88afffbd",
+"kind": "memory",
+"text": "The agbada at Oke-Ayo bus stop: worn by a stranger haggler; not for fokanicer.",
+"code": "agbada.state('worn by a stranger haggler');",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "w4",
+"other": null
 }
 ],
 "danfo_speaker": [
-{
-"id": "wf_68131df973",
-"kind": "consequence",
-"text": "The streetlights ends up with the danfo speaker, still all dead since 7:35pm.",
-"code": "reality.interactwith(danfo_speaker){ reality.db.copyto(danfo_speaker); danfo_speaker.keeps(reality, 'streetlights, still all dead since 7:35pm'); }",
-"author": "cos",
-"run": "run-b9b963",
-"card": "w6",
-"other": "reality"
-},
 {
 "id": "wf_ef697af083",
 "kind": "consequence",
@@ -821,6 +831,16 @@
 "other": "juss"
 },
 {
+"id": "wf_3f4f4470dd",
+"kind": "memory",
+"text": "The danfo speaker at danfo at the curb, song heard again at Mama Ronke's gate: playing the same love song.",
+"code": "danfo_speaker.state('playing the same love song');",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "w5",
+"other": null
+},
+{
 "id": "wt_c1a9e05d21",
 "kind": "consequence",
 "text": "The egbe note slips out of the agbada's sleeve by the danfo speaker, and the conductor reads Bisola's old boss joke aloud over the music until the whole bus stop laughs at a 1997 joke.",
@@ -832,16 +852,6 @@
 }
 ],
 "plastic_sheet": [
-{
-"id": "wf_461478dd0d",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the plastic sheet, which is still wet.",
-"code": "plastic_sheet.receives(yaba_bookshop.receipt);",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j6",
-"other": "yaba_bookshop"
-},
 {
 "id": "wf_01ca8e0923",
 "kind": "consequence",
@@ -881,19 +891,19 @@
 "run": "run-b9b963",
 "card": "j2",
 "other": "sheep"
+},
+{
+"id": "wf_65561aa93e",
+"kind": "memory",
+"text": "The plastic sheet at Oke-Ayo bus stop: wet; Ronke and Kazeem had been under it, Mama Ronke stood over it.",
+"code": "plastic_sheet.state('wet');",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "w5",
+"other": null
 }
 ],
 "red_white_cap": [
-{
-"id": "wf_aa96b76a6e",
-"kind": "memory",
-"text": "The red and white cap on Kazeem, Mama Ronke's house and gate: worn; boasted about while talking hacking.",
-"code": "red_white_cap.remembers('worn');",
-"author": "cos",
-"run": "run-b9b963",
-"card": "w6",
-"other": null
-},
 {
 "id": "wf_f55c447e7a",
 "kind": "consequence",
@@ -933,19 +943,19 @@
 "run": "run-b9b963",
 "card": "j6",
 "other": "play"
+},
+{
+"id": "wf_57f0264710",
+"kind": "memory",
+"text": "The red and white cap on Kazeem, Mama Ronke's house and gate: worn; boasted about while talking hacking.",
+"code": "red_white_cap.state('worn');",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "w6",
+"other": null
 }
 ],
 "streetlights": [
-{
-"id": "wf_73bd8c614c",
-"kind": "consequence",
-"text": "A Kerosene lamp note with Ronke's name and 'plastic sheet' on it, turns up inside the brown envelope at the streetlights, and Bisola reads the name twice.",
-"code": "diss.interactwith(streetlights){ streetlights.receives(diss.sheet); … }",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j4",
-"other": "diss"
-},
 {
 "id": "wf_900c73f1b1",
 "kind": "consequence",
@@ -985,18 +995,28 @@
 "run": "run-b9b963",
 "card": "j3",
 "other": "isl"
+},
+{
+"id": "wf_9a37299f20",
+"kind": "memory",
+"text": "The streetlights at the street: all dead since 7:35pm.",
+"code": "streetlights.state('all dead since 7:35pm');",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "w6",
+"other": null
 }
 ],
 "kerosene_lamp": [
 {
-"id": "wf_a1718a0ab9",
-"kind": "consequence",
-"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the change at the kerosene lamp, and Taiwo reads the name twice.",
-"code": "wwgbtaycbmba.interactwith(kerosene_lamp){ kerosene_lamp.receives(wwgbtaycbmba.code); … }",
+"id": "wf_bcb2238c27",
+"kind": "memory",
+"text": "The kerosene lamp at Mama Ronke's gate: lit; the only light on the street after the blackout.",
+"code": "kerosene_lamp.state('lit');",
 "author": "cos",
-"run": "run-b9b963",
-"card": "j2",
-"other": "wwgbtaycbmba"
+"run": "run-0bd7c0",
+"card": "w7",
+"other": null
 },
 {
 "id": "wt_7a2b23aa13",
@@ -1079,6 +1099,16 @@
 "run": "run-b9b963",
 "card": "j6",
 "other": "red_white"
+},
+{
+"id": "wf_6c5946a70f",
+"kind": "memory",
+"text": "The matches at doorway, Mama Ronke's house: found; rattled in the doorway as she came back.",
+"code": "matches.state('found');",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "w7",
+"other": null
 }
 ],
 "gbagada_hospital_waiting": [
@@ -3054,6 +3084,40 @@
 "card": "j2",
 "other": "wwgbtaycbmba"
 }
+],
+"ikeja_tailor_workshop": [
+{
+"id": "wf_253a46da15",
+"kind": "memory",
+"text": "5:30pm, Sunday 15 November 2026: Titi stands at the cutting table with a folded length of green ankara in one hand. The ikeja tailor workshop keeps it on file.",
+"code": "ikeja_tailor_workshop.remembers(titi, 'length of green ankara');",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j2",
+"other": null
+}
+],
+"magodo_post_office": [
+{
+"id": "wf_03a8593e2a",
+"kind": "memory",
+"text": "5:30pm, Sunday 15 November 2026: Titi stands at the counter with a small parcel tied in string. The magodo post office keeps it on file.",
+"code": "magodo_post_office.remembers(titi, 'parcel tied');",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j3",
+"other": null
+},
+{
+"id": "wf_c2ce8921f7",
+"kind": "memory",
+"text": "5:30pm, Sunday 15 November 2026: Bisola stamps a stack of letters while Kennedy sorts them by street. The magodo post office keeps it on file.",
+"code": "magodo_post_office.remembers(bisola, 'stack of letters');",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j3",
+"other": null
+}
 ]
 },
 "consequences": [
@@ -3599,5 +3663,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-15T15:49:11-0500"
+"updated": "2026-11-15T15:53:17-0500"
 }
