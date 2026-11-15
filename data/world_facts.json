@@ -1743,6 +1743,16 @@
 "run": "run-b9b963",
 "card": "j2",
 "other": "ttb"
+},
+{
+"id": "wf_5b6ebb908d",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bird, and Bisola reads the name twice.",
+"code": "streetlights.interactwith(bird){ bird.receives(streetlights.envelope); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "streetlights"
 }
 ],
 "agenda_scene": [
@@ -3244,17 +3254,6 @@
 },
 "consequences": [
 {
-"id": "wf_872d2840d9",
-"ts": "2026-11-15T14:24:14-0500",
-"a": "oyinboman",
-"b": "streetlights",
-"code": "oyinboman.interactwith(streetlights){ streetlights.receives(oyinboman.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the streetlights, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j6"
-},
-{
 "id": "wf_5c1345037d",
 "ts": "2026-11-15T14:25:48-0500",
 "a": "wwgbtaycbmba",
@@ -3682,6 +3681,17 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j5"
+},
+{
+"id": "wf_5b6ebb908d",
+"ts": "2026-11-15T16:49:48-0500",
+"a": "streetlights",
+"b": "bird",
+"code": "streetlights.interactwith(bird){ bird.receives(streetlights.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bird, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
 }
 ],
 "memories": [
@@ -3785,5 +3795,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-15T16:33:11-0500"
+"updated": "2026-11-15T16:49:48-0500"
 }
