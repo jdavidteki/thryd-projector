@@ -1629,6 +1629,16 @@
 "run": "run-b9b963",
 "card": "j9",
 "other": "kerosene_lamp"
+},
+{
+"id": "wf_aace07c8da",
+"kind": "consequence",
+"text": "An Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997, turns up inside the change at the bicycle, and Taiwo reads the name twice.",
+"code": "egbe.interactwith(bicycle){ bicycle.receives(egbe.joke); bicycle.remembers(bisola, 'boss joke'); bicycle.tucks(egbe, 'egbe note into the change'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j1",
+"other": "egbe"
 }
 ],
 "ronke": [
@@ -3028,17 +3038,6 @@
 },
 "consequences": [
 {
-"id": "wf_20d3b07e2a",
-"ts": "2026-11-15T13:14:42-0500",
-"a": "tie",
-"b": "indomie_egg",
-"code": "tie.interactwith(indomie_egg){ indomie_egg.receives(tie.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the juju code at the indomie egg, and Ejiro reads the name twice.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j6"
-},
-{
 "id": "wf_954c2f820b",
 "ts": "2026-11-15T13:15:29-0500",
 "a": "danfo_speaker",
@@ -3466,6 +3465,17 @@
 "author": "cos",
 "run": "run-b9b963",
 "card": "j3"
+},
+{
+"id": "wf_aace07c8da",
+"ts": "2026-11-15T15:39:32-0500",
+"a": "egbe",
+"b": "bicycle",
+"code": "egbe.interactwith(bicycle){ bicycle.receives(egbe.joke); bicycle.remembers(bisola, 'boss joke'); bicycle.tucks(egbe, 'egbe note into the change'); }",
+"text": "An Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997, turns up inside the change at the bicycle, and Taiwo reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j1"
 }
 ],
 "memories": [
@@ -3569,5 +3579,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-15T15:30:48-0500"
+"updated": "2026-11-15T15:39:32-0500"
 }
