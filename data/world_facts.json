@@ -2015,6 +2015,16 @@
 "run": "run-b9b963",
 "card": "j6",
 "other": "red_white_cap"
+},
+{
+"id": "wf_e48fc40020",
+"kind": "consequence",
+"text": "An Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997, turns up inside the brown envelope at the bed, and Bisola reads the name twice.",
+"code": "danfo_speaker.interactwith(bed){ bed.receives(danfo_speaker.joke); bed.remembers(bisola, 'boss joke'); bed.tucks(danfo_speaker, 'egbe note into the brown envelope'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j1",
+"other": "danfo_speaker"
 }
 ],
 "art_making_money": [
@@ -2065,17 +2075,6 @@
 ]
 },
 "consequences": [
-{
-"id": "wf_00dc7a0d06",
-"ts": "2026-11-14T20:37:17-0500",
-"a": "ttb",
-"b": "cup",
-"code": "ttb.interactwith(cup){ cup.receives(ttb.code); cup.remembers(ejiro, 'juju code'); }",
-"text": "The cup leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j2"
-},
 {
 "id": "wt_825a1245a2",
 "ts": "2026-11-14T23:55:23-0500",
@@ -2504,6 +2503,17 @@
 "author": "cos",
 "run": "run-b9b963",
 "card": "j6"
+},
+{
+"id": "wf_e48fc40020",
+"ts": "2026-11-15T04:32:37-0500",
+"a": "danfo_speaker",
+"b": "bed",
+"code": "danfo_speaker.interactwith(bed){ bed.receives(danfo_speaker.joke); bed.remembers(bisola, 'boss joke'); bed.tucks(danfo_speaker, 'egbe note into the brown envelope'); }",
+"text": "An Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997, turns up inside the brown envelope at the bed, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j1"
 }
 ],
 "memories": [
@@ -2585,5 +2595,5 @@
 "card": "j7"
 }
 ],
-"updated": "2026-11-15T04:29:24-0500"
+"updated": "2026-11-15T04:32:37-0500"
 }
