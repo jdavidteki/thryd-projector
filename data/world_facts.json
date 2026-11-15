@@ -925,6 +925,16 @@
 "run": "run-b9b963",
 "card": "j4",
 "other": "yaba_bookshop"
+},
+{
+"id": "wf_3b5f726f55",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the streetlights, and Bisola reads the name twice.",
+"code": "plastic_sheet.interactwith(streetlights){ streetlights.receives(plastic_sheet.envelope); … }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j6",
+"other": "plastic_sheet"
 }
 ],
 "kerosene_lamp": [
@@ -2186,17 +2196,6 @@
 },
 "consequences": [
 {
-"id": "wf_52d521f2a7",
-"ts": "2026-11-15T02:23:55-0500",
-"a": "wwgbtaycbmba",
-"b": "tie",
-"code": "wwgbtaycbmba.interactwith(tie){ tie.receives(wwgbtaycbmba.code); tie.remembers(ejiro, 'juju code'); tie.tucks(wwgbtaycbmba, 'ttb note into the brown envelope'); }",
-"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the tie, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j2"
-},
-{
 "id": "wf_5ec67adce1",
 "ts": "2026-11-15T02:24:42-0500",
 "a": "matches",
@@ -2624,6 +2623,17 @@
 "author": "cos",
 "run": "run-b9b963",
 "card": "j9"
+},
+{
+"id": "wf_3b5f726f55",
+"ts": "2026-11-15T05:22:18-0500",
+"a": "plastic_sheet",
+"b": "streetlights",
+"code": "plastic_sheet.interactwith(streetlights){ streetlights.receives(plastic_sheet.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the streetlights, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j6"
 }
 ],
 "memories": [
@@ -2716,5 +2726,5 @@
 "card": "j8"
 }
 ],
-"updated": "2026-11-15T05:19:53-0500"
+"updated": "2026-11-15T05:22:18-0500"
 }
