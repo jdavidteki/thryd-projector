@@ -1845,6 +1845,16 @@
 "run": "run-b9b963",
 "card": "j1",
 "other": "matches"
+},
+{
+"id": "wf_aee128e06b",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the boss joke at the game, and Bisola reads the name twice.",
+"code": "play.interactwith(game){ game.receives(play.envelope); game.remembers(bisola, 'brown envelope'); game.tucks(play, 'yaba bookshop receipt into the boss joke'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j6",
+"other": "play"
 }
 ],
 "sheep": [
@@ -2814,42 +2824,33 @@
 "card": "j6",
 "other": "streetlights"
 }
+],
+"or_something": [
+{
+"id": "wf_10d6c0c18c",
+"kind": "consequence",
+"text": "The or something leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it.",
+"code": "agenda_scene.interactwith(or_something){ or_something.receives(agenda_scene.envelope); or_something.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j4",
+"other": "agenda_scene"
+}
+],
+"neck_ostrich": [
+{
+"id": "wf_46024aec0a",
+"kind": "consequence",
+"text": "The neck ostrich leaves with a Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it.",
+"code": "yaba_bookshop.interactwith(neck_ostrich){ neck_ostrich.receives(yaba_bookshop.bead); neck_ostrich.remembers(bisola, 'blue glass bead'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j5",
+"other": "yaba_bookshop"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_9bf272deb7",
-"ts": "2026-11-15T12:23:16-0500",
-"a": "laptop",
-"b": "egbe",
-"code": "laptop.interactwith(egbe){ egbe.receives(laptop.code); egbe.remembers(ejiro, 'juju code'); egbe.tucks(laptop, 'ttb note into the boss joke'); }",
-"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the boss joke at the egbe, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j2"
-},
-{
-"id": "wf_30eddcc615",
-"ts": "2026-11-15T12:24:12-0500",
-"a": "pure_water_cooler",
-"b": "yaba_bukka_counter",
-"code": "pure_water_cooler.interactwith(yaba_bukka_counter){ yaba_bukka_counter.receives(pure_water_cooler.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, turns up inside the love at the yaba bukka counter, and Kunle reads the name twice.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j4"
-},
-{
-"id": "wf_90032aa682",
-"ts": "2026-11-15T12:25:06-0500",
-"a": "bird",
-"b": "dele_woli_agba",
-"code": "bird.interactwith(dele_woli_agba){ dele_woli_agba.receives(bird.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the dele woli agba, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j6"
-},
 {
 "id": "wf_733e3d41d6",
 "ts": "2026-11-15T12:26:01-0500",
@@ -3256,6 +3257,39 @@
 "author": "cos",
 "run": "run-b9b963",
 "card": "j2"
+},
+{
+"id": "wf_10d6c0c18c",
+"ts": "2026-11-15T13:19:32-0500",
+"a": "agenda_scene",
+"b": "or_something",
+"code": "agenda_scene.interactwith(or_something){ or_something.receives(agenda_scene.envelope); or_something.remembers(bisola, 'brown envelope'); }",
+"text": "The or something leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j4"
+},
+{
+"id": "wf_aee128e06b",
+"ts": "2026-11-15T13:20:19-0500",
+"a": "play",
+"b": "game",
+"code": "play.interactwith(game){ game.receives(play.envelope); game.remembers(bisola, 'brown envelope'); game.tucks(play, 'yaba bookshop receipt into the boss joke'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the boss joke at the game, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j6"
+},
+{
+"id": "wf_46024aec0a",
+"ts": "2026-11-15T13:21:06-0500",
+"a": "yaba_bookshop",
+"b": "neck_ostrich",
+"code": "yaba_bookshop.interactwith(neck_ostrich){ neck_ostrich.receives(yaba_bookshop.bead); neck_ostrich.remembers(bisola, 'blue glass bead'); }",
+"text": "The neck ostrich leaves with a Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j5"
 }
 ],
 "memories": [
@@ -3359,5 +3393,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-15T13:18:41-0500"
+"updated": "2026-11-15T13:21:06-0500"
 }
