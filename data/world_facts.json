@@ -3338,20 +3338,21 @@
 "card": "j6",
 "other": "ats"
 }
+],
+"morir": [
+{
+"id": "wf_93ec74788f",
+"kind": "consequence",
+"text": "The morir leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "truth.interactwith(morir){ morir.receives(truth.envelope); morir.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "truth"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_34bc6acec6",
-"ts": "2026-11-15T16:11:52-0500",
-"a": "kerosene_lamp",
-"b": "agbada",
-"code": "kerosene_lamp.interactwith(agbada){ agbada.receives(kerosene_lamp.change); … }",
-"text": "A Kerosene lamp note with Taiwo's name and 'change' on it, turns up inside the boss joke at the agbada, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "w"
-},
 {
 "id": "wf_e296a9f676",
 "ts": "2026-11-15T16:14:13-0500",
@@ -3780,6 +3781,17 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j5"
+},
+{
+"id": "wf_93ec74788f",
+"ts": "2026-11-15T17:56:46-0500",
+"a": "truth",
+"b": "morir",
+"code": "truth.interactwith(morir){ morir.receives(truth.envelope); morir.remembers(bisola, 'brown envelope'); }",
+"text": "The morir leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
 }
 ],
 "memories": [
@@ -3883,5 +3895,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-15T17:40:03-0500"
+"updated": "2026-11-15T17:56:46-0500"
 }
