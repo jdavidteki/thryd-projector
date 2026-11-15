@@ -13,7 +13,32 @@
   const MC = root.ThrydMediumCuts;
   if(!MC || !MC.createGifDecoder) return;
 
-  const S = root.__thrydStage = {on:true, hold:true, groups:[], cuts:[], bytes:0, loading:0, near:null, spawned:0, left:0, fails:0, recent:[], bad:new Set(), log:[], maxSeen:0};
+  // S.bad (Jesuye 15 Nov 2026 11:56 AM ET "after every few hours ... only text objects are on the screen. no gif or image objects go in
+  // and out"): it used to be a Set that kept every failed item out for good. A wifi drop, a laptop sleep or a slow CDN made every
+  // GIF/image/agenda load fail at ~2 a second, so a few minutes offline blacklisted the whole catalogue until a reload, and only the
+  // text chips (drawn locally, no network) kept coming. Now a failure only cools an item down (network: 1 min doubling to 15 min;
+  // other errors: 10 min doubling to 6 h), a run of network failures pauses media loads instead of blaming items (S.net), and a
+  // success clears the item. Same has / add / size API as before.
+  function Cooldown(){ const m = new Map(), NET = /fetch|network|load failed|live_view_fetch|sprite|worker_timeout|worker_down|err_/i;
+    return {
+      add(id, why){ if(!id) return; const w = String(why || ''), net = NET.test(w), e = m.get(id) || {n: 0}; e.n++;
+        e.until = Date.now() + Math.min(net ? 15 * 60e3 : 6 * 3600e3, (net ? 60e3 : 10 * 60e3) * Math.pow(2, Math.min(e.n - 1, 10))); e.why = w; m.set(id, e); return net; },
+      has(id){ const e = m.get(id); return !!e && Date.now() < e.until; },
+      ok(id){ m.delete(id); }, delete(id){ return m.delete(id); }, clear(){ m.clear(); },
+      release(){ let n = 0; m.forEach(e => { if(Date.now() < e.until){ e.until = 0; n++; } }); return n; }, // keep n (backoff), drop the wait
+      get size(){ let n = 0; const t = Date.now(); m.forEach(e => { if(t < e.until) n++; }); return n; },
+      isNet: w => NET.test(String(w || '')), entries: () => [...m.entries()]
+    }; }
+  const S = root.__thrydStage = {on:true, hold:true, groups:[], cuts:[], bytes:0, loading:0, near:null, spawned:0, left:0, fails:0, recent:[], bad:Cooldown(), log:[], maxSeen:0,
+    net: {hold: 0, k: 0, fails: [], holds: 0}, lastMedia: Date.now(), releases: 0};
+  // network breaker: 4 network failures inside 30 s (or the browser saying it is offline) pause media loads 15 s, doubling to 5 min;
+  // the items that failed are not blamed for it. Back online or a good load resets it.
+  function netFail(){ const t = Date.now(), N = S.net; N.fails = N.fails.filter(x => t - x < 30000); N.fails.push(t);
+    if(N.fails.length >= 4 || navigator.onLine === false){ N.hold = t + Math.min(300000, 15000 * Math.pow(2, Math.min(N.k++, 5))); N.holds++; N.fails = []; } }
+  function netOk(){ S.net.k = 0; S.net.fails = []; }
+  const netHeld = ()=> navigator.onLine === false || Date.now() < S.net.hold;
+  addEventListener('online', ()=>{ S.net.hold = 0; S.net.k = 0; S.bad.release(); });
+  function failed(id, why){ const w = String(why || ''); if(S.bad.isNet(w) || navigator.onLine === false){ netFail(); if(navigator.onLine === false) return; } S.bad.add(id, w); }
   const note = (...a)=>{ S.log.push([new Date().toISOString().slice(11,19)].concat(a).join(' ')); if(S.log.length > 120) S.log.splice(0, S.log.length - 120); };
 
   // 1. the slideshow stays parked: every backdrop() call is refused while stage mode is on, so no GIF is fetched for the hidden #stage
@@ -257,7 +282,9 @@
   function offDecode(msg, transfer){
     if(WK.off || !WK.pool.length) return Promise.reject(new Error('worker_off'));
     const w = WK.pool.slice().sort((a, b) => a.busy - b.busy)[0], id = ++WK.seq; w.busy++;
-    return new Promise((ok, no) => { WK.wait.set(id, {ok, no}); w.postMessage(Object.assign({id}, msg), transfer); });
+    // a decode that never answers (worker killed, GIF stuck) must not hold a loading slot forever: give up after 90 s
+    return new Promise((ok, no) => { const tm = setTimeout(()=>{ if(WK.wait.has(id)){ WK.wait.delete(id); w.busy = Math.max(0, w.busy - 1); no(new Error('worker_timeout')); } }, 90000);
+      WK.wait.set(id, {ok: v => { clearTimeout(tm); ok(v); }, no: e => { clearTimeout(tm); no(e); }}); w.postMessage(Object.assign({id}, msg), transfer); });
   }
 
   // ---------- groups
@@ -315,6 +342,7 @@
     await MC.expandRow(row);
     const ext = ((String(row.url).split('?')[0].match(/\.([A-Za-z0-9]+)$/) || [])[1] || '').toLowerCase();
     const set = {how:'medium', remote:true, url:row.url, medium_image_id:row.medium_image_id, extension:ext, animated: row.kind === 'gif'};
+    if(row.pack && row.plate_error === 'pack_missing' && !(row.objects && row.objects.length)) throw new Error('pack_fetch_missing'); // network class: short cooldown, retried
     const plan = MC.forSet(set, man || manifest);
     if(!plan.ok) throw new Error(plan.reason || 'plan');
     const fw = plan.width, fh = plan.height;
@@ -458,7 +486,7 @@
       }, delay + 80);
     });
     DIRS.in[oct(ang)]++;
-    S.groups.push(g); S.spawned++;
+    S.groups.push(g); S.spawned++; if(!(row && row.chips)) S.lastMedia = Date.now();
     if(g.cuts.length <= 2 && Math.random() < 0.5) S.near = g;
     S.recent.push(g.mid); if(S.recent.length > 40) S.recent.shift();
     S.maxSeen = Math.max(S.maxSeen, S.cuts.length);
@@ -837,11 +865,11 @@
         return false;
       }
       roomForLive();
-      spawn(A.row, A.L);
+      spawn(A.row, A.L); S.bad.ok(id); netOk();
       note('live view', A.row.medium_image_id, A.row.title || '');
       return true;
     }catch(e){
-      S.bad.add(id); note('live view skip', id, String(e && e.message || e));
+      failed(id, e && e.message || e); note('live view skip', id, String(e && e.message || e));
       return false;
     }finally{ S.loading--; }
   }
@@ -886,25 +914,29 @@
     if(!manifest) return;
     if(S.ready.length >= READY || S.cuts.length >= CAP || S.bytes > BUDGET * .9) return;
     if(S.groups.length + S.ready.length >= MAX_GROUPS && S.cuts.length >= CAP - 2) return;
-    const prefer = wantLive();
+    const prefer = netHeld() ? null : wantLive();
     if(prefer){
       await spawnLive(prefer);
       if(!paused()) setTimeout(spawnOne, 50);
       return;
     }
     let agKey = null, chips = false;
+    if(netHeld()){ // offline / breaker open: local chips only, media waits
+      if(!(AG.runs.length || AG.state) || Math.random() > AG_P) return;
+      S.loading++; try{ const A = await loadChips(); const held = A.L.frames.reduce((n, f) => n + bytesOf(f), 0); const item = {row: A.row, L: A.L, held}; S.bytes += held; S.ready.push(item); place(item); AG.chips++; }
+      catch(e){ note('chips skip', String(e && e.message || e)); } finally{ S.loading--; } return; }
     const agOn = S.cuts.filter(c => c.home && c.home.agenda).length; // agenda cuts keep to ~40 % of the stage; Medium and X cuts keep the rest
     if((AG.keys.length || AG.runs.length) && agOn < CAP * .4 && Math.random() < AG_P){ chips = (AG.runs.length || AG.state) && (Math.random() < .6 || !AG.keys.length); if(!chips) agKey = pickAgenda(); }
     const row = (agKey || chips) ? null : pickRow(); if(!row && !agKey && !chips) return;
     if(row || agKey){ S.recent.push(row ? row.medium_image_id : agKey); if(S.recent.length > 40) S.recent.shift(); } // never picked twice while it decodes
     S.loading++;
     if(agKey || chips){ try{ const A = chips ? await loadChips() : await loadAgenda(agKey); const held = A.L.frames.reduce((n, f) => n + bytesOf(f), 0);
-        const item = {row: A.row, L: A.L, held}; S.bytes += held; S.ready.push(item); place(item); if(chips) AG.chips++; else AG.spawned++; }
-      catch(e){ const why = String(e && e.message || e); if(agKey && why !== 'cap') S.bad.add(agKey); note('agenda skip', agKey || 'chips', why); }
+        const item = {row: A.row, L: A.L, held}; S.bytes += held; S.ready.push(item); place(item); if(chips) AG.chips++; else { AG.spawned++; S.bad.ok(agKey); netOk(); } }
+      catch(e){ const why = String(e && e.message || e); if(agKey && why !== 'cap') failed(agKey, why); note('agenda skip', agKey || 'chips', why); }
       finally{ S.loading--; } if(!paused()) setTimeout(spawnOne, 50); return; }
     try{ const L = await loadGroup(row); const held = L.frames.reduce((n, f) => n + bytesOf(f), 0) + (L.bg ? L.bg.width * L.bg.height * 4 : 0);
-      const item = {row, L, held}; S.bytes += held; S.ready.push(item); place(item); }
-    catch(e){ const why = String(e && e.message || e); if(why !== 'cap' && why !== 'budget') S.bad.add(row.medium_image_id); else S.recent.push(row.medium_image_id); S.fails++; note('skip', row.medium_image_id, why); }
+      const item = {row, L, held}; S.bytes += held; S.ready.push(item); place(item); S.bad.ok(row.medium_image_id); netOk(); }
+    catch(e){ const why = String(e && e.message || e); if(why !== 'cap' && why !== 'budget') failed(row.medium_image_id, why); else S.recent.push(row.medium_image_id); S.fails++; note('skip', row.medium_image_id, why); }
     finally{ S.loading--; }
     if(!paused()) setTimeout(spawnOne, 50);
   }
@@ -923,6 +955,10 @@
     // never more than CAP: the oldest group gives way at once
     if(S.cuts.length > CAP && S.groups.length) exitGroup(S.groups.slice().sort((a, b) => a.born - b.born)[0], true);
     S.maxSeen = Math.max(S.maxSeen, S.cuts.length);
+    // starvation guard: no GIF / image / agenda group for 4 min while online and running -> lift every cooldown and retry
+    if(!paused() && !netHeld() && manifest && (manifest.assets || []).length && now - S.lastMedia > 240000){
+      const n = S.bad.release(); S.recent = S.recent.slice(-5); S.lastMedia = now; S.releases++; note('starve guard: released', n, 'cooled items');
+    }
     camHold();
   }
   setInterval(house, 1000);
@@ -1207,7 +1243,7 @@
     const right = (l + r) / 2 > vw() / 2;
     return {left: l, right: r, top: t, height: b - t, r: right};
   };
-  S.stats = ()=>({groups: S.groups.length, stories: [...new Set(S.groups.map(g => g.mid))], cuts: S.cuts.length, cap: CAP, maxSeen: S.maxSeen, mb: +(S.bytes / 1048576).toFixed(1), spawned: S.spawned, left: S.left, fails: S.fails, carries: S.carries || 0, loading: S.loading, visible: S.groups.filter(g => { const v = view(); return g.x < v.x + v.w && g.x + g.w > v.x && g.y < v.y + v.h && g.y + g.h > v.y; }).length, cam: {x: Math.round(cam.x), y: Math.round(cam.y)}, ready: S.ready.length, fill: S.fill(), cmd: {calls: CMD.calls, looks: CMD.looks.size, applied: CMD.applied, src: CMD.src, cast: S.cuts.filter(c => c.castAs).length}, agenda: {active: AG.active, runs: AG.runs.length, runObjects: AG.runs.reduce((n, r) => n + (r.objects || []).length + (r.characters || []).length, 0), activeOnStage: S.cuts.filter(c => c.home && c.home.agenda && c.home.run === AG.active).length, scenes: AG.keys.length, sprites: AG.avail, chipsAvail: AG.availChips, groupsSpawned: AG.spawned, chipGroups: AG.chips, onStageGroups: S.groups.filter(g => g.agenda).length, onStageCuts: S.cuts.filter(c => c.home && c.home.agenda).length}, loop: S.loop, worker: WK.off ? 'off' : 'on', decodeMs: WK.ms.length ? Math.round(WK.ms.reduce((a, b) => a + b, 0) / WK.ms.length) : null, focus: focus && focus.mid, rm: RM, phone: PHONE});
+  S.stats = ()=>({groups: S.groups.length, stories: [...new Set(S.groups.map(g => g.mid))], cuts: S.cuts.length, cap: CAP, maxSeen: S.maxSeen, mb: +(S.bytes / 1048576).toFixed(1), spawned: S.spawned, left: S.left, fails: S.fails, carries: S.carries || 0, loading: S.loading, visible: S.groups.filter(g => { const v = view(); return g.x < v.x + v.w && g.x + g.w > v.x && g.y < v.y + v.h && g.y + g.h > v.y; }).length, cam: {x: Math.round(cam.x), y: Math.round(cam.y)}, ready: S.ready.length, fill: S.fill(), cmd: {calls: CMD.calls, looks: CMD.looks.size, applied: CMD.applied, src: CMD.src, cast: S.cuts.filter(c => c.castAs).length}, agenda: {active: AG.active, runs: AG.runs.length, runObjects: AG.runs.reduce((n, r) => n + (r.objects || []).length + (r.characters || []).length, 0), activeOnStage: S.cuts.filter(c => c.home && c.home.agenda && c.home.run === AG.active).length, scenes: AG.keys.length, sprites: AG.avail, chipsAvail: AG.availChips, groupsSpawned: AG.spawned, chipGroups: AG.chips, onStageGroups: S.groups.filter(g => g.agenda).length, onStageCuts: S.cuts.filter(c => c.home && c.home.agenda).length}, loop: S.loop, cooled: S.bad.size, net: {held: netHeld(), holds: S.net.holds}, releases: S.releases, mediaAgoS: Math.round((Date.now() - S.lastMedia) / 1000), worker: WK.off ? 'off' : 'on', decodeMs: WK.ms.length ? Math.round(WK.ms.reduce((a, b) => a + b, 0) / WK.ms.length) : null, focus: focus && focus.mid, rm: RM, phone: PHONE});
 
   // ---------- typed commands on the stage (Jesuye 11-13 12:43 AM "if dapo was on the screens i did dapo.setskincomplexion(light),
   // it should show on the projector"). Source: #thryd's typed_calls.json (every seated typed call of every agenda), published
@@ -1397,5 +1433,8 @@
 
   pollLiveViews(); setInterval(pollLiveViews, LIVE_POLL_MS);
   MC.loadManifest().then(m => { manifest = m || {assets: []}; note('manifest', (manifest.assets || []).length + ' assets'); spawner();
-    let q = S.pendingLib; try{ q = q || new URLSearchParams(location.search).get('mlib'); }catch(e){} if(q) showOnStage(String(q).trim()); }).catch(()=>{ manifest = {assets: []}; });
+    let q = S.pendingLib; try{ q = q || new URLSearchParams(location.search).get('mlib'); }catch(e){} if(q) showOnStage(String(q).trim()); })
+    .catch(()=>{ manifest = {assets: []}; note('manifest failed, retrying'); spawner(); // (was: the spawner never started)
+      const again = ()=> MC.loadManifest().then(m => { if(m && (m.assets || []).length){ manifest = m; note('manifest', m.assets.length + ' assets'); } else setTimeout(again, 60000); }).catch(()=> setTimeout(again, 60000));
+      setTimeout(again, 30000); });
 })(typeof window !== 'undefined' ? window : globalThis);

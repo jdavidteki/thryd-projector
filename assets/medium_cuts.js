@@ -395,6 +395,7 @@
   async function absorbPack(row){
     if(!row || !row.pack || (row.objects && row.objects.length)) return row;
     if(typeof fetch !== 'function') return row;
+    if(row.plate_error === 'pack_missing') delete row.plate_error; // a failed pack fetch (e.g. offline) is retried, not kept on the row
     let pack;
     try{
       const ver = row.pack_version || '1';

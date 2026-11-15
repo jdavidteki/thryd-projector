@@ -35,6 +35,9 @@ let NEWS=null,stI=0;const sceneT=s=>{try{return (window.thrydSceneTitle&&thrydSc
 const nm=s=>String(s||'').replace(/^(?:assets\/webp\/live\/|medium\/)/,'').slice(0,46);
 function bulletin(i){const at=i.card?`${i.card}`:'the frame';
   switch(i.kind){
+   // v2 (Jesuye 15 Nov 2026 12:04 PM ET "read like news"): template-built headlines from the world facts, the stage's meetings,
+   // the story's moves and a general world desk (tools/export_thryd_news.py, no AI); shown as they are
+   case 'headline':return i.text||null;
    case 'move':return R([`BREAKING: Reports reaching us from ${at} say ${i.code}`,`Live from ${at}: ${i.code}`,`JUST IN from ${at}: ${i.code}`])+(i.note?` — ${i.note}`:'');
    case 'typed':return R([`A customer has typed ${i.code} at ${at}, our correspondent confirms`,`Live from the frame: ${i.code} entered at ${at}`,`Sources at ${at} report the command ${i.code}`]);
    case 'mood':return `A new mood has been imported into ${at}; the room is shifting, more details soon`;
@@ -46,7 +49,9 @@ function bulletin(i){const at=i.card?`${i.card}`:'the frame';
 async function loadNews(){const j=await get('data/thryd_news.json');if(j&&Array.isArray(j.items)&&j.items.length)NEWS=j;}
 function localDrifts(){try{return (window.thrydMoves?thrydMoves.list():[]).filter(e=>e.type==='drift'&&Date.now()-Date.parse(e.client_ts)<3600e3).slice(-6).map(e=>({kind:'drift',what:(e.source&&e.source.cut)||e.label||'an object',
   from_scene:e.drift&&e.drift.kind==='arrive'?e.drift.from_scene:(e.source&&e.source.scene),to_scene:e.drift&&e.drift.kind==='leave'?'(travelling)':(e.source&&e.source.scene)}));}catch(e){return [];}}
-function lines(){if(/phone\.html$/.test(location.pathname))return null;const it=[...(NEWS?NEWS.items:[])].sort(()=>Math.random()-.5).slice(0,10).concat(localDrifts());if(!it.length)return null;
+function lines(){if(/phone\.html$/.test(location.pathname))return null;const v2=NEWS&&NEWS.v>=2;
+  // v2 feeds are already headlines; this page's raw drift rows (cut ids, scene file names) read like code, so they stay out
+  const it=[...(NEWS?NEWS.items:[])].sort(()=>Math.random()-.5).slice(0,v2?12:10).concat(v2?[]:localDrifts());if(!it.length)return null;
   return it.map(bulletin).filter(Boolean).slice(0,14).map(b=>({st:ST[stI++%ST.length],b}));}
 let span,x=0,lastT=0;const SPEED=/phone\.html$/.test(location.pathname)?66:26; // px per second (was 1.1px per animation frame ≈ 66px/s at 60Hz)
 function crawlNext(){if(!span){const t=document.createElement('i');t.textContent='#thryd news';crawl.appendChild(t);span=document.createElement('span');crawl.appendChild(span)}
