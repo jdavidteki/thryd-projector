@@ -2305,6 +2305,16 @@
 "run": "run-b9b963",
 "card": "j6",
 "other": "seen"
+},
+{
+"id": "wf_e97e3e8ce7",
+"kind": "consequence",
+"text": "A Danfo speaker note with Bisola's name and 'egbe note' on it, turns up inside the brown envelope at the juss, and Bisola reads the name twice.",
+"code": "love.interactwith(juss){ juss.receives(love.note); juss.remembers(bisola, 'egbe note'); juss.tucks(love, 'danfo speaker note into the brown envelope'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "w",
+"other": "love"
 }
 ],
 "suitcase": [
@@ -2873,6 +2883,16 @@
 "run": "run-b9b963",
 "card": "j6",
 "other": "streetlights"
+},
+{
+"id": "wf_6fe03f5b41",
+"kind": "consequence",
+"text": "An Isl note with Kunle's name and 'worm question' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the mean, and Bisola reads the name twice.",
+"code": "isl.interactwith(mean){ mean.receives(isl.question); mean.remembers(kunle, 'worm question'); mean.tucks(isl, 'isl note into the brown envelope'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j3",
+"other": "isl"
 }
 ],
 "or_something": [
@@ -2925,28 +2945,6 @@
 ]
 },
 "consequences": [
-{
-"id": "wf_473b496b66",
-"ts": "2026-11-15T12:36:15-0500",
-"a": "streetlights",
-"b": "thryd_safe_narrative",
-"code": "streetlights.interactwith(thryd_safe_narrative){ thryd_safe_narrative.receives(streetlights.envelope); thryd_safe_narrative.remembers(bisola, 'brown envelope'); }",
-"text": "The thryd safe narrative leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j6"
-},
-{
-"id": "wf_9129d729b8",
-"ts": "2026-11-15T12:37:11-0500",
-"a": "bird",
-"b": "bowl",
-"code": "bird.interactwith(bowl){ bowl.receives(bird.envelope); bowl.remembers(bisola, 'brown envelope'); }",
-"text": "The bowl leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j6"
-},
 {
 "id": "wf_9cc632a9f1",
 "ts": "2026-11-15T12:38:06-0500",
@@ -3364,6 +3362,28 @@
 "author": "cos",
 "run": "run-b9b963",
 "card": "j6"
+},
+{
+"id": "wf_e97e3e8ce7",
+"ts": "2026-11-15T14:15:30-0500",
+"a": "love",
+"b": "juss",
+"code": "love.interactwith(juss){ juss.receives(love.note); juss.remembers(bisola, 'egbe note'); juss.tucks(love, 'danfo speaker note into the brown envelope'); }",
+"text": "A Danfo speaker note with Bisola's name and 'egbe note' on it, turns up inside the brown envelope at the juss, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "w"
+},
+{
+"id": "wf_6fe03f5b41",
+"ts": "2026-11-15T14:19:26-0500",
+"a": "isl",
+"b": "mean",
+"code": "isl.interactwith(mean){ mean.receives(isl.question); mean.remembers(kunle, 'worm question'); mean.tucks(isl, 'isl note into the brown envelope'); }",
+"text": "An Isl note with Kunle's name and 'worm question' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the mean, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j3"
 }
 ],
 "memories": [
@@ -3467,5 +3487,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-15T14:12:14-0500"
+"updated": "2026-11-15T14:19:26-0500"
 }
