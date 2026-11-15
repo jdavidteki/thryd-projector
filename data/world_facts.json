@@ -2,7 +2,6 @@
 "v": 1,
 "note": "World memory: each object's facts and the newest consequences of meetings (shared store /workspace/thryd-projector/data/world_facts.jsonl, tools/world_memory.py). The stage shows a consequence code line when the same pair meets again, and now and then on its own; #thryd memories show now and then too.",
 "alias": {
-"yaba_bookshop_subject": "yaba_bookshop",
 "yaba_bookshop_figures": "yaba_bookshop",
 "ikeja_laundromat_figures": "ikeja_laundromat",
 "yaba_bukka_counter_figures": "yaba_bukka_counter",
@@ -1562,6 +1561,16 @@
 "run": "run-b9b963",
 "card": "j1",
 "other": "cell_phone"
+},
+{
+"id": "wf_1f1564f877",
+"kind": "consequence",
+"text": "An Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997, turns up inside the brown envelope at the tie, and Bisola reads the name twice.",
+"code": "juniorboys.interactwith(tie){ tie.receives(juniorboys.joke); tie.remembers(bisola, 'boss joke'); tie.tucks(juniorboys, 'egbe note into the brown envelope'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j1",
+"other": "juniorboys"
 }
 ],
 "laptop": [
@@ -2025,17 +2034,6 @@
 },
 "consequences": [
 {
-"id": "wf_5b3c2ce974",
-"ts": "2026-11-14T20:31:41-0500",
-"a": "play",
-"b": "laptop",
-"code": "play.interactwith(laptop){ laptop.receives(play.code); laptop.remembers(ejiro, 'juju code'); laptop.tucks(play, 'ttb note into the plastic sheet'); }",
-"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the plastic sheet at the laptop, and Ronke reads the name twice.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j2"
-},
-{
 "id": "wf_326f04505f",
 "ts": "2026-11-14T20:34:56-0500",
 "a": "pure_water_cooler",
@@ -2463,6 +2461,17 @@
 "author": "cos",
 "run": "run-b9b963",
 "card": "j2"
+},
+{
+"id": "wf_1f1564f877",
+"ts": "2026-11-15T04:27:00-0500",
+"a": "juniorboys",
+"b": "tie",
+"code": "juniorboys.interactwith(tie){ tie.receives(juniorboys.joke); tie.remembers(bisola, 'boss joke'); tie.tucks(juniorboys, 'egbe note into the brown envelope'); }",
+"text": "An Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997, turns up inside the brown envelope at the tie, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j1"
 }
 ],
 "memories": [
@@ -2533,5 +2542,5 @@
 "card": "j6"
 }
 ],
-"updated": "2026-11-15T04:26:01-0500"
+"updated": "2026-11-15T04:27:00-0500"
 }
