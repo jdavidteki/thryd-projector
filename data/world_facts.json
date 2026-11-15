@@ -2,20 +2,20 @@
 "v": 1,
 "note": "World memory: each object's facts and the newest consequences of meetings (shared store /workspace/thryd-projector/data/world_facts.jsonl, tools/world_memory.py). The stage shows a consequence code line when the same pair meets again, and now and then on its own; #thryd memories show now and then too.",
 "alias": {
-"yaba_bukka_counter_figures": "yaba_bukka_counter",
 "ikeja_laundromat_figures": "ikeja_laundromat",
-"yaba_bookshop_figures": "yaba_bookshop",
-"oshodi_bus_shelter_subject": "oshodi_bus_shelter",
-"marina_biscayne_bay_subject": "marina_biscayne_bay",
-"fire_escape_outside_figures": "fire_escape_outside",
-"top_deck_charter_figures": "top_deck_charter",
+"yaba_bukka_counter_figures": "yaba_bukka_counter",
 "lekki_rooftop_subject": "lekki_rooftop",
 "lekki_rooftop_figure": "lekki_rooftop",
-"club_terrace_admiralty_figures": "club_terrace_admiralty",
 "kano_wedding_tent_figures": "kano_wedding_tent",
 "kano_wedding_tent_figure": "kano_wedding_tent",
 "kano_wedding_tent_figure_second": "kano_wedding_tent",
+"yaba_bookshop_figures": "yaba_bookshop",
+"top_deck_charter_figures": "top_deck_charter",
 "front_step_house_figures": "front_step_house",
+"club_terrace_admiralty_figures": "club_terrace_admiralty",
+"oshodi_bus_shelter_subject": "oshodi_bus_shelter",
+"marina_biscayne_bay_subject": "marina_biscayne_bay",
+"fire_escape_outside_figures": "fire_escape_outside",
 "igbo_man_talks_subject": "igbo_man_talks",
 "there_approximately_thousand_subject": "there_approximately_thousand",
 "stories_strong_subject": "stories_strong",
@@ -1187,6 +1187,16 @@
 ],
 "egbe": [
 {
+"id": "wf_0bb11c2f88",
+"kind": "consequence",
+"text": "A Kerosene lamp note with Taiwo's name and 'change' on it, turns up inside the boss joke at the egbe, and Bisola reads the name twice.",
+"code": "kerosene_lamp.interactwith(egbe){ egbe.receives(kerosene_lamp.change); … }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j9",
+"other": "kerosene_lamp"
+},
+{
 "id": "wt_22a5a9b2e2",
 "kind": "memory",
 "text": "In 1997 Bisola told Kunle \"ok, lez go back to me being ure boss\", and the egbe still holds that line like a promise nobody signed.",
@@ -1870,17 +1880,6 @@
 },
 "consequences": [
 {
-"id": "wf_b6e4ae4445",
-"ts": "2026-11-14T17:18:54-0500",
-"a": "matches",
-"b": "bus",
-"code": "matches.interactwith(bus){ bus.receives(matches.timetable); bus.remembers(kunle, 'timetable'); }",
-"text": "The bus leaves with an Oshodi bus shelter ticket stub with Kunle's name and 'timetable' on it.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j4"
-},
-{
 "id": "wf_17d74cf291",
 "ts": "2026-11-14T17:19:41-0500",
 "a": "red_white_cap",
@@ -2308,6 +2307,17 @@
 "author": "cos",
 "run": "run-b9b963",
 "card": "j6"
+},
+{
+"id": "wf_0bb11c2f88",
+"ts": "2026-11-15T02:42:07-0500",
+"a": "kerosene_lamp",
+"b": "egbe",
+"code": "kerosene_lamp.interactwith(egbe){ egbe.receives(kerosene_lamp.change); … }",
+"text": "A Kerosene lamp note with Taiwo's name and 'change' on it, turns up inside the boss joke at the egbe, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j9"
 }
 ],
 "memories": [
@@ -2378,5 +2388,5 @@
 "card": "j6"
 }
 ],
-"updated": "2026-11-15T02:39:37-0500"
+"updated": "2026-11-15T02:42:07-0500"
 }
