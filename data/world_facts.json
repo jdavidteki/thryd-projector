@@ -1117,16 +1117,6 @@
 ],
 "yaba_bukka_counter": [
 {
-"id": "wf_6d85b496ff",
-"kind": "consequence",
-"text": "Taiwo rides the bicycle to the Yaba bukka and pays with the change he counted into a dish, so the counter now remembers his coins next to Bisola's envelope.",
-"code": "bicycle.interactwith(yaba_bukka_counter){ yaba_bukka_counter.receives(bicycle.change); yaba_bukka_counter.remembers(taiwo, 'change'); }",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j9",
-"other": "bicycle"
-},
-{
 "id": "wf_30eddcc615",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, turns up inside the love at the yaba bukka counter, and Kunle reads the name twice.",
@@ -1155,6 +1145,16 @@
 "run": "run-b9b963",
 "card": "j1",
 "other": "people_scene"
+},
+{
+"id": "wf_5c3dee2455",
+"kind": "consequence",
+"text": "A Kerosene lamp note with Taiwo's name and 'change' on it, turns up inside the love at the yaba bukka counter, and Kunle reads the name twice.",
+"code": "diss.interactwith(yaba_bukka_counter){ yaba_bukka_counter.receives(diss.change); … }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j9",
+"other": "diss"
 },
 {
 "id": "wt_4e525b9c48",
@@ -2692,17 +2692,6 @@
 },
 "consequences": [
 {
-"id": "wf_1a84e3304d",
-"ts": "2026-11-15T12:04:28-0500",
-"a": "agbada",
-"b": "pain_suffering",
-"code": "agbada.interactwith(pain_suffering){ pain_suffering.receives(agbada.joke); pain_suffering.remembers(bisola, 'boss joke'); }",
-"text": "The pain suffering leaves with an Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j1"
-},
-{
 "id": "wf_f93e8b65a5",
 "ts": "2026-11-15T12:05:16-0500",
 "a": "isl",
@@ -3130,6 +3119,17 @@
 "author": "cos",
 "run": "run-b9b963",
 "card": "w"
+},
+{
+"id": "wf_5c3dee2455",
+"ts": "2026-11-15T12:42:51-0500",
+"a": "diss",
+"b": "yaba_bukka_counter",
+"code": "diss.interactwith(yaba_bukka_counter){ yaba_bukka_counter.receives(diss.change); … }",
+"text": "A Kerosene lamp note with Taiwo's name and 'change' on it, turns up inside the love at the yaba bukka counter, and Kunle reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j9"
 }
 ],
 "memories": [
@@ -3233,5 +3233,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-15T12:40:51-0500"
+"updated": "2026-11-15T12:42:51-0500"
 }
