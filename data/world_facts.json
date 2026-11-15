@@ -2595,6 +2595,16 @@
 "run": "run-b9b963",
 "card": "j1",
 "other": "juniorboys"
+},
+{
+"id": "wf_dfea543c67",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the called, and Bisola reads the name twice.",
+"code": "juss.interactwith(called){ called.receives(juss.envelope); … }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j6",
+"other": "juss"
 }
 ],
 "notnotnotnotyn_dec": [
@@ -2997,17 +3007,6 @@
 ]
 },
 "consequences": [
-{
-"id": "wf_4de7ccc97f",
-"ts": "2026-11-15T13:11:14-0500",
-"a": "tie",
-"b": "pure_water_cooler",
-"code": "tie.interactwith(pure_water_cooler){ pure_water_cooler.receives(tie.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the pure water cooler, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j6"
-},
 {
 "id": "wf_7224496963",
 "ts": "2026-11-15T13:12:09-0500",
@@ -3436,6 +3435,17 @@
 "author": "thryd",
 "run": "run-b9b963",
 "card": "j6"
+},
+{
+"id": "wf_dfea543c67",
+"ts": "2026-11-15T14:57:16-0500",
+"a": "juss",
+"b": "called",
+"code": "juss.interactwith(called){ called.receives(juss.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the called, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j6"
 }
 ],
 "memories": [
@@ -3539,5 +3549,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-15T14:52:00-0500"
+"updated": "2026-11-15T14:57:16-0500"
 }
