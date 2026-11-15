@@ -6,6 +6,9 @@
 // Audio starts only from a user gesture (autoplay rules). The choice is saved as thryd_sound (migrated from thryd_mute, '0' = lofi);
 // a reload with a saved mode tries to resume, and if the browser refuses it waits for the next tap anywhere. One audio element,
 // so the modes never overlap. Stream/song errors retry quietly with backoff (lofi: mp3 then AAC mount; yoki: skip to the next song).
+//   brown (Jesuye 15 Nov 2026 5:08 AM ET "find a good brown noise api and add it") brown noise generated live in the browser with
+//         Web Audio: leaky-integrated white noise (AudioWorklet, ScriptProcessor fallback), a gentle low-pass and a slow soft swell,
+//         1.5 s fade in / out, about Lofi's level, ducked like the music. No network, no external API.
 // Spoken lines (speechSynthesis) are opt-in with ?audio=speech and duck the music; ?audio=clips still plays data/audio.json clips.
 // Plus local "Add GIF" sprites (IndexedDB, this browser only)
 (()=>{
@@ -17,7 +20,8 @@ const LOFI={urls:['https://stream.audiobookmanager.com/listen/lofi/radio.mp3','h
   credit:'https://radio.audiobookmanager.com/', vol:.35, duck:.12};
 const YOKI={apis:['https://www.africariyoki.com/api/songs.json','https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/songs.json'],
   site:'https://www.africariyoki.com/', vol:.3};
-const MODES=['off','lofi','yoki'], LABEL={off:'🔇 sound off', lofi:'🎧 lofi', yoki:'🎤 yoki'};
+const BROWN={vol:.32, duck:.12, fade:1.5, lp:520, swellHz:.045, swellDepth:.16};
+const MODES=['off','lofi','yoki','brown'], LABEL={off:'🔇 sound off', lofi:'🎧 lofi', yoki:'🎤 yoki', brown:'🟤 brown noise'};
 let mode='off', au=null, want=false, waitTap=false, tries=0, si=0, retryT=0, credit=null, lyr=null;
 let ylist=null, ybase='', ybag=[], ysong=null, yfail=0, ylrc=[], yreq=0;
 function savedMode(){ try{ const m=localStorage.getItem('thryd_sound'); if(MODES.indexOf(m)>=0) return m;
@@ -25,7 +29,7 @@ function savedMode(){ try{ const m=localStorage.getItem('thryd_sound'); if(MODES
 function save(m){ try{ localStorage.setItem('thryd_sound',m); localStorage.setItem('thryd_mute',m==='off'?'1':'0'); }catch(e){}
   try{ if(window.ThrydKeep) ThrydKeep.saveSettings({mute: m==='off'?1:0}); }catch(e){} }
 // the select sits where the old button was; the old button stays in the DOM (hidden) for code that looks it up
-const sel=document.createElement('select'); sel.id='sound'; sel.title='Sound: off, lofi radio or africariyoki songs';
+const sel=document.createElement('select'); sel.id='sound'; sel.title='Sound: off, lofi radio, africariyoki songs or brown noise';
 MODES.forEach(m=>{const o=document.createElement('option'); o.value=m; o.textContent=LABEL[m]; sel.appendChild(o);});
 sel.value='off'; sel.onclick=e=>e.stopPropagation(); sel.onpointerdown=e=>e.stopPropagation&&e.stopPropagation();
 if(btn){ btn.style.display='none'; btn.textContent='🔇 audio off'; if(btn.parentNode&&btn.parentNode.insertBefore) btn.parentNode.insertBefore(sel,btn.nextSibling); }
@@ -35,6 +39,7 @@ function mkCredit(){ if(credit) return credit; credit=document.createElement('a'
   lyr=document.createElement('div'); lyr.id='yoki_line'; lyr.className='off'; document.body.appendChild(lyr); return credit; }
 function setCredit(){ const c=mkCredit();
   if(mode==='lofi'){ c.href=LOFI.credit; c.textContent='ABM Lofi · CC-licensed'; c.title='Music: ABM Lofi radio (Creative Commons). Credits at radio.audiobookmanager.com'; }
+  else if(mode==='brown'){ if(c.removeAttribute) c.removeAttribute('href'); c.textContent='brown noise · generated live'; c.title='Brown noise generated in this browser (Web Audio); nothing is streamed'; }
   else if(mode==='yoki'&&ysong){ c.href=YOKI.site; c.textContent=(ysong.title||'song')+' · '+(ysong.artist||'')+' · africariyoki'; c.title='Song via africariyoki.com'; }
   c.className=(mode==='off'||muted)?'off':''; if(lyr&&(mode!=='yoki'||muted)){lyr.className='off'; lyr.textContent='';} }
 function mkAudio(){ if(au) return au; au=new Audio(); au.id='lofi'; au.preload='none'; au.volume=LOFI.vol; try{au.setAttribute('data-src',LOFI.urls[0]);}catch(e){}
@@ -68,7 +73,45 @@ function played(e,fromTap){ if(e&&e.name==='NotAllowedError'){ waitTap=true; mut
     gate.textContent=fromTap?'🔊 Tap again to start the music':'🔊 Tap anywhere to resume the music'; gate.classList.remove('off'); return; }
   if(mode==='yoki'&&ylist){ yfail++; if(yfail<4){ setTimeout(()=>{ if(want&&mode==='yoki') nextSong(); },800); return; } }
   retry(); }
-function start(fromTap){ want=true; const a=mkAudio(); if(retryT){clearTimeout(retryT);retryT=0;}
+// ---------- brown: generated noise (Web Audio). One context, reused; the graph is
+//   source (worklet or script processor) -> low-pass -> swell gain (base + slow LFO) -> master gain (fades, ducking) -> speakers
+const BN={ctx:null, src:null, lp:null, sw:null, lfo:null, master:null, worklet:false, on:false, offT:0};
+const BROWN_WORKLET='class B extends AudioWorkletProcessor{constructor(){super();this.l=[0,0];}process(i,o){const out=o[0];'+
+  'for(let c=0;c<out.length;c++){const ch=out[c];let l=this.l[c]||0;for(let n=0;n<ch.length;n++){l=(l+0.02*(Math.random()*2-1))/1.02;ch[n]=l*3.5;}this.l[c]=l;}return true;}}'+
+  'registerProcessor("thryd-brown",B);';
+function brownScript(ctx){ const sp=ctx.createScriptProcessor(4096,0,2), last=[0,0];
+  sp.onaudioprocess=e=>{ for(let c=0;c<e.outputBuffer.numberOfChannels;c++){ const ch=e.outputBuffer.getChannelData(c); let l=last[c]||0;
+    for(let n=0;n<ch.length;n++){ l=(l+0.02*(Math.random()*2-1))/1.02; ch[n]=l*3.5; } last[c]=l; } }; return sp; }
+function brownGraph(){ if(BN.ctx) return Promise.resolve(BN.ctx);
+  const AC=window.AudioContext||window.webkitAudioContext; if(!AC) return Promise.reject(new Error('no Web Audio'));
+  const ctx=BN.ctx=new AC();
+  BN.lp=ctx.createBiquadFilter(); BN.lp.type='lowpass'; BN.lp.frequency.value=BROWN.lp; BN.lp.Q.value=.4;
+  BN.sw=ctx.createGain(); BN.sw.gain.value=1-BROWN.swellDepth;
+  BN.lfo=ctx.createOscillator(); BN.lfo.frequency.value=BROWN.swellHz; const depth=ctx.createGain(); depth.gain.value=BROWN.swellDepth;
+  BN.lfo.connect(depth); depth.connect(BN.sw.gain); BN.lfo.start();
+  BN.master=ctx.createGain(); BN.master.gain.value=0;
+  BN.lp.connect(BN.sw); BN.sw.connect(BN.master); BN.master.connect(ctx.destination);
+  const fallback=()=>{ BN.worklet=false; BN.src=brownScript(ctx); BN.src.connect(BN.lp); return ctx; };
+  if(ctx.audioWorklet&&window.Blob&&window.URL&&URL.createObjectURL){
+    const u=URL.createObjectURL(new Blob([BROWN_WORKLET],{type:'application/javascript'}));
+    return ctx.audioWorklet.addModule(u).then(()=>{ BN.src=new AudioWorkletNode(ctx,'thryd-brown',{numberOfInputs:0,outputChannelCount:[2]}); BN.worklet=true; BN.src.connect(BN.lp); return ctx; })
+      .catch(fallback).finally(()=>{ try{URL.revokeObjectURL(u);}catch(e){} }); }
+  return Promise.resolve(fallback()); }
+function brownTo(v, secs){ const g=BN.master&&BN.master.gain, t=BN.ctx&&BN.ctx.currentTime; if(!g) return;
+  try{ g.cancelScheduledValues(t); g.setValueAtTime(g.value,t); g.linearRampToValueAtTime(v,t+secs); }catch(e){ g.value=v; } }
+const brownVol=()=>(window.speechSynthesis&&speechSynthesis.speaking&&SPEECH)?BROWN.duck:BROWN.vol;
+function brownStart(fromTap){ if(BN.offT){clearTimeout(BN.offT); BN.offT=0;}
+  return brownGraph().then(ctx=>{ if(!want||mode!=='brown') return;
+    const r=ctx.state==='running'?Promise.resolve():ctx.resume();
+    // a resume() the browser holds back (no gesture yet) stays pending or leaves the context suspended
+    return Promise.race([Promise.resolve(r), new Promise(res=>setTimeout(res,600))]).then(()=>{
+      if(!want||mode!=='brown') return;
+      if(ctx.state!=='running'){ const e=new Error('suspended'); e.name='NotAllowedError'; throw e; }
+      BN.on=true; brownTo(brownVol(), BROWN.fade); waitTap=false; muted=false; show(); setCredit(); }); })
+  .catch(e=>{ if(e&&e.name==='NotAllowedError') return played(e,fromTap); if(e&&e.message==='no Web Audio') return; retry(); }); }
+function brownStop(){ if(!BN.ctx||!BN.on&&!BN.offT) return; BN.on=false; brownTo(0, BROWN.fade); if(BN.offT) clearTimeout(BN.offT);
+  BN.offT=setTimeout(()=>{ BN.offT=0; if(!BN.on&&BN.ctx&&BN.ctx.state==='running') BN.ctx.suspend().catch(()=>{}); }, BROWN.fade*1000+300); }
+function start(fromTap){ want=true; if(mode==='brown'){ if(retryT){clearTimeout(retryT);retryT=0;} return brownStart(fromTap); } const a=mkAudio(); if(retryT){clearTimeout(retryT);retryT=0;}
   if(mode==='yoki'){
     if(!ylist){ return loadSongs().then(()=>{ if(want&&mode==='yoki') return nextSong(); }).catch(()=>retry()); }
     if(waitTap&&ysong&&a.getAttribute&&a.getAttribute('src')){ let p; try{p=a.play();}catch(e){p=Promise.reject(e);} return Promise.resolve(p).then(()=>{waitTap=false; muted=false; show(); setCredit();}).catch(e=>played(e,fromTap)); }
@@ -77,7 +120,7 @@ function start(fromTap){ want=true; const a=mkAudio(); if(retryT){clearTimeout(r
   a.src=LOFI.urls[si]+(tries?('?r='+Date.now()):''); a.volume=(window.speechSynthesis&&speechSynthesis.speaking)?LOFI.duck:LOFI.vol;
   let p; try{p=a.play();}catch(e){p=Promise.reject(e);}
   return Promise.resolve(p).then(()=>{waitTap=false; muted=false; show(); setCredit();}).catch(e=>played(e,fromTap)); }
-function stop(){ want=false; waitTap=false; tries=0; yfail=0; if(retryT){clearTimeout(retryT);retryT=0;} if(au){ try{au.pause(); au.removeAttribute('src'); au.load();}catch(e){} }
+function stop(){ want=false; waitTap=false; tries=0; yfail=0; if(retryT){clearTimeout(retryT);retryT=0;} brownStop(); if(au){ try{au.pause(); au.removeAttribute('src'); au.load();}catch(e){} }
   muted=true; ylrc=[]; yreq++; if(credit) credit.className='off'; if(lyr){lyr.className='off'; lyr.textContent='';} }
 function setMode(m, fromTap){ if(MODES.indexOf(m)<0) m='off'; stop(); mode=m; save(m); show();
   if(m==='off'){ if(window.speechSynthesis) speechSynthesis.cancel(); gate.classList.add('off'); return Promise.resolve(); }
@@ -110,7 +153,7 @@ function speakOnce(){
   const C=window.CUR||{lines:[],speakers:[]}; const run=($('run')||{}).textContent;
   if(clips&&clips.length){const pool=clips.filter(c=>!c.run||c.run===run||('run-'+c.run)===run); const c=pool[Math.floor(Math.random()*pool.length)];
     if(c){ if(c.line&&C.speakers.length&&window.thrydSay)window.thrydSay({line:c.line,src:'audio'},C.speakers[Math.floor(Math.random()*C.speakers.length)]);
-      if(!muted){const a=new Audio(c.file||c.src);if(au)au.volume=LOFI.duck;a.onended=()=>{if(au)au.volume=mode==='yoki'?YOKI.vol:LOFI.vol;};a.play().catch(()=>{});} return;}}
+      if(!muted){const a=new Audio(c.file||c.src);if(au)au.volume=LOFI.duck;if(BN.on)brownTo(BROWN.duck,.4);a.onended=()=>{if(au)au.volume=mode==='yoki'?YOKI.vol:LOFI.vol;if(BN.on)brownTo(BROWN.vol,1);};a.play().catch(()=>{});} return;}}
   const L=window.thrydChoose&&window.thrydChoose(C.lines); if(!L)return;
   const who=C.speakers[Math.floor(Math.random()*C.speakers.length)]; if(who&&window.thrydSay)window.thrydSay(L,who);
   speakText(L.line);
@@ -118,12 +161,17 @@ function speakOnce(){
 const lo=+(Q.get('audiomin')||15), hi=+(Q.get('audiomax')||30);
 if(SPEECH)(function loop(){setTimeout(()=>{try{speakOnce();}catch(e){} loop();},(lo+Math.random()*(hi-lo))*1000);})();
 // duck the music while a line is spoken (only with ?audio=speech)
-if(SPEECH&&'speechSynthesis' in window)setInterval(()=>{if(au&&want&&!au.paused)au.volume=speechSynthesis.speaking?LOFI.duck:(mode==='yoki'?YOKI.vol:LOFI.vol);},500);
+if(SPEECH&&'speechSynthesis' in window)setInterval(()=>{if(au&&want&&!au.paused)au.volume=speechSynthesis.speaking?LOFI.duck:(mode==='yoki'?YOKI.vol:LOFI.vol);
+  if(BN.on&&BN.master){ const v=brownVol(); if(BN.duckV!==v){ BN.duckV=v; brownTo(v,.5); } }},500);
 // a reload with a saved mode: try to resume; if the browser says no, wait for the next tap
 { const m0=savedMode(); if(m0!=='off'){ mode=m0; show(); want=true; waitTap=true; start(false); } }
 // watchdog: playback that stops advancing for 20 s while it should play reconnects (lofi) or moves on (yoki), with the same backoff
-let lastT=-1; setInterval(()=>{ if(!au||!want||waitTap||retryT||au.paused){lastT=-1;return;} if(au.currentTime===lastT){ if(mode==='yoki') nextSong(); else retry(); } lastT=au.currentTime; },20000);
-window.thrydLofi=window.thrydSound={set:m=>setMode(m,true),start:()=>start(true),stop:()=>setMode('off'),state:()=>({mode,want,waitTap,muted,tries,src:au&&au.src,paused:au?au.paused:true,song:ysong&&{title:ysong.title,artist:ysong.artist},songs:ylist?ylist.length:0,lrc:ylrc.length})};
+let lastT=-1; setInterval(()=>{ if(mode==='brown'||!au||!want||waitTap||retryT||au.paused){lastT=-1;return;} if(au.currentTime===lastT){ if(mode==='yoki') nextSong(); else retry(); } lastT=au.currentTime; },20000);
+// level(): RMS of the brown-noise output right now (for QA; creates one analyser on first use)
+function brownLevel(){ if(!BN.ctx||!BN.master) return 0; if(!BN.an){ BN.an=BN.ctx.createAnalyser(); BN.an.fftSize=2048; BN.master.connect(BN.an); }
+  const d=new Float32Array(BN.an.fftSize); BN.an.getFloatTimeDomainData(d); let s=0; for(let i=0;i<d.length;i++) s+=d[i]*d[i]; return Math.sqrt(s/d.length); }
+window.thrydLofi=window.thrydSound={level:brownLevel,set:m=>setMode(m,true),start:()=>start(true),stop:()=>setMode('off'),state:()=>({mode,want,waitTap,muted,tries,src:au&&au.src,paused:au?au.paused:true,song:ysong&&{title:ysong.title,artist:ysong.artist},songs:ylist?ylist.length:0,lrc:ylrc.length,
+  brown:BN.ctx?{ctx:BN.ctx.state,on:BN.on,worklet:BN.worklet,gain:BN.master?+BN.master.gain.value.toFixed(3):0}:null})};
 // ---------- Add GIF
 const DB=new Promise((res,rej)=>{const r=indexedDB.open('thryd-projector',1);r.onupgradeneeded=()=>r.result.createObjectStore('gifs',{keyPath:'id'});r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error);});
 const tx=async(mode,f)=>{const db=await DB;return new Promise((res,rej)=>{const t=db.transaction('gifs',mode);const r=f(t.objectStore('gifs'));t.oncomplete=()=>res(r&&r.result);t.onerror=()=>rej(t.error);});};

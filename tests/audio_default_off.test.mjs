@@ -95,11 +95,12 @@ function loadExtras(opts){
     window: {},
     history: { replaceState(){} },
     ImageDecoder: undefined,
+    AudioContext: opts && opts.AC,
   };
   ctx.window = ctx;
   ctx.globalThis = ctx;
   vm.runInNewContext(extrasSrc, ctx, { filename: 'extras.js' });
-  return { ids, body, store, listeners, spoken, audioPlays, audios, fetches, ctx };
+  return { ids, body, store, listeners, spoken, audioPlays, audios, fetches, ctx, contexts: (opts && opts.contexts) || [] };
 }
 
 function fire(listeners, type, ev){
@@ -186,4 +187,75 @@ test('spoken lines stay off by default (they would talk over the music)', async 
   const L = loadExtras({ store: { thryd_mute: '1' } });
   await L.ctx.thrydSound.set('lofi'); await tick();
   assert.equal(L.spoken.filter(x => typeof x === 'object').length, 0);
+});
+
+// ---------- brown noise (Jesuye 15 Nov 2026 5:08 AM ET): generated with Web Audio, no network
+function fakeAC({ block = false, worklet = false } = {}, contexts){
+  const param = v => ({ value: v, ramps: [], cancelScheduledValues(){}, setValueAtTime(x){ this.value = x; }, linearRampToValueAtTime(x, t){ this.ramps.push([x, t]); this.value = x; } });
+  const node = extra => Object.assign({ connected: [], connect(n){ this.connected.push(n); return n; }, disconnect(){} }, extra);
+  return class {
+    constructor(){ this.state = 'suspended'; this.currentTime = 10; this.destination = node({}); this.nodes = []; this.resumes = 0; contexts.push(this);
+      if(worklet) this.audioWorklet = { addModule: async () => { throw new Error('no blob modules here'); } }; }
+    createBiquadFilter(){ const n = node({ type: '', frequency: param(350), Q: param(1) }); this.nodes.push(n); return n; }
+    createGain(){ const n = node({ gain: param(1) }); this.nodes.push(n); return n; }
+    createOscillator(){ const n = node({ frequency: param(440), started: false, start(){ this.started = true; } }); this.nodes.push(n); return n; }
+    createScriptProcessor(){ const n = node({ kind: 'script', onaudioprocess: null }); this.nodes.push(n); this.script = n; return n; }
+    resume(){ this.resumes++; if(!block) this.state = 'running'; return Promise.resolve(); }
+    suspend(){ this.state = 'suspended'; return Promise.resolve(); }
+  };
+}
+
+test('brown noise: generated locally (no fetch, no audio element), fades in to about Lofi level, credit says generated live', async () => {
+  const contexts = [];
+  const L = loadExtras({ store: { thryd_mute: '1' }, AC: fakeAC({}, contexts), contexts });
+  await L.ctx.thrydSound.set('brown'); await tick(8);
+  assert.equal(contexts.length, 1);
+  const c = contexts[0], st = L.ctx.thrydSound.state();
+  assert.equal(c.state, 'running');
+  assert.equal(L.fetches.length, 0, 'no network'); assert.equal(L.audioPlays.length, 0, 'no stream');
+  assert.equal(st.mode, 'brown'); assert.equal(st.brown.on, true);
+  const lp = c.nodes.find(n => n.type === 'lowpass'); assert.ok(lp && lp.frequency.value <= 800, 'gently low-passed');
+  assert.ok(c.nodes.find(n => n.started), 'slow swell LFO running');
+  const master = c.nodes.filter(n => n.gain).find(n => n.gain.ramps.length);
+  assert.deepEqual(master.gain.ramps.at(-1), [0.32, 11.5], 'fades in over 1.5 s to 0.32');
+  // the leaky integrator stays bounded and is not white noise
+  const out = new Float32Array(48000), buf = { numberOfChannels: 1, getChannelData: () => out };
+  c.script.onaudioprocess({ outputBuffer: buf });
+  let mx = 0, diff = 0; for(let i = 1; i < out.length; i++){ mx = Math.max(mx, Math.abs(out[i])); diff += Math.abs(out[i] - out[i - 1]); }
+  assert.ok(mx > 0.01 && mx <= 1, 'bounded: ' + mx); assert.ok(diff / out.length < 0.05, 'smooth (brown, not white)');
+  const credit = L.body.children.find(x => x.id === 'lofi_credit');
+  assert.equal(credit.textContent, 'brown noise · generated live'); assert.equal(credit.className, '');
+  assert.equal(L.store.thryd_sound, 'brown'); assert.equal(L.store.thryd_mute, '0');
+});
+
+test('brown noise: off fades out over 1.5 s; switching to lofi plays the stream', async () => {
+  const contexts = [];
+  const L = loadExtras({ store: { thryd_mute: '1' }, AC: fakeAC({ worklet: true }, contexts), contexts });
+  await L.ctx.thrydSound.set('brown'); await tick(8);
+  assert.ok(contexts[0].script, 'falls back to a ScriptProcessor when the worklet module fails');
+  await L.ctx.thrydSound.set('lofi'); await tick();
+  const master = contexts[0].nodes.filter(n => n.gain).find(n => n.gain.ramps.length);
+  assert.deepEqual(master.gain.ramps.at(-1), [0, 11.5]);
+  assert.equal(L.audioPlays.at(-1), STREAM); assert.equal(L.ctx.thrydSound.state().brown.on, false);
+  await L.ctx.thrydSound.set('brown'); await tick(8);
+  assert.equal(contexts.length, 1, 'one audio context, reused');
+  await L.ctx.thrydSound.set('off');
+  assert.equal(L.store.thryd_sound, 'off'); assert.equal(L.ctx.thrydSound.state().brown.on, false);
+});
+
+test('brown noise: a saved choice the browser holds back waits for a tap, then resumes', async () => {
+  const contexts = [];
+  const L = loadExtras({ store: { thryd_sound: 'brown' }, AC: fakeAC({ block: true }, contexts), contexts });
+  await tick(8);
+  const gate = L.body.children.find(c => c.id === 'sndgate');
+  assert.equal(L.ctx.thrydSound.state().waitTap, true); assert.equal(gate.classList.contains('off'), false);
+  contexts[0].resume = function(){ this.resumes++; this.state = 'running'; return Promise.resolve(); };
+  fire(L.listeners, 'pointerdown', { target: {}, stopPropagation(){} }); await tick(8);
+  assert.equal(L.ctx.thrydSound.state().brown.on, true); assert.equal(L.ctx.thrydSound.state().waitTap, false);
+});
+
+test('brown noise without Web Audio stays quiet and does not retry forever', async () => {
+  const L = loadExtras({ store: { thryd_mute: '1' } });
+  await L.ctx.thrydSound.set('brown'); await tick(6);
+  assert.equal(L.ctx.thrydSound.state().tries, 0); assert.equal(L.ctx.thrydSound.state().brown, null);
 });
