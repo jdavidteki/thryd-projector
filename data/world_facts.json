@@ -581,16 +581,6 @@
 ],
 "yaba_bookshop": [
 {
-"id": "wf_96c90924fc",
-"kind": "consequence",
-"text": "A Kerosene lamp note with Taiwo's name and 'change' on it, turns up inside the blue glass bead at the yaba bookshop, and Bisola reads the name twice.",
-"code": "kerosene_lamp.interactwith(yaba_bookshop){ yaba_bookshop.receives(kerosene_lamp.change); … }",
-"author": "cos",
-"run": "run-b9b963",
-"card": "w",
-"other": "kerosene_lamp"
-},
-{
 "id": "wf_cc27e48e12",
 "kind": "consequence",
 "text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the blue glass bead at the yaba bookshop, and Bisola reads the name twice.",
@@ -599,6 +589,16 @@
 "run": "run-b9b963",
 "card": "j2",
 "other": "people_scene"
+},
+{
+"id": "wf_2a3c30b85f",
+"kind": "consequence",
+"text": "A Kerosene lamp note with Taiwo's name and 'change' on it, turns up inside the blue glass bead at the yaba bookshop, and Bisola reads the name twice.",
+"code": "diss.interactwith(yaba_bookshop){ yaba_bookshop.receives(diss.change); … }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j9",
+"other": "diss"
 },
 {
 "id": "wt_ad3997f7d4",
@@ -979,14 +979,14 @@
 ],
 "kerosene_lamp": [
 {
-"id": "wf_128472fa78",
-"kind": "memory",
-"text": "The kerosene lamp at Mama Ronke's gate: lit; the only light on the street after the blackout.",
-"code": "kerosene_lamp.remembers('lit');",
+"id": "wf_769ec785e1",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the change at the kerosene lamp, and Taiwo reads the name twice.",
+"code": "play.interactwith(kerosene_lamp){ kerosene_lamp.receives(play.envelope); … }",
 "author": "cos",
 "run": "run-b9b963",
-"card": "w7",
-"other": null
+"card": "j6",
+"other": "play"
 },
 {
 "id": "wt_7a2b23aa13",
@@ -1117,16 +1117,6 @@
 ],
 "yaba_bukka_counter": [
 {
-"id": "wf_8e99f2cc40",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the love at the yaba bukka counter, and Kunle reads the name twice.",
-"code": "red_white_cap.interactwith(yaba_bukka_counter){ yaba_bukka_counter.receives(red_white_cap.envelope); … }",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j6",
-"other": "red_white_cap"
-},
-{
 "id": "wf_6d85b496ff",
 "kind": "consequence",
 "text": "Taiwo rides the bicycle to the Yaba bukka and pays with the change he counted into a dish, so the counter now remembers his coins next to Bisola's envelope.",
@@ -1155,6 +1145,16 @@
 "run": "run-b9b963",
 "card": "j5",
 "other": "divorce"
+},
+{
+"id": "wf_3caf79339b",
+"kind": "consequence",
+"text": "An Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997, turns up inside the love at the yaba bukka counter, and Kunle reads the name twice.",
+"code": "people_scene.interactwith(yaba_bukka_counter){ yaba_bukka_counter.receives(people_scene.joke); … }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j1",
+"other": "people_scene"
 },
 {
 "id": "wt_4e525b9c48",
@@ -2007,6 +2007,16 @@
 "run": "run-b9b963",
 "card": "j4",
 "other": "streetlights"
+},
+{
+"id": "wf_7feb4fa37b",
+"kind": "consequence",
+"text": "A Kerosene lamp note with Taiwo's name and 'change' on it, turns up inside the brown envelope at the bus, and Bisola reads the name twice.",
+"code": "kerosene_lamp.interactwith(bus){ bus.receives(kerosene_lamp.change); … }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "w",
+"other": "kerosene_lamp"
 }
 ],
 "hands": [
@@ -2447,6 +2457,16 @@
 "run": "run-b9b963",
 "card": "w",
 "other": "danfo_speaker"
+},
+{
+"id": "wf_0ae9b65eb2",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the notnotnotnotyn dec, and Bisola reads the name twice.",
+"code": "matches.interactwith(notnotnotnotyn_dec){ notnotnotnotyn_dec.receives(matches.envelope); … }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j6",
+"other": "matches"
 }
 ],
 "cassette_spine": [
@@ -2565,6 +2585,16 @@
 "run": "run-b9b963",
 "card": "j6",
 "other": "tie"
+},
+{
+"id": "wf_f6531e62d8",
+"kind": "consequence",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the replenish earth, and Bisola reads the name twice.",
+"code": "wwgbtaycbmba.interactwith(replenish_earth){ replenish_earth.receives(wwgbtaycbmba.code); … }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j2",
+"other": "wwgbtaycbmba"
 }
 ],
 "indomie_egg": [
@@ -2581,72 +2611,6 @@
 ]
 },
 "consequences": [
-{
-"id": "wf_a41c482162",
-"ts": "2026-11-15T06:00:50-0500",
-"a": "game",
-"b": "imm",
-"code": "game.interactwith(imm){ imm.receives(game.joke); imm.remembers(bisola, 'boss joke'); imm.tucks(game, 'egbe note into the plastic sheet'); }",
-"text": "An Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997, turns up inside the plastic sheet at the imm, and Ronke reads the name twice.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j1"
-},
-{
-"id": "wf_8315ed28c7",
-"ts": "2026-11-15T07:02:31-0500",
-"a": "streetlights",
-"b": "yaba_bookshop",
-"code": "streetlights.interactwith(yaba_bookshop){ yaba_bookshop.receives(streetlights.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the blue glass bead at the yaba bookshop, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j6"
-},
-{
-"id": "wf_812028fe79",
-"ts": "2026-11-15T08:31:29-0500",
-"a": "wwgbtaycbmba",
-"b": "yaba_bookshop",
-"code": "wwgbtaycbmba.interactwith(yaba_bookshop){ yaba_bookshop.receives(wwgbtaycbmba.code); … }",
-"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the blue glass bead at the yaba bookshop, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j2"
-},
-{
-"id": "wf_7d5211a064",
-"ts": "2026-11-15T09:50:04-0500",
-"a": "called",
-"b": "wser",
-"code": "called.interactwith(wser){ wser.receives(called.envelope); wser.remembers(bisola, 'brown envelope'); }",
-"text": "The wser leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j6"
-},
-{
-"id": "wt_c1a9e05d21",
-"ts": "2026-11-15T09:52:00-0500",
-"a": "agbada",
-"b": "danfo_speaker",
-"code": "agbada.interactwith(danfo_speaker){ danfo_speaker.receives(agbada, 'egbe note'); danfo_speaker.remembers(Bisola, 'boss joke read aloud at the bus stop'); }",
-"text": "The egbe note slips out of the agbada's sleeve by the danfo speaker, and the conductor reads Bisola's old boss joke aloud over the music until the whole bus stop laughs at a 1997 joke.",
-"author": "thryd",
-"run": "world",
-"card": "w"
-},
-{
-"id": "wt_c1a9e05d22",
-"ts": "2026-11-15T09:52:00-0500",
-"a": "oshodi_bus_shelter",
-"b": "ikeja_laundromat",
-"code": "oshodi_bus_shelter.interactwith(ikeja_laundromat){ ikeja_laundromat.receives(oshodi_bus_shelter.receipt); … }",
-"text": "Taiwo carries the senator receipt from the Oshodi shelter to the Ikeja laundromat and, without thinking, folds it into the pocket of the green shirt waiting in the bin.",
-"author": "thryd",
-"run": "world",
-"card": "w"
-},
 {
 "id": "wt_c1a9e05d23",
 "ts": "2026-11-15T09:52:00-0500",
@@ -3020,6 +2984,72 @@
 "author": "cos",
 "run": "run-b9b963",
 "card": "j5"
+},
+{
+"id": "wf_f6531e62d8",
+"ts": "2026-11-15T12:29:40-0500",
+"a": "wwgbtaycbmba",
+"b": "replenish_earth",
+"code": "wwgbtaycbmba.interactwith(replenish_earth){ replenish_earth.receives(wwgbtaycbmba.code); … }",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the replenish earth, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j2"
+},
+{
+"id": "wf_0ae9b65eb2",
+"ts": "2026-11-15T12:30:35-0500",
+"a": "matches",
+"b": "notnotnotnotyn_dec",
+"code": "matches.interactwith(notnotnotnotyn_dec){ notnotnotnotyn_dec.receives(matches.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the notnotnotnotyn dec, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j6"
+},
+{
+"id": "wf_769ec785e1",
+"ts": "2026-11-15T12:31:29-0500",
+"a": "play",
+"b": "kerosene_lamp",
+"code": "play.interactwith(kerosene_lamp){ kerosene_lamp.receives(play.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the change at the kerosene lamp, and Taiwo reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j6"
+},
+{
+"id": "wf_3caf79339b",
+"ts": "2026-11-15T12:32:24-0500",
+"a": "people_scene",
+"b": "yaba_bukka_counter",
+"code": "people_scene.interactwith(yaba_bukka_counter){ yaba_bukka_counter.receives(people_scene.joke); … }",
+"text": "An Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997, turns up inside the love at the yaba bukka counter, and Kunle reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j1"
+},
+{
+"id": "wf_7feb4fa37b",
+"ts": "2026-11-15T12:33:20-0500",
+"a": "kerosene_lamp",
+"b": "bus",
+"code": "kerosene_lamp.interactwith(bus){ bus.receives(kerosene_lamp.change); … }",
+"text": "A Kerosene lamp note with Taiwo's name and 'change' on it, turns up inside the brown envelope at the bus, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "w"
+},
+{
+"id": "wf_2a3c30b85f",
+"ts": "2026-11-15T12:34:15-0500",
+"a": "diss",
+"b": "yaba_bookshop",
+"code": "diss.interactwith(yaba_bookshop){ yaba_bookshop.receives(diss.change); … }",
+"text": "A Kerosene lamp note with Taiwo's name and 'change' on it, turns up inside the blue glass bead at the yaba bookshop, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j9"
 }
 ],
 "memories": [
@@ -3112,5 +3142,5 @@
 "card": "j8"
 }
 ],
-"updated": "2026-11-15T12:28:39-0500"
+"updated": "2026-11-15T12:34:15-0500"
 }
