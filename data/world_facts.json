@@ -1789,6 +1789,16 @@
 "run": "run-b9b963",
 "card": "j4",
 "other": "imm"
+},
+{
+"id": "wf_e58e10f47f",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the plastic sheet at the chair, and Ronke reads the name twice.",
+"code": "reality.interactwith(chair){ chair.receives(reality.envelope); … }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j6",
+"other": "reality"
 }
 ],
 "cell_phone": [
@@ -1817,17 +1827,6 @@
 ]
 },
 "consequences": [
-{
-"id": "wf_a99bf506a1",
-"ts": "2026-11-14T17:10:54-0500",
-"a": "kerosene_lamp",
-"b": "yaba_bukka_counter",
-"code": "kerosene_lamp.interactwith(yaba_bukka_counter){ yaba_bukka_counter.receives(kerosene_lamp.sheet); … }",
-"text": "A Kerosene lamp note with Ronke's name and 'plastic sheet' on it, turns up inside the plastic sheet at the yaba bukka counter, and Ronke reads the name twice.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j4"
-},
 {
 "id": "wf_cb6fd04ba2",
 "ts": "2026-11-14T17:11:41-0500",
@@ -2256,6 +2255,17 @@
 "author": "cos",
 "run": "run-b9b963",
 "card": "j4"
+},
+{
+"id": "wf_e58e10f47f",
+"ts": "2026-11-15T02:19:46-0500",
+"a": "reality",
+"b": "chair",
+"code": "reality.interactwith(chair){ chair.receives(reality.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the plastic sheet at the chair, and Ronke reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j6"
 }
 ],
 "memories": [
@@ -2326,5 +2336,5 @@
 "card": "j6"
 }
 ],
-"updated": "2026-11-15T02:13:20-0500"
+"updated": "2026-11-15T02:19:46-0500"
 }
