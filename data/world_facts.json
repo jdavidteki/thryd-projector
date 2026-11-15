@@ -1127,16 +1127,6 @@
 ],
 "yaba_bukka_counter": [
 {
-"id": "wf_83a2da3792",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the love at the yaba bukka counter, and Kunle reads the name twice.",
-"code": "plastic_sheet.interactwith(yaba_bukka_counter){ yaba_bukka_counter.receives(plastic_sheet.envelope); … }",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j6",
-"other": "plastic_sheet"
-},
-{
 "id": "wf_5049d8e4b5",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the love at the yaba bukka counter, and Kunle reads the name twice.",
@@ -1145,6 +1135,16 @@
 "run": "run-b9b963",
 "card": "j6",
 "other": "laakl"
+},
+{
+"id": "wf_60fb2101d1",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the yaba bukka counter, and Kunle reads the name twice.",
+"code": "red_white_cap.interactwith(yaba_bukka_counter){ yaba_bukka_counter.receives(red_white_cap.envelope); … }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j6",
+"other": "red_white_cap"
 },
 {
 "id": "wt_4e525b9c48",
@@ -2219,6 +2219,16 @@
 "other": "called"
 },
 {
+"id": "wf_32b4f6a237",
+"kind": "consequence",
+"text": "An Isl note with Kunle's name and 'worm question' on it, 5:30pm, 13 Nov 2026, turns up inside the juju code at the cup, and Ejiro reads the name twice.",
+"code": "isl.interactwith(cup){ cup.receives(isl.question); cup.remembers(kunle, 'worm question'); cup.tucks(isl, 'isl note into the juju code'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j3",
+"other": "isl"
+},
+{
 "id": "wt_9a530635c7",
 "kind": "consequence",
 "text": "Someone sets the cup down beside the steady green lamp, and the note folded under it, with Ejiro's name and juju code, finally gets read in a good light.",
@@ -3018,28 +3028,6 @@
 },
 "consequences": [
 {
-"id": "wf_3b1d9b9b2b",
-"ts": "2026-11-15T13:13:03-0500",
-"a": "cell_phone",
-"b": "people_scene",
-"code": "cell_phone.interactwith(people_scene){ people_scene.receives(cell_phone.code); … }",
-"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the boss joke at the people scene, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j2"
-},
-{
-"id": "wf_cb77549a17",
-"ts": "2026-11-15T13:13:54-0500",
-"a": "game",
-"b": "notnotnotnotyn_dec",
-"code": "game.interactwith(notnotnotnotyn_dec){ notnotnotnotyn_dec.receives(game.joke); … }",
-"text": "An Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997, turns up inside the brown envelope at the notnotnotnotyn dec, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j1"
-},
-{
 "id": "wf_20d3b07e2a",
 "ts": "2026-11-15T13:14:42-0500",
 "a": "tie",
@@ -3456,6 +3444,28 @@
 "author": "cos",
 "run": "run-b9b963",
 "card": "w"
+},
+{
+"id": "wf_60fb2101d1",
+"ts": "2026-11-15T15:08:48-0500",
+"a": "red_white_cap",
+"b": "yaba_bukka_counter",
+"code": "red_white_cap.interactwith(yaba_bukka_counter){ yaba_bukka_counter.receives(red_white_cap.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the yaba bukka counter, and Kunle reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j6"
+},
+{
+"id": "wf_32b4f6a237",
+"ts": "2026-11-15T15:30:48-0500",
+"a": "isl",
+"b": "cup",
+"code": "isl.interactwith(cup){ cup.receives(isl.question); cup.remembers(kunle, 'worm question'); cup.tucks(isl, 'isl note into the juju code'); }",
+"text": "An Isl note with Kunle's name and 'worm question' on it, 5:30pm, 13 Nov 2026, turns up inside the juju code at the cup, and Ejiro reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j3"
 }
 ],
 "memories": [
@@ -3559,5 +3569,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-15T15:06:20-0500"
+"updated": "2026-11-15T15:30:48-0500"
 }
