@@ -529,16 +529,6 @@
 "objects": {
 "ikeja_laundromat": [
 {
-"id": "wf_37f42c8c43",
-"kind": "consequence",
-"text": "An Isl note with Kunle's name and 'worm question' on it, 5:30pm, 13 Nov 2026, turns up inside the juju code at the ikeja laundromat, and Ejiro reads the name twice.",
-"code": "isl.interactwith(ikeja_laundromat){ ikeja_laundromat.receives(isl.question); … }",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j3",
-"other": "isl"
-},
-{
 "id": "wf_ba56b50930",
 "kind": "memory",
 "text": "10:15am, Thursday 6 May 2060: Bisola holds a folded green shirt that is not hers. The ikeja laundromat keeps it on file.",
@@ -577,6 +567,16 @@
 "run": "run-b9b963",
 "card": "j8",
 "other": null
+},
+{
+"id": "wt_c1a9e05d22",
+"kind": "consequence",
+"text": "Taiwo carries the senator receipt from the Oshodi shelter to the Ikeja laundromat and, without thinking, folds it into the pocket of the green shirt waiting in the bin.",
+"code": "oshodi_bus_shelter.interactwith(ikeja_laundromat){ ikeja_laundromat.receives(oshodi_bus_shelter.receipt); … }",
+"author": "thryd",
+"run": "world",
+"card": "w",
+"other": "oshodi_bus_shelter"
 }
 ],
 "yaba_bookshop": [
@@ -809,6 +809,16 @@
 "run": "run-b9b963",
 "card": "j1",
 "other": "agbada"
+},
+{
+"id": "wt_c1a9e05d21",
+"kind": "consequence",
+"text": "The egbe note slips out of the agbada's sleeve by the danfo speaker, and the conductor reads Bisola's old boss joke aloud over the music until the whole bus stop laughs at a 1997 joke.",
+"code": "agbada.interactwith(danfo_speaker){ danfo_speaker.receives(agbada, 'egbe note'); danfo_speaker.remembers(Bisola, 'boss joke read aloud at the bus stop'); }",
+"author": "thryd",
+"run": "world",
+"card": "w",
+"other": "agbada"
 }
 ],
 "plastic_sheet": [
@@ -997,6 +1007,16 @@
 "run": "run-b9b963",
 "card": "j9",
 "other": "lekki_pharmacy"
+},
+{
+"id": "wt_c1a9e05d23",
+"kind": "consequence",
+"text": "The coins Taiwo counted into the bukka dish come back to him as change, and he spends them on kerosene, so the lamp burns tonight on the same money that paid for lunch.",
+"code": "yaba_bukka_counter.interactwith(kerosene_lamp){ kerosene_lamp.receives(yaba_bukka_counter.change); kerosene_lamp.state('refilled with the dish coins'); }",
+"author": "thryd",
+"run": "world",
+"card": "w",
+"other": "yaba_bukka_counter"
 }
 ],
 "matches": [
@@ -2308,39 +2328,6 @@
 },
 "consequences": [
 {
-"id": "wf_a0af069270",
-"ts": "2026-11-15T04:19:40-0500",
-"a": "red_white",
-"b": "art_making_money",
-"code": "red_white.interactwith(art_making_money){ art_making_money.receives(red_white.envelope); art_making_money.remembers(bisola, 'brown envelope'); }",
-"text": "The art making money leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j6"
-},
-{
-"id": "wf_e3b326fcf1",
-"ts": "2026-11-15T04:22:53-0500",
-"a": "notnotnotnotyn_jan",
-"b": "hand_holding_small",
-"code": "notnotnotnotyn_jan.interactwith(hand_holding_small){ hand_holding_small.receives(notnotnotnotyn_jan.code); hand_holding_small.remembers(ejiro, 'juju code'); }",
-"text": "The hand holding small leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j2"
-},
-{
-"id": "wf_1f1564f877",
-"ts": "2026-11-15T04:27:00-0500",
-"a": "juniorboys",
-"b": "tie",
-"code": "juniorboys.interactwith(tie){ tie.receives(juniorboys.joke); tie.remembers(bisola, 'boss joke'); tie.tucks(juniorboys, 'egbe note into the brown envelope'); }",
-"text": "An Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997, turns up inside the brown envelope at the tie, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j1"
-},
-{
 "id": "wf_0484a72937",
 "ts": "2026-11-15T04:27:50-0500",
 "a": "isl",
@@ -2746,6 +2733,39 @@
 "author": "cos",
 "run": "run-b9b963",
 "card": "j6"
+},
+{
+"id": "wt_c1a9e05d21",
+"ts": "2026-11-15T09:52:00-0500",
+"a": "agbada",
+"b": "danfo_speaker",
+"code": "agbada.interactwith(danfo_speaker){ danfo_speaker.receives(agbada, 'egbe note'); danfo_speaker.remembers(Bisola, 'boss joke read aloud at the bus stop'); }",
+"text": "The egbe note slips out of the agbada's sleeve by the danfo speaker, and the conductor reads Bisola's old boss joke aloud over the music until the whole bus stop laughs at a 1997 joke.",
+"author": "thryd",
+"run": "world",
+"card": "w"
+},
+{
+"id": "wt_c1a9e05d22",
+"ts": "2026-11-15T09:52:00-0500",
+"a": "oshodi_bus_shelter",
+"b": "ikeja_laundromat",
+"code": "oshodi_bus_shelter.interactwith(ikeja_laundromat){ ikeja_laundromat.receives(oshodi_bus_shelter.receipt); … }",
+"text": "Taiwo carries the senator receipt from the Oshodi shelter to the Ikeja laundromat and, without thinking, folds it into the pocket of the green shirt waiting in the bin.",
+"author": "thryd",
+"run": "world",
+"card": "w"
+},
+{
+"id": "wt_c1a9e05d23",
+"ts": "2026-11-15T09:52:00-0500",
+"a": "yaba_bukka_counter",
+"b": "kerosene_lamp",
+"code": "yaba_bukka_counter.interactwith(kerosene_lamp){ kerosene_lamp.receives(yaba_bukka_counter.change); kerosene_lamp.state('refilled with the dish coins'); }",
+"text": "The coins Taiwo counted into the bukka dish come back to him as change, and he spends them on kerosene, so the lamp burns tonight on the same money that paid for lunch.",
+"author": "thryd",
+"run": "world",
+"card": "w"
 }
 ],
 "memories": [
@@ -2838,5 +2858,5 @@
 "card": "j8"
 }
 ],
-"updated": "2026-11-15T09:50:04-0500"
+"updated": "2026-11-15T09:50:57-0500"
 }
