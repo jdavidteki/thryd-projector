@@ -581,16 +581,6 @@
 ],
 "yaba_bookshop": [
 {
-"id": "wf_37c885e8ee",
-"kind": "memory",
-"text": "4:25pm, Monday 23 September 2058: Taiwo is shelving paperbacks by the window. The yaba bookshop keeps it on file.",
-"code": "yaba_bookshop.remembers(taiwo, 'paperbacks');",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j7",
-"other": null
-},
-{
 "id": "wf_40ff907c1e",
 "kind": "consequence",
 "text": "Taiwo carries a loose thread from the resewn collar to the Yaba bookshop and uses it to mark the page where the blue bead fell out, so the bookshop now remembers both hands.",
@@ -629,6 +619,16 @@
 "run": "run-b9b963",
 "card": "j5",
 "other": "festac_bead_stall"
+},
+{
+"id": "wt_95b71932b1",
+"kind": "memory",
+"text": "At 4:25pm the Yaba bookshop kept a receipt in the brown envelope with a senator story and a construction friend on it, and someone wrote [[love]] across it.",
+"code": "yaba_bookshop.remembers(Bisola,'senator receipt'); yaba_bookshop.find('brown envelope').add('love')",
+"author": "thryd",
+"run": "run-b9b963",
+"card": "j7",
+"other": null
 }
 ],
 "oshodi_bus_shelter": [
@@ -1037,16 +1037,6 @@
 ],
 "yaba_bukka_counter": [
 {
-"id": "wf_9caa612a87",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the yaba bukka counter, and Bisola reads the name twice.",
-"code": "seen.interactwith(yaba_bukka_counter){ yaba_bukka_counter.receives(seen.envelope); … }",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j6",
-"other": "seen"
-},
-{
 "id": "wf_f9dfb4e1f1",
 "kind": "consequence",
 "text": "An Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997, turns up inside the brown envelope at the yaba bukka counter, and Bisola reads the name twice.",
@@ -1085,6 +1075,16 @@
 "run": "run-b9b963",
 "card": "j2",
 "other": "play"
+},
+{
+"id": "wf_0484a72937",
+"kind": "consequence",
+"text": "An Isl note with Kunle's name and 'worm question' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the yaba bukka counter, and Bisola reads the name twice.",
+"code": "isl.interactwith(yaba_bukka_counter){ yaba_bukka_counter.receives(isl.question); … }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j3",
+"other": "isl"
 }
 ],
 "festac_bead_stall": [
@@ -1695,6 +1695,16 @@
 "run": "run-b9b963",
 "card": "j2",
 "other": "yaba_bukka_counter"
+},
+{
+"id": "wf_976a295462",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the juju code at the play, and Ejiro reads the name twice.",
+"code": "hands.interactwith(play){ play.receives(hands.envelope); play.remembers(bisola, 'brown envelope'); play.tucks(hands, 'yaba bookshop receipt into the juju code'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j6",
+"other": "hands"
 }
 ],
 "freaky_freaky": [
@@ -2030,31 +2040,31 @@
 "card": "j2",
 "other": "notnotnotnotyn_jan"
 }
+],
+"ikorodu_marina_ferry": [
+{
+"id": "wf_779cb172a0",
+"kind": "memory",
+"text": "12:35pm, Sunday 2 November 2064: Bisola stands at the ferry rail with a nylon bag of folded shirts held against the chest. The ikorodu marina ferry keeps it on file.",
+"code": "ikorodu_marina_ferry.remembers(bisola, 'bag of folded shirts');",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j10",
+"other": null
+},
+{
+"id": "wf_e8352b3fb2",
+"kind": "memory",
+"text": "12:35pm, Sunday 2 November 2064: Taiwo holds the rail as the deck shudders. The ikorodu marina ferry keeps it on file.",
+"code": "ikorodu_marina_ferry.remembers(taiwo, 'rail');",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j10",
+"other": null
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_326f04505f",
-"ts": "2026-11-14T20:34:56-0500",
-"a": "pure_water_cooler",
-"b": "yaba_bukka_counter",
-"code": "pure_water_cooler.interactwith(yaba_bukka_counter){ yaba_bukka_counter.receives(pure_water_cooler.code); … }",
-"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the yaba bukka counter, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j2"
-},
-{
-"id": "wf_8026b9cec1",
-"ts": "2026-11-14T20:36:30-0500",
-"a": "laptop",
-"b": "hands",
-"code": "laptop.interactwith(hands){ hands.receives(laptop.code); hands.remembers(ejiro, 'juju code'); }",
-"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up with the hands, which is still washed before he ate with the elders.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j2"
-},
 {
 "id": "wf_00dc7a0d06",
 "ts": "2026-11-14T20:37:17-0500",
@@ -2472,6 +2482,28 @@
 "author": "cos",
 "run": "run-b9b963",
 "card": "j1"
+},
+{
+"id": "wf_0484a72937",
+"ts": "2026-11-15T04:27:50-0500",
+"a": "isl",
+"b": "yaba_bukka_counter",
+"code": "isl.interactwith(yaba_bukka_counter){ yaba_bukka_counter.receives(isl.question); … }",
+"text": "An Isl note with Kunle's name and 'worm question' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the yaba bukka counter, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j3"
+},
+{
+"id": "wf_976a295462",
+"ts": "2026-11-15T04:28:37-0500",
+"a": "hands",
+"b": "play",
+"code": "hands.interactwith(play){ play.receives(hands.envelope); play.remembers(bisola, 'brown envelope'); play.tucks(hands, 'yaba bookshop receipt into the juju code'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the juju code at the play, and Ejiro reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j6"
 }
 ],
 "memories": [
@@ -2540,7 +2572,18 @@
 "author": "thryd",
 "run": "run-b9b963",
 "card": "j6"
+},
+{
+"id": "wt_95b71932b1",
+"ts": "2026-11-15T04:28:39-0500",
+"a": null,
+"b": "yaba_bookshop",
+"code": "yaba_bookshop.remembers(Bisola,'senator receipt'); yaba_bookshop.find('brown envelope').add('love')",
+"text": "At 4:25pm the Yaba bookshop kept a receipt in the brown envelope with a senator story and a construction friend on it, and someone wrote [[love]] across it.",
+"author": "thryd",
+"run": "run-b9b963",
+"card": "j7"
 }
 ],
-"updated": "2026-11-15T04:27:00-0500"
+"updated": "2026-11-15T04:29:24-0500"
 }
