@@ -725,6 +725,16 @@
 "run": "run-b9b963",
 "card": "j2",
 "other": "ttb"
+},
+{
+"id": "wf_5823550f35",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, turns up inside the juju code at the pure water cooler, and Ejiro reads the name twice.",
+"code": "called.interactwith(pure_water_cooler){ pure_water_cooler.receives(called.envelope); … }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j4",
+"other": "called"
 }
 ],
 "agbada": [
@@ -2148,42 +2158,33 @@
 "card": "j2",
 "other": "notnotnotnotyn_jan"
 }
+],
+"cassette_spine": [
+{
+"id": "wf_a01ba3c4b5",
+"kind": "consequence",
+"text": "The cassette spine leaves with a Yaba bukka counter chit with Kunle's name and 'love' on it, 5:30pm.",
+"code": "yaba_bukka_counter.interactwith(cassette_spine){ cassette_spine.receives(yaba_bukka_counter.love); cassette_spine.remembers(kunle, 'love'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j7",
+"other": "yaba_bukka_counter"
+}
+],
+"love": [
+{
+"id": "wf_8de5b80a47",
+"kind": "consequence",
+"text": "The love leaves with a Kerosene lamp note with Taiwo's name and 'change' on it.",
+"code": "kerosene_lamp.interactwith(love){ love.receives(kerosene_lamp.change); love.remembers(taiwo, 'change'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j9",
+"other": "kerosene_lamp"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_76625cd9d1",
-"ts": "2026-11-15T02:08:32-0500",
-"a": "yaba_bukka_counter",
-"b": "lowaleechelons",
-"code": "yaba_bukka_counter.interactwith(lowaleechelons){ lowaleechelons.receives(yaba_bukka_counter.envelope); lowaleechelons.remembers(bisola, 'brown envelope'); }",
-"text": "The lowaleechelons leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j6"
-},
-{
-"id": "wf_2007777284",
-"ts": "2026-11-15T02:13:20-0500",
-"a": "streetlights",
-"b": "bus",
-"code": "streetlights.interactwith(bus){ bus.receives(streetlights.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, turns up inside the timetable at the bus, and Kunle reads the name twice.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j4"
-},
-{
-"id": "wf_e58e10f47f",
-"ts": "2026-11-15T02:19:46-0500",
-"a": "reality",
-"b": "chair",
-"code": "reality.interactwith(chair){ chair.receives(reality.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the plastic sheet at the chair, and Ronke reads the name twice.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j6"
-},
 {
 "id": "wf_52d521f2a7",
 "ts": "2026-11-15T02:23:55-0500",
@@ -2590,6 +2591,39 @@
 "author": "cos",
 "run": "run-b9b963",
 "card": "j2"
+},
+{
+"id": "wf_5823550f35",
+"ts": "2026-11-15T05:16:44-0500",
+"a": "called",
+"b": "pure_water_cooler",
+"code": "called.interactwith(pure_water_cooler){ pure_water_cooler.receives(called.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, turns up inside the juju code at the pure water cooler, and Ejiro reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j4"
+},
+{
+"id": "wf_a01ba3c4b5",
+"ts": "2026-11-15T05:17:31-0500",
+"a": "yaba_bukka_counter",
+"b": "cassette_spine",
+"code": "yaba_bukka_counter.interactwith(cassette_spine){ cassette_spine.receives(yaba_bukka_counter.love); cassette_spine.remembers(kunle, 'love'); }",
+"text": "The cassette spine leaves with a Yaba bukka counter chit with Kunle's name and 'love' on it, 5:30pm.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j7"
+},
+{
+"id": "wf_8de5b80a47",
+"ts": "2026-11-15T05:19:53-0500",
+"a": "kerosene_lamp",
+"b": "love",
+"code": "kerosene_lamp.interactwith(love){ love.receives(kerosene_lamp.change); love.remembers(taiwo, 'change'); }",
+"text": "The love leaves with a Kerosene lamp note with Taiwo's name and 'change' on it.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j9"
 }
 ],
 "memories": [
@@ -2682,5 +2716,5 @@
 "card": "j8"
 }
 ],
-"updated": "2026-11-15T05:14:20-0500"
+"updated": "2026-11-15T05:19:53-0500"
 }
