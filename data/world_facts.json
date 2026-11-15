@@ -1127,16 +1127,6 @@
 ],
 "yaba_bukka_counter": [
 {
-"id": "wf_7224496963",
-"kind": "consequence",
-"text": "An Isl note with Kunle's name and 'worm question' on it, 5:30pm, 13 Nov 2026, turns up inside the love at the yaba bukka counter, and Kunle reads the name twice.",
-"code": "isl.interactwith(yaba_bukka_counter){ yaba_bukka_counter.receives(isl.question); … }",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j3",
-"other": "isl"
-},
-{
 "id": "wf_85624be61b",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the love at the yaba bukka counter, and Kunle reads the name twice.",
@@ -1165,6 +1155,16 @@
 "run": "run-b9b963",
 "card": "j2",
 "other": "wwgbtaycbmba"
+},
+{
+"id": "wf_83a2da3792",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the love at the yaba bukka counter, and Kunle reads the name twice.",
+"code": "plastic_sheet.interactwith(yaba_bukka_counter){ yaba_bukka_counter.receives(plastic_sheet.envelope); … }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j6",
+"other": "plastic_sheet"
 },
 {
 "id": "wt_4e525b9c48",
@@ -1785,16 +1785,6 @@
 ],
 "laptop": [
 {
-"id": "wf_4a4dc4749d",
-"kind": "consequence",
-"text": "A Kerosene lamp note with Ronke's name and 'plastic sheet' on it, turns up with the matches, which is still found.",
-"code": "imm.interactwith(laptop){ laptop.receives(imm.sheet); laptop.remembers(ronke, 'plastic sheet'); }",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j4",
-"other": "imm"
-},
-{
 "id": "wf_5b3c2ce974",
 "kind": "consequence",
 "text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the plastic sheet at the laptop, and Ronke reads the name twice.",
@@ -1833,6 +1823,16 @@
 "run": "run-b9b963",
 "card": "w",
 "other": "danfo_speaker"
+},
+{
+"id": "wf_ac4d261c5a",
+"kind": "consequence",
+"text": "A Danfo speaker note with Bisola's name and 'egbe note' on it, turns up inside the egbe note at the laptop, and Bisola reads the name twice.",
+"code": "love.interactwith(laptop){ laptop.receives(love.note); laptop.remembers(bisola, 'egbe note'); laptop.tucks(love, 'danfo speaker note into the egbe note'); }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "w",
+"other": "love"
 }
 ],
 "game": [
@@ -2958,28 +2958,6 @@
 },
 "consequences": [
 {
-"id": "wf_98e411451c",
-"ts": "2026-11-15T12:40:51-0500",
-"a": "danfo_speaker",
-"b": "laptop",
-"code": "danfo_speaker.interactwith(laptop){ laptop.receives(danfo_speaker.note); … }",
-"text": "A Danfo speaker note with Bisola's name and 'egbe note' on it, turns up inside the juju code at the laptop, and Ejiro reads the name twice.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "w"
-},
-{
-"id": "wf_5c3dee2455",
-"ts": "2026-11-15T12:42:51-0500",
-"a": "diss",
-"b": "yaba_bukka_counter",
-"code": "diss.interactwith(yaba_bukka_counter){ yaba_bukka_counter.receives(diss.change); … }",
-"text": "A Kerosene lamp note with Taiwo's name and 'change' on it, turns up inside the love at the yaba bukka counter, and Kunle reads the name twice.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j9"
-},
-{
 "id": "wf_0891f9628c",
 "ts": "2026-11-15T12:48:24-0500",
 "a": "juss",
@@ -3396,6 +3374,28 @@
 "author": "cos",
 "run": "run-b9b963",
 "card": "j2"
+},
+{
+"id": "wf_ac4d261c5a",
+"ts": "2026-11-15T14:27:27-0500",
+"a": "love",
+"b": "laptop",
+"code": "love.interactwith(laptop){ laptop.receives(love.note); laptop.remembers(bisola, 'egbe note'); laptop.tucks(love, 'danfo speaker note into the egbe note'); }",
+"text": "A Danfo speaker note with Bisola's name and 'egbe note' on it, turns up inside the egbe note at the laptop, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "w"
+},
+{
+"id": "wf_83a2da3792",
+"ts": "2026-11-15T14:29:02-0500",
+"a": "plastic_sheet",
+"b": "yaba_bukka_counter",
+"code": "plastic_sheet.interactwith(yaba_bukka_counter){ yaba_bukka_counter.receives(plastic_sheet.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the love at the yaba bukka counter, and Kunle reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j6"
 }
 ],
 "memories": [
@@ -3499,5 +3499,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-15T14:25:48-0500"
+"updated": "2026-11-15T14:29:02-0500"
 }
