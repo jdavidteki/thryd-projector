@@ -1095,7 +1095,7 @@
   function loadFO(){ fetch('data/frame_objects.json?t=' + Date.now(), {cache: 'no-store'}).then(r => r.ok ? r.json() : null).then(d => {
     if(!d || !d.by_scene) return; FO.by = d.by_scene; FO.at = Date.now();
     FO.chips = null; Object.keys(d.frames || {}).forEach(f => { if((d.frames[f].scenes || []).some(x => /^chips:/.test(x))) FO.chips = f; });
-    S.cuts.forEach(c => { c._tag = undefined; }); S.groups.forEach(g => { g._ftag = undefined; }); }).catch(()=>{}); }
+    S.cuts.forEach(c => { c._tag = undefined; c._time = undefined; }); S.groups.forEach(g => { g._ftag = undefined; }); }).catch(()=>{}); }
   loadFO(); setInterval(loadFO, 300000);
   function frameName(g){
     if(g._ftag !== undefined) return g._ftag;
@@ -1115,13 +1115,26 @@
     if(n && (/^cut\d*$/.test(n) || /\d/.test(n.replace(/\u00b7\d+$/, '')))) n = f ? f + '_subject' : null; // a ·N version marker is allowed
     return (c._tag = n || null);
   }
-  S.tagName = tagName; S.frameName = frameName;
+  // Jesuye 15 Nov 2026 2:38 / 2:40 AM ET: a tapped name also shows its in-story time, "#time: HH:MM" (24 h), on a second line that
+  // fades with it. Precomputed in data/frame_objects.json by_scene[id].time (card caption / frame text / stable placeholder,
+  // see tools/export_frame_objects.py); a scene missing there gets the same placeholder: FNV-1a 32 of its id, 06:00-23:55 in 5 min.
+  function fnv1a(t){ let h = 0x811c9dc5; const b = new TextEncoder().encode(String(t)); for(let i = 0; i < b.length; i++){ h ^= b[i]; h = Math.imul(h, 0x01000193) >>> 0; } return h >>> 0; }
+  function placeholderTime(id){ const m = 360 + (fnv1a(id) % 216) * 5; return String(Math.floor(m / 60)).padStart(2, '0') + ':' + String(m % 60).padStart(2, '0'); }
+  function timeOf(c){
+    if(c._time !== undefined) return c._time;
+    const g = c.home, id = g ? String(g.mid || '') : '', e = id && FO.by[id];
+    let t = e && /^\d\d:\d\d$/.test(String(e.time || '')) ? e.time : null;
+    if(!t && id) t = placeholderTime(id);
+    return (c._time = t || null);
+  }
+  S.tagName = tagName; S.frameName = frameName; S.timeOf = timeOf; S.placeholderTime = placeholderTime;
   const TAGS = document.createElement('div'); TAGS.id = 'gnames'; stage.appendChild(TAGS);
   const tcss = document.createElement('style');
   tcss.textContent = [
     '#gnames{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:2}',
     '#gnames .gn{position:absolute;left:0;top:0;pointer-events:none;white-space:nowrap;font:600 ' + (PHONE ? 'max(10px,1.45vh)' : 'max(10px,1.3vh)') + ' ui-monospace,Menlo,Consolas,monospace;letter-spacing:.02em;color:#fff;' +
       'text-shadow:0 0 2px #000,0 0 3px #000,0 1px 2px #000,0 0 6px rgba(0,0,0,.55);transition:opacity .8s;will-change:transform;user-select:none}',
+    '#gnames .gn.gt{white-space:pre;text-align:center;line-height:1.25}',
     '#gnames .gn.gf{color:#ffe7a8;font-size:' + (PHONE ? 'max(10px,1.35vh)' : 'max(10px,1.2vh)') + '}'
   ].join('\n');
   document.head.appendChild(tcss);
@@ -1129,7 +1142,7 @@
   function tagEl(key, text, frame){
     let el = tagEls.get(key);
     if(!el){ el = document.createElement('div'); el.className = 'gn' + (frame ? ' gf' : ''); el.style.opacity = '0'; TAGS.appendChild(el); tagEls.set(key, el); }
-    if(el.textContent !== text) el.textContent = text;
+    if(el.textContent !== text){ el.textContent = text; el.classList.toggle('gt', text.indexOf('\n') >= 0); }
     return el;
   }
   const SHOWN = S.shownTags = new Map(), TAG_MS = 3000, FADE_MS = 800; // cut -> shown at
@@ -1153,7 +1166,8 @@
     SHOWN.forEach((t, c) => {
       const n = tagName(c); if(!n) return;
       const r = c.el.getBoundingClientRect(); if(r.right < -50 || r.left > W0 + 50 || r.bottom < -30 || r.top > H0 + 30 || r.width < 6) return;
-      live.add(c); jobs.push({k: c, t: n, x: r.left + r.width / 2, y: r.bottom + 2, on: tnow - t < TAG_MS && !c.leaving && c.el.style.opacity !== '0', mid: true});
+      const tm = timeOf(c);
+      live.add(c); jobs.push({k: c, t: tm ? n + '\n#time: ' + tm : n, x: r.left + r.width / 2, y: r.bottom + 2, on: tnow - t < TAG_MS && !c.leaving && c.el.style.opacity !== '0', mid: true});
     });
     let wr = null;
     if(false) // frame tags stay hidden (Jesuye 10:22 AM ET: always-on tags were too noisy)
