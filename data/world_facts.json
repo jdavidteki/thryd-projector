@@ -1007,16 +1007,6 @@
 ],
 "yaba_bukka_counter": [
 {
-"id": "wf_b57aee45bf",
-"kind": "consequence",
-"text": "An Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997, turns up inside the brown envelope at the yaba bukka counter, and Bisola reads the name twice.",
-"code": "agbada.interactwith(yaba_bukka_counter){ yaba_bukka_counter.receives(agbada.joke); … }",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j1",
-"other": "agbada"
-},
-{
 "id": "wf_7c154b60c0",
 "kind": "consequence",
 "text": "An Isl note with Kunle's name and 'worm question' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the yaba bukka counter, and Bisola reads the name twice.",
@@ -1055,6 +1045,16 @@
 "run": "run-b9b963",
 "card": "j2",
 "other": "pure_water_cooler"
+},
+{
+"id": "wf_2f35ccfbce",
+"kind": "consequence",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the yaba bukka counter, and Bisola reads the name twice.",
+"code": "ttb.interactwith(yaba_bukka_counter){ yaba_bukka_counter.receives(ttb.code); … }",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j2",
+"other": "ttb"
 }
 ],
 "festac_bead_stall": [
@@ -1784,17 +1784,6 @@
 },
 "consequences": [
 {
-"id": "wf_93dd89624a",
-"ts": "2026-11-14T17:05:12-0500",
-"a": "yaba_bukka_counter",
-"b": "play",
-"code": "yaba_bukka_counter.interactwith(play){ play.receives(yaba_bukka_counter.code); play.remembers(ejiro, 'juju code'); }",
-"text": "The play leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j2"
-},
-{
 "id": "wf_9f8f3b358f",
 "ts": "2026-11-14T17:05:59-0500",
 "a": "tie",
@@ -2222,6 +2211,17 @@
 "author": "cos",
 "run": "run-b9b963",
 "card": "j6"
+},
+{
+"id": "wf_2f35ccfbce",
+"ts": "2026-11-15T02:00:17-0500",
+"a": "ttb",
+"b": "yaba_bukka_counter",
+"code": "ttb.interactwith(yaba_bukka_counter){ yaba_bukka_counter.receives(ttb.code); … }",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the yaba bukka counter, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-b9b963",
+"card": "j2"
 }
 ],
 "memories": [
@@ -2292,5 +2292,5 @@
 "card": "j6"
 }
 ],
-"updated": "2026-11-15T01:54:38-0500"
+"updated": "2026-11-15T02:00:17-0500"
 }
