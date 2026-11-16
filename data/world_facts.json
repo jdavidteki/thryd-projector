@@ -3684,6 +3684,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "agbada"
+},
+{
+"id": "wf_4060885edf",
+"kind": "consequence",
+"text": "A Kerosene lamp note with Taiwo's name and 'change' on it, turns up inside the brown envelope at the sports ball, and Bisola reads the name twice.",
+"code": "kerosene_lamp.interactwith(sports_ball){ sports_ball.receives(kerosene_lamp.change); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "w",
+"other": "kerosene_lamp"
 }
 ],
 "danfo_stuck": [
@@ -3852,16 +3862,6 @@
 ],
 "apapa_container_yard": [
 {
-"id": "wf_ef1cd01b1a",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the apapa container yard, and Bisola reads the name twice.",
-"code": "pure_water_cooler.interactwith(apapa_container_yard){ apapa_container_yard.receives(pure_water_cooler.envelope); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "pure_water_cooler"
-},
-{
 "id": "wf_dc2207471a",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the apapa container yard, and Bisola reads the name twice.",
@@ -3900,6 +3900,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "truth"
+},
+{
+"id": "wf_12e59fd6a0",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the apapa container yard, and Bisola reads the name twice.",
+"code": "agbada.interactwith(apapa_container_yard){ apapa_container_yard.receives(agbada.envelope); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "agbada"
 }
 ],
 "mrs_morenike_daramola": [
@@ -3974,28 +3984,6 @@
 ]
 },
 "consequences": [
-{
-"id": "wf_dc2207471a",
-"ts": "2026-11-16T07:01:50-0500",
-"a": "plastic_sheet",
-"b": "apapa_container_yard",
-"code": "plastic_sheet.interactwith(apapa_container_yard){ apapa_container_yard.receives(plastic_sheet.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the apapa container yard, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
-{
-"id": "wf_1975f7eb56",
-"ts": "2026-11-16T08:11:07-0500",
-"a": "morir_r",
-"b": "kweshon",
-"code": "morir_r.interactwith(kweshon){ kweshon.receives(morir_r.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the kweshon, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
 {
 "id": "wf_7a66dae594",
 "ts": "2026-11-16T09:46:08-0500",
@@ -4413,6 +4401,28 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j6"
+},
+{
+"id": "wf_4060885edf",
+"ts": "2026-11-16T11:51:30-0500",
+"a": "kerosene_lamp",
+"b": "sports_ball",
+"code": "kerosene_lamp.interactwith(sports_ball){ sports_ball.receives(kerosene_lamp.change); … }",
+"text": "A Kerosene lamp note with Taiwo's name and 'change' on it, turns up inside the brown envelope at the sports ball, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "w"
+},
+{
+"id": "wf_12e59fd6a0",
+"ts": "2026-11-16T11:54:39-0500",
+"a": "agbada",
+"b": "apapa_container_yard",
+"code": "agbada.interactwith(apapa_container_yard){ apapa_container_yard.receives(agbada.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the apapa container yard, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
 }
 ],
 "memories": [
@@ -4516,5 +4526,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-16T11:44:21-0500"
+"updated": "2026-11-16T11:54:39-0500"
 }
