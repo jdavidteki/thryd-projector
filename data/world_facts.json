@@ -1052,14 +1052,14 @@
 ],
 "kerosene_lamp": [
 {
-"id": "wf_fcc2e0874f",
+"id": "wf_cfea96360d",
 "kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the change at the kerosene lamp, and Taiwo reads the name twice.",
-"code": "matches.interactwith(kerosene_lamp){ kerosene_lamp.receives(matches.envelope); … }",
+"text": "A Danfo speaker note with Bisola's name and 'egbe note' on it, turns up inside the change at the kerosene lamp, and Taiwo reads the name twice.",
+"code": "danfo_speaker.interactwith(kerosene_lamp){ kerosene_lamp.receives(danfo_speaker.note); … }",
 "author": "cos",
 "run": "run-0bd7c0",
-"card": "j6",
-"other": "matches"
+"card": "w",
+"other": "danfo_speaker"
 },
 {
 "id": "wt_7a2b23aa13",
@@ -3995,17 +3995,6 @@
 },
 "consequences": [
 {
-"id": "wt_6a37fbc89f",
-"ts": "2026-11-16T09:46:34-0500",
-"a": "bow",
-"b": "good_vibes_only",
-"code": "bow.interactwith(good_vibes_only){ good_vibes_only.receives(bow.brown_envelope); good_vibes_only.smudges(bow, 'the word Only'); good_vibes_only.state('smudged'); }",
-"text": "The bow brushes the Good Vibes Only sign, and the brown envelope's corner leaves a smudge over the word Only, so the sign now holds Bisola's 7:40am receipt in its smear.",
-"author": "thryd",
-"run": "run-0bd7c0",
-"card": "j6"
-},
-{
 "id": "wt_5529751886",
 "ts": "2026-11-16T09:46:34-0500",
 "a": "keni_nice_day",
@@ -4433,6 +4422,17 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j6"
+},
+{
+"id": "wf_cfea96360d",
+"ts": "2026-11-16T12:09:46-0500",
+"a": "danfo_speaker",
+"b": "kerosene_lamp",
+"code": "danfo_speaker.interactwith(kerosene_lamp){ kerosene_lamp.receives(danfo_speaker.note); … }",
+"text": "A Danfo speaker note with Bisola's name and 'egbe note' on it, turns up inside the change at the kerosene lamp, and Taiwo reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "w"
 }
 ],
 "memories": [
@@ -4536,5 +4536,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-16T11:58:40-0500"
+"updated": "2026-11-16T12:09:46-0500"
 }
