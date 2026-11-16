@@ -1740,16 +1740,6 @@
 ],
 "bird": [
 {
-"id": "wf_918f148923",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, turns up inside the brown envelope at the bird, and Bisola reads the name twice.",
-"code": "agenda_scene.interactwith(bird){ bird.receives(agenda_scene.envelope); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j4",
-"other": "agenda_scene"
-},
-{
 "id": "wf_0aef98264c",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bird, and Bisola reads the name twice.",
@@ -1788,6 +1778,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "let"
+},
+{
+"id": "wf_3f0f94a462",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bird, and Bisola reads the name twice.",
+"code": "morir_r.interactwith(bird){ bird.receives(morir_r.envelope); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "morir_r"
 }
 ],
 "agenda_scene": [
@@ -3702,26 +3702,6 @@
 ],
 "danfo_stuck_third": [
 {
-"id": "wf_2b24dbd258",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the danfo stuck third, and Titi reads the name twice.",
-"code": "wsr.interactwith(danfo_stuck_third){ danfo_stuck_third.receives(wsr.envelope); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "wsr"
-},
-{
-"id": "wf_dfd57eb09e",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the danfo stuck third, and Titi reads the name twice.",
-"code": "bow.interactwith(danfo_stuck_third){ danfo_stuck_third.receives(bow.envelope); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "bow"
-},
-{
 "id": "wf_dffffaee12",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the danfo stuck third, and Titi reads the name twice.",
@@ -3740,6 +3720,26 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "ats"
+},
+{
+"id": "wf_24ca264a36",
+"kind": "consequence",
+"text": "A Danfo speaker note with Bisola's name and 'egbe note' on it, turns up inside the egbe note at the danfo stuck third, and Titi reads the name twice.",
+"code": "danfo_speaker.interactwith(danfo_stuck_third){ danfo_stuck_third.receives(danfo_speaker.note); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "w",
+"other": "danfo_speaker"
+},
+{
+"id": "wf_6237d218f3",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the danfo stuck third, and Titi reads the name twice.",
+"code": "truth.interactwith(danfo_stuck_third){ danfo_stuck_third.receives(truth.envelope); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "truth"
 },
 {
 "id": "wt_1115_2356_a",
@@ -3830,39 +3830,6 @@
 ]
 },
 "consequences": [
-{
-"id": "wf_cf980abeea",
-"ts": "2026-11-15T23:14:56-0500",
-"a": "agbada",
-"b": "lekki_pharmacy",
-"code": "agbada.interactwith(lekki_pharmacy){ lekki_pharmacy.receives(agbada.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the blue glass bead button at the lekki pharmacy, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
-{
-"id": "wf_b433fe7c87",
-"ts": "2026-11-15T23:53:43-0500",
-"a": "matches",
-"b": "red_white_cap",
-"code": "matches.interactwith(red_white_cap){ red_white_cap.receives(matches.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the red white cap, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
-{
-"id": "wt_1115_2356_a",
-"ts": "2026-11-15T23:56:00-0500",
-"a": "danfo_speaker",
-"b": "danfo_stuck_third",
-"code": "danfo_speaker.interactwith(danfo_stuck_third){ danfo_speaker.plays(danfo_stuck_third, 'egbe announcement'); … }",
-"text": "The danfo speaker crackles the egbe announcement while the bus grinds in third, and Titi notices the note folded in her hand says the same words, down to the misspelt street.",
-"author": "thryd",
-"run": "run-0bd7c0",
-"card": "w5"
-},
 {
 "id": "wt_1115_2356_b",
 "ts": "2026-11-15T23:56:00-0500",
@@ -4269,6 +4236,39 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j6"
+},
+{
+"id": "wf_24ca264a36",
+"ts": "2026-11-16T02:55:03-0500",
+"a": "danfo_speaker",
+"b": "danfo_stuck_third",
+"code": "danfo_speaker.interactwith(danfo_stuck_third){ danfo_stuck_third.receives(danfo_speaker.note); … }",
+"text": "A Danfo speaker note with Bisola's name and 'egbe note' on it, turns up inside the egbe note at the danfo stuck third, and Titi reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "w"
+},
+{
+"id": "wf_6237d218f3",
+"ts": "2026-11-16T02:55:51-0500",
+"a": "truth",
+"b": "danfo_stuck_third",
+"code": "truth.interactwith(danfo_stuck_third){ danfo_stuck_third.receives(truth.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the danfo stuck third, and Titi reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
+},
+{
+"id": "wf_3f0f94a462",
+"ts": "2026-11-16T02:57:25-0500",
+"a": "morir_r",
+"b": "bird",
+"code": "morir_r.interactwith(bird){ bird.receives(morir_r.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bird, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
 }
 ],
 "memories": [
@@ -4372,5 +4372,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-16T02:51:50-0500"
+"updated": "2026-11-16T02:57:25-0500"
 }
