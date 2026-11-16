@@ -1738,16 +1738,6 @@
 ],
 "bird": [
 {
-"id": "wf_115f4296c1",
-"kind": "consequence",
-"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the bird, and Bisola reads the name twice.",
-"code": "ttb.interactwith(bird){ bird.receives(ttb.code); bird.remembers(ejiro, 'juju code'); bird.tucks(ttb, 'ttb note into the brown envelope'); }",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j2",
-"other": "ttb"
-},
-{
 "id": "wf_5b6ebb908d",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bird, and Bisola reads the name twice.",
@@ -1786,6 +1776,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "plastic_sheet"
+},
+{
+"id": "wf_672e27ee3b",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bird, and Bisola reads the name twice.",
+"code": "omo.interactwith(bird){ bird.receives(omo.envelope); bird.remembers(bisola, 'brown envelope'); bird.tucks(omo, 'yaba bookshop receipt into the brown envelope'); }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "omo"
 }
 ],
 "agenda_scene": [
@@ -3637,17 +3637,6 @@
 },
 "consequences": [
 {
-"id": "wf_5a858f119c",
-"ts": "2026-11-15T17:27:54-0500",
-"a": "let",
-"b": "ikeja_laundromat",
-"code": "let.interactwith(ikeja_laundromat){ ikeja_laundromat.receives(let.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the senator receipt at the ikeja laundromat, and Taiwo reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
-{
 "id": "wf_2851b2b195",
 "ts": "2026-11-15T17:32:31-0500",
 "a": "morir_r",
@@ -4075,6 +4064,17 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j6"
+},
+{
+"id": "wf_672e27ee3b",
+"ts": "2026-11-15T22:06:55-0500",
+"a": "omo",
+"b": "bird",
+"code": "omo.interactwith(bird){ bird.receives(omo.envelope); bird.remembers(bisola, 'brown envelope'); bird.tucks(omo, 'yaba bookshop receipt into the brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bird, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
 }
 ],
 "memories": [
@@ -4178,5 +4178,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-15T22:00:27-0500"
+"updated": "2026-11-15T22:06:55-0500"
 }
