@@ -2302,16 +2302,6 @@
 ],
 "lekki_pharmacy": [
 {
-"id": "wf_cf980abeea",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the blue glass bead button at the lekki pharmacy, and Bisola reads the name twice.",
-"code": "agbada.interactwith(lekki_pharmacy){ lekki_pharmacy.receives(agbada.envelope); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "agbada"
-},
-{
 "id": "wf_9dbd46420d",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the blue glass bead button at the lekki pharmacy, and Bisola reads the name twice.",
@@ -2330,6 +2320,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "matches"
+},
+{
+"id": "wf_8bb3d9e29e",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the blue glass bead button at the lekki pharmacy, and Bisola reads the name twice.",
+"code": "morir_r.interactwith(lekki_pharmacy){ lekki_pharmacy.receives(morir_r.envelope); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "morir_r"
 },
 {
 "id": "wt_825a1245a2",
@@ -2353,16 +2353,6 @@
 }
 ],
 "cup": [
-{
-"id": "wf_4dd19e0b44",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the juju code at the cup, and Ejiro reads the name twice.",
-"code": "called.interactwith(cup){ cup.receives(called.envelope); cup.remembers(bisola, 'brown envelope'); cup.tucks(called, 'yaba bookshop receipt into the juju code'); }",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j6",
-"other": "called"
-},
 {
 "id": "wf_32b4f6a237",
 "kind": "consequence",
@@ -2392,6 +2382,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "sessy"
+},
+{
+"id": "wf_5ab63a53d8",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the juju code at the cup, and Ejiro reads the name twice.",
+"code": "plastic_sheet.interactwith(cup){ cup.receives(plastic_sheet.envelope); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "plastic_sheet"
 },
 {
 "id": "wt_9a530635c7",
@@ -3771,28 +3771,6 @@
 },
 "consequences": [
 {
-"id": "wf_e3d57af11d",
-"ts": "2026-11-15T21:44:08-0500",
-"a": "danfo_speaker",
-"b": "kerosene_lamp",
-"code": "danfo_speaker.interactwith(kerosene_lamp){ kerosene_lamp.receives(danfo_speaker.note); … }",
-"text": "A Danfo speaker note with Bisola's name and 'egbe note' on it, turns up inside the change at the kerosene lamp, and Taiwo reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "w"
-},
-{
-"id": "wf_41cfe18bba",
-"ts": "2026-11-15T21:46:30-0500",
-"a": "morir",
-"b": "sheep",
-"code": "morir.interactwith(sheep){ sheep.receives(morir.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the sheep, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
-{
 "id": "wf_10fc55a678",
 "ts": "2026-11-15T21:48:05-0500",
 "a": "kweshon",
@@ -4209,6 +4187,28 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j6"
+},
+{
+"id": "wf_5ab63a53d8",
+"ts": "2026-11-16T02:04:59-0500",
+"a": "plastic_sheet",
+"b": "cup",
+"code": "plastic_sheet.interactwith(cup){ cup.receives(plastic_sheet.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the juju code at the cup, and Ejiro reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
+},
+{
+"id": "wf_8bb3d9e29e",
+"ts": "2026-11-16T02:08:08-0500",
+"a": "morir_r",
+"b": "lekki_pharmacy",
+"code": "morir_r.interactwith(lekki_pharmacy){ lekki_pharmacy.receives(morir_r.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the blue glass bead button at the lekki pharmacy, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
 }
 ],
 "memories": [
@@ -4312,5 +4312,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-16T02:02:34-0500"
+"updated": "2026-11-16T02:08:08-0500"
 }
