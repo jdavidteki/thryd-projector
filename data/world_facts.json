@@ -3406,20 +3406,21 @@
 "card": "j10",
 "other": null
 }
+],
+"wsr": [
+{
+"id": "wf_21772219fb",
+"kind": "consequence",
+"text": "The wsr leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "truth.interactwith(wsr){ wsr.receives(truth.envelope); wsr.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "truth"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_2fca3ecff8",
-"ts": "2026-11-15T16:30:16-0500",
-"a": "pure_water_cooler",
-"b": "bed",
-"code": "pure_water_cooler.interactwith(bed){ bed.receives(pure_water_cooler.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bed, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
 {
 "id": "wf_23121dac07",
 "ts": "2026-11-15T16:33:11-0500",
@@ -3848,6 +3849,17 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j2"
+},
+{
+"id": "wf_21772219fb",
+"ts": "2026-11-15T19:48:16-0500",
+"a": "truth",
+"b": "wsr",
+"code": "truth.interactwith(wsr){ wsr.receives(truth.envelope); wsr.remembers(bisola, 'brown envelope'); }",
+"text": "The wsr leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
 }
 ],
 "memories": [
@@ -3951,5 +3963,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-15T19:24:02-0500"
+"updated": "2026-11-15T19:48:16-0500"
 }
