@@ -1608,6 +1608,16 @@
 "run": "run-b9b963",
 "card": "j4",
 "other": "yaba_bookshop"
+},
+{
+"id": "wt_181eb9b92a",
+"kind": "consequence",
+"text": "When b comes into the Lekki pharmacy, the pharmacist mistakes it for whoever left the unpaid slip and hands it Titi's prescription from the drawer by the blue glass bead button.",
+"code": "b.interactwith(lekki_pharmacy){ b.receives(lekki_pharmacy.slip); … }",
+"author": "thryd",
+"run": "run-0bd7c0",
+"card": "j8",
+"other": "lekki_pharmacy"
 }
 ],
 "notnotnotnotyn_jan": [
@@ -3847,42 +3857,33 @@
 "card": "w6",
 "other": "streetlights"
 }
+],
+"good_vibes_only": [
+{
+"id": "wt_6a37fbc89f",
+"kind": "consequence",
+"text": "The bow brushes the Good Vibes Only sign, and the brown envelope's corner leaves a smudge over the word Only, so the sign now holds Bisola's 7:40am receipt in its smear.",
+"code": "bow.interactwith(good_vibes_only){ good_vibes_only.receives(bow.brown_envelope); good_vibes_only.smudges(bow, 'the word Only'); good_vibes_only.state('smudged'); }",
+"author": "thryd",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "bow"
+}
+],
+"marker": [
+{
+"id": "wt_5529751886",
+"kind": "consequence",
+"text": "Kunle borrows the marker to fix the fading Nice Day sign and, without thinking, writes the date small in the corner, so the marker now remembers the sign it saved.",
+"code": "keni_nice_day.interactwith(marker){ marker.remembers(kunle, 'nice day sign'); … }",
+"author": "thryd",
+"run": "run-0bd7c0",
+"card": "j3",
+"other": "keni_nice_day"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_15d30a7af1",
-"ts": "2026-11-16T01:06:50-0500",
-"a": "kweshon",
-"b": "apapa_container_yard",
-"code": "kweshon.interactwith(apapa_container_yard){ apapa_container_yard.receives(kweshon.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the apapa container yard, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
-{
-"id": "wf_bdd8246e63",
-"ts": "2026-11-16T01:07:37-0500",
-"a": "truth",
-"b": "danfo_stuck_third",
-"code": "truth.interactwith(danfo_stuck_third){ danfo_stuck_third.receives(truth.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the danfo stuck third, and Titi reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
-{
-"id": "wf_37ddd4d1d2",
-"ts": "2026-11-16T01:10:06-0500",
-"a": "matches",
-"b": "morir_r",
-"code": "matches.interactwith(morir_r){ morir_r.receives(matches.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the morir r, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
 {
 "id": "wf_0d5b1522b6",
 "ts": "2026-11-16T01:42:28-0500",
@@ -4289,6 +4290,39 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "w"
+},
+{
+"id": "wt_181eb9b92a",
+"ts": "2026-11-16T09:46:34-0500",
+"a": "lekki_pharmacy",
+"b": "b",
+"code": "b.interactwith(lekki_pharmacy){ b.receives(lekki_pharmacy.slip); … }",
+"text": "When b comes into the Lekki pharmacy, the pharmacist mistakes it for whoever left the unpaid slip and hands it Titi's prescription from the drawer by the blue glass bead button.",
+"author": "thryd",
+"run": "run-0bd7c0",
+"card": "j8"
+},
+{
+"id": "wt_6a37fbc89f",
+"ts": "2026-11-16T09:46:34-0500",
+"a": "bow",
+"b": "good_vibes_only",
+"code": "bow.interactwith(good_vibes_only){ good_vibes_only.receives(bow.brown_envelope); good_vibes_only.smudges(bow, 'the word Only'); good_vibes_only.state('smudged'); }",
+"text": "The bow brushes the Good Vibes Only sign, and the brown envelope's corner leaves a smudge over the word Only, so the sign now holds Bisola's 7:40am receipt in its smear.",
+"author": "thryd",
+"run": "run-0bd7c0",
+"card": "j6"
+},
+{
+"id": "wt_5529751886",
+"ts": "2026-11-16T09:46:34-0500",
+"a": "keni_nice_day",
+"b": "marker",
+"code": "keni_nice_day.interactwith(marker){ marker.remembers(kunle, 'nice day sign'); … }",
+"text": "Kunle borrows the marker to fix the fading Nice Day sign and, without thinking, writes the date small in the corner, so the marker now remembers the sign it saved.",
+"author": "thryd",
+"run": "run-0bd7c0",
+"card": "j3"
 }
 ],
 "memories": [
@@ -4392,5 +4426,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-16T09:46:08-0500"
+"updated": "2026-11-16T09:47:13-0500"
 }
