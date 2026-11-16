@@ -3436,6 +3436,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "wsr"
+},
+{
+"id": "wf_8ddb92f54d",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the ats, and Bisola reads the name twice.",
+"code": "plastic_sheet.interactwith(ats){ ats.receives(plastic_sheet.envelope); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "plastic_sheet"
 }
 ],
 "agege_railway_platform": [
@@ -3554,6 +3564,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "agbada"
+},
+{
+"id": "wf_38c3274ce1",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bow, and Bisola reads the name twice.",
+"code": "let.interactwith(bow){ bow.receives(let.envelope); bow.remembers(bisola, 'brown envelope'); bow.tucks(let, 'yaba bookshop receipt into the brown envelope'); }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "let"
 }
 ],
 "crown": [
@@ -4015,28 +4035,6 @@
 },
 "consequences": [
 {
-"id": "wf_589d9f494a",
-"ts": "2026-11-16T10:22:04-0500",
-"a": "red_white_cap",
-"b": "tea_bread_stall",
-"code": "red_white_cap.interactwith(tea_bread_stall){ tea_bread_stall.receives(red_white_cap.egbe_note); … }",
-"text": "Whoever wore the red and white cap home stops for tea at Ojuelegba at 6:15am, and the egbe note under its brim slips onto Titi's counter beside the cups nobody has claimed, so the stall now holds Taiwo's meeting time without knowing whose it is.",
-"author": "cos",
-"run": "run-ff3591",
-"card": "j5"
-},
-{
-"id": "wf_aab18e58ed",
-"ts": "2026-11-16T10:22:04-0500",
-"a": "cell_phone",
-"b": "bed",
-"code": "cell_phone.interactwith(bed){ bed.receives(cell_phone, 'brown envelope'); cell_phone.set('missed_calls','9'); bed.remembers(taiwo, 'unanswered call mid-take'); }",
-"text": "The phone that kept ringing on the bedside stool through Bisola's take at the Jibowu lodge was calling about the brown envelope, and the bed it lit up beside now holds that record while the missed calls stack to nine.",
-"author": "cos",
-"run": "run-ff3591",
-"card": "j6"
-},
-{
 "id": "wf_8250b674bb",
 "ts": "2026-11-16T10:27:48-0500",
 "a": "agbada",
@@ -4453,6 +4451,28 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j6"
+},
+{
+"id": "wf_38c3274ce1",
+"ts": "2026-11-16T12:50:29-0500",
+"a": "let",
+"b": "bow",
+"code": "let.interactwith(bow){ bow.receives(let.envelope); bow.remembers(bisola, 'brown envelope'); bow.tucks(let, 'yaba bookshop receipt into the brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bow, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
+},
+{
+"id": "wf_8ddb92f54d",
+"ts": "2026-11-16T12:52:04-0500",
+"a": "plastic_sheet",
+"b": "ats",
+"code": "plastic_sheet.interactwith(ats){ ats.receives(plastic_sheet.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the ats, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
 }
 ],
 "memories": [
@@ -4556,5 +4576,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-16T12:44:54-0500"
+"updated": "2026-11-16T12:52:04-0500"
 }
