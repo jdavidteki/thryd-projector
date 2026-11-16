@@ -759,16 +759,6 @@
 ],
 "agbada": [
 {
-"id": "wf_e73a22a4c7",
-"kind": "consequence",
-"text": "A Kerosene lamp note with Ronke's name and 'plastic sheet' on it, turns up with the agbada, which is still worn by a stranger haggler.",
-"code": "imm.interactwith(agbada){ agbada.receives(imm.sheet); agbada.remembers(ronke, 'plastic sheet'); }",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j4",
-"other": "imm"
-},
-{
 "id": "wf_795c95df4f",
 "kind": "consequence",
 "text": "An Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997, turns up inside the plastic sheet at the agbada, and Ronke reads the name twice.",
@@ -807,6 +797,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "tie"
+},
+{
+"id": "wf_20b1ca36eb",
+"kind": "consequence",
+"text": "A Danfo speaker note with Bisola's name and 'egbe note' on it, turns up inside the brown envelope at the agbada, and Bisola reads the name twice.",
+"code": "danfo_speaker.interactwith(agbada){ agbada.receives(danfo_speaker.note); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "w",
+"other": "danfo_speaker"
 }
 ],
 "danfo_speaker": [
@@ -3454,17 +3454,6 @@
 },
 "consequences": [
 {
-"id": "wf_5bd7729da6",
-"ts": "2026-11-15T16:54:05-0500",
-"a": "omo",
-"b": "yaba_bukka_counter",
-"code": "omo.interactwith(yaba_bukka_counter){ yaba_bukka_counter.receives(omo.bead); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it, turns up inside the brown envelope at the yaba bukka counter, and Kunle reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j5"
-},
-{
 "id": "wf_a4bb75f956",
 "ts": "2026-11-15T16:54:52-0500",
 "a": "truth",
@@ -3892,6 +3881,17 @@
 "author": "thryd",
 "run": "run-0bd7c0",
 "card": "j9"
+},
+{
+"id": "wf_20b1ca36eb",
+"ts": "2026-11-15T20:41:08-0500",
+"a": "danfo_speaker",
+"b": "agbada",
+"code": "danfo_speaker.interactwith(agbada){ agbada.receives(danfo_speaker.note); … }",
+"text": "A Danfo speaker note with Bisola's name and 'egbe note' on it, turns up inside the brown envelope at the agbada, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "w"
 }
 ],
 "memories": [
@@ -3995,5 +3995,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-15T19:49:12-0500"
+"updated": "2026-11-15T20:41:08-0500"
 }
