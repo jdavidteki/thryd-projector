@@ -2364,16 +2364,6 @@
 ],
 "cup": [
 {
-"id": "wf_d57f721947",
-"kind": "consequence",
-"text": "An Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997, turns up inside the juju code at the cup, and Ejiro reads the name twice.",
-"code": "agbada.interactwith(cup){ cup.receives(agbada.joke); cup.remembers(bisola, 'boss joke'); cup.tucks(agbada, 'egbe note into the juju code'); }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j1",
-"other": "agbada"
-},
-{
 "id": "wf_552e91b755",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the juju code at the cup, and Ejiro reads the name twice.",
@@ -2402,6 +2392,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "let"
+},
+{
+"id": "wf_a75e3e2ef2",
+"kind": "consequence",
+"text": "A Red white cap note with Taiwo's name and 'egbe note' on it, 11:20pm, turns up inside the juju code at the cup, and Ejiro reads the name twice.",
+"code": "red_white_cap.interactwith(cup){ cup.receives(red_white_cap.note); cup.remembers(taiwo, 'egbe note'); cup.tucks(red_white_cap, 'red white cap note into the juju code'); }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "w7",
+"other": "red_white_cap"
 },
 {
 "id": "wt_9a530635c7",
@@ -2682,16 +2682,6 @@
 ],
 "bed": [
 {
-"id": "wf_e46192a184",
-"kind": "consequence",
-"text": "The bed leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"code": "red_white_cap.interactwith(bed){ bed.receives(red_white_cap.envelope); bed.remembers(bisola, 'brown envelope'); }",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j6",
-"other": "red_white_cap"
-},
-{
 "id": "wf_e48fc40020",
 "kind": "consequence",
 "text": "An Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997, turns up inside the brown envelope at the bed, and Bisola reads the name twice.",
@@ -2730,6 +2720,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "let"
+},
+{
+"id": "wf_aab18e58ed",
+"kind": "consequence",
+"text": "The phone that kept ringing on the bedside stool through Bisola's take at the Jibowu lodge was calling about the brown envelope, and the bed it lit up beside now holds that record while the missed calls stack to nine.",
+"code": "cell_phone.interactwith(bed){ bed.receives(cell_phone, 'brown envelope'); cell_phone.set('missed_calls','9'); bed.remembers(taiwo, 'unanswered call mid-take'); }",
+"author": "cos",
+"run": "run-ff3591",
+"card": "j6",
+"other": "cell_phone"
 }
 ],
 "art_making_money": [
@@ -3891,53 +3891,31 @@
 "card": "j3",
 "other": "keni_nice_day"
 }
+],
+"tea_bread_stall": [
+{
+"id": "wf_1303dc8b4a",
+"kind": "consequence",
+"text": "The chalk sketch the crew planed off the timber at Oko Baba at 4:20pm turns up folded behind the unclaimed receipt on the Ojuelegba tea stall's counter, so Kunle's shape reaches the junction before anyone there has agreed it is obvious.",
+"code": "sawmill_oko_baba.interactwith(tea_bread_stall){ sawmill_oko_baba.remembers(kunle, 'planed-off chalk sketch'); … }",
+"author": "cos",
+"run": "run-ff3591",
+"card": "j5",
+"other": "sawmill_oko_baba"
+},
+{
+"id": "wf_589d9f494a",
+"kind": "consequence",
+"text": "Whoever wore the red and white cap home stops for tea at Ojuelegba at 6:15am, and the egbe note under its brim slips onto Titi's counter beside the cups nobody has claimed, so the stall now holds Taiwo's meeting time without knowing whose it is.",
+"code": "red_white_cap.interactwith(tea_bread_stall){ tea_bread_stall.receives(red_white_cap.egbe_note); … }",
+"author": "cos",
+"run": "run-ff3591",
+"card": "j5",
+"other": "red_white_cap"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_dffffaee12",
-"ts": "2026-11-16T01:49:42-0500",
-"a": "pure_water_cooler",
-"b": "danfo_stuck_third",
-"code": "pure_water_cooler.interactwith(danfo_stuck_third){ danfo_stuck_third.receives(pure_water_cooler.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the danfo stuck third, and Titi reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
-{
-"id": "wf_8ad602c559",
-"ts": "2026-11-16T01:55:18-0500",
-"a": "matches",
-"b": "lekki_pharmacy",
-"code": "matches.interactwith(lekki_pharmacy){ lekki_pharmacy.receives(matches.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the blue glass bead button at the lekki pharmacy, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
-{
-"id": "wf_2858f2f0ab",
-"ts": "2026-11-16T01:56:18-0500",
-"a": "truth",
-"b": "laptop",
-"code": "truth.interactwith(laptop){ laptop.receives(truth.envelope); laptop.remembers(bisola, 'brown envelope'); laptop.tucks(truth, 'yaba bookshop receipt into the change'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the change at the laptop, and Taiwo reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
-{
-"id": "wf_458640e712",
-"ts": "2026-11-16T01:59:27-0500",
-"a": "kerosene_lamp",
-"b": "wsr",
-"code": "kerosene_lamp.interactwith(wsr){ wsr.receives(kerosene_lamp.change); … }",
-"text": "A Kerosene lamp note with Taiwo's name and 'change' on it, turns up inside the brown envelope at the wsr, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "w"
-},
 {
 "id": "wf_29ee517dc4",
 "ts": "2026-11-16T02:00:14-0500",
@@ -4333,6 +4311,50 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j6"
+},
+{
+"id": "wf_a75e3e2ef2",
+"ts": "2026-11-16T10:19:40-0500",
+"a": "red_white_cap",
+"b": "cup",
+"code": "red_white_cap.interactwith(cup){ cup.receives(red_white_cap.note); cup.remembers(taiwo, 'egbe note'); cup.tucks(red_white_cap, 'red white cap note into the juju code'); }",
+"text": "A Red white cap note with Taiwo's name and 'egbe note' on it, 11:20pm, turns up inside the juju code at the cup, and Ejiro reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "w7"
+},
+{
+"id": "wf_1303dc8b4a",
+"ts": "2026-11-16T10:22:04-0500",
+"a": "sawmill_oko_baba",
+"b": "tea_bread_stall",
+"code": "sawmill_oko_baba.interactwith(tea_bread_stall){ sawmill_oko_baba.remembers(kunle, 'planed-off chalk sketch'); … }",
+"text": "The chalk sketch the crew planed off the timber at Oko Baba at 4:20pm turns up folded behind the unclaimed receipt on the Ojuelegba tea stall's counter, so Kunle's shape reaches the junction before anyone there has agreed it is obvious.",
+"author": "cos",
+"run": "run-ff3591",
+"card": "j5"
+},
+{
+"id": "wf_589d9f494a",
+"ts": "2026-11-16T10:22:04-0500",
+"a": "red_white_cap",
+"b": "tea_bread_stall",
+"code": "red_white_cap.interactwith(tea_bread_stall){ tea_bread_stall.receives(red_white_cap.egbe_note); … }",
+"text": "Whoever wore the red and white cap home stops for tea at Ojuelegba at 6:15am, and the egbe note under its brim slips onto Titi's counter beside the cups nobody has claimed, so the stall now holds Taiwo's meeting time without knowing whose it is.",
+"author": "cos",
+"run": "run-ff3591",
+"card": "j5"
+},
+{
+"id": "wf_aab18e58ed",
+"ts": "2026-11-16T10:22:04-0500",
+"a": "cell_phone",
+"b": "bed",
+"code": "cell_phone.interactwith(bed){ bed.receives(cell_phone, 'brown envelope'); cell_phone.set('missed_calls','9'); bed.remembers(taiwo, 'unanswered call mid-take'); }",
+"text": "The phone that kept ringing on the bedside stool through Bisola's take at the Jibowu lodge was calling about the brown envelope, and the bed it lit up beside now holds that record while the missed calls stack to nine.",
+"author": "cos",
+"run": "run-ff3591",
+"card": "j6"
 }
 ],
 "memories": [
@@ -4436,5 +4458,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-16T10:17:41-0500"
+"updated": "2026-11-16T10:22:49-0500"
 }
