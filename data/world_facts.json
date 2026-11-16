@@ -3251,6 +3251,16 @@
 "run": "run-0bd7c0",
 "card": "w",
 "other": "kerosene_lamp"
+},
+{
+"id": "wf_b9700502d3",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the change at the morir r, and Taiwo reads the name twice.",
+"code": "red_white_cap.interactwith(morir_r){ morir_r.receives(red_white_cap.envelope); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "red_white_cap"
 }
 ],
 "ats": [
@@ -3475,17 +3485,6 @@
 ]
 },
 "consequences": [
-{
-"id": "wf_683a23d472",
-"ts": "2026-11-15T16:56:32-0500",
-"a": "omo",
-"b": "freaky_freaky",
-"code": "omo.interactwith(freaky_freaky){ freaky_freaky.receives(omo.bead); freaky_freaky.remembers(bisola, 'blue glass bead'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it, turns up with the matches, which is still found.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j5"
-},
 {
 "id": "wf_b9915f3995",
 "ts": "2026-11-15T16:57:27-0500",
@@ -3914,6 +3913,17 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j6"
+},
+{
+"id": "wf_b9700502d3",
+"ts": "2026-11-15T20:55:41-0500",
+"a": "red_white_cap",
+"b": "morir_r",
+"code": "red_white_cap.interactwith(morir_r){ morir_r.receives(red_white_cap.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the change at the morir r, and Taiwo reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
 }
 ],
 "memories": [
@@ -4017,5 +4027,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-15T20:54:50-0500"
+"updated": "2026-11-15T20:55:41-0500"
 }
