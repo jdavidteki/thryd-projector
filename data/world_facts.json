@@ -3281,6 +3281,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "red_white_cap"
+},
+{
+"id": "wf_bc7480c197",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the morir r, and Bisola reads the name twice.",
+"code": "ats.interactwith(morir_r){ morir_r.receives(ats.envelope); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "ats"
 }
 ],
 "ats": [
@@ -3512,20 +3522,21 @@
 "card": "j6",
 "other": "chair"
 }
+],
+"mushin_mechanic_bay": [
+{
+"id": "wf_ef432ac8ee",
+"kind": "memory",
+"text": "8:10pm, Friday 14 January 2078: Ejiro has a yellow cab's engine in pieces across the floor. The mushin mechanic bay keeps it on file.",
+"code": "mushin_mechanic_bay.remembers(ejiro, 'yellow cab s engine');",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j13",
+"other": null
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_f39193a045",
-"ts": "2026-11-15T17:01:59-0500",
-"a": "pure_water_cooler",
-"b": "neck_ostrich",
-"code": "pure_water_cooler.interactwith(neck_ostrich){ neck_ostrich.receives(pure_water_cooler.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the blue glass bead at the neck ostrich, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
 {
 "id": "wf_458c756bd9",
 "ts": "2026-11-15T17:02:54-0500",
@@ -3954,6 +3965,17 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j6"
+},
+{
+"id": "wf_bc7480c197",
+"ts": "2026-11-15T21:10:59-0500",
+"a": "ats",
+"b": "morir_r",
+"code": "ats.interactwith(morir_r){ morir_r.receives(ats.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the morir r, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
 }
 ],
 "memories": [
@@ -4057,5 +4079,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-15T21:10:08-0500"
+"updated": "2026-11-15T21:13:21-0500"
 }
