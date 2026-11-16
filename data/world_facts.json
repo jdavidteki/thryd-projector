@@ -2300,16 +2300,6 @@
 ],
 "lekki_pharmacy": [
 {
-"id": "wf_8418c86c9b",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the blue glass bead button at the lekki pharmacy, and Bisola reads the name twice.",
-"code": "let.interactwith(lekki_pharmacy){ lekki_pharmacy.receives(let.envelope); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "let"
-},
-{
 "id": "wf_cf980abeea",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the blue glass bead button at the lekki pharmacy, and Bisola reads the name twice.",
@@ -2328,6 +2318,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "plastic_sheet"
+},
+{
+"id": "wf_8ad602c559",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the blue glass bead button at the lekki pharmacy, and Bisola reads the name twice.",
+"code": "matches.interactwith(lekki_pharmacy){ lekki_pharmacy.receives(matches.envelope); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "matches"
 },
 {
 "id": "wt_825a1245a2",
@@ -3759,17 +3759,6 @@
 },
 "consequences": [
 {
-"id": "wf_0b5a3dcf5d",
-"ts": "2026-11-15T21:21:32-0500",
-"a": "morir_r",
-"b": "yaba_bukka_counter",
-"code": "morir_r.interactwith(yaba_bukka_counter){ yaba_bukka_counter.receives(morir_r.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the yaba bukka counter, and Kunle reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
-{
 "id": "wf_0cdfa7f23e",
 "ts": "2026-11-15T21:25:42-0500",
 "a": "plastic_sheet",
@@ -4197,6 +4186,17 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j6"
+},
+{
+"id": "wf_8ad602c559",
+"ts": "2026-11-16T01:55:18-0500",
+"a": "matches",
+"b": "lekki_pharmacy",
+"code": "matches.interactwith(lekki_pharmacy){ lekki_pharmacy.receives(matches.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the blue glass bead button at the lekki pharmacy, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
 }
 ],
 "memories": [
@@ -4300,5 +4300,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-16T01:49:42-0500"
+"updated": "2026-11-16T01:55:18-0500"
 }
