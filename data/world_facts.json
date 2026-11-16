@@ -1674,16 +1674,6 @@
 ],
 "bicycle": [
 {
-"id": "wf_40c03caeb2",
-"kind": "consequence",
-"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the plastic sheet at the bicycle, and Ronke reads the name twice.",
-"code": "game.interactwith(bicycle){ bicycle.receives(game.code); bicycle.remembers(ejiro, 'juju code'); bicycle.tucks(game, 'ttb note into the plastic sheet'); }",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j2",
-"other": "game"
-},
-{
 "id": "wf_9dc9366675",
 "kind": "consequence",
 "text": "A Kerosene lamp note with Taiwo's name and 'change' on it, turns up inside the juju code at the bicycle, and Ejiro reads the name twice.",
@@ -1722,6 +1712,16 @@
 "run": "run-0bd7c0",
 "card": "w",
 "other": "danfo_speaker"
+},
+{
+"id": "wf_1e3aafe421",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the bicycle, and Bisola reads the name twice.",
+"code": "let.interactwith(bicycle){ bicycle.receives(let.envelope); bicycle.remembers(bisola, 'brown envelope'); bicycle.tucks(let, 'yaba bookshop receipt into the egbe note'); }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "let"
 }
 ],
 "ronke": [
@@ -3709,17 +3709,6 @@
 },
 "consequences": [
 {
-"id": "wt_f227dbb0bd",
-"ts": "2026-11-15T19:48:18-0500",
-"a": "ikeja_laundromat",
-"b": "eyes_viral_figure",
-"code": "eyes_viral_figure.interactwith(ikeja_laundromat){ eyes_viral_figure.receives(ikeja_laundromat.receipt); eyes_viral_figure.remembers(bisola, 'senator receipt'); }",
-"text": "The eyes viral figure leaves the Ikeja laundromat with the senator receipt still damp from a wash cycle, Bisola's name half rinsed off but the 7:40am stamp still sharp.",
-"author": "thryd",
-"run": "run-0bd7c0",
-"card": "j6"
-},
-{
 "id": "wt_811228b421",
 "ts": "2026-11-15T19:48:18-0500",
 "a": "kerosene_lamp",
@@ -4147,6 +4136,17 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "w"
+},
+{
+"id": "wf_1e3aafe421",
+"ts": "2026-11-16T00:41:46-0500",
+"a": "let",
+"b": "bicycle",
+"code": "let.interactwith(bicycle){ bicycle.receives(let.envelope); bicycle.remembers(bisola, 'brown envelope'); bicycle.tucks(let, 'yaba bookshop receipt into the egbe note'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the bicycle, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
 }
 ],
 "memories": [
@@ -4250,5 +4250,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-16T00:39:20-0500"
+"updated": "2026-11-16T00:41:46-0500"
 }
