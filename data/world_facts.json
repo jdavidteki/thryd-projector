@@ -1750,16 +1750,6 @@
 ],
 "bird": [
 {
-"id": "wf_0cdfa7f23e",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bird, and Bisola reads the name twice.",
-"code": "plastic_sheet.interactwith(bird){ bird.receives(plastic_sheet.envelope); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "plastic_sheet"
-},
-{
 "id": "wf_672e27ee3b",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bird, and Bisola reads the name twice.",
@@ -1798,6 +1788,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "sessy"
+},
+{
+"id": "wf_3a7faf8822",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bird, and Bisola reads the name twice.",
+"code": "agbada.interactwith(bird){ bird.receives(agbada.envelope); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "agbada"
 }
 ],
 "agenda_scene": [
@@ -1900,16 +1900,6 @@
 ],
 "laptop": [
 {
-"id": "wf_ed8be77d63",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the rain-stained receipt at the laptop, and Ejiro reads the name twice.",
-"code": "morir.interactwith(laptop){ laptop.receives(morir.envelope); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "morir"
-},
-{
 "id": "wf_0b4230a7ed",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the rain-stained receipt at the laptop, and Ejiro reads the name twice.",
@@ -1928,6 +1918,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "omo"
+},
+{
+"id": "wf_4120df21b2",
+"kind": "consequence",
+"text": "A Red white cap note with Taiwo's name and 'egbe note' on it, 11:20pm, turns up inside the rain-stained receipt at the laptop, and Ejiro reads the name twice.",
+"code": "red_white_cap.interactwith(laptop){ laptop.receives(red_white_cap.note); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "w7",
+"other": "red_white_cap"
 },
 {
 "id": "wt_00586a397c",
@@ -3560,6 +3560,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "morir_r"
+},
+{
+"id": "wf_64e0e45632",
+"kind": "consequence",
+"text": "A Red white cap note with Taiwo's name and 'egbe note' on it, 11:20pm, turns up inside the brown envelope at the kweshon, and Bisola reads the name twice.",
+"code": "red_white_cap.interactwith(kweshon){ kweshon.receives(red_white_cap.note); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "w7",
+"other": "red_white_cap"
 }
 ],
 "let": [
@@ -3926,39 +3936,6 @@
 ]
 },
 "consequences": [
-{
-"id": "wf_6e00fa59ca",
-"ts": "2026-11-16T02:19:15-0500",
-"a": "ats",
-"b": "danfo_stuck_third",
-"code": "ats.interactwith(danfo_stuck_third){ danfo_stuck_third.receives(ats.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the danfo stuck third, and Titi reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
-{
-"id": "wf_655bbecdb2",
-"ts": "2026-11-16T02:23:26-0500",
-"a": "bow",
-"b": "chair",
-"code": "bow.interactwith(chair){ chair.receives(bow.envelope); chair.remembers(bisola, 'brown envelope'); chair.tucks(bow, 'yaba bookshop receipt into the brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the chair, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
-{
-"id": "wf_20339e3bff",
-"ts": "2026-11-16T02:26:57-0500",
-"a": "agbada",
-"b": "bow",
-"code": "agbada.interactwith(bow){ bow.receives(agbada.envelope); bow.remembers(bisola, 'brown envelope'); bow.tucks(agbada, 'yaba bookshop receipt into the brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bow, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
 {
 "id": "wf_4dcbd2db48",
 "ts": "2026-11-16T02:27:45-0500",
@@ -4365,6 +4342,39 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j6"
+},
+{
+"id": "wf_3a7faf8822",
+"ts": "2026-11-16T10:52:21-0500",
+"a": "agbada",
+"b": "bird",
+"code": "agbada.interactwith(bird){ bird.receives(agbada.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bird, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
+},
+{
+"id": "wf_4120df21b2",
+"ts": "2026-11-16T10:53:56-0500",
+"a": "red_white_cap",
+"b": "laptop",
+"code": "red_white_cap.interactwith(laptop){ laptop.receives(red_white_cap.note); … }",
+"text": "A Red white cap note with Taiwo's name and 'egbe note' on it, 11:20pm, turns up inside the rain-stained receipt at the laptop, and Ejiro reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "w7"
+},
+{
+"id": "wf_64e0e45632",
+"ts": "2026-11-16T10:54:43-0500",
+"a": "red_white_cap",
+"b": "kweshon",
+"code": "red_white_cap.interactwith(kweshon){ kweshon.receives(red_white_cap.note); … }",
+"text": "A Red white cap note with Taiwo's name and 'egbe note' on it, 11:20pm, turns up inside the brown envelope at the kweshon, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "w7"
 }
 ],
 "memories": [
@@ -4468,5 +4478,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-16T10:48:20-0500"
+"updated": "2026-11-16T10:54:43-0500"
 }
