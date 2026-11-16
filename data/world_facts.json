@@ -3646,16 +3646,6 @@
 ],
 "kweshon": [
 {
-"id": "wf_7d491cffb1",
-"kind": "consequence",
-"text": "The kweshon leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"code": "pure_water_cooler.interactwith(kweshon){ kweshon.receives(pure_water_cooler.envelope); kweshon.remembers(bisola, 'brown envelope'); }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "pure_water_cooler"
-},
-{
 "id": "wf_ae05917926",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the kweshon, and Bisola reads the name twice.",
@@ -3694,6 +3684,16 @@
 "run": "run-0bd7c0",
 "card": "w7",
 "other": "red_white_cap"
+},
+{
+"id": "wf_14fb42d76d",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the kweshon, and Bisola reads the name twice.",
+"code": "matches.interactwith(kweshon){ kweshon.receives(matches.envelope); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "matches"
 }
 ],
 "let": [
@@ -4213,17 +4213,6 @@
 },
 "consequences": [
 {
-"id": "wf_da4e2a726d",
-"ts": "2026-11-16T14:34:06-0500",
-"a": "let",
-"b": "danfo_stuck_third",
-"code": "let.interactwith(danfo_stuck_third){ danfo_stuck_third.receives(let.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the danfo stuck third, and Titi reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
-{
 "id": "wf_a1ce244a5e",
 "ts": "2026-11-16T14:34:57-0500",
 "a": "ats",
@@ -4651,6 +4640,17 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j4"
+},
+{
+"id": "wf_14fb42d76d",
+"ts": "2026-11-16T16:18:45-0500",
+"a": "matches",
+"b": "kweshon",
+"code": "matches.interactwith(kweshon){ kweshon.receives(matches.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the kweshon, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
 }
 ],
 "memories": [
@@ -4754,5 +4754,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-16T16:11:36-0500"
+"updated": "2026-11-16T16:18:45-0500"
 }
