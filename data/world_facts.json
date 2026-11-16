@@ -1928,16 +1928,6 @@
 ],
 "laptop": [
 {
-"id": "wf_0b4230a7ed",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the rain-stained receipt at the laptop, and Ejiro reads the name twice.",
-"code": "plastic_sheet.interactwith(laptop){ laptop.receives(plastic_sheet.envelope); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "plastic_sheet"
-},
-{
 "id": "wf_ea5d324efb",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the rain-stained receipt at the laptop, and Ejiro reads the name twice.",
@@ -1956,6 +1946,16 @@
 "run": "run-0bd7c0",
 "card": "w7",
 "other": "red_white_cap"
+},
+{
+"id": "wf_82464e3429",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the rain-stained receipt at the laptop, and Ejiro reads the name twice.",
+"code": "streetlights.interactwith(laptop){ laptop.receives(streetlights.envelope); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "streetlights"
 },
 {
 "id": "wt_00586a397c",
@@ -4005,17 +4005,6 @@
 },
 "consequences": [
 {
-"id": "wf_a75e3e2ef2",
-"ts": "2026-11-16T10:19:40-0500",
-"a": "red_white_cap",
-"b": "cup",
-"code": "red_white_cap.interactwith(cup){ cup.receives(red_white_cap.note); cup.remembers(taiwo, 'egbe note'); cup.tucks(red_white_cap, 'red white cap note into the juju code'); }",
-"text": "A Red white cap note with Taiwo's name and 'egbe note' on it, 11:20pm, turns up inside the juju code at the cup, and Ejiro reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "w7"
-},
-{
 "id": "wf_1303dc8b4a",
 "ts": "2026-11-16T10:22:04-0500",
 "a": "sawmill_oko_baba",
@@ -4443,6 +4432,17 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j6"
+},
+{
+"id": "wf_82464e3429",
+"ts": "2026-11-16T12:40:54-0500",
+"a": "streetlights",
+"b": "laptop",
+"code": "streetlights.interactwith(laptop){ laptop.receives(streetlights.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the rain-stained receipt at the laptop, and Ejiro reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
 }
 ],
 "memories": [
@@ -4546,5 +4546,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-16T12:36:00-0500"
+"updated": "2026-11-16T12:40:54-0500"
 }
