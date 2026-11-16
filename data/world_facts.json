@@ -2356,16 +2356,6 @@
 ],
 "lekki_pharmacy": [
 {
-"id": "wf_2764ba830e",
-"kind": "consequence",
-"text": "A Kerosene lamp note with Taiwo's name and 'change' on it, turns up inside the unpaid prescription slip at the lekki pharmacy, and Titi reads the name twice.",
-"code": "kerosene_lamp.interactwith(lekki_pharmacy){ lekki_pharmacy.receives(kerosene_lamp.change); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "w",
-"other": "kerosene_lamp"
-},
-{
 "id": "wf_9898ccbcd6",
 "kind": "consequence",
 "text": "A Danfo speaker note with Bisola's name and 'egbe note' on it, turns up inside the unpaid prescription slip at the lekki pharmacy, and Titi reads the name twice.",
@@ -2374,6 +2364,16 @@
 "run": "run-0bd7c0",
 "card": "w",
 "other": "danfo_speaker"
+},
+{
+"id": "wf_3b30275090",
+"kind": "consequence",
+"text": "A Truth note with Titi's name and 'egbe note' on it, turns up inside the unpaid prescription slip at the lekki pharmacy, and Titi reads the name twice.",
+"code": "truth.interactwith(lekki_pharmacy){ lekki_pharmacy.receives(truth.note); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j4",
+"other": "truth"
 },
 {
 "id": "wt_825a1245a2",
@@ -4213,17 +4213,6 @@
 },
 "consequences": [
 {
-"id": "wf_68cc55a056",
-"ts": "2026-11-16T14:31:44-0500",
-"a": "morir_r",
-"b": "bus",
-"code": "morir_r.interactwith(bus){ bus.receives(morir_r.envelope); bus.remembers(bisola, 'brown envelope'); bus.tucks(morir_r, 'yaba bookshop receipt into the brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bus, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
-{
 "id": "wf_da4e2a726d",
 "ts": "2026-11-16T14:34:06-0500",
 "a": "let",
@@ -4651,6 +4640,17 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j6"
+},
+{
+"id": "wf_3b30275090",
+"ts": "2026-11-16T16:11:36-0500",
+"a": "truth",
+"b": "lekki_pharmacy",
+"code": "truth.interactwith(lekki_pharmacy){ lekki_pharmacy.receives(truth.note); … }",
+"text": "A Truth note with Titi's name and 'egbe note' on it, turns up inside the unpaid prescription slip at the lekki pharmacy, and Titi reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j4"
 }
 ],
 "memories": [
@@ -4754,5 +4754,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-16T16:03:40-0500"
+"updated": "2026-11-16T16:11:36-0500"
 }
