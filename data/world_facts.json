@@ -1900,16 +1900,6 @@
 ],
 "laptop": [
 {
-"id": "wf_2858f2f0ab",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the change at the laptop, and Taiwo reads the name twice.",
-"code": "truth.interactwith(laptop){ laptop.receives(truth.envelope); laptop.remembers(bisola, 'brown envelope'); laptop.tucks(truth, 'yaba bookshop receipt into the change'); }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "truth"
-},
-{
 "id": "wf_8f3ab425d3",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the rain-stained receipt at the laptop, and Ejiro reads the name twice.",
@@ -1928,6 +1918,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "morir"
+},
+{
+"id": "wf_0b4230a7ed",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the rain-stained receipt at the laptop, and Ejiro reads the name twice.",
+"code": "plastic_sheet.interactwith(laptop){ laptop.receives(plastic_sheet.envelope); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "plastic_sheet"
 },
 {
 "id": "wt_00586a397c",
@@ -2032,6 +2032,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "morir"
+},
+{
+"id": "wf_1dedca7906",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the sheep, and Bisola reads the name twice.",
+"code": "streetlights.interactwith(sheep){ sheep.receives(streetlights.envelope); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "streetlights"
 }
 ],
 "yaba_bukka": [
@@ -3917,28 +3927,6 @@
 },
 "consequences": [
 {
-"id": "wf_8bb3d9e29e",
-"ts": "2026-11-16T02:08:08-0500",
-"a": "morir_r",
-"b": "lekki_pharmacy",
-"code": "morir_r.interactwith(lekki_pharmacy){ lekki_pharmacy.receives(morir_r.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the blue glass bead button at the lekki pharmacy, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
-{
-"id": "wf_5d55910979",
-"ts": "2026-11-16T02:10:32-0500",
-"a": "kweshon",
-"b": "lekki_pharmacy",
-"code": "kweshon.interactwith(lekki_pharmacy){ lekki_pharmacy.receives(kweshon.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the blue glass bead button at the lekki pharmacy, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
-{
 "id": "wf_8c080b0f61",
 "ts": "2026-11-16T02:12:54-0500",
 "a": "truth",
@@ -4355,6 +4343,28 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j6"
+},
+{
+"id": "wf_0b4230a7ed",
+"ts": "2026-11-16T10:35:22-0500",
+"a": "plastic_sheet",
+"b": "laptop",
+"code": "plastic_sheet.interactwith(laptop){ laptop.receives(plastic_sheet.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the rain-stained receipt at the laptop, and Ejiro reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
+},
+{
+"id": "wf_1dedca7906",
+"ts": "2026-11-16T10:36:56-0500",
+"a": "streetlights",
+"b": "sheep",
+"code": "streetlights.interactwith(sheep){ sheep.receives(streetlights.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the sheep, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
 }
 ],
 "memories": [
@@ -4458,5 +4468,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-16T10:30:28-0500"
+"updated": "2026-11-16T10:36:56-0500"
 }
