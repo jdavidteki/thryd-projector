@@ -3366,16 +3366,6 @@
 ],
 "morir_r": [
 {
-"id": "wf_cde04c5d4c",
-"kind": "consequence",
-"text": "The morir r leaves with a Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it.",
-"code": "yaba_bookshop.interactwith(morir_r){ morir_r.receives(yaba_bookshop.bead); morir_r.remembers(bisola, 'blue glass bead'); }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j5",
-"other": "yaba_bookshop"
-},
-{
 "id": "wf_580f294adf",
 "kind": "consequence",
 "text": "A Kerosene lamp note with Taiwo's name and 'change' on it, turns up inside the blue glass bead at the morir r, and Bisola reads the name twice.",
@@ -3414,6 +3404,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "matches"
+},
+{
+"id": "wf_17f503da92",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the morir r, and Bisola reads the name twice.",
+"code": "sessy.interactwith(morir_r){ morir_r.receives(sessy.envelope); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "sessy"
 }
 ],
 "ats": [
@@ -3995,17 +3995,6 @@
 },
 "consequences": [
 {
-"id": "wf_5d7f159d25",
-"ts": "2026-11-16T10:07:19-0500",
-"a": "sessy",
-"b": "bird",
-"code": "sessy.interactwith(bird){ bird.receives(sessy.envelope); bird.remembers(bisola, 'brown envelope'); bird.tucks(sessy, 'yaba bookshop receipt into the brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bird, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
-{
 "id": "wf_8f3ab425d3",
 "ts": "2026-11-16T10:08:44-0500",
 "a": "matches",
@@ -4433,6 +4422,17 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j6"
+},
+{
+"id": "wf_17f503da92",
+"ts": "2026-11-16T12:30:25-0500",
+"a": "sessy",
+"b": "morir_r",
+"code": "sessy.interactwith(morir_r){ morir_r.receives(sessy.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the morir r, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
 }
 ],
 "memories": [
@@ -4536,5 +4536,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-16T12:25:38-0500"
+"updated": "2026-11-16T12:30:25-0500"
 }
