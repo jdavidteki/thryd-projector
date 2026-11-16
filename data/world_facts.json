@@ -920,16 +920,6 @@
 ],
 "red_white_cap": [
 {
-"id": "wf_23121dac07",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it, turns up inside the brown envelope at the red white cap, and Bisola reads the name twice.",
-"code": "omo.interactwith(red_white_cap){ red_white_cap.receives(omo.bead); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j5",
-"other": "omo"
-},
-{
 "id": "wf_bb83a4d101",
 "kind": "consequence",
 "text": "A Danfo speaker note with Bisola's name and 'egbe note' on it, turns up inside the brown envelope at the red white cap, and Bisola reads the name twice.",
@@ -958,6 +948,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "matches"
+},
+{
+"id": "wf_7a66dae594",
+"kind": "consequence",
+"text": "A Kerosene lamp note with Taiwo's name and 'change' on it, turns up inside the egbe note at the red white cap, and Taiwo reads the name twice.",
+"code": "kerosene_lamp.interactwith(red_white_cap){ red_white_cap.receives(kerosene_lamp.change); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "w",
+"other": "kerosene_lamp"
 },
 {
 "id": "wt_1115_2356_c",
@@ -3851,17 +3851,6 @@
 },
 "consequences": [
 {
-"id": "wf_06b90689cd",
-"ts": "2026-11-16T01:05:16-0500",
-"a": "matches",
-"b": "pure_water_cooler",
-"code": "matches.interactwith(pure_water_cooler){ pure_water_cooler.receives(matches.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the pure water cooler, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
-{
 "id": "wf_15d30a7af1",
 "ts": "2026-11-16T01:06:50-0500",
 "a": "kweshon",
@@ -4289,6 +4278,17 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j6"
+},
+{
+"id": "wf_7a66dae594",
+"ts": "2026-11-16T09:46:08-0500",
+"a": "kerosene_lamp",
+"b": "red_white_cap",
+"code": "kerosene_lamp.interactwith(red_white_cap){ red_white_cap.receives(kerosene_lamp.change); … }",
+"text": "A Kerosene lamp note with Taiwo's name and 'change' on it, turns up inside the egbe note at the red white cap, and Taiwo reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "w"
 }
 ],
 "memories": [
@@ -4392,5 +4392,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-16T08:11:07-0500"
+"updated": "2026-11-16T09:46:08-0500"
 }
