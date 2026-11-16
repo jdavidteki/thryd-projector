@@ -3392,16 +3392,6 @@
 ],
 "morir_r": [
 {
-"id": "wf_580f294adf",
-"kind": "consequence",
-"text": "A Kerosene lamp note with Taiwo's name and 'change' on it, turns up inside the blue glass bead at the morir r, and Bisola reads the name twice.",
-"code": "kerosene_lamp.interactwith(morir_r){ morir_r.receives(kerosene_lamp.change); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "w",
-"other": "kerosene_lamp"
-},
-{
 "id": "wf_b9700502d3",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the change at the morir r, and Taiwo reads the name twice.",
@@ -3440,6 +3430,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "sessy"
+},
+{
+"id": "wf_cfdbd8a8c8",
+"kind": "consequence",
+"text": "A Danfo speaker note with Bisola's name and 'egbe note' on it, turns up inside the brown envelope at the morir r, and Bisola reads the name twice.",
+"code": "danfo_speaker.interactwith(morir_r){ morir_r.receives(danfo_speaker.note); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "w",
+"other": "danfo_speaker"
 }
 ],
 "ats": [
@@ -4201,17 +4201,6 @@
 },
 "consequences": [
 {
-"id": "wf_bc4c8b9cd9",
-"ts": "2026-11-16T14:25:22-0500",
-"a": "danfo_speaker",
-"b": "cell_phone",
-"code": "danfo_speaker.interactwith(cell_phone){ cell_phone.receives(danfo_speaker.note); … }",
-"text": "A Danfo speaker note with Bisola's name and 'egbe note' on it, turns up inside the brown envelope at the cell phone, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "w"
-},
-{
 "id": "wf_18e4ed4357",
 "ts": "2026-11-16T14:27:44-0500",
 "a": "red_white_cap",
@@ -4639,6 +4628,17 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j6"
+},
+{
+"id": "wf_cfdbd8a8c8",
+"ts": "2026-11-16T15:59:40-0500",
+"a": "danfo_speaker",
+"b": "morir_r",
+"code": "danfo_speaker.interactwith(morir_r){ morir_r.receives(danfo_speaker.note); … }",
+"text": "A Danfo speaker note with Bisola's name and 'egbe note' on it, turns up inside the brown envelope at the morir r, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "w"
 }
 ],
 "memories": [
@@ -4742,5 +4742,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-16T15:47:43-0500"
+"updated": "2026-11-16T15:59:40-0500"
 }
