@@ -3640,6 +3640,16 @@
 "other": "inside_odunlade_brain"
 },
 {
+"id": "wf_1f03de19ad",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the danfo stuck third, and Titi reads the name twice.",
+"code": "wsr.interactwith(danfo_stuck_third){ danfo_stuck_third.receives(wsr.envelope); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "wsr"
+},
+{
 "id": "wt_1115_2356_a",
 "kind": "consequence",
 "text": "The danfo speaker crackles the egbe announcement while the bus grinds in third, and Titi notices the note folded in her hand says the same words, down to the misspelt street.",
@@ -3708,17 +3718,6 @@
 ]
 },
 "consequences": [
-{
-"id": "wt_811228b421",
-"ts": "2026-11-15T19:48:18-0500",
-"a": "kerosene_lamp",
-"b": "danfo_stuck",
-"code": "kerosene_lamp.interactwith(danfo_stuck){ kerosene_lamp.lights(danfo_stuck, 'fare tin'); … }",
-"text": "Titi hangs the kerosene lamp from the danfo's mirror, and by its light the conductor finds Ejiro's TTB note folded in with the change, with the name of the missing stop written on the back.",
-"author": "thryd",
-"run": "run-0bd7c0",
-"card": "j9"
-},
 {
 "id": "wf_20b1ca36eb",
 "ts": "2026-11-15T20:41:08-0500",
@@ -4147,6 +4146,17 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j6"
+},
+{
+"id": "wf_1f03de19ad",
+"ts": "2026-11-16T00:50:45-0500",
+"a": "wsr",
+"b": "danfo_stuck_third",
+"code": "wsr.interactwith(danfo_stuck_third){ danfo_stuck_third.receives(wsr.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the danfo stuck third, and Titi reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
 }
 ],
 "memories": [
@@ -4250,5 +4260,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-16T00:41:46-0500"
+"updated": "2026-11-16T00:50:45-0500"
 }
