@@ -2,6 +2,9 @@
 "v": 1,
 "note": "World memory: each object's facts and the newest consequences of meetings (shared store /workspace/thryd-projector/data/world_facts.jsonl, tools/world_memory.py). The stage shows a consequence code line when the same pair meets again, and now and then on its own; #thryd memories show now and then too.",
 "alias": {
+"danfo_stuck_third_subject": "danfo_stuck_third",
+"lekki_pharmacy_subject": "lekki_pharmacy",
+"apapa_container_yard_subject": "apapa_container_yard",
 "yaba_bookshop_figures": "yaba_bookshop",
 "ikeja_laundromat_figures": "ikeja_laundromat",
 "yaba_bukka_counter_figures": "yaba_bukka_counter",
@@ -529,16 +532,6 @@
 "objects": {
 "ikeja_laundromat": [
 {
-"id": "wf_7ce6fdc04f",
-"kind": "consequence",
-"text": "A Danfo speaker note with Bisola's name and 'egbe note' on it, turns up inside the senator receipt at the ikeja laundromat, and Taiwo reads the name twice.",
-"code": "danfo_speaker.interactwith(ikeja_laundromat){ ikeja_laundromat.receives(danfo_speaker.note); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "w",
-"other": "danfo_speaker"
-},
-{
 "id": "wf_d858bd8eb5",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it, turns up inside the senator receipt at the ikeja laundromat, and Taiwo reads the name twice.",
@@ -557,6 +550,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "let"
+},
+{
+"id": "wf_e3e49b1466",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the senator receipt at the ikeja laundromat, and Taiwo reads the name twice.",
+"code": "morir_r.interactwith(ikeja_laundromat){ ikeja_laundromat.receives(morir_r.envelope); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "morir_r"
 },
 {
 "id": "wt_6ca10e8a6f",
@@ -1735,16 +1738,6 @@
 ],
 "bird": [
 {
-"id": "wf_2499e13320",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bird, and Bisola reads the name twice.",
-"code": "reality.interactwith(bird){ bird.receives(reality.envelope); … }",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j6",
-"other": "reality"
-},
-{
 "id": "wf_115f4296c1",
 "kind": "consequence",
 "text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the bird, and Bisola reads the name twice.",
@@ -1783,6 +1776,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "morir"
+},
+{
+"id": "wf_0cdfa7f23e",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bird, and Bisola reads the name twice.",
+"code": "plastic_sheet.interactwith(bird){ bird.receives(plastic_sheet.envelope); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "plastic_sheet"
 }
 ],
 "agenda_scene": [
@@ -3554,31 +3557,21 @@
 "card": "j13",
 "other": null
 }
+],
+"danfo_stuck_third": [
+{
+"id": "wf_3db7e0baae",
+"kind": "memory",
+"text": "9:40pm, Wednesday 8 March 2062: Titi drives with one hand while a stranger in the back keeps asking to be let out at a stop that no longer exists, and the conductor counts the fares twice. The danfo stuck third keeps it on file.",
+"code": "danfo_stuck_third.remembers(titi, 'hand');",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j9",
+"other": null
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_8d6cde158d",
-"ts": "2026-11-15T17:06:40-0500",
-"a": "people_scene",
-"b": "red_white",
-"code": "people_scene.interactwith(red_white){ red_white.receives(people_scene.code); … }",
-"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the red white, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j2"
-},
-{
-"id": "wf_5f0b95aaf3",
-"ts": "2026-11-15T17:07:35-0500",
-"a": "truth",
-"b": "yaba_bookshop",
-"code": "truth.interactwith(yaba_bookshop){ yaba_bookshop.receives(truth.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the blue glass bead at the yaba bookshop, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
 {
 "id": "wf_7ce6fdc04f",
 "ts": "2026-11-15T17:08:30-0500",
@@ -3996,6 +3989,28 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j6"
+},
+{
+"id": "wf_0cdfa7f23e",
+"ts": "2026-11-15T21:25:42-0500",
+"a": "plastic_sheet",
+"b": "bird",
+"code": "plastic_sheet.interactwith(bird){ bird.receives(plastic_sheet.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bird, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
+},
+{
+"id": "wf_e3e49b1466",
+"ts": "2026-11-15T21:26:30-0500",
+"a": "morir_r",
+"b": "ikeja_laundromat",
+"code": "morir_r.interactwith(ikeja_laundromat){ ikeja_laundromat.receives(morir_r.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the senator receipt at the ikeja laundromat, and Taiwo reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
 }
 ],
 "memories": [
@@ -4099,5 +4114,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-15T21:21:32-0500"
+"updated": "2026-11-15T21:26:30-0500"
 }
