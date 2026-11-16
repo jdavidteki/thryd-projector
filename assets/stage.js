@@ -1142,7 +1142,8 @@
   // real people's names. Jesuye 10:22-10:24 AM ET: tags are hidden by default; a plain tap/click on a cutout (moved < 6 px, < 300 ms)
   // shows that object's name, which follows it and fades by itself after ~3 s (or when it leaves); tapping it again only restarts
   // the timer (no tap-to-hide); several may show at a time.
-  // Listeners are passive capture listeners that never cancel or stop the event, so drags are untouched; no menus, no engine calls.
+  // Listeners are passive capture listeners that never cancel or stop the event, so drags are untouched; no menus, no engine calls here
+  // (16 Nov 2026: the same tap also calls openMethods(), whose menu and relay send live in their own section after typed commands).
   const FO = S.frameObjects = {by: {}, chips: null, at: 0};
   function loadFO(){ fetch('data/frame_objects.json?t=' + Date.now(), {cache: 'no-store'}).then(r => r.ok ? r.json() : null).then(d => {
     if(!d || !d.by_scene) return; FO.by = d.by_scene; FO.at = Date.now();
@@ -1205,7 +1206,7 @@
   addEventListener('pointercancel', () => { tapD = null; }, {capture: true, passive: true});
   addEventListener('pointerup', e => { const d = tapD; tapD = null; if(!d || !d.c || d.m) return;
     if(Math.hypot(e.clientX - d.x, e.clientY - d.y) >= 6 || performance.now() - d.t >= 300) return;
-    if(!tagName(d.c)) return; toggleTag(d.c); }, {capture: true, passive: true});
+    if(tagName(d.c)) toggleTag(d.c); try{ openMethods(d.c); }catch(err){ note('methods', String(err && err.message || err)); } }, {capture: true, passive: true});
   function toggleTag(c){ SHOWN.set(c, Date.now()); tagT = 0; } // show (or restart the ~3 s timer); never hides
   S.toggleTag = toggleTag;
   let tagT = 0;
@@ -1342,7 +1343,8 @@
   }
   function applyLooks(){
     CMD.looks.forEach((L, sk) => { const cuts = Object.keys(L.parts).length ? subjCuts(sk) : [];
-      cuts.forEach(c => { if(c.look !== L || c.lookN !== Object.keys(L.keys).length){ paint(c, L); c.lookN = Object.keys(L.keys).length; CMD.applied++; }
+      cuts.forEach(c => { if(c.tapL) return; // a cut someone tapped a method on keeps that look (tap methods, 16 Nov 2026)
+        if(c.look !== L || c.lookN !== Object.keys(L.keys).length){ paint(c, L); c.lookN = Object.keys(L.keys).length; CMD.applied++; }
         if(c.castNew){ c.castNew = false; tagAt(c, String(L.name || sk) + ' · ' + Object.keys(L.keys).filter(k => L.keys[k].known).map(k => k + '=' + lowv(L.keys[k].value)).join(', ')); } }); });
     // a cut whose part was dropped goes back to its own look
     S.cuts.forEach(c => { if(c.castAs && !CMD.looks.has(c.castAs)) c.castAs = null; });
@@ -1365,6 +1367,88 @@
   // test hook (and for #thryd): feed calls straight in, e.g. thrydStageCmd([{id:'qa1',subject:'dapo',subject_key:'dapo',fn:'setskincomplexion',args:['light'],change:{key:'skincomplexion',value:'light'},raw:'dapo.setskincomplexion(light)'}])
   root.thrydStageCmd = calls => { const fresh = ingest(calls, false); applyLooks(); announce(fresh); return fresh.length; };
   pollCmds(); setInterval(pollCmds, 20000); setInterval(applyLooks, 1000);
+
+  // ---------- tap methods (Jesuye 16 Nov 2026 6:39 PM ET "add 2-3 object methods that are clickable. when we tap on an object, users can
+  // click a method and it will fire in the db"). A tap (under 6 px and 300 ms, the same test as the name tag; a drag never opens it) shows
+  // three buttons: glow() / glow('off'), grow() / shrink(), and setmood('happy'|'sad') for a figure or dim() / brighten() for a thing.
+  // A click: the tapped cut reacts at once (its own look only, nothing else on stage changes), the line types into #code, and
+  // {v:1,type:'call',...} goes over the drag relay (data/drag.json ntfy endpoint -> relay.py -> server.py handle_call), where the box
+  // rebuilds `<object>.<verb>(<arg>);` from a whitelist and writes it with #thryd's /workspace/thryd-db/world.py add (world.db).
+  const MCSS = document.createElement('style');
+  MCSS.textContent = ['#gmeth{position:fixed;z-index:10050;display:flex;gap:.5vh;flex-wrap:wrap;max-width:min(92vw,520px);padding:.6vh;border-radius:1vh;background:rgba(12,12,12,.9);box-shadow:0 2px 12px #0007;font:600 max(12px,1.5vh) ui-monospace,Menlo,Consolas,monospace;transform:translateX(-50%)}',
+    '#gmeth .gmh{width:100%;color:#ffe7a8;font-weight:600;padding:0 .3vh .2vh;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}',
+    '#gmeth button{font:inherit;color:#fff;background:#2a2a2a;border:1px solid #555;border-radius:.8vh;padding:.7vh 1vh;cursor:pointer;min-height:36px;touch-action:manipulation}',
+    '#gmeth button:hover,#gmeth button:focus-visible{background:#3c3c3c;border-color:#ffd76a;outline:none}'].join('\n');
+  document.head.appendChild(MCSS);
+  const M = S.methods = {el: null, cut: null, sent: [], timer: 0};
+  const objName = c => { let n = c.castAs || tagName(c) || c.label || c.klass || 'object';
+    n = String(n).replace(/\u00b7\d+$/, '').toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '').slice(0, 60);
+    if(!n) n = 'object'; if(/^\d/.test(n)) n = 'o_' + n.slice(0, 58); return n; };
+  const isFigure = c => !!c.castAs || PERSON.test(String(c.klass || '')) || PERSONISH.test(String(c.klass || c.label || '').toLowerCase()) || CMD.chars.has(ckey(objName(c)));
+  const qstr = a => a.map(x => "'" + x + "'").join(', ');
+  function methodsFor(c){ const k = (c.tapL && c.tapL.keys) || {}, v = x => k[x] ? lowv(k[x].value) : '';
+    const out = [v('glow') && !isOff(v('glow')) ? {fn: 'glow', args: ['off']} : {fn: 'glow', args: []}, v('size') === 'big' ? {fn: 'shrink', args: []} : {fn: 'grow', args: []}];
+    if(isFigure(c)) out.push(v('mood') === 'happy' ? {fn: 'setmood', args: ['sad']} : {fn: 'setmood', args: ['happy']});
+    else out.push(v('brightness') === 'dim' ? {fn: 'brighten', args: []} : {fn: 'dim', args: []});
+    return out; }
+  function closeMethods(){ if(M.el){ M.el.remove(); M.el = null; } M.cut = null; clearTimeout(M.timer); }
+  S.closeMethods = closeMethods;
+  function openMethods(c){
+    if(!c || !c.el || !c.el.isConnected || c.leaving) return;
+    if(M.cut === c && M.el){ closeMethods(); return; } // a second tap on the same object closes it
+    closeMethods(); M.cut = c;
+    const name = objName(c), box = document.createElement('div'); box.id = 'gmeth'; box.setAttribute('role', 'menu');
+    const h = document.createElement('div'); h.className = 'gmh'; h.textContent = name; box.appendChild(h);
+    methodsFor(c).forEach(m => { const b = document.createElement('button'); b.type = 'button'; b.setAttribute('role', 'menuitem');
+      b.textContent = name + '.' + m.fn + '(' + qstr(m.args) + ')'; b.dataset.fn = m.fn; b.dataset.args = JSON.stringify(m.args);
+      b.addEventListener('pointerdown', ev => ev.stopPropagation());
+      b.addEventListener('click', ev => { ev.stopPropagation(); ev.preventDefault(); fireMethod(c, name, m.fn, m.args); closeMethods(); });
+      box.appendChild(b); });
+    document.body.appendChild(box); M.el = box;
+    const r = c.el.getBoundingClientRect(), bw = box.offsetWidth, bh = box.offsetHeight;
+    let x = Math.max(bw / 2 + 6, Math.min(vw() - bw / 2 - 6, r.left + r.width / 2)), y = r.bottom + 34;
+    if(y + bh > vh() - 6) y = Math.max(6, r.top - bh - 8);
+    box.style.left = x.toFixed(1) + 'px'; box.style.top = y.toFixed(1) + 'px';
+    M.timer = setTimeout(closeMethods, 12000);
+  }
+  S.openMethods = openMethods;
+  addEventListener('pointerdown', e => { if(M.el && !M.el.contains(e.target)) closeMethods(); }, {capture: true, passive: true}); // outside tap closes
+  addEventListener('keydown', e => { if(e.key === 'Escape') closeMethods(); });
+  function lookOn(c, fn, args){ // the tapped cut only, through the same VERBS/FNS as typed commands
+    const L = c.tapL || (c.tapL = {sk: 'tap:' + objName(c), name: objName(c), parts: {}, keys: {}, cast: false});
+    let key = null, val = null;
+    if(fn === 'setmood'){ key = 'mood'; val = args[0]; } else if(FNS[fn]){ key = FNS[fn][0]; val = (fn === 'glow' && args[0] != null) ? args[0] : FNS[fn][1]; }
+    if(!key) return; const look = VERBS[key] ? VERBS[key](val) : null;
+    L.keys[key] = {value: val, raw: fn, at: new Date().toISOString(), known: !!look}; if(look) L.parts[key] = look; else delete L.parts[key];
+    paint(c, L); pulse(c); }
+  const uid = ()=> { try{ if(root.crypto && crypto.randomUUID) return 'tap-' + crypto.randomUUID(); }catch(e){} return 'tap-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 12); };
+  async function fireMethod(c, name, fn, args){
+    const code = name + '.' + fn + '(' + qstr(args) + ');', H = c.home || {}, eid = uid();
+    const fr = (String(H.mid || '').match(/(?:^|[^A-Za-z0-9])([jw]\d{1,3})(?![0-9])/i) || [])[1];
+    const body = {v: 1, type: 'call', event_id: eid, rid: eid + '-r', run: H.run || AG.active || null, card: String(H.card || fr || root.__thrydCard || '').toLowerCase() || null,
+      object: name, fn, args, scene: H.mid ? String(H.mid).slice(0, 160) : null, cut: c.label ? String(c.label).slice(0, 60) : null, client_ts: new Date().toISOString()};
+    if(body.run && !/^run-[0-9a-f]{4,6}$/.test(body.run)) body.run = null; if(body.card && !/^[jw]\d{1,3}$/.test(body.card)) body.card = null;
+    const rec = {code, body, status: 'sending', at: Date.now()}; M.sent.push(rec); if(M.sent.length > 40) M.sent.shift();
+    if(c.el && c.el.isConnected){ lookOn(c, fn, args); tagAt(c, code); }
+    codeLine(code, 'tapped · sending to the box…'); note('method', code, eid);
+    const ctx = root.thrydCtx ? root.thrydCtx() : {}, toast = ctx.toast || (()=>{}), DG = ctx.DRAG;
+    if(root.thrydQA && root.thrydQA.on && root.thrydQA.on()){ rec.status = 'qa_not_sent'; root.thrydQA.log({kind: 'methodCall', ...body}); toast(code + ' (QA: not sent)'); return rec; }
+    if(!DG || !DG.endpoint || DG.transport !== 'ntfy'){ rec.status = 'no_endpoint'; toast(code + ' shown here only (box link not loaded)', 1); return rec; }
+    const net = root.thrydNetFetch || ((u, o)=> fetch(u, o));
+    try{ const t0 = Math.floor(Date.now() / 1000) - 5; const r = await net(DG.endpoint, {method: 'POST', body: JSON.stringify(body)}, 20000); if(!r.ok) throw new Error('relay HTTP ' + r.status);
+      toast(code + ' → box…');
+      for(const w of [1500, 2500, 4000, 8000, 16000]){ await sleep(w);
+        try{ const tx = await (await net(DG.reply + '/json?poll=1&since=' + t0, {cache: 'no-store'}, 20000)).text();
+          for(const l of tx.split('\n')){ if(!l) continue; let m; try{ m = JSON.parse(l); m = JSON.parse(m.message || '{}'); }catch(e){ continue; }
+            if(m.rid === body.rid || m.event_id === eid){ rec.status = m.status || (m.ok ? 'accepted' : 'rejected'); rec.reply = m;
+              if(m.ok){ toast((m.code || code) + ' ✓ in the db'); codeLine(m.code || code, 'tapped · in the world db' + (m.run ? ' · ' + m.run + (m.card ? '/' + m.card : '') : '')); }
+              else toast(code + ' ✗ ' + (m.detail || m.reason || 'rejected'), 1);
+              return rec; } } }catch(e){} }
+      rec.status = 'no_reply'; toast(code + ' sent; no reply from the box yet', 1);
+    }catch(e){ rec.status = 'failed'; rec.error = String(e && e.message || e); toast(code + ' not sent: ' + rec.error, 1); }
+    return rec;
+  }
+  S.fireMethod = fireMethod;
 
   // ---------- black / white stage (Jesuye 12:03 AM "add a switch for black or white"; white default since 12:43 AM): a button beside mute/reset, saved per device
   // (localStorage thryd_stage_bg). White turns the page, the stage and the dark overlays white and flips light text to dark.
