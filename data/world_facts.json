@@ -3426,6 +3426,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "streetlights"
+},
+{
+"id": "wf_a9a8377541",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the ats, and Bisola reads the name twice.",
+"code": "wsr.interactwith(ats){ ats.receives(wsr.envelope); ats.remembers(bisola, 'brown envelope'); ats.tucks(wsr, 'yaba bookshop receipt into the brown envelope'); }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "wsr"
 }
 ],
 "agege_railway_platform": [
@@ -4005,17 +4015,6 @@
 },
 "consequences": [
 {
-"id": "wf_1303dc8b4a",
-"ts": "2026-11-16T10:22:04-0500",
-"a": "sawmill_oko_baba",
-"b": "tea_bread_stall",
-"code": "sawmill_oko_baba.interactwith(tea_bread_stall){ sawmill_oko_baba.remembers(kunle, 'planed-off chalk sketch'); … }",
-"text": "The chalk sketch the crew planed off the timber at Oko Baba at 4:20pm turns up folded behind the unclaimed receipt on the Ojuelegba tea stall's counter, so Kunle's shape reaches the junction before anyone there has agreed it is obvious.",
-"author": "cos",
-"run": "run-ff3591",
-"card": "j5"
-},
-{
 "id": "wf_589d9f494a",
 "ts": "2026-11-16T10:22:04-0500",
 "a": "red_white_cap",
@@ -4443,6 +4442,17 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j6"
+},
+{
+"id": "wf_a9a8377541",
+"ts": "2026-11-16T12:44:54-0500",
+"a": "wsr",
+"b": "ats",
+"code": "wsr.interactwith(ats){ ats.receives(wsr.envelope); ats.remembers(bisola, 'brown envelope'); ats.tucks(wsr, 'yaba bookshop receipt into the brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the ats, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
 }
 ],
 "memories": [
@@ -4546,5 +4556,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-16T12:40:54-0500"
+"updated": "2026-11-16T12:44:54-0500"
 }
