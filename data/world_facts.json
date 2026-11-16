@@ -1750,16 +1750,6 @@
 ],
 "bird": [
 {
-"id": "wf_0aef98264c",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bird, and Bisola reads the name twice.",
-"code": "morir.interactwith(bird){ bird.receives(morir.envelope); bird.remembers(bisola, 'brown envelope'); bird.tucks(morir, 'yaba bookshop receipt into the brown envelope'); }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "morir"
-},
-{
 "id": "wf_0cdfa7f23e",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bird, and Bisola reads the name twice.",
@@ -1798,6 +1788,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "morir_r"
+},
+{
+"id": "wf_5d7f159d25",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bird, and Bisola reads the name twice.",
+"code": "sessy.interactwith(bird){ bird.receives(sessy.envelope); bird.remembers(bisola, 'brown envelope'); bird.tucks(sessy, 'yaba bookshop receipt into the brown envelope'); }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "sessy"
 }
 ],
 "agenda_scene": [
@@ -3885,17 +3885,6 @@
 },
 "consequences": [
 {
-"id": "wf_0d5b1522b6",
-"ts": "2026-11-16T01:42:28-0500",
-"a": "bow",
-"b": "apapa_container_yard",
-"code": "bow.interactwith(apapa_container_yard){ apapa_container_yard.receives(bow.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the apapa container yard, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
-{
 "id": "wf_2b24dbd258",
 "ts": "2026-11-16T01:43:15-0500",
 "a": "wsr",
@@ -4323,6 +4312,17 @@
 "author": "thryd",
 "run": "run-0bd7c0",
 "card": "j3"
+},
+{
+"id": "wf_5d7f159d25",
+"ts": "2026-11-16T10:07:19-0500",
+"a": "sessy",
+"b": "bird",
+"code": "sessy.interactwith(bird){ bird.receives(sessy.envelope); bird.remembers(bisola, 'brown envelope'); bird.tucks(sessy, 'yaba bookshop receipt into the brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bird, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
 }
 ],
 "memories": [
@@ -4426,5 +4426,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-16T09:47:13-0500"
+"updated": "2026-11-16T10:07:19-0500"
 }
