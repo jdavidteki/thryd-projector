@@ -954,16 +954,6 @@
 ],
 "red_white_cap": [
 {
-"id": "wf_03f43a864f",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the red white cap, and Bisola reads the name twice.",
-"code": "truth.interactwith(red_white_cap){ red_white_cap.receives(truth.envelope); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "truth"
-},
-{
 "id": "wf_b433fe7c87",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the red white cap, and Bisola reads the name twice.",
@@ -992,6 +982,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "kweshon"
+},
+{
+"id": "wf_d0741e2024",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the red white cap, and Taiwo reads the name twice.",
+"code": "agbada.interactwith(red_white_cap){ red_white_cap.receives(agbada.envelope); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "agbada"
 },
 {
 "id": "wt_1115_2356_c",
@@ -1720,16 +1720,6 @@
 ],
 "bicycle": [
 {
-"id": "wf_aace07c8da",
-"kind": "consequence",
-"text": "An Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997, turns up inside the change at the bicycle, and Taiwo reads the name twice.",
-"code": "egbe.interactwith(bicycle){ bicycle.receives(egbe.joke); bicycle.remembers(bisola, 'boss joke'); bicycle.tucks(egbe, 'egbe note into the change'); }",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j1",
-"other": "egbe"
-},
-{
 "id": "wf_5b74aeb2e2",
 "kind": "consequence",
 "text": "An Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997, turns up inside the boss joke at the bicycle, and Bisola reads the name twice.",
@@ -1768,6 +1758,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "morir"
+},
+{
+"id": "wf_6c0ce9ef8b",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bicycle, and Bisola reads the name twice.",
+"code": "matches.interactwith(bicycle){ bicycle.receives(matches.envelope); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "matches"
 }
 ],
 "ronke": [
@@ -4181,28 +4181,6 @@
 },
 "consequences": [
 {
-"id": "wf_4530259038",
-"ts": "2026-11-16T13:59:54-0500",
-"a": "matches",
-"b": "agbada",
-"code": "matches.interactwith(agbada){ agbada.receives(matches.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the agbada, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
-{
-"id": "wf_93f34b00b2",
-"ts": "2026-11-16T14:00:41-0500",
-"a": "kweshon",
-"b": "apapa_container_yard",
-"code": "kweshon.interactwith(apapa_container_yard){ apapa_container_yard.receives(kweshon.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the apapa container yard, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
-{
 "id": "wf_72baaecda3",
 "ts": "2026-11-16T14:03:55-0500",
 "a": "matches",
@@ -4619,6 +4597,28 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j6"
+},
+{
+"id": "wf_6c0ce9ef8b",
+"ts": "2026-11-16T15:31:00-0500",
+"a": "matches",
+"b": "bicycle",
+"code": "matches.interactwith(bicycle){ bicycle.receives(matches.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bicycle, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
+},
+{
+"id": "wf_d0741e2024",
+"ts": "2026-11-16T15:33:22-0500",
+"a": "agbada",
+"b": "red_white_cap",
+"code": "agbada.interactwith(red_white_cap){ red_white_cap.receives(agbada.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the red white cap, and Taiwo reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
 }
 ],
 "memories": [
@@ -4722,5 +4722,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-16T15:30:09-0500"
+"updated": "2026-11-16T15:33:22-0500"
 }
