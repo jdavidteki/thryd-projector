@@ -1000,16 +1000,6 @@
 ],
 "streetlights": [
 {
-"id": "wf_9a37299f20",
-"kind": "memory",
-"text": "The streetlights at the street: all dead since 7:35pm.",
-"code": "streetlights.state('all dead since 7:35pm');",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "w6",
-"other": null
-},
-{
 "id": "wf_3b6bbf93f6",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it, turns up inside the brown envelope at the streetlights, and Bisola reads the name twice.",
@@ -1048,6 +1038,16 @@
 "run": "run-0bd7c0",
 "card": "w7",
 "other": "red_white_cap"
+},
+{
+"id": "wf_8b0e2e41fc",
+"kind": "consequence",
+"text": "A Kerosene lamp note with Taiwo's name and 'change' on it, turns up inside the brown envelope at the streetlights, and Bisola reads the name twice.",
+"code": "kerosene_lamp.interactwith(streetlights){ streetlights.receives(kerosene_lamp.change); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "w",
+"other": "kerosene_lamp"
 }
 ],
 "kerosene_lamp": [
@@ -2350,16 +2350,6 @@
 ],
 "lekki_pharmacy": [
 {
-"id": "wf_eff44e48b3",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the unpaid prescription slip at the lekki pharmacy, and Titi reads the name twice.",
-"code": "plastic_sheet.interactwith(lekki_pharmacy){ lekki_pharmacy.receives(plastic_sheet.envelope); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "plastic_sheet"
-},
-{
 "id": "wf_5824c85ef1",
 "kind": "consequence",
 "text": "A Yaba bukka counter chit with Kunle's name and 'love' on it, 5:30pm, turns up inside the unpaid prescription slip at the lekki pharmacy, and Titi reads the name twice.",
@@ -2368,6 +2358,16 @@
 "run": "run-0bd7c0",
 "card": "j7",
 "other": "cassette_spine"
+},
+{
+"id": "wf_2764ba830e",
+"kind": "consequence",
+"text": "A Kerosene lamp note with Taiwo's name and 'change' on it, turns up inside the unpaid prescription slip at the lekki pharmacy, and Titi reads the name twice.",
+"code": "kerosene_lamp.interactwith(lekki_pharmacy){ lekki_pharmacy.receives(kerosene_lamp.change); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "w",
+"other": "kerosene_lamp"
 },
 {
 "id": "wt_825a1245a2",
@@ -4145,28 +4145,6 @@
 },
 "consequences": [
 {
-"id": "wf_49ed55eea5",
-"ts": "2026-11-16T13:24:01-0500",
-"a": "apapa_container_yard",
-"b": "hustle_figure_fourth",
-"code": "apapa_container_yard.interactwith(hustle_figure_fourth){ hustle_figure_fourth.receives(apapa_container_yard.envelope); … }",
-"text": "The hustle figure fourth leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
-{
-"id": "wf_4c5b1b6257",
-"ts": "2026-11-16T13:26:23-0500",
-"a": "kweshon",
-"b": "danfo_speaker",
-"code": "kweshon.interactwith(danfo_speaker){ danfo_speaker.receives(kweshon.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the danfo speaker, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
-{
 "id": "wf_3ede065a43",
 "ts": "2026-11-16T13:28:02-0500",
 "a": "wser",
@@ -4583,6 +4561,28 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j6"
+},
+{
+"id": "wf_2764ba830e",
+"ts": "2026-11-16T15:11:41-0500",
+"a": "kerosene_lamp",
+"b": "lekki_pharmacy",
+"code": "kerosene_lamp.interactwith(lekki_pharmacy){ lekki_pharmacy.receives(kerosene_lamp.change); … }",
+"text": "A Kerosene lamp note with Taiwo's name and 'change' on it, turns up inside the unpaid prescription slip at the lekki pharmacy, and Titi reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "w"
+},
+{
+"id": "wf_8b0e2e41fc",
+"ts": "2026-11-16T15:14:03-0500",
+"a": "kerosene_lamp",
+"b": "streetlights",
+"code": "kerosene_lamp.interactwith(streetlights){ streetlights.receives(kerosene_lamp.change); … }",
+"text": "A Kerosene lamp note with Taiwo's name and 'change' on it, turns up inside the brown envelope at the streetlights, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "w"
 }
 ],
 "memories": [
@@ -4686,5 +4686,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-16T15:09:16-0500"
+"updated": "2026-11-16T15:14:03-0500"
 }
