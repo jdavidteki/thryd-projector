@@ -2352,16 +2352,6 @@
 ],
 "cup": [
 {
-"id": "wf_ff94d31b89",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the juju code at the cup, and Ejiro reads the name twice.",
-"code": "called.interactwith(cup){ cup.receives(called.envelope); cup.remembers(bisola, 'brown envelope'); cup.tucks(called, 'yaba bookshop receipt into the juju code'); }",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j6",
-"other": "called"
-},
-{
 "id": "wf_4dd19e0b44",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the juju code at the cup, and Ejiro reads the name twice.",
@@ -2390,6 +2380,16 @@
 "run": "run-0bd7c0",
 "card": "j1",
 "other": "agbada"
+},
+{
+"id": "wf_552e91b755",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the juju code at the cup, and Ejiro reads the name twice.",
+"code": "sessy.interactwith(cup){ cup.receives(sessy.envelope); cup.remembers(bisola, 'brown envelope'); cup.tucks(sessy, 'yaba bookshop receipt into the juju code'); }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "sessy"
 },
 {
 "id": "wt_9a530635c7",
@@ -3667,17 +3667,6 @@
 },
 "consequences": [
 {
-"id": "wf_29c9f7ad52",
-"ts": "2026-11-15T18:16:31-0500",
-"a": "kweshon",
-"b": "bus",
-"code": "kweshon.interactwith(bus){ bus.receives(kweshon.envelope); bus.remembers(bisola, 'brown envelope'); bus.tucks(kweshon, 'yaba bookshop receipt into the brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bus, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
-{
 "id": "wf_5dc5651547",
 "ts": "2026-11-15T18:23:50-0500",
 "a": "bow",
@@ -4105,6 +4094,17 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j5"
+},
+{
+"id": "wf_552e91b755",
+"ts": "2026-11-15T23:02:49-0500",
+"a": "sessy",
+"b": "cup",
+"code": "sessy.interactwith(cup){ cup.receives(sessy.envelope); cup.remembers(bisola, 'brown envelope'); cup.tucks(sessy, 'yaba bookshop receipt into the juju code'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the juju code at the cup, and Ejiro reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
 }
 ],
 "memories": [
@@ -4208,5 +4208,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-15T22:58:49-0500"
+"updated": "2026-11-15T23:02:49-0500"
 }
