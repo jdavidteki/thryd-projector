@@ -3393,6 +3393,16 @@
 "run": "run-0bd7c0",
 "card": "j9",
 "other": null
+},
+{
+"id": "wt_811228b421",
+"kind": "consequence",
+"text": "Titi hangs the kerosene lamp from the danfo's mirror, and by its light the conductor finds Ejiro's TTB note folded in with the change, with the name of the missing stop written on the back.",
+"code": "kerosene_lamp.interactwith(danfo_stuck){ kerosene_lamp.lights(danfo_stuck, 'fare tin'); … }",
+"author": "thryd",
+"run": "run-0bd7c0",
+"card": "j9",
+"other": "kerosene_lamp"
 }
 ],
 "surulere_wedding_reception": [
@@ -3405,6 +3415,16 @@
 "run": "run-0bd7c0",
 "card": "j10",
 "other": null
+},
+{
+"id": "wt_cbc8f0a1ed",
+"kind": "consequence",
+"text": "Two years after that night drive, the stranger from Titi's danfo walks into the Surulere reception asking the MC for the stop that no longer exists, and it is the only thing that gets the mic away from Kunle.",
+"code": "danfo_stuck.interactwith(surulere_wedding_reception){ surulere_wedding_reception.receives(danfo_stuck.hand); … }",
+"author": "thryd",
+"run": "run-0bd7c0",
+"card": "j10",
+"other": "danfo_stuck"
 }
 ],
 "wsr": [
@@ -3418,42 +3438,21 @@
 "card": "j6",
 "other": "truth"
 }
+],
+"eyes_viral_figure": [
+{
+"id": "wt_f227dbb0bd",
+"kind": "consequence",
+"text": "The eyes viral figure leaves the Ikeja laundromat with the senator receipt still damp from a wash cycle, Bisola's name half rinsed off but the 7:40am stamp still sharp.",
+"code": "eyes_viral_figure.interactwith(ikeja_laundromat){ eyes_viral_figure.receives(ikeja_laundromat.receipt); eyes_viral_figure.remembers(bisola, 'senator receipt'); }",
+"author": "thryd",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "ikeja_laundromat"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_23121dac07",
-"ts": "2026-11-15T16:33:11-0500",
-"a": "omo",
-"b": "red_white_cap",
-"code": "omo.interactwith(red_white_cap){ red_white_cap.receives(omo.bead); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it, turns up inside the brown envelope at the red white cap, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j5"
-},
-{
-"id": "wf_5b6ebb908d",
-"ts": "2026-11-15T16:49:48-0500",
-"a": "streetlights",
-"b": "bird",
-"code": "streetlights.interactwith(bird){ bird.receives(streetlights.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bird, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
-{
-"id": "wf_9962f5cd48",
-"ts": "2026-11-15T16:53:10-0500",
-"a": "matches",
-"b": "bow",
-"code": "matches.interactwith(bow){ bow.receives(matches.envelope); bow.remembers(bisola, 'brown envelope'); }",
-"text": "The bow leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
 {
 "id": "wf_5bd7729da6",
 "ts": "2026-11-15T16:54:05-0500",
@@ -3860,6 +3859,39 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j6"
+},
+{
+"id": "wt_cbc8f0a1ed",
+"ts": "2026-11-15T19:48:18-0500",
+"a": "danfo_stuck",
+"b": "surulere_wedding_reception",
+"code": "danfo_stuck.interactwith(surulere_wedding_reception){ surulere_wedding_reception.receives(danfo_stuck.hand); … }",
+"text": "Two years after that night drive, the stranger from Titi's danfo walks into the Surulere reception asking the MC for the stop that no longer exists, and it is the only thing that gets the mic away from Kunle.",
+"author": "thryd",
+"run": "run-0bd7c0",
+"card": "j10"
+},
+{
+"id": "wt_f227dbb0bd",
+"ts": "2026-11-15T19:48:18-0500",
+"a": "ikeja_laundromat",
+"b": "eyes_viral_figure",
+"code": "eyes_viral_figure.interactwith(ikeja_laundromat){ eyes_viral_figure.receives(ikeja_laundromat.receipt); eyes_viral_figure.remembers(bisola, 'senator receipt'); }",
+"text": "The eyes viral figure leaves the Ikeja laundromat with the senator receipt still damp from a wash cycle, Bisola's name half rinsed off but the 7:40am stamp still sharp.",
+"author": "thryd",
+"run": "run-0bd7c0",
+"card": "j6"
+},
+{
+"id": "wt_811228b421",
+"ts": "2026-11-15T19:48:18-0500",
+"a": "kerosene_lamp",
+"b": "danfo_stuck",
+"code": "kerosene_lamp.interactwith(danfo_stuck){ kerosene_lamp.lights(danfo_stuck, 'fare tin'); … }",
+"text": "Titi hangs the kerosene lamp from the danfo's mirror, and by its light the conductor finds Ejiro's TTB note folded in with the change, with the name of the missing stop written on the back.",
+"author": "thryd",
+"run": "run-0bd7c0",
+"card": "j9"
 }
 ],
 "memories": [
@@ -3963,5 +3995,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-15T19:48:16-0500"
+"updated": "2026-11-15T19:49:12-0500"
 }
