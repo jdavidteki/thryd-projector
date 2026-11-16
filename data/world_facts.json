@@ -1848,16 +1848,6 @@
 ],
 "tie": [
 {
-"id": "wf_276f6a166a",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the tie, and Bisola reads the name twice.",
-"code": "imm.interactwith(tie){ tie.receives(imm.envelope); tie.remembers(bisola, 'brown envelope'); tie.tucks(imm, 'yaba bookshop receipt into the brown envelope'); }",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j6",
-"other": "imm"
-},
-{
 "id": "wf_72f9e2b22a",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the tie, and Bisola reads the name twice.",
@@ -1896,6 +1886,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "streetlights"
+},
+{
+"id": "wf_efda754c99",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the tie, and Bisola reads the name twice.",
+"code": "agbada.interactwith(tie){ tie.receives(agbada.envelope); tie.remembers(bisola, 'brown envelope'); tie.tucks(agbada, 'yaba bookshop receipt into the brown envelope'); }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "agbada"
 }
 ],
 "laptop": [
@@ -3917,17 +3917,6 @@
 },
 "consequences": [
 {
-"id": "wf_5ab63a53d8",
-"ts": "2026-11-16T02:04:59-0500",
-"a": "plastic_sheet",
-"b": "cup",
-"code": "plastic_sheet.interactwith(cup){ cup.receives(plastic_sheet.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the juju code at the cup, and Ejiro reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
-{
 "id": "wf_8bb3d9e29e",
 "ts": "2026-11-16T02:08:08-0500",
 "a": "morir_r",
@@ -4355,6 +4344,17 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j6"
+},
+{
+"id": "wf_efda754c99",
+"ts": "2026-11-16T10:30:28-0500",
+"a": "agbada",
+"b": "tie",
+"code": "agbada.interactwith(tie){ tie.receives(agbada.envelope); tie.remembers(bisola, 'brown envelope'); tie.tucks(agbada, 'yaba bookshop receipt into the brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the tie, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
 }
 ],
 "memories": [
@@ -4458,5 +4458,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-16T10:27:48-0500"
+"updated": "2026-11-16T10:30:28-0500"
 }
