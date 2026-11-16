@@ -918,16 +918,6 @@
 ],
 "red_white_cap": [
 {
-"id": "wf_db80bf36c3",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the red white cap, and Bisola reads the name twice.",
-"code": "play.interactwith(red_white_cap){ red_white_cap.receives(play.envelope); … }",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j6",
-"other": "play"
-},
-{
 "id": "wf_57f0264710",
 "kind": "memory",
 "text": "The red and white cap on Kazeem, Mama Ronke's house and gate: worn; boasted about while talking hacking.",
@@ -966,6 +956,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "truth"
+},
+{
+"id": "wf_b433fe7c87",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the red white cap, and Bisola reads the name twice.",
+"code": "matches.interactwith(red_white_cap){ red_white_cap.receives(matches.envelope); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "matches"
 }
 ],
 "streetlights": [
@@ -3677,17 +3677,6 @@
 },
 "consequences": [
 {
-"id": "wf_f62ffcc3d6",
-"ts": "2026-11-15T18:25:45-0500",
-"a": "ats",
-"b": "sports_ball",
-"code": "ats.interactwith(sports_ball){ sports_ball.receives(ats.envelope); sports_ball.remembers(bisola, 'brown envelope'); }",
-"text": "The sports ball leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
-{
 "id": "wf_b9f0877762",
 "ts": "2026-11-15T18:28:33-0500",
 "a": "plastic_sheet",
@@ -4115,6 +4104,17 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j6"
+},
+{
+"id": "wf_b433fe7c87",
+"ts": "2026-11-15T23:53:43-0500",
+"a": "matches",
+"b": "red_white_cap",
+"code": "matches.interactwith(red_white_cap){ red_white_cap.receives(matches.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the red white cap, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
 }
 ],
 "memories": [
@@ -4218,5 +4218,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-15T23:14:56-0500"
+"updated": "2026-11-15T23:53:43-0500"
 }
