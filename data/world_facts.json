@@ -3520,6 +3520,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "bow"
+},
+{
+"id": "wf_1975f7eb56",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the kweshon, and Bisola reads the name twice.",
+"code": "morir_r.interactwith(kweshon){ kweshon.receives(morir_r.envelope); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "morir_r"
 }
 ],
 "let": [
@@ -3840,17 +3850,6 @@
 ]
 },
 "consequences": [
-{
-"id": "wf_16f4437bf1",
-"ts": "2026-11-16T01:04:29-0500",
-"a": "morir_r",
-"b": "pure_water_cooler",
-"code": "morir_r.interactwith(pure_water_cooler){ pure_water_cooler.receives(morir_r.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the pure water cooler, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
 {
 "id": "wf_06b90689cd",
 "ts": "2026-11-16T01:05:16-0500",
@@ -4279,6 +4278,17 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j6"
+},
+{
+"id": "wf_1975f7eb56",
+"ts": "2026-11-16T08:11:07-0500",
+"a": "morir_r",
+"b": "kweshon",
+"code": "morir_r.interactwith(kweshon){ kweshon.receives(morir_r.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the kweshon, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
 }
 ],
 "memories": [
@@ -4382,5 +4392,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-16T07:01:50-0500"
+"updated": "2026-11-16T08:11:07-0500"
 }
