@@ -2300,16 +2300,6 @@
 ],
 "lekki_pharmacy": [
 {
-"id": "wf_671be63a17",
-"kind": "memory",
-"text": "3:50pm, Wednesday 8 March 2062: Taiwo counts change into a dish. The lekki pharmacy keeps it on file.",
-"code": "lekki_pharmacy.remembers(taiwo, 'change');",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j9",
-"other": null
-},
-{
 "id": "wf_0d575297e9",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the blue glass bead button at the lekki pharmacy, and Bisola reads the name twice.",
@@ -2328,6 +2318,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "let"
+},
+{
+"id": "wf_cf980abeea",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the blue glass bead button at the lekki pharmacy, and Bisola reads the name twice.",
+"code": "agbada.interactwith(lekki_pharmacy){ lekki_pharmacy.receives(agbada.envelope); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "agbada"
 },
 {
 "id": "wt_825a1245a2",
@@ -3677,17 +3677,6 @@
 },
 "consequences": [
 {
-"id": "wf_580f294adf",
-"ts": "2026-11-15T18:24:50-0500",
-"a": "kerosene_lamp",
-"b": "morir_r",
-"code": "kerosene_lamp.interactwith(morir_r){ morir_r.receives(kerosene_lamp.change); … }",
-"text": "A Kerosene lamp note with Taiwo's name and 'change' on it, turns up inside the blue glass bead at the morir r, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "w"
-},
-{
 "id": "wf_f62ffcc3d6",
 "ts": "2026-11-15T18:25:45-0500",
 "a": "ats",
@@ -4115,6 +4104,17 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j6"
+},
+{
+"id": "wf_cf980abeea",
+"ts": "2026-11-15T23:14:56-0500",
+"a": "agbada",
+"b": "lekki_pharmacy",
+"code": "agbada.interactwith(lekki_pharmacy){ lekki_pharmacy.receives(agbada.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the blue glass bead button at the lekki pharmacy, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
 }
 ],
 "memories": [
@@ -4218,5 +4218,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-15T23:05:15-0500"
+"updated": "2026-11-15T23:14:56-0500"
 }
