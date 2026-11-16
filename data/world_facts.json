@@ -1024,14 +1024,14 @@
 ],
 "kerosene_lamp": [
 {
-"id": "wf_e3d57af11d",
+"id": "wf_fcc2e0874f",
 "kind": "consequence",
-"text": "A Danfo speaker note with Bisola's name and 'egbe note' on it, turns up inside the change at the kerosene lamp, and Taiwo reads the name twice.",
-"code": "danfo_speaker.interactwith(kerosene_lamp){ kerosene_lamp.receives(danfo_speaker.note); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the change at the kerosene lamp, and Taiwo reads the name twice.",
+"code": "matches.interactwith(kerosene_lamp){ kerosene_lamp.receives(matches.envelope); … }",
 "author": "cos",
 "run": "run-0bd7c0",
-"card": "w",
-"other": "danfo_speaker"
+"card": "j6",
+"other": "matches"
 },
 {
 "id": "wt_7a2b23aa13",
@@ -1994,16 +1994,6 @@
 ],
 "sheep": [
 {
-"id": "wf_636ce19541",
-"kind": "consequence",
-"text": "The sheep leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
-"code": "ttb.interactwith(sheep){ sheep.receives(ttb.code); sheep.remembers(ejiro, 'juju code'); }",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j2",
-"other": "ttb"
-},
-{
 "id": "wf_01e494bef4",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the juju code at the sheep, and Ejiro reads the name twice.",
@@ -2042,6 +2032,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "streetlights"
+},
+{
+"id": "wf_d64049792d",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the sheep, and Bisola reads the name twice.",
+"code": "bow.interactwith(sheep){ sheep.receives(bow.envelope); sheep.remembers(bisola, 'brown envelope'); sheep.tucks(bow, 'yaba bookshop receipt into the brown envelope'); }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "bow"
 }
 ],
 "yaba_bukka": [
@@ -3937,28 +3937,6 @@
 },
 "consequences": [
 {
-"id": "wf_4dcbd2db48",
-"ts": "2026-11-16T02:27:45-0500",
-"a": "streetlights",
-"b": "sports_ball",
-"code": "streetlights.interactwith(sports_ball){ sports_ball.receives(streetlights.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the sports ball, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
-{
-"id": "wf_00275ee510",
-"ts": "2026-11-16T02:39:38-0500",
-"a": "sessy",
-"b": "truth",
-"code": "sessy.interactwith(truth){ truth.receives(sessy.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the truth, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
-{
 "id": "wf_e20216b451",
 "ts": "2026-11-16T02:47:47-0500",
 "a": "agbada",
@@ -4375,6 +4353,28 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "w7"
+},
+{
+"id": "wf_fcc2e0874f",
+"ts": "2026-11-16T10:59:32-0500",
+"a": "matches",
+"b": "kerosene_lamp",
+"code": "matches.interactwith(kerosene_lamp){ kerosene_lamp.receives(matches.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the change at the kerosene lamp, and Taiwo reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
+},
+{
+"id": "wf_d64049792d",
+"ts": "2026-11-16T11:00:20-0500",
+"a": "bow",
+"b": "sheep",
+"code": "bow.interactwith(sheep){ sheep.receives(bow.envelope); sheep.remembers(bisola, 'brown envelope'); sheep.tucks(bow, 'yaba bookshop receipt into the brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the sheep, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
 }
 ],
 "memories": [
@@ -4478,5 +4478,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-16T10:54:43-0500"
+"updated": "2026-11-16T11:00:20-0500"
 }
