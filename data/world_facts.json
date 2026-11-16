@@ -3434,6 +3434,16 @@
 "run": "run-0bd7c0",
 "card": "w",
 "other": "kerosene_lamp"
+},
+{
+"id": "wf_00275ee510",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the truth, and Bisola reads the name twice.",
+"code": "sessy.interactwith(truth){ truth.receives(sessy.envelope); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "sessy"
 }
 ],
 "bow": [
@@ -3800,17 +3810,6 @@
 ]
 },
 "consequences": [
-{
-"id": "wf_b36c6ef587",
-"ts": "2026-11-15T22:58:49-0500",
-"a": "inside_odunlade_brain",
-"b": "danfo_stuck_third",
-"code": "inside_odunlade_brain.interactwith(danfo_stuck_third){ danfo_stuck_third.receives(inside_odunlade_brain.bead); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it, turns up inside the brown envelope at the danfo stuck third, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j5"
-},
 {
 "id": "wf_552e91b755",
 "ts": "2026-11-15T23:02:49-0500",
@@ -4239,6 +4238,17 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j6"
+},
+{
+"id": "wf_00275ee510",
+"ts": "2026-11-16T02:39:38-0500",
+"a": "sessy",
+"b": "truth",
+"code": "sessy.interactwith(truth){ truth.receives(sessy.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the truth, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
 }
 ],
 "memories": [
@@ -4342,5 +4352,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-16T02:27:45-0500"
+"updated": "2026-11-16T02:39:38-0500"
 }
