@@ -3,6 +3,8 @@
 "note": "World memory: each object's facts and the newest consequences of meetings (shared store /workspace/thryd-projector/data/world_facts.jsonl, tools/world_memory.py). The stage shows a consequence code line when the same pair meets again, and now and then on its own; #thryd memories show now and then too.",
 "alias": {
 "danfo_stuck_halfway_subject": "danfo_stuck_halfway",
+"danfo_stuck_halfway_subject_second": "danfo_stuck_halfway",
+"danfo_stuck_halfway_subject_third": "danfo_stuck_halfway",
 "back_row_chemistry_subject": "back_row_chemistry",
 "tea_bread_stall_subject": "tea_bread_stall",
 "tea_bread_stall_subject_second": "tea_bread_stall",
@@ -3994,16 +3996,6 @@
 ],
 "apapa_container_yard": [
 {
-"id": "wf_8ebf31a689",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the apapa container yard, and Bisola reads the name twice.",
-"code": "sessy.interactwith(apapa_container_yard){ apapa_container_yard.receives(sessy.envelope); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "sessy"
-},
-{
 "id": "wf_90a8199d9c",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the apapa container yard, and Bisola reads the name twice.",
@@ -4042,6 +4034,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "truth"
+},
+{
+"id": "wf_926f8ceb4b",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the apapa container yard, and Bisola reads the name twice.",
+"code": "let.interactwith(apapa_container_yard){ apapa_container_yard.receives(let.envelope); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "let"
 }
 ],
 "mrs_morenike_daramola": [
@@ -4176,17 +4178,6 @@
 ]
 },
 "consequences": [
-{
-"id": "wf_076b8c587a",
-"ts": "2026-11-16T13:59:07-0500",
-"a": "red_white_cap",
-"b": "sheep",
-"code": "red_white_cap.interactwith(sheep){ sheep.receives(red_white_cap.note); … }",
-"text": "A Red white cap note with Taiwo's name and 'egbe note' on it, 11:20pm, turns up inside the brown envelope at the sheep, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "w7"
-},
 {
 "id": "wf_4530259038",
 "ts": "2026-11-16T13:59:54-0500",
@@ -4615,6 +4606,17 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j6"
+},
+{
+"id": "wf_926f8ceb4b",
+"ts": "2026-11-16T15:29:18-0500",
+"a": "let",
+"b": "apapa_container_yard",
+"code": "let.interactwith(apapa_container_yard){ apapa_container_yard.receives(let.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the apapa container yard, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
 }
 ],
 "memories": [
@@ -4718,5 +4720,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-16T15:28:25-0500"
+"updated": "2026-11-16T15:29:18-0500"
 }
