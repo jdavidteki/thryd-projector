@@ -1019,14 +1019,14 @@
 ],
 "kerosene_lamp": [
 {
-"id": "wf_af51693eb2",
+"id": "wf_b81a30e264",
 "kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the change at the kerosene lamp, and Taiwo reads the name twice.",
-"code": "bow.interactwith(kerosene_lamp){ kerosene_lamp.receives(bow.envelope); … }",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the change at the kerosene lamp, and Taiwo reads the name twice.",
+"code": "people_scene.interactwith(kerosene_lamp){ kerosene_lamp.receives(people_scene.code); … }",
 "author": "cos",
 "run": "run-0bd7c0",
-"card": "j6",
-"other": "bow"
+"card": "j2",
+"other": "people_scene"
 },
 {
 "id": "wt_7a2b23aa13",
@@ -3410,17 +3410,6 @@
 },
 "consequences": [
 {
-"id": "wf_be91daa086",
-"ts": "2026-11-15T16:29:29-0500",
-"a": "streetlights",
-"b": "truth",
-"code": "streetlights.interactwith(truth){ truth.receives(streetlights.envelope); truth.remembers(bisola, 'brown envelope'); }",
-"text": "The truth leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
-{
 "id": "wf_2fca3ecff8",
 "ts": "2026-11-15T16:30:16-0500",
 "a": "pure_water_cooler",
@@ -3848,6 +3837,17 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j6"
+},
+{
+"id": "wf_b81a30e264",
+"ts": "2026-11-15T19:24:02-0500",
+"a": "people_scene",
+"b": "kerosene_lamp",
+"code": "people_scene.interactwith(kerosene_lamp){ kerosene_lamp.receives(people_scene.code); … }",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the change at the kerosene lamp, and Taiwo reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j2"
 }
 ],
 "memories": [
@@ -3951,5 +3951,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-15T18:34:54-0500"
+"updated": "2026-11-15T19:24:02-0500"
 }
