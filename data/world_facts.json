@@ -2302,16 +2302,6 @@
 ],
 "lekki_pharmacy": [
 {
-"id": "wf_9dbd46420d",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the blue glass bead button at the lekki pharmacy, and Bisola reads the name twice.",
-"code": "plastic_sheet.interactwith(lekki_pharmacy){ lekki_pharmacy.receives(plastic_sheet.envelope); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "plastic_sheet"
-},
-{
 "id": "wf_8ad602c559",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the blue glass bead button at the lekki pharmacy, and Bisola reads the name twice.",
@@ -2330,6 +2320,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "morir_r"
+},
+{
+"id": "wf_5d55910979",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the blue glass bead button at the lekki pharmacy, and Bisola reads the name twice.",
+"code": "kweshon.interactwith(lekki_pharmacy){ lekki_pharmacy.receives(kweshon.envelope); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "kweshon"
 },
 {
 "id": "wt_825a1245a2",
@@ -2406,16 +2406,6 @@
 ],
 "chair": [
 {
-"id": "wf_44fc2d9842",
-"kind": "consequence",
-"text": "The chair leaves with a Kerosene lamp note with Ronke's name and 'plastic sheet' on it.",
-"code": "imm.interactwith(chair){ chair.receives(imm.sheet); chair.remembers(ronke, 'plastic sheet'); }",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j4",
-"other": "imm"
-},
-{
 "id": "wf_e58e10f47f",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the plastic sheet at the chair, and Ronke reads the name twice.",
@@ -2454,6 +2444,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "kweshon"
+},
+{
+"id": "wf_8c080b0f61",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the chair, and Bisola reads the name twice.",
+"code": "truth.interactwith(chair){ chair.receives(truth.envelope); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "truth"
 }
 ],
 "cell_phone": [
@@ -3771,28 +3771,6 @@
 },
 "consequences": [
 {
-"id": "wf_10fc55a678",
-"ts": "2026-11-15T21:48:05-0500",
-"a": "kweshon",
-"b": "chair",
-"code": "kweshon.interactwith(chair){ chair.receives(kweshon.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the chair, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
-{
-"id": "wf_0d575297e9",
-"ts": "2026-11-15T21:51:03-0500",
-"a": "truth",
-"b": "lekki_pharmacy",
-"code": "truth.interactwith(lekki_pharmacy){ lekki_pharmacy.receives(truth.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the blue glass bead button at the lekki pharmacy, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
-{
 "id": "wf_0b77ac4e31",
 "ts": "2026-11-15T21:58:12-0500",
 "a": "morir",
@@ -4209,6 +4187,28 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j6"
+},
+{
+"id": "wf_5d55910979",
+"ts": "2026-11-16T02:10:32-0500",
+"a": "kweshon",
+"b": "lekki_pharmacy",
+"code": "kweshon.interactwith(lekki_pharmacy){ lekki_pharmacy.receives(kweshon.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the blue glass bead button at the lekki pharmacy, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
+},
+{
+"id": "wf_8c080b0f61",
+"ts": "2026-11-16T02:12:54-0500",
+"a": "truth",
+"b": "chair",
+"code": "truth.interactwith(chair){ chair.receives(truth.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the chair, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
 }
 ],
 "memories": [
@@ -4312,5 +4312,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-16T02:08:08-0500"
+"updated": "2026-11-16T02:12:54-0500"
 }
