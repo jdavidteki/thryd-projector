@@ -1000,16 +1000,6 @@
 ],
 "streetlights": [
 {
-"id": "wf_6b893b832f",
-"kind": "consequence",
-"text": "An Isl note with Kunle's name and 'worm question' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the streetlights, and Bisola reads the name twice.",
-"code": "isl.interactwith(streetlights){ streetlights.receives(isl.question); … }",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j3",
-"other": "isl"
-},
-{
 "id": "wf_9a37299f20",
 "kind": "memory",
 "text": "The streetlights at the street: all dead since 7:35pm.",
@@ -1048,6 +1038,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "agbada"
+},
+{
+"id": "wf_8532452d7a",
+"kind": "consequence",
+"text": "A Red white cap note with Taiwo's name and 'egbe note' on it, 11:20pm, turns up inside the brown envelope at the streetlights, and Bisola reads the name twice.",
+"code": "red_white_cap.interactwith(streetlights){ streetlights.receives(red_white_cap.note); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "w7",
+"other": "red_white_cap"
 }
 ],
 "kerosene_lamp": [
@@ -3975,17 +3975,6 @@
 },
 "consequences": [
 {
-"id": "wt_a369cd5156",
-"ts": "2026-11-16T04:48:05-0500",
-"a": "plastic_sheet",
-"b": "laptop",
-"code": "plastic_sheet.interactwith(laptop){ laptop.receives(plastic_sheet.receipt); … }",
-"text": "At the Oke-Ayo bus stop the plastic sheet slides off the laptop in the wind, and the Yaba receipt stuck to its underside leaves a damp outline of 7:40am on the lid that Ejiro cannot wipe away.",
-"author": "thryd",
-"run": "run-0bd7c0",
-"card": "w5"
-},
-{
 "id": "wt_61e16c7796",
 "ts": "2026-11-16T04:48:05-0500",
 "a": "apapa_container_yard",
@@ -4413,6 +4402,17 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j6"
+},
+{
+"id": "wf_8532452d7a",
+"ts": "2026-11-16T11:28:28-0500",
+"a": "red_white_cap",
+"b": "streetlights",
+"code": "red_white_cap.interactwith(streetlights){ streetlights.receives(red_white_cap.note); … }",
+"text": "A Red white cap note with Taiwo's name and 'egbe note' on it, 11:20pm, turns up inside the brown envelope at the streetlights, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "w7"
 }
 ],
 "memories": [
@@ -4516,5 +4516,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-16T11:24:27-0500"
+"updated": "2026-11-16T11:28:28-0500"
 }
