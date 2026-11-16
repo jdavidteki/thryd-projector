@@ -3800,16 +3800,6 @@
 ],
 "danfo_stuck_third": [
 {
-"id": "wf_6e00fa59ca",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the danfo stuck third, and Titi reads the name twice.",
-"code": "ats.interactwith(danfo_stuck_third){ danfo_stuck_third.receives(ats.envelope); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "ats"
-},
-{
 "id": "wf_24ca264a36",
 "kind": "consequence",
 "text": "A Danfo speaker note with Bisola's name and 'egbe note' on it, turns up inside the egbe note at the danfo stuck third, and Titi reads the name twice.",
@@ -3838,6 +3828,16 @@
 "run": "run-0bd7c0",
 "card": "w",
 "other": "kerosene_lamp"
+},
+{
+"id": "wf_2c44cdadf8",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the danfo stuck third, and Titi reads the name twice.",
+"code": "let.interactwith(danfo_stuck_third){ danfo_stuck_third.receives(let.envelope); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "let"
 },
 {
 "id": "wt_1115_2356_a",
@@ -3974,17 +3974,6 @@
 ]
 },
 "consequences": [
-{
-"id": "wt_61e16c7796",
-"ts": "2026-11-16T04:48:05-0500",
-"a": "apapa_container_yard",
-"b": "pure_water_cooler",
-"code": "apapa_container_yard.interactwith(pure_water_cooler){ apapa_container_yard.db.copyto(pure_water_cooler); … }",
-"text": "The pure water cooler is set down beside a container at the Apapa yard, and when Kunle lifts it again the container number has printed in sweat on its base, the same number pencilled inside the brown envelope.",
-"author": "thryd",
-"run": "run-0bd7c0",
-"card": "w1"
-},
 {
 "id": "wt_210f4cf336",
 "ts": "2026-11-16T04:48:05-0500",
@@ -4413,6 +4402,17 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "w7"
+},
+{
+"id": "wf_2c44cdadf8",
+"ts": "2026-11-16T11:43:30-0500",
+"a": "let",
+"b": "danfo_stuck_third",
+"code": "let.interactwith(danfo_stuck_third){ danfo_stuck_third.receives(let.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the danfo stuck third, and Titi reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
 }
 ],
 "memories": [
@@ -4516,5 +4516,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-16T11:28:28-0500"
+"updated": "2026-11-16T11:43:30-0500"
 }
