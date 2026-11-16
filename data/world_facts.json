@@ -1900,16 +1900,6 @@
 ],
 "laptop": [
 {
-"id": "wf_8f3ab425d3",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the rain-stained receipt at the laptop, and Ejiro reads the name twice.",
-"code": "matches.interactwith(laptop){ laptop.receives(matches.envelope); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "matches"
-},
-{
 "id": "wf_ed8be77d63",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the rain-stained receipt at the laptop, and Ejiro reads the name twice.",
@@ -1928,6 +1918,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "plastic_sheet"
+},
+{
+"id": "wf_ea5d324efb",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the rain-stained receipt at the laptop, and Ejiro reads the name twice.",
+"code": "omo.interactwith(laptop){ laptop.receives(omo.envelope); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "omo"
 },
 {
 "id": "wt_00586a397c",
@@ -3927,17 +3927,6 @@
 },
 "consequences": [
 {
-"id": "wf_9658262a43",
-"ts": "2026-11-16T02:17:41-0500",
-"a": "danfo_speaker",
-"b": "lekki_pharmacy",
-"code": "danfo_speaker.interactwith(lekki_pharmacy){ lekki_pharmacy.receives(danfo_speaker.note); … }",
-"text": "A Danfo speaker note with Bisola's name and 'egbe note' on it, turns up inside the blue glass bead button at the lekki pharmacy, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "w"
-},
-{
 "id": "wf_6e00fa59ca",
 "ts": "2026-11-16T02:19:15-0500",
 "a": "ats",
@@ -4365,6 +4354,17 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "w1"
+},
+{
+"id": "wf_ea5d324efb",
+"ts": "2026-11-16T10:48:20-0500",
+"a": "omo",
+"b": "laptop",
+"code": "omo.interactwith(laptop){ laptop.receives(omo.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the rain-stained receipt at the laptop, and Ejiro reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
 }
 ],
 "memories": [
@@ -4468,5 +4468,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-16T10:45:47-0500"
+"updated": "2026-11-16T10:48:20-0500"
 }
