@@ -29,11 +29,13 @@ html,body{margin:0;height:100%;background:#050505;color:var(--ink);font:16px/1.3
 #rs small{display:block;font-size:10px;color:var(--dim);text-transform:uppercase;letter-spacing:1px}
 #empty{position:fixed;inset:0;display:none;place-items:center;color:var(--dim);font-size:14px;letter-spacing:.08em;text-transform:uppercase;z-index:1}
 #empty.on{display:grid}
+#pn .nc{font-style:italic;color:#f3ead2;border-left:3px solid var(--acc);padding-left:8px;margin:6px 0}
+#lg .ln{display:inline-block;width:18px;height:0;margin-right:6px;vertical-align:middle;border-top:2px solid}
 @media(max-width:600px){#pn{top:auto;bottom:0;right:0;left:0;width:auto;max-width:none;max-height:45%;border-radius:12px 12px 0 0}#lg{display:none}#sb{width:auto;right:14px}#hd #st{max-width:70vw}}
 </style></head><body>
 <div id="g"></div>
 <div id="empty">no relationship data yet</div>
-<div id="hd"><h1>lovemap</h1><div id="st"></div><div id="tog"><button type="button" data-v="current">this agenda</button><button type="button" data-v="all">all agendas</button></div></div>
+<div id="hd"><h1>lovemap</h1><div id="st"></div><div id="tog"><button type="button" data-v="current">this agenda</button><button type="button" data-v="all">all agendas</button><button type="button" data-v="threads" title="📖 narrative threads: every card's craft call drawn as a thread">📖 threads</button></div></div>
 <div id="sb"><input id="q" type="search" placeholder="Search names, events, characters…" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" enterkeyhint="search"><div id="rs"></div></div>
 <div id="lg"></div>
 <div id="pn"><span class="x" id="px">&times;</span><div id="pb"></div></div>
@@ -43,12 +45,36 @@ html,body{margin:0;height:100%;background:#050505;color:var(--ink);font:16px/1.3
 var COL={run:'#f0b35a',event:'#7fd6ff',char:'#b9b9c8',bridge:'#ff7ab6',mirror:'#ffffff',foreshadow:'#f0b35a',bond:'#ff7ab6'};
 var NAME={run:'Agenda / run',event:'Event',char:'Character',bridge:'Character (crosses agendas)',mirror:'Mirror',foreshadow:'Foreshadow'};
 var VAL={run:14,event:2,char:3,bridge:6,mirror:9,foreshadow:8};
+// 📖 narrative threads (data/narrative_calls.json, tools/export_narrative_calls.py)
+var NCOL={herring:'#ff3b3b',foreshadow:'#f0b35a',callback:'#5fe3d0',entry:'#9f8cff',turning:'#ff5ad1',mark:'#cfc7b0'};
+var NNAME={herring:'red herring',foreshadow:'foreshadowing',callback:'callback',entry:'in medias res',turning:'turning point',mark:'craft note'};
+COL.ncrun='#f0b35a';COL.job='#d9cfa8';COL.cutend='#4a1515';COL.seed='#3a3020';COL.void='#2a2540';
+NAME.ncrun='Agenda / run';NAME.job='Job';NAME.call='📖 call';NAME.cutend='Cut wire';NAME.seed='Unpaid seed';NAME['void']='Off-page';
+VAL.ncrun=12;VAL.job=3;VAL.call=2.6;VAL.cutend=0.4;VAL.seed=0.4;VAL['void']=0.4;
+var NLC={nstem:null,ncut:'#ff3b3b',nopen:'#4a3d1c',npaid:'#f0b35a',nback:'#5fe3d0',nentry:'#9f8cff',njpath:'#4a463c',nturn:'#ff5ad1',nanchor:'#6b5a33'};
+var NC=null,NCP=null,ncsig='',userView=false;
 var LCOL={path:'#2f7fa8',cast:'#8a8aa8',mirror:'#ffffff',bond:'#ff7ab6',foreshadow:'#f0b35a'};
 var esc=function(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})};
 var DATA=null, VIEW='current', G=null, sel=null, byId={}, nb={}, sig='', ready=false;
 function src(){return '../data/lovemap.json?_='+Date.now()}
 function fingerprint(d){return (d.generated_at||'')+'|'+(d.current_run||'')+'|'+(d.counts&&d.counts.nodes)+'|'+(d.counts&&d.counts.links)}
+function ncPieces(view){
+  if(!NCP) return {nodes:[],links:[]};
+  if(view==='threads'||view==='all') return NCP;
+  var run=DATA&&DATA.current_run; if(!run) return NCP;
+  var ns=NCP.nodes.filter(function(n){return n.run===run}),ids={};ns.forEach(function(n){ids[n.id]=1});
+  return {nodes:ns,links:NCP.links.filter(function(l){return ids[lid(l.source)]&&ids[lid(l.target)]})};
+}
+function lid(x){return typeof x==='object'&&x?x.id:x}
 function filterData(all){
+  var v0=filterData0(all), p=ncPieces(VIEW);
+  if(VIEW==='threads') return {nodes:p.nodes.slice(),links:p.links.slice(),run:v0.run,all:false,threads:true};
+  if(!p.nodes.length) return v0;
+  var have={};v0.nodes.forEach(function(n){have[n.id]=1});
+  var extra=[];p.nodes.forEach(function(n){if(n.kind==='ncrun'&&have[n.run])extra.push(n.__anchor||(n.__anchor={source:n.run,target:n.id,kind:'nanchor'}))});
+  return {nodes:v0.nodes.concat(p.nodes),links:v0.links.concat(p.links,extra),run:v0.run,all:v0.all};
+}
+function filterData0(all){
   var run=all.current_run, useAll=VIEW==='all'||!run;
   var nodes=all.nodes||[], links=all.links||[];
   if(useAll) return {nodes:nodes,links:links,run:run,all:true};
@@ -73,12 +99,15 @@ function setView(v){
   document.querySelectorAll('#tog button').forEach(function(b){b.classList.toggle('on',b.dataset.v===v)});
   if(DATA) apply(true);
 }
-document.querySelectorAll('#tog button').forEach(function(b){b.onclick=function(){setView(b.dataset.v)}});
+document.querySelectorAll('#tog button').forEach(function(b){b.onclick=function(){userView=true;setView(b.dataset.v)}});
 function stats(d,view){
   var nodes=view.nodes, cnt={};
   nodes.forEach(function(n){cnt[n.kind]=(cnt[n.kind]||0)+1});
   var parts=[];
-  if(view.run) parts.push(view.run+(view.all?' · all agendas':' · this agenda'));
+  if(view.threads&&NC) parts.push((NC.runs||[]).join(', ')+' · 📖 threads');
+  else if(view.run) parts.push(view.run+(view.all?' · all agendas':' · this agenda'));
+  if(cnt.call){var c=NC&&NC.counts||{};parts.push(cnt.call+' 📖 calls · '+(c.cut||0)+' cut · '+(c.open||0)+' open · '+(c.paid||0)+' paid · '+(c.callbacks_linked||0)+' callbacks');}
+  if(view.threads){document.getElementById('st').textContent=parts.join(' · ');legendThreads();return}
   parts.push((cnt.run||0)+' agendas');
   parts.push((cnt.event||0)+' events');
   parts.push(((cnt.char||0)+(cnt.bridge||0))+' characters');
@@ -86,11 +115,21 @@ function stats(d,view){
   if(cnt.mirror) parts.push(cnt.mirror+' mirrors');
   document.getElementById('st').textContent=parts.join(' · ');
   var keys=['run','event','char','bridge','foreshadow','mirror'];
-  document.getElementById('lg').innerHTML=keys.filter(function(k){return NAME[k]&&(cnt[k]||k==='run'||k==='event'||k==='char'||k==='bridge')}).map(function(k){return '<div><i style="background:'+COL[k]+'"></i>'+NAME[k]+'</div>'}).join('');
+  document.getElementById('lg').innerHTML=keys.filter(function(k){return NAME[k]&&(cnt[k]||k==='run'||k==='event'||k==='char'||k==='bridge')}).map(function(k){return '<div><i style="background:'+COL[k]+'"></i>'+NAME[k]+'</div>'}).join('')+(cnt.call?legendThreads(true):'');
+}
+function legendThreads(ret){
+  var h='<div><span class="ln" style="border-color:#ff3b3b"></span>red herring · cut wire</div>'+
+   '<div><span class="ln" style="border-top-style:dotted;border-color:#d9b25a"></span>foreshadowing · unpaid</div>'+
+   '<div><span class="ln" style="border-color:#f0b35a"></span>paid off by a later pick</div>'+
+   '<div><span class="ln" style="border-color:#5fe3d0"></span>callback to an older job</div>'+
+   '<div><span class="ln" style="border-color:#9f8cff"></span>in medias res · enters from off-page</div>'+
+   '<div><i style="background:#ff5ad1"></i>turning point · path bends</div>'+
+   '<div><i style="background:#d9cfa8"></i>job · tap a thread for its 📖</div>';
+  if(ret) return h; document.getElementById('lg').innerHTML=h;
 }
 function apply(refit){
-  if(!DATA||!G) return;
-  var view=filterData(DATA);
+  if(!G||(!DATA&&!(VIEW==='threads'&&NCP))) return;
+  var view=filterData(DATA||{nodes:[],links:[]});
   var empty=!view.nodes.length;
   document.getElementById('empty').classList.toggle('on',empty);
   byId={}; view.nodes.forEach(function(n){byId[n.id]=n});
@@ -104,8 +143,8 @@ function apply(refit){
   if(refit){window.__fit=0; setTimeout(function(){if(!window.__fit&&G){window.__fit=1;try{G.zoomToFit(400,40)}catch(e){}}},800)}
   buildIndex(view.nodes);
 }
-function nodeVal(n){var v=VAL[n.kind]||2; return n.current?v*1.6:v}
-function nodeCol(n){if(n===sel)return '#ffffff'; return n.current&&n.kind!=='run'? (COL[n.kind]||'#fff') : (COL[n.kind]||'#ccc')}
+function nodeVal(n){var v=VAL[n.kind]||2; if(n.turning)v*=2.2; return n.current?v*1.6:v}
+function nodeCol(n){if(n===sel)return '#ffffff'; if(n.kind==='call')return NCOL[n.label2]||'#ccc'; if(n.kind==='job'&&n.turning)return NCOL.turning; if(n.kind==='job'&&!n.seated)return '#6f6a5c'; return n.current&&n.kind!=='run'? (COL[n.kind]||'#fff') : (COL[n.kind]||'#ccc')}
 function init(){
   if(typeof ForceGraph3D!=='function'){document.getElementById('empty').className='on';document.getElementById('empty').textContent='lovemap library failed to load';return}
   var el=document.getElementById('g');
@@ -113,14 +152,17 @@ function init(){
    .graphData({nodes:[],links:[]})
    .nodeId('id').nodeVal(nodeVal).nodeRelSize(4).nodeResolution(12)
    .nodeColor(nodeCol).nodeOpacity(0.95)
-   .nodeLabel(function(n){return '<div style="background:#000c;padding:3px 6px;border-radius:4px;max-width:260px;font:12px ui-monospace,monospace">'+esc(n.kind=='event'?n.label+': '+(n.title||'').slice(0,90):n.kind=='mirror'||n.kind=='foreshadow'?(n.kind+': '+(n.title||'').slice(0,90)):n.label)+'</div>'})
-   .linkColor(function(l){return LCOL[l.kind]||'#555'}).linkOpacity(0.45)
-   .linkWidth(function(l){return l.kind=='bond'||l.kind=='foreshadow'?1.6:l.kind=='mirror'?1.5:l.kind=='path'?0.8:0.2})
-   .linkDirectionalParticles(function(l){return l.kind=='bond'||l.kind=='foreshadow'?2:l.kind=='path'?1:l.kind=='mirror'?3:0})
-   .linkDirectionalParticleWidth(1.5).linkDirectionalParticleSpeed(0.004)
-   .onNodeClick(show).onBackgroundClick(hide)
+   .nodeLabel(function(n){return '<div style="background:#000c;padding:3px 6px;border-radius:4px;max-width:260px;font:12px ui-monospace,monospace">'+esc(n.kind=='call'?'📖 '+n.job+' · '+(NNAME[n.label2]||n.label2)+': '+String(n.sentence||'').slice(0,110):n.kind=='job'?n.label+': '+(n.title||'').slice(0,90):n.kind=='cutend'||n.kind=='seed'||n.kind=='void'?NAME[n.kind]:n.kind=='event'?n.label+': '+(n.title||'').slice(0,90):n.kind=='mirror'||n.kind=='foreshadow'?(n.kind+': '+(n.title||'').slice(0,90)):n.label)+'</div>'})
+   .linkColor(function(l){if(l.kind in NLC)return l.kind==='nstem'?(NCOL[l.label2]||'#888'):NLC[l.kind];return LCOL[l.kind]||'#555'}).linkOpacity(0.45)
+   .linkWidth(function(l){if(l.kind in NLC)return l.kind==='ncut'?2.4:l.kind==='npaid'?2:l.kind==='nback'||l.kind==='nentry'?1.3:l.kind==='nturn'?1.4:l.kind==='nopen'?0:l.kind==='nstem'?0.7:0.5;return l.kind=='bond'||l.kind=='foreshadow'?1.6:l.kind=='mirror'?1.5:l.kind=='path'?0.8:0.2})
+   .linkCurvature(function(l){return l.kind==='nback'?0.6:l.kind==='nturn'?(l.bend||0):0})
+   .linkDirectionalArrowLength(function(l){return l.kind==='nback'?4:0}).linkDirectionalArrowRelPos(0.92).linkDirectionalArrowColor(function(){return '#5fe3d0'})
+   .linkDirectionalParticles(function(l){if(l.kind in NLC)return l.kind==='nopen'?10:l.kind==='npaid'?2:l.kind==='nentry'?3:0;return l.kind=='bond'||l.kind=='foreshadow'?2:l.kind=='path'?1:l.kind=='mirror'?3:0})
+   .linkDirectionalParticleColor(function(l){return l.kind==='nopen'?'#d9b25a':l.kind==='npaid'?'#ffd27a':l.kind==='nentry'?'#c3b8ff':null})
+   .linkDirectionalParticleWidth(function(l){return l.kind==='nopen'?1.3:1.5}).linkDirectionalParticleSpeed(function(l){return l.kind==='nopen'?0:0.004})
+   .onNodeClick(show).onBackgroundClick(hide).onLinkClick(function(l){if(l.call){var c=byId[l.call];if(c){show(c);return}}})
    .onEngineStop(function(){if(!window.__fit){window.__fit=1;try{G.zoomToFit(400,40)}catch(e){}}}).cooldownTicks(200).warmupTicks(80);
-  try{G.d3Force('charge').strength(-25);G.d3Force('link').distance(function(l){return l.kind=='bond'?28:l.kind=='foreshadow'?22:l.kind=='path'?14:l.kind=='mirror'?20:55});}catch(e){}
+  try{G.d3Force('charge').strength(-25);G.d3Force('link').distance(function(l){return l.kind=='nstem'?8:l.kind=='ncut'||l.kind=='nopen'?30:l.kind=='nentry'?22:l.kind=='njpath'||l.kind=='nturn'?16:l.kind=='nback'||l.kind=='npaid'?40:l.kind=='nanchor'?20:l.kind=='bond'?28:l.kind=='foreshadow'?22:l.kind=='path'?14:l.kind=='mirror'?20:55});}catch(e){}
   function resize(){if(!G)return;G.width(el.clientWidth||window.innerWidth).height(el.clientHeight||window.innerHeight)}
   window.addEventListener('resize',resize);
   if(window.ResizeObserver) new ResizeObserver(resize).observe(el);
@@ -131,11 +173,27 @@ function refresh(){if(G) G.nodeColor(G.nodeColor())}
 function hide(){sel=null;document.getElementById('pn').style.display='none';refresh()}
 document.getElementById('px').onclick=hide;
 function parseT(t){var p=String(t||'').split(' | ');var date=p.shift();var why='';var last=p[p.length-1]||'';if(last.indexOf('why: ')==0){why=last.slice(5);p.pop()}return{date:date,event:p.join(' | '),why:why}}
-function link(id){var n=byId[id];return n?'<a data-id="'+esc(id)+'">'+esc(n.kind=='event'?n.label+' ('+id+')':n.label)+'</a>':''}
+function link(id){var n=byId[id];return n?'<a data-id="'+esc(id)+'">'+esc(n.kind=='event'?n.label+' ('+id+')':n.kind=='call'?'📖 '+n.job+' '+(NNAME[n.label2]||''):n.label)+'</a>':esc(String(id).split(':').pop())}
 function show(n){
  sel=n;refresh();
  var h='<div class="k">'+esc(NAME[n.kind]||n.kind)+'</div>';
- if(n.kind=='event'){var t=parseT(n.title);var run=(n.id.split(':')[0]);
+ if(n.kind=='call'){var c=n.c;
+  h='<div class="k">📖 '+esc(n.job)+' · '+esc((c.terms||[]).join(', ')||NNAME[c.kind])+'</div><h2>'+esc(NNAME[n.label2]||n.label2)+(c.relabeled?' <small>(was red herring)</small>':'')+'</h2>';
+  h+='<p class="nc">📖 '+esc(c.sentence)+'</p>';
+  h+='<p><b>Job:</b> '+link('nc:'+c.run+':'+c.job)+(c.seated?'':' <small>(banked, never seated)</small>')+'</p><p><b>Agenda:</b> '+esc(c.s||'?')+' → '+esc(c.d||'?')+'</p><p><b>Run:</b> '+esc(c.run)+'</p>';
+  h+='<p><b>Motif:</b> “'+esc(c.motif)+'”</p>';
+  var st={cut:'cut wire: no later job has picked up the motif yet',open:'unpaid seed: no later pick has paid it off yet',paid:'paid off',linked:'loops back',unlinked:'no older job matched yet',entered:'drops us mid-scene',turning:'the path bends here',mark:'craft note on this job'}[c.status]||c.status;
+  h+='<p><b>Thread:</b> '+esc(st)+(c.payoff?' at '+link('nc:'+c.payoff.run+':'+c.payoff.job)+' (“'+esc(c.payoff.matched)+'” in its '+esc(c.payoff['in'])+')':'')+'</p>';
+  if(c.callbacks&&c.callbacks.length)h+='<p><b>Callback to:</b> '+c.callbacks.map(function(b){return link('nc:'+b.run+':'+b.job)+' (“'+esc(b.matched)+'”)'}).join(', ')+'</p>';
+ }else if(n.kind=='job'){
+  h+='<h2>'+esc(n.label)+(n.turning?' · turning point':'')+'</h2><p><b>Run:</b> '+esc(n.run)+(n.seated?'':' <small>(banked, never seated)</small>')+'</p><p><b>Scene:</b> '+esc(n.title||'—')+'</p>';
+  var cs=(nb[n.id]||[]).filter(function(i){return byId[i]&&byId[i].kind=='call'});
+  if(cs.length)h+='<p><b>📖 calls:</b> '+cs.map(link).join(', ')+'</p>';
+ }else if(n.kind=='ncrun'){
+  h+='<h2>'+esc(n.run)+'</h2><p><b>Agenda:</b> '+esc(n.title||'')+'</p>';
+ }else if(n.kind=='cutend'||n.kind=='seed'||n.kind=='void'){
+  var cc=byId[n.call]; if(cc){show(cc);return}
+ }else if(n.kind=='event'){var t=parseT(n.title);var run=(n.id.split(':')[0]);
   h+='<h2>'+esc(n.label)+'</h2><p><b>Date:</b> '+esc(t.date||'—')+'</p><p><b>Agenda/run:</b> '+link(run)+'</p><p><b>Event line:</b> '+esc(t.event)+'</p><p><b>Why:</b> '+esc(t.why||'—')+'</p>';
  }else if(n.kind=='mirror'||n.kind=='foreshadow'){var p=String(n.title||'').split(' | ');
   h+='<h2>'+esc(n.label)+'</h2><p><b>Date:</b> '+esc(p[0]||'—')+'</p>'+(n.run?'<p><b>Agenda/run:</b> '+link(n.run)+'</p>':'')+(n.status?'<p><b>Status:</b> '+esc(n.status)+'</p>':'')+'<p><b>Line:</b> '+esc(p.slice(1).join(' | '))+'</p>';
@@ -159,7 +217,7 @@ function show(n){
 function focus(n){if(!G||n.x==null)return;var d=60,r=1+d/Math.hypot(n.x,n.y,n.z||1);G.cameraPosition({x:n.x*r,y:n.y*r,z:(n.z||0)*r},n,900)}
 var q=document.getElementById('q'),rs=document.getElementById('rs'),IDX=[];
 function buildIndex(nodes){IDX=(nodes||[]).map(function(n){var t=n.title||'';return{n:n,tx:(n.label+' '+n.id+' '+t).toLowerCase()}})}
-function snip(n,term){var t=n.title||'';if(n.kind=='event'){var p=parseT(t);t=p.event+(p.why?' — '+p.why:'')}else if(n.kind=='mirror'||n.kind=='foreshadow'){var m=t.split(' | ');t=m.slice(1).join(' — ')}
+function snip(n,term){var t=n.title||'';if(n.kind=='call')t=n.sentence||'';else if(n.kind=='event'){var p=parseT(t);t=p.event+(p.why?' — '+p.why:'')}else if(n.kind=='mirror'||n.kind=='foreshadow'){var m=t.split(' | ');t=m.slice(1).join(' — ')}
  var i=t.toLowerCase().indexOf(term);if(i>40)t=t.slice(i-30);return esc(t.slice(0,90))}
 function doSearch(){
  var term=q.value.trim().toLowerCase();if(!term){rs.style.display='none';return}
@@ -170,7 +228,7 @@ function doSearch(){
  out.sort(function(a,b){return a.s-b.s});out=out.slice(0,8);
  rs.innerHTML=out.length?'':'<div style="color:#888;cursor:default">No matches</div>';
  out.forEach(function(o){var d=document.createElement('div');var n=o.n;
-  d.innerHTML='<small>'+esc(NAME[n.kind]||n.kind)+'</small>'+esc(n.kind=='event'?n.label+' · ':'')+(n.kind=='event'||n.kind=='mirror'||n.kind=='foreshadow'?snip(n,term):'<b style="color:#f0b35a">'+esc(n.label)+'</b>');
+  d.innerHTML='<small>'+esc(NAME[n.kind]||n.kind)+'</small>'+esc(n.kind=='event'?n.label+' · ':'')+(n.kind=='event'||n.kind=='mirror'||n.kind=='foreshadow'||n.kind=='call'||n.kind=='job'?snip(n,term):'<b style="color:#f0b35a">'+esc(n.label)+'</b>');
   d.addEventListener('click',function(ev){ev.preventDefault();q.value='';rs.style.display='none';q.blur();focus(n);show(n)});
   rs.appendChild(d)});
  rs.style.display='block'}
@@ -180,15 +238,50 @@ document.addEventListener('pointerdown',function(e){if(!document.getElementById(
 function load(first){
   fetch(src(),{cache:'no-store'}).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(d){
     var fp=fingerprint(d);if(fp===sig&&!first)return;sig=fp;DATA=d;
-    if(!d.current_run) setView('all');
+    if(!d.current_run&&VIEW!=='threads') setView('all');
     else document.querySelectorAll('#tog button').forEach(function(b){b.classList.toggle('on',b.dataset.v===VIEW)});
     apply(true);
   }).catch(function(){if(first){document.getElementById('empty').className='on'}});
 }
+function buildNC(d){
+  var nodes=[],links=[],ids={},jobsByRun=d.jobs||{};
+  function add(n){if(!ids[n.id]){ids[n.id]=n;nodes.push(n)}return ids[n.id]}
+  var turning={};(d.calls||[]).forEach(function(c){if((c.kinds||[]).indexOf('turning')>=0)turning[c.run+':'+c.job]=1});
+  Object.keys(jobsByRun).forEach(function(run){
+    var first=(d.calls||[]).filter(function(c){return c.run===run})[0]||{};
+    add({id:'nc:run:'+run,kind:'ncrun',label:run,run:run,title:(first.s||'?')+' → '+(first.d||'?')});
+    var js=jobsByRun[run]||[],prev=null;
+    js.forEach(function(j){
+      var n=add({id:'nc:'+run+':'+j.job,kind:'job',label:j.job,run:run,title:j.scene||'',seated:!!j.seated,turning:!!turning[run+':'+j.job]});
+      if(!prev)links.push({source:'nc:run:'+run,target:n.id,kind:'nanchor'});
+      else{var t=n.turning||prev.turning;links.push({source:prev.id,target:n.id,kind:t?'nturn':'njpath',bend:n.turning?0.35:prev.turning?-0.35:0})}
+      prev=n;
+    });
+  });
+  (d.calls||[]).forEach(function(c){
+    var jid='nc:'+c.run+':'+c.job; if(!ids[jid])return;
+    var lab=c.label||c.kind,cid='nc:call:'+c.id;
+    add({id:cid,kind:'call',label:'📖 '+c.job,label2:lab,job:c.job,run:c.run,sentence:c.sentence,title:c.sentence+' '+(c.terms||[]).join(' ')+' '+c.motif,c:c});
+    links.push({source:jid,target:cid,kind:'nstem',label2:lab,call:cid});
+    if(c.payoff&&ids['nc:'+c.payoff.run+':'+c.payoff.job]) links.push({source:cid,target:'nc:'+c.payoff.run+':'+c.payoff.job,kind:'npaid',call:cid});
+    else if(c.kind==='herring'){add({id:cid+':cut',kind:'cutend',label:'',run:c.run,call:cid});links.push({source:cid,target:cid+':cut',kind:'ncut',call:cid})}
+    else if(c.kind==='foreshadow'){add({id:cid+':seed',kind:'seed',label:'',run:c.run,call:cid});links.push({source:cid,target:cid+':seed',kind:'nopen',call:cid})}
+    if(c.kind==='entry'){add({id:cid+':void',kind:'void',label:'',run:c.run,call:cid});links.push({source:cid+':void',target:jid,kind:'nentry',call:cid})}
+    (c.callbacks||[]).forEach(function(b){var t='nc:'+b.run+':'+b.job;if(ids[t])links.push({source:cid,target:t,kind:'nback',call:cid})});
+  });
+  return {nodes:nodes,links:links};
+}
+function loadNC(first){
+  fetch('../data/narrative_calls.json?_='+Date.now(),{cache:'no-store'}).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(d){
+    var fp=(d.generated_at||'')+'|'+JSON.stringify(d.counts||{});if(fp===ncsig)return;ncsig=fp;NC=d;NCP=buildNC(d);
+    if(!userView&&(d.calls||[]).length){VIEW='threads';document.querySelectorAll('#tog button').forEach(function(b){b.classList.toggle('on',b.dataset.v===VIEW)})}
+    if(DATA||VIEW==='threads')apply(true);
+  }).catch(function(){});
+}
 init();
 setView(VIEW);
-load(true);
-setInterval(function(){load(false)},30000);
+load(true);loadNC(true);
+setInterval(function(){load(false);loadNC(false)},30000);
 window.__ready=true;
 })();
 </script></body></html>
