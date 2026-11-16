@@ -3450,20 +3450,21 @@
 "card": "j6",
 "other": "ikeja_laundromat"
 }
+],
+"sessy": [
+{
+"id": "wf_0138c50823",
+"kind": "consequence",
+"text": "The sessy leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "chair.interactwith(sessy){ sessy.receives(chair.envelope); sessy.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "chair"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_a4bb75f956",
-"ts": "2026-11-15T16:54:52-0500",
-"a": "truth",
-"b": "ikeja_laundromat",
-"code": "truth.interactwith(ikeja_laundromat){ ikeja_laundromat.receives(truth.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the senator receipt at the ikeja laundromat, and Taiwo reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
 {
 "id": "wf_b66cc6a30e",
 "ts": "2026-11-15T16:55:43-0500",
@@ -3892,6 +3893,17 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "w"
+},
+{
+"id": "wf_0138c50823",
+"ts": "2026-11-15T20:46:00-0500",
+"a": "chair",
+"b": "sessy",
+"code": "chair.interactwith(sessy){ sessy.receives(chair.envelope); sessy.remembers(bisola, 'brown envelope'); }",
+"text": "The sessy leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
 }
 ],
 "memories": [
@@ -3995,5 +4007,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-15T20:41:08-0500"
+"updated": "2026-11-15T20:46:00-0500"
 }
