@@ -3324,6 +3324,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "ats"
+},
+{
+"id": "wf_37ddd4d1d2",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the morir r, and Bisola reads the name twice.",
+"code": "matches.interactwith(morir_r){ morir_r.receives(matches.envelope); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "matches"
 }
 ],
 "ats": [
@@ -3738,17 +3748,6 @@
 ]
 },
 "consequences": [
-{
-"id": "wf_03f43a864f",
-"ts": "2026-11-15T21:05:20-0500",
-"a": "truth",
-"b": "red_white_cap",
-"code": "truth.interactwith(red_white_cap){ red_white_cap.receives(truth.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the red white cap, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
 {
 "id": "wf_0aef98264c",
 "ts": "2026-11-15T21:06:07-0500",
@@ -4177,6 +4176,17 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j6"
+},
+{
+"id": "wf_37ddd4d1d2",
+"ts": "2026-11-16T01:10:06-0500",
+"a": "matches",
+"b": "morir_r",
+"code": "matches.interactwith(morir_r){ morir_r.receives(matches.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the morir r, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
 }
 ],
 "memories": [
@@ -4280,5 +4290,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-16T01:07:37-0500"
+"updated": "2026-11-16T01:10:06-0500"
 }
