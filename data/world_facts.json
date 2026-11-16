@@ -3504,16 +3504,6 @@
 ],
 "truth": [
 {
-"id": "wf_be91daa086",
-"kind": "consequence",
-"text": "The truth leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"code": "streetlights.interactwith(truth){ truth.receives(streetlights.envelope); truth.remembers(bisola, 'brown envelope'); }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "streetlights"
-},
-{
 "id": "wf_1bb6831840",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the truth, and Bisola reads the name twice.",
@@ -3552,6 +3542,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "morir_r"
+},
+{
+"id": "wf_84962eedcc",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the truth, and Bisola reads the name twice.",
+"code": "plastic_sheet.interactwith(truth){ truth.receives(plastic_sheet.envelope); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "plastic_sheet"
 }
 ],
 "bow": [
@@ -4093,17 +4093,6 @@
 },
 "consequences": [
 {
-"id": "wf_f9f0c559a5",
-"ts": "2026-11-16T11:58:40-0500",
-"a": "morir_r",
-"b": "truth",
-"code": "morir_r.interactwith(truth){ truth.receives(morir_r.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the truth, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
-{
 "id": "wf_cfea96360d",
 "ts": "2026-11-16T12:09:46-0500",
 "a": "danfo_speaker",
@@ -4531,6 +4520,17 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "w1"
+},
+{
+"id": "wf_84962eedcc",
+"ts": "2026-11-16T14:14:13-0500",
+"a": "plastic_sheet",
+"b": "truth",
+"code": "plastic_sheet.interactwith(truth){ truth.receives(plastic_sheet.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the truth, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
 }
 ],
 "memories": [
@@ -4634,5 +4634,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-16T14:06:17-0500"
+"updated": "2026-11-16T14:14:13-0500"
 }
