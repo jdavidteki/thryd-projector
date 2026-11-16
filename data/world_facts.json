@@ -3569,20 +3569,21 @@
 "card": "j9",
 "other": null
 }
+],
+"apapa_container_yard": [
+{
+"id": "wf_ce470fe2df",
+"kind": "consequence",
+"text": "The apapa container yard leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "red_white_cap.interactwith(apapa_container_yard){ apapa_container_yard.receives(red_white_cap.envelope); apapa_container_yard.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "red_white_cap"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_7ce6fdc04f",
-"ts": "2026-11-15T17:08:30-0500",
-"a": "danfo_speaker",
-"b": "ikeja_laundromat",
-"code": "danfo_speaker.interactwith(ikeja_laundromat){ ikeja_laundromat.receives(danfo_speaker.note); … }",
-"text": "A Danfo speaker note with Bisola's name and 'egbe note' on it, turns up inside the senator receipt at the ikeja laundromat, and Taiwo reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "w"
-},
 {
 "id": "wf_d858bd8eb5",
 "ts": "2026-11-15T17:09:25-0500",
@@ -4011,6 +4012,17 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j6"
+},
+{
+"id": "wf_ce470fe2df",
+"ts": "2026-11-15T21:43:15-0500",
+"a": "red_white_cap",
+"b": "apapa_container_yard",
+"code": "red_white_cap.interactwith(apapa_container_yard){ apapa_container_yard.receives(red_white_cap.envelope); apapa_container_yard.remembers(bisola, 'brown envelope'); }",
+"text": "The apapa container yard leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
 }
 ],
 "memories": [
@@ -4114,5 +4126,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-15T21:28:14-0500"
+"updated": "2026-11-15T21:43:15-0500"
 }
