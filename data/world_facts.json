@@ -918,16 +918,6 @@
 ],
 "red_white_cap": [
 {
-"id": "wf_57f0264710",
-"kind": "memory",
-"text": "The red and white cap on Kazeem, Mama Ronke's house and gate: worn; boasted about while talking hacking.",
-"code": "red_white_cap.state('worn');",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "w6",
-"other": null
-},
-{
 "id": "wf_23121dac07",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it, turns up inside the brown envelope at the red white cap, and Bisola reads the name twice.",
@@ -966,6 +956,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "matches"
+},
+{
+"id": "wt_1115_2356_c",
+"kind": "consequence",
+"text": "Taiwo turns the kerosene lamp low and tucks the egbe note under the red white cap's brim, so whoever wears it home tomorrow carries the meeting time without knowing it.",
+"code": "kerosene_lamp.interactwith(red_white_cap){ kerosene_lamp.dims('wick turned low'); … }",
+"author": "thryd",
+"run": "run-0bd7c0",
+"card": "w7",
+"other": "kerosene_lamp"
 }
 ],
 "streetlights": [
@@ -3628,6 +3628,16 @@
 "run": "run-0bd7c0",
 "card": "j5",
 "other": "inside_odunlade_brain"
+},
+{
+"id": "wt_1115_2356_a",
+"kind": "consequence",
+"text": "The danfo speaker crackles the egbe announcement while the bus grinds in third, and Titi notices the note folded in her hand says the same words, down to the misspelt street.",
+"code": "danfo_speaker.interactwith(danfo_stuck_third){ danfo_speaker.plays(danfo_stuck_third, 'egbe announcement'); … }",
+"author": "thryd",
+"run": "run-0bd7c0",
+"card": "w5",
+"other": "danfo_speaker"
 }
 ],
 "apapa_container_yard": [
@@ -3673,42 +3683,21 @@
 "card": "j6",
 "other": "notnotnotnotyn_dec"
 }
+],
+"mi": [
+{
+"id": "wt_1115_2356_b",
+"kind": "consequence",
+"text": "The streetlights go out one by one behind Kunle, and the last bulb holds just long enough for him to read that the brown envelope is addressed to a stop that no longer exists.",
+"code": "streetlights.interactwith(mi){ streetlights.flickers(mi, 'last bulb on the street'); mi.receives(streetlights.envelope); mi.remembers(kunle, 'brown envelope'); }",
+"author": "thryd",
+"run": "run-0bd7c0",
+"card": "w6",
+"other": "streetlights"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_b9f0877762",
-"ts": "2026-11-15T18:28:33-0500",
-"a": "plastic_sheet",
-"b": "tie",
-"code": "plastic_sheet.interactwith(tie){ tie.receives(plastic_sheet.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the tie, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
-{
-"id": "wf_f03af244ba",
-"ts": "2026-11-15T18:34:54-0500",
-"a": "let",
-"b": "yaba_bookshop",
-"code": "let.interactwith(yaba_bookshop){ yaba_bookshop.receives(let.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the blue glass bead at the yaba bookshop, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
-{
-"id": "wf_b81a30e264",
-"ts": "2026-11-15T19:24:02-0500",
-"a": "people_scene",
-"b": "kerosene_lamp",
-"code": "people_scene.interactwith(kerosene_lamp){ kerosene_lamp.receives(people_scene.code); … }",
-"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the change at the kerosene lamp, and Taiwo reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j2"
-},
 {
 "id": "wf_21772219fb",
 "ts": "2026-11-15T19:48:16-0500",
@@ -4115,6 +4104,39 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j6"
+},
+{
+"id": "wt_1115_2356_a",
+"ts": "2026-11-15T23:56:00-0500",
+"a": "danfo_speaker",
+"b": "danfo_stuck_third",
+"code": "danfo_speaker.interactwith(danfo_stuck_third){ danfo_speaker.plays(danfo_stuck_third, 'egbe announcement'); … }",
+"text": "The danfo speaker crackles the egbe announcement while the bus grinds in third, and Titi notices the note folded in her hand says the same words, down to the misspelt street.",
+"author": "thryd",
+"run": "run-0bd7c0",
+"card": "w5"
+},
+{
+"id": "wt_1115_2356_b",
+"ts": "2026-11-15T23:56:00-0500",
+"a": "streetlights",
+"b": "mi",
+"code": "streetlights.interactwith(mi){ streetlights.flickers(mi, 'last bulb on the street'); mi.receives(streetlights.envelope); mi.remembers(kunle, 'brown envelope'); }",
+"text": "The streetlights go out one by one behind Kunle, and the last bulb holds just long enough for him to read that the brown envelope is addressed to a stop that no longer exists.",
+"author": "thryd",
+"run": "run-0bd7c0",
+"card": "w6"
+},
+{
+"id": "wt_1115_2356_c",
+"ts": "2026-11-15T23:56:00-0500",
+"a": "kerosene_lamp",
+"b": "red_white_cap",
+"code": "kerosene_lamp.interactwith(red_white_cap){ kerosene_lamp.dims('wick turned low'); … }",
+"text": "Taiwo turns the kerosene lamp low and tucks the egbe note under the red white cap's brim, so whoever wears it home tomorrow carries the meeting time without knowing it.",
+"author": "thryd",
+"run": "run-0bd7c0",
+"card": "w7"
 }
 ],
 "memories": [
@@ -4218,5 +4240,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-15T23:53:43-0500"
+"updated": "2026-11-15T23:54:48-0500"
 }
