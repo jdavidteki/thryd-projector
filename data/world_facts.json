@@ -1836,16 +1836,6 @@
 ],
 "tie": [
 {
-"id": "wf_1f1564f877",
-"kind": "consequence",
-"text": "An Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997, turns up inside the brown envelope at the tie, and Bisola reads the name twice.",
-"code": "juniorboys.interactwith(tie){ tie.receives(juniorboys.joke); tie.remembers(bisola, 'boss joke'); tie.tucks(juniorboys, 'egbe note into the brown envelope'); }",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j1",
-"other": "juniorboys"
-},
-{
 "id": "wf_5e9721ac04",
 "kind": "consequence",
 "text": "An Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997, turns up inside the brown envelope at the tie, and Bisola reads the name twice.",
@@ -1884,6 +1874,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "plastic_sheet"
+},
+{
+"id": "wf_42d2f0cf49",
+"kind": "consequence",
+"text": "A Danfo speaker note with Bisola's name and 'egbe note' on it, turns up inside the brown envelope at the tie, and Bisola reads the name twice.",
+"code": "danfo_speaker.interactwith(tie){ tie.receives(danfo_speaker.note); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "w",
+"other": "danfo_speaker"
 }
 ],
 "laptop": [
@@ -2300,16 +2300,6 @@
 ],
 "lekki_pharmacy": [
 {
-"id": "wf_15c66145f9",
-"kind": "memory",
-"text": "3:50pm, Wednesday 8 March 2062: Bisola waits by the till with a small paper bag. The lekki pharmacy keeps it on file.",
-"code": "lekki_pharmacy.remembers(bisola, 'paper bag');",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j9",
-"other": null
-},
-{
 "id": "wf_671be63a17",
 "kind": "memory",
 "text": "3:50pm, Wednesday 8 March 2062: Taiwo counts change into a dish. The lekki pharmacy keeps it on file.",
@@ -2328,6 +2318,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "truth"
+},
+{
+"id": "wf_8418c86c9b",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the blue glass bead button at the lekki pharmacy, and Bisola reads the name twice.",
+"code": "let.interactwith(lekki_pharmacy){ lekki_pharmacy.receives(let.envelope); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "let"
 },
 {
 "id": "wt_825a1245a2",
@@ -3630,6 +3630,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "morir"
+},
+{
+"id": "wf_230ac4231f",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the apapa container yard, and Bisola reads the name twice.",
+"code": "streetlights.interactwith(apapa_container_yard){ apapa_container_yard.receives(streetlights.envelope); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "streetlights"
 }
 ],
 "mrs_morenike_daramola": [
@@ -3646,39 +3656,6 @@
 ]
 },
 "consequences": [
-{
-"id": "wf_7a73eabbdd",
-"ts": "2026-11-15T17:39:01-0500",
-"a": "agbada",
-"b": "yaba_bookshop",
-"code": "agbada.interactwith(yaba_bookshop){ yaba_bookshop.receives(agbada.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the blue glass bead at the yaba bookshop, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
-{
-"id": "wf_296a3a882e",
-"ts": "2026-11-15T17:40:03-0500",
-"a": "morir_r",
-"b": "yaba_bookshop",
-"code": "morir_r.interactwith(yaba_bookshop){ yaba_bookshop.receives(morir_r.bead); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it, turns up inside the blue glass bead at the yaba bookshop, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j5"
-},
-{
-"id": "wf_93ec74788f",
-"ts": "2026-11-15T17:56:46-0500",
-"a": "truth",
-"b": "morir",
-"code": "truth.interactwith(morir){ morir.receives(truth.envelope); morir.remembers(bisola, 'brown envelope'); }",
-"text": "The morir leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
 {
 "id": "wf_30dfb0cb06",
 "ts": "2026-11-15T18:10:56-0500",
@@ -4085,6 +4062,39 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j6"
+},
+{
+"id": "wf_42d2f0cf49",
+"ts": "2026-11-15T22:13:44-0500",
+"a": "danfo_speaker",
+"b": "tie",
+"code": "danfo_speaker.interactwith(tie){ tie.receives(danfo_speaker.note); … }",
+"text": "A Danfo speaker note with Bisola's name and 'egbe note' on it, turns up inside the brown envelope at the tie, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "w"
+},
+{
+"id": "wf_8418c86c9b",
+"ts": "2026-11-15T22:16:06-0500",
+"a": "let",
+"b": "lekki_pharmacy",
+"code": "let.interactwith(lekki_pharmacy){ lekki_pharmacy.receives(let.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the blue glass bead button at the lekki pharmacy, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
+},
+{
+"id": "wf_230ac4231f",
+"ts": "2026-11-15T22:44:58-0500",
+"a": "streetlights",
+"b": "apapa_container_yard",
+"code": "streetlights.interactwith(apapa_container_yard){ apapa_container_yard.receives(streetlights.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the apapa container yard, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
 }
 ],
 "memories": [
@@ -4188,5 +4198,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-15T22:11:14-0500"
+"updated": "2026-11-15T22:44:58-0500"
 }
