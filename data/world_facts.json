@@ -4053,31 +4053,33 @@
 "card": "j6",
 "other": "red_white"
 }
+],
+"ayok_focus": [
+{
+"id": "wf_36e0c3d501",
+"kind": "consequence",
+"text": "The ayok focus leaves with a Danfo speaker note with Bisola's name and 'egbe note' on it.",
+"code": "might_rich_but.interactwith(ayok_focus){ ayok_focus.receives(might_rich_but.note); ayok_focus.remembers(bisola, 'egbe note'); }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "w",
+"other": "might_rich_but"
+}
+],
+"new_fela": [
+{
+"id": "wf_578462c0da",
+"kind": "consequence",
+"text": "The new fela leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "red_white.interactwith(new_fela){ new_fela.receives(red_white.envelope); new_fela.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "red_white"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_64e0e45632",
-"ts": "2026-11-16T10:54:43-0500",
-"a": "red_white_cap",
-"b": "kweshon",
-"code": "red_white_cap.interactwith(kweshon){ kweshon.receives(red_white_cap.note); … }",
-"text": "A Red white cap note with Taiwo's name and 'egbe note' on it, 11:20pm, turns up inside the brown envelope at the kweshon, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "w7"
-},
-{
-"id": "wf_fcc2e0874f",
-"ts": "2026-11-16T10:59:32-0500",
-"a": "matches",
-"b": "kerosene_lamp",
-"code": "matches.interactwith(kerosene_lamp){ kerosene_lamp.receives(matches.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the change at the kerosene lamp, and Taiwo reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
 {
 "id": "wf_d64049792d",
 "ts": "2026-11-16T11:00:20-0500",
@@ -4495,6 +4497,28 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j6"
+},
+{
+"id": "wf_36e0c3d501",
+"ts": "2026-11-16T13:16:50-0500",
+"a": "might_rich_but",
+"b": "ayok_focus",
+"code": "might_rich_but.interactwith(ayok_focus){ ayok_focus.receives(might_rich_but.note); ayok_focus.remembers(bisola, 'egbe note'); }",
+"text": "The ayok focus leaves with a Danfo speaker note with Bisola's name and 'egbe note' on it.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "w"
+},
+{
+"id": "wf_578462c0da",
+"ts": "2026-11-16T13:17:38-0500",
+"a": "red_white",
+"b": "new_fela",
+"code": "red_white.interactwith(new_fela){ new_fela.receives(red_white.envelope); new_fela.remembers(bisola, 'brown envelope'); }",
+"text": "The new fela leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
 }
 ],
 "memories": [
@@ -4598,5 +4622,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-16T13:15:12-0500"
+"updated": "2026-11-16T13:17:38-0500"
 }
