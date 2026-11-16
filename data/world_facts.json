@@ -1674,16 +1674,6 @@
 ],
 "bicycle": [
 {
-"id": "wf_cb6fd04ba2",
-"kind": "consequence",
-"text": "A Kerosene lamp note with Ronke's name and 'plastic sheet' on it, turns up with the streetlights, which is still all dead since 7:35pm.",
-"code": "imm.interactwith(bicycle){ bicycle.receives(imm.sheet); bicycle.remembers(ronke, 'plastic sheet'); }",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j4",
-"other": "imm"
-},
-{
 "id": "wf_40c03caeb2",
 "kind": "consequence",
 "text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the plastic sheet at the bicycle, and Ronke reads the name twice.",
@@ -1722,6 +1712,16 @@
 "run": "run-b9b963",
 "card": "j1",
 "other": "agbada"
+},
+{
+"id": "wf_3e0fcfe9e4",
+"kind": "consequence",
+"text": "A Danfo speaker note with Bisola's name and 'egbe note' on it, turns up inside the boss joke at the bicycle, and Bisola reads the name twice.",
+"code": "danfo_speaker.interactwith(bicycle){ bicycle.receives(danfo_speaker.note); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "w",
+"other": "danfo_speaker"
 }
 ],
 "ronke": [
@@ -3709,17 +3709,6 @@
 },
 "consequences": [
 {
-"id": "wt_cbc8f0a1ed",
-"ts": "2026-11-15T19:48:18-0500",
-"a": "danfo_stuck",
-"b": "surulere_wedding_reception",
-"code": "danfo_stuck.interactwith(surulere_wedding_reception){ surulere_wedding_reception.receives(danfo_stuck.hand); … }",
-"text": "Two years after that night drive, the stranger from Titi's danfo walks into the Surulere reception asking the MC for the stop that no longer exists, and it is the only thing that gets the mic away from Kunle.",
-"author": "thryd",
-"run": "run-0bd7c0",
-"card": "j10"
-},
-{
 "id": "wt_f227dbb0bd",
 "ts": "2026-11-15T19:48:18-0500",
 "a": "ikeja_laundromat",
@@ -4147,6 +4136,17 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j6"
+},
+{
+"id": "wf_3e0fcfe9e4",
+"ts": "2026-11-16T00:39:20-0500",
+"a": "danfo_speaker",
+"b": "bicycle",
+"code": "danfo_speaker.interactwith(bicycle){ bicycle.receives(danfo_speaker.note); … }",
+"text": "A Danfo speaker note with Bisola's name and 'egbe note' on it, turns up inside the boss joke at the bicycle, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "w"
 }
 ],
 "memories": [
@@ -4250,5 +4250,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-16T00:33:46-0500"
+"updated": "2026-11-16T00:39:20-0500"
 }
