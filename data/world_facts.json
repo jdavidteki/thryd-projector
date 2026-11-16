@@ -972,16 +972,6 @@
 ],
 "streetlights": [
 {
-"id": "wf_75c71e3f86",
-"kind": "consequence",
-"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the streetlights, and Bisola reads the name twice.",
-"code": "wwgbtaycbmba.interactwith(streetlights){ streetlights.receives(wwgbtaycbmba.code); … }",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j2",
-"other": "wwgbtaycbmba"
-},
-{
 "id": "wf_872d2840d9",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the streetlights, and Bisola reads the name twice.",
@@ -1020,6 +1010,16 @@
 "run": "run-0bd7c0",
 "card": "j5",
 "other": "morir_r"
+},
+{
+"id": "wf_7f9d0c8b86",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the streetlights, and Bisola reads the name twice.",
+"code": "kweshon.interactwith(streetlights){ streetlights.receives(kweshon.envelope); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "kweshon"
 }
 ],
 "kerosene_lamp": [
@@ -3831,17 +3831,6 @@
 },
 "consequences": [
 {
-"id": "wt_1115_2356_b",
-"ts": "2026-11-15T23:56:00-0500",
-"a": "streetlights",
-"b": "mi",
-"code": "streetlights.interactwith(mi){ streetlights.flickers(mi, 'last bulb on the street'); mi.receives(streetlights.envelope); mi.remembers(kunle, 'brown envelope'); }",
-"text": "The streetlights go out one by one behind Kunle, and the last bulb holds just long enough for him to read that the brown envelope is addressed to a stop that no longer exists.",
-"author": "thryd",
-"run": "run-0bd7c0",
-"card": "w6"
-},
-{
 "id": "wt_1115_2356_c",
 "ts": "2026-11-15T23:56:00-0500",
 "a": "kerosene_lamp",
@@ -4269,6 +4258,17 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j6"
+},
+{
+"id": "wf_7f9d0c8b86",
+"ts": "2026-11-16T03:02:14-0500",
+"a": "kweshon",
+"b": "streetlights",
+"code": "kweshon.interactwith(streetlights){ streetlights.receives(kweshon.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the streetlights, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
 }
 ],
 "memories": [
@@ -4372,5 +4372,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-16T02:57:25-0500"
+"updated": "2026-11-16T03:02:14-0500"
 }
