@@ -4197,20 +4197,21 @@
 "card": "j2",
 "other": "suitcase"
 }
+],
+"forbidden_love": [
+{
+"id": "wf_5a1a65a24e",
+"kind": "consequence",
+"text": "The forbidden love leaves with a Yaba bukka counter chit with Kunle's name and 'brown envelope' on it, 8:10pm.",
+"code": "yaba_bukka_counter.interactwith(forbidden_love){ forbidden_love.receives(yaba_bukka_counter.envelope); forbidden_love.remembers(kunle, 'brown envelope'); }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "yaba_bukka_counter"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_18e4ed4357",
-"ts": "2026-11-16T14:27:44-0500",
-"a": "red_white_cap",
-"b": "chair",
-"code": "red_white_cap.interactwith(chair){ chair.receives(red_white_cap.note); … }",
-"text": "A Red white cap note with Taiwo's name and 'egbe note' on it, 11:20pm, turns up inside the brown envelope at the chair, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "w7"
-},
 {
 "id": "wf_68cc55a056",
 "ts": "2026-11-16T14:31:44-0500",
@@ -4639,6 +4640,17 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "w"
+},
+{
+"id": "wf_5a1a65a24e",
+"ts": "2026-11-16T16:03:40-0500",
+"a": "yaba_bukka_counter",
+"b": "forbidden_love",
+"code": "yaba_bukka_counter.interactwith(forbidden_love){ forbidden_love.receives(yaba_bukka_counter.envelope); forbidden_love.remembers(kunle, 'brown envelope'); }",
+"text": "The forbidden love leaves with a Yaba bukka counter chit with Kunle's name and 'brown envelope' on it, 8:10pm.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
 }
 ],
 "memories": [
@@ -4742,5 +4754,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-16T15:59:40-0500"
+"updated": "2026-11-16T16:03:40-0500"
 }
