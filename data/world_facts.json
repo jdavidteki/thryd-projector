@@ -1187,16 +1187,6 @@
 ],
 "yaba_bukka_counter": [
 {
-"id": "wf_458c756bd9",
-"kind": "consequence",
-"text": "A Kerosene lamp note with Taiwo's name and 'change' on it, turns up inside the brown envelope at the yaba bukka counter, and Kunle reads the name twice.",
-"code": "kerosene_lamp.interactwith(yaba_bukka_counter){ yaba_bukka_counter.receives(kerosene_lamp.change); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "w",
-"other": "kerosene_lamp"
-},
-{
 "id": "wf_30dfb0cb06",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the yaba bukka counter, and Kunle reads the name twice.",
@@ -1205,6 +1195,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "kweshon"
+},
+{
+"id": "wf_0b5a3dcf5d",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the yaba bukka counter, and Kunle reads the name twice.",
+"code": "morir_r.interactwith(yaba_bukka_counter){ yaba_bukka_counter.receives(morir_r.envelope); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "morir_r"
 },
 {
 "id": "wt_4e525b9c48",
@@ -3558,17 +3558,6 @@
 },
 "consequences": [
 {
-"id": "wf_8f5d367acf",
-"ts": "2026-11-15T17:05:39-0500",
-"a": "notnotnotnotyn_dec",
-"b": "yaba_bookshop",
-"code": "notnotnotnotyn_dec.interactwith(yaba_bookshop){ yaba_bookshop.receives(notnotnotnotyn_dec.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the blue glass bead at the yaba bookshop, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
-{
 "id": "wf_8d6cde158d",
 "ts": "2026-11-15T17:06:40-0500",
 "a": "people_scene",
@@ -3996,6 +3985,17 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j6"
+},
+{
+"id": "wf_0b5a3dcf5d",
+"ts": "2026-11-15T21:21:32-0500",
+"a": "morir_r",
+"b": "yaba_bukka_counter",
+"code": "morir_r.interactwith(yaba_bukka_counter){ yaba_bukka_counter.receives(morir_r.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the yaba bukka counter, and Kunle reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
 }
 ],
 "memories": [
@@ -4099,5 +4099,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-15T21:18:10-0500"
+"updated": "2026-11-15T21:21:32-0500"
 }
