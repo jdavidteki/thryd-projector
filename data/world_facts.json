@@ -3576,6 +3576,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "streetlights"
+},
+{
+"id": "wf_e20216b451",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the sports ball, and Bisola reads the name twice.",
+"code": "agbada.interactwith(sports_ball){ sports_ball.receives(agbada.envelope); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "agbada"
 }
 ],
 "danfo_stuck": [
@@ -3810,17 +3820,6 @@
 ]
 },
 "consequences": [
-{
-"id": "wf_552e91b755",
-"ts": "2026-11-15T23:02:49-0500",
-"a": "sessy",
-"b": "cup",
-"code": "sessy.interactwith(cup){ cup.receives(sessy.envelope); cup.remembers(bisola, 'brown envelope'); cup.tucks(sessy, 'yaba bookshop receipt into the juju code'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the juju code at the cup, and Ejiro reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
 {
 "id": "wf_ab00b153a0",
 "ts": "2026-11-15T23:05:15-0500",
@@ -4249,6 +4248,17 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j6"
+},
+{
+"id": "wf_e20216b451",
+"ts": "2026-11-16T02:47:47-0500",
+"a": "agbada",
+"b": "sports_ball",
+"code": "agbada.interactwith(sports_ball){ sports_ball.receives(agbada.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the sports ball, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
 }
 ],
 "memories": [
@@ -4352,5 +4362,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-16T02:39:38-0500"
+"updated": "2026-11-16T02:47:47-0500"
 }
