@@ -4713,7 +4713,7 @@
   },
   "run-5a58c4": {
    "forked_from": "safe:f81f21521253",
-   "head": "c94123b78d",
+   "head": "18e51faa75",
    "commits": [
     {
      "id": "50d5b01bc7",
@@ -5012,7 +5012,7 @@
      }
     },
     {
-     "id": "9b7c505f65",
+     "id": "7b4a29517c",
      "parent": "c1cda6a852",
      "branch": "run-5a58c4",
      "job": "j6",
@@ -5172,16 +5172,32 @@
         "code": "people_scene.interactwith(future){ future.receives(people_scene.envelope); future.remembers(bisola, 'brown envelope'); }",
         "scope": null,
         "cause_id": null
+       },
+       {
+        "id": "wf_0e5a71195f",
+        "object": "teomarisollove",
+        "kind": "consequence",
+        "code": "bus.interactwith(teomarisollove){ teomarisollove.receives(bus.envelope); teomarisollove.remembers(bisola, 'brown envelope'); }",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_50b532b6d8",
+        "object": "energy_conversion",
+        "kind": "consequence",
+        "code": "people_scene.interactwith(energy_conversion){ energy_conversion.receives(people_scene.envelope); energy_conversion.remembers(bisola, 'brown",
+        "scope": null,
+        "cause_id": null
        }
       ],
-      "facts_total": 19,
+      "facts_total": 21,
       "functions": [],
       "instances": []
      }
     },
     {
-     "id": "5341a14f69",
-     "parent": "9b7c505f65",
+     "id": "fdb2af3ea2",
+     "parent": "7b4a29517c",
      "branch": "run-5a58c4",
      "job": "j7",
      "at": "2026-11-17T11:01:50-0500",
@@ -5212,8 +5228,8 @@
      }
     },
     {
-     "id": "4e147d9f01",
-     "parent": "5341a14f69",
+     "id": "492f5caee8",
+     "parent": "fdb2af3ea2",
      "branch": "run-5a58c4",
      "job": "j22",
      "at": "2026-11-16T23:37:14-05:00",
@@ -5247,8 +5263,8 @@
      }
     },
     {
-     "id": "6fb1999675",
-     "parent": "4e147d9f01",
+     "id": "c59ec21645",
+     "parent": "492f5caee8",
      "branch": "run-5a58c4",
      "job": "j23",
      "at": "2026-11-16T23:50:03-05:00",
@@ -5282,8 +5298,8 @@
      }
     },
     {
-     "id": "b6a05ca7d4",
-     "parent": "6fb1999675",
+     "id": "33eeb51fdc",
+     "parent": "c59ec21645",
      "branch": "run-5a58c4",
      "job": "j24",
      "at": "2026-11-17T00:02:09-05:00",
@@ -5341,8 +5357,8 @@
      }
     },
     {
-     "id": "ee9d9293e5",
-     "parent": "b6a05ca7d4",
+     "id": "1df02433bd",
+     "parent": "33eeb51fdc",
      "branch": "run-5a58c4",
      "job": "j25",
      "at": "2026-11-17T10:35:56-05:00",
@@ -5418,8 +5434,8 @@
      }
     },
     {
-     "id": "33afbc6db9",
-     "parent": "ee9d9293e5",
+     "id": "3a3e21f342",
+     "parent": "1df02433bd",
      "branch": "run-5a58c4",
      "job": "j26",
      "at": "2026-11-17T11:07:01-05:00",
@@ -5453,8 +5469,8 @@
      }
     },
     {
-     "id": "c23e7ad43c",
-     "parent": "33afbc6db9",
+     "id": "f819423897",
+     "parent": "3a3e21f342",
      "branch": "run-5a58c4",
      "job": "j27",
      "at": "2026-11-17T11:22:49-05:00",
@@ -5488,8 +5504,8 @@
      }
     },
     {
-     "id": "a28162ba00",
-     "parent": "c23e7ad43c",
+     "id": "1ec94ba77f",
+     "parent": "f819423897",
      "branch": "run-5a58c4",
      "job": "j28",
      "at": "2026-11-17T12:06:03-05:00",
@@ -5514,8 +5530,8 @@
      }
     },
     {
-     "id": "c94123b78d",
-     "parent": "a28162ba00",
+     "id": "18e51faa75",
+     "parent": "1ec94ba77f",
      "branch": "run-5a58c4",
      "job": "j29",
      "at": "2026-11-17T12:30:30-05:00",
@@ -5950,9 +5966,9 @@
   "run-fa5946": "564dd5acda",
   "run-bd649b": "8ed6c18a56",
   "run-9e59ca": "59f544b8d8",
-  "run-5a58c4": "c94123b78d",
+  "run-5a58c4": "18e51faa75",
   "run-cb805f": "62238e387d"
  },
  "commits": 62,
- "updated": "2026-11-17T13:06:15-05:00"
+ "updated": "2026-11-17T13:09:32-05:00"
 }

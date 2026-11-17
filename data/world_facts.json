@@ -4604,6 +4604,16 @@
 "run": "run-5a58c4",
 "card": "j7",
 "other": "bird"
+},
+{
+"id": "wf_0e5a71195f",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the teomarisollove, which is still in love, said out loud by Marisol (w14 causeway).",
+"code": "bus.interactwith(teomarisollove){ teomarisollove.receives(bus.envelope); teomarisollove.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "bus"
 }
 ],
 "front_gate_no": [
@@ -5209,42 +5219,33 @@
 "card": "j6",
 "other": "people_scene"
 }
+],
+"hard": [
+{
+"id": "wf_e54396a211",
+"kind": "consequence",
+"text": "The hard leaves with a Danfo speaker note with Bisola's name and 'egbe note' on it.",
+"code": "love.interactwith(hard){ hard.receives(love.note); hard.remembers(bisola, 'egbe note'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "w",
+"other": "love"
+}
+],
+"energy_conversion": [
+{
+"id": "wf_50b532b6d8",
+"kind": "consequence",
+"text": "The energy conversion leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "people_scene.interactwith(energy_conversion){ energy_conversion.receives(people_scene.envelope); energy_conversion.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "people_scene"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_f60ed605f2",
-"ts": "2026-11-17T11:06:47-0500",
-"a": "dress_marisol",
-"b": "top_deck_charter",
-"code": "dress_marisol.interactwith(top_deck_charter){ top_deck_charter.receives(dress_marisol.receipt); … }",
-"text": "A Laptop note with Ejiro's name and 'rain-stained receipt' on it, 8:05am, turns up inside the brown envelope at the top deck charter, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "w5"
-},
-{
-"id": "wf_229a637237",
-"ts": "2026-11-17T11:10:28-0500",
-"a": "marker_c",
-"b": "top_deck_charter",
-"code": "marker_c.interactwith(top_deck_charter){ top_deck_charter.receives(marker_c.receipt); … }",
-"text": "A Laptop note with Ejiro's name and 'rain-stained receipt' on it, 8:05am, turns up inside the brown envelope at the top deck charter, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "w5"
-},
-{
-"id": "wf_716176ca30",
-"ts": "2026-11-17T11:11:39-0500",
-"a": "dez",
-"b": "matbaotstaili",
-"code": "dez.interactwith(matbaotstaili){ matbaotstaili.receives(dez.code); matbaotstaili.remembers(ejiro, 'juju code'); }",
-"text": "The matbaotstaili leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j2"
-},
 {
 "id": "wf_8f0a8e9b34",
 "ts": "2026-11-17T11:12:57-0500",
@@ -5651,6 +5652,39 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": "j6"
+},
+{
+"id": "wf_e54396a211",
+"ts": "2026-11-17T13:05:47-0500",
+"a": "love",
+"b": "hard",
+"code": "love.interactwith(hard){ hard.receives(love.note); hard.remembers(bisola, 'egbe note'); }",
+"text": "The hard leaves with a Danfo speaker note with Bisola's name and 'egbe note' on it.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "w"
+},
+{
+"id": "wf_0e5a71195f",
+"ts": "2026-11-17T13:08:42-0500",
+"a": "bus",
+"b": "teomarisollove",
+"code": "bus.interactwith(teomarisollove){ teomarisollove.receives(bus.envelope); teomarisollove.remembers(bisola, 'brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the teomarisollove, which is still in love, said out loud by Marisol (w14 causeway).",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
+},
+{
+"id": "wf_50b532b6d8",
+"ts": "2026-11-17T13:09:31-0500",
+"a": "people_scene",
+"b": "energy_conversion",
+"code": "people_scene.interactwith(energy_conversion){ energy_conversion.receives(people_scene.envelope); energy_conversion.remembers(bisola, 'brown envelope'); }",
+"text": "The energy conversion leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
 }
 ],
 "memories": [
@@ -5754,5 +5788,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T13:02:04-0500"
+"updated": "2026-11-17T13:09:31-0500"
 }
