@@ -102,8 +102,23 @@ body.dragmode .ph{transition:none}
 #stage #objs img{opacity:1!important;object-fit:fill!important}
 /* zoom/pan the whole canvas */
 #canvas{position:fixed;inset:0;z-index:3;transform-origin:0 0;will-change:transform;pointer-events:none}
-#canvas > *{pointer-events:auto}
-#canvas > #vignette,#canvas > #stretchy-bg{pointer-events:none}
+/* Do not force pointer-events:auto on every child. #map, #ents and #prophs are full-viewport
+   overlays that must stay pointer-events:none so object/scene drags and taps reach #gstage.
+   Interactive descendants (.gcut, .dob, .ph, .prophchip) already set pointer-events:auto. */
+#canvas > #gstage,
+#canvas > #stage,
+#canvas > #gtweet,
+#canvas > #gmeth,
+#canvas > #bubble,
+#canvas > .grip,
+#canvas > .gprom,
+#canvas > .prophchip,
+#canvas > .prophcap{pointer-events:auto}
+#canvas > #vignette,
+#canvas > #stretchy-bg,
+#canvas > #map,
+#canvas > #ents,
+#canvas > #prophs{pointer-events:none}
 #canvas.zoom-anim{transition:transform .22s ease}
 #stage{touch-action:none}
 body.zoomed #canvas{cursor:grab}body.panning,body.panning *{cursor:grabbing!important}

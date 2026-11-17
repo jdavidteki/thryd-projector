@@ -2,10 +2,10 @@
 const code=$('div','code'),live=$('div','live'),crawl=$('div','crawl');$('div','grain');
 const bad=/explicit|never explicit/i,clean=s=>String(s||'').replace(/\s+/g,' ').trim();
 const get=u=>fetch(u+'?t='+Date.now(),{cache:'no-store'}).then(r=>r.ok?r.json():null).catch(()=>null);
-let storyT=null,storyAt=0,storyLabel='',lastSeat=null,pulse=false;const flash=()=>{const d=live.querySelector('.dot');if(d){d.classList.remove('fl');void d.offsetWidth;d.classList.add('fl')}};let real=[],seat='',arch=[],seatN=0,runId='run';
+let storyT=null,storyAt=0,storyLabel='',storyTz='Africa/Lagos',lastSeat=null,pulse=false;const flash=()=>{const d=live.querySelector('.dot');if(d){d.classList.remove('fl');void d.offsetWidth;d.classList.add('fl')}};let real=[],seat='',arch=[],seatN=0,runId='run';
 const R=a=>a[Math.random()*a.length|0];
 async function load(first){const [st,tl,cf,lt]=await Promise.all([get('data/state.json'),get('data/timeline.json'),get('data/code_feed.json'),get('data/live_time.json')]);
- const L=[];if(lt&&lt.story_time){storyLabel=String(lt.story_time);storyT=null;}else if(st&&(st.story_time_label||st.story_time)){const raw=st.story_time_label||st.story_time;const parsed=new Date(raw);if(!isNaN(parsed)&&/T\d\d:/.test(String(raw))){storyT=parsed;storyAt=Date.now();storyLabel='';}else{storyLabel=String(raw);storyT=null;}}if(st){runId=st.run||runId;seat=st.seats?st.seats.split(' ')[0]:(st.seated_count?st.seated_count+'/30':'');seatN=st.seated_count||0;
+ const L=[];if(lt){if(lt.story_time)storyLabel=String(lt.story_time);if(lt.tz)storyTz=String(lt.tz);}else if(!storyLabel&&st&&(st.story_time_label||st.story_time)){const raw=st.story_time_label||st.story_time;const parsed=new Date(raw);if(!isNaN(parsed)&&/T\d\d:/.test(String(raw))){storyT=parsed;storyAt=Date.now();}else storyLabel=String(raw);}if(st){runId=st.run||runId;seat=st.seats?st.seats.split(' ')[0]:(st.seated_count?st.seated_count+'/30':'');seatN=st.seated_count||0;
   if(st.current_card)L.push(`thryd.card = ${st.current_card}`);if(st.ticker&&st.ticker.line)L.push(clean(st.ticker.line).slice(0,140));}
  if(tl&&tl.events){for(const e of tl.events){const l=clean(e.label);if(!l||bad.test(l))continue;
   const k=e.kind;L.push(k==='move'?`>> ${l.replace(/^move /,'')}`:k==='theme'?`#thryd.importtheme("${l.replace(/^theme imported:? ?/,'')}")`:k==='scene'?`-- ${l}`:k==='miracle'?`!! miracle: ${l}`:`${k}: ${l}`);}}
@@ -15,6 +15,7 @@ async function load(first){const [st,tl,cf,lt]=await Promise.all([get('data/stat
  // Build the LIVE button once. Later refreshes only update seat/clock text so the panel does not restart from the button.
  if(first || !live.querySelector('.dot')){
   live.innerHTML=`<span class="dot"></span><b>LIVE</b> <span id="clk"></span> <span id="sclk"></span>${seat?`<span class="seat${pulse?' pulse':''}">seats ${seat}</span>`:''}`;
+  if(storyLabel){ live.title=storyLabel; const ck=live.querySelector('#clk'); if(ck) ck.title=storyLabel; }
   if(first) flash();
  } else {
   let seatEl=live.querySelector('.seat');
@@ -27,7 +28,8 @@ let ri=0,mvTurn=0;const next=()=>{const dl=window.__thrydDriftLines;if(dl&&dl.le
 function type(){const n=next(),d=document.createElement('div');d.className=(n.a?'a ':'')+'cur';code.appendChild(d);
  while(code.children.length>60)code.firstChild.remove();let i=0;const s=n.t;
  const step=()=>{d.textContent=s.slice(0,++i);if(i<s.length)setTimeout(step,14+Math.random()*40);else{d.classList.remove('cur');if(n.note){const e=document.createElement('span');e.className='d';e.textContent='  // '+n.note;d.appendChild(e);}setTimeout(type,250+Math.random()*900)}};step();}
-function tick(){const c=document.getElementById('clk');if(c){c.textContent=storyLabel||(new Date().toLocaleTimeString('en-US',{timeZone:'America/New_York',hour12:false})+' ET');}const k=document.getElementById('sclk');if(k){if(storyLabel)k.textContent='';else if(storyT&&!isNaN(storyT))k.textContent='· story '+new Date(storyT.getTime()+Date.now()-storyAt).toLocaleString('en-US',{weekday:'short',day:'numeric',month:'short',hour:'numeric',minute:'2-digit',second:'2-digit'});else k.textContent='';}}
+function zoneAbbr(tz){try{const p=new Intl.DateTimeFormat('en-US',{timeZone:tz,timeZoneName:'short'}).formatToParts(new Date());const n=(p.find(x=>x.type==='timeZoneName')||{}).value||'';if(/^GMT|^UTC/i.test(n)&&tz==='Africa/Lagos')return 'WAT';return n||'WAT';}catch(e){return tz==='Africa/Lagos'?'WAT':'';}}
+function tick(){const tz=storyTz||'Africa/Lagos';const c=document.getElementById('clk');if(c){c.textContent=new Date().toLocaleTimeString('en-US',{timeZone:tz,hour12:false})+' '+zoneAbbr(tz);if(storyLabel)c.title=storyLabel;}const k=document.getElementById('sclk');if(k){if(storyLabel){k.textContent='· '+storyLabel;k.title=storyLabel;}else if(storyT&&!isNaN(storyT))k.textContent='· story '+new Date(storyT.getTime()+Date.now()-storyAt).toLocaleString('en-US',{weekday:'short',day:'numeric',month:'short',hour:'numeric',minute:'2-digit',second:'2-digit'});else k.textContent='';}}
 // bottom ticker: real station names reporting #thryd news (Jesuye 11-12 7:05/7:06 PM). Events are only real #thryd data
 // (data/thryd_news.json from the state export: seats, typed jobs, major moves, drift; plus this page's own drift events). Names are text only.
 const ST=['CHANNELS TV','ARISE NEWS','TVC NEWS','AIT','NTA','PUNCH','VANGUARD','PREMIUM TIMES','THE GUARDIAN NIGERIA','CHANNELS TV','ARISE NEWS','TVC NEWS','BBC','CNN'];

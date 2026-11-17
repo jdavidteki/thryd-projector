@@ -1139,7 +1139,7 @@ window.thrydWander={paths:()=>DPATH,move:b=>wMove(b),state:b=>WS.get(b)};
   mo.observe(document.body,{childList:true});
   document.body.querySelectorAll('#gtweet,#gmeth,.grip,.gprom,#stretchy-bg,#gstage').forEach(adopt);
 
-  const onItem=t=>t&&t.closest&&t.closest('.chip,.gcut,#bar,#zoomui,#user,.ph,#sndgate,#toast,#gmeth,#gtweet,#gundo,#uxhint,#phone3310,#ticker,a,button,select,input,textarea,[role=dialog],[role=menu]');
+  const onItem=t=>t&&t.closest&&t.closest('.chip,.gcut,.dob,.mcvisit,canvas.sprite,#objs,#mcut,#bar,#zoomui,#user,.ph,#sndgate,#toast,#gmeth,#gtweet,#gundo,#uxhint,#phone3310,#ticker,a,button,select,input,textarea,[role=dialog],[role=menu]');
   addEventListener('wheel',ev=>{const t=ev.target;if(t.closest&&t.closest('#bar,#zoomui,#user,select,#cerebro,#lovemap,#ticker'))return;ev.preventDefault();anim(false);zoomAt(z*Math.exp(-ev.deltaY*(ev.ctrlKey?0.01:0.0015)),ev.clientX,ev.clientY);},{passive:false});
   const P=new Map();let pan=null,pinch=null,moved=0,lastTap=0,lastXY=[0,0],nofs=0;
   document.addEventListener('pointerdown',ev=>{if(onItem(ev.target))return;if(ev.pointerType==='mouse'&&ev.button!==0)return;
