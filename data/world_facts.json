@@ -5387,20 +5387,21 @@
 "card": "j7",
 "other": "bird"
 }
+],
+"hose": [
+{
+"id": "wf_211393d414",
+"kind": "consequence",
+"text": "The hose leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "marisol.interactwith(hose){ hose.receives(marisol.envelope); hose.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "marisol"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_691225af92",
-"ts": "2026-11-17T11:43:14-0500",
-"a": "marker_b",
-"b": "fire_escape_outside",
-"code": "marker_b.interactwith(fire_escape_outside){ fire_escape_outside.receives(marker_b.code); … }",
-"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the rain-stained receipt at the fire escape outside, and Ejiro reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j2"
-},
 {
 "id": "wf_2536b8915a",
 "ts": "2026-11-17T11:44:27-0500",
@@ -5829,6 +5830,17 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": "j7"
+},
+{
+"id": "wf_211393d414",
+"ts": "2026-11-17T14:33:04-0500",
+"a": "marisol",
+"b": "hose",
+"code": "marisol.interactwith(hose){ hose.receives(marisol.envelope); hose.remembers(bisola, 'brown envelope'); }",
+"text": "The hose leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
 }
 ],
 "memories": [
@@ -5932,5 +5944,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T14:28:07-0500"
+"updated": "2026-11-17T14:33:04-0500"
 }
