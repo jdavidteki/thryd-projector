@@ -14,12 +14,13 @@ async function load(first){const [st,tl,cf,lt]=await Promise.all([get('data/stat
  const seatChanged=seat!==lastSeat; if(seatChanged){pulse=lastSeat!==null;lastSeat=seat;}
  // Build the LIVE button once. Later refreshes only update seat/clock text so the panel does not restart from the button.
  if(first || !live.querySelector('.dot')){
-  live.innerHTML=`<span class="dot"></span><b>LIVE</b> <span id="clk"></span> <span id="sclk"></span>${seat?`<span class="seat${pulse?' pulse':''}">seats ${seat}</span>`:''}`;
+  live.innerHTML=`<span class="live-main"><span class="dot"></span><b>LIVE</b> <span id="clk"></span><span class="live-extra"><span id="sclk"></span>${seat?`<span class="seat${pulse?' pulse':''}">seats ${seat}</span>`:''}</span></span>`;
   if(storyLabel){ live.title=storyLabel; const ck=live.querySelector('#clk'); if(ck) ck.title=storyLabel; }
   if(first) flash();
  } else {
   let seatEl=live.querySelector('.seat');
-  if(seat){ if(!seatEl){ seatEl=document.createElement('span'); seatEl.className='seat'; live.appendChild(seatEl); } seatEl.textContent='seats '+seat; if(pulse){ seatEl.classList.add('pulse'); } }
+  const extra=live.querySelector('.live-extra');
+  if(seat){ if(!seatEl){ seatEl=document.createElement('span'); seatEl.className='seat'; (extra||live).appendChild(seatEl); } seatEl.textContent='seats '+seat; if(pulse){ seatEl.classList.add('pulse'); } }
   else if(seatEl) seatEl.remove();
  }
  pulse=false; tick();}
