@@ -4,113 +4,111 @@
  "card": "w14",
  "job": "j14",
  "mood": {
-  "beat": null,
+  "from": "run/w14_mood.json",
+  "beat": "later",
   "theme": [],
-  "moods": [
-   "romance",
-   "dance",
-   "time"
-  ],
-  "from": "derived"
+  "scene_words": [
+   "lines"
+  ]
  },
  "query": [
   {
    "term": "still",
-   "w": 5.19,
+   "w": 4.22,
    "via": "j14 scene"
   },
   {
-   "term": "line",
-   "w": 3.67,
-   "via": "j14 scene"
+   "term": "stays",
+   "w": 3.99,
+   "via": "j14 beat"
   },
   {
-   "term": "says",
-   "w": 2.94,
+   "term": "door",
+   "w": 3.02,
+   "via": "j14 beat"
+  },
+  {
+   "term": "open",
+   "w": 3.02,
+   "via": "j14 beat"
+  },
+  {
+   "term": "later",
+   "w": 3.0,
+   "via": "j14 beat “later”"
+  },
+  {
+   "term": "started",
+   "w": 2.76,
+   "via": "j14 beat"
+  },
+  {
+   "term": "side",
+   "w": 2.6,
+   "via": "j14 beat"
+  },
+  {
+   "term": "song",
+   "w": 2.6,
+   "via": "j14 beat"
+  },
+  {
+   "term": "sit",
+   "w": 2.6,
+   "via": "j14 beat"
+  },
+  {
+   "term": "beside",
+   "w": 2.6,
+   "via": "j14 beat"
+  },
+  {
+   "term": "tally",
+   "w": 2.6,
+   "via": "j14 beat"
+  },
+  {
+   "term": "picture",
+   "w": 2.6,
+   "via": "j14 beat"
+  },
+  {
+   "term": "lines",
+   "w": 2.2,
    "via": "j14 scene"
   },
   {
    "term": "titi",
-   "w": 2.9,
+   "w": 2.1,
    "via": "j10 “if look: titi.go(juss) 🏃”"
   },
   {
    "term": "map",
-   "w": 2.9,
+   "w": 2.1,
    "via": "j10 maybeknow map"
   },
   {
-   "term": "new",
-   "w": 2.53,
-   "via": "j14 scene"
+   "term": "crowd",
+   "w": 2.0,
+   "via": "j14 beat"
   },
   {
-   "term": "door",
-   "w": 2.37,
-   "via": "j14 scene"
+   "term": "marks",
+   "w": 2.0,
+   "via": "j14 beat"
   },
   {
-   "term": "open",
-   "w": 2.37,
-   "via": "j14 scene"
-  },
-  {
-   "term": "looks",
-   "w": 2.37,
-   "via": "j14 scene"
-  },
-  {
-   "term": "mark",
-   "w": 2.37,
-   "via": "j14 scene"
-  },
-  {
-   "term": "booth",
-   "w": 2.37,
-   "via": "j14 scene"
-  },
-  {
-   "term": "hall",
-   "w": 2.37,
-   "via": "j14 scene"
-  },
-  {
-   "term": "hand",
-   "w": 2.1,
-   "via": "j14 scene"
-  },
-  {
-   "term": "people",
-   "w": 1.91,
-   "via": "j14 scene"
-  },
-  {
-   "term": "hold",
-   "w": 1.75,
-   "via": "j14 scene"
-  },
-  {
-   "term": "close",
-   "w": 1.75,
-   "via": "j14 scene"
-  },
-  {
-   "term": "come",
-   "w": 1.67,
-   "via": "j14 scene"
-  },
-  {
-   "term": "romance (mood)",
-   "w": 1.63,
-   "via": "j14 scene"
-  },
-  {
-   "term": "started",
-   "w": 1.56,
+   "term": "line",
+   "w": 1.99,
    "via": "j14 scene"
   },
   {
    "term": "maybe",
+   "w": 1.5,
+   "via": "j10 maybeknow map"
+  },
+  {
+   "term": "lift",
    "w": 1.5,
    "via": "j10 maybeknow map"
   }
@@ -126,12 +124,23 @@
    "artist": "chike, Ric Hassani",
    "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/zhPUUEhkYOY.mp3",
    "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/zhPUUEhkYOY.lrc",
-   "score": 75.374,
+   "score": 76.208,
    "matches": [
+    {
+     "t": 197.92,
+     "line": "If youll open the door",
+     "score": 44.234,
+     "terms": [
+      "door",
+      "open"
+     ],
+     "term": "door",
+     "via": "j14 beat"
+    },
     {
      "t": 130.01,
      "line": "Ill still say hello",
-     "score": 35.078,
+     "score": 28.548,
      "terms": [
       "still"
      ],
@@ -139,178 +148,127 @@
      "via": "j14 scene"
     },
     {
-     "t": 197.92,
-     "line": "If youll open the door",
-     "score": 34.767,
-     "terms": [
-      "door",
-      "open"
-     ],
-     "term": "door",
-     "via": "j14 scene"
-    },
-    {
      "t": 122.26,
      "line": "You only need someone to hold you close",
-     "score": 29.456,
+     "score": 14.891,
      "terms": [
       "close",
-      "someone",
       "hold",
+      "someone",
       "romance (mood)"
      ],
      "term": "close",
      "via": "j14 scene"
     }
    ],
-   "why": "♪ matched: “Ill still say hello” ↔ j14 scene"
+   "why": "♪ matched: “If youll open the door” ↔ j14 beat"
   },
   {
    "rank": 2,
-   "id": "HE8p1lJaPyg",
-   "title": "Olufunmi",
-   "artist": "Styl-Plus",
-   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/HE8p1lJaPyg.mp3",
-   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/HE8p1lJaPyg.lrc",
-   "score": 75.364,
+   "id": "chMsx-vKHug",
+   "title": "Eminado",
+   "artist": "Tiwa Savage ft Don Jazzy",
+   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/chMsx-vKHug.mp3",
+   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/chMsx-vKHug.lrc",
+   "score": 66.921,
    "matches": [
     {
-     "t": 171.61,
-     "line": "You could be my Juliet I may not have his looks but I would still be your Romeo",
-     "score": 48.597,
+     "t": 35.78,
+     "line": "Open the open the door",
+     "score": 51.24,
      "terms": [
-      "still",
-      "looks"
+      "open",
+      "door"
      ],
-     "term": "still",
-     "via": "j14 scene"
+     "term": "open",
+     "via": "j14 beat"
     },
     {
-     "t": 192.29,
-     "line": "Though it seems deceiving Im still believing",
-     "score": 24.771,
+     "t": 120.99,
+     "line": "Oh I feel brand new",
+     "score": 8.284,
      "terms": [
-      "still"
-     ],
-     "term": "still",
-     "via": "j14 scene"
-    },
-    {
-     "t": 158.41,
-     "line": "You could be the one Id take on a date down the aisle",
-     "score": 13.498,
-     "terms": [
-      "aisle"
-     ],
-     "term": "aisle",
-     "via": "j14 scene"
-    }
-   ],
-   "why": "♪ matched: “You could be my Juliet I may not have his looks but I woul…” ↔ j14 scene"
-  },
-  {
-   "rank": 3,
-   "id": "Gih_Nk9NBBw",
-   "title": "Holy Father",
-   "artist": "Mayorkun",
-   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/Gih_Nk9NBBw.mp3",
-   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/Gih_Nk9NBBw.lrc",
-   "score": 75.06,
-   "matches": [
-    {
-     "t": 98.7,
-     "line": "I still want you back",
-     "score": 38.326,
-     "terms": [
-      "still",
-      "back"
-     ],
-     "term": "still",
-     "via": "j14 scene"
-    },
-    {
-     "t": 59.34,
-     "line": "Give me your map o",
-     "score": 30.236,
-     "terms": [
-      "map"
-     ],
-     "term": "map",
-     "via": "j10 maybeknow map"
-    },
-    {
-     "t": 75.63,
-     "line": "Give me your map",
-     "score": 30.236,
-     "terms": [
-      "map"
-     ],
-     "term": "map",
-     "via": "j10 maybeknow map"
-    }
-   ],
-   "why": "♪ matched: “I still want you back” ↔ j14 scene"
-  },
-  {
-   "rank": 4,
-   "id": "EOrFWBjiRik",
-   "title": "Damages",
-   "artist": "Tems",
-   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/EOrFWBjiRik.mp3",
-   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/EOrFWBjiRik.lrc",
-   "score": 74.773,
-   "matches": [
-    {
-     "t": 99.13,
-     "line": "But you still wanna get back with me",
-     "score": 43.642,
-     "terms": [
-      "still",
-      "back"
-     ],
-     "term": "still",
-     "via": "j14 scene"
-    },
-    {
-     "t": 18.91,
-     "line": "Back then when I was a new youngie",
-     "score": 25.339,
-     "terms": [
-      "new",
-      "back"
+      "new"
      ],
      "term": "new",
      "via": "j14 scene"
     },
     {
-     "t": 37.73,
-     "line": "Open your eyes open your eyes baby",
-     "score": 19.871,
+     "t": 18.43,
+     "line": "I just dey come from the bank",
+     "score": 6.701,
      "terms": [
-      "open",
-      "romance (mood)"
+      "come",
+      "dey"
      ],
-     "term": "open",
+     "term": "come",
      "via": "j14 scene"
     }
    ],
-   "why": "♪ matched: “But you still wanna get back with me” ↔ j14 scene"
+   "why": "♪ matched: “Open the open the door” ↔ j14 beat"
   },
   {
-   "rank": 5,
+   "rank": 3,
+   "id": "h3sOkca-viw",
+   "title": "LOML",
+   "artist": "Cheque ft Olamide",
+   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/h3sOkca-viw.mp3",
+   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/h3sOkca-viw.lrc",
+   "score": 66.077,
+   "matches": [
+    {
+     "t": 146.03,
+     "line": "Open up me dey knock your door pon pon",
+     "score": 34.538,
+     "terms": [
+      "door",
+      "open",
+      "dey"
+     ],
+     "term": "door",
+     "via": "j14 beat"
+    },
+    {
+     "t": 148.8,
+     "line": "Omoge me I knock on your door o",
+     "score": 23.865,
+     "terms": [
+      "door"
+     ],
+     "term": "door",
+     "via": "j14 beat"
+    },
+    {
+     "t": 100.32,
+     "line": "I hope you all get a picture of her I dey come from",
+     "score": 22.851,
+     "terms": [
+      "picture",
+      "come",
+      "dey"
+     ],
+     "term": "picture",
+     "via": "j14 beat"
+    }
+   ],
+   "why": "♪ matched: “Open up me dey knock your door pon pon” ↔ j14 beat"
+  },
+  {
+   "rank": 4,
    "id": "rL1RRLZIHGA",
    "title": "Four Years",
    "artist": "Styl-Plus",
    "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/rL1RRLZIHGA.mp3",
    "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/rL1RRLZIHGA.lrc",
-   "score": 70.654,
+   "score": 65.453,
    "matches": [
     {
      "t": 14.52,
      "line": "Oh yeah we still dey o",
-     "score": 35.078,
+     "score": 31.876,
      "terms": [
-      "still"
+      "still",
+      "dey"
      ],
      "term": "still",
      "via": "j14 scene"
@@ -318,9 +276,10 @@
     {
      "t": 45.44,
      "line": "We still dey o",
-     "score": 35.078,
+     "score": 31.876,
      "terms": [
-      "still"
+      "still",
+      "dey"
      ],
      "term": "still",
      "via": "j14 scene"
@@ -328,9 +287,10 @@
     {
      "t": 274.06,
      "line": "We still dey oo",
-     "score": 35.078,
+     "score": 31.876,
      "terms": [
-      "still"
+      "still",
+      "dey"
      ],
      "term": "still",
      "via": "j14 scene"
@@ -339,224 +299,269 @@
    "why": "♪ matched: “Oh yeah we still dey o” ↔ j14 scene"
   },
   {
-   "rank": 6,
-   "id": "lG_-2gU6kUk",
-   "title": "One Trouser",
-   "artist": "Falz",
-   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/lG_-2gU6kUk.mp3",
-   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/lG_-2gU6kUk.lrc",
-   "score": 68.768,
+   "rank": 5,
+   "id": "sRS8Afj3dOM",
+   "title": "Joromi",
+   "artist": "Simi",
+   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/sRS8Afj3dOM.mp3",
+   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/sRS8Afj3dOM.lrc",
+   "score": 64.641,
    "matches": [
     {
-     "t": 39.2,
-     "line": "so he put a brand new range on the titi",
-     "score": 31.838,
+     "t": 166.64,
+     "line": "maybe you can call me later call me later",
+     "score": 36.123,
      "terms": [
-      "titi",
-      "new"
+      "later",
+      "maybe"
      ],
-     "term": "titi",
-     "via": "j10 “if look: titi.go(juss) 🏃”"
+     "term": "later",
+     "via": "j14 beat “later”"
     },
     {
-     "t": 131.91,
-     "line": "he want still dey show that he have madness",
-     "score": 24.771,
+     "t": 61.18,
+     "line": "you know you can call me later can call me later",
+     "score": 29.268,
      "terms": [
-      "still"
+      "later"
      ],
-     "term": "still",
-     "via": "j14 scene"
+     "term": "later",
+     "via": "j14 beat “later”"
     },
     {
-     "t": 199.29,
-     "line": "hold me oh hold me oh hold me oh",
-     "score": 17.935,
+     "t": 118.73,
+     "line": "you know you can call me later call me later",
+     "score": 29.268,
      "terms": [
-      "hold",
-      "romance (mood)"
+      "later"
      ],
-     "term": "hold",
+     "term": "later",
+     "via": "j14 beat “later”"
+    }
+   ],
+   "why": "♪ matched: “maybe you can call me later call me later” ↔ j14 beat “later”"
+  },
+  {
+   "rank": 6,
+   "id": "DfLS0A5IAhk",
+   "title": "Feeling",
+   "artist": "Ladipoe ft Buju",
+   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/DfLS0A5IAhk.mp3",
+   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/DfLS0A5IAhk.lrc",
+   "score": 63.883,
+   "matches": [
+    {
+     "t": 67.57,
+     "line": "Pull up at the spot open door and its suicide",
+     "score": 35.569,
+     "terms": [
+      "door",
+      "open"
+     ],
+     "term": "door",
+     "via": "j14 beat"
+    },
+    {
+     "t": 141.1,
+     "line": "Pull up open door and its suicide suicide",
+     "score": 35.569,
+     "terms": [
+      "door",
+      "open"
+     ],
+     "term": "door",
+     "via": "j14 beat"
+    },
+    {
+     "t": 125.38,
+     "line": "And be the highest in the room when the guests arrive yeah",
+     "score": 4.232,
+     "terms": [
+      "room"
+     ],
+     "term": "room",
      "via": "j14 scene"
     }
    ],
-   "why": "♪ matched: “so he put a brand new range on the titi” ↔ j10 “if look: titi.go(juss) 🏃”"
+   "why": "♪ matched: “Pull up at the spot open door and its suicide” ↔ j14 beat"
   },
   {
    "rank": 7,
-   "id": "bp6UdUPtXxE",
-   "title": "Safe",
-   "artist": "M.I ft Djinee",
-   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/bp6UdUPtXxE.mp3",
-   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/bp6UdUPtXxE.lrc",
-   "score": 64.175,
+   "id": "1P-AAhpqHfU",
+   "title": "Chop My Money Remix",
+   "artist": "P-Square Ft. Akon, MayD",
+   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/1P-AAhpqHfU.mp3",
+   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/1P-AAhpqHfU.lrc",
+   "score": 63.587,
    "matches": [
     {
-     "t": 243.95,
-     "line": "And If u still sitting down",
-     "score": 35.078,
+     "t": 17.57,
+     "line": "that stays on my mind",
+     "score": 45.405,
      "terms": [
-      "still"
+      "stays"
      ],
-     "term": "still",
+     "term": "stays",
+     "via": "j14 beat"
+    },
+    {
+     "t": 23.45,
+     "line": "its your seduction that makes sure that we stay in line",
+     "score": 12.253,
+     "terms": [
+      "line"
+     ],
+     "term": "line",
      "via": "j14 scene"
     },
     {
-     "t": 131.54,
-     "line": "Am what the missing",
-     "score": 18.633,
+     "t": 86.37,
+     "line": "I dey try my best I be somebody",
+     "score": 6.089,
      "terms": [
-      "missing",
-      "romance (mood)"
+      "somebody",
+      "dey"
      ],
-     "term": "missing",
-     "via": "j14 scene"
-    },
-    {
-     "t": 221.9,
-     "line": "A brand new experience like this star",
-     "score": 15.884,
-     "terms": [
-      "new"
-     ],
-     "term": "new",
+     "term": "somebody",
      "via": "j14 scene"
     }
    ],
-   "why": "♪ matched: “And If u still sitting down” ↔ j14 scene"
+   "why": "♪ matched: “that stays on my mind” ↔ j14 beat"
   },
   {
    "rank": 8,
-   "id": "518MKjVU9uQ",
-   "title": "Anoti",
-   "artist": "M.I ft Gabriel",
-   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/518MKjVU9uQ.mp3",
-   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/518MKjVU9uQ.lrc",
-   "score": 63.497,
+   "id": "gYv5qlKgoCc",
+   "title": "Daddy Yo",
+   "artist": "Wizkid",
+   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/gYv5qlKgoCc.mp3",
+   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/gYv5qlKgoCc.lrc",
+   "score": 59.909,
    "matches": [
     {
-     "t": 58.88,
-     "line": "I just want you to feel me the real me Im still me",
-     "score": 27.461,
-     "terms": [
-      "still"
-     ],
-     "term": "still",
-     "via": "j14 scene"
-    },
-    {
-     "t": 33.36,
-     "line": "Brand new song",
-     "score": 27.396,
-     "terms": [
-      "new",
-      "song"
-     ],
-     "term": "new",
-     "via": "j14 scene"
-    },
-    {
-     "t": 22.69,
-     "line": "Nana titi nana titi",
-     "score": 27.051,
-     "terms": [
-      "titi"
-     ],
-     "term": "titi",
-     "via": "j10 “if look: titi.go(juss) 🏃”"
-    }
-   ],
-   "why": "♪ matched: “I just want you to feel me the real me Im still me” ↔ j14 scene"
-  },
-  {
-   "rank": 9,
-   "id": "chMsx-vKHug",
-   "title": "Eminado",
-   "artist": "Tiwa Savage ft Don Jazzy",
-   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/chMsx-vKHug.mp3",
-   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/chMsx-vKHug.lrc",
-   "score": 62.955,
-   "matches": [
-    {
-     "t": 35.78,
-     "line": "Open the open the door",
-     "score": 40.273,
+     "t": 107.01,
+     "line": "910 open and close",
+     "score": 30.57,
      "terms": [
       "open",
-      "door"
-     ],
-     "term": "open",
-     "via": "j14 scene"
-    },
-    {
-     "t": 120.99,
-     "line": "Oh I feel brand new",
-     "score": 17.819,
-     "terms": [
-      "new"
-     ],
-     "term": "new",
-     "via": "j14 scene"
-    },
-    {
-     "t": 66.4,
-     "line": "One without the other is nothing baby",
-     "score": 10.734,
-     "terms": [
-      "nothing",
-      "romance (mood)"
-     ],
-     "term": "nothing",
-     "via": "j14 scene"
-    }
-   ],
-   "why": "♪ matched: “Open the open the door” ↔ j14 scene"
-  },
-  {
-   "rank": 10,
-   "id": "LLuegl7hrlE",
-   "title": "Gum Body (feat. Jorja Smith)",
-   "artist": "Burna Boy",
-   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/LLuegl7hrlE.mp3",
-   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/LLuegl7hrlE.lrc",
-   "score": 62.705,
-   "matches": [
-    {
-     "t": 142.28,
-     "line": "Kept me close but well be still apart",
-     "score": 34.366,
-     "terms": [
-      "still",
       "close"
      ],
-     "term": "still",
-     "via": "j14 scene"
+     "term": "open",
+     "via": "j14 beat"
     },
     {
-     "t": 17.7,
-     "line": "Very soon Ill go appear for your door mat",
-     "score": 16.721,
+     "t": 92.54,
+     "line": "34 knocking on the door",
+     "score": 27.175,
      "terms": [
       "door"
      ],
      "term": "door",
+     "via": "j14 beat"
+    },
+    {
+     "t": 34.65,
+     "line": "Na my song she dey sing so",
+     "score": 18.461,
+     "terms": [
+      "song",
+      "dey"
+     ],
+     "term": "song",
+     "via": "j14 beat"
+    }
+   ],
+   "why": "♪ matched: “910 open and close” ↔ j14 beat"
+  },
+  {
+   "rank": 9,
+   "id": "7DxG33tEJKE",
+   "title": "True Love",
+   "artist": "Wizkid",
+   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/7DxG33tEJKE.mp3",
+   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/7DxG33tEJKE.lrc",
+   "score": 57.283,
+   "matches": [
+    {
+     "t": 49.03,
+     "line": "Still I want more",
+     "score": 31.683,
+     "terms": [
+      "still",
+      "want"
+     ],
+     "term": "still",
      "via": "j14 scene"
     },
     {
-     "t": 140.31,
-     "line": "Killer of your own heart if you treat me kindly",
-     "score": 14.729,
+     "t": 59.5,
+     "line": "Na me and you go dey as this song go on",
+     "score": 20.709,
      "terms": [
-      "kindly",
-      "romance (mood)"
+      "song",
+      "dey"
      ],
-     "term": "kindly",
+     "term": "song",
+     "via": "j14 beat"
+    },
+    {
+     "t": 195.49,
+     "line": "Shift the tongue sit don pon the ting real long",
+     "score": 13.73,
+     "terms": [
+      "sit"
+     ],
+     "term": "sit",
+     "via": "j14 beat"
+    }
+   ],
+   "why": "♪ matched: “Still I want more” ↔ j14 scene"
+  },
+  {
+   "rank": 10,
+   "id": "NDAOa6qp8Hg",
+   "title": "Ghetto",
+   "artist": "Kizz Daniel ft Nasty C",
+   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/NDAOa6qp8Hg.mp3",
+   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/NDAOa6qp8Hg.lrc",
+   "score": 57.276,
+   "matches": [
+    {
+     "t": 67.73,
+     "line": "started from the street i know",
+     "score": 35.16,
+     "terms": [
+      "started",
+      "street"
+     ],
+     "term": "started",
+     "via": "j14 beat"
+    },
+    {
+     "t": 21.47,
+     "line": "when the police come knocking on your fucking door",
+     "score": 22.228,
+     "terms": [
+      "door",
+      "come"
+     ],
+     "term": "door",
+     "via": "j14 beat"
+    },
+    {
+     "t": 120.62,
+     "line": "i know you go come back here for more",
+     "score": 7.972,
+     "terms": [
+      "come",
+      "back"
+     ],
+     "term": "come",
      "via": "j14 scene"
     }
    ],
-   "why": "♪ matched: “Kept me close but well be still apart” ↔ j14 scene"
+   "why": "♪ matched: “started from the street i know” ↔ j14 beat"
   }
  ],
- "sig": "7d3975b6707c",
- "generated": "2026-11-17T18:39:27-0500"
+ "sig": "2ebbbf478c79",
+ "generated": "2026-11-17T18:40:20-0500"
 }
