@@ -3766,16 +3766,6 @@
 ],
 "let": [
 {
-"id": "wf_ab00b153a0",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the let, and Bisola reads the name twice.",
-"code": "plastic_sheet.interactwith(let){ let.receives(plastic_sheet.envelope); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "plastic_sheet"
-},
-{
 "id": "wf_51d143d86c",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the let, and Bisola reads the name twice.",
@@ -3814,6 +3804,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "kweshon"
+},
+{
+"id": "wf_9e1203c20f",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the let, and Bisola reads the name twice.",
+"code": "agbada.interactwith(let){ let.receives(agbada.envelope); let.remembers(bisola, 'brown envelope'); let.tucks(agbada, 'yaba bookshop receipt into the brown envelope'); }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "agbada"
 }
 ],
 "morir": [
@@ -4521,17 +4521,6 @@
 },
 "consequences": [
 {
-"id": "wf_659678587c",
-"ts": "2026-11-16T21:41:01-0500",
-"a": "wsr",
-"b": "ats",
-"code": "wsr.interactwith(ats){ ats.receives(wsr.envelope); ats.remembers(bisola, 'brown envelope'); ats.tucks(wsr, 'yaba bookshop receipt into the brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the ats, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
-{
 "id": "wf_97ae90172a",
 "ts": "2026-11-16T21:46:36-0500",
 "a": "danfo_speaker",
@@ -4959,6 +4948,17 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j6"
+},
+{
+"id": "wf_9e1203c20f",
+"ts": "2026-11-16T23:39:36-0500",
+"a": "agbada",
+"b": "let",
+"code": "agbada.interactwith(let){ let.receives(agbada.envelope); let.remembers(bisola, 'brown envelope'); let.tucks(agbada, 'yaba bookshop receipt into the brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the let, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
 }
 ],
 "memories": [
@@ -5062,5 +5062,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-16T23:29:56-0500"
+"updated": "2026-11-16T23:39:36-0500"
 }
