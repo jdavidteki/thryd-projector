@@ -3727,16 +3727,6 @@
 ],
 "kweshon": [
 {
-"id": "wf_ae05917926",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the kweshon, and Bisola reads the name twice.",
-"code": "agbada.interactwith(kweshon){ kweshon.receives(agbada.envelope); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "agbada"
-},
-{
 "id": "wf_ae4346d2ef",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the kweshon, and Bisola reads the name twice.",
@@ -3775,6 +3765,16 @@
 "run": "run-0bd7c0",
 "card": "w7",
 "other": "morir"
+},
+{
+"id": "wf_a79b966848",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the kweshon, and Bisola reads the name twice.",
+"code": "wsr.interactwith(kweshon){ kweshon.receives(wsr.envelope); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "wsr"
 }
 ],
 "let": [
@@ -4566,17 +4566,6 @@
 },
 "consequences": [
 {
-"id": "wf_27f0eff197",
-"ts": "2026-11-16T23:07:23-0500",
-"a": "sessy",
-"b": "danfo_stuck_third",
-"code": "sessy.interactwith(danfo_stuck_third){ danfo_stuck_third.receives(sessy.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the danfo stuck third, and Titi reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
-{
 "id": "wf_6b786c8466",
 "ts": "2026-11-16T23:09:49-0500",
 "a": "morir",
@@ -5004,6 +4993,17 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j6"
+},
+{
+"id": "wf_a79b966848",
+"ts": "2026-11-17T09:34:45-0500",
+"a": "wsr",
+"b": "kweshon",
+"code": "wsr.interactwith(kweshon){ kweshon.receives(wsr.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the kweshon, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
 }
 ],
 "memories": [
@@ -5107,5 +5107,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T09:33:52-0500"
+"updated": "2026-11-17T09:34:45-0500"
 }
