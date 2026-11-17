@@ -1,6 +1,6 @@
 {
  "note": "#thryd 📖 narrative calls resolved into lovemap threads. tools/export_narrative_calls.py; append-only store data/narrative_calls.jsonl.",
- "generated_at": "2026-11-17T18:39:26-0500",
+ "generated_at": "2026-11-17T18:41:11-0500",
  "runs": [
   "run-g1-B",
   "run-5a58c4",
@@ -14,7 +14,7 @@
   "paid": 0,
   "cut": 1,
   "open": 9,
-  "callbacks_linked": 3,
+  "callbacks_linked": 4,
   "turning": 12
  },
  "calls": [
@@ -326,8 +326,15 @@
    "seated": true,
    "label": "callback",
    "payoff": null,
-   "callbacks": [],
-   "status": "unlinked",
+   "callbacks": [
+    {
+     "run": "run-g1-B",
+     "job": "j14",
+     "matched": "it says more than the song did",
+     "in": "scene"
+    }
+   ],
+   "status": "linked",
    "source": "run-5a58c4/jobs/w23.json"
   },
   {
@@ -1640,7 +1647,7 @@
    ],
    "motif_src": "heuristic",
    "back": [],
-   "seated": false,
+   "seated": true,
    "label": "mark",
    "payoff": null,
    "callbacks": [],
@@ -1648,21 +1655,21 @@
    "source": "run-g1-B/jobs/w13.json"
   },
   {
-   "id": "run-g1-B:j14:0420a4a5",
+   "id": "run-g1-B:j14:5b6786ba",
    "run": "run-g1-B",
    "job": "j14",
    "n": 14,
    "s": "#thryd - the art of possibilities",
    "d": "225. i can see the future",
-   "sentence": "later: the side door stays open, the song stays with its crowd, the two marks sit beside the tally, and the picture still has not started.",
+   "sentence": "open: the song has finished, and the aisle is clear.",
    "terms": [],
    "kind": "mark",
    "kinds": [
     "mark"
    ],
-   "motif": "two marks sit beside the tally",
+   "motif": "song has finished",
    "motif_alts": [
-    "two marks sit beside the tally"
+    "song has finished"
    ],
    "motif_src": "heuristic",
    "back": [],
@@ -1721,14 +1728,14 @@
    {
     "job": "j13",
     "n": 13,
-    "seated": false,
+    "seated": true,
     "scene": "23 lines in.\n8:25pm, Saturday 17 October 2026. Folake pushes the side door open on her chalk line and says, \"the people need to see,\" and a few rows turn to look at the street. Titi stops scrolling her phone on the stairs, says \"you have to"
    },
    {
     "job": "j14",
     "n": 14,
     "seated": false,
-    "scene": "23 lines in.\n8:50pm, Saturday 17 October 2026, the same old Lagos cinema. The picture still has not started. The side door is still open on the chalk line, and the few rows who turned to the street have not all come back. Folake is still th"
+    "scene": "24 lines in.\n8:50pm, Saturday 17 October 2026. Titi lets the song run out on the stairs. \"but i'll let him finish his,\" she says, and when someone points out he still has 24 more, she shrugs: \"am not the only wan.\" Folake turns at the side "
    }
   ],
   "run-5a58c4": [

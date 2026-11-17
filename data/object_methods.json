@@ -5722,6 +5722,77 @@
    "prior": [],
    "faded": false,
    "last_run": "run-g1-B"
+  },
+  "titi.let": {
+   "object": "titi",
+   "method": "let",
+   "args": [
+    "finish"
+   ],
+   "runs": [
+    "run-g1-B"
+   ],
+   "defined": {
+    "run": "run-g1-B",
+    "job": "j13",
+    "card": "j13",
+    "title": "titi.let(finish)",
+    "emoji": "",
+    "at": "2026-11-17T18:41:05-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "titi.let(finish)",
+     "emoji": "",
+     "arg": "finish",
+     "run": "run-g1-B",
+     "job": "j13",
+     "tweets": [
+      {
+       "text": "- but i'll let him finish his",
+       "year": "2025"
+      },
+      {
+       "text": "- but he still have 24 awas [[msbr]]",
+       "year": "2025"
+      },
+      {
+       "text": "[[uwsaas]] - am not the only wan",
+       "year": "2025"
+      }
+     ],
+     "consequence": "The song from the wrong room is still with the people who moved to it, and Titi is still on the stairs, her phone down, letting it finish.",
+     "consequence_job": "j14",
+     "resolved": "titi.let(what=finish:Thing) from j13",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "finish",
+       "from_run": "run-g1-B",
+       "from_job": "j13",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "finish",
+      "first_run": "run-g1-B",
+      "first_job": "j13"
+     }
+    ],
+    "text": "let(what: Thing)"
+   },
+   "receiver_class": "Person",
+   "prior": [],
+   "faded": false,
+   "last_run": null
   }
  },
  "objects": {
@@ -5779,7 +5850,8 @@
   "danfo_stuck_halfway_subject_seventh": [
    "titi.go",
    "titi.start",
-   "titi.listen"
+   "titi.listen",
+   "titi.let"
   ],
   "dez": [
    "dez.sit",
@@ -5813,7 +5885,8 @@
   "family_compound_ikorodu_subject_seventh": [
    "titi.go",
    "titi.start",
-   "titi.listen"
+   "titi.listen",
+   "titi.let"
   ],
   "folake": [
    "folake.draw",
@@ -5908,7 +5981,8 @@
   "tea_bread_stall_subject_sixth": [
    "titi.go",
    "titi.start",
-   "titi.listen"
+   "titi.listen",
+   "titi.let"
   ],
   "teo": [
    "teo.hide",
@@ -5943,7 +6017,8 @@
   "titi": [
    "titi.go",
    "titi.start",
-   "titi.listen"
+   "titi.listen",
+   "titi.let"
   ],
   "toothbrush": [
    "toothbrush.on"
@@ -6061,6 +6136,7 @@
     "from": "e164727d4c98",
     "title": "326. what the arts can see",
     "funcs": [
+     "titi.let",
      "titi.listen",
      "folake.see",
      "adaora.come",
@@ -7274,6 +7350,7 @@
     "from": "e164727d4c98",
     "title": "326. what the arts can see",
     "funcs": [
+     "titi.let",
      "titi.listen",
      "folake.see",
      "adaora.come",
@@ -7523,6 +7600,7 @@
     "from": "fad8da2e5cf6",
     "title": "1129. how to [[fail]]",
     "funcs": [
+     "titi.let",
      "care.on"
     ]
    }
@@ -9353,6 +9431,7 @@
     "from": "e164727d4c98",
     "title": "326. what the arts can see",
     "funcs": [
+     "titi.let",
      "titi.listen",
      "folake.see",
      "adaora.come",
@@ -13624,7 +13703,8 @@
     "titi.start",
     "adaora.come",
     "folake.see",
-    "titi.listen"
+    "titi.listen",
+    "titi.let"
    ]
   }
  },
@@ -13633,6 +13713,13 @@
    "title": "621. the world stage",
    "funcs": [
     "teo.sit"
+   ],
+   "runs": []
+  },
+  "08ae9d49aa5e": {
+   "title": "1029. convince you",
+   "funcs": [
+    "titi.let"
    ],
    "runs": []
   },
@@ -14006,7 +14093,8 @@
     "titi.start",
     "adaora.come",
     "folake.see",
-    "titi.listen"
+    "titi.listen",
+    "titi.let"
    ],
    "runs": [
     "run-d6fc",
@@ -14107,7 +14195,8 @@
   "fad8da2e5cf6": {
    "title": "1129. how to [[fail]]",
    "funcs": [
-    "care.on"
+    "care.on",
+    "titi.let"
    ],
    "runs": []
   },
@@ -14274,6 +14363,9 @@
   ],
   "1*KOfHcbZItSwnzB-Xt4fH3A.gif": [
    "1043ee742884"
+  ],
+  "1*3RBno1MIDLv6YeAAeDHq8Q.gif": [
+   "08ae9d49aa5e"
   ],
   "1*_BZ_4dYEZGMebJgk4seauA.gif": [
    "ca0834ea259c"
@@ -14876,7 +14968,8 @@
   "titi": [
    "titi.go",
    "titi.start",
-   "titi.listen"
+   "titi.listen",
+   "titi.let"
   ],
   "toothbrush": [
    "toothbrush.on"
@@ -15142,5 +15235,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-17T18:39:27-05:00"
+ "updated": "2026-11-17T18:41:12-05:00"
 }

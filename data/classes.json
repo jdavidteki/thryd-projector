@@ -106,8 +106,8 @@
     "come",
     "know"
    ],
-   "instances": 342,
-   "arg_instances": 25,
+   "instances": 343,
+   "arg_instances": 26,
    "parent": null,
    "chain": [
     "Thing"
@@ -1656,6 +1656,22 @@
     "run-9e3e84"
    ],
    "tweets": []
+  },
+  "finish": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-g1-B",
+   "first_job": "j13",
+   "source": "pick",
+   "runs": [
+    "run-g1-B"
+   ],
+   "tweets": [
+    {
+     "text": "- but i'll let him finish his",
+     "year": "2025"
+    }
+   ]
   },
   "fireonthemountain": {
    "class": "Thing",
@@ -6149,6 +6165,12 @@
     "pick"
    ],
    [
+    "finish",
+    "Thing",
+    "j13",
+    "pick"
+   ],
+   [
     "studio",
     "Place",
     "j2",
@@ -8957,7 +8979,8 @@
   "titi.start": "start(what: Thing)",
   "adaora.come": "come(what: Thing)",
   "folake.see": "see(who: Person)",
-  "titi.listen": "listen(where: Place)"
+  "titi.listen": "listen(where: Place)",
+  "titi.let": "let(what: Thing)"
  },
  "parent": {
   "Person": "Thing",
@@ -9365,5 +9388,5 @@
   "epilogue": "quiet",
   "coda": "quiet"
  },
- "updated": "2026-11-17T18:34:20-05:00"
+ "updated": "2026-11-17T18:41:11-05:00"
 }

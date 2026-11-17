@@ -6104,20 +6104,21 @@
 "card": "j2",
 "other": "teoloveletter"
 }
+],
+"gitf": [
+{
+"id": "wf_c68dc250d1",
+"kind": "consequence",
+"text": "The gitf leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "mrs_morenike_daramola.interactwith(gitf){ gitf.receives(mrs_morenike_daramola.envelope); gitf.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-g1-B",
+"card": "j6",
+"other": "mrs_morenike_daramola"
+}
 ]
 },
 "consequences": [
-{
-"id": "wt_8ef6f98172",
-"ts": "2026-11-17T16:04:47-0500",
-"a": "dezroom",
-"b": "letter",
-"code": "letter.setlocation(dezroom); letter.set('location', \"Dez's room\");",
-"text": "Marisol's letter is no longer in her bag. It has ended up in Dez's room, folded, still unopened.",
-"author": "thryd",
-"run": "run-5a58c4",
-"card": "j33"
-},
 {
 "id": "wf_20af5c16d0",
 "ts": "2026-11-17T16:05:05-0500",
@@ -6546,6 +6547,17 @@
 "author": "cos",
 "run": "run-g1-B",
 "card": "j1"
+},
+{
+"id": "wf_c68dc250d1",
+"ts": "2026-11-17T18:38:33-0500",
+"a": "mrs_morenike_daramola",
+"b": "gitf",
+"code": "mrs_morenike_daramola.interactwith(gitf){ gitf.receives(mrs_morenike_daramola.envelope); gitf.remembers(bisola, 'brown envelope'); }",
+"text": "The gitf leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-g1-B",
+"card": "j6"
 }
 ],
 "memories": [
@@ -6649,5 +6661,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T18:36:52-0500"
+"updated": "2026-11-17T18:38:33-0500"
 }
