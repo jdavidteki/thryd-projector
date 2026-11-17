@@ -1083,46 +1083,95 @@ window.thrydWander={paths:()=>DPATH,move:b=>wMove(b),state:b=>WS.get(b)};
   document.addEventListener('pointerup',end);document.addEventListener('pointercancel',end);})();
 })();
 
-// ---------- zoom/pan the scene (#stage: backdrop + #objs + in-scene people scale together). 1x-4x.
-// Existing drags keep working: the .dob drag converts pointer deltas with the layer's transformed rect, chips live outside #stage.
-(function(){const st=document.getElementById('stage');if(!st)return;let z=1,tx=0,ty=0;const MIN=1,MAX=4;
-  st.style.transformOrigin='0 0';
-  const clamp=()=>{const W=st.clientWidth,H=st.clientHeight;tx=Math.min(0,Math.max(W-W*z,tx));ty=Math.min(0,Math.max(H-H*z,ty));};
-  const apply=()=>{clamp();st.style.transform=z===1?'':`translate(${tx}px,${ty}px) scale(${z})`;document.body.classList.toggle('zoomed',z>1);const l=document.getElementById('zlvl');if(l)l.textContent=z.toFixed(1)+'×';};
-  const sr=()=>({l:st.offsetLeft,t:st.offsetTop});
-  const zoomAt=(nz,cx,cy)=>{nz=Math.min(MAX,Math.max(MIN,nz));const o=sr(),px=cx-o.l,py=cy-o.t;const sx=(px-tx)/z,sy=(py-ty)/z;z=nz;tx=px-sx*z;ty=py-sy*z;if(z===1){tx=ty=0;}apply();};
-  const reset=()=>{z=1;tx=ty=0;apply();};
-  // client px -> untransformed stage px (scene space) for drop math
-  window.thrydZoom={get:()=>({z,tx,ty}),reset,zoomAt,toScene:(x,y)=>{const o=sr();return [(x-o.l-tx)/z,(y-o.t-ty)/z];}};
-  const onItem=t=>t&&t.closest&&t.closest('.chip,#bar,#zoomui,#user,.ph,#sndgate,#toast');
-  addEventListener('wheel',ev=>{const t=ev.target;if(t.closest&&t.closest('#bar,#zoomui,#user,select,#cerebro,#lovemap'))return;ev.preventDefault();zoomAt(z*Math.exp(-ev.deltaY*(ev.ctrlKey?0.01:0.0015)),ev.clientX,ev.clientY);},{passive:false});
-  const P=new Map();let pan=null,pinch=null,moved=0,lastTap=0,lastXY=[0,0];
+// ---------- zoom/pan the whole canvas (#canvas: scene, GIFs, objects, tweet popups and overlays scale together). 0.5x-3x.
+// Buttons zoom around the viewport centre. Drag-pan still works when zoomed in. Pointer math in thrydZoom.toScene / screenDelta
+// converts client pixels into unscaled canvas space so object drags and taps stay lined up.
+(function(){
+  const MIN=0.5, MAX=3, STEP=1.2, ANIM='zoom-anim';
+  const ADOPT_IDS={ 'stretchy-bg':1, vignette:1, stage:1, gstage:1, map:1, ents:1, bubble:1, prophs:1, gtweet:1, gmeth:1 };
+  const ADOPT_CLASS=['grip','gprom','prophchip','prophcap'];
+  const keepOut=el=>!el||el.id==='zoomui'||el.id==='bar'||el.id==='ticker'||el.id==='toast'||el.id==='sndgate'||el.id==='gundo'||el.id==='gpromq'||el.id==='user'||el.id==='cerebro'||el.id==='lovemap'||el.id==='uxhint'||el.id==='phone3310'||el.id==='mvcarry';
+  function ensureCanvas(){
+    let c=document.getElementById('canvas');
+    if(!c){ c=document.createElement('div'); c.id='canvas'; document.body.insertBefore(c, document.body.firstChild); }
+    ['stretchy-bg','vignette','stage','gstage','map','ents','bubble','prophs'].forEach(id=>{
+      const el=document.getElementById(id); if(el&&el.parentNode!==c) c.appendChild(el);
+    });
+    return c;
+  }
+  const rootEl=ensureCanvas();
+  rootEl.style.transformOrigin='0 0';
+  let z=1,tx=0,ty=0;
+  const clampZ=n=>Math.min(MAX,Math.max(MIN,+n||1));
+  try{
+    const k=window.ThrydKeep&&ThrydKeep.settings&&ThrydKeep.settings();
+    const raw=(k&&k.zoom!=null)?k.zoom:(localStorage.getItem('thryd_zoom'));
+    if(raw!=null&&raw!=='') z=clampZ(raw);
+  }catch(e){}
+  const size=()=>({W:rootEl.clientWidth||innerWidth||1, H:rootEl.clientHeight||innerHeight||1});
+  const clamp=()=>{const {W,H}=size();
+    if(z>=1){ tx=Math.min(0,Math.max(W-W*z,tx)); ty=Math.min(0,Math.max(H-H*z,ty)); }
+    else { tx=(W-W*z)/2; ty=(H-H*z)/2; }
+  };
+  const label=()=>{const l=document.getElementById('zlvl'); if(l) l.textContent=z.toFixed(1)+'\u00d7';};
+  const apply=()=>{clamp(); rootEl.style.transform=`translate(${tx}px,${ty}px) scale(${z})`; document.body.classList.toggle('zoomed',z>1); label();};
+  const persist=()=>{try{ if(window.ThrydKeep) ThrydKeep.saveSettings({zoom:z}); else localStorage.setItem('thryd_zoom',String(z)); }catch(e){}};
+  const anim=on=>{ if(on){ rootEl.classList.add(ANIM); } else { rootEl.classList.remove(ANIM); } };
+  const sr=()=>({l:0,t:0});
+  const zoomAt=(nz,cx,cy,opts)=>{
+    nz=clampZ(nz); const {l,t}=sr(); const px=cx-l, py=cy-t;
+    const sx=(px-tx)/z, sy=(py-ty)/z; z=nz; tx=px-sx*z; ty=py-sy*z;
+    if(Math.abs(z-1)<1e-6){ z=1; tx=ty=0; }
+    apply(); if(!opts||!opts.silent) persist();
+  };
+  const reset=(opts)=>{ z=1; tx=ty=0; apply(); if(!opts||!opts.silent) persist(); };
+  const toScene=(x,y)=>{ const {l,t}=sr(); return [(x-l-tx)/z,(y-t-ty)/z]; };
+  const screenDelta=(dx,dy)=>{ const s=z||1; return [dx/s, dy/s]; };
+  window.thrydZoom={get:()=>({z,tx,ty}), reset, zoomAt, toScene, screenDelta, MIN, MAX, STEP, root:()=>rootEl};
+  const adopt=el=>{
+    if(!el||el===rootEl||el.parentNode===rootEl||keepOut(el)) return;
+    if(el.id&&ADOPT_IDS[el.id]){ rootEl.appendChild(el); return; }
+    if(el.classList&&ADOPT_CLASS.some(c=>el.classList.contains(c))) rootEl.appendChild(el);
+  };
+  const mo=new MutationObserver(muts=>{
+    muts.forEach(m=>m.addedNodes.forEach(n=>{ if(n.nodeType===1) adopt(n); }));
+  });
+  mo.observe(document.body,{childList:true});
+  document.body.querySelectorAll('#gtweet,#gmeth,.grip,.gprom,#stretchy-bg,#gstage').forEach(adopt);
+
+  const onItem=t=>t&&t.closest&&t.closest('.chip,.gcut,#bar,#zoomui,#user,.ph,#sndgate,#toast,#gmeth,#gtweet,#gundo,#uxhint,#phone3310,#ticker,a,button,select,input,textarea,[role=dialog],[role=menu]');
+  addEventListener('wheel',ev=>{const t=ev.target;if(t.closest&&t.closest('#bar,#zoomui,#user,select,#cerebro,#lovemap,#ticker'))return;ev.preventDefault();anim(false);zoomAt(z*Math.exp(-ev.deltaY*(ev.ctrlKey?0.01:0.0015)),ev.clientX,ev.clientY);},{passive:false});
+  const P=new Map();let pan=null,pinch=null,moved=0,lastTap=0,lastXY=[0,0],nofs=0;
   document.addEventListener('pointerdown',ev=>{if(onItem(ev.target))return;if(ev.pointerType==='mouse'&&ev.button!==0)return;
     P.set(ev.pointerId,[ev.clientX,ev.clientY]);if(P.size===1)moved=0;
-    if(P.size===2){const[a,b]=[...P.values()];pinch={d:Math.hypot(a[0]-b[0],a[1]-b[1])||1,z0:z};pan=null;}
+    if(P.size===2){const[a,b]=[...P.values()];pinch={d:Math.hypot(a[0]-b[0],a[1]-b[1])||1,z0:z};pan=null;anim(false);}
     else if(P.size===1&&z>1){pan={x:ev.clientX,y:ev.clientY,tx,ty};}});
   document.addEventListener('pointermove',ev=>{if(!P.has(ev.pointerId))return;P.set(ev.pointerId,[ev.clientX,ev.clientY]);
     if(pinch&&P.size>=2){ev.preventDefault();const[a,b]=[...P.values()];const d=Math.hypot(a[0]-b[0],a[1]-b[1]);moved=1;zoomAt(pinch.z0*d/pinch.d,(a[0]+b[0])/2,(a[1]+b[1])/2);return;}
-    if(pan){const dx=ev.clientX-pan.x,dy=ev.clientY-pan.y;if(dx*dx+dy*dy>16){moved=1;document.body.classList.add('panning');}tx=pan.tx+dx;ty=pan.ty+dy;apply();}},{passive:false});
+    if(pan){anim(false);const dx=ev.clientX-pan.x,dy=ev.clientY-pan.y;if(dx*dx+dy*dy>16){moved=1;document.body.classList.add('panning');}tx=pan.tx+dx;ty=pan.ty+dy;apply();}},{passive:false});
   const up=ev=>{if(!P.has(ev.pointerId))return;P.delete(ev.pointerId);
-    if(P.size<2)pinch=null;if(P.size===1&&z>1){const[a]=[...P.values()];pan={x:a[0],y:a[1],tx,ty};}else if(!P.size){pan=null;document.body.classList.remove('panning');}
-    if(moved){st._nofs=Date.now();return;}
-    if(ev.type==='pointerup'&&ev.pointerType!=='mouse'){const n=Date.now();if(n-lastTap<320&&Math.hypot(ev.clientX-lastXY[0],ev.clientY-lastXY[1])<40){reset();lastTap=0;st._nofs=n;}else{lastTap=n;lastXY=[ev.clientX,ev.clientY];}}};
+    if(P.size<2){if(pinch) persist(); pinch=null;}
+    if(P.size===1&&z>1){const[a]=[...P.values()];pan={x:a[0],y:a[1],tx,ty};}else if(!P.size){pan=null;document.body.classList.remove('panning');}
+    if(moved){nofs=Date.now();return;}
+    if(ev.type==='pointerup'&&ev.pointerType!=='mouse'){const n=Date.now();if(n-lastTap<320&&Math.hypot(ev.clientX-lastXY[0],ev.clientY-lastXY[1])<40){anim(true);reset();lastTap=0;nofs=n;}else{lastTap=n;lastXY=[ev.clientX,ev.clientY];}}};
   document.addEventListener('pointerup',up);document.addEventListener('pointercancel',up);
-  // iOS Safari: stop native page zoom, and pinch via touch events (pointer pinch gets cancelled when Safari claims the gesture)
   ['gesturestart','gesturechange','gestureend'].forEach(t=>document.addEventListener(t,e=>e.preventDefault(),{passive:false}));
   let tp=null;const td=t=>Math.hypot(t[0].clientX-t[1].clientX,t[0].clientY-t[1].clientY)||1;
-  document.addEventListener('touchstart',e=>{if(e.touches.length===2&&!onItem(e.target)){tp={d:td(e.touches),z0:z};e.preventDefault();}},{passive:false});
-  document.addEventListener('touchmove',e=>{if(tp&&e.touches.length===2){e.preventDefault();if(pinch)return;const t=e.touches;moved=1;st._nofs=Date.now();zoomAt(tp.z0*td(t)/tp.d,(t[0].clientX+t[1].clientX)/2,(t[0].clientY+t[1].clientY)/2);}},{passive:false});
-  document.addEventListener('touchend',e=>{if(e.touches.length<2)tp=null;});
-  document.addEventListener('dblclick',ev=>{if(onItem(ev.target))return;reset();st._nofs=Date.now();});
-  // a pan/pinch/double-tap must not toggle fullscreen via the document click handler
-  document.addEventListener('click',ev=>{if(st._nofs&&Date.now()-st._nofs<500)ev.stopImmediatePropagation();},true);
-  const ui=document.createElement('div');ui.id='zoomui';ui.innerHTML='<button data-z="-" title="zoom out">−</button><span id="zlvl">1.0×</span><button data-z="+" title="zoom in">+</button><button data-z="0" title="reset zoom">⟲</button>';
-  ui.addEventListener('click',ev=>{ev.stopPropagation();const b=ev.target.closest('button');if(!b)return;const cx=st.offsetLeft+st.clientWidth/2,cy=st.offsetTop+st.clientHeight/2;
-    if(b.dataset.z==='0')reset();else zoomAt(z*(b.dataset.z==='+'?1.25:0.8),cx,cy);});
-  ui.addEventListener('dblclick',ev=>ev.stopPropagation());
-  document.body.appendChild(ui);addEventListener('resize',apply);apply();})();
+  document.addEventListener('touchstart',e=>{if(e.touches.length===2&&!onItem(e.target)){tp={d:td(e.touches),z0:z};anim(false);e.preventDefault();}},{passive:false});
+  document.addEventListener('touchmove',e=>{if(tp&&e.touches.length===2){e.preventDefault();if(pinch)return;const t=e.touches;moved=1;nofs=Date.now();zoomAt(tp.z0*td(t)/tp.d,(t[0].clientX+t[1].clientX)/2,(t[0].clientY+t[1].clientY)/2);}},{passive:false});
+  document.addEventListener('touchend',e=>{if(e.touches.length<2){if(tp) persist(); tp=null;}});
+  document.addEventListener('dblclick',ev=>{if(onItem(ev.target))return;anim(true);reset();nofs=Date.now();});
+  document.addEventListener('click',ev=>{if(nofs&&Date.now()-nofs<500)ev.stopImmediatePropagation();},true);
+  const ui=document.createElement('div');ui.id='zoomui';ui.innerHTML='<button data-z="-" title="zoom out">\u2212</button><span id="zlvl" title="double-click to reset">1.0\u00d7</span><button data-z="+" title="zoom in">+</button><button data-z="0" title="reset zoom">\u27f2</button>';
+  ui.addEventListener('click',ev=>{ev.stopPropagation();const b=ev.target.closest('button');if(!b)return;anim(true);
+    const cx=innerWidth/2,cy=innerHeight/2;
+    if(b.dataset.z==='0')reset();else zoomAt(z*(b.dataset.z==='+'?STEP:1/STEP),cx,cy);});
+  ui.addEventListener('dblclick',ev=>{ev.stopPropagation(); if(ev.target&&ev.target.id==='zlvl'){anim(true);reset();}});
+  document.body.appendChild(ui);
+  addEventListener('resize',()=>{apply();});
+  if(z!==1){ const {W,H}=size(); tx=(W-W*z)/2; ty=(H-H*z)/2; }
+  apply();
+})();
 
 // ---------- prophecies (contract: Chief of Staff cd521af). Every drag = open-ended #thryd.miracle.target(assert(<object>.place == "<place>")).
 // Page records drags + draws ghosts; ONLY state.miracles {open:[],fulfilled:[],error?} decides open/fulfilled. miracles.error -> show nothing.

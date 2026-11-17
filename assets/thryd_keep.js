@@ -7,7 +7,7 @@
   var BUDGET = 40 * 1024 * 1024;
   var PLACE_CAP = 40;
 
-  function defaults(){ return {slide: null, mute: null, lastGif: ''}; }
+  function defaults(){ return {slide: null, mute: null, lastGif: '', zoom: null}; }
 
   function readJson(storage, key){
     try{
@@ -33,7 +33,13 @@
       try{ var s = +storage.getItem('thryd_slide'); if([8, 30, 60].indexOf(s) >= 0) slide = s; }catch(e){}
     }
     var lastGif = typeof o.lastGif === 'string' && o.lastGif.length > 0 && o.lastGif.length < 180 ? o.lastGif : '';
-    return {slide: slide, mute: mute, lastGif: lastGif};
+    var zoom = +o.zoom;
+    if(!isFinite(zoom) || zoom <= 0){
+      try{ var zold = +storage.getItem('thryd_zoom'); if(isFinite(zold) && zold > 0) zoom = zold; }catch(e){ zoom = NaN; }
+    }
+    if(!isFinite(zoom) || zoom <= 0) zoom = null;
+    else zoom = Math.min(3, Math.max(0.5, zoom));
+    return {slide: slide, mute: mute, lastGif: lastGif, zoom: zoom};
   }
 
   function saveSettings(storage, patch){
@@ -41,10 +47,15 @@
     if(patch.slide != null && [8, 30, 60].indexOf(+patch.slide) >= 0) cur.slide = +patch.slide;
     if(patch.mute === 0 || patch.mute === 1) cur.mute = patch.mute;
     if(typeof patch.lastGif === 'string') cur.lastGif = patch.lastGif.slice(0, 179);
-    var ok = writeJson(storage, SETTINGS, {v: 1, slide: cur.slide, mute: cur.mute, lastGif: cur.lastGif});
+    if(patch.zoom != null){
+      var zz = +patch.zoom;
+      cur.zoom = isFinite(zz) && zz > 0 ? Math.min(3, Math.max(0.5, zz)) : null;
+    }
+    var ok = writeJson(storage, SETTINGS, {v: 1, slide: cur.slide, mute: cur.mute, lastGif: cur.lastGif, zoom: cur.zoom});
     try{
       if(cur.slide != null) storage.setItem('thryd_slide', String(cur.slide));
       if(cur.mute != null) storage.setItem('thryd_mute', cur.mute ? '1' : '0');
+      if(cur.zoom != null) storage.setItem('thryd_zoom', String(cur.zoom));
     }catch(e){}
     return ok;
   }

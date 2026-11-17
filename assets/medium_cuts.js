@@ -7,6 +7,11 @@
   const RESERVE = 41943040;
   const WHOLE = 0.995;
 
+  function zoomDelta(dx, dy){
+    const z = (root.thrydZoom && thrydZoom.get && thrydZoom.get().z) || 1;
+    const s = (z && z > 0) ? z : 1;
+    return [dx / s, dy / s];
+  }
   function roomBytes(){ return CAP - USED - RESERVE; }
   function admit(measuredBytes){
     const room = roomBytes();
@@ -822,13 +827,13 @@
     // customer drag of a visitor stays a customer move, bound to where it came from
     let d = null;
     im.addEventListener('pointerdown', ev=>{ ev.preventDefault(); ev.stopPropagation(); d = {sx: ev.clientX, sy: ev.clientY, l: parseFloat(im.style.left), b: im.getBoundingClientRect()}; im.style.animation = 'none'; im.classList.add('mcvdrag'); try{ im.setPointerCapture(ev.pointerId); document.body.classList.add('dragmode'); }catch(e){} });
-    im.addEventListener('pointermove', ev=>{ if(!d) return; im.style.transform = 'translate(' + (ev.clientX - d.sx) + 'px,' + (ev.clientY - d.sy) + 'px)'; });
-    const end = ev=>{ if(!d) return; const dx = ev.clientX - d.sx, dy = ev.clientY - d.sy, sb = stage.getBoundingClientRect();
-      im.style.transform = ''; im.style.left = (d.l + dx) + 'px'; im.style.bottom = ''; im.style.top = (d.b.top - sb.top + dy) + 'px'; im.classList.remove('mcvdrag'); im.style.animation = '';
+    im.addEventListener('pointermove', ev=>{ if(!d) return; const [mx,my]=zoomDelta(ev.clientX - d.sx, ev.clientY - d.sy); im.style.transform = 'translate(' + mx + 'px,' + my + 'px)'; });
+    const end = ev=>{ if(!d) return; const [dx, dy] = zoomDelta(ev.clientX - d.sx, ev.clientY - d.sy), sb = stage.getBoundingClientRect(), z = ((root.thrydZoom && thrydZoom.get && thrydZoom.get().z) || 1);
+      im.style.transform = ''; im.style.left = (d.l + dx) + 'px'; im.style.bottom = ''; im.style.top = ((d.b.top - sb.top) / z + dy) + 'px'; im.classList.remove('mcvdrag'); im.style.animation = '';
       try{ document.body.classList.remove('dragmode'); }catch(e){} place();
       if(dx || dy) try{ window.dispatchEvent(new CustomEvent('thryd:cutmove', {detail: {scene: t.from, cut: t.label, cut_index: null, klass: t.klass || null, visitor_in: layer._mid,
-        source_frame_index: 0, frame_count: 1, from: {x: +((d.b.left - sb.left + d.b.width / 2) / SW * 100).toFixed(3), y: +((d.b.top - sb.top + d.b.height / 2) / SH * 100).toFixed(3)},
-        to: {x: +((d.b.left - sb.left + d.b.width / 2 + dx) / SW * 100).toFixed(3), y: +((d.b.top - sb.top + d.b.height / 2 + dy) / SH * 100).toFixed(3)}, place_key: null}})); }catch(e){}
+        source_frame_index: 0, frame_count: 1, from: {x: +((d.b.left - sb.left + d.b.width / 2) / z / SW * 100).toFixed(3), y: +((d.b.top - sb.top + d.b.height / 2) / z / SH * 100).toFixed(3)},
+        to: {x: +((d.b.left - sb.left + d.b.width / 2) / z / SW * 100 + dx / SW * 100).toFixed(3), y: +((d.b.top - sb.top + d.b.height / 2) / z / SH * 100 + dy / SH * 100).toFixed(3)}, place_key: null}})); }catch(e){}
       d = null; };
     im.addEventListener('pointerup', end); im.addEventListener('pointercancel', end);
   }
@@ -992,7 +997,7 @@
         });
         layer.addEventListener('pointermove', ev=>{
           const d = layer._drag; if(!d) return;
-          d.dx = ev.clientX - d.sx; d.dy = ev.clientY - d.sy;
+          const zd = zoomDelta(ev.clientX - d.sx, ev.clientY - d.sy); d.dx = zd[0]; d.dy = zd[1];
           if(d.raf) return;
           d.raf = requestAnimationFrame(()=>{
             d.raf = 0;

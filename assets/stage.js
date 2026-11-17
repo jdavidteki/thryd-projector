@@ -89,6 +89,10 @@
   S.BG_NORMAL = BG_NORMAL; S.BG_FRESH = BG_FRESH;
   const DPR = Math.min(root.devicePixelRatio || 1, PHONE ? 1 : 1.25);
   const vw = ()=> root.innerWidth || 1280, vh = ()=> root.innerHeight || 720;
+  const overlayHost = ()=> document.getElementById('canvas') || document.body;
+  const zsc = ()=>{ const z = root.thrydZoom && thrydZoom.get && thrydZoom.get().z; return (z && z > 0) ? z : 1; };
+  const toLocal = (x, y)=>{ if(root.thrydZoom && thrydZoom.toScene){ const p = thrydZoom.toScene(x, y); return {x:p[0], y:p[1]}; } return {x, y}; };
+  const visBox = ()=>{ const z = zsc(), g = root.thrydZoom && thrydZoom.get && thrydZoom.get() || {tx:0,ty:0}; return {l: -g.tx/z, t: -g.ty/z, w: vw()/z, h: vh()/z}; };
   const R = (a, b)=> a + Math.random() * (b - a);
   const sleep = ms => new Promise(z => setTimeout(z, ms));
   const paused = ()=> document.hidden || document.body.classList.contains('stage-replay') || document.body.classList.contains('dragmode') || document.body.classList.contains('cerebro') || document.body.classList.contains('lovemap');
@@ -579,13 +583,13 @@
       if(cut.leaving) return;
       ev.preventDefault(); ev.stopPropagation();
       foldTranslate(cut); cut.entering = false; el.style.opacity = '1';
-      d = {sx: ev.clientX, sy: ev.clientY, l: cut.left, t: cut.top, from: framePct(cut, cut.g), raf: 0, v: [{x: ev.clientX, y: ev.clientY, t: performance.now()}]}; moved = false;
+      d = {sx: ev.clientX, sy: ev.clientY, l: cut.left, t: cut.top, z: zsc(), from: framePct(cut, cut.g), raf: 0, v: [{x: ev.clientX, y: ev.clientY, t: performance.now()}]}; moved = false;
       cut.dragging = true; el.dataset.dragging = '1';
       try{ el.setPointerCapture(ev.pointerId); }catch(e){}
       document.body.classList.add('dragmode'); camHold();
     });
     el.addEventListener('pointermove', ev => {
-      if(!d) return; const dx = ev.clientX - d.sx, dy = ev.clientY - d.sy; if(Math.abs(dx) + Math.abs(dy) > 3) moved = true;
+      if(!d) return; const z = d.z || zsc(); const dx = (ev.clientX - d.sx) / z, dy = (ev.clientY - d.sy) / z; if(Math.abs(dx) + Math.abs(dy) > 3) moved = true;
       d.v.push({x: ev.clientX, y: ev.clientY, t: performance.now()}); if(d.v.length > 6) d.v.shift();
       cut.left = d.l + dx; cut.top = d.t + dy;
       if(d.raf) return; d.raf = requestAnimationFrame(()=>{ if(d){ d.raf = 0; el.style.left = cut.left + 'px'; el.style.top = cut.top + 'px'; } });
@@ -626,7 +630,7 @@
   // a drag released moving fast (>= .45 px/ms) toward another story's frame, or a cut of the same kind, within 25 degrees and 420 px,
   // glides the rest of the way (until its centre sits just inside that frame / beside that cut, at most 220 px)
   function dropZone(cut, vs){ if(!vs || vs.length < 2) return null; const a = vs[0], b = vs[vs.length - 1], dt = b.t - a.t; if(dt <= 0 || dt > 220) return null;
-    const vx = (b.x - a.x) / dt, vy = (b.y - a.y) / dt, sp = Math.hypot(vx, vy); if(sp < .45) return null;
+    const z = zsc(), vx = (b.x - a.x) / dt / z, vy = (b.y - a.y) / dt / z, sp = Math.hypot(vx, vy); if(sp < .45) return null;
     const cx = cut.left + cut.w / 2, cy = cut.top + cut.h / 2, k = nkey(cut.klass || cut.label); let best = null;
     const zones = S.groups.filter(g => !g.gone && g !== cut.g && g.w > 0).map(g => ({x: g.x + g.w / 2, y: g.y + g.h / 2, r: Math.min(g.w, g.h) * .35, why: 'story ' + (g.mid || '')}))
       .concat(S.cuts.filter(o => o !== cut && o.el && o.el.isConnected && !o.leaving && (nkey(o.klass) === k || nkey(o.label) === k)).map(o => ({x: o.left + o.w / 2 + o.w * .6, y: o.top + o.h / 2, r: 0, why: 'beside ' + o.label})));
@@ -1564,8 +1568,9 @@
     S.cuts.forEach(x => { if(x !== c && !out.includes(x) && x.el && x.el.isConnected && !x.leaving && cast.has(baseKey(x)) && !sib(x) && out.length < 3) out.push(x); });
     return out; }
   function ripTag(c, text){ if(!c.el || !c.el.isConnected) return; const r = c.el.getBoundingClientRect(), t = document.createElement('div'); t.className = 'grip';
-    t.textContent = text.length > 64 ? text.slice(0, 63) + '\u2026' : text; document.body.appendChild(t);
-    t.style.left = Math.max(60, Math.min(vw() - 60, r.left + r.width / 2)).toFixed(1) + 'px'; t.style.top = Math.max(6, r.top - 26).toFixed(1) + 'px';
+    t.textContent = text.length > 64 ? text.slice(0, 63) + '\u2026' : text; overlayHost().appendChild(t);
+    const rp = toLocal(r.left + r.width / 2, r.top - 26), vb = visBox();
+    t.style.left = Math.max(vb.l + 60, Math.min(vb.l + vb.w - 60, rp.x)).toFixed(1) + 'px'; t.style.top = Math.max(vb.t + 6, rp.y).toFixed(1) + 'px';
     requestAnimationFrame(()=> t.classList.add('on')); setTimeout(()=>{ t.classList.remove('on'); setTimeout(()=> t.remove(), 500); }, 2600); }
   function ripple(c, method, because){ const ls = listenersOf(c), done = []; c._ripT = []; c._ripL = ls;
     ls.forEach((x, n) => { const e = effectOf(method, classOf(x)); done.push({object: baseKey(x), fx: e.fx, cls: classOf(x)});
@@ -1589,10 +1594,10 @@
   function paintPromises(){ const live = new Set(), flash = new Set(PR.flash || []); PR.flash = [];
     S.cuts.forEach(c => { if(!c.el || !c.el.isConnected || c.leaving) return; const pend = promisesFor(c, 'pending'), done = PR.promises.filter(p => flash.has(p.id) && promWords(p).includes(baseKey(c)));
       if(!pend.length && !done.length) return; live.add(c); let m = PR.marks.get(c);
-      if(!m){ m = document.createElement('div'); m.className = 'gprom'; m.textContent = '?'; document.body.appendChild(m); PR.marks.set(c, m); }
+      if(!m){ m = document.createElement('div'); m.className = 'gprom'; m.textContent = '?'; overlayHost().appendChild(m); PR.marks.set(c, m); }
       if(done.length){ m.classList.add('done'); m.textContent = '\u2713'; playGfx(c, 'know'); const mm = m; setTimeout(()=>{ mm.remove(); if(PR.marks.get(c) === mm) PR.marks.delete(c); }, 1700); }
-      m.title = pend.map(p => p.text).join(' \u00b7 '); const r = c.el.getBoundingClientRect();
-      m.style.left = (r.right - 4).toFixed(1) + 'px'; m.style.top = (r.top + 4).toFixed(1) + 'px'; });
+      m.title = pend.map(p => p.text).join(' \u00b7 '); const r = c.el.getBoundingClientRect(), rp = toLocal(r.right - 4, r.top + 4);
+      m.style.left = rp.x.toFixed(1) + 'px'; m.style.top = rp.y.toFixed(1) + 'px'; });
     PR.marks.forEach((m, c) => { if(!live.has(c) && !m.classList.contains('done')){ m.remove(); PR.marks.delete(c); } });
     const pend = PR.promises.filter(p => p.status === 'pending'); let q = document.getElementById('gpromq');
     if(!pend.length){ if(q) q.remove(); return; }
@@ -1629,10 +1634,10 @@
     (it.catches || []).forEach(x => { const e = document.createElement('div'), soft = isSoft(x); e.className = 'gtx' + (soft ? ' soft' : '');
       e.textContent = (soft ? '\u21af bends the scene: ' : '\u26a0 caught: ') + x.text + (x.job ? ' (' + x.job + ')' : ''); b.appendChild(e); });
     if(it.t.consequence){ const n = document.createElement('div'); n.className = 'gtn'; n.textContent = (it.t.consequence_job ? it.t.consequence_job + ': ' : '') + it.t.consequence; b.appendChild(n); }
-    document.body.appendChild(b); TW = b;
+    overlayHost().appendChild(b); TW = b;
     const r = c.el && c.el.isConnected ? c.el.getBoundingClientRect() : {left: vw() / 2, width: 0, top: vh() / 2, bottom: vh() / 2};
-    const bw = b.offsetWidth, bh = b.offsetHeight;
-    const x = Math.max(bw / 2 + 6, Math.min(vw() - bw / 2 - 6, r.left + r.width / 2)); let y = r.top - bh - 10; if(y < 6) y = Math.min(vh() - bh - 6, r.bottom + 10);
+    const bw = b.offsetWidth, bh = b.offsetHeight, mid = toLocal(r.left + r.width / 2, r.top), bot = toLocal(r.left + r.width / 2, r.bottom), vb = visBox();
+    const x = Math.max(vb.l + bw / 2 + 6, Math.min(vb.l + vb.w - bw / 2 - 6, mid.x)); let y = mid.y - bh - 10; if(y < vb.t + 6) y = Math.min(vb.t + vb.h - bh - 6, bot.y + 10);
     b.style.left = x.toFixed(1) + 'px'; b.style.top = y.toFixed(1) + 'px';
     requestAnimationFrame(()=> b.classList.add('on'));
     const me = b; b.tabIndex = 0; b.addEventListener('click', ev => ev.stopPropagation()); b.addEventListener('pointerdown', ev => ev.stopPropagation());
@@ -1773,10 +1778,10 @@
       b.addEventListener('pointerdown', ev => ev.stopPropagation());
       b.addEventListener('click', ev => { ev.stopPropagation(); ev.preventDefault(); remember(c, 'm:' + m.fn + '(' + (m.args || []).join(',') + ')'); fireMethod(c, name, m.fn, m.args); closeMethods(); });
       box.appendChild(b); });
-    document.body.appendChild(box); M.el = box;
-    const r = c.el.getBoundingClientRect(), bw = box.offsetWidth, bh = box.offsetHeight;
-    let x = Math.max(bw / 2 + 6, Math.min(vw() - bw / 2 - 6, r.left + r.width / 2)), y = r.bottom + 34;
-    if(y + bh > vh() - 6) y = Math.max(6, r.top - bh - 8);
+    overlayHost().appendChild(box); M.el = box;
+    const r = c.el.getBoundingClientRect(), bw = box.offsetWidth, bh = box.offsetHeight, mid = toLocal(r.left + r.width / 2, r.bottom), top = toLocal(r.left + r.width / 2, r.top), vb = visBox();
+    let x = Math.max(vb.l + bw / 2 + 6, Math.min(vb.l + vb.w - bw / 2 - 6, mid.x)), y = mid.y + 34;
+    if(y + bh > vb.t + vb.h - 6) y = Math.max(vb.t + 6, top.y - bh - 8);
     box.style.left = x.toFixed(1) + 'px'; box.style.top = y.toFixed(1) + 'px';
     M.timer = setTimeout(closeMethods, 12000);
   }
