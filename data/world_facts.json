@@ -5313,16 +5313,6 @@
 ],
 "miami": [
 {
-"id": "wf_0925813dfd",
-"kind": "consequence",
-"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up beside the phone at the miami.",
-"code": "mbtij.interactwith(miami){ miami.receives(mbtij.code); miami.remembers(ejiro, 'juju code'); }",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j2",
-"other": "mbtij"
-},
-{
 "id": "wf_d5c8b78129",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up beside the phone at the miami.",
@@ -5361,6 +5351,16 @@
 "run": "run-5a58c4",
 "card": "j6",
 "other": "itmoai"
+},
+{
+"id": "wf_1ad7a999a6",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up beside the phone at the miami.",
+"code": "thoughts_marisol.interactwith(miami){ miami.receives(thoughts_marisol.envelope); miami.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "thoughts_marisol"
 }
 ],
 "teo": [
@@ -6088,17 +6088,6 @@
 },
 "consequences": [
 {
-"id": "wf_35e9937423",
-"ts": "2026-11-17T15:46:21-0500",
-"a": "tnw",
-"b": "quiet_stretch_sand",
-"code": "tnw.interactwith(quiet_stretch_sand){ quiet_stretch_sand.receives(tnw.envelope); quiet_stretch_sand.remembers(bisola, 'brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up beside the morning at the quiet stretch sand.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
 "id": "wf_96726c9d11",
 "ts": "2026-11-17T15:47:15-0500",
 "a": "marker_b",
@@ -6526,6 +6515,17 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": "j6"
+},
+{
+"id": "wf_1ad7a999a6",
+"ts": "2026-11-17T17:30:54-0500",
+"a": "thoughts_marisol",
+"b": "miami",
+"code": "thoughts_marisol.interactwith(miami){ miami.receives(thoughts_marisol.envelope); miami.remembers(bisola, 'brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up beside the phone at the miami.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
 }
 ],
 "memories": [
@@ -6629,5 +6629,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T17:22:57-0500"
+"updated": "2026-11-17T17:30:54-0500"
 }
