@@ -5083,42 +5083,135 @@
 "card": "j6",
 "other": "replenish_earth"
 }
+],
+"magician": [
+{
+"id": "wf_ec078a92aa",
+"kind": "consequence",
+"text": "The magician leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "notnotnotnotyn_jan.interactwith(magician){ magician.receives(notnotnotnotyn_jan.envelope); magician.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "notnotnotnotyn_jan"
+}
+],
+"cleacky": [
+{
+"id": "wf_ffdd6b6d38",
+"kind": "consequence",
+"text": "The cleacky leaves with a Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it.",
+"code": "inside_odunlade_brain.interactwith(cleacky){ cleacky.receives(inside_odunlade_brain.bead); cleacky.remembers(bisola, 'blue glass bead'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j5",
+"other": "inside_odunlade_brain"
+}
+],
+"laff": [
+{
+"id": "wt_e63419c893",
+"kind": "func_call",
+"text": "Someone at the projector tapped the jetty south pointe subject and called laff.made(what=weda:Thing) from j28 from its agenda run-5a58c4, first seated in run-5a58c4 j25.",
+"code": "laff.made('weda');",
+"author": "projector",
+"run": "run-5a58c4",
+"card": "w25",
+"other": null
+}
+],
+"jetty_south_pointe_subject": [
+{
+"id": "wt_2cb0d7e9fc",
+"kind": "func_call",
+"text": "The jetty south pointe subject·2 hears it (because laff.made(what=weda:Thing) from j28).",
+"code": "jetty_south_pointe_subject·2.hears(jetty_south_pointe_subject, 'made');",
+"author": "projector",
+"run": "run-5a58c4",
+"card": "w25",
+"other": null
+},
+{
+"id": "wt_b5c25ebe02",
+"kind": "func_call",
+"text": "The jetty south pointe subject·2 hears it (because crime.know(when=sometimes:Frequency) from j24).",
+"code": "jetty_south_pointe_subject·2.hears(jetty_south_pointe_subject, 'know');",
+"author": "projector",
+"run": "run-5a58c4",
+"card": "w24",
+"other": null
+}
+],
+"jetty_south_pointe_subject_fifth": [
+{
+"id": "wt_1cf2187484",
+"kind": "func_call",
+"text": "The jetty south pointe subject·2 fifth hears it (because laff.made(what=weda:Thing) from j28).",
+"code": "jetty_south_pointe_subject·2_fifth.hears(jetty_south_pointe_subject, 'made');",
+"author": "projector",
+"run": "run-5a58c4",
+"card": "w25",
+"other": null
+},
+{
+"id": "wt_16127e262e",
+"kind": "func_call",
+"text": "The jetty south pointe subject·2 fifth hears it (because crime.know(when=sometimes:Frequency) from j24).",
+"code": "jetty_south_pointe_subject·2_fifth.hears(jetty_south_pointe_subject, 'know');",
+"author": "projector",
+"run": "run-5a58c4",
+"card": "w24",
+"other": null
+}
+],
+"jetty_south_pointe_subject_fourth": [
+{
+"id": "wt_1de05751e9",
+"kind": "func_call",
+"text": "The jetty south pointe subject·2 fourth hears it (because laff.made(what=weda:Thing) from j28).",
+"code": "jetty_south_pointe_subject·2_fourth.hears(jetty_south_pointe_subject, 'made');",
+"author": "projector",
+"run": "run-5a58c4",
+"card": "w25",
+"other": null
+},
+{
+"id": "wt_9557087db7",
+"kind": "func_call",
+"text": "The jetty south pointe subject·2 fourth hears it (because crime.know(when=sometimes:Frequency) from j24).",
+"code": "jetty_south_pointe_subject·2_fourth.hears(jetty_south_pointe_subject, 'know');",
+"author": "projector",
+"run": "run-5a58c4",
+"card": "w24",
+"other": null
+}
+],
+"crime": [
+{
+"id": "wt_9b532310e4",
+"kind": "func_call",
+"text": "Someone at the projector tapped the jetty south pointe subject and called crime.know(when=sometimes:Frequency) from j24 from its agenda run-5a58c4, first seated in run-5a58c4 j24.",
+"code": "crime.know('sometimes');",
+"author": "projector",
+"run": "run-5a58c4",
+"card": "w24",
+"other": null
+}
+],
+"future": [
+{
+"id": "wf_2e29f3ea73",
+"kind": "consequence",
+"text": "The future leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "people_scene.interactwith(future){ future.receives(people_scene.envelope); future.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "people_scene"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_3ff63044c8",
-"ts": "2026-11-17T10:59:47-0500",
-"a": "tie",
-"b": "youngteacher",
-"code": "tie.interactwith(youngteacher){ youngteacher.receives(tie.envelope); youngteacher.remembers(bisola, 'brown envelope'); }",
-"text": "The youngteacher leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
-"id": "wf_bead678778",
-"ts": "2026-11-17T11:01:50-0500",
-"a": "bird",
-"b": "teomarisollove",
-"code": "bird.interactwith(teomarisollove){ teomarisollove.receives(bird.soot); teomarisollove.remembers(taiwo, 'lamp soot'); }",
-"text": "A Bird note with Taiwo's name and 'lamp soot' on it, turns up with the teomarisollove, which is still in love, said out loud by Marisol (w14 causeway).",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j7"
-},
-{
-"id": "wf_6ff3e3d4a0",
-"ts": "2026-11-17T11:03:02-0500",
-"a": "laptop",
-"b": "dress_marisol",
-"code": "laptop.interactwith(dress_marisol){ dress_marisol.receives(laptop.receipt); dress_marisol.remembers(ejiro, 'rain-stained receipt'); }",
-"text": "The dress marisol leaves with a Laptop note with Ejiro's name and 'rain-stained receipt' on it, 8:05am.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "w5"
-},
 {
 "id": "wf_f60ed605f2",
 "ts": "2026-11-17T11:06:47-0500",
@@ -5525,6 +5618,39 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": "j6"
+},
+{
+"id": "wf_ec078a92aa",
+"ts": "2026-11-17T12:59:36-0500",
+"a": "notnotnotnotyn_jan",
+"b": "magician",
+"code": "notnotnotnotyn_jan.interactwith(magician){ magician.receives(notnotnotnotyn_jan.envelope); magician.remembers(bisola, 'brown envelope'); }",
+"text": "The magician leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
+},
+{
+"id": "wf_ffdd6b6d38",
+"ts": "2026-11-17T13:00:49-0500",
+"a": "inside_odunlade_brain",
+"b": "cleacky",
+"code": "inside_odunlade_brain.interactwith(cleacky){ cleacky.receives(inside_odunlade_brain.bead); cleacky.remembers(bisola, 'blue glass bead'); }",
+"text": "The cleacky leaves with a Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j5"
+},
+{
+"id": "wf_2e29f3ea73",
+"ts": "2026-11-17T13:02:04-0500",
+"a": "people_scene",
+"b": "future",
+"code": "people_scene.interactwith(future){ future.receives(people_scene.envelope); future.remembers(bisola, 'brown envelope'); }",
+"text": "The future leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
 }
 ],
 "memories": [
@@ -5628,5 +5754,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T12:58:18-0500"
+"updated": "2026-11-17T13:02:04-0500"
 }
