@@ -810,9 +810,21 @@
     if(LV.pending.some(p => liveId(p) === id)) return;
     if(front) LV.pending.unshift(v); else LV.pending.push(v);
   }
+  // older agendas' views (Jesuye 17 Nov 2026 10:25 AM ET "liveviews of agendas older than run-5a58c4 should show"): besides the
+  // current agenda's newest views, one view from another agenda is mixed in now and then, least recently shown first
+  function olderLive(){
+    const run = LV.activeRun, rec = new Set(recentLive(LIVE_KEEP).map(liveId));
+    const pool = LV.list.filter(v => (!run || v.run !== run) && !rec.has(liveId(v)));
+    if(pool.some(v => liveOn(liveId(v)))) return null;
+    const free = pool.filter(v => !S.bad.has(liveId(v)) && !cooling(liveId(v)));
+    if(!free.length) return null;
+    free.sort((a, b) => (LV.left[liveId(a)] || 0) - (LV.left[liveId(b)] || 0) || Math.random() - 0.5);
+    return free[Math.floor(Math.random() * Math.min(4, free.length))];
+  }
   function wantLive(){
+    if(Math.random() < 0.35){ const o = olderLive(); if(o) return o; }
     const rec = recentLive(LIVE_KEEP);
-    if(!rec.length) return null;
+    if(!rec.length) return olderLive();
     const on = rec.filter(v => liveOn(liveId(v)));
     const free = rec.filter(v => !liveOn(liveId(v)) && !S.bad.has(liveId(v)) && !cooling(liveId(v)));
     if(!free.length) return null;
