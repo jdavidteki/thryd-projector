@@ -100,8 +100,8 @@
     "hide",
     "hit"
    ],
-   "instances": 327,
-   "arg_instances": 9,
+   "instances": 329,
+   "arg_instances": 10,
    "parent": null,
    "chain": [
     "Thing"
@@ -137,10 +137,11 @@
    "param": "feeling",
    "methods": [
     "teach",
-    "mix"
+    "mix",
+    "stare"
    ],
-   "instances": 4,
-   "arg_instances": 3,
+   "instances": 5,
+   "arg_instances": 4,
    "parent": "Thing",
    "chain": [
     "Feeling",
@@ -515,6 +516,22 @@
    ],
    "tweets": []
   },
+  "bad": {
+   "class": "Feeling",
+   "cue": "word",
+   "first_run": "run-5a58c4",
+   "first_job": "j30",
+   "source": "pick",
+   "runs": [
+    "run-5a58c4"
+   ],
+   "tweets": [
+    {
+     "text": "#seniorgehs -- eez like eez bad but i can't stop staring",
+     "year": "2025"
+    }
+   ]
+  },
   "badboytimz": {
    "class": "Thing",
    "cue": "default",
@@ -536,6 +553,22 @@
     "run-bd649b"
    ],
    "tweets": []
+  },
+  "balance": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-5a58c4",
+   "first_job": "j30",
+   "source": "pick",
+   "runs": [
+    "run-5a58c4"
+   ],
+   "tweets": [
+    {
+     "text": "— we need to sit down on it and [[balance]]",
+     "year": "2025"
+    }
+   ]
   },
   "bankw": {
    "class": "Thing",
@@ -1041,6 +1074,17 @@
      "year": "2024"
     }
    ]
+  },
+  "deepromance": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-5a58c4",
+   "first_job": "j30",
+   "source": "typed",
+   "runs": [
+    "run-5a58c4"
+   ],
+   "tweets": []
   },
   "delay": {
    "class": "Thing",
@@ -5332,9 +5376,27 @@
     "pick"
    ],
    [
+    "bad",
+    "Feeling",
+    "j30",
+    "pick"
+   ],
+   [
+    "balance",
+    "Thing",
+    "j30",
+    "pick"
+   ],
+   [
     "true",
     "Thing",
     "j28",
+    "typed"
+   ],
+   [
+    "deepromance",
+    "Thing",
+    "j30",
     "typed"
    ],
    [
@@ -8284,7 +8346,9 @@
   "omo.fold": "fold(how: Manner)",
   "wanow.knew": "knew(how: Manner)",
   "nobody.weigh": "weigh(what: Thing)",
-  "dez.sit": "sit(act: Action)"
+  "dez.sit": "sit(act: Action)",
+  "calla.stare": "stare(feeling: Feeling)",
+  "teo.sit": "sit(what: Thing)"
  },
  "parent": {
   "Person": "Thing",
@@ -8413,7 +8477,8 @@
    "objects": [
     "dez",
     "everywhere",
-    "history"
+    "history",
+    "teo"
    ]
   },
   "Playable": {
@@ -8596,5 +8661,5 @@
    "wife"
   ]
  },
- "updated": "2026-11-17T12:45:53-05:00"
+ "updated": "2026-11-17T14:50:17-05:00"
 }
