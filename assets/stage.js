@@ -1390,7 +1390,23 @@
   MCSS.textContent = ['#gmeth{position:fixed;z-index:10050;display:flex;gap:.5vh;flex-wrap:wrap;max-width:min(92vw,520px);padding:.6vh;border-radius:1vh;background:rgba(12,12,12,.9);box-shadow:0 2px 12px #0007;font:600 max(12px,1.5vh) ui-monospace,Menlo,Consolas,monospace;transform:translateX(-50%)}',
     '#gmeth .gmh{width:100%;color:#ffe7a8;font-weight:600;padding:0 .3vh .2vh;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}',
     '#gmeth button{font:inherit;color:#fff;background:#2a2a2a;border:1px solid #555;border-radius:.8vh;padding:.7vh 1vh;cursor:pointer;min-height:36px;touch-action:manipulation}',
-    '#gmeth button:hover,#gmeth button:focus-visible{background:#3c3c3c;border-color:#ffd76a;outline:none}'].join('\n');
+    '#gmeth button:hover,#gmeth button:focus-visible{background:#3c3c3c;border-color:#ffd76a;outline:none}',
+    '#gmeth button.gfn{border-color:#8a6d2b;text-align:left}', '#gmeth .gms{width:100%;color:#bbb;font-weight:400;font-size:.85em;padding:0 .3vh}',
+    '#gtweet{position:fixed;z-index:10040;max-width:min(80vw,460px);padding:1vh 1.2vh;border-radius:1vh;background:rgba(14,14,14,.94);color:#fff;box-shadow:0 3px 16px #0009;font:500 max(13px,1.6vh)/1.35 system-ui,sans-serif;transform:translateX(-50%);opacity:0;transition:opacity .5s;pointer-events:none}',
+    '#gtweet.on{opacity:1}', '#gtweet .gtc{font:600 .82em ui-monospace,Menlo,Consolas,monospace;color:#ffd76a;margin-bottom:.4vh}',
+    '#gtweet .gty{color:#9fd3ff;font-weight:700;white-space:nowrap}', '#gtweet .gtn{color:#bbb;font-size:.8em;margin-top:.5vh}',
+    '@keyframes gfxfold{0%,100%{scale:1 1}35%{scale:1 .35}60%{scale:1 .5}}', '@keyframes gfxhide{0%,100%{opacity:1;translate:0 0}40%,70%{opacity:.12;translate:0 1.2vh}}',
+    '@keyframes gfxtune{0%,100%{rotate:0deg}20%{rotate:-9deg}40%{rotate:8deg}60%{rotate:-6deg}80%{rotate:4deg}}',
+    '@keyframes gfxknow{0%,100%{filter:none}30%{filter:brightness(1.6) drop-shadow(0 0 1.4vh #9fd3ff)}60%{filter:brightness(1.25) drop-shadow(0 0 .7vh #9fd3ff)}}',
+    '@keyframes gfxweigh{0%,100%{translate:0 0;scale:1}40%{translate:0 2.4vh;scale:1.06 .9}70%{translate:0 1.6vh}}',
+    '@keyframes gfxsay{0%,100%{translate:0 0}25%{translate:0 -2.6vh}50%{translate:0 0}70%{translate:0 -1.2vh}}',
+    '@keyframes gfxshake{0%,100%{translate:0 0;filter:none}15%,45%,75%{translate:-1vh 0;filter:saturate(.3)}30%,60%,90%{translate:1vh 0;filter:saturate(.3)}}',
+    '@keyframes gfxopen{0%,100%{scale:1}40%{scale:1.28}}',
+    '#gstage .gcut.gfx-fold{animation:gfxfold 1.4s ease-in-out 1}', '#gstage .gcut.gfx-hide{animation:gfxhide 2.2s ease-in-out 1}',
+    '#gstage .gcut.gfx-tune{animation:gfxtune 1.6s ease-in-out 1}', '#gstage .gcut.gfx-know{animation:gfxknow 1.8s ease-out 1}',
+    '#gstage .gcut.gfx-weigh{animation:gfxweigh 1.8s ease-in-out 1}', '#gstage .gcut.gfx-say{animation:gfxsay 1.2s ease-out 1}',
+    '#gstage .gcut.gfx-shake{animation:gfxshake 1.2s linear 1}', '#gstage .gcut.gfx-open{animation:gfxopen 1.3s ease-in-out 1}',
+    '@media (prefers-reduced-motion:reduce){#gstage .gcut[class*="gfx-"]{animation:none}}'].join('\n');
   document.head.appendChild(MCSS);
   const M = S.methods = {el: null, cut: null, sent: [], timer: 0};
   const objName = c => { let n = c.castAs || tagName(c) || c.label || c.klass || 'object';
@@ -1398,6 +1414,64 @@
     if(!n) n = 'object'; if(/^\d/.test(n)) n = 'o_' + n.slice(0, 58); return n; };
   const isFigure = c => !!c.castAs || PERSON.test(String(c.klass || '')) || PERSONISH.test(String(c.klass || c.label || '').toLowerCase()) || CMD.chars.has(ckey(objName(c)));
   const qstr = a => a.map(x => "'" + x + "'").join(', ');
+  // ---------- registry functions (Jesuye 17 Nov 2026 10:51 AM ET "the objects methods on the projector should now mean something not just the
+  // grow, dim, glow we have now"; 10:54 AM ET: an object with no functions of its own keeps only the old methods). data/object_methods.json
+  // (tools/export_object_methods.py, cmd_loop) maps a stage object name to the functions grown from seated code titles in every agenda
+  // (teo.fold(surgical) 🛤️ first seated run-5a58c4 j25). A tap lists those titles; a click pops one of its archive tweets with its year,
+  // plays an effect that fits the verb, and logs a func_call (author projector, linked to the run/job it was seated in) over the same relay.
+  const OM = S.objectMethods = {objects: {}, functions: {}, at: 0, turn: {}};
+  function loadOM(){ fetch('data/object_methods.json?t=' + Date.now(), {cache: 'no-store'}).then(r => r.ok ? r.json() : null).then(d => {
+    if(!d || !d.objects || !d.functions) return; OM.objects = d.objects; OM.functions = d.functions; OM.at = Date.now(); }).catch(()=>{}); }
+  loadOM(); setInterval(loadOM, 300000);
+  const omKey = x => String(x || '').toLowerCase().replace(/\u00b7\d+$/, '').replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '');
+  function funcsFor(c){
+    const keys = []; [objName(c), c.castAs, tagName(c), c.label, c.klass].forEach(x => { const k = omKey(x); if(k){ keys.push(k); keys.push(k.replace(/_[0-9a-f]{4,6}$/, '')); } });
+    const ids = []; keys.forEach(k => (OM.objects[k] || []).forEach(id => { if(!ids.includes(id) && OM.functions[id]) ids.push(id); }));
+    const out = []; ids.forEach(id => (OM.functions[id].titles || []).forEach(t => { if(out.length < 6 && !out.some(o => o.t.title === t.title)) out.push({id, f: OM.functions[id], t}); }));
+    return out;
+  }
+  // verb -> effect (a small mapping; get*/is* reveal like know, set* speaks like say; anything else gets the glint + pulse)
+  const GFX = {fold: 'fold', hide: 'hide', vanish: 'hide', tune: 'tune', mix: 'tune', play: 'tune', hit: 'tune', count: 'tune', know: 'know', see: 'know', reveal: 'know',
+    weigh: 'weigh', carry: 'weigh', teach: 'weigh', hold: 'weigh', say: 'say', on: 'say', made: 'say', belong: 'weigh', kill: 'shake', again: 'shake', open: 'open', map: 'open'};
+  function gfxOf(method){ const m = String(method || '').toLowerCase(); if(GFX[m]) return GFX[m]; if(/^(get|is|has)/.test(m)) return 'know'; if(/^set/.test(m)) return 'say';
+    const k = Object.keys(GFX).find(v => m.startsWith(v)); return k ? GFX[k] : 'know'; }
+  function playGfx(c, fx){ if(!c.el || !c.el.isConnected) return; const cl = 'gfx-' + fx;
+    [...c.el.classList].forEach(x => { if(/^gfx-/.test(x)) c.el.classList.remove(x); }); c.el.classList.remove('gnotice'); void c.el.offsetWidth; c.el.classList.add(cl);
+    setTimeout(()=> c.el && c.el.classList.remove(cl), 2400); }
+  let TW = null;
+  function popTweet(c, it, tw){
+    if(TW){ TW.remove(); TW = null; }
+    const b = document.createElement('div'); b.id = 'gtweet'; b.setAttribute('role', 'status');
+    const h = document.createElement('div'); h.className = 'gtc'; h.textContent = it.t.title + (it.t.emoji ? ' ' + it.t.emoji : '') + ' · ' + it.t.run + ' ' + it.t.job; b.appendChild(h);
+    const q = document.createElement('div');
+    if(tw){ q.appendChild(document.createTextNode('\u00ab' + tw.text + '\u00bb ')); const y = document.createElement('span'); y.className = 'gty'; y.textContent = tw.year; q.appendChild(y); }
+    else q.textContent = '(no archive tweet with a year for this title)';
+    b.appendChild(q);
+    if(it.t.consequence){ const n = document.createElement('div'); n.className = 'gtn'; n.textContent = (it.t.consequence_job ? it.t.consequence_job + ': ' : '') + it.t.consequence; b.appendChild(n); }
+    document.body.appendChild(b); TW = b;
+    const r = c.el && c.el.isConnected ? c.el.getBoundingClientRect() : {left: vw() / 2, width: 0, top: vh() / 2, bottom: vh() / 2};
+    const bw = b.offsetWidth, bh = b.offsetHeight;
+    const x = Math.max(bw / 2 + 6, Math.min(vw() - bw / 2 - 6, r.left + r.width / 2)); let y = r.top - bh - 10; if(y < 6) y = Math.min(vh() - bh - 6, r.bottom + 10);
+    b.style.left = x.toFixed(1) + 'px'; b.style.top = y.toFixed(1) + 'px';
+    requestAnimationFrame(()=> b.classList.add('on'));
+    const me = b; setTimeout(()=>{ me.classList.remove('on'); setTimeout(()=>{ me.remove(); if(TW === me) TW = null; }, 600); }, 9000);
+  }
+  async function fireFunc(c, name, it){
+    const tws = it.t.tweets || [], k = it.t.title, ti = tws.length ? ((OM.turn[k] = ((OM.turn[k] == null ? -1 : OM.turn[k]) + 1) % tws.length)) : null;
+    const tw = ti == null ? null : tws[ti], H = c.home || {}, eid = uid();
+    const code = it.t.title + ';', f = it.f;
+    const body = {v: 1, type: 'call', event_id: eid, rid: eid + '-r', run: H.run || AG.active || null, card: null, object: name, fn: f.method, args: [it.t.arg],
+      func: it.id, title: it.t.title, ti: ti == null ? 0 : ti, scene: H.mid ? String(H.mid).slice(0, 160) : null, cut: c.label ? String(c.label).slice(0, 60) : null, client_ts: new Date().toISOString()};
+    const fr = (String(H.mid || '').match(/(?:^|[^A-Za-z0-9])([jw]\d{1,3})(?![0-9])/i) || [])[1];
+    body.card = String(H.card || fr || root.__thrydCard || '').toLowerCase() || null;
+    if(body.run && !/^run-[0-9a-f]{4,6}$/.test(body.run)) body.run = null; if(body.card && !/^[jw]\d{1,3}$/.test(body.card)) body.card = null;
+    const rec = {code, body, status: 'sending', at: Date.now()}; M.sent.push(rec); if(M.sent.length > 40) M.sent.shift();
+    // shown locally first, whatever the relay does
+    playGfx(c, gfxOf(f.method)); popTweet(c, it, tw); if(c.el && c.el.isConnected) tagAt(c, code);
+    codeLine(code, 'tapped · ' + it.id + ' (first seated ' + ((f.defined || {}).run || '?') + ' ' + ((f.defined || {}).job || '') + ') · sending…'); note('func', code, eid);
+    return sendCall(rec, code, eid);
+  }
+  S.fireFunc = fireFunc; S.funcsFor = funcsFor;
   function methodsFor(c){ const k = (c.tapL && c.tapL.keys) || {}, v = x => k[x] ? lowv(k[x].value) : '';
     const out = [v('glow') && !isOff(v('glow')) ? {fn: 'glow', args: ['off']} : {fn: 'glow', args: []}, v('size') === 'big' ? {fn: 'shrink', args: []} : {fn: 'grow', args: []}];
     if(isFigure(c)) out.push(v('mood') === 'happy' ? {fn: 'setmood', args: ['sad']} : {fn: 'setmood', args: ['happy']});
@@ -1411,7 +1485,14 @@
     closeMethods(); M.cut = c;
     const name = objName(c), box = document.createElement('div'); box.id = 'gmeth'; box.setAttribute('role', 'menu');
     const h = document.createElement('div'); h.className = 'gmh'; h.textContent = name; box.appendChild(h);
-    methodsFor(c).forEach(m => { const b = document.createElement('button'); b.type = 'button'; b.setAttribute('role', 'menuitem');
+    const fns = funcsFor(c);
+    fns.forEach(it => { const b = document.createElement('button'); b.type = 'button'; b.setAttribute('role', 'menuitem'); b.className = 'gfn';
+      b.textContent = it.t.title + (it.t.emoji ? ' ' + it.t.emoji : ''); b.title = it.t.run + ' ' + it.t.job + (it.f.calls ? ' · called ' + it.f.calls + 'x since' : '');
+      b.dataset.func = it.id;
+      b.addEventListener('pointerdown', ev => ev.stopPropagation());
+      b.addEventListener('click', ev => { ev.stopPropagation(); ev.preventDefault(); fireFunc(c, name, it); closeMethods(); });
+      box.appendChild(b); });
+    if(!fns.length) methodsFor(c).forEach(m => { const b = document.createElement('button'); b.type = 'button'; b.setAttribute('role', 'menuitem');
       b.textContent = name + '.' + m.fn + '(' + qstr(m.args) + ')'; b.dataset.fn = m.fn; b.dataset.args = JSON.stringify(m.args);
       b.addEventListener('pointerdown', ev => ev.stopPropagation());
       b.addEventListener('click', ev => { ev.stopPropagation(); ev.preventDefault(); fireMethod(c, name, m.fn, m.args); closeMethods(); });
@@ -1443,6 +1524,10 @@
     const rec = {code, body, status: 'sending', at: Date.now()}; M.sent.push(rec); if(M.sent.length > 40) M.sent.shift();
     if(c.el && c.el.isConnected){ lookOn(c, fn, args); tagAt(c, code); }
     codeLine(code, 'tapped · sending to the box…'); note('method', code, eid);
+    return sendCall(rec, code, eid);
+  }
+  async function sendCall(rec, code, eid){
+    const body = rec.body;
     const ctx = root.thrydCtx ? root.thrydCtx() : {}, toast = ctx.toast || (()=>{}), DG = ctx.DRAG;
     if(root.thrydQA && root.thrydQA.on && root.thrydQA.on()){ rec.status = 'qa_not_sent'; root.thrydQA.log({kind: 'methodCall', ...body}); toast(code + ' (QA: not sent)'); return rec; }
     if(!DG || !DG.endpoint || DG.transport !== 'ntfy'){ rec.status = 'no_endpoint'; toast(code + ' shown here only (box link not loaded)', 1); return rec; }
