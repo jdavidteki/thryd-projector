@@ -101,11 +101,11 @@
    "param": "what",
    "methods": [
     "on",
-    "hide",
-    "hit"
+    "guess",
+    "hear"
    ],
-   "instances": 330,
-   "arg_instances": 10,
+   "instances": 332,
+   "arg_instances": 13,
    "parent": null,
    "chain": [
     "Thing"
@@ -1415,13 +1415,19 @@
   "engine": {
    "class": "Thing",
    "cue": "default",
-   "first_run": "run-0ae93c",
-   "first_job": null,
-   "source": "stage",
+   "first_run": "run-5a58c4",
+   "first_job": "j34",
+   "source": "pick",
    "runs": [
+    "run-5a58c4",
     "run-0ae93c"
    ],
-   "tweets": []
+   "tweets": [
+    {
+     "text": "- lemme guess, your engine is going to \"blah\"",
+     "year": "2023"
+    }
+   ]
   },
   "english": {
    "class": "Thing",
@@ -4281,6 +4287,22 @@
    ],
    "tweets": []
   },
+  "stories": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-5a58c4",
+   "first_job": "j34",
+   "source": "pick",
+   "runs": [
+    "run-5a58c4"
+   ],
+   "tweets": [
+    {
+     "text": "[[iistmtw]] - na wan of the stories wey dey always",
+     "year": "2025"
+    }
+   ]
+  },
   "storybypsquare": {
    "class": "Thing",
    "cue": "default",
@@ -4966,6 +4988,22 @@
     }
    ]
   },
+  "way": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-5a58c4",
+   "first_job": "j34",
+   "source": "pick",
+   "runs": [
+    "run-5a58c4"
+   ],
+   "tweets": [
+    {
+     "text": "[[uyp]] - you figured out a way to use it",
+     "year": "2020"
+    }
+   ]
+  },
   "weda": {
    "class": "Thing",
    "cue": "word",
@@ -5473,6 +5511,24 @@
     "2037",
     "Quantity",
     "j33",
+    "pick"
+   ],
+   [
+    "stories",
+    "Thing",
+    "j34",
+    "pick"
+   ],
+   [
+    "way",
+    "Thing",
+    "j34",
+    "pick"
+   ],
+   [
+    "engine",
+    "Thing",
+    "j34",
     "pick"
    ],
    [
@@ -8451,7 +8507,10 @@
   "teo.sit": "sit(what: Thing)",
   "blender.line": "line(amount: Quantity)",
   "calla.see": "see(where: Place)",
-  "time.till": "till(amount: Quantity)"
+  "time.till": "till(amount: Quantity)",
+  "calla.hear": "hear(what: Thing)",
+  "dez.use": "use(what: Thing)",
+  "teo.guess": "guess(what: Thing)"
  },
  "parent": {
   "Person": "Thing",
@@ -8842,5 +8901,5 @@
   "epilogue": "quiet",
   "coda": "quiet"
  },
- "updated": "2026-11-17T15:59:58-05:00"
+ "updated": "2026-11-17T16:22:51-05:00"
 }
