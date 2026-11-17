@@ -3453,16 +3453,6 @@
 ],
 "morir_r": [
 {
-"id": "wf_37ddd4d1d2",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the morir r, and Bisola reads the name twice.",
-"code": "matches.interactwith(morir_r){ morir_r.receives(matches.envelope); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "matches"
-},
-{
 "id": "wf_17f503da92",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the morir r, and Bisola reads the name twice.",
@@ -3501,6 +3491,16 @@
 "run": "run-0bd7c0",
 "card": "w7",
 "other": "morir"
+},
+{
+"id": "wf_169505bbf0",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the morir r, and Bisola reads the name twice.",
+"code": "wsr.interactwith(morir_r){ morir_r.receives(wsr.envelope); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "wsr"
 }
 ],
 "ats": [
@@ -4554,17 +4554,6 @@
 },
 "consequences": [
 {
-"id": "wf_0d8f2b3511",
-"ts": "2026-11-16T22:39:35-0500",
-"a": "ats",
-"b": "bicycle",
-"code": "ats.interactwith(bicycle){ bicycle.receives(ats.envelope); bicycle.remembers(bisola, 'brown envelope'); bicycle.tucks(ats, 'ats note into the brown envelope'); }",
-"text": "An Ats note with Bisola's name and 'brown envelope' on it, turns up inside the brown envelope at the bicycle, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j2"
-},
-{
 "id": "wf_ee5d2d83b4",
 "ts": "2026-11-16T22:41:57-0500",
 "a": "plastic_sheet",
@@ -4992,6 +4981,17 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j6"
+},
+{
+"id": "wf_169505bbf0",
+"ts": "2026-11-17T08:21:11-0500",
+"a": "wsr",
+"b": "morir_r",
+"code": "wsr.interactwith(morir_r){ morir_r.receives(wsr.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the morir r, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
 }
 ],
 "memories": [
@@ -5095,5 +5095,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T07:05:02-0500"
+"updated": "2026-11-17T08:21:11-0500"
 }
