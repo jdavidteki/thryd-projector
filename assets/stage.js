@@ -1394,7 +1394,7 @@
     '#gmeth button.gfn{border-color:#8a6d2b;text-align:left}', '#gmeth button.genv{border-color:#3d6b8a;text-align:left}', '#gmeth{max-height:min(70vh,560px);overflow:auto}', '#gmeth .gms{width:100%;color:#bbb;font-weight:400;font-size:.85em;padding:0 .3vh}',
     '#gtweet{position:fixed;z-index:10040;max-width:min(80vw,460px);padding:1vh 1.2vh;border-radius:1vh;background:rgba(14,14,14,.94);color:#fff;box-shadow:0 3px 16px #0009;font:500 max(13px,1.6vh)/1.35 system-ui,sans-serif;transform:translateX(-50%);opacity:0;transition:opacity .5s;pointer-events:none}',
     '#gtweet.on{opacity:1}', '#gtweet .gtc{font:600 .82em ui-monospace,Menlo,Consolas,monospace;color:#ffd76a;margin-bottom:.4vh}',
-    '#gtweet .gty{color:#9fd3ff;font-weight:700;white-space:nowrap}', '#gtweet .gtn{color:#bbb;font-size:.8em;margin-top:.5vh}',
+    '#gtweet .gty{color:#9fd3ff;font-weight:700;white-space:nowrap}', '#gtweet .gtr{font:600 .8em ui-monospace,Menlo,Consolas,monospace;color:#b6f0a0;margin-bottom:.4vh}', '#gtweet .gtn{color:#bbb;font-size:.8em;margin-top:.5vh}',
     '@keyframes gfxfold{0%,100%{scale:1 1}35%{scale:1 .35}60%{scale:1 .5}}', '@keyframes gfxhide{0%,100%{opacity:1;translate:0 0}40%,70%{opacity:.12;translate:0 1.2vh}}',
     '@keyframes gfxtune{0%,100%{rotate:0deg}20%{rotate:-9deg}40%{rotate:8deg}60%{rotate:-6deg}80%{rotate:4deg}}',
     '@keyframes gfxknow{0%,100%{filter:none}30%{filter:brightness(1.6) drop-shadow(0 0 1.4vh #9fd3ff)}60%{filter:brightness(1.25) drop-shadow(0 0 .7vh #9fd3ff)}}',
@@ -1424,6 +1424,35 @@
     if(!d || !d.objects || !d.functions) return; OM.objects = d.objects; OM.functions = d.functions;
     OM.inherit = d.inherit || {}; OM.runs = d.runs || {}; OM.safes = d.safes || {}; OM.scene_safes = d.scene_safes || {}; OM.scene_env = d.scene_env || {}; OM.at = Date.now(); }).catch(()=>{}); }
   loadOM(); setInterval(loadOM, 300000);
+  // typed arguments + dependency injection (Jesuye 17 Nov 2026 12:34 PM ET "do everything"): data/classes.json holds each agenda's container
+  // ([word, class, job, source]: seated picks, typed calls, objects on stage); a call resolves every parameter of its signature to the
+  // newest instance of that class in the caller's run at or before the scene's job, else the original (same rule as thryd_classes.resolve
+  // on the box, whose answer replaces this one when the relay replies)
+  const CLS = S.classes = {containers: {}, classes: {}, at: 0};
+  function loadCLS(){ fetch('data/classes.json?t=' + Date.now(), {cache: 'no-store'}).then(r => r.ok ? r.json() : null).then(d => {
+    if(!d || !d.containers) return; CLS.containers = d.containers; CLS.classes = d.classes || {}; CLS.at = Date.now(); }).catch(()=>{}); }
+  loadCLS(); setInterval(loadCLS, 300000);
+  const jobN = j => { const m = String(j || '').match(/^[jw](\d+)$/i); return m ? +m[1] : null; };
+  const SRC_RANK = {pick: 0, typed: 1, stage: 2};
+  function injectFor(it, c){
+    const H = c.home || {}, sig = (it.f && it.f.sig) || {params: []}, sm = String(H.mid || '').match(/^live:(run-[0-9a-z-]+):([jw]\d{1,3})$/);
+    let run = null, limit = null;
+    if(it.scope === 'env' && it.env_scope === 'run') run = it.env_from; else if(sm) run = sm[1]; else if(H.run && CLS.containers[H.run]) run = H.run; else run = it.t.run;
+    if(sm && run === sm[1]) limit = jobN(sm[2]);
+    const cont = CLS.containers[run] || [], used = new Set();
+    return (sig.params || []).map(p => { let best = null;
+      cont.forEach(([w, cl, job, src]) => { if(cl !== p.class || used.has(w)) return; const jn = jobN(job); if(limit != null && jn != null && jn > limit) return;
+        const key = [jn == null ? -1 : jn, w === p.default ? 1 : 0, -(SRC_RANK[src] == null ? 3 : SRC_RANK[src])];
+        if(!best || key[0] > best.k[0] || (key[0] === best.k[0] && (key[1] > best.k[1] || (key[1] === best.k[1] && key[2] > best.k[2])))) best = {k: key, w, job, src}; });
+      if(best){ used.add(best.w); return {param: p.name, class: p.class, instance: best.w, from_run: run, from_job: best.job, source: best.src}; }
+      return {param: p.name, class: p.class, instance: p.default, from_run: p.first_run, from_job: p.first_job, source: 'original'}; });
+  }
+  function resolvedText(it, inj){
+    const head = it.id.split('.')[0] + '.' + it.f.method + '(' + inj.map(i => i.param + '=' + i.instance + ':' + i.class).join(', ') + ')';
+    const src = [...new Set(inj.filter(i => i.from_job).map(i => i.from_job))];
+    return head + (src.length === 1 ? ' from ' + src[0] : src.length ? ' from ' + inj.filter(i => i.from_job).map(i => i.param + '<-' + i.from_job).join(', ') : '');
+  }
+  S.injectFor = injectFor;
   const omKey = x => String(x || '').toLowerCase().replace(/\u00b7\d+$/, '').replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '');
   function funcsFor(c){
     const keys = []; [objName(c), c.castAs, tagName(c), c.label, c.klass].forEach(x => { const k = omKey(x); if(k){ keys.push(k); keys.push(k.replace(/_[0-9a-f]{4,6}$/, '')); } });
@@ -1460,13 +1489,14 @@
     const k = Object.keys(GFX).find(v => m.startsWith(v)); return k ? GFX[k] : 'know'; }
   function playGfx(c, fx){ if(!c.el || !c.el.isConnected) return; const cl = 'gfx-' + fx;
     [...c.el.classList].forEach(x => { if(/^gfx-/.test(x)) c.el.classList.remove(x); }); c.el.classList.remove('gnotice'); void c.el.offsetWidth; c.el.classList.add(cl);
-    setTimeout(()=> c.el && c.el.classList.remove(cl), 2400); }
+    clearTimeout(c._gfxT); c._gfxT = setTimeout(()=> c.el && c.el.classList.remove(cl), 2400); }
   let TW = null;
   function popTweet(c, it, tw){
     if(TW){ TW.remove(); TW = null; }
     const b = document.createElement('div'); b.id = 'gtweet'; b.setAttribute('role', 'status');
     const h = document.createElement('div'); h.className = 'gtc'; h.textContent = it.t.title + (it.t.emoji ? ' ' + it.t.emoji : '') + ' · ' + it.t.run + ' ' + it.t.job
       + (it.scope === 'env' ? ' · inherited from ' + (it.env_scope === 'run' ? it.env_from : 'the safe') : ''); b.appendChild(h);
+    if(it.resolved){ const rv = document.createElement('div'); rv.className = 'gtr'; rv.textContent = it.resolved; b.appendChild(rv); }
     const q = document.createElement('div');
     if(tw){ q.appendChild(document.createTextNode('\u00ab' + tw.text + '\u00bb ')); const y = document.createElement('span'); y.className = 'gty'; y.textContent = tw.year; q.appendChild(y); }
     else q.textContent = '(no archive tweet with a year for this title)';
@@ -1483,7 +1513,8 @@
   async function fireFunc(c, name, it){
     const tws = it.t.tweets || [], k = it.t.title, ti = tws.length ? ((OM.turn[k] = ((OM.turn[k] == null ? -1 : OM.turn[k]) + 1) % tws.length)) : null;
     const tw = ti == null ? null : tws[ti], H = c.home || {}, eid = uid();
-    const code = it.t.title + ';', f = it.f;
+    const f = it.f, inj = injectFor(it, c); it = {...it, injected: inj, resolved: resolvedText(it, inj)};
+    const code = (inj.length ? it.id.split('.')[0] + '.' + f.method + '(' + inj.map(i => "'" + i.instance + "'").join(', ') + ')' : it.t.title) + ';';
     const body = {v: 1, type: 'call', event_id: eid, rid: eid + '-r', run: H.run || AG.active || null, card: null, object: name, fn: f.method, args: [it.t.arg],
       func: it.id, title: it.t.title, ti: ti == null ? 0 : ti, scope: it.scope === 'env' ? 'env' : 'own', ...(it.scope === 'env' ? {env_scope: it.env_scope, env_from: it.env_from} : {}), scene: H.mid ? String(H.mid).slice(0, 160) : null, cut: c.label ? String(c.label).slice(0, 60) : null, client_ts: new Date().toISOString()};
     const fr = (String(H.mid || '').match(/(?:^|[^A-Za-z0-9])([jw]\d{1,3})(?![0-9])/i) || [])[1];
@@ -1491,8 +1522,8 @@
     if(body.run && !/^run-[0-9a-f]{4,6}$/.test(body.run)) body.run = null; if(body.card && !/^[jw]\d{1,3}$/.test(body.card)) body.card = null;
     const rec = {code, body, status: 'sending', at: Date.now()}; M.sent.push(rec); if(M.sent.length > 40) M.sent.shift();
     // shown locally first, whatever the relay does
-    playGfx(c, gfxOf(f.method)); popTweet(c, it, tw); if(c.el && c.el.isConnected) tagAt(c, code);
-    codeLine(code, 'tapped · ' + (it.scope === 'env' ? name + ' called it from ' + (it.env_scope === 'run' ? it.env_from : 'the safe') + ' · ' : '') + it.id + ' (first seated ' + ((f.defined || {}).run || '?') + ' ' + ((f.defined || {}).job || '') + ') · sending…'); note('func', code, eid);
+    playGfx(c, gfxOf(f.method)); popTweet(c, it, tw); rec.resolved = it.resolved; rec.injected = inj; if(c.el && c.el.isConnected) tagAt(c, code);
+    codeLine(it.resolved || code, 'tapped · ' + (it.scope === 'env' ? name + ' called it from ' + (it.env_scope === 'run' ? it.env_from : 'the safe') + ' · ' : '') + it.id + ' (first seated ' + ((f.defined || {}).run || '?') + ' ' + ((f.defined || {}).job || '') + ') · sending…'); note('func', code, eid);
     return sendCall(rec, code, eid);
   }
   S.fireFunc = fireFunc; S.funcsFor = funcsFor;
@@ -1571,7 +1602,8 @@
         try{ const tx = await (await net(DG.reply + '/json?poll=1&since=' + t0, {cache: 'no-store'}, 20000)).text();
           for(const l of tx.split('\n')){ if(!l) continue; let m; try{ m = JSON.parse(l); m = JSON.parse(m.message || '{}'); }catch(e){ continue; }
             if(m.rid === body.rid || m.event_id === eid){ rec.status = m.status || (m.ok ? 'accepted' : 'rejected'); rec.reply = m;
-              if(m.ok){ toast((m.code || code) + ' ✓ in the db'); codeLine(m.code || code, 'tapped · in the world db' + (m.run ? ' · ' + m.run + (m.card ? '/' + m.card : '') : '')); }
+              if(m.ok){ toast((m.code || code) + ' ✓ in the db'); codeLine(m.resolved || m.code || code, 'tapped · in the world db' + (m.run ? ' · ' + m.run + (m.card ? '/' + m.card : '') : ''));
+                if(m.resolved && TW){ const rv = TW.querySelector('.gtr'); if(rv) rv.textContent = m.resolved; } }
               else toast(code + ' ✗ ' + (m.detail || m.reason || 'rejected'), 1);
               return rec; } } }catch(e){} }
       rec.status = 'no_reply'; toast(code + ' sent; no reply from the box yet', 1);

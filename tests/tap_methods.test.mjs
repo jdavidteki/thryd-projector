@@ -29,3 +29,16 @@ test('tap lists inherited functions from the run and the safe, logged with scope
   for(const n of ['calla', 'marisol', 'dez']){ const rows = om.inherit[n] || []; assert.ok(rows.some(r => r.scope === 'run' && r.from === 'run-5a58c4' && r.funcs.includes('teo.fold')), n); }
   for(const [n, rows] of Object.entries(om.inherit)) for(const r of rows){ const own = om.objects[n] || []; for(const f of r.funcs){ assert.ok(om.functions[f], f); assert.ok(!own.includes(f), n + ' ' + f); } }
 });
+// typed arguments + dependency injection (17 Nov 2026 12:34 PM ET): signatures, classes, and a resolved call in the pop-up
+test('functions carry typed signatures and resolve their arguments from the container', () => {
+  const blk = src.slice(src.indexOf('// ---------- registry functions'), src.indexOf('S.fireMethod = fireMethod;'));
+  assert.ok(src.includes("fetch('data/classes.json")); assert.match(blk, /function injectFor\(it, c\)/); assert.match(blk, /rv\.className = 'gtr'/);
+  assert.match(blk, /codeLine\(m\.resolved \|\| m\.code \|\| code/);
+  const om = JSON.parse(fs.readFileSync(new URL('../data/object_methods.json', import.meta.url), 'utf8'));
+  const cl = JSON.parse(fs.readFileSync(new URL('../data/classes.json', import.meta.url), 'utf8'));
+  assert.equal(om.functions['crime.know'].sig.text, 'know(when: Frequency)');
+  assert.equal(om.functions['crime.know'].titles[0].resolved, 'crime.know(when=sometimes:Frequency) from j24');
+  assert.equal(cl.instances.sometimes.class, 'Frequency'); assert.equal(cl.instances.sometimes.first_job, 'j24');
+  for(const c of ['Frequency', 'Person', 'Manner', 'Place', 'Thing', 'Quantity', 'Feeling', 'Action']) assert.ok(cl.classes[c], c);
+  for(const f of Object.values(om.functions)) for(const p of f.sig.params) assert.ok(cl.classes[p.class] && cl.instances[p.default], p.default);
+});
