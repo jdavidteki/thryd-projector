@@ -5813,6 +5813,16 @@
 "run": "run-5a58c4",
 "card": "j29",
 "other": "miami"
+},
+{
+"id": "wf_53f20823a2",
+"kind": "consequence",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up beside the phone at the teoloveletter.",
+"code": "texts_marisol.interactwith(teoloveletter){ teoloveletter.receives(texts_marisol.code); teoloveletter.remembers(ejiro, 'juju code'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j2",
+"other": "texts_marisol"
 }
 ],
 "string_lights": [
@@ -5853,17 +5863,6 @@
 ]
 },
 "consequences": [
-{
-"id": "wt_283850fe16",
-"ts": "2026-11-17T14:55:23-0500",
-"a": "plot",
-"b": "laptop",
-"code": "plot.interactwith(laptop){ laptop.receives(plot.soot); laptop.remembers(taiwo, 'lamp soot'); laptop.smudges(plot, 'grey thumbprint on the trackpad'); }",
-"text": "The plot leaves Taiwo's lamp soot smudged across the laptop trackpad, so every file Ejiro opens next carries a grey thumbprint.",
-"author": "thryd",
-"run": "run-5a58c4",
-"card": "j7"
-},
 {
 "id": "wt_1f121a1d31",
 "ts": "2026-11-17T14:55:23-0500",
@@ -6292,6 +6291,17 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": "j6"
+},
+{
+"id": "wf_53f20823a2",
+"ts": "2026-11-17T16:02:31-0500",
+"a": "texts_marisol",
+"b": "teoloveletter",
+"code": "texts_marisol.interactwith(teoloveletter){ teoloveletter.receives(texts_marisol.code); teoloveletter.remembers(ejiro, 'juju code'); }",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up beside the phone at the teoloveletter.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j2"
 }
 ],
 "memories": [
@@ -6395,5 +6405,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T15:52:35-0500"
+"updated": "2026-11-17T16:02:31-0500"
 }
