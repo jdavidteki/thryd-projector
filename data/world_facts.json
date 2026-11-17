@@ -5963,16 +5963,6 @@
 ],
 "quiet_stretch_sand": [
 {
-"id": "wf_1ae659bb2f",
-"kind": "memory",
-"text": "5:50pm, Tuesday 3 November 2026: The morning at the ramp is behind them.",
-"code": "quiet_stretch_sand.holds('morning');",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j31",
-"other": null
-},
-{
 "id": "wf_35e9937423",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up beside the morning at the quiet stretch sand.",
@@ -6011,6 +6001,16 @@
 "run": "run-5a58c4",
 "card": "j6",
 "other": "marker_b"
+},
+{
+"id": "wf_b6ef76feb0",
+"kind": "consequence",
+"text": "An Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997, turns up beside the morning at the quiet stretch sand.",
+"code": "egbe.interactwith(quiet_stretch_sand){ quiet_stretch_sand.receives(egbe.joke); quiet_stretch_sand.remembers(bisola, 'boss joke'); }",
+"author": "cos",
+"run": "run-g1-B",
+"card": "j1",
+"other": "egbe"
 }
 ],
 "teoloveletter": [
@@ -6107,17 +6107,6 @@
 ]
 },
 "consequences": [
-{
-"id": "wf_d533fe99ec",
-"ts": "2026-11-17T16:03:23-0500",
-"a": "marker",
-"b": "matbaotstaili",
-"code": "marker.interactwith(matbaotstaili){ matbaotstaili.receives(marker.sign); … }",
-"text": "A Marker note with Kunle's name and 'nice day sign' on it, turns up inside the brown envelope at the matbaotstaili, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j3"
-},
 {
 "id": "wt_8ef6f98172",
 "ts": "2026-11-17T16:04:47-0500",
@@ -6546,6 +6535,17 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": "j2"
+},
+{
+"id": "wf_b6ef76feb0",
+"ts": "2026-11-17T18:36:52-0500",
+"a": "egbe",
+"b": "quiet_stretch_sand",
+"code": "egbe.interactwith(quiet_stretch_sand){ quiet_stretch_sand.receives(egbe.joke); quiet_stretch_sand.remembers(bisola, 'boss joke'); }",
+"text": "An Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997, turns up beside the morning at the quiet stretch sand.",
+"author": "cos",
+"run": "run-g1-B",
+"card": "j1"
 }
 ],
 "memories": [
@@ -6649,5 +6649,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T17:36:22-0500"
+"updated": "2026-11-17T18:36:52-0500"
 }
