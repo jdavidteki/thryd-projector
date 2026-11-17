@@ -1784,16 +1784,6 @@
 ],
 "bird": [
 {
-"id": "wf_45cb627eef",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bird, and Bisola reads the name twice.",
-"code": "ats.interactwith(bird){ bird.receives(ats.envelope); bird.remembers(bisola, 'brown envelope'); bird.tucks(ats, 'yaba bookshop receipt into the brown envelope'); }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "ats"
-},
-{
 "id": "wf_587e0c2453",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bird, and Bisola reads the name twice.",
@@ -1822,6 +1812,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "omo"
+},
+{
+"id": "wf_232ba67cda",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the lamp soot at the bird, and Taiwo reads the name twice.",
+"code": "streetlights.interactwith(bird){ bird.receives(streetlights.envelope); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "streetlights"
 },
 {
 "id": "wt_c6ff1d186b",
@@ -3726,6 +3726,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "matches"
+},
+{
+"id": "wf_5bdfc47d53",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the let, and Bisola reads the name twice.",
+"code": "streetlights.interactwith(let){ let.receives(streetlights.envelope); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "streetlights"
 }
 ],
 "morir": [
@@ -4243,28 +4253,6 @@
 },
 "consequences": [
 {
-"id": "wt_55fbc81c6a",
-"ts": "2026-11-16T14:52:32-0500",
-"a": "lekki_pharmacy",
-"b": "cassette_spine",
-"code": "lekki_pharmacy.interactwith(cassette_spine){ cassette_spine.receives(lekki_pharmacy, 'unpaid prescription slip'); … }",
-"text": "At the Lekki pharmacy counter the cassette spine picks up a blue PAID stamp meant for the prescription slip, so Kunle's 'love' chit now looks settled even though nobody paid.",
-"author": "thryd",
-"run": "run-0bd7c0",
-"card": "j8"
-},
-{
-"id": "wf_b30497c3b6",
-"ts": "2026-11-16T14:55:40-0500",
-"a": "red_white_cap",
-"b": "matches",
-"code": "red_white_cap.interactwith(matches){ matches.receives(red_white_cap.note); … }",
-"text": "A Red white cap note with Taiwo's name and 'egbe note' on it, 11:20pm, turns up inside the brown envelope at the matches, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "w7"
-},
-{
 "id": "wf_9b33ded4fb",
 "ts": "2026-11-16T14:58:56-0500",
 "a": "suitcase",
@@ -4681,6 +4669,28 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j6"
+},
+{
+"id": "wf_5bdfc47d53",
+"ts": "2026-11-16T19:44:01-0500",
+"a": "streetlights",
+"b": "let",
+"code": "streetlights.interactwith(let){ let.receives(streetlights.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the let, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
+},
+{
+"id": "wf_232ba67cda",
+"ts": "2026-11-16T19:45:35-0500",
+"a": "streetlights",
+"b": "bird",
+"code": "streetlights.interactwith(bird){ bird.receives(streetlights.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the lamp soot at the bird, and Taiwo reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
 }
 ],
 "memories": [
@@ -4784,5 +4794,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-16T19:42:22-0500"
+"updated": "2026-11-16T19:45:35-0500"
 }
