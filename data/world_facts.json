@@ -5068,6 +5068,16 @@
 "run": "run-5a58c4",
 "card": "j3",
 "other": "marker"
+},
+{
+"id": "wf_721921b87e",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up beside the phone at the miami.",
+"code": "dress_marisol.interactwith(miami){ miami.receives(dress_marisol.envelope); miami.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "dress_marisol"
 }
 ],
 "teo": [
@@ -5399,42 +5409,33 @@
 "card": "j6",
 "other": "marisol"
 }
+],
+"icsh": [
+{
+"id": "wf_c9ca44d8f3",
+"kind": "consequence",
+"text": "The icsh leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
+"code": "marina_biscayne_bay.interactwith(icsh){ icsh.receives(marina_biscayne_bay.code); icsh.remembers(ejiro, 'juju code'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j2",
+"other": "marina_biscayne_bay"
+}
+],
+"jetty_south_pointe": [
+{
+"id": "wf_3477569581",
+"kind": "consequence",
+"text": "The jetty south pointe leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "tbp.interactwith(jetty_south_pointe){ jetty_south_pointe.receives(tbp.envelope); jetty_south_pointe.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "tbp"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_2536b8915a",
-"ts": "2026-11-17T11:44:27-0500",
-"a": "house",
-"b": "mbtij",
-"code": "house.interactwith(mbtij){ house.db.copyto(mbtij); mbtij.keeps(house, 'teomarisollove, still in love, said out loud by Marisol (w14 causeway)'); }",
-"text": "The teomarisollove ends up with the mbtij, still in love, said out loud by Marisol (w14 causeway).",
-"author": "cos",
-"run": "run-5a58c4",
-"card": ""
-},
-{
-"id": "wf_48fbae7f6c",
-"ts": "2026-11-17T11:45:42-0500",
-"a": "heat",
-"b": "tie",
-"code": "heat.interactwith(tie){ tie.receives(heat.envelope); tie.remembers(bisola, 'brown envelope'); tie.tucks(heat, 'yaba bookshop receipt into the brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the tie, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
-"id": "wf_53679a8536",
-"ts": "2026-11-17T11:47:43-0500",
-"a": "dez",
-"b": "house",
-"code": "dez.interactwith(house){ house.receives(dez.code); house.remembers(ejiro, 'juju code'); }",
-"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up with the teomarisollove, which is still in love, said out loud by Marisol (w14 causeway).",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j2"
-},
 {
 "id": "wf_287c944581",
 "ts": "2026-11-17T11:48:56-0500",
@@ -5841,6 +5842,39 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": "j6"
+},
+{
+"id": "wf_721921b87e",
+"ts": "2026-11-17T14:37:11-0500",
+"a": "dress_marisol",
+"b": "miami",
+"code": "dress_marisol.interactwith(miami){ miami.receives(dress_marisol.envelope); miami.remembers(bisola, 'brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up beside the phone at the miami.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
+},
+{
+"id": "wf_c9ca44d8f3",
+"ts": "2026-11-17T14:40:25-0500",
+"a": "marina_biscayne_bay",
+"b": "icsh",
+"code": "marina_biscayne_bay.interactwith(icsh){ icsh.receives(marina_biscayne_bay.code); icsh.remembers(ejiro, 'juju code'); }",
+"text": "The icsh leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j2"
+},
+{
+"id": "wf_3477569581",
+"ts": "2026-11-17T14:42:02-0500",
+"a": "tbp",
+"b": "jetty_south_pointe",
+"code": "tbp.interactwith(jetty_south_pointe){ jetty_south_pointe.receives(tbp.envelope); jetty_south_pointe.remembers(bisola, 'brown envelope'); }",
+"text": "The jetty south pointe leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
 }
 ],
 "memories": [
@@ -5944,5 +5978,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T14:33:04-0500"
+"updated": "2026-11-17T14:42:02-0500"
 }
