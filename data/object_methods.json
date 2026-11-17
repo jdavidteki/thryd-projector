@@ -1,5 +1,5 @@
 {
- "v": 4,
+ "v": 5,
  "note": "object -> its own functions (code titles of seated picks across every agenda; first seated title defines, later ones call), plus inherited functions from its environment (inherit: the run it belongs to, then the safe its frame was cut from or its run was seeded from, with every function seated there or in other runs seeded from that safe). Objects with neither keep the old glow/grow/dim. Built by tools/export_object_methods.py.",
  "functions": {
   "everywhere.getdayagreeeeeennnn": {
@@ -47,7 +47,8 @@
     "params": [],
     "text": "getDayagreeeeeennnn()"
    },
-   "receiver_class": "Place"
+   "receiver_class": "Place",
+   "prior": []
   },
   "people.getocsw": {
    "object": "people",
@@ -98,7 +99,8 @@
     "params": [],
     "text": "getOcsw()"
    },
-   "receiver_class": "Person"
+   "receiver_class": "Person",
+   "prior": []
   },
   "everywhere.getwatching": {
    "object": "everywhere",
@@ -141,7 +143,8 @@
     "params": [],
     "text": "getWatching()"
    },
-   "receiver_class": "Place"
+   "receiver_class": "Place",
+   "prior": []
   },
   "weeks.gettoattd": {
    "object": "weeks",
@@ -184,7 +187,8 @@
     "params": [],
     "text": "getToattd()"
    },
-   "receiver_class": "Quantity"
+   "receiver_class": "Quantity",
+   "prior": []
   },
   "care.on": {
    "object": "care",
@@ -263,7 +267,8 @@
     ],
     "text": "on(what: Thing, act: Action)"
    },
-   "receiver_class": "Feeling"
+   "receiver_class": "Feeling",
+   "prior": []
   },
   "everywhere.getdidnt": {
    "object": "everywhere",
@@ -306,7 +311,8 @@
     "params": [],
     "text": "getDidnt()"
    },
-   "receiver_class": "Place"
+   "receiver_class": "Place",
+   "prior": []
   },
   "lagbara.on": {
    "object": "lagbara",
@@ -389,7 +395,17 @@
     ],
     "text": "on(who: Person, act: Action)"
    },
-   "receiver_class": "Thing"
+   "receiver_class": "Thing",
+   "prior": [
+    {
+     "id": "care.on",
+     "title": "care.on('dont',wait)",
+     "run": "run-cb805f",
+     "job": "j5",
+     "at": "2026-10-24T06:12:00-05:00",
+     "why": "same method"
+    }
+   ]
   },
   "tyn.on": {
    "object": "tyn",
@@ -472,7 +488,17 @@
     ],
     "text": "on(what: Thing, act: Action)"
    },
-   "receiver_class": "Thing"
+   "receiver_class": "Thing",
+   "prior": [
+    {
+     "id": "care.on",
+     "title": "care.on('dont',wait)",
+     "run": "run-cb805f",
+     "job": "j5",
+     "at": "2026-10-24T06:12:00-05:00",
+     "why": "same method"
+    }
+   ]
   },
   "everywhere.getcome": {
    "object": "everywhere",
@@ -519,7 +545,8 @@
     "params": [],
     "text": "getCome()"
    },
-   "receiver_class": "Place"
+   "receiver_class": "Place",
+   "prior": []
   },
   "rock.isages": {
    "object": "rock",
@@ -562,7 +589,8 @@
     "params": [],
     "text": "isAges()"
    },
-   "receiver_class": "Thing"
+   "receiver_class": "Thing",
+   "prior": []
   },
   "sia.count": {
    "object": "sia",
@@ -622,7 +650,8 @@
     ],
     "text": "count(act: Action)"
    },
-   "receiver_class": "Thing"
+   "receiver_class": "Thing",
+   "prior": []
   },
   "lateef.teach": {
    "object": "lateef",
@@ -705,7 +734,8 @@
     ],
     "text": "teach(feeling: Feeling, feeling2: Feeling)"
    },
-   "receiver_class": "Person"
+   "receiver_class": "Person",
+   "prior": []
   },
   "real.tune": {
    "object": "real",
@@ -769,7 +799,17 @@
     ],
     "text": "tune(what: Thing)"
    },
-   "receiver_class": "Thing"
+   "receiver_class": "Thing",
+   "prior": [
+    {
+     "id": "sia.count",
+     "title": "sia.count(coming)",
+     "run": "run-cb805f",
+     "job": "j7",
+     "at": "2026-10-24T06:42:00-05:00",
+     "why": "same verb family (tune)"
+    }
+   ]
   },
   "doing.getawaselves": {
    "object": "doing",
@@ -816,7 +856,8 @@
     "params": [],
     "text": "getAwaselves()"
    },
-   "receiver_class": "Thing"
+   "receiver_class": "Thing",
+   "prior": []
   },
   "taking.isnotes": {
    "object": "taking",
@@ -863,7 +904,8 @@
     "params": [],
     "text": "isNotes()"
    },
-   "receiver_class": "Thing"
+   "receiver_class": "Thing",
+   "prior": []
   },
   "toothbrush.on": {
    "object": "toothbrush",
@@ -942,7 +984,33 @@
     ],
     "text": "on(what: Thing, act: Action)"
    },
-   "receiver_class": "Thing"
+   "receiver_class": "Thing",
+   "prior": [
+    {
+     "id": "lagbara.on",
+     "title": "lagbara.on('yorubbbygehinny',wait)",
+     "run": "run-cb805f",
+     "job": "j6",
+     "at": "2026-10-24T06:26:00-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "tyn.on",
+     "title": "tyn.on('else',sort)",
+     "run": "run-cb805f",
+     "job": "j6",
+     "at": "2026-10-24T06:26:00-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "care.on",
+     "title": "care.on('dont',wait)",
+     "run": "run-cb805f",
+     "job": "j5",
+     "at": "2026-10-24T06:12:00-05:00",
+     "why": "same method"
+    }
+   ]
   },
   "aotl.isline": {
    "object": "aotl",
@@ -985,7 +1053,8 @@
     "params": [],
     "text": "isLine()"
    },
-   "receiver_class": "Thing"
+   "receiver_class": "Thing",
+   "prior": []
   },
   "bobo.on": {
    "object": "bobo",
@@ -1064,7 +1133,41 @@
     ],
     "text": "on(who: Person, act: Action)"
    },
-   "receiver_class": "Thing"
+   "receiver_class": "Thing",
+   "prior": [
+    {
+     "id": "toothbrush.on",
+     "title": "toothbrush.on('song',mix)",
+     "run": "run-cb805f",
+     "job": "j9",
+     "at": "2026-10-24T07:35:00-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "lagbara.on",
+     "title": "lagbara.on('yorubbbygehinny',wait)",
+     "run": "run-cb805f",
+     "job": "j6",
+     "at": "2026-10-24T06:26:00-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "tyn.on",
+     "title": "tyn.on('else',sort)",
+     "run": "run-cb805f",
+     "job": "j6",
+     "at": "2026-10-24T06:26:00-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "care.on",
+     "title": "care.on('dont',wait)",
+     "run": "run-cb805f",
+     "job": "j5",
+     "at": "2026-10-24T06:12:00-05:00",
+     "why": "same method"
+    }
+   ]
   },
   "everywhere.getyanju": {
    "object": "everywhere",
@@ -1115,7 +1218,8 @@
     "params": [],
     "text": "getYanju()"
    },
-   "receiver_class": "Place"
+   "receiver_class": "Place",
+   "prior": []
   },
   "openmedia.isgif": {
    "object": "openmedia",
@@ -1158,7 +1262,8 @@
     "params": [],
     "text": "isGif()"
    },
-   "receiver_class": "Thing"
+   "receiver_class": "Thing",
+   "prior": []
   },
   "irteiutk.count": {
    "object": "irteiutk",
@@ -1222,7 +1327,25 @@
     ],
     "text": "count(act: Action)"
    },
-   "receiver_class": "Thing"
+   "receiver_class": "Thing",
+   "prior": [
+    {
+     "id": "sia.count",
+     "title": "sia.count(coming)",
+     "run": "run-cb805f",
+     "job": "j7",
+     "at": "2026-10-24T06:42:00-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "real.tune",
+     "title": "real.tune(death)",
+     "run": "run-cb805f",
+     "job": "j8",
+     "at": "2026-10-24T07:05:00-05:00",
+     "why": "same verb family (tune)"
+    }
+   ]
   },
   "jwvbs.open": {
    "object": "jwvbs",
@@ -1282,7 +1405,8 @@
     ],
     "text": "open(who: Person)"
    },
-   "receiver_class": "Thing"
+   "receiver_class": "Thing",
+   "prior": []
   },
   "lateef.hide": {
    "object": "lateef",
@@ -1357,7 +1481,8 @@
     ],
     "text": "hide(who: Person, who2: Person)"
    },
-   "receiver_class": "Person"
+   "receiver_class": "Person",
+   "prior": []
   },
   "make.setany": {
    "object": "make",
@@ -1417,7 +1542,41 @@
     ],
     "text": "setAny(act: Action)"
    },
-   "receiver_class": "Action"
+   "receiver_class": "Action",
+   "prior": [
+    {
+     "id": "bobo.on",
+     "title": "bobo.on('juniorboys',follow)",
+     "run": "run-cb805f",
+     "job": "j10",
+     "at": "2026-10-24T07:44:00-05:00",
+     "why": "same verb family (say)"
+    },
+    {
+     "id": "toothbrush.on",
+     "title": "toothbrush.on('song',mix)",
+     "run": "run-cb805f",
+     "job": "j9",
+     "at": "2026-10-24T07:35:00-05:00",
+     "why": "same verb family (say)"
+    },
+    {
+     "id": "lagbara.on",
+     "title": "lagbara.on('yorubbbygehinny',wait)",
+     "run": "run-cb805f",
+     "job": "j6",
+     "at": "2026-10-24T06:26:00-05:00",
+     "why": "same verb family (say)"
+    },
+    {
+     "id": "tyn.on",
+     "title": "tyn.on('else',sort)",
+     "run": "run-cb805f",
+     "job": "j6",
+     "at": "2026-10-24T06:26:00-05:00",
+     "why": "same verb family (say)"
+    }
+   ]
   },
   "kunle.teach": {
    "object": "kunle",
@@ -1492,7 +1651,17 @@
     ],
     "text": "teach(act: Action, amount: Quantity)"
    },
-   "receiver_class": "Person"
+   "receiver_class": "Person",
+   "prior": [
+    {
+     "id": "lateef.teach",
+     "title": "lateef.teach(heart,interest)",
+     "run": "run-cb805f",
+     "job": "j8",
+     "at": "2026-10-24T07:05:00-05:00",
+     "why": "same method"
+    }
+   ]
   },
   "pepe.settink": {
    "object": "pepe",
@@ -1560,7 +1729,41 @@
     ],
     "text": "setTink(who: Person)"
    },
-   "receiver_class": "Person"
+   "receiver_class": "Person",
+   "prior": [
+    {
+     "id": "make.setany",
+     "title": "make.setAny(doesn)",
+     "run": "run-cb805f",
+     "job": "j13",
+     "at": "2026-10-24T08:17:00-05:00",
+     "why": "same verb family (say)"
+    },
+    {
+     "id": "bobo.on",
+     "title": "bobo.on('juniorboys',follow)",
+     "run": "run-cb805f",
+     "job": "j10",
+     "at": "2026-10-24T07:44:00-05:00",
+     "why": "same verb family (say)"
+    },
+    {
+     "id": "toothbrush.on",
+     "title": "toothbrush.on('song',mix)",
+     "run": "run-cb805f",
+     "job": "j9",
+     "at": "2026-10-24T07:35:00-05:00",
+     "why": "same verb family (say)"
+    },
+    {
+     "id": "lagbara.on",
+     "title": "lagbara.on('yorubbbygehinny',wait)",
+     "run": "run-cb805f",
+     "job": "j6",
+     "at": "2026-10-24T06:26:00-05:00",
+     "why": "same verb family (say)"
+    }
+   ]
   },
   "wife.kill": {
    "object": "wife",
@@ -1628,7 +1831,8 @@
     ],
     "text": "kill(act: Action)"
    },
-   "receiver_class": "Person"
+   "receiver_class": "Person",
+   "prior": []
   },
   "history.see": {
    "object": "history",
@@ -1688,7 +1892,8 @@
     ],
     "text": "see(act: Action)"
    },
-   "receiver_class": "Thing"
+   "receiver_class": "Thing",
+   "prior": []
   },
   "kunle.mix": {
    "object": "kunle",
@@ -1756,7 +1961,33 @@
     ],
     "text": "mix(feeling: Feeling)"
    },
-   "receiver_class": "Person"
+   "receiver_class": "Person",
+   "prior": [
+    {
+     "id": "irteiutk.count",
+     "title": "irteiutk.count(reminds)",
+     "run": "run-cb805f",
+     "job": "j12",
+     "at": "2026-10-24T08:09:44-05:00",
+     "why": "same verb family (tune)"
+    },
+    {
+     "id": "real.tune",
+     "title": "real.tune(death)",
+     "run": "run-cb805f",
+     "job": "j8",
+     "at": "2026-10-24T07:05:00-05:00",
+     "why": "same verb family (tune)"
+    },
+    {
+     "id": "sia.count",
+     "title": "sia.count(coming)",
+     "run": "run-cb805f",
+     "job": "j7",
+     "at": "2026-10-24T06:42:00-05:00",
+     "why": "same verb family (tune)"
+    }
+   ]
   },
   "song.hit": {
    "object": "song",
@@ -1824,7 +2055,41 @@
     ],
     "text": "hit(what: Thing)"
    },
-   "receiver_class": "Thing"
+   "receiver_class": "Thing",
+   "prior": [
+    {
+     "id": "kunle.mix",
+     "title": "kunle.mix(respect)",
+     "run": "run-bd649b",
+     "job": "j11",
+     "at": "2026-11-16T21:35:12-05:00",
+     "why": "same verb family (tune)"
+    },
+    {
+     "id": "irteiutk.count",
+     "title": "irteiutk.count(reminds)",
+     "run": "run-cb805f",
+     "job": "j12",
+     "at": "2026-10-24T08:09:44-05:00",
+     "why": "same verb family (tune)"
+    },
+    {
+     "id": "real.tune",
+     "title": "real.tune(death)",
+     "run": "run-cb805f",
+     "job": "j8",
+     "at": "2026-10-24T07:05:00-05:00",
+     "why": "same verb family (tune)"
+    },
+    {
+     "id": "sia.count",
+     "title": "sia.count(coming)",
+     "run": "run-cb805f",
+     "job": "j7",
+     "at": "2026-10-24T06:42:00-05:00",
+     "why": "same verb family (tune)"
+    }
+   ]
   },
   "touch.again": {
    "object": "touch",
@@ -1892,7 +2157,17 @@
     ],
     "text": "again(when: Frequency)"
    },
-   "receiver_class": "Action"
+   "receiver_class": "Action",
+   "prior": [
+    {
+     "id": "wife.kill",
+     "title": "wife.kill(talk)",
+     "run": "run-bd649b",
+     "job": "j10",
+     "at": "2026-11-16T21:27:43-05:00",
+     "why": "same verb family (shake)"
+    }
+   ]
   },
   "teo.hide": {
    "object": "teo",
@@ -1975,7 +2250,17 @@
     ],
     "text": "hide(what: Thing, who: Person)"
    },
-   "receiver_class": "Person"
+   "receiver_class": "Person",
+   "prior": [
+    {
+     "id": "lateef.hide",
+     "title": "lateef.hide(juniorbiys,paul)",
+     "run": "run-cb805f",
+     "job": "j12",
+     "at": "2026-10-24T08:09:44-05:00",
+     "why": "same method"
+    }
+   ]
   },
   "tyn.getdetermines": {
    "object": "tyn",
@@ -2026,7 +2311,8 @@
     "params": [],
     "text": "getDetermines()"
    },
-   "receiver_class": "Thing"
+   "receiver_class": "Thing",
+   "prior": []
   },
   "crime.know": {
    "object": "crime",
@@ -2094,7 +2380,8 @@
     ],
     "text": "know(when: Frequency)"
    },
-   "receiver_class": "Thing"
+   "receiver_class": "Thing",
+   "prior": []
   },
   "code.say": {
    "object": "code",
@@ -2162,7 +2449,41 @@
     ],
     "text": "say(how: Manner)"
    },
-   "receiver_class": "Thing"
+   "receiver_class": "Thing",
+   "prior": [
+    {
+     "id": "pepe.settink",
+     "title": "pepe.setTink(pepe)",
+     "run": "run-bd649b",
+     "job": "j10",
+     "at": "2026-11-16T21:27:43-05:00",
+     "why": "same verb family (say)"
+    },
+    {
+     "id": "make.setany",
+     "title": "make.setAny(doesn)",
+     "run": "run-cb805f",
+     "job": "j13",
+     "at": "2026-10-24T08:17:00-05:00",
+     "why": "same verb family (say)"
+    },
+    {
+     "id": "bobo.on",
+     "title": "bobo.on('juniorboys',follow)",
+     "run": "run-cb805f",
+     "job": "j10",
+     "at": "2026-10-24T07:44:00-05:00",
+     "why": "same verb family (say)"
+    },
+    {
+     "id": "toothbrush.on",
+     "title": "toothbrush.on('song',mix)",
+     "run": "run-cb805f",
+     "job": "j9",
+     "at": "2026-10-24T07:35:00-05:00",
+     "why": "same verb family (say)"
+    }
+   ]
   },
   "laff.made": {
    "object": "laff",
@@ -2230,7 +2551,41 @@
     ],
     "text": "made(what: Thing)"
    },
-   "receiver_class": "Feeling"
+   "receiver_class": "Feeling",
+   "prior": [
+    {
+     "id": "pepe.settink",
+     "title": "pepe.setTink(pepe)",
+     "run": "run-bd649b",
+     "job": "j10",
+     "at": "2026-11-16T21:27:43-05:00",
+     "why": "same verb family (say)"
+    },
+    {
+     "id": "make.setany",
+     "title": "make.setAny(doesn)",
+     "run": "run-cb805f",
+     "job": "j13",
+     "at": "2026-10-24T08:17:00-05:00",
+     "why": "same verb family (say)"
+    },
+    {
+     "id": "bobo.on",
+     "title": "bobo.on('juniorboys',follow)",
+     "run": "run-cb805f",
+     "job": "j10",
+     "at": "2026-10-24T07:44:00-05:00",
+     "why": "same verb family (say)"
+    },
+    {
+     "id": "toothbrush.on",
+     "title": "toothbrush.on('song',mix)",
+     "run": "run-cb805f",
+     "job": "j9",
+     "at": "2026-10-24T07:35:00-05:00",
+     "why": "same verb family (say)"
+    }
+   ]
   },
   "teo.fold": {
    "object": "teo",
@@ -2298,7 +2653,8 @@
     ],
     "text": "fold(how: Manner)"
    },
-   "receiver_class": "Person"
+   "receiver_class": "Person",
+   "prior": []
   },
   "road.air": {
    "object": "road",
@@ -2367,7 +2723,41 @@
     ],
     "text": "air(how: Manner)"
    },
-   "receiver_class": "Place"
+   "receiver_class": "Place",
+   "prior": [
+    {
+     "id": "code.say",
+     "title": "code.say(accuracy)",
+     "run": "run-5a58c4",
+     "job": "j25",
+     "at": "2026-11-17T10:35:56-05:00",
+     "why": "same verb family (say)"
+    },
+    {
+     "id": "laff.made",
+     "title": "laff.made(sugar)",
+     "run": "run-5a58c4",
+     "job": "j25",
+     "at": "2026-11-17T10:35:56-05:00",
+     "why": "same verb family (say)"
+    },
+    {
+     "id": "pepe.settink",
+     "title": "pepe.setTink(pepe)",
+     "run": "run-bd649b",
+     "job": "j10",
+     "at": "2026-11-16T21:27:43-05:00",
+     "why": "same verb family (say)"
+    },
+    {
+     "id": "make.setany",
+     "title": "make.setAny(doesn)",
+     "run": "run-cb805f",
+     "job": "j13",
+     "at": "2026-10-24T08:17:00-05:00",
+     "why": "same verb family (say)"
+    }
+   ]
   },
   "thrill.know": {
    "object": "thrill",
@@ -2437,7 +2827,17 @@
     ],
     "text": "know(what: Thing)"
    },
-   "receiver_class": "Feeling"
+   "receiver_class": "Feeling",
+   "prior": [
+    {
+     "id": "crime.know",
+     "title": "crime.know(sometimes)",
+     "run": "run-5a58c4",
+     "job": "j24",
+     "at": "2026-11-17T00:02:09-05:00",
+     "why": "same method"
+    }
+   ]
   },
   "omo.fold": {
    "object": "omo",
@@ -2505,7 +2905,17 @@
     ],
     "text": "fold(how: Manner)"
    },
-   "receiver_class": "Thing"
+   "receiver_class": "Thing",
+   "prior": [
+    {
+     "id": "teo.fold",
+     "title": "teo.fold(surgical)",
+     "run": "run-5a58c4",
+     "job": "j25",
+     "at": "2026-11-17T10:35:56-05:00",
+     "why": "same method"
+    }
+   ]
   },
   "wanow.knew": {
    "object": "wanow",
@@ -2573,7 +2983,8 @@
     ],
     "text": "knew(how: Manner)"
    },
-   "receiver_class": "Thing"
+   "receiver_class": "Thing",
+   "prior": []
   },
   "nobody.weigh": {
    "object": "nobody",
@@ -2641,7 +3052,25 @@
     ],
     "text": "weigh(what: Thing)"
    },
-   "receiver_class": "Person"
+   "receiver_class": "Person",
+   "prior": [
+    {
+     "id": "kunle.teach",
+     "title": "kunle.teach(do,k)",
+     "run": "run-bd649b",
+     "job": "j9",
+     "at": "2026-11-16T21:15:15-05:00",
+     "why": "same verb family (weigh)"
+    },
+    {
+     "id": "lateef.teach",
+     "title": "lateef.teach(heart,interest)",
+     "run": "run-cb805f",
+     "job": "j8",
+     "at": "2026-10-24T07:05:00-05:00",
+     "why": "same verb family (weigh)"
+    }
+   ]
   },
   "dez.sit": {
    "object": "dez",
@@ -2709,7 +3138,33 @@
     ],
     "text": "sit(act: Action)"
    },
-   "receiver_class": "Person"
+   "receiver_class": "Person",
+   "prior": [
+    {
+     "id": "nobody.weigh",
+     "title": "nobody.weigh(weda)",
+     "run": "run-5a58c4",
+     "job": "j28",
+     "at": "2026-11-17T12:06:03-05:00",
+     "why": "same verb family (weigh)"
+    },
+    {
+     "id": "kunle.teach",
+     "title": "kunle.teach(do,k)",
+     "run": "run-bd649b",
+     "job": "j9",
+     "at": "2026-11-16T21:15:15-05:00",
+     "why": "same verb family (weigh)"
+    },
+    {
+     "id": "lateef.teach",
+     "title": "lateef.teach(heart,interest)",
+     "run": "run-cb805f",
+     "job": "j8",
+     "at": "2026-10-24T07:05:00-05:00",
+     "why": "same verb family (weigh)"
+    }
+   ]
   }
  },
  "objects": {
@@ -7378,5 +7833,5 @@
    "wife"
   ]
  },
- "updated": "2026-11-17T12:45:53-05:00"
+ "updated": "2026-11-17T12:53:23-05:00"
 }
