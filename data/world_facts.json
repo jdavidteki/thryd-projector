@@ -2364,16 +2364,6 @@
 ],
 "lekki_pharmacy": [
 {
-"id": "wf_df83c9ad0e",
-"kind": "consequence",
-"text": "A Kerosene lamp note with Taiwo's name and 'change' on it, turns up inside the unpaid prescription slip at the lekki pharmacy, and Titi reads the name twice.",
-"code": "kerosene_lamp.interactwith(lekki_pharmacy){ lekki_pharmacy.receives(kerosene_lamp.change); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "w",
-"other": "kerosene_lamp"
-},
-{
 "id": "wf_0c9c32cab4",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the unpaid prescription slip at the lekki pharmacy, and Titi reads the name twice.",
@@ -2382,6 +2372,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "wsr"
+},
+{
+"id": "wf_0d6dfd9657",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the unpaid prescription slip at the lekki pharmacy, and Titi reads the name twice.",
+"code": "omo.interactwith(lekki_pharmacy){ lekki_pharmacy.receives(omo.envelope); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "omo"
 },
 {
 "id": "wt_825a1245a2",
@@ -3400,16 +3400,6 @@
 ],
 "morir_r": [
 {
-"id": "wf_b9700502d3",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the change at the morir r, and Taiwo reads the name twice.",
-"code": "red_white_cap.interactwith(morir_r){ morir_r.receives(red_white_cap.envelope); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "red_white_cap"
-},
-{
 "id": "wf_bc7480c197",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the morir r, and Bisola reads the name twice.",
@@ -3448,6 +3438,16 @@
 "run": "run-0bd7c0",
 "card": "w",
 "other": "danfo_speaker"
+},
+{
+"id": "wf_6c1ec61f12",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the morir r, and Bisola reads the name twice.",
+"code": "matches.interactwith(morir_r){ morir_r.receives(matches.envelope); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "matches"
 }
 ],
 "ats": [
@@ -4297,42 +4297,21 @@
 "card": "j6",
 "other": "yaba_bukka_counter"
 }
+],
+"family_compound_ikorodu": [
+{
+"id": "wf_bb557908b8",
+"kind": "consequence",
+"text": "The family compound ikorodu leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
+"code": "people_scene.interactwith(family_compound_ikorodu){ family_compound_ikorodu.receives(people_scene.code); family_compound_ikorodu.remembers(ejiro, 'juju code'); }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j2",
+"other": "people_scene"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_cfdbd8a8c8",
-"ts": "2026-11-16T15:59:40-0500",
-"a": "danfo_speaker",
-"b": "morir_r",
-"code": "danfo_speaker.interactwith(morir_r){ morir_r.receives(danfo_speaker.note); … }",
-"text": "A Danfo speaker note with Bisola's name and 'egbe note' on it, turns up inside the brown envelope at the morir r, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "w"
-},
-{
-"id": "wf_5a1a65a24e",
-"ts": "2026-11-16T16:03:40-0500",
-"a": "yaba_bukka_counter",
-"b": "forbidden_love",
-"code": "yaba_bukka_counter.interactwith(forbidden_love){ forbidden_love.receives(yaba_bukka_counter.envelope); forbidden_love.remembers(kunle, 'brown envelope'); }",
-"text": "The forbidden love leaves with a Yaba bukka counter chit with Kunle's name and 'brown envelope' on it, 8:10pm.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
-{
-"id": "wf_3b30275090",
-"ts": "2026-11-16T18:57:06-0500",
-"a": "truth",
-"b": "lekki_pharmacy",
-"code": "truth.interactwith(lekki_pharmacy){ lekki_pharmacy.receives(truth.note); … }",
-"text": "A Truth note with Titi's name and 'egbe note' on it, turns up inside the unpaid prescription slip at the lekki pharmacy, and Titi reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j4"
-},
 {
 "id": "wf_6236db6f54",
 "ts": "2026-11-16T19:00:20-0500",
@@ -4739,6 +4718,39 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j4"
+},
+{
+"id": "wf_6c1ec61f12",
+"ts": "2026-11-16T20:54:00-0500",
+"a": "matches",
+"b": "morir_r",
+"code": "matches.interactwith(morir_r){ morir_r.receives(matches.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the morir r, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
+},
+{
+"id": "wf_0d6dfd9657",
+"ts": "2026-11-16T20:57:14-0500",
+"a": "omo",
+"b": "lekki_pharmacy",
+"code": "omo.interactwith(lekki_pharmacy){ lekki_pharmacy.receives(omo.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the unpaid prescription slip at the lekki pharmacy, and Titi reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
+},
+{
+"id": "wf_bb557908b8",
+"ts": "2026-11-16T20:58:49-0500",
+"a": "people_scene",
+"b": "family_compound_ikorodu",
+"code": "people_scene.interactwith(family_compound_ikorodu){ family_compound_ikorodu.receives(people_scene.code); family_compound_ikorodu.remembers(ejiro, 'juju code'); }",
+"text": "The family compound ikorodu leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j2"
 }
 ],
 "memories": [
@@ -4842,5 +4854,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-16T20:53:09-0500"
+"updated": "2026-11-16T20:58:49-0500"
 }
