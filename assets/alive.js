@@ -46,7 +46,7 @@ function bulletin(i){const at=i.card?`${i.card}`:'the frame';
      return i.to_scene==='(travelling)'?`JUST IN: ${i.what} has been sighted leaving “${f}”; sources say it is travelling`
        :(i.from_scene===i.to_scene?`Eyewitnesses report ${i.what} wandering across “${f}”`:`BREAKING: ${i.what} has turned up in “${t}”, all the way from “${f}”`);}
   }return null;}
-async function loadNews(){const j=await get('data/thryd_news.json');if(j&&Array.isArray(j.items)&&j.items.length)NEWS=j;}
+async function loadNews(){const j=await get('data/thryd_news2.json')||await get('data/thryd_news.json');if(j&&Array.isArray(j.items)&&j.items.length)NEWS=j;}
 function localDrifts(){try{return (window.thrydMoves?thrydMoves.list():[]).filter(e=>e.type==='drift'&&Date.now()-Date.parse(e.client_ts)<3600e3).slice(-6).map(e=>({kind:'drift',what:(e.source&&e.source.cut)||e.label||'an object',
   from_scene:e.drift&&e.drift.kind==='arrive'?e.drift.from_scene:(e.source&&e.source.scene),to_scene:e.drift&&e.drift.kind==='leave'?'(travelling)':(e.source&&e.source.scene)}));}catch(e){return [];}}
 function lines(){if(/phone\.html$/.test(location.pathname))return null;const v2=NEWS&&NEWS.v>=2;
