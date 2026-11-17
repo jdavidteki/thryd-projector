@@ -26,11 +26,12 @@
       else { p.className = 'info'; inline(p, line.replace(/\*\*/g, ''), video); }
       box.appendChild(p); });
   }
+  const rel = u => !u ? '' : /^https?:/.test(u) ? u : '../' + u; // repo paths in the JSON are relative to the site root
   function player(ep){
     const wrap = $('div', 'player'); const v = $('video'); v.controls = true; v.preload = 'metadata'; v.playsInline = true; v.setAttribute('playsinline', '');
-    v.poster = ep.cover || ''; v.src = ep.video; v.setAttribute('aria-label', 'Episode: ' + ep.title); wrap.appendChild(v);
-    const fb = $('div', 'fallback'); if(ep.cover) fb.style.backgroundImage = 'linear-gradient(#000a,#000a),url("' + encodeURI(ep.cover) + '")';
-    fb.appendChild($('div', '', 'This browser could not stream the episode inline.')); const a = $('a', '', '▶ watch / download (' + (ep.length || 'mp4') + ')'); a.href = ep.video; a.rel = 'noopener'; a.target = '_blank'; fb.appendChild(a); wrap.appendChild(fb);
+    v.poster = rel(ep.cover); v.src = ep.video; v.setAttribute('aria-label', 'Episode: ' + ep.title); wrap.appendChild(v);
+    const fb = $('div', 'fallback'); if(ep.cover) fb.style.backgroundImage = 'linear-gradient(#000a,#000a),url("' + encodeURI(rel(ep.cover)) + '")';
+    fb.appendChild($('div', '', 'The episode could not stream here. Open it on GitHub instead.')); const a = $('a', '', '▶ open the episode (' + (ep.length || 'mp4') + ')'); a.href = ep.video; a.rel = 'noopener'; a.target = '_blank'; fb.appendChild(a); wrap.appendChild(fb);
     v.addEventListener('error', () => { fb.classList.add('on'); wrap.dataset.fallback = '1'; });
     return {wrap, v};
   }
@@ -44,8 +45,9 @@
     if(ep.release){ const rl = $('a', 'btn', 'release'); rl.href = ep.release; rl.rel = 'noopener'; row.appendChild(rl); }
     const sh = $('button', 'btn', '🔗 link'); sh.type = 'button'; sh.addEventListener('click', () => { const u = location.href.split('#')[0] + '#' + ep.id; try{ navigator.clipboard.writeText(u); sh.textContent = '✓ copied'; setTimeout(() => sh.textContent = '🔗 link', 1600); }catch(e){ location.hash = ep.id; } }); row.appendChild(sh);
     b.appendChild(row);
-    if(ep.teaser){ const t = $('div', 'teaser'); const tv = $('video'); tv.controls = true; tv.preload = 'none'; tv.playsInline = true; tv.setAttribute('playsinline', ''); tv.poster = ep.cover || ''; tv.src = ep.teaser; tv.setAttribute('aria-label', 'Teaser: ' + ep.title);
-      t.appendChild(tv); t.appendChild($('p', '', 'Teaser · ' + (ep.teaser_length || '0:30') + ' · the quick version to share.')); b.appendChild(t); }
+    if(ep.teaser){ const t = $('div', 'teaser'); const tv = $('video'); tv.controls = true; tv.preload = 'none'; tv.playsInline = true; tv.setAttribute('playsinline', ''); tv.poster = rel(ep.cover); tv.src = ep.teaser; tv.setAttribute('aria-label', 'Teaser: ' + ep.title);
+      const tp = $('p', '', 'Teaser · ' + (ep.teaser_length || '0:30') + ' · the quick version to share. '); t.appendChild(tv); t.appendChild(tp);
+      tv.addEventListener('error', () => { if(tp.querySelector('a')) return; const ta = $('a', '', 'Open the teaser'); ta.href = ep.teaser; ta.rel = 'noopener'; ta.target = '_blank'; tp.appendChild(ta); t.dataset.fallback = '1'; }); b.appendChild(t); }
     if(ep.transcript){ const d = $('details', 'tr'); const s = $('summary', '', 'Transcript'); d.appendChild(s); const box = $('div', 'tx'); box.textContent = 'Loading…'; d.appendChild(box); let got = false;
       d.addEventListener('toggle', () => { if(!d.open || got) return; got = true;
         fetch('../' + ep.transcript + '?t=' + Date.now()).then(r => { if(!r.ok) throw new Error(r.status); return r.text(); }).then(md => renderMd(md, box, v)).catch(() => { got = false; box.textContent = 'Transcript could not load. Try again.'; }); });

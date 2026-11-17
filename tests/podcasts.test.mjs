@@ -5,7 +5,7 @@ const js = fs.readFileSync(new URL('../podcasts/podcasts.js', import.meta.url), 
 test('every episode row points at release assets and a transcript in the repo', () => {
   assert.ok(doc.episodes.length >= 1);
   for(const e of doc.episodes){ for(const k of ['id', 'title', 'date', 'length', 'video', 'cover', 'transcript', 'release']) assert.ok(e[k], e.id + ' ' + k);
-    assert.match(e.video, /^https:\/\/github\.com\/jdavidteki\/thryd-projector\/releases\/download\//); assert.match(e.cover, /\/releases\/download\//);
+    assert.match(e.video, /^https:\/\/github\.com\/jdavidteki\/thryd-projector\/releases\/download\//); assert.ok(fs.existsSync(new URL('../' + e.cover, import.meta.url)), e.cover); assert.match(e.cover_release, /\/releases\/download\//);
     assert.ok(fs.existsSync(new URL('../' + e.transcript, import.meta.url)), e.transcript); }
   assert.ok(doc.episodes.filter(e => e.featured).length <= 1);
 });

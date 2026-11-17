@@ -75,11 +75,13 @@ def main():
     base = 'https://github.com/%s/releases/download/%s/' % (REPO, tag)
     os.makedirs(os.path.join(ROOT, 'data', 'podcasts'), exist_ok=True)
     shutil.copyfile(a.transcript, os.path.join(ROOT, 'data', 'podcasts', eid + '.md'))
+    # the cover is a small still, so a copy also lives in the repo: the page never depends on a cross-site image redirect for it
+    shutil.copyfile(cov, os.path.join(ROOT, 'data', 'podcasts', eid + '_cover.jpg'))
     row = {'id': eid, 'run': a.run, 'title': title, 'date': date, 'duration_s': round(duration(files['video']), 1),
            'length': mmss(duration(files['video'])), 'video': base + os.path.basename(files['video']),
            'teaser': base + os.path.basename(files['teaser']) if 'teaser' in files else None,
            'teaser_length': mmss(duration(files['teaser'])) if 'teaser' in files else None,
-           'cover': base + os.path.basename(cov), 'transcript': 'data/podcasts/' + eid + '.md',
+           'cover': 'data/podcasts/' + eid + '_cover.jpg', 'cover_release': base + os.path.basename(cov), 'transcript': 'data/podcasts/' + eid + '.md',
            'release': 'https://github.com/%s/releases/tag/%s' % (REPO, tag), 'featured': bool(a.featured),
            'added': datetime.datetime.now().astimezone().isoformat(timespec='seconds')}
     try: doc = json.load(open(DATA))
@@ -93,7 +95,7 @@ def main():
     shutil.rmtree(tmp, ignore_errors=True)
     print(json.dumps(row, ensure_ascii=False, indent=1))
     if a.publish:
-        sh('git', 'add', 'data/podcasts.json', row['transcript'], cwd=ROOT)
+        sh('git', 'add', 'data/podcasts.json', row['transcript'], row['cover'], cwd=ROOT)
         sh('git', 'commit', '-qm', 'data: podcast episode %s (release %s); data only, no version bump' % (eid, tag), cwd=ROOT)
         sh('flock', LOCK, '-c', 'git pull -q --rebase --autostash && git push -q origin HEAD:main', cwd=ROOT)
         print('published')
