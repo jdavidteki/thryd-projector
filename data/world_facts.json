@@ -4601,20 +4601,21 @@
 "card": "j3",
 "other": null
 }
+],
+"texts_marisol": [
+{
+"id": "wf_e69271aa8e",
+"kind": "consequence",
+"text": "The texts marisol leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
+"code": "dez.interactwith(texts_marisol){ texts_marisol.receives(dez.code); texts_marisol.remembers(ejiro, 'juju code'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j2",
+"other": "dez"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_da07080f49",
-"ts": "2026-11-17T00:03:52-0500",
-"a": "omo",
-"b": "laptop",
-"code": "omo.interactwith(laptop){ laptop.receives(omo.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the rain-stained receipt at the laptop, and Ejiro reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
 {
 "id": "wf_b6c90274d8",
 "ts": "2026-11-17T00:05:27-0500",
@@ -5043,6 +5044,17 @@
 "author": "cos",
 "run": "run-bd649b",
 "card": "j2"
+},
+{
+"id": "wf_e69271aa8e",
+"ts": "2026-11-17T10:41:45-0500",
+"a": "dez",
+"b": "texts_marisol",
+"code": "dez.interactwith(texts_marisol){ texts_marisol.receives(dez.code); texts_marisol.remembers(ejiro, 'juju code'); }",
+"text": "The texts marisol leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j2"
 }
 ],
 "memories": [
@@ -5146,5 +5158,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T10:35:36-0500"
+"updated": "2026-11-17T10:41:45-0500"
 }
