@@ -4646,6 +4646,16 @@
 "run": "run-5a58c4",
 "card": "j6",
 "other": "reality"
+},
+{
+"id": "wf_f60ed605f2",
+"kind": "consequence",
+"text": "A Laptop note with Ejiro's name and 'rain-stained receipt' on it, 8:05am, turns up inside the brown envelope at the top deck charter, and Bisola reads the name twice.",
+"code": "dress_marisol.interactwith(top_deck_charter){ top_deck_charter.receives(dress_marisol.receipt); … }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "w5",
+"other": "dress_marisol"
 }
 ],
 "fire_escape_outside": [
@@ -4698,17 +4708,6 @@
 ]
 },
 "consequences": [
-{
-"id": "wf_4802e871b3",
-"ts": "2026-11-17T00:45:20-0500",
-"a": "wsr",
-"b": "cell_phone",
-"code": "wsr.interactwith(cell_phone){ cell_phone.receives(wsr.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the cell phone, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
 {
 "id": "wf_f5e12d9286",
 "ts": "2026-11-17T00:46:12-0500",
@@ -5137,6 +5136,17 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": "w5"
+},
+{
+"id": "wf_f60ed605f2",
+"ts": "2026-11-17T11:06:47-0500",
+"a": "dress_marisol",
+"b": "top_deck_charter",
+"code": "dress_marisol.interactwith(top_deck_charter){ top_deck_charter.receives(dress_marisol.receipt); … }",
+"text": "A Laptop note with Ejiro's name and 'rain-stained receipt' on it, 8:05am, turns up inside the brown envelope at the top deck charter, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "w5"
 }
 ],
 "memories": [
@@ -5240,5 +5250,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T11:03:02-0500"
+"updated": "2026-11-17T11:06:47-0500"
 }
