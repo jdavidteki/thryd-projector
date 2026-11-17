@@ -4709,16 +4709,6 @@
 ],
 "teomarisollove": [
 {
-"id": "wf_0e5a71195f",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the teomarisollove, which is still in love, said out loud by Marisol (w14 causeway).",
-"code": "bus.interactwith(teomarisollove){ teomarisollove.receives(bus.envelope); teomarisollove.remembers(bisola, 'brown envelope'); }",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6",
-"other": "bus"
-},
-{
 "id": "wf_5d7dc3eec8",
 "kind": "consequence",
 "text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up with the teomarisollove, which is still in love, said out loud by Marisol (w14 causeway).",
@@ -4757,6 +4747,16 @@
 "run": "run-5a58c4",
 "card": "j7",
 "other": "bird"
+},
+{
+"id": "wf_85a5da197b",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the teomarisollove, which is still in love, said out loud by Marisol (w14 causeway).",
+"code": "thoughts_marisol.interactwith(teomarisollove){ teomarisollove.receives(thoughts_marisol.envelope); teomarisollove.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "thoughts_marisol"
 }
 ],
 "front_gate_no": [
@@ -5996,17 +5996,6 @@
 },
 "consequences": [
 {
-"id": "wf_d3aa41c77a",
-"ts": "2026-11-17T15:15:14-0500",
-"a": "cleacky",
-"b": "famz",
-"code": "cleacky.interactwith(famz){ famz.receives(cleacky.bead); famz.remembers(bisola, 'blue glass bead'); }",
-"text": "The famz leaves with a Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j5"
-},
-{
 "id": "wf_95c43d8f38",
 "ts": "2026-11-17T15:16:04-0500",
 "a": "pure_water_cooler",
@@ -6434,6 +6423,17 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": "j6"
+},
+{
+"id": "wf_85a5da197b",
+"ts": "2026-11-17T16:47:01-0500",
+"a": "thoughts_marisol",
+"b": "teomarisollove",
+"code": "thoughts_marisol.interactwith(teomarisollove){ teomarisollove.receives(thoughts_marisol.envelope); teomarisollove.remembers(bisola, 'brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the teomarisollove, which is still in love, said out loud by Marisol (w14 causeway).",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
 }
 ],
 "memories": [
@@ -6537,5 +6537,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T16:41:08-0500"
+"updated": "2026-11-17T16:47:01-0500"
 }
