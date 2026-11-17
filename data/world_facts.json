@@ -5193,16 +5193,6 @@
 ],
 "miami": [
 {
-"id": "wf_bf14fe2c8d",
-"kind": "consequence",
-"text": "A Marker note with Kunle's name and 'nice day sign' on it, turns up beside the phone at the miami.",
-"code": "marker.interactwith(miami){ miami.receives(marker.sign); miami.remembers(kunle, 'nice day sign'); }",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j3",
-"other": "marker"
-},
-{
 "id": "wf_721921b87e",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up beside the phone at the miami.",
@@ -5241,6 +5231,16 @@
 "run": "run-5a58c4",
 "card": "j7",
 "other": "bird"
+},
+{
+"id": "wf_96726c9d11",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up beside the phone at the miami.",
+"code": "marker_b.interactwith(miami){ miami.receives(marker_b.envelope); miami.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "marker_b"
 }
 ],
 "teo": [
@@ -5771,6 +5771,16 @@
 "run": "run-5a58c4",
 "card": "j31",
 "other": null
+},
+{
+"id": "wf_35e9937423",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up beside the morning at the quiet stretch sand.",
+"code": "tnw.interactwith(quiet_stretch_sand){ quiet_stretch_sand.receives(tnw.envelope); quiet_stretch_sand.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "tnw"
 }
 ],
 "teoloveletter": [
@@ -5823,28 +5833,6 @@
 ]
 },
 "consequences": [
-{
-"id": "wf_47c2532f3d",
-"ts": "2026-11-17T14:49:27-0500",
-"a": "hose",
-"b": "teomarisollove",
-"code": "hose.interactwith(teomarisollove){ teomarisollove.receives(hose.envelope); teomarisollove.remembers(bisola, 'brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the teomarisollove, which is still in love, said out loud by Marisol (w14 causeway).",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
-"id": "wf_af61c88e15",
-"ts": "2026-11-17T14:50:15-0500",
-"a": "mbtij",
-"b": "hpr",
-"code": "mbtij.interactwith(hpr){ mbtij.db.copyto(hpr); hpr.keeps(mbtij, 'teomarisollove, still in love, said out loud by Marisol (w14 causeway)'); }",
-"text": "The teomarisollove ends up with the hpr, still in love, said out loud by Marisol (w14 causeway).",
-"author": "cos",
-"run": "run-5a58c4",
-"card": ""
-},
 {
 "id": "wf_1bf87ddaf1",
 "ts": "2026-11-17T14:51:08-0500",
@@ -6262,6 +6250,28 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": "j6"
+},
+{
+"id": "wf_35e9937423",
+"ts": "2026-11-17T15:46:21-0500",
+"a": "tnw",
+"b": "quiet_stretch_sand",
+"code": "tnw.interactwith(quiet_stretch_sand){ quiet_stretch_sand.receives(tnw.envelope); quiet_stretch_sand.remembers(bisola, 'brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up beside the morning at the quiet stretch sand.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
+},
+{
+"id": "wf_96726c9d11",
+"ts": "2026-11-17T15:47:15-0500",
+"a": "marker_b",
+"b": "miami",
+"code": "marker_b.interactwith(miami){ miami.receives(marker_b.envelope); miami.remembers(bisola, 'brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up beside the phone at the miami.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
 }
 ],
 "memories": [
@@ -6365,5 +6375,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T15:38:34-0500"
+"updated": "2026-11-17T15:47:15-0500"
 }
