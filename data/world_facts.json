@@ -1961,6 +1961,16 @@
 "run": "run-5a58c4",
 "card": "j6",
 "other": "sandal"
+},
+{
+"id": "wf_5938e15ada",
+"kind": "consequence",
+"text": "A Danfo speaker note with Bisola's name and 'egbe note' on it, turns up inside the brown envelope at the dez, and Bisola reads the name twice.",
+"code": "love.interactwith(dez){ dez.receives(love.note); dez.remembers(bisola, 'egbe note'); dez.tucks(love, 'danfo speaker note into the brown envelope'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "w",
+"other": "love"
 }
 ],
 "tie": [
@@ -4629,6 +4639,16 @@
 "run": "run-5a58c4",
 "card": "j7",
 "other": "marina_biscayne_bay"
+},
+{
+"id": "wf_492edc6dd7",
+"kind": "consequence",
+"text": "The calla leaves with a Laptop note with Taiwo's name and 'lamp soot' on it.",
+"code": "laptop.interactwith(calla){ calla.receives(laptop.soot); calla.remembers(taiwo, 'lamp soot'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j7",
+"other": "laptop"
 }
 ],
 "as_poor_man": [
@@ -5183,6 +5203,16 @@
 "run": "run-5a58c4",
 "card": "j3",
 "other": "marker"
+},
+{
+"id": "wf_3a0e493e8b",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the nice day sign at the kmb, and Kunle reads the name twice.",
+"code": "marker_c.interactwith(kmb){ kmb.receives(marker_c.envelope); … }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "marker_c"
 }
 ],
 "tbp": [
@@ -5906,39 +5936,6 @@
 },
 "consequences": [
 {
-"id": "wf_8de4442dcb",
-"ts": "2026-11-17T15:01:51-0500",
-"a": "teo",
-"b": "bed",
-"code": "teo.interactwith(bed){ bed.receives(teo.receipt); bed.remembers(bisola, 'folded receipt'); bed.tucks(teo, 'teo note into the egbe note'); }",
-"text": "A Teo note with Bisola's name and 'folded receipt' on it, turns up inside the egbe note at the bed, and Taiwo reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
-"id": "wf_54e4aaf5ee",
-"ts": "2026-11-17T15:04:23-0500",
-"a": "house",
-"b": "mbtij",
-"code": "house.interactwith(mbtij){ mbtij.receives(house.code); mbtij.remembers(ejiro, 'juju code'); }",
-"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up with the teomarisollove, which is still in love, said out loud by Marisol (w14 causeway).",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j2"
-},
-{
-"id": "wf_26c46a2147",
-"ts": "2026-11-17T15:06:04-0500",
-"a": "kmb",
-"b": "marina_biscayne_bay",
-"code": "kmb.interactwith(marina_biscayne_bay){ marina_biscayne_bay.receives(kmb.soot); … }",
-"text": "A Bird note with Taiwo's name and 'lamp soot' on it, turns up inside the juju code at the marina biscayne bay, and Ejiro reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j7"
-},
-{
 "id": "wf_de0f68dcae",
 "ts": "2026-11-17T15:07:46-0500",
 "a": "move",
@@ -6344,6 +6341,39 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": "j2"
+},
+{
+"id": "wf_5938e15ada",
+"ts": "2026-11-17T16:07:38-0500",
+"a": "love",
+"b": "dez",
+"code": "love.interactwith(dez){ dez.receives(love.note); dez.remembers(bisola, 'egbe note'); dez.tucks(love, 'danfo speaker note into the brown envelope'); }",
+"text": "A Danfo speaker note with Bisola's name and 'egbe note' on it, turns up inside the brown envelope at the dez, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "w"
+},
+{
+"id": "wf_3a0e493e8b",
+"ts": "2026-11-17T16:08:31-0500",
+"a": "marker_c",
+"b": "kmb",
+"code": "marker_c.interactwith(kmb){ kmb.receives(marker_c.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the nice day sign at the kmb, and Kunle reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
+},
+{
+"id": "wf_492edc6dd7",
+"ts": "2026-11-17T16:09:24-0500",
+"a": "laptop",
+"b": "calla",
+"code": "laptop.interactwith(calla){ calla.receives(laptop.soot); calla.remembers(taiwo, 'lamp soot'); }",
+"text": "The calla leaves with a Laptop note with Taiwo's name and 'lamp soot' on it.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j7"
 }
 ],
 "memories": [
@@ -6447,5 +6477,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T16:05:57-0500"
+"updated": "2026-11-17T16:09:24-0500"
 }
