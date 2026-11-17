@@ -5615,6 +5615,16 @@
 "run": "run-5a58c4",
 "card": "j6",
 "other": "thoughts_marisol"
+},
+{
+"id": "wf_449532c711",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the jetty south pointe, and Bisola reads the name twice.",
+"code": "wser.interactwith(jetty_south_pointe){ jetty_south_pointe.receives(wser.envelope); … }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "wser"
 }
 ],
 "plot": [
@@ -5715,17 +5725,6 @@
 ]
 },
 "consequences": [
-{
-"id": "wf_79c322b033",
-"ts": "2026-11-17T13:34:59-0500",
-"a": "sheep",
-"b": "god",
-"code": "sheep.interactwith(god){ god.receives(sheep.number); god.remembers(kunle, 'scorched container number'); }",
-"text": "The god leaves with a Sheep note with Kunle's name and 'scorched container number' on it.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "w7"
-},
 {
 "id": "wf_436ce8c1c9",
 "ts": "2026-11-17T13:37:24-0500",
@@ -6154,6 +6153,17 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": "j6"
+},
+{
+"id": "wf_449532c711",
+"ts": "2026-11-17T15:25:25-0500",
+"a": "wser",
+"b": "jetty_south_pointe",
+"code": "wser.interactwith(jetty_south_pointe){ jetty_south_pointe.receives(wser.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the jetty south pointe, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
 }
 ],
 "memories": [
@@ -6257,5 +6267,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T15:24:29-0500"
+"updated": "2026-11-17T15:25:25-0500"
 }
