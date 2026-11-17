@@ -4727,42 +4727,45 @@
 "card": "j2",
 "other": "dez"
 }
+],
+"florida": [
+{
+"id": "wf_8f0a8e9b34",
+"kind": "consequence",
+"text": "The florida leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "wser.interactwith(florida){ florida.receives(wser.envelope); florida.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "wser"
+}
+],
+"htpto": [
+{
+"id": "wf_115fa7c106",
+"kind": "consequence",
+"text": "The teomarisollove ends up with the htpto, still in love, said out loud by Marisol (w14 causeway).",
+"code": "teomarisollove.interactwith(htpto){ teomarisollove.db.copyto(htpto); … }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "",
+"other": "teomarisollove"
+}
+],
+"sandal": [
+{
+"id": "wf_41da789b3b",
+"kind": "consequence",
+"text": "The sandal leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "bicycle.interactwith(sandal){ sandal.receives(bicycle.envelope); sandal.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "bicycle"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_229c80496b",
-"ts": "2026-11-17T00:53:22-0500",
-"a": "pure_water_cooler",
-"b": "truth",
-"code": "pure_water_cooler.interactwith(truth){ truth.receives(pure_water_cooler.number); … }",
-"text": "A Pure water cooler note with Kunle's name and 'container number' on it, 9:20am, turns up inside the egbe note at the truth, and Titi reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "w1"
-},
-{
-"id": "wt_d887eb68cd",
-"ts": "2026-11-17T04:51:32-0500",
-"a": "matches",
-"b": "mi",
-"code": "matches.interactwith(mi){ mi.receives(matches, 'container number'); mi.remembers(kunle, 'same hand on number and stop'); matches.dim(); }",
-"text": "At the doorway the matches strike once near mi, and by that small light Kunle sees that the scorched container number and the stop that no longer exists are written in the same hand.",
-"author": "thryd",
-"run": "run-0bd7c0",
-"card": "w7"
-},
-{
-"id": "wt_f1d19787d9",
-"ts": "2026-11-17T04:51:32-0500",
-"a": "danfo_speaker",
-"b": "mi",
-"code": "danfo_speaker.interactwith(mi){ mi.receives(danfo_speaker, '11:20pm'); mi.find('brown envelope').add('11:20pm'); }",
-"text": "At the curb mi catches the danfo speaker's skipped bar and keeps it, so mi now holds 11:20pm, the hour from Taiwo's egbe note, next to Kunle's dead stop.",
-"author": "thryd",
-"run": "run-0bd7c0",
-"card": "w6"
-},
 {
 "id": "wt_b0d270a804",
 "ts": "2026-11-17T04:51:32-0500",
@@ -5169,6 +5172,39 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": "j2"
+},
+{
+"id": "wf_8f0a8e9b34",
+"ts": "2026-11-17T11:12:57-0500",
+"a": "wser",
+"b": "florida",
+"code": "wser.interactwith(florida){ florida.receives(wser.envelope); florida.remembers(bisola, 'brown envelope'); }",
+"text": "The florida leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
+},
+{
+"id": "wf_115fa7c106",
+"ts": "2026-11-17T11:14:19-0500",
+"a": "teomarisollove",
+"b": "htpto",
+"code": "teomarisollove.interactwith(htpto){ teomarisollove.db.copyto(htpto); … }",
+"text": "The teomarisollove ends up with the htpto, still in love, said out loud by Marisol (w14 causeway).",
+"author": "cos",
+"run": "run-5a58c4",
+"card": ""
+},
+{
+"id": "wf_41da789b3b",
+"ts": "2026-11-17T11:16:24-0500",
+"a": "bicycle",
+"b": "sandal",
+"code": "bicycle.interactwith(sandal){ sandal.receives(bicycle.envelope); sandal.remembers(bisola, 'brown envelope'); }",
+"text": "The sandal leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
 }
 ],
 "memories": [
@@ -5272,5 +5308,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T11:11:39-0500"
+"updated": "2026-11-17T11:16:24-0500"
 }
