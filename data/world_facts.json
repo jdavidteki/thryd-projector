@@ -4708,6 +4708,16 @@
 "run": "run-5a58c4",
 "card": "j2",
 "other": "marker_b"
+},
+{
+"id": "wf_b943b0d4b5",
+"kind": "consequence",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the juju code at the fire escape outside, and Ejiro reads the name twice.",
+"code": "dez.interactwith(fire_escape_outside){ fire_escape_outside.receives(dez.code); … }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j2",
+"other": "dez"
 }
 ],
 "heat": [
@@ -4898,17 +4908,6 @@
 ]
 },
 "consequences": [
-{
-"id": "wf_7a23ebd431",
-"ts": "2026-11-17T09:57:24-0500",
-"a": "kerosene_lamp",
-"b": "truth",
-"code": "kerosene_lamp.interactwith(truth){ truth.receives(kerosene_lamp.change); … }",
-"text": "A Kerosene lamp note with Taiwo's name and 'change' on it, turns up inside the egbe note at the truth, and Titi reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "w"
-},
 {
 "id": "wf_0f8059f1ed",
 "ts": "2026-11-17T09:59:48-0500",
@@ -5337,6 +5336,17 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": "j7"
+},
+{
+"id": "wf_b943b0d4b5",
+"ts": "2026-11-17T12:17:05-0500",
+"a": "dez",
+"b": "fire_escape_outside",
+"code": "dez.interactwith(fire_escape_outside){ fire_escape_outside.receives(dez.code); … }",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the juju code at the fire escape outside, and Ejiro reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j2"
 }
 ],
 "memories": [
@@ -5440,5 +5450,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T11:48:56-0500"
+"updated": "2026-11-17T12:17:05-0500"
 }
