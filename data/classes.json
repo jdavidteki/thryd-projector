@@ -27,8 +27,8 @@
     "on",
     "open"
    ],
-   "instances": 50,
-   "arg_instances": 7,
+   "instances": 51,
+   "arg_instances": 8,
    "parent": "Thing",
    "chain": [
     "Person",
@@ -74,10 +74,11 @@
   "Place": {
    "param": "where",
    "methods": [
+    "follow",
     "see"
    ],
-   "instances": 8,
-   "arg_instances": 1,
+   "instances": 9,
+   "arg_instances": 2,
    "parent": "Thing",
    "chain": [
     "Place",
@@ -101,11 +102,11 @@
    "param": "what",
    "methods": [
     "on",
-    "guess",
-    "hear"
+    "know",
+    "bow"
    ],
-   "instances": 332,
-   "arg_instances": 13,
+   "instances": 335,
+   "arg_instances": 17,
    "parent": null,
    "chain": [
     "Thing"
@@ -321,6 +322,22 @@
    ],
    "tweets": []
   },
+  "afternoon": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-5a58c4",
+   "first_job": "j32",
+   "source": "pick",
+   "runs": [
+    "run-5a58c4"
+   ],
+   "tweets": [
+    {
+     "text": "#sbn - in this hot afternoon that everybody is at [[bow]]?",
+     "year": "2026"
+    }
+   ]
+  },
   "again": {
    "class": "Frequency",
    "cue": "word",
@@ -436,6 +453,22 @@
     "run-0ae93c"
    ],
    "tweets": []
+  },
+  "anywhere": {
+   "class": "Place",
+   "cue": "word",
+   "first_run": "run-5a58c4",
+   "first_job": "j31",
+   "source": "pick",
+   "runs": [
+    "run-5a58c4"
+   ],
+   "tweets": [
+    {
+     "text": "- his brother is going to follow him to anywhere",
+     "year": "2025"
+    }
+   ]
   },
   "asa": {
    "class": "Thing",
@@ -1392,12 +1425,17 @@
    "first_job": "j6",
    "source": "pick",
    "runs": [
-    "run-cb805f"
+    "run-cb805f",
+    "run-5a58c4"
    ],
    "tweets": [
     {
      "text": "- dyeriz [[not.tyn]] else like you",
      "year": "2025"
+    },
+    {
+     "text": "[[rdbjz]] - i dont even know what else to say 🙆‍♂️",
+     "year": "2024"
     }
    ]
   },
@@ -1439,6 +1477,22 @@
     "run-bd649b"
    ],
    "tweets": []
+  },
+  "everything": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-5a58c4",
+   "first_job": "j33",
+   "source": "pick",
+   "runs": [
+    "run-5a58c4"
+   ],
+   "tweets": [
+    {
+     "text": "- you know i know [[everything]]",
+     "year": "2025"
+    }
+   ]
   },
   "example": {
    "class": "Thing",
@@ -2902,13 +2956,19 @@
   "money": {
    "class": "Thing",
    "cue": "default",
-   "first_run": "run-3a15d2",
-   "first_job": "j5",
-   "source": "typed",
+   "first_run": "run-5a58c4",
+   "first_job": "j32",
+   "source": "pick",
    "runs": [
+    "run-5a58c4",
     "run-3a15d2"
    ],
-   "tweets": []
+   "tweets": [
+    {
+     "text": "#life - look at how deya giving me dya money",
+     "year": "2024"
+    }
+   ]
   },
   "morenike": {
    "class": "Thing",
@@ -3979,6 +4039,22 @@
    ],
    "tweets": []
   },
+  "second": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-5a58c4",
+   "first_job": "j33",
+   "source": "pick",
+   "runs": [
+    "run-5a58c4"
+   ],
+   "tweets": [
+    {
+     "text": "-- if e no respond on the 4th second, epp me",
+     "year": "2024"
+    }
+   ]
+  },
   "seen": {
    "class": "Thing",
    "cue": "default",
@@ -4582,6 +4658,22 @@
    ],
    "tweets": []
   },
+  "them": {
+   "class": "Person",
+   "cue": "word",
+   "first_run": "run-5a58c4",
+   "first_job": "j33",
+   "source": "pick",
+   "runs": [
+    "run-5a58c4"
+   ],
+   "tweets": [
+    {
+     "text": "[[htmyb]] - it depends, if you want them",
+     "year": "2026"
+    }
+   ]
+  },
   "thryd": {
    "class": "Thing",
    "cue": "default",
@@ -4947,6 +5039,10 @@
     {
      "text": "[[wsr]] - or do they have to buy this wan",
      "year": "2024"
+    },
+    {
+     "text": "-- sorry, i have to come back to this wan",
+     "year": "2025"
     }
    ]
   },
@@ -5454,12 +5550,6 @@
     "pick"
    ],
    [
-    "wan",
-    "Thing",
-    "j26",
-    "pick"
-   ],
-   [
     "like",
     "Manner",
     "j27",
@@ -5502,14 +5592,62 @@
     "pick"
    ],
    [
+    "anywhere",
+    "Place",
+    "j31",
+    "pick"
+   ],
+   [
+    "else",
+    "Thing",
+    "j31",
+    "pick"
+   ],
+   [
     "inside",
     "Place",
     "j32",
     "pick"
    ],
    [
+    "afternoon",
+    "Thing",
+    "j32",
+    "pick"
+   ],
+   [
+    "money",
+    "Thing",
+    "j32",
+    "pick"
+   ],
+   [
+    "wan",
+    "Thing",
+    "j32",
+    "pick"
+   ],
+   [
     "2037",
     "Quantity",
+    "j33",
+    "pick"
+   ],
+   [
+    "them",
+    "Person",
+    "j33",
+    "pick"
+   ],
+   [
+    "everything",
+    "Thing",
+    "j33",
+    "pick"
+   ],
+   [
+    "second",
+    "Thing",
     "j33",
     "pick"
    ],
@@ -8506,8 +8644,16 @@
   "calla.stare": "stare(feeling: Feeling)",
   "teo.sit": "sit(what: Thing)",
   "blender.line": "line(amount: Quantity)",
+  "dez.follow": "follow(where: Place)",
+  "teo.say": "say(what: Thing)",
   "calla.see": "see(where: Place)",
+  "dez.bow": "bow(what: Thing)",
+  "life.give": "give(what: Thing)",
+  "teo.come": "come(what: Thing)",
   "time.till": "till(amount: Quantity)",
+  "calla.want": "want(who: Person)",
+  "teo.know": "know(what: Thing)",
+  "teo.respond": "respond(what: Thing)",
   "calla.hear": "hear(what: Thing)",
   "dez.use": "use(what: Thing)",
   "teo.guess": "guess(what: Thing)"
@@ -8603,6 +8749,7 @@
     "history",
     "irteiutk",
     "taking",
+    "teo",
     "thrill",
     "tyn",
     "wanow"
@@ -8621,6 +8768,7 @@
     "Thing"
    ],
    "objects": [
+    "dez",
     "lateef",
     "omo",
     "teo"
@@ -8719,6 +8867,7 @@
     "lagbara",
     "pepe",
     "road",
+    "teo",
     "toothbrush",
     "tyn",
     "wife"
@@ -8733,6 +8882,7 @@
    "crime",
    "dez",
    "laff",
+   "life",
    "marisol",
    "nobody",
    "omo",
@@ -8901,5 +9051,5 @@
   "epilogue": "quiet",
   "coda": "quiet"
  },
- "updated": "2026-11-17T16:22:51-05:00"
+ "updated": "2026-11-17T16:25:14-05:00"
 }
