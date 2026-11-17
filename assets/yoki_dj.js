@@ -8,14 +8,15 @@
    - score: when thrydIntentAI is ready the page embeds only the few short context texts (scene, theme, each seated tweet) and takes
      0.5 centroid + 0.5 best line per part, weighted theme .45 / scene .3 / tweets .25. Otherwise (?noai=1, weak device, model still
      loading) it scores TF-IDF lyric terms against the context words. Either way the why-note names the lyric line and the part it met.
-   - no song repeats in a session (sessionStorage); ⏭ takes the next-best. When a new pick changes the context it re-ranks; a large mood
+   - a shuffle bag on each load (no sessionStorage/localStorage seed or index); ⏭ draws the next from the bag. When a new pick changes the context it re-ranks; a large mood
      shift (context similarity < .7) moves on after the current song has had 25 s, a small one only changes what plays next.
    Lyric match layer (v542, Jesuye 17 Nov 2026 3:24 PM ET "use the lyrics for the searching"): next() first reads data/yoki_match.json,
    the box's BM25 search over every africariyoki lyric line (tools/yoki_match.py in the 45 s export loop: #thryd's mood note for the live
    card, its scene and card lines, the seated lines, typed themes). When it is there and fresh (same active run, under 24 h old) songs
-   play in its rank order, skipping the last 3 played; ⏭ = next by rank; a new ranking waits for the current song to end (no mood-shift
-   cut); the why-line is a light pill under the lyrics ('♪ matched: “lyric” ↔ j31 blender line'). Missing/stale file or ?yokimatch=0:
-   everything above, unchanged. */
+   are shuffled (Fisher-Yates, crypto.getRandomValues) into a bag on every page load and played without repeats until the bag is empty,
+   never repeating the last 3 when another match is available; ⏭ draws the next from the bag; a new ranking waits for the current song
+   to end (no mood-shift cut) and then reshuffles the new matches; no seed or play-index is persisted. The why-line is a light pill under
+   the lyrics ('♪ matched: “lyric” ↔ j31 blender line'). Missing/stale file or ?yokimatch=0: the scored fallback is shuffled the same way. */
 (function(root){
   'use strict';
   const Q = new URLSearchParams(location.search), NOAI = Q.get('noai') === '1';
@@ -28,10 +29,8 @@
     night: ['tonight', 'night', 'party'], morning: ['sun', 'morning', 'wake'], bakery: ['bread', 'sweet'], answer: ['tell', 'know', 'question'],
     sea: ['ocean', 'water', 'beach'], beach: ['ocean', 'water', 'sea'], money: ['cash', 'money', 'rich', 'bills'], coffee: ['morning', 'wake']};
   const STOPW = new Set('the and for with from that this was were are has have had his her its into onto over than then them they their there what when where which while who will would your you she him our out all any but not can just like still same first second last away back been being very some more most only also even such into here near up'.split(' '));
-  const PLAYED_K = 'thryd_yoki_played';
   let songs = null, songsP = null, vocab = null, ranked = [], rankSig = '', lastVec = null, lastKw = null, pollT = 0, active = false, busy = null;
-  const played = new Set((()=>{ try{ return JSON.parse(sessionStorage.getItem(PLAYED_K) || '[]'); }catch(e){ return []; } })());
-  const savePlayed = ()=>{ try{ sessionStorage.setItem(PLAYED_K, JSON.stringify([...played].slice(-500))); }catch(e){} };
+  const played = [];
   const getJ = u => fetch(u, {cache: 'no-cache'}).then(r => r.ok ? r.json() : null).catch(()=> null);
   const toks = s => (String(s || '').toLowerCase().match(/[a-z']{3,}/g) || []).map(w => w.replace(/'/g, '')).filter(w => w.length > 2 && !STOPW.has(w));
   const AI = ()=> (!NOAI && root.thrydIntentAI && root.thrydIntentAI.state === 'ready' && typeof root.thrydIntentAI.embed === 'function') ? root.thrydIntentAI : null;
@@ -109,22 +108,53 @@
       return {shift: shift && !!changedJob}; })().finally(()=>{ busy = null; });
     return busy; }
 
-  // next(exclude): best unplayed song that extras.js can play (has: id -> true)
+  // Fisher-Yates using crypto.getRandomValues when available (no stored seed).
+  function randInt(n){ if(n <= 1) return 0;
+    const c = root.crypto || (typeof crypto !== 'undefined' ? crypto : null);
+    if(c && c.getRandomValues){ const buf = new Uint32Array(1); const max = Math.floor(0x100000000 / n) * n; let x;
+      do { c.getRandomValues(buf); x = buf[0]; } while(x >= max);
+      return x % n; }
+    return Math.floor(Math.random() * n); }
+  function shuffle(arr){ const a = arr.slice(); for(let i = a.length - 1; i > 0; i--){ const j = randInt(i + 1), t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+  const cid = x => x && (x.id || (x.s && x.s.id));
+  let bag = [], bagSig = '', recent = [], mLast = null;
+
+  function refill(list){ bag = shuffle(list); }
+  function draw(list){
+    if(!list.length) return null;
+    if(!bag.length) refill(list);
+    let i = bag.findIndex(x => recent.indexOf(cid(x)) < 0);
+    if(i < 0) i = 0;
+    const x = bag.splice(i, 1)[0];
+    const id = cid(x);
+    recent = recent.filter(r => r !== id).concat(id).slice(-3);
+    if(played.indexOf(id) < 0) played.push(id);
+    mLast = id;
+    return x; }
+
+  // next(has): random mood-matched song from a shuffle bag (no repeats until empty; never the last 3
+  // when another match is available). Bag is rebuilt on every page load and whenever the candidate set changes.
   DJ.next = async function(has){ let lm = null; try{ lm = await loadMatch(); }catch(e){ lm = null; }
     if(lm){ const r = nextMatched(has); if(r) return r; }
     try{ await refresh(); }catch(e){ DJ.state = 'fallback'; return null; }
-    let pool = ranked.filter(r => (!has || has(r.s.id)) && !played.has(r.s.id));
-    if(!pool.length){ played.clear(); savePlayed(); pool = ranked.filter(r => !has || has(r.s.id)); }
-    const r = pool[0]; if(!r) return null; played.add(r.s.id); savePlayed(); DJ.why = {id: r.s.id, title: r.s.t, artist: r.s.a, score: +r.score.toFixed(3), mode: DJ.mode, ...r.why, ctx: {run: DJ.ctx.run, job: DJ.ctx.job, theme: DJ.ctx.themeLabel}};
+    const scored = ranked.filter(r => (!has || has(r.s.id)) && r.score > 0);
+    const L = (scored.length ? scored : ranked.filter(r => !has || has(r.s.id)));
+    const sig = 'rank:' + L.map(cid).join(',');
+    if(sig !== bagSig){ bagSig = sig; refill(L); }
+    const r = draw(L); if(!r) return null;
+    DJ.why = {id: r.s.id, title: r.s.t, artist: r.s.a, score: +r.score.toFixed(3), mode: DJ.mode, ...r.why, ctx: {run: DJ.ctx.run, job: DJ.ctx.job, theme: DJ.ctx.themeLabel}};
     return {id: r.s.id, why: DJ.why}; };
-  DJ.queue = (n)=> match ? match.top.slice(0, n || 5).map(x => ({title: x.title, artist: x.artist, score: x.score, line: x.matches && x.matches[0] && x.matches[0].line, part: 'lyrics'})) : ranked.filter(r => !played.has(r.s.id)).slice(0, n || 5).map(r => ({title: r.s.t, artist: r.s.a, score: +r.score.toFixed(3), line: r.why.line, part: r.why.part}));
-  DJ.played = ()=> [...played];
+  DJ.queue = (n)=> {
+    const take = (arr)=> (arr || []).slice(0, n || 5);
+    if(bag.length) return take(bag).map(x => x.s ? {title: x.s.t, artist: x.s.a, score: +x.score.toFixed(3), line: x.why && x.why.line, part: x.why && x.why.part} : {title: x.title, artist: x.artist, score: x.score, line: x.matches && x.matches[0] && x.matches[0].line, part: 'lyrics'});
+    return match ? take(match.top).map(x => ({title: x.title, artist: x.artist, score: x.score, line: x.matches && x.matches[0] && x.matches[0].line, part: 'lyrics'})) : take(ranked).map(r => ({title: r.s.t, artist: r.s.a, score: +r.score.toFixed(3), line: r.why.line, part: r.why.part}));
+  };
+  DJ.played = ()=> played.slice();
+  DJ.recent = ()=> recent.slice();
 
   // ---------- lyric match layer (data/yoki_match.json)
-  const NOMATCH = Q.get('yokimatch') === '0', RECENT_K = 'thryd_yoki_recent', MATCH_MAX_AGE = 24 * 3600e3;
-  let match = null, matchSig = '', matchNew = false, mLast = null;
-  let recent = (()=>{ try{ const r = JSON.parse(localStorage.getItem(RECENT_K) || '[]'); return Array.isArray(r) ? r.slice(-3) : []; }catch(e){ return []; } })();
-  const remember = id => { recent = recent.filter(x => x !== id); recent.push(id); recent = recent.slice(-3); try{ localStorage.setItem(RECENT_K, JSON.stringify(recent)); }catch(e){} };
+  const NOMATCH = Q.get('yokimatch') === '0', MATCH_MAX_AGE = 24 * 3600e3;
+  let match = null, matchSig = '', matchNew = false;
   DJ.matchState = NOMATCH ? 'off' : 'unread';
   async function loadMatch(){ if(NOMATCH){ match = null; return null; }
     const [m, ao] = await Promise.all([getJ('data/yoki_match.json?_=' + Date.now()), getJ('data/agenda_objects.json')]);
@@ -136,13 +166,14 @@
     if(sig !== matchSig){ if(matchSig) matchNew = true; matchSig = sig; }
     match = {job: m.job, run: m.run, sig, top}; DJ.matchState = 'ok'; return match; }
   function nextMatched(has){ if(!match) return null; const L = match.top.filter(x => !has || has(x.id)); if(!L.length) return null;
-    const s0 = matchNew ? 0 : Math.max(0, L.findIndex(x => x.id === mLast) + 1); matchNew = false;
-    let x = null; for(let k = 0; k < L.length; k++){ const c = L[(s0 + k) % L.length]; if(recent.indexOf(c.id) < 0){ x = c; break; } }
-    x = x || L[s0 % L.length]; mLast = x.id; remember(x.id); played.add(x.id); savePlayed();
+    const sig = 'match:' + L.map(cid).join(',');
+    if(matchNew || sig !== bagSig){ bagSig = sig; refill(L); matchNew = false; }
+    const x = draw(L); if(!x) return null;
     const m0 = (x.matches && x.matches[0]) || {};
     DJ.mode = 'lyrics'; DJ.why = {src: 'match', id: x.id, title: x.title, artist: x.artist, score: x.score, rank: x.rank, text: x.why || '', line: m0.line || '', term: m0.term || '', via: m0.via || '', mode: 'lyrics', ctx: {run: match.run, job: match.job}};
     return {id: x.id, why: DJ.why}; }
   DJ.match = ()=> ({state: DJ.matchState, job: match && match.job, sig: matchSig, n: match ? match.top.length : 0, pending: matchNew, last: mLast, recent: recent.slice()});
+
   DJ.reloadMatch = ()=> loadMatch().then(()=> DJ.match());
 
   // ---------- the fading why-note
