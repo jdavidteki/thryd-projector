@@ -6,6 +6,10 @@ the episode is one row in data/podcasts.json plus its transcript at data/podcast
 
 TEASER may be '-' for none. COVER may be a .png/.jpg (a non-jpg is converted to a 1280-wide jpg).
 Creates the release (or uploads/replaces assets on an existing one) with box `gh`, then appends or replaces the row.
+By default it also makes a web copy (H.264 High, AAC 128k, 720p, faststart, CRF 27; CRF is raised until the file is under 45 MB)
+under podcasts/media/ and points the player at it: GitHub Pages serves it same-origin as video/mp4 with range requests, which
+iOS Safari plays inline, while release assets are attachment/octet-stream. The release stays the full-quality / download link
+and the player's fallback. --no-web skips the web copy (the player then streams the release asset).
 --publish commits the two data files and pushes under the publish lock (data only, no version bump; never a force push).
 """
 import argparse, datetime, json, os, re, shutil, struct, subprocess, sys, tempfile
@@ -44,6 +48,18 @@ def streamable(p, tmp, name):
         q = os.path.join(tmp, name); shutil.copyfile(p, q); return q
     q = os.path.join(tmp, name); sh('ffmpeg', '-v', 'error', '-y', '-i', p, '-c', 'copy', '-movflags', '+faststart', q); return q
 
+MAX_WEB = 45 * 1024 * 1024  # GitHub rejects files over 100 MB and warns over 50 MB; stay well under
+
+def web_copy(src, dst, crf):
+    """720p H.264 High + AAC 128k, faststart; raise CRF until it fits"""
+    while True:
+        sh('ffmpeg', '-v', 'error', '-y', '-i', src, '-c:v', 'libx264', '-profile:v', 'high', '-preset', 'slow', '-crf', str(crf),
+           '-vf', "scale=-2:'min(720,ih)'", '-pix_fmt', 'yuv420p', '-c:a', 'aac', '-b:a', '128k', '-movflags', '+faststart', dst)
+        if os.path.getsize(dst) <= MAX_WEB or crf >= 35: break
+        crf += 2
+    if os.path.getsize(dst) > MAX_WEB: sys.exit('web copy still over 45 MB at CRF %d: %s' % (crf, dst))
+    return crf
+
 def mmss(s): s = int(round(s)); return '%d:%02d' % (s // 60, s % 60)
 
 def main():
@@ -52,6 +68,8 @@ def main():
     ap.add_argument('--title'); ap.add_argument('--date'); ap.add_argument('--tag'); ap.add_argument('--id')
     ap.add_argument('--featured', action='store_true'); ap.add_argument('--publish', action='store_true')
     ap.add_argument('--notes', default='')
+    ap.add_argument('--no-web', action='store_true', help='no same-origin web copy under podcasts/media/')
+    ap.add_argument('--crf', type=int, default=27)
     a = ap.parse_args()
     for p in (a.video, a.cover, a.transcript) + (() if a.teaser == '-' else (a.teaser,)):
         if not os.path.isfile(p): sys.exit('missing file: ' + p)
@@ -79,11 +97,20 @@ def main():
     shutil.copyfile(cov, os.path.join(ROOT, 'data', 'podcasts', eid + '_cover.jpg'))
     row = {'id': eid, 'run': a.run, 'title': title, 'date': date, 'duration_s': round(duration(files['video']), 1),
            'length': mmss(duration(files['video'])), 'video': base + os.path.basename(files['video']),
+           'video_release': base + os.path.basename(files['video']),
            'teaser': base + os.path.basename(files['teaser']) if 'teaser' in files else None,
+           'teaser_release': base + os.path.basename(files['teaser']) if 'teaser' in files else None,
            'teaser_length': mmss(duration(files['teaser'])) if 'teaser' in files else None,
            'cover': 'data/podcasts/' + eid + '_cover.jpg', 'cover_release': base + os.path.basename(cov), 'transcript': 'data/podcasts/' + eid + '.md',
            'release': 'https://github.com/%s/releases/tag/%s' % (REPO, tag), 'featured': bool(a.featured),
            'added': datetime.datetime.now().astimezone().isoformat(timespec='seconds')}
+    web = []
+    if not a.no_web:
+        md = os.path.join(ROOT, 'podcasts', 'media'); os.makedirs(md, exist_ok=True)
+        for k, suf in (('video', ''), ('teaser', '_teaser')):
+            if k not in files: continue
+            rel = 'podcasts/media/' + eid + suf + '.mp4'; crf = web_copy(files[k], os.path.join(ROOT, rel), a.crf)
+            row[k] = rel; row[k + '_web'] = {'bytes': os.path.getsize(os.path.join(ROOT, rel)), 'crf': crf, 'codec': 'h264 high 720p + aac 128k, faststart'}; web.append(rel)
     try: doc = json.load(open(DATA))
     except FileNotFoundError: doc = {'episodes': []}
     eps = [e for e in doc.get('episodes', []) if e.get('id') != eid]
@@ -95,8 +122,8 @@ def main():
     shutil.rmtree(tmp, ignore_errors=True)
     print(json.dumps(row, ensure_ascii=False, indent=1))
     if a.publish:
-        sh('git', 'add', 'data/podcasts.json', row['transcript'], row['cover'], cwd=ROOT)
-        sh('git', 'commit', '-qm', 'data: podcast episode %s (release %s); data only, no version bump' % (eid, tag), cwd=ROOT)
+        sh('git', 'add', 'data/podcasts.json', row['transcript'], row['cover'], *web, cwd=ROOT)
+        sh('git', 'commit', '-qm', 'data: podcast episode %s (release %s); data only, no version bump' % (eid, tag), '--', 'data/podcasts.json', row['transcript'], row['cover'], *web, cwd=ROOT)
         sh('flock', LOCK, '-c', 'git pull -q --rebase --autostash && git push -q origin HEAD:main', cwd=ROOT)
         print('published')
 

@@ -29,10 +29,11 @@
   const rel = u => !u ? '' : /^https?:/.test(u) ? u : '../' + u; // repo paths in the JSON are relative to the site root
   function player(ep){
     const wrap = $('div', 'player'); const v = $('video'); v.controls = true; v.preload = 'metadata'; v.playsInline = true; v.setAttribute('playsinline', '');
-    v.poster = rel(ep.cover); v.src = ep.video; v.setAttribute('aria-label', 'Episode: ' + ep.title); wrap.appendChild(v);
+    v.poster = rel(ep.cover); const full = ep.video_release || rel(ep.video); v.setAttribute('aria-label', 'Episode: ' + ep.title); wrap.appendChild(v);
     const fb = $('div', 'fallback'); if(ep.cover) fb.style.backgroundImage = 'linear-gradient(#000a,#000a),url("' + encodeURI(rel(ep.cover)) + '")';
-    fb.appendChild($('div', '', 'The episode could not stream here. Open it on GitHub instead.')); const a = $('a', '', '▶ open the episode (' + (ep.length || 'mp4') + ')'); a.href = ep.video; a.rel = 'noopener'; a.target = '_blank'; fb.appendChild(a); wrap.appendChild(fb);
+    fb.appendChild($('div', '', 'The episode could not stream here. Open it on GitHub instead.')); const a = $('a', '', '▶ open the episode (' + (ep.length || 'mp4') + ')'); a.href = full; a.rel = 'noopener'; a.target = '_blank'; fb.appendChild(a); wrap.appendChild(fb);
     v.addEventListener('error', () => { fb.classList.add('on'); wrap.dataset.fallback = '1'; });
+    v.src = rel(ep.video); // same-origin web copy (video/mp4 + ranges, plays inline on iOS); the release is the full-quality link and the fallback
     return {wrap, v};
   }
   function card(ep){
@@ -41,13 +42,14 @@
     const b = $('div', 'body'); if(ep.featured) b.appendChild($('span', 'badge', 'featured'));
     b.appendChild($('h2', '', ep.title));
     const meta = $('div', 'meta'); meta.appendChild($('span', '', fmtDate(ep.date))); meta.appendChild($('span', '', '⏱ ' + (ep.length || ''))); if(ep.run) meta.appendChild($('span', '', ep.run)); b.appendChild(meta);
-    const row = $('div', 'row'); const dl = $('a', 'btn', '⬇ mp4'); dl.href = ep.video; dl.rel = 'noopener'; row.appendChild(dl);
+    const row = $('div', 'row'); const dl = $('a', 'btn', '⬇ full quality'); dl.title = 'Full-quality mp4 / download (GitHub Release)'; dl.href = ep.video_release || rel(ep.video); dl.rel = 'noopener'; row.appendChild(dl);
     if(ep.release){ const rl = $('a', 'btn', 'release'); rl.href = ep.release; rl.rel = 'noopener'; row.appendChild(rl); }
     const sh = $('button', 'btn', '🔗 link'); sh.type = 'button'; sh.addEventListener('click', () => { const u = location.href.split('#')[0] + '#' + ep.id; try{ navigator.clipboard.writeText(u); sh.textContent = '✓ copied'; setTimeout(() => sh.textContent = '🔗 link', 1600); }catch(e){ location.hash = ep.id; } }); row.appendChild(sh);
     b.appendChild(row);
-    if(ep.teaser){ const t = $('div', 'teaser'); const tv = $('video'); tv.controls = true; tv.preload = 'none'; tv.playsInline = true; tv.setAttribute('playsinline', ''); tv.poster = rel(ep.cover); tv.src = ep.teaser; tv.setAttribute('aria-label', 'Teaser: ' + ep.title);
+    if(ep.teaser){ const t = $('div', 'teaser'); const tv = $('video'); tv.controls = true; tv.preload = 'metadata'; tv.playsInline = true; tv.setAttribute('playsinline', ''); tv.poster = rel(ep.cover); tv.setAttribute('aria-label', 'Teaser: ' + ep.title);
       const tp = $('p', '', 'Teaser · ' + (ep.teaser_length || '0:30') + ' · the quick version to share. '); t.appendChild(tv); t.appendChild(tp);
-      tv.addEventListener('error', () => { if(tp.querySelector('a')) return; const ta = $('a', '', 'Open the teaser'); ta.href = ep.teaser; ta.rel = 'noopener'; ta.target = '_blank'; tp.appendChild(ta); t.dataset.fallback = '1'; }); b.appendChild(t); }
+      tv.addEventListener('error', () => { if(tp.querySelector('a')) return; const ta = $('a', '', 'Open the teaser'); ta.href = ep.teaser_release || rel(ep.teaser); ta.rel = 'noopener'; ta.target = '_blank'; tp.appendChild(ta); t.dataset.fallback = '1'; });
+      tv.src = rel(ep.teaser); /* listener first, so an early load error still shows the link */ b.appendChild(t); }
     if(ep.transcript){ const d = $('details', 'tr'); const s = $('summary', '', 'Transcript'); d.appendChild(s); const box = $('div', 'tx'); box.textContent = 'Loading…'; d.appendChild(box); let got = false;
       d.addEventListener('toggle', () => { if(!d.open || got) return; got = true;
         fetch('../' + ep.transcript + '?t=' + Date.now()).then(r => { if(!r.ok) throw new Error(r.status); return r.text(); }).then(md => renderMd(md, box, v)).catch(() => { got = false; box.textContent = 'Transcript could not load. Try again.'; }); });
