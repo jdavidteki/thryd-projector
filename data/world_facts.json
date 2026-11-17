@@ -3906,6 +3906,16 @@
 "run": "run-0bd7c0",
 "card": "w",
 "other": "danfo_speaker"
+},
+{
+"id": "wf_380ced25de",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the wsr, and Bisola reads the name twice.",
+"code": "kweshon.interactwith(wsr){ wsr.receives(kweshon.envelope); wsr.remembers(bisola, 'brown envelope'); wsr.tucks(kweshon, 'yaba bookshop receipt into the brown envelope'); }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "kweshon"
 }
 ],
 "eyes_viral_figure": [
@@ -4232,17 +4242,6 @@
 ]
 },
 "consequences": [
-{
-"id": "wf_5824c85ef1",
-"ts": "2026-11-16T14:50:52-0500",
-"a": "cassette_spine",
-"b": "lekki_pharmacy",
-"code": "cassette_spine.interactwith(lekki_pharmacy){ lekki_pharmacy.receives(cassette_spine.love); … }",
-"text": "A Yaba bukka counter chit with Kunle's name and 'love' on it, 5:30pm, turns up inside the unpaid prescription slip at the lekki pharmacy, and Titi reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j7"
-},
 {
 "id": "wt_d8bf4e2285",
 "ts": "2026-11-16T14:52:32-0500",
@@ -4671,6 +4670,17 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "w1"
+},
+{
+"id": "wf_380ced25de",
+"ts": "2026-11-16T19:31:12-0500",
+"a": "kweshon",
+"b": "wsr",
+"code": "kweshon.interactwith(wsr){ wsr.receives(kweshon.envelope); wsr.remembers(bisola, 'brown envelope'); wsr.tucks(kweshon, 'yaba bookshop receipt into the brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the wsr, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
 }
 ],
 "memories": [
@@ -4774,5 +4784,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-16T19:25:35-0500"
+"updated": "2026-11-16T19:31:12-0500"
 }
