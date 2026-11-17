@@ -1,6 +1,6 @@
 {
- "v": 1,
- "note": "object -> its own functions (code titles of seated picks across every agenda; first seated title defines, later ones call). Objects not listed keep the old glow/grow/dim methods. Built by tools/export_object_methods.py.",
+ "v": 2,
+ "note": "object -> its own functions (code titles of seated picks across every agenda; first seated title defines, later ones call), plus inherited functions from its environment (inherit: the run it belongs to, then the safe its frame was cut from or its run was seeded from, with every function seated there or in other runs seeded from that safe). Objects with neither keep the old glow/grow/dim. Built by tools/export_object_methods.py.",
  "functions": {
   "everywhere.getdayagreeeeeennnn": {
    "object": "everywhere",
@@ -1497,6 +1497,97 @@
      "consequence_job": "j26"
     }
    ]
+  },
+  "road.air": {
+   "object": "road",
+   "method": "air",
+   "args": [
+    "shu"
+   ],
+   "runs": [
+    "run-5a58c4"
+   ],
+   "defined": {
+    "run": "run-5a58c4",
+    "job": "j26",
+    "card": "w26",
+    "title": "road.air(shu)",
+    "emoji": "🔦",
+    "at": "2026-11-17T11:07:01-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "road.air(shu)",
+     "emoji": "🔦",
+     "arg": "shu",
+     "run": "run-5a58c4",
+     "job": "j26",
+     "tweets": [
+      {
+       "text": "[[sitc]] - he shu do the road in the air!",
+       "year": "2024"
+      },
+      {
+       "text": "- this guy wan [[lie]] wey everybody",
+       "year": "2024"
+      },
+      {
+       "text": "why do i always forget the meaning of the word 'nihilist' #seniorboys",
+       "year": "2023",
+       "id": "1619919435112009729"
+      }
+     ],
+     "consequence": "7:20pm, Monday 2 November 2026, the lawn under the Cape Florida lighthouse at Bill Baggs on Key Biscayne, Miami, Florida, the last of the afterglow gone and the tower lamp just coming on over the dark Atlantic.",
+     "consequence_job": "j27"
+    }
+   ]
+  },
+  "thrill.know": {
+   "object": "thrill",
+   "method": "know",
+   "args": [
+    "wan"
+   ],
+   "runs": [
+    "run-5a58c4"
+   ],
+   "defined": {
+    "run": "run-5a58c4",
+    "job": "j26",
+    "card": "w26",
+    "title": "thrill.know(wan)",
+    "emoji": "🎁",
+    "at": "2026-11-17T11:07:01-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "thrill.know(wan)",
+     "emoji": "🎁",
+     "arg": "wan",
+     "run": "run-5a58c4",
+     "job": "j26",
+     "tweets": [
+      {
+       "text": "[[wsr]] - or do they have to buy this wan",
+       "year": "2024"
+      },
+      {
+       "text": "- at the end of the day, i like it. i like the thrill of initially not knowing. and then slowly, [[painfully]], #thryd:ing through and finally figuring it out. #life",
+       "year": "2023",
+       "id": "1722311159208968402"
+      },
+      {
+       "text": "- that information is public online!- shut up, i know! nonsense #yorubbbygehinny",
+       "year": "2023",
+       "id": "1705256691456004535"
+      }
+     ],
+     "consequence": "7:20pm, Monday 2 November 2026, the lawn under the Cape Florida lighthouse at Bill Baggs on Key Biscayne, Miami, Florida, the last of the afterglow gone and the tower lamp just coming on over the dark Atlantic.",
+     "consequence_job": "j27"
+    }
+   ]
   }
  },
  "objects": {
@@ -1575,6 +1666,9 @@
   "real": [
    "real.tune"
   ],
+  "road": [
+   "road.air"
+  ],
   "rock": [
    "rock.isages"
   ],
@@ -1603,6 +1697,9 @@
    "teo.hide",
    "teo.fold"
   ],
+  "thrill": [
+   "thrill.know"
+  ],
   "toothbrush": [
    "toothbrush.on"
   ],
@@ -1619,6 +1716,3206 @@
   "wife": [
    "wife.kill"
   ]
+ },
+ "inherit": {
+  "all_nigerian_hormones_figure": [
+   {
+    "scope": "safe",
+    "from": "ecbaffa655c1",
+    "title": "506. infact and even",
+    "funcs": [
+     "openmedia.isgif"
+    ]
+   }
+  ],
+  "amnhagc": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "beef_figure": [
+   {
+    "scope": "safe",
+    "from": "f3242b82bede",
+    "title": "113. beef",
+    "funcs": [
+     "kunle.mix"
+    ]
+   }
+  ],
+  "boat": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "bracket_amnhagc": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "bracket_god": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "bracket_hard": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "bracket_heat": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "bracket_hpr": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "bracket_htpto": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "bracket_icsh": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "bracket_itmoai": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "bracket_kmb": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "bracket_love": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "bracket_matbaotstaili": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "bracket_mbtij": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "bracket_tbp": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "bracket_tnw": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "bracket_tsis": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "bracket_water": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "bracket_wser": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "burial_reception_hall_subject": [
+   {
+    "scope": "run",
+    "from": "run-bd649b",
+    "funcs": [
+     "kunle.mix",
+     "history.see",
+     "wife.kill",
+     "pepe.settink",
+     "kunle.teach"
+    ]
+   }
+  ],
+  "burial_reception_hall_subject_second": [
+   {
+    "scope": "run",
+    "from": "run-bd649b",
+    "funcs": [
+     "kunle.mix",
+     "history.see",
+     "wife.kill",
+     "pepe.settink",
+     "kunle.teach"
+    ]
+   }
+  ],
+  "cabin_door": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "cabin_lamp": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "calla": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "calla_5a58c4": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "calla_s_light": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "catalyst_subject": [
+   {
+    "scope": "safe",
+    "from": "f4ff9cc7d7bd",
+    "title": "102. the catalyst",
+    "funcs": [
+     "irteiutk.count"
+    ]
+   }
+  ],
+  "certain_individuals_figure": [
+   {
+    "scope": "safe",
+    "from": "1043ee742884",
+    "title": "120. certain individuals",
+    "funcs": [
+     "everywhere.getwatching"
+    ]
+   }
+  ],
+  "day_life_god_subject": [
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "dez": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "dez_5a58c4": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "dog": [
+   {
+    "scope": "safe",
+    "from": "61ae7008a5f0",
+    "title": "903. rip ×= 4",
+    "funcs": [
+     "crime.know"
+    ]
+   }
+  ],
+  "doing_something_subject": [
+   {
+    "scope": "safe",
+    "from": "eb4af1c3e662",
+    "title": "312. yes",
+    "funcs": [
+     "code.say"
+    ]
+   }
+  ],
+  "dress_marisol": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "excuse_me_figure": [
+   {
+    "scope": "safe",
+    "from": "d15604eed466",
+    "title": "803. excuse me",
+    "funcs": [
+     "history.see"
+    ]
+   }
+  ],
+  "fail_subject": [
+   {
+    "scope": "safe",
+    "from": "fad8da2e5cf6",
+    "title": "1129. how to [[fail]]",
+    "funcs": [
+     "care.on"
+    ]
+   }
+  ],
+  "family_compound_ikorodu_subject": [
+   {
+    "scope": "run",
+    "from": "run-bd649b",
+    "funcs": [
+     "kunle.mix",
+     "history.see",
+     "wife.kill",
+     "pepe.settink",
+     "kunle.teach"
+    ]
+   }
+  ],
+  "family_compound_ikorodu_subject_eighth": [
+   {
+    "scope": "run",
+    "from": "run-bd649b",
+    "funcs": [
+     "history.see",
+     "wife.kill",
+     "pepe.settink"
+    ]
+   }
+  ],
+  "family_compound_ikorodu_subject_fifth": [
+   {
+    "scope": "run",
+    "from": "run-bd649b",
+    "funcs": [
+     "kunle.mix",
+     "history.see",
+     "wife.kill",
+     "pepe.settink",
+     "kunle.teach"
+    ]
+   }
+  ],
+  "family_compound_ikorodu_subject_fourth": [
+   {
+    "scope": "run",
+    "from": "run-bd649b",
+    "funcs": [
+     "kunle.mix",
+     "history.see",
+     "wife.kill",
+     "pepe.settink",
+     "kunle.teach"
+    ]
+   }
+  ],
+  "family_compound_ikorodu_subject_second": [
+   {
+    "scope": "run",
+    "from": "run-bd649b",
+    "funcs": [
+     "kunle.mix",
+     "history.see",
+     "wife.kill",
+     "pepe.settink",
+     "kunle.teach"
+    ]
+   }
+  ],
+  "family_compound_ikorodu_subject_seventh": [
+   {
+    "scope": "run",
+    "from": "run-bd649b",
+    "funcs": [
+     "kunle.mix",
+     "history.see",
+     "wife.kill",
+     "pepe.settink",
+     "kunle.teach"
+    ]
+   }
+  ],
+  "family_compound_ikorodu_subject_sixth": [
+   {
+    "scope": "run",
+    "from": "run-bd649b",
+    "funcs": [
+     "kunle.mix",
+     "history.see",
+     "wife.kill",
+     "pepe.settink",
+     "kunle.teach"
+    ]
+   }
+  ],
+  "family_compound_ikorodu_subject_third": [
+   {
+    "scope": "run",
+    "from": "run-bd649b",
+    "funcs": [
+     "kunle.mix",
+     "history.see",
+     "wife.kill",
+     "pepe.settink",
+     "kunle.teach"
+    ]
+   }
+  ],
+  "fear_god_subject": [
+   {
+    "scope": "safe",
+    "from": "37496dea1aa3",
+    "title": "1128. communication",
+    "funcs": [
+     "thrill.know"
+    ]
+   }
+  ],
+  "fire_escape_outside_subject": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "fire_escape_outside_subject_fourth": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "fire_escape_outside_subject_second": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "fire_escape_outside_subject_third": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "florida_subject": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "florida_subject_fifth": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "florida_subject_fourth": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "florida_subject_second": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "florida_subject_third": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "from_suleja_texas_subject": [
+   {
+    "scope": "safe",
+    "from": "13bbdaa651ee",
+    "title": "615. from suleja to texas",
+    "funcs": [
+     "sia.count"
+    ]
+   }
+  ],
+  "front_pew_mushin_subject": [
+   {
+    "scope": "run",
+    "from": "run-bd649b",
+    "funcs": [
+     "kunle.mix",
+     "history.see",
+     "wife.kill",
+     "pepe.settink",
+     "kunle.teach"
+    ]
+   }
+  ],
+  "front_pew_mushin_subject_fifth": [
+   {
+    "scope": "run",
+    "from": "run-bd649b",
+    "funcs": [
+     "kunle.mix",
+     "history.see",
+     "wife.kill",
+     "pepe.settink",
+     "kunle.teach"
+    ]
+   }
+  ],
+  "front_pew_mushin_subject_fourth": [
+   {
+    "scope": "run",
+    "from": "run-bd649b",
+    "funcs": [
+     "kunle.mix",
+     "history.see",
+     "wife.kill",
+     "pepe.settink",
+     "kunle.teach"
+    ]
+   }
+  ],
+  "front_pew_mushin_subject_second": [
+   {
+    "scope": "run",
+    "from": "run-bd649b",
+    "funcs": [
+     "kunle.mix",
+     "history.see",
+     "wife.kill",
+     "pepe.settink",
+     "kunle.teach"
+    ]
+   }
+  ],
+  "front_pew_mushin_subject_third": [
+   {
+    "scope": "run",
+    "from": "run-bd649b",
+    "funcs": [
+     "kunle.mix",
+     "history.see",
+     "wife.kill",
+     "pepe.settink",
+     "kunle.teach"
+    ]
+   }
+  ],
+  "god": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "handbag1": [
+   {
+    "scope": "run",
+    "from": "run-cb805f",
+    "funcs": [
+     "make.setany",
+     "lateef.hide",
+     "jwvbs.open",
+     "irteiutk.count",
+     "openmedia.isgif",
+     "everywhere.getyanju",
+     "bobo.on",
+     "aotl.isline",
+     "toothbrush.on",
+     "taking.isnotes",
+     "doing.getawaselves",
+     "real.tune",
+     "lateef.teach",
+     "sia.count",
+     "rock.isages",
+     "everywhere.getcome",
+     "tyn.on",
+     "lagbara.on",
+     "everywhere.getdidnt",
+     "care.on",
+     "weeks.gettoattd",
+     "everywhere.getwatching",
+     "people.getocsw",
+     "everywhere.getdayagreeeeeennnn"
+    ]
+   }
+  ],
+  "hard": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "have_idea_figure": [
+   {
+    "scope": "safe",
+    "from": "7cbc2e5ad31d",
+    "title": "618. i have an idea",
+    "funcs": [
+     "wife.kill"
+    ]
+   }
+  ],
+  "health_marisol": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "heat": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "heatflag": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "hose": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "hose_5a58c4": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "house": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "hpr": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "htpto": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "icsh": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "itmoai": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "jesus_was_very_figure": [
+   {
+    "scope": "safe",
+    "from": "f213f25df069",
+    "title": "601. jesus was very business smart",
+    "funcs": [
+     "everywhere.getcome"
+    ]
+   }
+  ],
+  "kmb": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "love": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "magician_subject": [
+   {
+    "scope": "safe",
+    "from": "0d1e8045251b",
+    "title": "918. the magician",
+    "funcs": [
+     "road.air"
+    ]
+   }
+  ],
+  "marina_biscayne_bay_subject": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "marina_biscayne_bay_subject_fifth": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "marina_biscayne_bay_subject_fourth": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "marina_biscayne_bay_subject_second": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "marina_biscayne_bay_subject_sixth": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "marina_biscayne_bay_subject_third": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "marisol": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "marisol_5a58c4": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "marker_a1": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "marker_a6": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "marker_a7": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "marker_b3": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "marker_b6": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "marker_b7": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "marker_b8": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "marker_c1": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "marker_c4": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "marker_c5": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "marker_d2": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "matbaotstaili": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "maturity_subject": [
+   {
+    "scope": "safe",
+    "from": "9a3a7cd2c055",
+    "title": "1211. the new wave",
+    "funcs": [
+     "teo.hide"
+    ]
+   }
+  ],
+  "mbtij": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "no_go_fold_figure": [
+   {
+    "scope": "safe",
+    "from": "290e162c303f",
+    "title": "915. you no go fold ke?",
+    "funcs": [
+     "jwvbs.open"
+    ]
+   }
+  ],
+  "one_want_tiffany_figure": [
+   {
+    "scope": "safe",
+    "from": "483f5ddc9d35",
+    "title": "828. dangerous [[faith]]",
+    "funcs": [
+     "lagbara.on"
+    ]
+   },
+   {
+    "scope": "safe",
+    "from": "d50688352fa7",
+    "title": "905. classic material",
+    "funcs": [
+     "lateef.teach"
+    ]
+   }
+  ],
+  "order_pure_water_figure": [
+   {
+    "scope": "safe",
+    "from": "5ed6dbcf2273",
+    "title": "910. order pure water",
+    "funcs": [
+     "tyn.getdetermines"
+    ]
+   }
+  ],
+  "otilor_thing_mind_figure": [
+   {
+    "scope": "safe",
+    "from": "31538bbffdb5",
+    "title": "1102. make me believe today",
+    "funcs": [
+     "teo.fold"
+    ]
+   }
+  ],
+  "person1": [
+   {
+    "scope": "run",
+    "from": "run-cb805f",
+    "funcs": [
+     "make.setany",
+     "lateef.hide",
+     "jwvbs.open",
+     "irteiutk.count",
+     "openmedia.isgif",
+     "everywhere.getyanju",
+     "bobo.on",
+     "aotl.isline",
+     "toothbrush.on",
+     "taking.isnotes",
+     "doing.getawaselves",
+     "real.tune",
+     "lateef.teach",
+     "sia.count",
+     "rock.isages",
+     "everywhere.getcome",
+     "tyn.on",
+     "lagbara.on",
+     "everywhere.getdidnt",
+     "care.on",
+     "weeks.gettoattd",
+     "everywhere.getwatching",
+     "people.getocsw",
+     "everywhere.getdayagreeeeeennnn"
+    ]
+   }
+  ],
+  "person2": [
+   {
+    "scope": "run",
+    "from": "run-cb805f",
+    "funcs": [
+     "make.setany",
+     "lateef.hide",
+     "jwvbs.open",
+     "irteiutk.count",
+     "openmedia.isgif",
+     "everywhere.getyanju",
+     "bobo.on",
+     "aotl.isline",
+     "toothbrush.on",
+     "taking.isnotes",
+     "doing.getawaselves",
+     "real.tune",
+     "lateef.teach",
+     "sia.count",
+     "rock.isages",
+     "everywhere.getcome",
+     "tyn.on",
+     "lagbara.on",
+     "everywhere.getdidnt",
+     "care.on",
+     "weeks.gettoattd",
+     "everywhere.getwatching",
+     "people.getocsw",
+     "everywhere.getdayagreeeeeennnn"
+    ]
+   }
+  ],
+  "phone": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "plot": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "prior_reality": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "reality": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "really_democracy_subject": [
+   {
+    "scope": "safe",
+    "from": "09dc204dfd9a",
+    "title": "104. more insane",
+    "funcs": [
+     "make.setany",
+     "lateef.hide",
+     "jwvbs.open",
+     "irteiutk.count",
+     "openmedia.isgif",
+     "everywhere.getyanju",
+     "bobo.on",
+     "aotl.isline",
+     "toothbrush.on",
+     "taking.isnotes",
+     "doing.getawaselves",
+     "real.tune",
+     "lateef.teach",
+     "sia.count",
+     "rock.isages",
+     "everywhere.getcome",
+     "tyn.on",
+     "lagbara.on",
+     "everywhere.getdidnt",
+     "care.on",
+     "weeks.gettoattd",
+     "everywhere.getwatching",
+     "people.getocsw",
+     "everywhere.getdayagreeeeeennnn"
+    ]
+   }
+  ],
+  "remain_blessed_subject": [
+   {
+    "scope": "safe",
+    "from": "0a802d1f9af3",
+    "title": "915. remain blessed",
+    "funcs": [
+     "pepe.settink"
+    ]
+   },
+   {
+    "scope": "safe",
+    "from": "dadeead0b4a2",
+    "title": "315. heeeeeeelp!",
+    "funcs": [
+     "laff.made"
+    ]
+   }
+  ],
+  "reversible_arguments_figure": [
+   {
+    "scope": "safe",
+    "from": "dbef6608be65",
+    "title": "1006. reversible arguments",
+    "funcs": [
+     "weeks.gettoattd"
+    ]
+   }
+  ],
+  "sandal": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "sandal_5a58c4": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "skating_skating_skating_figure": [
+   {
+    "scope": "safe",
+    "from": "132d9f3e6cde",
+    "title": "1009. are we a joke to yupepu?",
+    "funcs": [
+     "everywhere.getdayagreeeeeennnn"
+    ]
+   }
+  ],
+  "source_figure": [
+   {
+    "scope": "safe",
+    "from": "4558fb3e9d83",
+    "title": "624. delete your drafts",
+    "funcs": [
+     "doing.getawaselves"
+    ]
+   }
+  ],
+  "street_lamp": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "tag_sessy": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "tbp": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "teo": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "teo_5a58c4": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "teoloveletter": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "teomarisollove": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "texts_marisol": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "thoughts_marisol": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "tnw": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "top_deck_charter_subject": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "top_deck_charter_subject_fifth": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "top_deck_charter_subject_fourth": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "top_deck_charter_subject_second": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "top_deck_charter_subject_seventh": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "top_deck_charter_subject_sixth": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "top_deck_charter_subject_third": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "tsis": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "used_subject": [
+   {
+    "scope": "safe",
+    "from": "6359d118921d",
+    "title": "1112. to be used",
+    "funcs": [
+     "everywhere.getyanju"
+    ]
+   }
+  ],
+  "want_touch_subject": [
+   {
+    "scope": "safe",
+    "from": "2c6971a8d401",
+    "title": "927. this is what we need",
+    "funcs": [
+     "make.setany"
+    ]
+   }
+  ],
+  "water": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "wet_street": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "wizkid_sarkodie_ami_figure": [
+   {
+    "scope": "safe",
+    "from": "2e8d6c6d24fa",
+    "title": "103. acts of the apostles",
+    "funcs": [
+     "tyn.on"
+    ]
+   }
+  ],
+  "wser": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "yee_think_previous_figure": [
+   {
+    "scope": "safe",
+    "from": "ca0834ea259c",
+    "title": "828. yee, i think the previous generation enjoyed life properly",
+    "funcs": [
+     "toothbrush.on"
+    ]
+   }
+  ],
+  "youngteacher": [
+   {
+    "scope": "run",
+    "from": "run-5a58c4",
+    "funcs": [
+     "thrill.know",
+     "road.air",
+     "teo.fold",
+     "laff.made",
+     "code.say",
+     "crime.know",
+     "tyn.getdetermines",
+     "teo.hide",
+     "touch.again",
+     "song.hit"
+    ]
+   }
+  ],
+  "zebra": [
+   {
+    "scope": "safe",
+    "from": "99382b159447",
+    "title": "1218. new problems",
+    "funcs": [
+     "song.hit",
+     "bobo.on"
+    ]
+   },
+   {
+    "scope": "safe",
+    "from": "ae0d5fb4a64c",
+    "title": "1209. the collective unconscious",
+    "funcs": [
+     "real.tune"
+    ]
+   },
+   {
+    "scope": "safe",
+    "from": "c7c1fdc558f5",
+    "title": "1026. why would you say that?!",
+    "funcs": [
+     "touch.again"
+    ]
+   }
+  ]
+ },
+ "runs": {
+  "run-5a58c4": {
+   "safe": "f81f21521253",
+   "funcs": [
+    "song.hit",
+    "touch.again",
+    "teo.hide",
+    "tyn.getdetermines",
+    "crime.know",
+    "code.say",
+    "laff.made",
+    "teo.fold",
+    "road.air",
+    "thrill.know"
+   ]
+  },
+  "run-bd649b": {
+   "safe": "feb29a74094b",
+   "funcs": [
+    "kunle.teach",
+    "pepe.settink",
+    "wife.kill",
+    "history.see",
+    "kunle.mix"
+   ]
+  },
+  "run-cb805f": {
+   "safe": "09dc204dfd9a",
+   "funcs": [
+    "everywhere.getdayagreeeeeennnn",
+    "people.getocsw",
+    "everywhere.getwatching",
+    "weeks.gettoattd",
+    "care.on",
+    "everywhere.getdidnt",
+    "lagbara.on",
+    "tyn.on",
+    "everywhere.getcome",
+    "rock.isages",
+    "sia.count",
+    "lateef.teach",
+    "real.tune",
+    "doing.getawaselves",
+    "taking.isnotes",
+    "toothbrush.on",
+    "aotl.isline",
+    "bobo.on",
+    "everywhere.getyanju",
+    "openmedia.isgif",
+    "irteiutk.count",
+    "jwvbs.open",
+    "lateef.hide",
+    "make.setany"
+   ]
+  }
+ },
+ "safes": {
+  "09dc204dfd9a": {
+   "title": "104. more insane",
+   "funcs": [
+    "everywhere.getdayagreeeeeennnn",
+    "people.getocsw",
+    "everywhere.getwatching",
+    "weeks.gettoattd",
+    "care.on",
+    "everywhere.getdidnt",
+    "lagbara.on",
+    "tyn.on",
+    "everywhere.getcome",
+    "rock.isages",
+    "sia.count",
+    "lateef.teach",
+    "real.tune",
+    "doing.getawaselves",
+    "taking.isnotes",
+    "toothbrush.on",
+    "aotl.isline",
+    "bobo.on",
+    "everywhere.getyanju",
+    "openmedia.isgif",
+    "irteiutk.count",
+    "jwvbs.open",
+    "lateef.hide",
+    "make.setany"
+   ],
+   "runs": [
+    "run-cb805f"
+   ]
+  },
+  "0a802d1f9af3": {
+   "title": "915. remain blessed",
+   "funcs": [
+    "pepe.settink"
+   ],
+   "runs": []
+  },
+  "0d1e8045251b": {
+   "title": "918. the magician",
+   "funcs": [
+    "road.air"
+   ],
+   "runs": []
+  },
+  "1043ee742884": {
+   "title": "120. certain individuals",
+   "funcs": [
+    "everywhere.getwatching"
+   ],
+   "runs": []
+  },
+  "132d9f3e6cde": {
+   "title": "1009. are we a joke to yupepu?",
+   "funcs": [
+    "everywhere.getdayagreeeeeennnn"
+   ],
+   "runs": []
+  },
+  "13bbdaa651ee": {
+   "title": "615. from suleja to texas",
+   "funcs": [
+    "sia.count"
+   ],
+   "runs": []
+  },
+  "1c61078f1d2f": {
+   "title": "921. content and purpose",
+   "funcs": [
+    "everywhere.getdidnt"
+   ],
+   "runs": []
+  },
+  "290e162c303f": {
+   "title": "915. you no go fold ke?",
+   "funcs": [
+    "jwvbs.open"
+   ],
+   "runs": []
+  },
+  "2c6971a8d401": {
+   "title": "927. this is what we need",
+   "funcs": [
+    "make.setany"
+   ],
+   "runs": []
+  },
+  "2e8d6c6d24fa": {
+   "title": "103. acts of the apostles",
+   "funcs": [
+    "tyn.on"
+   ],
+   "runs": []
+  },
+  "31538bbffdb5": {
+   "title": "1102. make me believe today",
+   "funcs": [
+    "teo.fold"
+   ],
+   "runs": []
+  },
+  "37496dea1aa3": {
+   "title": "1128. communication",
+   "funcs": [
+    "thrill.know"
+   ],
+   "runs": []
+  },
+  "4558fb3e9d83": {
+   "title": "624. delete your drafts",
+   "funcs": [
+    "doing.getawaselves"
+   ],
+   "runs": []
+  },
+  "483f5ddc9d35": {
+   "title": "828. dangerous [[faith]]",
+   "funcs": [
+    "lagbara.on"
+   ],
+   "runs": []
+  },
+  "5ed6dbcf2273": {
+   "title": "910. order pure water",
+   "funcs": [
+    "tyn.getdetermines"
+   ],
+   "runs": []
+  },
+  "61ae7008a5f0": {
+   "title": "903. rip ×= 4",
+   "funcs": [
+    "crime.know"
+   ],
+   "runs": []
+  },
+  "6359d118921d": {
+   "title": "1112. to be used",
+   "funcs": [
+    "everywhere.getyanju"
+   ],
+   "runs": []
+  },
+  "7cbc2e5ad31d": {
+   "title": "618. i have an idea",
+   "funcs": [
+    "wife.kill"
+   ],
+   "runs": []
+  },
+  "99382b159447": {
+   "title": "1218. new problems",
+   "funcs": [
+    "bobo.on",
+    "song.hit"
+   ],
+   "runs": []
+  },
+  "9a3a7cd2c055": {
+   "title": "1211. the new wave",
+   "funcs": [
+    "teo.hide"
+   ],
+   "runs": []
+  },
+  "acf6b4479989": {
+   "title": "1020. i maintain my champion",
+   "funcs": [
+    "kunle.teach"
+   ],
+   "runs": []
+  },
+  "ae0d5fb4a64c": {
+   "title": "1209. the collective unconscious",
+   "funcs": [
+    "real.tune"
+   ],
+   "runs": []
+  },
+  "c51063137413": {
+   "title": "1022. original copy",
+   "funcs": [
+    "taking.isnotes"
+   ],
+   "runs": []
+  },
+  "c7c1fdc558f5": {
+   "title": "1026. why would you say that?!",
+   "funcs": [
+    "touch.again"
+   ],
+   "runs": []
+  },
+  "ca0834ea259c": {
+   "title": "828. yee, i think the previous generation enjoyed life properly",
+   "funcs": [
+    "toothbrush.on"
+   ],
+   "runs": []
+  },
+  "d15604eed466": {
+   "title": "803. excuse me",
+   "funcs": [
+    "history.see"
+   ],
+   "runs": []
+  },
+  "d2cb032ab230": {
+   "title": "904. pawa pass pawa",
+   "funcs": [
+    "lateef.hide"
+   ],
+   "runs": []
+  },
+  "d50688352fa7": {
+   "title": "905. classic material",
+   "funcs": [
+    "lateef.teach"
+   ],
+   "runs": []
+  },
+  "da2bd5e3c2d7": {
+   "title": "1103. a genz with the fear of god",
+   "funcs": [
+    "people.getocsw"
+   ],
+   "runs": []
+  },
+  "dadeead0b4a2": {
+   "title": "315. heeeeeeelp!",
+   "funcs": [
+    "laff.made"
+   ],
+   "runs": []
+  },
+  "dbef6608be65": {
+   "title": "1006. reversible arguments",
+   "funcs": [
+    "weeks.gettoattd"
+   ],
+   "runs": []
+  },
+  "eb4af1c3e662": {
+   "title": "312. yes",
+   "funcs": [
+    "code.say"
+   ],
+   "runs": []
+  },
+  "ecbaffa655c1": {
+   "title": "506. infact and even",
+   "funcs": [
+    "openmedia.isgif"
+   ],
+   "runs": []
+  },
+  "ed4c03419faf": {
+   "title": "617. i've been here before",
+   "funcs": [
+    "aotl.isline"
+   ],
+   "runs": []
+  },
+  "edabb8db520c": {
+   "title": "818. [[just know]] [[that i am]] [[god]]",
+   "funcs": [
+    "rock.isages"
+   ],
+   "runs": []
+  },
+  "f213f25df069": {
+   "title": "601. jesus was very business smart",
+   "funcs": [
+    "everywhere.getcome"
+   ],
+   "runs": []
+  },
+  "f3242b82bede": {
+   "title": "113. beef",
+   "funcs": [
+    "kunle.mix"
+   ],
+   "runs": []
+  },
+  "f4ff9cc7d7bd": {
+   "title": "102. the catalyst",
+   "funcs": [
+    "irteiutk.count"
+   ],
+   "runs": []
+  },
+  "f81f21521253": {
+   "title": "829. a day in the life of god",
+   "funcs": [
+    "song.hit",
+    "touch.again",
+    "teo.hide",
+    "tyn.getdetermines",
+    "crime.know",
+    "code.say",
+    "laff.made",
+    "teo.fold",
+    "road.air",
+    "thrill.know"
+   ],
+   "runs": [
+    "run-5a58c4"
+   ]
+  },
+  "fad8da2e5cf6": {
+   "title": "1129. how to [[fail]]",
+   "funcs": [
+    "care.on"
+   ],
+   "runs": []
+  },
+  "feb29a74094b": {
+   "title": "1126. equity and stake",
+   "funcs": [
+    "kunle.teach",
+    "pepe.settink",
+    "wife.kill",
+    "history.see",
+    "kunle.mix"
+   ],
+   "runs": [
+    "run-bd649b"
+   ]
+  }
+ },
+ "scene_safes": {
+  "1*pWMtXcVBU3GTwBdb-cFPxA.gif": [
+   "0a802d1f9af3",
+   "dadeead0b4a2"
+  ],
+  "1*Mlzl3nV3sJw9EhZMr1VG3g.jpeg": [
+   "0a802d1f9af3"
+  ],
+  "1*lh0ZPwqCiEmbUqQpeTBf0w.gif": [
+   "fad8da2e5cf6"
+  ],
+  "1*89P8O1vKr4NJQJcIpNLisQ.gif": [
+   "9a3a7cd2c055"
+  ],
+  "1*S1oCWFn9cmXUYSNZZkml_g.gif": [
+   "c7c1fdc558f5"
+  ],
+  "1*GPQAaJE07cSsR2iEm5y9Aw.gif": [
+   "f81f21521253"
+  ],
+  "1*kKqO6Nx1W2WMSbMiklNk3g.gif": [
+   "1c61078f1d2f"
+  ],
+  "1*SxvMtm4EZ8xJ3nw9tl5L_w.gif": [
+   "37496dea1aa3"
+  ],
+  "1*q0hfDA8xcra7qX-9n4EuNw.gif": [
+   "6359d118921d"
+  ],
+  "1*wxMkuq5RbVAP63DOwaErXw.gif": [
+   "ed4c03419faf"
+  ],
+  "1*z9MXnhgL8GmrvnzW6b5oBQ.gif": [
+   "13bbdaa651ee"
+  ],
+  "1*W53iaOHMqwt4wiUEEUhlNw.gif": [
+   "eb4af1c3e662"
+  ],
+  "1*i3myLXP42aKin6hUO3sYzQ.gif": [
+   "0d1e8045251b"
+  ],
+  "1*VDwilLCHF-PLPOY1t4Dq0w.gif": [
+   "2c6971a8d401"
+  ],
+  "1*M7PP8y5XxO_g-lWVYiJqLg.gif": [
+   "f4ff9cc7d7bd"
+  ],
+  "1*zQkaKM3yIWaw6FJ_wxJCXw.gif": [
+   "d50688352fa7",
+   "483f5ddc9d35"
+  ],
+  "1*3jdLlO20gy-sPqFRavBV-A.gif": [
+   "09dc204dfd9a"
+  ],
+  "1*jAmSDHK6yaAgVhhK9xU8Rg.gif": [
+   "2e8d6c6d24fa"
+  ],
+  "1*SKqzlBc1vQA5PWKQJUBt-g.gif": [
+   "ecbaffa655c1"
+  ],
+  "1*J02u1x9GU8pcQx9_U3Oh9Q.gif": [
+   "acf6b4479989"
+  ],
+  "1*nC4xjokQNta7cOcuY15NrA.gif": [
+   "61ae7008a5f0"
+  ],
+  "1*BZpgiAgl2Isc_HVn8hvSaQ.gif": [
+   "f213f25df069"
+  ],
+  "1*lDKS3MnQQ0QbWboPIBFuYA.gif": [
+   "da2bd5e3c2d7"
+  ],
+  "1*XAiSYjFKsqdzhWwoSd6nhw.gif": [
+   "dbef6608be65"
+  ],
+  "1*WHi5bGe1yByrJpchMb-ggw.gif": [
+   "f3242b82bede"
+  ],
+  "1*rCR8J7XntgX5OUSZI5WAEw.gif": [
+   "99382b159447"
+  ],
+  "1*7tblwmZQ0vs6MF2i7C73kw.jpeg": [
+   "483f5ddc9d35"
+  ],
+  "1*NIUcPPNMbOVZpzrAfqbDZA.jpeg": [
+   "483f5ddc9d35"
+  ],
+  "1*WBPch7J7RewC9Z56EZ-bNw.gif": [
+   "ae0d5fb4a64c"
+  ],
+  "1*KOfHcbZItSwnzB-Xt4fH3A.gif": [
+   "1043ee742884"
+  ],
+  "1*_BZ_4dYEZGMebJgk4seauA.gif": [
+   "ca0834ea259c"
+  ],
+  "1*_Q9iSYmWXqNIrNI6eidNYQ.gif": [
+   "31538bbffdb5"
+  ],
+  "1*EzXx6mCPVc-4TByCgM6uFw.gif": [
+   "d15604eed466"
+  ],
+  "1*11oRJiih2OeYmE4v5HAF7A.gif": [
+   "290e162c303f"
+  ],
+  "1*D3gWdg9Dn-e54KKlmX8oXg.gif": [
+   "132d9f3e6cde"
+  ],
+  "1*r60JaNtgDqXR6PpIsMmeLQ.gif": [
+   "4558fb3e9d83"
+  ],
+  "1*mIzZLAH9ua7G2waBjqQtHw.gif": [
+   "c51063137413"
+  ],
+  "1*jz2c9up58ZIZH827-o9ASg.gif": [
+   "99382b159447"
+  ],
+  "1*9BPrFlA1A9e6Q2iPxRMtBQ.gif": [
+   "5ed6dbcf2273"
+  ],
+  "1*J8j-tUN615tQlcj1QWhxXA.jpeg": [
+   "eb4af1c3e662"
+  ],
+  "1*Pvu5qIY3ehevL_SC2nj5nQ.jpeg": [
+   "feb29a74094b"
+  ],
+  "1*XsF804isrp09SPHLU2-Itw.gif": [
+   "7cbc2e5ad31d"
+  ],
+  "1*AJB8SrMTgaCpdzYc75Srqg.jpeg": [
+   "7cbc2e5ad31d"
+  ],
+  "1*dG43u53YvDE9PsOeA0ElGQ.jpeg": [
+   "edabb8db520c"
+  ],
+  "1*4llXz9KgsLxdald2QPL_UA.gif": [
+   "edabb8db520c"
+  ],
+  "1*-NnrSDqF-Rbb8cTVlm3LVw.jpeg": [
+   "2c6971a8d401"
+  ]
+ },
+ "scene_env": {
+  "live:run-5a58c4:j23": {
+   "runs": [
+    "run-5a58c4"
+   ],
+   "safes": [
+    "f81f21521253"
+   ]
+  },
+  "live:run-bd649b:j5": {
+   "runs": [
+    "run-bd649b"
+   ],
+   "safes": [
+    "feb29a74094b"
+   ]
+  },
+  "live:run-bd649b:j4": {
+   "runs": [
+    "run-bd649b"
+   ],
+   "safes": [
+    "feb29a74094b"
+   ]
+  },
+  "live:run-bd649b:j2": {
+   "runs": [
+    "run-bd649b"
+   ],
+   "safes": [
+    "feb29a74094b"
+   ]
+  },
+  "live:run-5a58c4:j17": {
+   "runs": [
+    "run-5a58c4"
+   ],
+   "safes": [
+    "f81f21521253"
+   ]
+  },
+  "live:run-5a58c4:j6": {
+   "runs": [
+    "run-5a58c4"
+   ],
+   "safes": [
+    "f81f21521253"
+   ]
+  },
+  "live:run-5a58c4:j12": {
+   "runs": [
+    "run-5a58c4"
+   ],
+   "safes": [
+    "f81f21521253"
+   ]
+  },
+  "1*89P8O1vKr4NJQJcIpNLisQ.gif": {
+   "runs": [],
+   "safes": [
+    "9a3a7cd2c055"
+   ]
+  },
+  "1*M7PP8y5XxO_g-lWVYiJqLg.gif": {
+   "runs": [],
+   "safes": [
+    "f4ff9cc7d7bd"
+   ]
+  },
+  "1*lh0ZPwqCiEmbUqQpeTBf0w.gif": {
+   "runs": [],
+   "safes": [
+    "fad8da2e5cf6"
+   ]
+  },
+  "1*pWMtXcVBU3GTwBdb-cFPxA.gif": {
+   "runs": [],
+   "safes": [
+    "0a802d1f9af3",
+    "dadeead0b4a2"
+   ]
+  },
+  "1*SxvMtm4EZ8xJ3nw9tl5L_w.gif": {
+   "runs": [],
+   "safes": [
+    "37496dea1aa3"
+   ]
+  },
+  "1*VDwilLCHF-PLPOY1t4Dq0w.gif": {
+   "runs": [],
+   "safes": [
+    "2c6971a8d401"
+   ]
+  },
+  "1*W53iaOHMqwt4wiUEEUhlNw.gif": {
+   "runs": [],
+   "safes": [
+    "eb4af1c3e662"
+   ]
+  },
+  "1*i3myLXP42aKin6hUO3sYzQ.gif": {
+   "runs": [],
+   "safes": [
+    "0d1e8045251b"
+   ]
+  },
+  "1*q0hfDA8xcra7qX-9n4EuNw.gif": {
+   "runs": [],
+   "safes": [
+    "6359d118921d"
+   ]
+  },
+  "1*GPQAaJE07cSsR2iEm5y9Aw.gif": {
+   "runs": [],
+   "safes": [
+    "f81f21521253"
+   ]
+  },
+  "1*z9MXnhgL8GmrvnzW6b5oBQ.gif": {
+   "runs": [],
+   "safes": [
+    "13bbdaa651ee"
+   ]
+  },
+  "1*jAmSDHK6yaAgVhhK9xU8Rg.gif": {
+   "runs": [],
+   "safes": [
+    "2e8d6c6d24fa"
+   ]
+  },
+  "1*BZpgiAgl2Isc_HVn8hvSaQ.gif": {
+   "runs": [],
+   "safes": [
+    "f213f25df069"
+   ]
+  },
+  "1*KOfHcbZItSwnzB-Xt4fH3A.gif": {
+   "runs": [],
+   "safes": [
+    "1043ee742884"
+   ]
+  },
+  "1*_Q9iSYmWXqNIrNI6eidNYQ.gif": {
+   "runs": [],
+   "safes": [
+    "31538bbffdb5"
+   ]
+  },
+  "1*zQkaKM3yIWaw6FJ_wxJCXw.gif": {
+   "runs": [],
+   "safes": [
+    "d50688352fa7",
+    "483f5ddc9d35"
+   ]
+  },
+  "1*WHi5bGe1yByrJpchMb-ggw.gif": {
+   "runs": [],
+   "safes": [
+    "f3242b82bede"
+   ]
+  },
+  "1*S1oCWFn9cmXUYSNZZkml_g.gif": {
+   "runs": [],
+   "safes": [
+    "c7c1fdc558f5"
+   ]
+  },
+  "1*WBPch7J7RewC9Z56EZ-bNw.gif": {
+   "runs": [],
+   "safes": [
+    "ae0d5fb4a64c"
+   ]
+  },
+  "1*XsF804isrp09SPHLU2-Itw.gif": {
+   "runs": [],
+   "safes": [
+    "7cbc2e5ad31d"
+   ]
+  },
+  "1*r60JaNtgDqXR6PpIsMmeLQ.gif": {
+   "runs": [],
+   "safes": [
+    "4558fb3e9d83"
+   ]
+  },
+  "1*_BZ_4dYEZGMebJgk4seauA.gif": {
+   "runs": [],
+   "safes": [
+    "ca0834ea259c"
+   ]
+  },
+  "1*rCR8J7XntgX5OUSZI5WAEw.gif": {
+   "runs": [],
+   "safes": [
+    "99382b159447"
+   ]
+  },
+  "1*11oRJiih2OeYmE4v5HAF7A.gif": {
+   "runs": [],
+   "safes": [
+    "290e162c303f"
+   ]
+  },
+  "1*SKqzlBc1vQA5PWKQJUBt-g.gif": {
+   "runs": [],
+   "safes": [
+    "ecbaffa655c1"
+   ]
+  },
+  "1*D3gWdg9Dn-e54KKlmX8oXg.gif": {
+   "runs": [],
+   "safes": [
+    "132d9f3e6cde"
+   ]
+  },
+  "1*9BPrFlA1A9e6Q2iPxRMtBQ.gif": {
+   "runs": [],
+   "safes": [
+    "5ed6dbcf2273"
+   ]
+  },
+  "1*nC4xjokQNta7cOcuY15NrA.gif": {
+   "runs": [],
+   "safes": [
+    "61ae7008a5f0"
+   ]
+  },
+  "1*XAiSYjFKsqdzhWwoSd6nhw.gif": {
+   "runs": [],
+   "safes": [
+    "dbef6608be65"
+   ]
+  },
+  "1*EzXx6mCPVc-4TByCgM6uFw.gif": {
+   "runs": [],
+   "safes": [
+    "d15604eed466"
+   ]
+  },
+  "1*3jdLlO20gy-sPqFRavBV-A.gif": {
+   "runs": [],
+   "safes": [
+    "09dc204dfd9a"
+   ]
+  }
  },
  "tokens": {
   "aotl": [
@@ -1684,6 +4981,9 @@
   "real": [
    "real.tune"
   ],
+  "road": [
+   "road.air"
+  ],
   "rock": [
    "rock.isages"
   ],
@@ -1699,6 +4999,9 @@
   "teo": [
    "teo.hide",
    "teo.fold"
+  ],
+  "thrill": [
+   "thrill.know"
   ],
   "toothbrush": [
    "toothbrush.on"
@@ -1717,5 +5020,5 @@
    "wife.kill"
   ]
  },
- "updated": "2026-11-17T10:59:40-05:00"
+ "updated": "2026-11-17T11:17:30-05:00"
 }
