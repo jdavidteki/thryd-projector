@@ -2356,16 +2356,6 @@
 ],
 "lekki_pharmacy": [
 {
-"id": "wf_9f4de3d411",
-"kind": "consequence",
-"text": "A Red white cap note with Taiwo's name and 'egbe note' on it, 11:20pm, turns up inside the unpaid prescription slip at the lekki pharmacy, and Titi reads the name twice.",
-"code": "red_white_cap.interactwith(lekki_pharmacy){ lekki_pharmacy.receives(red_white_cap.note); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "w7",
-"other": "red_white_cap"
-},
-{
 "id": "wf_df83c9ad0e",
 "kind": "consequence",
 "text": "A Kerosene lamp note with Taiwo's name and 'change' on it, turns up inside the unpaid prescription slip at the lekki pharmacy, and Titi reads the name twice.",
@@ -2374,6 +2364,16 @@
 "run": "run-0bd7c0",
 "card": "w",
 "other": "kerosene_lamp"
+},
+{
+"id": "wf_0c9c32cab4",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the unpaid prescription slip at the lekki pharmacy, and Titi reads the name twice.",
+"code": "wsr.interactwith(lekki_pharmacy){ lekki_pharmacy.receives(wsr.envelope); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "wsr"
 },
 {
 "id": "wt_825a1245a2",
@@ -4088,16 +4088,6 @@
 ],
 "apapa_container_yard": [
 {
-"id": "wf_cb86cdc3d6",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the apapa container yard, and Bisola reads the name twice.",
-"code": "truth.interactwith(apapa_container_yard){ apapa_container_yard.receives(truth.envelope); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "truth"
-},
-{
 "id": "wf_926f8ceb4b",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the apapa container yard, and Bisola reads the name twice.",
@@ -4136,6 +4126,16 @@
 "run": "run-0bd7c0",
 "card": "j2",
 "other": "ats"
+},
+{
+"id": "wf_f991ecacc1",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the apapa container yard, and Bisola reads the name twice.",
+"code": "bow.interactwith(apapa_container_yard){ apapa_container_yard.receives(bow.envelope); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "bow"
 }
 ],
 "mrs_morenike_daramola": [
@@ -4282,28 +4282,6 @@
 ]
 },
 "consequences": [
-{
-"id": "wf_51d143d86c",
-"ts": "2026-11-16T15:42:08-0500",
-"a": "matches",
-"b": "let",
-"code": "matches.interactwith(let){ let.receives(matches.envelope); let.remembers(bisola, 'brown envelope'); let.tucks(matches, 'yaba bookshop receipt into the brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the let, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
-{
-"id": "wf_84ada379cf",
-"ts": "2026-11-16T15:42:56-0500",
-"a": "let",
-"b": "kerosene_lamp",
-"code": "let.interactwith(kerosene_lamp){ kerosene_lamp.receives(let.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the change at the kerosene lamp, and Taiwo reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
 {
 "id": "wf_adb6b36f2a",
 "ts": "2026-11-16T15:44:30-0500",
@@ -4721,6 +4699,28 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j2"
+},
+{
+"id": "wf_f991ecacc1",
+"ts": "2026-11-16T20:34:38-0500",
+"a": "bow",
+"b": "apapa_container_yard",
+"code": "bow.interactwith(apapa_container_yard){ apapa_container_yard.receives(bow.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the apapa container yard, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
+},
+{
+"id": "wf_0c9c32cab4",
+"ts": "2026-11-16T20:35:26-0500",
+"a": "wsr",
+"b": "lekki_pharmacy",
+"code": "wsr.interactwith(lekki_pharmacy){ lekki_pharmacy.receives(wsr.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the unpaid prescription slip at the lekki pharmacy, and Titi reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
 }
 ],
 "memories": [
@@ -4824,5 +4824,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-16T20:29:47-0500"
+"updated": "2026-11-16T20:35:26-0500"
 }
