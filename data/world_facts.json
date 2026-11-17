@@ -4599,6 +4599,16 @@
 "run": "run-5a58c4",
 "card": "w25",
 "other": null
+},
+{
+"id": "wf_7bfa39eb6b",
+"kind": "consequence",
+"text": "The calla leaves with a Bird note with Taiwo's name and 'lamp soot' on it.",
+"code": "marina_biscayne_bay.interactwith(calla){ calla.receives(marina_biscayne_bay.soot); calla.remembers(taiwo, 'lamp soot'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j7",
+"other": "marina_biscayne_bay"
 }
 ],
 "as_poor_man": [
@@ -5079,6 +5089,16 @@
 "run": "run-5a58c4",
 "card": "j7",
 "other": "kmb"
+},
+{
+"id": "wf_213c14d20b",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the lamp soot at the marina biscayne bay, and Taiwo reads the name twice.",
+"code": "wser.interactwith(marina_biscayne_bay){ marina_biscayne_bay.receives(wser.envelope); … }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "wser"
 }
 ],
 "mbtij": [
@@ -5766,42 +5786,21 @@
 "card": "j7",
 "other": "bird"
 }
+],
+"eyes_viral": [
+{
+"id": "wf_f25203e4f3",
+"kind": "consequence",
+"text": "The eyes viral now remembers the quiet stretch sand: 5:50pm, Tuesday 3 November 2026: The morning at the ramp is behind them.",
+"code": "quiet_stretch_sand.interactwith(eyes_viral){ eyes_viral.receives(quiet_stretch_sand.morning); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j31",
+"other": "quiet_stretch_sand"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_721921b87e",
-"ts": "2026-11-17T14:37:11-0500",
-"a": "dress_marisol",
-"b": "miami",
-"code": "dress_marisol.interactwith(miami){ miami.receives(dress_marisol.envelope); miami.remembers(bisola, 'brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up beside the phone at the miami.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
-"id": "wf_c9ca44d8f3",
-"ts": "2026-11-17T14:40:25-0500",
-"a": "marina_biscayne_bay",
-"b": "icsh",
-"code": "marina_biscayne_bay.interactwith(icsh){ icsh.receives(marina_biscayne_bay.code); icsh.remembers(ejiro, 'juju code'); }",
-"text": "The icsh leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j2"
-},
-{
-"id": "wf_3477569581",
-"ts": "2026-11-17T14:42:02-0500",
-"a": "tbp",
-"b": "jetty_south_pointe",
-"code": "tbp.interactwith(jetty_south_pointe){ jetty_south_pointe.receives(tbp.envelope); jetty_south_pointe.remembers(bisola, 'brown envelope'); }",
-"text": "The jetty south pointe leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
 {
 "id": "wf_1f2c061fdd",
 "ts": "2026-11-17T14:42:55-0500",
@@ -6208,6 +6207,39 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": "j3"
+},
+{
+"id": "wf_7bfa39eb6b",
+"ts": "2026-11-17T15:32:03-0500",
+"a": "marina_biscayne_bay",
+"b": "calla",
+"code": "marina_biscayne_bay.interactwith(calla){ calla.receives(marina_biscayne_bay.soot); calla.remembers(taiwo, 'lamp soot'); }",
+"text": "The calla leaves with a Bird note with Taiwo's name and 'lamp soot' on it.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j7"
+},
+{
+"id": "wf_f25203e4f3",
+"ts": "2026-11-17T15:32:52-0500",
+"a": "quiet_stretch_sand",
+"b": "eyes_viral",
+"code": "quiet_stretch_sand.interactwith(eyes_viral){ eyes_viral.receives(quiet_stretch_sand.morning); }",
+"text": "The eyes viral now remembers the quiet stretch sand: 5:50pm, Tuesday 3 November 2026: The morning at the ramp is behind them.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j31"
+},
+{
+"id": "wf_213c14d20b",
+"ts": "2026-11-17T15:35:18-0500",
+"a": "wser",
+"b": "marina_biscayne_bay",
+"code": "wser.interactwith(marina_biscayne_bay){ marina_biscayne_bay.receives(wser.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the lamp soot at the marina biscayne bay, and Taiwo reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
 }
 ],
 "memories": [
@@ -6311,5 +6343,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T15:31:10-0500"
+"updated": "2026-11-17T15:35:18-0500"
 }

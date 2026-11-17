@@ -4713,7 +4713,7 @@
   },
   "run-5a58c4": {
    "forked_from": "safe:f81f21521253",
-   "head": "9030745fe8",
+   "head": "378c5a24f8",
    "commits": [
     {
      "id": "e1804f099d",
@@ -5180,7 +5180,7 @@
      }
     },
     {
-     "id": "f48ca33b66",
+     "id": "60f72b4cb0",
      "parent": "5e4279b3a7",
      "branch": "run-5a58c4",
      "job": "j6",
@@ -5548,16 +5548,24 @@
         "code": "marisol.interactwith(marker_b){ marker_b.receives(marisol.envelope); marker_b.remembers(bisola, 'brown envelope'); marker_b.tucks(marisol, '",
         "scope": null,
         "cause_id": null
+       },
+       {
+        "id": "wf_213c14d20b",
+        "object": "marina_biscayne_bay",
+        "kind": "consequence",
+        "code": "wser.interactwith(marina_biscayne_bay){ marina_biscayne_bay.receives(wser.envelope); marina_biscayne_bay.remembers(bisola, 'brown envelope')",
+        "scope": null,
+        "cause_id": null
        }
       ],
-      "facts_total": 45,
+      "facts_total": 46,
       "functions": [],
       "instances": []
      }
     },
     {
-     "id": "e32bbd3ed5",
-     "parent": "f48ca33b66",
+     "id": "8def672200",
+     "parent": "60f72b4cb0",
      "branch": "run-5a58c4",
      "job": "j7",
      "at": "2026-11-17T11:01:50-0500",
@@ -5644,16 +5652,24 @@
         "code": "bird.interactwith(string_lights){ string_lights.receives(bird.corner); string_lights.remembers(bisola, 'envelope corner'); }",
         "scope": null,
         "cause_id": null
+       },
+       {
+        "id": "wf_7bfa39eb6b",
+        "object": "calla",
+        "kind": "consequence",
+        "code": "marina_biscayne_bay.interactwith(calla){ calla.receives(marina_biscayne_bay.soot); calla.remembers(taiwo, 'lamp soot'); }",
+        "scope": null,
+        "cause_id": null
        }
       ],
-      "facts_total": 10,
+      "facts_total": 11,
       "functions": [],
       "instances": []
      }
     },
     {
-     "id": "29ccd63b86",
-     "parent": "e32bbd3ed5",
+     "id": "278993ee28",
+     "parent": "8def672200",
      "branch": "run-5a58c4",
      "job": "j8",
      "at": "2026-11-17T15:14:25-0500",
@@ -5676,8 +5692,8 @@
      }
     },
     {
-     "id": "6449b3c1cc",
-     "parent": "29ccd63b86",
+     "id": "9b33efa7f8",
+     "parent": "278993ee28",
      "branch": "run-5a58c4",
      "job": "j22",
      "at": "2026-11-16T23:37:14-05:00",
@@ -5711,8 +5727,8 @@
      }
     },
     {
-     "id": "40861a1ec5",
-     "parent": "6449b3c1cc",
+     "id": "6d2f3f3a6b",
+     "parent": "9b33efa7f8",
      "branch": "run-5a58c4",
      "job": "j23",
      "at": "2026-11-16T23:50:03-05:00",
@@ -5746,8 +5762,8 @@
      }
     },
     {
-     "id": "fd88ecc39a",
-     "parent": "40861a1ec5",
+     "id": "6668d351ef",
+     "parent": "6d2f3f3a6b",
      "branch": "run-5a58c4",
      "job": "j24",
      "at": "2026-11-17T00:02:09-05:00",
@@ -5805,8 +5821,8 @@
      }
     },
     {
-     "id": "7de6ecb659",
-     "parent": "fd88ecc39a",
+     "id": "f91d7f879a",
+     "parent": "6668d351ef",
      "branch": "run-5a58c4",
      "job": "j25",
      "at": "2026-11-17T10:35:56-05:00",
@@ -5914,8 +5930,8 @@
      }
     },
     {
-     "id": "52318ced11",
-     "parent": "7de6ecb659",
+     "id": "29b57a293c",
+     "parent": "f91d7f879a",
      "branch": "run-5a58c4",
      "job": "j26",
      "at": "2026-11-17T11:07:01-05:00",
@@ -5949,8 +5965,8 @@
      }
     },
     {
-     "id": "699ea23a97",
-     "parent": "52318ced11",
+     "id": "3eb9e22b4a",
+     "parent": "29b57a293c",
      "branch": "run-5a58c4",
      "job": "j27",
      "at": "2026-11-17T11:22:49-05:00",
@@ -5984,8 +6000,8 @@
      }
     },
     {
-     "id": "8c64bf7c93",
-     "parent": "699ea23a97",
+     "id": "722e5ee8e5",
+     "parent": "3eb9e22b4a",
      "branch": "run-5a58c4",
      "job": "j28",
      "at": "2026-11-17T12:06:03-05:00",
@@ -6010,8 +6026,8 @@
      }
     },
     {
-     "id": "18b87cd30c",
-     "parent": "8c64bf7c93",
+     "id": "f0c300cd5a",
+     "parent": "722e5ee8e5",
      "branch": "run-5a58c4",
      "job": "j29",
      "at": "2026-11-17T12:30:30-05:00",
@@ -6077,8 +6093,8 @@
      }
     },
     {
-     "id": "81c3872105",
-     "parent": "18b87cd30c",
+     "id": "f73eb5c57a",
+     "parent": "f0c300cd5a",
      "branch": "run-5a58c4",
      "job": "j30",
      "at": "2026-11-17T14:49:47-05:00",
@@ -6112,8 +6128,8 @@
      }
     },
     {
-     "id": "9030745fe8",
-     "parent": "81c3872105",
+     "id": "378c5a24f8",
+     "parent": "f73eb5c57a",
      "branch": "run-5a58c4",
      "job": "j31",
      "at": "2026-11-17T15:11:45-05:00",
@@ -6128,9 +6144,17 @@
         "code": "quiet_stretch_sand.holds('morning');",
         "scope": null,
         "cause_id": null
+       },
+       {
+        "id": "wf_f25203e4f3",
+        "object": "eyes_viral",
+        "kind": "consequence",
+        "code": "quiet_stretch_sand.interactwith(eyes_viral){ eyes_viral.receives(quiet_stretch_sand.morning); }",
+        "scope": null,
+        "cause_id": null
        }
       ],
-      "facts_total": 1,
+      "facts_total": 2,
       "functions": [
        {
         "func": "blender.line",
@@ -6540,9 +6564,9 @@
   "run-fa5946": "564dd5acda",
   "run-bd649b": "8ed6c18a56",
   "run-9e59ca": "59f544b8d8",
-  "run-5a58c4": "9030745fe8",
+  "run-5a58c4": "378c5a24f8",
   "run-cb805f": "62238e387d"
  },
  "commits": 66,
- "updated": "2026-11-17T15:31:12-05:00"
+ "updated": "2026-11-17T15:35:19-05:00"
 }
