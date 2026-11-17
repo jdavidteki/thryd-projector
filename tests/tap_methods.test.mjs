@@ -79,6 +79,6 @@ test('exceptions render by kind: genre_mismatch is a soft twist, anything else a
   const blk = src.slice(src.indexOf('// ---------- registry functions'), src.indexOf('S.fireMethod = fireMethod;'));
   const isSoft = eval(blk.match(/const isSoft = (e => \{[^\n]*\});/)[1]);
   assert.equal(isSoft({severity: 'soft', kind: 'fact_conflict'}), true); assert.equal(isSoft({severity: 'hard', kind: 'genre_mismatch'}), false);
-  assert.equal(isSoft({severity: 'weird'}), false); assert.equal(isSoft({kind: 'genre_mismatch'}), true); assert.equal(isSoft({kind: 'new_kind'}), false); assert.equal(isSoft({}), false);
+  assert.equal(isSoft({severity: '', kind: 'genre_mismatch'}), false); assert.equal(isSoft({severity: 'weird'}), false); assert.equal(isSoft({kind: 'genre_mismatch'}), true); assert.equal(isSoft({kind: 'new_kind'}), false); assert.equal(isSoft({}), false);
   assert.match(blk, /'\\u21af twist: ' : '\\u26a0 throws: '/); assert.match(blk, /'\\u21af bends the scene: ' : '\\u26a0 caught: '/);
 });

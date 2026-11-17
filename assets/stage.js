@@ -1549,7 +1549,7 @@
   function promisesFor(c, status){ const k = baseKey(c), run = (c.home || {}).run;
     return PR.promises.filter(p => p.status === status && (!p.run || !run || !/^run-/.test(run) || p.run === run) && promWords(p).includes(k)); }
   // severity first (#thryd 1:30 PM ET: soft for genre_mismatch, hard for fact_conflict / promise_conflict); kind only when severity is missing
-  const isSoft = e => { const sv = e && e.severity; if(sv != null && sv !== '') return String(sv).toLowerCase() === 'soft'; return String((e && e.kind) || '').toLowerCase() === 'genre_mismatch'; };
+  const isSoft = e => { const sv = e && e.severity; if(sv != null) return String(sv).toLowerCase() === 'soft'; return String((e && e.kind) || '').toLowerCase() === 'genre_mismatch'; };
   function exceptionsFor(c){ const k = baseKey(c); return PR.exceptions.filter(e => e.status !== 'resolved' && e.status !== 'caught' && ((e.objects || []).map(omKey).includes(k))); }
   function paintPromises(){ const live = new Set(), flash = new Set(PR.flash || []); PR.flash = [];
     S.cuts.forEach(c => { if(!c.el || !c.el.isConnected || c.leaving) return; const pend = promisesFor(c, 'pending'), done = PR.promises.filter(p => flash.has(p.id) && promWords(p).includes(baseKey(c)));
