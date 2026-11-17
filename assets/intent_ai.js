@@ -1,0 +1,180 @@
+/* intent AI layer (Jesuye 17 Nov 2026 👍 "add Transformers.js so tap menus and typed commands understand what people mean, plus
+   Chrome's built-in model as a bonus"). Sits on top of the smart-tap scoring rule in stage.js; never required.
+   - After the page is idle, a module worker (assets/intent_ai_worker.js) lazy-loads Transformers.js from jsDelivr and the
+     Xenova/all-MiniLM-L6-v2 sentence-embedding model (q8, ~23 MB, cached by the browser). No server, no keys.
+   - Menus: each choice gets a bonus (0..0.2) from its similarity to this viewer's recent picks and typed commands; stage.js's
+     scoreOf() adds it (thrydIntentAI.bonus). It can reorder a menu but can never make a tap skip the menu on its own (max .4 < .75).
+   - Typed commands: "/" (or the ›_ button) opens a box. teo.folds(surgical) or "teo fold" maps to the nearest real function name;
+     high confidence auto-applies with a brief "did you mean" and an undo; otherwise up to three suggestions to tap.
+   - Chrome's Prompt API (LanguageModel), only where it is already downloaded and available: free-text commands get a ✨ suggestion.
+   - Falls back silently to the plain scoring rule (and letter-level matching in the box) if anything fails, on weak devices, Save-Data
+     or slow networks, and with ?noai=1. */
+(function(root){
+  'use strict';
+  const Q = String(location.search || ''), NOAI = /(?:^|[?&])noai=1(?:&|$)/.test(Q);
+  const AI = root.thrydIntentAI = {state: NOAI ? 'optout' : 'waiting', why: NOAI ? '?noai=1' : '', model: 'Xenova/all-MiniLM-L6-v2 (q8)', ms: 0, chrome: 'unchecked', errors: []};
+  const ST = ()=> root.__thrydStage || {};
+  const OMF = ()=> ((ST().objectMethods || {}).functions) || {};
+  const hz = s => String(s || '').replace(/^#/, '').replace(/\(.*$/, '').replace(/([a-z])([A-Z])/g, '$1 $2').replace(/[._\-]+/g, ' ').replace(/\s+/g, ' ').trim().toLowerCase();
+  const nk = s => String(s || '').toLowerCase().replace(/[^a-z0-9]+/g, '');
+
+  // ---------- weak device / network: no model at all
+  function weak(){ const n = navigator, cn = n.connection;
+    if(typeof Worker !== 'function' || typeof WebAssembly !== 'object') return 'no worker/wasm';
+    if(cn && cn.saveData) return 'save-data'; if(cn && /(^|-)(2g|3g)$/.test(cn.effectiveType || '')) return 'slow network';
+    if(n.deviceMemory && n.deviceMemory < 4) return 'low memory'; if(n.hardwareConcurrency && n.hardwareConcurrency < 4) return 'few cores';
+    return ''; }
+
+  // ---------- the worker and a small embedding cache
+  const V = AI.vecs = new Map(); let W = null, seq = 0; const waits = new Map(), want = new Set(); let flushT = 0;
+  function fail(why){ AI.state = 'fallback'; AI.why = why; try{ W && W.terminate(); }catch(e){} W = null; waits.forEach(p => p.res(null)); waits.clear(); }
+  function start(){
+    if(AI.state !== 'waiting') return; const w = weak(); if(w){ AI.state = 'fallback'; AI.why = w; return; }
+    AI.state = 'loading'; const t0 = Date.now();
+    try{ W = new Worker('assets/intent_ai_worker.js?v=1', {type: 'module'}); }catch(e){ fail('worker: ' + (e && e.message || e)); return; }
+    const to = setTimeout(()=>{ if(AI.state === 'loading') fail('model load timed out'); }, 180000);
+    W.onerror = e => { clearTimeout(to); fail('worker error ' + (e && e.message || '')); };
+    W.onmessage = ev => { const m = ev.data || {};
+      if(m.type === 'ready'){ clearTimeout(to); AI.state = 'ready'; AI.ms = Date.now() - t0; seedCorpus(); return; }
+      if(m.type === 'error'){ AI.errors.push(m.error); if(AI.errors.length > 5) AI.errors.shift(); if(AI.state === 'loading'){ clearTimeout(to); fail(m.error); } const p = waits.get(m.id); if(p){ waits.delete(m.id); p.res(null); } return; }
+      if(m.type === 'vecs'){ const p = waits.get(m.id); if(!p) return; waits.delete(m.id); const out = [];
+        for(let i = 0; i < p.texts.length; i++){ const v = m.buf.subarray(i * m.dim, (i + 1) * m.dim); V.set(p.texts[i], v); out.push(v); } p.res(out); } };
+    W.postMessage({type: 'init'});
+  }
+  function embed(texts){ texts = [...new Set(texts.map(hz).filter(Boolean))];
+    if(AI.state !== 'ready' || !W) return Promise.resolve(null);
+    const need = texts.filter(t => !V.has(t)); if(!need.length) return Promise.resolve(texts.map(t => V.get(t)));
+    const chunks = []; for(let i = 0; i < need.length; i += 32) chunks.push(need.slice(i, i + 32));
+    return Promise.all(chunks.map(ch => new Promise(res => { const id = ++seq; waits.set(id, {res, texts: ch}); W.postMessage({type: 'embed', id, texts: ch}); })))
+      .then(()=> texts.map(t => V.get(t) || null)); }
+  function later(t){ t = hz(t); if(!t || V.has(t) || AI.state !== 'ready') return; want.add(t);
+    if(!flushT) flushT = setTimeout(()=>{ flushT = 0; const a = [...want]; want.clear(); embed(a); }, 250); }
+  const dot = (a, b)=>{ let s = 0; for(let i = 0; i < a.length; i++) s += a[i] * b[i]; return s; };
+  function seedCorpus(){ const F = OMF(), xs = [];
+    Object.keys(F).forEach(id => { xs.push(id); (F[id].titles || []).forEach(t => xs.push(t.title)); });
+    ['glow', 'grow', 'shrink', 'dim', 'brighten', 'setmood'].forEach(x => xs.push(x)); histTexts().forEach(x => xs.push(x)); embed(xs); }
+
+  // ---------- this viewer's context: recent picks (stage.js smart-tap history) + typed commands (this box)
+  const TK = 'thryd_ai_typed';
+  const typed = ()=>{ try{ return JSON.parse(localStorage.getItem(TK) || '[]'); }catch(e){ return []; } };
+  function pushTyped(text){ const a = typed().filter(x => x.text !== text); a.push({text, t: Date.now()}); if(a.length > 12) a.splice(0, a.length - 12); try{ localStorage.setItem(TK, JSON.stringify(a)); }catch(e){} }
+  function histItems(){ const IH = (ST().intentHistory && ST().intentHistory()) || {o: {}}, out = [];
+    Object.keys(IH.o || {}).forEach(k => (IH.o[k] || []).forEach(h => out.push({text: String(h.id || '').replace(/^[fm]:/, ''), t: h.t})));
+    typed().forEach(x => out.push(x)); return out.sort((a, b) => b.t - a.t).slice(0, 10); }
+  const histTexts = ()=> histItems().map(h => h.text);
+  let ctxSig = '', ctxV = null;
+  function context(){ const hs = histItems(), sig = hs.map(h => h.t).join(','); if(sig === ctxSig) return ctxV;
+    let acc = null, n = 0; hs.forEach((h, i) => { const v = V.get(hz(h.text)); if(!v){ later(h.text); return; } const w = Math.pow(.5, i / 4);
+      if(!acc) acc = new Float32Array(v.length); for(let j = 0; j < v.length; j++) acc[j] += w * v[j]; n++; });
+    if(acc){ let s = 0; for(let j = 0; j < acc.length; j++) s += acc[j] * acc[j]; s = Math.sqrt(s) || 1; for(let j = 0; j < acc.length; j++) acc[j] /= s; }
+    // only cache once every item had a vector, so the context fills in as embeddings arrive
+    if(n === hs.length) ctxSig = sig; ctxV = acc; return acc; }
+  AI.hasContext = ()=> AI.state === 'ready' && !!context();
+  // the bonus stage.js's scoreOf() adds (sync; 0 until the model and this choice's vector are ready)
+  AI.bonus = (c, x)=>{ try{ if(AI.state !== 'ready' || !x) return 0; const text = x.it ? (x.it.t && x.it.t.title) || x.it.id : x.m ? x.m.fn : '';
+      const v = V.get(hz(text)); if(!v){ later(text); return 0; } const ctx = context(); if(!ctx) return 0;
+      const s = dot(v, ctx); return Math.round(.2 * Math.max(0, Math.min(1, (s - .25) / .6)) * 1000) / 1000; }catch(e){ return 0; } };
+
+  // ---------- typed command -> the nearest real function
+  function lev(a, b){ if(a === b) return 0; const m = a.length, n = b.length; if(!m || !n) return m || n; let p = new Array(n + 1), q = new Array(n + 1);
+    for(let j = 0; j <= n; j++) p[j] = j; for(let i = 1; i <= m; i++){ q[0] = i; for(let j = 1; j <= n; j++) q[j] = Math.min(p[j] + 1, q[j - 1] + 1, p[j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1)); [p, q] = [q, p]; } return p[n]; }
+  const stem = w => w.replace(/(ing|ed|es|s)$/, '') || w;
+  function wsim(a, b){ a = nk(a); b = nk(b); if(!a || !b) return 0; if(a === b) return 1; if(stem(a) === stem(b)) return .95;
+    if(b.startsWith(a) && a.length >= 3) return .85; const L = Math.max(a.length, b.length); return Math.max(0, 1 - lev(a, b) / L) * .9; }
+  function parse(text){ const s = String(text || '').trim().replace(/^\/+/, '').replace(/;+\s*$/, '');
+    let m = s.match(/^#?([A-Za-z_][\w]*)\s*\.\s*([A-Za-z_][\w]*)\s*(?:\((.*)\))?$/) || s.match(/^#?([A-Za-z_][\w]*)\s+([A-Za-z_][\w]*)(?:\s*\((.*)\))?$/);
+    if(m) return {obj: m[1], fn: m[2], args: m[3] != null ? m[3].split(',').map(x => x.trim().replace(/^['"]|['"]$/g, '')).filter(Boolean) : [], free: false};
+    return {free: true, words: s.toLowerCase().split(/[^a-z0-9_]+/).filter(w => w.length > 1)}; }
+  function onStage(){ const S = ST(), map = new Map(); (S.cuts || []).forEach(c => { if(!c || !c.el || !c.el.isConnected || c.leaving || !S.choicesFor) return;
+      let xs = []; try{ xs = S.choicesFor(c); }catch(e){} xs.forEach(x => { if(x.it && !map.has(x.it.id)) map.set(x.it.id, {c, x}); else if(x.it && x.kind === 'own') map.set(x.it.id, {c, x}); }); });
+    return map; }
+  async function resolve(text){
+    const F = OMF(), ids = Object.keys(F), P = parse(text), live = onStage(); if(!ids.length) return {P, top: []};
+    const lexOf = id => { const [o, f] = [id.split('.')[0], F[id].method || id.split('.').slice(1).join('.')];
+      if(!P.free) return .5 * wsim(P.obj, o) + .5 * wsim(P.fn, f);
+      const ws = P.words; if(!ws.length) return 0; return .5 * Math.max(...ws.map(w => wsim(w, o))) + .5 * Math.max(...ws.map(w => wsim(w, f))); };
+    let qv = null; if(AI.state === 'ready'){ const r = await embed([P.free ? text : P.obj + ' ' + P.fn]); qv = r && r[0]; }
+    const top = ids.map(id => { const lex = lexOf(id), v = qv && V.get(hz(id)); const emb = v ? Math.max(0, dot(qv, v)) : null;
+        const s = emb == null ? lex : .65 * lex + .35 * emb; return {id, lex, emb, s: s + (live.has(id) ? .03 : 0), live: live.get(id) || null, f: F[id]}; })
+      .sort((a, b) => b.s - a.s).slice(0, 5);
+    return {P, top, used: qv ? 'embeddings' : 'letters'}; }
+  AI.resolve = resolve;
+
+  // ---------- Chrome built-in AI (Prompt API): detect only; used only when already available on this device
+  let LMS = null;
+  async function chromeCheck(){ try{ const LM = root.LanguageModel || (root.ai && root.ai.languageModel); if(!LM){ AI.chrome = 'none'; return; }
+      const a = LM.availability ? await LM.availability() : (LM.capabilities ? (await LM.capabilities()).available : 'no'); AI.chrome = String(a); }catch(e){ AI.chrome = 'none'; } }
+  const chromeOk = ()=> !NOAI && /^(available|readily)$/.test(AI.chrome);
+  async function chromeSuggest(text, ids){ if(!chromeOk()) return null; const LM = root.LanguageModel || (root.ai && root.ai.languageModel);
+    const tmo = (p, ms) => Promise.race([p, new Promise((_, r) => setTimeout(()=> r(new Error('timeout')), ms))]);
+    try{ if(!LMS) LMS = await tmo(LM.create({initialPrompts: [{role: 'system', content: 'You map a viewer\'s free-text wish to one function call from a list. Reply with exactly one item from the list and nothing else, or NONE.'}]}), 8000);
+      const ans = String(await tmo(LMS.prompt('Functions: ' + ids.join(', ') + '\nWish: ' + text + '\nAnswer:'), 8000) || '').toLowerCase();
+      return ids.find(id => ans.includes(id.toLowerCase())) || null; }catch(e){ AI.errors.push('chrome: ' + (e && e.message || e)); return null; } }
+
+  // ---------- the box
+  const css = document.createElement('style'); css.textContent = [
+    '#aibox{position:fixed;left:50%;bottom:12vh;transform:translateX(-50%);z-index:10060;display:none;flex-direction:column;gap:.6vh;width:min(92vw,520px);padding:.8vh;border-radius:1vh;background:rgba(12,12,12,.92);box-shadow:0 3px 16px #0009;font:600 max(13px,1.6vh) ui-monospace,Menlo,Consolas,monospace;color:#fff}',
+    '#aibox.on{display:flex}', '#aibox input{font:inherit;color:#fff;background:#222;border:1px solid #666;border-radius:.7vh;padding:.8vh 1vh;outline:none;min-height:36px}',
+    '#aibox input:focus{border-color:#ffd76a}', '#aibox .aim{color:#bbb;font-weight:400;font-size:.85em;min-height:1em}', '#aibox .aic{display:flex;flex-wrap:wrap;gap:.5vh}',
+    '#aibox .aic button{font:inherit;color:#fff;background:#2a2a2a;border:1px solid #8a6d2b;border-radius:.8vh;padding:.6vh .9vh;cursor:pointer;min-height:34px}',
+    '#aibox .aic button.ch{border-color:#9f7aea}', '#aibox .aic button.off{opacity:.6}', '#aibox .aiu{color:#9fd3ff;cursor:pointer;text-decoration:underline;margin-left:.6em}',
+    '#aicmd{min-width:2.6em}'].join('\n'); document.head.appendChild(css);
+  let box = null, inp = null, msg = null, chips = null;
+  function ui(){ if(box) return; box = document.createElement('div'); box.id = 'aibox'; box.setAttribute('role', 'dialog'); box.setAttribute('aria-label', 'Type a call');
+    inp = document.createElement('input'); inp.type = 'text'; inp.autocomplete = 'off'; inp.spellcheck = false; inp.placeholder = 'type a call · teo.fold() · or say what you want';
+    msg = document.createElement('div'); msg.className = 'aim'; chips = document.createElement('div'); chips.className = 'aic';
+    box.append(inp, msg, chips); document.body.appendChild(box);
+    ['pointerdown', 'click'].forEach(k => box.addEventListener(k, e => e.stopPropagation()));
+    inp.addEventListener('keydown', e => { e.stopPropagation(); if(e.key === 'Escape'){ close(); } else if(e.key === 'Enter'){ e.preventDefault(); go(inp.value); } }); }
+  function open(){ ui(); box.classList.add('on'); msg.textContent = AI.state === 'ready' ? 'AI matching on' + (chromeOk() ? ' · ✨ Chrome AI' : '') : (AI.state === 'loading' ? 'AI model loading… letter matching for now' : 'letter matching'); chips.textContent = ''; inp.value = ''; setTimeout(()=> inp.focus(), 0); }
+  function close(){ if(box){ box.classList.remove('on'); inp.blur(); } }
+  AI.open = open; AI.close = close;
+  function label(r){ return r.id.split('.')[0] + '.' + ((r.f && r.f.method) || r.id.split('.').slice(1).join('.')) + '()'; }
+  function fire(r, how){ const S = ST(); if(!r.live || !S.fireFunc){ msg.textContent = label(r) + ' · ' + r.id.split('.')[0] + ' isn\'t on stage right now'; return null; }
+    const {c, x} = r.live, name = (S.objName ? S.objName(c) : null) || r.id.split('.')[0];
+    try{ S.fireFunc(c, name, x.it, 'intent'); }catch(e){ msg.textContent = 'could not run ' + label(r); return null; }
+    const M = S.methods || {}, rec = (M.sent || [])[M.sent.length - 1]; if(rec) rec.intent = {why: how, typed: true};
+    return {c, rec, id: 'f:' + x.it.t.title}; }
+  async function go(text){ text = String(text || '').trim(); if(!text) return; pushTyped(text); ctxSig = ''; later(text);
+    msg.textContent = '…'; chips.textContent = ''; const R = await resolve(text), top = R.top;
+    if(!top.length){ msg.textContent = 'no functions loaded yet'; return; }
+    const exact = !R.P.free && top[0].lex >= .999, conf = top[0].s - (top[1] ? top[1].s : 0);
+    if(exact || (top[0].s >= .82 && conf >= .08 && top[0].live)){
+      const done = fire(top[0], exact ? 'typed' : 'did you mean (' + top[0].s.toFixed(2) + ')');
+      if(done){ inp.value = ''; msg.textContent = (exact ? '' : 'did you mean ') + label(top[0]) + (exact ? ' · ran' : '? · applied');
+        if(!exact && ST().undoIntent){ const u = document.createElement('span'); u.className = 'aiu'; u.textContent = 'undo'; u.onclick = ()=>{ ST().undoIntent(done.c, done.rec, done.id); msg.textContent = 'undone'; }; msg.appendChild(u); }
+        setTimeout(()=>{ if(box && box.classList.contains('on') && document.activeElement !== inp) close(); }, 3500); }
+      return; }
+    msg.textContent = 'did you mean' + (R.used === 'embeddings' ? '' : ' (letter match)') + ':';
+    const show = (r, cls, pre) => { const b = document.createElement('button'); b.type = 'button'; b.textContent = (pre || '') + label(r); if(cls) b.className = cls; if(!r.live) b.classList.add('off');
+      b.title = r.live ? 'run it on stage' : 'not on stage right now'; b.onclick = ()=>{ const d = fire(r, 'did you mean · picked'); if(d){ inp.value = ''; msg.textContent = label(r) + ' · ran'; } }; chips.appendChild(b); };
+    top.slice(0, 3).forEach(r => show(r));
+    if(R.P.free && chromeOk()){ const live = onStage(), ids = [...new Set(top.map(r => r.id).concat([...live.keys()], Object.keys(OMF())))].slice(0, 60);
+      const pick = await chromeSuggest(text, ids); if(pick){ const F = OMF(); const r = top.find(x => x.id === pick) || {id: pick, f: F[pick], live: live.get(pick) || null};
+        const b0 = chips.firstChild; show(r, 'ch', '\u2728 '); if(b0) chips.insertBefore(chips.lastChild, b0); } } }
+  function button(){ const bar = document.getElementById('modes'); if(!bar){ setTimeout(button, 1000); return; } if(document.getElementById('aicmd')) return;
+    const b = document.createElement('button'); b.id = 'aicmd'; b.type = 'button'; b.textContent = '\u203a_'; b.title = 'Type a call (/)'; b.setAttribute('aria-label', 'Type a call');
+    b.addEventListener('click', e => { e.stopPropagation(); box && box.classList.contains('on') ? close() : open(); });
+    const st = document.getElementById('smarttap'); if(st && st.parentNode === bar) bar.insertBefore(b, st.nextSibling); else bar.appendChild(b); }
+  addEventListener('keydown', e => { const t = e.target; if(e.ctrlKey || e.metaKey || e.altKey || (t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName)))) return;
+    if(e.key === '/'){ e.preventDefault(); open(); } });
+  // stage only (index.html loads this after stage.js; ?slides=1 has no stage)
+  if(!/(?:^|[?&])slides=1(?:&|$)/.test(Q)) button();
+
+  // ---------- typed calls from the rooms that miss a real function: one quiet "≈ did you mean" line in #code (high confidence only)
+  const said = new Set(); let lastSaid = 0;
+  setInterval(async ()=>{ if(AI.state !== 'ready') return; const dl = root.__thrydDriftLines || []; const e = dl.find(l => l && /^typed \(no look yet\)/.test(l.note || '') && !said.has(l.t)); if(!e) return;
+    said.add(e.t); const P = parse(e.t); if(P.free || /^thryd/i.test(P.obj) || OMF()[nk(P.obj) + '.' + nk(P.fn)]) return; if(Date.now() - lastSaid < 10000) return;
+    const R = await resolve(e.t); const r = R.top[0]; if(!r || r.s < .82 || r.lex >= .999 || (R.top[1] && r.s - R.top[1].s < .08)) return; lastSaid = Date.now();
+    dl.unshift({t: '\u2248 ' + label(r), a: true, note: 'did you mean (nearest real function to ' + e.t.replace(/;$/, '') + ')'}); if(dl.length > 8) dl.length = 8; }, 2500);
+
+  AI.status = ()=> ({state: AI.state, why: AI.why, model: AI.model, loadMs: AI.ms, vectors: V.size, chrome: AI.chrome, context: !!(AI.state === 'ready' && context()), errors: AI.errors.slice()});
+  if(NOAI) return;
+  chromeCheck();
+  // lazy: only after the page has loaded and gone idle (never blocks the first paint or the first cuts)
+  const idle = f => (root.requestIdleCallback ? requestIdleCallback(f, {timeout: 20000}) : setTimeout(f, 2000));
+  const kick = ()=> setTimeout(()=> idle(start), 10000);
+  if(document.readyState === 'complete') kick(); else addEventListener('load', kick, {once: true});
+  // new functions published later get vectors too
+  setInterval(()=>{ if(AI.state === 'ready') seedCorpus(); }, 300000);
+})(typeof window !== 'undefined' ? window : globalThis);

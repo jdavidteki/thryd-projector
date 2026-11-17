@@ -1683,7 +1683,9 @@
     const ps = ((x.it.f || {}).sig || {}).params || []; return ps.every(p => ok.includes(p.class)) ? 1 : 0; }
   function scoreOf(c, x, hist, g){ const id = choiceId(x), mine = hist.filter(h => h.id === id), n = Math.max(3, hist.length); // one pick is never 'obvious'
     const freq = mine.reduce((a, h) => a + (h.cls ? .5 : 1), 0) / n, last = mine.length ? Math.max(...mine.map(h => h.t)) : 0;
-    const rec = last ? Math.exp(-(Date.now() - last) / 864e5) : 0; return .5 * Math.min(1, freq) + .3 * rec + .2 * fitOf(x, g); }
+    const rec = last ? Math.exp(-(Date.now() - last) / 864e5) : 0; return .5 * Math.min(1, freq) + .3 * rec + .2 * fitOf(x, g) + aiB(c, x); }
+  // in-browser AI bonus 0..0.2 (assets/intent_ai.js, v538): similarity to this viewer's recent picks and typed calls; 0 when off or not loaded
+  const aiB = (c, x)=>{ try{ const A = root.thrydIntentAI; return A && A.bonus ? +A.bonus(c, x) || 0 : 0; }catch(e){ return 0; } };
   function choicesFor(c){ const own = funcsFor(c).map(it => ({it, kind: 'own'})), env = envFor(c, own.map(o => o.it));
     const out = own.concat(...env.map(r => r.items.map(it => ({it, kind: 'env', row: r}))));
     if(!own.length && !env.some(r => r.items.length)) methodsFor(c).forEach(m => out.push({m, kind: 'old'}));
@@ -1697,7 +1699,7 @@
     const sc = xs.map(x => ({x, s: scoreOf(c, x, hist, g)})).sort((a, b) => b.s - a.s);
     if(sc[0].s >= .75 && (sc.length < 2 || sc[0].s - sc[1].s >= .25)) return {x: sc[0].x, why: 'your usual here (' + sc[0].s.toFixed(2) + ')', conf: sc[0].s};
     return null; }
-  function orderByPref(c, xs){ const hist = histOf(c); if(!hist.length) return xs; const g = genreOf(c);
+  function orderByPref(c, xs){ const hist = histOf(c); if(!hist.length && !(root.thrydIntentAI && root.thrydIntentAI.hasContext && root.thrydIntentAI.hasContext())) return xs; const g = genreOf(c);
     return xs.map((x, i) => ({x, i, s: scoreOf(c, x, hist, g)})).sort((a, b) => (b.s - a.s) || (a.i - b.i)).map(o => o.x); }
   let UT = null;
   function undoToast(text, onUndo){ if(UT){ UT.remove(); UT = null; }
@@ -1720,7 +1722,7 @@
     const u = {code: 'undo ' + rec.code, body: {v: 1, type: 'undo', event_id: eid, rid: eid + '-r', undo_of: rec.body.event_id, client_ts: new Date().toISOString()}, status: 'sending', at: Date.now(), undo: true};
     M.sent.push(u); if(M.sent.length > 40) M.sent.shift(); sendCall(u, u.code, eid); return u; }
   function tapIntent(c){ const ch = intentFor(c); if(ch && ch.x){ closeMethods(); runIntent(c, ch); return ch; } openMethods(c); return null; }
-  S.intentFor = intentFor; S.tapIntent = tapIntent; S.undoIntent = undoIntent; S.intentHistory = ()=> IH; S.smartOn = smartOn; S.choicesFor = choicesFor;
+  S.objName = objName; S.intentFor = intentFor; S.tapIntent = tapIntent; S.undoIntent = undoIntent; S.intentHistory = ()=> IH; S.smartOn = smartOn; S.choicesFor = choicesFor;
   // the setting: one button in the controls, on by default
   function smartButton(){ const bar = document.getElementById('modes'); if(!bar){ setTimeout(smartButton, 1000); return; } if(document.getElementById('smarttap')) return;
     const b = document.createElement('button'); b.id = 'smarttap'; b.type = 'button';
