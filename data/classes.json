@@ -104,7 +104,7 @@
     "hide",
     "hit"
    ],
-   "instances": 329,
+   "instances": 330,
    "arg_instances": 10,
    "parent": null,
    "chain": [
@@ -124,10 +124,11 @@
    "param": "amount",
    "methods": [
     "line",
-    "teach"
+    "teach",
+    "till"
    ],
-   "instances": 2,
-   "arg_instances": 2,
+   "instances": 3,
+   "arg_instances": 3,
    "parent": "Thing",
    "chain": [
     "Quantity",
@@ -189,6 +190,22 @@
   }
  },
  "instances": {
+  "2037": {
+   "class": "Quantity",
+   "cue": "number",
+   "first_run": "run-5a58c4",
+   "first_job": "j33",
+   "source": "pick",
+   "runs": [
+    "run-5a58c4"
+   ],
+   "tweets": [
+    {
+     "text": "- weya still in 2026ć! that wan na till [[2037]]",
+     "year": "2025"
+    }
+   ]
+  },
   "50000dollartonaira": {
    "class": "Thing",
    "cue": "default",
@@ -1146,6 +1163,17 @@
    "first_run": "run-5a58c4",
    "first_job": null,
    "source": "stage",
+   "runs": [
+    "run-5a58c4"
+   ],
+   "tweets": []
+  },
+  "dezroom": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-5a58c4",
+   "first_job": "j33",
+   "source": "typed",
    "runs": [
     "run-5a58c4"
    ],
@@ -5442,6 +5470,12 @@
     "pick"
    ],
    [
+    "2037",
+    "Quantity",
+    "j33",
+    "pick"
+   ],
+   [
     "true",
     "Thing",
     "j28",
@@ -5457,6 +5491,12 @@
     "eddiemurphy",
     "Thing",
     "j31",
+    "typed"
+   ],
+   [
+    "dezroom",
+    "Thing",
+    "j33",
     "typed"
    ],
    [
@@ -8410,7 +8450,8 @@
   "calla.stare": "stare(feeling: Feeling)",
   "teo.sit": "sit(what: Thing)",
   "blender.line": "line(amount: Quantity)",
-  "calla.see": "see(where: Place)"
+  "calla.see": "see(where: Place)",
+  "time.till": "till(amount: Quantity)"
  },
  "parent": {
   "Person": "Thing",
@@ -8640,6 +8681,7 @@
    "song",
    "teo",
    "thrill",
+   "time",
    "touch",
    "tyn",
    "wanow"
@@ -8800,5 +8842,5 @@
   "epilogue": "quiet",
   "coda": "quiet"
  },
- "updated": "2026-11-17T15:42:58-05:00"
+ "updated": "2026-11-17T15:59:58-05:00"
 }
