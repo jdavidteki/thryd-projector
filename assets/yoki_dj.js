@@ -9,7 +9,13 @@
      0.5 centroid + 0.5 best line per part, weighted theme .45 / scene .3 / tweets .25. Otherwise (?noai=1, weak device, model still
      loading) it scores TF-IDF lyric terms against the context words. Either way the why-note names the lyric line and the part it met.
    - no song repeats in a session (sessionStorage); ⏭ takes the next-best. When a new pick changes the context it re-ranks; a large mood
-     shift (context similarity < .7) moves on after the current song has had 25 s, a small one only changes what plays next. */
+     shift (context similarity < .7) moves on after the current song has had 25 s, a small one only changes what plays next.
+   Lyric match layer (v542, Jesuye 17 Nov 2026 3:24 PM ET "use the lyrics for the searching"): next() first reads data/yoki_match.json,
+   the box's BM25 search over every africariyoki lyric line (tools/yoki_match.py in the 45 s export loop: #thryd's mood note for the live
+   card, its scene and card lines, the seated lines, typed themes). When it is there and fresh (same active run, under 24 h old) songs
+   play in its rank order, skipping the last 3 played; ⏭ = next by rank; a new ranking waits for the current song to end (no mood-shift
+   cut); the why-line is a light pill under the lyrics ('♪ matched: “lyric” ↔ j31 blender line'). Missing/stale file or ?yokimatch=0:
+   everything above, unchanged. */
 (function(root){
   'use strict';
   const Q = new URLSearchParams(location.search), NOAI = Q.get('noai') === '1';
@@ -104,20 +110,51 @@
     return busy; }
 
   // next(exclude): best unplayed song that extras.js can play (has: id -> true)
-  DJ.next = async function(has){ try{ await refresh(); }catch(e){ DJ.state = 'fallback'; return null; }
+  DJ.next = async function(has){ let lm = null; try{ lm = await loadMatch(); }catch(e){ lm = null; }
+    if(lm){ const r = nextMatched(has); if(r) return r; }
+    try{ await refresh(); }catch(e){ DJ.state = 'fallback'; return null; }
     let pool = ranked.filter(r => (!has || has(r.s.id)) && !played.has(r.s.id));
     if(!pool.length){ played.clear(); savePlayed(); pool = ranked.filter(r => !has || has(r.s.id)); }
     const r = pool[0]; if(!r) return null; played.add(r.s.id); savePlayed(); DJ.why = {id: r.s.id, title: r.s.t, artist: r.s.a, score: +r.score.toFixed(3), mode: DJ.mode, ...r.why, ctx: {run: DJ.ctx.run, job: DJ.ctx.job, theme: DJ.ctx.themeLabel}};
     return {id: r.s.id, why: DJ.why}; };
-  DJ.queue = (n)=> ranked.filter(r => !played.has(r.s.id)).slice(0, n || 5).map(r => ({title: r.s.t, artist: r.s.a, score: +r.score.toFixed(3), line: r.why.line, part: r.why.part}));
+  DJ.queue = (n)=> match ? match.top.slice(0, n || 5).map(x => ({title: x.title, artist: x.artist, score: x.score, line: x.matches && x.matches[0] && x.matches[0].line, part: 'lyrics'})) : ranked.filter(r => !played.has(r.s.id)).slice(0, n || 5).map(r => ({title: r.s.t, artist: r.s.a, score: +r.score.toFixed(3), line: r.why.line, part: r.why.part}));
   DJ.played = ()=> [...played];
+
+  // ---------- lyric match layer (data/yoki_match.json)
+  const NOMATCH = Q.get('yokimatch') === '0', RECENT_K = 'thryd_yoki_recent', MATCH_MAX_AGE = 24 * 3600e3;
+  let match = null, matchSig = '', matchNew = false, mLast = null;
+  let recent = (()=>{ try{ const r = JSON.parse(localStorage.getItem(RECENT_K) || '[]'); return Array.isArray(r) ? r.slice(-3) : []; }catch(e){ return []; } })();
+  const remember = id => { recent = recent.filter(x => x !== id); recent.push(id); recent = recent.slice(-3); try{ localStorage.setItem(RECENT_K, JSON.stringify(recent)); }catch(e){} };
+  DJ.matchState = NOMATCH ? 'off' : 'unread';
+  async function loadMatch(){ if(NOMATCH){ match = null; return null; }
+    const [m, ao] = await Promise.all([getJ('data/yoki_match.json?_=' + Date.now()), getJ('data/agenda_objects.json')]);
+    const top = (m && Array.isArray(m.top) ? m.top : []).filter(x => x && x.id);
+    const run = ao && ao.active_run, gen = m && Date.parse(m.generated || '');
+    const stale = !top.length || (run && m.run && run !== m.run) || (gen && Date.now() - gen > MATCH_MAX_AGE);
+    if(stale){ match = null; DJ.matchState = top.length ? 'stale' : 'missing'; return null; }
+    const sig = String(m.sig || top.map(x => x.id).join(','));
+    if(sig !== matchSig){ if(matchSig) matchNew = true; matchSig = sig; }
+    match = {job: m.job, run: m.run, sig, top}; DJ.matchState = 'ok'; return match; }
+  function nextMatched(has){ if(!match) return null; const L = match.top.filter(x => !has || has(x.id)); if(!L.length) return null;
+    const s0 = matchNew ? 0 : Math.max(0, L.findIndex(x => x.id === mLast) + 1); matchNew = false;
+    let x = null; for(let k = 0; k < L.length; k++){ const c = L[(s0 + k) % L.length]; if(recent.indexOf(c.id) < 0){ x = c; break; } }
+    x = x || L[s0 % L.length]; mLast = x.id; remember(x.id); played.add(x.id); savePlayed();
+    const m0 = (x.matches && x.matches[0]) || {};
+    DJ.mode = 'lyrics'; DJ.why = {src: 'match', id: x.id, title: x.title, artist: x.artist, score: x.score, rank: x.rank, text: x.why || '', line: m0.line || '', term: m0.term || '', via: m0.via || '', mode: 'lyrics', ctx: {run: match.run, job: match.job}};
+    return {id: x.id, why: DJ.why}; }
+  DJ.match = ()=> ({state: DJ.matchState, job: match && match.job, sig: matchSig, n: match ? match.top.length : 0, pending: matchNew, last: mLast, recent: recent.slice()});
+  DJ.reloadMatch = ()=> loadMatch().then(()=> DJ.match());
 
   // ---------- the fading why-note
   let note = null, noteT = 0;
+  const DARK_CSS = 'position:fixed;right:12px;top:calc(7.4vh + 34px);max-width:min(46vw,520px);z-index:60;pointer-events:none;font-size:max(11px,1.35vh);line-height:1.35;color:#ddd;background:#000b;border:1px solid #444;border-radius:.4em;padding:.35em .6em;opacity:0;transition:opacity 1.2s ease;text-align:right';
+  const MATCH_CSS = 'position:fixed;right:1.5vw;top:calc(7.4vh + 20px + max(10px,1.3vh)*1.5);max-width:min(46vw,560px);z-index:60;pointer-events:none;font-size:max(10px,1.15vh);line-height:1.35;color:#111;background:rgba(255,255,255,.78);border:0;border-radius:999px;padding:2px 10px;opacity:0;transition:opacity .8s ease;text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis';
   DJ.showWhy = function(w){ w = w || DJ.why; if(!w || !document.body) return;
-    if(!note){ note = document.createElement('div'); note.id = 'yoki_why';
-      note.style.cssText = 'position:fixed;right:12px;top:calc(7.4vh + 34px);max-width:min(46vw,520px);z-index:60;pointer-events:none;font-size:max(11px,1.35vh);line-height:1.35;color:#ddd;background:#000b;border:1px solid #444;border-radius:.4em;padding:.35em .6em;opacity:0;transition:opacity 1.2s ease;text-align:right';
-      document.body.appendChild(note); }
+    if(!note){ note = document.createElement('div'); note.id = 'yoki_why'; document.body.appendChild(note); }
+    if(w.src === 'match'){ // light pill under the lyrics, stays while the song plays
+      note.style.cssText = MATCH_CSS; note.textContent = w.text || ('♪ matched: “' + (w.line || w.title) + '”'); note.title = note.textContent;
+      if(noteT){ clearTimeout(noteT); noteT = 0; } requestAnimationFrame(()=>{ note.style.opacity = '1'; }); return; }
+    note.style.cssText = DARK_CSS;
     const met = w.part === 'tweet' && w.tweet ? '«' + w.tweet.text.slice(0, 90) + (w.tweet.text.length > 90 ? '…' : '') + '» (' + (w.tweet.title || w.tweet.job) + ')'
       : w.part === 'theme' ? 'theme: ' + ((w.ctx && w.ctx.theme) || 'the 📖 line') : 'the ' + ((w.ctx && w.ctx.job) || 'live job') + ' scene';
     note.textContent = '';
@@ -129,7 +166,7 @@
   // ---------- polling while yoki plays; onShift is set by extras.js
   DJ.setActive = function(on){ on = !!on; if(on === active) return; active = on;
     if(pollT){ clearInterval(pollT); pollT = 0; } if(!on){ DJ.hideWhy(); return; }
-    pollT = setInterval(()=>{ if(!active || document.hidden) return; refresh().then(r => { if(r && r.shift && DJ.onShift) DJ.onShift(); }).catch(()=>{}); }, POLL); };
+    pollT = setInterval(()=>{ if(!active || document.hidden) return; loadMatch().catch(()=> null).then(m => m ? null : refresh().then(r => { if(r && r.shift && !match && DJ.onShift) DJ.onShift(); })).catch(()=>{}); }, POLL); };
   // once the model becomes ready, re-rank with embeddings (no cut, just the queue)
   let aiSeen = false; setInterval(()=>{ if(!aiSeen && AI() && active){ aiSeen = true; rankSig = ''; refresh().catch(()=>{}); } }, 15000);
 })(typeof window !== 'undefined' ? window : globalThis);
