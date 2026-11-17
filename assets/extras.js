@@ -1,11 +1,13 @@
 // sound (Jesuye 15 Nov 2026 1:55 AM ET "a sound drop-down with yoki or lofi"): a small select replaces the on/off button.
 //   off   default; nothing plays
-//   lofi  the ABM Lofi Creative Commons radio stream (https://radio.audiobookmanager.com/)
+//   lofi  a short list of Creative Commons / free-to-stream stations, starting with ABM Lofi
+//         (https://radio.audiobookmanager.com/), then Frekvenci Chill and freeCodeCamp Code Radio
 //   yoki  africariyoki songs, shuffled, from the africariyoki songs API (www.africariyoki.com/api/songs.json; until that PR is
 //         merged, the PR branch's raw copy); a small credit shows song · artist · africariyoki, and the current LRC line faintly
 // Audio starts only from a user gesture (autoplay rules). The choice is saved as thryd_sound (migrated from thryd_mute, '0' = lofi);
 // a reload with a saved mode tries to resume, and if the browser refuses it waits for the next tap anywhere. One audio element,
-// so the modes never overlap. Stream/song errors retry quietly with backoff (lofi: mp3 then AAC mount; yoki: skip to the next song).
+// so the modes never overlap. Stream/song errors retry quietly with backoff (lofi: next mount of the current station; yoki: skip to the next song).
+// A small ⏭ next to the dropdown (hidden in off/brown) does whatever next means: yoki calls nextSong(); lofi reconnects on the next station.
 //   brown (Jesuye 15 Nov 2026 5:08 AM ET "find a good brown noise api and add it") brown noise generated live in the browser with
 //         Web Audio: leaky-integrated white noise (AudioWorklet, ScriptProcessor fallback), a gentle low-pass and a slow soft swell,
 //         1.5 s fade in / out, about Lofi's level, ducked like the music. No network, no external API.
@@ -16,8 +18,12 @@ const Q=new URLSearchParams(location.search), $=id=>document.getElementById(id);
 const SPEECH=Q.get('audio')==='speech'||Q.get('audio')==='clips';
 let muted=true, clips=null; // true until music really plays
 const btn=$('mute');
-const LOFI={urls:['https://stream.audiobookmanager.com/listen/lofi/radio.mp3','https://stream.audiobookmanager.com/listen/lofi/radio.aac'],
-  credit:'https://radio.audiobookmanager.com/', vol:.35, duck:.12};
+const LOFI={stations:[
+  {name:'ABM Lofi', credit:'https://radio.audiobookmanager.com/', text:'ABM Lofi · CC-licensed', title:'Music: ABM Lofi radio (Creative Commons). Credits at radio.audiobookmanager.com', urls:['https://stream.audiobookmanager.com/listen/lofi/radio.mp3','https://stream.audiobookmanager.com/listen/lofi/radio.aac']},
+  {name:'Frekvenci Chill', credit:'https://frekvenci.com/station.html?id=st-chill', text:'Frekvenci Chill · CC-licensed', title:'Music: Frekvenci Chill (Creative Commons lo-fi / synthwave). Credits at frekvenci.com', urls:['https://stream.frekvenci.com/chill']},
+  {name:'Code Radio', credit:'https://coderadio.freecodecamp.org/', text:'Code Radio · freeCodeCamp', title:'Music: freeCodeCamp Code Radio. coderadio.freecodecamp.org', urls:['https://coderadio-admin-v2.freecodecamp.org/listen/coderadio/radio.mp3']},
+], vol:.35, duck:.12};
+function lofiSt(){ return LOFI.stations[si%LOFI.stations.length]; }
 const YOKI={apis:['https://www.africariyoki.com/api/songs.json','https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/songs.json'],
   site:'https://www.africariyoki.com/', vol:.3};
 const BROWN={vol:.32, duck:.12, fade:1.5, lp:520, swellHz:.045, swellDepth:.16};
@@ -33,16 +39,20 @@ const sel=document.createElement('select'); sel.id='sound'; sel.title='Sound: of
 MODES.forEach(m=>{const o=document.createElement('option'); o.value=m; o.textContent=LABEL[m]; sel.appendChild(o);});
 sel.value='off'; sel.onclick=e=>e.stopPropagation(); sel.onpointerdown=e=>e.stopPropagation&&e.stopPropagation();
 if(btn){ btn.style.display='none'; btn.textContent='🔇 audio off'; if(btn.parentNode&&btn.parentNode.insertBefore) btn.parentNode.insertBefore(sel,btn.nextSibling); }
-const show=()=>{ sel.value=mode; if(btn) btn.textContent=muted?'🔇 audio off':'🔊 audio on'; };
+const nxt=document.createElement('button'); nxt.id='soundnext'; nxt.type='button'; nxt.textContent='⏭'; nxt.title='Next'; nxt.style.display='none';
+nxt.onclick=e=>{ e&&e.stopPropagation&&e.stopPropagation(); nextSound(); };
+nxt.onpointerdown=e=>e.stopPropagation&&e.stopPropagation();
+if(sel.parentNode&&sel.parentNode.insertBefore) sel.parentNode.insertBefore(nxt,sel.nextSibling);
+const show=()=>{ sel.value=mode; if(nxt){ nxt.style.display=(mode==='lofi'||mode==='yoki')?'':'none'; nxt.title=mode==='yoki'?'Next song':'Next lofi station'; } if(btn) btn.textContent=muted?'🔇 audio off':'🔊 audio on'; };
 function mkCredit(){ if(credit) return credit; credit=document.createElement('a'); credit.id='lofi_credit'; credit.target='_blank'; credit.rel='noopener';
   credit.onclick=e=>e.stopPropagation(); credit.className='off'; document.body.appendChild(credit);
   lyr=document.createElement('div'); lyr.id='yoki_line'; lyr.className='off'; document.body.appendChild(lyr); return credit; }
 function setCredit(){ const c=mkCredit();
-  if(mode==='lofi'){ c.href=LOFI.credit; c.textContent='ABM Lofi · CC-licensed'; c.title='Music: ABM Lofi radio (Creative Commons). Credits at radio.audiobookmanager.com'; }
+  if(mode==='lofi'){ const s=lofiSt(); c.href=s.credit; c.textContent=s.text; c.title=s.title; }
   else if(mode==='brown'){ if(c.removeAttribute) c.removeAttribute('href'); c.textContent='brown noise · generated live'; c.title='Brown noise generated in this browser (Web Audio); nothing is streamed'; }
   else if(mode==='yoki'&&ysong){ c.href=YOKI.site; c.textContent=(ysong.title||'song')+' · '+(ysong.artist||'')+' · africariyoki'; c.title='Song via africariyoki.com'; }
   c.className=(mode==='off'||muted)?'off':''; if(lyr&&(mode!=='yoki'||muted)){lyr.className='off'; lyr.textContent='';} }
-function mkAudio(){ if(au) return au; au=new Audio(); au.id='lofi'; au.preload='none'; au.volume=LOFI.vol; try{au.setAttribute('data-src',LOFI.urls[0]);}catch(e){}
+function mkAudio(){ if(au) return au; au=new Audio(); au.id='lofi'; au.preload='none'; au.volume=LOFI.vol; try{au.setAttribute('data-src',lofiSt().urls[0]);}catch(e){}
   if(au.addEventListener){
     au.addEventListener('playing',()=>{tries=0; yfail=0; if(want){muted=false; show(); setCredit();}});
     au.addEventListener('ended',()=>{ if(!want||waitTap) return; if(mode==='yoki') nextSong(); else retry(); });
@@ -51,8 +61,10 @@ function mkAudio(){ if(au) return au; au=new Audio(); au.id='lofi'; au.preload='
       for(let i=0;i<ylrc.length&&ylrc[i][0]<=t+.2;i++) cur=ylrc[i][1]; if(lyr.textContent!==cur){ lyr.textContent=cur; lyr.className=cur?'':'off'; } });
   }
   if(document.body&&document.body.appendChild) document.body.appendChild(au); return au; }
-function retry(){ if(!want||retryT) return; tries++; if(mode==='lofi'&&tries%2===0) si=(si+1)%LOFI.urls.length;
+function retry(){ if(!want||retryT) return; tries++;
   const ms=Math.min(60000,2000*Math.pow(2,Math.min(tries-1,5))); retryT=setTimeout(()=>{retryT=0; if(want) start(false);},ms); }
+function nextSound(){ if(mode==='yoki'){ if(retryT){clearTimeout(retryT);retryT=0;} yfail=0; return nextSong(); }
+  if(mode!=='lofi') return; if(retryT){clearTimeout(retryT);retryT=0;} si=(si+1)%LOFI.stations.length; tries=0; return start(true); }
 // ---------- yoki: songs list + shuffle bag + LRC
 function loadSongs(){ if(ylist) return Promise.resolve(ylist); let i=0;
   const tryOne=()=>{ if(i>=YOKI.apis.length) return Promise.reject(new Error('no songs api'));
@@ -117,7 +129,7 @@ function start(fromTap){ want=true; if(mode==='brown'){ if(retryT){clearTimeout(
     if(waitTap&&ysong&&a.getAttribute&&a.getAttribute('src')){ let p; try{p=a.play();}catch(e){p=Promise.reject(e);} return Promise.resolve(p).then(()=>{waitTap=false; muted=false; show(); setCredit();}).catch(e=>played(e,fromTap)); }
     return nextSong();
   }
-  a.src=LOFI.urls[si]+(tries?('?r='+Date.now()):''); a.volume=(window.speechSynthesis&&speechSynthesis.speaking)?LOFI.duck:LOFI.vol;
+  const st=lofiSt(); a.src=st.urls[tries%st.urls.length]+(tries?('?r='+Date.now()):''); a.volume=(window.speechSynthesis&&speechSynthesis.speaking)?LOFI.duck:LOFI.vol;
   let p; try{p=a.play();}catch(e){p=Promise.reject(e);}
   return Promise.resolve(p).then(()=>{waitTap=false; muted=false; show(); setCredit();}).catch(e=>played(e,fromTap)); }
 function stop(){ want=false; waitTap=false; tries=0; yfail=0; if(retryT){clearTimeout(retryT);retryT=0;} brownStop(); if(au){ try{au.pause(); au.removeAttribute('src'); au.load();}catch(e){} }
@@ -143,7 +155,7 @@ function speakText(t){if(!SPEECH||muted||!unlocked||!('speechSynthesis' in windo
   const parts=(t.replace(/\[\[|\]\]/g,'').match(/[^.!?;,]{1,140}[.!?;,]?/g)||[t]).map(x=>x.trim()).filter(Boolean).slice(0,4);
   speechSynthesis.cancel();speechSynthesis.resume();
   parts.forEach(x=>{const u=new SpeechSynthesisUtterance(x);if(VOICE){u.voice=VOICE;u.lang=VOICE.lang;}else u.lang='en-US';u.rate=.95;u.pitch=.9;speechSynthesis.speak(u);});}
-const unlock=e=>{ if(waitTap&&want&&e&&e.target!==btn&&e.target!==sel){ gate.classList.add('off'); start(true); } // a saved "on" the browser held back
+const unlock=e=>{ if(waitTap&&want&&e&&e.target!==btn&&e.target!==sel&&e.target!==nxt){ gate.classList.add('off'); start(true); } // a saved "on" the browser held back
   if(muted||unlocked)return;unlocked=true;gate.classList.add('off');
   try{pickVoice();speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(' ');u.volume=0;speechSynthesis.speak(u);}catch(e){}
   if(SPEECH)setTimeout(()=>{try{speakOnce();}catch(e){}},2500);};
@@ -170,7 +182,7 @@ let lastT=-1; setInterval(()=>{ if(mode==='brown'||!au||!want||waitTap||retryT||
 // level(): RMS of the brown-noise output right now (for QA; creates one analyser on first use)
 function brownLevel(){ if(!BN.ctx||!BN.master) return 0; if(!BN.an){ BN.an=BN.ctx.createAnalyser(); BN.an.fftSize=2048; BN.master.connect(BN.an); }
   const d=new Float32Array(BN.an.fftSize); BN.an.getFloatTimeDomainData(d); let s=0; for(let i=0;i<d.length;i++) s+=d[i]*d[i]; return Math.sqrt(s/d.length); }
-window.thrydLofi=window.thrydSound={level:brownLevel,set:m=>setMode(m,true),start:()=>start(true),stop:()=>setMode('off'),state:()=>({mode,want,waitTap,muted,tries,src:au&&au.src,paused:au?au.paused:true,song:ysong&&{title:ysong.title,artist:ysong.artist},songs:ylist?ylist.length:0,lrc:ylrc.length,
+window.thrydLofi=window.thrydSound={level:brownLevel,set:m=>setMode(m,true),start:()=>start(true),stop:()=>setMode('off'),state:()=>({mode,want,waitTap,muted,tries,src:au&&au.src,paused:au?au.paused:true,song:ysong&&{title:ysong.title,artist:ysong.artist},songs:ylist?ylist.length:0,lrc:ylrc.length,station:mode==='lofi'&&lofiSt().name,
   brown:BN.ctx?{ctx:BN.ctx.state,on:BN.on,worklet:BN.worklet,gain:BN.master?+BN.master.gain.value.toFixed(3):0}:null})};
 // ---------- Add GIF
 const DB=new Promise((res,rej)=>{const r=indexedDB.open('thryd-projector',1);r.onupgradeneeded=()=>r.result.createObjectStore('gifs',{keyPath:'id'});r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error);});
