@@ -5209,6 +5209,16 @@
 "run": "run-5a58c4",
 "card": "j6",
 "other": "wser"
+},
+{
+"id": "wf_70bc57a833",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the marina biscayne bay, and Bisola reads the name twice.",
+"code": "hard.interactwith(marina_biscayne_bay){ marina_biscayne_bay.receives(hard.envelope); … }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "hard"
 }
 ],
 "mbtij": [
@@ -6078,17 +6088,6 @@
 },
 "consequences": [
 {
-"id": "wf_fbbfa06923",
-"ts": "2026-11-17T15:38:34-0500",
-"a": "matbaotstaili",
-"b": "prior_reality",
-"code": "matbaotstaili.interactwith(prior_reality){ prior_reality.receives(matbaotstaili.envelope); prior_reality.remembers(bisola, 'brown envelope'); }",
-"text": "The prior reality leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
 "id": "wf_35e9937423",
 "ts": "2026-11-17T15:46:21-0500",
 "a": "tnw",
@@ -6516,6 +6515,17 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": "j6"
+},
+{
+"id": "wf_70bc57a833",
+"ts": "2026-11-17T17:22:57-0500",
+"a": "hard",
+"b": "marina_biscayne_bay",
+"code": "hard.interactwith(marina_biscayne_bay){ marina_biscayne_bay.receives(hard.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the marina biscayne bay, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
 }
 ],
 "memories": [
@@ -6619,5 +6629,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T17:21:15-0500"
+"updated": "2026-11-17T17:22:57-0500"
 }
