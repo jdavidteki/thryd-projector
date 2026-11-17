@@ -809,16 +809,6 @@
 ],
 "agbada": [
 {
-"id": "wf_e54547dda3",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the agbada, and Bisola reads the name twice.",
-"code": "ats.interactwith(agbada){ agbada.receives(ats.envelope); agbada.remembers(bisola, 'brown envelope'); agbada.tucks(ats, 'yaba bookshop receipt into the brown envelope'); }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "ats"
-},
-{
 "id": "wf_4530259038",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the agbada, and Bisola reads the name twice.",
@@ -857,6 +847,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "sessy"
+},
+{
+"id": "wf_690eb969bf",
+"kind": "consequence",
+"text": "A Truth note with Titi's name and 'egbe note' on it, turns up inside the brown envelope at the agbada, and Bisola reads the name twice.",
+"code": "truth.interactwith(agbada){ agbada.receives(truth.note); agbada.remembers(titi, 'egbe note'); agbada.tucks(truth, 'truth note into the brown envelope'); }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j4",
+"other": "truth"
 }
 ],
 "danfo_speaker": [
@@ -2079,16 +2079,6 @@
 ],
 "sheep": [
 {
-"id": "wf_1dedca7906",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the sheep, and Bisola reads the name twice.",
-"code": "streetlights.interactwith(sheep){ sheep.receives(streetlights.envelope); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "streetlights"
-},
-{
 "id": "wf_d64049792d",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the sheep, and Bisola reads the name twice.",
@@ -2127,6 +2117,16 @@
 "run": "run-0bd7c0",
 "card": "w1",
 "other": "pure_water_cooler"
+},
+{
+"id": "wt_5dd9c9e121",
+"kind": "consequence",
+"text": "The matches come close to the sheep at the doorway, and the sheep shies back from the smoke, knocking Kunle's scorched container number note into the gutter where it stays face up.",
+"code": "matches.interactwith(sheep){ sheep.receives(matches, 'container number'); sheep.state('startled'); sheep.drops(matches, 'scorched note into the gutter'); }",
+"author": "thryd",
+"run": "run-0bd7c0",
+"card": "w7",
+"other": "matches"
 }
 ],
 "yaba_bukka": [
@@ -2511,16 +2511,6 @@
 ],
 "chair": [
 {
-"id": "wf_6fde2d149d",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the chair, and Bisola reads the name twice.",
-"code": "let.interactwith(chair){ chair.receives(let.envelope); chair.remembers(bisola, 'brown envelope'); chair.tucks(let, 'yaba bookshop receipt into the brown envelope'); }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "let"
-},
-{
 "id": "wf_18e4ed4357",
 "kind": "consequence",
 "text": "A Red white cap note with Taiwo's name and 'egbe note' on it, 11:20pm, turns up inside the brown envelope at the chair, and Bisola reads the name twice.",
@@ -2559,6 +2549,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "kweshon"
+},
+{
+"id": "wt_d7412f0d94",
+"kind": "consequence",
+"text": "Passing the chair, mi leaves a pencil mark of 11:20pm on its back rail, right under where Bisola's receipt was tucked, so the chair now holds the hour next to the name.",
+"code": "mi.interactwith(chair){ chair.receives(mi, '11:20pm'); chair.find('back rail').add('11:20pm pencil mark'); }",
+"author": "thryd",
+"run": "run-0bd7c0",
+"card": "w6",
+"other": "mi"
 }
 ],
 "cell_phone": [
@@ -4107,16 +4107,6 @@
 ],
 "danfo_stuck_third": [
 {
-"id": "wf_7f2652d91f",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the danfo stuck third, and Titi reads the name twice.",
-"code": "agbada.interactwith(danfo_stuck_third){ danfo_stuck_third.receives(agbada.envelope); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "agbada"
-},
-{
 "id": "wf_9abc1f5e39",
 "kind": "consequence",
 "text": "A Pure water cooler note with Kunle's name and 'container number' on it, 9:20am, turns up inside the egbe note at the danfo stuck third, and Titi reads the name twice.",
@@ -4155,6 +4145,16 @@
 "run": "run-0bd7c0",
 "card": "w5",
 "other": "danfo_speaker"
+},
+{
+"id": "wt_5e26982b69",
+"kind": "consequence",
+"text": "When mi reaches the danfo stuck in third, the conductor compares Kunle's dead stop on the brown envelope with the route board and finds the same handwriting chalked there.",
+"code": "mi.interactwith(danfo_stuck_third){ danfo_stuck_third.receives(mi, 'same hand on number and stop'); … }",
+"author": "thryd",
+"run": "run-0bd7c0",
+"card": "j5",
+"other": "mi"
 }
 ],
 "apapa_container_yard": [
@@ -4566,50 +4566,6 @@
 },
 "consequences": [
 {
-"id": "wf_040fe5d4ce",
-"ts": "2026-11-16T23:19:25-0500",
-"a": "omo",
-"b": "kerosene_lamp",
-"code": "omo.interactwith(kerosene_lamp){ kerosene_lamp.receives(omo.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the change at the kerosene lamp, and Taiwo reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
-{
-"id": "wf_a81bdf6307",
-"ts": "2026-11-16T23:21:00-0500",
-"a": "sessy",
-"b": "truth",
-"code": "sessy.interactwith(truth){ truth.receives(sessy.envelope); truth.remembers(bisola, 'brown envelope'); truth.tucks(sessy, 'yaba bookshop receipt into the egbe note'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the truth, and Titi reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
-{
-"id": "wf_7f2652d91f",
-"ts": "2026-11-16T23:21:49-0500",
-"a": "agbada",
-"b": "danfo_stuck_third",
-"code": "agbada.interactwith(danfo_stuck_third){ danfo_stuck_third.receives(agbada.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the danfo stuck third, and Titi reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
-{
-"id": "wf_e796dfa216",
-"ts": "2026-11-16T23:25:02-0500",
-"a": "ats",
-"b": "pure_water_cooler",
-"code": "ats.interactwith(pure_water_cooler){ pure_water_cooler.receives(ats.envelope); … }",
-"text": "An Ats note with Bisola's name and 'brown envelope' on it, turns up inside the container number at the pure water cooler, and Kunle reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j2"
-},
-{
 "id": "wf_19244b3bd4",
 "ts": "2026-11-16T23:29:56-0500",
 "a": "agbada",
@@ -5004,6 +4960,50 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j6"
+},
+{
+"id": "wf_690eb969bf",
+"ts": "2026-11-17T09:53:19-0500",
+"a": "truth",
+"b": "agbada",
+"code": "truth.interactwith(agbada){ agbada.receives(truth.note); agbada.remembers(titi, 'egbe note'); agbada.tucks(truth, 'truth note into the brown envelope'); }",
+"text": "A Truth note with Titi's name and 'egbe note' on it, turns up inside the brown envelope at the agbada, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j4"
+},
+{
+"id": "wt_d7412f0d94",
+"ts": "2026-11-17T09:54:10-0500",
+"a": "mi",
+"b": "chair",
+"code": "mi.interactwith(chair){ chair.receives(mi, '11:20pm'); chair.find('back rail').add('11:20pm pencil mark'); }",
+"text": "Passing the chair, mi leaves a pencil mark of 11:20pm on its back rail, right under where Bisola's receipt was tucked, so the chair now holds the hour next to the name.",
+"author": "thryd",
+"run": "run-0bd7c0",
+"card": "w6"
+},
+{
+"id": "wt_5e26982b69",
+"ts": "2026-11-17T09:54:10-0500",
+"a": "mi",
+"b": "danfo_stuck_third",
+"code": "mi.interactwith(danfo_stuck_third){ danfo_stuck_third.receives(mi, 'same hand on number and stop'); … }",
+"text": "When mi reaches the danfo stuck in third, the conductor compares Kunle's dead stop on the brown envelope with the route board and finds the same handwriting chalked there.",
+"author": "thryd",
+"run": "run-0bd7c0",
+"card": "j5"
+},
+{
+"id": "wt_5dd9c9e121",
+"ts": "2026-11-17T09:54:10-0500",
+"a": "matches",
+"b": "sheep",
+"code": "matches.interactwith(sheep){ sheep.receives(matches, 'container number'); sheep.state('startled'); sheep.drops(matches, 'scorched note into the gutter'); }",
+"text": "The matches come close to the sheep at the doorway, and the sheep shies back from the smoke, knocking Kunle's scorched container number note into the gutter where it stays face up.",
+"author": "thryd",
+"run": "run-0bd7c0",
+"card": "w7"
 }
 ],
 "memories": [
@@ -5107,5 +5107,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T09:46:06-0500"
+"updated": "2026-11-17T09:54:56-0500"
 }
