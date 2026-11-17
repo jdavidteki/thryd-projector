@@ -2238,16 +2238,6 @@
 ],
 "bus": [
 {
-"id": "wf_2007777284",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, turns up inside the timetable at the bus, and Kunle reads the name twice.",
-"code": "streetlights.interactwith(bus){ bus.receives(streetlights.envelope); … }",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j4",
-"other": "streetlights"
-},
-{
 "id": "wf_7feb4fa37b",
 "kind": "consequence",
 "text": "A Kerosene lamp note with Taiwo's name and 'change' on it, turns up inside the brown envelope at the bus, and Bisola reads the name twice.",
@@ -2286,6 +2276,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "morir_r"
+},
+{
+"id": "wf_bc53e48a29",
+"kind": "consequence",
+"text": "A Red white cap note with Taiwo's name and 'egbe note' on it, 11:20pm, turns up inside the brown envelope at the bus, and Bisola reads the name twice.",
+"code": "red_white_cap.interactwith(bus){ bus.receives(red_white_cap.note); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "w7",
+"other": "red_white_cap"
 }
 ],
 "hands": [
@@ -4243,17 +4243,6 @@
 },
 "consequences": [
 {
-"id": "wt_d8bf4e2285",
-"ts": "2026-11-16T14:52:32-0500",
-"a": "let",
-"b": "truth",
-"code": "let.interactwith(truth){ truth.receives(let.egbe_note); … }",
-"text": "The let slides over the truth, and the egbe note it was carrying settles on top of Bisola's 7:40am receipt, so the truth now holds two papers that disagree about where the brown envelope went.",
-"author": "thryd",
-"run": "run-0bd7c0",
-"card": "j4"
-},
-{
 "id": "wt_c6ff1d186b",
 "ts": "2026-11-16T14:52:32-0500",
 "a": "kerosene_lamp",
@@ -4681,6 +4670,17 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j6"
+},
+{
+"id": "wf_bc53e48a29",
+"ts": "2026-11-16T19:36:00-0500",
+"a": "red_white_cap",
+"b": "bus",
+"code": "red_white_cap.interactwith(bus){ bus.receives(red_white_cap.note); … }",
+"text": "A Red white cap note with Taiwo's name and 'egbe note' on it, 11:20pm, turns up inside the brown envelope at the bus, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "w7"
 }
 ],
 "memories": [
@@ -4784,5 +4784,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-16T19:31:12-0500"
+"updated": "2026-11-16T19:36:00-0500"
 }
