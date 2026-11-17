@@ -27,8 +27,8 @@
     "on",
     "open"
    ],
-   "instances": 51,
-   "arg_instances": 8,
+   "instances": 52,
+   "arg_instances": 9,
    "parent": "Thing",
    "chain": [
     "Person",
@@ -75,10 +75,11 @@
    "param": "where",
    "methods": [
     "follow",
+    "listen",
     "see"
    ],
-   "instances": 9,
-   "arg_instances": 2,
+   "instances": 10,
+   "arg_instances": 3,
    "parent": "Thing",
    "chain": [
     "Place",
@@ -102,11 +103,11 @@
    "param": "what",
    "methods": [
     "on",
-    "know",
-    "map"
+    "come",
+    "know"
    ],
-   "instances": 341,
-   "arg_instances": 24,
+   "instances": 342,
+   "arg_instances": 25,
    "parent": null,
    "chain": [
     "Thing"
@@ -1028,6 +1029,22 @@
     "run-6fb0c0"
    ],
    "tweets": []
+  },
+  "content": {
+   "class": "Place",
+   "cue": "tweet: in/at the ...",
+   "first_run": "run-g1-B",
+   "first_job": "j12",
+   "source": "pick",
+   "runs": [
+    "run-g1-B"
+   ],
+   "tweets": [
+    {
+     "text": "[[ijnas]] - you can't jus scroll- you have to lisen to the content [[nc]] - #seniorgehs - eez high culture-",
+     "year": "2025"
+    }
+   ]
   },
   "cooler": {
    "class": "Thing",
@@ -3534,6 +3551,22 @@
    ],
    "tweets": []
   },
+  "people": {
+   "class": "Person",
+   "cue": "word",
+   "first_run": "run-g1-B",
+   "first_job": "j12",
+   "source": "pick",
+   "runs": [
+    "run-g1-B"
+   ],
+   "tweets": [
+    {
+     "text": "- so we can visualize awa #thryd:om-- the people need to see-",
+     "year": "2025"
+    }
+   ]
+  },
   "pepe": {
    "class": "Person",
    "cue": "word",
@@ -4864,6 +4897,22 @@
    ],
    "tweets": []
   },
+  "together": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-g1-B",
+   "first_job": "j12",
+   "source": "pick",
+   "runs": [
+    "run-g1-B"
+   ],
+   "tweets": [
+    {
+     "text": "- so that when we #oganyz - we will come together- oluwa this and that- how great is awa God!",
+     "year": "2024"
+    }
+   ]
+  },
   "tok": {
    "class": "Thing",
    "cue": "default",
@@ -6079,6 +6128,24 @@
     "so",
     "Thing",
     "j11",
+    "pick"
+   ],
+   [
+    "together",
+    "Thing",
+    "j12",
+    "pick"
+   ],
+   [
+    "people",
+    "Person",
+    "j12",
+    "pick"
+   ],
+   [
+    "content",
+    "Place",
+    "j12",
     "pick"
    ],
    [
@@ -8887,7 +8954,10 @@
   "adaora.call": "call(amount: Quantity)",
   "folake.draw": "draw(what: Thing)",
   "kunle.have": "have(what: Thing)",
-  "titi.start": "start(what: Thing)"
+  "titi.start": "start(what: Thing)",
+  "adaora.come": "come(what: Thing)",
+  "folake.see": "see(who: Person)",
+  "titi.listen": "listen(where: Place)"
  },
  "parent": {
   "Person": "Thing",
@@ -8977,6 +9047,7 @@
     "aotl",
     "calla",
     "crime",
+    "folake",
     "history",
     "irteiutk",
     "taking",
@@ -9022,6 +9093,7 @@
     "calla",
     "dez",
     "everywhere",
+    "folake",
     "history",
     "teo"
    ]
@@ -9293,5 +9365,5 @@
   "epilogue": "quiet",
   "coda": "quiet"
  },
- "updated": "2026-11-17T18:26:00-05:00"
+ "updated": "2026-11-17T18:34:20-05:00"
 }
