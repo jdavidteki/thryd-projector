@@ -1951,6 +1951,16 @@
 "run": "run-b9b963",
 "card": "j2",
 "other": "ikeja_laundromat"
+},
+{
+"id": "wf_955a60fdc4",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the juju code at the dez, and Ejiro reads the name twice.",
+"code": "sandal.interactwith(dez){ dez.receives(sandal.envelope); dez.remembers(bisola, 'brown envelope'); dez.tucks(sandal, 'yaba bookshop receipt into the juju code'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "sandal"
 }
 ],
 "tie": [
@@ -4309,6 +4319,16 @@
 "other": "icsh"
 },
 {
+"id": "wf_2f5ad8aebc",
+"kind": "consequence",
+"text": "A Danfo speaker note with Bisola's name and 'egbe note' on it, turns up inside the nice day sign at the marker, and Kunle reads the name twice.",
+"code": "love.interactwith(marker){ marker.receives(love.note); marker.remembers(bisola, 'egbe note'); marker.tucks(love, 'danfo speaker note into the nice day sign'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "w",
+"other": "love"
+},
+{
 "id": "wt_5529751886",
 "kind": "consequence",
 "text": "Kunle borrows the marker to fix the fading Nice Day sign and, without thinking, writes the date small in the corner, so the marker now remembers the sign it saved.",
@@ -4649,16 +4669,6 @@
 ],
 "teomarisollove": [
 {
-"id": "wf_69a25ae1cf",
-"kind": "memory",
-"text": "The teomarisollove: in love, said out loud by Marisol (w14 causeway); Teo has not said the words yet.",
-"code": "teomarisollove.state('in love, said out loud by Marisol (w14 causeway)');",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "",
-"other": null
-},
-{
 "id": "wf_bead678778",
 "kind": "consequence",
 "text": "A Bird note with Taiwo's name and 'lamp soot' on it, turns up with the teomarisollove, which is still in love, said out loud by Marisol (w14 causeway).",
@@ -4697,6 +4707,16 @@
 "run": "run-5a58c4",
 "card": "j6",
 "other": "hose"
+},
+{
+"id": "wf_2acfbd464c",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the teomarisollove, which is still in love, said out loud by Marisol (w14 causeway).",
+"code": "youngteacher.interactwith(teomarisollove){ teomarisollove.receives(youngteacher.envelope); teomarisollove.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "youngteacher"
 }
 ],
 "front_gate_no": [
@@ -5834,39 +5854,6 @@
 },
 "consequences": [
 {
-"id": "wf_1bf87ddaf1",
-"ts": "2026-11-17T14:51:08-0500",
-"a": "health_marisol",
-"b": "jetty_south_pointe",
-"code": "health_marisol.interactwith(jetty_south_pointe){ jetty_south_pointe.receives(health_marisol.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the jetty south pointe, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
-"id": "wf_824f8a91cc",
-"ts": "2026-11-17T14:52:00-0500",
-"a": "health_marisol",
-"b": "hard",
-"code": "health_marisol.interactwith(hard){ hard.receives(health_marisol.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the hard, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
-"id": "wt_183d3cde12",
-"ts": "2026-11-17T14:55:23-0500",
-"a": "dress_marisol",
-"b": "teo",
-"code": "dress_marisol.interactwith(teo){ teo.receives(dress_marisol.envelope); teo.find('jacket pocket').add('folded receipt'); dress_marisol.state('creased'); }",
-"text": "Teo finds Bisola's 7:40am bookshop receipt folded into the dress hem and pockets it before Marisol notices the crease.",
-"author": "thryd",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
 "id": "wt_283850fe16",
 "ts": "2026-11-17T14:55:23-0500",
 "a": "plot",
@@ -6272,6 +6259,39 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": "j6"
+},
+{
+"id": "wf_955a60fdc4",
+"ts": "2026-11-17T15:50:00-0500",
+"a": "sandal",
+"b": "dez",
+"code": "sandal.interactwith(dez){ dez.receives(sandal.envelope); dez.remembers(bisola, 'brown envelope'); dez.tucks(sandal, 'yaba bookshop receipt into the juju code'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the juju code at the dez, and Ejiro reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
+},
+{
+"id": "wf_2f5ad8aebc",
+"ts": "2026-11-17T15:50:54-0500",
+"a": "love",
+"b": "marker",
+"code": "love.interactwith(marker){ marker.receives(love.note); marker.remembers(bisola, 'egbe note'); marker.tucks(love, 'danfo speaker note into the nice day sign'); }",
+"text": "A Danfo speaker note with Bisola's name and 'egbe note' on it, turns up inside the nice day sign at the marker, and Kunle reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "w"
+},
+{
+"id": "wf_2acfbd464c",
+"ts": "2026-11-17T15:52:35-0500",
+"a": "youngteacher",
+"b": "teomarisollove",
+"code": "youngteacher.interactwith(teomarisollove){ teomarisollove.receives(youngteacher.envelope); teomarisollove.remembers(bisola, 'brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the teomarisollove, which is still in love, said out loud by Marisol (w14 causeway).",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
 }
 ],
 "memories": [
@@ -6375,5 +6395,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T15:47:15-0500"
+"updated": "2026-11-17T15:52:35-0500"
 }
