@@ -1952,16 +1952,6 @@
 ],
 "laptop": [
 {
-"id": "wf_677884406d",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the rain-stained receipt at the laptop, and Ejiro reads the name twice.",
-"code": "sessy.interactwith(laptop){ laptop.receives(sessy.envelope); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "sessy"
-},
-{
 "id": "wf_c3d3d120e2",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the rain-stained receipt at the laptop, and Ejiro reads the name twice.",
@@ -1980,6 +1970,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "let"
+},
+{
+"id": "wf_97ae90172a",
+"kind": "consequence",
+"text": "A Danfo speaker note with Bisola's name and 'egbe note' on it, turns up inside the rain-stained receipt at the laptop, and Ejiro reads the name twice.",
+"code": "danfo_speaker.interactwith(laptop){ laptop.receives(danfo_speaker.note); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "w",
+"other": "danfo_speaker"
 },
 {
 "id": "wt_00586a397c",
@@ -4415,17 +4415,6 @@
 },
 "consequences": [
 {
-"id": "wt_1e83690303",
-"ts": "2026-11-16T19:49:14-0500",
-"a": "agbada",
-"b": "ats",
-"code": "agbada.interactwith(ats){ agbada.db.copyto(ats); ats.receives(agbada, 'brown envelope'); ats.state('carrying'); }",
-"text": "At the Oke-Ayo bus stop the agbada's wide sleeve passes over ats, and the brown envelope's corner changes hands, so ats leaves the stop holding what the agbada carried.",
-"author": "thryd",
-"run": "run-0bd7c0",
-"card": "j2"
-},
-{
 "id": "wf_1f404dabad",
 "ts": "2026-11-16T19:52:45-0500",
 "a": "omo",
@@ -4853,6 +4842,17 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j6"
+},
+{
+"id": "wf_97ae90172a",
+"ts": "2026-11-16T21:46:36-0500",
+"a": "danfo_speaker",
+"b": "laptop",
+"code": "danfo_speaker.interactwith(laptop){ laptop.receives(danfo_speaker.note); … }",
+"text": "A Danfo speaker note with Bisola's name and 'egbe note' on it, turns up inside the rain-stained receipt at the laptop, and Ejiro reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "w"
 }
 ],
 "memories": [
@@ -4956,5 +4956,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-16T21:41:01-0500"
+"updated": "2026-11-16T21:46:36-0500"
 }
