@@ -4159,16 +4159,6 @@
 ],
 "apapa_container_yard": [
 {
-"id": "wf_c223928330",
-"kind": "consequence",
-"text": "An Ats note with Bisola's name and 'brown envelope' on it, turns up inside the brown envelope at the apapa container yard, and Bisola reads the name twice.",
-"code": "ats.interactwith(apapa_container_yard){ apapa_container_yard.receives(ats.envelope); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j2",
-"other": "ats"
-},
-{
 "id": "wf_b069e604af",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the apapa container yard, and Bisola reads the name twice.",
@@ -4197,6 +4187,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "let"
+},
+{
+"id": "wf_0ccd565b39",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the apapa container yard, and Taiwo reads the name twice.",
+"code": "plastic_sheet.interactwith(apapa_container_yard){ apapa_container_yard.receives(plastic_sheet.envelope); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "plastic_sheet"
 },
 {
 "id": "wt_b0d270a804",
@@ -4553,17 +4553,6 @@
 ]
 },
 "consequences": [
-{
-"id": "wf_c207fddb16",
-"ts": "2026-11-16T22:37:05-0500",
-"a": "morir_r",
-"b": "family_compound_ikorodu",
-"code": "morir_r.interactwith(family_compound_ikorodu){ family_compound_ikorodu.receives(morir_r.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the family compound ikorodu, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
 {
 "id": "wf_0d8f2b3511",
 "ts": "2026-11-16T22:39:35-0500",
@@ -4992,6 +4981,17 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j6"
+},
+{
+"id": "wf_0ccd565b39",
+"ts": "2026-11-17T07:05:02-0500",
+"a": "plastic_sheet",
+"b": "apapa_container_yard",
+"code": "plastic_sheet.interactwith(apapa_container_yard){ apapa_container_yard.receives(plastic_sheet.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the apapa container yard, and Taiwo reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
 }
 ],
 "memories": [
@@ -5095,5 +5095,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T04:51:37-0500"
+"updated": "2026-11-17T07:05:02-0500"
 }
