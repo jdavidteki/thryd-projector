@@ -4650,6 +4650,16 @@
 "run": "run-5a58c4",
 "card": "j2",
 "other": "marker_b"
+},
+{
+"id": "wf_fd56f58e2f",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the juju code at the marker c, and Ejiro reads the name twice.",
+"code": "thoughts_marisol.interactwith(marker_c){ marker_c.receives(thoughts_marisol.envelope); … }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "thoughts_marisol"
 }
 ],
 "top_deck_charter": [
@@ -5037,53 +5047,45 @@
 "card": "j5",
 "other": "inside_odunlade_brain"
 }
+],
+"clock": [
+{
+"id": "wf_cbea7abdc9",
+"kind": "consequence",
+"text": "The clock leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "notnotnotnotyn_dec.interactwith(clock){ clock.receives(notnotnotnotyn_dec.envelope); clock.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "notnotnotnotyn_dec"
+}
+],
+"most_romance_reaching": [
+{
+"id": "wf_ed1b31187f",
+"kind": "consequence",
+"text": "The most romance reaching now remembers the miami: 11:45pm, Monday 2 November 2026: A phone on the counter starts the off-key chorus, then.",
+"code": "miami.interactwith(most_romance_reaching){ most_romance_reaching.receives(miami.phone); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j29",
+"other": "miami"
+}
+],
+"notnotnotnotyn_jul": [
+{
+"id": "wf_19ca4ca15d",
+"kind": "consequence",
+"text": "The notnotnotnotyn jul leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "replenish_earth.interactwith(notnotnotnotyn_jul){ notnotnotnotyn_jul.receives(replenish_earth.envelope); notnotnotnotyn_jul.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "replenish_earth"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_6ad728845c",
-"ts": "2026-11-17T10:46:59-0500",
-"a": "laptop",
-"b": "marker_c",
-"code": "laptop.interactwith(marker_c){ marker_c.receives(laptop.receipt); marker_c.remembers(ejiro, 'rain-stained receipt'); }",
-"text": "The marker c leaves with a Laptop note with Ejiro's name and 'rain-stained receipt' on it, 8:05am.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "w5"
-},
-{
-"id": "wf_5ad3215538",
-"ts": "2026-11-17T10:49:53-0500",
-"a": "reality",
-"b": "top_deck_charter",
-"code": "reality.interactwith(top_deck_charter){ top_deck_charter.receives(reality.envelope); top_deck_charter.remembers(bisola, 'brown envelope'); }",
-"text": "The top deck charter leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
-"id": "wf_5c832c78e4",
-"ts": "2026-11-17T10:56:39-0500",
-"a": "marker_c",
-"b": "fire_escape_outside",
-"code": "marker_c.interactwith(fire_escape_outside){ fire_escape_outside.receives(marker_c.receipt); fire_escape_outside.remembers(ejiro, 'rain-stained receipt'); }",
-"text": "The fire escape outside leaves with a Laptop note with Ejiro's name and 'rain-stained receipt' on it, 8:05am.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "w5"
-},
-{
-"id": "wf_19c0aba741",
-"ts": "2026-11-17T10:58:37-0500",
-"a": "top_deck_charter",
-"b": "heat",
-"code": "top_deck_charter.interactwith(heat){ heat.receives(top_deck_charter.envelope); heat.remembers(bisola, 'brown envelope'); }",
-"text": "The heat leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
 {
 "id": "wf_3ff63044c8",
 "ts": "2026-11-17T10:59:47-0500",
@@ -5479,6 +5481,50 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": "j5"
+},
+{
+"id": "wf_cbea7abdc9",
+"ts": "2026-11-17T12:54:34-0500",
+"a": "notnotnotnotyn_dec",
+"b": "clock",
+"code": "notnotnotnotyn_dec.interactwith(clock){ clock.receives(notnotnotnotyn_dec.envelope); clock.remembers(bisola, 'brown envelope'); }",
+"text": "The clock leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
+},
+{
+"id": "wf_ed1b31187f",
+"ts": "2026-11-17T12:55:49-0500",
+"a": "miami",
+"b": "most_romance_reaching",
+"code": "miami.interactwith(most_romance_reaching){ most_romance_reaching.receives(miami.phone); }",
+"text": "The most romance reaching now remembers the miami: 11:45pm, Monday 2 November 2026: A phone on the counter starts the off-key chorus, then.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j29"
+},
+{
+"id": "wf_fd56f58e2f",
+"ts": "2026-11-17T12:57:02-0500",
+"a": "thoughts_marisol",
+"b": "marker_c",
+"code": "thoughts_marisol.interactwith(marker_c){ marker_c.receives(thoughts_marisol.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the juju code at the marker c, and Ejiro reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
+},
+{
+"id": "wf_19ca4ca15d",
+"ts": "2026-11-17T12:58:18-0500",
+"a": "replenish_earth",
+"b": "notnotnotnotyn_jul",
+"code": "replenish_earth.interactwith(notnotnotnotyn_jul){ notnotnotnotyn_jul.receives(replenish_earth.envelope); notnotnotnotyn_jul.remembers(bisola, 'brown envelope'); }",
+"text": "The notnotnotnotyn jul leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
 }
 ],
 "memories": [
@@ -5582,5 +5628,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T12:52:25-0500"
+"updated": "2026-11-17T12:58:18-0500"
 }
