@@ -1066,14 +1066,14 @@
 ],
 "kerosene_lamp": [
 {
-"id": "wf_84ada379cf",
+"id": "wf_d6b297c484",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the change at the kerosene lamp, and Taiwo reads the name twice.",
-"code": "let.interactwith(kerosene_lamp){ kerosene_lamp.receives(let.envelope); … }",
+"code": "cell_phone.interactwith(kerosene_lamp){ kerosene_lamp.receives(cell_phone.envelope); … }",
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j6",
-"other": "let"
+"other": "cell_phone"
 },
 {
 "id": "wt_7a2b23aa13",
@@ -4387,42 +4387,33 @@
 "card": "j6",
 "other": "notnotnotnotyn_dec"
 }
+],
+"chilling_ibiza": [
+{
+"id": "wf_8031e01510",
+"kind": "consequence",
+"text": "The chilling ibiza leaves with a Nla agbara figure receipt with Bisola's name and 'brown envelope' on it.",
+"code": "family_compound_ikorodu.interactwith(chilling_ibiza){ chilling_ibiza.receives(family_compound_ikorodu.envelope); chilling_ibiza.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j4",
+"other": "family_compound_ikorodu"
+}
+],
+"industry_feast": [
+{
+"id": "wf_033ede90c8",
+"kind": "consequence",
+"text": "The industry feast leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "notnotnotnotyn_sep.interactwith(industry_feast){ industry_feast.receives(notnotnotnotyn_sep.envelope); industry_feast.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "notnotnotnotyn_sep"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_5bdfc47d53",
-"ts": "2026-11-16T19:44:01-0500",
-"a": "streetlights",
-"b": "let",
-"code": "streetlights.interactwith(let){ let.receives(streetlights.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the let, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
-{
-"id": "wf_232ba67cda",
-"ts": "2026-11-16T19:45:35-0500",
-"a": "streetlights",
-"b": "bird",
-"code": "streetlights.interactwith(bird){ bird.receives(streetlights.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the lamp soot at the bird, and Taiwo reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
-{
-"id": "wt_c13dbe4391",
-"ts": "2026-11-16T19:49:14-0500",
-"a": "matches",
-"b": "morir",
-"code": "matches.interactwith(morir){ morir.find('brown envelope').add('scorch ring'); … }",
-"text": "At the doorway the matches brush the brown envelope in the morir, and a faint scorch rings Kunle's container number, so the number is now the one thing nobody can misread.",
-"author": "thryd",
-"run": "run-0bd7c0",
-"card": "w7"
-},
 {
 "id": "wt_740c0937a2",
 "ts": "2026-11-16T19:49:14-0500",
@@ -4829,6 +4820,39 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j6"
+},
+{
+"id": "wf_8031e01510",
+"ts": "2026-11-16T21:26:26-0500",
+"a": "family_compound_ikorodu",
+"b": "chilling_ibiza",
+"code": "family_compound_ikorodu.interactwith(chilling_ibiza){ chilling_ibiza.receives(family_compound_ikorodu.envelope); chilling_ibiza.remembers(bisola, 'brown envelope'); }",
+"text": "The chilling ibiza leaves with a Nla agbara figure receipt with Bisola's name and 'brown envelope' on it.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j4"
+},
+{
+"id": "wf_d6b297c484",
+"ts": "2026-11-16T21:27:14-0500",
+"a": "cell_phone",
+"b": "kerosene_lamp",
+"code": "cell_phone.interactwith(kerosene_lamp){ kerosene_lamp.receives(cell_phone.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the change at the kerosene lamp, and Taiwo reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
+},
+{
+"id": "wf_033ede90c8",
+"ts": "2026-11-16T21:28:53-0500",
+"a": "notnotnotnotyn_sep",
+"b": "industry_feast",
+"code": "notnotnotnotyn_sep.interactwith(industry_feast){ industry_feast.receives(notnotnotnotyn_sep.envelope); industry_feast.remembers(bisola, 'brown envelope'); }",
+"text": "The industry feast leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
 }
 ],
 "memories": [
@@ -4932,5 +4956,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-16T21:23:53-0500"
+"updated": "2026-11-16T21:28:53-0500"
 }
