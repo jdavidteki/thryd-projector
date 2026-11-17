@@ -3472,16 +3472,6 @@
 ],
 "ats": [
 {
-"id": "wf_a9a8377541",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the ats, and Bisola reads the name twice.",
-"code": "wsr.interactwith(ats){ ats.receives(wsr.envelope); ats.remembers(bisola, 'brown envelope'); ats.tucks(wsr, 'yaba bookshop receipt into the brown envelope'); }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "wsr"
-},
-{
 "id": "wf_8ddb92f54d",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the ats, and Bisola reads the name twice.",
@@ -3510,6 +3500,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "morir_r"
+},
+{
+"id": "wf_659678587c",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the ats, and Bisola reads the name twice.",
+"code": "wsr.interactwith(ats){ ats.receives(wsr.envelope); ats.remembers(bisola, 'brown envelope'); ats.tucks(wsr, 'yaba bookshop receipt into the brown envelope'); }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "wsr"
 },
 {
 "id": "wt_1e83690303",
@@ -4415,17 +4415,6 @@
 },
 "consequences": [
 {
-"id": "wt_740c0937a2",
-"ts": "2026-11-16T19:49:14-0500",
-"a": "red_white_cap",
-"b": "bed",
-"code": "red_white_cap.interactwith(bed){ bed.receives(red_white_cap.egbe_note); bed.find('pillow').add('egbe note'); bed.set('fold','two names'); }",
-"text": "The red white cap is left on the bed at Mama Ronke's house, and Taiwo's egbe note slips out under the pillow, beside Bisola's receipt, so the bed now keeps both names in one fold.",
-"author": "thryd",
-"run": "run-0bd7c0",
-"card": "w6"
-},
-{
 "id": "wt_1e83690303",
 "ts": "2026-11-16T19:49:14-0500",
 "a": "agbada",
@@ -4853,6 +4842,17 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j6"
+},
+{
+"id": "wf_659678587c",
+"ts": "2026-11-16T21:41:01-0500",
+"a": "wsr",
+"b": "ats",
+"code": "wsr.interactwith(ats){ ats.receives(wsr.envelope); ats.remembers(bisola, 'brown envelope'); ats.tucks(wsr, 'yaba bookshop receipt into the brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the ats, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
 }
 ],
 "memories": [
@@ -4956,5 +4956,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-16T21:28:53-0500"
+"updated": "2026-11-16T21:41:01-0500"
 }
