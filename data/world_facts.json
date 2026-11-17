@@ -962,16 +962,6 @@
 ],
 "red_white_cap": [
 {
-"id": "wf_b433fe7c87",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the red white cap, and Bisola reads the name twice.",
-"code": "matches.interactwith(red_white_cap){ red_white_cap.receives(matches.envelope); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "matches"
-},
-{
 "id": "wf_7a66dae594",
 "kind": "consequence",
 "text": "A Kerosene lamp note with Taiwo's name and 'change' on it, turns up inside the egbe note at the red white cap, and Taiwo reads the name twice.",
@@ -1000,6 +990,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "agbada"
+},
+{
+"id": "wf_ba2a9af2b2",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the red white cap, and Taiwo reads the name twice.",
+"code": "plastic_sheet.interactwith(red_white_cap){ red_white_cap.receives(plastic_sheet.envelope); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "plastic_sheet"
 },
 {
 "id": "wt_1115_2356_c",
@@ -1548,6 +1548,16 @@
 "run": "run-b9b963",
 "card": "j2",
 "other": "cell_phone"
+},
+{
+"id": "wf_e41a6055a1",
+"kind": "consequence",
+"text": "A Morir note with Kunle's name and 'container number' on it, turns up inside the juju code at the people scene, and Ejiro reads the name twice.",
+"code": "morir.interactwith(people_scene){ people_scene.receives(morir.number); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "w7",
+"other": "morir"
 }
 ],
 "ronke_tray": [
@@ -2520,16 +2530,6 @@
 ],
 "cell_phone": [
 {
-"id": "wf_ab66700b73",
-"kind": "consequence",
-"text": "The cell phone leaves with an Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997.",
-"code": "egbe.interactwith(cell_phone){ cell_phone.receives(egbe.joke); cell_phone.remembers(bisola, 'boss joke'); }",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j1",
-"other": "egbe"
-},
-{
 "id": "wf_2e06c0c541",
 "kind": "consequence",
 "text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the boss joke at the cell phone, and Bisola reads the name twice.",
@@ -2568,6 +2568,16 @@
 "run": "run-0bd7c0",
 "card": "w",
 "other": "danfo_speaker"
+},
+{
+"id": "wf_a08b02243c",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the cell phone, and Bisola reads the name twice.",
+"code": "let.interactwith(cell_phone){ cell_phone.receives(let.envelope); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "let"
 }
 ],
 "lowaleechelons": [
@@ -4309,53 +4319,21 @@
 "card": "j2",
 "other": "people_scene"
 }
+],
+"man_cowboy_hat": [
+{
+"id": "wf_1b2fa033a5",
+"kind": "consequence",
+"text": "The man cowboy hat leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "morir_r.interactwith(man_cowboy_hat){ man_cowboy_hat.receives(morir_r.envelope); man_cowboy_hat.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "morir_r"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_6236db6f54",
-"ts": "2026-11-16T19:00:20-0500",
-"a": "bow",
-"b": "danfo_stuck_third",
-"code": "bow.interactwith(danfo_stuck_third){ danfo_stuck_third.receives(bow.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the danfo stuck third, and Titi reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
-{
-"id": "wf_a5724ecd93",
-"ts": "2026-11-16T19:02:44-0500",
-"a": "wsr",
-"b": "sessy",
-"code": "wsr.interactwith(sessy){ sessy.receives(wsr.envelope); sessy.remembers(bisola, 'brown envelope'); sessy.tucks(wsr, 'yaba bookshop receipt into the brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the sessy, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
-{
-"id": "wf_66911e2495",
-"ts": "2026-11-16T19:05:35-0500",
-"a": "omo",
-"b": "lekki_pharmacy",
-"code": "omo.interactwith(lekki_pharmacy){ lekki_pharmacy.receives(omo.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the unpaid prescription slip at the lekki pharmacy, and Titi reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
-{
-"id": "wf_f4ba87f047",
-"ts": "2026-11-16T19:15:09-0500",
-"a": "plastic_sheet",
-"b": "morir",
-"code": "plastic_sheet.interactwith(morir){ morir.receives(plastic_sheet.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the morir, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
 {
 "id": "wf_2cb6c1bd67",
 "ts": "2026-11-16T19:16:47-0500",
@@ -4751,6 +4729,50 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j2"
+},
+{
+"id": "wf_a08b02243c",
+"ts": "2026-11-16T20:59:40-0500",
+"a": "let",
+"b": "cell_phone",
+"code": "let.interactwith(cell_phone){ cell_phone.receives(let.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the cell phone, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
+},
+{
+"id": "wf_1b2fa033a5",
+"ts": "2026-11-16T21:00:28-0500",
+"a": "morir_r",
+"b": "man_cowboy_hat",
+"code": "morir_r.interactwith(man_cowboy_hat){ man_cowboy_hat.receives(morir_r.envelope); man_cowboy_hat.remembers(bisola, 'brown envelope'); }",
+"text": "The man cowboy hat leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
+},
+{
+"id": "wf_ba2a9af2b2",
+"ts": "2026-11-16T21:02:06-0500",
+"a": "plastic_sheet",
+"b": "red_white_cap",
+"code": "plastic_sheet.interactwith(red_white_cap){ red_white_cap.receives(plastic_sheet.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the red white cap, and Taiwo reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
+},
+{
+"id": "wf_e41a6055a1",
+"ts": "2026-11-16T21:02:54-0500",
+"a": "morir",
+"b": "people_scene",
+"code": "morir.interactwith(people_scene){ people_scene.receives(morir.number); … }",
+"text": "A Morir note with Kunle's name and 'container number' on it, turns up inside the juju code at the people scene, and Ejiro reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "w7"
 }
 ],
 "memories": [
@@ -4854,5 +4876,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-16T20:58:49-0500"
+"updated": "2026-11-16T21:02:54-0500"
 }
