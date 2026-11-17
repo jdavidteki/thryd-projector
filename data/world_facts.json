@@ -5006,6 +5006,16 @@
 "run": "run-5a58c4",
 "card": "j2",
 "other": "texts_marisol"
+},
+{
+"id": "wf_26c46a2147",
+"kind": "consequence",
+"text": "A Bird note with Taiwo's name and 'lamp soot' on it, turns up inside the juju code at the marina biscayne bay, and Ejiro reads the name twice.",
+"code": "kmb.interactwith(marina_biscayne_bay){ marina_biscayne_bay.receives(kmb.soot); … }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j7",
+"other": "kmb"
 }
 ],
 "mbtij": [
@@ -5017,6 +5027,16 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": "",
+"other": "house"
+},
+{
+"id": "wf_54e4aaf5ee",
+"kind": "consequence",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up with the teomarisollove, which is still in love, said out loud by Marisol (w14 causeway).",
+"code": "house.interactwith(mbtij){ mbtij.receives(house.code); mbtij.remembers(ejiro, 'juju code'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j2",
 "other": "house"
 }
 ],
@@ -5531,28 +5551,6 @@
 },
 "consequences": [
 {
-"id": "wf_ed1b31187f",
-"ts": "2026-11-17T12:55:49-0500",
-"a": "miami",
-"b": "most_romance_reaching",
-"code": "miami.interactwith(most_romance_reaching){ most_romance_reaching.receives(miami.phone); }",
-"text": "The most romance reaching now remembers the miami: 11:45pm, Monday 2 November 2026: A phone on the counter starts the off-key chorus, then.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j29"
-},
-{
-"id": "wf_fd56f58e2f",
-"ts": "2026-11-17T12:57:02-0500",
-"a": "thoughts_marisol",
-"b": "marker_c",
-"code": "thoughts_marisol.interactwith(marker_c){ marker_c.receives(thoughts_marisol.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the juju code at the marker c, and Ejiro reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
 "id": "wf_19ca4ca15d",
 "ts": "2026-11-17T12:58:18-0500",
 "a": "replenish_earth",
@@ -5969,6 +5967,28 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": "j6"
+},
+{
+"id": "wf_54e4aaf5ee",
+"ts": "2026-11-17T15:04:23-0500",
+"a": "house",
+"b": "mbtij",
+"code": "house.interactwith(mbtij){ mbtij.receives(house.code); mbtij.remembers(ejiro, 'juju code'); }",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up with the teomarisollove, which is still in love, said out loud by Marisol (w14 causeway).",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j2"
+},
+{
+"id": "wf_26c46a2147",
+"ts": "2026-11-17T15:06:04-0500",
+"a": "kmb",
+"b": "marina_biscayne_bay",
+"code": "kmb.interactwith(marina_biscayne_bay){ marina_biscayne_bay.receives(kmb.soot); … }",
+"text": "A Bird note with Taiwo's name and 'lamp soot' on it, turns up inside the juju code at the marina biscayne bay, and Ejiro reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j7"
 }
 ],
 "memories": [
@@ -6072,5 +6092,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T15:01:51-0500"
+"updated": "2026-11-17T15:06:05-0500"
 }
