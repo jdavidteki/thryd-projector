@@ -806,16 +806,6 @@
 ],
 "agbada": [
 {
-"id": "wf_20b1ca36eb",
-"kind": "consequence",
-"text": "A Danfo speaker note with Bisola's name and 'egbe note' on it, turns up inside the brown envelope at the agbada, and Bisola reads the name twice.",
-"code": "danfo_speaker.interactwith(agbada){ agbada.receives(danfo_speaker.note); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "w",
-"other": "danfo_speaker"
-},
-{
 "id": "wf_9cbb4ae5e7",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the agbada, and Bisola reads the name twice.",
@@ -854,6 +844,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "sessy"
+},
+{
+"id": "wf_8fc197f28c",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the agbada, and Bisola reads the name twice.",
+"code": "wsr.interactwith(agbada){ agbada.receives(wsr.envelope); agbada.remembers(bisola, 'brown envelope'); agbada.tucks(wsr, 'yaba bookshop receipt into the brown envelope'); }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "wsr"
 }
 ],
 "danfo_speaker": [
@@ -4521,17 +4521,6 @@
 },
 "consequences": [
 {
-"id": "wf_58059290df",
-"ts": "2026-11-16T21:11:54-0500",
-"a": "lekki_pharmacy",
-"b": "buy_world",
-"code": "lekki_pharmacy.interactwith(buy_world){ buy_world.receives(lekki_pharmacy.slip); buy_world.remembers(titi, 'unpaid prescription slip'); }",
-"text": "The buy world leaves with a Lekki pharmacy receipt with Titi's name and 'unpaid prescription slip' on it, 10:45am.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j3"
-},
-{
 "id": "wf_0ae37ec01d",
 "ts": "2026-11-16T21:15:55-0500",
 "a": "truth",
@@ -4959,6 +4948,17 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j6"
+},
+{
+"id": "wf_8fc197f28c",
+"ts": "2026-11-16T22:50:46-0500",
+"a": "wsr",
+"b": "agbada",
+"code": "wsr.interactwith(agbada){ agbada.receives(wsr.envelope); agbada.remembers(bisola, 'brown envelope'); agbada.tucks(wsr, 'yaba bookshop receipt into the brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the agbada, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
 }
 ],
 "memories": [
@@ -5062,5 +5062,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-16T22:47:33-0500"
+"updated": "2026-11-16T22:50:46-0500"
 }
