@@ -5717,6 +5717,16 @@
 "run": "run-5a58c4",
 "card": "j6",
 "other": "teo"
+},
+{
+"id": "wf_5f5a6c863e",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the tnw, and Bisola reads the name twice.",
+"code": "wser.interactwith(tnw){ tnw.receives(wser.envelope); tnw.remembers(bisola, 'brown envelope'); tnw.tucks(wser, 'yaba bookshop receipt into the brown envelope'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "wser"
 }
 ],
 "amnhagc": [
@@ -5992,31 +6002,21 @@
 "card": "j33",
 "other": "dezroom"
 }
+],
+"tag_sessy": [
+{
+"id": "wf_ec0488763d",
+"kind": "consequence",
+"text": "The tag sessy leaves with a Marker note with Kunle's name and 'nice day sign' on it.",
+"code": "god.interactwith(tag_sessy){ tag_sessy.receives(god.sign); tag_sessy.remembers(kunle, 'nice day sign'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j3",
+"other": "god"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_d5c8b78129",
-"ts": "2026-11-17T15:20:15-0500",
-"a": "people_scene",
-"b": "miami",
-"code": "people_scene.interactwith(miami){ miami.receives(people_scene.envelope); miami.remembers(bisola, 'brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up beside the phone at the miami.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
-"id": "wf_1c8481279d",
-"ts": "2026-11-17T15:21:04-0500",
-"a": "bird",
-"b": "miami",
-"code": "bird.interactwith(miami){ miami.receives(bird.corner); miami.remembers(bisola, 'envelope corner'); }",
-"text": "A Bird note with Bisola's name and 'envelope corner' on it, turns up beside the phone at the miami.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j7"
-},
 {
 "id": "wf_c7be0cdae8",
 "ts": "2026-11-17T15:21:53-0500",
@@ -6434,6 +6434,28 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": "j6"
+},
+{
+"id": "wf_ec0488763d",
+"ts": "2026-11-17T16:52:17-0500",
+"a": "god",
+"b": "tag_sessy",
+"code": "god.interactwith(tag_sessy){ tag_sessy.receives(god.sign); tag_sessy.remembers(kunle, 'nice day sign'); }",
+"text": "The tag sessy leaves with a Marker note with Kunle's name and 'nice day sign' on it.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j3"
+},
+{
+"id": "wf_5f5a6c863e",
+"ts": "2026-11-17T16:53:11-0500",
+"a": "wser",
+"b": "tnw",
+"code": "wser.interactwith(tnw){ tnw.receives(wser.envelope); tnw.remembers(bisola, 'brown envelope'); tnw.tucks(wser, 'yaba bookshop receipt into the brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the tnw, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
 }
 ],
 "memories": [
@@ -6537,5 +6559,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T16:51:19-0500"
+"updated": "2026-11-17T16:53:11-0500"
 }
