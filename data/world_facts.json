@@ -3132,6 +3132,16 @@
 "run": "run-b9b963",
 "card": "j2",
 "other": "wwgbtaycbmba"
+},
+{
+"id": "wf_9d881ebee0",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the replenish earth, and Bisola reads the name twice.",
+"code": "notnotnotnotyn_dec.interactwith(replenish_earth){ replenish_earth.receives(notnotnotnotyn_dec.envelope); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "notnotnotnotyn_dec"
 }
 ],
 "indomie_egg": [
@@ -4116,16 +4126,6 @@
 ],
 "apapa_container_yard": [
 {
-"id": "wf_926f8ceb4b",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the apapa container yard, and Bisola reads the name twice.",
-"code": "let.interactwith(apapa_container_yard){ apapa_container_yard.receives(let.envelope); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "let"
-},
-{
 "id": "wf_adb6b36f2a",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the apapa container yard, and Bisola reads the name twice.",
@@ -4164,6 +4164,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "bow"
+},
+{
+"id": "wf_bc0b6049c7",
+"kind": "consequence",
+"text": "A Pure water cooler note with Kunle's name and 'container number' on it, 9:20am, turns up inside the brown envelope at the apapa container yard, and Bisola reads the name twice.",
+"code": "pure_water_cooler.interactwith(apapa_container_yard){ apapa_container_yard.receives(pure_water_cooler.number); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "w1",
+"other": "pure_water_cooler"
 }
 ],
 "mrs_morenike_daramola": [
@@ -4318,6 +4328,16 @@
 "run": "run-0bd7c0",
 "card": "j2",
 "other": "people_scene"
+},
+{
+"id": "wf_ef15f80ed9",
+"kind": "consequence",
+"text": "A Nla agbara figure receipt with Bisola's name and 'brown envelope' on it, turns up inside the juju code at the family compound ikorodu, and Ejiro reads the name twice.",
+"code": "off_key.interactwith(family_compound_ikorodu){ family_compound_ikorodu.receives(off_key.envelope); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j4",
+"other": "off_key"
 }
 ],
 "man_cowboy_hat": [
@@ -4355,53 +4375,21 @@
 "card": "j2",
 "other": "notnotnotnotyn_nov"
 }
+],
+"notnotnotnotyn_sep": [
+{
+"id": "wf_bcaf6eada0",
+"kind": "consequence",
+"text": "The notnotnotnotyn sep leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "notnotnotnotyn_dec.interactwith(notnotnotnotyn_sep){ notnotnotnotyn_sep.receives(notnotnotnotyn_dec.envelope); notnotnotnotyn_sep.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "notnotnotnotyn_dec"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_09cda4b399",
-"ts": "2026-11-16T19:25:35-0500",
-"a": "pure_water_cooler",
-"b": "morir",
-"code": "pure_water_cooler.interactwith(morir){ morir.receives(pure_water_cooler.number); … }",
-"text": "A Pure water cooler note with Kunle's name and 'container number' on it, 9:20am, turns up inside the brown envelope at the morir, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "w1"
-},
-{
-"id": "wf_380ced25de",
-"ts": "2026-11-16T19:31:12-0500",
-"a": "kweshon",
-"b": "wsr",
-"code": "kweshon.interactwith(wsr){ wsr.receives(kweshon.envelope); wsr.remembers(bisola, 'brown envelope'); wsr.tucks(kweshon, 'yaba bookshop receipt into the brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the wsr, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
-{
-"id": "wf_bc53e48a29",
-"ts": "2026-11-16T19:36:00-0500",
-"a": "red_white_cap",
-"b": "bus",
-"code": "red_white_cap.interactwith(bus){ bus.receives(red_white_cap.note); … }",
-"text": "A Red white cap note with Taiwo's name and 'egbe note' on it, 11:20pm, turns up inside the brown envelope at the bus, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "w7"
-},
-{
-"id": "wf_ffc92afa0e",
-"ts": "2026-11-16T19:42:22-0500",
-"a": "morir_r",
-"b": "chair",
-"code": "morir_r.interactwith(chair){ chair.receives(morir_r.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the chair, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
 {
 "id": "wf_5bdfc47d53",
 "ts": "2026-11-16T19:44:01-0500",
@@ -4797,6 +4785,50 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j2"
+},
+{
+"id": "wf_ef15f80ed9",
+"ts": "2026-11-16T21:19:13-0500",
+"a": "off_key",
+"b": "family_compound_ikorodu",
+"code": "off_key.interactwith(family_compound_ikorodu){ family_compound_ikorodu.receives(off_key.envelope); … }",
+"text": "A Nla agbara figure receipt with Bisola's name and 'brown envelope' on it, turns up inside the juju code at the family compound ikorodu, and Ejiro reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j4"
+},
+{
+"id": "wf_bcaf6eada0",
+"ts": "2026-11-16T21:20:01-0500",
+"a": "notnotnotnotyn_dec",
+"b": "notnotnotnotyn_sep",
+"code": "notnotnotnotyn_dec.interactwith(notnotnotnotyn_sep){ notnotnotnotyn_sep.receives(notnotnotnotyn_dec.envelope); notnotnotnotyn_sep.remembers(bisola, 'brown envelope'); }",
+"text": "The notnotnotnotyn sep leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
+},
+{
+"id": "wf_bc0b6049c7",
+"ts": "2026-11-16T21:21:40-0500",
+"a": "pure_water_cooler",
+"b": "apapa_container_yard",
+"code": "pure_water_cooler.interactwith(apapa_container_yard){ apapa_container_yard.receives(pure_water_cooler.number); … }",
+"text": "A Pure water cooler note with Kunle's name and 'container number' on it, 9:20am, turns up inside the brown envelope at the apapa container yard, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "w1"
+},
+{
+"id": "wf_9d881ebee0",
+"ts": "2026-11-16T21:23:53-0500",
+"a": "notnotnotnotyn_dec",
+"b": "replenish_earth",
+"code": "notnotnotnotyn_dec.interactwith(replenish_earth){ replenish_earth.receives(notnotnotnotyn_dec.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the replenish earth, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
 }
 ],
 "memories": [
@@ -4900,5 +4932,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-16T21:16:47-0500"
+"updated": "2026-11-16T21:23:53-0500"
 }
