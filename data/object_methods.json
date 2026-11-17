@@ -1710,7 +1710,7 @@
      "why": "same method"
     }
    ],
-   "faded": false,
+   "faded": true,
    "last_run": "run-bd649b"
   },
   "pepe.settink": {
@@ -1814,7 +1814,7 @@
      "why": "same verb family (say)"
     }
    ],
-   "faded": false,
+   "faded": true,
    "last_run": "run-bd649b"
   },
   "wife.kill": {
@@ -1885,7 +1885,7 @@
    },
    "receiver_class": "Person",
    "prior": [],
-   "faded": false,
+   "faded": true,
    "last_run": "run-bd649b"
   },
   "history.see": {
@@ -1948,7 +1948,7 @@
    },
    "receiver_class": "Thing",
    "prior": [],
-   "faded": false,
+   "faded": true,
    "last_run": "run-bd649b"
   },
   "kunle.mix": {
@@ -2044,7 +2044,7 @@
      "why": "same verb family (tune)"
     }
    ],
-   "faded": false,
+   "faded": true,
    "last_run": "run-bd649b"
   },
   "song.hit": {
@@ -4736,6 +4736,122 @@
    "prior": [],
    "faded": false,
    "last_run": "run-5a58c4"
+  },
+  "titi.go": {
+   "object": "titi",
+   "method": "go",
+   "args": [
+    "juss"
+   ],
+   "runs": [
+    "run-g1-B"
+   ],
+   "defined": {
+    "run": "run-g1-B",
+    "job": "j10",
+    "card": "w10",
+    "title": "titi.go(juss)",
+    "emoji": "🏃",
+    "at": "2026-11-17T17:20:54-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "titi.go(juss)",
+     "emoji": "🏃",
+     "arg": "juss",
+     "run": "run-g1-B",
+     "job": "j10",
+     "tweets": [],
+     "consequence": "Upstairs the studio door has drifted open a crack, and Titi will not go back up; she says the ghost is still in there, and she stands on the stairs as if a name were owed and has not been given.",
+     "consequence_job": "j11",
+     "resolved": "titi.go(what=juss:Thing) from j10",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "juss",
+       "from_run": "run-g1-B",
+       "from_job": "j10",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "juss",
+      "first_run": "run-g1-B",
+      "first_job": "j10"
+     }
+    ],
+    "text": "go(what: Thing)"
+   },
+   "receiver_class": "Person",
+   "prior": [],
+   "faded": false,
+   "last_run": "run-g1-B"
+  },
+  "nobody.rename": {
+   "object": "nobody",
+   "method": "rename",
+   "args": [
+    "eez"
+   ],
+   "runs": [
+    "run-g1-B"
+   ],
+   "defined": {
+    "run": "run-g1-B",
+    "job": "j10",
+    "card": "w10",
+    "title": "nobody.rename(eez)",
+    "emoji": "👥",
+    "at": "2026-11-17T17:31:50-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "nobody.rename(eez)",
+     "emoji": "👥",
+     "arg": "eez",
+     "run": "run-g1-B",
+     "job": "j10",
+     "tweets": [],
+     "consequence": "The ticket window stays dark, and nobody from the staff has come back through the doors.",
+     "consequence_job": "j11",
+     "resolved": "nobody.rename(what=eez:Thing) from j10",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "eez",
+       "from_run": "run-g1-B",
+       "from_job": "j10",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "eez",
+      "first_run": "run-g1-B",
+      "first_job": "j10"
+     }
+    ],
+    "text": "rename(what: Thing)"
+   },
+   "receiver_class": "Person",
+   "prior": [],
+   "faded": false,
+   "last_run": "run-g1-B"
   }
  },
  "objects": {
@@ -4773,6 +4889,9 @@
    "kunle.teach",
    "kunle.mix"
   ],
+  "danfo_stuck_halfway_subject_seventh": [
+   "titi.go"
+  ],
   "dez": [
    "dez.sit",
    "dez.follow",
@@ -4800,6 +4919,9 @@
   "family_compound_ikorodu_subject_eighth": [
    "kunle.teach",
    "kunle.mix"
+  ],
+  "family_compound_ikorodu_subject_seventh": [
+   "titi.go"
   ],
   "history": [
    "history.see"
@@ -4842,7 +4964,8 @@
    "dez.make"
   ],
   "nobody": [
-   "nobody.weigh"
+   "nobody.weigh",
+   "nobody.rename"
   ],
   "omo": [
    "omo.fold"
@@ -4882,6 +5005,9 @@
    "kunle.teach",
    "kunle.mix"
   ],
+  "tea_bread_stall_subject_sixth": [
+   "titi.go"
+  ],
   "teo": [
    "teo.hide",
    "teo.fold",
@@ -4911,6 +5037,9 @@
   ],
   "time": [
    "time.till"
+  ],
+  "titi": [
+   "titi.go"
   ],
   "toothbrush": [
    "toothbrush.on"
@@ -5011,6 +5140,17 @@
     "title": "518. nigeria2.0",
     "funcs": [
      "teo.say"
+    ]
+   }
+  ],
+  "arts_can_see_figure": [
+   {
+    "scope": "safe",
+    "from": "e164727d4c98",
+    "title": "326. what the arts can see",
+    "funcs": [
+     "nobody.rename",
+     "titi.go"
     ]
    }
   ],
@@ -6021,6 +6161,17 @@
     "title": "120. certain individuals",
     "funcs": [
      "everywhere.getwatching"
+    ]
+   }
+  ],
+  "chair": [
+   {
+    "scope": "safe",
+    "from": "e164727d4c98",
+    "title": "326. what the arts can see",
+    "funcs": [
+     "nobody.rename",
+     "titi.go"
     ]
    }
   ],
@@ -7797,6 +7948,17 @@
      "teo.hide",
      "touch.again",
      "song.hit"
+    ]
+   }
+  ],
+  "laptop": [
+   {
+    "scope": "safe",
+    "from": "e164727d4c98",
+    "title": "326. what the arts can see",
+    "funcs": [
+     "nobody.rename",
+     "titi.go"
     ]
    }
   ],
@@ -11395,6 +11557,17 @@
     "lateef.hide",
     "make.setany"
    ]
+  },
+  "run-d6fc": {
+   "safe": "e164727d4c98",
+   "funcs": []
+  },
+  "run-g1-B": {
+   "safe": "e164727d4c98",
+   "funcs": [
+    "titi.go",
+    "nobody.rename"
+   ]
   }
  },
  "safes": {
@@ -11746,6 +11919,17 @@
    ],
    "runs": []
   },
+  "e164727d4c98": {
+   "title": "326. what the arts can see",
+   "funcs": [
+    "titi.go",
+    "nobody.rename"
+   ],
+   "runs": [
+    "run-d6fc",
+    "run-g1-B"
+   ]
+  },
   "eb4af1c3e662": {
    "title": "312. yes",
    "funcs": [
@@ -12046,6 +12230,9 @@
   "1*AJB8SrMTgaCpdzYc75Srqg.jpeg": [
    "7cbc2e5ad31d"
   ],
+  "1*6HL5YNv8ctvM4bl6rHfSlA.gif": [
+   "e164727d4c98"
+  ],
   "1*dG43u53YvDE9PsOeA0ElGQ.jpeg": [
    "edabb8db520c"
   ],
@@ -12271,6 +12458,12 @@
    "runs": [],
    "safes": [
     "c91864d4bbb7"
+   ]
+  },
+  "1*6HL5YNv8ctvM4bl6rHfSlA.gif": {
+   "runs": [],
+   "safes": [
+    "e164727d4c98"
    ]
   },
   "1*MPbkmimVouS6PjL30EIDOA.gif": {
@@ -12509,7 +12702,8 @@
    "make.setany"
   ],
   "nobody": [
-   "nobody.weigh"
+   "nobody.weigh",
+   "nobody.rename"
   ],
   "omo": [
    "omo.fold"
@@ -12558,6 +12752,9 @@
   ],
   "time": [
    "time.till"
+  ],
+  "titi": [
+   "titi.go"
   ],
   "toothbrush": [
    "toothbrush.on"
@@ -12685,7 +12882,8 @@
   ],
   "blender": [],
   "life": [],
-  "time": []
+  "time": [],
+  "titi": []
  },
  "casts": {
   "run-5a58c4": [
@@ -12790,16 +12988,21 @@
    "kunle",
    "pepe",
    "wife"
+  ],
+  "run-g1-B": [
+   "nobody",
+   "titi"
   ]
  },
  "gc": {
   "agendas": [
    "run-cb805f",
    "run-bd649b",
-   "run-5a58c4"
+   "run-5a58c4",
+   "run-g1-B"
   ],
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-17T16:54:06-05:00"
+ "updated": "2026-11-17T17:31:51-05:00"
 }

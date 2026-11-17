@@ -105,8 +105,8 @@
     "know",
     "bow"
    ],
-   "instances": 337,
-   "arg_instances": 18,
+   "instances": 338,
+   "arg_instances": 20,
    "parent": null,
    "chain": [
     "Thing"
@@ -1360,6 +1360,17 @@
    ],
    "tweets": []
   },
+  "eez": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-g1-B",
+   "first_job": "j10",
+   "source": "pick",
+   "runs": [
+    "run-g1-B"
+   ],
+   "tweets": []
+  },
   "efcc": {
    "class": "Thing",
    "cue": "default",
@@ -2334,10 +2345,11 @@
   "juss": {
    "class": "Thing",
    "cue": "default",
-   "first_run": "run-b9b963",
-   "first_job": null,
-   "source": "stage",
+   "first_run": "run-g1-B",
+   "first_job": "j10",
+   "source": "pick",
    "runs": [
+    "run-g1-B",
     "run-b9b963"
    ],
    "tweets": []
@@ -5949,6 +5961,38 @@
     "stage"
    ]
   ],
+  "run-g1-B": [
+   [
+    "juss",
+    "Thing",
+    "j10",
+    "pick"
+   ],
+   [
+    "eez",
+    "Thing",
+    "j10",
+    "pick"
+   ],
+   [
+    "studio",
+    "Place",
+    "j2",
+    "typed"
+   ],
+   [
+    "fireonthemountain",
+    "Thing",
+    "j6",
+    "typed"
+   ],
+   [
+    "asa",
+    "Thing",
+    "j7",
+    "typed"
+   ]
+  ],
   "run-a19af0": [
    [
     "posture",
@@ -8359,26 +8403,6 @@
     "typed"
    ]
   ],
-  "run-g1-B": [
-   [
-    "studio",
-    "Place",
-    "j2",
-    "typed"
-   ],
-   [
-    "fireonthemountain",
-    "Thing",
-    "j6",
-    "typed"
-   ],
-   [
-    "asa",
-    "Thing",
-    "j7",
-    "typed"
-   ]
-  ],
   "run-g3-B": [
    [
     "randomdate",
@@ -8746,7 +8770,9 @@
   "teo.guess": "guess(what: Thing)",
   "dez.make": "make(what: Thing)",
   "teo.figure": "figure(what: Thing)",
-  "teo.lead": "lead(act: Action)"
+  "teo.lead": "lead(act: Action)",
+  "titi.go": "go(what: Thing)",
+  "nobody.rename": "rename(what: Thing)"
  },
  "parent": {
   "Person": "Thing",
@@ -9067,6 +9093,10 @@
    "kunle",
    "pepe",
    "wife"
+  ],
+  "run-g1-B": [
+   "nobody",
+   "titi"
   ]
  },
  "genre_types": {
@@ -9141,5 +9171,5 @@
   "epilogue": "quiet",
   "coda": "quiet"
  },
- "updated": "2026-11-17T16:54:06-05:00"
+ "updated": "2026-11-17T17:31:51-05:00"
 }
