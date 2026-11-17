@@ -5103,6 +5103,16 @@
 "run": "run-5a58c4",
 "card": "j6",
 "other": "marisol"
+},
+{
+"id": "wf_535296da9e",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the marker b, and Bisola reads the name twice.",
+"code": "hard.interactwith(marker_b){ marker_b.receives(hard.envelope); … }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "hard"
 }
 ],
 "house": [
@@ -5941,6 +5951,16 @@
 "run": "run-5a58c4",
 "card": "j2",
 "other": "water"
+},
+{
+"id": "wf_4d0ebc4ce6",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up beside the morning at the quiet stretch sand.",
+"code": "marker_c.interactwith(quiet_stretch_sand){ quiet_stretch_sand.receives(marker_c.envelope); quiet_stretch_sand.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "marker_c"
 }
 ],
 "teoloveletter": [
@@ -6037,28 +6057,6 @@
 ]
 },
 "consequences": [
-{
-"id": "wf_7bfa39eb6b",
-"ts": "2026-11-17T15:32:03-0500",
-"a": "marina_biscayne_bay",
-"b": "calla",
-"code": "marina_biscayne_bay.interactwith(calla){ calla.receives(marina_biscayne_bay.soot); calla.remembers(taiwo, 'lamp soot'); }",
-"text": "The calla leaves with a Bird note with Taiwo's name and 'lamp soot' on it.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j7"
-},
-{
-"id": "wf_f25203e4f3",
-"ts": "2026-11-17T15:32:52-0500",
-"a": "quiet_stretch_sand",
-"b": "eyes_viral",
-"code": "quiet_stretch_sand.interactwith(eyes_viral){ eyes_viral.receives(quiet_stretch_sand.morning); }",
-"text": "The eyes viral now remembers the quiet stretch sand: 5:50pm, Tuesday 3 November 2026: The morning at the ramp is behind them.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j31"
-},
 {
 "id": "wf_213c14d20b",
 "ts": "2026-11-17T15:35:18-0500",
@@ -6476,6 +6474,28 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": "j6"
+},
+{
+"id": "wf_4d0ebc4ce6",
+"ts": "2026-11-17T17:16:09-0500",
+"a": "marker_c",
+"b": "quiet_stretch_sand",
+"code": "marker_c.interactwith(quiet_stretch_sand){ quiet_stretch_sand.receives(marker_c.envelope); quiet_stretch_sand.remembers(bisola, 'brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up beside the morning at the quiet stretch sand.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
+},
+{
+"id": "wf_535296da9e",
+"ts": "2026-11-17T17:17:50-0500",
+"a": "hard",
+"b": "marker_b",
+"code": "hard.interactwith(marker_b){ marker_b.receives(hard.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the marker b, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
 }
 ],
 "memories": [
@@ -6579,5 +6599,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T17:13:36-0500"
+"updated": "2026-11-17T17:17:50-0500"
 }
