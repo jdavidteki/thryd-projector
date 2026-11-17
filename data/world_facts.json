@@ -1066,14 +1066,14 @@
 ],
 "kerosene_lamp": [
 {
-"id": "wf_d6b297c484",
+"id": "wf_fae19130f6",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the change at the kerosene lamp, and Taiwo reads the name twice.",
-"code": "cell_phone.interactwith(kerosene_lamp){ kerosene_lamp.receives(cell_phone.envelope); … }",
+"code": "agbada.interactwith(kerosene_lamp){ kerosene_lamp.receives(agbada.envelope); … }",
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j6",
-"other": "cell_phone"
+"other": "agbada"
 },
 {
 "id": "wt_7a2b23aa13",
@@ -4094,16 +4094,6 @@
 ],
 "danfo_stuck_third": [
 {
-"id": "wf_cf1d702718",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the danfo stuck third, and Titi reads the name twice.",
-"code": "matches.interactwith(danfo_stuck_third){ danfo_stuck_third.receives(matches.envelope); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "matches"
-},
-{
 "id": "wf_e741b6ce12",
 "kind": "consequence",
 "text": "A Danfo speaker note with Bisola's name and 'egbe note' on it, turns up inside the egbe note at the danfo stuck third, and Titi reads the name twice.",
@@ -4132,6 +4122,16 @@
 "run": "run-0bd7c0",
 "card": "j4",
 "other": "truth"
+},
+{
+"id": "wf_bf2583bad1",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the danfo stuck third, and Titi reads the name twice.",
+"code": "kweshon.interactwith(danfo_stuck_third){ danfo_stuck_third.receives(kweshon.envelope); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "kweshon"
 },
 {
 "id": "wt_1115_2356_a",
@@ -4520,28 +4520,6 @@
 ]
 },
 "consequences": [
-{
-"id": "wf_6855a3de7f",
-"ts": "2026-11-16T21:10:15-0500",
-"a": "matches",
-"b": "lekki_pharmacy",
-"code": "matches.interactwith(lekki_pharmacy){ lekki_pharmacy.receives(matches.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the unpaid prescription slip at the lekki pharmacy, and Titi reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
-{
-"id": "wf_32423d9ccb",
-"ts": "2026-11-16T21:11:06-0500",
-"a": "morir_r",
-"b": "danfo_stuck_third",
-"code": "morir_r.interactwith(danfo_stuck_third){ danfo_stuck_third.receives(morir_r.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the danfo stuck third, and Titi reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
 {
 "id": "wf_58059290df",
 "ts": "2026-11-16T21:11:54-0500",
@@ -4959,6 +4937,28 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j6"
+},
+{
+"id": "wf_fae19130f6",
+"ts": "2026-11-16T22:45:10-0500",
+"a": "agbada",
+"b": "kerosene_lamp",
+"code": "agbada.interactwith(kerosene_lamp){ kerosene_lamp.receives(agbada.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the change at the kerosene lamp, and Taiwo reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
+},
+{
+"id": "wf_bf2583bad1",
+"ts": "2026-11-16T22:47:33-0500",
+"a": "kweshon",
+"b": "danfo_stuck_third",
+"code": "kweshon.interactwith(danfo_stuck_third){ danfo_stuck_third.receives(kweshon.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the danfo stuck third, and Titi reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
 }
 ],
 "memories": [
@@ -5062,5 +5062,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-16T22:41:57-0500"
+"updated": "2026-11-16T22:47:33-0500"
 }
