@@ -2027,16 +2027,6 @@
 ],
 "laptop": [
 {
-"id": "wf_80f2bd64a7",
-"kind": "consequence",
-"text": "A Marker note with Kunle's name and 'nice day sign' on it, turns up inside the lamp soot at the laptop, and Taiwo reads the name twice.",
-"code": "marker.interactwith(laptop){ laptop.receives(marker.sign); laptop.remembers(kunle, 'nice day sign'); laptop.tucks(marker, 'marker note into the lamp soot'); }",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j3",
-"other": "marker"
-},
-{
 "id": "wf_c7be0cdae8",
 "kind": "consequence",
 "text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the lamp soot at the laptop, and Taiwo reads the name twice.",
@@ -2045,6 +2035,16 @@
 "run": "run-5a58c4",
 "card": "j2",
 "other": "dez"
+},
+{
+"id": "wf_a250502ff3",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the lamp soot at the laptop, and Taiwo reads the name twice.",
+"code": "marker_c.interactwith(laptop){ laptop.receives(marker_c.envelope); … }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "marker_c"
 },
 {
 "id": "wt_00586a397c",
@@ -3113,6 +3113,16 @@
 "run": "run-b9b963",
 "card": "w",
 "other": "danfo_speaker"
+},
+{
+"id": "wf_7c66d35b95",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the love, and Bisola reads the name twice.",
+"code": "thoughts_marisol.interactwith(love){ love.receives(thoughts_marisol.envelope); … }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "thoughts_marisol"
 }
 ],
 "wser": [
@@ -4901,6 +4911,16 @@
 "run": "run-5a58c4",
 "card": "j6",
 "other": "tie"
+},
+{
+"id": "wf_c65d97f510",
+"kind": "consequence",
+"text": "A Marker note with Kunle's name and 'nice day sign' on it, turns up inside the brown envelope at the youngteacher, and Bisola reads the name twice.",
+"code": "marker.interactwith(youngteacher){ youngteacher.receives(marker.sign); … }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j3",
+"other": "marker"
 }
 ],
 "dress_marisol": [
@@ -5621,6 +5641,16 @@
 "run": "run-5a58c4",
 "card": "j29",
 "other": "miami"
+},
+{
+"id": "wf_44da22dc11",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up beside the phone at the itmoai.",
+"code": "dez.interactwith(itmoai){ itmoai.receives(dez.envelope); itmoai.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "dez"
 }
 ],
 "marisol": [
@@ -5935,50 +5965,6 @@
 ]
 },
 "consequences": [
-{
-"id": "wf_de0f68dcae",
-"ts": "2026-11-17T15:07:46-0500",
-"a": "move",
-"b": "tea_bread_stall",
-"code": "move.interactwith(tea_bread_stall){ tea_bread_stall.receives(move.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the planed-off chalk sketch at the tea bread stall, and Kunle reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
-"id": "wf_88a64f4959",
-"ts": "2026-11-17T15:08:36-0500",
-"a": "dez",
-"b": "sheep",
-"code": "dez.interactwith(sheep){ sheep.receives(dez.code); sheep.remembers(ejiro, 'juju code'); sheep.tucks(dez, 'ttb note into the scorched container number'); }",
-"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the scorched container number at the sheep, and Kunle reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j2"
-},
-{
-"id": "wf_3a10227018",
-"ts": "2026-11-17T15:09:25-0500",
-"a": "miami",
-"b": "little_tenderness",
-"code": "miami.interactwith(little_tenderness){ little_tenderness.receives(miami.phone); }",
-"text": "The little tenderness now remembers the miami: 11:45pm, Monday 2 November 2026: A phone on the counter starts the off-key chorus, then.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j29"
-},
-{
-"id": "wf_6d742c58d8",
-"ts": "2026-11-17T15:11:03-0500",
-"a": "dez",
-"b": "ronke_tray",
-"code": "dez.interactwith(ronke_tray){ ronke_tray.receives(dez.code); ronke_tray.remembers(ejiro, 'juju code'); ronke_tray.tucks(dez, 'ttb note into the green shirt'); }",
-"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the green shirt at the ronke tray, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j2"
-},
 {
 "id": "wf_0925813dfd",
 "ts": "2026-11-17T15:11:52-0500",
@@ -6374,6 +6360,50 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": "j7"
+},
+{
+"id": "wf_44da22dc11",
+"ts": "2026-11-17T16:12:00-0500",
+"a": "dez",
+"b": "itmoai",
+"code": "dez.interactwith(itmoai){ itmoai.receives(dez.envelope); itmoai.remembers(bisola, 'brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up beside the phone at the itmoai.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
+},
+{
+"id": "wf_a250502ff3",
+"ts": "2026-11-17T16:13:42-0500",
+"a": "marker_c",
+"b": "laptop",
+"code": "marker_c.interactwith(laptop){ laptop.receives(marker_c.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the lamp soot at the laptop, and Taiwo reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
+},
+{
+"id": "wf_7c66d35b95",
+"ts": "2026-11-17T16:15:23-0500",
+"a": "thoughts_marisol",
+"b": "love",
+"code": "thoughts_marisol.interactwith(love){ love.receives(thoughts_marisol.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the love, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
+},
+{
+"id": "wf_c65d97f510",
+"ts": "2026-11-17T16:16:16-0500",
+"a": "marker",
+"b": "youngteacher",
+"code": "marker.interactwith(youngteacher){ youngteacher.receives(marker.sign); … }",
+"text": "A Marker note with Kunle's name and 'nice day sign' on it, turns up inside the brown envelope at the youngteacher, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j3"
 }
 ],
 "memories": [
@@ -6477,5 +6507,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T16:09:24-0500"
+"updated": "2026-11-17T16:16:16-0500"
 }
