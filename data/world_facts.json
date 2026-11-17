@@ -2027,16 +2027,6 @@
 ],
 "laptop": [
 {
-"id": "wf_c7be0cdae8",
-"kind": "consequence",
-"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the lamp soot at the laptop, and Taiwo reads the name twice.",
-"code": "dez.interactwith(laptop){ laptop.receives(dez.code); laptop.remembers(ejiro, 'juju code'); laptop.tucks(dez, 'ttb note into the lamp soot'); }",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j2",
-"other": "dez"
-},
-{
 "id": "wf_a250502ff3",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the lamp soot at the laptop, and Taiwo reads the name twice.",
@@ -2045,6 +2035,16 @@
 "run": "run-5a58c4",
 "card": "j6",
 "other": "marker_c"
+},
+{
+"id": "wf_9cc15ad026",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the lamp soot at the laptop, and Taiwo reads the name twice.",
+"code": "hpr.interactwith(laptop){ laptop.receives(hpr.envelope); laptop.remembers(bisola, 'brown envelope'); laptop.tucks(hpr, 'yaba bookshop receipt into the lamp soot'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "hpr"
 },
 {
 "id": "wt_00586a397c",
@@ -2121,16 +2121,6 @@
 ],
 "sheep": [
 {
-"id": "wf_076b8c587a",
-"kind": "consequence",
-"text": "A Red white cap note with Taiwo's name and 'egbe note' on it, 11:20pm, turns up inside the brown envelope at the sheep, and Bisola reads the name twice.",
-"code": "red_white_cap.interactwith(sheep){ sheep.receives(red_white_cap.note); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "w7",
-"other": "red_white_cap"
-},
-{
 "id": "wf_5a03bdc1dc",
 "kind": "consequence",
 "text": "A Pure water cooler note with Kunle's name and 'container number' on it, 9:20am, turns up inside the brown envelope at the sheep, and Bisola reads the name twice.",
@@ -2159,6 +2149,16 @@
 "run": "run-5a58c4",
 "card": "j6",
 "other": "marker_b"
+},
+{
+"id": "wf_b5b3b6389a",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the scorched container number at the sheep, and Kunle reads the name twice.",
+"code": "tnw.interactwith(sheep){ sheep.receives(tnw.envelope); … }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "tnw"
 },
 {
 "id": "wt_5dd9c9e121",
@@ -6088,28 +6088,6 @@
 },
 "consequences": [
 {
-"id": "wf_96726c9d11",
-"ts": "2026-11-17T15:47:15-0500",
-"a": "marker_b",
-"b": "miami",
-"code": "marker_b.interactwith(miami){ miami.receives(marker_b.envelope); miami.remembers(bisola, 'brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up beside the phone at the miami.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
-"id": "wf_955a60fdc4",
-"ts": "2026-11-17T15:50:00-0500",
-"a": "sandal",
-"b": "dez",
-"code": "sandal.interactwith(dez){ dez.receives(sandal.envelope); dez.remembers(bisola, 'brown envelope'); dez.tucks(sandal, 'yaba bookshop receipt into the juju code'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the juju code at the dez, and Ejiro reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
 "id": "wf_2f5ad8aebc",
 "ts": "2026-11-17T15:50:54-0500",
 "a": "love",
@@ -6526,6 +6504,28 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": "j6"
+},
+{
+"id": "wf_9cc15ad026",
+"ts": "2026-11-17T17:31:50-0500",
+"a": "hpr",
+"b": "laptop",
+"code": "hpr.interactwith(laptop){ laptop.receives(hpr.envelope); laptop.remembers(bisola, 'brown envelope'); laptop.tucks(hpr, 'yaba bookshop receipt into the lamp soot'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the lamp soot at the laptop, and Taiwo reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
+},
+{
+"id": "wf_b5b3b6389a",
+"ts": "2026-11-17T17:32:44-0500",
+"a": "tnw",
+"b": "sheep",
+"code": "tnw.interactwith(sheep){ sheep.receives(tnw.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the scorched container number at the sheep, and Kunle reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
 }
 ],
 "memories": [
@@ -6629,5 +6629,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T17:30:54-0500"
+"updated": "2026-11-17T17:32:44-0500"
 }
