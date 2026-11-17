@@ -3602,16 +3602,6 @@
 ],
 "bow": [
 {
-"id": "wf_9962f5cd48",
-"kind": "consequence",
-"text": "The bow leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"code": "matches.interactwith(bow){ bow.receives(matches.envelope); bow.remembers(bisola, 'brown envelope'); }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "matches"
-},
-{
 "id": "wf_20339e3bff",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bow, and Bisola reads the name twice.",
@@ -3650,6 +3640,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "omo"
+},
+{
+"id": "wf_26f71dce41",
+"kind": "consequence",
+"text": "An Ats note with Bisola's name and 'brown envelope' on it, turns up inside the brown envelope at the bow, and Bisola reads the name twice.",
+"code": "ats.interactwith(bow){ bow.receives(ats.envelope); bow.remembers(bisola, 'brown envelope'); bow.tucks(ats, 'ats note into the brown envelope'); }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j2",
+"other": "ats"
 }
 ],
 "crown": [
@@ -4283,17 +4283,6 @@
 },
 "consequences": [
 {
-"id": "wf_adb6b36f2a",
-"ts": "2026-11-16T15:44:30-0500",
-"a": "ats",
-"b": "apapa_container_yard",
-"code": "ats.interactwith(apapa_container_yard){ apapa_container_yard.receives(ats.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the apapa container yard, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
-{
 "id": "wf_51b7e3bd99",
 "ts": "2026-11-16T15:46:05-0500",
 "a": "plastic_sheet",
@@ -4721,6 +4710,17 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j6"
+},
+{
+"id": "wf_26f71dce41",
+"ts": "2026-11-16T20:41:01-0500",
+"a": "ats",
+"b": "bow",
+"code": "ats.interactwith(bow){ bow.receives(ats.envelope); bow.remembers(bisola, 'brown envelope'); bow.tucks(ats, 'ats note into the brown envelope'); }",
+"text": "An Ats note with Bisola's name and 'brown envelope' on it, turns up inside the brown envelope at the bow, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j2"
 }
 ],
 "memories": [
@@ -4824,5 +4824,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-16T20:35:26-0500"
+"updated": "2026-11-16T20:41:01-0500"
 }
