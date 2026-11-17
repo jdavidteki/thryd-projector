@@ -2397,14 +2397,14 @@
 ],
 "lekki_pharmacy": [
 {
-"id": "wf_0ae37ec01d",
+"id": "wf_e3c643b4a7",
 "kind": "consequence",
-"text": "A Truth note with Titi's name and 'egbe note' on it, turns up inside the unpaid prescription slip at the lekki pharmacy, and Titi reads the name twice.",
-"code": "truth.interactwith(lekki_pharmacy){ lekki_pharmacy.receives(truth.note); … }",
+"text": "A Morir note with Kunle's name and 'container number' on it, turns up inside the scorched container number at the lekki pharmacy, and Kunle reads the name twice.",
+"code": "morir.interactwith(lekki_pharmacy){ lekki_pharmacy.receives(morir.number); … }",
 "author": "cos",
 "run": "run-0bd7c0",
-"card": "j4",
-"other": "truth"
+"card": "w7",
+"other": "morir"
 },
 {
 "id": "wt_825a1245a2",
@@ -4524,17 +4524,6 @@
 },
 "consequences": [
 {
-"id": "wf_2a6321cbb4",
-"ts": "2026-11-16T22:07:26-0500",
-"a": "streetlights",
-"b": "matches",
-"code": "streetlights.interactwith(matches){ matches.receives(streetlights.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the matches, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
-{
 "id": "wf_9d322fe6db",
 "ts": "2026-11-16T22:09:52-0500",
 "a": "family_compound_ikorodu",
@@ -4962,6 +4951,17 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "w1"
+},
+{
+"id": "wf_e3c643b4a7",
+"ts": "2026-11-17T00:15:03-0500",
+"a": "morir",
+"b": "lekki_pharmacy",
+"code": "morir.interactwith(lekki_pharmacy){ lekki_pharmacy.receives(morir.number); … }",
+"text": "A Morir note with Kunle's name and 'container number' on it, turns up inside the scorched container number at the lekki pharmacy, and Kunle reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "w7"
 }
 ],
 "memories": [
@@ -5065,5 +5065,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T00:07:03-0500"
+"updated": "2026-11-17T00:15:03-0500"
 }
