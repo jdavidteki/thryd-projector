@@ -4900,6 +4900,16 @@
 "run": "run-5a58c4",
 "card": "j6",
 "other": "calla"
+},
+{
+"id": "wf_0835041783",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the marker b, and Bisola reads the name twice.",
+"code": "heat.interactwith(marker_b){ marker_b.receives(heat.envelope); … }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "heat"
 }
 ],
 "house": [
@@ -5433,31 +5443,21 @@
 "card": "j6",
 "other": "tbp"
 }
+],
+"plot": [
+{
+"id": "wf_1f2c061fdd",
+"kind": "consequence",
+"text": "The plot leaves with a Bird note with Taiwo's name and 'lamp soot' on it.",
+"code": "bird.interactwith(plot){ plot.receives(bird.soot); plot.remembers(taiwo, 'lamp soot'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j7",
+"other": "bird"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_287c944581",
-"ts": "2026-11-17T11:48:56-0500",
-"a": "bird",
-"b": "kmb",
-"code": "bird.interactwith(kmb){ kmb.receives(bird.soot); kmb.remembers(taiwo, 'lamp soot'); }",
-"text": "The kmb leaves with a Bird note with Taiwo's name and 'lamp soot' on it.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j7"
-},
-{
-"id": "wf_b943b0d4b5",
-"ts": "2026-11-17T12:17:05-0500",
-"a": "dez",
-"b": "fire_escape_outside",
-"code": "dez.interactwith(fire_escape_outside){ fire_escape_outside.receives(dez.code); … }",
-"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the juju code at the fire escape outside, and Ejiro reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j2"
-},
 {
 "id": "wf_9a57f24c6a",
 "ts": "2026-11-17T12:19:10-0500",
@@ -5875,6 +5875,28 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": "j6"
+},
+{
+"id": "wf_1f2c061fdd",
+"ts": "2026-11-17T14:42:55-0500",
+"a": "bird",
+"b": "plot",
+"code": "bird.interactwith(plot){ plot.receives(bird.soot); plot.remembers(taiwo, 'lamp soot'); }",
+"text": "The plot leaves with a Bird note with Taiwo's name and 'lamp soot' on it.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j7"
+},
+{
+"id": "wf_0835041783",
+"ts": "2026-11-17T14:47:46-0500",
+"a": "heat",
+"b": "marker_b",
+"code": "heat.interactwith(marker_b){ marker_b.receives(heat.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the marker b, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
 }
 ],
 "memories": [
@@ -5978,5 +6000,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T14:42:02-0500"
+"updated": "2026-11-17T14:47:46-0500"
 }
