@@ -4550,20 +4550,21 @@
 "card": "j6",
 "other": "family_compound_ikorodu"
 }
+],
+"secret": [
+{
+"id": "wf_e3d6a8a6a6",
+"kind": "consequence",
+"text": "The secret leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "people_scene.interactwith(secret){ secret.receives(people_scene.envelope); secret.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "people_scene"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_ee5d2d83b4",
-"ts": "2026-11-16T22:41:57-0500",
-"a": "plastic_sheet",
-"b": "streetlights",
-"code": "plastic_sheet.interactwith(streetlights){ streetlights.receives(plastic_sheet.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the streetlights, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
 {
 "id": "wf_fae19130f6",
 "ts": "2026-11-16T22:45:10-0500",
@@ -4992,6 +4993,17 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j6"
+},
+{
+"id": "wf_e3d6a8a6a6",
+"ts": "2026-11-17T09:28:11-0500",
+"a": "people_scene",
+"b": "secret",
+"code": "people_scene.interactwith(secret){ secret.receives(people_scene.envelope); secret.remembers(bisola, 'brown envelope'); }",
+"text": "The secret leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
 }
 ],
 "memories": [
@@ -5095,5 +5107,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T08:21:11-0500"
+"updated": "2026-11-17T09:28:11-0500"
 }
