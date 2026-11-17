@@ -4656,6 +4656,16 @@
 "run": "run-5a58c4",
 "card": "w5",
 "other": "dress_marisol"
+},
+{
+"id": "wf_229a637237",
+"kind": "consequence",
+"text": "A Laptop note with Ejiro's name and 'rain-stained receipt' on it, 8:05am, turns up inside the brown envelope at the top deck charter, and Bisola reads the name twice.",
+"code": "marker_c.interactwith(top_deck_charter){ top_deck_charter.receives(marker_c.receipt); … }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "w5",
+"other": "marker_c"
 }
 ],
 "fire_escape_outside": [
@@ -4705,31 +4715,21 @@
 "card": "w5",
 "other": "laptop"
 }
+],
+"matbaotstaili": [
+{
+"id": "wf_716176ca30",
+"kind": "consequence",
+"text": "The matbaotstaili leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
+"code": "dez.interactwith(matbaotstaili){ matbaotstaili.receives(dez.code); matbaotstaili.remembers(ejiro, 'juju code'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j2",
+"other": "dez"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_f5e12d9286",
-"ts": "2026-11-17T00:46:12-0500",
-"a": "truth",
-"b": "plastic_sheet",
-"code": "truth.interactwith(plastic_sheet){ plastic_sheet.receives(truth.note); … }",
-"text": "A Truth note with Titi's name and 'egbe note' on it, turns up inside the brown envelope at the plastic sheet, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j4"
-},
-{
-"id": "wf_f39c976faa",
-"ts": "2026-11-17T00:47:47-0500",
-"a": "truth",
-"b": "bicycle",
-"code": "truth.interactwith(bicycle){ bicycle.receives(truth.note); bicycle.remembers(titi, 'egbe note'); bicycle.tucks(truth, 'truth note into the brown envelope'); }",
-"text": "A Truth note with Titi's name and 'egbe note' on it, turns up inside the brown envelope at the bicycle, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j4"
-},
 {
 "id": "wf_229c80496b",
 "ts": "2026-11-17T00:53:22-0500",
@@ -5147,6 +5147,28 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": "w5"
+},
+{
+"id": "wf_229a637237",
+"ts": "2026-11-17T11:10:28-0500",
+"a": "marker_c",
+"b": "top_deck_charter",
+"code": "marker_c.interactwith(top_deck_charter){ top_deck_charter.receives(marker_c.receipt); … }",
+"text": "A Laptop note with Ejiro's name and 'rain-stained receipt' on it, 8:05am, turns up inside the brown envelope at the top deck charter, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "w5"
+},
+{
+"id": "wf_716176ca30",
+"ts": "2026-11-17T11:11:39-0500",
+"a": "dez",
+"b": "matbaotstaili",
+"code": "dez.interactwith(matbaotstaili){ matbaotstaili.receives(dez.code); matbaotstaili.remembers(ejiro, 'juju code'); }",
+"text": "The matbaotstaili leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j2"
 }
 ],
 "memories": [
@@ -5250,5 +5272,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T11:06:47-0500"
+"updated": "2026-11-17T11:11:39-0500"
 }
