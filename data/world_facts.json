@@ -2,6 +2,7 @@
 "v": 1,
 "note": "World memory: each object's facts and the newest consequences of meetings (shared store /workspace/thryd-projector/data/world_facts.jsonl, tools/world_memory.py). The stage shows a consequence code line when the same pair meets again, and now and then on its own; #thryd memories show now and then too.",
 "alias": {
+"jetty_south_pointe_subject": "jetty_south_pointe",
 "florida_subject": "florida",
 "florida_subject_second": "florida",
 "florida_subject_third": "florida",
@@ -4905,20 +4906,21 @@
 "card": "j7",
 "other": "bird"
 }
+],
+"tbp": [
+{
+"id": "wf_9a57f24c6a",
+"kind": "consequence",
+"text": "The tbp leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "bicycle.interactwith(tbp){ tbp.receives(bicycle.envelope); tbp.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "bicycle"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_0f8059f1ed",
-"ts": "2026-11-17T09:59:48-0500",
-"a": "plastic_sheet",
-"b": "danfo_stuck_third",
-"code": "plastic_sheet.interactwith(danfo_stuck_third){ danfo_stuck_third.receives(plastic_sheet.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the same hand on number and stop at the danfo stuck third, and Kunle reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
 {
 "id": "wf_61610235af",
 "ts": "2026-11-17T10:03:52-0500",
@@ -5347,6 +5349,17 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": "j2"
+},
+{
+"id": "wf_9a57f24c6a",
+"ts": "2026-11-17T12:19:10-0500",
+"a": "bicycle",
+"b": "tbp",
+"code": "bicycle.interactwith(tbp){ tbp.receives(bicycle.envelope); tbp.remembers(bisola, 'brown envelope'); }",
+"text": "The tbp leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
 }
 ],
 "memories": [
@@ -5450,5 +5463,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T12:17:05-0500"
+"updated": "2026-11-17T12:19:10-0500"
 }
