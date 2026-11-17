@@ -6628,7 +6628,7 @@
   },
   "run-cb805f": {
    "forked_from": "safe:09dc204dfd9a",
-   "head": "62238e387d",
+   "head": "8d23a93627",
    "commits": [
     {
      "id": "f30cf797ef",
@@ -6714,7 +6714,7 @@
      }
     },
     {
-     "id": "6fc2898ac8",
+     "id": "8be27f930b",
      "parent": "78a408a2ff",
      "branch": "run-cb805f",
      "job": "j6",
@@ -6725,6 +6725,11 @@
       "facts": [],
       "facts_total": 0,
       "functions": [
+       {
+        "func": "[connection,artists].map",
+        "title": "[connection,artists].map(wait)",
+        "op": "define"
+       },
        {
         "func": "lagbara.on",
         "title": "lagbara.on('yorubbbygehinny',wait)",
@@ -6742,10 +6747,6 @@
         "Person"
        ],
        [
-        "wait",
-        "Action"
-       ],
-       [
         "else",
         "Thing"
        ],
@@ -6757,8 +6758,8 @@
      }
     },
     {
-     "id": "fb3a4f5074",
-     "parent": "6fc2898ac8",
+     "id": "af7dcc0b0f",
+     "parent": "8be27f930b",
      "branch": "run-cb805f",
      "job": "j7",
      "at": "2026-10-24T06:42:00-05:00",
@@ -6793,8 +6794,8 @@
      }
     },
     {
-     "id": "7c739c59e4",
-     "parent": "fb3a4f5074",
+     "id": "cc9b0adf42",
+     "parent": "af7dcc0b0f",
      "branch": "run-cb805f",
      "job": "j8",
      "at": "2026-10-24T07:05:00-05:00",
@@ -6832,8 +6833,8 @@
      }
     },
     {
-     "id": "d35b4bb042",
-     "parent": "7c739c59e4",
+     "id": "6d71200a10",
+     "parent": "cc9b0adf42",
      "branch": "run-cb805f",
      "job": "j9",
      "at": "2026-10-24T07:35:00-05:00",
@@ -6872,8 +6873,8 @@
      }
     },
     {
-     "id": "88a76830f2",
-     "parent": "d35b4bb042",
+     "id": "4ebf662717",
+     "parent": "6d71200a10",
      "branch": "run-cb805f",
      "job": "j10",
      "at": "2026-10-24T07:44:00-05:00",
@@ -6907,8 +6908,8 @@
      }
     },
     {
-     "id": "60264fe535",
-     "parent": "88a76830f2",
+     "id": "b09efaaabf",
+     "parent": "4ebf662717",
      "branch": "run-cb805f",
      "job": "j11",
      "at": "2026-10-24T07:57:00-05:00",
@@ -6918,6 +6919,11 @@
       "facts": [],
       "facts_total": 0,
       "functions": [
+       {
+        "func": "[kept,getting].map",
+        "title": "[kept,getting].map(lift)",
+        "op": "define"
+       },
        {
         "func": "everywhere.getyanju",
         "title": "everywhere.getYanju()",
@@ -6929,12 +6935,17 @@
         "op": "define"
        }
       ],
-      "instances": []
+      "instances": [
+       [
+        "lift",
+        "Thing"
+       ]
+      ]
      }
     },
     {
-     "id": "115f5bfe4b",
-     "parent": "60264fe535",
+     "id": "31cfd92073",
+     "parent": "b09efaaabf",
      "branch": "run-cb805f",
      "job": "j12",
      "at": "2026-10-24T08:09:44-05:00",
@@ -6944,6 +6955,11 @@
       "facts": [],
       "facts_total": 0,
       "functions": [
+       {
+        "func": "[nau,god].map",
+        "title": "[nau,god].map(wait)",
+        "op": "define"
+       },
        {
         "func": "irteiutk.count",
         "title": "irteiutk.count(reminds)",
@@ -6961,6 +6977,10 @@
        }
       ],
       "instances": [
+       [
+        "wait",
+        "Action"
+       ],
        [
         "reminds",
         "Action"
@@ -6981,8 +7001,8 @@
      }
     },
     {
-     "id": "62238e387d",
-     "parent": "115f5bfe4b",
+     "id": "8d23a93627",
+     "parent": "31cfd92073",
      "branch": "run-cb805f",
      "job": "j13",
      "at": "2026-10-24T08:17:00-05:00",
@@ -7010,10 +7030,10 @@
   },
   "run-g1-B": {
    "forked_from": "safe:e164727d4c98",
-   "head": "98d8a0515a",
+   "head": "b91279cd07",
    "commits": [
     {
-     "id": "98d8a0515a",
+     "id": "b91279cd07",
      "parent": null,
      "branch": "run-g1-B",
      "job": "j10",
@@ -7024,6 +7044,11 @@
       "facts": [],
       "facts_total": 0,
       "functions": [
+       {
+        "func": "[maybe,know].map",
+        "title": "[maybe,know].map(lift)",
+        "op": "define"
+       },
        {
         "func": "titi.go",
         "title": "titi.go(juss)",
@@ -7036,6 +7061,10 @@
        }
       ],
       "instances": [
+       [
+        "lift",
+        "Thing"
+       ],
        [
         "juss",
         "Thing"
@@ -7060,9 +7089,9 @@
   "run-bd649b": "8ed6c18a56",
   "run-9e59ca": "59f544b8d8",
   "run-5a58c4": "17d819bcef",
-  "run-cb805f": "62238e387d",
-  "run-g1-B": "98d8a0515a"
+  "run-cb805f": "8d23a93627",
+  "run-g1-B": "b91279cd07"
  },
  "commits": 71,
- "updated": "2026-11-17T17:36:24-05:00"
+ "updated": "2026-11-17T17:42:19-05:00"
 }
