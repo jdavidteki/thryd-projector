@@ -1793,16 +1793,6 @@
 ],
 "bicycle": [
 {
-"id": "wf_0b0d549bff",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bicycle, and Bisola reads the name twice.",
-"code": "morir.interactwith(bicycle){ bicycle.receives(morir.envelope); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "morir"
-},
-{
 "id": "wf_6c0ce9ef8b",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bicycle, and Bisola reads the name twice.",
@@ -1841,6 +1831,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "plastic_sheet"
+},
+{
+"id": "wf_74991d7e21",
+"kind": "consequence",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the bicycle, and Bisola reads the name twice.",
+"code": "mbtij.interactwith(bicycle){ bicycle.receives(mbtij.code); bicycle.remembers(ejiro, 'juju code'); bicycle.tucks(mbtij, 'ttb note into the brown envelope'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j2",
+"other": "mbtij"
 }
 ],
 "ronke": [
@@ -5803,6 +5803,16 @@
 "run": "run-5a58c4",
 "card": "j6",
 "other": "matbaotstaili"
+},
+{
+"id": "wf_bf8263a9fe",
+"kind": "consequence",
+"text": "A Bird note with Taiwo's name and 'lamp soot' on it, turns up inside the brown envelope at the icsh, and Bisola reads the name twice.",
+"code": "plot.interactwith(icsh){ icsh.receives(plot.soot); icsh.remembers(taiwo, 'lamp soot'); icsh.tucks(plot, 'bird note into the brown envelope'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j7",
+"other": "plot"
 }
 ],
 "jetty_south_pointe": [
@@ -5991,6 +6001,16 @@
 "run": "run-5a58c4",
 "card": "j6",
 "other": "marker_c"
+},
+{
+"id": "wf_9a4ce30914",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up beside the morning at the quiet stretch sand.",
+"code": "marker_b.interactwith(quiet_stretch_sand){ quiet_stretch_sand.receives(marker_b.envelope); quiet_stretch_sand.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "marker_b"
 }
 ],
 "teoloveletter": [
@@ -6087,39 +6107,6 @@
 ]
 },
 "consequences": [
-{
-"id": "wf_2f5ad8aebc",
-"ts": "2026-11-17T15:50:54-0500",
-"a": "love",
-"b": "marker",
-"code": "love.interactwith(marker){ marker.receives(love.note); marker.remembers(bisola, 'egbe note'); marker.tucks(love, 'danfo speaker note into the nice day sign'); }",
-"text": "A Danfo speaker note with Bisola's name and 'egbe note' on it, turns up inside the nice day sign at the marker, and Kunle reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "w"
-},
-{
-"id": "wf_2acfbd464c",
-"ts": "2026-11-17T15:52:35-0500",
-"a": "youngteacher",
-"b": "teomarisollove",
-"code": "youngteacher.interactwith(teomarisollove){ teomarisollove.receives(youngteacher.envelope); teomarisollove.remembers(bisola, 'brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the teomarisollove, which is still in love, said out loud by Marisol (w14 causeway).",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
-"id": "wf_53f20823a2",
-"ts": "2026-11-17T16:02:31-0500",
-"a": "texts_marisol",
-"b": "teoloveletter",
-"code": "texts_marisol.interactwith(teoloveletter){ teoloveletter.receives(texts_marisol.code); teoloveletter.remembers(ejiro, 'juju code'); }",
-"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up beside the phone at the teoloveletter.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j2"
-},
 {
 "id": "wf_d533fe99ec",
 "ts": "2026-11-17T16:03:23-0500",
@@ -6526,6 +6513,39 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": "j6"
+},
+{
+"id": "wf_9a4ce30914",
+"ts": "2026-11-17T17:34:33-0500",
+"a": "marker_b",
+"b": "quiet_stretch_sand",
+"code": "marker_b.interactwith(quiet_stretch_sand){ quiet_stretch_sand.receives(marker_b.envelope); quiet_stretch_sand.remembers(bisola, 'brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up beside the morning at the quiet stretch sand.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
+},
+{
+"id": "wf_bf8263a9fe",
+"ts": "2026-11-17T17:35:29-0500",
+"a": "plot",
+"b": "icsh",
+"code": "plot.interactwith(icsh){ icsh.receives(plot.soot); icsh.remembers(taiwo, 'lamp soot'); icsh.tucks(plot, 'bird note into the brown envelope'); }",
+"text": "A Bird note with Taiwo's name and 'lamp soot' on it, turns up inside the brown envelope at the icsh, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j7"
+},
+{
+"id": "wf_74991d7e21",
+"ts": "2026-11-17T17:36:22-0500",
+"a": "mbtij",
+"b": "bicycle",
+"code": "mbtij.interactwith(bicycle){ bicycle.receives(mbtij.code); bicycle.remembers(ejiro, 'juju code'); bicycle.tucks(mbtij, 'ttb note into the brown envelope'); }",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the bicycle, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j2"
 }
 ],
 "memories": [
@@ -6629,5 +6649,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T17:32:44-0500"
+"updated": "2026-11-17T17:36:22-0500"
 }
