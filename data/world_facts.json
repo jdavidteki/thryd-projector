@@ -4932,20 +4932,21 @@
 "card": "j6",
 "other": "florida"
 }
+],
+"water": [
+{
+"id": "wf_d34247aaae",
+"kind": "consequence",
+"text": "The water leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
+"code": "marker_c.interactwith(water){ water.receives(marker_c.code); water.remembers(ejiro, 'juju code'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j2",
+"other": "marker_c"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_61201e3067",
-"ts": "2026-11-17T10:08:42-0500",
-"a": "morir_r",
-"b": "let",
-"code": "morir_r.interactwith(let){ let.receives(morir_r.envelope); let.remembers(bisola, 'brown envelope'); let.tucks(morir_r, 'yaba bookshop receipt into the brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the let, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
 {
 "id": "wf_edd058d6e9",
 "ts": "2026-11-17T10:13:28-0500",
@@ -5374,6 +5375,17 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": "j6"
+},
+{
+"id": "wf_d34247aaae",
+"ts": "2026-11-17T12:34:37-0500",
+"a": "marker_c",
+"b": "water",
+"code": "marker_c.interactwith(water){ water.receives(marker_c.code); water.remembers(ejiro, 'juju code'); }",
+"text": "The water leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j2"
 }
 ],
 "memories": [
@@ -5477,5 +5489,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T12:22:14-0500"
+"updated": "2026-11-17T12:34:37-0500"
 }
