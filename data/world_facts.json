@@ -858,16 +858,6 @@
 ],
 "danfo_speaker": [
 {
-"id": "wf_3f4f4470dd",
-"kind": "memory",
-"text": "The danfo speaker at danfo at the curb, song heard again at Mama Ronke's gate: playing the same love song.",
-"code": "danfo_speaker.state('playing the same love song');",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "w5",
-"other": null
-},
-{
 "id": "wf_53de3503a6",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the danfo speaker, and Bisola reads the name twice.",
@@ -906,6 +896,16 @@
 "run": "world",
 "card": "w",
 "other": "agbada"
+},
+{
+"id": "wt_1d64cab0fd",
+"kind": "consequence",
+"text": "At the curb the danfo speaker crackles as the red white cap passes, and for one bar it repeats the time written on Taiwo's egbe note, 11:20pm, before the song comes back.",
+"code": "red_white_cap.interactwith(danfo_speaker){ danfo_speaker.receives(red_white_cap.egbe_note); danfo_speaker.remembers(taiwo, '11:20pm'); danfo_speaker.setmood('sad'); }",
+"author": "thryd",
+"run": "run-0bd7c0",
+"card": "w6",
+"other": "red_white_cap"
 }
 ],
 "plastic_sheet": [
@@ -2394,16 +2394,6 @@
 ],
 "lekki_pharmacy": [
 {
-"id": "wf_6855a3de7f",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the unpaid prescription slip at the lekki pharmacy, and Titi reads the name twice.",
-"code": "matches.interactwith(lekki_pharmacy){ lekki_pharmacy.receives(matches.envelope); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "matches"
-},
-{
 "id": "wf_0ae37ec01d",
 "kind": "consequence",
 "text": "A Truth note with Titi's name and 'egbe note' on it, turns up inside the unpaid prescription slip at the lekki pharmacy, and Titi reads the name twice.",
@@ -2442,6 +2432,16 @@
 "run": "run-0bd7c0",
 "card": "j3",
 "other": "truth"
+},
+{
+"id": "wt_933375810c",
+"kind": "consequence",
+"text": "When the morir leaves the Lekki pharmacy, the scorched corner of the brown envelope catches on the counter, and Titi keeps a copy of Kunle's container number pinned beside the unpaid slips.",
+"code": "morir.interactwith(lekki_pharmacy){ lekki_pharmacy.receives(morir, 'scorched container number'); lekki_pharmacy.find('unpaid slips').add('container number copy'); }",
+"author": "thryd",
+"run": "run-0bd7c0",
+"card": "w7",
+"other": "morir"
 }
 ],
 "cup": [
@@ -2550,16 +2550,6 @@
 ],
 "cell_phone": [
 {
-"id": "wf_c52550e6c2",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the juju code at the cell phone, and Ejiro reads the name twice.",
-"code": "wsr.interactwith(cell_phone){ cell_phone.receives(wsr.envelope); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "wsr"
-},
-{
 "id": "wf_def6811dbc",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the cell phone, and Bisola reads the name twice.",
@@ -2598,6 +2588,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "kweshon"
+},
+{
+"id": "wt_775c701ecb",
+"kind": "consequence",
+"text": "At the Oke-Ayo bus stop the plastic sheet slides over the cell phone against the drizzle, and the phone screen fogs over everything except Bisola's name on the receipt underneath.",
+"code": "plastic_sheet.interactwith(cell_phone){ plastic_sheet.covers(cell_phone); cell_phone.state('fogged'); cell_phone.remembers(bisola, 'name through the fog'); }",
+"author": "thryd",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "plastic_sheet"
 }
 ],
 "lowaleechelons": [
@@ -4521,39 +4521,6 @@
 },
 "consequences": [
 {
-"id": "wf_d73ece6c0d",
-"ts": "2026-11-16T21:47:27-0500",
-"a": "kweshon",
-"b": "cell_phone",
-"code": "kweshon.interactwith(cell_phone){ cell_phone.receives(kweshon.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the cell phone, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
-{
-"id": "wf_bb0749c22b",
-"ts": "2026-11-16T21:48:15-0500",
-"a": "clock_second",
-"b": "notnotnotnotyn_jan",
-"code": "clock_second.interactwith(notnotnotnotyn_jan){ notnotnotnotyn_jan.receives(clock_second.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the juju code at the notnotnotnotyn jan, and Ejiro reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
-{
-"id": "wf_437364d860",
-"ts": "2026-11-16T21:49:03-0500",
-"a": "sheep",
-"b": "front_pew_mushin",
-"code": "sheep.interactwith(front_pew_mushin){ front_pew_mushin.receives(sheep.envelope); front_pew_mushin.remembers(bisola, 'brown envelope'); }",
-"text": "The front pew mushin leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
-{
 "id": "wf_0a002f18d3",
 "ts": "2026-11-16T21:50:38-0500",
 "a": "notnotnotnotyn_sep",
@@ -4959,6 +4926,39 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "w7"
+},
+{
+"id": "wt_775c701ecb",
+"ts": "2026-11-16T23:50:37-0500",
+"a": "plastic_sheet",
+"b": "cell_phone",
+"code": "plastic_sheet.interactwith(cell_phone){ plastic_sheet.covers(cell_phone); cell_phone.state('fogged'); cell_phone.remembers(bisola, 'name through the fog'); }",
+"text": "At the Oke-Ayo bus stop the plastic sheet slides over the cell phone against the drizzle, and the phone screen fogs over everything except Bisola's name on the receipt underneath.",
+"author": "thryd",
+"run": "run-0bd7c0",
+"card": "j6"
+},
+{
+"id": "wt_933375810c",
+"ts": "2026-11-16T23:50:37-0500",
+"a": "morir",
+"b": "lekki_pharmacy",
+"code": "morir.interactwith(lekki_pharmacy){ lekki_pharmacy.receives(morir, 'scorched container number'); lekki_pharmacy.find('unpaid slips').add('container number copy'); }",
+"text": "When the morir leaves the Lekki pharmacy, the scorched corner of the brown envelope catches on the counter, and Titi keeps a copy of Kunle's container number pinned beside the unpaid slips.",
+"author": "thryd",
+"run": "run-0bd7c0",
+"card": "w7"
+},
+{
+"id": "wt_1d64cab0fd",
+"ts": "2026-11-16T23:50:37-0500",
+"a": "red_white_cap",
+"b": "danfo_speaker",
+"code": "red_white_cap.interactwith(danfo_speaker){ danfo_speaker.receives(red_white_cap.egbe_note); danfo_speaker.remembers(taiwo, '11:20pm'); danfo_speaker.setmood('sad'); }",
+"text": "At the curb the danfo speaker crackles as the red white cap passes, and for one bar it repeats the time written on Taiwo's egbe note, 11:20pm, before the song comes back.",
+"author": "thryd",
+"run": "run-0bd7c0",
+"card": "w6"
 }
 ],
 "memories": [
@@ -5062,5 +5062,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-16T23:46:02-0500"
+"updated": "2026-11-16T23:50:54-0500"
 }
