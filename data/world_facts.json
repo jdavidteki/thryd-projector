@@ -5329,20 +5329,21 @@
 "card": "j29",
 "other": "miami"
 }
+],
+"marisol": [
+{
+"id": "wf_d0074f4aec",
+"kind": "consequence",
+"text": "The marisol leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "florida.interactwith(marisol){ marisol.receives(florida.envelope); marisol.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "florida"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_a841ec2a9e",
-"ts": "2026-11-17T11:30:31-0500",
-"a": "marker_c",
-"b": "matbaotstaili",
-"code": "marker_c.interactwith(matbaotstaili){ matbaotstaili.receives(marker_c.code); … }",
-"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the juju code at the matbaotstaili, and Ejiro reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j2"
-},
 {
 "id": "wf_b3f86f7214",
 "ts": "2026-11-17T11:31:45-0500",
@@ -5771,6 +5772,17 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": "j2"
+},
+{
+"id": "wf_d0074f4aec",
+"ts": "2026-11-17T13:30:05-0500",
+"a": "florida",
+"b": "marisol",
+"code": "florida.interactwith(marisol){ marisol.receives(florida.envelope); marisol.remembers(bisola, 'brown envelope'); }",
+"text": "The marisol leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
 }
 ],
 "memories": [
@@ -5874,5 +5886,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T13:25:07-0500"
+"updated": "2026-11-17T13:30:05-0500"
 }
