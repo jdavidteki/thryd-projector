@@ -4713,7 +4713,7 @@
   },
   "run-5a58c4": {
    "forked_from": "safe:f81f21521253",
-   "head": "c10b506288",
+   "head": "7b022e7280",
    "commits": [
     {
      "id": "e1804f099d",
@@ -4804,7 +4804,7 @@
      }
     },
     {
-     "id": "5139b50a0c",
+     "id": "0654e9b83e",
      "parent": "eb04dad1ce",
      "branch": "run-5a58c4",
      "job": "j2",
@@ -4988,16 +4988,24 @@
         "code": "mbtij.interactwith(miami){ miami.receives(mbtij.code); miami.remembers(ejiro, 'juju code'); }",
         "scope": null,
         "cause_id": null
+       },
+       {
+        "id": "wf_c7be0cdae8",
+        "object": "laptop",
+        "kind": "consequence",
+        "code": "dez.interactwith(laptop){ laptop.receives(dez.code); laptop.remembers(ejiro, 'juju code'); laptop.tucks(dez, 'ttb note into the lamp soot');",
+        "scope": null,
+        "cause_id": null
        }
       ],
-      "facts_total": 22,
+      "facts_total": 23,
       "functions": [],
       "instances": []
      }
     },
     {
-     "id": "b80504944a",
-     "parent": "5139b50a0c",
+     "id": "6b3a6db890",
+     "parent": "0654e9b83e",
      "branch": "run-5a58c4",
      "job": "j3",
      "at": "2026-11-17T10:35:36-0500",
@@ -5044,16 +5052,24 @@
         "code": "marker.interactwith(laptop){ laptop.receives(marker.sign); laptop.remembers(kunle, 'nice day sign'); laptop.tucks(marker, 'marker note into",
         "scope": null,
         "cause_id": null
+       },
+       {
+        "id": "wf_3000f47e1a",
+        "object": "god",
+        "kind": "consequence",
+        "code": "marker.interactwith(god){ god.receives(marker.sign); god.remembers(kunle, 'nice day sign'); god.tucks(marker, 'marker note into the scorched",
+        "scope": null,
+        "cause_id": null
        }
       ],
-      "facts_total": 5,
+      "facts_total": 6,
       "functions": [],
       "instances": []
      }
     },
     {
-     "id": "1f13d01028",
-     "parent": "b80504944a",
+     "id": "c4e92cc767",
+     "parent": "6b3a6db890",
      "branch": "run-5a58c4",
      "job": "j5",
      "at": "2026-11-17T10:46:59-0500",
@@ -5148,8 +5164,8 @@
      }
     },
     {
-     "id": "090b6f85c3",
-     "parent": "1f13d01028",
+     "id": "0ce2d71a47",
+     "parent": "c4e92cc767",
      "branch": "run-5a58c4",
      "job": "j6",
      "at": "2026-11-17T10:49:53-0500",
@@ -5476,16 +5492,24 @@
         "code": "marisol.interactwith(dapo){ dapo.receives(marisol.envelope); dapo.remembers(bisola, 'brown envelope'); dapo.tucks(marisol, 'yaba bookshop re",
         "scope": null,
         "cause_id": null
+       },
+       {
+        "id": "wf_d5c8b78129",
+        "object": "miami",
+        "kind": "consequence",
+        "code": "people_scene.interactwith(miami){ miami.receives(people_scene.envelope); miami.remembers(bisola, 'brown envelope'); }",
+        "scope": null,
+        "cause_id": null
        }
       ],
-      "facts_total": 40,
+      "facts_total": 41,
       "functions": [],
       "instances": []
      }
     },
     {
-     "id": "70a0eeb64e",
-     "parent": "090b6f85c3",
+     "id": "7927f818bf",
+     "parent": "0ce2d71a47",
      "branch": "run-5a58c4",
      "job": "j7",
      "at": "2026-11-17T11:01:50-0500",
@@ -5556,16 +5580,24 @@
         "code": "kmb.interactwith(marina_biscayne_bay){ marina_biscayne_bay.receives(kmb.soot); marina_biscayne_bay.remembers(taiwo, 'lamp soot'); marina_bis",
         "scope": null,
         "cause_id": null
+       },
+       {
+        "id": "wf_1c8481279d",
+        "object": "miami",
+        "kind": "consequence",
+        "code": "bird.interactwith(miami){ miami.receives(bird.corner); miami.remembers(bisola, 'envelope corner'); }",
+        "scope": null,
+        "cause_id": null
        }
       ],
-      "facts_total": 8,
+      "facts_total": 9,
       "functions": [],
       "instances": []
      }
     },
     {
-     "id": "fef5ece8dc",
-     "parent": "70a0eeb64e",
+     "id": "8f3f8c79ad",
+     "parent": "7927f818bf",
      "branch": "run-5a58c4",
      "job": "j8",
      "at": "2026-11-17T15:14:25-0500",
@@ -5588,8 +5620,8 @@
      }
     },
     {
-     "id": "56d18dec26",
-     "parent": "fef5ece8dc",
+     "id": "431cc683b4",
+     "parent": "8f3f8c79ad",
      "branch": "run-5a58c4",
      "job": "j22",
      "at": "2026-11-16T23:37:14-05:00",
@@ -5623,8 +5655,8 @@
      }
     },
     {
-     "id": "bf4cd066c2",
-     "parent": "56d18dec26",
+     "id": "40facb368a",
+     "parent": "431cc683b4",
      "branch": "run-5a58c4",
      "job": "j23",
      "at": "2026-11-16T23:50:03-05:00",
@@ -5658,8 +5690,8 @@
      }
     },
     {
-     "id": "8efd87e0a6",
-     "parent": "bf4cd066c2",
+     "id": "e07833cbdf",
+     "parent": "40facb368a",
      "branch": "run-5a58c4",
      "job": "j24",
      "at": "2026-11-17T00:02:09-05:00",
@@ -5717,8 +5749,8 @@
      }
     },
     {
-     "id": "cff22f9e86",
-     "parent": "8efd87e0a6",
+     "id": "25a8c36313",
+     "parent": "e07833cbdf",
      "branch": "run-5a58c4",
      "job": "j25",
      "at": "2026-11-17T10:35:56-05:00",
@@ -5757,9 +5789,41 @@
         "code": "jetty_south_pointe_subject·2_fourth.hears(jetty_south_pointe_subject, 'made');",
         "scope": "ripple",
         "cause_id": "wt_e63419c893"
+       },
+       {
+        "id": "wt_34aadff19f",
+        "object": "teo",
+        "kind": "func_call",
+        "code": "teo.fold('like');",
+        "scope": "own",
+        "cause_id": null
+       },
+       {
+        "id": "wt_8e153cdc29",
+        "object": "blender",
+        "kind": "func_call",
+        "code": "blender.hears(teo, 'fold');",
+        "scope": "ripple",
+        "cause_id": "wt_34aadff19f"
+       },
+       {
+        "id": "wt_487c2ac014",
+        "object": "calla",
+        "kind": "func_call",
+        "code": "calla.hears(teo, 'fold');",
+        "scope": "ripple",
+        "cause_id": "wt_34aadff19f"
+       },
+       {
+        "id": "wt_4e356ddc6f",
+        "object": "code",
+        "kind": "func_call",
+        "code": "code.hears(teo, 'fold');",
+        "scope": "ripple",
+        "cause_id": "wt_34aadff19f"
        }
       ],
-      "facts_total": 4,
+      "facts_total": 8,
       "functions": [
        {
         "func": "code.say",
@@ -5794,8 +5858,8 @@
      }
     },
     {
-     "id": "e5861f2004",
-     "parent": "cff22f9e86",
+     "id": "f280857e65",
+     "parent": "25a8c36313",
      "branch": "run-5a58c4",
      "job": "j26",
      "at": "2026-11-17T11:07:01-05:00",
@@ -5829,8 +5893,8 @@
      }
     },
     {
-     "id": "ae4c043e84",
-     "parent": "e5861f2004",
+     "id": "2854a5b8db",
+     "parent": "f280857e65",
      "branch": "run-5a58c4",
      "job": "j27",
      "at": "2026-11-17T11:22:49-05:00",
@@ -5864,8 +5928,8 @@
      }
     },
     {
-     "id": "6ace9d9667",
-     "parent": "ae4c043e84",
+     "id": "31f9d5c9fa",
+     "parent": "2854a5b8db",
      "branch": "run-5a58c4",
      "job": "j28",
      "at": "2026-11-17T12:06:03-05:00",
@@ -5890,8 +5954,8 @@
      }
     },
     {
-     "id": "027b7e9f26",
-     "parent": "6ace9d9667",
+     "id": "ced6583174",
+     "parent": "31f9d5c9fa",
      "branch": "run-5a58c4",
      "job": "j29",
      "at": "2026-11-17T12:30:30-05:00",
@@ -5949,8 +6013,8 @@
      }
     },
     {
-     "id": "21e8a2c09a",
-     "parent": "027b7e9f26",
+     "id": "098fdd3f7c",
+     "parent": "ced6583174",
      "branch": "run-5a58c4",
      "job": "j30",
      "at": "2026-11-17T14:49:47-05:00",
@@ -5984,8 +6048,8 @@
      }
     },
     {
-     "id": "c10b506288",
-     "parent": "21e8a2c09a",
+     "id": "7b022e7280",
+     "parent": "098fdd3f7c",
      "branch": "run-5a58c4",
      "job": "j31",
      "at": "2026-11-17T15:11:45-05:00",
@@ -6403,9 +6467,9 @@
   "run-fa5946": "564dd5acda",
   "run-bd649b": "8ed6c18a56",
   "run-9e59ca": "59f544b8d8",
-  "run-5a58c4": "c10b506288",
+  "run-5a58c4": "7b022e7280",
   "run-cb805f": "62238e387d"
  },
  "commits": 66,
- "updated": "2026-11-17T15:16:05-05:00"
+ "updated": "2026-11-17T15:21:54-05:00"
 }

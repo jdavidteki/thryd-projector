@@ -1,8 +1,30 @@
 {
  "v": 1,
  "note": "Read-only public export of #thryd's exceptions.jsonl (written by thryd-db/story_exceptions.py, its only source of truth); built by tools/export_object_methods.py each cmd_loop cycle. Empty when the ledger does not exist yet.",
- "sources": [],
- "exceptions": [],
- "counts": {},
- "updated": "2026-11-17T12:53:23-05:00"
+ "sources": [
+  "thryd-db/exceptions.jsonl"
+ ],
+ "exceptions": [
+  {
+   "id": "{\"detail\": \"blender.line(liters): argume",
+   "text": "blender.line(liters): argument liters is class Quantity, not allowed in quiet (📖 epilogue); allowed: Person, Place, Thing, Feeling, Manner, Frequency. Soft: the next card catches this as a twist (the scene bends toward the argument)",
+   "run": "run-5a58c4",
+   "job": "j31",
+   "status": "open",
+   "objects": [
+    "blender",
+    "person",
+    "card"
+   ],
+   "at": 1794946623.999082,
+   "source": "thryd-db/exceptions.jsonl",
+   "objects_from": "text",
+   "kind": "genre_mismatch",
+   "severity": "soft"
+  }
+ ],
+ "counts": {
+  "open": 1
+ },
+ "updated": "2026-11-17T15:17:48-05:00"
 }
