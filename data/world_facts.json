@@ -1994,16 +1994,6 @@
 ],
 "laptop": [
 {
-"id": "wf_da07080f49",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the rain-stained receipt at the laptop, and Ejiro reads the name twice.",
-"code": "omo.interactwith(laptop){ laptop.receives(omo.envelope); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "omo"
-},
-{
 "id": "wf_3005566663",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the rain-stained receipt at the laptop, and Ejiro reads the name twice.",
@@ -2012,6 +2002,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "bow"
+},
+{
+"id": "wf_80f2bd64a7",
+"kind": "consequence",
+"text": "A Marker note with Kunle's name and 'nice day sign' on it, turns up inside the lamp soot at the laptop, and Taiwo reads the name twice.",
+"code": "marker.interactwith(laptop){ laptop.receives(marker.sign); laptop.remembers(kunle, 'nice day sign'); laptop.tucks(marker, 'marker note into the lamp soot'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j3",
+"other": "marker"
 },
 {
 "id": "wt_00586a397c",
@@ -2796,16 +2796,6 @@
 ],
 "bed": [
 {
-"id": "wf_aab18e58ed",
-"kind": "consequence",
-"text": "The phone that kept ringing on the bedside stool through Bisola's take at the Jibowu lodge was calling about the brown envelope, and the bed it lit up beside now holds that record while the missed calls stack to nine.",
-"code": "cell_phone.interactwith(bed){ bed.receives(cell_phone, 'brown envelope'); cell_phone.set('missed_calls','9'); bed.remembers(taiwo, 'unanswered call mid-take'); }",
-"author": "cos",
-"run": "run-ff3591",
-"card": "j6",
-"other": "cell_phone"
-},
-{
 "id": "wf_d4378962d8",
 "kind": "consequence",
 "text": "A Pure water cooler note with Kunle's name and 'container number' on it, 9:20am, turns up inside the brown envelope at the bed, and Bisola reads the name twice.",
@@ -2834,6 +2824,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "morir_r"
+},
+{
+"id": "wf_8de4442dcb",
+"kind": "consequence",
+"text": "A Teo note with Bisola's name and 'folded receipt' on it, turns up inside the egbe note at the bed, and Taiwo reads the name twice.",
+"code": "teo.interactwith(bed){ bed.receives(teo.receipt); bed.remembers(bisola, 'folded receipt'); bed.tucks(teo, 'teo note into the egbe note'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "teo"
 },
 {
 "id": "wt_740c0937a2",
@@ -4276,6 +4276,16 @@
 ],
 "marker": [
 {
+"id": "wf_e64898063f",
+"kind": "consequence",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the nice day sign at the marker, and Kunle reads the name twice.",
+"code": "icsh.interactwith(marker){ marker.receives(icsh.code); marker.remembers(ejiro, 'juju code'); marker.tucks(icsh, 'ttb note into the nice day sign'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j2",
+"other": "icsh"
+},
+{
 "id": "wt_5529751886",
 "kind": "consequence",
 "text": "Kunle borrows the marker to fix the fading Nice Day sign and, without thinking, writes the date small in the corner, so the marker now remembers the sign it saved.",
@@ -4852,6 +4862,16 @@
 "run": "run-5a58c4",
 "card": "j2",
 "other": "marker_c"
+},
+{
+"id": "wf_bf36571959",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the juju code at the matbaotstaili, and Ejiro reads the name twice.",
+"code": "marker_b.interactwith(matbaotstaili){ matbaotstaili.receives(marker_b.envelope); … }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "marker_b"
 }
 ],
 "florida": [
@@ -5511,50 +5531,6 @@
 },
 "consequences": [
 {
-"id": "wf_6d82e828cd",
-"ts": "2026-11-17T12:49:59-0500",
-"a": "teo",
-"b": "thoughts_marisol",
-"code": "teo.interactwith(thoughts_marisol){ thoughts_marisol.receives(teo.envelope); thoughts_marisol.remembers(bisola, 'brown envelope'); }",
-"text": "The thoughts marisol leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
-"id": "wf_5a103a1e0e",
-"ts": "2026-11-17T12:51:14-0500",
-"a": "dapo",
-"b": "scam_likey",
-"code": "dapo.interactwith(scam_likey){ scam_likey.receives(dapo.bead); scam_likey.remembers(bisola, 'blue glass bead'); }",
-"text": "The scam likey leaves with a Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j5"
-},
-{
-"id": "wf_9cf610671c",
-"ts": "2026-11-17T12:52:25-0500",
-"a": "inside_odunlade_brain",
-"b": "actual_end_boredom",
-"code": "inside_odunlade_brain.interactwith(actual_end_boredom){ actual_end_boredom.receives(inside_odunlade_brain.bead); … }",
-"text": "The actual end boredom leaves with a Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j5"
-},
-{
-"id": "wf_cbea7abdc9",
-"ts": "2026-11-17T12:54:34-0500",
-"a": "notnotnotnotyn_dec",
-"b": "clock",
-"code": "notnotnotnotyn_dec.interactwith(clock){ clock.receives(notnotnotnotyn_dec.envelope); clock.remembers(bisola, 'brown envelope'); }",
-"text": "The clock leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
 "id": "wf_ed1b31187f",
 "ts": "2026-11-17T12:55:49-0500",
 "a": "miami",
@@ -5949,6 +5925,50 @@
 "author": "thryd",
 "run": "run-5a58c4",
 "card": "j7"
+},
+{
+"id": "wf_80f2bd64a7",
+"ts": "2026-11-17T14:58:35-0500",
+"a": "marker",
+"b": "laptop",
+"code": "marker.interactwith(laptop){ laptop.receives(marker.sign); laptop.remembers(kunle, 'nice day sign'); laptop.tucks(marker, 'marker note into the lamp soot'); }",
+"text": "A Marker note with Kunle's name and 'nice day sign' on it, turns up inside the lamp soot at the laptop, and Taiwo reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j3"
+},
+{
+"id": "wf_bf36571959",
+"ts": "2026-11-17T14:59:24-0500",
+"a": "marker_b",
+"b": "matbaotstaili",
+"code": "marker_b.interactwith(matbaotstaili){ matbaotstaili.receives(marker_b.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the juju code at the matbaotstaili, and Ejiro reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
+},
+{
+"id": "wf_e64898063f",
+"ts": "2026-11-17T15:00:13-0500",
+"a": "icsh",
+"b": "marker",
+"code": "icsh.interactwith(marker){ marker.receives(icsh.code); marker.remembers(ejiro, 'juju code'); marker.tucks(icsh, 'ttb note into the nice day sign'); }",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the nice day sign at the marker, and Kunle reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j2"
+},
+{
+"id": "wf_8de4442dcb",
+"ts": "2026-11-17T15:01:51-0500",
+"a": "teo",
+"b": "bed",
+"code": "teo.interactwith(bed){ bed.receives(teo.receipt); bed.remembers(bisola, 'folded receipt'); bed.tucks(teo, 'teo note into the egbe note'); }",
+"text": "A Teo note with Bisola's name and 'folded receipt' on it, turns up inside the egbe note at the bed, and Taiwo reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
 }
 ],
 "memories": [
@@ -6052,5 +6072,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T14:56:02-0500"
+"updated": "2026-11-17T15:01:51-0500"
 }
