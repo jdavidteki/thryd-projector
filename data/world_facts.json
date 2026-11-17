@@ -1812,16 +1812,6 @@
 ],
 "bird": [
 {
-"id": "wf_587e0c2453",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bird, and Bisola reads the name twice.",
-"code": "wsr.interactwith(bird){ bird.receives(wsr.envelope); bird.remembers(bisola, 'brown envelope'); bird.tucks(wsr, 'yaba bookshop receipt into the brown envelope'); }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "wsr"
-},
-{
 "id": "wf_82d230ae01",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bird, and Bisola reads the name twice.",
@@ -1850,6 +1840,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "streetlights"
+},
+{
+"id": "wf_e9f93206c7",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the lamp soot at the bird, and Taiwo reads the name twice.",
+"code": "kweshon.interactwith(bird){ bird.receives(kweshon.envelope); bird.remembers(bisola, 'brown envelope'); bird.tucks(kweshon, 'yaba bookshop receipt into the lamp soot'); }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "kweshon"
 },
 {
 "id": "wt_c6ff1d186b",
@@ -2266,16 +2266,6 @@
 ],
 "bus": [
 {
-"id": "wf_7feb4fa37b",
-"kind": "consequence",
-"text": "A Kerosene lamp note with Taiwo's name and 'change' on it, turns up inside the brown envelope at the bus, and Bisola reads the name twice.",
-"code": "kerosene_lamp.interactwith(bus){ bus.receives(kerosene_lamp.change); … }",
-"author": "cos",
-"run": "run-b9b963",
-"card": "w",
-"other": "kerosene_lamp"
-},
-{
 "id": "wf_62add19e06",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the change at the bus, and Taiwo reads the name twice.",
@@ -2314,6 +2304,16 @@
 "run": "run-0bd7c0",
 "card": "w7",
 "other": "red_white_cap"
+},
+{
+"id": "wf_066eb7c147",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bus, and Bisola reads the name twice.",
+"code": "plastic_sheet.interactwith(bus){ bus.receives(plastic_sheet.envelope); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "plastic_sheet"
 }
 ],
 "hands": [
@@ -2488,16 +2488,6 @@
 ],
 "chair": [
 {
-"id": "wf_96c2c2f49b",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the chair, and Bisola reads the name twice.",
-"code": "ats.interactwith(chair){ chair.receives(ats.envelope); chair.remembers(bisola, 'brown envelope'); chair.tucks(ats, 'yaba bookshop receipt into the brown envelope'); }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "ats"
-},
-{
 "id": "wf_14ae5405cc",
 "kind": "consequence",
 "text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the chair, and Bisola reads the name twice.",
@@ -2536,6 +2526,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "morir_r"
+},
+{
+"id": "wf_a269c1e6aa",
+"kind": "consequence",
+"text": "A Pure water cooler note with Kunle's name and 'container number' on it, 9:20am, turns up inside the brown envelope at the chair, and Bisola reads the name twice.",
+"code": "pure_water_cooler.interactwith(chair){ chair.receives(pure_water_cooler.number); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "w1",
+"other": "pure_water_cooler"
 }
 ],
 "cell_phone": [
@@ -4447,39 +4447,6 @@
 },
 "consequences": [
 {
-"id": "wf_cf1d702718",
-"ts": "2026-11-16T20:01:34-0500",
-"a": "matches",
-"b": "danfo_stuck_third",
-"code": "matches.interactwith(danfo_stuck_third){ danfo_stuck_third.receives(matches.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the danfo stuck third, and Titi reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
-{
-"id": "wf_fba4e2177d",
-"ts": "2026-11-16T20:04:44-0500",
-"a": "danfo_speaker",
-"b": "let",
-"code": "danfo_speaker.interactwith(let){ let.receives(danfo_speaker.note); … }",
-"text": "A Danfo speaker note with Bisola's name and 'egbe note' on it, turns up inside the brown envelope at the let, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "w"
-},
-{
-"id": "wf_7db6e6e606",
-"ts": "2026-11-16T20:11:06-0500",
-"a": "kweshon",
-"b": "let",
-"code": "kweshon.interactwith(let){ let.receives(kweshon.envelope); let.remembers(bisola, 'brown envelope'); let.tucks(kweshon, 'yaba bookshop receipt into the brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the let, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
-{
 "id": "wf_e741b6ce12",
 "ts": "2026-11-16T20:14:24-0500",
 "a": "danfo_speaker",
@@ -4885,6 +4852,39 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j6"
+},
+{
+"id": "wf_066eb7c147",
+"ts": "2026-11-16T21:53:52-0500",
+"a": "plastic_sheet",
+"b": "bus",
+"code": "plastic_sheet.interactwith(bus){ bus.receives(plastic_sheet.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bus, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
+},
+{
+"id": "wf_e9f93206c7",
+"ts": "2026-11-16T21:56:14-0500",
+"a": "kweshon",
+"b": "bird",
+"code": "kweshon.interactwith(bird){ bird.receives(kweshon.envelope); bird.remembers(bisola, 'brown envelope'); bird.tucks(kweshon, 'yaba bookshop receipt into the lamp soot'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the lamp soot at the bird, and Taiwo reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
+},
+{
+"id": "wf_a269c1e6aa",
+"ts": "2026-11-16T21:57:02-0500",
+"a": "pure_water_cooler",
+"b": "chair",
+"code": "pure_water_cooler.interactwith(chair){ chair.receives(pure_water_cooler.number); … }",
+"text": "A Pure water cooler note with Kunle's name and 'container number' on it, 9:20am, turns up inside the brown envelope at the chair, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "w1"
 }
 ],
 "memories": [
@@ -4988,5 +4988,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-16T21:50:38-0500"
+"updated": "2026-11-16T21:57:02-0500"
 }
