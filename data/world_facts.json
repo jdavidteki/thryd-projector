@@ -3550,16 +3550,6 @@
 ],
 "truth": [
 {
-"id": "wf_a310c47740",
-"kind": "consequence",
-"text": "A Kerosene lamp note with Taiwo's name and 'change' on it, turns up inside the brown envelope at the truth, and Bisola reads the name twice.",
-"code": "kerosene_lamp.interactwith(truth){ truth.receives(kerosene_lamp.change); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "w",
-"other": "kerosene_lamp"
-},
-{
 "id": "wf_00275ee510",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the truth, and Bisola reads the name twice.",
@@ -3588,6 +3578,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "plastic_sheet"
+},
+{
+"id": "wf_66a75dfc13",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the truth, and Titi reads the name twice.",
+"code": "wsr.interactwith(truth){ truth.receives(wsr.envelope); truth.remembers(bisola, 'brown envelope'); truth.tucks(wsr, 'yaba bookshop receipt into the egbe note'); }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "wsr"
 },
 {
 "id": "wt_d8bf4e2285",
@@ -4283,17 +4283,6 @@
 },
 "consequences": [
 {
-"id": "wf_9f9c1bf943",
-"ts": "2026-11-16T15:39:43-0500",
-"a": "danfo_speaker",
-"b": "wsr",
-"code": "danfo_speaker.interactwith(wsr){ wsr.receives(danfo_speaker.note); … }",
-"text": "A Danfo speaker note with Bisola's name and 'egbe note' on it, turns up inside the brown envelope at the wsr, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "w"
-},
-{
 "id": "wf_9898ccbcd6",
 "ts": "2026-11-16T15:40:30-0500",
 "a": "danfo_speaker",
@@ -4721,6 +4710,17 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "w"
+},
+{
+"id": "wf_66a75dfc13",
+"ts": "2026-11-16T20:25:43-0500",
+"a": "wsr",
+"b": "truth",
+"code": "wsr.interactwith(truth){ truth.receives(wsr.envelope); truth.remembers(bisola, 'brown envelope'); truth.tucks(wsr, 'yaba bookshop receipt into the egbe note'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the truth, and Titi reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
 }
 ],
 "memories": [
@@ -4824,5 +4824,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-16T20:20:55-0500"
+"updated": "2026-11-16T20:25:43-0500"
 }
