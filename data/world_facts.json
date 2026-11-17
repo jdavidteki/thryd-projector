@@ -2462,16 +2462,6 @@
 ],
 "cup": [
 {
-"id": "wf_167eede135",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the juju code at the cup, and Ejiro reads the name twice.",
-"code": "let.interactwith(cup){ cup.receives(let.envelope); cup.remembers(bisola, 'brown envelope'); cup.tucks(let, 'yaba bookshop receipt into the juju code'); }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "let"
-},
-{
 "id": "wf_a75e3e2ef2",
 "kind": "consequence",
 "text": "A Red white cap note with Taiwo's name and 'egbe note' on it, 11:20pm, turns up inside the juju code at the cup, and Ejiro reads the name twice.",
@@ -2500,6 +2490,16 @@
 "run": "run-0bd7c0",
 "card": "w1",
 "other": "pure_water_cooler"
+},
+{
+"id": "wf_84bdb43681",
+"kind": "consequence",
+"text": "A Marker note with Kunle's name and 'nice day sign' on it, turns up inside the juju code at the cup, and Ejiro reads the name twice.",
+"code": "marker.interactwith(cup){ cup.receives(marker.sign); cup.remembers(kunle, 'nice day sign'); cup.tucks(marker, 'marker note into the juju code'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j3",
+"other": "marker"
 },
 {
 "id": "wt_9a530635c7",
@@ -4676,6 +4676,16 @@
 "run": "run-5a58c4",
 "card": "w5",
 "other": "marker_c"
+},
+{
+"id": "wf_b3f86f7214",
+"kind": "consequence",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the top deck charter, and Bisola reads the name twice.",
+"code": "dez.interactwith(top_deck_charter){ top_deck_charter.receives(dez.code); … }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j2",
+"other": "dez"
 }
 ],
 "fire_escape_outside": [
@@ -4736,6 +4746,16 @@
 "run": "run-5a58c4",
 "card": "j2",
 "other": "dez"
+},
+{
+"id": "wf_a841ec2a9e",
+"kind": "consequence",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the juju code at the matbaotstaili, and Ejiro reads the name twice.",
+"code": "marker_c.interactwith(matbaotstaili){ matbaotstaili.receives(marker_c.code); … }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j2",
+"other": "marker_c"
 }
 ],
 "florida": [
@@ -4812,39 +4832,6 @@
 ]
 },
 "consequences": [
-{
-"id": "wf_94f05d48b1",
-"ts": "2026-11-17T09:29:04-0500",
-"a": "plastic_sheet",
-"b": "bicycle",
-"code": "plastic_sheet.interactwith(bicycle){ bicycle.receives(plastic_sheet.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bicycle, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
-{
-"id": "wf_ad9be10ddc",
-"ts": "2026-11-17T09:30:40-0500",
-"a": "morir_r",
-"b": "bow",
-"code": "morir_r.interactwith(bow){ bow.receives(morir_r.envelope); bow.remembers(bisola, 'brown envelope'); bow.tucks(morir_r, 'yaba bookshop receipt into the brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bow, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
-{
-"id": "wf_3005566663",
-"ts": "2026-11-17T09:33:52-0500",
-"a": "bow",
-"b": "laptop",
-"code": "bow.interactwith(laptop){ laptop.receives(bow.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the rain-stained receipt at the laptop, and Ejiro reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
 {
 "id": "wf_a79b966848",
 "ts": "2026-11-17T09:34:45-0500",
@@ -5251,6 +5238,39 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": "j2"
+},
+{
+"id": "wf_84bdb43681",
+"ts": "2026-11-17T11:29:16-0500",
+"a": "marker",
+"b": "cup",
+"code": "marker.interactwith(cup){ cup.receives(marker.sign); cup.remembers(kunle, 'nice day sign'); cup.tucks(marker, 'marker note into the juju code'); }",
+"text": "A Marker note with Kunle's name and 'nice day sign' on it, turns up inside the juju code at the cup, and Ejiro reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j3"
+},
+{
+"id": "wf_a841ec2a9e",
+"ts": "2026-11-17T11:30:31-0500",
+"a": "marker_c",
+"b": "matbaotstaili",
+"code": "marker_c.interactwith(matbaotstaili){ matbaotstaili.receives(marker_c.code); … }",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the juju code at the matbaotstaili, and Ejiro reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j2"
+},
+{
+"id": "wf_b3f86f7214",
+"ts": "2026-11-17T11:31:45-0500",
+"a": "dez",
+"b": "top_deck_charter",
+"code": "dez.interactwith(top_deck_charter){ top_deck_charter.receives(dez.code); … }",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the top deck charter, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j2"
 }
 ],
 "memories": [
@@ -5354,5 +5374,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T11:28:01-0500"
+"updated": "2026-11-17T11:31:45-0500"
 }
