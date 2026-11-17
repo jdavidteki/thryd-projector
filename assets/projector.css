@@ -244,3 +244,10 @@ body.cerebro #sound,body.lovemap #sound,body.cerebro #soundnext,body.lovemap #so
 @media (max-width:700px){#bar{height:auto;min-height:5vh;padding-top:4px;padding-bottom:4px;flex-wrap:wrap;row-gap:6px}#modes{gap:8px}}
 #uxhint{position:fixed;left:50%;bottom:7vh;transform:translateX(-50%);z-index:10060;padding:6px 12px;border-radius:10px;background:rgba(14,14,14,.9);color:#eee;font:500 max(12px,1.4vh)/1.3 system-ui,sans-serif;opacity:0;transition:opacity .4s;pointer-events:none;white-space:nowrap}
 #uxhint.on{opacity:1}#uxhint b{color:#ffd76a;margin-right:.5em}
+/* africariyoki lyric + song credit readable on the white stage and over dark GIF frames (Jesuye 17 Nov 2026 1:13 PM ET "the lyrics for
+   africariyoki are hiding because of the white background"): dark text on a soft light pill, a faint light halo on the letters */
+#yoki_line,#lofi_credit,body.stage-white #yoki_line,body.stage-white #lofi_credit{color:#111!important;background:rgba(255,255,255,.78);padding:3px 10px;border-radius:999px;
+  box-shadow:0 1px 6px rgba(0,0,0,.28);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);text-shadow:0 0 2px rgba(255,255,255,.9),0 0 1px #fff;font-weight:600}
+#yoki_line{opacity:.95!important;top:calc(7.4vh + 6px);max-width:min(46vw,560px)}
+#lofi_credit{opacity:.85!important}#lofi_credit:hover{opacity:1!important}
+#yoki_line.off,#lofi_credit.off{display:none!important}
