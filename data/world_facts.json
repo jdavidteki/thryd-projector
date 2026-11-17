@@ -3708,16 +3708,6 @@
 ],
 "let": [
 {
-"id": "wf_34b5673c28",
-"kind": "consequence",
-"text": "The let leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"code": "ats.interactwith(let){ let.receives(ats.envelope); let.remembers(bisola, 'brown envelope'); }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "ats"
-},
-{
 "id": "wf_ab00b153a0",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the let, and Bisola reads the name twice.",
@@ -3756,6 +3746,16 @@
 "run": "run-0bd7c0",
 "card": "w",
 "other": "danfo_speaker"
+},
+{
+"id": "wf_7db6e6e606",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the let, and Bisola reads the name twice.",
+"code": "kweshon.interactwith(let){ let.receives(kweshon.envelope); let.remembers(bisola, 'brown envelope'); let.tucks(kweshon, 'yaba bookshop receipt into the brown envelope'); }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "kweshon"
 }
 ],
 "morir": [
@@ -4273,17 +4273,6 @@
 },
 "consequences": [
 {
-"id": "wf_0b0d549bff",
-"ts": "2026-11-16T15:25:15-0500",
-"a": "morir",
-"b": "bicycle",
-"code": "morir.interactwith(bicycle){ bicycle.receives(morir.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bicycle, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
-{
 "id": "wf_d0219710ff",
 "ts": "2026-11-16T15:26:50-0500",
 "a": "plastic_sheet",
@@ -4711,6 +4700,17 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "w"
+},
+{
+"id": "wf_7db6e6e606",
+"ts": "2026-11-16T20:11:06-0500",
+"a": "kweshon",
+"b": "let",
+"code": "kweshon.interactwith(let){ let.receives(kweshon.envelope); let.remembers(bisola, 'brown envelope'); let.tucks(kweshon, 'yaba bookshop receipt into the brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the let, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
 }
 ],
 "memories": [
@@ -4814,5 +4814,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-16T20:04:44-0500"
+"updated": "2026-11-16T20:11:06-0500"
 }
