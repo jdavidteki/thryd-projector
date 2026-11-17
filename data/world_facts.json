@@ -3492,16 +3492,6 @@
 ],
 "ats": [
 {
-"id": "wf_8ddb92f54d",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the ats, and Bisola reads the name twice.",
-"code": "plastic_sheet.interactwith(ats){ ats.receives(plastic_sheet.envelope); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "plastic_sheet"
-},
-{
 "id": "wf_ef3c875f42",
 "kind": "consequence",
 "text": "A Danfo speaker note with Bisola's name and 'egbe note' on it, turns up inside the brown envelope at the ats, and Bisola reads the name twice.",
@@ -3530,6 +3520,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "wsr"
+},
+{
+"id": "wf_90f435984a",
+"kind": "consequence",
+"text": "A Morir note with Kunle's name and 'container number' on it, turns up inside the brown envelope at the ats, and Bisola reads the name twice.",
+"code": "morir.interactwith(ats){ ats.receives(morir.number); ats.remembers(kunle, 'container number'); ats.tucks(morir, 'morir note into the brown envelope'); }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "w7",
+"other": "morir"
 },
 {
 "id": "wt_1e83690303",
@@ -4094,16 +4094,6 @@
 ],
 "danfo_stuck_third": [
 {
-"id": "wf_1155c4abcd",
-"kind": "consequence",
-"text": "A Truth note with Titi's name and 'egbe note' on it, turns up inside the egbe note at the danfo stuck third, and Titi reads the name twice.",
-"code": "truth.interactwith(danfo_stuck_third){ danfo_stuck_third.receives(truth.note); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j4",
-"other": "truth"
-},
-{
 "id": "wf_bf2583bad1",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the danfo stuck third, and Titi reads the name twice.",
@@ -4132,6 +4122,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "agbada"
+},
+{
+"id": "wf_9abc1f5e39",
+"kind": "consequence",
+"text": "A Pure water cooler note with Kunle's name and 'container number' on it, 9:20am, turns up inside the egbe note at the danfo stuck third, and Titi reads the name twice.",
+"code": "pure_water_cooler.interactwith(danfo_stuck_third){ danfo_stuck_third.receives(pure_water_cooler.number); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "w1",
+"other": "pure_water_cooler"
 },
 {
 "id": "wt_1115_2356_a",
@@ -4520,28 +4520,6 @@
 ]
 },
 "consequences": [
-{
-"id": "wf_0a002f18d3",
-"ts": "2026-11-16T21:50:38-0500",
-"a": "notnotnotnotyn_sep",
-"b": "family_compound_ikorodu",
-"code": "notnotnotnotyn_sep.interactwith(family_compound_ikorodu){ family_compound_ikorodu.receives(notnotnotnotyn_sep.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the family compound ikorodu, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
-{
-"id": "wf_066eb7c147",
-"ts": "2026-11-16T21:53:52-0500",
-"a": "plastic_sheet",
-"b": "bus",
-"code": "plastic_sheet.interactwith(bus){ bus.receives(plastic_sheet.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bus, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
 {
 "id": "wf_e9f93206c7",
 "ts": "2026-11-16T21:56:14-0500",
@@ -4959,6 +4937,28 @@
 "author": "thryd",
 "run": "run-0bd7c0",
 "card": "w6"
+},
+{
+"id": "wf_90f435984a",
+"ts": "2026-11-16T23:53:19-0500",
+"a": "morir",
+"b": "ats",
+"code": "morir.interactwith(ats){ ats.receives(morir.number); ats.remembers(kunle, 'container number'); ats.tucks(morir, 'morir note into the brown envelope'); }",
+"text": "A Morir note with Kunle's name and 'container number' on it, turns up inside the brown envelope at the ats, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "w7"
+},
+{
+"id": "wf_9abc1f5e39",
+"ts": "2026-11-16T23:54:07-0500",
+"a": "pure_water_cooler",
+"b": "danfo_stuck_third",
+"code": "pure_water_cooler.interactwith(danfo_stuck_third){ danfo_stuck_third.receives(pure_water_cooler.number); … }",
+"text": "A Pure water cooler note with Kunle's name and 'container number' on it, 9:20am, turns up inside the egbe note at the danfo stuck third, and Titi reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "w1"
 }
 ],
 "memories": [
@@ -5062,5 +5062,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-16T23:50:54-0500"
+"updated": "2026-11-16T23:54:07-0500"
 }
