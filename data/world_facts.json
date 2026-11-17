@@ -4925,6 +4925,16 @@
 "run": "run-5a58c4",
 "card": "j6",
 "other": "marker_b"
+},
+{
+"id": "wf_1515b3282e",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the matbaotstaili, and Bisola reads the name twice.",
+"code": "wser.interactwith(matbaotstaili){ matbaotstaili.receives(wser.envelope); … }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "wser"
 }
 ],
 "florida": [
@@ -5798,31 +5808,21 @@
 "card": "j31",
 "other": "quiet_stretch_sand"
 }
+],
+"prior_reality": [
+{
+"id": "wf_fbbfa06923",
+"kind": "consequence",
+"text": "The prior reality leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "matbaotstaili.interactwith(prior_reality){ prior_reality.receives(matbaotstaili.envelope); prior_reality.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "matbaotstaili"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_1f2c061fdd",
-"ts": "2026-11-17T14:42:55-0500",
-"a": "bird",
-"b": "plot",
-"code": "bird.interactwith(plot){ plot.receives(bird.soot); plot.remembers(taiwo, 'lamp soot'); }",
-"text": "The plot leaves with a Bird note with Taiwo's name and 'lamp soot' on it.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j7"
-},
-{
-"id": "wf_0835041783",
-"ts": "2026-11-17T14:47:46-0500",
-"a": "heat",
-"b": "marker_b",
-"code": "heat.interactwith(marker_b){ marker_b.receives(heat.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the marker b, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
 {
 "id": "wf_47c2532f3d",
 "ts": "2026-11-17T14:49:27-0500",
@@ -6240,6 +6240,28 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": "j6"
+},
+{
+"id": "wf_1515b3282e",
+"ts": "2026-11-17T15:37:41-0500",
+"a": "wser",
+"b": "matbaotstaili",
+"code": "wser.interactwith(matbaotstaili){ matbaotstaili.receives(wser.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the matbaotstaili, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
+},
+{
+"id": "wf_fbbfa06923",
+"ts": "2026-11-17T15:38:34-0500",
+"a": "matbaotstaili",
+"b": "prior_reality",
+"code": "matbaotstaili.interactwith(prior_reality){ prior_reality.receives(matbaotstaili.envelope); prior_reality.remembers(bisola, 'brown envelope'); }",
+"text": "The prior reality leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
 }
 ],
 "memories": [
@@ -6343,5 +6365,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T15:35:18-0500"
+"updated": "2026-11-17T15:38:34-0500"
 }
