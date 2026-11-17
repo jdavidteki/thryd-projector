@@ -4,35 +4,53 @@
  "card": "w16",
  "job": "j16",
  "mood": {
-  "beat": null,
+  "from": "run/w16_mood.json",
+  "beat": "go",
   "theme": [],
-  "moods": [
-   "money",
-   "romance",
-   "sad"
-  ],
-  "from": "derived"
+  "scene_words": [
+   "lines"
+  ]
  },
  "query": [
   {
-   "term": "side",
-   "w": 2.37,
+   "term": "kunle",
+   "w": 2.6,
+   "via": "j16 beat"
+  },
+  {
+   "term": "walks",
+   "w": 2.6,
+   "via": "j16 beat"
+  },
+  {
+   "term": "aisle",
+   "w": 2.6,
+   "via": "j16 beat"
+  },
+  {
+   "term": "kite",
+   "w": 2.6,
+   "via": "j16 beat"
+  },
+  {
+   "term": "lifts",
+   "w": 2.6,
+   "via": "j16 beat"
+  },
+  {
+   "term": "draft",
+   "w": 2.6,
+   "via": "j16 beat"
+  },
+  {
+   "term": "lines",
+   "w": 2.2,
    "via": "j16 scene"
   },
   {
-   "term": "door",
-   "w": 2.37,
-   "via": "j16 scene"
-  },
-  {
-   "term": "man",
-   "w": 1.75,
-   "via": "j16 scene"
-  },
-  {
-   "term": "back",
-   "w": 1.75,
-   "via": "j16 scene"
+   "term": "juss",
+   "w": 1.85,
+   "via": "j10 “if look: titi.go(juss) 🏃”"
   },
   {
    "term": "maybe",
@@ -55,63 +73,43 @@
    "via": "j10 “if look: titi.go(juss) 🏃”"
   },
   {
-   "term": "juss",
-   "w": 1.5,
-   "via": "j10 “if look: titi.go(juss) 🏃”"
+   "term": "side",
+   "w": 1.02,
+   "via": "j16 scene"
   },
   {
-   "term": "lines",
-   "w": 1.4,
+   "term": "door",
+   "w": 1.02,
    "via": "j16 scene"
+  },
+  {
+   "term": "line",
+   "w": 0.95,
+   "via": "j16 scene"
+  },
+  {
+   "term": "eya",
+   "w": 0.84,
+   "via": "j16 card folake catch"
+  },
+  {
+   "term": "notyn",
+   "w": 0.7,
+   "via": "j16 card kunle walk"
   },
   {
    "term": "40pm",
-   "w": 1.4,
-   "via": "j16 scene"
-  },
-  {
-   "term": "kunle",
-   "w": 1.4,
-   "via": "j16 scene"
-  },
-  {
-   "term": "walks",
-   "w": 1.4,
+   "w": 0.6,
    "via": "j16 scene"
   },
   {
    "term": "open",
-   "w": 1.4,
-   "via": "j16 scene"
-  },
-  {
-   "term": "aisle",
-   "w": 1.4,
+   "w": 0.6,
    "via": "j16 scene"
   },
   {
    "term": "without",
-   "w": 1.4,
-   "via": "j16 scene"
-  },
-  {
-   "term": "unrolling",
-   "w": 1.4,
-   "via": "j16 scene"
-  },
-  {
-   "term": "tape",
-   "w": 1.4,
-   "via": "j16 scene"
-  },
-  {
-   "term": "walking",
-   "w": 1.4,
-   "via": "j16 scene"
-  },
-  {
-   "term": "enough",
-   "w": 1.4,
+   "w": 0.6,
    "via": "j16 scene"
   }
  ],
@@ -120,690 +118,696 @@
  "note": "BM25 over africariyoki lyric lines; top ~8 candidates with scores (no id tiebreak). query = live mood note + scene + seated lines + typed themes (tools/yoki_match.py)",
  "candidates": [
   {
-   "id": "chMsx-vKHug",
-   "title": "Eminado",
-   "artist": "Tiwa Savage ft Don Jazzy",
-   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/chMsx-vKHug.mp3",
-   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/chMsx-vKHug.lrc",
-   "score": 49.175,
+   "id": "TIKF16oagBY",
+   "title": "Abule",
+   "artist": "Patoranking",
+   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/TIKF16oagBY.mp3",
+   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/TIKF16oagBY.lrc",
+   "score": 38.741,
    "matches": [
     {
-     "t": 35.78,
-     "line": "Open the open the door",
-     "score": 31.465,
+     "t": 28.61,
+     "line": "i went there with my best friend kunle",
+     "score": 23.184,
      "terms": [
-      "door",
-      "open"
+      "kunle"
      ],
-     "term": "door",
-     "via": "j16 scene"
+     "term": "kunle",
+     "via": "j16 beat"
     },
     {
-     "t": 64.9,
-     "line": "One without the other",
-     "score": 13.131,
+     "t": 30.95,
+     "line": "kunle dey there with hin girlfriend shile",
+     "score": 22.002,
      "terms": [
-      "without"
-     ],
-     "term": "without",
-     "via": "j16 scene"
-    },
-    {
-     "t": 126.77,
-     "line": "Oh boy I want you to know that I got your back",
-     "score": 9.401,
-     "terms": [
-      "back"
-     ],
-     "term": "back",
-     "via": "j16 scene"
-    }
-   ],
-   "why": "♪ matched: “Open the open the door” ↔ j16 scene"
-  },
-  {
-   "id": "DfLS0A5IAhk",
-   "title": "Feeling",
-   "artist": "Ladipoe ft Buju",
-   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/DfLS0A5IAhk.mp3",
-   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/DfLS0A5IAhk.lrc",
-   "score": 45.454,
-   "matches": [
-    {
-     "t": 67.57,
-     "line": "Pull up at the spot open door and its suicide",
-     "score": 22.686,
-     "terms": [
-      "door",
-      "open"
-     ],
-     "term": "door",
-     "via": "j16 scene"
-    },
-    {
-     "t": 141.1,
-     "line": "Pull up open door and its suicide suicide",
-     "score": 22.686,
-     "terms": [
-      "door",
-      "open"
-     ],
-     "term": "door",
-     "via": "j16 scene"
-    },
-    {
-     "t": 59.4,
-     "line": "I got that big bag back pain",
-     "score": 11.268,
-     "terms": [
-      "back",
-      "pain",
-      "big"
-     ],
-     "term": "back",
-     "via": "j16 scene"
-    }
-   ],
-   "why": "♪ matched: “Pull up at the spot open door and its suicide” ↔ j16 scene"
-  },
-  {
-   "id": "423z6m44bIA",
-   "title": "Young Love",
-   "artist": "Adekunle Gold",
-   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/423z6m44bIA.mp3",
-   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/423z6m44bIA.lrc",
-   "score": 42.46,
-   "matches": [
-    {
-     "t": 66.53,
-     "line": "Side side side side",
-     "score": 22.674,
-     "terms": [
-      "side"
-     ],
-     "term": "side",
-     "via": "j16 scene"
-    },
-    {
-     "t": 142.38,
-     "line": "My side side side side",
-     "score": 22.674,
-     "terms": [
-      "side"
-     ],
-     "term": "side",
-     "via": "j16 scene"
-    },
-    {
-     "t": 139.75,
-     "line": "Side side side",
-     "score": 22.254,
-     "terms": [
-      "side"
-     ],
-     "term": "side",
-     "via": "j16 scene"
-    }
-   ],
-   "why": "♪ matched: “Side side side side” ↔ j16 scene"
-  },
-  {
-   "id": "h3sOkca-viw",
-   "title": "LOML",
-   "artist": "Cheque ft Olamide",
-   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/h3sOkca-viw.mp3",
-   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/h3sOkca-viw.lrc",
-   "score": 40.499,
-   "matches": [
-    {
-     "t": 146.03,
-     "line": "Open up me dey knock your door pon pon",
-     "score": 21.654,
-     "terms": [
-      "door",
-      "open",
+      "kunle",
       "dey"
      ],
-     "term": "door",
-     "via": "j16 scene"
+     "term": "kunle",
+     "via": "j16 beat"
     },
     {
-     "t": 148.8,
-     "line": "Omoge me I knock on your door o",
-     "score": 18.757,
+     "t": 45.13,
+     "line": "i get many girls wey dem dey come from mowe",
+     "score": 1.704,
      "terms": [
-      "door"
+      "dey",
+      "come"
      ],
-     "term": "door",
-     "via": "j16 scene"
-    },
-    {
-     "t": 27.19,
-     "line": "I cant get enough",
-     "score": 11.356,
-     "terms": [
-      "enough"
-     ],
-     "term": "enough",
-     "via": "j16 scene"
+     "term": "dey",
+     "via": "j16 card folake catch"
     }
    ],
-   "why": "♪ matched: “Open up me dey knock your door pon pon” ↔ j16 scene"
+   "why": "♪ matched: “i went there with my best friend kunle” ↔ j16 beat"
   },
   {
-   "id": "JDy-ZLlYEGw",
-   "title": "Holla At Your Boy",
-   "artist": "Wizkid",
-   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/JDy-ZLlYEGw.mp3",
-   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/JDy-ZLlYEGw.lrc",
-   "score": 34.626,
+   "id": "1P-AAhpqHfU",
+   "title": "Chop My Money Remix",
+   "artist": "P-Square Ft. Akon, MayD",
+   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/1P-AAhpqHfU.mp3",
+   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/1P-AAhpqHfU.lrc",
+   "score": 31.423,
    "matches": [
     {
-     "t": 30.83,
-     "line": "Just being by my side",
-     "score": 19.382,
+     "t": 19.69,
+     "line": "Walks down the streets every guy wants to jump on your behind",
+     "score": 19.894,
      "terms": [
-      "side"
+      "walks",
+      "guy"
      ],
-     "term": "side",
-     "via": "j16 scene"
+     "term": "walks",
+     "via": "j16 beat"
     },
     {
-     "t": 190.87,
-     "line": "Just standing by my side",
-     "score": 16.694,
+     "t": 23.45,
+     "line": "its your seduction that makes sure that we stay in line",
+     "score": 5.839,
      "terms": [
-      "side"
-     ],
-     "term": "side",
-     "via": "j16 scene"
-    },
-    {
-     "t": 39.98,
-     "line": "Cos you feel so good just standing by my side",
-     "score": 14.287,
-     "terms": [
-      "side",
-      "good"
-     ],
-     "term": "side",
-     "via": "j16 scene"
-    }
-   ],
-   "why": "♪ matched: “Just being by my side” ↔ j16 scene"
-  },
-  {
-   "id": "PB4blM5LYPM",
-   "title": "5 and 6",
-   "artist": "Naeto C",
-   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/PB4blM5LYPM.mp3",
-   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/PB4blM5LYPM.lrc",
-   "score": 34.469,
-   "matches": [
-    {
-     "t": 58.67,
-     "line": "The dotted line Im about to put the pen to",
-     "score": 21.571,
-     "terms": [
-      "pen",
       "line"
      ],
-     "term": "pen",
+     "term": "line",
      "via": "j16 scene"
     },
     {
-     "t": 60.53,
-     "line": "With you by my side theirs nothing that i cant do",
-     "score": 13.068,
+     "t": 80.61,
+     "line": "EhI no dey lie no dey lie",
+     "score": 5.032,
      "terms": [
-      "side"
+      "lie",
+      "dey"
      ],
-     "term": "side",
-     "via": "j16 scene"
-    },
-    {
-     "t": 73.96,
-     "line": "I just wanna let the whole world know",
-     "score": 2.511,
-     "terms": [
-      "world"
-     ],
-     "term": "world",
-     "via": "j16 card jordanaiiirrrr map"
+     "term": "lie",
+     "via": "j16 card adaora cap"
     }
    ],
-   "why": "♪ matched: “The dotted line Im about to put the pen to” ↔ j16 scene"
+   "why": "♪ matched: “Walks down the streets every guy wants to jump on your beh…” ↔ j16 beat"
   },
   {
-   "id": "zhPUUEhkYOY",
-   "title": "Nakupenda",
-   "artist": "chike, Ric Hassani",
-   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/zhPUUEhkYOY.mp3",
-   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/zhPUUEhkYOY.lrc",
-   "score": 34.222,
+   "id": "HE8p1lJaPyg",
+   "title": "Olufunmi",
+   "artist": "Styl-Plus",
+   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/HE8p1lJaPyg.mp3",
+   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/HE8p1lJaPyg.lrc",
+   "score": 29.625,
    "matches": [
     {
-     "t": 197.92,
-     "line": "If youll open the door",
-     "score": 28.213,
+     "t": 158.41,
+     "line": "You could be the one Id take on a date down the aisle",
+     "score": 25.068,
      "terms": [
-      "door",
-      "open"
+      "aisle"
      ],
-     "term": "door",
-     "via": "j16 scene"
+     "term": "aisle",
+     "via": "j16 beat"
     },
     {
-     "t": 119.79,
-     "line": "Dont care about the money",
-     "score": 2.338,
+     "t": 153.99,
+     "line": "Come on girl you could be the one to make me smile",
+     "score": 1.181,
      "terms": [
-      "money"
+      "come"
      ],
-     "term": "money",
-     "via": "j16 card now getTime"
+     "term": "come",
+     "via": "None “come awa studio come…”"
     },
     {
-     "t": 14.96,
-     "line": "You looking at me three times in a row",
-     "score": 1.352,
+     "t": 93.62,
+     "line": "Ill pause my heart for you when you come home youd be the one to make it move only you",
+     "score": 0.946,
      "terms": [
-      "time"
+      "come",
+      "romance (mood)"
      ],
-     "term": "time",
-     "via": "j16 card now getTime"
+     "term": "come",
+     "via": "None “come awa studio come…”"
     }
    ],
-   "why": "♪ matched: “If youll open the door” ↔ j16 scene"
+   "why": "♪ matched: “You could be the one Id take on a date down the aisle” ↔ j16 beat"
   },
   {
-   "id": "aK5FsO7n31E",
-   "title": "Skin Tight",
-   "artist": "Mr Eazi ft Efya",
-   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/aK5FsO7n31E.mp3",
-   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/aK5FsO7n31E.lrc",
-   "score": 33.555,
+   "id": "Gih_Nk9NBBw",
+   "title": "Holy Father",
+   "artist": "Mayorkun",
+   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/Gih_Nk9NBBw.mp3",
+   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/Gih_Nk9NBBw.lrc",
+   "score": 28.895,
    "matches": [
     {
-     "t": 47.6,
-     "line": "You dey by my side",
-     "score": 18.235,
+     "t": 59.34,
+     "line": "Give me your map o",
+     "score": 15.639,
      "terms": [
-      "side",
-      "dey"
+      "map"
      ],
-     "term": "side",
-     "via": "j16 scene"
+     "term": "map",
+     "via": "j10 maybeknow map"
     },
     {
-     "t": 42.61,
-     "line": "Wey I go dey by your side",
-     "score": 16.014,
+     "t": 75.63,
+     "line": "Give me your map",
+     "score": 15.639,
      "terms": [
-      "side",
-      "dey"
+      "map"
      ],
-     "term": "side",
-     "via": "j16 scene"
+     "term": "map",
+     "via": "j10 maybeknow map"
     },
     {
-     "t": 143.59,
-     "line": "Wey you dey by my side",
-     "score": 16.014,
+     "t": 52.93,
+     "line": "Im running back to you",
+     "score": 7.5,
      "terms": [
-      "side",
-      "dey"
+      "running",
+      "back"
      ],
-     "term": "side",
+     "term": "running",
+     "via": "j16 card titi watch"
+    }
+   ],
+   "why": "♪ matched: “Give me your map o” ↔ j10 maybeknow map"
+  },
+  {
+   "id": "onQmiURQCyU",
+   "title": "Odogwu",
+   "artist": "Burna Boy",
+   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/onQmiURQCyU.mp3",
+   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/onQmiURQCyU.lrc",
+   "score": 26.757,
+   "matches": [
+    {
+     "t": 30.49,
+     "line": "Say na who dey draw the map e oh Odogwu",
+     "score": 15.309,
+     "terms": [
+      "map",
+      "draw",
+      "dey",
+      "na"
+     ],
+     "term": "map",
+     "via": "j10 maybeknow map"
+    },
+    {
+     "t": 139.84,
+     "line": "Say na who dey draw the map oh Odogwu",
+     "score": 15.309,
+     "terms": [
+      "map",
+      "draw",
+      "dey",
+      "na"
+     ],
+     "term": "map",
+     "via": "j10 maybeknow map"
+    },
+    {
+     "t": 109.59,
+     "line": "You con dey bother me I go need my apology",
+     "score": 2.137,
+     "terms": [
+      "dey",
+      "need"
+     ],
+     "term": "dey",
+     "via": "j16 card folake catch"
+    }
+   ],
+   "why": "♪ matched: “Say na who dey draw the map e oh Odogwu” ↔ j10 maybeknow map"
+  },
+  {
+   "id": "AWdE6ivnA78",
+   "title": "Know You",
+   "artist": "Ladipoe ft Simi",
+   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/AWdE6ivnA78.mp3",
+   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/AWdE6ivnA78.lrc",
+   "score": 24.374,
+   "matches": [
+    {
+     "t": 56.19,
+     "line": "Maybe not in this life",
+     "score": 12.621,
+     "terms": [
+      "maybe"
+     ],
+     "term": "maybe",
+     "via": "j10 maybeknow map"
+    },
+    {
+     "t": 84.62,
+     "line": "Or maybe Im just busy for me",
+     "score": 12.621,
+     "terms": [
+      "maybe"
+     ],
+     "term": "maybe",
+     "via": "j10 maybeknow map"
+    },
+    {
+     "t": 24.82,
+     "line": "And maybe every other place baby",
+     "score": 9.28,
+     "terms": [
+      "maybe",
+      "romance (mood)"
+     ],
+     "term": "maybe",
+     "via": "j10 maybeknow map"
+    }
+   ],
+   "why": "♪ matched: “Maybe not in this life” ↔ j10 maybeknow map"
+  },
+  {
+   "id": "jowVh4hblsg",
+   "title": "Colorado",
+   "artist": "Zugo & Dai Verse",
+   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/jowVh4hblsg.mp3",
+   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/jowVh4hblsg.lrc",
+   "score": 22.671,
+   "matches": [
+    {
+     "t": 117.79,
+     "line": "catwalk that aisle like an adarego follow me follow me follow me go fine girl oya ibadi jo",
+     "score": 11.508,
+     "terms": [
+      "aisle",
+      "romance (mood)"
+     ],
+     "term": "aisle",
+     "via": "j16 beat"
+    },
+    {
+     "t": 127.28,
+     "line": "catwalk that aisle like an adarego follow me follow me follow me go cuz there is something bout your body way day high me like i don smoke c",
+     "score": 9.703,
+     "terms": [
+      "aisle"
+     ],
+     "term": "aisle",
+     "via": "j16 beat"
+    },
+    {
+     "t": 102.06,
+     "line": "girlie don make a bad man to surrender",
+     "score": 4.776,
+     "terms": [
+      "man",
+      "bad"
+     ],
+     "term": "man",
      "via": "j16 scene"
     }
    ],
-   "why": "♪ matched: “You dey by my side” ↔ j16 scene"
+   "why": "♪ matched: “catwalk that aisle like an adarego follow me follow me fol…” ↔ j16 beat"
+  },
+  {
+   "id": "eFlQrm1RiDM",
+   "title": "Ayo Girl",
+   "artist": "Rema ::: Jason Derulo, Sepp Krassnitzer",
+   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/eFlQrm1RiDM.mp3",
+   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/eFlQrm1RiDM.lrc",
+   "score": 21.178,
+   "matches": [
+    {
+     "t": 130.55,
+     "line": "Maybe maybe",
+     "score": 16.224,
+     "terms": [
+      "maybe"
+     ],
+     "term": "maybe",
+     "via": "j10 maybeknow map"
+    },
+    {
+     "t": 119.77,
+     "line": "And even you drive me crazy",
+     "score": 3.148,
+     "terms": [
+      "even"
+     ],
+     "term": "even",
+     "via": "j16 card kunle walk"
+    },
+    {
+     "t": 63.47,
+     "line": "It be the reason many man want you",
+     "score": 2.603,
+     "terms": [
+      "man"
+     ],
+     "term": "man",
+     "via": "j16 scene"
+    }
+   ],
+   "why": "♪ matched: “Maybe maybe” ↔ j10 maybeknow map"
   }
  ],
  "top": [
   {
-   "id": "chMsx-vKHug",
-   "title": "Eminado",
-   "artist": "Tiwa Savage ft Don Jazzy",
-   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/chMsx-vKHug.mp3",
-   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/chMsx-vKHug.lrc",
-   "score": 49.175,
+   "id": "TIKF16oagBY",
+   "title": "Abule",
+   "artist": "Patoranking",
+   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/TIKF16oagBY.mp3",
+   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/TIKF16oagBY.lrc",
+   "score": 38.741,
    "matches": [
     {
-     "t": 35.78,
-     "line": "Open the open the door",
-     "score": 31.465,
+     "t": 28.61,
+     "line": "i went there with my best friend kunle",
+     "score": 23.184,
      "terms": [
-      "door",
-      "open"
+      "kunle"
      ],
-     "term": "door",
-     "via": "j16 scene"
+     "term": "kunle",
+     "via": "j16 beat"
     },
     {
-     "t": 64.9,
-     "line": "One without the other",
-     "score": 13.131,
+     "t": 30.95,
+     "line": "kunle dey there with hin girlfriend shile",
+     "score": 22.002,
      "terms": [
-      "without"
-     ],
-     "term": "without",
-     "via": "j16 scene"
-    },
-    {
-     "t": 126.77,
-     "line": "Oh boy I want you to know that I got your back",
-     "score": 9.401,
-     "terms": [
-      "back"
-     ],
-     "term": "back",
-     "via": "j16 scene"
-    }
-   ],
-   "why": "♪ matched: “Open the open the door” ↔ j16 scene"
-  },
-  {
-   "id": "DfLS0A5IAhk",
-   "title": "Feeling",
-   "artist": "Ladipoe ft Buju",
-   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/DfLS0A5IAhk.mp3",
-   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/DfLS0A5IAhk.lrc",
-   "score": 45.454,
-   "matches": [
-    {
-     "t": 67.57,
-     "line": "Pull up at the spot open door and its suicide",
-     "score": 22.686,
-     "terms": [
-      "door",
-      "open"
-     ],
-     "term": "door",
-     "via": "j16 scene"
-    },
-    {
-     "t": 141.1,
-     "line": "Pull up open door and its suicide suicide",
-     "score": 22.686,
-     "terms": [
-      "door",
-      "open"
-     ],
-     "term": "door",
-     "via": "j16 scene"
-    },
-    {
-     "t": 59.4,
-     "line": "I got that big bag back pain",
-     "score": 11.268,
-     "terms": [
-      "back",
-      "pain",
-      "big"
-     ],
-     "term": "back",
-     "via": "j16 scene"
-    }
-   ],
-   "why": "♪ matched: “Pull up at the spot open door and its suicide” ↔ j16 scene"
-  },
-  {
-   "id": "423z6m44bIA",
-   "title": "Young Love",
-   "artist": "Adekunle Gold",
-   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/423z6m44bIA.mp3",
-   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/423z6m44bIA.lrc",
-   "score": 42.46,
-   "matches": [
-    {
-     "t": 66.53,
-     "line": "Side side side side",
-     "score": 22.674,
-     "terms": [
-      "side"
-     ],
-     "term": "side",
-     "via": "j16 scene"
-    },
-    {
-     "t": 142.38,
-     "line": "My side side side side",
-     "score": 22.674,
-     "terms": [
-      "side"
-     ],
-     "term": "side",
-     "via": "j16 scene"
-    },
-    {
-     "t": 139.75,
-     "line": "Side side side",
-     "score": 22.254,
-     "terms": [
-      "side"
-     ],
-     "term": "side",
-     "via": "j16 scene"
-    }
-   ],
-   "why": "♪ matched: “Side side side side” ↔ j16 scene"
-  },
-  {
-   "id": "h3sOkca-viw",
-   "title": "LOML",
-   "artist": "Cheque ft Olamide",
-   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/h3sOkca-viw.mp3",
-   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/h3sOkca-viw.lrc",
-   "score": 40.499,
-   "matches": [
-    {
-     "t": 146.03,
-     "line": "Open up me dey knock your door pon pon",
-     "score": 21.654,
-     "terms": [
-      "door",
-      "open",
+      "kunle",
       "dey"
      ],
-     "term": "door",
-     "via": "j16 scene"
+     "term": "kunle",
+     "via": "j16 beat"
     },
     {
-     "t": 148.8,
-     "line": "Omoge me I knock on your door o",
-     "score": 18.757,
+     "t": 45.13,
+     "line": "i get many girls wey dem dey come from mowe",
+     "score": 1.704,
      "terms": [
-      "door"
+      "dey",
+      "come"
      ],
-     "term": "door",
-     "via": "j16 scene"
-    },
-    {
-     "t": 27.19,
-     "line": "I cant get enough",
-     "score": 11.356,
-     "terms": [
-      "enough"
-     ],
-     "term": "enough",
-     "via": "j16 scene"
+     "term": "dey",
+     "via": "j16 card folake catch"
     }
    ],
-   "why": "♪ matched: “Open up me dey knock your door pon pon” ↔ j16 scene"
+   "why": "♪ matched: “i went there with my best friend kunle” ↔ j16 beat"
   },
   {
-   "id": "JDy-ZLlYEGw",
-   "title": "Holla At Your Boy",
-   "artist": "Wizkid",
-   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/JDy-ZLlYEGw.mp3",
-   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/JDy-ZLlYEGw.lrc",
-   "score": 34.626,
+   "id": "1P-AAhpqHfU",
+   "title": "Chop My Money Remix",
+   "artist": "P-Square Ft. Akon, MayD",
+   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/1P-AAhpqHfU.mp3",
+   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/1P-AAhpqHfU.lrc",
+   "score": 31.423,
    "matches": [
     {
-     "t": 30.83,
-     "line": "Just being by my side",
-     "score": 19.382,
+     "t": 19.69,
+     "line": "Walks down the streets every guy wants to jump on your behind",
+     "score": 19.894,
      "terms": [
-      "side"
+      "walks",
+      "guy"
      ],
-     "term": "side",
-     "via": "j16 scene"
+     "term": "walks",
+     "via": "j16 beat"
     },
     {
-     "t": 190.87,
-     "line": "Just standing by my side",
-     "score": 16.694,
+     "t": 23.45,
+     "line": "its your seduction that makes sure that we stay in line",
+     "score": 5.839,
      "terms": [
-      "side"
-     ],
-     "term": "side",
-     "via": "j16 scene"
-    },
-    {
-     "t": 39.98,
-     "line": "Cos you feel so good just standing by my side",
-     "score": 14.287,
-     "terms": [
-      "side",
-      "good"
-     ],
-     "term": "side",
-     "via": "j16 scene"
-    }
-   ],
-   "why": "♪ matched: “Just being by my side” ↔ j16 scene"
-  },
-  {
-   "id": "PB4blM5LYPM",
-   "title": "5 and 6",
-   "artist": "Naeto C",
-   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/PB4blM5LYPM.mp3",
-   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/PB4blM5LYPM.lrc",
-   "score": 34.469,
-   "matches": [
-    {
-     "t": 58.67,
-     "line": "The dotted line Im about to put the pen to",
-     "score": 21.571,
-     "terms": [
-      "pen",
       "line"
      ],
-     "term": "pen",
+     "term": "line",
      "via": "j16 scene"
     },
     {
-     "t": 60.53,
-     "line": "With you by my side theirs nothing that i cant do",
-     "score": 13.068,
+     "t": 80.61,
+     "line": "EhI no dey lie no dey lie",
+     "score": 5.032,
      "terms": [
-      "side"
+      "lie",
+      "dey"
      ],
-     "term": "side",
-     "via": "j16 scene"
-    },
-    {
-     "t": 73.96,
-     "line": "I just wanna let the whole world know",
-     "score": 2.511,
-     "terms": [
-      "world"
-     ],
-     "term": "world",
-     "via": "j16 card jordanaiiirrrr map"
+     "term": "lie",
+     "via": "j16 card adaora cap"
     }
    ],
-   "why": "♪ matched: “The dotted line Im about to put the pen to” ↔ j16 scene"
+   "why": "♪ matched: “Walks down the streets every guy wants to jump on your beh…” ↔ j16 beat"
   },
   {
-   "id": "zhPUUEhkYOY",
-   "title": "Nakupenda",
-   "artist": "chike, Ric Hassani",
-   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/zhPUUEhkYOY.mp3",
-   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/zhPUUEhkYOY.lrc",
-   "score": 34.222,
+   "id": "HE8p1lJaPyg",
+   "title": "Olufunmi",
+   "artist": "Styl-Plus",
+   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/HE8p1lJaPyg.mp3",
+   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/HE8p1lJaPyg.lrc",
+   "score": 29.625,
    "matches": [
     {
-     "t": 197.92,
-     "line": "If youll open the door",
-     "score": 28.213,
+     "t": 158.41,
+     "line": "You could be the one Id take on a date down the aisle",
+     "score": 25.068,
      "terms": [
-      "door",
-      "open"
+      "aisle"
      ],
-     "term": "door",
-     "via": "j16 scene"
+     "term": "aisle",
+     "via": "j16 beat"
     },
     {
-     "t": 119.79,
-     "line": "Dont care about the money",
-     "score": 2.338,
+     "t": 153.99,
+     "line": "Come on girl you could be the one to make me smile",
+     "score": 1.181,
      "terms": [
-      "money"
+      "come"
      ],
-     "term": "money",
-     "via": "j16 card now getTime"
+     "term": "come",
+     "via": "None “come awa studio come…”"
     },
     {
-     "t": 14.96,
-     "line": "You looking at me three times in a row",
-     "score": 1.352,
+     "t": 93.62,
+     "line": "Ill pause my heart for you when you come home youd be the one to make it move only you",
+     "score": 0.946,
      "terms": [
-      "time"
+      "come",
+      "romance (mood)"
      ],
-     "term": "time",
-     "via": "j16 card now getTime"
+     "term": "come",
+     "via": "None “come awa studio come…”"
     }
    ],
-   "why": "♪ matched: “If youll open the door” ↔ j16 scene"
+   "why": "♪ matched: “You could be the one Id take on a date down the aisle” ↔ j16 beat"
   },
   {
-   "id": "aK5FsO7n31E",
-   "title": "Skin Tight",
-   "artist": "Mr Eazi ft Efya",
-   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/aK5FsO7n31E.mp3",
-   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/aK5FsO7n31E.lrc",
-   "score": 33.555,
+   "id": "Gih_Nk9NBBw",
+   "title": "Holy Father",
+   "artist": "Mayorkun",
+   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/Gih_Nk9NBBw.mp3",
+   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/Gih_Nk9NBBw.lrc",
+   "score": 28.895,
    "matches": [
     {
-     "t": 47.6,
-     "line": "You dey by my side",
-     "score": 18.235,
+     "t": 59.34,
+     "line": "Give me your map o",
+     "score": 15.639,
      "terms": [
-      "side",
-      "dey"
+      "map"
      ],
-     "term": "side",
-     "via": "j16 scene"
+     "term": "map",
+     "via": "j10 maybeknow map"
     },
     {
-     "t": 42.61,
-     "line": "Wey I go dey by your side",
-     "score": 16.014,
+     "t": 75.63,
+     "line": "Give me your map",
+     "score": 15.639,
      "terms": [
-      "side",
-      "dey"
+      "map"
      ],
-     "term": "side",
-     "via": "j16 scene"
+     "term": "map",
+     "via": "j10 maybeknow map"
     },
     {
-     "t": 143.59,
-     "line": "Wey you dey by my side",
-     "score": 16.014,
+     "t": 52.93,
+     "line": "Im running back to you",
+     "score": 7.5,
      "terms": [
-      "side",
-      "dey"
+      "running",
+      "back"
      ],
-     "term": "side",
+     "term": "running",
+     "via": "j16 card titi watch"
+    }
+   ],
+   "why": "♪ matched: “Give me your map o” ↔ j10 maybeknow map"
+  },
+  {
+   "id": "onQmiURQCyU",
+   "title": "Odogwu",
+   "artist": "Burna Boy",
+   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/onQmiURQCyU.mp3",
+   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/onQmiURQCyU.lrc",
+   "score": 26.757,
+   "matches": [
+    {
+     "t": 30.49,
+     "line": "Say na who dey draw the map e oh Odogwu",
+     "score": 15.309,
+     "terms": [
+      "map",
+      "draw",
+      "dey",
+      "na"
+     ],
+     "term": "map",
+     "via": "j10 maybeknow map"
+    },
+    {
+     "t": 139.84,
+     "line": "Say na who dey draw the map oh Odogwu",
+     "score": 15.309,
+     "terms": [
+      "map",
+      "draw",
+      "dey",
+      "na"
+     ],
+     "term": "map",
+     "via": "j10 maybeknow map"
+    },
+    {
+     "t": 109.59,
+     "line": "You con dey bother me I go need my apology",
+     "score": 2.137,
+     "terms": [
+      "dey",
+      "need"
+     ],
+     "term": "dey",
+     "via": "j16 card folake catch"
+    }
+   ],
+   "why": "♪ matched: “Say na who dey draw the map e oh Odogwu” ↔ j10 maybeknow map"
+  },
+  {
+   "id": "AWdE6ivnA78",
+   "title": "Know You",
+   "artist": "Ladipoe ft Simi",
+   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/AWdE6ivnA78.mp3",
+   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/AWdE6ivnA78.lrc",
+   "score": 24.374,
+   "matches": [
+    {
+     "t": 56.19,
+     "line": "Maybe not in this life",
+     "score": 12.621,
+     "terms": [
+      "maybe"
+     ],
+     "term": "maybe",
+     "via": "j10 maybeknow map"
+    },
+    {
+     "t": 84.62,
+     "line": "Or maybe Im just busy for me",
+     "score": 12.621,
+     "terms": [
+      "maybe"
+     ],
+     "term": "maybe",
+     "via": "j10 maybeknow map"
+    },
+    {
+     "t": 24.82,
+     "line": "And maybe every other place baby",
+     "score": 9.28,
+     "terms": [
+      "maybe",
+      "romance (mood)"
+     ],
+     "term": "maybe",
+     "via": "j10 maybeknow map"
+    }
+   ],
+   "why": "♪ matched: “Maybe not in this life” ↔ j10 maybeknow map"
+  },
+  {
+   "id": "jowVh4hblsg",
+   "title": "Colorado",
+   "artist": "Zugo & Dai Verse",
+   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/jowVh4hblsg.mp3",
+   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/jowVh4hblsg.lrc",
+   "score": 22.671,
+   "matches": [
+    {
+     "t": 117.79,
+     "line": "catwalk that aisle like an adarego follow me follow me follow me go fine girl oya ibadi jo",
+     "score": 11.508,
+     "terms": [
+      "aisle",
+      "romance (mood)"
+     ],
+     "term": "aisle",
+     "via": "j16 beat"
+    },
+    {
+     "t": 127.28,
+     "line": "catwalk that aisle like an adarego follow me follow me follow me go cuz there is something bout your body way day high me like i don smoke c",
+     "score": 9.703,
+     "terms": [
+      "aisle"
+     ],
+     "term": "aisle",
+     "via": "j16 beat"
+    },
+    {
+     "t": 102.06,
+     "line": "girlie don make a bad man to surrender",
+     "score": 4.776,
+     "terms": [
+      "man",
+      "bad"
+     ],
+     "term": "man",
      "via": "j16 scene"
     }
    ],
-   "why": "♪ matched: “You dey by my side” ↔ j16 scene"
+   "why": "♪ matched: “catwalk that aisle like an adarego follow me follow me fol…” ↔ j16 beat"
+  },
+  {
+   "id": "eFlQrm1RiDM",
+   "title": "Ayo Girl",
+   "artist": "Rema ::: Jason Derulo, Sepp Krassnitzer",
+   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/eFlQrm1RiDM.mp3",
+   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/eFlQrm1RiDM.lrc",
+   "score": 21.178,
+   "matches": [
+    {
+     "t": 130.55,
+     "line": "Maybe maybe",
+     "score": 16.224,
+     "terms": [
+      "maybe"
+     ],
+     "term": "maybe",
+     "via": "j10 maybeknow map"
+    },
+    {
+     "t": 119.77,
+     "line": "And even you drive me crazy",
+     "score": 3.148,
+     "terms": [
+      "even"
+     ],
+     "term": "even",
+     "via": "j16 card kunle walk"
+    },
+    {
+     "t": 63.47,
+     "line": "It be the reason many man want you",
+     "score": 2.603,
+     "terms": [
+      "man"
+     ],
+     "term": "man",
+     "via": "j16 scene"
+    }
+   ],
+   "why": "♪ matched: “Maybe maybe” ↔ j10 maybeknow map"
   }
  ],
- "sig": "c55b94f9a1c7",
- "generated": "2026-11-17T18:54:25-0500"
+ "sig": "e414cc0a0e31",
+ "generated": "2026-11-17T18:55:17-0500"
 }
