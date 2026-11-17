@@ -3886,16 +3886,6 @@
 ],
 "sports_ball": [
 {
-"id": "wf_4dcbd2db48",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the sports ball, and Bisola reads the name twice.",
-"code": "streetlights.interactwith(sports_ball){ sports_ball.receives(streetlights.envelope); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "streetlights"
-},
-{
 "id": "wf_e20216b451",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the sports ball, and Bisola reads the name twice.",
@@ -3934,6 +3924,16 @@
 "run": "run-5a58c4",
 "card": "j6",
 "other": "youngteacher"
+},
+{
+"id": "wf_ea5a5f9358",
+"kind": "consequence",
+"text": "A Marker note with Kunle's name and 'nice day sign' on it, turns up inside the brown envelope at the sports ball, and Bisola reads the name twice.",
+"code": "marker.interactwith(sports_ball){ sports_ball.receives(marker.sign); … }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j3",
+"other": "marker"
 }
 ],
 "danfo_stuck": [
@@ -4698,6 +4698,16 @@
 "run": "run-5a58c4",
 "card": "w5",
 "other": "marker_c"
+},
+{
+"id": "wf_691225af92",
+"kind": "consequence",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the rain-stained receipt at the fire escape outside, and Ejiro reads the name twice.",
+"code": "marker_b.interactwith(fire_escape_outside){ fire_escape_outside.receives(marker_b.code); … }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j2",
+"other": "marker_b"
 }
 ],
 "heat": [
@@ -4851,42 +4861,21 @@
 "card": "j2",
 "other": "dez"
 }
+],
+"mbtij": [
+{
+"id": "wf_2536b8915a",
+"kind": "consequence",
+"text": "The teomarisollove ends up with the mbtij, still in love, said out loud by Marisol (w14 causeway).",
+"code": "house.interactwith(mbtij){ house.db.copyto(mbtij); mbtij.keeps(house, 'teomarisollove, still in love, said out loud by Marisol (w14 causeway)'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "",
+"other": "house"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_9a66dfa744",
-"ts": "2026-11-17T09:45:14-0500",
-"a": "ats",
-"b": "danfo_stuck_third",
-"code": "ats.interactwith(danfo_stuck_third){ danfo_stuck_third.receives(ats.envelope); … }",
-"text": "An Ats note with Bisola's name and 'brown envelope' on it, turns up inside the egbe note at the danfo stuck third, and Titi reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j2"
-},
-{
-"id": "wf_00a3087111",
-"ts": "2026-11-17T09:46:06-0500",
-"a": "omo",
-"b": "danfo_stuck_third",
-"code": "omo.interactwith(danfo_stuck_third){ danfo_stuck_third.receives(omo.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the danfo stuck third, and Titi reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
-{
-"id": "wf_690eb969bf",
-"ts": "2026-11-17T09:53:19-0500",
-"a": "truth",
-"b": "agbada",
-"code": "truth.interactwith(agbada){ agbada.receives(truth.note); agbada.remembers(titi, 'egbe note'); agbada.tucks(truth, 'truth note into the brown envelope'); }",
-"text": "A Truth note with Titi's name and 'egbe note' on it, turns up inside the brown envelope at the agbada, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j4"
-},
 {
 "id": "wt_d7412f0d94",
 "ts": "2026-11-17T09:54:10-0500",
@@ -5293,6 +5282,39 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": "j2"
+},
+{
+"id": "wf_ea5a5f9358",
+"ts": "2026-11-17T11:42:02-0500",
+"a": "marker",
+"b": "sports_ball",
+"code": "marker.interactwith(sports_ball){ sports_ball.receives(marker.sign); … }",
+"text": "A Marker note with Kunle's name and 'nice day sign' on it, turns up inside the brown envelope at the sports ball, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j3"
+},
+{
+"id": "wf_691225af92",
+"ts": "2026-11-17T11:43:14-0500",
+"a": "marker_b",
+"b": "fire_escape_outside",
+"code": "marker_b.interactwith(fire_escape_outside){ fire_escape_outside.receives(marker_b.code); … }",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the rain-stained receipt at the fire escape outside, and Ejiro reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j2"
+},
+{
+"id": "wf_2536b8915a",
+"ts": "2026-11-17T11:44:27-0500",
+"a": "house",
+"b": "mbtij",
+"code": "house.interactwith(mbtij){ house.db.copyto(mbtij); mbtij.keeps(house, 'teomarisollove, still in love, said out loud by Marisol (w14 causeway)'); }",
+"text": "The teomarisollove ends up with the mbtij, still in love, said out loud by Marisol (w14 causeway).",
+"author": "cos",
+"run": "run-5a58c4",
+"card": ""
 }
 ],
 "memories": [
@@ -5396,5 +5418,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T11:38:19-0500"
+"updated": "2026-11-17T11:44:27-0500"
 }
