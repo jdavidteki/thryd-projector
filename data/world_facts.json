@@ -5341,31 +5341,33 @@
 "card": "j6",
 "other": "florida"
 }
+],
+"god": [
+{
+"id": "wf_79c322b033",
+"kind": "consequence",
+"text": "The god leaves with a Sheep note with Kunle's name and 'scorched container number' on it.",
+"code": "sheep.interactwith(god){ god.receives(sheep.number); god.remembers(kunle, 'scorched container number'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "w7",
+"other": "sheep"
+}
+],
+"tnw": [
+{
+"id": "wf_436ce8c1c9",
+"kind": "consequence",
+"text": "The tnw leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "teo.interactwith(tnw){ tnw.receives(teo.envelope); tnw.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "teo"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_b3f86f7214",
-"ts": "2026-11-17T11:31:45-0500",
-"a": "dez",
-"b": "top_deck_charter",
-"code": "dez.interactwith(top_deck_charter){ top_deck_charter.receives(dez.code); … }",
-"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the top deck charter, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j2"
-},
-{
-"id": "wf_9e8d5ef42d",
-"ts": "2026-11-17T11:35:27-0500",
-"a": "wser",
-"b": "dress_marisol",
-"code": "wser.interactwith(dress_marisol){ dress_marisol.receives(wser.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the rain-stained receipt at the dress marisol, and Ejiro reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
 {
 "id": "wf_93ef5e44a4",
 "ts": "2026-11-17T11:38:19-0500",
@@ -5783,6 +5785,28 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": "j6"
+},
+{
+"id": "wf_79c322b033",
+"ts": "2026-11-17T13:34:59-0500",
+"a": "sheep",
+"b": "god",
+"code": "sheep.interactwith(god){ god.receives(sheep.number); god.remembers(kunle, 'scorched container number'); }",
+"text": "The god leaves with a Sheep note with Kunle's name and 'scorched container number' on it.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "w7"
+},
+{
+"id": "wf_436ce8c1c9",
+"ts": "2026-11-17T13:37:24-0500",
+"a": "teo",
+"b": "tnw",
+"code": "teo.interactwith(tnw){ tnw.receives(teo.envelope); tnw.remembers(bisola, 'brown envelope'); }",
+"text": "The tnw leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
 }
 ],
 "memories": [
@@ -5886,5 +5910,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T13:30:05-0500"
+"updated": "2026-11-17T13:37:24-0500"
 }
