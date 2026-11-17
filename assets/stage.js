@@ -1415,7 +1415,16 @@
     '#gstage .gcut.gfx-slump{animation:gfxslump 1.8s ease-in-out 1}', '#gstage .gcut.gfx-quake{animation:gfxquake 1.2s linear 1}', '#gstage .gcut.gfx-dimfx{animation:gfxdimfx 1.8s ease-in-out 1}',
     '#gstage .gcut.gfx-shrinkfx{animation:gfxshrinkfx 1.5s ease-in-out 1}',
     '.grip{position:fixed;z-index:10045;transform:translateX(-50%);padding:.25vh .7vh;border-radius:.7vh;background:rgba(20,40,60,.9);color:#cfe9ff;font:600 max(11px,1.25vh) ui-monospace,Menlo,Consolas,monospace;white-space:nowrap;pointer-events:none;opacity:0;transition:opacity .4s}',
-    '.grip.on{opacity:1}', '#gmeth .gmi{width:100%;color:#9fd3ff;font-weight:400;font-size:.82em;padding:0 .3vh}',
+    '.grip.on{opacity:1}',
+    // Phase B (v529): recursion layers in the pop-up, pending-promise markers, a resolved flash, thrown exceptions in the menu
+    '#gtweet .grec{border-left:2px solid #6b8aa8;margin:.45vh 0 0 calc(var(--d,1) * .9vh);padding:.2vh 0 .2vh .7vh;font-size:.86em;color:#d8e6f2;background:rgba(40,60,80,.25);border-radius:0 .5vh .5vh 0}',
+    '#gtweet .grec b{font:600 .92em ui-monospace,Menlo,Consolas,monospace;color:#ffd76a}', '#gtweet .gtx{color:#ffb0a0;font-size:.82em;margin-top:.4vh}',
+    '@keyframes gpend{0%,100%{opacity:.25;scale:.9}50%{opacity:.7;scale:1.08}}', '@keyframes gpflash{0%{opacity:0;scale:.6}25%{opacity:1;scale:1.4}100%{opacity:0;scale:1}}',
+    '.gprom{position:fixed;z-index:10030;transform:translate(-50%,-50%);width:max(16px,2.2vh);height:max(16px,2.2vh);border-radius:50%;border:2px solid #b9a4ff;color:#d9ccff;font:700 max(10px,1.3vh)/max(14px,1.9vh) system-ui,sans-serif;text-align:center;pointer-events:none;animation:gpend 2.4s ease-in-out infinite}',
+    '.gprom.done{border-color:#9fe8a0;color:#9fe8a0;animation:gpflash 1.6s ease-out 1 forwards}',
+    '#gpromq{position:fixed;left:1vh;bottom:1vh;z-index:10030;max-width:min(60vw,420px);padding:.4vh .8vh;border-radius:.8vh;background:rgba(30,20,50,.55);color:#e2d8ff;font:500 max(11px,1.3vh)/1.3 system-ui,sans-serif;pointer-events:none;animation:gpend 3.2s ease-in-out infinite;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}',
+    '#gmeth .gmx{width:100%;color:#ffb0a0;font-weight:400;font-size:.82em;padding:0 .3vh}',
+    '@media (prefers-reduced-motion:reduce){.gprom,#gpromq{animation:none;opacity:.5}}', '#gmeth .gmi{width:100%;color:#9fd3ff;font-weight:400;font-size:.82em;padding:0 .3vh}',
     '@media (prefers-reduced-motion:reduce){#gstage .gcut[class*="gfx-"]{animation:none}}'].join('\n');
   document.head.appendChild(MCSS);
   const M = S.methods = {el: null, cut: null, sent: [], timer: 0};
@@ -1526,6 +1535,34 @@
     ls.forEach((x, n) => { const e = effectOf(method, classOf(x)); done.push({object: baseKey(x), fx: e.fx, cls: classOf(x)});
       setTimeout(()=>{ playGfx(x, e.fx); ripTag(x, 'because ' + because); }, 600 * (n + 1)); });
     return done; }
+  // ---------- promises / exceptions / recursion (Phase B, 17 Nov 2026): #thryd's promises.jsonl and exceptions.jsonl (thryd-db/story_*.py) are
+  // the only source of truth; data/promises.json and data/exceptions.json are read-only exports of them. A pending promise puts a faint pulsing
+  // "?" on the objects it names (and a quiet line bottom-left); when it resolves the marker flashes once. Open exceptions show in the tap menu.
+  // A function's earlier definitions (same method, then the same verb family, in older agendas) open as nested layers in its pop-up, depth 5.
+  const PR = S.story = {promises: [], exceptions: [], marks: new Map(), state: {}, at: 0};
+  function loadPR(){ ['promises', 'exceptions'].forEach(k => fetch('data/' + k + '.json?t=' + Date.now(), {cache: 'no-store'}).then(r => r.ok ? r.json() : null).then(d => {
+    if(!d || !Array.isArray(d[k])) return; PR[k] = d[k]; PR.at = Date.now(); if(k === 'promises') d[k].forEach(p => {
+      const was = PR.state[p.id]; PR.state[p.id] = p.status; if(was === 'pending' && p.status === 'resolved') PR.flash = (PR.flash || []).concat([p.id]); }); }).catch(()=>{})); }
+  loadPR(); setInterval(loadPR, 120000);
+  const promWords = p => (p.objects && p.objects.length ? p.objects : []).map(omKey);
+  function promisesFor(c, status){ const k = baseKey(c), run = (c.home || {}).run;
+    return PR.promises.filter(p => p.status === status && (!p.run || !run || !/^run-/.test(run) || p.run === run) && promWords(p).includes(k)); }
+  function exceptionsFor(c){ const k = baseKey(c); return PR.exceptions.filter(e => e.status !== 'resolved' && e.status !== 'caught' && ((e.objects || []).map(omKey).includes(k))); }
+  function paintPromises(){ const live = new Set(), flash = new Set(PR.flash || []); PR.flash = [];
+    S.cuts.forEach(c => { if(!c.el || !c.el.isConnected || c.leaving) return; const pend = promisesFor(c, 'pending'), done = PR.promises.filter(p => flash.has(p.id) && promWords(p).includes(baseKey(c)));
+      if(!pend.length && !done.length) return; live.add(c); let m = PR.marks.get(c);
+      if(!m){ m = document.createElement('div'); m.className = 'gprom'; m.textContent = '?'; document.body.appendChild(m); PR.marks.set(c, m); }
+      if(done.length){ m.classList.add('done'); m.textContent = '\u2713'; playGfx(c, 'know'); const mm = m; setTimeout(()=>{ mm.remove(); if(PR.marks.get(c) === mm) PR.marks.delete(c); }, 1700); }
+      m.title = pend.map(p => p.text).join(' \u00b7 '); const r = c.el.getBoundingClientRect();
+      m.style.left = (r.right - 4).toFixed(1) + 'px'; m.style.top = (r.top + 4).toFixed(1) + 'px'; });
+    PR.marks.forEach((m, c) => { if(!live.has(c) && !m.classList.contains('done')){ m.remove(); PR.marks.delete(c); } });
+    const pend = PR.promises.filter(p => p.status === 'pending'); let q = document.getElementById('gpromq');
+    if(!pend.length){ if(q) q.remove(); return; }
+    if(!q){ q = document.createElement('div'); q.id = 'gpromq'; document.body.appendChild(q); }
+    const last = pend[pend.length - 1]; q.textContent = '? ' + pend.length + ' pending \u00b7 ' + last.text + (last.job ? ' (' + last.job + ')' : ''); }
+  setInterval(paintPromises, 1000);
+  function priorOf(it){ return ((it.f && it.f.prior) || []).slice(0, 4).map(p => ({...p, f: OM.functions[p.id]})); }
+  S.promisesFor = promisesFor; S.exceptionsFor = exceptionsFor; S.priorOf = priorOf;
   S.classOf = classOf; S.effectOf = effectOf; S.listenersOf = listenersOf; S.ifacesOf = ifacesOf;
   let TW = null;
   function popTweet(c, it, tw){
@@ -1538,6 +1575,12 @@
     if(tw){ q.appendChild(document.createTextNode('\u00ab' + tw.text + '\u00bb ')); const y = document.createElement('span'); y.className = 'gty'; y.textContent = tw.year; q.appendChild(y); }
     else q.textContent = '(no archive tweet with a year for this title)';
     b.appendChild(q);
+    let host = b; priorOf(it).forEach((p, n) => { const L = document.createElement('div'); L.className = 'grec'; L.style.setProperty('--d', String(n ? 1 : 0));
+      const t = (p.f && (p.f.titles || []).find(x => x.title === p.title)) || null, tw0 = t && (t.tweets || [])[0];
+      const hd = document.createElement('b'); hd.textContent = '\u21b3 ' + p.title; L.appendChild(hd); L.appendChild(document.createTextNode(' \u00b7 ' + p.run + ' ' + p.job + ' \u00b7 ' + p.why));
+      if(tw0){ const q2 = document.createElement('div'); q2.appendChild(document.createTextNode('\u00ab' + tw0.text + '\u00bb ')); const y2 = document.createElement('span'); y2.className = 'gty'; y2.textContent = tw0.year; q2.appendChild(y2); L.appendChild(q2); }
+      host.appendChild(L); host = L; });
+    (it.catches || []).forEach(x => { const e = document.createElement('div'); e.className = 'gtx'; e.textContent = '\u26a0 caught: ' + x.text + (x.job ? ' (' + x.job + ')' : ''); b.appendChild(e); });
     if(it.t.consequence){ const n = document.createElement('div'); n.className = 'gtn'; n.textContent = (it.t.consequence_job ? it.t.consequence_job + ': ' : '') + it.t.consequence; b.appendChild(n); }
     document.body.appendChild(b); TW = b;
     const r = c.el && c.el.isConnected ? c.el.getBoundingClientRect() : {left: vw() / 2, width: 0, top: vh() / 2, bottom: vh() / 2};
@@ -1560,7 +1603,7 @@
     const rec = {code, body, status: 'sending', at: Date.now()}; M.sent.push(rec); if(M.sent.length > 40) M.sent.shift();
     // shown locally first, whatever the relay does
     const myCls = classOf(c), eff = effectOf(f.method, myCls); rec.effect = eff.fx; rec.effect_class = eff.by;
-    playGfx(c, eff.fx); popTweet(c, it, tw); rec.ripples = ripple(c, f.method, it.resolved || it.t.title); rec.resolved = it.resolved; rec.injected = inj; if(c.el && c.el.isConnected) tagAt(c, code);
+    it.catches = exceptionsFor(c).slice(0, 2); playGfx(c, eff.fx); popTweet(c, it, tw); rec.ripples = ripple(c, f.method, it.resolved || it.t.title); rec.resolved = it.resolved; rec.injected = inj; if(c.el && c.el.isConnected) tagAt(c, code);
     codeLine(it.resolved || code, 'tapped · ' + (it.scope === 'env' ? name + ' called it from ' + (it.env_scope === 'run' ? it.env_from : 'the safe') + ' · ' : '') + it.id + ' (first seated ' + ((f.defined || {}).run || '?') + ' ' + ((f.defined || {}).job || '') + ') · sending…'); note('func', code, eid);
     return sendCall(rec, code, eid);
   }
@@ -1579,6 +1622,7 @@
     const name = objName(c), box = document.createElement('div'); box.id = 'gmeth'; box.setAttribute('role', 'menu');
     const h = document.createElement('div'); h.className = 'gmh'; h.textContent = name + ' : ' + chainOf(classOf(c)).join(' : '); box.appendChild(h);
     const ifs = ifacesOf(c); if(ifs.length){ const ih = document.createElement('div'); ih.className = 'gmi'; ih.textContent = 'implements ' + ifs.join(', '); box.appendChild(ih); }
+    exceptionsFor(c).slice(0, 2).forEach(e => { const x = document.createElement('div'); x.className = 'gmx'; x.textContent = '\u26a0 throws: ' + e.text + (e.job ? ' (' + e.job + ')' : ''); box.appendChild(x); });
     const fns = funcsFor(c);
     fns.forEach(it => { const b = document.createElement('button'); b.type = 'button'; b.setAttribute('role', 'menuitem'); b.className = 'gfn';
       b.textContent = it.t.title + (it.t.emoji ? ' ' + it.t.emoji : ''); b.title = it.t.run + ' ' + it.t.job + (it.f.calls ? ' · called ' + it.f.calls + 'x since' : '');

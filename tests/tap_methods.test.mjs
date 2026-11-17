@@ -54,3 +54,14 @@ test('classes inherit from Thing, override verb effects, list interfaces, and ri
   assert.ok(cl.casts['run-5a58c4'].includes('teo') && cl.casts['run-5a58c4'].includes('calla'));
   for(const w of Object.keys(cl.instances)) assert.ok(!/sex|porn|nude|voyeur|daddy/i.test(w), w);
 });
+// Phase B (17 Nov 2026): recursion layers, #thryd's promises/exceptions as read-only exports
+test('pop-up nests earlier definitions (depth 5), pending promises pulse, exceptions show in the menu', () => {
+  const blk = src.slice(src.indexOf('// ---------- registry functions'), src.indexOf('S.fireMethod = fireMethod;'));
+  assert.ok(src.includes("fetch('data/' + k + '.json")); assert.match(blk, /\['promises', 'exceptions'\]/);
+  assert.match(blk, /slice\(0, 4\)\.map\(p => \(\{\.\.\.p, f: OM\.functions\[p\.id\]\}\)\)/); assert.match(blk, /host\.appendChild\(L\); host = L;/);
+  assert.match(blk, /'\\u26a0 throws: '/); assert.match(blk, /m\.className = 'gprom'/); assert.match(blk, /p\.status === 'resolved'\) PR\.flash/);
+  const om = JSON.parse(fs.readFileSync(new URL('../data/object_methods.json', import.meta.url), 'utf8'));
+  for(const f of Object.values(om.functions)) assert.ok(Array.isArray(f.prior) && f.prior.length <= 4);
+  assert.ok(om.functions['omo.fold'].prior.some(p => p.title === 'teo.fold(surgical)'));
+  for(const k of ['promises', 'exceptions']){ const d = JSON.parse(fs.readFileSync(new URL('../data/' + k + '.json', import.meta.url), 'utf8')); assert.ok(Array.isArray(d[k])); assert.match(d.note, /only source of truth/); }
+});
