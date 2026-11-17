@@ -1424,7 +1424,7 @@
     '.gprom{position:fixed;z-index:10030;transform:translate(-50%,-50%);width:max(16px,2.2vh);height:max(16px,2.2vh);border-radius:50%;border:2px solid #b9a4ff;color:#d9ccff;font:700 max(10px,1.3vh)/max(14px,1.9vh) system-ui,sans-serif;text-align:center;pointer-events:none;animation:gpend 2.4s ease-in-out infinite}',
     '.gprom.done{border-color:#9fe8a0;color:#9fe8a0;animation:gpflash 1.6s ease-out 1 forwards}',
     '#gpromq{position:fixed;left:1vh;bottom:1vh;z-index:10030;max-width:min(60vw,420px);padding:.4vh .8vh;border-radius:.8vh;background:rgba(30,20,50,.55);color:#e2d8ff;font:500 max(11px,1.3vh)/1.3 system-ui,sans-serif;pointer-events:none;animation:gpend 3.2s ease-in-out infinite;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}',
-    '#gmeth .gmx{width:100%;color:#ffb0a0;font-weight:400;font-size:.82em;padding:0 .3vh}',
+    '#gmeth .gmx{width:100%;color:#ffb0a0;font-weight:400;font-size:.82em;padding:0 .3vh}', '#gmeth .gmx.soft,#gtweet .gtx.soft{color:#b8b0d8;font-style:italic}',
     '@media (prefers-reduced-motion:reduce){.gprom,#gpromq{animation:none;opacity:.5}}', '#gmeth .gmi{width:100%;color:#9fd3ff;font-weight:400;font-size:.82em;padding:0 .3vh}',
     '@media (prefers-reduced-motion:reduce){#gstage .gcut[class*="gfx-"]{animation:none}}'].join('\n');
   document.head.appendChild(MCSS);
@@ -1548,6 +1548,7 @@
   const promWords = p => (p.objects && p.objects.length ? p.objects : []).map(omKey);
   function promisesFor(c, status){ const k = baseKey(c), run = (c.home || {}).run;
     return PR.promises.filter(p => p.status === status && (!p.run || !run || !/^run-/.test(run) || p.run === run) && promWords(p).includes(k)); }
+  const isSoft = e => String((e && e.kind) || '').toLowerCase() === 'genre_mismatch';
   function exceptionsFor(c){ const k = baseKey(c); return PR.exceptions.filter(e => e.status !== 'resolved' && e.status !== 'caught' && ((e.objects || []).map(omKey).includes(k))); }
   function paintPromises(){ const live = new Set(), flash = new Set(PR.flash || []); PR.flash = [];
     S.cuts.forEach(c => { if(!c.el || !c.el.isConnected || c.leaving) return; const pend = promisesFor(c, 'pending'), done = PR.promises.filter(p => flash.has(p.id) && promWords(p).includes(baseKey(c)));
@@ -1589,7 +1590,8 @@
       const hd = document.createElement('b'); hd.textContent = '\u21b3 ' + p.title; L.appendChild(hd); L.appendChild(document.createTextNode(' \u00b7 ' + p.run + ' ' + p.job + ' \u00b7 ' + p.why));
       if(tw0){ const q2 = document.createElement('div'); q2.appendChild(document.createTextNode('\u00ab' + tw0.text + '\u00bb ')); const y2 = document.createElement('span'); y2.className = 'gty'; y2.textContent = tw0.year; q2.appendChild(y2); L.appendChild(q2); }
       host.appendChild(L); host = L; });
-    (it.catches || []).forEach(x => { const e = document.createElement('div'); e.className = 'gtx'; e.textContent = '\u26a0 caught: ' + x.text + (x.job ? ' (' + x.job + ')' : ''); b.appendChild(e); });
+    (it.catches || []).forEach(x => { const e = document.createElement('div'), soft = isSoft(x); e.className = 'gtx' + (soft ? ' soft' : '');
+      e.textContent = (soft ? '\u21af bends the scene: ' : '\u26a0 caught: ') + x.text + (x.job ? ' (' + x.job + ')' : ''); b.appendChild(e); });
     if(it.t.consequence){ const n = document.createElement('div'); n.className = 'gtn'; n.textContent = (it.t.consequence_job ? it.t.consequence_job + ': ' : '') + it.t.consequence; b.appendChild(n); }
     document.body.appendChild(b); TW = b;
     const r = c.el && c.el.isConnected ? c.el.getBoundingClientRect() : {left: vw() / 2, width: 0, top: vh() / 2, bottom: vh() / 2};
@@ -1633,7 +1635,9 @@
     const h = document.createElement('div'); h.className = 'gmh'; h.textContent = name + ' : ' + chainOf(classOf(c)).join(' : '); box.appendChild(h);
     const cm = commitFor(c); if(cm){ const v = document.createElement('div'); v.className = 'gmvc'; v.textContent = cm.id + ' \u00b7 ' + cm.branch + ' ' + cm.job + (cm.beat ? ' \u00b7 ' + cm.beat : '') + ' \u00b7 +' + (cm.diff || {}).facts_total + ' facts'; box.appendChild(v); }
     const ifs = ifacesOf(c); if(ifs.length){ const ih = document.createElement('div'); ih.className = 'gmi'; ih.textContent = 'implements ' + ifs.join(', '); box.appendChild(ih); }
-    exceptionsFor(c).slice(0, 2).forEach(e => { const x = document.createElement('div'); x.className = 'gmx'; x.textContent = '\u26a0 throws: ' + e.text + (e.job ? ' (' + e.job + ')' : ''); box.appendChild(x); });
+    // by kind (17 Nov 2026 1:25 PM ET): #thryd's soft genre_mismatch is a twist, never a block; any other kind (or none) stays a hard throw
+    exceptionsFor(c).slice(0, 2).forEach(e => { const x = document.createElement('div'), soft = isSoft(e); x.className = 'gmx' + (soft ? ' soft' : '');
+      x.textContent = (soft ? '\u21af twist: ' : '\u26a0 throws: ') + e.text + (e.job ? ' (' + e.job + ')' : ''); box.appendChild(x); });
     const fns = funcsFor(c);
     fns.forEach(it => { const b = document.createElement('button'); b.type = 'button'; b.setAttribute('role', 'menuitem'); b.className = 'gfn';
       b.textContent = it.t.title + (it.t.emoji ? ' ' + it.t.emoji : ''); b.title = it.t.run + ' ' + it.t.job + (it.f.calls ? ' · called ' + it.f.calls + 'x since' : '');

@@ -75,3 +75,8 @@ test('world_log commits per pick, faded functions dim and revive on a call, queu
   const om = JSON.parse(fs.readFileSync(new URL('../data/object_methods.json', import.meta.url), 'utf8'));
   assert.ok(Object.values(om.functions).some(f => f.faded) && Object.values(om.functions).some(f => !f.faded)); assert.equal(om.gc.n, 2);
 });
+test('exceptions render by kind: genre_mismatch is a soft twist, anything else a hard throw', () => {
+  const blk = src.slice(src.indexOf('// ---------- registry functions'), src.indexOf('S.fireMethod = fireMethod;'));
+  assert.match(blk, /const isSoft = e => String\(\(e && e\.kind\) \|\| ''\)\.toLowerCase\(\) === 'genre_mismatch'/);
+  assert.match(blk, /'\\u21af twist: ' : '\\u26a0 throws: '/); assert.match(blk, /'\\u21af bends the scene: ' : '\\u26a0 caught: '/);
+});
