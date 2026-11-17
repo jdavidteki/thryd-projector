@@ -4613,20 +4613,21 @@
 "card": "j2",
 "other": "dez"
 }
+],
+"marker_c": [
+{
+"id": "wf_6ad728845c",
+"kind": "consequence",
+"text": "The marker c leaves with a Laptop note with Ejiro's name and 'rain-stained receipt' on it, 8:05am.",
+"code": "laptop.interactwith(marker_c){ marker_c.receives(laptop.receipt); marker_c.remembers(ejiro, 'rain-stained receipt'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "w5",
+"other": "laptop"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_b6c90274d8",
-"ts": "2026-11-17T00:05:27-0500",
-"a": "matches",
-"b": "tie",
-"code": "matches.interactwith(tie){ tie.receives(matches.envelope); tie.remembers(bisola, 'brown envelope'); tie.tucks(matches, 'yaba bookshop receipt into the brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the tie, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
 {
 "id": "wf_5a03bdc1dc",
 "ts": "2026-11-17T00:07:03-0500",
@@ -5055,6 +5056,17 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": "j2"
+},
+{
+"id": "wf_6ad728845c",
+"ts": "2026-11-17T10:46:59-0500",
+"a": "laptop",
+"b": "marker_c",
+"code": "laptop.interactwith(marker_c){ marker_c.receives(laptop.receipt); marker_c.remembers(ejiro, 'rain-stained receipt'); }",
+"text": "The marker c leaves with a Laptop note with Ejiro's name and 'rain-stained receipt' on it, 8:05am.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "w5"
 }
 ],
 "memories": [
@@ -5158,5 +5170,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T10:41:45-0500"
+"updated": "2026-11-17T10:46:59-0500"
 }
