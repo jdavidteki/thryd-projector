@@ -4692,6 +4692,16 @@
 "run": "run-5a58c4",
 "card": "j2",
 "other": "dez"
+},
+{
+"id": "wf_dcf74ade9e",
+"kind": "consequence",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the top deck charter, and Bisola reads the name twice.",
+"code": "marker_b.interactwith(top_deck_charter){ top_deck_charter.receives(marker_b.code); … }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j2",
+"other": "marker_b"
 }
 ],
 "fire_escape_outside": [
@@ -4968,6 +4978,16 @@
 "run": "run-5a58c4",
 "card": "j29",
 "other": null
+},
+{
+"id": "wf_744beebf62",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up beside the phone at the miami.",
+"code": "teo.interactwith(miami){ miami.receives(teo.envelope); miami.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "teo"
 }
 ],
 "teo": [
@@ -4981,64 +5001,45 @@
 "card": "j6",
 "other": "top_deck_charter"
 }
+],
+"thoughts_marisol": [
+{
+"id": "wf_6d82e828cd",
+"kind": "consequence",
+"text": "The thoughts marisol leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "teo.interactwith(thoughts_marisol){ thoughts_marisol.receives(teo.envelope); thoughts_marisol.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "teo"
+}
+],
+"scam_likey": [
+{
+"id": "wf_5a103a1e0e",
+"kind": "consequence",
+"text": "The scam likey leaves with a Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it.",
+"code": "dapo.interactwith(scam_likey){ scam_likey.receives(dapo.bead); scam_likey.remembers(bisola, 'blue glass bead'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j5",
+"other": "dapo"
+}
+],
+"actual_end_boredom": [
+{
+"id": "wf_9cf610671c",
+"kind": "consequence",
+"text": "The actual end boredom leaves with a Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it.",
+"code": "inside_odunlade_brain.interactwith(actual_end_boredom){ actual_end_boredom.receives(inside_odunlade_brain.bead); … }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j5",
+"other": "inside_odunlade_brain"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_37af7dd9f5",
-"ts": "2026-11-17T10:26:19-0500",
-"a": "bow",
-"b": "ats",
-"code": "bow.interactwith(ats){ ats.receives(bow.envelope); ats.remembers(bisola, 'brown envelope'); ats.tucks(bow, 'yaba bookshop receipt into the brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the ats, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
-{
-"id": "wf_2e1bf8e51e",
-"ts": "2026-11-17T10:29:19-0500",
-"a": "brown_envelope",
-"b": "family_compound_ikorodu",
-"code": "family_compound_ikorodu.find('brown envelope').add('last page of the will'); family_compound_ikorodu.remembers(bisola, 'last page of the will');",
-"text": "After the burial, the last page of the will, the one that only says 'own choices, live with it', ends up folded inside Bisola's brown envelope at the Ikorodu family compound.",
-"author": "cos",
-"run": "run-bd649b",
-"card": "j11"
-},
-{
-"id": "wf_7931f07a6c",
-"ts": "2026-11-17T10:29:19-0500",
-"a": "danfo_stuck_third",
-"b": "cell_phone",
-"code": "danfo_stuck_third.interactwith(cell_phone){ cell_phone.receives(danfo_stuck_third, 'dead stop chalked on route board'); … }",
-"text": "On the Third Mainland Bridge, Bisola's phone at ten percent picks up the danfo's memory of Kunle's dead stop chalked on the route board, so it is the last thing she reads before the screen dies.",
-"author": "cos",
-"run": "run-9e59ca",
-"card": "j4"
-},
-{
-"id": "wf_12d8e471b2",
-"ts": "2026-11-17T10:29:19-0500",
-"a": "family_compound_ikorodu",
-"b": "agbada",
-"code": "agbada.interactwith(family_compound_ikorodu){ agbada.state('worn to the ikorodu burial'); agbada.remembers(titi, 'second will from her gele'); }",
-"text": "The agbada worn to the Ikorodu burial remembers the moment Titi pulled a second will out of her gele, next to the egbe note it already carried for her.",
-"author": "cos",
-"run": "run-bd649b",
-"card": "j2"
-},
-{
-"id": "wf_e69271aa8e",
-"ts": "2026-11-17T10:41:45-0500",
-"a": "dez",
-"b": "texts_marisol",
-"code": "dez.interactwith(texts_marisol){ texts_marisol.receives(dez.code); texts_marisol.remembers(ejiro, 'juju code'); }",
-"text": "The texts marisol leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j2"
-},
 {
 "id": "wf_6ad728845c",
 "ts": "2026-11-17T10:46:59-0500",
@@ -5423,6 +5424,61 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": "j2"
+},
+{
+"id": "wf_dcf74ade9e",
+"ts": "2026-11-17T12:47:30-0500",
+"a": "marker_b",
+"b": "top_deck_charter",
+"code": "marker_b.interactwith(top_deck_charter){ top_deck_charter.receives(marker_b.code); … }",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the top deck charter, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j2"
+},
+{
+"id": "wf_744beebf62",
+"ts": "2026-11-17T12:48:41-0500",
+"a": "teo",
+"b": "miami",
+"code": "teo.interactwith(miami){ miami.receives(teo.envelope); miami.remembers(bisola, 'brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up beside the phone at the miami.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
+},
+{
+"id": "wf_6d82e828cd",
+"ts": "2026-11-17T12:49:59-0500",
+"a": "teo",
+"b": "thoughts_marisol",
+"code": "teo.interactwith(thoughts_marisol){ thoughts_marisol.receives(teo.envelope); thoughts_marisol.remembers(bisola, 'brown envelope'); }",
+"text": "The thoughts marisol leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
+},
+{
+"id": "wf_5a103a1e0e",
+"ts": "2026-11-17T12:51:14-0500",
+"a": "dapo",
+"b": "scam_likey",
+"code": "dapo.interactwith(scam_likey){ scam_likey.receives(dapo.bead); scam_likey.remembers(bisola, 'blue glass bead'); }",
+"text": "The scam likey leaves with a Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j5"
+},
+{
+"id": "wf_9cf610671c",
+"ts": "2026-11-17T12:52:25-0500",
+"a": "inside_odunlade_brain",
+"b": "actual_end_boredom",
+"code": "inside_odunlade_brain.interactwith(actual_end_boredom){ actual_end_boredom.receives(inside_odunlade_brain.bead); … }",
+"text": "The actual end boredom leaves with a Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j5"
 }
 ],
 "memories": [
@@ -5526,5 +5582,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T12:46:13-0500"
+"updated": "2026-11-17T12:52:25-0500"
 }
