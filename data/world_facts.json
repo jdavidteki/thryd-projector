@@ -1844,16 +1844,6 @@
 ],
 "bird": [
 {
-"id": "wf_82d230ae01",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bird, and Bisola reads the name twice.",
-"code": "bow.interactwith(bird){ bird.receives(bow.envelope); bird.remembers(bisola, 'brown envelope'); bird.tucks(bow, 'yaba bookshop receipt into the brown envelope'); }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "bow"
-},
-{
 "id": "wf_2ea17fcdf9",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bird, and Bisola reads the name twice.",
@@ -1892,6 +1882,16 @@
 "run": "run-0bd7c0",
 "card": "j7",
 "other": "kerosene_lamp"
+},
+{
+"id": "wt_1f121a1d31",
+"kind": "consequence",
+"text": "The bird tears a corner off the brown envelope at marker b and flies off with the edge of the 7:40am receipt.",
+"code": "marker_b.interactwith(bird){ bird.receives(marker_b.envelope); bird.carries(marker_b, 'torn envelope corner'); marker_b.state('torn'); }",
+"author": "thryd",
+"run": "run-5a58c4",
+"card": "j7",
+"other": "marker_b"
 }
 ],
 "agenda_scene": [
@@ -1994,16 +1994,6 @@
 ],
 "laptop": [
 {
-"id": "wf_02a063e129",
-"kind": "consequence",
-"text": "A Morir note with Kunle's name and 'container number' on it, turns up inside the rain-stained receipt at the laptop, and Ejiro reads the name twice.",
-"code": "morir.interactwith(laptop){ laptop.receives(morir.number); laptop.remembers(kunle, 'container number'); laptop.tucks(morir, 'morir note into the rain-stained receipt'); }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "w7",
-"other": "morir"
-},
-{
 "id": "wf_da07080f49",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the rain-stained receipt at the laptop, and Ejiro reads the name twice.",
@@ -2042,6 +2032,16 @@
 "run": "run-0bd7c0",
 "card": "w5",
 "other": "plastic_sheet"
+},
+{
+"id": "wt_283850fe16",
+"kind": "consequence",
+"text": "The plot leaves Taiwo's lamp soot smudged across the laptop trackpad, so every file Ejiro opens next carries a grey thumbprint.",
+"code": "plot.interactwith(laptop){ laptop.receives(plot.soot); laptop.remembers(taiwo, 'lamp soot'); laptop.smudges(plot, 'grey thumbprint on the trackpad'); }",
+"author": "thryd",
+"run": "run-5a58c4",
+"card": "j7",
+"other": "plot"
 }
 ],
 "game": [
@@ -5110,6 +5110,16 @@
 "run": "run-5a58c4",
 "card": "j6",
 "other": "top_deck_charter"
+},
+{
+"id": "wt_183d3cde12",
+"kind": "consequence",
+"text": "Teo finds Bisola's 7:40am bookshop receipt folded into the dress hem and pockets it before Marisol notices the crease.",
+"code": "dress_marisol.interactwith(teo){ teo.receives(dress_marisol.envelope); teo.find('jacket pocket').add('folded receipt'); dress_marisol.state('creased'); }",
+"author": "thryd",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "dress_marisol"
 }
 ],
 "thoughts_marisol": [
@@ -5320,6 +5330,16 @@
 "run": "run-5a58c4",
 "card": "w",
 "other": "love"
+},
+{
+"id": "wf_824f8a91cc",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the hard, and Bisola reads the name twice.",
+"code": "health_marisol.interactwith(hard){ hard.receives(health_marisol.envelope); … }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "health_marisol"
 }
 ],
 "energy_conversion": [
@@ -5452,6 +5472,16 @@
 "run": "run-5a58c4",
 "card": "j6",
 "other": "tbp"
+},
+{
+"id": "wf_1bf87ddaf1",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the jetty south pointe, and Bisola reads the name twice.",
+"code": "health_marisol.interactwith(jetty_south_pointe){ jetty_south_pointe.receives(health_marisol.envelope); … }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "health_marisol"
 }
 ],
 "plot": [
@@ -5480,61 +5510,6 @@
 ]
 },
 "consequences": [
-{
-"id": "wf_d34247aaae",
-"ts": "2026-11-17T12:34:37-0500",
-"a": "marker_c",
-"b": "water",
-"code": "marker_c.interactwith(water){ water.receives(marker_c.code); water.remembers(ejiro, 'juju code'); }",
-"text": "The water leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j2"
-},
-{
-"id": "wf_152ac5f930",
-"ts": "2026-11-17T12:40:58-0500",
-"a": "top_deck_charter",
-"b": "teo",
-"code": "top_deck_charter.interactwith(teo){ teo.receives(top_deck_charter.envelope); teo.remembers(bisola, 'brown envelope'); }",
-"text": "The teo leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
-"id": "wf_b2aca10c9c",
-"ts": "2026-11-17T12:46:13-0500",
-"a": "marker_c",
-"b": "house",
-"code": "marker_c.interactwith(house){ house.receives(marker_c.code); house.remembers(ejiro, 'juju code'); house.tucks(marker_c, 'ttb note into the juju code'); }",
-"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the juju code at the house, and Ejiro reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j2"
-},
-{
-"id": "wf_dcf74ade9e",
-"ts": "2026-11-17T12:47:30-0500",
-"a": "marker_b",
-"b": "top_deck_charter",
-"code": "marker_b.interactwith(top_deck_charter){ top_deck_charter.receives(marker_b.code); … }",
-"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the top deck charter, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j2"
-},
-{
-"id": "wf_744beebf62",
-"ts": "2026-11-17T12:48:41-0500",
-"a": "teo",
-"b": "miami",
-"code": "teo.interactwith(miami){ miami.receives(teo.envelope); miami.remembers(bisola, 'brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up beside the phone at the miami.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
 {
 "id": "wf_6d82e828cd",
 "ts": "2026-11-17T12:49:59-0500",
@@ -5919,6 +5894,61 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": ""
+},
+{
+"id": "wf_1bf87ddaf1",
+"ts": "2026-11-17T14:51:08-0500",
+"a": "health_marisol",
+"b": "jetty_south_pointe",
+"code": "health_marisol.interactwith(jetty_south_pointe){ jetty_south_pointe.receives(health_marisol.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the jetty south pointe, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
+},
+{
+"id": "wf_824f8a91cc",
+"ts": "2026-11-17T14:52:00-0500",
+"a": "health_marisol",
+"b": "hard",
+"code": "health_marisol.interactwith(hard){ hard.receives(health_marisol.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the hard, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
+},
+{
+"id": "wt_183d3cde12",
+"ts": "2026-11-17T14:55:23-0500",
+"a": "dress_marisol",
+"b": "teo",
+"code": "dress_marisol.interactwith(teo){ teo.receives(dress_marisol.envelope); teo.find('jacket pocket').add('folded receipt'); dress_marisol.state('creased'); }",
+"text": "Teo finds Bisola's 7:40am bookshop receipt folded into the dress hem and pockets it before Marisol notices the crease.",
+"author": "thryd",
+"run": "run-5a58c4",
+"card": "j6"
+},
+{
+"id": "wt_283850fe16",
+"ts": "2026-11-17T14:55:23-0500",
+"a": "plot",
+"b": "laptop",
+"code": "plot.interactwith(laptop){ laptop.receives(plot.soot); laptop.remembers(taiwo, 'lamp soot'); laptop.smudges(plot, 'grey thumbprint on the trackpad'); }",
+"text": "The plot leaves Taiwo's lamp soot smudged across the laptop trackpad, so every file Ejiro opens next carries a grey thumbprint.",
+"author": "thryd",
+"run": "run-5a58c4",
+"card": "j7"
+},
+{
+"id": "wt_1f121a1d31",
+"ts": "2026-11-17T14:55:23-0500",
+"a": "marker_b",
+"b": "bird",
+"code": "marker_b.interactwith(bird){ bird.receives(marker_b.envelope); bird.carries(marker_b, 'torn envelope corner'); marker_b.state('torn'); }",
+"text": "The bird tears a corner off the brown envelope at marker b and flies off with the edge of the 7:40am receipt.",
+"author": "thryd",
+"run": "run-5a58c4",
+"card": "j7"
 }
 ],
 "memories": [
@@ -6022,5 +6052,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T14:50:16-0500"
+"updated": "2026-11-17T14:56:02-0500"
 }

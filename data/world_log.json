@@ -4713,7 +4713,7 @@
   },
   "run-5a58c4": {
    "forked_from": "safe:f81f21521253",
-   "head": "bf65ac471b",
+   "head": "d6c61ad62b",
    "commits": [
     {
      "id": "e1804f099d",
@@ -5060,7 +5060,7 @@
      }
     },
     {
-     "id": "fb0172bbe6",
+     "id": "2efcce20b8",
      "parent": "5c84cde56f",
      "branch": "run-5a58c4",
      "job": "j6",
@@ -5340,16 +5340,32 @@
         "code": "health_marisol.interactwith(jetty_south_pointe){ jetty_south_pointe.receives(health_marisol.envelope); jetty_south_pointe.remembers(bisola,",
         "scope": null,
         "cause_id": null
+       },
+       {
+        "id": "wf_824f8a91cc",
+        "object": "hard",
+        "kind": "consequence",
+        "code": "health_marisol.interactwith(hard){ hard.receives(health_marisol.envelope); hard.remembers(bisola, 'brown envelope'); hard.tucks(health_maris",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_183d3cde12",
+        "object": "teo",
+        "kind": "consequence",
+        "code": "dress_marisol.interactwith(teo){ teo.receives(dress_marisol.envelope); teo.find('jacket pocket').add('folded receipt'); dress_marisol.state(",
+        "scope": null,
+        "cause_id": null
        }
       ],
-      "facts_total": 34,
+      "facts_total": 36,
       "functions": [],
       "instances": []
      }
     },
     {
-     "id": "fef2531c47",
-     "parent": "fb0172bbe6",
+     "id": "9b99ea28fb",
+     "parent": "2efcce20b8",
      "branch": "run-5a58c4",
      "job": "j7",
      "at": "2026-11-17T11:01:50-0500",
@@ -5396,16 +5412,32 @@
         "code": "bird.interactwith(plot){ plot.receives(bird.soot); plot.remembers(taiwo, 'lamp soot'); }",
         "scope": null,
         "cause_id": null
+       },
+       {
+        "id": "wt_283850fe16",
+        "object": "laptop",
+        "kind": "consequence",
+        "code": "plot.interactwith(laptop){ laptop.receives(plot.soot); laptop.remembers(taiwo, 'lamp soot'); laptop.smudges(plot, 'grey thumbprint on the tr",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_1f121a1d31",
+        "object": "bird",
+        "kind": "consequence",
+        "code": "marker_b.interactwith(bird){ bird.receives(marker_b.envelope); bird.carries(marker_b, 'torn envelope corner'); marker_b.state('torn'); }",
+        "scope": null,
+        "cause_id": null
        }
       ],
-      "facts_total": 5,
+      "facts_total": 7,
       "functions": [],
       "instances": []
      }
     },
     {
-     "id": "5cebfddb33",
-     "parent": "fef2531c47",
+     "id": "6871b91ba3",
+     "parent": "9b99ea28fb",
      "branch": "run-5a58c4",
      "job": "j22",
      "at": "2026-11-16T23:37:14-05:00",
@@ -5439,8 +5471,8 @@
      }
     },
     {
-     "id": "471c1ff73c",
-     "parent": "5cebfddb33",
+     "id": "e9f064b015",
+     "parent": "6871b91ba3",
      "branch": "run-5a58c4",
      "job": "j23",
      "at": "2026-11-16T23:50:03-05:00",
@@ -5474,8 +5506,8 @@
      }
     },
     {
-     "id": "c0d1fc04b3",
-     "parent": "471c1ff73c",
+     "id": "a843c5e1fc",
+     "parent": "e9f064b015",
      "branch": "run-5a58c4",
      "job": "j24",
      "at": "2026-11-17T00:02:09-05:00",
@@ -5533,8 +5565,8 @@
      }
     },
     {
-     "id": "e206c1072f",
-     "parent": "c0d1fc04b3",
+     "id": "67df1d879c",
+     "parent": "a843c5e1fc",
      "branch": "run-5a58c4",
      "job": "j25",
      "at": "2026-11-17T10:35:56-05:00",
@@ -5610,8 +5642,8 @@
      }
     },
     {
-     "id": "b44da7a721",
-     "parent": "e206c1072f",
+     "id": "ed873eb09d",
+     "parent": "67df1d879c",
      "branch": "run-5a58c4",
      "job": "j26",
      "at": "2026-11-17T11:07:01-05:00",
@@ -5645,8 +5677,8 @@
      }
     },
     {
-     "id": "ada2b1cfdf",
-     "parent": "b44da7a721",
+     "id": "3120f6ced9",
+     "parent": "ed873eb09d",
      "branch": "run-5a58c4",
      "job": "j27",
      "at": "2026-11-17T11:22:49-05:00",
@@ -5680,8 +5712,8 @@
      }
     },
     {
-     "id": "33f33f3760",
-     "parent": "ada2b1cfdf",
+     "id": "b58484a450",
+     "parent": "3120f6ced9",
      "branch": "run-5a58c4",
      "job": "j28",
      "at": "2026-11-17T12:06:03-05:00",
@@ -5706,8 +5738,8 @@
      }
     },
     {
-     "id": "63cb7d845e",
-     "parent": "33f33f3760",
+     "id": "ee864495ad",
+     "parent": "b58484a450",
      "branch": "run-5a58c4",
      "job": "j29",
      "at": "2026-11-17T12:30:30-05:00",
@@ -5757,8 +5789,8 @@
      }
     },
     {
-     "id": "bf65ac471b",
-     "parent": "63cb7d845e",
+     "id": "d6c61ad62b",
+     "parent": "ee864495ad",
      "branch": "run-5a58c4",
      "job": "j30",
      "at": "2026-11-17T14:49:47-05:00",
@@ -6185,9 +6217,9 @@
   "run-fa5946": "564dd5acda",
   "run-bd649b": "8ed6c18a56",
   "run-9e59ca": "59f544b8d8",
-  "run-5a58c4": "bf65ac471b",
+  "run-5a58c4": "d6c61ad62b",
   "run-cb805f": "62238e387d"
  },
  "commits": 63,
- "updated": "2026-11-17T14:51:09-05:00"
+ "updated": "2026-11-17T14:56:03-05:00"
 }
