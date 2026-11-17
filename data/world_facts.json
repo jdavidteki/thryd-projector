@@ -766,16 +766,6 @@
 ],
 "pure_water_cooler": [
 {
-"id": "wf_06b90689cd",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the pure water cooler, and Bisola reads the name twice.",
-"code": "matches.interactwith(pure_water_cooler){ pure_water_cooler.receives(matches.envelope); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "matches"
-},
-{
 "id": "wf_b396cfd396",
 "kind": "consequence",
 "text": "A Red white cap note with Taiwo's name and 'egbe note' on it, 11:20pm, turns up inside the container number at the pure water cooler, and Kunle reads the name twice.",
@@ -804,6 +794,16 @@
 "run": "run-0bd7c0",
 "card": "w6",
 "other": "danfo_speaker"
+},
+{
+"id": "wf_df8f1b71b1",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it, turns up with the pure-water cooler, which is still carried home through the flood.",
+"code": "dapo.interactwith(pure_water_cooler){ pure_water_cooler.receives(dapo.bead); pure_water_cooler.remembers(bisola, 'blue glass bead'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j5",
+"other": "dapo"
 },
 {
 "id": "wt_61e16c7796",
@@ -3388,6 +3388,16 @@
 "run": "run-b9b963",
 "card": "j5",
 "other": "yaba_bookshop"
+},
+{
+"id": "wf_54e9b2476b",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the blue glass bead at the dapo, and Bisola reads the name twice.",
+"code": "marisol.interactwith(dapo){ dapo.receives(marisol.envelope); … }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "marisol"
 }
 ],
 "might_rich_but": [
@@ -5172,6 +5182,16 @@
 "other": "top_deck_charter"
 },
 {
+"id": "wf_363939a52f",
+"kind": "consequence",
+"text": "A Cassette spine note with Kunle's name and 'pharmacy stamp' on it, turns up inside the folded receipt at the teo, and Bisola reads the name twice.",
+"code": "cassette_spine.interactwith(teo){ teo.receives(cassette_spine.stamp); … }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j8",
+"other": "cassette_spine"
+},
+{
 "id": "wt_183d3cde12",
 "kind": "consequence",
 "text": "Teo finds Bisola's 7:40am bookshop receipt folded into the dress hem and pockets it before Marisol notices the crease.",
@@ -5579,64 +5599,33 @@
 "card": "j29",
 "other": "miami"
 }
+],
+"famz": [
+{
+"id": "wf_d3aa41c77a",
+"kind": "consequence",
+"text": "The famz leaves with a Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it.",
+"code": "cleacky.interactwith(famz){ famz.receives(cleacky.bead); famz.remembers(bisola, 'blue glass bead'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j5",
+"other": "cleacky"
+}
+],
+"koko": [
+{
+"id": "wf_95c43d8f38",
+"kind": "consequence",
+"text": "The pure-water cooler ends up with the koko, still carried home through the flood.",
+"code": "pure_water_cooler.interactwith(koko){ pure_water_cooler.db.copyto(koko); koko.keeps(pure_water_cooler, 'pure-water cooler, still carried home through the flood'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "w1",
+"other": "pure_water_cooler"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_0e5a71195f",
-"ts": "2026-11-17T13:08:42-0500",
-"a": "bus",
-"b": "teomarisollove",
-"code": "bus.interactwith(teomarisollove){ teomarisollove.receives(bus.envelope); teomarisollove.remembers(bisola, 'brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the teomarisollove, which is still in love, said out loud by Marisol (w14 causeway).",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
-"id": "wf_50b532b6d8",
-"ts": "2026-11-17T13:09:31-0500",
-"a": "people_scene",
-"b": "energy_conversion",
-"code": "people_scene.interactwith(energy_conversion){ energy_conversion.receives(people_scene.envelope); energy_conversion.remembers(bisola, 'brown envelope'); }",
-"text": "The energy conversion leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
-"id": "wf_ffc7719134",
-"ts": "2026-11-17T13:10:23-0500",
-"a": "chair",
-"b": "kunle_afolayon_been",
-"code": "chair.interactwith(kunle_afolayon_been){ kunle_afolayon_been.receives(chair.pm); kunle_afolayon_been.remembers(taiwo, '11:20pm'); }",
-"text": "The kunle afolayon been leaves with a Chair note with Taiwo's name and '11:20pm' on it.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "w6"
-},
-{
-"id": "wf_83a77d4081",
-"ts": "2026-11-17T13:12:49-0500",
-"a": "bowl",
-"b": "daichi_kaneshiro",
-"code": "bowl.interactwith(daichi_kaneshiro){ daichi_kaneshiro.receives(bowl.envelope); daichi_kaneshiro.remembers(bisola, 'brown envelope'); }",
-"text": "The daichi kaneshiro leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
-"id": "wf_badbc0a0f3",
-"ts": "2026-11-17T13:15:15-0500",
-"a": "house",
-"b": "bus",
-"code": "house.interactwith(bus){ bus.receives(house.code); bus.remembers(ejiro, 'juju code'); bus.tucks(house, 'ttb note into the brown envelope'); }",
-"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the bus, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j2"
-},
 {
 "id": "wf_d613a31122",
 "ts": "2026-11-17T13:16:08-0500",
@@ -6021,6 +6010,61 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": "j2"
+},
+{
+"id": "wf_df8f1b71b1",
+"ts": "2026-11-17T15:12:44-0500",
+"a": "dapo",
+"b": "pure_water_cooler",
+"code": "dapo.interactwith(pure_water_cooler){ pure_water_cooler.receives(dapo.bead); pure_water_cooler.remembers(bisola, 'blue glass bead'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it, turns up with the pure-water cooler, which is still carried home through the flood.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j5"
+},
+{
+"id": "wf_54e9b2476b",
+"ts": "2026-11-17T15:13:37-0500",
+"a": "marisol",
+"b": "dapo",
+"code": "marisol.interactwith(dapo){ dapo.receives(marisol.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the blue glass bead at the dapo, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
+},
+{
+"id": "wf_363939a52f",
+"ts": "2026-11-17T15:14:25-0500",
+"a": "cassette_spine",
+"b": "teo",
+"code": "cassette_spine.interactwith(teo){ teo.receives(cassette_spine.stamp); … }",
+"text": "A Cassette spine note with Kunle's name and 'pharmacy stamp' on it, turns up inside the folded receipt at the teo, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j8"
+},
+{
+"id": "wf_d3aa41c77a",
+"ts": "2026-11-17T15:15:14-0500",
+"a": "cleacky",
+"b": "famz",
+"code": "cleacky.interactwith(famz){ famz.receives(cleacky.bead); famz.remembers(bisola, 'blue glass bead'); }",
+"text": "The famz leaves with a Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j5"
+},
+{
+"id": "wf_95c43d8f38",
+"ts": "2026-11-17T15:16:04-0500",
+"a": "pure_water_cooler",
+"b": "koko",
+"code": "pure_water_cooler.interactwith(koko){ pure_water_cooler.db.copyto(koko); koko.keeps(pure_water_cooler, 'pure-water cooler, still carried home through the flood'); }",
+"text": "The pure-water cooler ends up with the koko, still carried home through the flood.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "w1"
 }
 ],
 "memories": [
@@ -6124,5 +6168,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T15:11:52-0500"
+"updated": "2026-11-17T15:16:04-0500"
 }
