@@ -19,6 +19,62 @@
     }catch(e){ return false; }
   }
 
+  // One shared rAF loop: schedule the next frame FIRST so a throw inside
+  // tick cannot kill the animation, plus a 1s watchdog that restarts it.
+  var _loop = { raf: 0, last: 0, tick: null, watch: 0, busy: false };
+
+  function _wrapped(now){
+    _loop.raf = requestAnimationFrame(_wrapped);
+    if(_loop.busy) return;
+    _loop.busy = true;
+    _loop.last = performance.now();
+    try{
+      if(_loop.tick) _loop.tick(now);
+    }catch(e){
+      try{ console.warn('stretchy_bg tick', e); }catch(_){}
+    }
+    _loop.busy = false;
+    _loop.last = performance.now();
+  }
+
+  function arm(tickFn){
+    _loop.tick = tickFn;
+    if(_loop.raf){ try{ cancelAnimationFrame(_loop.raf); }catch(e){} _loop.raf = 0; }
+    _loop.last = performance.now();
+    _loop.raf = requestAnimationFrame(_wrapped);
+    if(!_loop.watch){
+      _loop.watch = setInterval(function(){
+        if(!_loop.tick) return;
+        if(_loop.busy) return;
+        if(performance.now() - _loop.last > 1000){
+          try{ if(_loop.raf) cancelAnimationFrame(_loop.raf); }catch(e){}
+          _loop.raf = 0;
+          _loop.last = performance.now();
+          _loop.raf = requestAnimationFrame(_wrapped);
+        }
+      }, 1000);
+    }
+  }
+
+  function freshCanvas(old){
+    var c = document.createElement('canvas');
+    c.id = 'stretchy-bg';
+    c.setAttribute('aria-hidden', 'true');
+    if(old && old.parentNode){
+      try{ old.removeAttribute('id'); }catch(e){}
+      old.parentNode.replaceChild(c, old);
+    } else if(document.body){
+      var existing = document.getElementById('stretchy-bg');
+      if(existing){
+        try{ existing.removeAttribute('id'); }catch(e){}
+        existing.parentNode.replaceChild(c, existing);
+      } else {
+        document.body.insertBefore(c, document.body.firstChild);
+      }
+    }
+    return c;
+  }
+
   function boot(){
     if(document.getElementById('stretchy-bg')) return;
     var canvas = document.createElement('canvas');
@@ -96,7 +152,7 @@
         tctx.fillStyle = rad;
         tctx.fillRect(0, 0, tw, th);
         tctx.globalCompositeOperation = 'source-over';
-        ctx.drawImage(tmp, x, y, pw, ph);
+        try{ ctx.drawImage(tmp, x, y, pw, ph); }catch(e){}
       }
       return c;
     }
@@ -163,10 +219,10 @@
       '  gl_FragColor = vec4(rgb, 1.0);',
       '}'
     ].join('\n'));
-    if(!vs || !fs){ start2D(canvas); return; }
+    if(!vs || !fs){ start2D(freshCanvas(canvas)); return; }
     var prog = gl.createProgram();
     gl.attachShader(prog, vs); gl.attachShader(prog, fs); gl.linkProgram(prog);
-    if(!gl.getProgramParameter(prog, gl.LINK_STATUS)){ start2D(canvas); return; }
+    if(!gl.getProgramParameter(prog, gl.LINK_STATUS)){ start2D(freshCanvas(canvas)); return; }
     gl.useProgram(prog);
     var buf = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, buf);
@@ -194,6 +250,22 @@
 
     var comp = makeCompositor();
     var rw = 0, rh = 0;
+    var fellBack = false;
+
+    function fallBack2D(){
+      if(fellBack) return;
+      fellBack = true;
+      start2D(freshCanvas(canvas));
+    }
+
+    canvas.addEventListener('webglcontextlost', function(ev){
+      try{ ev.preventDefault(); }catch(e){}
+      fallBack2D();
+    }, false);
+    canvas.addEventListener('webglcontextrestored', function(){
+      // Already on a fresh 2D canvas if the context was lost. Stay there.
+      if(!fellBack) fallBack2D();
+    }, false);
 
     function sizeTo(){
       var css = cssSize();
@@ -211,6 +283,8 @@
 
     var t0 = performance.now();
     function tick(now){
+      if(fellBack) return;
+      if(gl.isContextLost && gl.isContextLost()){ fallBack2D(); return; }
       var on = matchesWhite();
       canvas.style.display = on ? 'block' : 'none';
       if(on){
@@ -224,17 +298,21 @@
         gl.uniform1f(uBreathe, br);
         gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
       }
-      requestAnimationFrame(tick);
     }
-    requestAnimationFrame(tick);
+    arm(tick);
   }
 
   // fallback: low-res 2D warp if WebGL is missing
   function start2D(canvas){
     var ctx = canvas.getContext('2d', {alpha:false});
+    if(!ctx){
+      canvas = freshCanvas(canvas);
+      ctx = canvas.getContext('2d', {alpha:false});
+      if(!ctx) return;
+    }
     var comp = makeCompositor();
     var src = document.createElement('canvas');
-    var sctx = src.getContext('2d');
+    var sctx = src.getContext('2d', {willReadFrequently:true});
     function sizeTo(){
       var css = cssSize();
       var rs = renderSize(css);
@@ -259,10 +337,13 @@
         var cy = css.h * (0.5 + 0.20 * Math.sin(2 * t));
         var scene = comp.draw(W, H);
         sctx.clearRect(0,0,W,H);
-        sctx.drawImage(scene, 0, 0);
-        var img;
-        try{ img = sctx.getImageData(0, 0, W, H); }catch(e){ img = null; }
-        var id = ctx.createImageData(W, H);
+        try{ sctx.drawImage(scene, 0, 0); }catch(e){}
+        var img = null;
+        try{
+          if(W > 0 && H > 0) img = sctx.getImageData(0, 0, W, H);
+        }catch(e){ img = null; }
+        var id;
+        try{ id = ctx.createImageData(W, H); }catch(e){ return; }
         var dst = id.data, srcd = img && img.data;
         for(var y = 0; y < H; y++){
           var py = (y + 0.5) / sy;
@@ -303,11 +384,10 @@
             dst[p+3] = 255;
           }
         }
-        ctx.putImageData(id, 0, 0);
+        try{ ctx.putImageData(id, 0, 0); }catch(e){}
       }
-      requestAnimationFrame(tick);
     }
-    requestAnimationFrame(tick);
+    arm(tick);
   }
 
   if(document.body) boot();
