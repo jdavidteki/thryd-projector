@@ -2764,16 +2764,6 @@
 ],
 "bed": [
 {
-"id": "wf_33a89ec99c",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bed, and Bisola reads the name twice.",
-"code": "let.interactwith(bed){ bed.receives(let.envelope); bed.remembers(bisola, 'brown envelope'); bed.tucks(let, 'yaba bookshop receipt into the brown envelope'); }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "let"
-},
-{
 "id": "wf_aab18e58ed",
 "kind": "consequence",
 "text": "The phone that kept ringing on the bedside stool through Bisola's take at the Jibowu lodge was calling about the brown envelope, and the bed it lit up beside now holds that record while the missed calls stack to nine.",
@@ -2802,6 +2792,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "plastic_sheet"
+},
+{
+"id": "wf_6858508cf9",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the bed, and Taiwo reads the name twice.",
+"code": "morir_r.interactwith(bed){ bed.receives(morir_r.envelope); bed.remembers(bisola, 'brown envelope'); bed.tucks(morir_r, 'yaba bookshop receipt into the egbe note'); }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "morir_r"
 },
 {
 "id": "wt_740c0937a2",
@@ -4463,31 +4463,21 @@
 "card": "j6",
 "other": "sheep"
 }
+],
+"calla": [
+{
+"id": "wf_9d322fe6db",
+"kind": "consequence",
+"text": "The calla leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "family_compound_ikorodu.interactwith(calla){ calla.receives(family_compound_ikorodu.envelope); calla.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "family_compound_ikorodu"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_df83c9ad0e",
-"ts": "2026-11-16T20:20:55-0500",
-"a": "kerosene_lamp",
-"b": "lekki_pharmacy",
-"code": "kerosene_lamp.interactwith(lekki_pharmacy){ lekki_pharmacy.receives(kerosene_lamp.change); … }",
-"text": "A Kerosene lamp note with Taiwo's name and 'change' on it, turns up inside the unpaid prescription slip at the lekki pharmacy, and Titi reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "w"
-},
-{
-"id": "wf_66a75dfc13",
-"ts": "2026-11-16T20:25:43-0500",
-"a": "wsr",
-"b": "truth",
-"code": "wsr.interactwith(truth){ truth.receives(wsr.envelope); truth.remembers(bisola, 'brown envelope'); truth.tucks(wsr, 'yaba bookshop receipt into the egbe note'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the truth, and Titi reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
 {
 "id": "wf_93196fdc4c",
 "ts": "2026-11-16T20:29:47-0500",
@@ -4905,6 +4895,28 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j6"
+},
+{
+"id": "wf_9d322fe6db",
+"ts": "2026-11-16T22:09:52-0500",
+"a": "family_compound_ikorodu",
+"b": "calla",
+"code": "family_compound_ikorodu.interactwith(calla){ calla.receives(family_compound_ikorodu.envelope); calla.remembers(bisola, 'brown envelope'); }",
+"text": "The calla leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
+},
+{
+"id": "wf_6858508cf9",
+"ts": "2026-11-16T22:11:27-0500",
+"a": "morir_r",
+"b": "bed",
+"code": "morir_r.interactwith(bed){ bed.receives(morir_r.envelope); bed.remembers(bisola, 'brown envelope'); bed.tucks(morir_r, 'yaba bookshop receipt into the egbe note'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the bed, and Taiwo reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
 }
 ],
 "memories": [
@@ -5008,5 +5020,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-16T22:07:26-0500"
+"updated": "2026-11-16T22:11:27-0500"
 }
