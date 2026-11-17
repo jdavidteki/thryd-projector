@@ -4862,6 +4862,16 @@
 "run": "run-5a58c4",
 "card": "j2",
 "other": "dez"
+},
+{
+"id": "wf_b2aca10c9c",
+"kind": "consequence",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the juju code at the house, and Ejiro reads the name twice.",
+"code": "marker_c.interactwith(house){ house.receives(marker_c.code); house.remembers(ejiro, 'juju code'); house.tucks(marker_c, 'ttb note into the juju code'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j2",
+"other": "marker_c"
 }
 ],
 "marker_d": [
@@ -4974,17 +4984,6 @@
 ]
 },
 "consequences": [
-{
-"id": "wf_706ff72f41",
-"ts": "2026-11-17T10:25:27-0500",
-"a": "streetlights",
-"b": "morir",
-"code": "streetlights.interactwith(morir){ morir.receives(streetlights.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the container number at the morir, and Kunle reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
 {
 "id": "wf_37af7dd9f5",
 "ts": "2026-11-17T10:26:19-0500",
@@ -5413,6 +5412,17 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": "j6"
+},
+{
+"id": "wf_b2aca10c9c",
+"ts": "2026-11-17T12:46:13-0500",
+"a": "marker_c",
+"b": "house",
+"code": "marker_c.interactwith(house){ house.receives(marker_c.code); house.remembers(ejiro, 'juju code'); house.tucks(marker_c, 'ttb note into the juju code'); }",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the juju code at the house, and Ejiro reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j2"
 }
 ],
 "memories": [
@@ -5516,5 +5526,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T12:40:58-0500"
+"updated": "2026-11-17T12:46:13-0500"
 }

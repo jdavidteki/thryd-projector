@@ -1,5 +1,5 @@
 {
- "v": 3,
+ "v": 4,
  "note": "object -> its own functions (code titles of seated picks across every agenda; first seated title defines, later ones call), plus inherited functions from its environment (inherit: the run it belongs to, then the safe its frame was cut from or its run was seeded from, with every function seated there or in other runs seeded from that safe). Objects with neither keep the old glow/grow/dim. Built by tools/export_object_methods.py.",
  "functions": {
   "everywhere.getdayagreeeeeennnn": {
@@ -46,7 +46,8 @@
    "sig": {
     "params": [],
     "text": "getDayagreeeeeennnn()"
-   }
+   },
+   "receiver_class": "Place"
   },
   "people.getocsw": {
    "object": "people",
@@ -96,7 +97,8 @@
    "sig": {
     "params": [],
     "text": "getOcsw()"
-   }
+   },
+   "receiver_class": "Person"
   },
   "everywhere.getwatching": {
    "object": "everywhere",
@@ -138,7 +140,8 @@
    "sig": {
     "params": [],
     "text": "getWatching()"
-   }
+   },
+   "receiver_class": "Place"
   },
   "weeks.gettoattd": {
    "object": "weeks",
@@ -180,7 +183,8 @@
    "sig": {
     "params": [],
     "text": "getToattd()"
-   }
+   },
+   "receiver_class": "Quantity"
   },
   "care.on": {
    "object": "care",
@@ -258,7 +262,8 @@
      }
     ],
     "text": "on(what: Thing, act: Action)"
-   }
+   },
+   "receiver_class": "Feeling"
   },
   "everywhere.getdidnt": {
    "object": "everywhere",
@@ -300,7 +305,8 @@
    "sig": {
     "params": [],
     "text": "getDidnt()"
-   }
+   },
+   "receiver_class": "Place"
   },
   "lagbara.on": {
    "object": "lagbara",
@@ -382,7 +388,8 @@
      }
     ],
     "text": "on(who: Person, act: Action)"
-   }
+   },
+   "receiver_class": "Thing"
   },
   "tyn.on": {
    "object": "tyn",
@@ -464,7 +471,8 @@
      }
     ],
     "text": "on(what: Thing, act: Action)"
-   }
+   },
+   "receiver_class": "Thing"
   },
   "everywhere.getcome": {
    "object": "everywhere",
@@ -510,7 +518,8 @@
    "sig": {
     "params": [],
     "text": "getCome()"
-   }
+   },
+   "receiver_class": "Place"
   },
   "rock.isages": {
    "object": "rock",
@@ -552,7 +561,8 @@
    "sig": {
     "params": [],
     "text": "isAges()"
-   }
+   },
+   "receiver_class": "Thing"
   },
   "sia.count": {
    "object": "sia",
@@ -611,7 +621,8 @@
      }
     ],
     "text": "count(act: Action)"
-   }
+   },
+   "receiver_class": "Thing"
   },
   "lateef.teach": {
    "object": "lateef",
@@ -693,7 +704,8 @@
      }
     ],
     "text": "teach(feeling: Feeling, feeling2: Feeling)"
-   }
+   },
+   "receiver_class": "Person"
   },
   "real.tune": {
    "object": "real",
@@ -756,7 +768,8 @@
      }
     ],
     "text": "tune(what: Thing)"
-   }
+   },
+   "receiver_class": "Thing"
   },
   "doing.getawaselves": {
    "object": "doing",
@@ -802,7 +815,8 @@
    "sig": {
     "params": [],
     "text": "getAwaselves()"
-   }
+   },
+   "receiver_class": "Thing"
   },
   "taking.isnotes": {
    "object": "taking",
@@ -848,7 +862,8 @@
    "sig": {
     "params": [],
     "text": "isNotes()"
-   }
+   },
+   "receiver_class": "Thing"
   },
   "toothbrush.on": {
    "object": "toothbrush",
@@ -926,7 +941,8 @@
      }
     ],
     "text": "on(what: Thing, act: Action)"
-   }
+   },
+   "receiver_class": "Thing"
   },
   "aotl.isline": {
    "object": "aotl",
@@ -968,7 +984,8 @@
    "sig": {
     "params": [],
     "text": "isLine()"
-   }
+   },
+   "receiver_class": "Thing"
   },
   "bobo.on": {
    "object": "bobo",
@@ -1046,7 +1063,8 @@
      }
     ],
     "text": "on(who: Person, act: Action)"
-   }
+   },
+   "receiver_class": "Thing"
   },
   "everywhere.getyanju": {
    "object": "everywhere",
@@ -1096,7 +1114,8 @@
    "sig": {
     "params": [],
     "text": "getYanju()"
-   }
+   },
+   "receiver_class": "Place"
   },
   "openmedia.isgif": {
    "object": "openmedia",
@@ -1138,7 +1157,8 @@
    "sig": {
     "params": [],
     "text": "isGif()"
-   }
+   },
+   "receiver_class": "Thing"
   },
   "irteiutk.count": {
    "object": "irteiutk",
@@ -1201,7 +1221,8 @@
      }
     ],
     "text": "count(act: Action)"
-   }
+   },
+   "receiver_class": "Thing"
   },
   "jwvbs.open": {
    "object": "jwvbs",
@@ -1260,7 +1281,8 @@
      }
     ],
     "text": "open(who: Person)"
-   }
+   },
+   "receiver_class": "Thing"
   },
   "lateef.hide": {
    "object": "lateef",
@@ -1334,7 +1356,8 @@
      }
     ],
     "text": "hide(who: Person, who2: Person)"
-   }
+   },
+   "receiver_class": "Person"
   },
   "make.setany": {
    "object": "make",
@@ -1393,7 +1416,8 @@
      }
     ],
     "text": "setAny(act: Action)"
-   }
+   },
+   "receiver_class": "Action"
   },
   "kunle.teach": {
    "object": "kunle",
@@ -1467,7 +1491,8 @@
      }
     ],
     "text": "teach(act: Action, amount: Quantity)"
-   }
+   },
+   "receiver_class": "Person"
   },
   "pepe.settink": {
    "object": "pepe",
@@ -1534,7 +1559,8 @@
      }
     ],
     "text": "setTink(who: Person)"
-   }
+   },
+   "receiver_class": "Person"
   },
   "wife.kill": {
    "object": "wife",
@@ -1601,7 +1627,8 @@
      }
     ],
     "text": "kill(act: Action)"
-   }
+   },
+   "receiver_class": "Person"
   },
   "history.see": {
    "object": "history",
@@ -1660,7 +1687,8 @@
      }
     ],
     "text": "see(act: Action)"
-   }
+   },
+   "receiver_class": "Thing"
   },
   "kunle.mix": {
    "object": "kunle",
@@ -1727,7 +1755,8 @@
      }
     ],
     "text": "mix(feeling: Feeling)"
-   }
+   },
+   "receiver_class": "Person"
   },
   "song.hit": {
    "object": "song",
@@ -1794,7 +1823,8 @@
      }
     ],
     "text": "hit(what: Thing)"
-   }
+   },
+   "receiver_class": "Thing"
   },
   "touch.again": {
    "object": "touch",
@@ -1861,7 +1891,8 @@
      }
     ],
     "text": "again(when: Frequency)"
-   }
+   },
+   "receiver_class": "Action"
   },
   "teo.hide": {
    "object": "teo",
@@ -1943,7 +1974,8 @@
      }
     ],
     "text": "hide(what: Thing, who: Person)"
-   }
+   },
+   "receiver_class": "Person"
   },
   "tyn.getdetermines": {
    "object": "tyn",
@@ -1993,7 +2025,8 @@
    "sig": {
     "params": [],
     "text": "getDetermines()"
-   }
+   },
+   "receiver_class": "Thing"
   },
   "crime.know": {
    "object": "crime",
@@ -2060,7 +2093,8 @@
      }
     ],
     "text": "know(when: Frequency)"
-   }
+   },
+   "receiver_class": "Thing"
   },
   "code.say": {
    "object": "code",
@@ -2127,7 +2161,8 @@
      }
     ],
     "text": "say(how: Manner)"
-   }
+   },
+   "receiver_class": "Thing"
   },
   "laff.made": {
    "object": "laff",
@@ -2194,7 +2229,8 @@
      }
     ],
     "text": "made(what: Thing)"
-   }
+   },
+   "receiver_class": "Feeling"
   },
   "teo.fold": {
    "object": "teo",
@@ -2261,7 +2297,8 @@
      }
     ],
     "text": "fold(how: Manner)"
-   }
+   },
+   "receiver_class": "Person"
   },
   "road.air": {
    "object": "road",
@@ -2329,7 +2366,8 @@
      }
     ],
     "text": "air(how: Manner)"
-   }
+   },
+   "receiver_class": "Place"
   },
   "thrill.know": {
    "object": "thrill",
@@ -2398,7 +2436,8 @@
      }
     ],
     "text": "know(what: Thing)"
-   }
+   },
+   "receiver_class": "Feeling"
   },
   "omo.fold": {
    "object": "omo",
@@ -2465,7 +2504,8 @@
      }
     ],
     "text": "fold(how: Manner)"
-   }
+   },
+   "receiver_class": "Thing"
   },
   "wanow.knew": {
    "object": "wanow",
@@ -2532,7 +2572,8 @@
      }
     ],
     "text": "knew(how: Manner)"
-   }
+   },
+   "receiver_class": "Thing"
   },
   "nobody.weigh": {
    "object": "nobody",
@@ -2599,7 +2640,8 @@
      }
     ],
     "text": "weigh(what: Thing)"
-   }
+   },
+   "receiver_class": "Person"
   },
   "dez.sit": {
    "object": "dez",
@@ -2666,7 +2708,8 @@
      }
     ],
     "text": "sit(act: Action)"
-   }
+   },
+   "receiver_class": "Person"
   }
  },
  "objects": {
@@ -7136,5 +7179,204 @@
    "wife.kill"
   ]
  },
- "updated": "2026-11-17T12:41:21-05:00"
+ "implements": {
+  "everywhere": [
+   "Watchable"
+  ],
+  "people": [],
+  "weeks": [],
+  "care": [
+   "Speakable"
+  ],
+  "lagbara": [
+   "Speakable"
+  ],
+  "tyn": [
+   "Readable",
+   "Speakable"
+  ],
+  "rock": [],
+  "sia": [
+   "Playable"
+  ],
+  "lateef": [
+   "Foldable",
+   "Weighable"
+  ],
+  "real": [
+   "Playable"
+  ],
+  "doing": [],
+  "taking": [
+   "Readable"
+  ],
+  "toothbrush": [
+   "Playable",
+   "Speakable"
+  ],
+  "aotl": [
+   "Readable"
+  ],
+  "bobo": [
+   "Speakable"
+  ],
+  "openmedia": [],
+  "irteiutk": [
+   "Playable",
+   "Readable"
+  ],
+  "jwvbs": [],
+  "make": [],
+  "kunle": [
+   "Playable",
+   "Weighable"
+  ],
+  "pepe": [
+   "Speakable"
+  ],
+  "wife": [
+   "Speakable"
+  ],
+  "history": [
+   "Readable",
+   "Watchable"
+  ],
+  "song": [
+   "Playable"
+  ],
+  "touch": [],
+  "teo": [
+   "Foldable"
+  ],
+  "crime": [
+   "Readable"
+  ],
+  "code": [
+   "Speakable"
+  ],
+  "laff": [
+   "Speakable"
+  ],
+  "road": [
+   "Speakable"
+  ],
+  "thrill": [
+   "Readable"
+  ],
+  "omo": [
+   "Foldable"
+  ],
+  "wanow": [
+   "Readable"
+  ],
+  "nobody": [
+   "Weighable"
+  ],
+  "dez": [
+   "Watchable"
+  ]
+ },
+ "casts": {
+  "run-5a58c4": [
+   "calla",
+   "code",
+   "crime",
+   "dez",
+   "laff",
+   "marisol",
+   "nobody",
+   "omo",
+   "road",
+   "song",
+   "teo",
+   "thrill",
+   "touch",
+   "tyn",
+   "wanow"
+  ],
+  "run-3a15d2": [
+   "dapo"
+  ],
+  "run-6fb0c0": [
+   "ibidunnioyelade",
+   "uncleebo"
+  ],
+  "run-b70200": [
+   "kunle",
+   "ngozi"
+  ],
+  "run-merge-m1": [
+   "anirbanghosh",
+   "cyrusbeene",
+   "daichikaneshiro",
+   "fumikonishi",
+   "gopaldas",
+   "guardamunicipalofficerlapa",
+   "harukatanimoto",
+   "isamuhayashida",
+   "kentamorishita",
+   "melliegrant",
+   "mitalisen",
+   "oliviapope",
+   "polciamilitarofficercopacabanablit",
+   "presidentfitzgeraldgrantiiifitz",
+   "rysukenishi",
+   "shyamolichatterjee"
+  ],
+  "run-ab4653": [
+   "famz",
+   "kayode",
+   "kwabena",
+   "nanaakufoaddo"
+  ],
+  "run-345b3d": [
+   "ejiro",
+   "koko",
+   "mamito"
+  ],
+  "run-2eb42d": [
+   "kazeem",
+   "mamaronke",
+   "ronke"
+  ],
+  "run-9780ba": [
+   "dapo",
+   "ejiro",
+   "mrsmorenikedaramolafictional"
+  ],
+  "run-44583f": [
+   "cleacky",
+   "dapo",
+   "iyabose",
+   "ngozi"
+  ],
+  "run-cb805f": [
+   "aotl",
+   "bobo",
+   "care",
+   "doing",
+   "everywhere",
+   "irteiutk",
+   "jwvbs",
+   "lagbara",
+   "lateef",
+   "make",
+   "openmedia",
+   "people",
+   "real",
+   "rock",
+   "sia",
+   "taking",
+   "toothbrush",
+   "tyn",
+   "weeks"
+  ],
+  "run-bd649b": [
+   "history",
+   "kunle",
+   "pepe",
+   "wife"
+  ]
+ },
+ "updated": "2026-11-17T12:45:53-05:00"
 }
