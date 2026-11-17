@@ -4107,16 +4107,6 @@
 ],
 "danfo_stuck_third": [
 {
-"id": "wf_27f0eff197",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the danfo stuck third, and Titi reads the name twice.",
-"code": "sessy.interactwith(danfo_stuck_third){ danfo_stuck_third.receives(sessy.envelope); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "sessy"
-},
-{
 "id": "wf_7f2652d91f",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the danfo stuck third, and Titi reads the name twice.",
@@ -4145,6 +4135,16 @@
 "run": "run-0bd7c0",
 "card": "j2",
 "other": "ats"
+},
+{
+"id": "wf_00a3087111",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the danfo stuck third, and Titi reads the name twice.",
+"code": "omo.interactwith(danfo_stuck_third){ danfo_stuck_third.receives(omo.envelope); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "omo"
 },
 {
 "id": "wt_1115_2356_a",
@@ -4565,17 +4565,6 @@
 ]
 },
 "consequences": [
-{
-"id": "wf_741d5e2d65",
-"ts": "2026-11-16T23:17:46-0500",
-"a": "streetlights",
-"b": "tie",
-"code": "streetlights.interactwith(tie){ tie.receives(streetlights.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the tie, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
 {
 "id": "wf_040fe5d4ce",
 "ts": "2026-11-16T23:19:25-0500",
@@ -5004,6 +4993,17 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j2"
+},
+{
+"id": "wf_00a3087111",
+"ts": "2026-11-17T09:46:06-0500",
+"a": "omo",
+"b": "danfo_stuck_third",
+"code": "omo.interactwith(danfo_stuck_third){ danfo_stuck_third.receives(omo.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the danfo stuck third, and Titi reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
 }
 ],
 "memories": [
@@ -5107,5 +5107,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T09:45:14-0500"
+"updated": "2026-11-17T09:46:06-0500"
 }
