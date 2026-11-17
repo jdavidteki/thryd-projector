@@ -171,10 +171,10 @@
    "methods": [
     "on",
     "count",
-    "kill"
+    "come"
    ],
-   "instances": 14,
-   "arg_instances": 11,
+   "instances": 15,
+   "arg_instances": 12,
    "parent": "Thing",
    "chain": [
     "Action",
@@ -5010,6 +5010,22 @@
    ],
    "tweets": []
   },
+  "visit": {
+   "class": "Action",
+   "cue": "tweet: to/will ...",
+   "first_run": "run-5a58c4",
+   "first_job": "j34",
+   "source": "pick",
+   "runs": [
+    "run-5a58c4"
+   ],
+   "tweets": [
+    {
+     "text": "- come to visit you! you no go know say say",
+     "year": "2025"
+    }
+   ]
+  },
   "wait": {
    "class": "Action",
    "cue": "word",
@@ -5666,6 +5682,12 @@
    [
     "engine",
     "Thing",
+    "j34",
+    "pick"
+   ],
+   [
+    "visit",
+    "Action",
     "j34",
     "pick"
    ],
@@ -9051,5 +9073,5 @@
   "epilogue": "quiet",
   "coda": "quiet"
  },
- "updated": "2026-11-17T16:25:14-05:00"
+ "updated": "2026-11-17T16:31:21-05:00"
 }

@@ -3899,7 +3899,8 @@
    "object": "teo",
    "method": "come",
    "args": [
-    "wan"
+    "wan",
+    "visit"
    ],
    "runs": [
     "run-5a58c4"
@@ -3912,8 +3913,42 @@
     "emoji": "🍛",
     "at": "2026-11-17T15:46:37-05:00"
    },
-   "calls": 0,
+   "calls": 1,
    "titles": [
+    {
+     "title": "teo.come(visit)",
+     "emoji": "🍵",
+     "arg": "visit",
+     "run": "run-5a58c4",
+     "job": "j34",
+     "tweets": [
+      {
+       "text": "- come to visit you! you no go know say say",
+       "year": "2025"
+      },
+      {
+       "text": "[[nlo]] - this is why we need awa [[tbmon]]",
+       "year": "2025"
+      },
+      {
+       "text": "- honestly, [[because]] you go tink say dem",
+       "year": "2025"
+      }
+     ],
+     "consequence": "Teo leans on the counter and finally says it, half to the kitchen door: you know I know everything.",
+     "consequence_job": "j35",
+     "resolved": "teo.come(what=stories:Thing) from j34",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "stories",
+       "from_run": "run-5a58c4",
+       "from_job": "j34",
+       "source": "pick"
+      }
+     ]
+    },
     {
      "title": "teo.come(wan)",
      "emoji": "🍛",
@@ -3962,7 +3997,16 @@
     "text": "come(what: Thing)"
    },
    "receiver_class": "Person",
-   "prior": [],
+   "prior": [
+    {
+     "id": "teo.come",
+     "title": "teo.come(wan)",
+     "run": "run-5a58c4",
+     "job": "j32",
+     "at": "2026-11-17T15:46:37-05:00",
+     "why": "same method"
+    }
+   ],
    "faded": false,
    "last_run": "run-5a58c4"
   },
@@ -12092,5 +12136,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-17T16:30:47-05:00"
+ "updated": "2026-11-17T16:31:21-05:00"
 }
