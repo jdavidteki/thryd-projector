@@ -2,12 +2,12 @@
 "v": 1,
 "note": "World memory: each object's facts and the newest consequences of meetings (shared store /workspace/thryd-projector/data/world_facts.jsonl, tools/world_memory.py). The stage shows a consequence code line when the same pair meets again, and now and then on its own; #thryd memories show now and then too.",
 "alias": {
-"quiet_stretch_sand_subject": "quiet_stretch_sand",
-"quiet_stretch_sand_subject_second": "quiet_stretch_sand",
-"quiet_stretch_sand_subject_third": "quiet_stretch_sand",
 "miami_subject": "miami",
 "miami_subject_second": "miami",
 "miami_subject_third": "miami",
+"quiet_stretch_sand_subject": "quiet_stretch_sand",
+"quiet_stretch_sand_subject_second": "quiet_stretch_sand",
+"quiet_stretch_sand_subject_third": "quiet_stretch_sand",
 "jetty_south_pointe_subject": "jetty_south_pointe",
 "jetty_south_pointe_subject_second": "jetty_south_pointe",
 "jetty_south_pointe_subject_third": "jetty_south_pointe",
@@ -5293,16 +5293,6 @@
 ],
 "miami": [
 {
-"id": "wf_721921b87e",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up beside the phone at the miami.",
-"code": "dress_marisol.interactwith(miami){ miami.receives(dress_marisol.envelope); miami.remembers(bisola, 'brown envelope'); }",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6",
-"other": "dress_marisol"
-},
-{
 "id": "wf_0925813dfd",
 "kind": "consequence",
 "text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up beside the phone at the miami.",
@@ -5341,6 +5331,16 @@
 "run": "run-5a58c4",
 "card": "j6",
 "other": "marker_b"
+},
+{
+"id": "wf_8dcadc0ef3",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up beside the phone at the miami.",
+"code": "itmoai.interactwith(miami){ miami.receives(itmoai.envelope); miami.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "itmoai"
 }
 ],
 "teo": [
@@ -5996,17 +5996,6 @@
 },
 "consequences": [
 {
-"id": "wf_3000f47e1a",
-"ts": "2026-11-17T15:17:46-0500",
-"a": "marker",
-"b": "god",
-"code": "marker.interactwith(god){ god.receives(marker.sign); god.remembers(kunle, 'nice day sign'); god.tucks(marker, 'marker note into the scorched container number'); }",
-"text": "A Marker note with Kunle's name and 'nice day sign' on it, turns up inside the scorched container number at the god, and Kunle reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j3"
-},
-{
 "id": "wf_d5c8b78129",
 "ts": "2026-11-17T15:20:15-0500",
 "a": "people_scene",
@@ -6434,6 +6423,17 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": "j3"
+},
+{
+"id": "wf_8dcadc0ef3",
+"ts": "2026-11-17T16:51:19-0500",
+"a": "itmoai",
+"b": "miami",
+"code": "itmoai.interactwith(miami){ miami.receives(itmoai.envelope); miami.remembers(bisola, 'brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up beside the phone at the miami.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
 }
 ],
 "memories": [
@@ -6537,5 +6537,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T16:49:33-0500"
+"updated": "2026-11-17T16:51:19-0500"
 }
