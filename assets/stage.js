@@ -1415,7 +1415,8 @@
     '#gstage .gcut.gfx-slump{animation:gfxslump 1.8s ease-in-out 1}', '#gstage .gcut.gfx-quake{animation:gfxquake 1.2s linear 1}', '#gstage .gcut.gfx-dimfx{animation:gfxdimfx 1.8s ease-in-out 1}',
     '#gstage .gcut.gfx-shrinkfx{animation:gfxshrinkfx 1.5s ease-in-out 1}',
     '.grip{position:fixed;z-index:10045;transform:translateX(-50%);padding:.25vh .7vh;border-radius:.7vh;background:rgba(20,40,60,.9);color:#cfe9ff;font:600 max(11px,1.25vh) ui-monospace,Menlo,Consolas,monospace;white-space:nowrap;pointer-events:none;opacity:0;transition:opacity .4s}',
-    '.grip.on{opacity:1}',
+    '.grip.on{opacity:1}', '#gstage .gcut.gfaded{opacity:.38;filter:saturate(.25)}', '#gmeth button.gfaded{opacity:.5;border-style:dashed}',
+    '#gmeth .gmvc{width:100%;color:#b9b2a0;font-weight:400;font-size:.78em;padding:0 .3vh}',
     // Phase B (v529): recursion layers in the pop-up, pending-promise markers, a resolved flash, thrown exceptions in the menu
     '#gtweet .grec{border-left:2px solid #6b8aa8;margin:.45vh 0 0 calc(var(--d,1) * .9vh);padding:.2vh 0 .2vh .7vh;font-size:.86em;color:#d8e6f2;background:rgba(40,60,80,.25);border-radius:0 .5vh .5vh 0}',
     '#gtweet .grec b{font:600 .92em ui-monospace,Menlo,Consolas,monospace;color:#ffd76a}', '#gtweet .gtx{color:#ffb0a0;font-size:.82em;margin-top:.4vh}',
@@ -1523,9 +1524,9 @@
   function ifacesOf(c){ const k = baseKey(c), own = (OM.implements || {})[k]; if(own && own.length) return own;
     return ((CLS.classes[classOf(c)] || {}).implements || []).slice(0, 4); }
   function listenersOf(c){ const H = c.home || {}, run = (String(H.mid || '').match(/^live:(run-[0-9a-z-]+):/) || [])[1] || H.run, me = baseKey(c), out = [];
-    const cast = new Set(CLS.casts[run] || []);
-    S.cuts.forEach(x => { if(x !== c && x.el && x.el.isConnected && !x.leaving && x.home === c.home && baseKey(x) !== me && out.length < 3) out.push(x); });
-    S.cuts.forEach(x => { if(x !== c && !out.includes(x) && x.el && x.el.isConnected && !x.leaving && cast.has(baseKey(x)) && baseKey(x) !== me && out.length < 3) out.push(x); });
+    const cast = new Set(CLS.casts[run] || []), sib = x => { const k = baseKey(x); return k === me || k.startsWith(me + '_') || me.startsWith(k + '_'); };
+    S.cuts.forEach(x => { if(x !== c && x.el && x.el.isConnected && !x.leaving && x.home === c.home && !sib(x) && out.length < 3) out.push(x); });
+    S.cuts.forEach(x => { if(x !== c && !out.includes(x) && x.el && x.el.isConnected && !x.leaving && cast.has(baseKey(x)) && !sib(x) && out.length < 3) out.push(x); });
     return out; }
   function ripTag(c, text){ if(!c.el || !c.el.isConnected) return; const r = c.el.getBoundingClientRect(), t = document.createElement('div'); t.className = 'grip';
     t.textContent = text.length > 64 ? text.slice(0, 63) + '\u2026' : text; document.body.appendChild(t);
@@ -1561,6 +1562,14 @@
     if(!q){ q = document.createElement('div'); q.id = 'gpromq'; document.body.appendChild(q); }
     const last = pend[pend.length - 1]; q.textContent = '? ' + pend.length + ' pending \u00b7 ' + last.text + (last.job ? ' (' + last.job + ')' : ''); }
   setInterval(paintPromises, 1000);
+  // Phase C (v530): faded functions/objects, revived by a call; a commit per pick and a branch per agenda in data/world_log.json
+  const VC = S.worldLog = {branches: {}, at: 0};
+  function loadVC(){ fetch('data/world_log.json?t=' + Date.now(), {cache: 'no-store'}).then(r => r.ok ? r.json() : null).then(d => { if(d && d.branches){ VC.branches = d.branches; VC.at = Date.now(); } }).catch(()=>{}); }
+  loadVC(); setInterval(loadVC, 300000);
+  function commitFor(c){ const H = c.home || {}, m = String(H.mid || '').match(/^live:(run-[0-9a-z-]+):([jw]\d{1,3})$/), r = m ? m[1] : H.run, j = m ? m[2] : H.card;
+    return ((VC.branches[r] || {}).commits || []).find(x => jobN(x.job) === jobN(j)) || null; }
+  function paintGC(){ S.cuts.forEach(c => { if(!c.el || !c.el.isConnected) return; const fs = funcsFor(c); c.el.classList.toggle('gfaded', fs.length > 0 && fs.every(it => it.f.faded)); }); }
+  setInterval(paintGC, 1200); S.commitFor = commitFor;
   function priorOf(it){ return ((it.f && it.f.prior) || []).slice(0, 4).map(p => ({...p, f: OM.functions[p.id]})); }
   S.promisesFor = promisesFor; S.exceptionsFor = exceptionsFor; S.priorOf = priorOf;
   S.classOf = classOf; S.effectOf = effectOf; S.listenersOf = listenersOf; S.ifacesOf = ifacesOf;
@@ -1602,6 +1611,7 @@
     if(body.run && !/^run-[0-9a-f]{4,6}$/.test(body.run)) body.run = null; if(body.card && !/^[jw]\d{1,3}$/.test(body.card)) body.card = null;
     const rec = {code, body, status: 'sending', at: Date.now()}; M.sent.push(rec); if(M.sent.length > 40) M.sent.shift();
     // shown locally first, whatever the relay does
+    if(it.f.faded){ it.f.faded = false; if(c.el) c.el.classList.remove('gfaded'); rec.revived = true; }
     const myCls = classOf(c), eff = effectOf(f.method, myCls); rec.effect = eff.fx; rec.effect_class = eff.by;
     it.catches = exceptionsFor(c).slice(0, 2); playGfx(c, eff.fx); popTweet(c, it, tw); rec.ripples = ripple(c, f.method, it.resolved || it.t.title); rec.resolved = it.resolved; rec.injected = inj; if(c.el && c.el.isConnected) tagAt(c, code);
     codeLine(it.resolved || code, 'tapped · ' + (it.scope === 'env' ? name + ' called it from ' + (it.env_scope === 'run' ? it.env_from : 'the safe') + ' · ' : '') + it.id + ' (first seated ' + ((f.defined || {}).run || '?') + ' ' + ((f.defined || {}).job || '') + ') · sending…'); note('func', code, eid);
@@ -1621,12 +1631,13 @@
     closeMethods(); M.cut = c;
     const name = objName(c), box = document.createElement('div'); box.id = 'gmeth'; box.setAttribute('role', 'menu');
     const h = document.createElement('div'); h.className = 'gmh'; h.textContent = name + ' : ' + chainOf(classOf(c)).join(' : '); box.appendChild(h);
+    const cm = commitFor(c); if(cm){ const v = document.createElement('div'); v.className = 'gmvc'; v.textContent = cm.id + ' \u00b7 ' + cm.branch + ' ' + cm.job + (cm.beat ? ' \u00b7 ' + cm.beat : '') + ' \u00b7 +' + (cm.diff || {}).facts_total + ' facts'; box.appendChild(v); }
     const ifs = ifacesOf(c); if(ifs.length){ const ih = document.createElement('div'); ih.className = 'gmi'; ih.textContent = 'implements ' + ifs.join(', '); box.appendChild(ih); }
     exceptionsFor(c).slice(0, 2).forEach(e => { const x = document.createElement('div'); x.className = 'gmx'; x.textContent = '\u26a0 throws: ' + e.text + (e.job ? ' (' + e.job + ')' : ''); box.appendChild(x); });
     const fns = funcsFor(c);
     fns.forEach(it => { const b = document.createElement('button'); b.type = 'button'; b.setAttribute('role', 'menuitem'); b.className = 'gfn';
       b.textContent = it.t.title + (it.t.emoji ? ' ' + it.t.emoji : ''); b.title = it.t.run + ' ' + it.t.job + (it.f.calls ? ' · called ' + it.f.calls + 'x since' : '');
-      b.dataset.func = it.id;
+      b.dataset.func = it.id; if(it.f.faded){ b.classList.add('gfaded'); b.title += ' \u00b7 faded (call to revive)'; }
       b.addEventListener('pointerdown', ev => ev.stopPropagation());
       b.addEventListener('click', ev => { ev.stopPropagation(); ev.preventDefault(); fireFunc(c, name, it); closeMethods(); });
       box.appendChild(b); });
@@ -1635,7 +1646,7 @@
       lb.textContent = r.scope === 'run' ? 'from ' + r.from : 'from the safe' + (r.title ? ' \u00b7 ' + r.title : ''); box.appendChild(lb);
       r.items.forEach(it => { const b = document.createElement('button'); b.type = 'button'; b.setAttribute('role', 'menuitem'); b.className = 'genv';
         b.textContent = it.t.title + (it.t.emoji ? ' ' + it.t.emoji : ''); b.title = 'inherited from ' + (r.scope === 'run' ? r.from : 'the safe ' + (r.title || r.from)) + ' · seated ' + it.t.run + ' ' + it.t.job;
-        b.dataset.func = it.id; b.dataset.scope = 'env';
+        b.dataset.func = it.id; b.dataset.scope = 'env'; if(it.f.faded){ b.classList.add('gfaded'); b.title += ' \u00b7 faded (call to revive)'; }
         b.addEventListener('pointerdown', ev => ev.stopPropagation());
         b.addEventListener('click', ev => { ev.stopPropagation(); ev.preventDefault(); fireFunc(c, name, it); closeMethods(); });
         box.appendChild(b); }); });
@@ -1687,7 +1698,8 @@
             if(m.rid === body.rid || m.event_id === eid){ rec.status = m.status || (m.ok ? 'accepted' : 'rejected'); rec.reply = m;
               if(m.ok){ toast((m.code || code) + ' ✓ in the db'); codeLine(m.resolved || m.code || code, 'tapped · in the world db' + (m.run ? ' · ' + m.run + (m.card ? '/' + m.card : '') : ''));
                 if(m.resolved && TW){ const rv = TW.querySelector('.gtr'); if(rv) rv.textContent = m.resolved; }
-                if(m.ripples && m.ripples.length) rec.loggedRipples = m.ripples; }
+                if(m.ripples && m.ripples.length) rec.loggedRipples = m.ripples;
+                if(m.lock && m.lock.queued) toast((m.code || code) + ' \u2713 queued ' + (m.lock.waited_ms / 1000).toFixed(1) + 's behind ' + m.lock.held_by); }
               else toast(code + ' ✗ ' + (m.detail || m.reason || 'rejected'), 1);
               return rec; } } }catch(e){} }
       rec.status = 'no_reply'; toast(code + ' sent; no reply from the box yet', 1);

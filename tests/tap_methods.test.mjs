@@ -65,3 +65,13 @@ test('pop-up nests earlier definitions (depth 5), pending promises pulse, except
   assert.ok(om.functions['omo.fold'].prior.some(p => p.title === 'teo.fold(surgical)'));
   for(const k of ['promises', 'exceptions']){ const d = JSON.parse(fs.readFileSync(new URL('../data/' + k + '.json', import.meta.url), 'utf8')); assert.ok(Array.isArray(d[k])); assert.match(d.note, /only source of truth/); }
 });
+// Phase C (17 Nov 2026): world version control, faded functions, queued calls
+test('world_log commits per pick, faded functions dim and revive on a call, queued calls are reported', () => {
+  const blk = src.slice(src.indexOf('// ---------- registry functions'), src.indexOf('S.fireMethod = fireMethod;'));
+  assert.ok(src.includes("fetch('data/world_log.json")); assert.match(blk, /classList\.toggle\('gfaded'/); assert.match(blk, /rec\.revived = true/); assert.match(blk, /m\.lock\.queued/);
+  const wl = JSON.parse(fs.readFileSync(new URL('../data/world_log.json', import.meta.url), 'utf8'));
+  const b = wl.branches['run-5a58c4']; assert.ok(b && b.commits.length > 5); assert.equal(b.head, b.commits[b.commits.length - 1].id);
+  for(const br of Object.values(wl.branches)) br.commits.forEach((c, i) => assert.equal(c.parent, i ? br.commits[i - 1].id : null));
+  const om = JSON.parse(fs.readFileSync(new URL('../data/object_methods.json', import.meta.url), 'utf8'));
+  assert.ok(Object.values(om.functions).some(f => f.faded) && Object.values(om.functions).some(f => !f.faded)); assert.equal(om.gc.n, 2);
+});
