@@ -5749,6 +5749,16 @@
 "run": "run-5a58c4",
 "card": "j7",
 "other": "bird"
+},
+{
+"id": "wf_481315784a",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the lamp soot at the amnhagc, and Taiwo reads the name twice.",
+"code": "hard.interactwith(amnhagc){ amnhagc.receives(hard.envelope); … }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "hard"
 }
 ],
 "hose": [
@@ -5773,6 +5783,16 @@
 "run": "run-5a58c4",
 "card": "j2",
 "other": "marina_biscayne_bay"
+},
+{
+"id": "wf_62884f3410",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the juju code at the icsh, and Ejiro reads the name twice.",
+"code": "matbaotstaili.interactwith(icsh){ icsh.receives(matbaotstaili.envelope); … }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "matbaotstaili"
 }
 ],
 "jetty_south_pointe": [
@@ -6057,28 +6077,6 @@
 ]
 },
 "consequences": [
-{
-"id": "wf_213c14d20b",
-"ts": "2026-11-17T15:35:18-0500",
-"a": "wser",
-"b": "marina_biscayne_bay",
-"code": "wser.interactwith(marina_biscayne_bay){ marina_biscayne_bay.receives(wser.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the lamp soot at the marina biscayne bay, and Taiwo reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
-"id": "wf_1515b3282e",
-"ts": "2026-11-17T15:37:41-0500",
-"a": "wser",
-"b": "matbaotstaili",
-"code": "wser.interactwith(matbaotstaili){ matbaotstaili.receives(wser.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the matbaotstaili, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
 {
 "id": "wf_fbbfa06923",
 "ts": "2026-11-17T15:38:34-0500",
@@ -6496,6 +6494,28 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": "j6"
+},
+{
+"id": "wf_62884f3410",
+"ts": "2026-11-17T17:20:23-0500",
+"a": "matbaotstaili",
+"b": "icsh",
+"code": "matbaotstaili.interactwith(icsh){ icsh.receives(matbaotstaili.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the juju code at the icsh, and Ejiro reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
+},
+{
+"id": "wf_481315784a",
+"ts": "2026-11-17T17:21:15-0500",
+"a": "hard",
+"b": "amnhagc",
+"code": "hard.interactwith(amnhagc){ amnhagc.receives(hard.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the lamp soot at the amnhagc, and Taiwo reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
 }
 ],
 "memories": [
@@ -6599,5 +6619,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T17:17:50-0500"
+"updated": "2026-11-17T17:21:15-0500"
 }
