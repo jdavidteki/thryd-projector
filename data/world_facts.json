@@ -3135,6 +3135,16 @@
 "run": "run-b9b963",
 "card": "j6",
 "other": "called"
+},
+{
+"id": "wf_ae613c0e3c",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the wser, and Bisola reads the name twice.",
+"code": "marker_b.interactwith(wser){ wser.receives(marker_b.envelope); … }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "marker_b"
 }
 ],
 "blessings_subject": [
@@ -4699,16 +4709,6 @@
 ],
 "teomarisollove": [
 {
-"id": "wf_bead678778",
-"kind": "consequence",
-"text": "A Bird note with Taiwo's name and 'lamp soot' on it, turns up with the teomarisollove, which is still in love, said out loud by Marisol (w14 causeway).",
-"code": "bird.interactwith(teomarisollove){ teomarisollove.receives(bird.soot); teomarisollove.remembers(taiwo, 'lamp soot'); }",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j7",
-"other": "bird"
-},
-{
 "id": "wf_0e5a71195f",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the teomarisollove, which is still in love, said out loud by Marisol (w14 causeway).",
@@ -4747,6 +4747,16 @@
 "run": "run-5a58c4",
 "card": "j6",
 "other": "youngteacher"
+},
+{
+"id": "wf_2b23473c4d",
+"kind": "consequence",
+"text": "A Bird note with Bisola's name and 'envelope corner' on it, turns up with the teomarisollove, which is still in love, said out loud by Marisol (w14 causeway).",
+"code": "bird.interactwith(teomarisollove){ teomarisollove.receives(bird.corner); teomarisollove.remembers(bisola, 'envelope corner'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j7",
+"other": "bird"
 }
 ],
 "front_gate_no": [
@@ -4887,6 +4897,16 @@
 "run": "run-5a58c4",
 "card": "j2",
 "other": "dez"
+},
+{
+"id": "wf_9705347cfe",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the juju code at the fire escape outside, and Ejiro reads the name twice.",
+"code": "marker_c.interactwith(fire_escape_outside){ fire_escape_outside.receives(marker_c.envelope); … }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "marker_c"
 }
 ],
 "heat": [
@@ -5976,39 +5996,6 @@
 },
 "consequences": [
 {
-"id": "wf_df8f1b71b1",
-"ts": "2026-11-17T15:12:44-0500",
-"a": "dapo",
-"b": "pure_water_cooler",
-"code": "dapo.interactwith(pure_water_cooler){ pure_water_cooler.receives(dapo.bead); pure_water_cooler.remembers(bisola, 'blue glass bead'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it, turns up with the pure-water cooler, which is still carried home through the flood.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j5"
-},
-{
-"id": "wf_54e9b2476b",
-"ts": "2026-11-17T15:13:37-0500",
-"a": "marisol",
-"b": "dapo",
-"code": "marisol.interactwith(dapo){ dapo.receives(marisol.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the blue glass bead at the dapo, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
-"id": "wf_363939a52f",
-"ts": "2026-11-17T15:14:25-0500",
-"a": "cassette_spine",
-"b": "teo",
-"code": "cassette_spine.interactwith(teo){ teo.receives(cassette_spine.stamp); … }",
-"text": "A Cassette spine note with Kunle's name and 'pharmacy stamp' on it, turns up inside the folded receipt at the teo, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j8"
-},
-{
 "id": "wf_d3aa41c77a",
 "ts": "2026-11-17T15:15:14-0500",
 "a": "cleacky",
@@ -6414,6 +6401,39 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": "j6"
+},
+{
+"id": "wf_2b23473c4d",
+"ts": "2026-11-17T16:36:53-0500",
+"a": "bird",
+"b": "teomarisollove",
+"code": "bird.interactwith(teomarisollove){ teomarisollove.receives(bird.corner); teomarisollove.remembers(bisola, 'envelope corner'); }",
+"text": "A Bird note with Bisola's name and 'envelope corner' on it, turns up with the teomarisollove, which is still in love, said out loud by Marisol (w14 causeway).",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j7"
+},
+{
+"id": "wf_9705347cfe",
+"ts": "2026-11-17T16:38:34-0500",
+"a": "marker_c",
+"b": "fire_escape_outside",
+"code": "marker_c.interactwith(fire_escape_outside){ fire_escape_outside.receives(marker_c.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the juju code at the fire escape outside, and Ejiro reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
+},
+{
+"id": "wf_ae613c0e3c",
+"ts": "2026-11-17T16:41:08-0500",
+"a": "marker_b",
+"b": "wser",
+"code": "marker_b.interactwith(wser){ wser.receives(marker_b.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the wser, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
 }
 ],
 "memories": [
@@ -6517,5 +6537,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T16:35:59-0500"
+"updated": "2026-11-17T16:41:08-0500"
 }
