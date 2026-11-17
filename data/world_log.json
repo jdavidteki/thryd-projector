@@ -4713,7 +4713,7 @@
   },
   "run-5a58c4": {
    "forked_from": "safe:f81f21521253",
-   "head": "d9280d7c11",
+   "head": "bf65ac471b",
    "commits": [
     {
      "id": "e1804f099d",
@@ -5060,7 +5060,7 @@
      }
     },
     {
-     "id": "26dfc15c65",
+     "id": "fb0172bbe6",
      "parent": "5c84cde56f",
      "branch": "run-5a58c4",
      "job": "j6",
@@ -5332,16 +5332,24 @@
         "code": "hose.interactwith(teomarisollove){ teomarisollove.receives(hose.envelope); teomarisollove.remembers(bisola, 'brown envelope'); }",
         "scope": null,
         "cause_id": null
+       },
+       {
+        "id": "wf_1bf87ddaf1",
+        "object": "jetty_south_pointe",
+        "kind": "consequence",
+        "code": "health_marisol.interactwith(jetty_south_pointe){ jetty_south_pointe.receives(health_marisol.envelope); jetty_south_pointe.remembers(bisola,",
+        "scope": null,
+        "cause_id": null
        }
       ],
-      "facts_total": 33,
+      "facts_total": 34,
       "functions": [],
       "instances": []
      }
     },
     {
-     "id": "526603eb63",
-     "parent": "26dfc15c65",
+     "id": "fef2531c47",
+     "parent": "fb0172bbe6",
      "branch": "run-5a58c4",
      "job": "j7",
      "at": "2026-11-17T11:01:50-0500",
@@ -5396,8 +5404,8 @@
      }
     },
     {
-     "id": "7e2c6a62a0",
-     "parent": "526603eb63",
+     "id": "5cebfddb33",
+     "parent": "fef2531c47",
      "branch": "run-5a58c4",
      "job": "j22",
      "at": "2026-11-16T23:37:14-05:00",
@@ -5431,8 +5439,8 @@
      }
     },
     {
-     "id": "e02427d345",
-     "parent": "7e2c6a62a0",
+     "id": "471c1ff73c",
+     "parent": "5cebfddb33",
      "branch": "run-5a58c4",
      "job": "j23",
      "at": "2026-11-16T23:50:03-05:00",
@@ -5466,8 +5474,8 @@
      }
     },
     {
-     "id": "d5c0e6e6c8",
-     "parent": "e02427d345",
+     "id": "c0d1fc04b3",
+     "parent": "471c1ff73c",
      "branch": "run-5a58c4",
      "job": "j24",
      "at": "2026-11-17T00:02:09-05:00",
@@ -5525,8 +5533,8 @@
      }
     },
     {
-     "id": "2837cbffdd",
-     "parent": "d5c0e6e6c8",
+     "id": "e206c1072f",
+     "parent": "c0d1fc04b3",
      "branch": "run-5a58c4",
      "job": "j25",
      "at": "2026-11-17T10:35:56-05:00",
@@ -5602,8 +5610,8 @@
      }
     },
     {
-     "id": "80bc05ac0b",
-     "parent": "2837cbffdd",
+     "id": "b44da7a721",
+     "parent": "e206c1072f",
      "branch": "run-5a58c4",
      "job": "j26",
      "at": "2026-11-17T11:07:01-05:00",
@@ -5637,8 +5645,8 @@
      }
     },
     {
-     "id": "06c2bcfa8c",
-     "parent": "80bc05ac0b",
+     "id": "ada2b1cfdf",
+     "parent": "b44da7a721",
      "branch": "run-5a58c4",
      "job": "j27",
      "at": "2026-11-17T11:22:49-05:00",
@@ -5672,8 +5680,8 @@
      }
     },
     {
-     "id": "6e7f25b988",
-     "parent": "06c2bcfa8c",
+     "id": "33f33f3760",
+     "parent": "ada2b1cfdf",
      "branch": "run-5a58c4",
      "job": "j28",
      "at": "2026-11-17T12:06:03-05:00",
@@ -5698,8 +5706,8 @@
      }
     },
     {
-     "id": "d9280d7c11",
-     "parent": "6e7f25b988",
+     "id": "63cb7d845e",
+     "parent": "33f33f3760",
      "branch": "run-5a58c4",
      "job": "j29",
      "at": "2026-11-17T12:30:30-05:00",
@@ -5744,6 +5752,41 @@
        [
         "watch",
         "Action"
+       ]
+      ]
+     }
+    },
+    {
+     "id": "bf65ac471b",
+     "parent": "63cb7d845e",
+     "branch": "run-5a58c4",
+     "job": "j30",
+     "at": "2026-11-17T14:49:47-05:00",
+     "genre": "resolution",
+     "beat": "resolution",
+     "diff": {
+      "facts": [],
+      "facts_total": 0,
+      "functions": [
+       {
+        "func": "calla.stare",
+        "title": "calla.stare(bad)",
+        "op": "define"
+       },
+       {
+        "func": "teo.sit",
+        "title": "teo.sit(balance)",
+        "op": "define"
+       }
+      ],
+      "instances": [
+       [
+        "bad",
+        "Feeling"
+       ],
+       [
+        "balance",
+        "Thing"
        ]
       ]
      }
@@ -6142,9 +6185,9 @@
   "run-fa5946": "564dd5acda",
   "run-bd649b": "8ed6c18a56",
   "run-9e59ca": "59f544b8d8",
-  "run-5a58c4": "d9280d7c11",
+  "run-5a58c4": "bf65ac471b",
   "run-cb805f": "62238e387d"
  },
- "commits": 62,
- "updated": "2026-11-17T14:50:17-05:00"
+ "commits": 63,
+ "updated": "2026-11-17T14:51:09-05:00"
 }
