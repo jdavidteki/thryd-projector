@@ -4983,6 +4983,16 @@
 "run": "run-5a58c4",
 "card": "j6",
 "other": "heat"
+},
+{
+"id": "wf_0632d9c6af",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the marker b, and Bisola reads the name twice.",
+"code": "marisol.interactwith(marker_b){ marker_b.receives(marisol.envelope); … }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "marisol"
 }
 ],
 "house": [
@@ -5103,6 +5113,16 @@
 "run": "run-5a58c4",
 "card": "j7",
 "other": "bird"
+},
+{
+"id": "wf_123f1f0cfe",
+"kind": "consequence",
+"text": "A Marker note with Kunle's name and 'nice day sign' on it, turns up inside the lamp soot at the kmb, and Taiwo reads the name twice.",
+"code": "marker.interactwith(kmb){ kmb.receives(marker.sign); kmb.remembers(kunle, 'nice day sign'); kmb.tucks(marker, 'marker note into the lamp soot'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j3",
+"other": "marker"
 }
 ],
 "tbp": [
@@ -5722,53 +5742,33 @@
 "card": "j31",
 "other": null
 }
+],
+"teoloveletter": [
+{
+"id": "wf_ecc7d9babc",
+"kind": "consequence",
+"text": "The teoloveletter now remembers the miami: 11:45pm, Monday 2 November 2026: A phone on the counter starts the off-key chorus, then.",
+"code": "miami.interactwith(teoloveletter){ teoloveletter.receives(miami.phone); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j29",
+"other": "miami"
+}
+],
+"string_lights": [
+{
+"id": "wf_87d5c71a19",
+"kind": "consequence",
+"text": "The string lights leaves with a Bird note with Bisola's name and 'envelope corner' on it.",
+"code": "bird.interactwith(string_lights){ string_lights.receives(bird.corner); string_lights.remembers(bisola, 'envelope corner'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j7",
+"other": "bird"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_436ce8c1c9",
-"ts": "2026-11-17T13:37:24-0500",
-"a": "teo",
-"b": "tnw",
-"code": "teo.interactwith(tnw){ tnw.receives(teo.envelope); tnw.remembers(bisola, 'brown envelope'); }",
-"text": "The tnw leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
-"id": "wf_ce376271d4",
-"ts": "2026-11-17T14:25:07-0500",
-"a": "marker_b",
-"b": "dress_marisol",
-"code": "marker_b.interactwith(dress_marisol){ dress_marisol.receives(marker_b.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the dress marisol, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
-"id": "wf_e4569f92e3",
-"ts": "2026-11-17T14:28:07-0500",
-"a": "bird",
-"b": "amnhagc",
-"code": "bird.interactwith(amnhagc){ amnhagc.receives(bird.soot); amnhagc.remembers(taiwo, 'lamp soot'); }",
-"text": "The amnhagc leaves with a Bird note with Taiwo's name and 'lamp soot' on it.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j7"
-},
-{
-"id": "wf_211393d414",
-"ts": "2026-11-17T14:33:04-0500",
-"a": "marisol",
-"b": "hose",
-"code": "marisol.interactwith(hose){ hose.receives(marisol.envelope); hose.remembers(bisola, 'brown envelope'); }",
-"text": "The hose leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
 {
 "id": "wf_721921b87e",
 "ts": "2026-11-17T14:37:11-0500",
@@ -6164,6 +6164,50 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": "j6"
+},
+{
+"id": "wf_ecc7d9babc",
+"ts": "2026-11-17T15:26:17-0500",
+"a": "miami",
+"b": "teoloveletter",
+"code": "miami.interactwith(teoloveletter){ teoloveletter.receives(miami.phone); }",
+"text": "The teoloveletter now remembers the miami: 11:45pm, Monday 2 November 2026: A phone on the counter starts the off-key chorus, then.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j29"
+},
+{
+"id": "wf_0632d9c6af",
+"ts": "2026-11-17T15:27:07-0500",
+"a": "marisol",
+"b": "marker_b",
+"code": "marisol.interactwith(marker_b){ marker_b.receives(marisol.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the marker b, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
+},
+{
+"id": "wf_87d5c71a19",
+"ts": "2026-11-17T15:27:56-0500",
+"a": "bird",
+"b": "string_lights",
+"code": "bird.interactwith(string_lights){ string_lights.receives(bird.corner); string_lights.remembers(bisola, 'envelope corner'); }",
+"text": "The string lights leaves with a Bird note with Bisola's name and 'envelope corner' on it.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j7"
+},
+{
+"id": "wf_123f1f0cfe",
+"ts": "2026-11-17T15:31:10-0500",
+"a": "marker",
+"b": "kmb",
+"code": "marker.interactwith(kmb){ kmb.receives(marker.sign); kmb.remembers(kunle, 'nice day sign'); kmb.tucks(marker, 'marker note into the lamp soot'); }",
+"text": "A Marker note with Kunle's name and 'nice day sign' on it, turns up inside the lamp soot at the kmb, and Taiwo reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j3"
 }
 ],
 "memories": [
@@ -6267,5 +6311,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T15:25:25-0500"
+"updated": "2026-11-17T15:31:10-0500"
 }
