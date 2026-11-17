@@ -105,8 +105,8 @@
     "know",
     "map"
    ],
-   "instances": 339,
-   "arg_instances": 21,
+   "instances": 341,
+   "arg_instances": 24,
    "parent": null,
    "chain": [
     "Thing"
@@ -124,12 +124,12 @@
   "Quantity": {
    "param": "amount",
    "methods": [
+    "call",
     "line",
-    "teach",
-    "till"
+    "teach"
    ],
-   "instances": 3,
-   "arg_instances": 3,
+   "instances": 4,
+   "arg_instances": 4,
    "parent": "Thing",
    "chain": [
     "Quantity",
@@ -1044,6 +1044,22 @@
     "run-dfd59e"
    ],
    "tweets": []
+  },
+  "coordinates": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-g1-B",
+   "first_job": "j11",
+   "source": "pick",
+   "runs": [
+    "run-g1-B"
+   ],
+   "tweets": [
+    {
+     "text": "#thryd - we don't have the map coordinates -",
+     "year": "2024"
+    }
+   ]
   },
   "currentaffairs": {
    "class": "Thing",
@@ -2746,6 +2762,22 @@
     }
    ]
   },
+  "lines": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-g1-B",
+   "first_job": "j11",
+   "source": "pick",
+   "runs": [
+    "run-g1-B"
+   ],
+   "tweets": [
+    {
+     "text": "#seniorboys -- eez who can draw the craziest lines that we give the award [[award ceremony]]",
+     "year": "2025"
+    }
+   ]
+  },
   "listen": {
    "class": "Thing",
    "cue": "default",
@@ -3629,15 +3661,21 @@
    "tweets": []
   },
   "precision": {
-   "class": "Thing",
-   "cue": "default",
-   "first_run": "run-2eb42d",
-   "first_job": null,
-   "source": "stage",
+   "class": "Quantity",
+   "cue": "tweet: a number before it",
+   "first_run": "run-g1-B",
+   "first_job": "j11",
+   "source": "pick",
    "runs": [
+    "run-g1-B",
     "run-2eb42d"
    ],
-   "tweets": []
+   "tweets": [
+    {
+     "text": "- i like this your cap -#thryd - we call it 8 precision - wow-",
+     "year": "2025"
+    }
+   ]
   },
   "presidentfitz": {
    "class": "Thing",
@@ -4312,6 +4350,22 @@
     "run-a19af0"
    ],
    "tweets": []
+  },
+  "so": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-g1-B",
+   "first_job": "j11",
+   "source": "pick",
+   "runs": [
+    "run-g1-B"
+   ],
+   "tweets": [
+    {
+     "text": "#humanity - na so e dey start- if yuwa on data centers then am [[sitc]][[attyc]] - rada rada[[3t.a]]",
+     "year": "2025"
+    }
+   ]
   },
   "soda": {
    "class": "Thing",
@@ -6004,6 +6058,30 @@
     "pick"
    ],
    [
+    "precision",
+    "Quantity",
+    "j11",
+    "pick"
+   ],
+   [
+    "lines",
+    "Thing",
+    "j11",
+    "pick"
+   ],
+   [
+    "coordinates",
+    "Thing",
+    "j11",
+    "pick"
+   ],
+   [
+    "so",
+    "Thing",
+    "j11",
+    "pick"
+   ],
+   [
     "studio",
     "Place",
     "j2",
@@ -7651,7 +7729,7 @@
    ],
    [
     "precision",
-    "Thing",
+    "Quantity",
     null,
     "stage"
    ]
@@ -8805,7 +8883,11 @@
   "teo.lead": "lead(act: Action)",
   "[maybe,know].map": "map(what: Thing)",
   "titi.go": "go(what: Thing)",
-  "nobody.rename": "rename(what: Thing)"
+  "nobody.rename": "rename(what: Thing)",
+  "adaora.call": "call(amount: Quantity)",
+  "folake.draw": "draw(what: Thing)",
+  "kunle.have": "have(what: Thing)",
+  "titi.start": "start(what: Thing)"
  },
  "parent": {
   "Person": "Thing",
@@ -9132,6 +9214,9 @@
   ],
   "run-g1-B": [
    "[maybe,know]",
+   "adaora",
+   "folake",
+   "kunle",
    "nobody",
    "titi"
   ]
@@ -9208,5 +9293,5 @@
   "epilogue": "quiet",
   "coda": "quiet"
  },
- "updated": "2026-11-17T17:41:27-05:00"
+ "updated": "2026-11-17T18:26:00-05:00"
 }
