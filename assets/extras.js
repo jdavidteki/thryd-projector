@@ -210,8 +210,7 @@ async function mount(g){
 }
 async function addFiles(files){for(const f of files){if(!/^image\/(gif|webp|png)/.test(f.type))continue;
   const g={id:Date.now()+'-'+Math.random().toString(36).slice(2,6),label:f.name.replace(/\.\w+$/,''),blob:f};await put(g);mount(g);}}
-const inp=$('gifin'); $('addgif').onclick=e=>{e.stopPropagation();inp.click();}; inp.onclick=e=>e.stopPropagation();
-inp.onchange=()=>{addFiles(inp.files);inp.value='';};
+/* 17 Nov 2026 1:15 PM ET (Jesuye "we also dont need the gif button"): the + GIF button and its file picker are gone; saved GIFs still mount and a dropped file still adds one */
 addEventListener('dragover',e=>{e.preventDefault();document.body.classList.add('drop');});
 addEventListener('dragleave',()=>document.body.classList.remove('drop'));
 addEventListener('drop',e=>{e.preventDefault();document.body.classList.remove('drop');addFiles(e.dataTransfer.files);});

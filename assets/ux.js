@@ -9,7 +9,7 @@
     document.querySelectorAll('#modes [data-m]').forEach(function(b){ var m = b.getAttribute('data-m'), n = NAMES[m] || m;
       var k = Object.keys(KEYS).filter(function(x){ return KEYS[x] === m; })[0]; if(!b.title) b.title = n + (k ? ' (key ' + k + ')' : '');
       if(!b.getAttribute('aria-label')) b.setAttribute('aria-label', n); });
-    var named = {rpause: 'Pause or play scene updates (Space)', slide: 'GIF slide speed', mute: 'Sound on or off', addgif: 'Add your own GIF to the stage',
+    var named = {rpause: 'Pause or play scene updates (Space)', slide: 'GIF slide speed', mute: 'Sound on or off',
       sound: 'Sound source', bgmode: 'Black or white stage background', pick: 'Choose a run to replay'};
     Object.keys(named).forEach(function(id){ var e = document.getElementById(id); if(!e) return; if(!e.title) e.title = named[id]; if(!e.getAttribute('aria-label')) e.setAttribute('aria-label', e.title || named[id]); });
     document.querySelectorAll('#zoomui button, #modes button, #modes select').forEach(function(b){ if(!b.getAttribute('aria-label') && b.title) b.setAttribute('aria-label', b.title); });

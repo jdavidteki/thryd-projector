@@ -4713,7 +4713,7 @@
   },
   "run-5a58c4": {
    "forked_from": "safe:f81f21521253",
-   "head": "58c8c33101",
+   "head": "6c77ae8d3f",
    "commits": [
     {
      "id": "50d5b01bc7",
@@ -4772,7 +4772,7 @@
      }
     },
     {
-     "id": "a81b957cc5",
+     "id": "34014dba99",
      "parent": "50d5b01bc7",
      "branch": "run-5a58c4",
      "job": "j2",
@@ -4892,16 +4892,24 @@
         "code": "house.interactwith(bus){ bus.receives(house.code); bus.remembers(ejiro, 'juju code'); bus.tucks(house, 'ttb note into the brown envelope');",
         "scope": null,
         "cause_id": null
+       },
+       {
+        "id": "wf_0a973190a9",
+        "object": "marina_biscayne_bay",
+        "kind": "consequence",
+        "code": "texts_marisol.interactwith(marina_biscayne_bay){ marina_biscayne_bay.receives(texts_marisol.code); marina_biscayne_bay.remembers(ejiro, 'juj",
+        "scope": null,
+        "cause_id": null
        }
       ],
-      "facts_total": 14,
+      "facts_total": 15,
       "functions": [],
       "instances": []
      }
     },
     {
-     "id": "8f23e02537",
-     "parent": "a81b957cc5",
+     "id": "b830fdba6c",
+     "parent": "34014dba99",
      "branch": "run-5a58c4",
      "job": "j3",
      "at": "2026-11-17T10:35:36-0500",
@@ -4940,8 +4948,8 @@
      }
     },
     {
-     "id": "d6c6b37a0f",
-     "parent": "8f23e02537",
+     "id": "675f96e377",
+     "parent": "b830fdba6c",
      "branch": "run-5a58c4",
      "job": "j5",
      "at": "2026-11-17T10:46:59-0500",
@@ -5020,8 +5028,8 @@
      }
     },
     {
-     "id": "b906d3e999",
-     "parent": "d6c6b37a0f",
+     "id": "1016ee9f39",
+     "parent": "675f96e377",
      "branch": "run-5a58c4",
      "job": "j6",
      "at": "2026-11-17T10:49:53-0500",
@@ -5212,16 +5220,24 @@
         "code": "bowl.interactwith(daichi_kaneshiro){ daichi_kaneshiro.receives(bowl.envelope); daichi_kaneshiro.remembers(bisola, 'brown envelope'); }",
         "scope": null,
         "cause_id": null
+       },
+       {
+        "id": "wf_d613a31122",
+        "object": "marker_b",
+        "kind": "consequence",
+        "code": "calla.interactwith(marker_b){ marker_b.receives(calla.envelope); marker_b.remembers(bisola, 'brown envelope'); marker_b.tucks(calla, 'yaba b",
+        "scope": null,
+        "cause_id": null
        }
       ],
-      "facts_total": 23,
+      "facts_total": 24,
       "functions": [],
       "instances": []
      }
     },
     {
-     "id": "10677f024f",
-     "parent": "b906d3e999",
+     "id": "eb5b8f1b08",
+     "parent": "1016ee9f39",
      "branch": "run-5a58c4",
      "job": "j7",
      "at": "2026-11-17T11:01:50-0500",
@@ -5252,8 +5268,8 @@
      }
     },
     {
-     "id": "d5b836f29f",
-     "parent": "10677f024f",
+     "id": "1e6d18a93d",
+     "parent": "eb5b8f1b08",
      "branch": "run-5a58c4",
      "job": "j22",
      "at": "2026-11-16T23:37:14-05:00",
@@ -5287,8 +5303,8 @@
      }
     },
     {
-     "id": "18c36f2419",
-     "parent": "d5b836f29f",
+     "id": "8c89a03b5a",
+     "parent": "1e6d18a93d",
      "branch": "run-5a58c4",
      "job": "j23",
      "at": "2026-11-16T23:50:03-05:00",
@@ -5322,8 +5338,8 @@
      }
     },
     {
-     "id": "d9b1a4f3bd",
-     "parent": "18c36f2419",
+     "id": "45ec5b5a2a",
+     "parent": "8c89a03b5a",
      "branch": "run-5a58c4",
      "job": "j24",
      "at": "2026-11-17T00:02:09-05:00",
@@ -5381,8 +5397,8 @@
      }
     },
     {
-     "id": "6156198158",
-     "parent": "d9b1a4f3bd",
+     "id": "2bd8479658",
+     "parent": "45ec5b5a2a",
      "branch": "run-5a58c4",
      "job": "j25",
      "at": "2026-11-17T10:35:56-05:00",
@@ -5458,8 +5474,8 @@
      }
     },
     {
-     "id": "d287323c7c",
-     "parent": "6156198158",
+     "id": "d4963faf8f",
+     "parent": "2bd8479658",
      "branch": "run-5a58c4",
      "job": "j26",
      "at": "2026-11-17T11:07:01-05:00",
@@ -5493,8 +5509,8 @@
      }
     },
     {
-     "id": "8cbae9b05c",
-     "parent": "d287323c7c",
+     "id": "65c5f3d802",
+     "parent": "d4963faf8f",
      "branch": "run-5a58c4",
      "job": "j27",
      "at": "2026-11-17T11:22:49-05:00",
@@ -5528,8 +5544,8 @@
      }
     },
     {
-     "id": "a9df9b0961",
-     "parent": "8cbae9b05c",
+     "id": "3e4e285866",
+     "parent": "65c5f3d802",
      "branch": "run-5a58c4",
      "job": "j28",
      "at": "2026-11-17T12:06:03-05:00",
@@ -5554,8 +5570,8 @@
      }
     },
     {
-     "id": "58c8c33101",
-     "parent": "a9df9b0961",
+     "id": "6c77ae8d3f",
+     "parent": "3e4e285866",
      "branch": "run-5a58c4",
      "job": "j29",
      "at": "2026-11-17T12:30:30-05:00",
@@ -5990,9 +6006,9 @@
   "run-fa5946": "564dd5acda",
   "run-bd649b": "8ed6c18a56",
   "run-9e59ca": "59f544b8d8",
-  "run-5a58c4": "58c8c33101",
+  "run-5a58c4": "6c77ae8d3f",
   "run-cb805f": "62238e387d"
  },
  "commits": 62,
- "updated": "2026-11-17T13:15:16-05:00"
+ "updated": "2026-11-17T13:16:58-05:00"
 }
