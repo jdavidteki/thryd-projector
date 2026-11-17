@@ -1,5 +1,5 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><meta http-equiv="Cache-Control" content="no-cache">
-<title>#thryd projector</title><link rel="icon" href="data:,"><link rel="stylesheet" href="assets/projector.css?v=yoki1"><link rel="stylesheet" href="assets/alive.css?v=350539043e"><link rel="stylesheet" href="assets/stretchy_bg.css?v=1"></head>
+<title>#thryd projector</title><link rel="icon" href="data:,"><link rel="stylesheet" href="assets/projector.css?v=ux1"><link rel="stylesheet" href="assets/alive.css?v=350539043e"><link rel="stylesheet" href="assets/stretchy_bg.css?v=1"></head>
 <body>
 <div id="stage"><img id="bgA" alt=""><img id="bgB" alt=""><div id="ug"></div><div id="cap"></div></div>
 <div id="vignette"></div>
@@ -7,16 +7,16 @@
 <div id="ents"></div>
 <div id="bubble" class="bubble"><div class="who"></div><div class="txt"></div></div>
 <div id="bar"><div id="title">#thryd · <b id="run">run</b> · <span id="mode">…</span></div>
-<div id="modes"><button data-m="live">LIVE</button><button data-m="replay">REPLAY</button><button data-m="lovemap">LOVEMAP</button><button id="rpause" type="button" title="Pause or play scene updates" style="display:none">Pause</button><select id="pick" style="display:none"></select><select id="slide" title="GIF slide speed"><option value="8">8s</option><option value="30">30s</option><option value="60">60s</option></select><input id="mlib" type="search" placeholder="medium id" title="Open an original Medium file by its exact id" autocomplete="off"><button id="kresume" type="button" title="Show the last library GIF saved on this device. A normal visit stays on the live view.">Resume</button><button id="kreset" type="button" title="Clear saved cut positions, the remembered library GIF, and cached GIF bytes on this device. Sound and slide speed stay.">Reset</button><button id="mute"></button><button id="addgif">+ GIF</button><input id="gifin" type="file" accept="image/gif,image/webp,image/png" multiple hidden></div></div>
+<div id="modes"><button data-m="live">LIVE</button><button data-m="replay">REPLAY</button><button data-m="lovemap">LOVEMAP</button><button id="rpause" type="button" title="Pause or play scene updates" style="display:none">Pause</button><select id="pick" style="display:none"></select><select id="slide" title="GIF slide speed"><option value="8">8s</option><option value="30">30s</option><option value="60">60s</option></select><button id="mute"></button><button id="addgif">+ GIF</button><input id="gifin" type="file" accept="image/gif,image/webp,image/png" multiple hidden></div></div>
 <div id="lovemap" aria-hidden="true"><iframe id="lmframe" title="lovemap" src="about:blank"></iframe></div>
 <div id="user"></div>
 <div id="ticker"><div class="world" id="world">—</div><div class="upd" id="upd">loading</div><div class="meta" id="meta"></div><div class="cmove" id="cmove" style="display:none"></div></div>
 
-<script>/* loader: fresh JS on every load, in order */(function(){var t=Date.now();var L=['thryd_keep.js?v=1','mlib_pin.js?v=1','live_return.js?v=1','medium_cuts.js?v=1','tweet_embed.js?v=1','projector.js?v=58','frame_feed.js?v=2','extras.js?v=50','alive.js?v=50','stretchy_bg.js?v=3'];if(!/(?:^|[?&])slides=1(?:&|$)/.test(location.search))L.splice(4,0,'stage.js?v=1');L.forEach(function(f){var e=document.createElement('script');e.src='assets/'+f+'&t='+t;e.async=false;document.body.appendChild(e);});})();</script>
+<script>/* loader: fresh JS on every load, in order */(function(){var t=Date.now();var L=['thryd_keep.js?v=1','mlib_pin.js?v=1','live_return.js?v=1','medium_cuts.js?v=1','tweet_embed.js?v=1','projector.js?v=58','frame_feed.js?v=2','extras.js?v=50','alive.js?v=50','stretchy_bg.js?v=3','ux.js?v=1'];if(!/(?:^|[?&])slides=1(?:&|$)/.test(location.search))L.splice(4,0,'stage.js?v=1');L.forEach(function(f){var e=document.createElement('script');e.src='assets/'+f+'&t='+t;e.async=false;document.body.appendChild(e);});})();</script>
 <script>/* auto-update (Jesuye 11-12 11:43 PM "bring back Auto version update refresh"): every 45 s this page reads data/version.json from
 its own site; when "v" is above this build's VER it reloads itself once (waiting while anyone drags). Only a version.json bump does this:
 data-only commits (news, state, feed) never change "v". One reload per version per tab (sessionStorage), so a stale cache can never loop.
-The stage, the root URL and ?slides=1 all keep their own query on reload. */(function(){var VER=529,K='thryd_autover_done';
+The stage, the root URL and ?slides=1 all keep their own query on reload. */(function(){var VER=531,K='thryd_autover_done';
 function idle(){var b=document.body&&document.body.classList;return !!b&&!b.contains('dragmode')&&!document.querySelector('[data-dragging="1"],#objs .dob.lifting,#objs .dob[data-held="1"]');}
 function chk(){fetch('data/version.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).then(function(j){var v=j&&+j.v;if(!v||v<=VER||!idle())return;
 var done=0;try{done=+sessionStorage.getItem(K)||0}catch(e){}if(done>=v)return;try{sessionStorage.setItem(K,String(v))}catch(e){}
