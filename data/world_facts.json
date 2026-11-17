@@ -1936,16 +1936,6 @@
 ],
 "tie": [
 {
-"id": "wf_42d2f0cf49",
-"kind": "consequence",
-"text": "A Danfo speaker note with Bisola's name and 'egbe note' on it, turns up inside the brown envelope at the tie, and Bisola reads the name twice.",
-"code": "danfo_speaker.interactwith(tie){ tie.receives(danfo_speaker.note); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "w",
-"other": "danfo_speaker"
-},
-{
 "id": "wf_a4b1763954",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the tie, and Bisola reads the name twice.",
@@ -1984,6 +1974,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "matches"
+},
+{
+"id": "wf_48fbae7f6c",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the tie, and Bisola reads the name twice.",
+"code": "heat.interactwith(tie){ tie.receives(heat.envelope); tie.remembers(bisola, 'brown envelope'); tie.tucks(heat, 'yaba bookshop receipt into the brown envelope'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "heat"
 }
 ],
 "laptop": [
@@ -4836,6 +4836,16 @@
 "run": "run-5a58c4",
 "card": "",
 "other": "htpto"
+},
+{
+"id": "wf_53679a8536",
+"kind": "consequence",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up with the teomarisollove, which is still in love, said out loud by Marisol (w14 causeway).",
+"code": "dez.interactwith(house){ house.receives(dez.code); house.remembers(ejiro, 'juju code'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j2",
+"other": "dez"
 }
 ],
 "marker_d": [
@@ -4873,42 +4883,21 @@
 "card": "",
 "other": "house"
 }
+],
+"kmb": [
+{
+"id": "wf_287c944581",
+"kind": "consequence",
+"text": "The kmb leaves with a Bird note with Taiwo's name and 'lamp soot' on it.",
+"code": "bird.interactwith(kmb){ kmb.receives(bird.soot); kmb.remembers(taiwo, 'lamp soot'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j7",
+"other": "bird"
+}
 ]
 },
 "consequences": [
-{
-"id": "wt_d7412f0d94",
-"ts": "2026-11-17T09:54:10-0500",
-"a": "mi",
-"b": "chair",
-"code": "mi.interactwith(chair){ chair.receives(mi, '11:20pm'); chair.find('back rail').add('11:20pm pencil mark'); }",
-"text": "Passing the chair, mi leaves a pencil mark of 11:20pm on its back rail, right under where Bisola's receipt was tucked, so the chair now holds the hour next to the name.",
-"author": "thryd",
-"run": "run-0bd7c0",
-"card": "w6"
-},
-{
-"id": "wt_5e26982b69",
-"ts": "2026-11-17T09:54:10-0500",
-"a": "mi",
-"b": "danfo_stuck_third",
-"code": "mi.interactwith(danfo_stuck_third){ danfo_stuck_third.receives(mi, 'same hand on number and stop'); … }",
-"text": "When mi reaches the danfo stuck in third, the conductor compares Kunle's dead stop on the brown envelope with the route board and finds the same handwriting chalked there.",
-"author": "thryd",
-"run": "run-0bd7c0",
-"card": "j5"
-},
-{
-"id": "wt_5dd9c9e121",
-"ts": "2026-11-17T09:54:10-0500",
-"a": "matches",
-"b": "sheep",
-"code": "matches.interactwith(sheep){ sheep.receives(matches, 'container number'); sheep.state('startled'); sheep.drops(matches, 'scorched note into the gutter'); }",
-"text": "The matches come close to the sheep at the doorway, and the sheep shies back from the smoke, knocking Kunle's scorched container number note into the gutter where it stays face up.",
-"author": "thryd",
-"run": "run-0bd7c0",
-"card": "w7"
-},
 {
 "id": "wf_7a23ebd431",
 "ts": "2026-11-17T09:57:24-0500",
@@ -5315,6 +5304,39 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": ""
+},
+{
+"id": "wf_48fbae7f6c",
+"ts": "2026-11-17T11:45:42-0500",
+"a": "heat",
+"b": "tie",
+"code": "heat.interactwith(tie){ tie.receives(heat.envelope); tie.remembers(bisola, 'brown envelope'); tie.tucks(heat, 'yaba bookshop receipt into the brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the tie, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
+},
+{
+"id": "wf_53679a8536",
+"ts": "2026-11-17T11:47:43-0500",
+"a": "dez",
+"b": "house",
+"code": "dez.interactwith(house){ house.receives(dez.code); house.remembers(ejiro, 'juju code'); }",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up with the teomarisollove, which is still in love, said out loud by Marisol (w14 causeway).",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j2"
+},
+{
+"id": "wf_287c944581",
+"ts": "2026-11-17T11:48:56-0500",
+"a": "bird",
+"b": "kmb",
+"code": "bird.interactwith(kmb){ kmb.receives(bird.soot); kmb.remembers(taiwo, 'lamp soot'); }",
+"text": "The kmb leaves with a Bird note with Taiwo's name and 'lamp soot' on it.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j7"
 }
 ],
 "memories": [
@@ -5418,5 +5440,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T11:44:27-0500"
+"updated": "2026-11-17T11:48:56-0500"
 }
