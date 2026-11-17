@@ -6,7 +6,10 @@
 "family_compound_ikorodu_subject_second": "family_compound_ikorodu",
 "family_compound_ikorodu_subject_third": "family_compound_ikorodu",
 "front_pew_mushin_subject": "front_pew_mushin",
+"front_pew_mushin_subject_second": "front_pew_mushin",
+"front_pew_mushin_subject_third": "front_pew_mushin",
 "burial_reception_hall_subject": "burial_reception_hall",
+"burial_reception_hall_subject_second": "burial_reception_hall",
 "lekki_rooftop_subject": "lekki_rooftop",
 "lekki_rooftop_subject_second": "lekki_rooftop",
 "lekki_rooftop_subject_third": "lekki_rooftop",
@@ -3865,6 +3868,16 @@
 "run": "run-0bd7c0",
 "card": "w",
 "other": "kerosene_lamp"
+},
+{
+"id": "wf_7bb5dfe935",
+"kind": "consequence",
+"text": "A Truth note with Titi's name and 'egbe note' on it, turns up inside the brown envelope at the sports ball, and Bisola reads the name twice.",
+"code": "truth.interactwith(sports_ball){ sports_ball.receives(truth.note); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j4",
+"other": "truth"
 }
 ],
 "danfo_stuck": [
@@ -4287,17 +4300,6 @@
 ]
 },
 "consequences": [
-{
-"id": "wf_c3d3d120e2",
-"ts": "2026-11-16T15:47:43-0500",
-"a": "kweshon",
-"b": "laptop",
-"code": "kweshon.interactwith(laptop){ laptop.receives(kweshon.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the rain-stained receipt at the laptop, and Ejiro reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
 {
 "id": "wf_cfdbd8a8c8",
 "ts": "2026-11-16T15:59:40-0500",
@@ -4726,6 +4728,17 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j2"
+},
+{
+"id": "wf_7bb5dfe935",
+"ts": "2026-11-16T20:53:09-0500",
+"a": "truth",
+"b": "sports_ball",
+"code": "truth.interactwith(sports_ball){ sports_ball.receives(truth.note); … }",
+"text": "A Truth note with Titi's name and 'egbe note' on it, turns up inside the brown envelope at the sports ball, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j4"
 }
 ],
 "memories": [
@@ -4829,5 +4842,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-16T20:52:18-0500"
+"updated": "2026-11-16T20:53:09-0500"
 }
