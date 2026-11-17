@@ -812,16 +812,6 @@
 ],
 "agbada": [
 {
-"id": "wf_4530259038",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the agbada, and Bisola reads the name twice.",
-"code": "matches.interactwith(agbada){ agbada.receives(matches.envelope); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "matches"
-},
-{
 "id": "wf_5744cd23db",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the agbada, and Bisola reads the name twice.",
@@ -860,6 +850,16 @@
 "run": "run-0bd7c0",
 "card": "j4",
 "other": "truth"
+},
+{
+"id": "wf_12d8e471b2",
+"kind": "consequence",
+"text": "The agbada worn to the Ikorodu burial remembers the moment Titi pulled a second will out of her gele, next to the egbe note it already carried for her.",
+"code": "agbada.interactwith(family_compound_ikorodu){ agbada.state('worn to the ikorodu burial'); agbada.remembers(titi, 'second will from her gele'); }",
+"author": "cos",
+"run": "run-bd649b",
+"card": "j2",
+"other": "family_compound_ikorodu"
 }
 ],
 "danfo_speaker": [
@@ -2566,16 +2566,6 @@
 ],
 "cell_phone": [
 {
-"id": "wf_a08b02243c",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the cell phone, and Bisola reads the name twice.",
-"code": "let.interactwith(cell_phone){ cell_phone.receives(let.envelope); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "let"
-},
-{
 "id": "wf_d73ece6c0d",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the cell phone, and Bisola reads the name twice.",
@@ -2604,6 +2594,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "wsr"
+},
+{
+"id": "wf_7931f07a6c",
+"kind": "consequence",
+"text": "On the Third Mainland Bridge, Bisola's phone at ten percent picks up the danfo's memory of Kunle's dead stop chalked on the route board, so it is the last thing she reads before the screen dies.",
+"code": "danfo_stuck_third.interactwith(cell_phone){ cell_phone.receives(danfo_stuck_third, 'dead stop chalked on route board'); … }",
+"author": "cos",
+"run": "run-9e59ca",
+"card": "j4",
+"other": "danfo_stuck_third"
 },
 {
 "id": "wt_775c701ecb",
@@ -4376,16 +4376,6 @@
 ],
 "family_compound_ikorodu": [
 {
-"id": "wf_0a002f18d3",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the family compound ikorodu, and Bisola reads the name twice.",
-"code": "notnotnotnotyn_sep.interactwith(family_compound_ikorodu){ family_compound_ikorodu.receives(notnotnotnotyn_sep.envelope); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "notnotnotnotyn_sep"
-},
-{
 "id": "wf_2ceee75fc9",
 "kind": "consequence",
 "text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the brown envelope at the family compound ikorodu, and Bisola reads the name twice.",
@@ -4424,6 +4414,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "morir_r"
+},
+{
+"id": "wf_2e1bf8e51e",
+"kind": "consequence",
+"text": "After the burial, the last page of the will, the one that only says 'own choices, live with it', ends up folded inside Bisola's brown envelope at the Ikorodu family compound.",
+"code": "family_compound_ikorodu.find('brown envelope').add('last page of the will'); family_compound_ikorodu.remembers(bisola, 'last page of the will');",
+"author": "cos",
+"run": "run-bd649b",
+"card": "j11",
+"other": "brown_envelope"
 }
 ],
 "man_cowboy_hat": [
@@ -4580,39 +4580,6 @@
 ]
 },
 "consequences": [
-{
-"id": "wf_9abc1f5e39",
-"ts": "2026-11-16T23:54:07-0500",
-"a": "pure_water_cooler",
-"b": "danfo_stuck_third",
-"code": "pure_water_cooler.interactwith(danfo_stuck_third){ danfo_stuck_third.receives(pure_water_cooler.number); … }",
-"text": "A Pure water cooler note with Kunle's name and 'container number' on it, 9:20am, turns up inside the egbe note at the danfo stuck third, and Titi reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "w1"
-},
-{
-"id": "wf_b40bb8976b",
-"ts": "2026-11-17T00:01:25-0500",
-"a": "sessy",
-"b": "agbada",
-"code": "sessy.interactwith(agbada){ agbada.receives(sessy.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the agbada, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
-{
-"id": "wf_02a063e129",
-"ts": "2026-11-17T00:02:13-0500",
-"a": "morir",
-"b": "laptop",
-"code": "morir.interactwith(laptop){ laptop.receives(morir.number); laptop.remembers(kunle, 'container number'); laptop.tucks(morir, 'morir note into the rain-stained receipt'); }",
-"text": "A Morir note with Kunle's name and 'container number' on it, turns up inside the rain-stained receipt at the laptop, and Ejiro reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "w7"
-},
 {
 "id": "wf_da07080f49",
 "ts": "2026-11-17T00:03:52-0500",
@@ -5019,6 +4986,39 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j6"
+},
+{
+"id": "wf_2e1bf8e51e",
+"ts": "2026-11-17T10:29:19-0500",
+"a": "brown_envelope",
+"b": "family_compound_ikorodu",
+"code": "family_compound_ikorodu.find('brown envelope').add('last page of the will'); family_compound_ikorodu.remembers(bisola, 'last page of the will');",
+"text": "After the burial, the last page of the will, the one that only says 'own choices, live with it', ends up folded inside Bisola's brown envelope at the Ikorodu family compound.",
+"author": "cos",
+"run": "run-bd649b",
+"card": "j11"
+},
+{
+"id": "wf_7931f07a6c",
+"ts": "2026-11-17T10:29:19-0500",
+"a": "danfo_stuck_third",
+"b": "cell_phone",
+"code": "danfo_stuck_third.interactwith(cell_phone){ cell_phone.receives(danfo_stuck_third, 'dead stop chalked on route board'); … }",
+"text": "On the Third Mainland Bridge, Bisola's phone at ten percent picks up the danfo's memory of Kunle's dead stop chalked on the route board, so it is the last thing she reads before the screen dies.",
+"author": "cos",
+"run": "run-9e59ca",
+"card": "j4"
+},
+{
+"id": "wf_12d8e471b2",
+"ts": "2026-11-17T10:29:19-0500",
+"a": "family_compound_ikorodu",
+"b": "agbada",
+"code": "agbada.interactwith(family_compound_ikorodu){ agbada.state('worn to the ikorodu burial'); agbada.remembers(titi, 'second will from her gele'); }",
+"text": "The agbada worn to the Ikorodu burial remembers the moment Titi pulled a second will out of her gele, next to the egbe note it already carried for her.",
+"author": "cos",
+"run": "run-bd649b",
+"card": "j2"
 }
 ],
 "memories": [
@@ -5122,5 +5122,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T10:28:06-0500"
+"updated": "2026-11-17T10:29:48-0500"
 }
