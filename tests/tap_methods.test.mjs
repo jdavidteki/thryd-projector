@@ -13,7 +13,7 @@ test('tap lists registry functions from data/object_methods.json, old methods on
   assert.ok(src.includes("fetch('data/object_methods.json"));
   const blk = src.slice(src.indexOf('// ---------- registry functions'), src.indexOf('S.fireMethod = fireMethod;'));
   assert.match(blk, /const fns = funcsFor\(c\);/); assert.match(blk, /if\(!fns\.length && !env\.some/);
-  assert.match(blk, /func: it\.id, title: it\.t\.title/); assert.match(blk, /popTweet\(c, it, tw\)/); assert.match(blk, /playGfx\(c, gfxOf\(f\.method\)\)/);
+  assert.match(blk, /func: it\.id, title: it\.t\.title/); assert.match(blk, /popTweet\(c, it, tw\)/); assert.match(blk, /playGfx\(c, eff\.fx\)/);
   for(const v of ['fold', 'hide', 'tune', 'know', 'weigh']) assert.ok(new RegExp(v + ": '").test(blk), v);
   const om = JSON.parse(fs.readFileSync(new URL('../data/object_methods.json', import.meta.url), 'utf8'));
   assert.ok(Object.keys(om.functions).length > 0); assert.ok(om.objects.teo && om.objects.teo.includes('teo.fold'));
@@ -41,4 +41,16 @@ test('functions carry typed signatures and resolve their arguments from the cont
   assert.equal(cl.instances.sometimes.class, 'Frequency'); assert.equal(cl.instances.sometimes.first_job, 'j24');
   for(const c of ['Frequency', 'Person', 'Manner', 'Place', 'Thing', 'Quantity', 'Feeling', 'Action']) assert.ok(cl.classes[c], c);
   for(const f of Object.values(om.functions)) for(const p of f.sig.params) assert.ok(cl.classes[p.class] && cl.instances[p.default], p.default);
+});
+// Phase A (17 Nov 2026 12:40 PM ET): inheritance, polymorphic effects, interfaces, observers
+test('classes inherit from Thing, override verb effects, list interfaces, and ripple to listeners', () => {
+  const blk = src.slice(src.indexOf('// ---------- registry functions'), src.indexOf('S.fireMethod = fireMethod;'));
+  assert.match(blk, /function effectOf\(method, cl\)/); assert.match(blk, /function listenersOf\(c\)/); assert.match(blk, /'because ' \+ because/);
+  assert.match(blk, /'implements ' \+ ifs\.join/); assert.match(blk, /chainOf\(classOf\(c\)\)\.join\(' : '\)/);
+  for(const fx of ['bow', 'duck', 'nod', 'slump', 'quake', 'dimfx', 'shrinkfx']) assert.ok(src.includes('.gcut.gfx-' + fx + '{'), fx);
+  const cl = JSON.parse(fs.readFileSync(new URL('../data/classes.json', import.meta.url), 'utf8'));
+  assert.equal(cl.parent.Person, 'Thing'); assert.deepEqual(cl.classes.Person.chain, ['Person', 'Thing']); assert.equal(cl.overrides.Person.fold, 'bow');
+  for(const i of ['Readable', 'Foldable', 'Watchable']) assert.ok(cl.interfaces[i] && cl.interfaces[i].verbs.length, i);
+  assert.ok(cl.casts['run-5a58c4'].includes('teo') && cl.casts['run-5a58c4'].includes('calla'));
+  for(const w of Object.keys(cl.instances)) assert.ok(!/sex|porn|nude|voyeur|daddy/i.test(w), w);
 });

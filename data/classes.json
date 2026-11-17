@@ -9,7 +9,16 @@
     "know"
    ],
    "instances": 5,
-   "arg_instances": 2
+   "arg_instances": 2,
+   "parent": "Thing",
+   "chain": [
+    "Frequency",
+    "Thing"
+   ],
+   "overrides": {},
+   "implements": [
+    "Readable"
+   ]
   },
   "Person": {
    "param": "who",
@@ -19,7 +28,26 @@
     "open"
    ],
    "instances": 50,
-   "arg_instances": 7
+   "arg_instances": 7,
+   "parent": "Thing",
+   "chain": [
+    "Person",
+    "Thing"
+   ],
+   "overrides": {
+    "fold": "bow",
+    "hide": "duck",
+    "know": "nod",
+    "weigh": "slump",
+    "shake": "shake"
+   },
+   "implements": [
+    "Foldable",
+    "Playable",
+    "Speakable",
+    "Watchable",
+    "Weighable"
+   ]
   },
   "Manner": {
    "param": "how",
@@ -29,13 +57,41 @@
     "knew"
    ],
    "instances": 6,
-   "arg_instances": 5
+   "arg_instances": 5,
+   "parent": "Thing",
+   "chain": [
+    "Manner",
+    "Thing"
+   ],
+   "overrides": {},
+   "implements": [
+    "Foldable",
+    "Readable",
+    "Speakable"
+   ]
   },
   "Place": {
    "param": "where",
    "methods": [],
    "instances": 7,
-   "arg_instances": 0
+   "arg_instances": 0,
+   "parent": "Thing",
+   "chain": [
+    "Place",
+    "Thing"
+   ],
+   "overrides": {
+    "fold": "dimfx",
+    "hide": "dimfx",
+    "know": "know",
+    "weigh": "quake",
+    "tune": "quake",
+    "say": "quake"
+   },
+   "implements": [
+    "Speakable",
+    "Watchable"
+   ]
   },
   "Thing": {
    "param": "what",
@@ -45,7 +101,20 @@
     "hit"
    ],
    "instances": 327,
-   "arg_instances": 9
+   "arg_instances": 9,
+   "parent": null,
+   "chain": [
+    "Thing"
+   ],
+   "overrides": {},
+   "implements": [
+    "Foldable",
+    "Playable",
+    "Readable",
+    "Speakable",
+    "Watchable",
+    "Weighable"
+   ]
   },
   "Quantity": {
    "param": "amount",
@@ -53,7 +122,16 @@
     "teach"
    ],
    "instances": 1,
-   "arg_instances": 1
+   "arg_instances": 1,
+   "parent": "Thing",
+   "chain": [
+    "Quantity",
+    "Thing"
+   ],
+   "overrides": {},
+   "implements": [
+    "Weighable"
+   ]
   },
   "Feeling": {
    "param": "feeling",
@@ -62,7 +140,23 @@
     "mix"
    ],
    "instances": 4,
-   "arg_instances": 3
+   "arg_instances": 3,
+   "parent": "Thing",
+   "chain": [
+    "Feeling",
+    "Thing"
+   ],
+   "overrides": {
+    "fold": "shrinkfx",
+    "hide": "shrinkfx",
+    "weigh": "slump"
+   },
+   "implements": [
+    "Playable",
+    "Readable",
+    "Speakable",
+    "Weighable"
+   ]
   },
   "Action": {
    "param": "act",
@@ -72,7 +166,20 @@
     "kill"
    ],
    "instances": 14,
-   "arg_instances": 11
+   "arg_instances": 11,
+   "parent": "Thing",
+   "chain": [
+    "Action",
+    "Thing"
+   ],
+   "overrides": {},
+   "implements": [
+    "Playable",
+    "Readable",
+    "Speakable",
+    "Watchable",
+    "Weighable"
+   ]
   }
  },
  "instances": {
@@ -8179,5 +8286,315 @@
   "nobody.weigh": "weigh(what: Thing)",
   "dez.sit": "sit(act: Action)"
  },
- "updated": "2026-11-17T12:45:09-05:00"
+ "parent": {
+  "Person": "Thing",
+  "Place": "Thing",
+  "Feeling": "Thing",
+  "Frequency": "Thing",
+  "Manner": "Thing",
+  "Quantity": "Thing",
+  "Action": "Thing"
+ },
+ "overrides": {
+  "Person": {
+   "fold": "bow",
+   "hide": "duck",
+   "know": "nod",
+   "weigh": "slump",
+   "shake": "shake"
+  },
+  "Place": {
+   "fold": "dimfx",
+   "hide": "dimfx",
+   "know": "know",
+   "weigh": "quake",
+   "tune": "quake",
+   "say": "quake"
+  },
+  "Feeling": {
+   "fold": "shrinkfx",
+   "hide": "shrinkfx",
+   "weigh": "slump"
+  }
+ },
+ "gfx": {
+  "fold": "fold",
+  "hide": "hide",
+  "vanish": "hide",
+  "tune": "tune",
+  "mix": "tune",
+  "play": "tune",
+  "hit": "tune",
+  "count": "tune",
+  "know": "know",
+  "knew": "know",
+  "see": "know",
+  "reveal": "know",
+  "weigh": "weigh",
+  "carry": "weigh",
+  "teach": "weigh",
+  "hold": "weigh",
+  "say": "say",
+  "on": "say",
+  "made": "say",
+  "belong": "weigh",
+  "kill": "shake",
+  "again": "shake",
+  "open": "open",
+  "map": "open",
+  "sit": "weigh",
+  "air": "say"
+ },
+ "interfaces": {
+  "Readable": {
+   "verbs": [
+    "check",
+    "determines",
+    "getdetermines",
+    "isline",
+    "isnotes",
+    "knew",
+    "know",
+    "read",
+    "remind",
+    "reminds",
+    "reveal",
+    "see"
+   ],
+   "classes": [
+    "Action",
+    "Feeling",
+    "Frequency",
+    "Manner",
+    "Thing"
+   ],
+   "objects": [
+    "aotl",
+    "crime",
+    "history",
+    "irteiutk",
+    "taking",
+    "thrill",
+    "tyn",
+    "wanow"
+   ]
+  },
+  "Foldable": {
+   "verbs": [
+    "bow",
+    "fold",
+    "hide",
+    "vanish"
+   ],
+   "classes": [
+    "Manner",
+    "Person",
+    "Thing"
+   ],
+   "objects": [
+    "lateef",
+    "omo",
+    "teo"
+   ]
+  },
+  "Watchable": {
+   "verbs": [
+    "getwatching",
+    "see",
+    "sit",
+    "watch"
+   ],
+   "classes": [
+    "Action",
+    "Person",
+    "Place",
+    "Thing"
+   ],
+   "objects": [
+    "dez",
+    "everywhere",
+    "history"
+   ]
+  },
+  "Playable": {
+   "verbs": [
+    "count",
+    "hit",
+    "mix",
+    "play",
+    "sing",
+    "song",
+    "tune"
+   ],
+   "classes": [
+    "Action",
+    "Feeling",
+    "Person",
+    "Thing"
+   ],
+   "objects": [
+    "irteiutk",
+    "kunle",
+    "real",
+    "sia",
+    "song",
+    "toothbrush"
+   ]
+  },
+  "Weighable": {
+   "verbs": [
+    "belong",
+    "carry",
+    "hold",
+    "teach",
+    "weigh"
+   ],
+   "classes": [
+    "Action",
+    "Feeling",
+    "Person",
+    "Quantity",
+    "Thing"
+   ],
+   "objects": [
+    "kunle",
+    "lateef",
+    "nobody"
+   ]
+  },
+  "Speakable": {
+   "verbs": [
+    "air",
+    "made",
+    "on",
+    "say",
+    "settink",
+    "talk",
+    "tink"
+   ],
+   "classes": [
+    "Action",
+    "Feeling",
+    "Manner",
+    "Person",
+    "Place",
+    "Thing"
+   ],
+   "objects": [
+    "bobo",
+    "care",
+    "code",
+    "laff",
+    "lagbara",
+    "pepe",
+    "road",
+    "toothbrush",
+    "tyn",
+    "wife"
+   ]
+  }
+ },
+ "casts": {
+  "run-5a58c4": [
+   "calla",
+   "code",
+   "crime",
+   "dez",
+   "laff",
+   "marisol",
+   "nobody",
+   "omo",
+   "road",
+   "song",
+   "teo",
+   "thrill",
+   "touch",
+   "tyn",
+   "wanow"
+  ],
+  "run-3a15d2": [
+   "dapo"
+  ],
+  "run-6fb0c0": [
+   "ibidunnioyelade",
+   "uncleebo"
+  ],
+  "run-b70200": [
+   "kunle",
+   "ngozi"
+  ],
+  "run-merge-m1": [
+   "anirbanghosh",
+   "cyrusbeene",
+   "daichikaneshiro",
+   "fumikonishi",
+   "gopaldas",
+   "guardamunicipalofficerlapa",
+   "harukatanimoto",
+   "isamuhayashida",
+   "kentamorishita",
+   "melliegrant",
+   "mitalisen",
+   "oliviapope",
+   "polciamilitarofficercopacabanablit",
+   "presidentfitzgeraldgrantiiifitz",
+   "rysukenishi",
+   "shyamolichatterjee"
+  ],
+  "run-ab4653": [
+   "famz",
+   "kayode",
+   "kwabena",
+   "nanaakufoaddo"
+  ],
+  "run-345b3d": [
+   "ejiro",
+   "koko",
+   "mamito"
+  ],
+  "run-2eb42d": [
+   "kazeem",
+   "mamaronke",
+   "ronke"
+  ],
+  "run-9780ba": [
+   "dapo",
+   "ejiro",
+   "mrsmorenikedaramolafictional"
+  ],
+  "run-44583f": [
+   "cleacky",
+   "dapo",
+   "iyabose",
+   "ngozi"
+  ],
+  "run-cb805f": [
+   "aotl",
+   "bobo",
+   "care",
+   "doing",
+   "everywhere",
+   "irteiutk",
+   "jwvbs",
+   "lagbara",
+   "lateef",
+   "make",
+   "openmedia",
+   "people",
+   "real",
+   "rock",
+   "sia",
+   "taking",
+   "toothbrush",
+   "tyn",
+   "weeks"
+  ],
+  "run-bd649b": [
+   "history",
+   "kunle",
+   "pepe",
+   "wife"
+  ]
+ },
+ "updated": "2026-11-17T12:45:53-05:00"
 }

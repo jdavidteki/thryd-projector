@@ -1406,6 +1406,16 @@
     '#gstage .gcut.gfx-tune{animation:gfxtune 1.6s ease-in-out 1}', '#gstage .gcut.gfx-know{animation:gfxknow 1.8s ease-out 1}',
     '#gstage .gcut.gfx-weigh{animation:gfxweigh 1.8s ease-in-out 1}', '#gstage .gcut.gfx-say{animation:gfxsay 1.2s ease-out 1}',
     '#gstage .gcut.gfx-shake{animation:gfxshake 1.2s linear 1}', '#gstage .gcut.gfx-open{animation:gfxopen 1.3s ease-in-out 1}',
+    // polymorphic effects (Phase A, 17 Nov 2026): a Person bows/ducks/nods/slumps, a Place dims/quakes, a Feeling shrinks
+    '@keyframes gfxbow{0%,100%{rotate:0deg;translate:0 0}40%,60%{rotate:14deg;translate:0 1vh}}', '@keyframes gfxduck{0%,100%{scale:1 1;translate:0 0}35%,70%{scale:1.05 .7;translate:0 1.8vh}}',
+    '@keyframes gfxnod{0%,100%{translate:0 0}20%,60%{translate:0 1.1vh}40%,80%{translate:0 -.3vh}}', '@keyframes gfxslump{0%,100%{scale:1;filter:none}50%{scale:.94 .86;filter:saturate(.5)}}',
+    '@keyframes gfxquake{0%,100%{translate:0 0}10%,50%,90%{translate:-.6vh .3vh}30%,70%{translate:.6vh -.3vh}}', '@keyframes gfxdimfx{0%,100%{filter:none}40%,70%{filter:brightness(.35)}}',
+    '@keyframes gfxshrinkfx{0%,100%{scale:1}45%{scale:.72}}',
+    '#gstage .gcut.gfx-bow{animation:gfxbow 1.4s ease-in-out 1}', '#gstage .gcut.gfx-duck{animation:gfxduck 1.6s ease-in-out 1}', '#gstage .gcut.gfx-nod{animation:gfxnod 1.3s ease-in-out 1}',
+    '#gstage .gcut.gfx-slump{animation:gfxslump 1.8s ease-in-out 1}', '#gstage .gcut.gfx-quake{animation:gfxquake 1.2s linear 1}', '#gstage .gcut.gfx-dimfx{animation:gfxdimfx 1.8s ease-in-out 1}',
+    '#gstage .gcut.gfx-shrinkfx{animation:gfxshrinkfx 1.5s ease-in-out 1}',
+    '.grip{position:fixed;z-index:10045;transform:translateX(-50%);padding:.25vh .7vh;border-radius:.7vh;background:rgba(20,40,60,.9);color:#cfe9ff;font:600 max(11px,1.25vh) ui-monospace,Menlo,Consolas,monospace;white-space:nowrap;pointer-events:none;opacity:0;transition:opacity .4s}',
+    '.grip.on{opacity:1}', '#gmeth .gmi{width:100%;color:#9fd3ff;font-weight:400;font-size:.82em;padding:0 .3vh}',
     '@media (prefers-reduced-motion:reduce){#gstage .gcut[class*="gfx-"]{animation:none}}'].join('\n');
   document.head.appendChild(MCSS);
   const M = S.methods = {el: null, cut: null, sent: [], timer: 0};
@@ -1422,15 +1432,16 @@
   const OM = S.objectMethods = {objects: {}, functions: {}, inherit: {}, runs: {}, safes: {}, scene_safes: {}, scene_env: {}, at: 0, turn: {}};
   function loadOM(){ fetch('data/object_methods.json?t=' + Date.now(), {cache: 'no-store'}).then(r => r.ok ? r.json() : null).then(d => {
     if(!d || !d.objects || !d.functions) return; OM.objects = d.objects; OM.functions = d.functions;
-    OM.inherit = d.inherit || {}; OM.runs = d.runs || {}; OM.safes = d.safes || {}; OM.scene_safes = d.scene_safes || {}; OM.scene_env = d.scene_env || {}; OM.at = Date.now(); }).catch(()=>{}); }
+    OM.inherit = d.inherit || {}; OM.implements = d.implements || {}; OM.casts = d.casts || {}; OM.runs = d.runs || {}; OM.safes = d.safes || {}; OM.scene_safes = d.scene_safes || {}; OM.scene_env = d.scene_env || {}; OM.at = Date.now(); }).catch(()=>{}); }
   loadOM(); setInterval(loadOM, 300000);
   // typed arguments + dependency injection (Jesuye 17 Nov 2026 12:34 PM ET "do everything"): data/classes.json holds each agenda's container
   // ([word, class, job, source]: seated picks, typed calls, objects on stage); a call resolves every parameter of its signature to the
   // newest instance of that class in the caller's run at or before the scene's job, else the original (same rule as thryd_classes.resolve
   // on the box, whose answer replaces this one when the relay replies)
-  const CLS = S.classes = {containers: {}, classes: {}, at: 0};
+  const CLS = S.classes = {containers: {}, classes: {}, instances: {}, parent: {}, overrides: {}, interfaces: {}, casts: {}, at: 0};
   function loadCLS(){ fetch('data/classes.json?t=' + Date.now(), {cache: 'no-store'}).then(r => r.ok ? r.json() : null).then(d => {
-    if(!d || !d.containers) return; CLS.containers = d.containers; CLS.classes = d.classes || {}; CLS.at = Date.now(); }).catch(()=>{}); }
+    if(!d || !d.containers) return; CLS.containers = d.containers; CLS.classes = d.classes || {}; CLS.instances = d.instances || {};
+    CLS.parent = d.parent || {}; CLS.overrides = d.overrides || {}; CLS.interfaces = d.interfaces || {}; CLS.casts = d.casts || {}; CLS.at = Date.now(); }).catch(()=>{}); }
   loadCLS(); setInterval(loadCLS, 300000);
   const jobN = j => { const m = String(j || '').match(/^[jw](\d+)$/i); return m ? +m[1] : null; };
   const SRC_RANK = {pick: 0, typed: 1, stage: 2};
@@ -1490,6 +1501,32 @@
   function playGfx(c, fx){ if(!c.el || !c.el.isConnected) return; const cl = 'gfx-' + fx;
     [...c.el.classList].forEach(x => { if(/^gfx-/.test(x)) c.el.classList.remove(x); }); c.el.classList.remove('gnotice'); void c.el.offsetWidth; c.el.classList.add(cl);
     clearTimeout(c._gfxT); c._gfxT = setTimeout(()=> c.el && c.el.classList.remove(cl), 2400); }
+  // ---------- inheritance + polymorphism + interfaces + observers (Phase A, Jesuye 17 Nov 2026 12:40 PM ET "do everything!!!!"): every
+  // object is an instance of a class in Thing > Person|Place|Feeling|... (data/classes.json, thryd-db/thryd_oop.py); a class overrides the
+  // verb's effect (Person.fold = bow), walked up the chain. Interfaces (Readable, Foldable, ...) come from the verbs an object's functions use.
+  // A call notifies its listeners: the rest of its scene on stage, then the agenda's cast; each plays its own class's effect in turn, with a
+  // small "because teo.fold(...)" tag. The box logs each ripple as its own func_call with cause_id.
+  const baseKey = c => omKey(objName(c)).replace(/_[0-9a-f]{4,6}$/, '');
+  function classOf(c){ const k = baseKey(c), i = CLS.instances[k] || CLS.instances[omKey(c.castAs)] || CLS.instances[omKey(tagName(c))];
+    if(i && i.class) return i.class; return isFigure(c) ? 'Person' : 'Thing'; }
+  function chainOf(cl){ const out = []; let x = cl || 'Thing'; while(x && !out.includes(x)){ out.push(x); x = CLS.parent[x] || (x === 'Thing' ? null : 'Thing'); } return out; }
+  function effectOf(method, cl){ const fx = gfxOf(method); for(const k of chainOf(cl)){ const o = (CLS.overrides[k] || {})[fx]; if(o) return {fx: o, by: k}; } return {fx, by: 'Thing'}; }
+  function ifacesOf(c){ const k = baseKey(c), own = (OM.implements || {})[k]; if(own && own.length) return own;
+    return ((CLS.classes[classOf(c)] || {}).implements || []).slice(0, 4); }
+  function listenersOf(c){ const H = c.home || {}, run = (String(H.mid || '').match(/^live:(run-[0-9a-z-]+):/) || [])[1] || H.run, me = baseKey(c), out = [];
+    const cast = new Set(CLS.casts[run] || []);
+    S.cuts.forEach(x => { if(x !== c && x.el && x.el.isConnected && !x.leaving && x.home === c.home && baseKey(x) !== me && out.length < 3) out.push(x); });
+    S.cuts.forEach(x => { if(x !== c && !out.includes(x) && x.el && x.el.isConnected && !x.leaving && cast.has(baseKey(x)) && baseKey(x) !== me && out.length < 3) out.push(x); });
+    return out; }
+  function ripTag(c, text){ if(!c.el || !c.el.isConnected) return; const r = c.el.getBoundingClientRect(), t = document.createElement('div'); t.className = 'grip';
+    t.textContent = text.length > 64 ? text.slice(0, 63) + '\u2026' : text; document.body.appendChild(t);
+    t.style.left = Math.max(60, Math.min(vw() - 60, r.left + r.width / 2)).toFixed(1) + 'px'; t.style.top = Math.max(6, r.top - 26).toFixed(1) + 'px';
+    requestAnimationFrame(()=> t.classList.add('on')); setTimeout(()=>{ t.classList.remove('on'); setTimeout(()=> t.remove(), 500); }, 2600); }
+  function ripple(c, method, because){ const ls = listenersOf(c), done = [];
+    ls.forEach((x, n) => { const e = effectOf(method, classOf(x)); done.push({object: baseKey(x), fx: e.fx, cls: classOf(x)});
+      setTimeout(()=>{ playGfx(x, e.fx); ripTag(x, 'because ' + because); }, 600 * (n + 1)); });
+    return done; }
+  S.classOf = classOf; S.effectOf = effectOf; S.listenersOf = listenersOf; S.ifacesOf = ifacesOf;
   let TW = null;
   function popTweet(c, it, tw){
     if(TW){ TW.remove(); TW = null; }
@@ -1522,7 +1559,8 @@
     if(body.run && !/^run-[0-9a-f]{4,6}$/.test(body.run)) body.run = null; if(body.card && !/^[jw]\d{1,3}$/.test(body.card)) body.card = null;
     const rec = {code, body, status: 'sending', at: Date.now()}; M.sent.push(rec); if(M.sent.length > 40) M.sent.shift();
     // shown locally first, whatever the relay does
-    playGfx(c, gfxOf(f.method)); popTweet(c, it, tw); rec.resolved = it.resolved; rec.injected = inj; if(c.el && c.el.isConnected) tagAt(c, code);
+    const myCls = classOf(c), eff = effectOf(f.method, myCls); rec.effect = eff.fx; rec.effect_class = eff.by;
+    playGfx(c, eff.fx); popTweet(c, it, tw); rec.ripples = ripple(c, f.method, it.resolved || it.t.title); rec.resolved = it.resolved; rec.injected = inj; if(c.el && c.el.isConnected) tagAt(c, code);
     codeLine(it.resolved || code, 'tapped · ' + (it.scope === 'env' ? name + ' called it from ' + (it.env_scope === 'run' ? it.env_from : 'the safe') + ' · ' : '') + it.id + ' (first seated ' + ((f.defined || {}).run || '?') + ' ' + ((f.defined || {}).job || '') + ') · sending…'); note('func', code, eid);
     return sendCall(rec, code, eid);
   }
@@ -1539,7 +1577,8 @@
     if(M.cut === c && M.el){ closeMethods(); return; } // a second tap on the same object closes it
     closeMethods(); M.cut = c;
     const name = objName(c), box = document.createElement('div'); box.id = 'gmeth'; box.setAttribute('role', 'menu');
-    const h = document.createElement('div'); h.className = 'gmh'; h.textContent = name; box.appendChild(h);
+    const h = document.createElement('div'); h.className = 'gmh'; h.textContent = name + ' : ' + chainOf(classOf(c)).join(' : '); box.appendChild(h);
+    const ifs = ifacesOf(c); if(ifs.length){ const ih = document.createElement('div'); ih.className = 'gmi'; ih.textContent = 'implements ' + ifs.join(', '); box.appendChild(ih); }
     const fns = funcsFor(c);
     fns.forEach(it => { const b = document.createElement('button'); b.type = 'button'; b.setAttribute('role', 'menuitem'); b.className = 'gfn';
       b.textContent = it.t.title + (it.t.emoji ? ' ' + it.t.emoji : ''); b.title = it.t.run + ' ' + it.t.job + (it.f.calls ? ' · called ' + it.f.calls + 'x since' : '');
@@ -1603,7 +1642,8 @@
           for(const l of tx.split('\n')){ if(!l) continue; let m; try{ m = JSON.parse(l); m = JSON.parse(m.message || '{}'); }catch(e){ continue; }
             if(m.rid === body.rid || m.event_id === eid){ rec.status = m.status || (m.ok ? 'accepted' : 'rejected'); rec.reply = m;
               if(m.ok){ toast((m.code || code) + ' ✓ in the db'); codeLine(m.resolved || m.code || code, 'tapped · in the world db' + (m.run ? ' · ' + m.run + (m.card ? '/' + m.card : '') : ''));
-                if(m.resolved && TW){ const rv = TW.querySelector('.gtr'); if(rv) rv.textContent = m.resolved; } }
+                if(m.resolved && TW){ const rv = TW.querySelector('.gtr'); if(rv) rv.textContent = m.resolved; }
+                if(m.ripples && m.ripples.length) rec.loggedRipples = m.ripples; }
               else toast(code + ' ✗ ' + (m.detail || m.reason || 'rejected'), 1);
               return rec; } } }catch(e){} }
       rec.status = 'no_reply'; toast(code + ' sent; no reply from the box yet', 1);
