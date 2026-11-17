@@ -5345,16 +5345,6 @@
 ],
 "teo": [
 {
-"id": "wf_152ac5f930",
-"kind": "consequence",
-"text": "The teo leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"code": "top_deck_charter.interactwith(teo){ teo.receives(top_deck_charter.envelope); teo.remembers(bisola, 'brown envelope'); }",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6",
-"other": "top_deck_charter"
-},
-{
 "id": "wf_363939a52f",
 "kind": "consequence",
 "text": "A Cassette spine note with Kunle's name and 'pharmacy stamp' on it, turns up inside the folded receipt at the teo, and Bisola reads the name twice.",
@@ -5383,6 +5373,16 @@
 "run": "run-5a58c4",
 "card": "j2",
 "other": "fire_escape_outside"
+},
+{
+"id": "wf_af0538c295",
+"kind": "consequence",
+"text": "The teo leaves with a Marker note with Kunle's name and 'nice day sign' on it.",
+"code": "god.interactwith(teo){ teo.receives(god.sign); teo.remembers(kunle, 'nice day sign'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j3",
+"other": "god"
 },
 {
 "id": "wt_183d3cde12",
@@ -5996,17 +5996,6 @@
 },
 "consequences": [
 {
-"id": "wf_95c43d8f38",
-"ts": "2026-11-17T15:16:04-0500",
-"a": "pure_water_cooler",
-"b": "koko",
-"code": "pure_water_cooler.interactwith(koko){ pure_water_cooler.db.copyto(koko); koko.keeps(pure_water_cooler, 'pure-water cooler, still carried home through the flood'); }",
-"text": "The pure-water cooler ends up with the koko, still carried home through the flood.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "w1"
-},
-{
 "id": "wf_3000f47e1a",
 "ts": "2026-11-17T15:17:46-0500",
 "a": "marker",
@@ -6434,6 +6423,17 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": "j6"
+},
+{
+"id": "wf_af0538c295",
+"ts": "2026-11-17T16:49:33-0500",
+"a": "god",
+"b": "teo",
+"code": "god.interactwith(teo){ teo.receives(god.sign); teo.remembers(kunle, 'nice day sign'); }",
+"text": "The teo leaves with a Marker note with Kunle's name and 'nice day sign' on it.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j3"
 }
 ],
 "memories": [
@@ -6537,5 +6537,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T16:47:01-0500"
+"updated": "2026-11-17T16:49:33-0500"
 }
