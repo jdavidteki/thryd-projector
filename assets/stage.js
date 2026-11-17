@@ -1391,7 +1391,7 @@
     '#gmeth .gmh{width:100%;color:#ffe7a8;font-weight:600;padding:0 .3vh .2vh;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}',
     '#gmeth button{font:inherit;color:#fff;background:#2a2a2a;border:1px solid #555;border-radius:.8vh;padding:.7vh 1vh;cursor:pointer;min-height:36px;touch-action:manipulation}',
     '#gmeth button:hover,#gmeth button:focus-visible{background:#3c3c3c;border-color:#ffd76a;outline:none}',
-    '#gmeth button.gfn{border-color:#8a6d2b;text-align:left}', '#gmeth .gms{width:100%;color:#bbb;font-weight:400;font-size:.85em;padding:0 .3vh}',
+    '#gmeth button.gfn{border-color:#8a6d2b;text-align:left}', '#gmeth button.genv{border-color:#3d6b8a;text-align:left}', '#gmeth{max-height:min(70vh,560px);overflow:auto}', '#gmeth .gms{width:100%;color:#bbb;font-weight:400;font-size:.85em;padding:0 .3vh}',
     '#gtweet{position:fixed;z-index:10040;max-width:min(80vw,460px);padding:1vh 1.2vh;border-radius:1vh;background:rgba(14,14,14,.94);color:#fff;box-shadow:0 3px 16px #0009;font:500 max(13px,1.6vh)/1.35 system-ui,sans-serif;transform:translateX(-50%);opacity:0;transition:opacity .5s;pointer-events:none}',
     '#gtweet.on{opacity:1}', '#gtweet .gtc{font:600 .82em ui-monospace,Menlo,Consolas,monospace;color:#ffd76a;margin-bottom:.4vh}',
     '#gtweet .gty{color:#9fd3ff;font-weight:700;white-space:nowrap}', '#gtweet .gtn{color:#bbb;font-size:.8em;margin-top:.5vh}',
@@ -1419,17 +1419,40 @@
   // (tools/export_object_methods.py, cmd_loop) maps a stage object name to the functions grown from seated code titles in every agenda
   // (teo.fold(surgical) 🛤️ first seated run-5a58c4 j25). A tap lists those titles; a click pops one of its archive tweets with its year,
   // plays an effect that fits the verb, and logs a func_call (author projector, linked to the run/job it was seated in) over the same relay.
-  const OM = S.objectMethods = {objects: {}, functions: {}, at: 0, turn: {}};
+  const OM = S.objectMethods = {objects: {}, functions: {}, inherit: {}, runs: {}, safes: {}, scene_safes: {}, scene_env: {}, at: 0, turn: {}};
   function loadOM(){ fetch('data/object_methods.json?t=' + Date.now(), {cache: 'no-store'}).then(r => r.ok ? r.json() : null).then(d => {
-    if(!d || !d.objects || !d.functions) return; OM.objects = d.objects; OM.functions = d.functions; OM.at = Date.now(); }).catch(()=>{}); }
+    if(!d || !d.objects || !d.functions) return; OM.objects = d.objects; OM.functions = d.functions;
+    OM.inherit = d.inherit || {}; OM.runs = d.runs || {}; OM.safes = d.safes || {}; OM.scene_safes = d.scene_safes || {}; OM.scene_env = d.scene_env || {}; OM.at = Date.now(); }).catch(()=>{}); }
   loadOM(); setInterval(loadOM, 300000);
   const omKey = x => String(x || '').toLowerCase().replace(/\u00b7\d+$/, '').replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '');
   function funcsFor(c){
     const keys = []; [objName(c), c.castAs, tagName(c), c.label, c.klass].forEach(x => { const k = omKey(x); if(k){ keys.push(k); keys.push(k.replace(/_[0-9a-f]{4,6}$/, '')); } });
     const ids = []; keys.forEach(k => (OM.objects[k] || []).forEach(id => { if(!ids.includes(id) && OM.functions[id]) ids.push(id); }));
-    const out = []; ids.forEach(id => (OM.functions[id].titles || []).forEach(t => { if(out.length < 6 && !out.some(o => o.t.title === t.title)) out.push({id, f: OM.functions[id], t}); }));
+    const out = []; ids.forEach(id => (OM.functions[id].titles || []).forEach(t => { if(!out.some(o => o.t.title === t.title)) out.push({id, f: OM.functions[id], t}); }));
     return out;
   }
+  // scope inheritance (Jesuye 17 Nov 2026 11:11 AM ET "you can also use functions and methods that belong to the safe where the objects
+  // belong. we can call methods in the objects environment"): after its own functions an object lists what its environment holds, the
+  // run it belongs to (OM.inherit from agenda_objects / frame_objects / objects_map, or the cut's own home run) and then the safe its frame
+  // was cut from or its run was seeded from (every function seated there or in other runs seeded from that safe). One labelled row each.
+  function envFor(c, own){
+    const H = c.home || {}, rows = [], seen = new Set(own.map(o => o.id)), add = (scope, from, title) => {
+      if(rows.some(r => r.scope === scope && r.from === from)) return;
+      const src = scope === 'run' ? OM.runs[from] : OM.safes[from]; if(!src) return;
+      const fs = (src.funcs || []).slice().reverse().filter(id => OM.functions[id] && !seen.has(id)); if(!fs.length) return;
+      fs.forEach(id => seen.add(id)); rows.push({scope, from, title: title || (src.title || ''), funcs: fs}); };
+    // environment by the object's own name (not its cut label, which many scenes share) and by the scene it was cut from
+    const keys = []; [objName(c), c.castAs, tagName(c)].forEach(x => { const k = omKey(x); if(k){ keys.push(k); keys.push(k.replace(/_[0-9a-f]{4,6}$/, '')); } });
+    const runs = [], safes = [], se = OM.scene_env[H.mid];
+    if(se){ (se.runs || []).forEach(r => runs.push(r)); (se.safes || []).forEach(p => safes.push(p)); }
+    if(H.run && /^run-/.test(H.run)) runs.push(H.run);
+    keys.forEach(k => (OM.inherit[k] || []).forEach(r => (r.scope === 'run' ? runs : safes).push(r.from)));
+    runs.forEach(r => { if(OM.runs[r] && OM.runs[r].safe) safes.push(OM.runs[r].safe); });
+    (OM.scene_safes[H.mid] || []).forEach(p => safes.unshift(p));
+    runs.forEach(r => add('run', r)); safes.forEach(p => add('safe', p));
+    return rows.map(r => ({...r, items: r.funcs.map(id => { const f = OM.functions[id]; return {id, f, t: (f.titles || [])[0], scope: 'env', env_scope: r.scope, env_from: r.from}; }).filter(x => x.t)}));
+  }
+  S.envFor = envFor;
   // verb -> effect (a small mapping; get*/is* reveal like know, set* speaks like say; anything else gets the glint + pulse)
   const GFX = {fold: 'fold', hide: 'hide', vanish: 'hide', tune: 'tune', mix: 'tune', play: 'tune', hit: 'tune', count: 'tune', know: 'know', see: 'know', reveal: 'know',
     weigh: 'weigh', carry: 'weigh', teach: 'weigh', hold: 'weigh', say: 'say', on: 'say', made: 'say', belong: 'weigh', kill: 'shake', again: 'shake', open: 'open', map: 'open'};
@@ -1442,7 +1465,8 @@
   function popTweet(c, it, tw){
     if(TW){ TW.remove(); TW = null; }
     const b = document.createElement('div'); b.id = 'gtweet'; b.setAttribute('role', 'status');
-    const h = document.createElement('div'); h.className = 'gtc'; h.textContent = it.t.title + (it.t.emoji ? ' ' + it.t.emoji : '') + ' · ' + it.t.run + ' ' + it.t.job; b.appendChild(h);
+    const h = document.createElement('div'); h.className = 'gtc'; h.textContent = it.t.title + (it.t.emoji ? ' ' + it.t.emoji : '') + ' · ' + it.t.run + ' ' + it.t.job
+      + (it.scope === 'env' ? ' · inherited from ' + (it.env_scope === 'run' ? it.env_from : 'the safe') : ''); b.appendChild(h);
     const q = document.createElement('div');
     if(tw){ q.appendChild(document.createTextNode('\u00ab' + tw.text + '\u00bb ')); const y = document.createElement('span'); y.className = 'gty'; y.textContent = tw.year; q.appendChild(y); }
     else q.textContent = '(no archive tweet with a year for this title)';
@@ -1461,14 +1485,14 @@
     const tw = ti == null ? null : tws[ti], H = c.home || {}, eid = uid();
     const code = it.t.title + ';', f = it.f;
     const body = {v: 1, type: 'call', event_id: eid, rid: eid + '-r', run: H.run || AG.active || null, card: null, object: name, fn: f.method, args: [it.t.arg],
-      func: it.id, title: it.t.title, ti: ti == null ? 0 : ti, scene: H.mid ? String(H.mid).slice(0, 160) : null, cut: c.label ? String(c.label).slice(0, 60) : null, client_ts: new Date().toISOString()};
+      func: it.id, title: it.t.title, ti: ti == null ? 0 : ti, scope: it.scope === 'env' ? 'env' : 'own', ...(it.scope === 'env' ? {env_scope: it.env_scope, env_from: it.env_from} : {}), scene: H.mid ? String(H.mid).slice(0, 160) : null, cut: c.label ? String(c.label).slice(0, 60) : null, client_ts: new Date().toISOString()};
     const fr = (String(H.mid || '').match(/(?:^|[^A-Za-z0-9])([jw]\d{1,3})(?![0-9])/i) || [])[1];
     body.card = String(H.card || fr || root.__thrydCard || '').toLowerCase() || null;
     if(body.run && !/^run-[0-9a-f]{4,6}$/.test(body.run)) body.run = null; if(body.card && !/^[jw]\d{1,3}$/.test(body.card)) body.card = null;
     const rec = {code, body, status: 'sending', at: Date.now()}; M.sent.push(rec); if(M.sent.length > 40) M.sent.shift();
     // shown locally first, whatever the relay does
     playGfx(c, gfxOf(f.method)); popTweet(c, it, tw); if(c.el && c.el.isConnected) tagAt(c, code);
-    codeLine(code, 'tapped · ' + it.id + ' (first seated ' + ((f.defined || {}).run || '?') + ' ' + ((f.defined || {}).job || '') + ') · sending…'); note('func', code, eid);
+    codeLine(code, 'tapped · ' + (it.scope === 'env' ? name + ' called it from ' + (it.env_scope === 'run' ? it.env_from : 'the safe') + ' · ' : '') + it.id + ' (first seated ' + ((f.defined || {}).run || '?') + ' ' + ((f.defined || {}).job || '') + ') · sending…'); note('func', code, eid);
     return sendCall(rec, code, eid);
   }
   S.fireFunc = fireFunc; S.funcsFor = funcsFor;
@@ -1492,7 +1516,16 @@
       b.addEventListener('pointerdown', ev => ev.stopPropagation());
       b.addEventListener('click', ev => { ev.stopPropagation(); ev.preventDefault(); fireFunc(c, name, it); closeMethods(); });
       box.appendChild(b); });
-    if(!fns.length) methodsFor(c).forEach(m => { const b = document.createElement('button'); b.type = 'button'; b.setAttribute('role', 'menuitem');
+    const env = envFor(c, fns);
+    env.forEach(r => { if(!r.items.length) return; const lb = document.createElement('div'); lb.className = 'gms';
+      lb.textContent = r.scope === 'run' ? 'from ' + r.from : 'from the safe' + (r.title ? ' \u00b7 ' + r.title : ''); box.appendChild(lb);
+      r.items.forEach(it => { const b = document.createElement('button'); b.type = 'button'; b.setAttribute('role', 'menuitem'); b.className = 'genv';
+        b.textContent = it.t.title + (it.t.emoji ? ' ' + it.t.emoji : ''); b.title = 'inherited from ' + (r.scope === 'run' ? r.from : 'the safe ' + (r.title || r.from)) + ' · seated ' + it.t.run + ' ' + it.t.job;
+        b.dataset.func = it.id; b.dataset.scope = 'env';
+        b.addEventListener('pointerdown', ev => ev.stopPropagation());
+        b.addEventListener('click', ev => { ev.stopPropagation(); ev.preventDefault(); fireFunc(c, name, it); closeMethods(); });
+        box.appendChild(b); }); });
+    if(!fns.length && !env.some(r => r.items.length)) methodsFor(c).forEach(m => { const b = document.createElement('button'); b.type = 'button'; b.setAttribute('role', 'menuitem');
       b.textContent = name + '.' + m.fn + '(' + qstr(m.args) + ')'; b.dataset.fn = m.fn; b.dataset.args = JSON.stringify(m.args);
       b.addEventListener('pointerdown', ev => ev.stopPropagation());
       b.addEventListener('click', ev => { ev.stopPropagation(); ev.preventDefault(); fireMethod(c, name, m.fn, m.args); closeMethods(); });
