@@ -4088,16 +4088,6 @@
 ],
 "apapa_container_yard": [
 {
-"id": "wf_72baaecda3",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the apapa container yard, and Bisola reads the name twice.",
-"code": "matches.interactwith(apapa_container_yard){ apapa_container_yard.receives(matches.envelope); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "matches"
-},
-{
 "id": "wf_cb86cdc3d6",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the apapa container yard, and Bisola reads the name twice.",
@@ -4136,6 +4126,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "morir_r"
+},
+{
+"id": "wf_93196fdc4c",
+"kind": "consequence",
+"text": "An Ats note with Bisola's name and 'brown envelope' on it, turns up inside the brown envelope at the apapa container yard, and Bisola reads the name twice.",
+"code": "ats.interactwith(apapa_container_yard){ apapa_container_yard.receives(ats.envelope); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j2",
+"other": "ats"
 }
 ],
 "mrs_morenike_daramola": [
@@ -4282,17 +4282,6 @@
 ]
 },
 "consequences": [
-{
-"id": "wf_9898ccbcd6",
-"ts": "2026-11-16T15:40:30-0500",
-"a": "danfo_speaker",
-"b": "lekki_pharmacy",
-"code": "danfo_speaker.interactwith(lekki_pharmacy){ lekki_pharmacy.receives(danfo_speaker.note); … }",
-"text": "A Danfo speaker note with Bisola's name and 'egbe note' on it, turns up inside the unpaid prescription slip at the lekki pharmacy, and Titi reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "w"
-},
 {
 "id": "wf_51d143d86c",
 "ts": "2026-11-16T15:42:08-0500",
@@ -4721,6 +4710,17 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j6"
+},
+{
+"id": "wf_93196fdc4c",
+"ts": "2026-11-16T20:29:47-0500",
+"a": "ats",
+"b": "apapa_container_yard",
+"code": "ats.interactwith(apapa_container_yard){ apapa_container_yard.receives(ats.envelope); … }",
+"text": "An Ats note with Bisola's name and 'brown envelope' on it, turns up inside the brown envelope at the apapa container yard, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j2"
 }
 ],
 "memories": [
@@ -4824,5 +4824,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-16T20:25:43-0500"
+"updated": "2026-11-16T20:29:47-0500"
 }
