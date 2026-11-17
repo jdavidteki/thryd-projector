@@ -1920,16 +1920,6 @@
 ],
 "tie": [
 {
-"id": "wf_72f9e2b22a",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the tie, and Bisola reads the name twice.",
-"code": "red_white_cap.interactwith(tie){ tie.receives(red_white_cap.envelope); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "red_white_cap"
-},
-{
 "id": "wf_b9f0877762",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the tie, and Bisola reads the name twice.",
@@ -1968,6 +1958,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "agbada"
+},
+{
+"id": "wf_741d5e2d65",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the tie, and Bisola reads the name twice.",
+"code": "streetlights.interactwith(tie){ tie.receives(streetlights.envelope); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "streetlights"
 }
 ],
 "laptop": [
@@ -4521,17 +4521,6 @@
 },
 "consequences": [
 {
-"id": "wf_bcaf6eada0",
-"ts": "2026-11-16T21:20:01-0500",
-"a": "notnotnotnotyn_dec",
-"b": "notnotnotnotyn_sep",
-"code": "notnotnotnotyn_dec.interactwith(notnotnotnotyn_sep){ notnotnotnotyn_sep.receives(notnotnotnotyn_dec.envelope); notnotnotnotyn_sep.remembers(bisola, 'brown envelope'); }",
-"text": "The notnotnotnotyn sep leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
-{
 "id": "wf_bc0b6049c7",
 "ts": "2026-11-16T21:21:40-0500",
 "a": "pure_water_cooler",
@@ -4959,6 +4948,17 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j6"
+},
+{
+"id": "wf_741d5e2d65",
+"ts": "2026-11-16T23:17:46-0500",
+"a": "streetlights",
+"b": "tie",
+"code": "streetlights.interactwith(tie){ tie.receives(streetlights.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the tie, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
 }
 ],
 "memories": [
@@ -5062,5 +5062,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-16T23:12:11-0500"
+"updated": "2026-11-16T23:17:46-0500"
 }
