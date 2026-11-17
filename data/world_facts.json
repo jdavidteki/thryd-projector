@@ -13,6 +13,10 @@
 "front_pew_mushin_subject_third": "front_pew_mushin",
 "burial_reception_hall_subject": "burial_reception_hall",
 "burial_reception_hall_subject_second": "burial_reception_hall",
+"beach_lummus_park_subject": "beach_lummus_park",
+"beach_lummus_park_figure": "beach_lummus_park",
+"beach_lummus_park_figure_second": "beach_lummus_park",
+"beach_lummus_park_figure_third": "beach_lummus_park",
 "lekki_rooftop_subject": "lekki_rooftop",
 "lekki_rooftop_subject_second": "lekki_rooftop",
 "lekki_rooftop_subject_third": "lekki_rooftop",
@@ -26,6 +30,8 @@
 "top_deck_charter_subject": "top_deck_charter",
 "top_deck_charter_subject_second": "top_deck_charter",
 "top_deck_charter_subject_third": "top_deck_charter",
+"bow_charter_boat_subject": "bow_charter_boat",
+"bow_charter_boat_figure": "bow_charter_boat",
 "danfo_stuck_third_subject": "danfo_stuck_third",
 "danfo_stuck_third_subject_second": "danfo_stuck_third",
 "club_terrace_admiralty_subject": "club_terrace_admiralty",
@@ -532,10 +538,6 @@
 "balance_figure": "balance",
 "balance_figure_second": "balance",
 "balance_figure_third": "balance",
-"beach_lummus_park_figure": "beach_lummus_park",
-"beach_lummus_park_figure_second": "beach_lummus_park",
-"beach_lummus_park_figure_third": "beach_lummus_park",
-"bow_charter_boat_figure": "bow_charter_boat",
 "gbagada_hospital_waiting_figure": "gbagada_hospital_waiting",
 "hajia_hair_salon_figure": "hajia_hair_salon",
 "hajia_hair_salon_figure_second": "hajia_hair_salon",
@@ -3505,16 +3507,6 @@
 ],
 "ats": [
 {
-"id": "wf_ef3c875f42",
-"kind": "consequence",
-"text": "A Danfo speaker note with Bisola's name and 'egbe note' on it, turns up inside the brown envelope at the ats, and Bisola reads the name twice.",
-"code": "danfo_speaker.interactwith(ats){ ats.receives(danfo_speaker.note); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "w",
-"other": "danfo_speaker"
-},
-{
 "id": "wf_63e1cc7ee7",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the ats, and Bisola reads the name twice.",
@@ -3543,6 +3535,16 @@
 "run": "run-0bd7c0",
 "card": "w7",
 "other": "morir"
+},
+{
+"id": "wf_37af7dd9f5",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the ats, and Bisola reads the name twice.",
+"code": "bow.interactwith(ats){ ats.receives(bow.envelope); ats.remembers(bisola, 'brown envelope'); ats.tucks(bow, 'yaba bookshop receipt into the brown envelope'); }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "bow"
 },
 {
 "id": "wt_1e83690303",
@@ -4562,20 +4564,21 @@
 "card": "j6",
 "other": "people_scene"
 }
+],
+"beach_lummus_park": [
+{
+"id": "wf_8a19b42f71",
+"kind": "memory",
+"text": "8:00am, Monday 2 November 2026: The sun is fully up.",
+"code": "beach_lummus_park.holds('sun');",
+"author": "cos",
+"run": "run-fa5946",
+"card": "j14",
+"other": null
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_90f435984a",
-"ts": "2026-11-16T23:53:19-0500",
-"a": "morir",
-"b": "ats",
-"code": "morir.interactwith(ats){ ats.receives(morir.number); ats.remembers(kunle, 'container number'); ats.tucks(morir, 'morir note into the brown envelope'); }",
-"text": "A Morir note with Kunle's name and 'container number' on it, turns up inside the brown envelope at the ats, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "w7"
-},
 {
 "id": "wf_9abc1f5e39",
 "ts": "2026-11-16T23:54:07-0500",
@@ -5004,6 +5007,17 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j6"
+},
+{
+"id": "wf_37af7dd9f5",
+"ts": "2026-11-17T10:26:19-0500",
+"a": "bow",
+"b": "ats",
+"code": "bow.interactwith(ats){ ats.receives(bow.envelope); ats.remembers(bisola, 'brown envelope'); ats.tucks(bow, 'yaba bookshop receipt into the brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the ats, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
 }
 ],
 "memories": [
@@ -5107,5 +5121,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T10:25:27-0500"
+"updated": "2026-11-17T10:27:09-0500"
 }
