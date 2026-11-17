@@ -4340,26 +4340,6 @@
 ],
 "family_compound_ikorodu": [
 {
-"id": "wf_bb557908b8",
-"kind": "consequence",
-"text": "The family compound ikorodu leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
-"code": "people_scene.interactwith(family_compound_ikorodu){ family_compound_ikorodu.receives(people_scene.code); family_compound_ikorodu.remembers(ejiro, 'juju code'); }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j2",
-"other": "people_scene"
-},
-{
-"id": "wf_ef15f80ed9",
-"kind": "consequence",
-"text": "A Nla agbara figure receipt with Bisola's name and 'brown envelope' on it, turns up inside the juju code at the family compound ikorodu, and Ejiro reads the name twice.",
-"code": "off_key.interactwith(family_compound_ikorodu){ family_compound_ikorodu.receives(off_key.envelope); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j4",
-"other": "off_key"
-},
-{
 "id": "wf_0a002f18d3",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the family compound ikorodu, and Bisola reads the name twice.",
@@ -4388,6 +4368,26 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "lowaleechelons"
+},
+{
+"id": "wf_b283a3726e",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the family compound ikorodu, and Bisola reads the name twice.",
+"code": "people_scene.interactwith(family_compound_ikorodu){ family_compound_ikorodu.receives(people_scene.envelope); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "people_scene"
+},
+{
+"id": "wf_c207fddb16",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the family compound ikorodu, and Bisola reads the name twice.",
+"code": "morir_r.interactwith(family_compound_ikorodu){ family_compound_ikorodu.receives(morir_r.envelope); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "morir_r"
 }
 ],
 "man_cowboy_hat": [
@@ -4482,6 +4482,16 @@
 "run": "run-0bd7c0",
 "card": "w7",
 "other": "people_scene"
+},
+{
+"id": "wf_58340bb359",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the front pew mushin, and Bisola reads the name twice.",
+"code": "sports_ball.interactwith(front_pew_mushin){ front_pew_mushin.receives(sports_ball.envelope); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "sports_ball"
 }
 ],
 "calla": [
@@ -4510,39 +4520,6 @@
 ]
 },
 "consequences": [
-{
-"id": "wf_bb557908b8",
-"ts": "2026-11-16T20:58:49-0500",
-"a": "people_scene",
-"b": "family_compound_ikorodu",
-"code": "people_scene.interactwith(family_compound_ikorodu){ family_compound_ikorodu.receives(people_scene.code); family_compound_ikorodu.remembers(ejiro, 'juju code'); }",
-"text": "The family compound ikorodu leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j2"
-},
-{
-"id": "wf_a08b02243c",
-"ts": "2026-11-16T20:59:40-0500",
-"a": "let",
-"b": "cell_phone",
-"code": "let.interactwith(cell_phone){ cell_phone.receives(let.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the cell phone, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
-{
-"id": "wf_1b2fa033a5",
-"ts": "2026-11-16T21:00:28-0500",
-"a": "morir_r",
-"b": "man_cowboy_hat",
-"code": "morir_r.interactwith(man_cowboy_hat){ man_cowboy_hat.receives(morir_r.envelope); man_cowboy_hat.remembers(bisola, 'brown envelope'); }",
-"text": "The man cowboy hat leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
 {
 "id": "wf_ba2a9af2b2",
 "ts": "2026-11-16T21:02:06-0500",
@@ -4949,6 +4926,39 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "w"
+},
+{
+"id": "wf_b283a3726e",
+"ts": "2026-11-16T22:32:20-0500",
+"a": "people_scene",
+"b": "family_compound_ikorodu",
+"code": "people_scene.interactwith(family_compound_ikorodu){ family_compound_ikorodu.receives(people_scene.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the family compound ikorodu, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
+},
+{
+"id": "wf_58340bb359",
+"ts": "2026-11-16T22:33:55-0500",
+"a": "sports_ball",
+"b": "front_pew_mushin",
+"code": "sports_ball.interactwith(front_pew_mushin){ front_pew_mushin.receives(sports_ball.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the front pew mushin, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
+},
+{
+"id": "wf_c207fddb16",
+"ts": "2026-11-16T22:37:05-0500",
+"a": "morir_r",
+"b": "family_compound_ikorodu",
+"code": "morir_r.interactwith(family_compound_ikorodu){ family_compound_ikorodu.receives(morir_r.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the family compound ikorodu, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
 }
 ],
 "memories": [
@@ -5052,5 +5062,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-16T22:29:06-0500"
+"updated": "2026-11-16T22:37:05-0500"
 }
