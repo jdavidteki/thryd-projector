@@ -4094,16 +4094,6 @@
 ],
 "danfo_stuck_third": [
 {
-"id": "wf_ce1046e657",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the danfo stuck third, and Titi reads the name twice.",
-"code": "kweshon.interactwith(danfo_stuck_third){ danfo_stuck_third.receives(kweshon.envelope); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "kweshon"
-},
-{
 "id": "wf_cf1d702718",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the danfo stuck third, and Titi reads the name twice.",
@@ -4132,6 +4122,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "morir_r"
+},
+{
+"id": "wf_1155c4abcd",
+"kind": "consequence",
+"text": "A Truth note with Titi's name and 'egbe note' on it, turns up inside the egbe note at the danfo stuck third, and Titi reads the name twice.",
+"code": "truth.interactwith(danfo_stuck_third){ danfo_stuck_third.receives(truth.note); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j4",
+"other": "truth"
 },
 {
 "id": "wt_1115_2356_a",
@@ -4495,31 +4495,21 @@
 "card": "j6",
 "other": "family_compound_ikorodu"
 }
+],
+"as_poor_man": [
+{
+"id": "wf_13d2515d32",
+"kind": "consequence",
+"text": "The as poor man leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "family_compound_ikorodu.interactwith(as_poor_man){ as_poor_man.receives(family_compound_ikorodu.envelope); as_poor_man.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "family_compound_ikorodu"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_98668c11d4",
-"ts": "2026-11-16T20:46:36-0500",
-"a": "ats",
-"b": "matches",
-"code": "ats.interactwith(matches){ matches.receives(ats.envelope); matches.remembers(bisola, 'brown envelope'); matches.tucks(ats, 'ats note into the brown envelope'); }",
-"text": "An Ats note with Bisola's name and 'brown envelope' on it, turns up inside the brown envelope at the matches, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j2"
-},
-{
-"id": "wf_7bb5dfe935",
-"ts": "2026-11-16T20:53:09-0500",
-"a": "truth",
-"b": "sports_ball",
-"code": "truth.interactwith(sports_ball){ sports_ball.receives(truth.note); … }",
-"text": "A Truth note with Titi's name and 'egbe note' on it, turns up inside the brown envelope at the sports ball, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j4"
-},
 {
 "id": "wf_6c1ec61f12",
 "ts": "2026-11-16T20:54:00-0500",
@@ -4937,6 +4927,28 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j6"
+},
+{
+"id": "wf_13d2515d32",
+"ts": "2026-11-16T22:23:29-0500",
+"a": "family_compound_ikorodu",
+"b": "as_poor_man",
+"code": "family_compound_ikorodu.interactwith(as_poor_man){ as_poor_man.receives(family_compound_ikorodu.envelope); as_poor_man.remembers(bisola, 'brown envelope'); }",
+"text": "The as poor man leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
+},
+{
+"id": "wf_1155c4abcd",
+"ts": "2026-11-16T22:25:52-0500",
+"a": "truth",
+"b": "danfo_stuck_third",
+"code": "truth.interactwith(danfo_stuck_third){ danfo_stuck_third.receives(truth.note); … }",
+"text": "A Truth note with Titi's name and 'egbe note' on it, turns up inside the egbe note at the danfo stuck third, and Titi reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j4"
 }
 ],
 "memories": [
@@ -5040,5 +5052,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-16T22:20:16-0500"
+"updated": "2026-11-16T22:25:52-0500"
 }
