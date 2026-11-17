@@ -4763,31 +4763,33 @@
 "card": "j6",
 "other": "bicycle"
 }
+],
+"marker_b": [
+{
+"id": "wf_c7fd36c202",
+"kind": "consequence",
+"text": "The marker b leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
+"code": "texts_marisol.interactwith(marker_b){ marker_b.receives(texts_marisol.code); marker_b.remembers(ejiro, 'juju code'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j2",
+"other": "texts_marisol"
+}
+],
+"house": [
+{
+"id": "wf_4b6e3d29e7",
+"kind": "consequence",
+"text": "The teomarisollove ends up with the house, still in love, said out loud by Marisol (w14 causeway).",
+"code": "htpto.interactwith(house){ htpto.db.copyto(house); house.keeps(htpto, 'teomarisollove, still in love, said out loud by Marisol (w14 causeway)'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "",
+"other": "htpto"
+}
 ]
 },
 "consequences": [
-{
-"id": "wt_b0d270a804",
-"ts": "2026-11-17T04:51:32-0500",
-"a": "red_white_cap",
-"b": "apapa_container_yard",
-"code": "red_white_cap.interactwith(apapa_container_yard){ apapa_container_yard.receives(red_white_cap.egbe_note); … }",
-"text": "The red white cap leaves the Apapa container yard without its note, and the gateman files Taiwo's egbe note under the night-shift log for 11:20pm.",
-"author": "thryd",
-"run": "run-0bd7c0",
-"card": "w6"
-},
-{
-"id": "wf_b8fbd39ac9",
-"ts": "2026-11-17T04:51:37-0500",
-"a": "people_scene",
-"b": "notnotnotnotyn_jan",
-"code": "people_scene.interactwith(notnotnotnotyn_jan){ notnotnotnotyn_jan.receives(people_scene.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the notnotnotnotyn jan, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
 {
 "id": "wf_0ccd565b39",
 "ts": "2026-11-17T07:05:02-0500",
@@ -5205,6 +5207,28 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": "j6"
+},
+{
+"id": "wf_c7fd36c202",
+"ts": "2026-11-17T11:18:43-0500",
+"a": "texts_marisol",
+"b": "marker_b",
+"code": "texts_marisol.interactwith(marker_b){ marker_b.receives(texts_marisol.code); marker_b.remembers(ejiro, 'juju code'); }",
+"text": "The marker b leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j2"
+},
+{
+"id": "wf_4b6e3d29e7",
+"ts": "2026-11-17T11:21:38-0500",
+"a": "htpto",
+"b": "house",
+"code": "htpto.interactwith(house){ htpto.db.copyto(house); house.keeps(htpto, 'teomarisollove, still in love, said out loud by Marisol (w14 causeway)'); }",
+"text": "The teomarisollove ends up with the house, still in love, said out loud by Marisol (w14 causeway).",
+"author": "cos",
+"run": "run-5a58c4",
+"card": ""
 }
 ],
 "memories": [
@@ -5308,5 +5332,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T11:16:24-0500"
+"updated": "2026-11-17T11:21:38-0500"
 }
