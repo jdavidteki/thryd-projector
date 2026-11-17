@@ -2374,16 +2374,6 @@
 ],
 "lekki_pharmacy": [
 {
-"id": "wf_0d6dfd9657",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the unpaid prescription slip at the lekki pharmacy, and Titi reads the name twice.",
-"code": "omo.interactwith(lekki_pharmacy){ lekki_pharmacy.receives(omo.envelope); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "omo"
-},
-{
 "id": "wf_6855a3de7f",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the unpaid prescription slip at the lekki pharmacy, and Titi reads the name twice.",
@@ -2392,6 +2382,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "matches"
+},
+{
+"id": "wf_0ae37ec01d",
+"kind": "consequence",
+"text": "A Truth note with Titi's name and 'egbe note' on it, turns up inside the unpaid prescription slip at the lekki pharmacy, and Titi reads the name twice.",
+"code": "truth.interactwith(lekki_pharmacy){ lekki_pharmacy.receives(truth.note); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j4",
+"other": "truth"
 },
 {
 "id": "wt_825a1245a2",
@@ -4343,31 +4343,21 @@
 "card": "j3",
 "other": "lekki_pharmacy"
 }
+],
+"reverse_poverty_capital": [
+{
+"id": "wf_0fa562af2b",
+"kind": "consequence",
+"text": "The reverse poverty capital leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
+"code": "notnotnotnotyn_nov.interactwith(reverse_poverty_capital){ reverse_poverty_capital.receives(notnotnotnotyn_nov.code); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j2",
+"other": "notnotnotnotyn_nov"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_d299e776bb",
-"ts": "2026-11-16T19:23:58-0500",
-"a": "sessy",
-"b": "lekki_pharmacy",
-"code": "sessy.interactwith(lekki_pharmacy){ lekki_pharmacy.receives(sessy.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the unpaid prescription slip at the lekki pharmacy, and Titi reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
-{
-"id": "wf_5744cd23db",
-"ts": "2026-11-16T19:24:46-0500",
-"a": "sessy",
-"b": "agbada",
-"code": "sessy.interactwith(agbada){ agbada.receives(sessy.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the agbada, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
 {
 "id": "wf_09cda4b399",
 "ts": "2026-11-16T19:25:35-0500",
@@ -4785,6 +4775,28 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j3"
+},
+{
+"id": "wf_0ae37ec01d",
+"ts": "2026-11-16T21:15:55-0500",
+"a": "truth",
+"b": "lekki_pharmacy",
+"code": "truth.interactwith(lekki_pharmacy){ lekki_pharmacy.receives(truth.note); … }",
+"text": "A Truth note with Titi's name and 'egbe note' on it, turns up inside the unpaid prescription slip at the lekki pharmacy, and Titi reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j4"
+},
+{
+"id": "wf_0fa562af2b",
+"ts": "2026-11-16T21:16:47-0500",
+"a": "notnotnotnotyn_nov",
+"b": "reverse_poverty_capital",
+"code": "notnotnotnotyn_nov.interactwith(reverse_poverty_capital){ reverse_poverty_capital.receives(notnotnotnotyn_nov.code); … }",
+"text": "The reverse poverty capital leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j2"
 }
 ],
 "memories": [
@@ -4888,5 +4900,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-16T21:11:54-0500"
+"updated": "2026-11-16T21:16:47-0500"
 }
