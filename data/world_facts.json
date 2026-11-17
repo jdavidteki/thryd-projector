@@ -2829,16 +2829,6 @@
 ],
 "bed": [
 {
-"id": "wf_d4378962d8",
-"kind": "consequence",
-"text": "A Pure water cooler note with Kunle's name and 'container number' on it, 9:20am, turns up inside the brown envelope at the bed, and Bisola reads the name twice.",
-"code": "pure_water_cooler.interactwith(bed){ bed.receives(pure_water_cooler.number); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "w1",
-"other": "pure_water_cooler"
-},
-{
 "id": "wf_c70eb5e626",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bed, and Bisola reads the name twice.",
@@ -2867,6 +2857,16 @@
 "run": "run-5a58c4",
 "card": "j6",
 "other": "teo"
+},
+{
+"id": "wf_fc968e3bb3",
+"kind": "consequence",
+"text": "A Marker note with Kunle's name and 'nice day sign' on it, turns up inside the egbe note at the bed, and Taiwo reads the name twice.",
+"code": "god.interactwith(bed){ bed.receives(god.sign); bed.remembers(kunle, 'nice day sign'); bed.tucks(god, 'marker note into the egbe note'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j3",
+"other": "god"
 },
 {
 "id": "wt_740c0937a2",
@@ -5931,6 +5931,16 @@
 "run": "run-5a58c4",
 "card": "j6",
 "other": "tnw"
+},
+{
+"id": "wf_22a751fc0c",
+"kind": "consequence",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up beside the morning at the quiet stretch sand.",
+"code": "water.interactwith(quiet_stretch_sand){ quiet_stretch_sand.receives(water.code); quiet_stretch_sand.remembers(ejiro, 'juju code'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j2",
+"other": "water"
 }
 ],
 "teoloveletter": [
@@ -6027,28 +6037,6 @@
 ]
 },
 "consequences": [
-{
-"id": "wf_3464e44e2c",
-"ts": "2026-11-17T15:23:35-0500",
-"a": "thoughts_marisol",
-"b": "jetty_south_pointe",
-"code": "thoughts_marisol.interactwith(jetty_south_pointe){ jetty_south_pointe.receives(thoughts_marisol.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the jetty south pointe, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
-"id": "wf_8851239517",
-"ts": "2026-11-17T15:24:29-0500",
-"a": "matbaotstaili",
-"b": "top_deck_charter",
-"code": "matbaotstaili.interactwith(top_deck_charter){ top_deck_charter.receives(matbaotstaili.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the top deck charter, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
 {
 "id": "wf_449532c711",
 "ts": "2026-11-17T15:25:25-0500",
@@ -6466,6 +6454,28 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": "j2"
+},
+{
+"id": "wf_22a751fc0c",
+"ts": "2026-11-17T17:00:05-0500",
+"a": "water",
+"b": "quiet_stretch_sand",
+"code": "water.interactwith(quiet_stretch_sand){ quiet_stretch_sand.receives(water.code); quiet_stretch_sand.remembers(ejiro, 'juju code'); }",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up beside the morning at the quiet stretch sand.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j2"
+},
+{
+"id": "wf_fc968e3bb3",
+"ts": "2026-11-17T17:00:58-0500",
+"a": "god",
+"b": "bed",
+"code": "god.interactwith(bed){ bed.receives(god.sign); bed.remembers(kunle, 'nice day sign'); bed.tucks(god, 'marker note into the egbe note'); }",
+"text": "A Marker note with Kunle's name and 'nice day sign' on it, turns up inside the egbe note at the bed, and Taiwo reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j3"
 }
 ],
 "memories": [
@@ -6569,5 +6579,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T16:57:31-0500"
+"updated": "2026-11-17T17:00:58-0500"
 }
