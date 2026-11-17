@@ -251,3 +251,7 @@ body.cerebro #sound,body.lovemap #sound,body.cerebro #soundnext,body.lovemap #so
 #yoki_line{opacity:.95!important;top:calc(7.4vh + 6px);max-width:min(46vw,560px)}
 #lofi_credit{opacity:.85!important}#lofi_credit:hover{opacity:1!important}
 #yoki_line.off,#lofi_credit.off{display:none!important}
+/* 🎙️ podcasts link (17 Nov 2026 3:19 PM ET): same box as the buttons, so the 10px gaps hold */
+#modes a#podlink{box-sizing:border-box;height:30px;min-height:30px;min-width:30px;padding:0 .7em;display:inline-flex;align-items:center;justify-content:center;background:#000a;color:var(--dim);border:1px solid #444;border-radius:.4em;font-size:max(13px,1.5vh);line-height:1;text-decoration:none;cursor:pointer}
+#modes a#podlink:hover{border-color:var(--acc,#ffd76a)}#modes a#podlink:focus-visible{outline:2px solid var(--acc,#ffd76a);outline-offset:2px}
+@media (pointer:coarse){#modes a#podlink{height:40px;min-height:40px;min-width:40px}}
