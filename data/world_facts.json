@@ -913,16 +913,6 @@
 ],
 "plastic_sheet": [
 {
-"id": "wf_01ca8e0923",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the plastic sheet, and Bisola reads the name twice.",
-"code": "red_white_cap.interactwith(plastic_sheet){ plastic_sheet.receives(red_white_cap.envelope); … }",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j6",
-"other": "red_white_cap"
-},
-{
 "id": "wf_89d3b6d817",
 "kind": "consequence",
 "text": "An Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997, turns up inside the brown envelope at the plastic sheet, and Bisola reads the name twice.",
@@ -961,6 +951,16 @@
 "run": "run-0bd7c0",
 "card": "w5",
 "other": null
+},
+{
+"id": "wf_f5e12d9286",
+"kind": "consequence",
+"text": "A Truth note with Titi's name and 'egbe note' on it, turns up inside the brown envelope at the plastic sheet, and Bisola reads the name twice.",
+"code": "truth.interactwith(plastic_sheet){ plastic_sheet.receives(truth.note); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j4",
+"other": "truth"
 }
 ],
 "red_white_cap": [
@@ -1761,16 +1761,6 @@
 ],
 "bicycle": [
 {
-"id": "wf_3e0fcfe9e4",
-"kind": "consequence",
-"text": "A Danfo speaker note with Bisola's name and 'egbe note' on it, turns up inside the boss joke at the bicycle, and Bisola reads the name twice.",
-"code": "danfo_speaker.interactwith(bicycle){ bicycle.receives(danfo_speaker.note); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "w",
-"other": "danfo_speaker"
-},
-{
 "id": "wf_1e3aafe421",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the bicycle, and Bisola reads the name twice.",
@@ -1809,6 +1799,16 @@
 "run": "run-0bd7c0",
 "card": "j2",
 "other": "ats"
+},
+{
+"id": "wf_f39c976faa",
+"kind": "consequence",
+"text": "A Truth note with Titi's name and 'egbe note' on it, turns up inside the brown envelope at the bicycle, and Bisola reads the name twice.",
+"code": "truth.interactwith(bicycle){ bicycle.receives(truth.note); bicycle.remembers(titi, 'egbe note'); bicycle.tucks(truth, 'truth note into the brown envelope'); }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j4",
+"other": "truth"
 }
 ],
 "ronke": [
@@ -4524,28 +4524,6 @@
 },
 "consequences": [
 {
-"id": "wf_d86ac9fe41",
-"ts": "2026-11-16T22:20:16-0500",
-"a": "notnotnotnotyn_sep",
-"b": "people_scene",
-"code": "notnotnotnotyn_sep.interactwith(people_scene){ people_scene.receives(notnotnotnotyn_sep.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the container number at the people scene, and Kunle reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
-{
-"id": "wf_13d2515d32",
-"ts": "2026-11-16T22:23:29-0500",
-"a": "family_compound_ikorodu",
-"b": "as_poor_man",
-"code": "family_compound_ikorodu.interactwith(as_poor_man){ as_poor_man.receives(family_compound_ikorodu.envelope); as_poor_man.remembers(bisola, 'brown envelope'); }",
-"text": "The as poor man leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
-{
 "id": "wf_1155c4abcd",
 "ts": "2026-11-16T22:25:52-0500",
 "a": "truth",
@@ -4962,6 +4940,28 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j6"
+},
+{
+"id": "wf_f5e12d9286",
+"ts": "2026-11-17T00:46:12-0500",
+"a": "truth",
+"b": "plastic_sheet",
+"code": "truth.interactwith(plastic_sheet){ plastic_sheet.receives(truth.note); … }",
+"text": "A Truth note with Titi's name and 'egbe note' on it, turns up inside the brown envelope at the plastic sheet, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j4"
+},
+{
+"id": "wf_f39c976faa",
+"ts": "2026-11-17T00:47:47-0500",
+"a": "truth",
+"b": "bicycle",
+"code": "truth.interactwith(bicycle){ bicycle.receives(truth.note); bicycle.remembers(titi, 'egbe note'); bicycle.tucks(truth, 'truth note into the brown envelope'); }",
+"text": "A Truth note with Titi's name and 'egbe note' on it, turns up inside the brown envelope at the bicycle, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j4"
 }
 ],
 "memories": [
@@ -5065,5 +5065,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T00:45:20-0500"
+"updated": "2026-11-17T00:47:47-0500"
 }
