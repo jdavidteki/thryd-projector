@@ -103,10 +103,10 @@
    "methods": [
     "on",
     "know",
-    "bow"
+    "map"
    ],
-   "instances": 338,
-   "arg_instances": 20,
+   "instances": 339,
+   "arg_instances": 21,
    "parent": null,
    "chain": [
     "Thing"
@@ -171,7 +171,7 @@
    "methods": [
     "on",
     "count",
-    "come"
+    "map"
    ],
    "instances": 16,
    "arg_instances": 13,
@@ -2707,6 +2707,23 @@
     "run-65400f"
    ],
    "tweets": []
+  },
+  "lift": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-cb805f",
+   "first_job": "j11",
+   "source": "pick",
+   "runs": [
+    "run-cb805f",
+    "run-g1-B"
+   ],
+   "tweets": [
+    {
+     "text": "[[tnbt]] -- i kept getting a notification",
+     "year": "2024"
+    }
+   ]
   },
   "like": {
    "class": "Manner",
@@ -5381,12 +5398,6 @@
     "pick"
    ],
    [
-    "wait",
-    "Action",
-    "j6",
-    "pick"
-   ],
-   [
     "else",
     "Thing",
     "j6",
@@ -5444,6 +5455,18 @@
     "follow",
     "Action",
     "j10",
+    "pick"
+   ],
+   [
+    "lift",
+    "Thing",
+    "j11",
+    "pick"
+   ],
+   [
+    "wait",
+    "Action",
+    "j12",
     "pick"
    ],
    [
@@ -5962,6 +5985,12 @@
    ]
   ],
   "run-g1-B": [
+   [
+    "lift",
+    "Thing",
+    "j10",
+    "pick"
+   ],
    [
     "juss",
     "Thing",
@@ -8715,6 +8744,7 @@
   "weeks.gettoattd": "getToattd()",
   "care.on": "on(what: Thing, act: Action)",
   "everywhere.getdidnt": "getDidnt()",
+  "[connection,artists].map": "map(act: Action)",
   "lagbara.on": "on(who: Person, act: Action)",
   "tyn.on": "on(what: Thing, act: Action)",
   "everywhere.getcome": "getCome()",
@@ -8727,8 +8757,10 @@
   "toothbrush.on": "on(what: Thing, act: Action)",
   "aotl.isline": "isLine()",
   "bobo.on": "on(who: Person, act: Action)",
+  "[kept,getting].map": "map(what: Thing)",
   "everywhere.getyanju": "getYanju()",
   "openmedia.isgif": "isGif()",
+  "[nau,god].map": "map(act: Action)",
   "irteiutk.count": "count(act: Action)",
   "jwvbs.open": "open(who: Person)",
   "lateef.hide": "hide(who: Person, who2: Person)",
@@ -8771,6 +8803,7 @@
   "dez.make": "make(what: Thing)",
   "teo.figure": "figure(what: Thing)",
   "teo.lead": "lead(act: Action)",
+  "[maybe,know].map": "map(what: Thing)",
   "titi.go": "go(what: Thing)",
   "nobody.rename": "rename(what: Thing)"
  },
@@ -9068,6 +9101,9 @@
    "ngozi"
   ],
   "run-cb805f": [
+   "[connection,artists]",
+   "[kept,getting]",
+   "[nau,god]",
    "aotl",
    "bobo",
    "care",
@@ -9095,6 +9131,7 @@
    "wife"
   ],
   "run-g1-B": [
+   "[maybe,know]",
    "nobody",
    "titi"
   ]
@@ -9171,5 +9208,5 @@
   "epilogue": "quiet",
   "coda": "quiet"
  },
- "updated": "2026-11-17T17:31:51-05:00"
+ "updated": "2026-11-17T17:41:27-05:00"
 }

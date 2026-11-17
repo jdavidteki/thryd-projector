@@ -326,6 +326,73 @@
    "faded": true,
    "last_run": "run-cb805f"
   },
+  "[connection,artists].map": {
+   "object": "[connection,artists]",
+   "method": "map",
+   "args": [
+    "wait"
+   ],
+   "runs": [
+    "run-cb805f"
+   ],
+   "defined": {
+    "run": "run-cb805f",
+    "job": "j6",
+    "card": "w6",
+    "title": "[connection,artists].map(wait)",
+    "emoji": "",
+    "at": "2026-10-24T06:26:00-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "[connection,artists].map(wait)",
+     "emoji": "",
+     "arg": "wait",
+     "run": "run-cb805f",
+     "job": "j6",
+     "tweets": [
+      {
+       "text": "- artists do connection",
+       "year": "2024"
+      },
+      {
+       "text": "- customers do agenda",
+       "year": "2024"
+      }
+     ],
+     "consequence": "9:40pm, Christmas Eve, 2019, at the street party outside the stadium in Accra.",
+     "consequence_job": "j7",
+     "resolved": "[connection,artists].map(act=sort:Action) from j6",
+     "injected": [
+      {
+       "param": "act",
+       "class": "Action",
+       "instance": "sort",
+       "from_run": "run-cb805f",
+       "from_job": "j6",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "sig": {
+    "params": [
+     {
+      "name": "act",
+      "class": "Action",
+      "default": "wait",
+      "first_run": "run-cb805f",
+      "first_job": "j5"
+     }
+    ],
+    "text": "map(act: Action)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
   "lagbara.on": {
    "object": "lagbara",
    "method": "on",
@@ -367,7 +434,7 @@
      ],
      "consequence": "The man in the red cap claps and shouts, o lagbara!",
      "consequence_job": "j7",
-     "resolved": "lagbara.on(who=yorubbbygehinny:Person, act=wait:Action) from j6",
+     "resolved": "lagbara.on(who=yorubbbygehinny:Person, act=sort:Action) from j6",
      "injected": [
       {
        "param": "who",
@@ -380,7 +447,7 @@
       {
        "param": "act",
        "class": "Action",
-       "instance": "wait",
+       "instance": "sort",
        "from_run": "run-cb805f",
        "from_job": "j6",
        "source": "pick"
@@ -1205,6 +1272,82 @@
    "faded": true,
    "last_run": "run-cb805f"
   },
+  "[kept,getting].map": {
+   "object": "[kept,getting]",
+   "method": "map",
+   "args": [
+    "lift"
+   ],
+   "runs": [
+    "run-cb805f"
+   ],
+   "defined": {
+    "run": "run-cb805f",
+    "job": "j11",
+    "card": "w11",
+    "title": "[kept,getting].map(lift)",
+    "emoji": "📱",
+    "at": "2026-10-24T07:57:00-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "[kept,getting].map(lift)",
+     "emoji": "📱",
+     "arg": "lift",
+     "run": "run-cb805f",
+     "job": "j11",
+     "tweets": [
+      {
+       "text": "[[tnbt]] -- i kept getting a notification",
+       "year": "2024"
+      },
+      {
+       "text": "- waz going on [[here]]?! i checked",
+       "year": "2024"
+      }
+     ],
+     "consequence": "11:40am, 27 December 2019, Jamestown, on the path up to the old lighthouse above the fishing harbour.",
+     "consequence_job": "j12",
+     "resolved": "[kept,getting].map(what=lift:Thing) from j11",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "lift",
+       "from_run": "run-cb805f",
+       "from_job": "j11",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "lift",
+      "first_run": "run-cb805f",
+      "first_job": "j11"
+     }
+    ],
+    "text": "map(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [
+    {
+     "id": "[connection,artists].map",
+     "title": "[connection,artists].map(wait)",
+     "run": "run-cb805f",
+     "job": "j6",
+     "at": "2026-10-24T06:26:00-05:00",
+     "why": "same method"
+    }
+   ],
+   "faded": false,
+   "last_run": null
+  },
   "everywhere.getyanju": {
    "object": "everywhere",
    "method": "getYanju",
@@ -1304,6 +1447,94 @@
    "prior": [],
    "faded": true,
    "last_run": "run-cb805f"
+  },
+  "[nau,god].map": {
+   "object": "[nau,god]",
+   "method": "map",
+   "args": [
+    "wait"
+   ],
+   "runs": [
+    "run-cb805f"
+   ],
+   "defined": {
+    "run": "run-cb805f",
+    "job": "j12",
+    "card": "w12",
+    "title": "[nau,god].map(wait)",
+    "emoji": "✝️",
+    "at": "2026-10-24T08:09:44-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "[nau,god].map(wait)",
+     "emoji": "✝️",
+     "arg": "wait",
+     "run": "run-cb805f",
+     "job": "j12",
+     "tweets": [
+      {
+       "text": "-- but all of us are like [[god]] nau",
+       "year": "2025"
+      },
+      {
+       "text": "- all of us are just strokes on the #thryd",
+       "year": "2025"
+      },
+      {
+       "text": "- no, but yuwa really reeaalllyyy [[laakl]]",
+       "year": "2025"
+      }
+     ],
+     "consequence": "6:30pm, 27 December 2019, the bench by Selasi's jollof cooler near the Jamestown canoes, with the sun going down over the harbour.",
+     "consequence_job": "j13",
+     "resolved": "[nau,god].map(act=wait:Action) from j12",
+     "injected": [
+      {
+       "param": "act",
+       "class": "Action",
+       "instance": "wait",
+       "from_run": "run-cb805f",
+       "from_job": "j12",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "sig": {
+    "params": [
+     {
+      "name": "act",
+      "class": "Action",
+      "default": "wait",
+      "first_run": "run-cb805f",
+      "first_job": "j5"
+     }
+    ],
+    "text": "map(act: Action)"
+   },
+   "receiver_class": "Thing",
+   "prior": [
+    {
+     "id": "[kept,getting].map",
+     "title": "[kept,getting].map(lift)",
+     "run": "run-cb805f",
+     "job": "j11",
+     "at": "2026-10-24T07:57:00-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "[connection,artists].map",
+     "title": "[connection,artists].map(wait)",
+     "run": "run-cb805f",
+     "job": "j6",
+     "at": "2026-10-24T06:26:00-05:00",
+     "why": "same method"
+    }
+   ],
+   "faded": false,
+   "last_run": null
   },
   "irteiutk.count": {
    "object": "irteiutk",
@@ -1448,7 +1679,24 @@
     "text": "open(who: Person)"
    },
    "receiver_class": "Thing",
-   "prior": [],
+   "prior": [
+    {
+     "id": "[kept,getting].map",
+     "title": "[kept,getting].map(lift)",
+     "run": "run-cb805f",
+     "job": "j11",
+     "at": "2026-10-24T07:57:00-05:00",
+     "why": "same verb family (open)"
+    },
+    {
+     "id": "[connection,artists].map",
+     "title": "[connection,artists].map(wait)",
+     "run": "run-cb805f",
+     "job": "j6",
+     "at": "2026-10-24T06:26:00-05:00",
+     "why": "same verb family (open)"
+    }
+   ],
    "faded": true,
    "last_run": "run-cb805f"
   },
@@ -4737,6 +4985,97 @@
    "faded": false,
    "last_run": "run-5a58c4"
   },
+  "[maybe,know].map": {
+   "object": "[maybe,know]",
+   "method": "map",
+   "args": [
+    "lift"
+   ],
+   "runs": [
+    "run-g1-B"
+   ],
+   "defined": {
+    "run": "run-g1-B",
+    "job": "j10",
+    "card": "w10",
+    "title": "[maybe,know].map(lift)",
+    "emoji": "🎯",
+    "at": "2026-11-17T17:20:54-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "[maybe,know].map(lift)",
+     "emoji": "🎯",
+     "arg": "lift",
+     "run": "run-g1-B",
+     "job": "j10",
+     "tweets": [],
+     "consequence": "7:35pm, Saturday 17 October 2026, the same old Lagos cinema, the hall still close to four hundred and the count still not settled.",
+     "consequence_job": "j11",
+     "resolved": "[maybe,know].map(what=lift:Thing) from j10",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "lift",
+       "from_run": "run-g1-B",
+       "from_job": "j10",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "lift",
+      "first_run": "run-cb805f",
+      "first_job": "j11"
+     }
+    ],
+    "text": "map(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [
+    {
+     "id": "[nau,god].map",
+     "title": "[nau,god].map(wait)",
+     "run": "run-cb805f",
+     "job": "j12",
+     "at": "2026-10-24T08:09:44-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "[kept,getting].map",
+     "title": "[kept,getting].map(lift)",
+     "run": "run-cb805f",
+     "job": "j11",
+     "at": "2026-10-24T07:57:00-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "[connection,artists].map",
+     "title": "[connection,artists].map(wait)",
+     "run": "run-cb805f",
+     "job": "j6",
+     "at": "2026-10-24T06:26:00-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "jwvbs.open",
+     "title": "jwvbs.open(parents)",
+     "run": "run-cb805f",
+     "job": "j12",
+     "at": "2026-10-24T08:09:44-05:00",
+     "why": "same verb family (open)"
+    }
+   ],
+   "faded": false,
+   "last_run": null
+  },
   "titi.go": {
    "object": "titi",
    "method": "go",
@@ -4855,6 +5194,18 @@
   }
  },
  "objects": {
+  "[connection,artists]": [
+   "[connection,artists].map"
+  ],
+  "[kept,getting]": [
+   "[kept,getting].map"
+  ],
+  "[maybe,know]": [
+   "[maybe,know].map"
+  ],
+  "[nau,god]": [
+   "[nau,god].map"
+  ],
   "aotl": [
    "aotl.isline"
   ],
@@ -5131,6 +5482,14 @@
      "touch.again",
      "song.hit"
     ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
+    ]
    }
   ],
   "arrange_eventualities_figure": [
@@ -5150,7 +5509,8 @@
     "title": "326. what the arts can see",
     "funcs": [
      "nobody.rename",
-     "titi.go"
+     "titi.go",
+     "[maybe,know].map"
     ]
    }
   ],
@@ -5214,6 +5574,14 @@
      "touch.again",
      "song.hit"
     ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
+    ]
    }
   ],
   "bracket_amnhagc": [
@@ -5254,6 +5622,14 @@
      "teo.hide",
      "touch.again",
      "song.hit"
+    ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
     ]
    }
   ],
@@ -5296,6 +5672,14 @@
      "touch.again",
      "song.hit"
     ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
+    ]
    }
   ],
   "bracket_hard": [
@@ -5336,6 +5720,14 @@
      "teo.hide",
      "touch.again",
      "song.hit"
+    ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
     ]
    }
   ],
@@ -5378,6 +5770,14 @@
      "touch.again",
      "song.hit"
     ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
+    ]
    }
   ],
   "bracket_hpr": [
@@ -5418,6 +5818,14 @@
      "teo.hide",
      "touch.again",
      "song.hit"
+    ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
     ]
    }
   ],
@@ -5460,6 +5868,14 @@
      "touch.again",
      "song.hit"
     ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
+    ]
    }
   ],
   "bracket_icsh": [
@@ -5500,6 +5916,14 @@
      "teo.hide",
      "touch.again",
      "song.hit"
+    ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
     ]
    }
   ],
@@ -5542,6 +5966,14 @@
      "touch.again",
      "song.hit"
     ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
+    ]
    }
   ],
   "bracket_kmb": [
@@ -5582,6 +6014,14 @@
      "teo.hide",
      "touch.again",
      "song.hit"
+    ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
     ]
    }
   ],
@@ -5624,6 +6064,14 @@
      "touch.again",
      "song.hit"
     ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
+    ]
    }
   ],
   "bracket_matbaotstaili": [
@@ -5664,6 +6112,14 @@
      "teo.hide",
      "touch.again",
      "song.hit"
+    ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
     ]
    }
   ],
@@ -5706,6 +6162,14 @@
      "touch.again",
      "song.hit"
     ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
+    ]
    }
   ],
   "bracket_tbp": [
@@ -5746,6 +6210,14 @@
      "teo.hide",
      "touch.again",
      "song.hit"
+    ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
     ]
    }
   ],
@@ -5788,6 +6260,14 @@
      "touch.again",
      "song.hit"
     ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
+    ]
    }
   ],
   "bracket_tsis": [
@@ -5828,6 +6308,14 @@
      "teo.hide",
      "touch.again",
      "song.hit"
+    ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
     ]
    }
   ],
@@ -5870,6 +6358,14 @@
      "touch.again",
      "song.hit"
     ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
+    ]
    }
   ],
   "bracket_wser": [
@@ -5910,6 +6406,14 @@
      "teo.hide",
      "touch.again",
      "song.hit"
+    ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
     ]
    }
   ],
@@ -5978,6 +6482,14 @@
      "touch.again",
      "song.hit"
     ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
+    ]
    }
   ],
   "cabin_lamp": [
@@ -6019,6 +6531,14 @@
      "touch.again",
      "song.hit"
     ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
+    ]
    }
   ],
   "calla": [
@@ -6056,6 +6576,14 @@
      "touch.again",
      "song.hit"
     ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
+    ]
    }
   ],
   "calla_5a58c4": [
@@ -6092,6 +6620,14 @@
      "teo.hide",
      "touch.again",
      "song.hit"
+    ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
     ]
    }
   ],
@@ -6134,6 +6670,14 @@
      "touch.again",
      "song.hit"
     ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
+    ]
    }
   ],
   "catalyst_subject": [
@@ -6171,7 +6715,8 @@
     "title": "326. what the arts can see",
     "funcs": [
      "nobody.rename",
-     "titi.go"
+     "titi.go",
+     "[maybe,know].map"
     ]
    }
   ],
@@ -6223,7 +6768,8 @@
      "tyn.getdetermines",
      "teo.hide",
      "touch.again",
-     "song.hit"
+     "song.hit",
+     "[nau,god].map"
     ]
    }
   ],
@@ -6261,6 +6807,14 @@
      "touch.again",
      "song.hit"
     ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
+    ]
    }
   ],
   "dez_5a58c4": [
@@ -6296,6 +6850,14 @@
      "teo.hide",
      "touch.again",
      "song.hit"
+    ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
     ]
    }
   ],
@@ -6357,6 +6919,14 @@
      "teo.hide",
      "touch.again",
      "song.hit"
+    ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
     ]
    }
   ],
@@ -6541,6 +7111,14 @@
      "touch.again",
      "song.hit"
     ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
+    ]
    }
   ],
   "fire_escape_outside_subject_fourth": [
@@ -6581,6 +7159,14 @@
      "teo.hide",
      "touch.again",
      "song.hit"
+    ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
     ]
    }
   ],
@@ -6623,6 +7209,14 @@
      "touch.again",
      "song.hit"
     ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
+    ]
    }
   ],
   "fire_escape_outside_subject_third": [
@@ -6663,6 +7257,14 @@
      "teo.hide",
      "touch.again",
      "song.hit"
+    ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
     ]
    }
   ],
@@ -6705,6 +7307,14 @@
      "touch.again",
      "song.hit"
     ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
+    ]
    }
   ],
   "florida_subject_fifth": [
@@ -6745,6 +7355,14 @@
      "teo.hide",
      "touch.again",
      "song.hit"
+    ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
     ]
    }
   ],
@@ -6787,6 +7405,14 @@
      "touch.again",
      "song.hit"
     ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
+    ]
    }
   ],
   "florida_subject_second": [
@@ -6828,6 +7454,14 @@
      "touch.again",
      "song.hit"
     ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
+    ]
    }
   ],
   "florida_subject_third": [
@@ -6868,6 +7502,14 @@
      "teo.hide",
      "touch.again",
      "song.hit"
+    ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
     ]
    }
   ],
@@ -6985,6 +7627,14 @@
      "touch.again",
      "song.hit"
     ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
+    ]
    }
   ],
   "handbag1": [
@@ -6996,8 +7646,10 @@
      "lateef.hide",
      "jwvbs.open",
      "irteiutk.count",
+     "[nau,god].map",
      "openmedia.isgif",
      "everywhere.getyanju",
+     "[kept,getting].map",
      "bobo.on",
      "aotl.isline",
      "toothbrush.on",
@@ -7010,6 +7662,7 @@
      "everywhere.getcome",
      "tyn.on",
      "lagbara.on",
+     "[connection,artists].map",
      "everywhere.getdidnt",
      "care.on",
      "weeks.gettoattd",
@@ -7057,6 +7710,14 @@
      "teo.hide",
      "touch.again",
      "song.hit"
+    ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
     ]
    }
   ],
@@ -7109,6 +7770,14 @@
      "touch.again",
      "song.hit"
     ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
+    ]
    }
   ],
   "heat": [
@@ -7150,6 +7819,14 @@
      "touch.again",
      "song.hit"
     ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
+    ]
    }
   ],
   "heatflag": [
@@ -7190,6 +7867,14 @@
      "teo.hide",
      "touch.again",
      "song.hit"
+    ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
     ]
    }
   ],
@@ -7242,6 +7927,14 @@
      "touch.again",
      "song.hit"
     ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
+    ]
    }
   ],
   "hose_5a58c4": [
@@ -7282,6 +7975,14 @@
      "teo.hide",
      "touch.again",
      "song.hit"
+    ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
     ]
    }
   ],
@@ -7324,6 +8025,14 @@
      "touch.again",
      "song.hit"
     ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
+    ]
    }
   ],
   "hpr": [
@@ -7364,6 +8073,14 @@
      "teo.hide",
      "touch.again",
      "song.hit"
+    ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
     ]
    }
   ],
@@ -7406,6 +8123,14 @@
      "touch.again",
      "song.hit"
     ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
+    ]
    }
   ],
   "icsh": [
@@ -7447,6 +8172,14 @@
      "touch.again",
      "song.hit"
     ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
+    ]
    }
   ],
   "itmoai": [
@@ -7487,6 +8220,14 @@
      "teo.hide",
      "touch.again",
      "song.hit"
+    ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
     ]
    }
   ],
@@ -7539,6 +8280,14 @@
      "touch.again",
      "song.hit"
     ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
+    ]
    }
   ],
   "jetty_south_pointe_subject_2": [
@@ -7579,6 +8328,14 @@
      "teo.hide",
      "touch.again",
      "song.hit"
+    ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
     ]
    }
   ],
@@ -7621,6 +8378,14 @@
      "touch.again",
      "song.hit"
     ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
+    ]
    }
   ],
   "jetty_south_pointe_subject_2_fourth": [
@@ -7661,6 +8426,14 @@
      "teo.hide",
      "touch.again",
      "song.hit"
+    ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
     ]
    }
   ],
@@ -7703,6 +8476,14 @@
      "touch.again",
      "song.hit"
     ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
+    ]
    }
   ],
   "jetty_south_pointe_subject_2_third": [
@@ -7743,6 +8524,14 @@
      "teo.hide",
      "touch.again",
      "song.hit"
+    ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
     ]
    }
   ],
@@ -7785,6 +8574,14 @@
      "touch.again",
      "song.hit"
     ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
+    ]
    }
   ],
   "jetty_south_pointe_subject_fourth": [
@@ -7825,6 +8622,14 @@
      "teo.hide",
      "touch.again",
      "song.hit"
+    ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
     ]
    }
   ],
@@ -7867,6 +8672,14 @@
      "touch.again",
      "song.hit"
     ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
+    ]
    }
   ],
   "jetty_south_pointe_subject_third": [
@@ -7907,6 +8720,14 @@
      "teo.hide",
      "touch.again",
      "song.hit"
+    ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
     ]
    }
   ],
@@ -7949,6 +8770,14 @@
      "touch.again",
      "song.hit"
     ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
+    ]
    }
   ],
   "laptop": [
@@ -7958,7 +8787,8 @@
     "title": "326. what the arts can see",
     "funcs": [
      "nobody.rename",
-     "titi.go"
+     "titi.go",
+     "[maybe,know].map"
     ]
    }
   ],
@@ -8011,6 +8841,14 @@
      "touch.again",
      "song.hit"
     ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
+    ]
    }
   ],
   "magician_subject": [
@@ -8062,6 +8900,14 @@
      "touch.again",
      "song.hit"
     ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
+    ]
    }
   ],
   "marina_biscayne_bay_subject_fifth": [
@@ -8102,6 +8948,14 @@
      "teo.hide",
      "touch.again",
      "song.hit"
+    ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
     ]
    }
   ],
@@ -8144,6 +8998,14 @@
      "touch.again",
      "song.hit"
     ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
+    ]
    }
   ],
   "marina_biscayne_bay_subject_second": [
@@ -8179,6 +9041,14 @@
      "teo.hide",
      "touch.again",
      "song.hit"
+    ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
     ]
    }
   ],
@@ -8221,6 +9091,14 @@
      "touch.again",
      "song.hit"
     ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
+    ]
    }
   ],
   "marina_biscayne_bay_subject_third": [
@@ -8261,6 +9139,14 @@
      "teo.hide",
      "touch.again",
      "song.hit"
+    ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
     ]
    }
   ],
@@ -8303,6 +9189,14 @@
      "touch.again",
      "song.hit"
     ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
+    ]
    }
   ],
   "marisol_5a58c4": [
@@ -8343,6 +9237,14 @@
      "teo.hide",
      "touch.again",
      "song.hit"
+    ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
     ]
    }
   ],
@@ -8385,6 +9287,14 @@
      "touch.again",
      "song.hit"
     ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
+    ]
    }
   ],
   "marker_a6": [
@@ -8425,6 +9335,14 @@
      "teo.hide",
      "touch.again",
      "song.hit"
+    ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
     ]
    }
   ],
@@ -8467,6 +9385,14 @@
      "touch.again",
      "song.hit"
     ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
+    ]
    }
   ],
   "marker_b3": [
@@ -8507,6 +9433,14 @@
      "teo.hide",
      "touch.again",
      "song.hit"
+    ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
     ]
    }
   ],
@@ -8549,6 +9483,14 @@
      "touch.again",
      "song.hit"
     ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
+    ]
    }
   ],
   "marker_b7": [
@@ -8589,6 +9531,14 @@
      "teo.hide",
      "touch.again",
      "song.hit"
+    ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
     ]
    }
   ],
@@ -8631,6 +9581,14 @@
      "touch.again",
      "song.hit"
     ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
+    ]
    }
   ],
   "marker_c1": [
@@ -8671,6 +9629,14 @@
      "teo.hide",
      "touch.again",
      "song.hit"
+    ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
     ]
    }
   ],
@@ -8713,6 +9679,14 @@
      "touch.again",
      "song.hit"
     ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
+    ]
    }
   ],
   "marker_c5": [
@@ -8753,6 +9727,14 @@
      "teo.hide",
      "touch.again",
      "song.hit"
+    ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
     ]
    }
   ],
@@ -8795,6 +9777,14 @@
      "touch.again",
      "song.hit"
     ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
+    ]
    }
   ],
   "matbaotstaili": [
@@ -8835,6 +9825,14 @@
      "teo.hide",
      "touch.again",
      "song.hit"
+    ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
     ]
    }
   ],
@@ -8887,6 +9885,14 @@
      "touch.again",
      "song.hit"
     ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
+    ]
    }
   ],
   "miami_subject": [
@@ -8927,6 +9933,14 @@
      "teo.hide",
      "touch.again",
      "song.hit"
+    ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
     ]
    }
   ],
@@ -8969,6 +9983,14 @@
      "touch.again",
      "song.hit"
     ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
+    ]
    }
   ],
   "miami_subject_2_fifth": [
@@ -9009,6 +10031,14 @@
      "teo.hide",
      "touch.again",
      "song.hit"
+    ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
     ]
    }
   ],
@@ -9051,6 +10081,14 @@
      "touch.again",
      "song.hit"
     ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
+    ]
    }
   ],
   "miami_subject_2_second": [
@@ -9091,6 +10129,14 @@
      "teo.hide",
      "touch.again",
      "song.hit"
+    ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
     ]
    }
   ],
@@ -9133,6 +10179,14 @@
      "touch.again",
      "song.hit"
     ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
+    ]
    }
   ],
   "miami_subject_2_third": [
@@ -9173,6 +10227,14 @@
      "teo.hide",
      "touch.again",
      "song.hit"
+    ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
     ]
    }
   ],
@@ -9215,6 +10277,14 @@
      "touch.again",
      "song.hit"
     ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
+    ]
    }
   ],
   "miami_subject_fourth": [
@@ -9255,6 +10325,14 @@
      "teo.hide",
      "touch.again",
      "song.hit"
+    ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
     ]
    }
   ],
@@ -9297,6 +10375,14 @@
      "touch.again",
      "song.hit"
     ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
+    ]
    }
   ],
   "miami_subject_sixth": [
@@ -9338,6 +10424,14 @@
      "touch.again",
      "song.hit"
     ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
+    ]
    }
   ],
   "miami_subject_third": [
@@ -9378,6 +10472,14 @@
      "teo.hide",
      "touch.again",
      "song.hit"
+    ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
     ]
    }
   ],
@@ -9439,8 +10541,10 @@
      "lateef.hide",
      "jwvbs.open",
      "irteiutk.count",
+     "[nau,god].map",
      "openmedia.isgif",
      "everywhere.getyanju",
+     "[kept,getting].map",
      "bobo.on",
      "aotl.isline",
      "toothbrush.on",
@@ -9453,6 +10557,7 @@
      "everywhere.getcome",
      "tyn.on",
      "lagbara.on",
+     "[connection,artists].map",
      "everywhere.getdidnt",
      "care.on",
      "weeks.gettoattd",
@@ -9471,8 +10576,10 @@
      "lateef.hide",
      "jwvbs.open",
      "irteiutk.count",
+     "[nau,god].map",
      "openmedia.isgif",
      "everywhere.getyanju",
+     "[kept,getting].map",
      "bobo.on",
      "aotl.isline",
      "toothbrush.on",
@@ -9485,6 +10592,7 @@
      "everywhere.getcome",
      "tyn.on",
      "lagbara.on",
+     "[connection,artists].map",
      "everywhere.getdidnt",
      "care.on",
      "weeks.gettoattd",
@@ -9533,6 +10641,14 @@
      "touch.again",
      "song.hit"
     ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
+    ]
    }
   ],
   "plot": [
@@ -9573,6 +10689,14 @@
      "teo.hide",
      "touch.again",
      "song.hit"
+    ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
     ]
    }
   ],
@@ -9625,6 +10749,24 @@
      "touch.again",
      "song.hit"
     ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
+    ]
+   }
+  ],
+  "process_subject": [
+   {
+    "scope": "safe",
+    "from": "b17708f507b6",
+    "title": "process",
+    "funcs": [
+     "[connection,artists].map"
+    ]
    }
   ],
   "quiet_stretch_sand_subject": [
@@ -9665,6 +10807,14 @@
      "teo.hide",
      "touch.again",
      "song.hit"
+    ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
     ]
    }
   ],
@@ -9707,6 +10857,14 @@
      "touch.again",
      "song.hit"
     ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
+    ]
    }
   ],
   "quiet_stretch_sand_subject_2_eighth": [
@@ -9747,6 +10905,14 @@
      "teo.hide",
      "touch.again",
      "song.hit"
+    ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
     ]
    }
   ],
@@ -9789,6 +10955,14 @@
      "touch.again",
      "song.hit"
     ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
+    ]
    }
   ],
   "quiet_stretch_sand_subject_2_fourth": [
@@ -9829,6 +11003,14 @@
      "teo.hide",
      "touch.again",
      "song.hit"
+    ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
     ]
    }
   ],
@@ -9871,6 +11053,14 @@
      "touch.again",
      "song.hit"
     ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
+    ]
    }
   ],
   "quiet_stretch_sand_subject_2_seventh": [
@@ -9911,6 +11101,14 @@
      "teo.hide",
      "touch.again",
      "song.hit"
+    ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
     ]
    }
   ],
@@ -9953,6 +11151,14 @@
      "touch.again",
      "song.hit"
     ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
+    ]
    }
   ],
   "quiet_stretch_sand_subject_2_third": [
@@ -9993,6 +11199,14 @@
      "teo.hide",
      "touch.again",
      "song.hit"
+    ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
     ]
    }
   ],
@@ -10035,6 +11249,14 @@
      "touch.again",
      "song.hit"
     ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
+    ]
    }
   ],
   "quiet_stretch_sand_subject_fifth": [
@@ -10075,6 +11297,14 @@
      "teo.hide",
      "touch.again",
      "song.hit"
+    ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
     ]
    }
   ],
@@ -10117,6 +11347,14 @@
      "touch.again",
      "song.hit"
     ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
+    ]
    }
   ],
   "quiet_stretch_sand_subject_second": [
@@ -10157,6 +11395,14 @@
      "teo.hide",
      "touch.again",
      "song.hit"
+    ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
     ]
    }
   ],
@@ -10199,6 +11445,14 @@
      "touch.again",
      "song.hit"
     ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
+    ]
    }
   ],
   "quiet_stretch_sand_subject_sixth": [
@@ -10239,6 +11493,14 @@
      "teo.hide",
      "touch.again",
      "song.hit"
+    ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
     ]
    }
   ],
@@ -10281,6 +11543,14 @@
      "touch.again",
      "song.hit"
     ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
+    ]
    }
   ],
   "reality": [
@@ -10322,6 +11592,14 @@
      "touch.again",
      "song.hit"
     ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
+    ]
    }
   ],
   "really_democracy_subject": [
@@ -10334,8 +11612,10 @@
      "lateef.hide",
      "jwvbs.open",
      "irteiutk.count",
+     "[nau,god].map",
      "openmedia.isgif",
      "everywhere.getyanju",
+     "[kept,getting].map",
      "bobo.on",
      "aotl.isline",
      "toothbrush.on",
@@ -10348,6 +11628,7 @@
      "everywhere.getcome",
      "tyn.on",
      "lagbara.on",
+     "[connection,artists].map",
      "everywhere.getdidnt",
      "care.on",
      "weeks.gettoattd",
@@ -10424,6 +11705,14 @@
      "touch.again",
      "song.hit"
     ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
+    ]
    }
   ],
   "sandal_5a58c4": [
@@ -10464,6 +11753,14 @@
      "teo.hide",
      "touch.again",
      "song.hit"
+    ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
     ]
    }
   ],
@@ -10527,6 +11824,14 @@
      "touch.again",
      "song.hit"
     ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
+    ]
    }
   ],
   "tag_sessy": [
@@ -10567,6 +11872,14 @@
      "teo.hide",
      "touch.again",
      "song.hit"
+    ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
     ]
    }
   ],
@@ -10609,6 +11922,14 @@
      "touch.again",
      "song.hit"
     ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
+    ]
    }
   ],
   "teo": [
@@ -10640,6 +11961,14 @@
      "touch.again",
      "song.hit"
     ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
+    ]
    }
   ],
   "teo_5a58c4": [
@@ -10670,6 +11999,14 @@
      "tyn.getdetermines",
      "touch.again",
      "song.hit"
+    ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
     ]
    }
   ],
@@ -10712,6 +12049,14 @@
      "touch.again",
      "song.hit"
     ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
+    ]
    }
   ],
   "teomarisollove": [
@@ -10752,6 +12097,14 @@
      "teo.hide",
      "touch.again",
      "song.hit"
+    ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
     ]
    }
   ],
@@ -10794,6 +12147,14 @@
      "touch.again",
      "song.hit"
     ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
+    ]
    }
   ],
   "thoughts_marisol": [
@@ -10834,6 +12195,14 @@
      "teo.hide",
      "touch.again",
      "song.hit"
+    ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
     ]
    }
   ],
@@ -10876,6 +12245,14 @@
      "touch.again",
      "song.hit"
     ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
+    ]
    }
   ],
   "top_deck_charter_subject": [
@@ -10916,6 +12293,14 @@
      "teo.hide",
      "touch.again",
      "song.hit"
+    ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
     ]
    }
   ],
@@ -10958,6 +12343,14 @@
      "touch.again",
      "song.hit"
     ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
+    ]
    }
   ],
   "top_deck_charter_subject_fourth": [
@@ -10998,6 +12391,14 @@
      "teo.hide",
      "touch.again",
      "song.hit"
+    ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
     ]
    }
   ],
@@ -11040,6 +12441,14 @@
      "touch.again",
      "song.hit"
     ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
+    ]
    }
   ],
   "top_deck_charter_subject_seventh": [
@@ -11080,6 +12489,14 @@
      "teo.hide",
      "touch.again",
      "song.hit"
+    ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
     ]
    }
   ],
@@ -11122,6 +12539,14 @@
      "touch.again",
      "song.hit"
     ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
+    ]
    }
   ],
   "top_deck_charter_subject_third": [
@@ -11162,6 +12587,14 @@
      "teo.hide",
      "touch.again",
      "song.hit"
+    ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
     ]
    }
   ],
@@ -11216,6 +12649,14 @@
      "teo.hide",
      "touch.again",
      "song.hit"
+    ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
     ]
    }
   ],
@@ -11278,6 +12719,14 @@
      "touch.again",
      "song.hit"
     ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
+    ]
    }
   ],
   "wet_street": [
@@ -11318,6 +12767,14 @@
      "teo.hide",
      "touch.again",
      "song.hit"
+    ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
     ]
    }
   ],
@@ -11391,6 +12848,14 @@
      "touch.again",
      "song.hit"
     ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
+    ]
    }
   ],
   "yee_think_previous_figure": [
@@ -11441,6 +12906,14 @@
      "teo.hide",
      "touch.again",
      "song.hit"
+    ]
+   },
+   {
+    "scope": "safe",
+    "from": "f81f21521253",
+    "title": "829. a day in the life of god",
+    "funcs": [
+     "[nau,god].map"
     ]
    }
   ],
@@ -11538,6 +13011,7 @@
     "weeks.gettoattd",
     "care.on",
     "everywhere.getdidnt",
+    "[connection,artists].map",
     "lagbara.on",
     "tyn.on",
     "everywhere.getcome",
@@ -11550,8 +13024,10 @@
     "toothbrush.on",
     "aotl.isline",
     "bobo.on",
+    "[kept,getting].map",
     "everywhere.getyanju",
     "openmedia.isgif",
+    "[nau,god].map",
     "irteiutk.count",
     "jwvbs.open",
     "lateef.hide",
@@ -11565,6 +13041,7 @@
   "run-g1-B": {
    "safe": "e164727d4c98",
    "funcs": [
+    "[maybe,know].map",
     "titi.go",
     "nobody.rename"
    ]
@@ -11595,6 +13072,7 @@
     "weeks.gettoattd",
     "care.on",
     "everywhere.getdidnt",
+    "[connection,artists].map",
     "lagbara.on",
     "tyn.on",
     "everywhere.getcome",
@@ -11607,8 +13085,10 @@
     "toothbrush.on",
     "aotl.isline",
     "bobo.on",
+    "[kept,getting].map",
     "everywhere.getyanju",
     "openmedia.isgif",
+    "[nau,god].map",
     "irteiutk.count",
     "jwvbs.open",
     "lateef.hide",
@@ -11777,6 +13257,13 @@
    ],
    "runs": []
   },
+  "6d72f12ca0c4": {
+   "title": "1212. self-care",
+   "funcs": [
+    "[kept,getting].map"
+   ],
+   "runs": []
+  },
   "7cbc2e5ad31d": {
    "title": "618. i have an idea",
    "funcs": [
@@ -11831,6 +13318,13 @@
    "title": "1209. the collective unconscious",
    "funcs": [
     "real.tune"
+   ],
+   "runs": []
+  },
+  "b17708f507b6": {
+   "title": "process",
+   "funcs": [
+    "[connection,artists].map"
    ],
    "runs": []
   },
@@ -11922,6 +13416,7 @@
   "e164727d4c98": {
    "title": "326. what the arts can see",
    "funcs": [
+    "[maybe,know].map",
     "titi.go",
     "nobody.rename"
    ],
@@ -11982,6 +13477,7 @@
   "f81f21521253": {
    "title": "829. a day in the life of god",
    "funcs": [
+    "[nau,god].map",
     "song.hit",
     "touch.again",
     "teo.hide",
@@ -12105,6 +13601,9 @@
   "1*3zuO1ZlDfJGwZKpSM2mc5g.gif": [
    "07a0ed55bc3c"
   ],
+  "1*UmpEdNHIUE0PbFptnquSig.gif": [
+   "b17708f507b6"
+  ],
   "1*VDwilLCHF-PLPOY1t4Dq0w.gif": [
    "2c6971a8d401"
   ],
@@ -12211,6 +13710,12 @@
   ],
   "1*mIzZLAH9ua7G2waBjqQtHw.gif": [
    "c51063137413"
+  ],
+  "1*pTERklnny5q87hdAv0NGoQ.gif": [
+   "6d72f12ca0c4"
+  ],
+  "1*NvIP47QeHIdnCpslvGl3kg.jpeg": [
+   "6d72f12ca0c4"
   ],
   "1*jz2c9up58ZIZH827-o9ASg.gif": [
    "99382b159447"
@@ -12354,6 +13859,12 @@
    ],
    "safes": [
     "f81f21521253"
+   ]
+  },
+  "1*UmpEdNHIUE0PbFptnquSig.gif": {
+   "runs": [],
+   "safes": [
+    "b17708f507b6"
    ]
   },
   "1*89P8O1vKr4NJQJcIpNLisQ.gif": {
@@ -12631,6 +14142,18 @@
   }
  },
  "tokens": {
+  "[connection,artists]": [
+   "[connection,artists].map"
+  ],
+  "[kept,getting]": [
+   "[kept,getting].map"
+  ],
+  "[maybe,know]": [
+   "[maybe,know].map"
+  ],
+  "[nau,god]": [
+   "[nau,god].map"
+  ],
   "aotl": [
    "aotl.isline"
   ],
@@ -12785,6 +14308,7 @@
   "care": [
    "Speakable"
   ],
+  "[connection,artists]": [],
   "lagbara": [
    "Speakable"
   ],
@@ -12817,7 +14341,9 @@
   "bobo": [
    "Speakable"
   ],
+  "[kept,getting]": [],
   "openmedia": [],
+  "[nau,god]": [],
   "irteiutk": [
    "Playable",
    "Readable"
@@ -12883,6 +14409,7 @@
   "blender": [],
   "life": [],
   "time": [],
+  "[maybe,know]": [],
   "titi": []
  },
  "casts": {
@@ -12963,6 +14490,9 @@
    "ngozi"
   ],
   "run-cb805f": [
+   "[connection,artists]",
+   "[kept,getting]",
+   "[nau,god]",
    "aotl",
    "bobo",
    "care",
@@ -12990,6 +14520,7 @@
    "wife"
   ],
   "run-g1-B": [
+   "[maybe,know]",
    "nobody",
    "titi"
   ]
@@ -13004,5 +14535,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-17T17:31:51-05:00"
+ "updated": "2026-11-17T17:41:27-05:00"
 }
