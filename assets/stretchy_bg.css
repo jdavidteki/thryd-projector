@@ -1,0 +1,19 @@
+/* stretchy rubber-sheet field + warped scene plates (preview copy only) */
+#stretchy-bg{
+  position:fixed;inset:0;width:100%;height:100%;
+  z-index:0;pointer-events:none;border:0;display:none;
+  transform:translateZ(0);
+}
+body.stage-white:not(.stage-replay):not(.cerebro):not(.lovemap) #stretchy-bg{display:block}
+/* let the field show through the page and the stage */
+html{background:transparent!important}
+body.stage-white:not(.stage-replay):not(.cerebro):not(.lovemap),
+body.stage-white:not(.stage-replay):not(.cerebro):not(.lovemap) #gstage{
+  background:transparent!important;
+}
+/* sample the original plates into the shader; do not paint them twice */
+body.stretchy-bg #gbgs .gbg{
+  opacity:0!important;
+  transition:none!important;
+  filter:none!important;
+}
