@@ -119,10 +119,11 @@
   "Quantity": {
    "param": "amount",
    "methods": [
+    "line",
     "teach"
    ],
-   "instances": 1,
-   "arg_instances": 1,
+   "instances": 2,
+   "arg_instances": 2,
    "parent": "Thing",
    "chain": [
     "Quantity",
@@ -1274,10 +1275,11 @@
   "eddiemurphy": {
    "class": "Thing",
    "cue": "default",
-   "first_run": "run-65400f",
-   "first_job": "j1",
+   "first_run": "run-5a58c4",
+   "first_job": "j31",
    "source": "typed",
    "runs": [
+    "run-5a58c4",
     "run-65400f"
    ],
    "tweets": []
@@ -2598,6 +2600,22 @@
     "run-2eb42d"
    ],
    "tweets": []
+  },
+  "liters": {
+   "class": "Quantity",
+   "cue": "word",
+   "first_run": "run-5a58c4",
+   "first_job": "j31",
+   "source": "pick",
+   "runs": [
+    "run-5a58c4"
+   ],
+   "tweets": [
+    {
+     "text": "- that his blender, how many liters of liquid lines?",
+     "year": "2026"
+    }
+   ]
   },
   "location": {
    "class": "Thing",
@@ -5388,6 +5406,12 @@
     "pick"
    ],
    [
+    "liters",
+    "Quantity",
+    "j31",
+    "pick"
+   ],
+   [
     "true",
     "Thing",
     "j28",
@@ -5397,6 +5421,12 @@
     "deepromance",
     "Thing",
     "j30",
+    "typed"
+   ],
+   [
+    "eddiemurphy",
+    "Thing",
+    "j31",
     "typed"
    ],
    [
@@ -8348,7 +8378,8 @@
   "nobody.weigh": "weigh(what: Thing)",
   "dez.sit": "sit(act: Action)",
   "calla.stare": "stare(feeling: Feeling)",
-  "teo.sit": "sit(what: Thing)"
+  "teo.sit": "sit(what: Thing)",
+  "blender.line": "line(amount: Quantity)"
  },
  "parent": {
   "Person": "Thing",
@@ -8561,6 +8592,7 @@
  },
  "casts": {
   "run-5a58c4": [
+   "blender",
    "calla",
    "code",
    "crime",
@@ -8661,5 +8693,77 @@
    "wife"
   ]
  },
- "updated": "2026-11-17T14:50:17-05:00"
+ "genre_types": {
+  "opening": [
+   "Frequency",
+   "Person",
+   "Manner",
+   "Place",
+   "Thing",
+   "Quantity",
+   "Feeling",
+   "Action"
+  ],
+  "rising": [
+   "Frequency",
+   "Person",
+   "Manner",
+   "Place",
+   "Thing",
+   "Quantity",
+   "Feeling",
+   "Action"
+  ],
+  "climax": [
+   "Frequency",
+   "Person",
+   "Manner",
+   "Place",
+   "Thing",
+   "Quantity",
+   "Feeling",
+   "Action"
+  ],
+  "aftermath": [
+   "Frequency",
+   "Person",
+   "Manner",
+   "Place",
+   "Thing",
+   "Quantity",
+   "Feeling",
+   "Action"
+  ],
+  "resolution": [
+   "Frequency",
+   "Person",
+   "Manner",
+   "Place",
+   "Thing",
+   "Quantity",
+   "Feeling"
+  ],
+  "quiet": [
+   "Person",
+   "Place",
+   "Thing",
+   "Feeling",
+   "Manner",
+   "Frequency"
+  ]
+ },
+ "genre_group": {
+  "opening": "opening",
+  "rising stakes": "rising",
+  "turning point": "rising",
+  "falling into climax": "rising",
+  "climax": "climax",
+  "aftermath": "aftermath",
+  "dawn after the climax": "aftermath",
+  "falling action": "aftermath",
+  "resolution": "resolution",
+  "epilogue": "quiet",
+  "coda": "quiet"
+ },
+ "updated": "2026-11-17T15:11:53-05:00"
 }

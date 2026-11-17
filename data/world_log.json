@@ -4713,7 +4713,7 @@
   },
   "run-5a58c4": {
    "forked_from": "safe:f81f21521253",
-   "head": "5f7d3a6d89",
+   "head": "731bf5583f",
    "commits": [
     {
      "id": "e1804f099d",
@@ -4780,7 +4780,7 @@
      }
     },
     {
-     "id": "28307e95ef",
+     "id": "2b3bafbbd8",
      "parent": "e1804f099d",
      "branch": "run-5a58c4",
      "job": "j2",
@@ -4940,16 +4940,40 @@
         "code": "house.interactwith(mbtij){ mbtij.receives(house.code); mbtij.remembers(ejiro, 'juju code'); }",
         "scope": null,
         "cause_id": null
+       },
+       {
+        "id": "wf_88a64f4959",
+        "object": "sheep",
+        "kind": "consequence",
+        "code": "dez.interactwith(sheep){ sheep.receives(dez.code); sheep.remembers(ejiro, 'juju code'); sheep.tucks(dez, 'ttb note into the scorched contain",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_6d742c58d8",
+        "object": "ronke_tray",
+        "kind": "consequence",
+        "code": "dez.interactwith(ronke_tray){ ronke_tray.receives(dez.code); ronke_tray.remembers(ejiro, 'juju code'); ronke_tray.tucks(dez, 'ttb note into",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_0925813dfd",
+        "object": "miami",
+        "kind": "consequence",
+        "code": "mbtij.interactwith(miami){ miami.receives(mbtij.code); miami.remembers(ejiro, 'juju code'); }",
+        "scope": null,
+        "cause_id": null
        }
       ],
-      "facts_total": 19,
+      "facts_total": 22,
       "functions": [],
       "instances": []
      }
     },
     {
-     "id": "e34e57ffb5",
-     "parent": "28307e95ef",
+     "id": "9c958e9dee",
+     "parent": "2b3bafbbd8",
      "branch": "run-5a58c4",
      "job": "j3",
      "at": "2026-11-17T10:35:36-0500",
@@ -5004,8 +5028,8 @@
      }
     },
     {
-     "id": "d3c3b115b0",
-     "parent": "e34e57ffb5",
+     "id": "83672dd2ce",
+     "parent": "9c958e9dee",
      "branch": "run-5a58c4",
      "job": "j5",
      "at": "2026-11-17T10:46:59-0500",
@@ -5084,8 +5108,8 @@
      }
     },
     {
-     "id": "8ca662f735",
-     "parent": "d3c3b115b0",
+     "id": "116a9e63ac",
+     "parent": "83672dd2ce",
      "branch": "run-5a58c4",
      "job": "j6",
      "at": "2026-11-17T10:49:53-0500",
@@ -5396,16 +5420,24 @@
         "code": "teo.interactwith(bed){ bed.receives(teo.receipt); bed.remembers(bisola, 'folded receipt'); bed.tucks(teo, 'teo note into the egbe note'); }",
         "scope": null,
         "cause_id": null
+       },
+       {
+        "id": "wf_de0f68dcae",
+        "object": "tea_bread_stall",
+        "kind": "consequence",
+        "code": "move.interactwith(tea_bread_stall){ tea_bread_stall.receives(move.envelope); tea_bread_stall.remembers(bisola, 'brown envelope'); tea_bread_",
+        "scope": null,
+        "cause_id": null
        }
       ],
-      "facts_total": 38,
+      "facts_total": 39,
       "functions": [],
       "instances": []
      }
     },
     {
-     "id": "6504d31c9f",
-     "parent": "8ca662f735",
+     "id": "e6be2b6d30",
+     "parent": "116a9e63ac",
      "branch": "run-5a58c4",
      "job": "j7",
      "at": "2026-11-17T11:01:50-0500",
@@ -5484,8 +5516,8 @@
      }
     },
     {
-     "id": "6674ea3d14",
-     "parent": "6504d31c9f",
+     "id": "389f4e1af4",
+     "parent": "e6be2b6d30",
      "branch": "run-5a58c4",
      "job": "j22",
      "at": "2026-11-16T23:37:14-05:00",
@@ -5519,8 +5551,8 @@
      }
     },
     {
-     "id": "1d691242ae",
-     "parent": "6674ea3d14",
+     "id": "081e5ab918",
+     "parent": "389f4e1af4",
      "branch": "run-5a58c4",
      "job": "j23",
      "at": "2026-11-16T23:50:03-05:00",
@@ -5554,8 +5586,8 @@
      }
     },
     {
-     "id": "cc0f5e771d",
-     "parent": "1d691242ae",
+     "id": "b80c73a657",
+     "parent": "081e5ab918",
      "branch": "run-5a58c4",
      "job": "j24",
      "at": "2026-11-17T00:02:09-05:00",
@@ -5613,8 +5645,8 @@
      }
     },
     {
-     "id": "8404f4fbd6",
-     "parent": "cc0f5e771d",
+     "id": "5c35635c4a",
+     "parent": "b80c73a657",
      "branch": "run-5a58c4",
      "job": "j25",
      "at": "2026-11-17T10:35:56-05:00",
@@ -5690,8 +5722,8 @@
      }
     },
     {
-     "id": "0e7a6cc1ae",
-     "parent": "8404f4fbd6",
+     "id": "c5a57d1bfb",
+     "parent": "5c35635c4a",
      "branch": "run-5a58c4",
      "job": "j26",
      "at": "2026-11-17T11:07:01-05:00",
@@ -5725,8 +5757,8 @@
      }
     },
     {
-     "id": "c375bd7d46",
-     "parent": "0e7a6cc1ae",
+     "id": "d5c3efcebd",
+     "parent": "c5a57d1bfb",
      "branch": "run-5a58c4",
      "job": "j27",
      "at": "2026-11-17T11:22:49-05:00",
@@ -5760,8 +5792,8 @@
      }
     },
     {
-     "id": "2877e014a2",
-     "parent": "c375bd7d46",
+     "id": "35367d124c",
+     "parent": "d5c3efcebd",
      "branch": "run-5a58c4",
      "job": "j28",
      "at": "2026-11-17T12:06:03-05:00",
@@ -5786,8 +5818,8 @@
      }
     },
     {
-     "id": "8c359093d6",
-     "parent": "2877e014a2",
+     "id": "b26bad838c",
+     "parent": "35367d124c",
      "branch": "run-5a58c4",
      "job": "j29",
      "at": "2026-11-17T12:30:30-05:00",
@@ -5818,9 +5850,17 @@
         "code": "miami.interactwith(itmoai){ itmoai.receives(miami.phone); }",
         "scope": null,
         "cause_id": null
+       },
+       {
+        "id": "wf_3a10227018",
+        "object": "little_tenderness",
+        "kind": "consequence",
+        "code": "miami.interactwith(little_tenderness){ little_tenderness.receives(miami.phone); }",
+        "scope": null,
+        "cause_id": null
        }
       ],
-      "facts_total": 3,
+      "facts_total": 4,
       "functions": [
        {
         "func": "dez.sit",
@@ -5837,8 +5877,8 @@
      }
     },
     {
-     "id": "5f7d3a6d89",
-     "parent": "8c359093d6",
+     "id": "731bf5583f",
+     "parent": "b26bad838c",
      "branch": "run-5a58c4",
      "job": "j30",
      "at": "2026-11-17T14:49:47-05:00",
@@ -6265,9 +6305,9 @@
   "run-fa5946": "564dd5acda",
   "run-bd649b": "8ed6c18a56",
   "run-9e59ca": "59f544b8d8",
-  "run-5a58c4": "5f7d3a6d89",
+  "run-5a58c4": "731bf5583f",
   "run-cb805f": "62238e387d"
  },
  "commits": 63,
- "updated": "2026-11-17T15:06:06-05:00"
+ "updated": "2026-11-17T15:11:53-05:00"
 }

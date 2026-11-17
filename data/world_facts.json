@@ -1592,6 +1592,16 @@
 "run": "run-b9b963",
 "card": "j8",
 "other": "ikeja_laundromat"
+},
+{
+"id": "wf_6d742c58d8",
+"kind": "consequence",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the green shirt at the ronke tray, and Bisola reads the name twice.",
+"code": "dez.interactwith(ronke_tray){ ronke_tray.receives(dez.code); ronke_tray.remembers(ejiro, 'juju code'); ronke_tray.tucks(dez, 'ttb note into the green shirt'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j2",
+"other": "dez"
 }
 ],
 "president_nigeria": [
@@ -2088,16 +2098,6 @@
 ],
 "sheep": [
 {
-"id": "wf_d64049792d",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the sheep, and Bisola reads the name twice.",
-"code": "bow.interactwith(sheep){ sheep.receives(bow.envelope); sheep.remembers(bisola, 'brown envelope'); sheep.tucks(bow, 'yaba bookshop receipt into the brown envelope'); }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "bow"
-},
-{
 "id": "wf_3f5f4ccc24",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the sheep, and Bisola reads the name twice.",
@@ -2126,6 +2126,16 @@
 "run": "run-0bd7c0",
 "card": "w1",
 "other": "pure_water_cooler"
+},
+{
+"id": "wf_88a64f4959",
+"kind": "consequence",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the scorched container number at the sheep, and Kunle reads the name twice.",
+"code": "dez.interactwith(sheep){ sheep.receives(dez.code); sheep.remembers(ejiro, 'juju code'); sheep.tucks(dez, 'ttb note into the scorched container number'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j2",
+"other": "dez"
 },
 {
 "id": "wt_5dd9c9e121",
@@ -4316,6 +4326,16 @@
 "run": "run-ff3591",
 "card": "j5",
 "other": "red_white_cap"
+},
+{
+"id": "wf_de0f68dcae",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the planed-off chalk sketch at the tea bread stall, and Kunle reads the name twice.",
+"code": "move.interactwith(tea_bread_stall){ tea_bread_stall.receives(move.envelope); … }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "move"
 }
 ],
 "move": [
@@ -5090,16 +5110,6 @@
 ],
 "miami": [
 {
-"id": "wf_e26fc405d4",
-"kind": "memory",
-"text": "11:45pm, Monday 2 November 2026: A phone on the counter starts the off-key chorus, then cuts out, as if it were only the algorithm after all.",
-"code": "miami.holds('phone');",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j29",
-"other": null
-},
-{
 "id": "wf_744beebf62",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up beside the phone at the miami.",
@@ -5138,6 +5148,16 @@
 "run": "run-5a58c4",
 "card": "j6",
 "other": "dress_marisol"
+},
+{
+"id": "wf_0925813dfd",
+"kind": "consequence",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up beside the phone at the miami.",
+"code": "mbtij.interactwith(miami){ miami.receives(mbtij.code); miami.remembers(ejiro, 'juju code'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j2",
+"other": "mbtij"
 }
 ],
 "teo": [
@@ -5547,64 +5567,21 @@
 "card": "",
 "other": "mbtij"
 }
+],
+"little_tenderness": [
+{
+"id": "wf_3a10227018",
+"kind": "consequence",
+"text": "The little tenderness now remembers the miami: 11:45pm, Monday 2 November 2026: A phone on the counter starts the off-key chorus, then.",
+"code": "miami.interactwith(little_tenderness){ little_tenderness.receives(miami.phone); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j29",
+"other": "miami"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_19ca4ca15d",
-"ts": "2026-11-17T12:58:18-0500",
-"a": "replenish_earth",
-"b": "notnotnotnotyn_jul",
-"code": "replenish_earth.interactwith(notnotnotnotyn_jul){ notnotnotnotyn_jul.receives(replenish_earth.envelope); notnotnotnotyn_jul.remembers(bisola, 'brown envelope'); }",
-"text": "The notnotnotnotyn jul leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
-"id": "wf_ec078a92aa",
-"ts": "2026-11-17T12:59:36-0500",
-"a": "notnotnotnotyn_jan",
-"b": "magician",
-"code": "notnotnotnotyn_jan.interactwith(magician){ magician.receives(notnotnotnotyn_jan.envelope); magician.remembers(bisola, 'brown envelope'); }",
-"text": "The magician leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
-"id": "wf_ffdd6b6d38",
-"ts": "2026-11-17T13:00:49-0500",
-"a": "inside_odunlade_brain",
-"b": "cleacky",
-"code": "inside_odunlade_brain.interactwith(cleacky){ cleacky.receives(inside_odunlade_brain.bead); cleacky.remembers(bisola, 'blue glass bead'); }",
-"text": "The cleacky leaves with a Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j5"
-},
-{
-"id": "wf_2e29f3ea73",
-"ts": "2026-11-17T13:02:04-0500",
-"a": "people_scene",
-"b": "future",
-"code": "people_scene.interactwith(future){ future.receives(people_scene.envelope); future.remembers(bisola, 'brown envelope'); }",
-"text": "The future leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
-"id": "wf_e54396a211",
-"ts": "2026-11-17T13:05:47-0500",
-"a": "love",
-"b": "hard",
-"code": "love.interactwith(hard){ hard.receives(love.note); hard.remembers(bisola, 'egbe note'); }",
-"text": "The hard leaves with a Danfo speaker note with Bisola's name and 'egbe note' on it.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "w"
-},
 {
 "id": "wf_0e5a71195f",
 "ts": "2026-11-17T13:08:42-0500",
@@ -5989,6 +5966,61 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": "j7"
+},
+{
+"id": "wf_de0f68dcae",
+"ts": "2026-11-17T15:07:46-0500",
+"a": "move",
+"b": "tea_bread_stall",
+"code": "move.interactwith(tea_bread_stall){ tea_bread_stall.receives(move.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the planed-off chalk sketch at the tea bread stall, and Kunle reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
+},
+{
+"id": "wf_88a64f4959",
+"ts": "2026-11-17T15:08:36-0500",
+"a": "dez",
+"b": "sheep",
+"code": "dez.interactwith(sheep){ sheep.receives(dez.code); sheep.remembers(ejiro, 'juju code'); sheep.tucks(dez, 'ttb note into the scorched container number'); }",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the scorched container number at the sheep, and Kunle reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j2"
+},
+{
+"id": "wf_3a10227018",
+"ts": "2026-11-17T15:09:25-0500",
+"a": "miami",
+"b": "little_tenderness",
+"code": "miami.interactwith(little_tenderness){ little_tenderness.receives(miami.phone); }",
+"text": "The little tenderness now remembers the miami: 11:45pm, Monday 2 November 2026: A phone on the counter starts the off-key chorus, then.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j29"
+},
+{
+"id": "wf_6d742c58d8",
+"ts": "2026-11-17T15:11:03-0500",
+"a": "dez",
+"b": "ronke_tray",
+"code": "dez.interactwith(ronke_tray){ ronke_tray.receives(dez.code); ronke_tray.remembers(ejiro, 'juju code'); ronke_tray.tucks(dez, 'ttb note into the green shirt'); }",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the green shirt at the ronke tray, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j2"
+},
+{
+"id": "wf_0925813dfd",
+"ts": "2026-11-17T15:11:52-0500",
+"a": "mbtij",
+"b": "miami",
+"code": "mbtij.interactwith(miami){ miami.receives(mbtij.code); miami.remembers(ejiro, 'juju code'); }",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up beside the phone at the miami.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j2"
 }
 ],
 "memories": [
@@ -6092,5 +6124,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T15:06:05-0500"
+"updated": "2026-11-17T15:11:52-0500"
 }
