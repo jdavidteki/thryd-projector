@@ -2553,16 +2553,6 @@
 ],
 "cell_phone": [
 {
-"id": "wf_bc4c8b9cd9",
-"kind": "consequence",
-"text": "A Danfo speaker note with Bisola's name and 'egbe note' on it, turns up inside the brown envelope at the cell phone, and Bisola reads the name twice.",
-"code": "danfo_speaker.interactwith(cell_phone){ cell_phone.receives(danfo_speaker.note); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "w",
-"other": "danfo_speaker"
-},
-{
 "id": "wf_a08b02243c",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the cell phone, and Bisola reads the name twice.",
@@ -2591,6 +2581,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "sessy"
+},
+{
+"id": "wf_4802e871b3",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the cell phone, and Bisola reads the name twice.",
+"code": "wsr.interactwith(cell_phone){ cell_phone.receives(wsr.envelope); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "wsr"
 },
 {
 "id": "wt_775c701ecb",
@@ -4524,17 +4524,6 @@
 },
 "consequences": [
 {
-"id": "wf_69cbb8d18b",
-"ts": "2026-11-16T22:17:06-0500",
-"a": "people_scene",
-"b": "front_pew_mushin",
-"code": "people_scene.interactwith(front_pew_mushin){ front_pew_mushin.receives(people_scene.number); … }",
-"text": "A Morir note with Kunle's name and 'container number' on it, turns up inside the brown envelope at the front pew mushin, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "w7"
-},
-{
 "id": "wf_d86ac9fe41",
 "ts": "2026-11-16T22:20:16-0500",
 "a": "notnotnotnotyn_sep",
@@ -4962,6 +4951,17 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j6"
+},
+{
+"id": "wf_4802e871b3",
+"ts": "2026-11-17T00:45:20-0500",
+"a": "wsr",
+"b": "cell_phone",
+"code": "wsr.interactwith(cell_phone){ cell_phone.receives(wsr.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the cell phone, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
 }
 ],
 "memories": [
@@ -5065,5 +5065,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T00:27:55-0500"
+"updated": "2026-11-17T00:45:20-0500"
 }
