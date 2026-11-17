@@ -2298,16 +2298,6 @@
 ],
 "bus": [
 {
-"id": "wf_62add19e06",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the change at the bus, and Taiwo reads the name twice.",
-"code": "play.interactwith(bus){ bus.receives(play.envelope); bus.remembers(bisola, 'brown envelope'); bus.tucks(play, 'yaba bookshop receipt into the change'); }",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j6",
-"other": "play"
-},
-{
 "id": "wf_29c9f7ad52",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bus, and Bisola reads the name twice.",
@@ -2346,6 +2336,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "plastic_sheet"
+},
+{
+"id": "wf_badbc0a0f3",
+"kind": "consequence",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the bus, and Bisola reads the name twice.",
+"code": "house.interactwith(bus){ bus.receives(house.code); bus.remembers(ejiro, 'juju code'); bus.tucks(house, 'ttb note into the brown envelope'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j2",
+"other": "house"
 }
 ],
 "hands": [
@@ -5243,42 +5243,33 @@
 "card": "j6",
 "other": "people_scene"
 }
+],
+"kunle_afolayon_been": [
+{
+"id": "wf_ffc7719134",
+"kind": "consequence",
+"text": "The kunle afolayon been leaves with a Chair note with Taiwo's name and '11:20pm' on it.",
+"code": "chair.interactwith(kunle_afolayon_been){ kunle_afolayon_been.receives(chair.pm); kunle_afolayon_been.remembers(taiwo, '11:20pm'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "w6",
+"other": "chair"
+}
+],
+"daichi_kaneshiro": [
+{
+"id": "wf_83a77d4081",
+"kind": "consequence",
+"text": "The daichi kaneshiro leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "bowl.interactwith(daichi_kaneshiro){ daichi_kaneshiro.receives(bowl.envelope); daichi_kaneshiro.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "bowl"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_8f0a8e9b34",
-"ts": "2026-11-17T11:12:57-0500",
-"a": "wser",
-"b": "florida",
-"code": "wser.interactwith(florida){ florida.receives(wser.envelope); florida.remembers(bisola, 'brown envelope'); }",
-"text": "The florida leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
-"id": "wf_115fa7c106",
-"ts": "2026-11-17T11:14:19-0500",
-"a": "teomarisollove",
-"b": "htpto",
-"code": "teomarisollove.interactwith(htpto){ teomarisollove.db.copyto(htpto); … }",
-"text": "The teomarisollove ends up with the htpto, still in love, said out loud by Marisol (w14 causeway).",
-"author": "cos",
-"run": "run-5a58c4",
-"card": ""
-},
-{
-"id": "wf_41da789b3b",
-"ts": "2026-11-17T11:16:24-0500",
-"a": "bicycle",
-"b": "sandal",
-"code": "bicycle.interactwith(sandal){ sandal.receives(bicycle.envelope); sandal.remembers(bisola, 'brown envelope'); }",
-"text": "The sandal leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
 {
 "id": "wf_c7fd36c202",
 "ts": "2026-11-17T11:18:43-0500",
@@ -5685,6 +5676,39 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": "j6"
+},
+{
+"id": "wf_ffc7719134",
+"ts": "2026-11-17T13:10:23-0500",
+"a": "chair",
+"b": "kunle_afolayon_been",
+"code": "chair.interactwith(kunle_afolayon_been){ kunle_afolayon_been.receives(chair.pm); kunle_afolayon_been.remembers(taiwo, '11:20pm'); }",
+"text": "The kunle afolayon been leaves with a Chair note with Taiwo's name and '11:20pm' on it.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "w6"
+},
+{
+"id": "wf_83a77d4081",
+"ts": "2026-11-17T13:12:49-0500",
+"a": "bowl",
+"b": "daichi_kaneshiro",
+"code": "bowl.interactwith(daichi_kaneshiro){ daichi_kaneshiro.receives(bowl.envelope); daichi_kaneshiro.remembers(bisola, 'brown envelope'); }",
+"text": "The daichi kaneshiro leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
+},
+{
+"id": "wf_badbc0a0f3",
+"ts": "2026-11-17T13:15:15-0500",
+"a": "house",
+"b": "bus",
+"code": "house.interactwith(bus){ bus.receives(house.code); bus.remembers(ejiro, 'juju code'); bus.tucks(house, 'ttb note into the brown envelope'); }",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the bus, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j2"
 }
 ],
 "memories": [
@@ -5788,5 +5812,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T13:09:31-0500"
+"updated": "2026-11-17T13:15:15-0500"
 }
