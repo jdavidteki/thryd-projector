@@ -4625,20 +4625,21 @@
 "card": "w5",
 "other": "laptop"
 }
+],
+"top_deck_charter": [
+{
+"id": "wf_5ad3215538",
+"kind": "consequence",
+"text": "The top deck charter leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "reality.interactwith(top_deck_charter){ top_deck_charter.receives(reality.envelope); top_deck_charter.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "reality"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_5a03bdc1dc",
-"ts": "2026-11-17T00:07:03-0500",
-"a": "pure_water_cooler",
-"b": "sheep",
-"code": "pure_water_cooler.interactwith(sheep){ sheep.receives(pure_water_cooler.number); … }",
-"text": "A Pure water cooler note with Kunle's name and 'container number' on it, 9:20am, turns up inside the brown envelope at the sheep, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "w1"
-},
 {
 "id": "wf_e3c643b4a7",
 "ts": "2026-11-17T00:15:03-0500",
@@ -5067,6 +5068,17 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": "w5"
+},
+{
+"id": "wf_5ad3215538",
+"ts": "2026-11-17T10:49:53-0500",
+"a": "reality",
+"b": "top_deck_charter",
+"code": "reality.interactwith(top_deck_charter){ top_deck_charter.receives(reality.envelope); top_deck_charter.remembers(bisola, 'brown envelope'); }",
+"text": "The top deck charter leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
 }
 ],
 "memories": [
@@ -5170,5 +5182,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T10:46:59-0500"
+"updated": "2026-11-17T10:49:53-0500"
 }
