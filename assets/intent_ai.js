@@ -99,6 +99,8 @@
       .sort((a, b) => b.s - a.s).slice(0, 5);
     return {P, top, used: qv ? 'embeddings' : 'letters'}; }
   AI.resolve = resolve;
+  // yoki DJ (assets/yoki_dj.js): vectors for its few short context texts, one per input (null where missing)
+  AI.embed = texts => embed(texts).then(vs => { if(!vs) return null; const m = new Map(); [...new Set(texts.map(hz).filter(Boolean))].forEach((t, i) => m.set(t, vs[i])); return texts.map(t => m.get(hz(t)) || null); });
 
   // ---------- Chrome built-in AI (Prompt API): detect only; used only when already available on this device
   let LMS = null;

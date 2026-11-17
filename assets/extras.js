@@ -2,7 +2,7 @@
 //   off   default; nothing plays
 //   lofi  a short list of Creative Commons / free-to-stream stations, starting with ABM Lofi
 //         (https://radio.audiobookmanager.com/), then Frekvenci Chill and freeCodeCamp Code Radio
-//   yoki  africariyoki songs, shuffled, from the africariyoki songs API (www.africariyoki.com/api/songs.json; until that PR is
+//   yoki  africariyoki songs, picked to match the live job by assets/yoki_dj.js (shuffled only as a fallback), from the africariyoki songs API (www.africariyoki.com/api/songs.json; until that PR is
 //         merged, the PR branch's raw copy); a small credit shows song · artist · africariyoki, and the current LRC line faintly
 // Audio starts only from a user gesture (autoplay rules). The choice is saved as thryd_sound (migrated from thryd_mute, '0' = lofi);
 // a reload with a saved mode tries to resume, and if the browser refuses it waits for the next tap anywhere. One audio element,
@@ -51,7 +51,8 @@ function setCredit(){ const c=mkCredit();
   if(mode==='lofi'){ const s=lofiSt(); c.href=s.credit; c.textContent=s.text; c.title=s.title; }
   else if(mode==='brown'){ if(c.removeAttribute) c.removeAttribute('href'); c.textContent='brown noise · generated live'; c.title='Brown noise generated in this browser (Web Audio); nothing is streamed'; }
   else if(mode==='yoki'&&ysong){ c.href=YOKI.site; c.textContent=(ysong.title||'song')+' · '+(ysong.artist||'')+' · africariyoki'; c.title='Song via africariyoki.com'; }
-  c.className=(mode==='off'||muted)?'off':''; if(lyr&&(mode!=='yoki'||muted)){lyr.className='off'; lyr.textContent='';} }
+  c.className=(mode==='off'||muted)?'off':''; if(lyr&&(mode!=='yoki'||muted)){lyr.className='off'; lyr.textContent='';}
+  try{ if(window.thrydYokiDJ&&window.thrydYokiDJ.setActive) window.thrydYokiDJ.setActive(mode==='yoki'&&!muted&&want); }catch(e){} }
 function mkAudio(){ if(au) return au; au=new Audio(); au.id='lofi'; au.preload='none'; au.volume=LOFI.vol; try{au.setAttribute('data-src',lofiSt().urls[0]);}catch(e){}
   if(au.addEventListener){
     au.addEventListener('playing',()=>{tries=0; yfail=0; if(want){muted=false; show(); setCredit();}});
@@ -78,9 +79,19 @@ function parseLrc(t){ const out=[]; String(t||'').split('\n').forEach(l=>{ const
   return out.sort((a,b)=>a[0]-b[0]); }
 function loadLrc(s){ ylrc=[]; if(!s||!s.lrc) return; const id=++yreq; const u=/^https?:/.test(s.lrc)?s.lrc:ybase+s.lrc;
   fetch(u).then(r=>r.ok?r.text():'').then(t=>{ if(id===yreq) ylrc=parseLrc(t); }).catch(()=>{}); }
-function nextSong(){ if(!ylist||!ylist.length) return start(false); ysong=pick(); loadLrc(ysong); if(lyr){lyr.textContent=''; lyr.className='off';}
+// yoki DJ (17 Nov 2026, Jesuye 👍 "pick songs from the live agenda"): assets/yoki_dj.js ranks the songs against the live job
+// (scene, seated tweets, imported theme); nextSong() plays its best unplayed match and shows a fading why-note. ⏭ = next-best.
+// If the DJ is missing, slow (6 s) or fails, the old shuffle bag picks instead.
+let ytok=0;
+const YDJ=()=>window.thrydYokiDJ&&window.thrydYokiDJ.next?window.thrydYokiDJ:null;
+function nextSong(){ if(!ylist||!ylist.length) return start(false); const tok=++ytok, dj=YDJ();
+  const go=r=>{ if(tok!==ytok||!want||mode!=='yoki') return; const s=r&&ylist.find(x=>x.id===r.id); return playSong(s||pick(), s?r.why:null); };
+  if(!dj) return go(null);
+  return Promise.race([dj.next(id=>ylist.some(x=>x.id===id)), new Promise(res=>setTimeout(()=>res(null),6000))]).catch(()=>null).then(go); }
+function playSong(s, why){ ysong=s; loadLrc(ysong); if(lyr){lyr.textContent=''; lyr.className='off';}
   const a=mkAudio(); a.src=ysong.audio; a.volume=YOKI.vol; setCredit(); let p; try{p=a.play();}catch(e){p=Promise.reject(e);}
-  return Promise.resolve(p).then(()=>{waitTap=false; muted=false; show(); setCredit();}).catch(e=>played(e,false)); }
+  return Promise.resolve(p).then(()=>{waitTap=false; muted=false; show(); setCredit(); const dj=YDJ(); if(why&&dj&&dj.showWhy) dj.showWhy(why);}).catch(e=>played(e,false)); }
+if(window.thrydYokiDJ) window.thrydYokiDJ.onShift=()=>{ if(mode==='yoki'&&want&&!waitTap&&au&&au.currentTime>25) nextSong(); };
 function played(e,fromTap){ if(e&&e.name==='NotAllowedError'){ waitTap=true; muted=true; show(); setCredit();
     gate.textContent=fromTap?'🔊 Tap again to start the music':'🔊 Tap anywhere to resume the music'; gate.classList.remove('off'); return; }
   if(mode==='yoki'&&ylist){ yfail++; if(yfail<4){ setTimeout(()=>{ if(want&&mode==='yoki') nextSong(); },800); return; } }
@@ -133,7 +144,7 @@ function start(fromTap){ want=true; if(mode==='brown'){ if(retryT){clearTimeout(
   let p; try{p=a.play();}catch(e){p=Promise.reject(e);}
   return Promise.resolve(p).then(()=>{waitTap=false; muted=false; show(); setCredit();}).catch(e=>played(e,fromTap)); }
 function stop(){ want=false; waitTap=false; tries=0; yfail=0; if(retryT){clearTimeout(retryT);retryT=0;} brownStop(); if(au){ try{au.pause(); au.removeAttribute('src'); au.load();}catch(e){} }
-  muted=true; ylrc=[]; yreq++; if(credit) credit.className='off'; if(lyr){lyr.className='off'; lyr.textContent='';} }
+  muted=true; ylrc=[]; yreq++; ytok++; try{ if(window.thrydYokiDJ&&window.thrydYokiDJ.setActive) window.thrydYokiDJ.setActive(false); }catch(e){} if(credit) credit.className='off'; if(lyr){lyr.className='off'; lyr.textContent='';} }
 function setMode(m, fromTap){ if(MODES.indexOf(m)<0) m='off'; stop(); mode=m; save(m); show();
   if(m==='off'){ if(window.speechSynthesis) speechSynthesis.cancel(); gate.classList.add('off'); return Promise.resolve(); }
   unlocked=true; gate.classList.add('off'); si=0; return start(!!fromTap); }
