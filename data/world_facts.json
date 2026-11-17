@@ -5767,16 +5767,6 @@
 ],
 "jetty_south_pointe": [
 {
-"id": "wf_3477569581",
-"kind": "consequence",
-"text": "The jetty south pointe leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"code": "tbp.interactwith(jetty_south_pointe){ jetty_south_pointe.receives(tbp.envelope); jetty_south_pointe.remembers(bisola, 'brown envelope'); }",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6",
-"other": "tbp"
-},
-{
 "id": "wf_1bf87ddaf1",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the jetty south pointe, and Bisola reads the name twice.",
@@ -5815,6 +5805,16 @@
 "run": "run-5a58c4",
 "card": "j6",
 "other": "marker_c"
+},
+{
+"id": "wf_3afed96fe9",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the jetty south pointe, and Bisola reads the name twice.",
+"code": "marker_b.interactwith(jetty_south_pointe){ jetty_south_pointe.receives(marker_b.envelope); … }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "marker_b"
 }
 ],
 "plot": [
@@ -6037,17 +6037,6 @@
 ]
 },
 "consequences": [
-{
-"id": "wf_449532c711",
-"ts": "2026-11-17T15:25:25-0500",
-"a": "wser",
-"b": "jetty_south_pointe",
-"code": "wser.interactwith(jetty_south_pointe){ jetty_south_pointe.receives(wser.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the jetty south pointe, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
 {
 "id": "wf_ecc7d9babc",
 "ts": "2026-11-17T15:26:17-0500",
@@ -6476,6 +6465,17 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": "j3"
+},
+{
+"id": "wf_3afed96fe9",
+"ts": "2026-11-17T17:05:10-0500",
+"a": "marker_b",
+"b": "jetty_south_pointe",
+"code": "marker_b.interactwith(jetty_south_pointe){ jetty_south_pointe.receives(marker_b.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the jetty south pointe, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
 }
 ],
 "memories": [
@@ -6579,5 +6579,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T17:00:58-0500"
+"updated": "2026-11-17T17:05:10-0500"
 }
