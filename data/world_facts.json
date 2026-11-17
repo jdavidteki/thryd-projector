@@ -2553,16 +2553,6 @@
 ],
 "cell_phone": [
 {
-"id": "wf_def6811dbc",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the cell phone, and Bisola reads the name twice.",
-"code": "let.interactwith(cell_phone){ cell_phone.receives(let.envelope); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "let"
-},
-{
 "id": "wf_bc4c8b9cd9",
 "kind": "consequence",
 "text": "A Danfo speaker note with Bisola's name and 'egbe note' on it, turns up inside the brown envelope at the cell phone, and Bisola reads the name twice.",
@@ -2591,6 +2581,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "kweshon"
+},
+{
+"id": "wf_ec25c6aa4a",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the cell phone, and Bisola reads the name twice.",
+"code": "sessy.interactwith(cell_phone){ cell_phone.receives(sessy.envelope); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "sessy"
 },
 {
 "id": "wt_775c701ecb",
@@ -4524,17 +4524,6 @@
 },
 "consequences": [
 {
-"id": "wf_4387b01710",
-"ts": "2026-11-16T22:15:30-0500",
-"a": "red_white_cap",
-"b": "sessy",
-"code": "red_white_cap.interactwith(sessy){ sessy.receives(red_white_cap.note); … }",
-"text": "A Red white cap note with Taiwo's name and 'egbe note' on it, 11:20pm, turns up inside the brown envelope at the sessy, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "w7"
-},
-{
 "id": "wf_dbbbafd659",
 "ts": "2026-11-16T22:16:18-0500",
 "a": "kweshon",
@@ -4962,6 +4951,17 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j2"
+},
+{
+"id": "wf_ec25c6aa4a",
+"ts": "2026-11-17T00:27:02-0500",
+"a": "sessy",
+"b": "cell_phone",
+"code": "sessy.interactwith(cell_phone){ cell_phone.receives(sessy.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the cell phone, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
 }
 ],
 "memories": [
@@ -5065,5 +5065,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T00:19:52-0500"
+"updated": "2026-11-17T00:27:02-0500"
 }
