@@ -1923,16 +1923,6 @@
 ],
 "tie": [
 {
-"id": "wf_b9f0877762",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the tie, and Bisola reads the name twice.",
-"code": "plastic_sheet.interactwith(tie){ tie.receives(plastic_sheet.envelope); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "plastic_sheet"
-},
-{
 "id": "wf_42d2f0cf49",
 "kind": "consequence",
 "text": "A Danfo speaker note with Bisola's name and 'egbe note' on it, turns up inside the brown envelope at the tie, and Bisola reads the name twice.",
@@ -1971,19 +1961,19 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "streetlights"
-}
-],
-"laptop": [
+},
 {
-"id": "wf_0caf12bb23",
+"id": "wf_b6c90274d8",
 "kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the rain-stained receipt at the laptop, and Ejiro reads the name twice.",
-"code": "let.interactwith(laptop){ laptop.receives(let.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the tie, and Bisola reads the name twice.",
+"code": "matches.interactwith(tie){ tie.receives(matches.envelope); tie.remembers(bisola, 'brown envelope'); tie.tucks(matches, 'yaba bookshop receipt into the brown envelope'); }",
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j6",
-"other": "let"
-},
+"other": "matches"
+}
+],
+"laptop": [
 {
 "id": "wf_97ae90172a",
 "kind": "consequence",
@@ -2003,6 +1993,16 @@
 "run": "run-0bd7c0",
 "card": "w7",
 "other": "morir"
+},
+{
+"id": "wf_da07080f49",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the rain-stained receipt at the laptop, and Ejiro reads the name twice.",
+"code": "omo.interactwith(laptop){ laptop.receives(omo.envelope); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "omo"
 },
 {
 "id": "wt_00586a397c",
@@ -2069,16 +2069,6 @@
 ],
 "sheep": [
 {
-"id": "wf_41cfe18bba",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the sheep, and Bisola reads the name twice.",
-"code": "morir.interactwith(sheep){ sheep.receives(morir.envelope); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "morir"
-},
-{
 "id": "wf_1dedca7906",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the sheep, and Bisola reads the name twice.",
@@ -2117,6 +2107,16 @@
 "run": "run-0bd7c0",
 "card": "w7",
 "other": "red_white_cap"
+},
+{
+"id": "wf_5a03bdc1dc",
+"kind": "consequence",
+"text": "A Pure water cooler note with Kunle's name and 'container number' on it, 9:20am, turns up inside the brown envelope at the sheep, and Bisola reads the name twice.",
+"code": "pure_water_cooler.interactwith(sheep){ sheep.receives(pure_water_cooler.number); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "w1",
+"other": "pure_water_cooler"
 }
 ],
 "yaba_bukka": [
@@ -4524,39 +4524,6 @@
 },
 "consequences": [
 {
-"id": "wf_2ceee75fc9",
-"ts": "2026-11-16T22:01:50-0500",
-"a": "ronke_tray",
-"b": "family_compound_ikorodu",
-"code": "ronke_tray.interactwith(family_compound_ikorodu){ family_compound_ikorodu.receives(ronke_tray.shirt); … }",
-"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the brown envelope at the family compound ikorodu, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j8"
-},
-{
-"id": "wf_cdd02837d5",
-"ts": "2026-11-16T22:05:50-0500",
-"a": "kweshon",
-"b": "truth",
-"code": "kweshon.interactwith(truth){ truth.receives(kweshon.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the truth, and Titi reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
-{
-"id": "wf_4721c09cf0",
-"ts": "2026-11-16T22:06:38-0500",
-"a": "lowaleechelons",
-"b": "family_compound_ikorodu",
-"code": "lowaleechelons.interactwith(family_compound_ikorodu){ family_compound_ikorodu.receives(lowaleechelons.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the green shirt at the family compound ikorodu, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
-{
 "id": "wf_2a6321cbb4",
 "ts": "2026-11-16T22:07:26-0500",
 "a": "streetlights",
@@ -4962,6 +4929,39 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "w7"
+},
+{
+"id": "wf_da07080f49",
+"ts": "2026-11-17T00:03:52-0500",
+"a": "omo",
+"b": "laptop",
+"code": "omo.interactwith(laptop){ laptop.receives(omo.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the rain-stained receipt at the laptop, and Ejiro reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
+},
+{
+"id": "wf_b6c90274d8",
+"ts": "2026-11-17T00:05:27-0500",
+"a": "matches",
+"b": "tie",
+"code": "matches.interactwith(tie){ tie.receives(matches.envelope); tie.remembers(bisola, 'brown envelope'); tie.tucks(matches, 'yaba bookshop receipt into the brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the tie, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
+},
+{
+"id": "wf_5a03bdc1dc",
+"ts": "2026-11-17T00:07:03-0500",
+"a": "pure_water_cooler",
+"b": "sheep",
+"code": "pure_water_cooler.interactwith(sheep){ sheep.receives(pure_water_cooler.number); … }",
+"text": "A Pure water cooler note with Kunle's name and 'container number' on it, 9:20am, turns up inside the brown envelope at the sheep, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "w1"
 }
 ],
 "memories": [
@@ -5065,5 +5065,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T00:02:13-0500"
+"updated": "2026-11-17T00:07:03-0500"
 }
