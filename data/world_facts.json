@@ -2460,16 +2460,6 @@
 ],
 "chair": [
 {
-"id": "wf_655bbecdb2",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the chair, and Bisola reads the name twice.",
-"code": "bow.interactwith(chair){ chair.receives(bow.envelope); chair.remembers(bisola, 'brown envelope'); chair.tucks(bow, 'yaba bookshop receipt into the brown envelope'); }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "bow"
-},
-{
 "id": "wf_96c2c2f49b",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the chair, and Bisola reads the name twice.",
@@ -2508,6 +2498,16 @@
 "run": "run-0bd7c0",
 "card": "w7",
 "other": "red_white_cap"
+},
+{
+"id": "wf_ffc92afa0e",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the chair, and Bisola reads the name twice.",
+"code": "morir_r.interactwith(chair){ chair.receives(morir_r.envelope); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "morir_r"
 }
 ],
 "cell_phone": [
@@ -4243,17 +4243,6 @@
 },
 "consequences": [
 {
-"id": "wt_c6ff1d186b",
-"ts": "2026-11-16T14:52:32-0500",
-"a": "kerosene_lamp",
-"b": "bird",
-"code": "kerosene_lamp.interactwith(bird){ bird.receives(kerosene_lamp, 'egbe note'); … }",
-"text": "The kerosene lamp passes under the bird at Mama Ronke's gate, and a thin line of soot marks the bird's wing, so the bird now carries the hour Taiwo read his own name twice.",
-"author": "thryd",
-"run": "run-0bd7c0",
-"card": "j7"
-},
-{
 "id": "wt_55fbc81c6a",
 "ts": "2026-11-16T14:52:32-0500",
 "a": "lekki_pharmacy",
@@ -4681,6 +4670,17 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "w7"
+},
+{
+"id": "wf_ffc92afa0e",
+"ts": "2026-11-16T19:42:22-0500",
+"a": "morir_r",
+"b": "chair",
+"code": "morir_r.interactwith(chair){ chair.receives(morir_r.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the chair, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
 }
 ],
 "memories": [
@@ -4784,5 +4784,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-16T19:36:00-0500"
+"updated": "2026-11-16T19:42:22-0500"
 }
