@@ -579,18 +579,26 @@
       if(cut.leaving) return;
       ev.preventDefault(); ev.stopPropagation();
       foldTranslate(cut); cut.entering = false; el.style.opacity = '1';
-      d = {sx: ev.clientX, sy: ev.clientY, l: cut.left, t: cut.top, from: framePct(cut, cut.g), raf: 0}; moved = false;
+      d = {sx: ev.clientX, sy: ev.clientY, l: cut.left, t: cut.top, from: framePct(cut, cut.g), raf: 0, v: [{x: ev.clientX, y: ev.clientY, t: performance.now()}]}; moved = false;
       cut.dragging = true; el.dataset.dragging = '1';
       try{ el.setPointerCapture(ev.pointerId); }catch(e){}
       document.body.classList.add('dragmode'); camHold();
     });
     el.addEventListener('pointermove', ev => {
       if(!d) return; const dx = ev.clientX - d.sx, dy = ev.clientY - d.sy; if(Math.abs(dx) + Math.abs(dy) > 3) moved = true;
+      d.v.push({x: ev.clientX, y: ev.clientY, t: performance.now()}); if(d.v.length > 6) d.v.shift();
       cut.left = d.l + dx; cut.top = d.t + dy;
       if(d.raf) return; d.raf = requestAnimationFrame(()=>{ if(d){ d.raf = 0; el.style.left = cut.left + 'px'; el.style.top = cut.top + 'px'; } });
     });
     const end = ()=>{
-      if(!d) return; const from = d.from; if(d.raf) cancelAnimationFrame(d.raf); d = null;
+      if(!d) return; const from = d.from, vs = d.v; if(d.raf) cancelAnimationFrame(d.raf); d = null;
+      const z = moved ? dropZone(cut, vs) : null;
+      if(z){ cut.easing = true; const x0 = cut.left, y0 = cut.top, t0 = performance.now(), T = 260; note('ease', cut.label, z.why);
+        const step = now => { const k = Math.min(1, (now - t0) / T), e = 1 - Math.pow(1 - k, 3); cut.left = x0 + (z.x - x0) * e; cut.top = y0 + (z.y - y0) * e;
+          el.style.left = cut.left + 'px'; el.style.top = cut.top + 'px'; if(k < 1) requestAnimationFrame(step); else { cut.easing = false; finish(from); } };
+        requestAnimationFrame(step); return; }
+      finish(from); };
+    const finish = from => {
       el.style.left = cut.left + 'px'; el.style.top = cut.top + 'px';
       cut.dragging = false; delete el.dataset.dragging;
       try{ document.body.classList.remove('dragmode'); }catch(e){} camHold();
@@ -614,6 +622,19 @@
     el.addEventListener('pointerup', end); el.addEventListener('pointercancel', end);
     el.addEventListener('click', ev => { ev.stopPropagation(); }); // a drop never toggles fullscreen
   }
+
+  // a drag released moving fast (>= .45 px/ms) toward another story's frame, or a cut of the same kind, within 25 degrees and 420 px,
+  // glides the rest of the way (until its centre sits just inside that frame / beside that cut, at most 220 px)
+  function dropZone(cut, vs){ if(!vs || vs.length < 2) return null; const a = vs[0], b = vs[vs.length - 1], dt = b.t - a.t; if(dt <= 0 || dt > 220) return null;
+    const vx = (b.x - a.x) / dt, vy = (b.y - a.y) / dt, sp = Math.hypot(vx, vy); if(sp < .45) return null;
+    const cx = cut.left + cut.w / 2, cy = cut.top + cut.h / 2, k = nkey(cut.klass || cut.label); let best = null;
+    const zones = S.groups.filter(g => !g.gone && g !== cut.g && g.w > 0).map(g => ({x: g.x + g.w / 2, y: g.y + g.h / 2, r: Math.min(g.w, g.h) * .35, why: 'story ' + (g.mid || '')}))
+      .concat(S.cuts.filter(o => o !== cut && o.el && o.el.isConnected && !o.leaving && (nkey(o.klass) === k || nkey(o.label) === k)).map(o => ({x: o.left + o.w / 2 + o.w * .6, y: o.top + o.h / 2, r: 0, why: 'beside ' + o.label})));
+    zones.forEach(z => { const dx = z.x - cx, dy = z.y - cy, dist = Math.hypot(dx, dy); if(dist < 30 || dist > 420) return;
+      const cos = (dx * vx + dy * vy) / (dist * sp); if(cos < Math.cos(25 * Math.PI / 180)) return; const sc = cos * 2 - dist / 420; if(!best || sc > best.sc) best = {...z, dist, sc}; });
+    if(!best) return null; const go = Math.min(220, Math.max(0, best.dist - best.r)); if(go < 8) return null; const ux = (best.x - cx) / best.dist, uy = (best.y - cy) / best.dist;
+    return {x: cut.left + ux * go, y: cut.top + uy * go, why: best.why}; }
+  S.dropZone = dropZone;
 
   // ---------- life: wander inside the stage, and now and then a small cut walks over to another story
   function settled(cut){ return !cut.entering && !cut.leaving && !cut.dragging && !cut.wan && cut.g && !cut.g.gone; }
@@ -1213,12 +1234,24 @@
   const SHOWN = S.shownTags = new Map(), TAG_MS = 3000, FADE_MS = 800; // cut -> shown at
   let tapD = null; // (was swallowed by the comment above: every pointerdown threw 'tapD is not defined')
   function cutAt(t){ if(!t || !t.closest) return null; let best = null; S.cuts.forEach(c => { if(!best && c.el && c.el.isConnected && (c.el === t || c.el.contains(t))) best = c; }); return best; }
-  addEventListener('pointerdown', e => { if(e.isPrimary === false) return; tapD = {x: e.clientX, y: e.clientY, t: performance.now(), c: cutAt(e.target), m: false}; }, {capture: true, passive: true});
+  // forgiving input (17 Nov 2026 2:54 PM ET): a tap that lands just off an object (24 px, 36 px on touch) snaps to the nearest one
+  const UIQ = 'button,select,input,textarea,a,#gmeth,#gtweet,#bar,#zoomui,#gundo,#uxhint,.bubble,#phone3310,[role=dialog]';
+  function nearCut(x, y, touch){ const R = touch ? 36 : 24; let best = null, bd = R + 1;
+    S.cuts.forEach(c => { if(!c.el || !c.el.isConnected || c.leaving) return; const r = c.el.getBoundingClientRect(); if(r.width < 2) return;
+      const dx = Math.max(r.left - x, 0, x - r.right), dy = Math.max(r.top - y, 0, y - r.bottom), d = Math.hypot(dx, dy); if(d <= R && d < bd){ bd = d; best = c; } });
+    return best; }
+  S.nearCut = nearCut;
+  addEventListener('pointerdown', e => { if(e.isPrimary === false || (e.button != null && e.button > 0)){ tapD = null; return; } let c = cutAt(e.target), snap = false;
+    if(!c && !(e.target && e.target.closest && e.target.closest(UIQ))){ c = nearCut(e.clientX, e.clientY, e.pointerType === 'touch'); snap = !!c; }
+    tapD = {x: e.clientX, y: e.clientY, t: performance.now(), c, m: false, snap}; }, {capture: true, passive: true});
   addEventListener('pointermove', e => { if(tapD && Math.hypot(e.clientX - tapD.x, e.clientY - tapD.y) >= 6) tapD.m = true; }, {capture: true, passive: true});
   addEventListener('pointercancel', () => { tapD = null; }, {capture: true, passive: true});
   addEventListener('pointerup', e => { const d = tapD; tapD = null; if(!d || !d.c || d.m) return;
-    if(Math.hypot(e.clientX - d.x, e.clientY - d.y) >= 6 || performance.now() - d.t >= 300) return;
-    if(tagName(d.c)) toggleTag(d.c); try{ openMethods(d.c); }catch(err){ note('methods', String(err && err.message || err)); } }, {capture: true, passive: true});
+    if(Math.hypot(e.clientX - d.x, e.clientY - d.y) >= 6) return; const dur = performance.now() - d.t;
+    if(dur >= 450){ try{ openMethods(d.c, {full: true}); }catch(err){} return; } // long-press: always the whole menu
+    if(dur >= 300) return;
+    if(d.snap) note('snap', objName(d.c));
+    if(tagName(d.c)) toggleTag(d.c); try{ tapIntent(d.c); }catch(err){ note('methods', String(err && err.message || err)); } }, {capture: true, passive: true});
   function toggleTag(c){ SHOWN.set(c, Date.now()); tagT = 0; } // show (or restart the ~3 s timer); never hides
   S.toggleTag = toggleTag;
   let tagT = 0;
@@ -1393,7 +1426,7 @@
     '#gmeth button:hover,#gmeth button:focus-visible{background:#3c3c3c;border-color:#ffd76a;outline:none}',
     '#gmeth button.gfn{border-color:#8a6d2b;text-align:left}', '#gmeth button.genv{border-color:#3d6b8a;text-align:left}', '#gmeth{max-height:min(70vh,560px);overflow:auto}', '#gmeth .gms{width:100%;color:#bbb;font-weight:400;font-size:.85em;padding:0 .3vh}',
     '#gtweet{position:fixed;z-index:10040;max-width:min(80vw,460px);padding:1vh 1.2vh;border-radius:1vh;background:rgba(14,14,14,.94);color:#fff;box-shadow:0 3px 16px #0009;font:500 max(13px,1.6vh)/1.35 system-ui,sans-serif;transform:translateX(-50%);opacity:0;transition:opacity .5s;pointer-events:none}',
-    '#gtweet.on{opacity:1}', '#gtweet .gtc{font:600 .82em ui-monospace,Menlo,Consolas,monospace;color:#ffd76a;margin-bottom:.4vh}',
+    '#gtweet.on{opacity:1;pointer-events:auto}', '#gtweet:focus-visible{outline:2px solid #ffd76a;outline-offset:2px}', '#gtweet .gtc{font:600 .82em ui-monospace,Menlo,Consolas,monospace;color:#ffd76a;margin-bottom:.4vh}',
     '#gtweet .gty{color:#9fd3ff;font-weight:700;white-space:nowrap}', '#gtweet .gtr{font:600 .8em ui-monospace,Menlo,Consolas,monospace;color:#b6f0a0;margin-bottom:.4vh}', '#gtweet .gtn{color:#bbb;font-size:.8em;margin-top:.5vh}',
     '@keyframes gfxfold{0%,100%{scale:1 1}35%{scale:1 .35}60%{scale:1 .5}}', '@keyframes gfxhide{0%,100%{opacity:1;translate:0 0}40%,70%{opacity:.12;translate:0 1.2vh}}',
     '@keyframes gfxtune{0%,100%{rotate:0deg}20%{rotate:-9deg}40%{rotate:8deg}60%{rotate:-6deg}80%{rotate:4deg}}',
@@ -1415,7 +1448,9 @@
     '#gstage .gcut.gfx-slump{animation:gfxslump 1.8s ease-in-out 1}', '#gstage .gcut.gfx-quake{animation:gfxquake 1.2s linear 1}', '#gstage .gcut.gfx-dimfx{animation:gfxdimfx 1.8s ease-in-out 1}',
     '#gstage .gcut.gfx-shrinkfx{animation:gfxshrinkfx 1.5s ease-in-out 1}',
     '.grip{position:fixed;z-index:10045;transform:translateX(-50%);padding:.25vh .7vh;border-radius:.7vh;background:rgba(20,40,60,.9);color:#cfe9ff;font:600 max(11px,1.25vh) ui-monospace,Menlo,Consolas,monospace;white-space:nowrap;pointer-events:none;opacity:0;transition:opacity .4s}',
-    '.grip.on{opacity:1}', '#gstage .gcut.gfaded{opacity:.38;filter:saturate(.25)}', '#gmeth button.gfaded{opacity:.5;border-style:dashed}',
+    '.grip.on{opacity:1}', '#gundo{position:fixed;left:50%;bottom:12vh;transform:translateX(-50%);z-index:10070;display:flex;gap:10px;align-items:center;padding:6px 8px 6px 14px;border-radius:999px;background:rgba(14,14,14,.92);color:#fff;font:500 max(12px,1.45vh)/1.3 system-ui,sans-serif;box-shadow:0 3px 14px #0008;opacity:0;transition:opacity .3s;max-width:min(92vw,560px)}',
+    '#gundo.on{opacity:1}', '#gundo span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}', '#gundo button{font:600 1em system-ui,sans-serif;color:#111;background:#ffd76a;border:0;border-radius:999px;padding:6px 14px;min-height:32px;cursor:pointer}',
+    '#modes #smarttap[aria-pressed="false"]{opacity:.6}', '#gstage .gcut.gfaded{opacity:.38;filter:saturate(.25)}', '#gmeth button.gfaded{opacity:.5;border-style:dashed}',
     '#gmeth .gmvc{width:100%;color:#b9b2a0;font-weight:400;font-size:.78em;padding:0 .3vh}',
     // Phase B (v529): recursion layers in the pop-up, pending-promise markers, a resolved flash, thrown exceptions in the menu
     '#gtweet .grec{border-left:2px solid #6b8aa8;margin:.45vh 0 0 calc(var(--d,1) * .9vh);padding:.2vh 0 .2vh .7vh;font-size:.86em;color:#d8e6f2;background:rgba(40,60,80,.25);border-radius:0 .5vh .5vh 0}',
@@ -1450,7 +1485,7 @@
   // on the box, whose answer replaces this one when the relay replies)
   const CLS = S.classes = {containers: {}, classes: {}, instances: {}, parent: {}, overrides: {}, interfaces: {}, casts: {}, at: 0};
   function loadCLS(){ fetch('data/classes.json?t=' + Date.now(), {cache: 'no-store'}).then(r => r.ok ? r.json() : null).then(d => {
-    if(!d || !d.containers) return; CLS.containers = d.containers; CLS.classes = d.classes || {}; CLS.instances = d.instances || {};
+    if(!d || !d.containers) return; CLS.genre_types = d.genre_types || {}; CLS.containers = d.containers; CLS.classes = d.classes || {}; CLS.instances = d.instances || {};
     CLS.parent = d.parent || {}; CLS.overrides = d.overrides || {}; CLS.interfaces = d.interfaces || {}; CLS.casts = d.casts || {}; CLS.at = Date.now(); }).catch(()=>{}); }
   loadCLS(); setInterval(loadCLS, 300000);
   const jobN = j => { const m = String(j || '').match(/^[jw](\d+)$/i); return m ? +m[1] : null; };
@@ -1532,9 +1567,9 @@
     t.textContent = text.length > 64 ? text.slice(0, 63) + '\u2026' : text; document.body.appendChild(t);
     t.style.left = Math.max(60, Math.min(vw() - 60, r.left + r.width / 2)).toFixed(1) + 'px'; t.style.top = Math.max(6, r.top - 26).toFixed(1) + 'px';
     requestAnimationFrame(()=> t.classList.add('on')); setTimeout(()=>{ t.classList.remove('on'); setTimeout(()=> t.remove(), 500); }, 2600); }
-  function ripple(c, method, because){ const ls = listenersOf(c), done = [];
+  function ripple(c, method, because){ const ls = listenersOf(c), done = []; c._ripT = []; c._ripL = ls;
     ls.forEach((x, n) => { const e = effectOf(method, classOf(x)); done.push({object: baseKey(x), fx: e.fx, cls: classOf(x)});
-      setTimeout(()=>{ playGfx(x, e.fx); ripTag(x, 'because ' + because); }, 600 * (n + 1)); });
+      c._ripT.push(setTimeout(()=>{ playGfx(x, e.fx); ripTag(x, 'because ' + because); }, 600 * (n + 1))); });
     return done; }
   // ---------- promises / exceptions / recursion (Phase B, 17 Nov 2026): #thryd's promises.jsonl and exceptions.jsonl (thryd-db/story_*.py) are
   // the only source of truth; data/promises.json and data/exceptions.json are read-only exports of them. A pending promise puts a faint pulsing
@@ -1577,7 +1612,7 @@
   S.classOf = classOf; S.effectOf = effectOf; S.listenersOf = listenersOf; S.ifacesOf = ifacesOf;
   let TW = null;
   function popTweet(c, it, tw){
-    if(TW){ TW.remove(); TW = null; }
+    if(TW){ TW.remove(); TW = null; document.body.classList.remove('dwell'); }
     const b = document.createElement('div'); b.id = 'gtweet'; b.setAttribute('role', 'status');
     const h = document.createElement('div'); h.className = 'gtc'; h.textContent = it.t.title + (it.t.emoji ? ' ' + it.t.emoji : '') + ' · ' + it.t.run + ' ' + it.t.job
       + (it.scope === 'env' ? ' · inherited from ' + (it.env_scope === 'run' ? it.env_from : 'the safe') : ''); b.appendChild(h);
@@ -1600,15 +1635,22 @@
     const x = Math.max(bw / 2 + 6, Math.min(vw() - bw / 2 - 6, r.left + r.width / 2)); let y = r.top - bh - 10; if(y < 6) y = Math.min(vh() - bh - 6, r.bottom + 10);
     b.style.left = x.toFixed(1) + 'px'; b.style.top = y.toFixed(1) + 'px';
     requestAnimationFrame(()=> b.classList.add('on'));
-    const me = b; setTimeout(()=>{ me.classList.remove('on'); setTimeout(()=>{ me.remove(); if(TW === me) TW = null; }, 600); }, 9000);
+    const me = b; b.tabIndex = 0; b.addEventListener('click', ev => ev.stopPropagation()); b.addEventListener('pointerdown', ev => ev.stopPropagation());
+    const held = ()=> me.matches(':hover') || me.contains(document.activeElement);
+    b.addEventListener('pointerenter', ()=> document.body.classList.add('dwell')); b.addEventListener('focusin', ()=> document.body.classList.add('dwell'));
+    const out = ()=>{ if(!held()) document.body.classList.remove('dwell'); }; b.addEventListener('pointerleave', out); b.addEventListener('focusout', ()=> setTimeout(out, 0));
+    const bye = ()=>{ if(!me.isConnected) return; if(held()){ setTimeout(bye, 1500); return; } // context: a reader keeps it
+      me.classList.remove('on'); document.body.classList.remove('dwell'); setTimeout(()=>{ me.remove(); if(TW === me) TW = null; }, 600); };
+    setTimeout(bye, 9000);
   }
-  async function fireFunc(c, name, it){
+  async function fireFunc(c, name, it, src){
     const tws = it.t.tweets || [], k = it.t.title, ti = tws.length ? ((OM.turn[k] = ((OM.turn[k] == null ? -1 : OM.turn[k]) + 1) % tws.length)) : null;
     const tw = ti == null ? null : tws[ti], H = c.home || {}, eid = uid();
     const f = it.f, inj = injectFor(it, c); it = {...it, injected: inj, resolved: resolvedText(it, inj)};
     const code = (inj.length ? it.id.split('.')[0] + '.' + f.method + '(' + inj.map(i => "'" + i.instance + "'").join(', ') + ')' : it.t.title) + ';';
     const body = {v: 1, type: 'call', event_id: eid, rid: eid + '-r', run: H.run || AG.active || null, card: null, object: name, fn: f.method, args: [it.t.arg],
       func: it.id, title: it.t.title, ti: ti == null ? 0 : ti, scope: it.scope === 'env' ? 'env' : 'own', ...(it.scope === 'env' ? {env_scope: it.env_scope, env_from: it.env_from} : {}), scene: H.mid ? String(H.mid).slice(0, 160) : null, cut: c.label ? String(c.label).slice(0, 60) : null, client_ts: new Date().toISOString()};
+    if(src === 'intent') body.source = 'intent';
     const fr = (String(H.mid || '').match(/(?:^|[^A-Za-z0-9])([jw]\d{1,3})(?![0-9])/i) || [])[1];
     body.card = String(H.card || fr || root.__thrydCard || '').toLowerCase() || null;
     if(body.run && !/^run-[0-9a-f]{4,6}$/.test(body.run)) body.run = null; if(body.card && !/^[jw]\d{1,3}$/.test(body.card)) body.card = null;
@@ -1620,7 +1662,76 @@
     codeLine(it.resolved || code, 'tapped · ' + (it.scope === 'env' ? name + ' called it from ' + (it.env_scope === 'run' ? it.env_from : 'the safe') + ' · ' : '') + it.id + ' (first seated ' + ((f.defined || {}).run || '?') + ' ' + ((f.defined || {}).job || '') + ') · sending…'); note('func', code, eid);
     return sendCall(rec, code, eid);
   }
-  S.fireFunc = fireFunc; S.funcsFor = funcsFor;
+  S.fireFunc = fireFunc;
+  // ---------- smart taps (Jesuye 17 Nov 2026 2:54 PM ET "they tap a button but the a.i knew they mean to click that button so it doesnt pop
+  // up. it knows what the user wants and moves the way"). On this device only, no external model: a tap with one obvious choice runs it
+  // and shows a 3 s undo instead of the menu. Obvious = one own function; or the same choice 2 of the last 3 times on this object or its
+  // class; or a tiny scorer (frequency 0.5 + recency 0.3 + scene genre fit 0.2 from data/classes.json genre_types) >= .75 and .25 ahead of
+  // the next. Long-press or right-click always opens the whole menu. Menus are ordered by this device's history. Calls made this way
+  // go over the same validated relay with source 'intent'; an undo reverses the look and is logged (type 'undo').
+  const IK = 'thryd_intent_v1', SK = 'thryd_smart';
+  let IH = {o: {}, k: {}}; try{ IH = JSON.parse(localStorage.getItem(IK) || 'null') || IH; }catch(e){}
+  const smartOn = ()=>{ try{ return localStorage.getItem(SK) !== '0'; }catch(e){ return true; } };
+  const saveIH = ()=>{ try{ localStorage.setItem(IK, JSON.stringify(IH)); }catch(e){} };
+  const choiceId = x => x.it ? 'f:' + x.it.t.title : 'm:' + x.m.fn + '(' + (x.m.args || []).join(',') + ')';
+  function remember(c, id){ const t = Date.now(), ok = baseKey(c), kk = classOf(c);
+    [[IH.o, ok], [IH.k, kk]].forEach(([b, k]) => { const a = b[k] || (b[k] = []); a.push({id, t}); if(a.length > 12) a.splice(0, a.length - 12); }); saveIH(); }
+  function forget(c, id){ [[IH.o, baseKey(c)], [IH.k, classOf(c)]].forEach(([b, k]) => { const a = b[k] || []; for(let i = a.length - 1; i >= 0; i--) if(a[i].id === id){ a.splice(i, 1); break; } }); saveIH(); }
+  function histOf(c){ return (IH.o[baseKey(c)] || []).concat((IH.k[classOf(c)] || []).map(h => ({...h, cls: 1}))); }
+  function genreOf(c){ const cm = commitFor(c); return cm && cm.genre; }
+  function fitOf(x, g){ if(!g || !x.it) return .5; const ok = (CLS.genre_types || {})[g]; if(!ok) return .5;
+    const ps = ((x.it.f || {}).sig || {}).params || []; return ps.every(p => ok.includes(p.class)) ? 1 : 0; }
+  function scoreOf(c, x, hist, g){ const id = choiceId(x), mine = hist.filter(h => h.id === id), n = Math.max(3, hist.length); // one pick is never 'obvious'
+    const freq = mine.reduce((a, h) => a + (h.cls ? .5 : 1), 0) / n, last = mine.length ? Math.max(...mine.map(h => h.t)) : 0;
+    const rec = last ? Math.exp(-(Date.now() - last) / 864e5) : 0; return .5 * Math.min(1, freq) + .3 * rec + .2 * fitOf(x, g); }
+  function choicesFor(c){ const own = funcsFor(c).map(it => ({it, kind: 'own'})), env = envFor(c, own.map(o => o.it));
+    const out = own.concat(...env.map(r => r.items.map(it => ({it, kind: 'env', row: r}))));
+    if(!own.length && !env.some(r => r.items.length)) methodsFor(c).forEach(m => out.push({m, kind: 'old'}));
+    return out; }
+  function intentFor(c){ if(!smartOn()) return null; const xs = choicesFor(c); if(!xs.length) return null;
+    const own = xs.filter(x => x.kind === 'own'); if(own.length === 1) return {x: own[0], why: 'its only function', conf: 1};
+    const ids = new Set(xs.map(choiceId));
+    for(const [b, k, w] of [[IH.o, baseKey(c), 'this object'], [IH.k, classOf(c), 'its class ' + classOf(c)]]){ const last3 = (b[k] || []).slice(-3).map(h => h.id);
+      const top = last3.find(id => ids.has(id) && last3.filter(v => v === id).length >= 2); if(top) return {x: xs.find(x => choiceId(x) === top), why: '2 of your last 3 on ' + w, conf: .9}; }
+    const hist = histOf(c), g = genreOf(c); if(!hist.length) return null;
+    const sc = xs.map(x => ({x, s: scoreOf(c, x, hist, g)})).sort((a, b) => b.s - a.s);
+    if(sc[0].s >= .75 && (sc.length < 2 || sc[0].s - sc[1].s >= .25)) return {x: sc[0].x, why: 'your usual here (' + sc[0].s.toFixed(2) + ')', conf: sc[0].s};
+    return null; }
+  function orderByPref(c, xs){ const hist = histOf(c); if(!hist.length) return xs; const g = genreOf(c);
+    return xs.map((x, i) => ({x, i, s: scoreOf(c, x, hist, g)})).sort((a, b) => (b.s - a.s) || (a.i - b.i)).map(o => o.x); }
+  let UT = null;
+  function undoToast(text, onUndo){ if(UT){ UT.remove(); UT = null; }
+    const t = document.createElement('div'); t.id = 'gundo'; t.setAttribute('role', 'status');
+    const sp = document.createElement('span'); sp.textContent = text; t.appendChild(sp);
+    const b = document.createElement('button'); b.type = 'button'; b.textContent = 'undo'; b.setAttribute('aria-label', 'Undo ' + text);
+    b.addEventListener('pointerdown', ev => ev.stopPropagation()); b.addEventListener('click', ev => { ev.stopPropagation(); ev.preventDefault(); onUndo(); t.remove(); if(UT === t) UT = null; });
+    t.appendChild(b); t.addEventListener('click', ev => ev.stopPropagation()); document.body.appendChild(t); UT = t; requestAnimationFrame(()=> t.classList.add('on'));
+    setTimeout(()=>{ t.classList.remove('on'); setTimeout(()=>{ t.remove(); if(UT === t) UT = null; }, 400); }, 3000); return t; }
+  async function runIntent(c, ch){ const name = objName(c), x = ch.x, id = choiceId(x); remember(c, id);
+    const p = x.it ? fireFunc(c, name, x.it, 'intent') : fireMethod(c, name, x.m.fn, x.m.args, 'intent');
+    const rec = M.sent[M.sent.length - 1]; if(rec){ rec.intent = {why: ch.why, conf: ch.conf}; }
+    undoToast('\u2728 ' + (x.it ? x.it.t.title : name + '.' + x.m.fn + '(' + qstr(x.m.args) + ')') + ' \u00b7 ' + ch.why, ()=> undoIntent(c, rec, id));
+    note('intent', id, ch.why); return p; }
+  function undoIntent(c, rec, id){ if(!rec || rec.undone) return; rec.undone = true; forget(c, id);
+    (c._ripT || []).forEach(clearTimeout); [c].concat(c._ripL || []).forEach(x => { if(x.el) [...x.el.classList].forEach(k => { if(/^gfx-/.test(k)) x.el.classList.remove(k); }); });
+    document.querySelectorAll('.grip').forEach(t => t.remove()); if(TW){ TW.remove(); TW = null; document.body.classList.remove('dwell'); }
+    if(rec.body && rec.body.fn && !rec.body.func && c.tapL){ const pv = rec.prevLook || {keys: {}, parts: {}}; c.tapL.keys = pv.keys || {}; c.tapL.parts = pv.parts || {}; paint(c, c.tapL); }
+    codeLine('undo ' + rec.code, 'smart tap undone \u00b7 logging the undo\u2026'); const eid = uid();
+    const u = {code: 'undo ' + rec.code, body: {v: 1, type: 'undo', event_id: eid, rid: eid + '-r', undo_of: rec.body.event_id, client_ts: new Date().toISOString()}, status: 'sending', at: Date.now(), undo: true};
+    M.sent.push(u); if(M.sent.length > 40) M.sent.shift(); sendCall(u, u.code, eid); return u; }
+  function tapIntent(c){ const ch = intentFor(c); if(ch && ch.x){ closeMethods(); runIntent(c, ch); return ch; } openMethods(c); return null; }
+  S.intentFor = intentFor; S.tapIntent = tapIntent; S.undoIntent = undoIntent; S.intentHistory = ()=> IH; S.smartOn = smartOn; S.choicesFor = choicesFor;
+  // the setting: one button in the controls, on by default
+  function smartButton(){ const bar = document.getElementById('modes'); if(!bar){ setTimeout(smartButton, 1000); return; } if(document.getElementById('smarttap')) return;
+    const b = document.createElement('button'); b.id = 'smarttap'; b.type = 'button';
+    const show = ()=>{ const on = smartOn(); b.textContent = on ? '\u2728 smart' : '\u2728 off'; b.setAttribute('aria-pressed', on ? 'true' : 'false');
+      b.title = 'Smart taps: ' + (on ? 'on' : 'off') + '. When an object has one obvious choice, a tap runs it with a 3 s undo; long-press or right-click opens the menu'; b.setAttribute('aria-label', b.title); };
+    b.addEventListener('click', ev => { ev.stopPropagation(); try{ localStorage.setItem(SK, smartOn() ? '0' : '1'); }catch(e){} show(); });
+    show(); const bg = document.getElementById('bgmode'); if(bg && bg.parentNode === bar) bar.insertBefore(b, bg); else bar.appendChild(b); }
+  smartButton();
+  // right-click on an object (or just beside it) always opens the whole menu
+  addEventListener('contextmenu', e => { if(e.target && e.target.closest && e.target.closest(UIQ)) return; const c = cutAt(e.target) || nearCut(e.clientX, e.clientY, false);
+    if(!c) return; e.preventDefault(); try{ openMethods(c, {full: true}); }catch(err){} }, {capture: true}); S.funcsFor = funcsFor;
   function methodsFor(c){ const k = (c.tapL && c.tapL.keys) || {}, v = x => k[x] ? lowv(k[x].value) : '';
     const out = [v('glow') && !isOff(v('glow')) ? {fn: 'glow', args: ['off']} : {fn: 'glow', args: []}, v('size') === 'big' ? {fn: 'shrink', args: []} : {fn: 'grow', args: []}];
     if(isFigure(c)) out.push(v('mood') === 'happy' ? {fn: 'setmood', args: ['sad']} : {fn: 'setmood', args: ['happy']});
@@ -1628,9 +1739,9 @@
     return out; }
   function closeMethods(){ if(M.el){ M.el.remove(); M.el = null; } M.cut = null; clearTimeout(M.timer); }
   S.closeMethods = closeMethods;
-  function openMethods(c){
+  function openMethods(c, opts){
     if(!c || !c.el || !c.el.isConnected || c.leaving) return;
-    if(M.cut === c && M.el){ closeMethods(); return; } // a second tap on the same object closes it
+    if(M.cut === c && M.el){ if(opts && opts.full) return; closeMethods(); return; } // a second tap on the same object closes it
     closeMethods(); M.cut = c;
     const name = objName(c), box = document.createElement('div'); box.id = 'gmeth'; box.setAttribute('role', 'menu');
     const h = document.createElement('div'); h.className = 'gmh'; h.textContent = name + ' : ' + chainOf(classOf(c)).join(' : '); box.appendChild(h);
@@ -1639,26 +1750,26 @@
     // by kind (17 Nov 2026 1:25 PM ET): #thryd's soft genre_mismatch is a twist, never a block; any other kind (or none) stays a hard throw
     exceptionsFor(c).slice(0, 2).forEach(e => { const x = document.createElement('div'), soft = isSoft(e); x.className = 'gmx' + (soft ? ' soft' : '');
       x.textContent = (soft ? '\u21af twist: ' : '\u26a0 throws: ') + e.text + (e.job ? ' (' + e.job + ')' : ''); box.appendChild(x); });
-    const fns = funcsFor(c);
+    const fns = orderByPref(c, funcsFor(c).map(it => ({it, kind: 'own'}))).map(x => x.it);
     fns.forEach(it => { const b = document.createElement('button'); b.type = 'button'; b.setAttribute('role', 'menuitem'); b.className = 'gfn';
       b.textContent = it.t.title + (it.t.emoji ? ' ' + it.t.emoji : ''); b.title = it.t.run + ' ' + it.t.job + (it.f.calls ? ' · called ' + it.f.calls + 'x since' : '');
       b.dataset.func = it.id; if(it.f.faded){ b.classList.add('gfaded'); b.title += ' \u00b7 faded (call to revive)'; }
       b.addEventListener('pointerdown', ev => ev.stopPropagation());
-      b.addEventListener('click', ev => { ev.stopPropagation(); ev.preventDefault(); fireFunc(c, name, it); closeMethods(); });
+      b.addEventListener('click', ev => { ev.stopPropagation(); ev.preventDefault(); remember(c, 'f:' + it.t.title); fireFunc(c, name, it); closeMethods(); });
       box.appendChild(b); });
-    const env = envFor(c, fns);
+    const env = envFor(c, fns).map(r => ({...r, items: orderByPref(c, r.items.map(it => ({it, kind: 'env'}))).map(x => x.it)}));
     env.forEach(r => { if(!r.items.length) return; const lb = document.createElement('div'); lb.className = 'gms';
       lb.textContent = r.scope === 'run' ? 'from ' + r.from : 'from the safe' + (r.title ? ' \u00b7 ' + r.title : ''); box.appendChild(lb);
       r.items.forEach(it => { const b = document.createElement('button'); b.type = 'button'; b.setAttribute('role', 'menuitem'); b.className = 'genv';
         b.textContent = it.t.title + (it.t.emoji ? ' ' + it.t.emoji : ''); b.title = 'inherited from ' + (r.scope === 'run' ? r.from : 'the safe ' + (r.title || r.from)) + ' · seated ' + it.t.run + ' ' + it.t.job;
         b.dataset.func = it.id; b.dataset.scope = 'env'; if(it.f.faded){ b.classList.add('gfaded'); b.title += ' \u00b7 faded (call to revive)'; }
         b.addEventListener('pointerdown', ev => ev.stopPropagation());
-        b.addEventListener('click', ev => { ev.stopPropagation(); ev.preventDefault(); fireFunc(c, name, it); closeMethods(); });
+        b.addEventListener('click', ev => { ev.stopPropagation(); ev.preventDefault(); remember(c, 'f:' + it.t.title); fireFunc(c, name, it); closeMethods(); });
         box.appendChild(b); }); });
-    if(!fns.length && !env.some(r => r.items.length)) methodsFor(c).forEach(m => { const b = document.createElement('button'); b.type = 'button'; b.setAttribute('role', 'menuitem');
+    if(!fns.length && !env.some(r => r.items.length)) orderByPref(c, methodsFor(c).map(m => ({m, kind: 'old'}))).map(x => x.m).forEach(m => { const b = document.createElement('button'); b.type = 'button'; b.setAttribute('role', 'menuitem');
       b.textContent = name + '.' + m.fn + '(' + qstr(m.args) + ')'; b.dataset.fn = m.fn; b.dataset.args = JSON.stringify(m.args);
       b.addEventListener('pointerdown', ev => ev.stopPropagation());
-      b.addEventListener('click', ev => { ev.stopPropagation(); ev.preventDefault(); fireMethod(c, name, m.fn, m.args); closeMethods(); });
+      b.addEventListener('click', ev => { ev.stopPropagation(); ev.preventDefault(); remember(c, 'm:' + m.fn + '(' + (m.args || []).join(',') + ')'); fireMethod(c, name, m.fn, m.args); closeMethods(); });
       box.appendChild(b); });
     document.body.appendChild(box); M.el = box;
     const r = c.el.getBoundingClientRect(), bw = box.offsetWidth, bh = box.offsetHeight;
@@ -1678,14 +1789,15 @@
     L.keys[key] = {value: val, raw: fn, at: new Date().toISOString(), known: !!look}; if(look) L.parts[key] = look; else delete L.parts[key];
     paint(c, L); pulse(c); }
   const uid = ()=> { try{ if(root.crypto && crypto.randomUUID) return 'tap-' + crypto.randomUUID(); }catch(e){} return 'tap-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 12); };
-  async function fireMethod(c, name, fn, args){
+  async function fireMethod(c, name, fn, args, src){
     const code = name + '.' + fn + '(' + qstr(args) + ');', H = c.home || {}, eid = uid();
     const fr = (String(H.mid || '').match(/(?:^|[^A-Za-z0-9])([jw]\d{1,3})(?![0-9])/i) || [])[1];
     const body = {v: 1, type: 'call', event_id: eid, rid: eid + '-r', run: H.run || AG.active || null, card: String(H.card || fr || root.__thrydCard || '').toLowerCase() || null,
       object: name, fn, args, scene: H.mid ? String(H.mid).slice(0, 160) : null, cut: c.label ? String(c.label).slice(0, 60) : null, client_ts: new Date().toISOString()};
+    if(src === 'intent') body.source = 'intent';
     if(body.run && !/^run-[0-9a-f]{4,6}$/.test(body.run)) body.run = null; if(body.card && !/^[jw]\d{1,3}$/.test(body.card)) body.card = null;
     const rec = {code, body, status: 'sending', at: Date.now()}; M.sent.push(rec); if(M.sent.length > 40) M.sent.shift();
-    if(c.el && c.el.isConnected){ lookOn(c, fn, args); tagAt(c, code); }
+    if(c.el && c.el.isConnected){ rec.prevLook = c.tapL ? JSON.parse(JSON.stringify({keys: c.tapL.keys, parts: c.tapL.parts})) : null; lookOn(c, fn, args); tagAt(c, code); }
     codeLine(code, 'tapped · sending to the box…'); note('method', code, eid);
     return sendCall(rec, code, eid);
   }

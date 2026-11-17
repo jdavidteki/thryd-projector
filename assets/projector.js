@@ -248,11 +248,18 @@ const NEWEST=()=>RUNX().length?RUNX().slice().sort((a,b)=>(b.mtime||0)-(a.mtime|
 // after ten slideshow changes, return to whatever the newest live view is then
 const slideCycle=window.ThrydLiveReturn.create(10);
 function startSlide(){clearInterval(slideT);slideT=setInterval(()=>{
-  if(coldBooting||flipPending||document.body.classList.contains('dragmode'))return;
+  if(coldBooting||flipPending||document.body.classList.contains('dragmode')||document.body.classList.contains('dwell'))return; /* dwell: someone is reading a tweet pop-up */
   const moved=ThrydLiveReturn.step(slideCycle,{pool:POOL,poolI,cursor:slideCursor,hold:libPin.pinned(),newest:()=>MODE==='live'?NEWEST():null});
-  if(moved.action==='idle'||moved.action==='hold')return;
-  poolI=moved.poolI; if(moved.cursor)slideCursor=moved.cursor; backdrop(moved.set,true);
+  if(moved.action==='idle'||moved.action==='hold'){prefetchNext();return;}
+  poolI=moved.poolI; if(moved.cursor)slideCursor=moved.cursor; backdrop(moved.set,true); prefetchNext();
 },SLIDE*1000);}
+/* context (17 Nov 2026 2:54 PM ET): warm the likely next scene's file in the browser's idle time (rel=prefetch, once per URL), never on
+   Save-Data or 2g, so the next slide flips without a wait */
+const PREF=new Set();
+function prefetchNext(){ try{ const cn=navigator.connection; if(cn&&(cn.saveData||/(^|-)2g$/.test(cn.effectiveType||'')))return;
+  if(!POOL||!POOL.length)return; const nx=POOL[(poolI+1)%POOL.length]; const u=nx&&typeof nx.url==='string'&&/\.(gif|png|jpe?g|webp|mp4|webm)(\?|$)/i.test(nx.url)&&nx.url; if(!u||PREF.has(u)||PREF.size>40)return;
+  PREF.add(u); const l=document.createElement('link'); l.rel='prefetch'; l.href=u; l.as='image'; document.head.appendChild(l); window.__thrydPrefetched=[...PREF]; }catch(e){} }
+setTimeout(prefetchNext,4000);
 window.thrydLibrary={show(id){const q=String(id||'').trim(); const s=LXTRA.find(x=>x&&x.how==='medium'&&(x.medium_image_id===q||x.dir==='medium/'+q||x.url===q)); if(!s)return null; libPin.hold(s); if(window.ThrydKeep)try{ThrydKeep.rememberGif(s.medium_image_id||q);}catch(e){} backdrop(s,true); return s.dir;}, showSet(set){if(!remoteSet(set))return null; backdrop(set,true); return set.dir;}, counts(){const m=LXTRA.filter(x=>x&&x.how==='medium'); return {medium:m.length, gif:m.filter(x=>x.extension==='gif').length, still:m.filter(x=>x.extension!=='gif').length};}};
 startSlide();
 
