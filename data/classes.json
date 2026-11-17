@@ -105,8 +105,8 @@
     "know",
     "bow"
    ],
-   "instances": 336,
-   "arg_instances": 17,
+   "instances": 337,
+   "arg_instances": 18,
    "parent": null,
    "chain": [
     "Thing"
@@ -173,8 +173,8 @@
     "count",
     "come"
    ],
-   "instances": 15,
-   "arg_instances": 12,
+   "instances": 16,
+   "arg_instances": 13,
    "parent": "Thing",
    "chain": [
     "Action",
@@ -1475,6 +1475,10 @@
     {
      "text": "- lemme guess, your engine is going to \"blah\"",
      "year": "2023"
+    },
+    {
+     "text": "- we will let the engine to figure out",
+     "year": "2026"
     }
    ]
   },
@@ -2914,6 +2918,22 @@
    ],
    "tweets": []
   },
+  "mistake": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-5a58c4",
+   "first_job": "j35",
+   "source": "pick",
+   "runs": [
+    "run-5a58c4"
+   ],
+   "tweets": [
+    {
+     "text": "- somebody will nau make zush a expensive mistake",
+     "year": "2025"
+    }
+   ]
+  },
   "mitalisen": {
    "class": "Thing",
    "cue": "default",
@@ -4285,6 +4305,22 @@
     "run-6fb0c0"
    ],
    "tweets": []
+  },
+  "something": {
+   "class": "Action",
+   "cue": "tweet: to/will ...",
+   "first_run": "run-5a58c4",
+   "first_job": "j35",
+   "source": "pick",
+   "runs": [
+    "run-5a58c4"
+   ],
+   "tweets": [
+    {
+     "text": "- and na wan things go lead to something",
+     "year": "2025"
+    }
+   ]
   },
   "sometimes": {
    "class": "Frequency",
@@ -5691,15 +5727,27 @@
     "pick"
    ],
    [
-    "engine",
-    "Thing",
+    "visit",
+    "Action",
     "j34",
     "pick"
    ],
    [
-    "visit",
+    "mistake",
+    "Thing",
+    "j35",
+    "pick"
+   ],
+   [
+    "engine",
+    "Thing",
+    "j35",
+    "pick"
+   ],
+   [
+    "something",
     "Action",
-    "j34",
+    "j35",
     "pick"
    ],
    [
@@ -8695,7 +8743,10 @@
   "teo.respond": "respond(what: Thing)",
   "calla.hear": "hear(what: Thing)",
   "dez.use": "use(what: Thing)",
-  "teo.guess": "guess(what: Thing)"
+  "teo.guess": "guess(what: Thing)",
+  "dez.make": "make(what: Thing)",
+  "teo.figure": "figure(what: Thing)",
+  "teo.lead": "lead(act: Action)"
  },
  "parent": {
   "Person": "Thing",
@@ -9090,5 +9141,5 @@
   "epilogue": "quiet",
   "coda": "quiet"
  },
- "updated": "2026-11-17T16:42:02-05:00"
+ "updated": "2026-11-17T16:54:06-05:00"
 }
