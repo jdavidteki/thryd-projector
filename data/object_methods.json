@@ -3497,6 +3497,86 @@
    "prior": [],
    "faded": false,
    "last_run": "run-5a58c4"
+  },
+  "calla.see": {
+   "object": "calla",
+   "method": "see",
+   "args": [
+    "inside"
+   ],
+   "runs": [
+    "run-5a58c4"
+   ],
+   "defined": {
+    "run": "run-5a58c4",
+    "job": "j32",
+    "card": "w32",
+    "title": "calla.see(inside)",
+    "emoji": "💿",
+    "at": "2026-11-17T15:42:34-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "calla.see(inside)",
+     "emoji": "💿",
+     "arg": "inside",
+     "run": "run-5a58c4",
+     "job": "j32",
+     "tweets": [
+      {
+       "text": "- am inside but u can't see me",
+       "year": "2025"
+      },
+      {
+       "text": "- e dey record everything we dey tok",
+       "year": "2025"
+      },
+      {
+       "text": "[[home]] - ok, weya inside the paper rn!",
+       "year": "2025"
+      }
+     ],
+     "consequence": "Calla, mic still off, sits close enough that the quiet under the jokes feels tender.",
+     "consequence_job": "j33",
+     "resolved": "calla.see(where=inside:Place) from j32",
+     "injected": [
+      {
+       "param": "where",
+       "class": "Place",
+       "instance": "inside",
+       "from_run": "run-5a58c4",
+       "from_job": "j32",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "sig": {
+    "params": [
+     {
+      "name": "where",
+      "class": "Place",
+      "default": "inside",
+      "first_run": "run-5a58c4",
+      "first_job": "j32"
+     }
+    ],
+    "text": "see(where: Place)"
+   },
+   "receiver_class": "Person",
+   "prior": [
+    {
+     "id": "history.see",
+     "title": "history.see(check)",
+     "run": "run-bd649b",
+     "job": "j11",
+     "at": "2026-11-16T21:35:12-05:00",
+     "why": "same method"
+    }
+   ],
+   "faded": false,
+   "last_run": null
   }
  },
  "objects": {
@@ -3510,10 +3590,12 @@
    "bobo.on"
   ],
   "calla": [
-   "calla.stare"
+   "calla.stare",
+   "calla.see"
   ],
   "calla_5a58c4": [
-   "calla.stare"
+   "calla.stare",
+   "calla.see"
   ],
   "care": [
    "care.on"
@@ -3681,6 +3763,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -3716,6 +3799,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -3741,6 +3825,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -3766,6 +3851,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -3791,6 +3877,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -3816,6 +3903,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -3841,6 +3929,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -3866,6 +3955,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -3891,6 +3981,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -3916,6 +4007,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -3941,6 +4033,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -3966,6 +4059,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -3991,6 +4085,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -4016,6 +4111,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -4041,6 +4137,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -4066,6 +4163,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -4091,6 +4189,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -4116,6 +4215,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -4141,6 +4241,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -4192,6 +4293,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -4217,6 +4319,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -4290,6 +4393,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -4346,6 +4450,7 @@
     "from": "f81f21521253",
     "title": "829. a day in the life of god",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -4371,6 +4476,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -4395,6 +4501,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -4439,6 +4546,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -4596,6 +4704,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -4621,6 +4730,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -4646,6 +4756,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -4671,6 +4782,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -4696,6 +4808,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -4721,6 +4834,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -4746,6 +4860,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -4771,6 +4886,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -4796,6 +4912,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -4896,6 +5013,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -4953,6 +5071,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -4988,6 +5107,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -5013,6 +5133,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -5038,6 +5159,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -5063,6 +5185,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -5088,6 +5211,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -5113,6 +5237,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -5138,6 +5263,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -5163,6 +5289,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -5188,6 +5315,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -5213,6 +5341,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -5248,6 +5377,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -5273,6 +5403,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -5298,6 +5429,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -5323,6 +5455,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -5348,6 +5481,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -5373,6 +5507,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -5398,6 +5533,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -5423,6 +5559,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -5448,6 +5585,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -5473,6 +5611,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -5498,6 +5637,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -5523,6 +5663,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -5558,6 +5699,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -5583,6 +5725,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -5608,6 +5751,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -5633,6 +5777,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -5657,6 +5802,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -5682,6 +5828,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -5707,6 +5854,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -5732,6 +5880,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -5757,6 +5906,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -5782,6 +5932,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -5807,6 +5958,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -5832,6 +5984,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -5857,6 +6010,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -5882,6 +6036,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -5907,6 +6062,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -5932,6 +6088,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -5957,6 +6114,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -5982,6 +6140,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -6007,6 +6166,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -6032,6 +6192,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -6067,6 +6228,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -6092,6 +6254,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -6117,6 +6280,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -6142,6 +6306,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -6167,6 +6332,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -6192,6 +6358,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -6217,6 +6384,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -6242,6 +6410,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -6267,6 +6436,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -6292,6 +6462,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -6317,6 +6488,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -6342,6 +6514,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -6367,6 +6540,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -6505,6 +6679,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -6530,6 +6705,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -6555,6 +6731,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -6580,6 +6757,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -6605,6 +6783,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -6630,6 +6809,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -6655,6 +6835,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -6680,6 +6861,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -6705,6 +6887,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -6730,6 +6913,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -6755,6 +6939,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -6780,6 +6965,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -6805,6 +6991,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -6830,6 +7017,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -6855,6 +7043,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -6880,6 +7069,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -6905,6 +7095,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -6930,6 +7121,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -6955,6 +7147,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -6980,6 +7173,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -7066,6 +7260,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -7091,6 +7286,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -7136,6 +7332,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -7161,6 +7358,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -7186,6 +7384,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -7211,6 +7410,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "calla.stare",
      "dez.sit",
@@ -7233,6 +7433,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "calla.stare",
      "dez.sit",
@@ -7255,6 +7456,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -7280,6 +7482,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -7305,6 +7508,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -7330,6 +7534,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -7355,6 +7560,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -7380,6 +7586,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -7405,6 +7612,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -7430,6 +7638,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -7455,6 +7664,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -7480,6 +7690,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -7505,6 +7716,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -7530,6 +7742,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -7565,6 +7778,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -7610,6 +7824,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -7635,6 +7850,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -7691,6 +7907,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -7726,6 +7943,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.see",
      "blender.line",
      "teo.sit",
      "calla.stare",
@@ -7766,6 +7984,14 @@
    },
    {
     "scope": "safe",
+    "from": "b4aa8e6711b8",
+    "title": "821. let every line be a [[lie]]",
+    "funcs": [
+     "calla.see"
+    ]
+   },
+   {
+    "scope": "safe",
     "from": "c7c1fdc558f5",
     "title": "1026. why would you say that?!",
     "funcs": [
@@ -7794,7 +8020,8 @@
     "dez.sit",
     "calla.stare",
     "teo.sit",
-    "blender.line"
+    "blender.line",
+    "calla.see"
    ]
   },
   "run-bd649b": {
@@ -8047,6 +8274,13 @@
    ],
    "runs": []
   },
+  "b4aa8e6711b8": {
+   "title": "821. let every line be a [[lie]]",
+   "funcs": [
+    "calla.see"
+   ],
+   "runs": []
+  },
   "c51063137413": {
    "title": "1022. original copy",
    "funcs": [
@@ -8186,7 +8420,8 @@
     "dez.sit",
     "calla.stare",
     "teo.sit",
-    "blender.line"
+    "blender.line",
+    "calla.see"
    ],
    "runs": [
     "run-5a58c4"
@@ -8302,6 +8537,9 @@
   ],
   "1*MPbkmimVouS6PjL30EIDOA.gif": [
    "1dde946f3407"
+  ],
+  "1*Q6vGrWT0ajW7atGoIGVDdw.gif": [
+   "b4aa8e6711b8"
   ],
   "1*XAiSYjFKsqdzhWwoSd6nhw.gif": [
    "dbef6608be65"
@@ -8621,6 +8859,12 @@
     "ae0d5fb4a64c"
    ]
   },
+  "1*Q6vGrWT0ajW7atGoIGVDdw.gif": {
+   "runs": [],
+   "safes": [
+    "b4aa8e6711b8"
+   ]
+  },
   "1*BiRPdRqsYp7KBNTKPU6WUg.gif": {
    "runs": [],
    "safes": [
@@ -8711,7 +8955,8 @@
    "bobo.on"
   ],
   "calla": [
-   "calla.stare"
+   "calla.stare",
+   "calla.see"
   ],
   "care": [
    "care.on"
@@ -8919,7 +9164,10 @@
   "dez": [
    "Watchable"
   ],
-  "calla": [],
+  "calla": [
+   "Readable",
+   "Watchable"
+  ],
   "blender": []
  },
  "casts": {
@@ -9034,5 +9282,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-17T15:25:26-05:00"
+ "updated": "2026-11-17T15:42:58-05:00"
 }

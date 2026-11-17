@@ -44,6 +44,7 @@
    "implements": [
     "Foldable",
     "Playable",
+    "Readable",
     "Speakable",
     "Watchable",
     "Weighable"
@@ -72,9 +73,11 @@
   },
   "Place": {
    "param": "where",
-   "methods": [],
-   "instances": 7,
-   "arg_instances": 0,
+   "methods": [
+    "see"
+   ],
+   "instances": 8,
+   "arg_instances": 1,
    "parent": "Thing",
    "chain": [
     "Place",
@@ -89,6 +92,7 @@
     "say": "quake"
    },
    "implements": [
+    "Readable",
     "Speakable",
     "Watchable"
    ]
@@ -2031,6 +2035,26 @@
     "run-merge-m1"
    ],
    "tweets": []
+  },
+  "inside": {
+   "class": "Place",
+   "cue": "word",
+   "first_run": "run-5a58c4",
+   "first_job": "j32",
+   "source": "pick",
+   "runs": [
+    "run-5a58c4"
+   ],
+   "tweets": [
+    {
+     "text": "- am inside but u can't see me",
+     "year": "2025"
+    },
+    {
+     "text": "[[home]] - ok, weya inside the paper rn!",
+     "year": "2025"
+    }
+   ]
   },
   "insidebus": {
    "class": "Thing",
@@ -5412,6 +5436,12 @@
     "pick"
    ],
    [
+    "inside",
+    "Place",
+    "j32",
+    "pick"
+   ],
+   [
     "true",
     "Thing",
     "j28",
@@ -8379,7 +8409,8 @@
   "dez.sit": "sit(act: Action)",
   "calla.stare": "stare(feeling: Feeling)",
   "teo.sit": "sit(what: Thing)",
-  "blender.line": "line(amount: Quantity)"
+  "blender.line": "line(amount: Quantity)",
+  "calla.see": "see(where: Place)"
  },
  "parent": {
   "Person": "Thing",
@@ -8461,10 +8492,13 @@
     "Feeling",
     "Frequency",
     "Manner",
+    "Person",
+    "Place",
     "Thing"
    ],
    "objects": [
     "aotl",
+    "calla",
     "crime",
     "history",
     "irteiutk",
@@ -8506,6 +8540,7 @@
     "Thing"
    ],
    "objects": [
+    "calla",
     "dez",
     "everywhere",
     "history",
@@ -8765,5 +8800,5 @@
   "epilogue": "quiet",
   "coda": "quiet"
  },
- "updated": "2026-11-17T15:11:53-05:00"
+ "updated": "2026-11-17T15:42:58-05:00"
 }
