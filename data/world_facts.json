@@ -2356,16 +2356,6 @@
 ],
 "lekki_pharmacy": [
 {
-"id": "wf_9898ccbcd6",
-"kind": "consequence",
-"text": "A Danfo speaker note with Bisola's name and 'egbe note' on it, turns up inside the unpaid prescription slip at the lekki pharmacy, and Titi reads the name twice.",
-"code": "danfo_speaker.interactwith(lekki_pharmacy){ lekki_pharmacy.receives(danfo_speaker.note); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "w",
-"other": "danfo_speaker"
-},
-{
 "id": "wf_3b30275090",
 "kind": "consequence",
 "text": "A Truth note with Titi's name and 'egbe note' on it, turns up inside the unpaid prescription slip at the lekki pharmacy, and Titi reads the name twice.",
@@ -2374,6 +2364,16 @@
 "run": "run-0bd7c0",
 "card": "j4",
 "other": "truth"
+},
+{
+"id": "wf_66911e2495",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the unpaid prescription slip at the lekki pharmacy, and Titi reads the name twice.",
+"code": "omo.interactwith(lekki_pharmacy){ lekki_pharmacy.receives(omo.envelope); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "omo"
 },
 {
 "id": "wt_825a1245a2",
@@ -4223,17 +4223,6 @@
 },
 "consequences": [
 {
-"id": "wf_131b11969f",
-"ts": "2026-11-16T14:38:06-0500",
-"a": "ats",
-"b": "danfo_stuck_third",
-"code": "ats.interactwith(danfo_stuck_third){ danfo_stuck_third.receives(ats.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the danfo stuck third, and Titi reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
-{
 "id": "wf_677884406d",
 "ts": "2026-11-16T14:39:41-0500",
 "a": "sessy",
@@ -4661,6 +4650,17 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j6"
+},
+{
+"id": "wf_66911e2495",
+"ts": "2026-11-16T19:05:35-0500",
+"a": "omo",
+"b": "lekki_pharmacy",
+"code": "omo.interactwith(lekki_pharmacy){ lekki_pharmacy.receives(omo.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the unpaid prescription slip at the lekki pharmacy, and Titi reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
 }
 ],
 "memories": [
@@ -4764,5 +4764,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-16T19:02:44-0500"
+"updated": "2026-11-16T19:05:35-0500"
 }
