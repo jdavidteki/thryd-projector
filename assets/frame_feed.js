@@ -300,7 +300,7 @@
     var rel = relatedOf(w), i;
     for(i = 0; i < rel.length; i++){ if(q[rel[i]]) return {weight: q[rel[i]].weight * 0.55, src: q[rel[i]].src, how: 'related'}; }
     if(w.length >= 4){
-      var keys = Object.keys(q), k, ks;
+      var keys = q.__keys || Object.keys(q), k, ks;
       for(i = 0; i < keys.length; i++){
         k = keys[i]; ks = stem(k);
         if(k.length >= 4 && (w.indexOf(k) === 0 || k.indexOf(w) === 0 || st === ks || (st.length >= 4 && (ks.indexOf(st) === 0 || st.indexOf(ks) === 0))))
@@ -326,13 +326,14 @@
     }
     var bag = (state && state.weights) || {};
     Object.keys(bag).forEach(function(k){ put(k, bag[k], 'bag'); });
+    Object.defineProperty(q, '__keys', {value: Object.keys(q), enumerable: false});
     return q;
   }
   function score(tweet, state){
     if(!tweetOk(tweet) || !state) return {score: 0, hits: []};
     if(!state.query) state.query = compileQuery(state);
     var line = tweet.line || '';
-    var tw = tokens(line);
+    var tw = tweet._tok || (tweet._tok = tokens(line));
     var i, w, s = 0, hits = [], seen = Object.create(null), content = 0, terms = [], seenT = Object.create(null);
     for(i = 0; i < tw.length; i++){
       w = tw[i];
@@ -584,6 +585,51 @@
   var timer = null;
   var started = false;
   var log = [];
+  var rankCache = {sig: '', ranked: null, matched: null};
+  var rankJob = {id: 0, pending: false};
+  function scheduleIdle(fn){
+    if(typeof requestIdleCallback === 'function'){
+      return requestIdleCallback(function(){ fn(); }, {timeout: 40});
+    }
+    return setTimeout(fn, 0);
+  }
+  // Same result as rankTweets, but yields every ~24ms so a 3617-tweet score cannot
+  // become a 350ms long task. Reuses the last ranking when the scene signature is unchanged.
+  function rankTweetsChunked(list, state, cb){
+    if(state && rankCache.sig === state.signature && rankCache.ranked){
+      cb({ranked: rankCache.ranked, matched: rankCache.matched, cached: true});
+      return rankJob.id;
+    }
+    var jobId = ++rankJob.id;
+    rankJob.pending = true;
+    if(!idfMap || idfN !== (list || []).filter(tweetOk).length) buildIdf(list);
+    if(state) state.query = compileQuery(state);
+    var okList = (list || []).filter(tweetOk);
+    var ranked = [];
+    var i = 0;
+    function slice(){
+      if(jobId !== rankJob.id) return;
+      var t0 = performance.now();
+      while(i < okList.length && (performance.now() - t0) < 24){
+        ranked.push(rowOf(okList[i], score(okList[i], state)));
+        i++;
+      }
+      if(i < okList.length){ scheduleIdle(slice); return; }
+      ranked.sort(function(a, b){
+        if(b.score !== a.score) return b.score - a.score;
+        return String(a.id) < String(b.id) ? -1 : 1;
+      });
+      var matched = ranked.filter(function(r){ return r.score > 0; });
+      rankCache = {sig: state && state.signature, ranked: ranked, matched: matched};
+      rankJob.pending = false;
+      cb({ranked: ranked, matched: matched, cached: false});
+    }
+    scheduleIdle(slice);
+    return jobId;
+  }
+  function chooseOpts(){
+    return {session: session, recent: recentIds, cursor: rotateCursor, rng: Math.random, exclude: fallbackBroad};
+  }
 
   function feedObj(){
     var f = root.__THRYD_FEED;
@@ -923,12 +969,7 @@
     if(recentIds.length > NO_REPEAT) recentIds.splice(0, recentIds.length - NO_REPEAT);
   }
   // Fresh pick for this bubble: never reuse lastPick.
-  function nextShown(reason){
-    rememberCutMeta();
-    var state = liveState();
-    try{ if(state.frame && state.frame.id) addSceneTerms(state.frame.id, state.own); }catch(e){}
-    var arch = sceneTweets && state.frame && state.frame.id ? rowForMid(sceneTweets, state.frame.id) : null;
-    var res = chooseScene(arch, tweets, state, {session: session, recent: recentIds, cursor: rotateCursor, rng: Math.random, exclude: fallbackBroad});
+  function finishShown(reason, state, res){
     if(res.fallback === 'rotate') rotateCursor = res.cursor;
     if(res.choice){
       lastPick = res.choice;
@@ -937,17 +978,28 @@
     }
     return {choice: res.choice, state: state, res: res, reason: reason || 'bubble'};
   }
-  function evaluate(reason){
-    if(!tweets.length) return null;
-    var held = holdLeft();
-    if(held > 0){
-      // the current tweet keeps its full stay; a drag re-checks the moment the stay ends
-      if(reason === 'drag'){ clearTimeout(api._dragT); api._dragT = setTimeout(function(){ evaluate('drag-after-hold'); }, held + 30); }
-      return record({at: new Date().toISOString(), reason: reason || 'tick', changed: false, quiet: false, held: true, hold_left_ms: held, picked: []});
-    }
-    var shown = nextShown(reason || 'tick');
+  function beginChoose(reason){
+    rememberCutMeta();
+    var state = liveState();
+    try{ if(state.frame && state.frame.id) addSceneTerms(state.frame.id, state.own); }catch(e){}
+    var arch = sceneTweets && state.frame && state.frame.id ? rowForMid(sceneTweets, state.frame.id) : null;
+    return {state: state, arch: arch, opts: chooseOpts(), reason: reason || 'tick'};
+  }
+  function chooseFrom(job, ranked){
+    var res = job.arch
+      ? chooseScene(job.arch, tweets, job.state, job.opts)
+      : chooseOne(tweets, job.state, Object.assign({}, job.opts, ranked ? {ranked: ranked} : {}));
+    return finishShown(job.reason, job.state, res);
+  }
+  function nextShown(reason){
+    var job = beginChoose(reason || 'bubble');
+    if(job.arch) return chooseFrom(job);
+    if(rankCache.sig === job.state.signature && rankCache.ranked) return chooseFrom(job, rankCache);
+    return {pending: true, job: job, choice: null, state: job.state, res: {pool: [], matched: [], genuine: 0}, reason: job.reason};
+  }
+  function completeEvaluate(reason, shown){
     var state = shown.state;
-    var res = shown.res;
+    var res = shown.res || {};
     var top = shown.choice;
     var pool = (res.pool && res.pool.length) ? res.pool : (res.matched || []).slice(0, TOP_K);
     var row = {
@@ -984,6 +1036,29 @@
     }
     return row;
   }
+  function evaluate(reason){
+    if(!tweets.length) return null;
+    var held = holdLeft();
+    if(held > 0){
+      // the current tweet keeps its full stay; a drag re-checks the moment the stay ends
+      if(reason === 'drag'){ clearTimeout(api._dragT); api._dragT = setTimeout(function(){ evaluate('drag-after-hold'); }, held + 30); }
+      return record({at: new Date().toISOString(), reason: reason || 'tick', changed: false, quiet: false, held: true, hold_left_ms: held, picked: []});
+    }
+    var shown = nextShown(reason || 'tick');
+    if(shown && shown.pending){
+      if(!rankJob.pending){
+        var job = shown.job;
+        rankTweetsChunked(tweets, job.state, function(rk){
+          if(holdLeft() > 0) return;
+          if(document.body && document.body.classList.contains('dragmode') && (reason || 'tick') === 'tick') return;
+          var done = chooseFrom(job, rk);
+          completeEvaluate(reason || 'tick', done);
+        });
+      }
+      return {pending: true, changed: false, quiet: true};
+    }
+    return completeEvaluate(reason || 'tick', shown);
+  }
 
   function hookMount(){
     if(!root.ThrydTweet || typeof root.ThrydTweet.mount !== 'function') return;
@@ -996,8 +1071,20 @@
         if(!choice){
           if(holdLeft() > 0) return Promise.resolve({ok: false, reason: 'hold'});
           var shown = tweets.length ? nextShown('bubble') : null;
+          if(shown && shown.pending){
+            var job = shown.job;
+            return new Promise(function(ok){
+              rankTweetsChunked(tweets, job.state, function(rk){
+                if(holdLeft() > 0){ ok({ok: false, reason: 'hold'}); return; }
+                var done = chooseFrom(job, rk);
+                completeEvaluate('bubble', done);
+                if(done.choice && done.choice.tweet){ shownAt = Date.now(); ok(rawMount(host, done.choice.tweet, baseMs)); }
+                else ok({ok: false, reason: 'quiet'});
+              });
+            });
+          }
           choice = shown && shown.choice;
-          if(shown) record({at: new Date().toISOString(), reason: 'bubble', changed: !!choice, quiet: !choice, picked: choice ? [{id: choice.id, score: choice.score, terms: choice.terms}] : []});
+          if(shown && !shown.pending) record({at: new Date().toISOString(), reason: 'bubble', changed: !!choice, quiet: !choice, picked: choice ? [{id: choice.id, score: choice.score, terms: choice.terms}] : []});
         }
         if(choice && choice.tweet){ shownAt = Date.now(); return rawMount(host, choice.tweet, baseMs); }
         return Promise.resolve({ok: false, reason: 'quiet'});
@@ -1064,6 +1151,7 @@
     tweets = (rows || []).map(function(p){
       return root.ThrydTweet && ThrydTweet.deckRow ? ThrydTweet.deckRow(p) : {line: p.line, src: p.src, move: !!p.move, id: p.id, purged: p.purged, card: p.card};
     }).filter(tweetOk);
+    tweets.forEach(function(tw){ tw._tok = tokens(tw.line || ''); });
     buildIdf(tweets);
   }
 
