@@ -1226,16 +1226,6 @@
 ],
 "yaba_bukka_counter": [
 {
-"id": "wf_30dfb0cb06",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the yaba bukka counter, and Kunle reads the name twice.",
-"code": "kweshon.interactwith(yaba_bukka_counter){ yaba_bukka_counter.receives(kweshon.envelope); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "kweshon"
-},
-{
 "id": "wf_0b5a3dcf5d",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the yaba bukka counter, and Kunle reads the name twice.",
@@ -1244,6 +1234,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "morir_r"
+},
+{
+"id": "wf_2cb6c1bd67",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the yaba bukka counter, and Kunle reads the name twice.",
+"code": "red_white.interactwith(yaba_bukka_counter){ yaba_bukka_counter.receives(red_white.envelope); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "red_white"
 },
 {
 "id": "wt_4e525b9c48",
@@ -1934,16 +1934,6 @@
 ],
 "laptop": [
 {
-"id": "wf_c736f5fa75",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the rain-stained receipt at the laptop, and Ejiro reads the name twice.",
-"code": "omo.interactwith(laptop){ laptop.receives(omo.envelope); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "omo"
-},
-{
 "id": "wf_677884406d",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the rain-stained receipt at the laptop, and Ejiro reads the name twice.",
@@ -1962,6 +1952,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "kweshon"
+},
+{
+"id": "wf_0caf12bb23",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the rain-stained receipt at the laptop, and Ejiro reads the name twice.",
+"code": "let.interactwith(laptop){ laptop.receives(let.envelope); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "let"
 },
 {
 "id": "wt_00586a397c",
@@ -4233,28 +4233,6 @@
 },
 "consequences": [
 {
-"id": "wf_d83d29da3d",
-"ts": "2026-11-16T14:40:32-0500",
-"a": "matches",
-"b": "lekki_pharmacy",
-"code": "matches.interactwith(lekki_pharmacy){ lekki_pharmacy.receives(matches.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the unpaid prescription slip at the lekki pharmacy, and Titi reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
-{
-"id": "wf_25295004b3",
-"ts": "2026-11-16T14:42:07-0500",
-"a": "red_white_cap",
-"b": "lekki_pharmacy",
-"code": "red_white_cap.interactwith(lekki_pharmacy){ lekki_pharmacy.receives(red_white_cap.note); … }",
-"text": "A Red white cap note with Taiwo's name and 'egbe note' on it, 11:20pm, turns up inside the unpaid prescription slip at the lekki pharmacy, and Titi reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "w7"
-},
-{
 "id": "wf_cb86cdc3d6",
 "ts": "2026-11-16T14:42:54-0500",
 "a": "truth",
@@ -4671,6 +4649,28 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j6"
+},
+{
+"id": "wf_2cb6c1bd67",
+"ts": "2026-11-16T19:16:47-0500",
+"a": "red_white",
+"b": "yaba_bukka_counter",
+"code": "red_white.interactwith(yaba_bukka_counter){ yaba_bukka_counter.receives(red_white.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the yaba bukka counter, and Kunle reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
+},
+{
+"id": "wf_0caf12bb23",
+"ts": "2026-11-16T19:19:11-0500",
+"a": "let",
+"b": "laptop",
+"code": "let.interactwith(laptop){ laptop.receives(let.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the rain-stained receipt at the laptop, and Ejiro reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
 }
 ],
 "memories": [
@@ -4774,5 +4774,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-16T19:15:09-0500"
+"updated": "2026-11-16T19:19:11-0500"
 }
