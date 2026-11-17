@@ -3950,6 +3950,16 @@
 "run": "run-0bd7c0",
 "card": "w",
 "other": "kerosene_lamp"
+},
+{
+"id": "wf_a5724ecd93",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the sessy, and Bisola reads the name twice.",
+"code": "wsr.interactwith(sessy){ sessy.receives(wsr.envelope); sessy.remembers(bisola, 'brown envelope'); sessy.tucks(wsr, 'yaba bookshop receipt into the brown envelope'); }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "wsr"
 }
 ],
 "mushin_mechanic_bay": [
@@ -3965,16 +3975,6 @@
 }
 ],
 "danfo_stuck_third": [
-{
-"id": "wf_131b11969f",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the danfo stuck third, and Titi reads the name twice.",
-"code": "ats.interactwith(danfo_stuck_third){ danfo_stuck_third.receives(ats.envelope); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "ats"
-},
 {
 "id": "wf_a1db2442e0",
 "kind": "consequence",
@@ -4004,6 +4004,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "plastic_sheet"
+},
+{
+"id": "wf_6236db6f54",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the danfo stuck third, and Titi reads the name twice.",
+"code": "bow.interactwith(danfo_stuck_third){ danfo_stuck_third.receives(bow.envelope); … }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "bow"
 },
 {
 "id": "wt_1115_2356_a",
@@ -4212,28 +4222,6 @@
 ]
 },
 "consequences": [
-{
-"id": "wf_da4e2a726d",
-"ts": "2026-11-16T14:34:06-0500",
-"a": "let",
-"b": "danfo_stuck_third",
-"code": "let.interactwith(danfo_stuck_third){ danfo_stuck_third.receives(let.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the danfo stuck third, and Titi reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
-{
-"id": "wf_a1ce244a5e",
-"ts": "2026-11-16T14:34:57-0500",
-"a": "ats",
-"b": "sessy",
-"code": "ats.interactwith(sessy){ sessy.receives(ats.envelope); sessy.remembers(bisola, 'brown envelope'); sessy.tucks(ats, 'yaba bookshop receipt into the brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the sessy, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
 {
 "id": "wf_131b11969f",
 "ts": "2026-11-16T14:38:06-0500",
@@ -4651,6 +4639,28 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j4"
+},
+{
+"id": "wf_6236db6f54",
+"ts": "2026-11-16T19:00:20-0500",
+"a": "bow",
+"b": "danfo_stuck_third",
+"code": "bow.interactwith(danfo_stuck_third){ danfo_stuck_third.receives(bow.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the danfo stuck third, and Titi reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
+},
+{
+"id": "wf_a5724ecd93",
+"ts": "2026-11-16T19:02:44-0500",
+"a": "wsr",
+"b": "sessy",
+"code": "wsr.interactwith(sessy){ sessy.receives(wsr.envelope); sessy.remembers(bisola, 'brown envelope'); sessy.tucks(wsr, 'yaba bookshop receipt into the brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the sessy, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
 }
 ],
 "memories": [
@@ -4754,5 +4764,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-16T18:57:06-0500"
+"updated": "2026-11-16T19:02:44-0500"
 }
