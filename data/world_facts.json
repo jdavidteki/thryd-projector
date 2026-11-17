@@ -4637,42 +4637,45 @@
 "card": "j6",
 "other": "reality"
 }
+],
+"fire_escape_outside": [
+{
+"id": "wf_5c832c78e4",
+"kind": "consequence",
+"text": "The fire escape outside leaves with a Laptop note with Ejiro's name and 'rain-stained receipt' on it, 8:05am.",
+"code": "marker_c.interactwith(fire_escape_outside){ fire_escape_outside.receives(marker_c.receipt); fire_escape_outside.remembers(ejiro, 'rain-stained receipt'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "w5",
+"other": "marker_c"
+}
+],
+"heat": [
+{
+"id": "wf_19c0aba741",
+"kind": "consequence",
+"text": "The heat leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "top_deck_charter.interactwith(heat){ heat.receives(top_deck_charter.envelope); heat.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "top_deck_charter"
+}
+],
+"youngteacher": [
+{
+"id": "wf_3ff63044c8",
+"kind": "consequence",
+"text": "The youngteacher leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "tie.interactwith(youngteacher){ youngteacher.receives(tie.envelope); youngteacher.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "tie"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_e3c643b4a7",
-"ts": "2026-11-17T00:15:03-0500",
-"a": "morir",
-"b": "lekki_pharmacy",
-"code": "morir.interactwith(lekki_pharmacy){ lekki_pharmacy.receives(morir.number); … }",
-"text": "A Morir note with Kunle's name and 'container number' on it, turns up inside the scorched container number at the lekki pharmacy, and Kunle reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "w7"
-},
-{
-"id": "wf_33896f6d3a",
-"ts": "2026-11-17T00:17:29-0500",
-"a": "pure_water_cooler",
-"b": "lekki_pharmacy",
-"code": "pure_water_cooler.interactwith(lekki_pharmacy){ lekki_pharmacy.receives(pure_water_cooler.number); … }",
-"text": "A Pure water cooler note with Kunle's name and 'container number' on it, 9:20am, turns up inside the scorched container number at the lekki pharmacy, and Kunle reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "w1"
-},
-{
-"id": "wf_0dfdc43602",
-"ts": "2026-11-17T00:19:52-0500",
-"a": "ats",
-"b": "lekki_pharmacy",
-"code": "ats.interactwith(lekki_pharmacy){ lekki_pharmacy.receives(ats.envelope); … }",
-"text": "An Ats note with Bisola's name and 'brown envelope' on it, turns up inside the scorched container number at the lekki pharmacy, and Kunle reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j2"
-},
 {
 "id": "wf_ec25c6aa4a",
 "ts": "2026-11-17T00:27:02-0500",
@@ -5079,6 +5082,39 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": "j6"
+},
+{
+"id": "wf_5c832c78e4",
+"ts": "2026-11-17T10:56:39-0500",
+"a": "marker_c",
+"b": "fire_escape_outside",
+"code": "marker_c.interactwith(fire_escape_outside){ fire_escape_outside.receives(marker_c.receipt); fire_escape_outside.remembers(ejiro, 'rain-stained receipt'); }",
+"text": "The fire escape outside leaves with a Laptop note with Ejiro's name and 'rain-stained receipt' on it, 8:05am.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "w5"
+},
+{
+"id": "wf_19c0aba741",
+"ts": "2026-11-17T10:58:37-0500",
+"a": "top_deck_charter",
+"b": "heat",
+"code": "top_deck_charter.interactwith(heat){ heat.receives(top_deck_charter.envelope); heat.remembers(bisola, 'brown envelope'); }",
+"text": "The heat leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
+},
+{
+"id": "wf_3ff63044c8",
+"ts": "2026-11-17T10:59:47-0500",
+"a": "tie",
+"b": "youngteacher",
+"code": "tie.interactwith(youngteacher){ youngteacher.receives(tie.envelope); youngteacher.remembers(bisola, 'brown envelope'); }",
+"text": "The youngteacher leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
 }
 ],
 "memories": [
@@ -5182,5 +5218,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T10:49:53-0500"
+"updated": "2026-11-17T10:59:47-0500"
 }
