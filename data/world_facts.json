@@ -2397,14 +2397,14 @@
 ],
 "lekki_pharmacy": [
 {
-"id": "wf_e3c643b4a7",
+"id": "wf_0dfdc43602",
 "kind": "consequence",
-"text": "A Morir note with Kunle's name and 'container number' on it, turns up inside the scorched container number at the lekki pharmacy, and Kunle reads the name twice.",
-"code": "morir.interactwith(lekki_pharmacy){ lekki_pharmacy.receives(morir.number); … }",
+"text": "An Ats note with Bisola's name and 'brown envelope' on it, turns up inside the scorched container number at the lekki pharmacy, and Kunle reads the name twice.",
+"code": "ats.interactwith(lekki_pharmacy){ lekki_pharmacy.receives(ats.envelope); … }",
 "author": "cos",
 "run": "run-0bd7c0",
-"card": "w7",
-"other": "morir"
+"card": "j2",
+"other": "ats"
 },
 {
 "id": "wt_825a1245a2",
@@ -4524,28 +4524,6 @@
 },
 "consequences": [
 {
-"id": "wf_9d322fe6db",
-"ts": "2026-11-16T22:09:52-0500",
-"a": "family_compound_ikorodu",
-"b": "calla",
-"code": "family_compound_ikorodu.interactwith(calla){ calla.receives(family_compound_ikorodu.envelope); calla.remembers(bisola, 'brown envelope'); }",
-"text": "The calla leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
-{
-"id": "wf_6858508cf9",
-"ts": "2026-11-16T22:11:27-0500",
-"a": "morir_r",
-"b": "bed",
-"code": "morir_r.interactwith(bed){ bed.receives(morir_r.envelope); bed.remembers(bisola, 'brown envelope'); bed.tucks(morir_r, 'yaba bookshop receipt into the egbe note'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the bed, and Taiwo reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
-{
 "id": "wf_4387b01710",
 "ts": "2026-11-16T22:15:30-0500",
 "a": "red_white_cap",
@@ -4962,6 +4940,28 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "w7"
+},
+{
+"id": "wf_33896f6d3a",
+"ts": "2026-11-17T00:17:29-0500",
+"a": "pure_water_cooler",
+"b": "lekki_pharmacy",
+"code": "pure_water_cooler.interactwith(lekki_pharmacy){ lekki_pharmacy.receives(pure_water_cooler.number); … }",
+"text": "A Pure water cooler note with Kunle's name and 'container number' on it, 9:20am, turns up inside the scorched container number at the lekki pharmacy, and Kunle reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "w1"
+},
+{
+"id": "wf_0dfdc43602",
+"ts": "2026-11-17T00:19:52-0500",
+"a": "ats",
+"b": "lekki_pharmacy",
+"code": "ats.interactwith(lekki_pharmacy){ lekki_pharmacy.receives(ats.envelope); … }",
+"text": "An Ats note with Bisola's name and 'brown envelope' on it, turns up inside the scorched container number at the lekki pharmacy, and Kunle reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j2"
 }
 ],
 "memories": [
@@ -5065,5 +5065,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T00:15:03-0500"
+"updated": "2026-11-17T00:19:52-0500"
 }
