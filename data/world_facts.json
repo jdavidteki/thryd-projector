@@ -4870,6 +4870,16 @@
 "run": "run-5a58c4",
 "card": "j2",
 "other": "texts_marisol"
+},
+{
+"id": "wf_d613a31122",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the juju code at the marker b, and Ejiro reads the name twice.",
+"code": "calla.interactwith(marker_b){ marker_b.receives(calla.envelope); … }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "calla"
 }
 ],
 "house": [
@@ -4926,6 +4936,16 @@
 "run": "run-5a58c4",
 "card": "j2",
 "other": "dez"
+},
+{
+"id": "wf_0a973190a9",
+"kind": "consequence",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the juju code at the marina biscayne bay, and Ejiro reads the name twice.",
+"code": "texts_marisol.interactwith(marina_biscayne_bay){ marina_biscayne_bay.receives(texts_marisol.code); … }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j2",
+"other": "texts_marisol"
 }
 ],
 "mbtij": [
@@ -5270,28 +5290,6 @@
 ]
 },
 "consequences": [
-{
-"id": "wf_c7fd36c202",
-"ts": "2026-11-17T11:18:43-0500",
-"a": "texts_marisol",
-"b": "marker_b",
-"code": "texts_marisol.interactwith(marker_b){ marker_b.receives(texts_marisol.code); marker_b.remembers(ejiro, 'juju code'); }",
-"text": "The marker b leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j2"
-},
-{
-"id": "wf_4b6e3d29e7",
-"ts": "2026-11-17T11:21:38-0500",
-"a": "htpto",
-"b": "house",
-"code": "htpto.interactwith(house){ htpto.db.copyto(house); house.keeps(htpto, 'teomarisollove, still in love, said out loud by Marisol (w14 causeway)'); }",
-"text": "The teomarisollove ends up with the house, still in love, said out loud by Marisol (w14 causeway).",
-"author": "cos",
-"run": "run-5a58c4",
-"card": ""
-},
 {
 "id": "wf_97fe50845b",
 "ts": "2026-11-17T11:24:35-0500",
@@ -5709,6 +5707,28 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": "j2"
+},
+{
+"id": "wf_d613a31122",
+"ts": "2026-11-17T13:16:08-0500",
+"a": "calla",
+"b": "marker_b",
+"code": "calla.interactwith(marker_b){ marker_b.receives(calla.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the juju code at the marker b, and Ejiro reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
+},
+{
+"id": "wf_0a973190a9",
+"ts": "2026-11-17T13:16:57-0500",
+"a": "texts_marisol",
+"b": "marina_biscayne_bay",
+"code": "texts_marisol.interactwith(marina_biscayne_bay){ marina_biscayne_bay.receives(texts_marisol.code); … }",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the juju code at the marina biscayne bay, and Ejiro reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j2"
 }
 ],
 "memories": [
@@ -5812,5 +5832,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T13:15:15-0500"
+"updated": "2026-11-17T13:16:57-0500"
 }
