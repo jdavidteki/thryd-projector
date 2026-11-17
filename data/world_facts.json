@@ -2736,16 +2736,6 @@
 ],
 "bed": [
 {
-"id": "wf_2fca3ecff8",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bed, and Bisola reads the name twice.",
-"code": "pure_water_cooler.interactwith(bed){ bed.receives(pure_water_cooler.envelope); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "pure_water_cooler"
-},
-{
 "id": "wf_33a89ec99c",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bed, and Bisola reads the name twice.",
@@ -2784,6 +2774,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "plastic_sheet"
+},
+{
+"id": "wt_740c0937a2",
+"kind": "consequence",
+"text": "The red white cap is left on the bed at Mama Ronke's house, and Taiwo's egbe note slips out under the pillow, beside Bisola's receipt, so the bed now keeps both names in one fold.",
+"code": "red_white_cap.interactwith(bed){ bed.receives(red_white_cap.egbe_note); bed.find('pillow').add('egbe note'); bed.set('fold','two names'); }",
+"author": "thryd",
+"run": "run-0bd7c0",
+"card": "w6",
+"other": "red_white_cap"
 }
 ],
 "art_making_money": [
@@ -3444,16 +3444,6 @@
 ],
 "ats": [
 {
-"id": "wf_c925458406",
-"kind": "consequence",
-"text": "The ats leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"code": "streetlights.interactwith(ats){ ats.receives(streetlights.envelope); ats.remembers(bisola, 'brown envelope'); }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "streetlights"
-},
-{
 "id": "wf_a9a8377541",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the ats, and Bisola reads the name twice.",
@@ -3492,6 +3482,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "morir_r"
+},
+{
+"id": "wt_1e83690303",
+"kind": "consequence",
+"text": "At the Oke-Ayo bus stop the agbada's wide sleeve passes over ats, and the brown envelope's corner changes hands, so ats leaves the stop holding what the agbada carried.",
+"code": "agbada.interactwith(ats){ agbada.db.copyto(ats); ats.receives(agbada, 'brown envelope'); ats.state('carrying'); }",
+"author": "thryd",
+"run": "run-0bd7c0",
+"card": "j2",
+"other": "agbada"
 }
 ],
 "agege_railway_platform": [
@@ -3740,16 +3740,6 @@
 ],
 "morir": [
 {
-"id": "wf_568e2366af",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the morir, and Bisola reads the name twice.",
-"code": "sessy.interactwith(morir){ morir.receives(sessy.envelope); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "sessy"
-},
-{
 "id": "wf_805c16266f",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the morir, and Bisola reads the name twice.",
@@ -3788,6 +3778,16 @@
 "run": "run-0bd7c0",
 "card": "w1",
 "other": "pure_water_cooler"
+},
+{
+"id": "wt_c13dbe4391",
+"kind": "consequence",
+"text": "At the doorway the matches brush the brown envelope in the morir, and a faint scorch rings Kunle's container number, so the number is now the one thing nobody can misread.",
+"code": "matches.interactwith(morir){ morir.find('brown envelope').add('scorch ring'); … }",
+"author": "thryd",
+"run": "run-0bd7c0",
+"card": "w7",
+"other": "matches"
 }
 ],
 "sports_ball": [
@@ -3942,16 +3942,6 @@
 ],
 "sessy": [
 {
-"id": "wf_0138c50823",
-"kind": "consequence",
-"text": "The sessy leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"code": "chair.interactwith(sessy){ sessy.receives(chair.envelope); sessy.remembers(bisola, 'brown envelope'); }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "chair"
-},
-{
 "id": "wf_8e2c13d118",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the sessy, and Bisola reads the name twice.",
@@ -3990,6 +3980,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "wsr"
+},
+{
+"id": "wf_1f404dabad",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the sessy, and Bisola reads the name twice.",
+"code": "omo.interactwith(sessy){ sessy.receives(omo.envelope); sessy.remembers(bisola, 'brown envelope'); sessy.tucks(omo, 'yaba bookshop receipt into the brown envelope'); }",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6",
+"other": "omo"
 }
 ],
 "mushin_mechanic_bay": [
@@ -4252,50 +4252,6 @@
 ]
 },
 "consequences": [
-{
-"id": "wf_9b33ded4fb",
-"ts": "2026-11-16T14:58:56-0500",
-"a": "suitcase",
-"b": "exotic",
-"code": "suitcase.interactwith(exotic){ exotic.receives(suitcase.code); exotic.remembers(ejiro, 'juju code'); }",
-"text": "The exotic leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j2"
-},
-{
-"id": "wf_63e1cc7ee7",
-"ts": "2026-11-16T15:00:31-0500",
-"a": "morir_r",
-"b": "ats",
-"code": "morir_r.interactwith(ats){ ats.receives(morir_r.envelope); ats.remembers(bisola, 'brown envelope'); ats.tucks(morir_r, 'yaba bookshop receipt into the brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the ats, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
-{
-"id": "wf_a1db2442e0",
-"ts": "2026-11-16T15:09:16-0500",
-"a": "omo",
-"b": "danfo_stuck_third",
-"code": "omo.interactwith(danfo_stuck_third){ danfo_stuck_third.receives(omo.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the danfo stuck third, and Titi reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
-{
-"id": "wf_2764ba830e",
-"ts": "2026-11-16T15:11:41-0500",
-"a": "kerosene_lamp",
-"b": "lekki_pharmacy",
-"code": "kerosene_lamp.interactwith(lekki_pharmacy){ lekki_pharmacy.receives(kerosene_lamp.change); … }",
-"text": "A Kerosene lamp note with Taiwo's name and 'change' on it, turns up inside the unpaid prescription slip at the lekki pharmacy, and Titi reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "w"
-},
 {
 "id": "wf_8b0e2e41fc",
 "ts": "2026-11-16T15:14:03-0500",
@@ -4691,6 +4647,50 @@
 "author": "cos",
 "run": "run-0bd7c0",
 "card": "j6"
+},
+{
+"id": "wt_c13dbe4391",
+"ts": "2026-11-16T19:49:14-0500",
+"a": "matches",
+"b": "morir",
+"code": "matches.interactwith(morir){ morir.find('brown envelope').add('scorch ring'); … }",
+"text": "At the doorway the matches brush the brown envelope in the morir, and a faint scorch rings Kunle's container number, so the number is now the one thing nobody can misread.",
+"author": "thryd",
+"run": "run-0bd7c0",
+"card": "w7"
+},
+{
+"id": "wt_740c0937a2",
+"ts": "2026-11-16T19:49:14-0500",
+"a": "red_white_cap",
+"b": "bed",
+"code": "red_white_cap.interactwith(bed){ bed.receives(red_white_cap.egbe_note); bed.find('pillow').add('egbe note'); bed.set('fold','two names'); }",
+"text": "The red white cap is left on the bed at Mama Ronke's house, and Taiwo's egbe note slips out under the pillow, beside Bisola's receipt, so the bed now keeps both names in one fold.",
+"author": "thryd",
+"run": "run-0bd7c0",
+"card": "w6"
+},
+{
+"id": "wt_1e83690303",
+"ts": "2026-11-16T19:49:14-0500",
+"a": "agbada",
+"b": "ats",
+"code": "agbada.interactwith(ats){ agbada.db.copyto(ats); ats.receives(agbada, 'brown envelope'); ats.state('carrying'); }",
+"text": "At the Oke-Ayo bus stop the agbada's wide sleeve passes over ats, and the brown envelope's corner changes hands, so ats leaves the stop holding what the agbada carried.",
+"author": "thryd",
+"run": "run-0bd7c0",
+"card": "j2"
+},
+{
+"id": "wf_1f404dabad",
+"ts": "2026-11-16T19:52:45-0500",
+"a": "omo",
+"b": "sessy",
+"code": "omo.interactwith(sessy){ sessy.receives(omo.envelope); sessy.remembers(bisola, 'brown envelope'); sessy.tucks(omo, 'yaba bookshop receipt into the brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the sessy, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-0bd7c0",
+"card": "j6"
 }
 ],
 "memories": [
@@ -4794,5 +4794,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-16T19:45:35-0500"
+"updated": "2026-11-16T19:52:45-0500"
 }
