@@ -4959,20 +4959,21 @@
 "card": "j29",
 "other": null
 }
+],
+"teo": [
+{
+"id": "wf_152ac5f930",
+"kind": "consequence",
+"text": "The teo leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "top_deck_charter.interactwith(teo){ teo.receives(top_deck_charter.envelope); teo.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "top_deck_charter"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_edd058d6e9",
-"ts": "2026-11-17T10:13:28-0500",
-"a": "wsr",
-"b": "apapa_container_yard",
-"code": "wsr.interactwith(apapa_container_yard){ apapa_container_yard.receives(wsr.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the apapa container yard, and Taiwo reads the name twice.",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6"
-},
 {
 "id": "wf_706ff72f41",
 "ts": "2026-11-17T10:25:27-0500",
@@ -5401,6 +5402,17 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": "j2"
+},
+{
+"id": "wf_152ac5f930",
+"ts": "2026-11-17T12:40:58-0500",
+"a": "top_deck_charter",
+"b": "teo",
+"code": "top_deck_charter.interactwith(teo){ teo.receives(top_deck_charter.envelope); teo.remembers(bisola, 'brown envelope'); }",
+"text": "The teo leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
 }
 ],
 "memories": [
@@ -5504,5 +5516,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T12:40:04-0500"
+"updated": "2026-11-17T12:40:58-0500"
 }
