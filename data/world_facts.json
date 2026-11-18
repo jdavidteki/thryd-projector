@@ -6783,6 +6783,16 @@
 "run": "run-2eb42d",
 "card": "w18",
 "other": "ronke"
+},
+{
+"id": "wf_b432e9a6cb",
+"kind": "consequence",
+"text": "A Chair note with Taiwo's name and '11:20pm' on it, turns up with the iae, which is still initialized.",
+"code": "chair.interactwith(iae){ iae.receives(chair.pm); iae.remembers(taiwo, '11:20pm'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w6",
+"other": "chair"
 }
 ],
 "tf_mom": [
@@ -8298,17 +8308,6 @@
 },
 "consequences": [
 {
-"id": "wf_584e5456ad",
-"ts": "2026-11-18T15:10:01-0500",
-"a": "jnoel",
-"b": "wser",
-"code": "jnoel.interactwith(wser){ wser.receives(jnoel.corner); wser.remembers(bisola, 'envelope corner'); wser.tucks(jnoel, 'bird note into the brown envelope'); }",
-"text": "A Bird note with Bisola's name and 'envelope corner' on it, turns up inside the brown envelope at the wser, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j7"
-},
-{
 "id": "wf_717c553e2e",
 "ts": "2026-11-18T15:11:47-0500",
 "a": "precision",
@@ -8736,6 +8735,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "w6"
+},
+{
+"id": "wf_b432e9a6cb",
+"ts": "2026-11-18T17:04:29-0500",
+"a": "chair",
+"b": "iae",
+"code": "chair.interactwith(iae){ iae.receives(chair.pm); iae.remembers(taiwo, '11:20pm'); }",
+"text": "A Chair note with Taiwo's name and '11:20pm' on it, turns up with the iae, which is still initialized.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w6"
 }
 ],
 "memories": [
@@ -8839,5 +8849,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T17:02:43-0500"
+"updated": "2026-11-18T17:04:29-0500"
 }
