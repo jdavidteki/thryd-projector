@@ -2043,16 +2043,6 @@
 ],
 "tie": [
 {
-"id": "wf_b6c90274d8",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the tie, and Bisola reads the name twice.",
-"code": "matches.interactwith(tie){ tie.receives(matches.envelope); tie.remembers(bisola, 'brown envelope'); tie.tucks(matches, 'yaba bookshop receipt into the brown envelope'); }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "matches"
-},
-{
 "id": "wf_48fbae7f6c",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the tie, and Bisola reads the name twice.",
@@ -2091,6 +2081,16 @@
 "run": "run-2eb42d",
 "card": "j8",
 "other": "lady"
+},
+{
+"id": "wf_3af8908fdf",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the green shirt at the tie, and Bisola reads the name twice.",
+"code": "yuwa.interactwith(tie){ tie.receives(yuwa.envelope); tie.remembers(bisola, 'brown envelope'); tie.tucks(yuwa, 'yaba bookshop receipt into the green shirt'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "yuwa"
 }
 ],
 "laptop": [
@@ -9154,17 +9154,6 @@
 },
 "consequences": [
 {
-"id": "wf_56d2610fbf",
-"ts": "2026-11-18T16:24:57-0500",
-"a": "vex",
-"b": "computer_village",
-"code": "vex.interactwith(computer_village){ computer_village.receives(vex.shirt); … }",
-"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the brown envelope at the computer village, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j8"
-},
-{
 "id": "wf_68346773eb",
 "ts": "2026-11-18T16:25:49-0500",
 "a": "bow",
@@ -9592,6 +9581,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j1"
+},
+{
+"id": "wf_3af8908fdf",
+"ts": "2026-11-18T18:47:26-0500",
+"a": "yuwa",
+"b": "tie",
+"code": "yuwa.interactwith(tie){ tie.receives(yuwa.envelope); tie.remembers(bisola, 'brown envelope'); tie.tucks(yuwa, 'yaba bookshop receipt into the green shirt'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the green shirt at the tie, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -9695,5 +9695,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T18:44:49-0500"
+"updated": "2026-11-18T18:47:26-0500"
 }
