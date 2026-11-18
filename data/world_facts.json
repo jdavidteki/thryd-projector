@@ -6197,6 +6197,16 @@
 "run": "run-5a58c4",
 "card": "w22",
 "other": null
+},
+{
+"id": "wt_5a9fe754b5",
+"kind": "func_call",
+"text": "Someone at the projector tapped the miami subject third and called code.say(how=like:Manner) from j27 from its agenda run-5a58c4, first seated in run-5a58c4 j25.",
+"code": "code.say('like');",
+"author": "projector",
+"run": "run-5a58c4",
+"card": "w25",
+"other": null
 }
 ],
 "quiet_stretch_sand": [
@@ -7907,16 +7917,6 @@
 ],
 "cli": [
 {
-"id": "wt_e9ed3e385b",
-"kind": "func_call",
-"text": "The customer typed a3() on run-2eb42d j33. It came back: a3(). Implementation: /* a3() */.",
-"code": "a3();",
-"author": "customer",
-"run": "run-2eb42d",
-"card": "j33",
-"other": null
-},
-{
 "id": "wt_927ef63de2",
 "kind": "func_call",
 "text": "The customer typed a3() on run-2eb42d j34. It came back: a3(). Implementation: /* a3() */.",
@@ -7951,6 +7951,16 @@
 "kind": "func_call",
 "text": "The customer typed [[hoc:na]] on run-2eb42d j35. It came back: [[hoc:na]]. Implementation: /* [[hoc:na]] */.",
 "code": "[[hoc:na]];",
+"author": "customer",
+"run": "run-2eb42d",
+"card": "j35",
+"other": null
+},
+{
+"id": "wt_9ce75e6796",
+"kind": "func_call",
+"text": "The customer typed a3() on run-2eb42d j35. It came back: a3(). Implementation: /* a3() */.",
+"code": "a3();",
 "author": "customer",
 "run": "run-2eb42d",
 "card": "j35",
@@ -8610,6 +8620,84 @@
 "card": "j35",
 "other": null
 }
+],
+"miami_subject_fifth": [
+{
+"id": "wt_0fdb213952",
+"kind": "func_call",
+"text": "The miami subject fifth hears it (because code.say(how=like:Manner) from j27).",
+"code": "miami_subject_fifth.hears(miami_subject_third, 'say');",
+"author": "projector",
+"run": "run-5a58c4",
+"card": "w25",
+"other": null
+},
+{
+"id": "wt_edf9d19eb9",
+"kind": "func_call",
+"text": "The miami subject fifth hears it (because life.give(what=mistake:Thing) from j35).",
+"code": "miami_subject_fifth.hears(miami_subject_third, 'give');",
+"author": "projector",
+"run": "run-5a58c4",
+"card": "w32",
+"other": null
+}
+],
+"miami_subject_fourth": [
+{
+"id": "wt_c1411fdf5e",
+"kind": "func_call",
+"text": "The miami subject fourth hears it (because code.say(how=like:Manner) from j27).",
+"code": "miami_subject_fourth.hears(miami_subject_third, 'say');",
+"author": "projector",
+"run": "run-5a58c4",
+"card": "w25",
+"other": null
+},
+{
+"id": "wt_3f49e5714f",
+"kind": "func_call",
+"text": "The miami subject fourth hears it (because life.give(what=mistake:Thing) from j35).",
+"code": "miami_subject_fourth.hears(miami_subject_third, 'give');",
+"author": "projector",
+"run": "run-5a58c4",
+"card": "w32",
+"other": null
+}
+],
+"miami_subject_second": [
+{
+"id": "wt_73566dee0a",
+"kind": "func_call",
+"text": "The miami subject second hears it (because code.say(how=like:Manner) from j27).",
+"code": "miami_subject_second.hears(miami_subject_third, 'say');",
+"author": "projector",
+"run": "run-5a58c4",
+"card": "w25",
+"other": null
+},
+{
+"id": "wt_ee4df7dae5",
+"kind": "func_call",
+"text": "The miami subject second hears it (because life.give(what=mistake:Thing) from j35).",
+"code": "miami_subject_second.hears(miami_subject_third, 'give');",
+"author": "projector",
+"run": "run-5a58c4",
+"card": "w32",
+"other": null
+}
+],
+"life": [
+{
+"id": "wt_db465b62da",
+"kind": "func_call",
+"text": "Someone at the projector tapped the miami subject third and called life.give(what=mistake:Thing) from j35 from its agenda run-5a58c4, first seated in run-5a58c4 j32.",
+"code": "life.give('mistake');",
+"author": "projector",
+"run": "run-5a58c4",
+"card": "w32",
+"other": null
+}
 ]
 },
 "consequences": [
@@ -9155,5 +9243,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T17:43:20-0500"
+"updated": "2026-11-18T17:44:24-0500"
 }
