@@ -1,5 +1,5 @@
 {
-  "v": 560,
-  "at": "2026-11-18T09:20:17-05:00",
-  "note": "The command-line (\u203a_) prompt accepts any typed call. Known commands still run as before. An unknown command is stored with the current agenda's run id and a timestamp (localStorage + data/agenda_cmds.json), applied only to that agenda, and shown on stage as a look, highlight, or tweet-style caption."
+  "v": 561,
+  "at": "2026-11-18T10:20:47-05:00",
+  "note": "Typed commands execute like tapped ones: they go over the same relay, land in world.db as source=cli, and an unknown function is registered as a new method on that object for the current agenda only (tappable later). A pasted line is split on ';' (stray ')' dropped); [[safes]] still resolve; loose contains() is fleshed to filter/includes and shown as 'ran as:' beside what you typed."
 }

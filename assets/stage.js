@@ -1534,6 +1534,7 @@
   // call is stored with the live run id and a timestamp (localStorage + data/agenda_cmds.json), never applied to other
   // agendas, and shown on stage (look / highlight / caption, or a tweet-style bubble tied to this agenda).
   const FREE_KEY = 'thryd_agenda_cmds_v1';
+  if(!document.getElementById('gcmdcss')){ const st = document.createElement('style'); st.id = 'gcmdcss'; st.textContent = '.gcmdbub .gcas{color:#b6f0a0;font:600 .82em ui-monospace,Menlo,Consolas,monospace;margin-top:.2vh}'; document.head.appendChild(st); }
   const FREE_URLS = ['data/agenda_cmds.json', 'https://raw.githubusercontent.com/jdavidteki/thryd-projector/main/data/agenda_cmds.json'];
   const FREE = S.freeCmds = {list: [], byId: new Map(), looks: new Map(), at: 0, src: null};
   function currentRun(){ return (LV && LV.activeRun) || (AG && AG.active) || null; }
@@ -1587,8 +1588,10 @@
     if(el && !el.isConnected) el = rec.el = null;
     if(!el){
       el = document.createElement('div'); el.className = 'gcmdbub'; el.dataset.agendaCmd = rec.id; el.dataset.run = rec.run || '';
-      el.innerHTML = '<div class="gct">' + String(rec.raw || rec.text || '').replace(/[<>&]/g, ch => ({'<':'&lt;','>':'&gt;','&':'&amp;'}[ch])) + '</div>'
-        + '<div class="gcr">' + String(rec.run || '') + '</div>';
+      const esc = s => String(s || '').replace(/[<>&]/g, ch => ({'<':'&lt;','>':'&gt;','&':'&amp;'}[ch]));
+      el.innerHTML = '<div class="gct">' + esc(rec.raw || rec.text || '') + '</div>'
+        + (rec.fleshed && rec.resolved && rec.resolved !== rec.raw ? '<div class="gcas">ran as: ' + esc(rec.resolved) + '</div>' : '')
+        + '<div class="gcr">' + esc(rec.run || '') + '</div>';
       cutsL.appendChild(el); rec.el = el;
     }
     return el;
@@ -1633,30 +1636,154 @@
       placeCmdBub(rec);
     });
   }
+  function cleanCliPiece(s){
+    s = String(s == null ? '' : s).trim();
+    if(!s) return '';
+    s = s.replace(/^[;\s]+/, '').replace(/[;\s]+$/, '');
+    const safe = s.match(/^\[\[\s*([A-Za-z_][\w]*)\s*\]\]/);
+    if(safe) return '[[' + safe[1] + ']]';
+    let bal = 0, last = -1;
+    for(let i = 0; i < s.length; i++){
+      if(s[i] === '(') bal++;
+      else if(s[i] === ')'){ bal--; if(bal === 0) last = i; }
+    }
+    if(bal < 0 && last >= 0) s = s.slice(0, last + 1);
+    else { while(bal < 0 && s.endsWith(')')){ s = s.slice(0, -1); bal++; } }
+    return s.trim();
+  }
+  function splitCli(text){
+    return String(text == null ? '' : text).split(';').map(cleanCliPiece).filter(Boolean);
+  }
+  function fleshCli(text){
+    const raw = cleanCliPiece(text);
+    let resolved = raw, fleshed = false;
+    const m = raw.match(/^([\s\S]+?)\.contains\s*\(([\s\S]+)\)\s*$/);
+    if(m){
+      const head = m[1].trim(), arg = m[2].trim();
+      const argIsList = /[.\[]/.test(arg) || /(?:qualities|likes|list|items|all|ones|set)$/i.test((arg.split('.').pop() || '')) || /s$/i.test((arg.split('.').pop() || ''));
+      resolved = argIsList ? (head + '.filter(q => ' + arg + '.includes(q))') : (head + '.includes(' + arg + ')');
+      fleshed = resolved !== raw;
+    }
+    return {raw, resolved, fleshed};
+  }
+  const SAFEIX = S.safeIndex = {by: new Map(), ready: false};
+  function indexSafeText(text, meta){
+    String(text || '').replace(/\[\[\s*([A-Za-z_][\w]*)\s*\]\]/g, (_, t) => {
+      const k = t.toLowerCase();
+      if(!SAFEIX.by.has(k)) SAFEIX.by.set(k, Object.assign({token: '[[' + t + ']]', object: t, found: true}, meta || {}));
+    });
+  }
+  function resolveSafeToken(s){
+    const m = String(s || '').trim().match(/^\[\[\s*([A-Za-z_][\w]*)\s*\]\]$/);
+    if(!m) return {token: String(s || ''), found: false};
+    const tok = '[[' + m[1] + ']]', hit = SAFEIX.by.get(m[1].toLowerCase());
+    return hit ? Object.assign({token: tok}, hit) : {token: tok, object: m[1], found: false};
+  }
+  function loadSafeIndex(){
+    const grab = (u) => fetch(u + (u.indexOf('?') >= 0 ? '&' : '?') + 't=' + Date.now(), {cache: 'no-store'}).then(r => r.ok ? r.json() : null).catch(()=> null);
+    Promise.all([grab('data/tweets_all.json'), grab('data/medium_library.json'), grab('data/live_extra.json')]).then(([tw, lib, extra]) => {
+      (Array.isArray(tw) ? tw : []).forEach(p => indexSafeText(p && (p.line || p.text || p.body), {src: 'tweet', id: p && p.id}));
+      const sets = (lib && (lib.sets || lib.items || lib.posts)) || (Array.isArray(lib) ? lib : []);
+      (Array.isArray(sets) ? sets : []).forEach(st => {
+        indexSafeText(JSON.stringify(st), {src: 'medium', id: st && (st.medium_image_id || st.id), title: st && (st.title || st.name)});
+      });
+      if(extra) indexSafeText(typeof extra === 'string' ? extra : JSON.stringify(extra), {src: 'live_extra'});
+      SAFEIX.ready = true;
+    });
+  }
+  loadSafeIndex();
+  function exprSubjects(text){
+    const names = [], re = /(?:^|[^A-Za-z0-9_])([A-Za-z_][\w]*)\s*\./g; let m;
+    while((m = re.exec(String(text || '')))) names.push(m[1]);
+    return names.filter((n, i) => names.findIndex(x => x.toLowerCase() === n.toLowerCase()) === i);
+  }
+  function currentJob(){
+    const c = String(root.__thrydCard || (LV && LV.job) || (AG && AG.job) || '').toLowerCase();
+    return /^[jw]\d{1,3}$/.test(c) ? 'j' + c.slice(1) : null;
+  }
+  function parseCliPiece(text){
+    const raw = cleanCliPiece(text);
+    const safe = raw.match(/^\[\[([A-Za-z_][\w]*)\]\]$/);
+    if(safe) return {raw, resolved: raw, fleshed: false, safe: true, obj: safe[1], fn: 'safe', args: [], free: false, subjects: [safe[1]]};
+    const fl = fleshCli(raw);
+    const P = parseFree(fl.resolved);
+    const subjects = exprSubjects(fl.resolved + ' ' + fl.raw);
+    return {raw: fl.raw, resolved: fl.resolved, fleshed: !!fl.fleshed, safe: false, obj: P.obj || null, fn: P.fn || null, args: P.args || [], free: !!P.free, subjects};
+  }
+  function registerCliMethod(run, piece){
+    if(!piece || piece.safe || !piece.obj || !piece.fn || piece.fn === 'safe') return null;
+    const id = (piece.obj + '.' + piece.fn).toLowerCase();
+    const title = piece.resolved || piece.raw;
+    const job = currentJob();
+    const f = OM.functions[id] || (OM.functions[id] = {object: piece.obj, method: piece.fn, args: piece.args || [], runs: [], defined: {run, job, title, at: new Date().toISOString()}, titles: [], source: 'cli', cli: true, calls: 0});
+    f.cli = true; f.source = f.source || 'cli';
+    if(!f.runs.includes(run)) f.runs.push(run);
+    if(!f.titles.some(t => t.title === title)) f.titles.unshift({title, emoji: '', arg: (piece.args || []).join(', '), run, job, tweets: [], consequence: 'The customer typed this on ' + run + (job ? ' ' + job : '') + '.'});
+    const ok = omKey(piece.obj);
+    if(ok){ if(!OM.objects[ok]) OM.objects[ok] = []; if(!OM.objects[ok].includes(id)) OM.objects[ok].push(id); }
+    const R = OM.runs[run] || (OM.runs[run] = {funcs: []});
+    if(!R.funcs) R.funcs = [];
+    if(!R.funcs.includes(id)) R.funcs.push(id);
+    return {id, f, title};
+  }
+  function playCliOnCast(rec, piece){
+    const run = rec.run, names = piece.subjects || [];
+    const cuts = [];
+    names.forEach(n => matchFreeCuts(ckey(n), run).forEach(c => { if(!cuts.includes(c)) cuts.push(c); }));
+    cuts.forEach((c, n) => setTimeout(()=>{ if(!c.el || !c.el.isConnected) return; pulse(c); playGfx(c, gfxOf(piece.fn || 'know')); c.el.classList.add('gcmdlit'); if(n === 0) tagAt(c, (piece.resolved || piece.raw).slice(0, 80)); }, n * 180));
+    if(cuts[0]) try{ rec.ripples = ripple(cuts[0], piece.fn || 'know', piece.resolved || piece.raw); }catch(e){}
+    rec.executed = true; rec.castCuts = cuts.length;
+    return cuts;
+  }
+  function sendCliCall(rec, piece){
+    const run = rec.run, eid = (function(){ try{ if(root.crypto && crypto.randomUUID) return 'cli-' + crypto.randomUUID(); }catch(e){} return 'cli-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 12); })();
+    const obj = String(piece.obj || 'cli').toLowerCase().replace(/[^a-z0-9_]/g, '_').slice(0, 60) || 'cli';
+    const fn = piece.fn || 'cli';
+    const code = (piece.resolved || piece.raw || '').replace(/;?$/, ';');
+    const Hrun = run && /^run-[0-9a-f]{4,6}$/.test(run) ? run : null;
+    const job = currentJob();
+    const body = {v: 1, type: 'call', event_id: eid, rid: eid + '-r', source: 'cli', run: Hrun, card: job, job, object: obj, fn, args: piece.args || [], raw: piece.raw, resolved: piece.resolved || piece.raw, title: piece.resolved || piece.raw, client_ts: new Date().toISOString()};
+    rec.body = body; rec.code = code; rec.event_id = eid;
+    const Mbox = S.methods || (S.methods = {sent: []});
+    Mbox.sent.push(rec); if(Mbox.sent.length > 40) Mbox.sent.shift();
+    try{ return sendCall(rec, code, eid); }catch(e){ rec.status = 'failed'; rec.error = String(e && e.message || e); return rec; }
+  }
   function applyFreeCmd(text, opts){
     opts = opts || {};
-    const raw = String(text || '').trim(); if(!raw) return null;
+    const piece = (opts.piece && typeof opts.piece === 'object' && opts.piece.raw != null) ? opts.piece : parseCliPiece(opts.piece || text);
+    const raw = piece.raw; if(!raw) return null;
     const run = opts.run || currentRun();
     if(!run){ note('free-cmd skip', 'no current agenda'); return null; }
-    const P = parseFree(raw);
-    const sk = P.free ? null : ckey(P.obj);
+    const P = piece.safe ? {free: false, obj: piece.obj, fn: 'safe', args: []} : parseFree(piece.resolved);
+    const sk = (piece.safe || P.free) ? (piece.safe ? ckey(piece.obj) : null) : ckey(P.obj);
     const inAg = sk && agendaNames(run).some(n => ckey(n) === sk || ckey(nkey(n)) === sk);
-    const cuts = sk ? matchFreeCuts(sk, run) : [];
-    const named = !!(sk && (inAg || cuts.length));
-    const look = named ? freeLookOf(P) : null;
+    const cuts0 = sk ? matchFreeCuts(sk, run) : [];
+    const named = !!(sk && (inAg || cuts0.length || piece.safe));
+    const look = (!piece.safe && named) ? freeLookOf(P) : null;
     const rec = rememberFree({
       id: opts.id || ('fc-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 7)),
-      run, raw, text: raw, subject: named ? P.obj : null, fn: P.fn || null, args: P.args || [],
-      sk: named ? sk : null, look: look && look.look, at: new Date().toISOString(), t: Date.now(), local: opts.local !== false
+      run, raw, text: raw, resolved: piece.resolved, fleshed: piece.fleshed, subjects: piece.subjects || [],
+      subject: named ? (P.obj || piece.obj) : null, fn: P.fn || piece.fn || null, args: P.args || piece.args || [],
+      sk: named ? sk : null, look: look && look.look, at: new Date().toISOString(), t: Date.now(), local: opts.local !== false,
+      safe: !!piece.safe, cli: true
     });
+    const reg = registerCliMethod(run, piece);
+    rec.methodId = reg && reg.id;
+    const cuts = playCliOnCast(rec, piece);
     syncFreeCmds();
-    if(named && cuts.length){
-      cuts.forEach((c, n) => setTimeout(()=>{ if(c.el && c.el.isConnected){ pulse(c); c.el.classList.add('gcmdlit'); if(n === 0) tagAt(c, raw.slice(0, 60)); } }, n * 180));
-    }
-    codeLine(raw.replace(/;?$/, ';'), 'new command → this agenda · ' + run + (named && cuts.length ? ' · ' + cuts.length + ' on stage' : ' · caption'));
-    note('free-cmd', rec.id, rec.run, raw);
+    if(rec.el){ rec.el.remove(); rec.el = null; placeCmdBub(rec); }
+    const noteLine = (piece.fleshed ? 'ran as: ' + piece.resolved + ' · ' : '') + 'new command → this agenda · ' + run + (cuts.length ? ' · ' + cuts.length + ' on stage' : ' · caption');
+    codeLine((piece.resolved || raw).replace(/;?$/, ';'), noteLine);
+    note('free-cmd', rec.id, rec.run, raw, piece.resolved);
     saveFreeLocal();
+    if(opts.send !== false) sendCliCall(rec, piece);
     return rec;
+  }
+  function applyCliLine(text, opts){
+    opts = opts || {};
+    const parts = splitCli(text);
+    const recs = parts.map(p => applyFreeCmd(p, Object.assign({}, opts, {piece: parseCliPiece(p)})));
+    return recs.filter(Boolean);
   }
   async function pollFreeCmds(){
     loadFreeLocal().forEach(e => { if(e && e.id){ e.local = true; rememberFree(e); } });
@@ -1674,7 +1801,7 @@
     }
     syncFreeCmds();
   }
-  S.applyFreeCmd = applyFreeCmd; S.syncFreeCmds = syncFreeCmds; S.currentRun = currentRun; S.parseFree = parseFree;
+  S.applyFreeCmd = applyFreeCmd; S.applyCliLine = applyCliLine; S.splitCli = splitCli; S.cleanCliPiece = cleanCliPiece; S.fleshCli = fleshCli; S.resolveSafeToken = resolveSafeToken; S.syncFreeCmds = syncFreeCmds; S.currentRun = currentRun; S.parseFree = parseFree; S.registerCliMethod = registerCliMethod;
   pollFreeCmds(); setInterval(pollFreeCmds, 20000); setInterval(syncFreeCmds, 1000);
 
   // ---------- tap methods (Jesuye 16 Nov 2026 6:39 PM ET "add 2-3 object methods that are clickable. when we tap on an object, users can
@@ -1740,8 +1867,19 @@
   // plays an effect that fits the verb, and logs a func_call (author projector, linked to the run/job it was seated in) over the same relay.
   const OM = S.objectMethods = {objects: {}, functions: {}, inherit: {}, runs: {}, safes: {}, scene_safes: {}, scene_env: {}, at: 0, turn: {}};
   function loadOM(){ fetch('data/object_methods.json?t=' + Date.now(), {cache: 'no-store'}).then(r => r.ok ? r.json() : null).then(d => {
-    if(!d || !d.objects || !d.functions) return; OM.objects = d.objects; OM.functions = d.functions;
-    OM.inherit = d.inherit || {}; OM.implements = d.implements || {}; OM.casts = d.casts || {}; OM.runs = d.runs || {}; OM.safes = d.safes || {}; OM.scene_safes = d.scene_safes || {}; OM.scene_env = d.scene_env || {}; OM.at = Date.now(); }).catch(()=>{}); }
+    if(!d || !d.objects || !d.functions) return;
+    const keep = {};
+    Object.entries(OM.functions || {}).forEach(([id, f]) => { if(f && (f.cli || f.source === 'cli')) keep[id] = f; });
+    OM.objects = d.objects; OM.functions = d.functions;
+    OM.inherit = d.inherit || {}; OM.implements = d.implements || {}; OM.casts = d.casts || {}; OM.runs = d.runs || {}; OM.safes = d.safes || {}; OM.scene_safes = d.scene_safes || {}; OM.scene_env = d.scene_env || {}; OM.at = Date.now();
+    Object.entries(keep).forEach(([id, f]) => {
+      if(!OM.functions[id]) OM.functions[id] = f;
+      else { const g = OM.functions[id]; g.cli = g.cli || f.cli; g.source = g.source || f.source; (f.runs || []).forEach(r => { if(!g.runs) g.runs = []; if(r && !g.runs.includes(r)) g.runs.push(r); }); }
+      const ok = String(f.object || '').toLowerCase().replace(/[^a-z0-9]+/g, '_');
+      if(ok){ if(!OM.objects[ok]) OM.objects[ok] = []; if(!OM.objects[ok].includes(id)) OM.objects[ok].push(id); }
+      (f.runs || []).forEach(r => { const box = OM.runs[r] || (OM.runs[r] = {funcs: []}); if(!box.funcs) box.funcs = []; if(!box.funcs.includes(id)) box.funcs.push(id); });
+    });
+  }).catch(()=>{}); }
   loadOM(); setInterval(loadOM, 300000);
   // typed arguments + dependency injection (Jesuye 17 Nov 2026 12:34 PM ET "do everything"): data/classes.json holds each agenda's container
   // ([word, class, job, source]: seated picks, typed calls, objects on stage); a call resolves every parameter of its signature to the
@@ -1776,7 +1914,12 @@
   const omKey = x => String(x || '').toLowerCase().replace(/\u00b7\d+$/, '').replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '');
   function funcsFor(c){
     const keys = []; [objName(c), c.castAs, tagName(c), c.label, c.klass].forEach(x => { const k = omKey(x); if(k){ keys.push(k); keys.push(k.replace(/_[0-9a-f]{4,6}$/, '')); } });
-    const ids = []; keys.forEach(k => (OM.objects[k] || []).forEach(id => { if(!ids.includes(id) && OM.functions[id]) ids.push(id); }));
+    const run = (c && c.home && c.home.run) || currentRun();
+    const ids = []; keys.forEach(k => (OM.objects[k] || []).forEach(id => {
+      const f = OM.functions[id]; if(!f || ids.includes(id)) return;
+      if((f.cli || f.source === 'cli') && f.runs && f.runs.length && run && !f.runs.includes(run)) return;
+      ids.push(id);
+    }));
     const out = []; ids.forEach(id => (OM.functions[id].titles || []).forEach(t => { if(!out.some(o => o.t.title === t.title)) out.push({id, f: OM.functions[id], t}); }));
     return out;
   }
@@ -1908,6 +2051,7 @@
       me.classList.remove('on'); document.body.classList.remove('dwell'); setTimeout(()=>{ me.remove(); if(TW === me) TW = null; }, 600); };
     setTimeout(bye, 9000);
   }
+  S.popTweet = popTweet;
   async function fireFunc(c, name, it, src){
     const tws = it.t.tweets || [], k = it.t.title, ti = tws.length ? ((OM.turn[k] = ((OM.turn[k] == null ? -1 : OM.turn[k]) + 1) % tws.length)) : null;
     const tw = ti == null ? null : tws[ti], H = c.home || {}, eid = uid();
@@ -2078,7 +2222,8 @@
   async function sendCall(rec, code, eid){
     const body = rec.body;
     const ctx = root.thrydCtx ? root.thrydCtx() : {}, toast = ctx.toast || (()=>{}), DG = ctx.DRAG;
-    if(root.thrydQA && root.thrydQA.on && root.thrydQA.on()){ rec.status = 'qa_not_sent'; root.thrydQA.log({kind: 'methodCall', ...body}); toast(code + ' (QA: not sent)'); return rec; }
+    if(root.thrydQA && root.thrydQA.log){ try{ root.thrydQA.log({kind: 'methodCall', ...body}); }catch(e){} }
+    if(root.thrydQA && root.thrydQA.on && root.thrydQA.on()){ rec.status = 'qa_not_sent'; toast(code + ' (QA: not sent)'); return rec; }
     if(!DG || !DG.endpoint || DG.transport !== 'ntfy'){ rec.status = 'no_endpoint'; toast(code + ' shown here only (box link not loaded)', 1); return rec; }
     const net = root.thrydNetFetch || ((u, o)=> fetch(u, o));
     try{ const t0 = Math.floor(Date.now() / 1000) - 5; const r = await net(DG.endpoint, {method: 'POST', body: JSON.stringify(body)}, 20000); if(!r.ok) throw new Error('relay HTTP ' + r.status);

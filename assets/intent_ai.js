@@ -138,19 +138,32 @@
     const M = S.methods || {}, rec = (M.sent || [])[M.sent.length - 1]; if(rec) rec.intent = {why: how, typed: true};
     return {c, rec, id: 'f:' + x.it.t.title}; }
   async function go(text){ text = String(text || '').trim(); if(!text) return; pushTyped(text); ctxSig = ''; later(text);
-    msg.textContent = '…'; chips.textContent = ''; const R = await resolve(text), top = R.top;
-    const exact = !!(top.length && !R.P.free && top[0].lex >= .999), conf = top.length ? top[0].s - (top[1] ? top[1].s : 0) : 0;
-    if(top.length && (exact || (top[0].s >= .82 && conf >= .08 && top[0].live))){
-      const done = fire(top[0], exact ? 'typed' : 'did you mean (' + top[0].s.toFixed(2) + ')');
-      if(done){ inp.value = ''; msg.textContent = (exact ? '' : 'did you mean ') + label(top[0]) + (exact ? ' · ran' : '? · applied');
-        if(!exact && ST().undoIntent){ const u = document.createElement('span'); u.className = 'aiu'; u.textContent = 'undo'; u.onclick = ()=>{ ST().undoIntent(done.c, done.rec, done.id); msg.textContent = 'undone'; }; msg.appendChild(u); }
-        setTimeout(()=>{ if(box && box.classList.contains('on') && document.activeElement !== inp) close(); }, 3500); }
-      return; }
-    // unknown or not-yet-existing call: accept it for the live agenda only (Jesuye 18 Nov 2026 9:15 AM ET)
-    const S = ST(); let rec = null;
-    try{ rec = S.applyFreeCmd && S.applyFreeCmd(text); }catch(e){}
+    msg.textContent = '…'; chips.textContent = '';
+    const S = ST();
+    const parts = (S.splitCli ? S.splitCli(text) : [text]).filter(Boolean);
+    const multi = parts.length > 1;
+    if(!multi && parts[0]){
+      const R = await resolve(parts[0]), top = R.top;
+      const exact = !!(top.length && !R.P.free && top[0].lex >= .999), conf = top.length ? top[0].s - (top[1] ? top[1].s : 0) : 0;
+      if(top.length && (exact || (top[0].s >= .82 && conf >= .08 && top[0].live))){
+        const done = fire(top[0], exact ? 'typed' : 'did you mean (' + top[0].s.toFixed(2) + ')');
+        if(done){ inp.value = ''; msg.textContent = (exact ? '' : 'did you mean ') + label(top[0]) + (exact ? ' · ran' : '? · applied');
+          if(!exact && ST().undoIntent){ const u = document.createElement('span'); u.className = 'aiu'; u.textContent = 'undo'; u.onclick = ()=>{ ST().undoIntent(done.c, done.rec, done.id); msg.textContent = 'undone'; }; msg.appendChild(u); }
+          setTimeout(()=>{ if(box && box.classList.contains('on') && document.activeElement !== inp) close(); }, 3500); }
+        return; }
+    }
+    // unknown, pasted, or not-yet-existing call: accept every piece for the live agenda (Jesuye 18 Nov 2026)
+    let recs = [];
+    try{
+      if(S.applyCliLine) recs = S.applyCliLine(text) || [];
+      else recs = parts.map(p => S.applyFreeCmd && S.applyFreeCmd(p)).filter(Boolean);
+    }catch(e){}
+    const rec = recs[0];
     const run = (rec && rec.run) || (S.currentRun && S.currentRun()) || (S.agenda && S.agenda.active) || '';
-    msg.textContent = 'new command \u2192 this agenda' + (run ? ' \u00b7 ' + run : '');
+    const fleshed = recs.find(r => r && r.fleshed && r.resolved);
+    const n = recs.length || parts.length || 1;
+    msg.textContent = (n === 1 ? 'new command' : (n + ' commands')) + ' \u2192 this agenda' + (run ? ' \u00b7 ' + run : '')
+      + (fleshed ? ' \u00b7 ran as: ' + fleshed.resolved : '');
     chips.textContent = ''; inp.value = '';
     setTimeout(()=>{ if(box && box.classList.contains('on') && document.activeElement !== inp) close(); }, 3500); }
   AI.go = go;
