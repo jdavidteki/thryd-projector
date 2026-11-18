@@ -3233,6 +3233,16 @@
 "run": "run-2eb42d",
 "card": "j7",
 "other": "jnoel"
+},
+{
+"id": "wt_6c308925a8",
+"kind": "func_call",
+"text": "The customer typed [[wser]] on run-2eb42d j35.",
+"code": "[[wser]];",
+"author": "customer",
+"run": "run-2eb42d",
+"card": "j35",
+"other": null
 }
 ],
 "blessings_subject": [
@@ -7897,26 +7907,6 @@
 ],
 "cli": [
 {
-"id": "wt_7d2ce31613",
-"kind": "func_call",
-"text": "The customer typed b1() on run-2eb42d j32. It came back: b1(). Implementation: /* b1() */.",
-"code": "b1();",
-"author": "customer",
-"run": "run-2eb42d",
-"card": "j32",
-"other": null
-},
-{
-"id": "wt_c6bd12ba5a",
-"kind": "func_call",
-"text": "The customer typed d1() on run-2eb42d j33. It came back: d1(). Implementation: /* d1() */.",
-"code": "d1();",
-"author": "customer",
-"run": "run-2eb42d",
-"card": "j33",
-"other": null
-},
-{
 "id": "wt_e9ed3e385b",
 "kind": "func_call",
 "text": "The customer typed a3() on run-2eb42d j33. It came back: a3(). Implementation: /* a3() */.",
@@ -7944,6 +7934,26 @@
 "author": "customer",
 "run": "run-2eb42d",
 "card": "j34",
+"other": null
+},
+{
+"id": "wt_7f6be66df3",
+"kind": "func_call",
+"text": "The customer typed b3() on run-2eb42d j35. It came back: b3(). Implementation: /* b3() */.",
+"code": "b3();",
+"author": "customer",
+"run": "run-2eb42d",
+"card": "j35",
+"other": null
+},
+{
+"id": "wt_52842360b3",
+"kind": "func_call",
+"text": "The customer typed [[hoc:na]] on run-2eb42d j35. It came back: [[hoc:na]]. Implementation: /* [[hoc:na]] */.",
+"code": "[[hoc:na]];",
+"author": "customer",
+"run": "run-2eb42d",
+"card": "j35",
 "other": null
 }
 ],
@@ -8576,6 +8586,18 @@
 "card": "w34",
 "other": null
 }
+],
+"townhallmeeting": [
+{
+"id": "wt_16cac525bc",
+"kind": "func_call",
+"text": "The customer typed townhallmeeting.newguest(ronke) on run-2eb42d j35. It came back: Townhallmeeting newguest ronke. Implementation: function newguest(what){\n  TOWNHALLMEETING_NEWGUEST_COUNT += 1;\n  this.lastNewguest = \"ronke\";\n  return \"Townhallmeeting newguest ronke\";\n}. townhallmeeting now has townhallmeeting.newguest as a method on this agenda, and it can be called again.",
+"code": "townhallmeeting.newguest(ronke);",
+"author": "customer",
+"run": "run-2eb42d",
+"card": "j35",
+"other": null
+}
 ]
 },
 "consequences": [
@@ -9121,5 +9143,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T17:37:11-0500"
+"updated": "2026-11-18T17:42:28-0500"
 }
