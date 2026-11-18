@@ -7543,26 +7543,6 @@
 ],
 "computer_village": [
 {
-"id": "wf_e5490a2966",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the computer village, and Bisola reads the name twice.",
-"code": "asmathic.interactwith(computer_village){ computer_village.receives(asmathic.envelope); … }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "asmathic"
-},
-{
-"id": "wf_bc1186930e",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the computer village, and Bisola reads the name twice.",
-"code": "b_md.interactwith(computer_village){ computer_village.receives(b_md.envelope); … }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "b_md"
-},
-{
 "id": "wf_31655424ad",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the computer village, and Bisola reads the name twice.",
@@ -7591,6 +7571,26 @@
 "run": "run-2eb42d",
 "card": "j2",
 "other": "patagonia"
+},
+{
+"id": "wf_b475585693",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the green shirt at the computer village, and Bisola reads the name twice.",
+"code": "move.interactwith(computer_village){ computer_village.receives(move.envelope); … }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "move"
+},
+{
+"id": "wf_2c725daca8",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the computer village, and Bisola reads the name twice.",
+"code": "yuwa.interactwith(computer_village){ computer_village.receives(yuwa.envelope); … }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "yuwa"
 }
 ],
 "oh_pls_shaaatttaaapppp": [
@@ -7839,28 +7839,6 @@
 ]
 },
 "consequences": [
-{
-"id": "wf_a950db7668",
-"ts": "2026-11-18T11:59:21-0500",
-"a": "mkdwo",
-"b": "computer_village",
-"code": "mkdwo.interactwith(computer_village){ computer_village.receives(mkdwo.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the computer village, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
-"id": "wf_5dd79083de",
-"ts": "2026-11-18T12:00:36-0500",
-"a": "art_making_money",
-"b": "then_act_god",
-"code": "art_making_money.interactwith(then_act_god){ then_act_god.receives(art_making_money.envelope); then_act_god.remembers(bisola, 'brown envelope'); }",
-"text": "The then act god leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
 {
 "id": "wf_1cf900e32c",
 "ts": "2026-11-18T12:01:28-0500",
@@ -8278,6 +8256,28 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j7"
+},
+{
+"id": "wf_b475585693",
+"ts": "2026-11-18T14:11:59-0500",
+"a": "move",
+"b": "computer_village",
+"code": "move.interactwith(computer_village){ computer_village.receives(move.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the green shirt at the computer village, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
+},
+{
+"id": "wf_2c725daca8",
+"ts": "2026-11-18T14:13:45-0500",
+"a": "yuwa",
+"b": "computer_village",
+"code": "yuwa.interactwith(computer_village){ computer_village.receives(yuwa.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the computer village, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -8381,5 +8381,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T14:07:03-0500"
+"updated": "2026-11-18T14:13:45-0500"
 }
