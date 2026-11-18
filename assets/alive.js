@@ -27,9 +27,7 @@ async function load(first){try{const [st,tl,cf,lt]=await Promise.all([get('data/
  pulse=false; try{tick();}catch(e){}}catch(e){try{tick();}catch(e2){}}try{await loadIx();}catch(e){}}
 const syn=()=>{const j='j'+(1+Math.random()*30|0);return R([`>> thryd.db.seat(${j}) ok`,`scanning archive... ${900+Math.random()*600|0} lines`,`cooldown(line) = ${2+Math.random()*6|0} agendas`,`fetch state.json 200 ${20+Math.random()*80|0}ms`,`dice.roll(d20) = ${1+Math.random()*20|0}`,`${runId}.heartbeat()`,`gc: freed ${Math.random()*9|0}.${Math.random()*9|0}MB`,`seated ${seatN||'?'}/30 · queue ${Math.random()*4|0}`])};
 let ri=0,mvTurn=0;
-// Auto-follow the newest typeline (v566 overflow:auto made new lines fall off the bottom).
-// Pause while the viewer has scrolled up; resume at the bottom or after ~8s idle.
-let follow=true,lastUser=0,sticking=false,typing=false,lastTick=0;
+let typing=false,lastTick=0;
 let worldQ=[],worldSeen=new Set(),worldPrimed=false;
 const ixLine=d=>{if(!d||typeof d!=='object')return null;if(d.a&&d.verb){const t=d.b?(String(d.a)+'.'+d.verb+'('+d.b+')'):(String(d.a)+'.'+d.verb+'()');return {t,a:true,note:d.place||d.idea||''};}const text=clean(d.idea||d.text||d.line||'');return text?{t:text,a:true}:null;};
 async function loadIx(){try{const r=await fetch('data/interactions_feed.jsonl?t='+Date.now(),{cache:'no-store'});if(!r.ok)return;const evs=[];
@@ -43,10 +41,6 @@ async function loadIx(){try{const r=await fetch('data/interactions_feed.jsonl?t=
   if(recent.length) real=recent.concat(real.filter(x=>!recent.includes(x))).slice(0,120);
  }catch(e){}}
 
-const nearBottom=()=> (code.scrollHeight-code.scrollTop-code.clientHeight)<=32;
-const stick=()=>{if(!follow)return;sticking=true;code.scrollTop=code.scrollHeight;requestAnimationFrame(()=>{sticking=false;});};
-code.addEventListener('scroll',()=>{if(sticking)return;if(nearBottom())follow=true;else{follow=false;lastUser=Date.now();}},{passive:true});
-setInterval(()=>{if(!follow&&(Date.now()-lastUser>8000||nearBottom())){follow=true;stick();}},250);
 const next=()=>{try{const dl=window.__thrydDriftLines;if(dl&&dl.length&&!/phone\.html$/.test(location.pathname)){const x=dl.shift();if(x)return x;}
  if(worldQ.length)return worldQ.shift();
  const mv=(++mvTurn%2===0&&window.thrydMoveNext)?window.thrydMoveNext():null;if(mv)return mv;
@@ -56,11 +50,10 @@ function type(){if(typing)return;typing=true;lastTick=Date.now();
   const n=next()||{},s=String(n.t==null?'':n.t);
   if(!s){typing=false;setTimeout(type,400);return;}
   const d=document.createElement('div');d.className=(n.a?'a ':'')+'cur';code.appendChild(d);
-  while(code.children.length>60){const el=code.firstElementChild;if(!el||el===d)break;const h=el.offsetHeight||0;el.remove();if(!follow)code.scrollTop=Math.max(0,code.scrollTop-h);}
-  stick();
+  while(code.children.length>60){const el=code.firstElementChild;if(!el||el===d)break;el.remove();}
   let i=0;
-  const step=()=>{lastTick=Date.now();try{d.textContent=s.slice(0,++i);stick();if(i<s.length)setTimeout(step,14+Math.random()*40);
-    else{d.classList.remove('cur');if(n.note){const e=document.createElement('span');e.className='d';e.textContent='  // '+n.note;d.appendChild(e);}stick();typing=false;setTimeout(type,250+Math.random()*900);}}
+  const step=()=>{lastTick=Date.now();try{d.textContent=s.slice(0,++i);if(i<s.length)setTimeout(step,14+Math.random()*40);
+    else{d.classList.remove('cur');if(n.note){const e=document.createElement('span');e.className='d';e.textContent='  // '+n.note;d.appendChild(e);}typing=false;setTimeout(type,250+Math.random()*900);}}
     catch(err){try{d.classList.remove('cur');}catch(e2){}typing=false;setTimeout(type,400);}};
   step();
  }catch(err){typing=false;setTimeout(type,400);}}

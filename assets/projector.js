@@ -1252,71 +1252,9 @@ window.thrydWander={paths:()=>DPATH,move:b=>wMove(b),state:b=>WS.get(b)};
   document.body.querySelectorAll('#gtweet,#gmeth,.grip,.gprom,#stretchy-bg,#gstage').forEach(adopt);
 
   const onItem=t=>t&&t.closest&&t.closest('.chip,.gcut,.dob,.mcvisit,canvas.sprite,#objs,#mcut,#bar,#zoomui,#user,.ph,#sndgate,#toast,#gmeth,#gtweet,#gundo,#uxhint,#phone3310,#ticker,a,button,select,input,textarea,[role=dialog],[role=menu]');
-  const overCode=(x,y)=>{
-    const code=document.getElementById('code'); if(!code) return false;
-    const r=code.getBoundingClientRect();
-    if(x<r.left||x>r.right||y<r.top||y>r.bottom) return false;
-    const hit=document.elementFromPoint(x,y);
-    if(hit&&hit.closest&&hit.closest('.gcut,.dob,canvas.sprite,.mcvisit')) return false;
-    return true;
-  };
-  let codePan=null;
-  document.addEventListener('pointerdown',ev=>{
-    if(ev.isPrimary===false||(ev.button!=null&&ev.button>0)) return;
-    if(!overCode(ev.clientX,ev.clientY)) return;
-    const code=document.getElementById('code'); if(!code) return;
-    codePan={x:ev.clientX,y:ev.clientY,st:code.scrollTop,sl:code.scrollLeft,pid:ev.pointerId};
-  },{capture:true,passive:true});
-  document.addEventListener('pointermove',ev=>{
-    if(!codePan||ev.pointerId!==codePan.pid) return;
-    const code=document.getElementById('code'); if(!code){codePan=null;return;}
-    ev.preventDefault(); ev.stopPropagation();
-    code.scrollTop=codePan.st-(ev.clientY-codePan.y);
-    if(ev.clientX!==codePan.x) code.scrollLeft=codePan.sl-(ev.clientX-codePan.x);
-  },{capture:true,passive:false});
-  const codePanEnd=ev=>{ if(codePan&&ev.pointerId===codePan.pid) codePan=null; };
-  document.addEventListener('pointerup',codePanEnd,true);
-  document.addEventListener('pointercancel',codePanEnd,true);
-  const UI_SCROLL='#bar,#zoomui,#user,select,#cerebro,#lovemap,#ticker,#gmeth,#gtweet,#aibox,#code,#gpinpop,#modes,#menutog,#uxhint,.bubble,#phone3310,[role=dialog],[role=menu]';
-  const scrollable= (el,dx,dy)=>{
-    for(let n=el;n&&n!==document.documentElement;n=n.parentElement){
-      if(n.nodeType!==1) continue;
-      const st=getComputedStyle(n);
-      const canY=/(auto|scroll)/.test(st.overflowY)&&n.scrollHeight>n.clientHeight+1;
-      const canX=/(auto|scroll)/.test(st.overflowX)&&n.scrollWidth>n.clientWidth+1;
-      if((canY&&dy)||(canX&&dx)) return n;
-    }
-    return null;
-  };
-  addEventListener('wheel',ev=>{
-    const t=ev.target;
-    const ui=t&&t.closest&&t.closest('#gmeth,#gtweet,#aibox,#gpinpop,.bubble,#modes,#cerebro,#lovemap,#ticker,#user,#phone3310,[role=dialog],[role=menu]');
-    const sc=ui||scrollable(t,ev.deltaX,ev.deltaY);
-    if(sc){
-      ev.preventDefault();
-      let dx=ev.deltaX||0, dy=ev.deltaY||0;
-      if(ev.shiftKey&&!dx&&dy){dx=dy;dy=0;}
-      if(dy) sc.scrollTop+=dy;
-      if(dx) sc.scrollLeft+=dx;
-      return;
-    }
-    if(t&&t.closest&&t.closest('#bar,#zoomui,select,#menutog,#uxhint')) return;
-    const code=document.getElementById('code');
-    if(code){
-      const r=code.getBoundingClientRect();
-      if(ev.clientX>=r.left&&ev.clientX<=r.right&&ev.clientY>=r.top&&ev.clientY<=r.bottom){
-        ev.preventDefault();
-        if(code.scrollHeight>code.clientHeight+1){code.scrollTop+=ev.deltaY;if(ev.deltaX)code.scrollLeft+=ev.deltaX;}
-        return;
-      }
-    }
-    ev.preventDefault();
-    if(ev.ctrlKey||ev.metaKey){anim(false);zoomAt(z*Math.exp(-ev.deltaY*0.01),ev.clientX,ev.clientY);return;}
-    if(z>1.001){anim(false);tx-=(ev.deltaX||0);ty-=(ev.deltaY||0);apply();return;}
-    anim(false);zoomAt(z*Math.exp(-ev.deltaY*0.0015),ev.clientX,ev.clientY);
-  },{passive:false});
+  addEventListener('wheel',ev=>{const t=ev.target;if(t.closest&&t.closest('#bar,#zoomui,#user,select,#cerebro,#lovemap,#ticker'))return;ev.preventDefault();anim(false);zoomAt(z*Math.exp(-ev.deltaY*(ev.ctrlKey?0.01:0.0015)),ev.clientX,ev.clientY);},{passive:false});
   const P=new Map();let pan=null,pinch=null,moved=0,lastTap=0,lastXY=[0,0],nofs=0;
-  document.addEventListener('pointerdown',ev=>{if(onItem(ev.target)||overCode(ev.clientX,ev.clientY))return;if(ev.pointerType==='mouse'&&ev.button!==0)return;
+  document.addEventListener('pointerdown',ev=>{if(onItem(ev.target))return;if(ev.pointerType==='mouse'&&ev.button!==0)return;
     P.set(ev.pointerId,[ev.clientX,ev.clientY]);if(P.size===1)moved=0;
     if(P.size===2){const[a,b]=[...P.values()];pinch={d:Math.hypot(a[0]-b[0],a[1]-b[1])||1,z0:z};pan=null;anim(false);}
     else if(P.size===1&&z>1){pan={x:ev.clientX,y:ev.clientY,tx,ty};}});

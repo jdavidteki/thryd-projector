@@ -1,5 +1,5 @@
 {
   "v": 568,
-  "at": "2026-11-18T12:29:42-05:00",
-  "note": "The right-side typeline column keeps running from the world feed and follows the newest line. A typed-command error can no longer stop it. It pauses auto-follow only while you have scrolled up, then resumes at the bottom or after a few seconds idle. Scroll, drag, and typeline sending are unchanged."
+  "at": "2026-11-18T12:39:16-05:00",
+  "note": "Reverts the v566 scrolling change (document touch-action, wheel handlers that scrolled panels, and the #code start-aligned spacer) so the typeline column stays pinned to the newest lines. Typelines still use their own ntfy topic (data/cli.json). A typed-command error still cannot stop the runner. Auto-follow from the earlier v568 attempt is dropped."
 }
