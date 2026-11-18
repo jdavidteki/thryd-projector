@@ -6773,6 +6773,16 @@
 "run": "run-2eb42d",
 "card": "j29",
 "other": "miami"
+},
+{
+"id": "wf_0b6767d3bf",
+"kind": "consequence",
+"text": "The iae now remembers the ronke: Someone at the projector tapped the computer village subject and called.",
+"code": "ronke.interactwith(iae){ iae.receives(ronke.something); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w18",
+"other": "ronke"
 }
 ],
 "tf_mom": [
@@ -7209,6 +7219,16 @@
 "run": "run-2eb42d",
 "card": "j2",
 "other": "patagonia"
+},
+{
+"id": "wf_0a84630064",
+"kind": "consequence",
+"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the brown envelope at the divine, and Bisola reads the name twice.",
+"code": "example.interactwith(divine){ divine.receives(example.shirt); … }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j8",
+"other": "example"
 }
 ],
 "again": [
@@ -8278,28 +8298,6 @@
 },
 "consequences": [
 {
-"id": "wf_83a0173277",
-"ts": "2026-11-18T14:48:41-0500",
-"a": "teach",
-"b": "move",
-"code": "teach.interactwith(move){ move.receives(teach.envelope); move.remembers(bisola, 'brown envelope'); move.tucks(teach, 'yaba bookshop receipt into the brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the move, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
-"id": "wf_5b709e5424",
-"ts": "2026-11-18T14:49:34-0500",
-"a": "computer_village",
-"b": "agbada",
-"code": "computer_village.interactwith(agbada){ agbada.receives(computer_village.envelope); agbada.remembers(bisola, 'brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the agbada, which is still worn by a stranger haggler.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
 "id": "wf_dcec71707d",
 "ts": "2026-11-18T14:52:37-0500",
 "a": "computer_village",
@@ -8716,6 +8714,28 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j8"
+},
+{
+"id": "wf_0a84630064",
+"ts": "2026-11-18T16:44:16-0500",
+"a": "example",
+"b": "divine",
+"code": "example.interactwith(divine){ divine.receives(example.shirt); … }",
+"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the brown envelope at the divine, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j8"
+},
+{
+"id": "wf_0b6767d3bf",
+"ts": "2026-11-18T16:46:54-0500",
+"a": "ronke",
+"b": "iae",
+"code": "ronke.interactwith(iae){ iae.receives(ronke.something); }",
+"text": "The iae now remembers the ronke: Someone at the projector tapped the computer village subject and called.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w18"
 }
 ],
 "memories": [
@@ -8819,5 +8839,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T16:39:52-0500"
+"updated": "2026-11-18T16:46:54-0500"
 }
