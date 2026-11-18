@@ -6141,31 +6141,33 @@
 "card": "j5",
 "other": "inside_odunlade_brain"
 }
+],
+"sports_ball_scene": [
+{
+"id": "wf_8142eedb6e",
+"kind": "consequence",
+"text": "The sports ball scene leaves with a Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it.",
+"code": "saturday_october.interactwith(sports_ball_scene){ sports_ball_scene.receives(saturday_october.bead); sports_ball_scene.remembers(bisola, 'blue glass bead'); }",
+"author": "cos",
+"run": "run-g1-B",
+"card": "j5",
+"other": "saturday_october"
+}
+],
+"oven": [
+{
+"id": "wf_f4e2224620",
+"kind": "consequence",
+"text": "The oven leaves with a Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it.",
+"code": "saturday_october.interactwith(oven){ oven.receives(saturday_october.bead); oven.remembers(bisola, 'blue glass bead'); }",
+"author": "cos",
+"run": "run-g1-B",
+"card": "j5",
+"other": "saturday_october"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_3a0e493e8b",
-"ts": "2026-11-17T16:08:31-0500",
-"a": "marker_c",
-"b": "kmb",
-"code": "marker_c.interactwith(kmb){ kmb.receives(marker_c.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the nice day sign at the kmb, and Kunle reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
-"id": "wf_492edc6dd7",
-"ts": "2026-11-17T16:09:24-0500",
-"a": "laptop",
-"b": "calla",
-"code": "laptop.interactwith(calla){ calla.receives(laptop.soot); calla.remembers(taiwo, 'lamp soot'); }",
-"text": "The calla leaves with a Laptop note with Taiwo's name and 'lamp soot' on it.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j7"
-},
 {
 "id": "wf_44da22dc11",
 "ts": "2026-11-17T16:12:00-0500",
@@ -6583,6 +6585,28 @@
 "author": "cos",
 "run": "run-g1-B",
 "card": "j5"
+},
+{
+"id": "wf_8142eedb6e",
+"ts": "2026-11-17T19:16:57-0500",
+"a": "saturday_october",
+"b": "sports_ball_scene",
+"code": "saturday_october.interactwith(sports_ball_scene){ sports_ball_scene.receives(saturday_october.bead); sports_ball_scene.remembers(bisola, 'blue glass bead'); }",
+"text": "The sports ball scene leaves with a Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it.",
+"author": "cos",
+"run": "run-g1-B",
+"card": "j5"
+},
+{
+"id": "wf_f4e2224620",
+"ts": "2026-11-17T19:18:42-0500",
+"a": "saturday_october",
+"b": "oven",
+"code": "saturday_october.interactwith(oven){ oven.receives(saturday_october.bead); oven.remembers(bisola, 'blue glass bead'); }",
+"text": "The oven leaves with a Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it.",
+"author": "cos",
+"run": "run-g1-B",
+"card": "j5"
 }
 ],
 "memories": [
@@ -6686,5 +6710,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T19:13:28-0500"
+"updated": "2026-11-17T19:18:42-0500"
 }
