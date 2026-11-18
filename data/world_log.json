@@ -7349,7 +7349,7 @@
   },
   "run-2eb42d": {
    "forked_from": "safe:9525b78aa7f3",
-   "head": "0c530d0878",
+   "head": "a8c1bfd15c",
    "commits": [
     {
      "id": "b1965e97d1",
@@ -7376,8 +7376,32 @@
      }
     },
     {
-     "id": "7ca5a0061b",
+     "id": "f0375af628",
      "parent": "b1965e97d1",
+     "branch": "run-2eb42d",
+     "job": "j5",
+     "at": "2026-11-17T23:43:44-0500",
+     "genre": null,
+     "beat": null,
+     "diff": {
+      "facts": [
+       {
+        "id": "wf_411694aa6b",
+        "object": "imhf",
+        "kind": "consequence",
+        "code": "danfo_speaker.interactwith(imhf){ danfo_speaker.db.copyto(imhf); imhf.keeps(danfo_speaker, 'danfo speaker, still playing the same love song'",
+        "scope": null,
+        "cause_id": null
+       }
+      ],
+      "facts_total": 1,
+      "functions": [],
+      "instances": []
+     }
+    },
+    {
+     "id": "f79ab212df",
+     "parent": "f0375af628",
      "branch": "run-2eb42d",
      "job": "j6",
      "at": "2026-11-17T23:40:13-0500",
@@ -7408,8 +7432,8 @@
      }
     },
     {
-     "id": "9d341841f5",
-     "parent": "7ca5a0061b",
+     "id": "e92c3ca8ec",
+     "parent": "f79ab212df",
      "branch": "run-2eb42d",
      "job": "j7",
      "at": "2026-11-17T23:39:21-0500",
@@ -7432,8 +7456,8 @@
      }
     },
     {
-     "id": "f99c06d562",
-     "parent": "9d341841f5",
+     "id": "045ad3c21a",
+     "parent": "e92c3ca8ec",
      "branch": "run-2eb42d",
      "job": "j8",
      "at": "2026-11-17T23:36:43-0500",
@@ -7456,8 +7480,8 @@
      }
     },
     {
-     "id": "0c530d0878",
-     "parent": "f99c06d562",
+     "id": "0af6094da8",
+     "parent": "045ad3c21a",
      "branch": "run-2eb42d",
      "job": "j16",
      "at": "2026-11-17T23:36:00-05:00",
@@ -7486,6 +7510,37 @@
        [
         "when",
         "Thing"
+       ]
+      ]
+     }
+    },
+    {
+     "id": "a8c1bfd15c",
+     "parent": "0af6094da8",
+     "branch": "run-2eb42d",
+     "job": "j17",
+     "at": "2026-11-17T23:42:23-05:00",
+     "genre": "rising",
+     "beat": "chase",
+     "diff": {
+      "facts": [],
+      "facts_total": 0,
+      "functions": [
+       {
+        "func": "pepu.setmany",
+        "title": "pepu.setMany(many)",
+        "op": "define"
+       },
+       {
+        "func": "yorubbbygehinny.getagenda",
+        "title": "yorubbbygehinny.getAgenda()",
+        "op": "define"
+       }
+      ],
+      "instances": [
+       [
+        "many",
+        "Quantity"
        ]
       ]
      }
@@ -7906,9 +7961,9 @@
   "run-9e59ca": "59f544b8d8",
   "run-5a58c4": "17d819bcef",
   "run-g1-B": "ba26d490e3",
-  "run-2eb42d": "0c530d0878",
+  "run-2eb42d": "a8c1bfd15c",
   "run-cb805f": "8d23a93627"
  },
- "commits": 87,
- "updated": "2026-11-17T23:42:51-05:00"
+ "commits": 89,
+ "updated": "2026-11-17T23:43:46-05:00"
 }
