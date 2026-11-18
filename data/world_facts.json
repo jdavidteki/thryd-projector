@@ -6941,16 +6941,6 @@
 ],
 "mama_ronke": [
 {
-"id": "wf_4a1f61dce3",
-"kind": "consequence",
-"text": "A Bird note with Bisola's name and 'envelope corner' on it, turns up with the Mama Ronke, which is still present.",
-"code": "bird.interactwith(mama_ronke){ mama_ronke.receives(bird.corner); mama_ronke.remembers(bisola, 'envelope corner'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j7",
-"other": "bird"
-},
-{
 "id": "wf_2b4f2d55f9",
 "kind": "consequence",
 "text": "A Sheep note with Kunle's name and 'scorched container number' on it, turns up with the Mama Ronke, which is still present.",
@@ -6979,6 +6969,16 @@
 "run": "run-2eb42d",
 "card": "j29",
 "other": "mkdwo"
+},
+{
+"id": "wf_0ee749ad89",
+"kind": "consequence",
+"text": "A Sheep note with Kunle's name and 'scorched container number' on it, turns up with the Mama Ronke, which is still present.",
+"code": "sheep.interactwith(mama_ronke){ mama_ronke.receives(sheep.number); mama_ronke.remembers(kunle, 'scorched container number'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w7",
+"other": "sheep"
 },
 {
 "id": "wt_836e6dea8e",
@@ -7617,16 +7617,6 @@
 ],
 "ojuelegba_bus_stop": [
 {
-"id": "wf_4ba9fe6c22",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the ojuelegba bus stop, and Bisola reads the name twice.",
-"code": "move.interactwith(ojuelegba_bus_stop){ ojuelegba_bus_stop.receives(move.envelope); … }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "move"
-},
-{
 "id": "wf_600bda5faa",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the ojuelegba bus stop, and Bisola reads the name twice.",
@@ -7665,6 +7655,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "asmathic"
+},
+{
+"id": "wf_feee0cd1e5",
+"kind": "consequence",
+"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the brown envelope at the ojuelegba bus stop, and Bisola reads the name twice.",
+"code": "thryd.interactwith(ojuelegba_bus_stop){ ojuelegba_bus_stop.receives(thryd.shirt); … }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j8",
+"other": "thryd"
 }
 ],
 "usher_by_kiss": [
@@ -8308,28 +8308,6 @@
 },
 "consequences": [
 {
-"id": "wf_717c553e2e",
-"ts": "2026-11-18T15:11:47-0500",
-"a": "precision",
-"b": "mkdwo",
-"code": "precision.interactwith(mkdwo){ mkdwo.receives(precision.envelope); mkdwo.remembers(bisola, 'brown envelope'); }",
-"text": "The mkdwo leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
-"id": "wf_7103269a60",
-"ts": "2026-11-18T15:14:25-0500",
-"a": "ojuelegba_bus_stop",
-"b": "since",
-"code": "ojuelegba_bus_stop.interactwith(since){ since.receives(ojuelegba_bus_stop.envelope); since.remembers(bisola, 'brown envelope'); }",
-"text": "The since leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
 "id": "wf_dbccd1795e",
 "ts": "2026-11-18T15:17:03-0500",
 "a": "twgs",
@@ -8746,6 +8724,28 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "w6"
+},
+{
+"id": "wf_0ee749ad89",
+"ts": "2026-11-18T17:06:16-0500",
+"a": "sheep",
+"b": "mama_ronke",
+"code": "sheep.interactwith(mama_ronke){ mama_ronke.receives(sheep.number); mama_ronke.remembers(kunle, 'scorched container number'); }",
+"text": "A Sheep note with Kunle's name and 'scorched container number' on it, turns up with the Mama Ronke, which is still present.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w7"
+},
+{
+"id": "wf_feee0cd1e5",
+"ts": "2026-11-18T17:09:47-0500",
+"a": "thryd",
+"b": "ojuelegba_bus_stop",
+"code": "thryd.interactwith(ojuelegba_bus_stop){ ojuelegba_bus_stop.receives(thryd.shirt); … }",
+"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the brown envelope at the ojuelegba bus stop, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j8"
 }
 ],
 "memories": [
@@ -8849,5 +8849,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T17:04:29-0500"
+"updated": "2026-11-18T17:09:47-0500"
 }
