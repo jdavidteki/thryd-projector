@@ -171,8 +171,8 @@
     }catch(e){}
     const rec = recs[0];
     const run = (rec && rec.run) || (S.currentRun && S.currentRun()) || (S.agenda && S.agenda.active) || '';
-    const fleshed = recs.find(r => r && r.fleshed && r.resolved);
-    const got = recs.find(r => r && r.result);
+    const fleshed = recs.find(r => r && r.fleshed && r.resolved && r.resolved !== r.raw) || recs.find(r => r && r.fleshed && r.resolved);
+    const got = recs.find(r => r && r.result && !(fleshed && r === fleshed));
     const n = recs.length || parts.length || 1;
     msg.textContent = (n === 1 ? 'new command' : (n + ' commands')) + ' \u2192 this agenda' + (run ? ' \u00b7 ' + run : '')
       + (fleshed ? ' \u00b7 ran as: ' + fleshed.resolved : '')

@@ -1,10 +1,12 @@
 // drag / ntfy requests (Jesuye 15 Nov 2026 4:47 PM ET "no images anymore", page open ~5 h): a stalled ntfy.sh request never ended, they
 // piled up for hours until Chrome refused every new request on the page (net::ERR_INSUFFICIENT_RESOURCES), images included. Every
 // call to the drag endpoint now gives up after 20 s (body included) and at most 4 are open at once; extra calls are skipped, not queued.
+window.thrydAbortSignal=function(ac,reason){if(!ac)return;const why=reason||'timed out';try{ac.abort(typeof DOMException==='function'?new DOMException(why,'AbortError'):why);}catch(e){try{ac.abort();}catch(e2){}}};
+window.thrydIsTimeout=function(e){if(!e)return false;if(e.name==='AbortError'||e.name==='TimeoutError'||e.status==='timeout')return true;return /abort|timed out|The operation was aborted/i.test(String(e.message||e));};
 window.thrydNetFetch=window.thrydNetFetch||(()=>{let open=0,wait=[];
   const take=prio=>new Promise((res,rej)=>{const cap=prio==='drift'?3:4;if(prio==='call'){if(open<4){open++;return res(1);}wait.push(res);return;}if(open>=cap)return rej(new Error('ntfy_busy'));open++;res(1);});
   const give=()=>{open=Math.max(0,open-1);if(wait.length&&open<4){open++;wait.shift()(1);}};
-  return (url,opt,ms,prio)=>take(prio||'normal').then(()=>{const ac=typeof AbortController==='function'?new AbortController():null;const t=setTimeout(()=>{try{ac&&ac.abort();}catch(e){}},ms||20000);
+  return (url,opt,ms,prio)=>take(prio||'normal').then(()=>{const ac=typeof AbortController==='function'?new AbortController():null;const t=setTimeout(()=>{window.thrydAbortSignal(ac,'timed out');},ms||20000);
     return fetch(url,Object.assign({},opt||{},ac?{signal:ac.signal}:{})).then(r=>r.text().then(tx=>({ok:r.ok,status:r.status,retryAfter:r.headers&&r.headers.get&&r.headers.get('Retry-After')||null,text:()=>Promise.resolve(tx),json:()=>Promise.resolve().then(()=>JSON.parse(tx))})))
       .finally(()=>{clearTimeout(t);give();});});})();
 // Shared ntfy POST for taps and typelines (18 Nov 2026 11:09 AM ET). Call/CLI posts bypass the
@@ -12,20 +14,61 @@ window.thrydNetFetch=window.thrydNetFetch||(()=>{let open=0,wait=[];
 // and use a plain fetch with a 20s abort, just like a successful tap.
 window.thrydDrag=function(){try{const c=window.thrydCtx&&window.thrydCtx();return (c&&c.DRAG)||window.DRAG||null;}catch(e){return null;}};
 window.thrydCallsQueued=function(){if(window.__thrydCallHold)return true;try{const box=JSON.parse(localStorage.getItem('thryd_call_outbox_v1')||'[]');return Array.isArray(box)&&box.some(i=>i&&!i.done&&i.status!=='sent');}catch(e){return false;}};
+window.__thrydNtfyPoll={ac:null,p:null};
+window.thrydAbortNtfyPolls=function(why){const s=window.__thrydNtfyPoll;if(s&&s.ac)window.thrydAbortSignal(s.ac,why||'call_priority');};
+window.thrydNtfyGet=async function(url,ms){
+  const slot=window.__thrydNtfyPoll;
+  if(slot.p){window.thrydAbortNtfyPolls('superseded');try{await slot.p;}catch(e){}}
+  const ac=typeof AbortController==='function'?new AbortController():null;
+  const t=setTimeout(()=>window.thrydAbortSignal(ac,'timed out'),ms||8000);
+  slot.ac=ac;
+  const p=(async()=>{try{
+    const r=await fetch(url,Object.assign({cache:'no-store'},ac?{signal:ac.signal}:{}));
+    const tx=await r.text();
+    return {ok:r.ok,status:r.status,text:()=>Promise.resolve(tx),json:()=>Promise.resolve().then(()=>JSON.parse(tx))};
+  }finally{clearTimeout(t);if(slot.p===p){slot.p=null;slot.ac=null;}}})();
+  slot.p=p;return p;
+};
 window.thrydNtfyPost=async function(body, kind){
   const DG=window.thrydDrag&&window.thrydDrag();
   if(!DG||!DG.endpoint||DG.transport!=='ntfy'){const e=new Error('no_endpoint');e.status='no_endpoint';throw e;}
   let payload=body||{};
   try{if(JSON.stringify(payload).length>3900){payload=Object.assign({},payload);delete payload.impl;delete payload.const_diff;delete payload.ran_as;delete payload.body_v;}}catch(e){}
-  const ac=typeof AbortController==='function'?new AbortController():null;
-  const t=setTimeout(()=>{try{ac&&ac.abort();}catch(e){}},20000);
-  try{
-    const r=await fetch(DG.endpoint,Object.assign({method:'POST',body:JSON.stringify(payload)},ac?{signal:ac.signal}:{}));
-    const tx=await r.text();
-    return {ok:r.ok,status:r.status,retryAfter:r.headers&&r.headers.get&&r.headers.get('Retry-After')||null,text:()=>Promise.resolve(tx),json:()=>Promise.resolve().then(()=>JSON.parse(tx))};
-  }finally{clearTimeout(t);}
+  window.thrydAbortNtfyPolls&&window.thrydAbortNtfyPolls('call');
+  const once=async()=>{
+    const ac=typeof AbortController==='function'?new AbortController():null;
+    const t=setTimeout(()=>window.thrydAbortSignal(ac,'timed out'),20000);
+    try{
+      const r=await fetch(DG.endpoint,Object.assign({method:'POST',body:JSON.stringify(payload)},ac?{signal:ac.signal}:{}));
+      const tx=await r.text();
+      return {ok:r.ok,status:r.status,retryAfter:r.headers&&r.headers.get&&r.headers.get('Retry-After')||null,text:()=>Promise.resolve(tx),json:()=>Promise.resolve().then(()=>JSON.parse(tx))};
+    }finally{clearTimeout(t);}
+  };
+  try{return await once();}
+  catch(e){
+    if(window.thrydIsTimeout&&window.thrydIsTimeout(e)){
+      try{return await once();}
+      catch(e2){const err=new Error('timed out');err.status='timeout';throw err;}
+    }
+    throw e;
+  }
 };
-window.thrydEnqueueCall=window.thrydEnqueueCall||(function(){
+window.thrydOutboxLeader=(function(){
+  const LOCK='thryd_outbox_lock_v1';
+  const id='tab-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,8);
+  window.__thrydTabId=id;
+  const read=()=>{try{return JSON.parse(localStorage.getItem(LOCK)||'null');}catch(e){return null;}};
+  const write=()=>{try{localStorage.setItem(LOCK,JSON.stringify({id,at:Date.now()}));}catch(e){}};
+  const take=()=>{const now=Date.now(),cur=read();if(cur&&cur.id!==id&&now-(cur.at||0)<2500)return false;write();const chk=read();return !!(chk&&chk.id===id);};
+  const mine=()=>{const cur=read();return !!(cur&&cur.id===id&&Date.now()-(cur.at||0)<2500);};
+  setInterval(()=>{if(mine()||take())write();},1000);
+  addEventListener('beforeunload',()=>{try{const cur=read();if(cur&&cur.id===id)localStorage.removeItem(LOCK);}catch(e){}});
+  try{const ch=new BroadcastChannel('thryd-outbox');window.__thrydOutboxCh=ch;
+    ch.onmessage=ev=>{const d=ev&&ev.data;if(d&&d.type==='pump'&&(mine()||take())&&window.__thrydOutboxPump)window.__thrydOutboxPump();};}catch(e){}
+  take();
+  return function(){return mine()||take();};
+})();
+window.thrydEnqueueCall=(function(){
   const KEY='thryd_call_outbox_v1';
   let box=[], pumping=false;
   const load=()=>{try{box=JSON.parse(localStorage.getItem(KEY)||'[]')||[];}catch(e){box=[];}if(!Array.isArray(box))box=[];};
@@ -35,23 +78,27 @@ window.thrydEnqueueCall=window.thrydEnqueueCall||(function(){
   const retryMs=(r,attempts)=>{const h=r&&r.retryAfter;if(h){const n=parseInt(h,10);if(isFinite(n))return Math.min(60000,Math.max(500,n*1000));const d=Date.parse(h);if(isFinite(d))return Math.min(60000,Math.max(500,d-Date.now()));}return Math.min(15000,800*Math.pow(2,Math.min(6,attempts||0)));};
   const notify=(item,status,val)=>{const w=waiters[item.id];if(w&&w.opts&&w.opts.onStatus)try{w.opts.onStatus(status,item);}catch(e){}
     if(status==='sent'&&w){delete waiters[item.id];w.resolve(val||item);} };
-  async function pump(){if(pumping)return;pumping=true;try{load();const now=Date.now();
+  async function pump(){if(pumping)return;if(window.thrydOutboxLeader&&!window.thrydOutboxLeader())return;pumping=true;try{load();const now=Date.now();
     for(const item of box){if(!item||item.done||item.status==='sent')continue;if((item.nextAt||0)>now)continue;
       item.attempts=(item.attempts||0)+1;item.status='retrying';save();notify(item,'retrying');
       try{
         const r=await window.thrydNtfyPost(item.body,'call');
         if(r&&r.ok){item.status='sent';item.done=true;item.sentAt=new Date().toISOString();item.lastError=null;save();notify(item,'sent',r);continue;}
         item.status='queued';item.nextAt=Date.now()+retryMs(r,item.attempts);item.lastError=r?('HTTP '+r.status):'no_response';save();notify(item,'retrying');
-      }catch(e){item.status='queued';item.nextAt=Date.now()+retryMs(null,item.attempts);item.lastError=String(e&&e.message||e);save();notify(item,'retrying');}
+      }catch(e){item.status='queued';item.nextAt=Date.now()+retryMs(null,item.attempts);item.lastError=(window.thrydIsTimeout&&window.thrydIsTimeout(e))?'timed out':String(e&&e.message||e);save();notify(item,'retrying');}
     }
     box=box.filter(i=>i&&!i.done);save();
   }finally{pumping=false;}}
-  setInterval(()=>{pump().catch(()=>{});},1000);
+  window.__thrydOutboxPump=()=>pump().catch(()=>{});
+  if(window.__thrydOutboxTimer)clearInterval(window.__thrydOutboxTimer);
+  window.__thrydOutboxTimer=setInterval(()=>{if(window.thrydOutboxLeader&&!window.thrydOutboxLeader())return;pump().catch(()=>{});},1000);
   setTimeout(()=>{pump().catch(()=>{});},400);
+  addEventListener('storage',e=>{if(e.key===KEY||e.key==='thryd_outbox_lock_v1'){if(window.thrydOutboxLeader&&window.thrydOutboxLeader())pump().catch(()=>{});}});
   return function enqueue(body,opts){opts=opts||{};const id=String((body&&(body.event_id||body.rid))||('out-'+Date.now()));
     load();let item=box.find(i=>i&&i.id===id);
     if(!item){item={id,body,status:'queued',attempts:opts.attempts||0,nextAt:opts.nextAt||0,lastError:opts.lastError||null,at:new Date().toISOString()};box.push(item);save();}
     window.__thrydCallHold=true;
+    try{window.__thrydOutboxCh&&window.__thrydOutboxCh.postMessage({type:'pump',id});}catch(e){}
     return new Promise(resolve=>{waiters[id]={resolve,opts};pump().catch(()=>{});});};
 })();
 const LIVE_STATE=async()=>{try{const r=await fetch('https://raw.githubusercontent.com/jdavidteki/thryd-projector/main/data/state.json?t='+Date.now(),{cache:'no-store'});if(!r.ok)throw 0;return await r.json();}catch(e){try{const r=await fetch('data/state.json?_='+Date.now(),{cache:'no-store'});if(!r.ok)throw 0;return await r.json();}catch(e2){throw e2;}}};
@@ -492,8 +539,11 @@ async function loadDrags(){try{const D=await J('data/drags.json');DRAGS_RUN=D.ru
   if(!cmEv.length){cmEv=list;cmI=0;list.forEach(e=>cmSeen.add(cmSig(e)));syncPauseBtn();if(cmEv.length)cmStep();}
   else{list.forEach(e=>cmAppend(e));}}catch(e){}}
 async function pollNtfyDrags(){if(!DRAG||!DRAG.endpoint||DRAG.transport!=='ntfy')return;
-  try{const since=cmLastNtfy||'all';const url=DRAG.endpoint.replace(/\/?$/,'')+'/json?poll=1&since='+encodeURIComponent(since);
-    const tx=await(await thrydNetFetch(url,{cache:'no-store'})).text();
+  if(window.thrydOutboxLeader&&!window.thrydOutboxLeader())return;
+  if(window.thrydCallsQueued&&window.thrydCallsQueued())return;
+  if(window.__thrydNtfyPoll&&window.__thrydNtfyPoll.p)return;
+  try{const since=cmLastNtfy||String(Math.floor(Date.now()/1000)-120);const url=DRAG.endpoint.replace(/\/?$/,'')+'/json?poll=1&since='+encodeURIComponent(since);
+    const tx=await(await (window.thrydNtfyGet||thrydNetFetch)(url,8000)).text();
     for(const l of tx.split('\n')){if(!l)continue;let m;try{m=JSON.parse(l);}catch(e){continue;}
       if(m.event!=='message')continue;if(m.id)cmLastNtfy=m.id;
       let body;try{body=JSON.parse(m.message||'{}');}catch(e){continue;}
@@ -700,12 +750,12 @@ const MOVES=(()=>{const KEY='thryd_moves_v1',MAX=400;let box=null;
     return {body:b,medium:true};};
   let lastDE=0;const DRIFT_POST_GAP=60000; // all automatic drift shares one ntfy slot per minute; calls, taps, and real drags are reserved the rest of the budget
   const driftHeld=()=>!!(window.thrydCallsQueued&&window.thrydCallsQueued());
-  const driftBudgetOk=()=>!driftHeld()&&(Date.now()-(lastDE||0)>=DRIFT_POST_GAP);
+  const driftBudgetOk=()=>{if(driftHeld())return false;if(window.thrydOutboxLeader&&!window.thrydOutboxLeader())return false;let last=lastDE;try{const n=+localStorage.getItem('thryd_last_drift_post_v1');if(isFinite(n))last=Math.max(last,n);}catch(e){}return Date.now()-(last||0)>=DRIFT_POST_GAP;};
   const ntfySend=async body=>{if(!DRAG||!DRAG.endpoint||DRAG.transport!=='ntfy')throw new Error('no drag endpoint');
-    if(body&&body.type==='drift'){if(driftHeld())throw new Error('drift_paused_for_call');if(!driftBudgetOk())throw new Error('drift_throttle');lastDE=Date.now();}
+    if(body&&body.type==='drift'){if(driftHeld())throw new Error('drift_paused_for_call');if(!driftBudgetOk())throw new Error('drift_throttle');lastDE=Date.now();try{localStorage.setItem('thryd_last_drift_post_v1',String(lastDE));}catch(e){}}
     const t0=Math.floor(Date.now()/1000)-5;const r=(body&&body.type==='call'&&window.thrydNtfyPost)?await window.thrydNtfyPost(body,'call'):await thrydNetFetch(DRAG.endpoint,{method:'POST',body:JSON.stringify(body)},20000,body&&body.type==='drift'?'drift':'normal');if(!r.ok)throw new Error('ntfy HTTP '+r.status+(r.retryAfter?(' retry-after '+r.retryAfter):''));
     for(const w of [2000,4000,8000,16000,30000]){await new Promise(z=>setTimeout(z,w));   // light polling, stops on the ack
-      try{const tx=await (await thrydNetFetch(DRAG.reply+'/json?poll=1&since='+t0,{cache:'no-store'})).text();
+      try{const tx=await (await (window.thrydNtfyGet||thrydNetFetch)(DRAG.reply+'/json?poll=1&since='+t0,8000)).text();
         for(const l of tx.split('\n')){if(!l)continue;let m;try{m=JSON.parse(l);m=JSON.parse(m.message||'{}');}catch(e){continue;}if(m.rid===body.rid||m.event_id===body.event_id)return m;}}catch(e){}}
     return null;};
   const emit=async ev=>{try{
@@ -1017,7 +1067,7 @@ async function dragSend(body){
   const rid=Math.random().toString(36).slice(2,12), t0=Math.floor(Date.now()/1000)-5;
   const r=await thrydNetFetch(DRAG.endpoint,{method:'POST',body:JSON.stringify({...body,rid})});if(!r.ok)throw new Error('relay HTTP '+r.status);
   for(let i=0;i<20;i++){await new Promise(z=>setTimeout(z,1500));
-    try{const tx=await (await thrydNetFetch(DRAG.reply+'/json?poll=1&since='+t0,{cache:'no-store'})).text();
+    try{const tx=await (await (window.thrydNtfyGet||thrydNetFetch)(DRAG.reply+'/json?poll=1&since='+t0,8000)).text();
       for(const l of tx.split('\n')){if(!l)continue;let m;try{m=JSON.parse(l);m=JSON.parse(m.message||'{}');}catch(e){continue;}if(m.rid===rid)return m;}}catch(e){}}
   throw new Error('no reply from box (timeout)');}
 async function dropTo(id,from,to,xy){

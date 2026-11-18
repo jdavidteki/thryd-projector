@@ -1589,8 +1589,9 @@
     if(!el){
       el = document.createElement('div'); el.className = 'gcmdbub'; el.dataset.agendaCmd = rec.id; el.dataset.run = rec.run || '';
       const esc = s => String(s || '').replace(/[<>&]/g, ch => ({'<':'&lt;','>':'&gt;','&':'&amp;'}[ch]));
+      const ranShow = (rec.resolved && rec.resolved !== rec.raw) ? rec.resolved : (rec.ranAs || rec.impl || '');
       el.innerHTML = '<div class="gct">' + esc(rec.raw || rec.text || '') + '</div>'
-        + ((rec.ranAs || rec.impl || (rec.fleshed && rec.resolved && rec.resolved !== rec.raw)) ? '<div class="gcas">ran as: ' + esc(rec.ranAs || rec.impl || rec.resolved) + '</div>' : '')
+        + (ranShow ? '<div class="gcas">ran as: ' + esc(ranShow) + '</div>' : '')
         + (rec.result ? '<div class="gres">→ ' + esc(rec.result) + '</div>' : '')
         + '<div class="gcr">' + esc(rec.run || '') + '</div>';
       cutsL.appendChild(el); rec.el = el;
@@ -2061,7 +2062,7 @@
     const cuts = playCliOnCast(rec, piece);
     syncFreeCmds();
     if(rec.el){ rec.el.remove(); rec.el = null; placeCmdBub(rec); }
-    const ranAs = piece.ranAs || (piece.fleshed ? piece.resolved : (piece.impl || ''));
+    const ranAs = (piece.fleshed && piece.resolved && piece.resolved !== piece.raw) ? piece.resolved : (piece.ranAs || piece.impl || '');
     const noteLine = (ranAs ? 'ran as: ' + ranAs + ' · ' : '')
       + (piece.result ? '→ ' + piece.result + ' · ' : '')
       + 'new command → this agenda · ' + run + (cuts.length ? ' · ' + cuts.length + ' on stage' : ' · caption');
@@ -2524,7 +2525,8 @@
     const net = root.thrydNetFetch || ((u, o)=> fetch(u, o));
     const enqueue = root.thrydEnqueueCall;
     const post = root.thrydNtfyPost;
-    const statusToast = item => { const err = item && item.lastError; toast(code + ' · ' + (err ? ('retrying · ' + err) : 'queued, retrying')); };
+    const prettyErr = err => { if(!err) return 'queued, retrying'; if(/timed out|abort/i.test(String(err))) return 'timed out, retrying'; return 'retrying · ' + err; };
+    const statusToast = item => { toast(code + ' · ' + prettyErr(item && item.lastError)); };
     try{
       rec.status = 'sending';
       const t0 = Math.floor(Date.now() / 1000) - 5;
@@ -2544,9 +2546,10 @@
           }
         }catch(e){
           rec.status = 'queued';
-          statusToast({lastError: String(e && e.message || e)});
+          const why = (root.thrydIsTimeout && root.thrydIsTimeout(e)) ? 'timed out' : String(e && e.message || e);
+          statusToast({lastError: why});
           if(!enqueue) throw e;
-          await enqueue(body, {attempts: 1, nextAt: Date.now() + 1500, lastError: String(e && e.message || e), onStatus: (s, item) => { rec.status = s; if(s === 'retrying' || s === 'queued') statusToast(item); }});
+          await enqueue(body, {attempts: 1, nextAt: Date.now() + (why === 'timed out' ? 0 : 1500), lastError: why, onStatus: (s, item) => { rec.status = s; if(s === 'retrying' || s === 'queued') statusToast(item); }});
           ok = true;
         }
       } else if(enqueue){
@@ -2560,7 +2563,7 @@
       rec.status = 'sent';
       toast(code + ' → box…');
       for(const w of [1500, 2500, 4000, 8000, 16000]){ await sleep(w);
-        try{ const tx = await (await net(DG.reply + '/json?poll=1&since=' + t0, {cache: 'no-store'}, 20000, 'normal')).text();
+        try{ const getter = root.thrydNtfyGet || net; const tx = await (await getter(DG.reply + '/json?poll=1&since=' + t0, 8000)).text();
           for(const l of tx.split('\n')){ if(!l) continue; let m; try{ m = JSON.parse(l); m = JSON.parse(m.message || '{}'); }catch(e){ continue; }
             if(m.rid === body.rid || m.event_id === eid){ rec.status = m.status || (m.ok ? 'accepted' : 'rejected'); rec.reply = m;
               if(m.ok){ toast((m.code || code) + ' ✓ in the db'); codeLine(m.resolved || m.code || code, 'tapped · in the world db' + (m.run ? ' · ' + m.run + (m.card ? '/' + m.card : '') : ''));
@@ -2570,7 +2573,7 @@
               else toast(code + ' ✗ ' + (m.detail || m.reason || 'rejected'), 1);
               return rec; } } }catch(e){} }
       rec.status = 'no_reply'; toast(code + ' sent; no reply from the box yet', 1);
-    }catch(e){ rec.status = 'queued'; rec.error = String(e && e.message || e); toast(code + ' · queued, retrying'); }
+    }catch(e){ rec.status = 'queued'; rec.error = (root.thrydIsTimeout && root.thrydIsTimeout(e)) ? 'timed out' : String(e && e.message || e); toast(code + ' · ' + prettyErr(rec.error)); }
     return rec;
   }
   S.fireMethod = fireMethod;

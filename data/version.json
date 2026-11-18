@@ -1,5 +1,5 @@
 {
-  "v": 564,
-  "at": "2026-11-18T11:13:16-05:00",
-  "note": "Automatic drift is posted at most once a minute, and it pauses entirely while a typeline is queued, so calls, taps, and real drags keep the ntfy budget. A typeline is sent the same way a tap is. If the box has not accepted it yet you will see the reason, for example 'retrying \u00b7 HTTP 429'."
+  "v": 565,
+  "at": "2026-11-18T11:33:45-05:00",
+  "note": "A typeline no longer sits behind hung ntfy polls: each tab keeps at most one short poll, only one tab pumps the outbox, and a stalled send shows 'timed out, retrying' then retries at once. Automatic drift stays at most once a minute and pauses while a command is queued. A pasted line's 'ran as' again shows the fleshed command (contains becomes filter)."
 }
