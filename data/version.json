@@ -1,5 +1,5 @@
 {
-  "v": 562,
-  "at": "2026-11-18T10:42:30-05:00",
-  "note": "Every typed command, known ones included, is fleshed out with everyday common-sense code. The function body can gain a line, related constants can update, and follow-ons stay ordinary: setname also updates captions and mentions; a getter records the fact it learned. Repeat calls keep the same result. Each change is stored for this agenda as a body version, a constants diff, and a 'ran as:' display."
+  "v": 563,
+  "at": "2026-11-18T10:59:07-05:00",
+  "note": "Typed commands are queued in a local outbox and retried with backoff (including Retry-After) until the box accepts them \u2014 you will see 'queued, retrying', never 'not sent \u00b7 ntfy busy'. Automatic drift events are coalesced to at most one every few seconds per object so they do not crowd out a typeline."
 }

@@ -2521,12 +2521,21 @@
     const ctx = root.thrydCtx ? root.thrydCtx() : {}, toast = ctx.toast || (()=>{}), DG = ctx.DRAG;
     if(root.thrydQA && root.thrydQA.log){ try{ root.thrydQA.log({kind: 'methodCall', ...body}); }catch(e){} }
     if(root.thrydQA && root.thrydQA.on && root.thrydQA.on()){ rec.status = 'qa_not_sent'; toast(code + ' (QA: not sent)'); return rec; }
-    if(!DG || !DG.endpoint || DG.transport !== 'ntfy'){ rec.status = 'no_endpoint'; toast(code + ' shown here only (box link not loaded)', 1); return rec; }
+    if(!DG || !DG.endpoint || DG.transport !== 'ntfy'){ rec.status = 'queued'; toast(code + ' · queued, retrying'); }
     const net = root.thrydNetFetch || ((u, o)=> fetch(u, o));
-    try{ const t0 = Math.floor(Date.now() / 1000) - 5; const r = await net(DG.endpoint, {method: 'POST', body: JSON.stringify(body)}, 20000); if(!r.ok) throw new Error('relay HTTP ' + r.status);
+    const enqueue = root.thrydEnqueueCall;
+    try{
+      rec.status = 'queued';
+      const t0 = Math.floor(Date.now() / 1000) - 5;
+      if(enqueue){
+        await enqueue(body, {onStatus: s => { rec.status = s; if(s === 'retrying') toast(code + ' · queued, retrying'); }});
+      } else {
+        const r = await net(DG.endpoint, {method: 'POST', body: JSON.stringify(body)}, 20000, 'call'); if(!r || !r.ok) throw new Error(r ? ('relay HTTP ' + r.status) : 'ntfy_busy');
+      }
+      rec.status = 'sent';
       toast(code + ' → box…');
       for(const w of [1500, 2500, 4000, 8000, 16000]){ await sleep(w);
-        try{ const tx = await (await net(DG.reply + '/json?poll=1&since=' + t0, {cache: 'no-store'}, 20000)).text();
+        try{ const tx = await (await net(DG.reply + '/json?poll=1&since=' + t0, {cache: 'no-store'}, 20000, 'normal')).text();
           for(const l of tx.split('\n')){ if(!l) continue; let m; try{ m = JSON.parse(l); m = JSON.parse(m.message || '{}'); }catch(e){ continue; }
             if(m.rid === body.rid || m.event_id === eid){ rec.status = m.status || (m.ok ? 'accepted' : 'rejected'); rec.reply = m;
               if(m.ok){ toast((m.code || code) + ' ✓ in the db'); codeLine(m.resolved || m.code || code, 'tapped · in the world db' + (m.run ? ' · ' + m.run + (m.card ? '/' + m.card : '') : ''));
@@ -2536,7 +2545,7 @@
               else toast(code + ' ✗ ' + (m.detail || m.reason || 'rejected'), 1);
               return rec; } } }catch(e){} }
       rec.status = 'no_reply'; toast(code + ' sent; no reply from the box yet', 1);
-    }catch(e){ rec.status = 'failed'; rec.error = String(e && e.message || e); toast(code + ' not sent: ' + rec.error, 1); }
+    }catch(e){ rec.status = 'queued'; rec.error = String(e && e.message || e); toast(code + ' · queued, retrying'); }
     return rec;
   }
   S.fireMethod = fireMethod;

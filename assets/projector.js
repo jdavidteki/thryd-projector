@@ -1,10 +1,44 @@
 // drag / ntfy requests (Jesuye 15 Nov 2026 4:47 PM ET "no images anymore", page open ~5 h): a stalled ntfy.sh request never ended, they
 // piled up for hours until Chrome refused every new request on the page (net::ERR_INSUFFICIENT_RESOURCES), images included. Every
 // call to the drag endpoint now gives up after 20 s (body included) and at most 4 are open at once; extra calls are skipped, not queued.
-window.thrydNetFetch=window.thrydNetFetch||(()=>{let open=0;return (url,opt,ms)=>{if(open>=4)return Promise.reject(new Error('ntfy_busy'));open++;
-  const ac=typeof AbortController==='function'?new AbortController():null;const t=setTimeout(()=>{try{ac&&ac.abort();}catch(e){}},ms||20000);
-  return fetch(url,Object.assign({},opt||{},ac?{signal:ac.signal}:{})).then(r=>r.text().then(tx=>({ok:r.ok,status:r.status,text:()=>Promise.resolve(tx),json:()=>Promise.resolve().then(()=>JSON.parse(tx))})))
-    .finally(()=>{clearTimeout(t);open--;});};})();
+window.thrydNetFetch=window.thrydNetFetch||(()=>{let open=0,wait=[];
+  const take=prio=>new Promise((res,rej)=>{const cap=prio==='drift'?3:4;if(prio==='call'){if(open<4){open++;return res(1);}wait.push(res);return;}if(open>=cap)return rej(new Error('ntfy_busy'));open++;res(1);});
+  const give=()=>{open=Math.max(0,open-1);if(wait.length&&open<4){open++;wait.shift()(1);}};
+  return (url,opt,ms,prio)=>take(prio||'normal').then(()=>{const ac=typeof AbortController==='function'?new AbortController():null;const t=setTimeout(()=>{try{ac&&ac.abort();}catch(e){}},ms||20000);
+    return fetch(url,Object.assign({},opt||{},ac?{signal:ac.signal}:{})).then(r=>r.text().then(tx=>({ok:r.ok,status:r.status,retryAfter:r.headers&&r.headers.get&&r.headers.get('Retry-After')||null,text:()=>Promise.resolve(tx),json:()=>Promise.resolve().then(()=>JSON.parse(tx))})))
+      .finally(()=>{clearTimeout(t);give();});});})();
+// Call/CLI outbox (18 Nov 2026): typelines are persisted and retried with backoff (honours Retry-After)
+// until a 2xx. The page says "queued, retrying" and never "not sent" for a busy or 429 ntfy topic.
+window.thrydEnqueueCall=window.thrydEnqueueCall||(function(){
+  const KEY='thryd_call_outbox_v1';
+  let box=[], pumping=false;
+  const load=()=>{try{box=JSON.parse(localStorage.getItem(KEY)||'[]')||[];}catch(e){box=[];}if(!Array.isArray(box))box=[];};
+  const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(box.slice(-40)));}catch(e){}};
+  load();
+  const waiters={};
+  const retryMs=(r,attempts)=>{const h=r&&r.retryAfter;if(h){const n=parseInt(h,10);if(isFinite(n))return Math.min(60000,Math.max(500,n*1000));const d=Date.parse(h);if(isFinite(d))return Math.min(60000,Math.max(500,d-Date.now()));}return Math.min(30000,1000*Math.pow(2,Math.min(8,attempts||0)));};
+  const notify=(item,status,val)=>{const w=waiters[item.id];if(w&&w.opts&&w.opts.onStatus)try{w.opts.onStatus(status,item);}catch(e){}
+    if(status==='sent'&&w){delete waiters[item.id];w.resolve(val||item);} };
+  const drag=()=>{try{const c=window.thrydCtx&&window.thrydCtx();return (c&&c.DRAG)||window.DRAG||null;}catch(e){return null;}};
+  async function pump(){if(pumping)return;pumping=true;try{load();const now=Date.now();
+    for(const item of box){if(!item||item.done||item.status==='sent')continue;if((item.nextAt||0)>now)continue;
+      item.attempts=(item.attempts||0)+1;item.status='retrying';save();notify(item,'retrying');
+      const DG=drag();if(!DG||!DG.endpoint||DG.transport!=='ntfy'){item.status='queued';item.nextAt=Date.now()+1500;item.lastError='no_endpoint';save();notify(item,'retrying');continue;}
+      try{
+        const r=await window.thrydNetFetch(DG.endpoint,{method:'POST',body:JSON.stringify(item.body)},20000,'call');
+        if(r&&r.ok){item.status='sent';item.done=true;item.sentAt=new Date().toISOString();save();notify(item,'sent',r);continue;}
+        item.status='queued';item.nextAt=Date.now()+retryMs(r,item.attempts);item.lastError=r?('HTTP '+r.status):'no_response';save();notify(item,'retrying');
+      }catch(e){item.status='queued';item.nextAt=Date.now()+retryMs(null,item.attempts);item.lastError=String(e&&e.message||e);save();notify(item,'retrying');}
+    }
+    box=box.filter(i=>i&&!i.done);save();
+  }finally{pumping=false;}}
+  setInterval(()=>{pump().catch(()=>{});},1000);
+  setTimeout(()=>{pump().catch(()=>{});},400);
+  return function enqueue(body,opts){opts=opts||{};const id=String((body&&(body.event_id||body.rid))||('out-'+Date.now()));
+    load();let item=box.find(i=>i&&i.id===id);
+    if(!item){item={id,body,status:'queued',attempts:0,nextAt:0,at:new Date().toISOString()};box.push(item);save();}
+    return new Promise(resolve=>{waiters[id]={resolve,opts};pump().catch(()=>{});});};
+})();
 const LIVE_STATE=async()=>{try{const r=await fetch('https://raw.githubusercontent.com/jdavidteki/thryd-projector/main/data/state.json?t='+Date.now(),{cache:'no-store'});if(!r.ok)throw 0;return await r.json();}catch(e){try{const r=await fetch('data/state.json?_='+Date.now(),{cache:'no-store'});if(!r.ok)throw 0;return await r.json();}catch(e2){throw e2;}}};
 // #thryd projector: live (data/state.json) · timeline loop (data/timeline.json) · replay (data/replays.json + replay_<run>.json)
 (()=>{
@@ -650,7 +684,7 @@ const MOVES=(()=>{const KEY='thryd_moves_v1',MAX=400;let box=null;
       current_card:a.card?String(a.card).toLowerCase():null,client_ts:ev.client_ts,cut_meta:meta};
     return {body:b,medium:true};};
   const ntfySend=async body=>{if(!DRAG||!DRAG.endpoint||DRAG.transport!=='ntfy')throw new Error('no drag endpoint');
-    const t0=Math.floor(Date.now()/1000)-5;const r=await thrydNetFetch(DRAG.endpoint,{method:'POST',body:JSON.stringify(body)});if(!r.ok)throw new Error('ntfy HTTP '+r.status);
+    const t0=Math.floor(Date.now()/1000)-5;const r=await thrydNetFetch(DRAG.endpoint,{method:'POST',body:JSON.stringify(body)},20000,body&&body.type==='drift'?'drift':'normal');if(!r.ok)throw new Error('ntfy HTTP '+r.status);
     for(const w of [2000,4000,8000,16000,30000]){await new Promise(z=>setTimeout(z,w));   // light polling, stops on the ack
       try{const tx=await (await thrydNetFetch(DRAG.reply+'/json?poll=1&since='+t0,{cache:'no-store'})).text();
         for(const l of tx.split('\n')){if(!l)continue;let m;try{m=JSON.parse(l);m=JSON.parse(m.message||'{}');}catch(e){continue;}if(m.rid===body.rid||m.event_id===body.event_id)return m;}}catch(e){}}
@@ -671,7 +705,8 @@ const MOVES=(()=>{const KEY='thryd_moves_v1',MAX=400;let box=null;
   setInterval(()=>{box.events.filter(e=>e.emit&&(e.emit.status==='no_reply'||e.emit.status==='failed'||e.emit.status==='sending')&&(e.emit.attempts||0)<6&&Date.now()-Date.parse(e.emit.at||0)>110000).slice(0,3).forEach(e=>emit(e));
     // unmapped Medium drags the engine could not map yet: try again every 10 min, up to 30 tries (only ones this build sent, never older holds)
     box.events.filter(e=>e.emit&&e.emit.retry&&e.emit.status==='held'&&e.emit.reason==='unmapped'&&(e.emit.attempts||0)<30&&Date.now()-Date.parse(e.emit.at||0)>600000).slice(0,2).forEach(e=>emit(e));},120000);
-  let lastDE=0;
+  let lastDE=0;const driftSentAt={},driftPending={};
+  setInterval(()=>{const now=Date.now();Object.keys(driftPending).forEach(k=>{const p=driftPending[k];if(!p||now-(driftSentAt[k]||0)<4000)return;delete driftPending[k];driftSentAt[k]=now;if(p.ev){p.ev.emit={status:'sending'};emit(p.ev);}});},1000);
   function record(inp){try{
     const scene=inp.scene||null, ev={v:1,type:inp.type||'move',event_id:uid(),client_ts:new Date().toISOString(),
       source:{scene,scene_kind:inp.scene_kind||null,cut:inp.cut||null,cut_index:inp.cut_index==null?null:inp.cut_index,klass:inp.klass||null,source_frame_index:inp.source_frame_index==null?null:inp.source_frame_index,frame_count:inp.frame_count||null,run:inp.run||runOfKey(scene)||null,...(inp.visitor_in?{visitor_in:inp.visitor_in}:{}),frame:((String(scene||'').match(/(?:^|[^A-Za-z0-9])(j\d+)(?![0-9])/)||[])[1])||null,place_key:inp.place_key||null},
@@ -682,7 +717,10 @@ const MOVES=(()=>{const KEY='thryd_moves_v1',MAX=400;let box=null;
     if(ev.type==='drift')ev.drift={kind:inp.kind||'wander',from_scene:inp.from_scene||null,from_title:inp.from_title||null,edge:inp.edge||null,...(inp.kind==='meet'?{with:inp.with||null,verb:inp.verb||null,with_scene:inp.with_scene||null}:{}),note:'automatic trip: recorded and shown as code, never a customer move, never changes the story'};
     const ks=keysOf(ev);if(ev.type!=='drift')ev.caused_by=box.events.filter(p=>p.type!=='consequence'&&p.type!=='drift'&&p.object_key===ev.object_key&&p.event_id!==ev.event_id).slice(-3).map(p=>p.event_id);
     box.events.push(ev);save();
-    if(ev.type==='drift'){if(ev.drift&&ev.drift.kind==='wander'&&Date.now()-lastDE<60000){ev.emit={status:'held',reason:'drift_throttle'};save();}else{if(ev.drift&&ev.drift.kind==='wander')lastDE=Date.now();emit(ev);}return ev;}
+    if(ev.type==='drift'){const dk=String(ev.object_key||ev.object_id||ev.label||(ev.source&&ev.source.cut)||'object').toLowerCase();const now=Date.now();const gap=4000;const last=driftSentAt[dk]||0;
+      if(ev.drift&&ev.drift.kind==='wander'&&now-lastDE<60000){ev.emit={status:'held',reason:'drift_throttle'};save();return ev;}
+      if(now-last<gap){if(driftPending[dk]&&driftPending[dk].ev)driftPending[dk].ev.emit={status:'held',reason:'drift_dropped'};ev.emit={status:'held',reason:'drift_coalesce'};driftPending[dk]={ev,at:now};save();return ev;}
+      if(ev.drift&&ev.drift.kind==='wander')lastDE=now;driftSentAt[dk]=now;delete driftPending[dk];emit(ev);return ev;}
     emit(ev);
     const n=box.events.filter(p=>p.type!=='consequence'&&p.type!=='drift'&&p.object_key===ev.object_key).length;
     show(`● ${ev.label||ev.object_key} ${ev.type==='setlocation'?'→ '+short(ev.place||''):'moved'} · saved${n>1?' · move '+n+' for '+ev.object_key:''}`);
