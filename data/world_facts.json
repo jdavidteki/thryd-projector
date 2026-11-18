@@ -1925,16 +1925,6 @@
 ],
 "bird": [
 {
-"id": "wf_e9f93206c7",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the lamp soot at the bird, and Taiwo reads the name twice.",
-"code": "kweshon.interactwith(bird){ bird.receives(kweshon.envelope); bird.remembers(bisola, 'brown envelope'); bird.tucks(kweshon, 'yaba bookshop receipt into the lamp soot'); }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "kweshon"
-},
-{
 "id": "wf_79cd81af0c",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the envelope corner at the bird, and Bisola reads the name twice.",
@@ -1953,6 +1943,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "mkdwo"
+},
+{
+"id": "wf_550b2c4bf1",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the envelope corner at the bird, and Bisola reads the name twice.",
+"code": "precision.interactwith(bird){ bird.receives(precision.envelope); … }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "precision"
 },
 {
 "id": "wt_c6ff1d186b",
@@ -8268,17 +8268,6 @@
 },
 "consequences": [
 {
-"id": "wf_ab62a79e69",
-"ts": "2026-11-18T13:52:25-0500",
-"a": "bow",
-"b": "sports_ball",
-"code": "bow.interactwith(sports_ball){ sports_ball.receives(bow.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the sports ball, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
 "id": "wf_e776d294dd",
 "ts": "2026-11-18T13:54:48-0500",
 "a": "b_md",
@@ -8706,6 +8695,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_550b2c4bf1",
+"ts": "2026-11-18T16:06:31-0500",
+"a": "precision",
+"b": "bird",
+"code": "precision.interactwith(bird){ bird.receives(precision.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the envelope corner at the bird, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -8809,5 +8809,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T16:01:16-0500"
+"updated": "2026-11-18T16:06:31-0500"
 }
