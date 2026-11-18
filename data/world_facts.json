@@ -2095,16 +2095,6 @@
 ],
 "laptop": [
 {
-"id": "wf_1cf900e32c",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the lamp soot at the laptop, and Taiwo reads the name twice.",
-"code": "namco.interactwith(laptop){ laptop.receives(namco.envelope); … }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "namco"
-},
-{
 "id": "wf_22ed36bfd5",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the lamp soot at the laptop, and Taiwo reads the name twice.",
@@ -2113,6 +2103,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "icsh"
+},
+{
+"id": "wf_5eff10a8aa",
+"kind": "consequence",
+"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the lamp soot at the laptop, and Taiwo reads the name twice.",
+"code": "example.interactwith(laptop){ laptop.receives(example.shirt); … }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j8",
+"other": "example"
 },
 {
 "id": "wt_00586a397c",
@@ -7824,31 +7824,21 @@
 "card": "j32",
 "other": null
 }
+],
+"product_manager": [
+{
+"id": "wf_c9b506bcd4",
+"kind": "consequence",
+"text": "The product manager leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "surulere_party_hall.interactwith(product_manager){ product_manager.receives(surulere_party_hall.envelope); product_manager.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "surulere_party_hall"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_399a69a972",
-"ts": "2026-11-18T11:53:57-0500",
-"a": "love",
-"b": "computer_village",
-"code": "love.interactwith(computer_village){ computer_village.receives(love.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the green shirt at the computer village, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
-"id": "wf_c1225207df",
-"ts": "2026-11-18T11:54:50-0500",
-"a": "seniorgehs",
-"b": "computer_village",
-"code": "seniorgehs.interactwith(computer_village){ computer_village.receives(seniorgehs.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the computer village, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
 {
 "id": "wf_48c726544c",
 "ts": "2026-11-18T11:58:28-0500",
@@ -8266,6 +8256,28 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_5eff10a8aa",
+"ts": "2026-11-18T14:01:48-0500",
+"a": "example",
+"b": "laptop",
+"code": "example.interactwith(laptop){ laptop.receives(example.shirt); … }",
+"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the lamp soot at the laptop, and Taiwo reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j8"
+},
+{
+"id": "wf_c9b506bcd4",
+"ts": "2026-11-18T14:02:41-0500",
+"a": "surulere_party_hall",
+"b": "product_manager",
+"code": "surulere_party_hall.interactwith(product_manager){ product_manager.receives(surulere_party_hall.envelope); product_manager.remembers(bisola, 'brown envelope'); }",
+"text": "The product manager leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -8369,5 +8381,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T13:55:40-0500"
+"updated": "2026-11-18T14:02:41-0500"
 }
