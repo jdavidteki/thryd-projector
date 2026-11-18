@@ -829,16 +829,6 @@
 ],
 "agbada": [
 {
-"id": "wf_690eb969bf",
-"kind": "consequence",
-"text": "A Truth note with Titi's name and 'egbe note' on it, turns up inside the brown envelope at the agbada, and Bisola reads the name twice.",
-"code": "truth.interactwith(agbada){ agbada.receives(truth.note); agbada.remembers(titi, 'egbe note'); agbada.tucks(truth, 'truth note into the brown envelope'); }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j4",
-"other": "truth"
-},
-{
 "id": "wf_12d8e471b2",
 "kind": "consequence",
 "text": "The agbada worn to the Ikorodu burial remembers the moment Titi pulled a second will out of her gele, next to the egbe note it already carried for her.",
@@ -877,6 +867,16 @@
 "run": "run-2eb42d",
 "card": "w4",
 "other": null
+},
+{
+"id": "wf_5b709e5424",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the agbada, which is still worn by a stranger haggler.",
+"code": "computer_village.interactwith(agbada){ agbada.receives(computer_village.envelope); agbada.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "computer_village"
 }
 ],
 "danfo_speaker": [
@@ -3787,6 +3787,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "agbada"
+},
+{
+"id": "wt_435d347b98",
+"kind": "func_call",
+"text": "Someone at the projector tapped the omo and called omo.fold(how=like:Manner) from j27, first seated in run-5a58c4 j27.",
+"code": "omo.fold('like');",
+"author": "projector",
+"run": "run-5a58c4",
+"card": "w27",
+"other": null
 }
 ],
 "truth": [
@@ -4519,6 +4529,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "red_white"
+},
+{
+"id": "wf_83a0173277",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the move, and Bisola reads the name twice.",
+"code": "teach.interactwith(move){ move.receives(teach.envelope); move.remembers(bisola, 'brown envelope'); move.tucks(teach, 'yaba bookshop receipt into the brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "teach"
 }
 ],
 "ayok_focus": [
@@ -6881,16 +6901,6 @@
 ],
 "mama_ronke": [
 {
-"id": "wf_4888599611",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the Mama Ronke, which is still present.",
-"code": "move.interactwith(mama_ronke){ mama_ronke.receives(move.envelope); mama_ronke.remembers(bisola, 'brown envelope'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "move"
-},
-{
 "id": "wf_69cab0fa75",
 "kind": "consequence",
 "text": "A Laptop note with Taiwo's name and 'lamp soot' on it, turns up with the Mama Ronke, which is still present.",
@@ -6919,6 +6929,16 @@
 "run": "run-2eb42d",
 "card": "j7",
 "other": "bird"
+},
+{
+"id": "wf_2b4f2d55f9",
+"kind": "consequence",
+"text": "A Sheep note with Kunle's name and 'scorched container number' on it, turns up with the Mama Ronke, which is still present.",
+"code": "twgs.interactwith(mama_ronke){ mama_ronke.receives(twgs.number); mama_ronke.remembers(kunle, 'scorched container number'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w7",
+"other": "twgs"
 },
 {
 "id": "wt_836e6dea8e",
@@ -7777,26 +7797,6 @@
 ],
 "cli": [
 {
-"id": "wt_079c7b7c34",
-"kind": "func_call",
-"text": "The customer typed d2() on run-2eb42d j32. It came back: d2(). Implementation: /* d2() */.",
-"code": "d2();",
-"author": "customer",
-"run": "run-2eb42d",
-"card": "j32",
-"other": null
-},
-{
-"id": "wt_ec76d8e75e",
-"kind": "func_call",
-"text": "The customer typed lyinnhhgggggg() on run-2eb42d j32. It came back: lyinnhhgggggg(). Implementation: /* lyinnhhgggggg() */.",
-"code": "lyinnhhgggggg();",
-"author": "customer",
-"run": "run-2eb42d",
-"card": "j32",
-"other": null
-},
-{
 "id": "wt_d01399c8ef",
 "kind": "func_call",
 "text": "The customer typed g2() on run-2eb42d j32. It came back: g2(). Implementation: /* g2() */.",
@@ -7821,6 +7821,26 @@
 "kind": "func_call",
 "text": "The customer typed jygu on run-2eb42d j32. It came back: jygu. Implementation: /* jygu */.",
 "code": "jygu;",
+"author": "customer",
+"run": "run-2eb42d",
+"card": "j32",
+"other": null
+},
+{
+"id": "wt_8f59a4f3d5",
+"kind": "func_call",
+"text": "The customer typed hello from tablet on run-2eb42d j32. It came back: hello from tablet. Implementation: /* hello from tablet */.",
+"code": "hello from tablet;",
+"author": "customer",
+"run": "run-2eb42d",
+"card": "j32",
+"other": null
+},
+{
+"id": "wt_6c20d71b51",
+"kind": "func_call",
+"text": "The customer typed sammmmyyyyy on run-2eb42d j32. It came back: sammmmyyyyy. Implementation: /* sammmmyyyyy */.",
+"code": "sammmmyyyyy;",
 "author": "customer",
 "run": "run-2eb42d",
 "card": "j32",
@@ -8165,39 +8185,6 @@
 ]
 },
 "consequences": [
-{
-"id": "wf_8db0c807af",
-"ts": "2026-11-18T12:17:10-0500",
-"a": "wser",
-"b": "computer_village",
-"code": "wser.interactwith(computer_village){ computer_village.receives(wser.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the computer village, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
-"id": "wf_22ed36bfd5",
-"ts": "2026-11-18T12:21:11-0500",
-"a": "icsh",
-"b": "laptop",
-"code": "icsh.interactwith(laptop){ laptop.receives(icsh.envelope); laptop.remembers(bisola, 'brown envelope'); laptop.tucks(icsh, 'yaba bookshop receipt into the lamp soot'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the lamp soot at the laptop, and Taiwo reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
-"id": "wf_b43ad30d24",
-"ts": "2026-11-18T12:23:48-0500",
-"a": "vex",
-"b": "imhf",
-"code": "vex.interactwith(imhf){ imhf.receives(vex.shirt); imhf.remembers(bisola, 'green shirt'); }",
-"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up with the danfo speaker, which is still playing the same love song.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j8"
-},
 {
 "id": "wf_d22d361b19",
 "ts": "2026-11-18T12:34:10-0500",
@@ -8604,6 +8591,39 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j7"
+},
+{
+"id": "wf_2b4f2d55f9",
+"ts": "2026-11-18T14:47:49-0500",
+"a": "twgs",
+"b": "mama_ronke",
+"code": "twgs.interactwith(mama_ronke){ mama_ronke.receives(twgs.number); mama_ronke.remembers(kunle, 'scorched container number'); }",
+"text": "A Sheep note with Kunle's name and 'scorched container number' on it, turns up with the Mama Ronke, which is still present.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w7"
+},
+{
+"id": "wf_83a0173277",
+"ts": "2026-11-18T14:48:41-0500",
+"a": "teach",
+"b": "move",
+"code": "teach.interactwith(move){ move.receives(teach.envelope); move.remembers(bisola, 'brown envelope'); move.tucks(teach, 'yaba bookshop receipt into the brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the move, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
+},
+{
+"id": "wf_5b709e5424",
+"ts": "2026-11-18T14:49:34-0500",
+"a": "computer_village",
+"b": "agbada",
+"code": "computer_village.interactwith(agbada){ agbada.receives(computer_village.envelope); agbada.remembers(bisola, 'brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the agbada, which is still worn by a stranger haggler.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -8707,5 +8727,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T14:43:42-0500"
+"updated": "2026-11-18T14:49:34-0500"
 }
