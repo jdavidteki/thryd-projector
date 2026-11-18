@@ -6901,6 +6901,16 @@
 "run": "run-2eb42d",
 "card": "j8",
 "other": "imhf"
+},
+{
+"id": "wf_8de965603f",
+"kind": "consequence",
+"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the green shirt at the b md, and Bisola reads the name twice.",
+"code": "vex.interactwith(b_md){ b_md.receives(vex.shirt); b_md.remembers(bisola, 'green shirt'); b_md.tucks(vex, 'ikeja laundromat receipt into the green shirt'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j8",
+"other": "vex"
 }
 ],
 "yuwa": [
@@ -9040,17 +9050,6 @@
 },
 "consequences": [
 {
-"id": "wf_02dd03d128",
-"ts": "2026-11-18T16:11:48-0500",
-"a": "precision",
-"b": "ojuelegba_bus_stop",
-"code": "precision.interactwith(ojuelegba_bus_stop){ ojuelegba_bus_stop.receives(precision.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the ojuelegba bus stop, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
 "id": "wf_aecb579ad3",
 "ts": "2026-11-18T16:14:26-0500",
 "a": "divine",
@@ -9478,6 +9477,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j2"
+},
+{
+"id": "wf_8de965603f",
+"ts": "2026-11-18T18:23:44-0500",
+"a": "vex",
+"b": "b_md",
+"code": "vex.interactwith(b_md){ b_md.receives(vex.shirt); b_md.remembers(bisola, 'green shirt'); b_md.tucks(vex, 'ikeja laundromat receipt into the green shirt'); }",
+"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the green shirt at the b md, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j8"
 }
 ],
 "memories": [
@@ -9581,5 +9591,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T18:22:50-0500"
+"updated": "2026-11-18T18:23:44-0500"
 }
