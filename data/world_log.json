@@ -7365,7 +7365,7 @@
   },
   "run-2eb42d": {
    "forked_from": "safe:9525b78aa7f3",
-   "head": "fa1f7a993a",
+   "head": "1cc4a179c2",
    "commits": [
     {
      "id": "b1965e97d1",
@@ -7392,7 +7392,7 @@
      }
     },
     {
-     "id": "83de4b611b",
+     "id": "9443a96c88",
      "parent": "b1965e97d1",
      "branch": "run-2eb42d",
      "job": "j2",
@@ -7416,16 +7416,24 @@
         "code": "ttb.interactwith(patagonia){ patagonia.receives(ttb.code); patagonia.remembers(ejiro, 'juju code'); }",
         "scope": null,
         "cause_id": null
+       },
+       {
+        "id": "wf_0d9bb31a93",
+        "object": "matches",
+        "kind": "consequence",
+        "code": "ttb.interactwith(matches){ matches.receives(ttb.code); matches.remembers(ejiro, 'juju code'); }",
+        "scope": null,
+        "cause_id": null
        }
       ],
-      "facts_total": 2,
+      "facts_total": 3,
       "functions": [],
       "instances": []
      }
     },
     {
-     "id": "5d317fdf09",
-     "parent": "83de4b611b",
+     "id": "d15e1b741d",
+     "parent": "9443a96c88",
      "branch": "run-2eb42d",
      "job": "j4",
      "at": "2026-11-18T00:05:32-0500",
@@ -7448,8 +7456,8 @@
      }
     },
     {
-     "id": "9315951941",
-     "parent": "5d317fdf09",
+     "id": "5aafef55b9",
+     "parent": "d15e1b741d",
      "branch": "run-2eb42d",
      "job": "j5",
      "at": "2026-11-17T23:43:44-0500",
@@ -7480,8 +7488,8 @@
      }
     },
     {
-     "id": "fe01ed9641",
-     "parent": "9315951941",
+     "id": "aa133bcd74",
+     "parent": "5aafef55b9",
      "branch": "run-2eb42d",
      "job": "j6",
      "at": "2026-11-17T23:40:13-0500",
@@ -7792,8 +7800,8 @@
      }
     },
     {
-     "id": "2470399304",
-     "parent": "fe01ed9641",
+     "id": "a5618bb0d9",
+     "parent": "aa133bcd74",
      "branch": "run-2eb42d",
      "job": "j7",
      "at": "2026-11-17T23:39:21-0500",
@@ -7840,8 +7848,8 @@
      }
     },
     {
-     "id": "5093211361",
-     "parent": "2470399304",
+     "id": "118cdc5d31",
+     "parent": "a5618bb0d9",
      "branch": "run-2eb42d",
      "job": "j8",
      "at": "2026-11-17T23:36:43-0500",
@@ -7872,8 +7880,8 @@
      }
     },
     {
-     "id": "93b272996b",
-     "parent": "5093211361",
+     "id": "391b97fa7d",
+     "parent": "118cdc5d31",
      "branch": "run-2eb42d",
      "job": "j16",
      "at": "2026-11-17T23:36:00-05:00",
@@ -7916,8 +7924,8 @@
      }
     },
     {
-     "id": "bd02357305",
-     "parent": "93b272996b",
+     "id": "8be3d6b200",
+     "parent": "391b97fa7d",
      "branch": "run-2eb42d",
      "job": "j17",
      "at": "2026-11-17T23:42:23-05:00",
@@ -7956,8 +7964,8 @@
      }
     },
     {
-     "id": "fa1f7a993a",
-     "parent": "bd02357305",
+     "id": "1cc4a179c2",
+     "parent": "8be3d6b200",
      "branch": "run-2eb42d",
      "job": "j29",
      "at": "2026-11-18T00:20:20-0500",
@@ -8419,9 +8427,9 @@
   "run-9e59ca": "59f544b8d8",
   "run-5a58c4": "a9b4c58b5b",
   "run-g1-B": "3542a65307",
-  "run-2eb42d": "fa1f7a993a",
+  "run-2eb42d": "1cc4a179c2",
   "run-cb805f": "8d23a93627"
  },
  "commits": 92,
- "updated": "2026-11-18T08:35:39-05:00"
+ "updated": "2026-11-18T08:36:32-05:00"
 }
