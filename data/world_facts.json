@@ -5870,16 +5870,6 @@
 ],
 "jetty_south_pointe": [
 {
-"id": "wf_449532c711",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the jetty south pointe, and Bisola reads the name twice.",
-"code": "wser.interactwith(jetty_south_pointe){ jetty_south_pointe.receives(wser.envelope); … }",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6",
-"other": "wser"
-},
-{
 "id": "wf_20af5c16d0",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the jetty south pointe, and Bisola reads the name twice.",
@@ -5918,6 +5908,16 @@
 "run": "run-5a58c4",
 "card": "j6",
 "other": "kmb"
+},
+{
+"id": "wf_da43c10364",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the jetty south pointe, and Bisola reads the name twice.",
+"code": "god.interactwith(jetty_south_pointe){ jetty_south_pointe.receives(god.envelope); … }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "god"
 }
 ],
 "plot": [
@@ -6653,64 +6653,57 @@
 "card": "j6",
 "other": "icsh"
 }
+],
+"mama_ronke": [
+{
+"id": "wf_5abcc396f0",
+"kind": "consequence",
+"text": "The mama ronke leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
+"code": "ttb.interactwith(mama_ronke){ mama_ronke.receives(ttb.code); mama_ronke.remembers(ejiro, 'juju code'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j2",
+"other": "ttb"
+}
+],
+"thryd": [
+{
+"id": "wf_4089b51d19",
+"kind": "consequence",
+"text": "The agbada ends up with the thryd, still worn by a stranger haggler.",
+"code": "agbada.interactwith(thryd){ agbada.db.copyto(thryd); thryd.keeps(agbada, 'agbada, still worn by a stranger haggler'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w4",
+"other": "agbada"
+}
+],
+"wiitbaw": [
+{
+"id": "wf_882de53ca5",
+"kind": "consequence",
+"text": "The wiitbaw leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "saturday_october.interactwith(wiitbaw){ wiitbaw.receives(saturday_october.envelope); wiitbaw.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "saturday_october"
+}
+],
+"listen": [
+{
+"id": "wf_b849852435",
+"kind": "consequence",
+"text": "The listen leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "bus.interactwith(listen){ listen.receives(bus.envelope); listen.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "bus"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_25e9fb2225",
-"ts": "2026-11-17T20:42:54-0500",
-"a": "saturday_october",
-"b": "map",
-"code": "saturday_october.interactwith(map){ map.receives(saturday_october.bead); map.remembers(bisola, 'blue glass bead'); }",
-"text": "The map leaves with a Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it.",
-"author": "cos",
-"run": "run-g1-B",
-"card": "j5"
-},
-{
-"id": "wf_b4f260e785",
-"ts": "2026-11-17T20:58:37-0500",
-"a": "saturday_october",
-"b": "mount_mercy",
-"code": "saturday_october.interactwith(mount_mercy){ mount_mercy.receives(saturday_october.bead); mount_mercy.remembers(bisola, 'blue glass bead'); }",
-"text": "The mount mercy leaves with a Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it.",
-"author": "cos",
-"run": "run-g1-B",
-"card": "j5"
-},
-{
-"id": "wf_12910e51d7",
-"ts": "2026-11-17T21:18:32-0500",
-"a": "saturday_october",
-"b": "ikeja",
-"code": "saturday_october.interactwith(ikeja){ ikeja.receives(saturday_october.bead); ikeja.remembers(bisola, 'blue glass bead'); }",
-"text": "The ikeja leaves with a Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it.",
-"author": "cos",
-"run": "run-g1-B",
-"card": "j5"
-},
-{
-"id": "wf_6712b4dc38",
-"ts": "2026-11-17T21:19:24-0500",
-"a": "mount_mercy",
-"b": "surulere",
-"code": "mount_mercy.interactwith(surulere){ surulere.receives(mount_mercy.bead); surulere.remembers(bisola, 'blue glass bead'); }",
-"text": "The surulere leaves with a Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it.",
-"author": "cos",
-"run": "run-g1-B",
-"card": "j5"
-},
-{
-"id": "wf_382542201b",
-"ts": "2026-11-17T21:20:17-0500",
-"a": "danfo_speaker",
-"b": "against_all_odds",
-"code": "danfo_speaker.interactwith(against_all_odds){ danfo_speaker.db.copyto(against_all_odds); … }",
-"text": "The danfo speaker ends up with the against all odds, still playing the same love song.",
-"author": "cos",
-"run": "run-g1-B",
-"card": "w5"
-},
 {
 "id": "wf_76f51c5366",
 "ts": "2026-11-17T21:30:26-0500",
@@ -7095,6 +7088,61 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_5abcc396f0",
+"ts": "2026-11-18T00:02:55-0500",
+"a": "ttb",
+"b": "mama_ronke",
+"code": "ttb.interactwith(mama_ronke){ mama_ronke.receives(ttb.code); mama_ronke.remembers(ejiro, 'juju code'); }",
+"text": "The mama ronke leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j2"
+},
+{
+"id": "wf_da43c10364",
+"ts": "2026-11-18T00:03:48-0500",
+"a": "god",
+"b": "jetty_south_pointe",
+"code": "god.interactwith(jetty_south_pointe){ jetty_south_pointe.receives(god.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the jetty south pointe, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
+},
+{
+"id": "wf_4089b51d19",
+"ts": "2026-11-18T00:05:32-0500",
+"a": "agbada",
+"b": "thryd",
+"code": "agbada.interactwith(thryd){ agbada.db.copyto(thryd); thryd.keeps(agbada, 'agbada, still worn by a stranger haggler'); }",
+"text": "The agbada ends up with the thryd, still worn by a stranger haggler.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w4"
+},
+{
+"id": "wf_882de53ca5",
+"ts": "2026-11-18T00:06:24-0500",
+"a": "saturday_october",
+"b": "wiitbaw",
+"code": "saturday_october.interactwith(wiitbaw){ wiitbaw.receives(saturday_october.envelope); wiitbaw.remembers(bisola, 'brown envelope'); }",
+"text": "The wiitbaw leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
+},
+{
+"id": "wf_b849852435",
+"ts": "2026-11-18T00:07:17-0500",
+"a": "bus",
+"b": "listen",
+"code": "bus.interactwith(listen){ listen.receives(bus.envelope); listen.remembers(bisola, 'brown envelope'); }",
+"text": "The listen leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -7198,5 +7246,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T00:01:10-0500"
+"updated": "2026-11-18T00:07:17-0500"
 }
