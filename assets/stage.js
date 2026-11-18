@@ -78,8 +78,10 @@
   // looked pinned). A brand-new view still comes on at once; the rest still return far sooner than a Medium cut (one per deck cycle).
   const LIVE_COOL_MS = (PHONE ? 120 : 150) * 1000;
   S.LIVE_DWELL_K = LIVE_DWELL_K; S.LIVE_POLL_MS = LIVE_POLL_MS; S.LIVE_KEEP = LIVE_KEEP;
-  // live-view cutouts (Jesuye 14 Nov 2026 9:05 AM ET "cut them as they come"): a view with a pack (tools/cut_live_views.py, same
-  // per-frame mask pack as the Medium cuts) comes on as animated cutouts over its own faded plate; no pack yet = the whole frame.
+  // live-view cutouts (Jesuye 14 Nov 2026 9:05 AM ET "cut them as they come"; 17 Nov 9:18 PM ET "i see an uncut liveview"):
+  // a view with a pack (tools/cut_live_views.py, same per-frame mask pack as the Medium cuts) comes on as animated cutouts
+  // only. The stage never mounts the raw GIF — not as a .gcut, not as a .gbg plate, and not as a cut-load fallback.
+  // If the cut is not ready or fails, this view is skipped (the last cut view of the agenda can stay).
   // fresh plates (9:08 AM ET "less blurry and faded ... so customers can tell where they are"): the current agenda's newest 1–3
   // live views get a sharper, stronger plate. Normal plates: alpha 0.34, solid to 45% of the oval, drawn at 0.7× (phone 0.55×) of
   // the group scale then stretched ~2.2–2.6× (the soft look). Fresh: alpha 0.80, solid to 70%, drawn at 2.8× (phone 2.2×), i.e. ~4×
@@ -393,7 +395,7 @@
     let est = objs.reduce((n, x) => n + Math.ceil(x.U.w * s) * Math.ceil(x.U.h * s) * 4, 0) * nf;
     if(est > PG_MAX){ s *= Math.sqrt(PG_MAX / est); est = PG_MAX; }
     if(S.bytes + est > BUDGET) throw new Error('budget');
-    const wantBg = lo.live ? true : Math.random() < BG_P;
+    const wantBg = lo.live ? false : Math.random() < BG_P; // live views: cutouts only, never the uncut frame as a plate
     const BGL = lo.fresh ? BG_FRESH : BG_NORMAL;
     const animated0 = plan.kind === 'gif';
     if(!WK.off){ // the worker also fetches the file itself (HTTP cache), so multi-MB GIF bytes never pass through the page thread
@@ -474,7 +476,7 @@
     if(newest) clearRect(pos.gx, pos.gy, L.Dw, L.Dh, row.medium_image_id);
     const g = {mid: row.medium_image_id, row, kind: L.kind, x: pos.gx, y: pos.gy, w: L.Dw, h: L.Dh, k: L.k, fw: L.fw, fh: L.fh,
       title: row.title || titleOf(row.medium_image_id), agenda: !!row.agenda, live: !!row.live_view, run: row.run || null, card: row.card || null, born: Date.now(), life: (PHONE ? R(30, 50) : R(35, 70)) * 1000 * (row.live_view ? LIVE_DWELL_K : 1), cuts: [], gone: false, offSince: 0, sha: row.source_sha256 || '', ver: row.pack_version || '1', place: row.place || null, fresh: !!(L.fresh || row.fresh), newest};
-    if(L.bg){
+    if(L.bg && !row.live_view){
       const c = document.createElement('canvas'); c.className = 'gbg' + (L.bgMask ? ' gm' : '') + (L.bgMask && g.fresh ? ' gfresh' : ''); c.width = L.bg.width; c.height = L.bg.height;
       c.getContext('2d').drawImage(L.bg, 0, 0); L.bg.close && L.bg.close();
       const E = PHONE ? 0.22 : 0.28; // the faded frame reaches well past the group, so neighbouring stories meet instead of black gaps
@@ -482,31 +484,18 @@
       bgs.appendChild(c); g.bgEl = c; S.bytes += c.width * c.height * 4; g.bgBytes = c.width * c.height * 4;
       g.bx = 0; g.by = 0; g.bvx = 0; g.bvy = 0; bgRetarget(g, performance.now());
       setTimeout(()=> c.classList.add('on'), 60);
-    } else if(L.kind === 'live_view' && row.url){
-      const c = document.createElement('img'); c.className = 'gbg glive' + (g.fresh ? ' gfresh' : ''); c.alt = ''; c.draggable = false; c.src = row.url;
-      const E = PHONE ? 0.22 : 0.28;
-      Object.assign(c.style, {left: (g.x - g.w * E) + 'px', top: (g.y - g.h * E) + 'px', width: (g.w * (1 + 2 * E)) + 'px', height: (g.h * (1 + 2 * E)) + 'px', zIndex: newest ? '70' : ''});
-      bgs.appendChild(c); g.bgEl = c; g.bgBytes = 0;
-      g.bx = 0; g.by = 0; g.bvx = 0; g.bvy = 0; bgRetarget(g, performance.now());
-      setTimeout(()=> c.classList.add('on'), 60);
-    }
+    } else if(L.bg){ try{ L.bg.close && L.bg.close(); }catch(e){} }
     if(g.title){ const t = document.createElement('div'); t.className = 'gtag'; t.textContent = String(g.title).slice(0, 60); Object.assign(t.style, {left: (g.x + g.w / 2) + 'px', top: (g.y + g.h + 6) + 'px'}); cutsL.appendChild(t); g.tag = t;
       setTimeout(()=> t.classList.add('on'), 2500); setTimeout(()=> t.classList.remove('on'), 11000); }
     // directions (11-12 11:41 PM): each story walks in along a random heading from any edge or corner (no left-to-right bias)
     const ang = g.inAng = Math.random() * Math.PI * 2;
     L.objs.forEach((x, j) => {
-      const fr = L.frames[j] || []; const isLive = L.kind === 'live_view';
-      if(!isLive && !fr.length) return;
-      let c, ctx = null;
-      if(isLive){
-        c = (j === 0 && L.img) ? L.img : document.createElement('img');
-        if(c !== L.img) c.src = (L.img && L.img.src) || row.url;
-        c.className = 'gcut' + (RM ? '' : ' fl'); c.alt = ''; c.draggable = false;
-      } else {
-        c = document.createElement('canvas'); c.className = 'gcut' + (RM ? '' : ' fl'); c.width = fr[0].width; c.height = fr[0].height;
-        ctx = c.getContext('2d'); ctx.drawImage(fr[0], 0, 0);
-      }
-      const cut = {ctx, sid: x.o.state_id || null, g, home: g, el: c, frames: isLive ? [] : fr, label: x.o.label || ('cut' + (x.k + 1)), klass: x.o.model_class || x.o.label || null, i: x.k, U: x.U,
+      const fr = L.frames[j] || [];
+      if(L.kind === 'live_view') return; // never mount the raw GIF as a cut; only masked canvas frames from a cut pack
+      if(!fr.length) return;
+      const c = document.createElement('canvas'); c.className = 'gcut' + (RM ? '' : ' fl'); c.width = fr[0].width; c.height = fr[0].height;
+      const ctx = c.getContext('2d'); ctx.drawImage(fr[0], 0, 0);
+      const cut = {ctx, sid: x.o.state_id || null, g, home: g, el: c, frames: fr, label: x.o.label || ('cut' + (x.k + 1)), klass: x.o.model_class || x.o.label || null, i: x.k, U: x.U,
         w: x.U.w * g.k, h: x.U.h * g.k, hx: g.x + x.U.x * g.k, hy: g.y + x.U.y * g.k, entering: true, bytes: isLive ? 0 : bytesOf(fr), area: (x.U.w * x.U.h) / (g.fw * g.fh)};
       cut.left = cut.hx; cut.top = cut.hy;
       Object.assign(c.style, {left: cut.left + 'px', top: cut.top + 'px', width: cut.w + 'px', height: cut.h + 'px', zIndex: String((newest ? 80 : 10) + Math.round(x.U.y + x.U.h))});
@@ -853,6 +842,12 @@
   function isNewestId(id){ const n = newestLive(); return !!(id && n && liveId(n) === id); }
   function isNewestGroup(g){ return !!(g && g.live && isNewestId(g.mid)); }
   function evictable(g){ return !!(g && !g.gone && !g.map && !g.cuts.some(c => c.dragging) && !isNewestGroup(g)); }
+  function hasCut(v){
+    const c = v && v.cut;
+    if(!c || !c.pack || !/^assets\/live_views\/[^?#]+\.cut\.json$/.test(String(c.pack))) return false;
+    if(c.objects != null && !(c.objects > 0)) return false;
+    return true;
+  }
   function liveOk(v){
     if(!v || !v.url || !v.card) return false;
     const card = String(v.card), url = String(v.url);
@@ -862,8 +857,8 @@
   }
   function recentLive(n){
     const run = LV.activeRun;
-    let pool = LV.list.filter(v => run && v.run === run);
-    if(!pool.length) pool = LV.list.slice();
+    let pool = LV.list.filter(v => run && v.run === run && hasCut(v));
+    if(!pool.length) pool = LV.list.filter(hasCut);
     return pool.slice().sort((a, b) => (b.mtime || 0) - (a.mtime || 0)).slice(0, n || LIVE_KEEP);
   }
   function liveOn(id){
@@ -878,7 +873,7 @@
     }
   }
   function enqueueLive(v, front){
-    if(!v || !liveOk(v)) return;
+    if(!v || !liveOk(v) || !hasCut(v)) return;
     const id = liveId(v); v.id = id;
     if(isNewestId(id) && S.bad.has(id)) S.bad.ok(id);
     if(liveOn(id) || (S.bad.has(id) && !isNewestId(id))) return;
@@ -925,36 +920,18 @@
   }
   const isFresh = v => recentLive(LIVE_KEEP).some(x => liveId(x) === liveId(v));
   function loadLiveView(v){
-    const fresh = isFresh(v);
-    if(v && v.cut && v.cut.pack && !S.badCut.has(liveId(v)))
-      return loadLiveCut(v, fresh).catch(e => { S.badCut.add(liveId(v)); note('live cut fallback', liveId(v), String(e && e.message || e)); return loadLiveFrame(v, fresh); });
-    return loadLiveFrame(v, fresh);
+    if(!hasCut(v)) return Promise.reject(new Error('no_cut'));
+    return loadLiveCut(v, isFresh(v));
   }
   S.badCut = new Set();
   function loadLiveFrame(v, fresh){
-    return new Promise((ok, no) => {
-      const img = new Image();
-      img.decoding = 'async';
-      img.onload = () => {
-        const fw = img.naturalWidth || img.width, fh = img.naturalHeight || img.height;
-        if(!fw || !fh) return no(new Error('live_view_size'));
-        const newest = isNewestId(liveId(v));
-        let Dh = vh() * (newest ? (PHONE ? 0.44 : 0.52) : (PHONE ? R(0.28, 0.42) : R(0.32, 0.50))), k = Dh / fh;
-        const wmax = newest ? (PHONE ? 0.86 : 0.72) : (PHONE ? 0.72 : 0.55);
-        if(fw * k > vw() * wmax) k = vw() * wmax / fw;
-        Dh = fh * k; const Dw = fw * k;
-        const U = {x: 0, y: 0, w: fw, h: fh};
-        const row = {medium_image_id: liveId(v), title: v.title || ((v.card || '') + ' · ' + (v.run || '')), agenda: false, live_view: true, run: v.run, card: v.card, url: v.url, mtime: v.mtime, place: v.place || null, fresh: !!fresh, newest: isNewestId(liveId(v))};
-        const L = {plan: {}, fw, fh, k, Dw, Dh, s: 1, objs: [{o: {label: v.card || 'view', model_class: 'live_view', state_id: null}, k: 0, U}], frames: [[]], delays: [0], bg: null, animated: true, kind: 'live_view', img, newest: !!row.newest};
-        ok({row, L});
-      };
-      img.onerror = () => no(new Error('live_view_fetch'));
-      img.src = v.url;
-    });
+    // removed 17 Nov 9:18 PM ET: never present the raw rectangle GIF. Callers must use loadLiveCut only.
+    return Promise.reject(new Error('no_raw_live_frame'));
   }
   async function spawnLive(v){
     const id = liveId(v);
     if(!id || liveOn(id)) return false;
+    if(!hasCut(v)){ note('live view skip', id, 'no_cut'); return false; }
     if(S.bad.has(id) && !isNewestId(id)) return false;
     if(S.loading >= INFLIGHT){ enqueueLive(v, true); return false; }
     S.loading++;
