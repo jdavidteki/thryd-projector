@@ -127,10 +127,10 @@
    "methods": [
     "call",
     "line",
-    "teach"
+    "setmany"
    ],
-   "instances": 4,
-   "arg_instances": 4,
+   "instances": 5,
+   "arg_instances": 5,
    "parent": "Thing",
    "chain": [
     "Quantity",
@@ -3028,6 +3028,22 @@
     "run-345b3d"
    ],
    "tweets": []
+  },
+  "many": {
+   "class": "Quantity",
+   "cue": "word",
+   "first_run": "run-2eb42d",
+   "first_job": "j17",
+   "source": "pick",
+   "runs": [
+    "run-2eb42d"
+   ],
+   "tweets": [
+    {
+     "text": "-- many pepu! many many",
+     "year": "2025"
+    }
+   ]
   },
   "marisol": {
    "class": "Person",
@@ -6411,6 +6427,12 @@
     "pick"
    ],
    [
+    "many",
+    "Quantity",
+    "j17",
+    "pick"
+   ],
+   [
     "currentaffairs",
     "Thing",
     null,
@@ -9210,7 +9232,9 @@
   "adaora.cap": "cap(what: Thing)",
   "kunle.walk": "walk(what: Thing)",
   "nobody.bring": "bring(what: Thing)",
-  "oyinboman.know": "know(what: Thing)"
+  "oyinboman.know": "know(what: Thing)",
+  "pepu.setmany": "setMany(amount: Quantity)",
+  "yorubbbygehinny.getagenda": "getAgenda()"
  },
  "parent": {
   "Person": "Thing",
@@ -9439,7 +9463,9 @@
    "mamaronke",
    "nobody",
    "oyinboman",
-   "ronke"
+   "pepu",
+   "ronke",
+   "yorubbbygehinny"
   ],
   "run-3a15d2": [
    "dapo"
@@ -9623,5 +9649,5 @@
   "epilogue": "quiet",
   "coda": "quiet"
  },
- "updated": "2026-11-17T23:36:45-05:00"
+ "updated": "2026-11-17T23:42:51-05:00"
 }

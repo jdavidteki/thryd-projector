@@ -5356,16 +5356,6 @@
 ],
 "miami": [
 {
-"id": "wf_1c8481279d",
-"kind": "consequence",
-"text": "A Bird note with Bisola's name and 'envelope corner' on it, turns up beside the phone at the miami.",
-"code": "bird.interactwith(miami){ miami.receives(bird.corner); miami.remembers(bisola, 'envelope corner'); }",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j7",
-"other": "bird"
-},
-{
 "id": "wf_96726c9d11",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up beside the phone at the miami.",
@@ -5404,6 +5394,16 @@
 "run": "run-2eb42d",
 "card": "j8",
 "other": "ronke"
+},
+{
+"id": "wf_f6015d5c1f",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up beside the phone at the miami.",
+"code": "love.interactwith(miami){ miami.receives(love.envelope); miami.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "love"
 }
 ],
 "teo": [
@@ -6585,17 +6585,6 @@
 },
 "consequences": [
 {
-"id": "wf_f4e2224620",
-"ts": "2026-11-17T19:18:42-0500",
-"a": "saturday_october",
-"b": "oven",
-"code": "saturday_october.interactwith(oven){ oven.receives(saturday_october.bead); oven.remembers(bisola, 'blue glass bead'); }",
-"text": "The oven leaves with a Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it.",
-"author": "cos",
-"run": "run-g1-B",
-"card": "j5"
-},
-{
 "id": "wf_a9bc731273",
 "ts": "2026-11-17T19:33:57-0500",
 "a": "saturday_october",
@@ -7023,6 +7012,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_f6015d5c1f",
+"ts": "2026-11-17T23:42:50-0500",
+"a": "love",
+"b": "miami",
+"code": "love.interactwith(miami){ miami.receives(love.envelope); miami.remembers(bisola, 'brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up beside the phone at the miami.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -7126,5 +7126,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T23:41:05-0500"
+"updated": "2026-11-17T23:42:50-0500"
 }

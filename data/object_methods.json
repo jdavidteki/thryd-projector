@@ -6570,6 +6570,164 @@
    ],
    "faded": false,
    "last_run": "run-2eb42d"
+  },
+  "pepu.setmany": {
+   "object": "pepu",
+   "method": "setMany",
+   "args": [
+    "many"
+   ],
+   "runs": [
+    "run-2eb42d"
+   ],
+   "defined": {
+    "run": "run-2eb42d",
+    "job": "j17",
+    "card": "w17",
+    "title": "pepu.setMany(many)",
+    "emoji": "📹",
+    "at": "2026-11-17T23:42:23-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "pepu.setMany(many)",
+     "emoji": "📹",
+     "arg": "many",
+     "run": "run-2eb42d",
+     "job": "j17",
+     "tweets": [
+      {
+       "text": "-- many pepu! many many",
+       "year": "2025"
+      },
+      {
+       "text": "#seniorboys[[ng]] - shall prevail!",
+       "year": "2025"
+      },
+      {
+       "text": "[[jnoel]] + [[itshtt]] - we got anadawan!",
+       "year": "2025"
+      }
+     ],
+     "consequence": "9:54pm, at the Ojuelegba bus stop down the road.",
+     "consequence_job": "j18",
+     "resolved": "pepu.setMany(amount=many:Quantity) from j17",
+     "injected": [
+      {
+       "param": "amount",
+       "class": "Quantity",
+       "instance": "many",
+       "from_run": "run-2eb42d",
+       "from_job": "j17",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "sig": {
+    "params": [
+     {
+      "name": "amount",
+      "class": "Quantity",
+      "default": "many",
+      "first_run": "run-2eb42d",
+      "first_job": "j17"
+     }
+    ],
+    "text": "setMany(amount: Quantity)"
+   },
+   "receiver_class": "Thing",
+   "prior": [
+    {
+     "id": "teo.say",
+     "title": "teo.say(else)",
+     "run": "run-5a58c4",
+     "job": "j31",
+     "at": "2026-11-17T15:19:01-05:00",
+     "why": "same verb family (say)"
+    },
+    {
+     "id": "road.air",
+     "title": "road.air(shu)",
+     "run": "run-5a58c4",
+     "job": "j26",
+     "at": "2026-11-17T11:07:01-05:00",
+     "why": "same verb family (say)"
+    },
+    {
+     "id": "code.say",
+     "title": "code.say(accuracy)",
+     "run": "run-5a58c4",
+     "job": "j25",
+     "at": "2026-11-17T10:35:56-05:00",
+     "why": "same verb family (say)"
+    },
+    {
+     "id": "laff.made",
+     "title": "laff.made(sugar)",
+     "run": "run-5a58c4",
+     "job": "j25",
+     "at": "2026-11-17T10:35:56-05:00",
+     "why": "same verb family (say)"
+    }
+   ],
+   "faded": false,
+   "last_run": null
+  },
+  "yorubbbygehinny.getagenda": {
+   "object": "yorubbbygehinny",
+   "method": "getAgenda",
+   "args": [
+    ""
+   ],
+   "runs": [
+    "run-2eb42d"
+   ],
+   "defined": {
+    "run": "run-2eb42d",
+    "job": "j17",
+    "card": "w17",
+    "title": "yorubbbygehinny.getAgenda()",
+    "emoji": "👣",
+    "at": "2026-11-17T23:42:23-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "yorubbbygehinny.getAgenda()",
+     "emoji": "👣",
+     "arg": "",
+     "run": "run-2eb42d",
+     "job": "j17",
+     "tweets": [
+      {
+       "text": "#yorubbbygehinny - looking like an agenda",
+       "year": "2024"
+      },
+      {
+       "text": "- one more post and i'm saying something",
+       "year": "2024"
+      },
+      {
+       "text": "- she looked at [[mi]]; are you the one? 😢",
+       "year": "2024"
+      }
+     ],
+     "consequence": "9:54pm, at the Ojuelegba bus stop down the road.",
+     "consequence_job": "j18",
+     "resolved": "yorubbbygehinny.getAgenda()",
+     "injected": []
+    }
+   ],
+   "sig": {
+    "params": [],
+    "text": "getAgenda()"
+   },
+   "receiver_class": "Person",
+   "prior": [],
+   "faded": false,
+   "last_run": null
   }
  },
  "objects": {
@@ -6746,6 +6904,9 @@
   "pepe": [
    "pepe.settink"
   ],
+  "pepu": [
+   "pepu.setmany"
+  ],
   "real": [
    "real.tune"
   ],
@@ -6853,6 +7014,9 @@
   ],
   "wife": [
    "wife.kill"
+  ],
+  "yorubbbygehinny": [
+   "yorubbbygehinny.getagenda"
   ]
  },
  "inherit": {
@@ -6861,6 +7025,8 @@
     "scope": "run",
     "from": "run-2eb42d",
     "funcs": [
+     "yorubbbygehinny.getagenda",
+     "pepu.setmany",
      "oyinboman.know",
      "nobody.bring"
     ]
@@ -6871,6 +7037,8 @@
     "scope": "run",
     "from": "run-2eb42d",
     "funcs": [
+     "yorubbbygehinny.getagenda",
+     "pepu.setmany",
      "oyinboman.know",
      "nobody.bring"
     ]
@@ -6881,6 +7049,8 @@
     "scope": "run",
     "from": "run-2eb42d",
     "funcs": [
+     "yorubbbygehinny.getagenda",
+     "pepu.setmany",
      "oyinboman.know",
      "nobody.bring"
     ]
@@ -6891,6 +7061,8 @@
     "scope": "run",
     "from": "run-2eb42d",
     "funcs": [
+     "yorubbbygehinny.getagenda",
+     "pepu.setmany",
      "oyinboman.know",
      "nobody.bring"
     ]
@@ -6931,6 +7103,8 @@
     "scope": "run",
     "from": "run-2eb42d",
     "funcs": [
+     "yorubbbygehinny.getagenda",
+     "pepu.setmany",
      "oyinboman.know",
      "nobody.bring"
     ]
@@ -6941,6 +7115,8 @@
     "scope": "run",
     "from": "run-2eb42d",
     "funcs": [
+     "yorubbbygehinny.getagenda",
+     "pepu.setmany",
      "oyinboman.know",
      "nobody.bring"
     ]
@@ -7048,6 +7224,8 @@
     "scope": "run",
     "from": "run-2eb42d",
     "funcs": [
+     "yorubbbygehinny.getagenda",
+     "pepu.setmany",
      "oyinboman.know",
      "nobody.bring"
     ]
@@ -7058,6 +7236,8 @@
     "scope": "run",
     "from": "run-2eb42d",
     "funcs": [
+     "yorubbbygehinny.getagenda",
+     "pepu.setmany",
      "oyinboman.know",
      "nobody.bring"
     ]
@@ -7068,6 +7248,8 @@
     "scope": "run",
     "from": "run-2eb42d",
     "funcs": [
+     "yorubbbygehinny.getagenda",
+     "pepu.setmany",
      "oyinboman.know",
      "nobody.bring"
     ]
@@ -7078,6 +7260,8 @@
     "scope": "run",
     "from": "run-2eb42d",
     "funcs": [
+     "yorubbbygehinny.getagenda",
+     "pepu.setmany",
      "oyinboman.know",
      "nobody.bring"
     ]
@@ -7088,6 +7272,8 @@
     "scope": "run",
     "from": "run-2eb42d",
     "funcs": [
+     "yorubbbygehinny.getagenda",
+     "pepu.setmany",
      "oyinboman.know",
      "nobody.bring"
     ]
@@ -7098,6 +7284,8 @@
     "scope": "run",
     "from": "run-2eb42d",
     "funcs": [
+     "yorubbbygehinny.getagenda",
+     "pepu.setmany",
      "oyinboman.know",
      "nobody.bring"
     ]
@@ -7178,6 +7366,8 @@
     "scope": "run",
     "from": "run-2eb42d",
     "funcs": [
+     "yorubbbygehinny.getagenda",
+     "pepu.setmany",
      "oyinboman.know",
      "nobody.bring"
     ]
@@ -8042,11 +8232,23 @@
     ]
    }
   ],
+  "buy_world_subject": [
+   {
+    "scope": "safe",
+    "from": "b0662e4cd34a",
+    "title": "614. main",
+    "funcs": [
+     "pepu.setmany"
+    ]
+   }
+  ],
   "c5": [
    {
     "scope": "run",
     "from": "run-2eb42d",
     "funcs": [
+     "yorubbbygehinny.getagenda",
+     "pepu.setmany",
      "oyinboman.know",
      "nobody.bring"
     ]
@@ -8057,6 +8259,8 @@
     "scope": "run",
     "from": "run-2eb42d",
     "funcs": [
+     "yorubbbygehinny.getagenda",
+     "pepu.setmany",
      "oyinboman.know",
      "nobody.bring"
     ]
@@ -8067,6 +8271,8 @@
     "scope": "run",
     "from": "run-2eb42d",
     "funcs": [
+     "yorubbbygehinny.getagenda",
+     "pepu.setmany",
      "oyinboman.know",
      "nobody.bring"
     ]
@@ -8314,6 +8520,8 @@
     "scope": "run",
     "from": "run-2eb42d",
     "funcs": [
+     "yorubbbygehinny.getagenda",
+     "pepu.setmany",
      "oyinboman.know",
      "nobody.bring"
     ]
@@ -8324,6 +8532,8 @@
     "scope": "run",
     "from": "run-2eb42d",
     "funcs": [
+     "yorubbbygehinny.getagenda",
+     "pepu.setmany",
      "oyinboman.know",
      "nobody.bring"
     ]
@@ -8334,6 +8544,8 @@
     "scope": "run",
     "from": "run-2eb42d",
     "funcs": [
+     "yorubbbygehinny.getagenda",
+     "pepu.setmany",
      "oyinboman.know",
      "nobody.bring"
     ]
@@ -8344,6 +8556,8 @@
     "scope": "run",
     "from": "run-2eb42d",
     "funcs": [
+     "yorubbbygehinny.getagenda",
+     "pepu.setmany",
      "oyinboman.know",
      "nobody.bring"
     ]
@@ -8354,6 +8568,8 @@
     "scope": "run",
     "from": "run-2eb42d",
     "funcs": [
+     "yorubbbygehinny.getagenda",
+     "pepu.setmany",
      "oyinboman.know",
      "nobody.bring"
     ]
@@ -8364,6 +8580,8 @@
     "scope": "run",
     "from": "run-2eb42d",
     "funcs": [
+     "yorubbbygehinny.getagenda",
+     "pepu.setmany",
      "oyinboman.know",
      "nobody.bring"
     ]
@@ -8374,6 +8592,8 @@
     "scope": "run",
     "from": "run-2eb42d",
     "funcs": [
+     "yorubbbygehinny.getagenda",
+     "pepu.setmany",
      "oyinboman.know",
      "nobody.bring"
     ]
@@ -8440,6 +8660,8 @@
     "scope": "run",
     "from": "run-2eb42d",
     "funcs": [
+     "yorubbbygehinny.getagenda",
+     "pepu.setmany",
      "oyinboman.know",
      "nobody.bring"
     ]
@@ -8450,6 +8672,8 @@
     "scope": "run",
     "from": "run-2eb42d",
     "funcs": [
+     "yorubbbygehinny.getagenda",
+     "pepu.setmany",
      "oyinboman.know",
      "nobody.bring"
     ]
@@ -8460,6 +8684,8 @@
     "scope": "run",
     "from": "run-2eb42d",
     "funcs": [
+     "yorubbbygehinny.getagenda",
+     "pepu.setmany",
      "oyinboman.know",
      "nobody.bring"
     ]
@@ -8470,6 +8696,8 @@
     "scope": "run",
     "from": "run-2eb42d",
     "funcs": [
+     "yorubbbygehinny.getagenda",
+     "pepu.setmany",
      "oyinboman.know",
      "nobody.bring"
     ]
@@ -8621,6 +8849,8 @@
     "scope": "run",
     "from": "run-2eb42d",
     "funcs": [
+     "yorubbbygehinny.getagenda",
+     "pepu.setmany",
      "oyinboman.know",
      "nobody.bring"
     ]
@@ -8720,6 +8950,8 @@
     "scope": "run",
     "from": "run-2eb42d",
     "funcs": [
+     "yorubbbygehinny.getagenda",
+     "pepu.setmany",
      "oyinboman.know",
      "nobody.bring"
     ]
@@ -9944,6 +10176,8 @@
     "scope": "run",
     "from": "run-2eb42d",
     "funcs": [
+     "yorubbbygehinny.getagenda",
+     "pepu.setmany",
      "oyinboman.know",
      "nobody.bring"
     ]
@@ -9954,6 +10188,8 @@
     "scope": "run",
     "from": "run-2eb42d",
     "funcs": [
+     "yorubbbygehinny.getagenda",
+     "pepu.setmany",
      "oyinboman.know",
      "nobody.bring"
     ]
@@ -10021,6 +10257,8 @@
     "scope": "run",
     "from": "run-2eb42d",
     "funcs": [
+     "yorubbbygehinny.getagenda",
+     "pepu.setmany",
      "oyinboman.know",
      "nobody.bring"
     ]
@@ -10581,6 +10819,8 @@
     "scope": "run",
     "from": "run-2eb42d",
     "funcs": [
+     "yorubbbygehinny.getagenda",
+     "pepu.setmany",
      "oyinboman.know",
      "nobody.bring"
     ]
@@ -10596,11 +10836,23 @@
     ]
    }
   ],
+  "kamala_didnt_won_figure": [
+   {
+    "scope": "safe",
+    "from": "ef623c79ddb7",
+    "title": "1106. kamala didn’t won o",
+    "funcs": [
+     "yorubbbygehinny.getagenda"
+    ]
+   }
+  ],
   "kazeem": [
    {
     "scope": "run",
     "from": "run-2eb42d",
     "funcs": [
+     "yorubbbygehinny.getagenda",
+     "pepu.setmany",
      "oyinboman.know",
      "nobody.bring"
     ]
@@ -10611,6 +10863,8 @@
     "scope": "run",
     "from": "run-2eb42d",
     "funcs": [
+     "yorubbbygehinny.getagenda",
+     "pepu.setmany",
      "oyinboman.know",
      "nobody.bring"
     ]
@@ -10670,6 +10924,8 @@
     "scope": "run",
     "from": "run-2eb42d",
     "funcs": [
+     "yorubbbygehinny.getagenda",
+     "pepu.setmany",
      "oyinboman.know",
      "nobody.bring"
     ]
@@ -10680,6 +10936,8 @@
     "scope": "run",
     "from": "run-2eb42d",
     "funcs": [
+     "yorubbbygehinny.getagenda",
+     "pepu.setmany",
      "oyinboman.know",
      "nobody.bring"
     ]
@@ -10728,6 +10986,8 @@
     "scope": "run",
     "from": "run-2eb42d",
     "funcs": [
+     "yorubbbygehinny.getagenda",
+     "pepu.setmany",
      "oyinboman.know",
      "nobody.bring"
     ]
@@ -10738,6 +10998,8 @@
     "scope": "run",
     "from": "run-2eb42d",
     "funcs": [
+     "yorubbbygehinny.getagenda",
+     "pepu.setmany",
      "oyinboman.know",
      "nobody.bring"
     ]
@@ -10748,6 +11010,8 @@
     "scope": "run",
     "from": "run-2eb42d",
     "funcs": [
+     "yorubbbygehinny.getagenda",
+     "pepu.setmany",
      "oyinboman.know",
      "nobody.bring"
     ]
@@ -10815,6 +11079,8 @@
     "scope": "run",
     "from": "run-2eb42d",
     "funcs": [
+     "yorubbbygehinny.getagenda",
+     "pepu.setmany",
      "oyinboman.know",
      "nobody.bring"
     ]
@@ -11810,6 +12076,8 @@
     "scope": "run",
     "from": "run-2eb42d",
     "funcs": [
+     "yorubbbygehinny.getagenda",
+     "pepu.setmany",
      "oyinboman.know",
      "nobody.bring"
     ]
@@ -12467,6 +12735,8 @@
     "scope": "run",
     "from": "run-2eb42d",
     "funcs": [
+     "yorubbbygehinny.getagenda",
+     "pepu.setmany",
      "oyinboman.know",
      "nobody.bring"
     ]
@@ -12477,6 +12747,8 @@
     "scope": "run",
     "from": "run-2eb42d",
     "funcs": [
+     "yorubbbygehinny.getagenda",
+     "pepu.setmany",
      "oyinboman.know",
      "nobody.bring"
     ]
@@ -12497,6 +12769,8 @@
     "scope": "run",
     "from": "run-2eb42d",
     "funcs": [
+     "yorubbbygehinny.getagenda",
+     "pepu.setmany",
      "oyinboman.know",
      "nobody.bring"
     ]
@@ -12507,6 +12781,8 @@
     "scope": "run",
     "from": "run-2eb42d",
     "funcs": [
+     "yorubbbygehinny.getagenda",
+     "pepu.setmany",
      "oyinboman.know",
      "nobody.bring"
     ]
@@ -12517,6 +12793,8 @@
     "scope": "run",
     "from": "run-2eb42d",
     "funcs": [
+     "yorubbbygehinny.getagenda",
+     "pepu.setmany",
      "oyinboman.know",
      "nobody.bring"
     ]
@@ -12576,6 +12854,8 @@
     "scope": "run",
     "from": "run-2eb42d",
     "funcs": [
+     "yorubbbygehinny.getagenda",
+     "pepu.setmany",
      "oyinboman.know",
      "nobody.bring"
     ]
@@ -12715,6 +12995,8 @@
     "scope": "run",
     "from": "run-2eb42d",
     "funcs": [
+     "yorubbbygehinny.getagenda",
+     "pepu.setmany",
      "oyinboman.know",
      "nobody.bring"
     ]
@@ -12794,6 +13076,8 @@
     "scope": "run",
     "from": "run-2eb42d",
     "funcs": [
+     "yorubbbygehinny.getagenda",
+     "pepu.setmany",
      "oyinboman.know",
      "nobody.bring"
     ]
@@ -12864,6 +13148,8 @@
     "scope": "run",
     "from": "run-2eb42d",
     "funcs": [
+     "yorubbbygehinny.getagenda",
+     "pepu.setmany",
      "oyinboman.know",
      "nobody.bring"
     ]
@@ -13743,6 +14029,8 @@
     "scope": "run",
     "from": "run-2eb42d",
     "funcs": [
+     "yorubbbygehinny.getagenda",
+     "pepu.setmany",
      "oyinboman.know",
      "nobody.bring"
     ]
@@ -13781,6 +14069,8 @@
     "scope": "run",
     "from": "run-2eb42d",
     "funcs": [
+     "yorubbbygehinny.getagenda",
+     "pepu.setmany",
      "oyinboman.know",
      "nobody.bring"
     ]
@@ -13889,6 +14179,8 @@
     "scope": "run",
     "from": "run-2eb42d",
     "funcs": [
+     "yorubbbygehinny.getagenda",
+     "pepu.setmany",
      "oyinboman.know",
      "nobody.bring"
     ]
@@ -13899,6 +14191,8 @@
     "scope": "run",
     "from": "run-2eb42d",
     "funcs": [
+     "yorubbbygehinny.getagenda",
+     "pepu.setmany",
      "oyinboman.know",
      "nobody.bring"
     ]
@@ -13909,6 +14203,8 @@
     "scope": "run",
     "from": "run-2eb42d",
     "funcs": [
+     "yorubbbygehinny.getagenda",
+     "pepu.setmany",
      "oyinboman.know",
      "nobody.bring"
     ]
@@ -13940,6 +14236,8 @@
     "scope": "run",
     "from": "run-2eb42d",
     "funcs": [
+     "yorubbbygehinny.getagenda",
+     "pepu.setmany",
      "oyinboman.know",
      "nobody.bring"
     ]
@@ -13999,6 +14297,8 @@
     "scope": "run",
     "from": "run-2eb42d",
     "funcs": [
+     "yorubbbygehinny.getagenda",
+     "pepu.setmany",
      "oyinboman.know",
      "nobody.bring"
     ]
@@ -14009,6 +14309,8 @@
     "scope": "run",
     "from": "run-2eb42d",
     "funcs": [
+     "yorubbbygehinny.getagenda",
+     "pepu.setmany",
      "oyinboman.know",
      "nobody.bring"
     ]
@@ -14117,6 +14419,8 @@
     "scope": "run",
     "from": "run-2eb42d",
     "funcs": [
+     "yorubbbygehinny.getagenda",
+     "pepu.setmany",
      "oyinboman.know",
      "nobody.bring"
     ]
@@ -14352,6 +14656,8 @@
     "scope": "run",
     "from": "run-2eb42d",
     "funcs": [
+     "yorubbbygehinny.getagenda",
+     "pepu.setmany",
      "oyinboman.know",
      "nobody.bring"
     ]
@@ -14411,6 +14717,8 @@
     "scope": "run",
     "from": "run-2eb42d",
     "funcs": [
+     "yorubbbygehinny.getagenda",
+     "pepu.setmany",
      "oyinboman.know",
      "nobody.bring"
     ]
@@ -14875,6 +15183,8 @@
     "scope": "run",
     "from": "run-2eb42d",
     "funcs": [
+     "yorubbbygehinny.getagenda",
+     "pepu.setmany",
      "oyinboman.know",
      "nobody.bring"
     ]
@@ -14885,6 +15195,8 @@
     "scope": "run",
     "from": "run-2eb42d",
     "funcs": [
+     "yorubbbygehinny.getagenda",
+     "pepu.setmany",
      "oyinboman.know",
      "nobody.bring"
     ]
@@ -14905,6 +15217,8 @@
     "scope": "run",
     "from": "run-2eb42d",
     "funcs": [
+     "yorubbbygehinny.getagenda",
+     "pepu.setmany",
      "oyinboman.know",
      "nobody.bring"
     ]
@@ -15034,6 +15348,8 @@
     "scope": "run",
     "from": "run-2eb42d",
     "funcs": [
+     "yorubbbygehinny.getagenda",
+     "pepu.setmany",
      "oyinboman.know",
      "nobody.bring"
     ]
@@ -15064,6 +15380,8 @@
     "scope": "run",
     "from": "run-2eb42d",
     "funcs": [
+     "yorubbbygehinny.getagenda",
+     "pepu.setmany",
      "oyinboman.know",
      "nobody.bring"
     ]
@@ -15121,6 +15439,8 @@
     "scope": "run",
     "from": "run-2eb42d",
     "funcs": [
+     "yorubbbygehinny.getagenda",
+     "pepu.setmany",
      "oyinboman.know",
      "nobody.bring"
     ]
@@ -15190,6 +15510,8 @@
     "scope": "run",
     "from": "run-2eb42d",
     "funcs": [
+     "yorubbbygehinny.getagenda",
+     "pepu.setmany",
      "oyinboman.know",
      "nobody.bring"
     ]
@@ -15236,7 +15558,9 @@
    "safe": "9525b78aa7f3",
    "funcs": [
     "nobody.bring",
-    "oyinboman.know"
+    "oyinboman.know",
+    "pepu.setmany",
+    "yorubbbygehinny.getagenda"
    ]
   },
   "run-5a58c4": {
@@ -15323,6 +15647,10 @@
    "safe": "e164727d4c98",
    "funcs": []
   },
+  "run-db09": {
+   "safe": "ef623c79ddb7",
+   "funcs": []
+  },
   "run-g1-B": {
    "safe": "e164727d4c98",
    "funcs": [
@@ -15346,6 +15674,10 @@
     "adaora.cap",
     "kunle.walk"
    ]
+  },
+  "run-merge-church": {
+   "safe": "ef623c79ddb7",
+   "funcs": []
   }
  },
  "safes": {
@@ -15653,7 +15985,9 @@
    "title": "214. paradigm shift",
    "funcs": [
     "nobody.bring",
-    "oyinboman.know"
+    "oyinboman.know",
+    "pepu.setmany",
+    "yorubbbygehinny.getagenda"
    ],
    "runs": [
     "run-2eb42d"
@@ -15706,6 +16040,13 @@
    "title": "1209. the collective unconscious",
    "funcs": [
     "real.tune"
+   ],
+   "runs": []
+  },
+  "b0662e4cd34a": {
+   "title": "614. main",
+   "funcs": [
+    "pepu.setmany"
    ],
    "runs": []
   },
@@ -15879,6 +16220,16 @@
    ],
    "runs": []
   },
+  "ef623c79ddb7": {
+   "title": "1106. kamala didn’t won o",
+   "funcs": [
+    "yorubbbygehinny.getagenda"
+   ],
+   "runs": [
+    "run-merge-church",
+    "run-db09"
+   ]
+  },
   "f213f25df069": {
    "title": "601. jesus was very business smart",
    "funcs": [
@@ -15990,6 +16341,9 @@
   "1*HRO7l9t1YDc6pxhyjpzlTQ.gif": [
    "3408766b5717"
   ],
+  "1*yW-0cJJPKrJqpwHK4iBXrA.gif": [
+   "b0662e4cd34a"
+  ],
   "1*Guv7Vl0p75ZSzCnV1qI0Cg.gif": [
    "fbdf81dd337a"
   ],
@@ -16066,6 +16420,9 @@
   "1*M7PP8y5XxO_g-lWVYiJqLg.gif": [
    "f4ff9cc7d7bd",
    "1a9d986eb980"
+  ],
+  "1*DUBqUOO0slEd39P9RiD30Q.gif": [
+   "ef623c79ddb7"
   ],
   "1*0F3xb5IsCQCivNp-iiX06g.gif": [
    "21efbcb0b2c1"
@@ -16357,6 +16714,12 @@
     "9a3a7cd2c055"
    ]
   },
+  "1*yW-0cJJPKrJqpwHK4iBXrA.gif": {
+   "runs": [],
+   "safes": [
+    "b0662e4cd34a"
+   ]
+  },
   "1*HRO7l9t1YDc6pxhyjpzlTQ.gif": {
    "runs": [],
    "safes": [
@@ -16556,6 +16919,12 @@
    "runs": [],
    "safes": [
     "c7c1fdc558f5"
+   ]
+  },
+  "1*DUBqUOO0slEd39P9RiD30Q.gif": {
+   "runs": [],
+   "safes": [
+    "ef623c79ddb7"
    ]
   },
   "1*LUItbUDjNe6hslNA1DwUHA.gif": {
@@ -16804,6 +17173,9 @@
   "pepe": [
    "pepe.settink"
   ],
+  "pepu": [
+   "pepu.setmany"
+  ],
   "real": [
    "real.tune"
   ],
@@ -16865,6 +17237,9 @@
   ],
   "wife": [
    "wife.kill"
+  ],
+  "yorubbbygehinny": [
+   "yorubbbygehinny.getagenda"
   ]
  },
  "implements": {
@@ -16988,7 +17363,9 @@
   ],
   "oyinboman": [
    "Readable"
-  ]
+  ],
+  "pepu": [],
+  "yorubbbygehinny": []
  },
  "casts": {
   "run-2eb42d": [
@@ -16996,7 +17373,9 @@
    "mamaronke",
    "nobody",
    "oyinboman",
-   "ronke"
+   "pepu",
+   "ronke",
+   "yorubbbygehinny"
   ],
   "run-3a15d2": [
    "dapo"
@@ -17119,5 +17498,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-17T23:37:37-05:00"
+ "updated": "2026-11-17T23:42:51-05:00"
 }
