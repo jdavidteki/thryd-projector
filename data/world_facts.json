@@ -1141,16 +1141,6 @@
 ],
 "matches": [
 {
-"id": "wf_98668c11d4",
-"kind": "consequence",
-"text": "An Ats note with Bisola's name and 'brown envelope' on it, turns up inside the brown envelope at the matches, and Bisola reads the name twice.",
-"code": "ats.interactwith(matches){ matches.receives(ats.envelope); matches.remembers(bisola, 'brown envelope'); matches.tucks(ats, 'ats note into the brown envelope'); }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j2",
-"other": "ats"
-},
-{
 "id": "wf_2a6321cbb4",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the matches, and Bisola reads the name twice.",
@@ -1179,6 +1169,16 @@
 "run": "run-2eb42d",
 "card": "j8",
 "other": "computer_village"
+},
+{
+"id": "wf_b44864c1f0",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the matches, which is still found.",
+"code": "atp.interactwith(matches){ matches.receives(atp.envelope); matches.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "atp"
 },
 {
 "id": "wf_d40998bca5",
@@ -7465,6 +7465,16 @@
 "run": "run-2eb42d",
 "card": "w6",
 "other": "streetlights"
+},
+{
+"id": "wf_25fce5d467",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the streetlights, which is still all dead since 7:35pm.",
+"code": "computer_village.interactwith(mlkahb){ mlkahb.receives(computer_village.envelope); mlkahb.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "computer_village"
 }
 ],
 "uncle_ebo": [
@@ -7492,16 +7502,6 @@
 }
 ],
 "computer_village": [
-{
-"id": "wf_c1225207df",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the computer village, and Bisola reads the name twice.",
-"code": "seniorgehs.interactwith(computer_village){ computer_village.receives(seniorgehs.envelope); … }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "seniorgehs"
-},
 {
 "id": "wf_a950db7668",
 "kind": "consequence",
@@ -7541,6 +7541,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "asmathic"
+},
+{
+"id": "wf_bc1186930e",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the computer village, and Bisola reads the name twice.",
+"code": "b_md.interactwith(computer_village){ computer_village.receives(b_md.envelope); … }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "b_md"
 }
 ],
 "oh_pls_shaaatttaaapppp": [
@@ -7600,53 +7610,21 @@
 "card": "j27",
 "other": null
 }
+],
+"teach": [
+{
+"id": "wf_f5fd9d338d",
+"kind": "consequence",
+"text": "The teach leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "computer_village.interactwith(teach){ teach.receives(computer_village.envelope); teach.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "computer_village"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_6547b1c0c5",
-"ts": "2026-11-18T11:02:35-0500",
-"a": "lady",
-"b": "kerosene_lamp",
-"code": "lady.interactwith(kerosene_lamp){ kerosene_lamp.receives(lady.shirt); kerosene_lamp.remembers(bisola, 'green shirt'); }",
-"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up with the kerosene lamp, which is still lit.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j8"
-},
-{
-"id": "wf_f41d037b18",
-"ts": "2026-11-18T11:04:21-0500",
-"a": "lady",
-"b": "ojuelegba_bus_stop",
-"code": "lady.interactwith(ojuelegba_bus_stop){ ojuelegba_bus_stop.receives(lady.shirt); ojuelegba_bus_stop.remembers(bisola, 'green shirt'); }",
-"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up with the danfo speaker, which is still playing the same love song.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j8"
-},
-{
-"id": "wf_b9bed30a5a",
-"ts": "2026-11-18T11:07:04-0500",
-"a": "abeokuta_parlour",
-"b": "ojuelegba_bus_stop",
-"code": "abeokuta_parlour.interactwith(ojuelegba_bus_stop){ ojuelegba_bus_stop.receives(abeokuta_parlour.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the green shirt at the ojuelegba bus stop, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
-"id": "wf_801ce32365",
-"ts": "2026-11-18T11:07:57-0500",
-"a": "lagos",
-"b": "notnotnotnotyn_jan",
-"code": "lagos.interactwith(notnotnotnotyn_jan){ notnotnotnotyn_jan.receives(lagos.bead); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it, turns up inside the brown envelope at the notnotnotnotyn jan, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j5"
-},
 {
 "id": "wf_771c449363",
 "ts": "2026-11-18T11:08:50-0500",
@@ -8042,6 +8020,50 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_b44864c1f0",
+"ts": "2026-11-18T12:47:00-0500",
+"a": "atp",
+"b": "matches",
+"code": "atp.interactwith(matches){ matches.receives(atp.envelope); matches.remembers(bisola, 'brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the matches, which is still found.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
+},
+{
+"id": "wf_bc1186930e",
+"ts": "2026-11-18T12:49:40-0500",
+"a": "b_md",
+"b": "computer_village",
+"code": "b_md.interactwith(computer_village){ computer_village.receives(b_md.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the computer village, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
+},
+{
+"id": "wf_f5fd9d338d",
+"ts": "2026-11-18T12:50:32-0500",
+"a": "computer_village",
+"b": "teach",
+"code": "computer_village.interactwith(teach){ teach.receives(computer_village.envelope); teach.remembers(bisola, 'brown envelope'); }",
+"text": "The teach leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
+},
+{
+"id": "wf_25fce5d467",
+"ts": "2026-11-18T12:51:25-0500",
+"a": "computer_village",
+"b": "mlkahb",
+"code": "computer_village.interactwith(mlkahb){ mlkahb.receives(computer_village.envelope); mlkahb.remembers(bisola, 'brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the streetlights, which is still all dead since 7:35pm.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -8145,5 +8167,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T12:43:14-0500"
+"updated": "2026-11-18T12:51:25-0500"
 }
