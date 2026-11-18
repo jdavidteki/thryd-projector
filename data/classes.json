@@ -174,8 +174,8 @@
     "count",
     "map"
    ],
-   "instances": 16,
-   "arg_instances": 13,
+   "instances": 17,
+   "arg_instances": 14,
    "parent": "Thing",
    "chain": [
     "Action",
@@ -1616,6 +1616,22 @@
     "run-bd649b"
    ],
    "tweets": []
+  },
+  "even": {
+   "class": "Action",
+   "cue": "tweet: to/will ...",
+   "first_run": "run-2eb42d",
+   "first_job": "j17",
+   "source": "pick",
+   "runs": [
+    "run-2eb42d"
+   ],
+   "tweets": [
+    {
+     "text": "- they dont even care about the truth",
+     "year": "2024"
+    }
+   ]
   },
   "everything": {
    "class": "Thing",
@@ -6455,6 +6471,12 @@
     "pick"
    ],
    [
+    "even",
+    "Action",
+    "j17",
+    "pick"
+   ],
+   [
     "currentaffairs",
     "Thing",
     null,
@@ -9257,6 +9279,7 @@
   "nobody.bring": "bring(what: Thing)",
   "oyinboman.know": "know(what: Thing)",
   "pepu.setmany": "setMany(amount: Quantity)",
+  "ronke.mend": "mend(act: Action)",
   "yorubbbygehinny.getagenda": "getAgenda()"
  },
  "parent": {
@@ -9673,5 +9696,5 @@
   "epilogue": "quiet",
   "coda": "quiet"
  },
- "updated": "2026-11-17T23:46:23-05:00"
+ "updated": "2026-11-17T23:53:22-05:00"
 }
