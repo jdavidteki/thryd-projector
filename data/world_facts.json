@@ -7394,42 +7394,45 @@
 "card": "j5",
 "other": "ikeja"
 }
+],
+"mlkahb": [
+{
+"id": "wf_888f377565",
+"kind": "consequence",
+"text": "The streetlights ends up with the mlkahb, still all dead since 7:35pm.",
+"code": "streetlights.interactwith(mlkahb){ streetlights.db.copyto(mlkahb); mlkahb.keeps(streetlights, 'streetlights, still all dead since 7:35pm'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w6",
+"other": "streetlights"
+}
+],
+"uncle_ebo": [
+{
+"id": "wf_8d4fbc3261",
+"kind": "consequence",
+"text": "The uncle ebo leaves with a Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it.",
+"code": "mount_mercy.interactwith(uncle_ebo){ uncle_ebo.receives(mount_mercy.bead); uncle_ebo.remembers(bisola, 'blue glass bead'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j5",
+"other": "mount_mercy"
+}
+],
+"notnotnotnotyn_mar": [
+{
+"id": "wf_a11c35da01",
+"kind": "consequence",
+"text": "The notnotnotnotyn mar leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
+"code": "notnotnotnotyn_nov.interactwith(notnotnotnotyn_mar){ notnotnotnotyn_mar.receives(notnotnotnotyn_nov.code); notnotnotnotyn_mar.remembers(ejiro, 'juju code'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j2",
+"other": "notnotnotnotyn_nov"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_68c4128c64",
-"ts": "2026-11-18T09:09:54-0500",
-"a": "chilling_ibiza",
-"b": "kerosene_lamp",
-"code": "chilling_ibiza.interactwith(kerosene_lamp){ kerosene_lamp.receives(chilling_ibiza.envelope); kerosene_lamp.remembers(bisola, 'brown envelope'); }",
-"text": "A Nla agbara figure receipt with Bisola's name and 'brown envelope' on it, turns up with the kerosene lamp, which is still lit.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j4"
-},
-{
-"id": "wf_cb820861db",
-"ts": "2026-11-18T09:17:00-0500",
-"a": "mkdwo",
-"b": "agbada",
-"code": "mkdwo.interactwith(agbada){ agbada.receives(mkdwo.envelope); agbada.remembers(bisola, 'brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the agbada, which is still worn by a stranger haggler.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
-"id": "wf_4b713f8ac0",
-"ts": "2026-11-18T09:17:53-0500",
-"a": "ttb",
-"b": "saturday_october",
-"code": "ttb.interactwith(saturday_october){ saturday_october.receives(ttb.code); … }",
-"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the saturday october, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j2"
-},
 {
 "id": "wf_194a95778e",
 "ts": "2026-11-18T09:19:38-0500",
@@ -7836,6 +7839,39 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j5"
+},
+{
+"id": "wf_888f377565",
+"ts": "2026-11-18T11:19:27-0500",
+"a": "streetlights",
+"b": "mlkahb",
+"code": "streetlights.interactwith(mlkahb){ streetlights.db.copyto(mlkahb); mlkahb.keeps(streetlights, 'streetlights, still all dead since 7:35pm'); }",
+"text": "The streetlights ends up with the mlkahb, still all dead since 7:35pm.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w6"
+},
+{
+"id": "wf_8d4fbc3261",
+"ts": "2026-11-18T11:20:19-0500",
+"a": "mount_mercy",
+"b": "uncle_ebo",
+"code": "mount_mercy.interactwith(uncle_ebo){ uncle_ebo.receives(mount_mercy.bead); uncle_ebo.remembers(bisola, 'blue glass bead'); }",
+"text": "The uncle ebo leaves with a Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j5"
+},
+{
+"id": "wf_a11c35da01",
+"ts": "2026-11-18T11:21:12-0500",
+"a": "notnotnotnotyn_nov",
+"b": "notnotnotnotyn_mar",
+"code": "notnotnotnotyn_nov.interactwith(notnotnotnotyn_mar){ notnotnotnotyn_mar.receives(notnotnotnotyn_nov.code); notnotnotnotyn_mar.remembers(ejiro, 'juju code'); }",
+"text": "The notnotnotnotyn mar leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j2"
 }
 ],
 "memories": [
@@ -7939,5 +7975,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T11:18:33-0500"
+"updated": "2026-11-18T11:21:12-0500"
 }
