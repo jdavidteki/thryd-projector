@@ -1873,16 +1873,6 @@
 ],
 "ronke": [
 {
-"id": "wt_3366c03de5",
-"kind": "func_call",
-"text": "Someone at the projector tapped the marina ferry terminal subject and called ronke.hail(what=hawker:Thing) from j18 from its agenda run-2eb42d, first seated in run-2eb42d j18.",
-"code": "ronke.hail('hawker');",
-"author": "projector",
-"run": "run-2eb42d",
-"card": "w18",
-"other": null
-},
-{
 "id": "wt_c3a82a7dfd",
 "kind": "func_call",
 "text": "Someone at the projector tapped the computer village subject and called ronke.hail(what=hawker:Thing) from j18 from its agenda run-2eb42d, first seated in run-2eb42d j18.",
@@ -1921,6 +1911,16 @@
 "run": "run-2eb42d",
 "card": "w18",
 "other": null
+},
+{
+"id": "wf_ab89493629",
+"kind": "consequence",
+"text": "The ronke leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "mlkahb.interactwith(ronke){ ronke.receives(mlkahb.envelope); ronke.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "mlkahb"
 }
 ],
 "bird": [
@@ -6869,16 +6869,6 @@
 ],
 "kazeem": [
 {
-"id": "wt_3ee13f524c",
-"kind": "func_call",
-"text": "The kazeem hears it (because ronke.hail(what=hawker:Thing) from j18).",
-"code": "kazeem.hears(computer_village_subject, 'hail');",
-"author": "projector",
-"run": "run-2eb42d",
-"card": "w18",
-"other": null
-},
-{
 "id": "wt_aea87a6c7e",
 "kind": "func_call",
 "text": "The kazeem hears it (because ronke.hail(what=hawker:Thing) from j18).",
@@ -6917,6 +6907,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "ojuelegba_bus_stop"
+},
+{
+"id": "wf_227f586b2b",
+"kind": "consequence",
+"text": "The kazeem leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "bicycle.interactwith(kazeem){ kazeem.receives(bicycle.envelope); kazeem.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "bicycle"
 }
 ],
 "mama_ronke": [
@@ -8258,28 +8258,6 @@
 },
 "consequences": [
 {
-"id": "wf_40a3fae117",
-"ts": "2026-11-18T13:14:22-0500",
-"a": "patagonia",
-"b": "divine",
-"code": "patagonia.interactwith(divine){ divine.receives(patagonia.code); divine.remembers(ejiro, 'juju code'); divine.tucks(patagonia, 'ttb note into the brown envelope'); }",
-"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the divine, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j2"
-},
-{
-"id": "wf_9fda621b3b",
-"ts": "2026-11-18T13:21:05-0500",
-"a": "jnoel",
-"b": "kerosene_lamp",
-"code": "jnoel.interactwith(kerosene_lamp){ kerosene_lamp.receives(jnoel.corner); kerosene_lamp.remembers(bisola, 'envelope corner'); }",
-"text": "A Bird note with Bisola's name and 'envelope corner' on it, turns up with the kerosene lamp, which is still lit.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j7"
-},
-{
 "id": "wf_4ba9fe6c22",
 "ts": "2026-11-18T13:25:03-0500",
 "a": "move",
@@ -8696,6 +8674,28 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_ab89493629",
+"ts": "2026-11-18T15:35:29-0500",
+"a": "mlkahb",
+"b": "ronke",
+"code": "mlkahb.interactwith(ronke){ ronke.receives(mlkahb.envelope); ronke.remembers(bisola, 'brown envelope'); }",
+"text": "The ronke leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
+},
+{
+"id": "wf_227f586b2b",
+"ts": "2026-11-18T15:38:08-0500",
+"a": "bicycle",
+"b": "kazeem",
+"code": "bicycle.interactwith(kazeem){ kazeem.receives(bicycle.envelope); kazeem.remembers(bisola, 'brown envelope'); }",
+"text": "The kazeem leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -8799,5 +8799,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T15:32:52-0500"
+"updated": "2026-11-18T15:38:08-0500"
 }
