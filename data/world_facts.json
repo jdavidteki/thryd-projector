@@ -6175,31 +6175,33 @@
 "card": "j5",
 "other": "saturday_october"
 }
+],
+"me_boy_same": [
+{
+"id": "wf_18e417559d",
+"kind": "consequence",
+"text": "The me boy same now remembers the miami: 11:45pm, Monday 2 November 2026: A phone on the counter starts the off-key chorus, then.",
+"code": "miami.interactwith(me_boy_same){ me_boy_same.receives(miami.phone); }",
+"author": "cos",
+"run": "run-g1-B",
+"card": "j29",
+"other": "miami"
+}
+],
+"iya_bose": [
+{
+"id": "wf_11db316c1d",
+"kind": "consequence",
+"text": "The iya bose leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it.",
+"code": "agenda_scene.interactwith(iya_bose){ iya_bose.receives(agenda_scene.envelope); iya_bose.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-g1-B",
+"card": "j4",
+"other": "agenda_scene"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_a250502ff3",
-"ts": "2026-11-17T16:13:42-0500",
-"a": "marker_c",
-"b": "laptop",
-"code": "marker_c.interactwith(laptop){ laptop.receives(marker_c.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the lamp soot at the laptop, and Taiwo reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
-"id": "wf_7c66d35b95",
-"ts": "2026-11-17T16:15:23-0500",
-"a": "thoughts_marisol",
-"b": "love",
-"code": "thoughts_marisol.interactwith(love){ love.receives(thoughts_marisol.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the love, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
 {
 "id": "wf_c65d97f510",
 "ts": "2026-11-17T16:16:16-0500",
@@ -6617,6 +6619,28 @@
 "author": "cos",
 "run": "run-g1-B",
 "card": "j5"
+},
+{
+"id": "wf_18e417559d",
+"ts": "2026-11-17T19:34:50-0500",
+"a": "miami",
+"b": "me_boy_same",
+"code": "miami.interactwith(me_boy_same){ me_boy_same.receives(miami.phone); }",
+"text": "The me boy same now remembers the miami: 11:45pm, Monday 2 November 2026: A phone on the counter starts the off-key chorus, then.",
+"author": "cos",
+"run": "run-g1-B",
+"card": "j29"
+},
+{
+"id": "wf_11db316c1d",
+"ts": "2026-11-17T19:38:19-0500",
+"a": "agenda_scene",
+"b": "iya_bose",
+"code": "agenda_scene.interactwith(iya_bose){ iya_bose.receives(agenda_scene.envelope); iya_bose.remembers(bisola, 'brown envelope'); }",
+"text": "The iya bose leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it.",
+"author": "cos",
+"run": "run-g1-B",
+"card": "j4"
 }
 ],
 "memories": [
@@ -6720,5 +6744,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T19:33:58-0500"
+"updated": "2026-11-17T19:38:19-0500"
 }
