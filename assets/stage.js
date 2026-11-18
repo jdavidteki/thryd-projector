@@ -1378,7 +1378,7 @@
     const tnow = Date.now();
     SHOWN.forEach((t, c) => { if(!c.el || !c.el.isConnected || c.gone || S.cuts.indexOf(c) < 0 || tnow - t > TAG_MS + FADE_MS) SHOWN.delete(c); });
     SHOWN.forEach((t, c) => {
-      const n = tagName(c); if(!n) return;
+      const n = (displayNameFor(c) || tagName(c)); if(!n) return;
       const r = c.el.getBoundingClientRect(); if(r.right < -50 || r.left > W0 + 50 || r.bottom < -30 || r.top > H0 + 30 || r.width < 6) return;
       const tm = timeOf(c);
       live.add(c); jobs.push({k: c, t: tm ? n + '\n#time: ' + tm : n, x: r.left + r.width / 2, y: r.bottom + 2, on: tnow - t < TAG_MS && !c.leaving && c.el.style.opacity !== '0', mid: true});
@@ -1534,7 +1534,7 @@
   // call is stored with the live run id and a timestamp (localStorage + data/agenda_cmds.json), never applied to other
   // agendas, and shown on stage (look / highlight / caption, or a tweet-style bubble tied to this agenda).
   const FREE_KEY = 'thryd_agenda_cmds_v1';
-  if(!document.getElementById('gcmdcss')){ const st = document.createElement('style'); st.id = 'gcmdcss'; st.textContent = '.gcmdbub .gcas{color:#b6f0a0;font:600 .82em ui-monospace,Menlo,Consolas,monospace;margin-top:.2vh}'; document.head.appendChild(st); }
+  if(!document.getElementById('gcmdcss')){ const st = document.createElement('style'); st.id = 'gcmdcss'; st.textContent = '.gcmdbub .gcas{color:#b6f0a0;font:600 .82em ui-monospace,Menlo,Consolas,monospace;margin-top:.2vh}.gcmdbub .gres{color:#ffe7a8;font:600 .82em ui-monospace,Menlo,Consolas,monospace;margin-top:.15vh}'; document.head.appendChild(st); }
   const FREE_URLS = ['data/agenda_cmds.json', 'https://raw.githubusercontent.com/jdavidteki/thryd-projector/main/data/agenda_cmds.json'];
   const FREE = S.freeCmds = {list: [], byId: new Map(), looks: new Map(), at: 0, src: null};
   function currentRun(){ return (LV && LV.activeRun) || (AG && AG.active) || null; }
@@ -1590,7 +1590,8 @@
       el = document.createElement('div'); el.className = 'gcmdbub'; el.dataset.agendaCmd = rec.id; el.dataset.run = rec.run || '';
       const esc = s => String(s || '').replace(/[<>&]/g, ch => ({'<':'&lt;','>':'&gt;','&':'&amp;'}[ch]));
       el.innerHTML = '<div class="gct">' + esc(rec.raw || rec.text || '') + '</div>'
-        + (rec.fleshed && rec.resolved && rec.resolved !== rec.raw ? '<div class="gcas">ran as: ' + esc(rec.resolved) + '</div>' : '')
+        + ((rec.ranAs || rec.impl || (rec.fleshed && rec.resolved && rec.resolved !== rec.raw)) ? '<div class="gcas">ran as: ' + esc(rec.ranAs || rec.impl || rec.resolved) + '</div>' : '')
+        + (rec.result ? '<div class="gres">→ ' + esc(rec.result) + '</div>' : '')
         + '<div class="gcr">' + esc(rec.run || '') + '</div>';
       cutsL.appendChild(el); rec.el = el;
     }
@@ -1666,6 +1667,289 @@
     }
     return {raw, resolved, fleshed};
   }
+  // Everyday flesh-out (Jesuye 18 Nov 2026 10:34 / 10:36 AM ET): every CLI command, known
+  // ones included, gets a common-sense implementation. The function body may grow a line,
+  // related constants may update, and everyday follow-ons may run (setname also updates
+  // captions and mentions; a getter records the fact it learned). Nothing magical. Each
+  // change is stored per agenda: body version, constants diff, and the 'ran as:' display.
+  const IMPL_KEY = 'thryd_cli_impls_v2';
+  const IMPL = S.cliImpls = {map: {}, props: {}, constants: {}, bodies: {}, changes: [], captions: {}};
+  function loadImplStore(){
+    try{
+      const d = JSON.parse(localStorage.getItem(IMPL_KEY) || localStorage.getItem('thryd_cli_impls_v1') || '{}');
+      IMPL.map = d.map || {}; IMPL.props = d.props || {}; IMPL.constants = d.constants || {};
+      IMPL.bodies = d.bodies || {}; IMPL.changes = d.changes || []; IMPL.captions = d.captions || {};
+    }catch(e){ IMPL.map = {}; IMPL.props = {}; IMPL.constants = {}; IMPL.bodies = {}; IMPL.changes = []; IMPL.captions = {}; }
+  }
+  function saveImplStore(){
+    try{
+      if(IMPL.changes && IMPL.changes.length > 80) IMPL.changes = IMPL.changes.slice(-80);
+      localStorage.setItem(IMPL_KEY, JSON.stringify({map: IMPL.map, props: IMPL.props, constants: IMPL.constants, bodies: IMPL.bodies, changes: IMPL.changes, captions: IMPL.captions}));
+    }catch(e){}
+  }
+  loadImplStore();
+  function implKey(run, cmd){ return String(run || '') + '::' + String(cmd || '').trim().replace(/;+\s*$/, ''); }
+  function prettyWho(obj){
+    const s = String(obj || '').replace(/_+/g, ' ').trim();
+    if(/^mama/i.test(s) && s.length > 4) return 'Mama ' + s.charAt(4).toUpperCase() + s.slice(5);
+    return s.replace(/\b\w/g, ch => ch.toUpperCase());
+  }
+  function constName(obj, prop){ return (prettyWho(obj) + '_' + String(prop || 'VALUE')).replace(/\s+/g, '_').toUpperCase().replace(/[^A-Z0-9_]/g, '_') || 'VALUE'; }
+  function stableInt(s, n){ let h = 2166136261; const t = String(s || ''); for(let i = 0; i < t.length; i++){ h ^= t.charCodeAt(i); h = Math.imul(h, 16777619); } return (h >>> 0) % (n || 1); }
+  function stableDate(key){
+    const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+    return months[stableInt(key + 'm', 12)] + ' ' + (1994 + stableInt(key, 12));
+  }
+  function getProps(run, obj){
+    const r = IMPL.props[run] || (IMPL.props[run] = {});
+    const k = String(obj || '').toLowerCase();
+    return r[k] || (r[k] = {});
+  }
+  function setProp(run, obj, prop, val){
+    getProps(run, obj)[String(prop || '').toLowerCase()] = val;
+    saveImplStore();
+  }
+  function getProp(run, obj, prop){
+    const v = getProps(run, obj)[String(prop || '').toLowerCase()];
+    return v == null ? undefined : v;
+  }
+  function constantsOf(run){ return IMPL.constants[run] || (IMPL.constants[run] = {}); }
+  function setConstant(run, name, val, diff){
+    const box = constantsOf(run), prev = box[name], same = JSON.stringify(prev) === JSON.stringify(val);
+    box[name] = val;
+    if(!same) diff.push({name: name, from: (prev == null ? null : prev), to: val});
+    return !same;
+  }
+  function bodyBox(run, fid){
+    const r = IMPL.bodies[run] || (IMPL.bodies[run] = {});
+    return r[fid] || (r[fid] = {v: 0, body: '', history: []});
+  }
+  function appendLine(body, line){
+    const needle = String(line || '').trim();
+    if(!needle) return body;
+    if(String(body || '').indexOf(needle) >= 0) return body;
+    if(/}\s*$/.test(body)) return String(body).replace(/}\s*$/, '  ' + needle + '\n}');
+    return (body ? (body + '\n') : '') + needle;
+  }
+  function growBody(run, fid, nextBody){
+    const box = bodyBox(run, fid);
+    if(box.body === nextBody) return box;
+    box.v += 1;
+    box.body = nextBody;
+    box.history.push({v: box.v, body: nextBody, at: new Date().toISOString()});
+    if(box.history.length > 12) box.history.shift();
+    return box;
+  }
+  function displayNameFor(c){
+    try{
+      const run = (c && c.home && c.home.run) || currentRun();
+      const keys = [];
+      [c && c.castAs, tagName(c), c && c.label, c && c.klass, S.objName && S.objName(c)].forEach(x => {
+        if(!x) return;
+        keys.push(String(x).toLowerCase());
+        keys.push(String(x).toLowerCase().replace(/[^a-z0-9]+/g, ''));
+      });
+      for(const k of keys){
+        const n = getProp(run, k, 'name');
+        if(n) return String(n);
+      }
+    }catch(e){}
+    return null;
+  }
+  function defaultList(run, obj, prop){
+    const stored = getProp(run, obj, prop);
+    if(Array.isArray(stored)) return stored.slice();
+    if(typeof stored === 'string' && stored) return stored.split(/,\s*/);
+    const o = String(obj || '').toLowerCase(), p = String(prop || '').toLowerCase();
+    if(/ronke/.test(o) && /like/.test(p)) return ['the cooler', 'punctual', 'generous', 'funny'];
+    if(/kazeem/.test(o) || /qualit/.test(o + ' ' + p)) return ['punctual', 'generous', 'funny'];
+    return ['punctual', 'generous', 'funny'];
+  }
+  function listForExpr(run, expr){
+    expr = String(expr || '').trim().replace(/;+\s*$/, '');
+    const call = expr.match(/^([A-Za-z_][\w]*)\s*\.\s*([A-Za-z_][\w]*)\s*\(\s*\)$/);
+    if(call) return defaultList(run, call[1], call[2]);
+    const prop = expr.match(/^([A-Za-z_][\w]*)\s*\.\s*([A-Za-z_][\w]*)$/);
+    if(prop) return defaultList(run, prop[1], prop[2]);
+    return defaultList(run, expr, 'items');
+  }
+  function nameVariants(obj, display){
+    const out = [], seen = {};
+    [display, prettyWho(obj), obj, String(obj || '').replace(/_/g, ' '), 'Mama Ronke'].forEach(s => {
+      s = String(s || '').trim();
+      if(!s || seen[s.toLowerCase()]) return;
+      seen[s.toLowerCase()] = 1; out.push(s);
+    });
+    return out.sort((a, b) => b.length - a.length);
+  }
+  function replaceAny(text, froms, to){
+    let s = String(text || '');
+    froms.forEach(f => {
+      if(!f) return;
+      const re = new RegExp(f.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi');
+      s = s.replace(re, to);
+    });
+    return s;
+  }
+  function rewriteCaptionsAndMentions(run, obj, froms, to){
+    let n = 0;
+    const caps = IMPL.captions[run] || (IMPL.captions[run] = {});
+    (S.groups || []).forEach(g => {
+      if(g.run && g.run !== run) return;
+      const raw = caps[g.mid] || g._caption || g.title || '';
+      const next = replaceAny(raw, froms, to);
+      if(next !== raw){ caps[g.mid] = next; g._caption = next; n++; if(g.tag) g.tag.textContent = String(next).slice(0, 60); }
+    });
+    (S.cuts || []).forEach(c => {
+      if(!c || (c.home && c.home.run && c.home.run !== run)) return;
+      ['label', 'klass', 'castAs'].forEach(k => { /* names stay as ids; displayNameFor paints the new caption */ });
+    });
+    try{
+      document.querySelectorAll('#gstage .gtag, #gnames .gn, .gcmdbub .gct, .gcmdbub .gres, .gcmdbub .gcas').forEach(el => {
+        const raw = el.textContent || '';
+        const next = replaceAny(raw, froms, to);
+        if(next !== raw){ el.textContent = next; n++; }
+      });
+    }catch(e){}
+    setConstant(run, constName(obj, 'caption'), to, []);
+    setConstant(run, constName(obj, 'mentions'), to, []);
+    saveImplStore();
+    return n;
+  }
+  function seatedHint(obj, fn){
+    try{
+      const id = (String(obj || '') + '.' + String(fn || '')).toLowerCase();
+      const f = (S.objectMethods && S.objectMethods.functions && S.objectMethods.functions[id]) || (typeof OM !== 'undefined' && OM.functions && OM.functions[id]);
+      const t = f && (f.titles || [])[0];
+      return (t && (t.consequence || t.title)) || (f && f.note) || '';
+    }catch(e){ return ''; }
+  }
+  function everydayImpl(run, piece){
+    const cmd = (piece && (piece.resolved || piece.raw) || '').trim().replace(/;+\s*$/, '');
+    if(!cmd || !run) return null;
+    const obj = piece && piece.obj, fn = String((piece && piece.fn) || ''), args = (piece && piece.args) || [];
+    const who = prettyWho(obj || 'they');
+    const fid = (piece && piece.safe) ? ('[[' + (obj || 'safe') + ']]') : ((obj && fn) ? (String(obj) + '.' + fn).toLowerCase() : ('cli.' + cmd.toLowerCase().slice(0, 40)));
+    const key = implKey(run, cmd);
+    const prev = IMPL.map[key];
+    const diff = [];
+    let kind = 'call', result = prev && prev.result != null ? prev.result : '', value = prev ? prev.value : null;
+    const filter = cmd.match(/^([\s\S]+?)\.filter\(\s*[a-zA-Z_]\w*\s*=>\s*([\s\S]+?)\.includes\(\s*[a-zA-Z_]\w*\s*\)\s*\)\s*$/);
+    const hint = seatedHint(obj, fn);
+    let base = '', extras = [];
+
+    if(piece && piece.safe){
+      kind = 'safe'; result = result || ('the ' + (obj || 'safe') + ' safe');
+      base = 'function safe(){\n  return ' + JSON.stringify(result) + ';\n}';
+    } else if(filter){
+      kind = 'get';
+      if(value == null){
+        const left = listForExpr(run, filter[1]), right = listForExpr(run, filter[2]);
+        value = left.filter(x => right.indexOf(x) >= 0);
+      }
+      result = Array.isArray(value) ? (value.length ? value.join(', ') : '(none)') : String(value);
+      base = 'function filterQualities(){\n  const value = ' + JSON.stringify(value) + ';\n  return value;\n}';
+      extras = ['learned.' + (obj || 'it') + '.overlap = value;'];
+      setConstant(run, constName(obj, 'overlap'), value, diff);
+      setConstant(run, 'LEARNED_' + constName(obj, 'overlap'), value, diff);
+    } else if(/^set/i.test(fn)){
+      kind = 'set';
+      const prop = fn.replace(/^set/i, '').toLowerCase() || 'value';
+      const val = args[0] != null ? String(args[0]).replace(/^['"]|['"]$/g, '') : '';
+      const old = getProp(run, obj, prop) || prettyWho(obj);
+      setProp(run, obj, prop, val);
+      if(/name/i.test(prop) && obj){
+        String(obj).toLowerCase().split(/[\s_]+/).forEach(k => { if(k) setProp(run, k, 'name', val); });
+        setProp(run, String(obj).toLowerCase().replace(/[^a-z0-9]+/g, ''), 'name', val);
+        rewriteCaptionsAndMentions(run, obj, nameVariants(obj, old), val);
+      }
+      setConstant(run, constName(obj, prop), val, diff);
+      result = who + "'s " + prop + ' is now ' + val;
+      value = val;
+      base = 'function ' + fn + '(' + prop + '){\n  this.' + prop + ' = ' + JSON.stringify(val) + ';\n  return this.' + prop + ';\n}';
+      extras = ['this.caption = ' + prop + ';', 'mentions.replace(this.' + prop + ', ' + prop + ');'];
+    } else if(/^(get|is|has)/i.test(fn) || /^count$/i.test(fn)){
+      kind = 'get';
+      const prop = fn.replace(/^(get|is|has)/i, '').toLowerCase() || fn.toLowerCase();
+      if(value == null){
+        const preset = getProp(run, obj, prop);
+        if(preset != null) value = preset;
+        else if(/date|manufactured|born|year/i.test(fn + prop))
+          value = (/cooler/i.test(obj || '') && /manufactured|date/i.test(fn + prop)) ? 'June 1998' : stableDate(key);
+        else if(/like|qualit|items|list/i.test(fn + prop)){ value = defaultList(run, obj, prop); setProp(run, obj, prop, value); }
+        else if(/name/i.test(prop) || /name/i.test(fn)) value = getProp(run, obj, 'name') || who;
+        else if(/count|many|number|naira|price/i.test(fn + prop) || /^count$/i.test(fn)) value = 2 + stableInt(key, 11);
+        else if(/^(is|has)/i.test(fn)) value = true;
+        else { value = getProp(run, obj, prop); if(value == null) value = prop || 'ok'; }
+      }
+      result = Array.isArray(value) ? value.join(', ') : (value === true ? 'yes' : String(value));
+      base = 'function ' + fn + '(){\n  const value = ' + JSON.stringify(value) + ';\n  return value;\n}';
+      extras = ['learned.' + (obj || 'it') + '.' + prop + ' = value;', 'this.lastRead = value;'];
+      setConstant(run, constName(obj, prop), value, diff);
+      setConstant(run, 'LEARNED_' + constName(obj, prop), value, diff);
+    } else if(fn && fn !== 'cli' && fn !== 'safe'){
+      kind = 'verb';
+      const what = args[0] != null ? String(args[0]).replace(/^['"]|['"]$/g, '') : '';
+      const v = fn.toLowerCase();
+      const phrases = {
+        lift: who + ' lifts ' + (what || 'it'),
+        hail: who + ' hails ' + (what || 'the hawker'),
+        count: who + ' counts ' + (what || 'the change') + ': ' + (2 + stableInt(key, 8)) + ' coins',
+        keep: who + ' keeps ' + (what || 'it'),
+        claim: who + ' claims ' + (what || 'it'),
+        open: who + ' opens ' + (what || 'it'),
+        close: who + ' closes ' + (what || 'it'),
+        say: who + ' says ' + (what || 'it'),
+        ask: who + ' asks ' + (what || 'a question'),
+        carry: who + ' carries ' + (what || 'it'),
+        fold: who + ' folds ' + (what || 'it'),
+        weigh: who + ' weighs ' + (what || 'it'),
+        score: who + ' scores ' + (what || 'a point'),
+        mend: who + ' mends ' + (what || 'it'),
+        bring: who + ' brings ' + (what || 'it'),
+        know: who + ' already knows',
+        use: who + ' uses ' + (what || 'it'),
+        sort: who + ' sorts ' + (what || 'them'),
+        wave: who + ' waves'
+      };
+      if(!result) result = phrases[v] || (who + ' ' + v + (what ? ' ' + what : ''));
+      value = result;
+      const countName = constName(obj, fn + '_count');
+      const prevCount = Number(constantsOf(run)[countName] || 0) || 0;
+      setConstant(run, countName, prevCount + 1, diff);
+      setConstant(run, constName(obj, 'last_' + fn), (what || result), diff);
+      base = 'function ' + fn + '(' + (what ? 'what' : '') + '){\n' + (hint ? '  // ' + String(hint).slice(0, 120).replace(/\n/g, ' ') + '\n' : '') + '  ' + countName + ' += 1;\n  return ' + JSON.stringify(result) + ';\n}';
+      extras = ['this.last' + fn.charAt(0).toUpperCase() + fn.slice(1) + ' = ' + JSON.stringify(what || result) + ';', 'this.times' + fn.charAt(0).toUpperCase() + fn.slice(1) + ' = ' + countName + ';'];
+    } else {
+      base = '/* ' + cmd + ' */';
+      result = result || cmd;
+    }
+
+    const prior = bodyBox(run, fid);
+    let body = prior.body || base;
+    // first call starts from the base body; each later call adds at most one new common-sense line
+    if(!prior.body){
+      body = base;
+      if(extras[0]) body = appendLine(body, extras[0]);
+    } else {
+      for(let i = 0; i < extras.length; i++){
+        const grown = appendLine(body, extras[i]);
+        if(grown !== body){ body = grown; break; }
+      }
+    }
+    const box = growBody(run, fid, body);
+    const ranAs = box.body;
+    const rec = {body: box.body, result: result, kind: kind, value: value, cmd: cmd, fid: fid, version: box.v, constantsDiff: diff, ranAs: ranAs, at: new Date().toISOString()};
+    IMPL.map[key] = rec;
+    IMPL.changes.push({run: run, fid: fid, v: box.v, cmd: cmd, diff: diff, ranAs: ranAs, result: result, at: rec.at});
+    try{
+      const f = (typeof OM !== 'undefined' && OM.functions) ? (OM.functions[fid] || null) : null;
+      if(f){ f.body = box.body; f.body_v = box.v; f.cliImpl = true; }
+    }catch(e){}
+    saveImplStore();
+    return rec;
+  }
+
   const SAFEIX = S.safeIndex = {by: new Map(), ready: false};
   function indexSafeText(text, meta){
     String(text || '').replace(/\[\[\s*([A-Za-z_][\w]*)\s*\]\]/g, (_, t) => {
@@ -1742,7 +2026,7 @@
     const code = (piece.resolved || piece.raw || '').replace(/;?$/, ';');
     const Hrun = run && /^run-[0-9a-f]{4,6}$/.test(run) ? run : null;
     const job = currentJob();
-    const body = {v: 1, type: 'call', event_id: eid, rid: eid + '-r', source: 'cli', run: Hrun, card: job, job, object: obj, fn, args: piece.args || [], raw: piece.raw, resolved: piece.resolved || piece.raw, title: piece.resolved || piece.raw, client_ts: new Date().toISOString()};
+    const body = {v: 1, type: 'call', event_id: eid, rid: eid + '-r', source: 'cli', run: Hrun, card: job, job, object: obj, fn, args: piece.args || [], raw: piece.raw, resolved: piece.resolved || piece.raw, title: piece.resolved || piece.raw, impl: piece.impl || '', result: piece.result || '', body_v: piece.version || 0, const_diff: piece.constantsDiff || [], ran_as: piece.ranAs || piece.impl || '', client_ts: new Date().toISOString()};
     rec.body = body; rec.code = code; rec.event_id = eid;
     const Mbox = S.methods || (S.methods = {sent: []});
     Mbox.sent.push(rec); if(Mbox.sent.length > 40) Mbox.sent.shift();
@@ -1760,19 +2044,25 @@
     const cuts0 = sk ? matchFreeCuts(sk, run) : [];
     const named = !!(sk && (inAg || cuts0.length || piece.safe));
     const look = (!piece.safe && named) ? freeLookOf(P) : null;
+    const evd = (!piece.safe && everydayImpl(run, piece)) || null;
+    if(evd){ piece.impl = evd.body; piece.result = evd.result; piece.kind = evd.kind; piece.value = evd.value; piece.version = evd.version; piece.constantsDiff = evd.constantsDiff; piece.ranAs = evd.ranAs; }
     const rec = rememberFree({
       id: opts.id || ('fc-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 7)),
-      run, raw, text: raw, resolved: piece.resolved, fleshed: piece.fleshed, subjects: piece.subjects || [],
+      run, raw, text: raw, resolved: piece.resolved, fleshed: !!(piece.fleshed || evd), subjects: piece.subjects || [],
       subject: named ? (P.obj || piece.obj) : null, fn: P.fn || piece.fn || null, args: P.args || piece.args || [],
       sk: named ? sk : null, look: look && look.look, at: new Date().toISOString(), t: Date.now(), local: opts.local !== false,
-      safe: !!piece.safe, cli: true
+      safe: !!piece.safe, cli: true, impl: evd && evd.body, result: evd && evd.result, value: evd && evd.value, kind: evd && evd.kind,
+      version: evd && evd.version, constantsDiff: evd && evd.constantsDiff, ranAs: evd && evd.ranAs
     });
     const reg = registerCliMethod(run, piece);
     rec.methodId = reg && reg.id;
     const cuts = playCliOnCast(rec, piece);
     syncFreeCmds();
     if(rec.el){ rec.el.remove(); rec.el = null; placeCmdBub(rec); }
-    const noteLine = (piece.fleshed ? 'ran as: ' + piece.resolved + ' · ' : '') + 'new command → this agenda · ' + run + (cuts.length ? ' · ' + cuts.length + ' on stage' : ' · caption');
+    const ranAs = piece.ranAs || (piece.fleshed ? piece.resolved : (piece.impl || ''));
+    const noteLine = (ranAs ? 'ran as: ' + ranAs + ' · ' : '')
+      + (piece.result ? '→ ' + piece.result + ' · ' : '')
+      + 'new command → this agenda · ' + run + (cuts.length ? ' · ' + cuts.length + ' on stage' : ' · caption');
     codeLine((piece.resolved || raw).replace(/;?$/, ';'), noteLine);
     note('free-cmd', rec.id, rec.run, raw, piece.resolved);
     saveFreeLocal();
@@ -1801,7 +2091,7 @@
     }
     syncFreeCmds();
   }
-  S.applyFreeCmd = applyFreeCmd; S.applyCliLine = applyCliLine; S.splitCli = splitCli; S.cleanCliPiece = cleanCliPiece; S.fleshCli = fleshCli; S.resolveSafeToken = resolveSafeToken; S.syncFreeCmds = syncFreeCmds; S.currentRun = currentRun; S.parseFree = parseFree; S.registerCliMethod = registerCliMethod;
+  S.applyFreeCmd = applyFreeCmd; S.applyCliLine = applyCliLine; S.splitCli = splitCli; S.cleanCliPiece = cleanCliPiece; S.fleshCli = fleshCli; S.parseCliPiece = parseCliPiece; S.everydayImpl = everydayImpl; S.displayNameFor = displayNameFor; S.resolveSafeToken = resolveSafeToken; S.syncFreeCmds = syncFreeCmds; S.currentRun = currentRun; S.parseFree = parseFree; S.registerCliMethod = registerCliMethod;
   pollFreeCmds(); setInterval(pollFreeCmds, 20000); setInterval(syncFreeCmds, 1000);
 
   // ---------- tap methods (Jesuye 16 Nov 2026 6:39 PM ET "add 2-3 object methods that are clickable. when we tap on an object, users can
@@ -2060,10 +2350,15 @@
     const body = {v: 1, type: 'call', event_id: eid, rid: eid + '-r', run: H.run || AG.active || null, card: null, object: name, fn: f.method, args: [it.t.arg],
       func: it.id, title: it.t.title, ti: ti == null ? 0 : ti, scope: it.scope === 'env' ? 'env' : 'own', ...(it.scope === 'env' ? {env_scope: it.env_scope, env_from: it.env_from} : {}), scene: H.mid ? String(H.mid).slice(0, 160) : null, cut: c.label ? String(c.label).slice(0, 60) : null, client_ts: new Date().toISOString()};
     if(src === 'intent') body.source = 'intent';
+    const flesh = S._pendingFlesh;
+    if(flesh){
+      body.impl = flesh.body || ''; body.result = flesh.result || ''; body.body_v = flesh.version || 0;
+      body.const_diff = flesh.constantsDiff || []; body.ran_as = flesh.ranAs || flesh.body || '';
+    }
     const fr = (String(H.mid || '').match(/(?:^|[^A-Za-z0-9])([jw]\d{1,3})(?![0-9])/i) || [])[1];
     body.card = String(H.card || fr || root.__thrydCard || '').toLowerCase() || null;
     if(body.run && !/^run-[0-9a-f]{4,6}$/.test(body.run)) body.run = null; if(body.card && !/^[jw]\d{1,3}$/.test(body.card)) body.card = null;
-    const rec = {code, body, status: 'sending', at: Date.now()}; M.sent.push(rec); if(M.sent.length > 40) M.sent.shift();
+    const rec = {code, body, status: 'sending', at: Date.now(), impl: body.impl, result: body.result, ranAs: body.ran_as, version: body.body_v, constantsDiff: body.const_diff}; M.sent.push(rec); if(M.sent.length > 40) M.sent.shift();
     // shown locally first, whatever the relay does
     if(it.f.faded){ it.f.faded = false; if(c.el) c.el.classList.remove('gfaded'); rec.revived = true; }
     const myCls = classOf(c), eff = effectOf(f.method, myCls); rec.effect = eff.fx; rec.effect_class = eff.by;

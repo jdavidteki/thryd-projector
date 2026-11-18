@@ -146,8 +146,19 @@
       const R = await resolve(parts[0]), top = R.top;
       const exact = !!(top.length && !R.P.free && top[0].lex >= .999), conf = top.length ? top[0].s - (top[1] ? top[1].s : 0) : 0;
       if(top.length && (exact || (top[0].s >= .82 && conf >= .08 && top[0].live))){
+        let evd = null;
+        try{
+          const run = (S.currentRun && S.currentRun()) || '';
+          if(S.everydayImpl && S.parseCliPiece && run){
+            evd = S.everydayImpl(run, S.parseCliPiece(parts[0]));
+            if(evd) S._pendingFlesh = evd;
+          }
+        }catch(e){}
         const done = fire(top[0], exact ? 'typed' : 'did you mean (' + top[0].s.toFixed(2) + ')');
-        if(done){ inp.value = ''; msg.textContent = (exact ? '' : 'did you mean ') + label(top[0]) + (exact ? ' · ran' : '? · applied');
+        S._pendingFlesh = null;
+        if(done){ inp.value = ''; msg.textContent = (exact ? '' : 'did you mean ') + label(top[0]) + (exact ? ' · ran' : '? · applied')
+          + (evd && evd.ranAs ? ' · ran as: ' + evd.ranAs : '')
+          + (evd && evd.result ? ' \u2192 ' + evd.result : '');
           if(!exact && ST().undoIntent){ const u = document.createElement('span'); u.className = 'aiu'; u.textContent = 'undo'; u.onclick = ()=>{ ST().undoIntent(done.c, done.rec, done.id); msg.textContent = 'undone'; }; msg.appendChild(u); }
           setTimeout(()=>{ if(box && box.classList.contains('on') && document.activeElement !== inp) close(); }, 3500); }
         return; }
@@ -161,9 +172,11 @@
     const rec = recs[0];
     const run = (rec && rec.run) || (S.currentRun && S.currentRun()) || (S.agenda && S.agenda.active) || '';
     const fleshed = recs.find(r => r && r.fleshed && r.resolved);
+    const got = recs.find(r => r && r.result);
     const n = recs.length || parts.length || 1;
     msg.textContent = (n === 1 ? 'new command' : (n + ' commands')) + ' \u2192 this agenda' + (run ? ' \u00b7 ' + run : '')
-      + (fleshed ? ' \u00b7 ran as: ' + fleshed.resolved : '');
+      + (fleshed ? ' \u00b7 ran as: ' + fleshed.resolved : '')
+      + (got ? ' \u2192 ' + got.result : '');
     chips.textContent = ''; inp.value = '';
     setTimeout(()=>{ if(box && box.classList.contains('on') && document.activeElement !== inp) close(); }, 3500); }
   AI.go = go;
