@@ -824,16 +824,6 @@
 ],
 "agbada": [
 {
-"id": "wf_8fc197f28c",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the agbada, and Bisola reads the name twice.",
-"code": "wsr.interactwith(agbada){ agbada.receives(wsr.envelope); agbada.remembers(bisola, 'brown envelope'); agbada.tucks(wsr, 'yaba bookshop receipt into the brown envelope'); }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "wsr"
-},
-{
 "id": "wf_b40bb8976b",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the agbada, and Bisola reads the name twice.",
@@ -862,6 +852,16 @@
 "run": "run-bd649b",
 "card": "j2",
 "other": "family_compound_ikorodu"
+},
+{
+"id": "wf_cb820861db",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the agbada, which is still worn by a stranger haggler.",
+"code": "mkdwo.interactwith(agbada){ agbada.receives(mkdwo.envelope); agbada.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "mkdwo"
 },
 {
 "id": "wf_eff49442c3",
@@ -1084,14 +1084,14 @@
 ],
 "kerosene_lamp": [
 {
-"id": "wf_29c8803af0",
-"kind": "memory",
-"text": "The kerosene lamp at Mama Ronke's gate: lit; the only light on the street after the blackout.",
-"code": "kerosene_lamp.state('lit');",
+"id": "wf_194a95778e",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the kerosene lamp, which is still lit.",
+"code": "icsh.interactwith(kerosene_lamp){ kerosene_lamp.receives(icsh.envelope); kerosene_lamp.remembers(bisola, 'brown envelope'); }",
 "author": "cos",
 "run": "run-2eb42d",
-"card": "w7",
-"other": null
+"card": "j6",
+"other": "icsh"
 },
 {
 "id": "wt_7a2b23aa13",
@@ -6182,16 +6182,6 @@
 ],
 "saturday_october": [
 {
-"id": "wf_ca54e55076",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the saturday october, and Bisola reads the name twice.",
-"code": "ronke.interactwith(saturday_october){ saturday_october.receives(ronke.envelope); … }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "ronke"
-},
-{
 "id": "wf_fa270e91db",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the saturday october, and Bisola reads the name twice.",
@@ -6220,6 +6210,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "icsh"
+},
+{
+"id": "wf_4b713f8ac0",
+"kind": "consequence",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the saturday october, and Bisola reads the name twice.",
+"code": "ttb.interactwith(saturday_october){ saturday_october.receives(ttb.code); … }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j2",
+"other": "ttb"
 },
 {
 "id": "wt_5afb033ddb",
@@ -6973,39 +6973,6 @@
 },
 "consequences": [
 {
-"id": "wf_247e2a5023",
-"ts": "2026-11-18T00:37:43-0500",
-"a": "saturday_october",
-"b": "asmathic",
-"code": "saturday_october.interactwith(asmathic){ asmathic.receives(saturday_october.envelope); asmathic.remembers(bisola, 'brown envelope'); }",
-"text": "The asmathic leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
-"id": "wf_3bbf0c8e40",
-"ts": "2026-11-18T00:39:27-0500",
-"a": "yuwa",
-"b": "laptop",
-"code": "yuwa.interactwith(laptop){ laptop.receives(yuwa.envelope); laptop.remembers(bisola, 'brown envelope'); laptop.tucks(yuwa, 'yaba bookshop receipt into the lamp soot'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the lamp soot at the laptop, and Taiwo reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
-"id": "wf_a8c2cdf9ec",
-"ts": "2026-11-18T00:41:11-0500",
-"a": "miami",
-"b": "atp",
-"code": "miami.interactwith(atp){ atp.receives(miami.phone); }",
-"text": "The atp now remembers the miami: 11:45pm, Monday 2 November 2026: A phone on the counter starts the off-key chorus, then.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j29"
-},
-{
 "id": "wf_3da0fbc31d",
 "ts": "2026-11-18T00:42:03-0500",
 "a": "kazeem",
@@ -7411,6 +7378,39 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j4"
+},
+{
+"id": "wf_cb820861db",
+"ts": "2026-11-18T09:17:00-0500",
+"a": "mkdwo",
+"b": "agbada",
+"code": "mkdwo.interactwith(agbada){ agbada.receives(mkdwo.envelope); agbada.remembers(bisola, 'brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the agbada, which is still worn by a stranger haggler.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
+},
+{
+"id": "wf_4b713f8ac0",
+"ts": "2026-11-18T09:17:53-0500",
+"a": "ttb",
+"b": "saturday_october",
+"code": "ttb.interactwith(saturday_october){ saturday_october.receives(ttb.code); … }",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the saturday october, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j2"
+},
+{
+"id": "wf_194a95778e",
+"ts": "2026-11-18T09:19:38-0500",
+"a": "icsh",
+"b": "kerosene_lamp",
+"code": "icsh.interactwith(kerosene_lamp){ kerosene_lamp.receives(icsh.envelope); kerosene_lamp.remembers(bisola, 'brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the kerosene lamp, which is still lit.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -7514,5 +7514,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T09:10:47-0500"
+"updated": "2026-11-18T09:19:38-0500"
 }
