@@ -1089,14 +1089,14 @@
 ],
 "kerosene_lamp": [
 {
-"id": "wf_29c8803af0",
-"kind": "memory",
-"text": "The kerosene lamp at Mama Ronke's gate: lit; the only light on the street after the blackout.",
-"code": "kerosene_lamp.state('lit');",
+"id": "wf_9fda621b3b",
+"kind": "consequence",
+"text": "A Bird note with Bisola's name and 'envelope corner' on it, turns up with the kerosene lamp, which is still lit.",
+"code": "jnoel.interactwith(kerosene_lamp){ kerosene_lamp.receives(jnoel.corner); kerosene_lamp.remembers(bisola, 'envelope corner'); }",
 "author": "cos",
 "run": "run-2eb42d",
-"card": "w7",
-"other": null
+"card": "j7",
+"other": "jnoel"
 },
 {
 "id": "wt_7a2b23aa13",
@@ -7726,17 +7726,6 @@
 },
 "consequences": [
 {
-"id": "wf_8d4fbc3261",
-"ts": "2026-11-18T11:20:19-0500",
-"a": "mount_mercy",
-"b": "uncle_ebo",
-"code": "mount_mercy.interactwith(uncle_ebo){ uncle_ebo.receives(mount_mercy.bead); uncle_ebo.remembers(bisola, 'blue glass bead'); }",
-"text": "The uncle ebo leaves with a Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j5"
-},
-{
 "id": "wf_a11c35da01",
 "ts": "2026-11-18T11:21:12-0500",
 "a": "notnotnotnotyn_nov",
@@ -8164,6 +8153,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j2"
+},
+{
+"id": "wf_9fda621b3b",
+"ts": "2026-11-18T13:21:05-0500",
+"a": "jnoel",
+"b": "kerosene_lamp",
+"code": "jnoel.interactwith(kerosene_lamp){ kerosene_lamp.receives(jnoel.corner); kerosene_lamp.remembers(bisola, 'envelope corner'); }",
+"text": "A Bird note with Bisola's name and 'envelope corner' on it, turns up with the kerosene lamp, which is still lit.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j7"
 }
 ],
 "memories": [
@@ -8267,5 +8267,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T13:14:22-0500"
+"updated": "2026-11-18T13:21:05-0500"
 }
