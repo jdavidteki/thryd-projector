@@ -7472,31 +7472,33 @@
 "card": "j2",
 "other": "ttb"
 }
+],
+"oh_pls_shaaatttaaapppp": [
+{
+"id": "wf_a80022da7b",
+"kind": "consequence",
+"text": "The oh pls shaaatttaaapppp leaves with a Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it.",
+"code": "lagos.interactwith(oh_pls_shaaatttaaapppp){ oh_pls_shaaatttaaapppp.receives(lagos.bead); oh_pls_shaaatttaaapppp.remembers(bisola, 'blue glass bead'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j5",
+"other": "lagos"
+}
+],
+"fear_god": [
+{
+"id": "wf_931ec02917",
+"kind": "consequence",
+"text": "The fear god now remembers the yaba: The yaba now remembers the miami: 11:45pm, Monday 2 November 2026: A phone on the counter.",
+"code": "yaba.interactwith(fear_god){ fear_god.receives(yaba.phone); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j29",
+"other": "yaba"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_14926d7426",
-"ts": "2026-11-18T09:32:22-0500",
-"a": "chair",
-"b": "genius",
-"code": "chair.interactwith(genius){ genius.receives(chair.pm); genius.remembers(taiwo, '11:20pm'); }",
-"text": "The genius leaves with a Chair note with Taiwo's name and '11:20pm' on it.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "w6"
-},
-{
-"id": "wf_847a16fdd8",
-"ts": "2026-11-18T09:33:14-0500",
-"a": "egbe",
-"b": "carbohydrates_maggi",
-"code": "egbe.interactwith(carbohydrates_maggi){ carbohydrates_maggi.receives(egbe.joke); carbohydrates_maggi.remembers(bisola, 'boss joke'); }",
-"text": "The carbohydrates maggi leaves with an Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j1"
-},
 {
 "id": "wf_50299f6dad",
 "ts": "2026-11-18T09:34:07-0500",
@@ -7914,6 +7916,28 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j7"
+},
+{
+"id": "wf_a80022da7b",
+"ts": "2026-11-18T11:45:08-0500",
+"a": "lagos",
+"b": "oh_pls_shaaatttaaapppp",
+"code": "lagos.interactwith(oh_pls_shaaatttaaapppp){ oh_pls_shaaatttaaapppp.receives(lagos.bead); oh_pls_shaaatttaaapppp.remembers(bisola, 'blue glass bead'); }",
+"text": "The oh pls shaaatttaaapppp leaves with a Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j5"
+},
+{
+"id": "wf_931ec02917",
+"ts": "2026-11-18T11:46:01-0500",
+"a": "yaba",
+"b": "fear_god",
+"code": "yaba.interactwith(fear_god){ fear_god.receives(yaba.phone); }",
+"text": "The fear god now remembers the yaba: The yaba now remembers the miami: 11:45pm, Monday 2 November 2026: A phone on the counter.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j29"
 }
 ],
 "memories": [
@@ -8017,5 +8041,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T11:40:08-0500"
+"updated": "2026-11-18T11:46:01-0500"
 }
