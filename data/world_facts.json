@@ -1873,16 +1873,6 @@
 ],
 "ronke": [
 {
-"id": "wt_6a8ff2384e",
-"kind": "func_call",
-"text": "Ronke tells them to share. Line 3: [[everything]] - somewhere in the field",
-"code": "ronke.tell('share');",
-"author": "thryd",
-"run": "run-2eb42d",
-"card": "w32",
-"other": null
-},
-{
 "id": "wt_ca2a1c4c4e",
 "kind": "func_call",
 "text": "Ronke tells them to share. Line 2: - they tok say all the ansas are [[here]]",
@@ -1920,6 +1910,16 @@
 "author": "thryd",
 "run": "run-2eb42d",
 "card": "w34",
+"other": null
+},
+{
+"id": "wt_f680d5f764",
+"kind": "func_call",
+"text": "Ronke whispers the gossip: that wan is sleeping with dah wan husband; culture is spiritual, but shock is also software.",
+"code": "ronke.whisper('gossip');",
+"author": "thryd",
+"run": "run-2eb42d",
+"card": "w35",
 "other": null
 }
 ],
@@ -2621,16 +2621,6 @@
 ],
 "chair": [
 {
-"id": "wf_ffc92afa0e",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the chair, and Bisola reads the name twice.",
-"code": "morir_r.interactwith(chair){ chair.receives(morir_r.envelope); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "morir_r"
-},
-{
 "id": "wf_a269c1e6aa",
 "kind": "consequence",
 "text": "A Pure water cooler note with Kunle's name and 'container number' on it, 9:20am, turns up inside the brown envelope at the chair, and Bisola reads the name twice.",
@@ -2659,6 +2649,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "notnotnotnotyn_jan"
+},
+{
+"id": "wf_7d9ce96099",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the 11:20pm at the chair, and Taiwo reads the name twice.",
+"code": "niaw.interactwith(chair){ chair.receives(niaw.envelope); chair.remembers(bisola, 'brown envelope'); chair.tucks(niaw, 'yaba bookshop receipt into the 11:20pm'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "niaw"
 },
 {
 "id": "wt_d7412f0d94",
@@ -6909,16 +6909,6 @@
 ],
 "kazeem": [
 {
-"id": "wt_0e480476e6",
-"kind": "func_call",
-"text": "Kazeem lands on 'real' / 'source for you'.",
-"code": "kazeem.point('danfo');",
-"author": "thryd",
-"run": "run-2eb42d",
-"card": "w33",
-"other": null
-},
-{
 "id": "wt_654b35ddca",
 "kind": "func_call",
 "text": "Kazeem says the nuts are hot, landing on 'fink about it'. Line 3: [[wksif]] -- fink about it! finking finking!",
@@ -6956,6 +6946,16 @@
 "author": "thryd",
 "run": "run-2eb42d",
 "card": "w34",
+"other": null
+},
+{
+"id": "wt_09f70385f4",
+"kind": "func_call",
+"text": "Kazeem raps into the phone and lands on '2mb of gwalalla' (j35 a3).",
+"code": "kazeem.rap('phone');",
+"author": "thryd",
+"run": "run-2eb42d",
+"card": "w35",
 "other": null
 }
 ],
@@ -7501,16 +7501,6 @@
 ],
 "mamaronke": [
 {
-"id": "wt_9594b493d9",
-"kind": "func_call",
-"text": "The mamaronke hears it (because ronke.hail(what=hawker:Thing) from j18).",
-"code": "mamaronke.hears(computer_village_subject, 'hail');",
-"author": "projector",
-"run": "run-2eb42d",
-"card": "w18",
-"other": null
-},
-{
 "id": "wt_4c94fe66c7",
 "kind": "func_call",
 "text": "Folake buys the hot wrap through the glass and tells the boy 'do ure hard', paying full price.",
@@ -7548,6 +7538,16 @@
 "author": "thryd",
 "run": "run-2eb42d",
 "card": "w34",
+"other": null
+},
+{
+"id": "wt_33041d4716",
+"kind": "func_call",
+"text": "Folake counts rooms, not trophies, and lands on 'why dem com dey para para para para for mi'.",
+"code": "mamaronke.count('rooms');",
+"author": "thryd",
+"run": "run-2eb42d",
+"card": "w35",
 "other": null
 }
 ],
@@ -8377,6 +8377,16 @@
 "run": "run-2eb42d",
 "card": "w34",
 "other": null
+},
+{
+"id": "wt_488e41dac7",
+"kind": "func_call",
+"text": "The boat playing gbedu lands on 'yupepu don dance in ur geneneration' (j35 b3).",
+"code": "boat.play('gbedu');",
+"author": "thryd",
+"run": "run-2eb42d",
+"card": "w35",
+"other": null
 }
 ],
 "dragon": [
@@ -8723,17 +8733,6 @@
 ]
 },
 "consequences": [
-{
-"id": "wf_00bfe3b8ff",
-"ts": "2026-11-18T15:39:54-0500",
-"a": "lie",
-"b": "ojuelegba_bus_stop",
-"code": "lie.interactwith(ojuelegba_bus_stop){ ojuelegba_bus_stop.receives(lie.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the ojuelegba bus stop, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
 {
 "id": "wf_5cebb2350c",
 "ts": "2026-11-18T15:42:37-0500",
@@ -9162,6 +9161,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "w7"
+},
+{
+"id": "wf_7d9ce96099",
+"ts": "2026-11-18T17:50:35-0500",
+"a": "niaw",
+"b": "chair",
+"code": "niaw.interactwith(chair){ chair.receives(niaw.envelope); chair.remembers(bisola, 'brown envelope'); chair.tucks(niaw, 'yaba bookshop receipt into the 11:20pm'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the 11:20pm at the chair, and Taiwo reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -9265,5 +9275,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T17:47:57-0500"
+"updated": "2026-11-18T17:51:28-0500"
 }
