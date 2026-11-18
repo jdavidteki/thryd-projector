@@ -6756,32 +6756,32 @@
 "run": "run-2eb42d",
 "card": "j29",
 "other": "miami"
+},
+{
+"id": "wf_9ea64a7301",
+"kind": "consequence",
+"text": "A Bird note with Bisola's name and 'envelope corner' on it, turns up beside the phone at the niaw.",
+"code": "jnoel.interactwith(niaw){ niaw.receives(jnoel.corner); niaw.remembers(bisola, 'envelope corner'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j7",
+"other": "jnoel"
+}
+],
+"mkdwo": [
+{
+"id": "wf_2967e52a01",
+"kind": "consequence",
+"text": "The mkdwo leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "wser.interactwith(mkdwo){ mkdwo.receives(wser.envelope); mkdwo.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "wser"
 }
 ]
 },
 "consequences": [
-{
-"id": "wf_cd84074d1b",
-"ts": "2026-11-17T22:06:46-0500",
-"a": "saturday_october",
-"b": "surulere_party_hall",
-"code": "saturday_october.interactwith(surulere_party_hall){ surulere_party_hall.receives(saturday_october.envelope); surulere_party_hall.remembers(bisola, 'brown envelope'); }",
-"text": "The surulere party hall leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-g1-B",
-"card": "j6"
-},
-{
-"id": "wf_785fbe3453",
-"ts": "2026-11-17T22:07:38-0500",
-"a": "uch",
-"b": "ikorodu_marina",
-"code": "uch.interactwith(ikorodu_marina){ ikorodu_marina.receives(uch.envelope); ikorodu_marina.remembers(bisola, 'brown envelope'); }",
-"text": "The ikorodu marina leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-g1-B",
-"card": "j6"
-},
 {
 "id": "wf_ba7be32f8d",
 "ts": "2026-11-17T22:09:23-0500",
@@ -7199,6 +7199,28 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j29"
+},
+{
+"id": "wf_9ea64a7301",
+"ts": "2026-11-18T00:21:12-0500",
+"a": "jnoel",
+"b": "niaw",
+"code": "jnoel.interactwith(niaw){ niaw.receives(jnoel.corner); niaw.remembers(bisola, 'envelope corner'); }",
+"text": "A Bird note with Bisola's name and 'envelope corner' on it, turns up beside the phone at the niaw.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j7"
+},
+{
+"id": "wf_2967e52a01",
+"ts": "2026-11-18T00:23:49-0500",
+"a": "wser",
+"b": "mkdwo",
+"code": "wser.interactwith(mkdwo){ mkdwo.receives(wser.envelope); mkdwo.remembers(bisola, 'brown envelope'); }",
+"text": "The mkdwo leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -7302,5 +7324,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T00:20:20-0500"
+"updated": "2026-11-18T00:23:49-0500"
 }
