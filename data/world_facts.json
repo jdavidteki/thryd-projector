@@ -1087,14 +1087,14 @@
 ],
 "kerosene_lamp": [
 {
-"id": "wf_6547b1c0c5",
-"kind": "consequence",
-"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up with the kerosene lamp, which is still lit.",
-"code": "lady.interactwith(kerosene_lamp){ kerosene_lamp.receives(lady.shirt); kerosene_lamp.remembers(bisola, 'green shirt'); }",
+"id": "wf_29c8803af0",
+"kind": "memory",
+"text": "The kerosene lamp at Mama Ronke's gate: lit; the only light on the street after the blackout.",
+"code": "kerosene_lamp.state('lit');",
 "author": "cos",
 "run": "run-2eb42d",
-"card": "j8",
-"other": "lady"
+"card": "w7",
+"other": null
 },
 {
 "id": "wt_7a2b23aa13",
@@ -7855,5 +7855,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T11:02:35-0500"
+"updated": "2026-11-18T11:03:28-0500"
 }
