@@ -4718,6 +4718,16 @@
 "run": "run-g1-B",
 "card": "j5",
 "other": "saturday_october"
+},
+{
+"id": "wt_bac468d1f7",
+"kind": "consequence",
+"text": "The oven ends up out on the sand at beach lummus park, and the blue glass bead rolls from its rack into a footprint the tide has not reached yet.",
+"code": "oven.interactwith(beach_lummus_park){ beach_lummus_park.receives(oven.bead); beach_lummus_park.find('footprint').add('blue glass bead'); oven.state('sandy'); }",
+"author": "thryd",
+"run": "run-g1-B",
+"card": "j13",
+"other": "oven"
 }
 ],
 "teomarisollove": [
@@ -6186,6 +6196,16 @@
 "run": "run-g1-B",
 "card": "j29",
 "other": "miami"
+},
+{
+"id": "wt_cab5febc51",
+"kind": "consequence",
+"text": "In Miami, the boy who keeps saying \"me, same\" is handed the brown envelope at a bus stop and holds it without asking whose name is inside.",
+"code": "miami.interactwith(me_boy_same){ me_boy_same.receives(miami.brown_envelope); me_boy_same.holds(miami, 'brown envelope, unopened'); me_boy_same.state('waiting'); }",
+"author": "thryd",
+"run": "run-g1-B",
+"card": "j29",
+"other": "miami"
 }
 ],
 "iya_bose": [
@@ -6199,42 +6219,21 @@
 "card": "j4",
 "other": "agenda_scene"
 }
+],
+"no_go_fold": [
+{
+"id": "wt_b71c64da50",
+"kind": "consequence",
+"text": "Kemi rehearses her Oya dance on the folded map and stamps a chalk circle right on the no go fold, so nobody can refold it the old way.",
+"code": "oya_dance_subject.interactwith(no_go_fold){ no_go_fold.set('crease', 'chalked over'); … }",
+"author": "thryd",
+"run": "run-g1-B",
+"card": "j29",
+"other": "oya_dance_subject"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_c65d97f510",
-"ts": "2026-11-17T16:16:16-0500",
-"a": "marker",
-"b": "youngteacher",
-"code": "marker.interactwith(youngteacher){ youngteacher.receives(marker.sign); … }",
-"text": "A Marker note with Kunle's name and 'nice day sign' on it, turns up inside the brown envelope at the youngteacher, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j3"
-},
-{
-"id": "wf_900ef84646",
-"ts": "2026-11-17T16:35:59-0500",
-"a": "marker_c",
-"b": "hpr",
-"code": "marker_c.interactwith(hpr){ hpr.receives(marker_c.envelope); hpr.remembers(bisola, 'brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the teomarisollove, which is still in love, said out loud by Marisol (w14 causeway).",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
-"id": "wf_2b23473c4d",
-"ts": "2026-11-17T16:36:53-0500",
-"a": "bird",
-"b": "teomarisollove",
-"code": "bird.interactwith(teomarisollove){ teomarisollove.receives(bird.corner); teomarisollove.remembers(bisola, 'envelope corner'); }",
-"text": "A Bird note with Bisola's name and 'envelope corner' on it, turns up with the teomarisollove, which is still in love, said out loud by Marisol (w14 causeway).",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j7"
-},
 {
 "id": "wf_9705347cfe",
 "ts": "2026-11-17T16:38:34-0500",
@@ -6641,6 +6640,39 @@
 "author": "cos",
 "run": "run-g1-B",
 "card": "j4"
+},
+{
+"id": "wt_bac468d1f7",
+"ts": "2026-11-17T19:52:22-0500",
+"a": "oven",
+"b": "beach_lummus_park",
+"code": "oven.interactwith(beach_lummus_park){ beach_lummus_park.receives(oven.bead); beach_lummus_park.find('footprint').add('blue glass bead'); oven.state('sandy'); }",
+"text": "The oven ends up out on the sand at beach lummus park, and the blue glass bead rolls from its rack into a footprint the tide has not reached yet.",
+"author": "thryd",
+"run": "run-g1-B",
+"card": "j13"
+},
+{
+"id": "wt_cab5febc51",
+"ts": "2026-11-17T19:52:22-0500",
+"a": "miami",
+"b": "me_boy_same",
+"code": "miami.interactwith(me_boy_same){ me_boy_same.receives(miami.brown_envelope); me_boy_same.holds(miami, 'brown envelope, unopened'); me_boy_same.state('waiting'); }",
+"text": "In Miami, the boy who keeps saying \"me, same\" is handed the brown envelope at a bus stop and holds it without asking whose name is inside.",
+"author": "thryd",
+"run": "run-g1-B",
+"card": "j29"
+},
+{
+"id": "wt_b71c64da50",
+"ts": "2026-11-17T19:52:22-0500",
+"a": "oya_dance_subject",
+"b": "no_go_fold",
+"code": "oya_dance_subject.interactwith(no_go_fold){ no_go_fold.set('crease', 'chalked over'); … }",
+"text": "Kemi rehearses her Oya dance on the folded map and stamps a chalk circle right on the no go fold, so nobody can refold it the old way.",
+"author": "thryd",
+"run": "run-g1-B",
+"card": "j29"
 }
 ],
 "memories": [
@@ -6744,5 +6776,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T19:38:19-0500"
+"updated": "2026-11-17T19:52:51-0500"
 }

@@ -6628,7 +6628,7 @@
   },
   "run-g1-B": {
    "forked_from": "safe:e164727d4c98",
-   "head": "34e0679372",
+   "head": "bc0ad3a8cd",
    "commits": [
     {
      "id": "bcc23f8753",
@@ -6908,7 +6908,7 @@
      }
     },
     {
-     "id": "70a90d80d9",
+     "id": "da9ad4db90",
      "parent": "e6eabb8d70",
      "branch": "run-g1-B",
      "job": "j13",
@@ -6916,8 +6916,17 @@
      "genre": null,
      "beat": null,
      "diff": {
-      "facts": [],
-      "facts_total": 0,
+      "facts": [
+       {
+        "id": "wt_bac468d1f7",
+        "object": "beach_lummus_park",
+        "kind": "consequence",
+        "code": "oven.interactwith(beach_lummus_park){ beach_lummus_park.receives(oven.bead); beach_lummus_park.find('footprint').add('blue glass bead'); ove",
+        "scope": null,
+        "cause_id": null
+       }
+      ],
+      "facts_total": 1,
       "functions": [
        {
         "func": "titi.let",
@@ -6934,8 +6943,8 @@
      }
     },
     {
-     "id": "4615a1bd5a",
-     "parent": "70a90d80d9",
+     "id": "c941dbf880",
+     "parent": "da9ad4db90",
      "branch": "run-g1-B",
      "job": "j14",
      "at": "2026-11-17T18:55:49-05:00",
@@ -6978,8 +6987,8 @@
      }
     },
     {
-     "id": "6f8bd38270",
-     "parent": "4615a1bd5a",
+     "id": "3d2288a324",
+     "parent": "c941dbf880",
      "branch": "run-g1-B",
      "job": "j15",
      "at": "2026-11-17T19:08:15-05:00",
@@ -7022,8 +7031,8 @@
      }
     },
     {
-     "id": "34e0679372",
-     "parent": "6f8bd38270",
+     "id": "bc0ad3a8cd",
+     "parent": "3d2288a324",
      "branch": "run-g1-B",
      "job": "j29",
      "at": "2026-11-17T19:34:50-0500",
@@ -7038,9 +7047,25 @@
         "code": "miami.interactwith(me_boy_same){ me_boy_same.receives(miami.phone); }",
         "scope": null,
         "cause_id": null
+       },
+       {
+        "id": "wt_cab5febc51",
+        "object": "me_boy_same",
+        "kind": "consequence",
+        "code": "miami.interactwith(me_boy_same){ me_boy_same.receives(miami.brown_envelope); me_boy_same.holds(miami, 'brown envelope, unopened'); me_boy_sa",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_b71c64da50",
+        "object": "no_go_fold",
+        "kind": "consequence",
+        "code": "oya_dance_subject.interactwith(no_go_fold){ no_go_fold.set('crease', 'chalked over'); no_go_fold.marks(oya_dance_subject, 'ankle chalk circl",
+        "scope": null,
+        "cause_id": null
        }
       ],
-      "facts_total": 1,
+      "facts_total": 3,
       "functions": [],
       "instances": []
      }
@@ -7460,9 +7485,9 @@
   "run-bd649b": "8ed6c18a56",
   "run-9e59ca": "59f544b8d8",
   "run-5a58c4": "17d819bcef",
-  "run-g1-B": "34e0679372",
+  "run-g1-B": "bc0ad3a8cd",
   "run-cb805f": "8d23a93627"
  },
  "commits": 81,
- "updated": "2026-11-17T19:38:20-05:00"
+ "updated": "2026-11-17T19:52:52-05:00"
 }
