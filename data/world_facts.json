@@ -6662,6 +6662,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "icsh"
+},
+{
+"id": "wf_a93c64b3b4",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the kazeem, and Bisola reads the name twice.",
+"code": "love.interactwith(kazeem){ kazeem.receives(love.envelope); … }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "love"
 }
 ],
 "mama_ronke": [
@@ -6711,53 +6721,45 @@
 "card": "j6",
 "other": "bus"
 }
+],
+"jnoel": [
+{
+"id": "wf_b929568330",
+"kind": "consequence",
+"text": "The jnoel leaves with a Bird note with Bisola's name and 'envelope corner' on it.",
+"code": "bird.interactwith(jnoel){ jnoel.receives(bird.corner); jnoel.remembers(bisola, 'envelope corner'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j7",
+"other": "bird"
+}
+],
+"twgs": [
+{
+"id": "wf_2a36d20838",
+"kind": "consequence",
+"text": "The twgs leaves with a Sheep note with Kunle's name and 'scorched container number' on it.",
+"code": "sheep.interactwith(twgs){ twgs.receives(sheep.number); twgs.remembers(kunle, 'scorched container number'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w7",
+"other": "sheep"
+}
+],
+"niaw": [
+{
+"id": "wf_5ba2bd2de7",
+"kind": "consequence",
+"text": "The niaw now remembers the miami: 11:45pm, Monday 2 November 2026: A phone on the counter starts the off-key chorus, then.",
+"code": "miami.interactwith(niaw){ niaw.receives(miami.phone); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j29",
+"other": "miami"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_64599d4e78",
-"ts": "2026-11-17T21:31:19-0500",
-"a": "mount_mercy",
-"b": "lagos",
-"code": "mount_mercy.interactwith(lagos){ lagos.receives(mount_mercy.bead); lagos.remembers(bisola, 'blue glass bead'); }",
-"text": "The lagos leaves with a Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it.",
-"author": "cos",
-"run": "run-g1-B",
-"card": "j5"
-},
-{
-"id": "wf_8f0a595ae9",
-"ts": "2026-11-17T21:32:12-0500",
-"a": "surulere",
-"b": "oke_ayo_bus",
-"code": "surulere.interactwith(oke_ayo_bus){ oke_ayo_bus.receives(surulere.bead); oke_ayo_bus.remembers(bisola, 'blue glass bead'); }",
-"text": "The oke ayo bus leaves with a Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it.",
-"author": "cos",
-"run": "run-g1-B",
-"card": "j5"
-},
-{
-"id": "wf_9fda1e460b",
-"ts": "2026-11-17T21:33:55-0500",
-"a": "saturday_october",
-"b": "abeokuta_parlour",
-"code": "saturday_october.interactwith(abeokuta_parlour){ abeokuta_parlour.receives(saturday_october.envelope); abeokuta_parlour.remembers(bisola, 'brown envelope'); }",
-"text": "The abeokuta parlour leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-g1-B",
-"card": "j6"
-},
-{
-"id": "wf_efeeb45208",
-"ts": "2026-11-17T22:05:53-0500",
-"a": "mrs_morenike_daramola",
-"b": "uch",
-"code": "mrs_morenike_daramola.interactwith(uch){ uch.receives(mrs_morenike_daramola.envelope); uch.remembers(bisola, 'brown envelope'); }",
-"text": "The uch leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-g1-B",
-"card": "j6"
-},
 {
 "id": "wf_cd84074d1b",
 "ts": "2026-11-17T22:06:46-0500",
@@ -7153,6 +7155,50 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_a93c64b3b4",
+"ts": "2026-11-18T00:15:59-0500",
+"a": "love",
+"b": "kazeem",
+"code": "love.interactwith(kazeem){ kazeem.receives(love.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the kazeem, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
+},
+{
+"id": "wf_b929568330",
+"ts": "2026-11-18T00:16:51-0500",
+"a": "bird",
+"b": "jnoel",
+"code": "bird.interactwith(jnoel){ jnoel.receives(bird.corner); jnoel.remembers(bisola, 'envelope corner'); }",
+"text": "The jnoel leaves with a Bird note with Bisola's name and 'envelope corner' on it.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j7"
+},
+{
+"id": "wf_2a36d20838",
+"ts": "2026-11-18T00:17:43-0500",
+"a": "sheep",
+"b": "twgs",
+"code": "sheep.interactwith(twgs){ twgs.receives(sheep.number); twgs.remembers(kunle, 'scorched container number'); }",
+"text": "The twgs leaves with a Sheep note with Kunle's name and 'scorched container number' on it.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w7"
+},
+{
+"id": "wf_5ba2bd2de7",
+"ts": "2026-11-18T00:20:20-0500",
+"a": "miami",
+"b": "niaw",
+"code": "miami.interactwith(niaw){ niaw.receives(miami.phone); }",
+"text": "The niaw now remembers the miami: 11:45pm, Monday 2 November 2026: A phone on the counter starts the off-key chorus, then.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j29"
 }
 ],
 "memories": [
@@ -7256,5 +7302,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T00:15:07-0500"
+"updated": "2026-11-18T00:20:20-0500"
 }
