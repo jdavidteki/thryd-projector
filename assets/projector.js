@@ -4,8 +4,8 @@
 // v571: typelines no longer share that lane with drift. They use thrydSimplePost / thrydTypelinePost (own lane,
 // simple CORS, 20s, 3 attempts alternating drag and cli). Drift and typeline counters are separate, so a
 // stalled drift can never hold a typed line (Jesuye 18 Nov 2026 2:00 PM ET "timed out!").
-window.__thrydPV=572;
-window.thrydPageVer=function(){return window.__thrydPV||572;};
+window.__thrydPV=573;
+window.thrydPageVer=function(){return window.__thrydPV||573;};
 window.thrydShortUA=function(){try{const ua=navigator.userAgent||'';const os=(/Android\s+[\d.]+/i.exec(ua)||/iPhone OS [\d_]+/i.exec(ua)||/iPad.*OS [\d_]+/i.exec(ua)||/Mac OS X [\d_]+/i.exec(ua)||/Windows NT [\d.]+/i.exec(ua)||/Linux/i.exec(ua)||['?'])[0];const br=(/(?:Chrome|CriOS|Firefox|FxiOS|Edg|Safari|SamsungBrowser|YaBrowser)\/[\d.]+/i.exec(ua)||['?'])[0];return (os+' '+br).replace(/\s+/g,' ').slice(0,72);}catch(e){return '?';}};
 window.thrydStamp=function(body){if(!body||typeof body!=='object')return body;try{body.pv=window.thrydPageVer();body.ua=window.thrydShortUA();}catch(e){}return body;};
 window.thrydStampOpts=function(opt){if(!opt||opt.body==null)return opt||{};try{const o=typeof opt.body==='string'?JSON.parse(opt.body):opt.body;if(o&&typeof o==='object')return Object.assign({},opt,{body:JSON.stringify(window.thrydStamp(Object.assign({},o)))});}catch(e){}return opt;};

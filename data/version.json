@@ -1,5 +1,5 @@
 {
-  "v": 572,
-  "at": "2026-11-18T14:26:20-05:00",
-  "note": "Typed lines still post to ntfy.sh first on their own simple-CORS lane. If no HTTP 200 arrives within 8s, the same payload is also posted in parallel to a second, independent no-auth HTTPS pub/sub (a public ntfy host other than ntfy.sh). cli_attempt beacons use the same 8s backup. The box relay subscribes to the backup topic and dedupes by event_id. pv:572 badge and ?v=572 cache-bust."
+  "v": 573,
+  "at": "2026-11-18T14:55:10-05:00",
+  "note": "🎬 Videos page (videos/, linked from the top menu and the collapsed ☰ menu next to 🎙️): #thryd scene videos from data/videos.json, newest first, each a <video controls playsinline> with run, job and a short caption. Filled by /workspace/thryd-drag/publish_videos.sh; shows 'no scenes yet' until the first real scene. pv:573 badge and ?v=573 cache-bust."
 }
