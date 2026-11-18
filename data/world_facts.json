@@ -7298,20 +7298,21 @@
 "card": "j5",
 "other": "oke_ayo_bus"
 }
+],
+"vex": [
+{
+"id": "wf_7e777a31b2",
+"kind": "consequence",
+"text": "The vex leaves with an Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am.",
+"code": "lady.interactwith(vex){ vex.receives(lady.shirt); vex.remembers(bisola, 'green shirt'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j8",
+"other": "lady"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_d3dfedbd29",
-"ts": "2026-11-18T08:27:46-0500",
-"a": "prior_reality",
-"b": "marina_biscayne_bay",
-"code": "prior_reality.interactwith(marina_biscayne_bay){ marina_biscayne_bay.receives(prior_reality.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the marina biscayne bay, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
 {
 "id": "wf_b008d3351c",
 "ts": "2026-11-18T08:29:31-0500",
@@ -7740,6 +7741,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j2"
+},
+{
+"id": "wf_7e777a31b2",
+"ts": "2026-11-18T10:52:56-0500",
+"a": "lady",
+"b": "vex",
+"code": "lady.interactwith(vex){ vex.receives(lady.shirt); vex.remembers(bisola, 'green shirt'); }",
+"text": "The vex leaves with an Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j8"
 }
 ],
 "memories": [
@@ -7843,5 +7855,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T10:47:30-0500"
+"updated": "2026-11-18T10:52:56-0500"
 }
