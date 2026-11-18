@@ -6160,6 +6160,16 @@
 "run": "run-g1-B",
 "card": "j5",
 "other": "inside_odunlade_brain"
+},
+{
+"id": "wf_76f51c5366",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the blue glass bead at the saturday october, and Bisola reads the name twice.",
+"code": "neck_ostrich.interactwith(saturday_october){ saturday_october.receives(neck_ostrich.envelope); … }",
+"author": "cos",
+"run": "run-g1-B",
+"card": "j6",
+"other": "neck_ostrich"
 }
 ],
 "sports_ball_scene": [
@@ -6279,42 +6289,33 @@
 "card": "j5",
 "other": "saturday_october"
 }
+],
+"surulere": [
+{
+"id": "wf_6712b4dc38",
+"kind": "consequence",
+"text": "The surulere leaves with a Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it.",
+"code": "mount_mercy.interactwith(surulere){ surulere.receives(mount_mercy.bead); surulere.remembers(bisola, 'blue glass bead'); }",
+"author": "cos",
+"run": "run-g1-B",
+"card": "j5",
+"other": "mount_mercy"
+}
+],
+"against_all_odds": [
+{
+"id": "wf_382542201b",
+"kind": "consequence",
+"text": "The danfo speaker ends up with the against all odds, still playing the same love song.",
+"code": "danfo_speaker.interactwith(against_all_odds){ danfo_speaker.db.copyto(against_all_odds); … }",
+"author": "cos",
+"run": "run-g1-B",
+"card": "w5",
+"other": "danfo_speaker"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_8dcadc0ef3",
-"ts": "2026-11-17T16:51:19-0500",
-"a": "itmoai",
-"b": "miami",
-"code": "itmoai.interactwith(miami){ miami.receives(itmoai.envelope); miami.remembers(bisola, 'brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up beside the phone at the miami.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
-"id": "wf_ec0488763d",
-"ts": "2026-11-17T16:52:17-0500",
-"a": "god",
-"b": "tag_sessy",
-"code": "god.interactwith(tag_sessy){ tag_sessy.receives(god.sign); tag_sessy.remembers(kunle, 'nice day sign'); }",
-"text": "The tag sessy leaves with a Marker note with Kunle's name and 'nice day sign' on it.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j3"
-},
-{
-"id": "wf_5f5a6c863e",
-"ts": "2026-11-17T16:53:11-0500",
-"a": "wser",
-"b": "tnw",
-"code": "wser.interactwith(tnw){ tnw.receives(wser.envelope); tnw.remembers(bisola, 'brown envelope'); tnw.tucks(wser, 'yaba bookshop receipt into the brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the tnw, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
 {
 "id": "wf_e3222026cf",
 "ts": "2026-11-17T16:55:49-0500",
@@ -6721,6 +6722,39 @@
 "author": "cos",
 "run": "run-g1-B",
 "card": "j5"
+},
+{
+"id": "wf_6712b4dc38",
+"ts": "2026-11-17T21:19:24-0500",
+"a": "mount_mercy",
+"b": "surulere",
+"code": "mount_mercy.interactwith(surulere){ surulere.receives(mount_mercy.bead); surulere.remembers(bisola, 'blue glass bead'); }",
+"text": "The surulere leaves with a Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it.",
+"author": "cos",
+"run": "run-g1-B",
+"card": "j5"
+},
+{
+"id": "wf_382542201b",
+"ts": "2026-11-17T21:20:17-0500",
+"a": "danfo_speaker",
+"b": "against_all_odds",
+"code": "danfo_speaker.interactwith(against_all_odds){ danfo_speaker.db.copyto(against_all_odds); … }",
+"text": "The danfo speaker ends up with the against all odds, still playing the same love song.",
+"author": "cos",
+"run": "run-g1-B",
+"card": "w5"
+},
+{
+"id": "wf_76f51c5366",
+"ts": "2026-11-17T21:30:26-0500",
+"a": "neck_ostrich",
+"b": "saturday_october",
+"code": "neck_ostrich.interactwith(saturday_october){ saturday_october.receives(neck_ostrich.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the blue glass bead at the saturday october, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-g1-B",
+"card": "j6"
 }
 ],
 "memories": [
@@ -6824,5 +6858,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T21:18:32-0500"
+"updated": "2026-11-17T21:30:26-0500"
 }
