@@ -1740,6 +1740,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "people_scene"
+},
+{
+"id": "wf_eadf694fee",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the notnotnotnotyn jan, and Bisola reads the name twice.",
+"code": "surulere_party_hall.interactwith(notnotnotnotyn_jan){ notnotnotnotyn_jan.receives(surulere_party_hall.envelope); … }",
+"author": "cos",
+"run": "run-g1-B",
+"card": "j6",
+"other": "surulere_party_hall"
 }
 ],
 "reality": [
@@ -6517,17 +6527,6 @@
 },
 "consequences": [
 {
-"id": "wf_bf8263a9fe",
-"ts": "2026-11-17T17:35:29-0500",
-"a": "plot",
-"b": "icsh",
-"code": "plot.interactwith(icsh){ icsh.receives(plot.soot); icsh.remembers(taiwo, 'lamp soot'); icsh.tucks(plot, 'bird note into the brown envelope'); }",
-"text": "A Bird note with Taiwo's name and 'lamp soot' on it, turns up inside the brown envelope at the icsh, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j7"
-},
-{
 "id": "wf_74991d7e21",
 "ts": "2026-11-17T17:36:22-0500",
 "a": "mbtij",
@@ -6955,6 +6954,17 @@
 "author": "cos",
 "run": "run-g1-B",
 "card": "j6"
+},
+{
+"id": "wf_eadf694fee",
+"ts": "2026-11-17T23:09:34-0500",
+"a": "surulere_party_hall",
+"b": "notnotnotnotyn_jan",
+"code": "surulere_party_hall.interactwith(notnotnotnotyn_jan){ notnotnotnotyn_jan.receives(surulere_party_hall.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the notnotnotnotyn jan, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-g1-B",
+"card": "j6"
 }
 ],
 "memories": [
@@ -7058,5 +7068,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T22:44:25-0500"
+"updated": "2026-11-17T23:09:34-0500"
 }
