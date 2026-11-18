@@ -1037,16 +1037,6 @@
 ],
 "streetlights": [
 {
-"id": "wf_1a789d9da6",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the streetlights, which is still all dead since 7:35pm.",
-"code": "saturday_october.interactwith(streetlights){ streetlights.receives(saturday_october.envelope); streetlights.remembers(bisola, 'brown envelope'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "saturday_october"
-},
-{
 "id": "wf_b14fedb475",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the streetlights, which is still all dead since 7:35pm.",
@@ -1075,6 +1065,16 @@
 "run": "run-2eb42d",
 "card": "w7",
 "other": "twgs"
+},
+{
+"id": "wf_f3d2c62e81",
+"kind": "consequence",
+"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up with the streetlights, which is still all dead since 7:35pm.",
+"code": "lady.interactwith(streetlights){ streetlights.receives(lady.shirt); streetlights.remembers(bisola, 'green shirt'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j8",
+"other": "lady"
 },
 {
 "id": "wf_32b4be23e9",
@@ -1873,67 +1873,57 @@
 ],
 "ronke": [
 {
-"id": "wt_55f20e6444",
+"id": "wt_6a8ff2384e",
 "kind": "func_call",
-"text": "Someone at the projector tapped the computer village subject and called ronke.hail(what=hawker:Thing) from j18 from its agenda run-2eb42d, first seated in run-2eb42d j18.",
-"code": "ronke.hail('hawker');",
-"author": "projector",
+"text": "Ronke tells them to share. Line 3: [[everything]] - somewhere in the field",
+"code": "ronke.tell('share');",
+"author": "thryd",
 "run": "run-2eb42d",
-"card": "w18",
+"card": "w32",
 "other": null
 },
 {
-"id": "wt_c608560247",
+"id": "wt_ca2a1c4c4e",
 "kind": "func_call",
-"text": "Someone at the projector tapped the marina ferry terminal subject and called ronke.hail(what=hawker:Thing) from j18 from its agenda run-2eb42d, first seated in run-2eb42d j18.",
-"code": "ronke.hail('hawker');",
-"author": "projector",
+"text": "Ronke tells them to share. Line 2: - they tok say all the ansas are [[here]]",
+"code": "ronke.tell('share');",
+"author": "thryd",
 "run": "run-2eb42d",
-"card": "w18",
+"card": "w32",
 "other": null
 },
 {
-"id": "wf_ab89493629",
-"kind": "consequence",
-"text": "The ronke leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"code": "mlkahb.interactwith(ronke){ ronke.receives(mlkahb.envelope); ronke.remembers(bisola, 'brown envelope'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "mlkahb"
-},
-{
-"id": "wt_cfd0c6e3c9",
+"id": "wt_daa21b5174",
 "kind": "func_call",
-"text": "Someone at the projector tapped the computer village subject and called ronke.hail(what=hawker:Thing) from j18 from its agenda run-2eb42d, first seated in run-2eb42d j18.",
-"code": "ronke.hail('hawker');",
-"author": "projector",
+"text": "Ronke tells them to share.",
+"code": "ronke.tell('share');",
+"author": "thryd",
 "run": "run-2eb42d",
-"card": "w18",
+"card": "w32",
 "other": null
 },
 {
-"id": "wf_77d81e51f6",
-"kind": "consequence",
-"text": "The ronke leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"code": "computer_village.interactwith(ronke){ ronke.receives(computer_village.envelope); ronke.remembers(bisola, 'brown envelope'); }",
-"author": "cos",
+"id": "wt_68543424a7",
+"kind": "func_call",
+"text": "Ronke, staying behind, lands on 'deya skiming to tuff your moni'.",
+"code": "ronke.stay('behind');",
+"author": "thryd",
 "run": "run-2eb42d",
-"card": "j6",
-"other": "computer_village"
+"card": "w33",
+"other": null
+},
+{
+"id": "wt_7ad17e4a7b",
+"kind": "func_call",
+"text": "Ronke flags the ticket and lands on 'if you see something, say something' / 'i see something coming'.",
+"code": "ronke.flag('ticket');",
+"author": "thryd",
+"run": "run-2eb42d",
+"card": "w34",
+"other": null
 }
 ],
 "bird": [
-{
-"id": "wf_7e006495ba",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the envelope corner at the bird, and Bisola reads the name twice.",
-"code": "mkdwo.interactwith(bird){ bird.receives(mkdwo.envelope); bird.remembers(bisola, 'brown envelope'); bird.tucks(mkdwo, 'yaba bookshop receipt into the envelope corner'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "mkdwo"
-},
 {
 "id": "wf_550b2c4bf1",
 "kind": "consequence",
@@ -1953,6 +1943,16 @@
 "run": "run-2eb42d",
 "card": "j8",
 "other": "imhf"
+},
+{
+"id": "wf_8862c81ec2",
+"kind": "consequence",
+"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the envelope corner at the bird, and Bisola reads the name twice.",
+"code": "vex.interactwith(bird){ bird.receives(vex.shirt); bird.remembers(bisola, 'green shirt'); bird.tucks(vex, 'ikeja laundromat receipt into the envelope corner'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j8",
+"other": "vex"
 },
 {
 "id": "wt_c6ff1d186b",
@@ -6889,54 +6889,54 @@
 ],
 "kazeem": [
 {
-"id": "wt_0ea8a268cc",
+"id": "wt_0e480476e6",
 "kind": "func_call",
-"text": "The kazeem hears it (because ronke.hail(what=hawker:Thing) from j18).",
-"code": "kazeem.hears(marina_ferry_terminal_subject, 'hail');",
-"author": "projector",
+"text": "Kazeem lands on 'real' / 'source for you'.",
+"code": "kazeem.point('danfo');",
+"author": "thryd",
 "run": "run-2eb42d",
-"card": "w18",
+"card": "w33",
 "other": null
 },
 {
-"id": "wf_257541b6c1",
-"kind": "consequence",
-"text": "The kazeem leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"code": "ojuelegba_bus_stop.interactwith(kazeem){ kazeem.receives(ojuelegba_bus_stop.envelope); kazeem.remembers(bisola, 'brown envelope'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "ojuelegba_bus_stop"
-},
-{
-"id": "wf_227f586b2b",
-"kind": "consequence",
-"text": "The kazeem leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"code": "bicycle.interactwith(kazeem){ kazeem.receives(bicycle.envelope); kazeem.remembers(bisola, 'brown envelope'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "bicycle"
-},
-{
-"id": "wt_5ae96d53a0",
+"id": "wt_654b35ddca",
 "kind": "func_call",
-"text": "The kazeem hears it (because ronke.hail(what=hawker:Thing) from j18).",
-"code": "kazeem.hears(computer_village_subject, 'hail');",
-"author": "projector",
+"text": "Kazeem says the nuts are hot, landing on 'fink about it'. Line 3: [[wksif]] -- fink about it! finking finking!",
+"code": "kazeem.say('hot');",
+"author": "thryd",
 "run": "run-2eb42d",
-"card": "w18",
+"card": "w32",
 "other": null
 },
 {
-"id": "wf_c88b3ede31",
-"kind": "consequence",
-"text": "The kazeem leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"code": "wser.interactwith(kazeem){ kazeem.receives(wser.envelope); kazeem.remembers(bisola, 'brown envelope'); }",
-"author": "cos",
+"id": "wt_17c788a8cd",
+"kind": "func_call",
+"text": "Kazeem says the nuts are hot, landing on 'fink about it'. Line 3: [[wksif]] -- fink about it! finking finking!",
+"code": "kazeem.say('hot');",
+"author": "thryd",
 "run": "run-2eb42d",
-"card": "j6",
-"other": "wser"
+"card": "w32",
+"other": null
+},
+{
+"id": "wt_4b8c529a02",
+"kind": "func_call",
+"text": "Kazeem says the nuts are hot, landing on 'fink about it'.",
+"code": "kazeem.say('hot');",
+"author": "thryd",
+"run": "run-2eb42d",
+"card": "w32",
+"other": null
+},
+{
+"id": "wt_831fd5656d",
+"kind": "func_call",
+"text": "Kazeem reads the board and lands on 'you've validated the theory' / '5 different people'.",
+"code": "kazeem.read('board');",
+"author": "thryd",
+"run": "run-2eb42d",
+"card": "w34",
+"other": null
 }
 ],
 "mama_ronke": [
@@ -7481,46 +7481,6 @@
 ],
 "mamaronke": [
 {
-"id": "wt_73adfd67fc",
-"kind": "func_call",
-"text": "The mamaronke hears it (because ronke.hail(what=hawker:Thing) from j18).",
-"code": "mamaronke.hears(computer_village_subject, 'hail');",
-"author": "projector",
-"run": "run-2eb42d",
-"card": "w18",
-"other": null
-},
-{
-"id": "wt_ec3baba116",
-"kind": "func_call",
-"text": "The mamaronke hears it (because ronke.hail(what=hawker:Thing) from j18).",
-"code": "mamaronke.hears(ronke, 'hail');",
-"author": "projector",
-"run": "run-2eb42d",
-"card": "w18",
-"other": null
-},
-{
-"id": "wt_e524b83fd1",
-"kind": "func_call",
-"text": "The mamaronke hears it (because ronke.hail(what=hawker:Thing) from j18).",
-"code": "mamaronke.hears(computer_village_subject, 'hail');",
-"author": "projector",
-"run": "run-2eb42d",
-"card": "w18",
-"other": null
-},
-{
-"id": "wt_929b513f22",
-"kind": "func_call",
-"text": "The mamaronke hears it (because ronke.hail(what=hawker:Thing) from j18).",
-"code": "mamaronke.hears(marina_ferry_terminal_subject, 'hail');",
-"author": "projector",
-"run": "run-2eb42d",
-"card": "w18",
-"other": null
-},
-{
 "id": "wt_9594b493d9",
 "kind": "func_call",
 "text": "The mamaronke hears it (because ronke.hail(what=hawker:Thing) from j18).",
@@ -7528,6 +7488,46 @@
 "author": "projector",
 "run": "run-2eb42d",
 "card": "w18",
+"other": null
+},
+{
+"id": "wt_4c94fe66c7",
+"kind": "func_call",
+"text": "Folake buys the hot wrap through the glass and tells the boy 'do ure hard', paying full price.",
+"code": "mamaronke.buy('wrap');",
+"author": "thryd",
+"run": "run-2eb42d",
+"card": "w32",
+"other": null
+},
+{
+"id": "wt_4b02c55c62",
+"kind": "func_call",
+"text": "Folake lands on the phd in the sky / a line that connects all the ideas, like a needle.",
+"code": "mamaronke.say('bus');",
+"author": "thryd",
+"run": "run-2eb42d",
+"card": "w33",
+"other": null
+},
+{
+"id": "wt_951ff4bb62",
+"kind": "func_call",
+"text": "Folake buys the hot wrap through the glass and tells the boy 'do ure hard', paying full price. Line 3: #seniorboys — iinnnnnm the valley!",
+"code": "mamaronke.buy('wrap');",
+"author": "thryd",
+"run": "run-2eb42d",
+"card": "w32",
+"other": null
+},
+{
+"id": "wt_8dce34b8e4",
+"kind": "func_call",
+"text": "Folake sits on the bench and lands on 'everything happens for a season' / 'give me a hug'. The posted missed-ferry beat is not restated.",
+"code": "mamaronke.sit('bench');",
+"author": "thryd",
+"run": "run-2eb42d",
+"card": "w34",
 "other": null
 }
 ],
@@ -8327,32 +8327,258 @@
 "run": "run-2eb42d",
 "card": "j34",
 "other": null
+},
+{
+"id": "wt_7397577882",
+"kind": "func_call",
+"text": "The boat-leave line 3 lands on 'this story always motivation mi'.",
+"code": "boat.leave('dock');",
+"author": "thryd",
+"run": "run-2eb42d",
+"card": "w34",
+"other": null
+},
+{
+"id": "wt_c6abd525d9",
+"kind": "func_call",
+"text": "The ferry's wake is still visible in the lagoon.",
+"code": "boat.show('wake');",
+"author": "thryd",
+"run": "run-2eb42d",
+"card": "w34",
+"other": null
+}
+],
+"dragon": [
+{
+"id": "wt_1641a75587",
+"kind": "func_call",
+"text": "The wrap paper has a red dragon print; Kazeem says it's from the Chinese restaurant on Awolowo Road.",
+"code": "dragon.show('wrapper');",
+"author": "thryd",
+"run": "run-2eb42d",
+"card": "w32",
+"other": null
+},
+{
+"id": "wt_e3c9de86c2",
+"kind": "func_call",
+"text": "The wrap paper has a red dragon print; Kazeem says it's from the Chinese restaurant on Awolowo Road.",
+"code": "dragon.show('wrapper');",
+"author": "thryd",
+"run": "run-2eb42d",
+"card": "w32",
+"other": null
+}
+],
+"column": [
+{
+"id": "wt_5a353e83e0",
+"kind": "func_call",
+"text": "Painted columns stand on the porch of the building they just passed.",
+"code": "column.stand('porch');",
+"author": "thryd",
+"run": "run-2eb42d",
+"card": "w33",
+"other": null
+}
+],
+"sky": [
+{
+"id": "wt_439ae45aef",
+"kind": "func_call",
+"text": "A pale night glow shows over the lagoon.",
+"code": "sky.show('glow');",
+"author": "thryd",
+"run": "run-2eb42d",
+"card": "w33",
+"other": null
+}
+],
+"boy": [
+{
+"id": "wt_7690de5cc0",
+"kind": "func_call",
+"text": "The boy sells groundnuts. Already in posted j32; not re-woven.",
+"code": "boy.sell('groundnuts');",
+"author": "thryd",
+"run": "run-2eb42d",
+"card": "w32",
+"other": null
+}
+],
+"doorman": [
+{
+"id": "wt_b3cfabb96f",
+"kind": "func_call",
+"text": "The doorman's line 3 lands on 'daz what appun, i think it started in 2016'.",
+"code": "doorman.ask('booking');",
+"author": "thryd",
+"run": "run-2eb42d",
+"card": "w33",
+"other": null
+}
+],
+"flamingo": [
+{
+"id": "wt_35cb4c70ab",
+"kind": "func_call",
+"text": "A small plastic flamingo sign stands on the boy's groundnut tray, leftover from a Lekki beach stall.",
+"code": "flamingo.stand();",
+"author": "thryd",
+"run": "run-2eb42d",
+"card": "w32",
+"other": null
+}
+],
+"fuel": [
+{
+"id": "wt_bbb2991edb",
+"kind": "func_call",
+"text": "The boy's tray is lined with an MRS petrol receipt showing today's price.",
+"code": "fuel.buy('price');",
+"author": "thryd",
+"run": "run-2eb42d",
+"card": "w32",
+"other": null
+},
+{
+"id": "wt_c612fa88a8",
+"kind": "func_call",
+"text": "The boy's tray is lined with an MRS petrol receipt showing today's price.",
+"code": "fuel.buy('price');",
+"author": "thryd",
+"run": "run-2eb42d",
+"card": "w32",
+"other": null
+},
+{
+"id": "wt_edea47192f",
+"kind": "func_call",
+"text": "The boy's tray is lined with an MRS petrol receipt showing today's price.",
+"code": "fuel.buy('price');",
+"author": "thryd",
+"run": "run-2eb42d",
+"card": "w32",
+"other": null
+}
+],
+"rainbow": [
+{
+"id": "wt_fb37dffdb2",
+"kind": "func_call",
+"text": "The share is folded into a nylon printed with a rainbow shop logo.",
+"code": "rainbow.show('nylon');",
+"author": "thryd",
+"run": "run-2eb42d",
+"card": "w32",
+"other": null
+},
+{
+"id": "wt_411740bf3d",
+"kind": "func_call",
+"text": "The share is folded into a nylon printed with a rainbow shop logo.",
+"code": "rainbow.show('nylon');",
+"author": "thryd",
+"run": "run-2eb42d",
+"card": "w32",
+"other": null
+},
+{
+"id": "wt_faed440518",
+"kind": "func_call",
+"text": "The share is folded into a nylon printed with a rainbow shop logo.",
+"code": "rainbow.show('nylon');",
+"author": "thryd",
+"run": "run-2eb42d",
+"card": "w32",
+"other": null
+},
+{
+"id": "wt_93a91223d4",
+"kind": "func_call",
+"text": "The share is folded into a nylon printed with a rainbow shop logo.",
+"code": "rainbow.show('nylon');",
+"author": "thryd",
+"run": "run-2eb42d",
+"card": "w32",
+"other": null
+}
+],
+"film": [
+{
+"id": "wt_14ca02c575",
+"kind": "func_call",
+"text": "A Nollywood poster is taped to the waiting-hall wall.",
+"code": "film.show('poster');",
+"author": "thryd",
+"run": "run-2eb42d",
+"card": "w33",
+"other": null
+}
+],
+"teapot": [
+{
+"id": "wt_adc42795be",
+"kind": "func_call",
+"text": "A vendor pours tea from a dented metal pot into a plastic cup.",
+"code": "teapot.pour('cup');",
+"author": "thryd",
+"run": "run-2eb42d",
+"card": "w33",
+"other": null
+}
+],
+"here": [
+{
+"id": "wt_a57c627d03",
+"kind": "func_call",
+"text": "From here line '#seniorboys - thunder.strike(⛈️)': thunder.strike(⛈️) (safe-run, cause 434).",
+"code": "thunder.strike('⛈️');",
+"author": "thryd",
+"run": "run-2eb42d",
+"card": "w32",
+"other": null
+}
+],
+"puzzle": [
+{
+"id": "wt_b9a02a1ad1",
+"kind": "func_call",
+"text": "A small puzzle-piece charm hangs from the bench slat.",
+"code": "puzzle.fit('piece');",
+"author": "thryd",
+"run": "run-2eb42d",
+"card": "w34",
+"other": null
+}
+],
+"kite": [
+{
+"id": "wt_5c0963fc79",
+"kind": "func_call",
+"text": "A plastic kite is tied to the departure board and lifts in the breeze.",
+"code": "kite.fly('board');",
+"author": "thryd",
+"run": "run-2eb42d",
+"card": "w34",
+"other": null
+}
+],
+"ufo": [
+{
+"id": "wt_c7055c31c8",
+"kind": "func_call",
+"text": "A UFO sticker is stuck to the ticket window.",
+"code": "ufo.show('sticker');",
+"author": "thryd",
+"run": "run-2eb42d",
+"card": "w34",
+"other": null
 }
 ]
 },
 "consequences": [
-{
-"id": "wf_8a38066ea2",
-"ts": "2026-11-18T15:30:14-0500",
-"a": "since",
-"b": "computer_village",
-"code": "since.interactwith(computer_village){ computer_village.receives(since.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the computer village, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
-"id": "wf_6ca517fb86",
-"ts": "2026-11-18T15:32:52-0500",
-"a": "mlkahb",
-"b": "patagonia",
-"code": "mlkahb.interactwith(patagonia){ patagonia.receives(mlkahb.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the patagonia, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
 {
 "id": "wf_ab89493629",
 "ts": "2026-11-18T15:35:29-0500",
@@ -8770,6 +8996,28 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_f3d2c62e81",
+"ts": "2026-11-18T17:36:19-0500",
+"a": "lady",
+"b": "streetlights",
+"code": "lady.interactwith(streetlights){ streetlights.receives(lady.shirt); streetlights.remembers(bisola, 'green shirt'); }",
+"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up with the streetlights, which is still all dead since 7:35pm.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j8"
+},
+{
+"id": "wf_8862c81ec2",
+"ts": "2026-11-18T17:37:11-0500",
+"a": "vex",
+"b": "bird",
+"code": "vex.interactwith(bird){ bird.receives(vex.shirt); bird.remembers(bisola, 'green shirt'); bird.tucks(vex, 'ikeja laundromat receipt into the envelope corner'); }",
+"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the envelope corner at the bird, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j8"
 }
 ],
 "memories": [
@@ -8873,5 +9121,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T17:31:55-0500"
+"updated": "2026-11-18T17:37:11-0500"
 }
