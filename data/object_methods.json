@@ -6403,6 +6403,173 @@
    "prior": [],
    "faded": false,
    "last_run": "run-g1-B"
+  },
+  "nobody.bring": {
+   "object": "nobody",
+   "method": "bring",
+   "args": [
+    "adire"
+   ],
+   "runs": [
+    "run-2eb42d"
+   ],
+   "defined": {
+    "run": "run-2eb42d",
+    "job": "j16",
+    "card": "w16",
+    "title": "nobody.bring(adire)",
+    "emoji": "🦓",
+    "at": "2026-11-17T23:36:00-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "nobody.bring(adire)",
+     "emoji": "🦓",
+     "arg": "adire",
+     "run": "run-2eb42d",
+     "job": "j16",
+     "tweets": [
+      {
+       "text": "#seniorgehs — we can bring adire",
+       "year": "2025"
+      },
+      {
+       "text": "-- eez a dog, he has 9 friends",
+       "year": "2025"
+      },
+      {
+       "text": "[[ciavp]] - they live in [[tbmotk]]",
+       "year": "2025"
+      }
+     ],
+     "consequence": "Kazeem offers to bring adire as an apology, but a street dog with nine friends has already followed the cooler down the road.",
+     "consequence_job": "j17",
+     "resolved": "nobody.bring(what=adire:Thing) from j16",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "adire",
+       "from_run": "run-2eb42d",
+       "from_job": "j16",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "adire",
+      "first_run": "run-2eb42d",
+      "first_job": "j16"
+     }
+    ],
+    "text": "bring(what: Thing)"
+   },
+   "receiver_class": "Person",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "oyinboman.know": {
+   "object": "oyinboman",
+   "method": "know",
+   "args": [
+    "when"
+   ],
+   "runs": [
+    "run-2eb42d"
+   ],
+   "defined": {
+    "run": "run-2eb42d",
+    "job": "j16",
+    "card": "w16",
+    "title": "oyinboman.know(when)",
+    "emoji": "🌧️",
+    "at": "2026-11-17T23:36:00-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "oyinboman.know(when)",
+     "emoji": "🌧️",
+     "arg": "when",
+     "run": "run-2eb42d",
+     "job": "j16",
+     "tweets": [
+      {
+       "text": "[[ocsw]] - a new una of grammy!!",
+       "year": "2024"
+      },
+      {
+       "text": "- una go tok say [[yes]]*=700!!!!!!!!",
+       "year": "2024"
+      },
+      {
+       "text": "- una too [[love]] una #oyinboman",
+       "year": "2024"
+      }
+     ],
+     "consequence": "9:52pm, still on the wet road.",
+     "consequence_job": "j17",
+     "resolved": "oyinboman.know(what=when:Thing) from j16",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "when",
+       "from_run": "run-2eb42d",
+       "from_job": "j16",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "when",
+      "first_run": "run-2eb42d",
+      "first_job": "j16"
+     }
+    ],
+    "text": "know(what: Thing)"
+   },
+   "receiver_class": "Person",
+   "prior": [
+    {
+     "id": "teo.know",
+     "title": "teo.know(everything)",
+     "run": "run-5a58c4",
+     "job": "j33",
+     "at": "2026-11-17T16:04:47-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "thrill.know",
+     "title": "thrill.know(wan)",
+     "run": "run-5a58c4",
+     "job": "j26",
+     "at": "2026-11-17T11:07:01-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "crime.know",
+     "title": "crime.know(sometimes)",
+     "run": "run-5a58c4",
+     "job": "j24",
+     "at": "2026-11-17T00:02:09-05:00",
+     "why": "same method"
+    }
+   ],
+   "faded": false,
+   "last_run": null
   }
  },
  "objects": {
@@ -6561,13 +6728,17 @@
   ],
   "nobody": [
    "nobody.weigh",
-   "nobody.rename"
+   "nobody.rename",
+   "nobody.bring"
   ],
   "omo": [
    "omo.fold"
   ],
   "openmedia": [
    "openmedia.isgif"
+  ],
+  "oyinboman": [
+   "oyinboman.know"
   ],
   "people": [
    "people.getocsw"
@@ -6685,6 +6856,46 @@
   ]
  },
  "inherit": {
+  "a5": [
+   {
+    "scope": "run",
+    "from": "run-2eb42d",
+    "funcs": [
+     "oyinboman.know",
+     "nobody.bring"
+    ]
+   }
+  ],
+  "a6": [
+   {
+    "scope": "run",
+    "from": "run-2eb42d",
+    "funcs": [
+     "oyinboman.know",
+     "nobody.bring"
+    ]
+   }
+  ],
+  "a7": [
+   {
+    "scope": "run",
+    "from": "run-2eb42d",
+    "funcs": [
+     "oyinboman.know",
+     "nobody.bring"
+    ]
+   }
+  ],
+  "a9": [
+   {
+    "scope": "run",
+    "from": "run-2eb42d",
+    "funcs": [
+     "oyinboman.know",
+     "nobody.bring"
+    ]
+   }
+  ],
   "abraham_figure": [
    {
     "scope": "safe",
@@ -6712,6 +6923,26 @@
     "title": "1020. hallucination, precision, and rain",
     "funcs": [
      "life.give"
+    ]
+   }
+  ],
+  "again": [
+   {
+    "scope": "run",
+    "from": "run-2eb42d",
+    "funcs": [
+     "oyinboman.know",
+     "nobody.bring"
+    ]
+   }
+  ],
+  "agbada": [
+   {
+    "scope": "run",
+    "from": "run-2eb42d",
+    "funcs": [
+     "oyinboman.know",
+     "nobody.bring"
     ]
    }
   ],
@@ -6812,6 +7043,66 @@
     ]
    }
   ],
+  "asmathic": [
+   {
+    "scope": "run",
+    "from": "run-2eb42d",
+    "funcs": [
+     "oyinboman.know",
+     "nobody.bring"
+    ]
+   }
+  ],
+  "atp": [
+   {
+    "scope": "run",
+    "from": "run-2eb42d",
+    "funcs": [
+     "oyinboman.know",
+     "nobody.bring"
+    ]
+   }
+  ],
+  "b7": [
+   {
+    "scope": "run",
+    "from": "run-2eb42d",
+    "funcs": [
+     "oyinboman.know",
+     "nobody.bring"
+    ]
+   }
+  ],
+  "b8": [
+   {
+    "scope": "run",
+    "from": "run-2eb42d",
+    "funcs": [
+     "oyinboman.know",
+     "nobody.bring"
+    ]
+   }
+  ],
+  "b9": [
+   {
+    "scope": "run",
+    "from": "run-2eb42d",
+    "funcs": [
+     "oyinboman.know",
+     "nobody.bring"
+    ]
+   }
+  ],
+  "b_20md": [
+   {
+    "scope": "run",
+    "from": "run-2eb42d",
+    "funcs": [
+     "oyinboman.know",
+     "nobody.bring"
+    ]
+   }
+  ],
   "bed": [
    {
     "scope": "safe",
@@ -6879,6 +7170,16 @@
     "title": "829. a day in the life of god",
     "funcs": [
      "[nau,god].map"
+    ]
+   }
+  ],
+  "bow": [
+   {
+    "scope": "run",
+    "from": "run-2eb42d",
+    "funcs": [
+     "oyinboman.know",
+     "nobody.bring"
     ]
    }
   ],
@@ -7741,6 +8042,36 @@
     ]
    }
   ],
+  "c5": [
+   {
+    "scope": "run",
+    "from": "run-2eb42d",
+    "funcs": [
+     "oyinboman.know",
+     "nobody.bring"
+    ]
+   }
+  ],
+  "c6": [
+   {
+    "scope": "run",
+    "from": "run-2eb42d",
+    "funcs": [
+     "oyinboman.know",
+     "nobody.bring"
+    ]
+   }
+  ],
+  "c9": [
+   {
+    "scope": "run",
+    "from": "run-2eb42d",
+    "funcs": [
+     "oyinboman.know",
+     "nobody.bring"
+    ]
+   }
+  ],
   "cabin_door": [
    {
     "scope": "run",
@@ -7978,6 +8309,76 @@
     ]
    }
   ],
+  "cap": [
+   {
+    "scope": "run",
+    "from": "run-2eb42d",
+    "funcs": [
+     "oyinboman.know",
+     "nobody.bring"
+    ]
+   }
+  ],
+  "cast1": [
+   {
+    "scope": "run",
+    "from": "run-2eb42d",
+    "funcs": [
+     "oyinboman.know",
+     "nobody.bring"
+    ]
+   }
+  ],
+  "cast1_2eb42d": [
+   {
+    "scope": "run",
+    "from": "run-2eb42d",
+    "funcs": [
+     "oyinboman.know",
+     "nobody.bring"
+    ]
+   }
+  ],
+  "cast2": [
+   {
+    "scope": "run",
+    "from": "run-2eb42d",
+    "funcs": [
+     "oyinboman.know",
+     "nobody.bring"
+    ]
+   }
+  ],
+  "cast2_2eb42d": [
+   {
+    "scope": "run",
+    "from": "run-2eb42d",
+    "funcs": [
+     "oyinboman.know",
+     "nobody.bring"
+    ]
+   }
+  ],
+  "cast3": [
+   {
+    "scope": "run",
+    "from": "run-2eb42d",
+    "funcs": [
+     "oyinboman.know",
+     "nobody.bring"
+    ]
+   }
+  ],
+  "cast3_2eb42d": [
+   {
+    "scope": "run",
+    "from": "run-2eb42d",
+    "funcs": [
+     "oyinboman.know",
+     "nobody.bring"
+    ]
+   }
+  ],
   "catalyst_subject": [
    {
     "scope": "safe",
@@ -8031,6 +8432,46 @@
      "nobody.rename",
      "titi.go",
      "[maybe,know].map"
+    ]
+   }
+  ],
+  "cooler": [
+   {
+    "scope": "run",
+    "from": "run-2eb42d",
+    "funcs": [
+     "oyinboman.know",
+     "nobody.bring"
+    ]
+   }
+  ],
+  "d8": [
+   {
+    "scope": "run",
+    "from": "run-2eb42d",
+    "funcs": [
+     "oyinboman.know",
+     "nobody.bring"
+    ]
+   }
+  ],
+  "d9": [
+   {
+    "scope": "run",
+    "from": "run-2eb42d",
+    "funcs": [
+     "oyinboman.know",
+     "nobody.bring"
+    ]
+   }
+  ],
+  "danfo_speaker": [
+   {
+    "scope": "run",
+    "from": "run-2eb42d",
+    "funcs": [
+     "oyinboman.know",
+     "nobody.bring"
     ]
    }
   ],
@@ -8175,6 +8616,16 @@
     ]
    }
   ],
+  "divine": [
+   {
+    "scope": "run",
+    "from": "run-2eb42d",
+    "funcs": [
+     "oyinboman.know",
+     "nobody.bring"
+    ]
+   }
+  ],
   "dog": [
    {
     "scope": "safe",
@@ -8244,6 +8695,16 @@
     ]
    }
   ],
+  "egusi_tissue_papers_subject": [
+   {
+    "scope": "safe",
+    "from": "d6bef492657d",
+    "title": "1118. egusi on tissue papers",
+    "funcs": [
+     "oyinboman.know"
+    ]
+   }
+  ],
   "end_world_poverty_figure": [
    {
     "scope": "safe",
@@ -8251,6 +8712,16 @@
     "title": "111. how to [[end world poverty]]",
     "funcs": [
      "dez.use"
+    ]
+   }
+  ],
+  "example": [
+   {
+    "scope": "run",
+    "from": "run-2eb42d",
+    "funcs": [
+     "oyinboman.know",
+     "nobody.bring"
     ]
    }
   ],
@@ -8962,6 +9433,16 @@
     ]
    }
   ],
+  "grok_aunty_figure": [
+   {
+    "scope": "safe",
+    "from": "058a1a2478c5",
+    "title": "503. combination",
+    "funcs": [
+     "nobody.bring"
+    ]
+   }
+  ],
   "handbag1": [
    {
     "scope": "run",
@@ -9458,7 +9939,25 @@
     ]
    }
   ],
+  "iae": [
+   {
+    "scope": "run",
+    "from": "run-2eb42d",
+    "funcs": [
+     "oyinboman.know",
+     "nobody.bring"
+    ]
+   }
+  ],
   "icsh": [
+   {
+    "scope": "run",
+    "from": "run-2eb42d",
+    "funcs": [
+     "oyinboman.know",
+     "nobody.bring"
+    ]
+   },
    {
     "scope": "run",
     "from": "run-5a58c4",
@@ -9514,6 +10013,16 @@
     "title": "118. ignite",
     "funcs": [
      "folake.hold"
+    ]
+   }
+  ],
+  "imhf": [
+   {
+    "scope": "run",
+    "from": "run-2eb42d",
+    "funcs": [
+     "oyinboman.know",
+     "nobody.bring"
     ]
    }
   ],
@@ -10067,6 +10576,16 @@
     ]
    }
   ],
+  "jnoel": [
+   {
+    "scope": "run",
+    "from": "run-2eb42d",
+    "funcs": [
+     "oyinboman.know",
+     "nobody.bring"
+    ]
+   }
+  ],
   "journey_subject": [
    {
     "scope": "safe",
@@ -10074,6 +10593,26 @@
     "title": "201. the journey",
     "funcs": [
      "adaora.cap"
+    ]
+   }
+  ],
+  "kazeem": [
+   {
+    "scope": "run",
+    "from": "run-2eb42d",
+    "funcs": [
+     "oyinboman.know",
+     "nobody.bring"
+    ]
+   }
+  ],
+  "kerosene_lamp": [
+   {
+    "scope": "run",
+    "from": "run-2eb42d",
+    "funcs": [
+     "oyinboman.know",
+     "nobody.bring"
     ]
    }
   ],
@@ -10126,6 +10665,26 @@
     ]
    }
   ],
+  "lady": [
+   {
+    "scope": "run",
+    "from": "run-2eb42d",
+    "funcs": [
+     "oyinboman.know",
+     "nobody.bring"
+    ]
+   }
+  ],
+  "lamp": [
+   {
+    "scope": "run",
+    "from": "run-2eb42d",
+    "funcs": [
+     "oyinboman.know",
+     "nobody.bring"
+    ]
+   }
+  ],
   "laptop": [
    {
     "scope": "safe",
@@ -10164,7 +10723,35 @@
     ]
    }
   ],
+  "lie": [
+   {
+    "scope": "run",
+    "from": "run-2eb42d",
+    "funcs": [
+     "oyinboman.know",
+     "nobody.bring"
+    ]
+   }
+  ],
+  "listen": [
+   {
+    "scope": "run",
+    "from": "run-2eb42d",
+    "funcs": [
+     "oyinboman.know",
+     "nobody.bring"
+    ]
+   }
+  ],
   "love": [
+   {
+    "scope": "run",
+    "from": "run-2eb42d",
+    "funcs": [
+     "oyinboman.know",
+     "nobody.bring"
+    ]
+   },
    {
     "scope": "run",
     "from": "run-5a58c4",
@@ -10220,6 +10807,16 @@
     "title": "918. the magician",
     "funcs": [
      "road.air"
+    ]
+   }
+  ],
+  "mama_ronke": [
+   {
+    "scope": "run",
+    "from": "run-2eb42d",
+    "funcs": [
+     "oyinboman.know",
+     "nobody.bring"
     ]
    }
   ],
@@ -11208,6 +11805,16 @@
     ]
    }
   ],
+  "matches": [
+   {
+    "scope": "run",
+    "from": "run-2eb42d",
+    "funcs": [
+     "oyinboman.know",
+     "nobody.bring"
+    ]
+   }
+  ],
   "maturity_subject": [
    {
     "scope": "safe",
@@ -11855,6 +12462,26 @@
     ]
    }
   ],
+  "mkdwo": [
+   {
+    "scope": "run",
+    "from": "run-2eb42d",
+    "funcs": [
+     "oyinboman.know",
+     "nobody.bring"
+    ]
+   }
+  ],
+  "mlkahb": [
+   {
+    "scope": "run",
+    "from": "run-2eb42d",
+    "funcs": [
+     "oyinboman.know",
+     "nobody.bring"
+    ]
+   }
+  ],
   "modern_african_history_figure": [
    {
     "scope": "safe",
@@ -11862,6 +12489,36 @@
     "title": "712. wishful thinking",
     "funcs": [
      "kunle.read"
+    ]
+   }
+  ],
+  "move": [
+   {
+    "scope": "run",
+    "from": "run-2eb42d",
+    "funcs": [
+     "oyinboman.know",
+     "nobody.bring"
+    ]
+   }
+  ],
+  "namco": [
+   {
+    "scope": "run",
+    "from": "run-2eb42d",
+    "funcs": [
+     "oyinboman.know",
+     "nobody.bring"
+    ]
+   }
+  ],
+  "niaw": [
+   {
+    "scope": "run",
+    "from": "run-2eb42d",
+    "funcs": [
+     "oyinboman.know",
+     "nobody.bring"
     ]
    }
   ],
@@ -11911,6 +12568,16 @@
     "title": "1102. make me believe today",
     "funcs": [
      "teo.fold"
+    ]
+   }
+  ],
+  "patagonia": [
+   {
+    "scope": "run",
+    "from": "run-2eb42d",
+    "funcs": [
+     "oyinboman.know",
+     "nobody.bring"
     ]
    }
   ],
@@ -12043,6 +12710,16 @@
     ]
    }
   ],
+  "plastic_sheet": [
+   {
+    "scope": "run",
+    "from": "run-2eb42d",
+    "funcs": [
+     "oyinboman.know",
+     "nobody.bring"
+    ]
+   }
+  ],
   "plot": [
    {
     "scope": "run",
@@ -12112,6 +12789,16 @@
     ]
    }
   ],
+  "precision": [
+   {
+    "scope": "run",
+    "from": "run-2eb42d",
+    "funcs": [
+     "oyinboman.know",
+     "nobody.bring"
+    ]
+   }
+  ],
   "prior_reality": [
    {
     "scope": "run",
@@ -12169,6 +12856,16 @@
     "funcs": [
      "adaora.note",
      "[connection,artists].map"
+    ]
+   }
+  ],
+  "pure_water_cooler": [
+   {
+    "scope": "run",
+    "from": "run-2eb42d",
+    "funcs": [
+     "oyinboman.know",
+     "nobody.bring"
     ]
    }
   ],
@@ -13041,6 +13738,16 @@
     ]
    }
   ],
+  "red_and_white_cap": [
+   {
+    "scope": "run",
+    "from": "run-2eb42d",
+    "funcs": [
+     "oyinboman.know",
+     "nobody.bring"
+    ]
+   }
+  ],
   "remain_blessed_subject": [
    {
     "scope": "safe",
@@ -13066,6 +13773,16 @@
     "title": "1006. reversible arguments",
     "funcs": [
      "weeks.gettoattd"
+    ]
+   }
+  ],
+  "ronke": [
+   {
+    "scope": "run",
+    "from": "run-2eb42d",
+    "funcs": [
+     "oyinboman.know",
+     "nobody.bring"
     ]
    }
   ],
@@ -13167,6 +13884,36 @@
     ]
    }
   ],
+  "seniorgehs": [
+   {
+    "scope": "run",
+    "from": "run-2eb42d",
+    "funcs": [
+     "oyinboman.know",
+     "nobody.bring"
+    ]
+   }
+  ],
+  "sheet": [
+   {
+    "scope": "run",
+    "from": "run-2eb42d",
+    "funcs": [
+     "oyinboman.know",
+     "nobody.bring"
+    ]
+   }
+  ],
+  "since": [
+   {
+    "scope": "run",
+    "from": "run-2eb42d",
+    "funcs": [
+     "oyinboman.know",
+     "nobody.bring"
+    ]
+   }
+  ],
   "skating_skating_skating_figure": [
    {
     "scope": "safe",
@@ -13185,6 +13932,16 @@
     "title": "624. delete your drafts",
     "funcs": [
      "doing.getawaselves"
+    ]
+   }
+  ],
+  "speaker": [
+   {
+    "scope": "run",
+    "from": "run-2eb42d",
+    "funcs": [
+     "oyinboman.know",
+     "nobody.bring"
     ]
    }
   ],
@@ -13234,6 +13991,26 @@
     "title": "829. a day in the life of god",
     "funcs": [
      "[nau,god].map"
+    ]
+   }
+  ],
+  "streetlight": [
+   {
+    "scope": "run",
+    "from": "run-2eb42d",
+    "funcs": [
+     "oyinboman.know",
+     "nobody.bring"
+    ]
+   }
+  ],
+  "streetlights": [
+   {
+    "scope": "run",
+    "from": "run-2eb42d",
+    "funcs": [
+     "oyinboman.know",
+     "nobody.bring"
     ]
    }
   ],
@@ -13332,6 +14109,16 @@
     "title": "829. a day in the life of god",
     "funcs": [
      "[nau,god].map"
+    ]
+   }
+  ],
+  "teach": [
+   {
+    "scope": "run",
+    "from": "run-2eb42d",
+    "funcs": [
+     "oyinboman.know",
+     "nobody.bring"
     ]
    }
   ],
@@ -13560,6 +14347,16 @@
     ]
    }
   ],
+  "tf6mom": [
+   {
+    "scope": "run",
+    "from": "run-2eb42d",
+    "funcs": [
+     "oyinboman.know",
+     "nobody.bring"
+    ]
+   }
+  ],
   "thoughts_marisol": [
    {
     "scope": "run",
@@ -13606,6 +14403,16 @@
     "title": "829. a day in the life of god",
     "funcs": [
      "[nau,god].map"
+    ]
+   }
+  ],
+  "thryd": [
+   {
+    "scope": "run",
+    "from": "run-2eb42d",
+    "funcs": [
+     "oyinboman.know",
+     "nobody.bring"
     ]
    }
   ],
@@ -14063,6 +14870,26 @@
     ]
    }
   ],
+  "ttb": [
+   {
+    "scope": "run",
+    "from": "run-2eb42d",
+    "funcs": [
+     "oyinboman.know",
+     "nobody.bring"
+    ]
+   }
+  ],
+  "twgs": [
+   {
+    "scope": "run",
+    "from": "run-2eb42d",
+    "funcs": [
+     "oyinboman.know",
+     "nobody.bring"
+    ]
+   }
+  ],
   "used_subject": [
    {
     "scope": "safe",
@@ -14070,6 +14897,16 @@
     "title": "1112. to be used",
     "funcs": [
      "everywhere.getyanju"
+    ]
+   }
+  ],
+  "vex": [
+   {
+    "scope": "run",
+    "from": "run-2eb42d",
+    "funcs": [
+     "oyinboman.know",
+     "nobody.bring"
     ]
    }
   ],
@@ -14192,6 +15029,16 @@
     ]
    }
   ],
+  "wiitbaw": [
+   {
+    "scope": "run",
+    "from": "run-2eb42d",
+    "funcs": [
+     "oyinboman.know",
+     "nobody.bring"
+    ]
+   }
+  ],
   "wizkid_sarkodie_ami_figure": [
    {
     "scope": "safe",
@@ -14213,6 +15060,14 @@
    }
   ],
   "wser": [
+   {
+    "scope": "run",
+    "from": "run-2eb42d",
+    "funcs": [
+     "oyinboman.know",
+     "nobody.bring"
+    ]
+   },
    {
     "scope": "run",
     "from": "run-5a58c4",
@@ -14258,6 +15113,16 @@
     "title": "829. a day in the life of god",
     "funcs": [
      "[nau,god].map"
+    ]
+   }
+  ],
+  "wt": [
+   {
+    "scope": "run",
+    "from": "run-2eb42d",
+    "funcs": [
+     "oyinboman.know",
+     "nobody.bring"
     ]
    }
   ],
@@ -14320,6 +15185,16 @@
     ]
    }
   ],
+  "yuwa": [
+   {
+    "scope": "run",
+    "from": "run-2eb42d",
+    "funcs": [
+     "oyinboman.know",
+     "nobody.bring"
+    ]
+   }
+  ],
   "zebra": [
    {
     "scope": "safe",
@@ -14357,6 +15232,13 @@
   ]
  },
  "runs": {
+  "run-2eb42d": {
+   "safe": "9525b78aa7f3",
+   "funcs": [
+    "nobody.bring",
+    "oyinboman.know"
+   ]
+  },
   "run-5a58c4": {
    "safe": "f81f21521253",
    "funcs": [
@@ -14467,6 +15349,13 @@
   }
  },
  "safes": {
+  "058a1a2478c5": {
+   "title": "503. combination",
+   "funcs": [
+    "nobody.bring"
+   ],
+   "runs": []
+  },
   "07a0ed55bc3c": {
    "title": "621. the world stage",
    "funcs": [
@@ -14760,6 +15649,16 @@
    ],
    "runs": []
   },
+  "9525b78aa7f3": {
+   "title": "214. paradigm shift",
+   "funcs": [
+    "nobody.bring",
+    "oyinboman.know"
+   ],
+   "runs": [
+    "run-2eb42d"
+   ]
+  },
   "99382b159447": {
    "title": "1218. new problems",
    "funcs": [
@@ -14878,6 +15777,13 @@
    "title": "905. classic material",
    "funcs": [
     "lateef.teach"
+   ],
+   "runs": []
+  },
+  "d6bef492657d": {
+   "title": "1118. egusi on tissue papers",
+   "funcs": [
+    "oyinboman.know"
    ],
    "runs": []
   },
@@ -15136,6 +16042,9 @@
   "1*W53iaOHMqwt4wiUEEUhlNw.gif": [
    "eb4af1c3e662"
   ],
+  "1*tJgT3ZuLeOv3IbOwKKl3rg.gif": [
+   "d6bef492657d"
+  ],
   "1*o_JaVjuJOL-ANJbDcYRUWw.gif": [
    "6f2356944065"
   ],
@@ -15179,6 +16088,9 @@
   ],
   "1*SKqzlBc1vQA5PWKQJUBt-g.gif": [
    "ecbaffa655c1"
+  ],
+  "1*URiYsW3-nkTqkmX-GsiZTA.gif": [
+   "058a1a2478c5"
   ],
   "1*J02u1x9GU8pcQx9_U3Oh9Q.gif": [
    "acf6b4479989"
@@ -15250,6 +16162,7 @@
    "1043ee742884"
   ],
   "1*3RBno1MIDLv6YeAAeDHq8Q.gif": [
+   "9525b78aa7f3",
    "08ae9d49aa5e"
   ],
   "1*_BZ_4dYEZGMebJgk4seauA.gif": [
@@ -15476,6 +16389,12 @@
     "dadeead0b4a2"
    ]
   },
+  "1*tJgT3ZuLeOv3IbOwKKl3rg.gif": {
+   "runs": [],
+   "safes": [
+    "d6bef492657d"
+   ]
+  },
   "1*SxvMtm4EZ8xJ3nw9tl5L_w.gif": {
    "runs": [],
    "safes": [
@@ -15606,6 +16525,12 @@
    "runs": [],
    "safes": [
     "55db20ef3a0b"
+   ]
+  },
+  "1*URiYsW3-nkTqkmX-GsiZTA.gif": {
+   "runs": [],
+   "safes": [
+    "058a1a2478c5"
    ]
   },
   "1*zQkaKM3yIWaw6FJ_wxJCXw.gif": {
@@ -15861,13 +16786,17 @@
   ],
   "nobody": [
    "nobody.weigh",
-   "nobody.rename"
+   "nobody.rename",
+   "nobody.bring"
   ],
   "omo": [
    "omo.fold"
   ],
   "openmedia": [
    "openmedia.isgif"
+  ],
+  "oyinboman": [
+   "oyinboman.know"
   ],
   "people": [
    "people.getocsw"
@@ -16056,12 +16985,17 @@
    "Readable",
    "Watchable",
    "Weighable"
+  ],
+  "oyinboman": [
+   "Readable"
   ]
  },
  "casts": {
   "run-2eb42d": [
    "kazeem",
    "mamaronke",
+   "nobody",
+   "oyinboman",
    "ronke"
   ],
   "run-3a15d2": [
@@ -16184,5 +17118,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-17T23:32:22-05:00"
+ "updated": "2026-11-17T23:36:45-05:00"
 }
