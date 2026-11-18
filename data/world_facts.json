@@ -1538,16 +1538,6 @@
 ],
 "people_scene": [
 {
-"id": "wf_2736b6263e",
-"kind": "consequence",
-"text": "The people scene leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
-"code": "people_scene.receives(ttb.note);",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j2",
-"other": "ttb"
-},
-{
 "id": "wf_733e3d41d6",
 "kind": "consequence",
 "text": "An Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997, turns up inside the juju code at the people scene, and Ejiro reads the name twice.",
@@ -1586,6 +1576,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "notnotnotnotyn_sep"
+},
+{
+"id": "wf_a78acf10d7",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the people scene, and Bisola reads the name twice.",
+"code": "ikorodu_marina.interactwith(people_scene){ people_scene.receives(ikorodu_marina.envelope); … }",
+"author": "cos",
+"run": "run-g1-B",
+"card": "j6",
+"other": "ikorodu_marina"
 }
 ],
 "ronke_tray": [
@@ -6527,17 +6527,6 @@
 },
 "consequences": [
 {
-"id": "wf_74991d7e21",
-"ts": "2026-11-17T17:36:22-0500",
-"a": "mbtij",
-"b": "bicycle",
-"code": "mbtij.interactwith(bicycle){ bicycle.receives(mbtij.code); bicycle.remembers(ejiro, 'juju code'); bicycle.tucks(mbtij, 'ttb note into the brown envelope'); }",
-"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the bicycle, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j2"
-},
-{
 "id": "wf_b6ef76feb0",
 "ts": "2026-11-17T18:36:52-0500",
 "a": "egbe",
@@ -6965,6 +6954,17 @@
 "author": "cos",
 "run": "run-g1-B",
 "card": "j6"
+},
+{
+"id": "wf_a78acf10d7",
+"ts": "2026-11-17T23:10:26-0500",
+"a": "ikorodu_marina",
+"b": "people_scene",
+"code": "ikorodu_marina.interactwith(people_scene){ people_scene.receives(ikorodu_marina.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the people scene, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-g1-B",
+"card": "j6"
 }
 ],
 "memories": [
@@ -7068,5 +7068,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T23:09:34-0500"
+"updated": "2026-11-17T23:10:26-0500"
 }
