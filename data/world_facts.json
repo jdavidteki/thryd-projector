@@ -6313,42 +6313,45 @@
 "card": "w5",
 "other": "danfo_speaker"
 }
+],
+"lagos": [
+{
+"id": "wf_64599d4e78",
+"kind": "consequence",
+"text": "The lagos leaves with a Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it.",
+"code": "mount_mercy.interactwith(lagos){ lagos.receives(mount_mercy.bead); lagos.remembers(bisola, 'blue glass bead'); }",
+"author": "cos",
+"run": "run-g1-B",
+"card": "j5",
+"other": "mount_mercy"
+}
+],
+"oke_ayo_bus": [
+{
+"id": "wf_8f0a595ae9",
+"kind": "consequence",
+"text": "The oke ayo bus leaves with a Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it.",
+"code": "surulere.interactwith(oke_ayo_bus){ oke_ayo_bus.receives(surulere.bead); oke_ayo_bus.remembers(bisola, 'blue glass bead'); }",
+"author": "cos",
+"run": "run-g1-B",
+"card": "j5",
+"other": "surulere"
+}
+],
+"abeokuta_parlour": [
+{
+"id": "wf_9fda1e460b",
+"kind": "consequence",
+"text": "The abeokuta parlour leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "saturday_october.interactwith(abeokuta_parlour){ abeokuta_parlour.receives(saturday_october.envelope); abeokuta_parlour.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-g1-B",
+"card": "j6",
+"other": "saturday_october"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_e3222026cf",
-"ts": "2026-11-17T16:55:49-0500",
-"a": "tbp",
-"b": "cell_phone",
-"code": "tbp.interactwith(cell_phone){ cell_phone.receives(tbp.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the cell phone, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
-"id": "wf_7d1e6da322",
-"ts": "2026-11-17T16:57:31-0500",
-"a": "teoloveletter",
-"b": "tag_sessy",
-"code": "teoloveletter.interactwith(tag_sessy){ tag_sessy.receives(teoloveletter.code); … }",
-"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the nice day sign at the tag sessy, and Kunle reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j2"
-},
-{
-"id": "wf_22a751fc0c",
-"ts": "2026-11-17T17:00:05-0500",
-"a": "water",
-"b": "quiet_stretch_sand",
-"code": "water.interactwith(quiet_stretch_sand){ quiet_stretch_sand.receives(water.code); quiet_stretch_sand.remembers(ejiro, 'juju code'); }",
-"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up beside the morning at the quiet stretch sand.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j2"
-},
 {
 "id": "wf_fc968e3bb3",
 "ts": "2026-11-17T17:00:58-0500",
@@ -6755,6 +6758,39 @@
 "author": "cos",
 "run": "run-g1-B",
 "card": "j6"
+},
+{
+"id": "wf_64599d4e78",
+"ts": "2026-11-17T21:31:19-0500",
+"a": "mount_mercy",
+"b": "lagos",
+"code": "mount_mercy.interactwith(lagos){ lagos.receives(mount_mercy.bead); lagos.remembers(bisola, 'blue glass bead'); }",
+"text": "The lagos leaves with a Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it.",
+"author": "cos",
+"run": "run-g1-B",
+"card": "j5"
+},
+{
+"id": "wf_8f0a595ae9",
+"ts": "2026-11-17T21:32:12-0500",
+"a": "surulere",
+"b": "oke_ayo_bus",
+"code": "surulere.interactwith(oke_ayo_bus){ oke_ayo_bus.receives(surulere.bead); oke_ayo_bus.remembers(bisola, 'blue glass bead'); }",
+"text": "The oke ayo bus leaves with a Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it.",
+"author": "cos",
+"run": "run-g1-B",
+"card": "j5"
+},
+{
+"id": "wf_9fda1e460b",
+"ts": "2026-11-17T21:33:55-0500",
+"a": "saturday_october",
+"b": "abeokuta_parlour",
+"code": "saturday_october.interactwith(abeokuta_parlour){ abeokuta_parlour.receives(saturday_october.envelope); abeokuta_parlour.remembers(bisola, 'brown envelope'); }",
+"text": "The abeokuta parlour leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-g1-B",
+"card": "j6"
 }
 ],
 "memories": [
@@ -6858,5 +6894,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T21:30:26-0500"
+"updated": "2026-11-17T21:33:55-0500"
 }
