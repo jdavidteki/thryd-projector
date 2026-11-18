@@ -933,16 +933,6 @@
 ],
 "plastic_sheet": [
 {
-"id": "wf_f5e12d9286",
-"kind": "consequence",
-"text": "A Truth note with Titi's name and 'egbe note' on it, turns up inside the brown envelope at the plastic sheet, and Bisola reads the name twice.",
-"code": "truth.interactwith(plastic_sheet){ plastic_sheet.receives(truth.note); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j4",
-"other": "truth"
-},
-{
 "id": "wf_a3a347b7fb",
 "kind": "consequence",
 "text": "The plastic sheet now remembers the miami: 11:45pm, Monday 2 November 2026: A phone on the counter starts the off-key chorus, then.",
@@ -981,6 +971,16 @@
 "run": "run-2eb42d",
 "card": "w5",
 "other": null
+},
+{
+"id": "wf_0ccd93683f",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the plastic sheet, which is still wet.",
+"code": "love.interactwith(plastic_sheet){ plastic_sheet.receives(love.envelope); plastic_sheet.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "love"
 }
 ],
 "red_white_cap": [
@@ -1873,16 +1873,6 @@
 ],
 "ronke": [
 {
-"id": "wt_ef47f3bb36",
-"kind": "func_call",
-"text": "Someone at the projector tapped the ronke and called ronke.hail(what=hawker:Thing) from j18, first seated in run-2eb42d j18.",
-"code": "ronke.hail('hawker');",
-"author": "projector",
-"run": "run-2eb42d",
-"card": "w18",
-"other": null
-},
-{
 "id": "wt_55f20e6444",
 "kind": "func_call",
 "text": "Someone at the projector tapped the computer village subject and called ronke.hail(what=hawker:Thing) from j18 from its agenda run-2eb42d, first seated in run-2eb42d j18.",
@@ -1921,6 +1911,16 @@
 "run": "run-2eb42d",
 "card": "w18",
 "other": null
+},
+{
+"id": "wf_77d81e51f6",
+"kind": "consequence",
+"text": "The ronke leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "computer_village.interactwith(ronke){ ronke.receives(computer_village.envelope); ronke.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "computer_village"
 }
 ],
 "bird": [
@@ -8268,28 +8268,6 @@
 },
 "consequences": [
 {
-"id": "wf_6192e85b8c",
-"ts": "2026-11-18T13:38:28-0500",
-"a": "laptop",
-"b": "kerosene_lamp",
-"code": "laptop.interactwith(kerosene_lamp){ kerosene_lamp.receives(laptop.soot); kerosene_lamp.remembers(taiwo, 'lamp soot'); }",
-"text": "A Laptop note with Taiwo's name and 'lamp soot' on it, turns up with the kerosene lamp, which is still lit.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j7"
-},
-{
-"id": "wf_93f90e4def",
-"ts": "2026-11-18T13:43:08-0500",
-"a": "plastic_sheet",
-"b": "ronke",
-"code": "plastic_sheet.interactwith(ronke){ plastic_sheet.db.copyto(ronke); ronke.keeps(plastic_sheet, 'plastic sheet, still wet'); }",
-"text": "The plastic sheet ends up with the ronke, still wet.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "w5"
-},
-{
 "id": "wf_0c3a4289ef",
 "ts": "2026-11-18T13:51:33-0500",
 "a": "patagonia",
@@ -8706,6 +8684,28 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j29"
+},
+{
+"id": "wf_77d81e51f6",
+"ts": "2026-11-18T15:59:31-0500",
+"a": "computer_village",
+"b": "ronke",
+"code": "computer_village.interactwith(ronke){ ronke.receives(computer_village.envelope); ronke.remembers(bisola, 'brown envelope'); }",
+"text": "The ronke leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
+},
+{
+"id": "wf_0ccd93683f",
+"ts": "2026-11-18T16:00:23-0500",
+"a": "love",
+"b": "plastic_sheet",
+"code": "love.interactwith(plastic_sheet){ plastic_sheet.receives(love.envelope); plastic_sheet.remembers(bisola, 'brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the plastic sheet, which is still wet.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -8809,5 +8809,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T15:50:14-0500"
+"updated": "2026-11-18T16:00:23-0500"
 }
