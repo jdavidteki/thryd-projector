@@ -6267,20 +6267,21 @@
 "card": "j5",
 "other": "saturday_october"
 }
+],
+"ikeja": [
+{
+"id": "wf_12910e51d7",
+"kind": "consequence",
+"text": "The ikeja leaves with a Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it.",
+"code": "saturday_october.interactwith(ikeja){ ikeja.receives(saturday_october.bead); ikeja.remembers(bisola, 'blue glass bead'); }",
+"author": "cos",
+"run": "run-g1-B",
+"card": "j5",
+"other": "saturday_october"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_af0538c295",
-"ts": "2026-11-17T16:49:33-0500",
-"a": "god",
-"b": "teo",
-"code": "god.interactwith(teo){ teo.receives(god.sign); teo.remembers(kunle, 'nice day sign'); }",
-"text": "The teo leaves with a Marker note with Kunle's name and 'nice day sign' on it.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j3"
-},
 {
 "id": "wf_8dcadc0ef3",
 "ts": "2026-11-17T16:51:19-0500",
@@ -6709,6 +6710,17 @@
 "author": "cos",
 "run": "run-g1-B",
 "card": "j5"
+},
+{
+"id": "wf_12910e51d7",
+"ts": "2026-11-17T21:18:32-0500",
+"a": "saturday_october",
+"b": "ikeja",
+"code": "saturday_october.interactwith(ikeja){ ikeja.receives(saturday_october.bead); ikeja.remembers(bisola, 'blue glass bead'); }",
+"text": "The ikeja leaves with a Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it.",
+"author": "cos",
+"run": "run-g1-B",
+"card": "j5"
 }
 ],
 "memories": [
@@ -6812,5 +6824,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T20:58:37-0500"
+"updated": "2026-11-17T21:18:32-0500"
 }
