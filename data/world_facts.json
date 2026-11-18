@@ -6119,20 +6119,21 @@
 "card": "j6",
 "other": "mrs_morenike_daramola"
 }
+],
+"saturday_october": [
+{
+"id": "wf_c567439619",
+"kind": "consequence",
+"text": "The saturday october leaves with a Nla agbara figure receipt with Bisola's name and 'brown envelope' on it.",
+"code": "off_key.interactwith(saturday_october){ saturday_october.receives(off_key.envelope); saturday_october.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-g1-B",
+"card": "j4",
+"other": "off_key"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_20af5c16d0",
-"ts": "2026-11-17T16:05:05-0500",
-"a": "marker_c",
-"b": "jetty_south_pointe",
-"code": "marker_c.interactwith(jetty_south_pointe){ jetty_south_pointe.receives(marker_c.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the jetty south pointe, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
 {
 "id": "wf_7efd016d31",
 "ts": "2026-11-17T16:05:57-0500",
@@ -6561,6 +6562,17 @@
 "author": "cos",
 "run": "run-g1-B",
 "card": "j6"
+},
+{
+"id": "wf_c567439619",
+"ts": "2026-11-17T19:05:56-0500",
+"a": "off_key",
+"b": "saturday_october",
+"code": "off_key.interactwith(saturday_october){ saturday_october.receives(off_key.envelope); saturday_october.remembers(bisola, 'brown envelope'); }",
+"text": "The saturday october leaves with a Nla agbara figure receipt with Bisola's name and 'brown envelope' on it.",
+"author": "cos",
+"run": "run-g1-B",
+"card": "j4"
 }
 ],
 "memories": [
@@ -6664,5 +6676,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T18:54:24-0500"
+"updated": "2026-11-17T19:05:56-0500"
 }
