@@ -6628,7 +6628,7 @@
   },
   "run-g1-B": {
    "forked_from": "safe:e164727d4c98",
-   "head": "6b264bdaae",
+   "head": "7ecfcb9ce9",
    "commits": [
     {
      "id": "bcc23f8753",
@@ -6655,7 +6655,7 @@
      }
     },
     {
-     "id": "bb0c20f489",
+     "id": "0e5f32144d",
      "parent": "bcc23f8753",
      "branch": "run-g1-B",
      "job": "j4",
@@ -6679,16 +6679,24 @@
         "code": "agenda_scene.interactwith(iya_bose){ iya_bose.receives(agenda_scene.envelope); iya_bose.remembers(bisola, 'brown envelope'); }",
         "scope": null,
         "cause_id": null
+       },
+       {
+        "id": "wf_9e8269e5b8",
+        "object": "lagos_cinema",
+        "kind": "consequence",
+        "code": "off_key.interactwith(lagos_cinema){ lagos_cinema.receives(off_key.envelope); lagos_cinema.remembers(bisola, 'brown envelope'); }",
+        "scope": null,
+        "cause_id": null
        }
       ],
-      "facts_total": 2,
+      "facts_total": 3,
       "functions": [],
       "instances": []
      }
     },
     {
-     "id": "52fa439ecc",
-     "parent": "bb0c20f489",
+     "id": "90f9cf276b",
+     "parent": "0e5f32144d",
      "branch": "run-g1-B",
      "job": "j5",
      "at": "2026-11-17T19:13:28-0500",
@@ -6799,8 +6807,8 @@
      }
     },
     {
-     "id": "70b7a448fc",
-     "parent": "52fa439ecc",
+     "id": "11990c6b82",
+     "parent": "90f9cf276b",
      "branch": "run-g1-B",
      "job": "j6",
      "at": "2026-11-17T18:38:33-0500",
@@ -6927,8 +6935,8 @@
      }
     },
     {
-     "id": "1da6a77347",
-     "parent": "70b7a448fc",
+     "id": "c2830f1356",
+     "parent": "11990c6b82",
      "branch": "run-g1-B",
      "job": "j10",
      "at": "2026-11-17T17:31:50-05:00",
@@ -6971,8 +6979,8 @@
      }
     },
     {
-     "id": "e0f807b5c1",
-     "parent": "1da6a77347",
+     "id": "a8a3160ab3",
+     "parent": "c2830f1356",
      "branch": "run-g1-B",
      "job": "j11",
      "at": "2026-11-17T18:25:59-05:00",
@@ -7024,8 +7032,8 @@
      }
     },
     {
-     "id": "d2dda99b66",
-     "parent": "e0f807b5c1",
+     "id": "d62695aea8",
+     "parent": "a8a3160ab3",
      "branch": "run-g1-B",
      "job": "j12",
      "at": "2026-11-17T18:33:35-05:00",
@@ -7068,8 +7076,8 @@
      }
     },
     {
-     "id": "ff4d070233",
-     "parent": "d2dda99b66",
+     "id": "341f2c6142",
+     "parent": "d62695aea8",
      "branch": "run-g1-B",
      "job": "j13",
      "at": "2026-11-17T18:41:05-05:00",
@@ -7103,8 +7111,8 @@
      }
     },
     {
-     "id": "25c7f52373",
-     "parent": "ff4d070233",
+     "id": "35a9e91b19",
+     "parent": "341f2c6142",
      "branch": "run-g1-B",
      "job": "j14",
      "at": "2026-11-17T18:55:49-05:00",
@@ -7147,8 +7155,8 @@
      }
     },
     {
-     "id": "ac6f47847a",
-     "parent": "25c7f52373",
+     "id": "3db24127c9",
+     "parent": "35a9e91b19",
      "branch": "run-g1-B",
      "job": "j15",
      "at": "2026-11-17T19:08:15-05:00",
@@ -7191,8 +7199,8 @@
      }
     },
     {
-     "id": "6b264bdaae",
-     "parent": "ac6f47847a",
+     "id": "7ecfcb9ce9",
+     "parent": "3db24127c9",
      "branch": "run-g1-B",
      "job": "j29",
      "at": "2026-11-17T19:34:50-0500",
@@ -7653,9 +7661,9 @@
   "run-bd649b": "8ed6c18a56",
   "run-9e59ca": "59f544b8d8",
   "run-5a58c4": "17d819bcef",
-  "run-g1-B": "6b264bdaae",
+  "run-g1-B": "7ecfcb9ce9",
   "run-cb805f": "8d23a93627"
  },
  "commits": 81,
- "updated": "2026-11-17T22:39:07-05:00"
+ "updated": "2026-11-17T22:40:00-05:00"
 }
