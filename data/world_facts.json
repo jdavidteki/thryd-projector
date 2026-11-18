@@ -7253,6 +7253,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "mlkahb"
+},
+{
+"id": "wf_1262999fd5",
+"kind": "consequence",
+"text": "A Sheep note with Kunle's name and 'scorched container number' on it, turns up inside the brown envelope at the patagonia, and Bisola reads the name twice.",
+"code": "twgs.interactwith(patagonia){ patagonia.receives(twgs.number); … }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w7",
+"other": "twgs"
 }
 ],
 "ikorodu_compound": [
@@ -7713,16 +7723,6 @@
 ],
 "computer_village": [
 {
-"id": "wf_b475585693",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the green shirt at the computer village, and Bisola reads the name twice.",
-"code": "move.interactwith(computer_village){ computer_village.receives(move.envelope); … }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "move"
-},
-{
 "id": "wf_2c725daca8",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the computer village, and Bisola reads the name twice.",
@@ -7761,6 +7761,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "since"
+},
+{
+"id": "wf_311b372227",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the computer village, and Bisola reads the name twice.",
+"code": "icsh.interactwith(computer_village){ computer_village.receives(icsh.envelope); … }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "icsh"
 }
 ],
 "oh_pls_shaaatttaaapppp": [
@@ -8258,28 +8268,6 @@
 },
 "consequences": [
 {
-"id": "wf_db5bb0593e",
-"ts": "2026-11-18T13:27:41-0500",
-"a": "divine",
-"b": "love",
-"code": "divine.interactwith(love){ love.receives(divine.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the love, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
-"id": "wf_083de9a961",
-"ts": "2026-11-18T13:31:25-0500",
-"a": "namco",
-"b": "precision",
-"code": "namco.interactwith(precision){ precision.receives(namco.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the precision, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
 "id": "wf_8c8abe63e3",
 "ts": "2026-11-18T13:32:17-0500",
 "a": "lady",
@@ -8696,6 +8684,28 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_1262999fd5",
+"ts": "2026-11-18T15:45:15-0500",
+"a": "twgs",
+"b": "patagonia",
+"code": "twgs.interactwith(patagonia){ patagonia.receives(twgs.number); … }",
+"text": "A Sheep note with Kunle's name and 'scorched container number' on it, turns up inside the brown envelope at the patagonia, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w7"
+},
+{
+"id": "wf_311b372227",
+"ts": "2026-11-18T15:47:00-0500",
+"a": "icsh",
+"b": "computer_village",
+"code": "icsh.interactwith(computer_village){ computer_village.receives(icsh.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the computer village, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -8799,5 +8809,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T15:42:37-0500"
+"updated": "2026-11-18T15:47:00-0500"
 }
