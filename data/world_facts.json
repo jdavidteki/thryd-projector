@@ -1005,16 +1005,6 @@
 "other": "computer_village"
 },
 {
-"id": "wf_3fdb648208",
-"kind": "memory",
-"text": "The red and white cap on Kazeem, Mama Ronke's house and gate: worn; boasted about while talking hacking.",
-"code": "red_white_cap.state('worn');",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "w6",
-"other": null
-},
-{
 "id": "wf_ca993160ae",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the red and white cap, which is still worn.",
@@ -1023,6 +1013,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "namco"
+},
+{
+"id": "wf_3fdb648208",
+"kind": "memory",
+"text": "The red and white cap on Kazeem, Mama Ronke's house and gate: worn; boasted about while talking hacking.",
+"code": "red_white_cap.state('worn');",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w6",
+"other": null
 },
 {
 "id": "wt_1115_2356_c",
@@ -1141,16 +1141,6 @@
 ],
 "matches": [
 {
-"id": "wf_2a6321cbb4",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the matches, and Bisola reads the name twice.",
-"code": "streetlights.interactwith(matches){ matches.receives(streetlights.envelope); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "streetlights"
-},
-{
 "id": "wf_0d9bb31a93",
 "kind": "consequence",
 "text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up with the matches, which is still found.",
@@ -1179,6 +1169,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "atp"
+},
+{
+"id": "wf_f1bd4f6cf0",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the matches, which is still found.",
+"code": "icsh.interactwith(matches){ matches.receives(icsh.envelope); matches.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "icsh"
 },
 {
 "id": "wf_d40998bca5",
@@ -8308,17 +8308,6 @@
 },
 "consequences": [
 {
-"id": "wf_95785185fd",
-"ts": "2026-11-18T15:21:26-0500",
-"a": "again",
-"b": "computer_village",
-"code": "again.interactwith(computer_village){ computer_village.receives(again.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the computer village, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
 "id": "wf_257541b6c1",
 "ts": "2026-11-18T15:28:29-0500",
 "a": "ojuelegba_bus_stop",
@@ -8746,6 +8735,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_f1bd4f6cf0",
+"ts": "2026-11-18T17:16:55-0500",
+"a": "icsh",
+"b": "matches",
+"code": "icsh.interactwith(matches){ matches.receives(icsh.envelope); matches.remembers(bisola, 'brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the matches, which is still found.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -8849,5 +8849,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T17:16:02-0500"
+"updated": "2026-11-18T17:17:49-0500"
 }
