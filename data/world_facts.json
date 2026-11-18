@@ -963,16 +963,6 @@
 "other": "ojuelegba_bus_stop"
 },
 {
-"id": "wf_194e588426",
-"kind": "memory",
-"text": "The plastic sheet at Oke-Ayo bus stop: wet; Ronke and Kazeem had been under it, Mama Ronke stood over it.",
-"code": "plastic_sheet.state('wet');",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "w5",
-"other": null
-},
-{
 "id": "wf_794d3ec949",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the plastic sheet, which is still wet.",
@@ -981,6 +971,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "computer_village"
+},
+{
+"id": "wf_194e588426",
+"kind": "memory",
+"text": "The plastic sheet at Oke-Ayo bus stop: wet; Ronke and Kazeem had been under it, Mama Ronke stood over it.",
+"code": "plastic_sheet.state('wet');",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w5",
+"other": null
 }
 ],
 "red_white_cap": [
@@ -1873,16 +1873,6 @@
 ],
 "ronke": [
 {
-"id": "wt_611c4d0df3",
-"kind": "func_call",
-"text": "Someone at the projector tapped the mile subject and called ronke.hail(what=hawker:Thing) from j18 from its agenda run-2eb42d, first seated in run-2eb42d j18.",
-"code": "ronke.hail('hawker');",
-"author": "projector",
-"run": "run-2eb42d",
-"card": "w18",
-"other": null
-},
-{
 "id": "wt_263c661453",
 "kind": "func_call",
 "text": "Someone at the projector tapped the third mainland bridge subject and called ronke.hail(what=hawker:Thing) from j18 from its agenda run-2eb42d, first seated in run-2eb42d j18.",
@@ -1920,6 +1910,16 @@
 "author": "projector",
 "run": "run-2eb42d",
 "card": "w18",
+"other": null
+},
+{
+"id": "wt_907fc0d965",
+"kind": "func_call",
+"text": "Someone at the projector tapped the computer village subject and called ronke.mend(act=even:Action) from j17 from its agenda run-2eb42d, first seated in run-2eb42d j17.",
+"code": "ronke.mend('even');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w17",
 "other": null
 }
 ],
@@ -2095,16 +2095,6 @@
 ],
 "laptop": [
 {
-"id": "wf_22ed36bfd5",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the lamp soot at the laptop, and Taiwo reads the name twice.",
-"code": "icsh.interactwith(laptop){ laptop.receives(icsh.envelope); laptop.remembers(bisola, 'brown envelope'); laptop.tucks(icsh, 'yaba bookshop receipt into the lamp soot'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "icsh"
-},
-{
 "id": "wf_5eff10a8aa",
 "kind": "consequence",
 "text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the lamp soot at the laptop, and Taiwo reads the name twice.",
@@ -2113,6 +2103,16 @@
 "run": "run-2eb42d",
 "card": "j8",
 "other": "example"
+},
+{
+"id": "wf_0a1364eace",
+"kind": "consequence",
+"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the lamp soot at the laptop, and Taiwo reads the name twice.",
+"code": "lady.interactwith(laptop){ laptop.receives(lady.shirt); laptop.remembers(bisola, 'green shirt'); laptop.tucks(lady, 'ikeja laundromat receipt into the lamp soot'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j8",
+"other": "lady"
 },
 {
 "id": "wt_00586a397c",
@@ -3451,6 +3451,26 @@
 "run": "run-b9b963",
 "card": "j6",
 "other": "bed"
+},
+{
+"id": "wt_50490e6d50",
+"kind": "func_call",
+"text": "Someone at the projector tapped the computer village subject and called oyinboman.know(what=lid:Thing) from j18 from its agenda run-2eb42d, first seated in run-2eb42d j16.",
+"code": "oyinboman.know('lid');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w16",
+"other": null
+},
+{
+"id": "wt_a0f3a35df7",
+"kind": "func_call",
+"text": "Someone at the projector tapped the computer village subject and called oyinboman.know(what=lid:Thing) from j18 from its agenda run-2eb42d, first seated in run-2eb42d j16.",
+"code": "oyinboman.know('lid');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w16",
+"other": null
 }
 ],
 "mean": [
@@ -4767,6 +4787,16 @@
 "run": "run-5a58c4",
 "card": "j7",
 "other": "laptop"
+},
+{
+"id": "wt_b8eac23954",
+"kind": "func_call",
+"text": "The calla hears it (because song.hit(what=mistake:Thing) from j35).",
+"code": "calla.hears(miami_subject, 'hit');",
+"author": "projector",
+"run": "run-5a58c4",
+"card": "w22",
+"other": null
 }
 ],
 "as_poor_man": [
@@ -5493,16 +5523,6 @@
 ],
 "teo": [
 {
-"id": "wt_34aadff19f",
-"kind": "func_call",
-"text": "Someone at the projector tapped the teo and called teo.fold(how=like:Manner) from j27, first seated in run-5a58c4 j25.",
-"code": "teo.fold('like');",
-"author": "projector",
-"run": "run-5a58c4",
-"card": "w25",
-"other": null
-},
-{
 "id": "wf_7efd016d31",
 "kind": "consequence",
 "text": "The teo leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
@@ -5531,6 +5551,16 @@
 "run": "run-5a58c4",
 "card": "j29",
 "other": "miami"
+},
+{
+"id": "wt_6b154ea08a",
+"kind": "func_call",
+"text": "Someone at the projector tapped the florida subject fifth and called teo.know(what=tnw:Thing) from j23 from its agenda run-5a58c4, first seated in run-5a58c4 j33.",
+"code": "teo.know('tnw');",
+"author": "projector",
+"run": "run-5a58c4",
+"card": "w33",
+"other": null
 },
 {
 "id": "wt_183d3cde12",
@@ -6095,6 +6125,16 @@
 "run": "run-5a58c4",
 "card": "w25",
 "other": null
+},
+{
+"id": "wt_c2800ac997",
+"kind": "func_call",
+"text": "The blender hears it (because song.hit(what=mistake:Thing) from j35).",
+"code": "blender.hears(miami_subject, 'hit');",
+"author": "projector",
+"run": "run-5a58c4",
+"card": "w22",
+"other": null
 }
 ],
 "code": [
@@ -6106,6 +6146,16 @@
 "author": "projector",
 "run": "run-5a58c4",
 "card": "w25",
+"other": null
+},
+{
+"id": "wt_208c012519",
+"kind": "func_call",
+"text": "The code hears it (because song.hit(what=mistake:Thing) from j35).",
+"code": "code.hears(miami_subject, 'hit');",
+"author": "projector",
+"run": "run-5a58c4",
+"card": "w22",
 "other": null
 }
 ],
@@ -6779,53 +6829,53 @@
 ],
 "kazeem": [
 {
-"id": "wt_19f9f785c0",
+"id": "wt_0fcfc5e5ad",
 "kind": "func_call",
-"text": "The kazeem hears it (because ronke.hail(what=hawker:Thing) from j18).",
-"code": "kazeem.hears(mile_subject, 'hail');",
+"text": "The kazeem hears it (because mamaronke.claim(what=lid:Thing) from j18).",
+"code": "kazeem.hears(computer_village_subject, 'claim');",
 "author": "projector",
 "run": "run-2eb42d",
 "card": "w18",
 "other": null
 },
 {
-"id": "wf_bbb969e36a",
+"id": "wf_b83dbca34a",
 "kind": "consequence",
-"text": "The kazeem leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
-"code": "ttb.interactwith(kazeem){ kazeem.receives(ttb.code); kazeem.remembers(ejiro, 'juju code'); }",
+"text": "The kazeem leaves with a Bird note with Bisola's name and 'envelope corner' on it.",
+"code": "jnoel.interactwith(kazeem){ kazeem.receives(jnoel.corner); kazeem.remembers(bisola, 'envelope corner'); }",
 "author": "cos",
 "run": "run-2eb42d",
-"card": "j2",
-"other": "ttb"
+"card": "j7",
+"other": "jnoel"
 },
 {
-"id": "wt_8e4dea6623",
+"id": "wt_87ebcd3078",
 "kind": "func_call",
-"text": "The kazeem hears it (because ronke.hail(what=hawker:Thing) from j18).",
-"code": "kazeem.hears(third_mainland_bridge_subject, 'hail');",
+"text": "The kazeem hears it (because pepu.setMany(amount=many:Quantity) from j17).",
+"code": "kazeem.hears(computer_village_subject, 'setMany');",
 "author": "projector",
 "run": "run-2eb42d",
-"card": "w18",
+"card": "w17",
 "other": null
 },
 {
-"id": "wt_c2f0653c6b",
+"id": "wt_300cf2bfaf",
 "kind": "func_call",
-"text": "The kazeem hears it (because ronke.hail(what=hawker:Thing) from j18).",
-"code": "kazeem.hears(computer_village_subject, 'hail');",
+"text": "The kazeem hears it (because ronke.mend(act=even:Action) from j17).",
+"code": "kazeem.hears(computer_village_subject, 'mend');",
 "author": "projector",
 "run": "run-2eb42d",
-"card": "w18",
+"card": "w17",
 "other": null
 },
 {
-"id": "wt_dea8604e75",
+"id": "wt_71928222ad",
 "kind": "func_call",
-"text": "The kazeem hears it (because ronke.hail(what=hawker:Thing) from j18).",
-"code": "kazeem.hears(marina_ferry_terminal_subject, 'hail');",
+"text": "The kazeem hears it (because hear.setWord(what=lid:Thing) from j18).",
+"code": "kazeem.hears(computer_village_subject, 'setWord');",
 "author": "projector",
 "run": "run-2eb42d",
-"card": "w18",
+"card": "w16",
 "other": null
 }
 ],
@@ -7215,109 +7265,149 @@
 "run": "run-2eb42d",
 "card": "w17",
 "other": null
+},
+{
+"id": "wt_8ccca8ac01",
+"kind": "func_call",
+"text": "Someone at the projector tapped the computer village subject and called yorubbbygehinny.getAgenda() from its agenda run-2eb42d, first seated in run-2eb42d j17.",
+"code": "yorubbbygehinny.getAgenda();",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w17",
+"other": null
+},
+{
+"id": "wt_6ee9b39c50",
+"kind": "func_call",
+"text": "Someone at the projector tapped the computer village subject and called yorubbbygehinny.getAgenda() from its agenda run-2eb42d, first seated in run-2eb42d j17.",
+"code": "yorubbbygehinny.getAgenda();",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w17",
+"other": null
+},
+{
+"id": "wt_f0bfb414aa",
+"kind": "func_call",
+"text": "Someone at the projector tapped the computer village subject and called yorubbbygehinny.getAgenda() from its agenda run-2eb42d, first seated in run-2eb42d j17.",
+"code": "yorubbbygehinny.getAgenda();",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w17",
+"other": null
+},
+{
+"id": "wt_eaef22b291",
+"kind": "func_call",
+"text": "Someone at the projector tapped the computer village subject and called yorubbbygehinny.getAgenda() from its agenda run-2eb42d, first seated in run-2eb42d j17.",
+"code": "yorubbbygehinny.getAgenda();",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w17",
+"other": null
 }
 ],
 "hear": [
 {
-"id": "wt_12b9b868c2",
+"id": "wt_424742eaa4",
 "kind": "func_call",
-"text": "The hear hears it (because ronke.hail(what=hawker:Thing) from j18).",
-"code": "hear.hears(computer_village_subject, 'hail');",
+"text": "The hear hears it (because pepu.setMany(amount=many:Quantity) from j17).",
+"code": "hear.hears(computer_village_subject, 'setMany');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w17",
+"other": null
+},
+{
+"id": "wt_ad989109d4",
+"kind": "func_call",
+"text": "The hear hears it (because mamaronke.claim(what=lid:Thing) from j18).",
+"code": "hear.hears(computer_village_subject, 'claim');",
 "author": "projector",
 "run": "run-2eb42d",
 "card": "w18",
 "other": null
 },
 {
-"id": "wt_5d49880a0b",
+"id": "wt_73ca5301c0",
 "kind": "func_call",
-"text": "The hear hears it (because ronke.hail(what=hawker:Thing) from j18).",
-"code": "hear.hears(mile_subject, 'hail');",
+"text": "The hear hears it (because pepu.setMany(amount=many:Quantity) from j17).",
+"code": "hear.hears(computer_village_subject, 'setMany');",
 "author": "projector",
 "run": "run-2eb42d",
-"card": "w18",
+"card": "w17",
 "other": null
 },
 {
-"id": "wt_54ca3288b3",
+"id": "wt_e4b522795b",
 "kind": "func_call",
-"text": "The hear hears it (because ronke.hail(what=hawker:Thing) from j18).",
-"code": "hear.hears(third_mainland_bridge_subject, 'hail');",
+"text": "The hear hears it (because ronke.mend(act=even:Action) from j17).",
+"code": "hear.hears(computer_village_subject, 'mend');",
 "author": "projector",
 "run": "run-2eb42d",
-"card": "w18",
+"card": "w17",
 "other": null
 },
 {
-"id": "wt_f732099ab2",
+"id": "wt_0cc07ec2ae",
 "kind": "func_call",
-"text": "The hear hears it (because ronke.hail(what=hawker:Thing) from j18).",
-"code": "hear.hears(computer_village_subject, 'hail');",
+"text": "Someone at the projector tapped the computer village subject and called hear.setWord(what=lid:Thing) from j18 from its agenda run-2eb42d, first seated in run-2eb42d j16.",
+"code": "hear.setWord('lid');",
 "author": "projector",
 "run": "run-2eb42d",
-"card": "w18",
-"other": null
-},
-{
-"id": "wt_8d5c100b61",
-"kind": "func_call",
-"text": "The hear hears it (because ronke.hail(what=hawker:Thing) from j18).",
-"code": "hear.hears(marina_ferry_terminal_subject, 'hail');",
-"author": "projector",
-"run": "run-2eb42d",
-"card": "w18",
+"card": "w16",
 "other": null
 }
 ],
 "mamaronke": [
 {
-"id": "wt_2a0e81a253",
+"id": "wt_7c6ee0a978",
 "kind": "func_call",
-"text": "The mamaronke hears it (because ronke.hail(what=hawker:Thing) from j18).",
-"code": "mamaronke.hears(computer_village_subject, 'hail');",
+"text": "The mamaronke hears it (because pepu.setMany(amount=many:Quantity) from j17).",
+"code": "mamaronke.hears(computer_village_subject, 'setMany');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w17",
+"other": null
+},
+{
+"id": "wt_77ea5ab77c",
+"kind": "func_call",
+"text": "Someone at the projector tapped the computer village subject and called mamaronke.claim(what=lid:Thing) from j18 from its agenda run-2eb42d, first seated in run-2eb42d j18.",
+"code": "mamaronke.claim('lid');",
 "author": "projector",
 "run": "run-2eb42d",
 "card": "w18",
 "other": null
 },
 {
-"id": "wt_62261310fe",
+"id": "wt_f23c353bab",
 "kind": "func_call",
-"text": "The mamaronke hears it (because ronke.hail(what=hawker:Thing) from j18).",
-"code": "mamaronke.hears(mile_subject, 'hail');",
+"text": "The mamaronke hears it (because pepu.setMany(amount=many:Quantity) from j17).",
+"code": "mamaronke.hears(computer_village_subject, 'setMany');",
 "author": "projector",
 "run": "run-2eb42d",
-"card": "w18",
+"card": "w17",
 "other": null
 },
 {
-"id": "wt_abc74f7daa",
+"id": "wt_1fad77677a",
 "kind": "func_call",
-"text": "The mamaronke hears it (because ronke.hail(what=hawker:Thing) from j18).",
-"code": "mamaronke.hears(third_mainland_bridge_subject, 'hail');",
+"text": "The mamaronke hears it (because ronke.mend(act=even:Action) from j17).",
+"code": "mamaronke.hears(computer_village_subject, 'mend');",
 "author": "projector",
 "run": "run-2eb42d",
-"card": "w18",
+"card": "w17",
 "other": null
 },
 {
-"id": "wt_5254cc09b1",
+"id": "wt_9853b17faa",
 "kind": "func_call",
-"text": "The mamaronke hears it (because ronke.hail(what=hawker:Thing) from j18).",
-"code": "mamaronke.hears(computer_village_subject, 'hail');",
+"text": "The mamaronke hears it (because hear.setWord(what=lid:Thing) from j18).",
+"code": "mamaronke.hears(computer_village_subject, 'setWord');",
 "author": "projector",
 "run": "run-2eb42d",
-"card": "w18",
-"other": null
-},
-{
-"id": "wt_c910f6b2aa",
-"kind": "func_call",
-"text": "The mamaronke hears it (because ronke.hail(what=hawker:Thing) from j18).",
-"code": "mamaronke.hears(marina_ferry_terminal_subject, 'hail');",
-"author": "projector",
-"run": "run-2eb42d",
-"card": "w18",
+"card": "w16",
 "other": null
 }
 ],
@@ -7687,50 +7777,50 @@
 ],
 "cli": [
 {
-"id": "wt_5d8d45e19d",
+"id": "wt_079c7b7c34",
 "kind": "func_call",
-"text": "The customer typed background typeline v569mwmgb5ik c() on run-2eb42d j30. It came back: background typeline v569mwmgb5ik c(). Implementation: /* background typeline v569mwmgb5ik c() */.",
-"code": "background typeline v569mwmgb5ik c();",
-"author": "customer",
-"run": "run-2eb42d",
-"card": "j30",
-"other": null
-},
-{
-"id": "wt_e18ba823f7",
-"kind": "func_call",
-"text": "The customer typed k.g() // v570mwmh2det-enter on run-2eb42d j32. It came back: k.g() // v570mwmh2det-enter. Implementation: /* k.g() // v570mwmh2det-enter */.",
-"code": "k.g() // v570mwmh2det-enter;",
+"text": "The customer typed d2() on run-2eb42d j32. It came back: d2(). Implementation: /* d2() */.",
+"code": "d2();",
 "author": "customer",
 "run": "run-2eb42d",
 "card": "j32",
 "other": null
 },
 {
-"id": "wt_60aee4f3cc",
+"id": "wt_ec76d8e75e",
 "kind": "func_call",
-"text": "The customer typed k.g() // v570mwmh2det-form on run-2eb42d j32. It came back: k.g() // v570mwmh2det-form. Implementation: /* k.g() // v570mwmh2det-form */.",
-"code": "k.g() // v570mwmh2det-form;",
+"text": "The customer typed lyinnhhgggggg() on run-2eb42d j32. It came back: lyinnhhgggggg(). Implementation: /* lyinnhhgggggg() */.",
+"code": "lyinnhhgggggg();",
 "author": "customer",
 "run": "run-2eb42d",
 "card": "j32",
 "other": null
 },
 {
-"id": "wt_212696fc58",
+"id": "wt_d01399c8ef",
 "kind": "func_call",
-"text": "The customer typed a masterclass in creative architecture - #thryd v570mwmh2det on run-2eb42d j32. It came back: a masterclass in creative architecture - #thryd v570mwmh2det. Implementation: /* a masterclass in creative architecture - #thryd v570mwmh2det */.",
-"code": "a masterclass in creative architecture - #thryd v570mwmh2det;",
+"text": "The customer typed g2() on run-2eb42d j32. It came back: g2(). Implementation: /* g2() */.",
+"code": "g2();",
 "author": "customer",
 "run": "run-2eb42d",
 "card": "j32",
 "other": null
 },
 {
-"id": "wt_d334dddef0",
+"id": "wt_76e8f0eb39",
 "kind": "func_call",
-"text": "The customer typed k.g() // v570mwmh2det-ime on run-2eb42d j32. It came back: k.g() // v570mwmh2det-ime. Implementation: /* k.g() // v570mwmh2det-ime */.",
-"code": "k.g() // v570mwmh2det-ime;",
+"text": "The customer typed jhjjj on run-2eb42d j32. It came back: jhjjj. Implementation: /* jhjjj */.",
+"code": "jhjjj;",
+"author": "customer",
+"run": "run-2eb42d",
+"card": "j32",
+"other": null
+},
+{
+"id": "wt_100f882b04",
+"kind": "func_call",
+"text": "The customer typed jygu on run-2eb42d j32. It came back: jygu. Implementation: /* jygu */.",
+"code": "jygu;",
 "author": "customer",
 "run": "run-2eb42d",
 "card": "j32",
@@ -7833,6 +7923,16 @@
 "run": "run-2eb42d",
 "card": "j32",
 "other": null
+},
+{
+"id": "wt_4967e267b6",
+"kind": "func_call",
+"text": "The customer typed k.g() on run-2eb42d j32. It came back: K g. Implementation: function g(){\n  K_G_COUNT += 1;\n  this.lastG = \"K g\";\n  return \"K g\";\n}.",
+"code": "k.g();",
+"author": "customer",
+"run": "run-2eb42d",
+"card": "j32",
+"other": null
 }
 ],
 "product_manager": [
@@ -7846,31 +7946,225 @@
 "card": "j6",
 "other": "surulere_party_hall"
 }
+],
+"nobody": [
+{
+"id": "wt_b1197a2521",
+"kind": "func_call",
+"text": "The nobody hears it (because kazeem.lift(what=lid:Thing) from j18).",
+"code": "nobody.hears(computer_village_subject, 'lift');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w18",
+"other": null
+},
+{
+"id": "wt_eee68fca9f",
+"kind": "func_call",
+"text": "The nobody hears it (because mamaronke.claim(what=lid:Thing) from j18).",
+"code": "nobody.hears(computer_village_subject, 'claim');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w18",
+"other": null
+},
+{
+"id": "wt_5d0a1824e5",
+"kind": "func_call",
+"text": "The nobody hears it (because kazeem.lift(what=lid:Thing) from j18).",
+"code": "nobody.hears(computer_village_subject, 'lift');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w18",
+"other": null
+},
+{
+"id": "wt_b8cb3b730c",
+"kind": "func_call",
+"text": "The nobody hears it (because mamaronke.claim(what=lid:Thing) from j18).",
+"code": "nobody.hears(computer_village_subject, 'claim');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w18",
+"other": null
+},
+{
+"id": "wt_20c54af0df",
+"kind": "func_call",
+"text": "The nobody hears it (because hear.setWord(what=lid:Thing) from j18).",
+"code": "nobody.hears(computer_village_subject, 'setWord');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w16",
+"other": null
+}
+],
+"florida_subject_fourth": [
+{
+"id": "wt_6f1807dbd6",
+"kind": "func_call",
+"text": "The florida subject fourth hears it (because teo.know(what=tnw:Thing) from j23).",
+"code": "florida_subject_fourth.hears(florida_subject_fifth, 'know');",
+"author": "projector",
+"run": "run-5a58c4",
+"card": "w33",
+"other": null
+}
+],
+"florida_subject_second": [
+{
+"id": "wt_5284a78973",
+"kind": "func_call",
+"text": "The florida subject second hears it (because teo.know(what=tnw:Thing) from j23).",
+"code": "florida_subject_second.hears(florida_subject_fifth, 'know');",
+"author": "projector",
+"run": "run-5a58c4",
+"card": "w33",
+"other": null
+}
+],
+"florida_subject_third": [
+{
+"id": "wt_1a3d60ab0f",
+"kind": "func_call",
+"text": "The florida subject third hears it (because teo.know(what=tnw:Thing) from j23).",
+"code": "florida_subject_third.hears(florida_subject_fifth, 'know');",
+"author": "projector",
+"run": "run-5a58c4",
+"card": "w33",
+"other": null
+}
+],
+"song": [
+{
+"id": "wt_45dfa29000",
+"kind": "func_call",
+"text": "Someone at the projector tapped the miami subject and called song.hit(what=mistake:Thing) from j35 from its agenda run-5a58c4, first seated in run-5a58c4 j22.",
+"code": "song.hit('mistake');",
+"author": "projector",
+"run": "run-5a58c4",
+"card": "w22",
+"other": null
+}
+],
+"h": [
+{
+"id": "wt_ba5f3a0260",
+"kind": "func_call",
+"text": "The customer typed h.ki() on run-2eb42d j32. It came back: H ki. Implementation: function ki(){\n  H_KI_COUNT += 1;\n  this.lastKi = \"H ki\";\n  return \"H ki\";\n}. h now has h.ki as a method on this agenda, and it can be called again.",
+"code": "h.ki();",
+"author": "customer",
+"run": "run-2eb42d",
+"card": "j32",
+"other": null
+}
+],
+"people_scene_figure": [
+{
+"id": "wt_d48068a09f",
+"kind": "call",
+"text": "Someone at the projector tapped the people scene figure and made it set its mood (happy).",
+"code": "people_scene_figure.setmood('happy');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w1",
+"other": null
+}
+],
+"tola": [
+{
+"id": "wt_73e1e81d23",
+"kind": "func_call",
+"text": "The customer typed tola.why on run-2eb42d j32. It came back: Tola why. Implementation: function why(){\n  TOLA_WHY_COUNT += 1;\n  this.lastWhy = \"Tola why\";\n  return \"Tola why\";\n}. tola now has tola.why as a method on this agenda, and it can be called again.",
+"code": "tola.why;",
+"author": "customer",
+"run": "run-2eb42d",
+"card": "j32",
+"other": null
+}
+],
+"gol": [
+{
+"id": "wt_a9f4dd0061",
+"kind": "func_call",
+"text": "The customer typed gol.lo() on run-2eb42d j32. It came back: Gol lo. Implementation: function lo(){\n  GOL_LO_COUNT += 1;\n  this.lastLo = \"Gol lo\";\n  return \"Gol lo\";\n}. gol now has gol.lo as a method on this agenda, and it can be called again.",
+"code": "gol.lo();",
+"author": "customer",
+"run": "run-2eb42d",
+"card": "j32",
+"other": null
+}
+],
+"ty": [
+{
+"id": "wt_11f81494e5",
+"kind": "func_call",
+"text": "The customer typed ty.beplo() on run-2eb42d j32. It came back: Ty beplo. Implementation: function beplo(){\n  TY_BEPLO_COUNT += 1;\n  this.lastBeplo = \"Ty beplo\";\n  return \"Ty beplo\";\n}. ty now has ty.beplo as a method on this agenda, and it can be called again.",
+"code": "ty.beplo();",
+"author": "customer",
+"run": "run-2eb42d",
+"card": "j32",
+"other": null
+}
+],
+"pepu": [
+{
+"id": "wt_372fcb8581",
+"kind": "func_call",
+"text": "Someone at the projector tapped the computer village subject and called pepu.setMany(amount=many:Quantity) from j17 from its agenda run-2eb42d, first seated in run-2eb42d j17.",
+"code": "pepu.setMany('many');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w17",
+"other": null
+},
+{
+"id": "wt_4d6f457291",
+"kind": "func_call",
+"text": "Someone at the projector tapped the computer village subject and called pepu.setMany(amount=many:Quantity) from j17 from its agenda run-2eb42d, first seated in run-2eb42d j17.",
+"code": "pepu.setMany('many');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w17",
+"other": null
+},
+{
+"id": "wt_e4d0c3b357",
+"kind": "func_call",
+"text": "Someone at the projector tapped the computer village subject and called pepu.setMany(amount=many:Quantity) from j17 from its agenda run-2eb42d, first seated in run-2eb42d j17.",
+"code": "pepu.setMany('many');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w17",
+"other": null
+}
+],
+"g": [
+{
+"id": "wt_f3f3600d87",
+"kind": "func_call",
+"text": "The customer typed g.mm() on run-2eb42d j32. It came back: G mm. Implementation: function mm(){\n  G_MM_COUNT += 1;\n  this.lastMm = \"G mm\";\n  return \"G mm\";\n}. g now has g.mm as a method on this agenda, and it can be called again.",
+"code": "g.mm();",
+"author": "customer",
+"run": "run-2eb42d",
+"card": "j32",
+"other": null
+}
+],
+"y": [
+{
+"id": "wt_5eaae4825d",
+"kind": "func_call",
+"text": "The customer typed y.np() on run-2eb42d j32. It came back: Y np. Implementation: function np(){\n  Y_NP_COUNT += 1;\n  this.lastNp = \"Y np\";\n  return \"Y np\";\n}. y now has y.np as a method on this agenda, and it can be called again.",
+"code": "y.np();",
+"author": "customer",
+"run": "run-2eb42d",
+"card": "j32",
+"other": null
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_d6551b2d9b",
-"ts": "2026-11-18T12:11:18-0500",
-"a": "mkdwo",
-"b": "listen",
-"code": "mkdwo.interactwith(listen){ listen.receives(mkdwo.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the listen, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
-"id": "wf_fcd96d03c0",
-"ts": "2026-11-18T12:12:11-0500",
-"a": "seniorgehs",
-"b": "agbada",
-"code": "seniorgehs.interactwith(agbada){ agbada.receives(seniorgehs.envelope); agbada.remembers(bisola, 'brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the agbada, which is still worn by a stranger haggler.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
 {
 "id": "wf_8db0c807af",
 "ts": "2026-11-18T12:17:10-0500",
@@ -8288,6 +8582,28 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_0a1364eace",
+"ts": "2026-11-18T14:39:53-0500",
+"a": "lady",
+"b": "laptop",
+"code": "lady.interactwith(laptop){ laptop.receives(lady.shirt); laptop.remembers(bisola, 'green shirt'); laptop.tucks(lady, 'ikeja laundromat receipt into the lamp soot'); }",
+"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the lamp soot at the laptop, and Taiwo reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j8"
+},
+{
+"id": "wf_b83dbca34a",
+"ts": "2026-11-18T14:41:58-0500",
+"a": "jnoel",
+"b": "kazeem",
+"code": "jnoel.interactwith(kazeem){ kazeem.receives(jnoel.corner); kazeem.remembers(bisola, 'envelope corner'); }",
+"text": "The kazeem leaves with a Bird note with Bisola's name and 'envelope corner' on it.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j7"
 }
 ],
 "memories": [
@@ -8391,5 +8707,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T14:38:08-0500"
+"updated": "2026-11-18T14:43:42-0500"
 }
