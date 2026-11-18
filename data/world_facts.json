@@ -1252,16 +1252,6 @@
 ],
 "yaba_bukka_counter": [
 {
-"id": "wf_0b5a3dcf5d",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the yaba bukka counter, and Kunle reads the name twice.",
-"code": "morir_r.interactwith(yaba_bukka_counter){ yaba_bukka_counter.receives(morir_r.envelope); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "morir_r"
-},
-{
 "id": "wf_2cb6c1bd67",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the yaba bukka counter, and Kunle reads the name twice.",
@@ -1270,6 +1260,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "red_white"
+},
+{
+"id": "wf_bbcb386306",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the plate of jollof rice at the yaba bukka counter, and Bisola reads the name twice.",
+"code": "surulere_party_hall.interactwith(yaba_bukka_counter){ yaba_bukka_counter.receives(surulere_party_hall.envelope); … }",
+"author": "cos",
+"run": "run-g1-B",
+"card": "j6",
+"other": "surulere_party_hall"
 },
 {
 "id": "wt_4e525b9c48",
@@ -6395,31 +6395,21 @@
 "card": "j6",
 "other": "uch"
 }
+],
+"fayago": [
+{
+"id": "wf_68961c8d60",
+"kind": "consequence",
+"text": "The fayago leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "saturday_october.interactwith(fayago){ fayago.receives(saturday_october.envelope); fayago.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-g1-B",
+"card": "j6",
+"other": "saturday_october"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_79c3284f9d",
-"ts": "2026-11-17T17:12:43-0500",
-"a": "reality",
-"b": "jetty_south_pointe",
-"code": "reality.interactwith(jetty_south_pointe){ jetty_south_pointe.receives(reality.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the jetty south pointe, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
-"id": "wf_7ccc81e3a3",
-"ts": "2026-11-17T17:13:36-0500",
-"a": "kmb",
-"b": "jetty_south_pointe",
-"code": "kmb.interactwith(jetty_south_pointe){ jetty_south_pointe.receives(kmb.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the jetty south pointe, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
 {
 "id": "wf_4d0ebc4ce6",
 "ts": "2026-11-17T17:16:09-0500",
@@ -6837,6 +6827,28 @@
 "author": "cos",
 "run": "run-g1-B",
 "card": "j6"
+},
+{
+"id": "wf_bbcb386306",
+"ts": "2026-11-17T22:12:00-0500",
+"a": "surulere_party_hall",
+"b": "yaba_bukka_counter",
+"code": "surulere_party_hall.interactwith(yaba_bukka_counter){ yaba_bukka_counter.receives(surulere_party_hall.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the plate of jollof rice at the yaba bukka counter, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-g1-B",
+"card": "j6"
+},
+{
+"id": "wf_68961c8d60",
+"ts": "2026-11-17T22:14:35-0500",
+"a": "saturday_october",
+"b": "fayago",
+"code": "saturday_october.interactwith(fayago){ fayago.receives(saturday_october.envelope); fayago.remembers(bisola, 'brown envelope'); }",
+"text": "The fayago leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-g1-B",
+"card": "j6"
 }
 ],
 "memories": [
@@ -6940,5 +6952,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T22:09:23-0500"
+"updated": "2026-11-17T22:14:35-0500"
 }
