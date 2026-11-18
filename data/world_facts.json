@@ -931,16 +931,6 @@
 ],
 "plastic_sheet": [
 {
-"id": "wf_d5b403b12e",
-"kind": "consequence",
-"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the plastic sheet, and Bisola reads the name twice.",
-"code": "sheep.interactwith(plastic_sheet){ plastic_sheet.receives(sheep.code); … }",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j2",
-"other": "sheep"
-},
-{
 "id": "wf_65561aa93e",
 "kind": "memory",
 "text": "The plastic sheet at Oke-Ayo bus stop: wet; Ronke and Kazeem had been under it, Mama Ronke stood over it.",
@@ -969,6 +959,16 @@
 "run": "run-2eb42d",
 "card": "j29",
 "other": "miami"
+},
+{
+"id": "wf_8fd201d379",
+"kind": "consequence",
+"text": "The danfo speaker ends up with the plastic sheet, still playing the same love song.",
+"code": "ojuelegba_bus_stop.interactwith(plastic_sheet){ ojuelegba_bus_stop.db.copyto(plastic_sheet); … }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w5",
+"other": "ojuelegba_bus_stop"
 },
 {
 "id": "wf_194e588426",
@@ -7314,17 +7314,6 @@
 },
 "consequences": [
 {
-"id": "wf_b008d3351c",
-"ts": "2026-11-18T08:29:31-0500",
-"a": "miami",
-"b": "teo",
-"code": "miami.interactwith(teo){ teo.receives(miami.phone); }",
-"text": "The teo now remembers the miami: 11:45pm, Monday 2 November 2026: A phone on the counter starts the off-key chorus, then.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j29"
-},
-{
 "id": "wf_4e11268f77",
 "ts": "2026-11-18T08:35:38-0500",
 "a": "mama_ronke",
@@ -7752,6 +7741,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j8"
+},
+{
+"id": "wf_8fd201d379",
+"ts": "2026-11-18T10:53:49-0500",
+"a": "ojuelegba_bus_stop",
+"b": "plastic_sheet",
+"code": "ojuelegba_bus_stop.interactwith(plastic_sheet){ ojuelegba_bus_stop.db.copyto(plastic_sheet); … }",
+"text": "The danfo speaker ends up with the plastic sheet, still playing the same love song.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w5"
 }
 ],
 "memories": [
@@ -7855,5 +7855,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T10:52:56-0500"
+"updated": "2026-11-18T10:54:50-0500"
 }
