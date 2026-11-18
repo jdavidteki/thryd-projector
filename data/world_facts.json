@@ -881,16 +881,6 @@
 ],
 "danfo_speaker": [
 {
-"id": "wf_2d0a3e1a91",
-"kind": "consequence",
-"text": "The danfo speaker now remembers the miami: 11:45pm, Monday 2 November 2026: A phone on the counter starts the off-key chorus, then.",
-"code": "miami.interactwith(danfo_speaker){ danfo_speaker.receives(miami.phone); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j29",
-"other": "miami"
-},
-{
 "id": "wf_343cd05bf1",
 "kind": "consequence",
 "text": "A Saturday october note with Bisola's name and 'brown envelope' on it, turns up with the danfo speaker, which is still playing the same love song.",
@@ -899,6 +889,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "saturday_october"
+},
+{
+"id": "wf_a385255a24",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the danfo speaker, which is still playing the same love song.",
+"code": "asmathic.interactwith(danfo_speaker){ danfo_speaker.receives(asmathic.envelope); danfo_speaker.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "asmathic"
 },
 {
 "id": "wf_bdad55d985",
@@ -985,16 +985,6 @@
 ],
 "red_white_cap": [
 {
-"id": "wf_7168d093f5",
-"kind": "consequence",
-"text": "A Bed note with Taiwo's name and 'egbe note' on it, turns up with the red and white cap, which is still worn.",
-"code": "bed.interactwith(red_white_cap){ red_white_cap.receives(bed.note); red_white_cap.remembers(taiwo, 'egbe note'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "w6",
-"other": "bed"
-},
-{
 "id": "wf_8516f16678",
 "kind": "consequence",
 "text": "The streetlights ends up with the red white cap, still all dead since 7:35pm.",
@@ -1013,6 +1003,16 @@
 "run": "run-2eb42d",
 "card": "j29",
 "other": "miami"
+},
+{
+"id": "wf_13a0fbac36",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the red and white cap, which is still worn.",
+"code": "computer_village.interactwith(red_white_cap){ red_white_cap.receives(computer_village.envelope); red_white_cap.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "computer_village"
 },
 {
 "id": "wf_3fdb648208",
@@ -1873,16 +1873,6 @@
 ],
 "ronke": [
 {
-"id": "wt_a86456bd78",
-"kind": "func_call",
-"text": "Someone at the projector tapped the computer village subject and called ronke.hail(what=hawker:Thing) from j18 from its agenda run-2eb42d, first seated in run-2eb42d j18.",
-"code": "ronke.hail('hawker');",
-"author": "projector",
-"run": "run-2eb42d",
-"card": "w18",
-"other": null
-},
-{
 "id": "wt_5ac90d4463",
 "kind": "func_call",
 "text": "Someone at the projector tapped the marina ferry terminal subject and called ronke.hail(what=hawker:Thing) from j18 from its agenda run-2eb42d, first seated in run-2eb42d j18.",
@@ -1916,6 +1906,16 @@
 "id": "wt_3366c03de5",
 "kind": "func_call",
 "text": "Someone at the projector tapped the marina ferry terminal subject and called ronke.hail(what=hawker:Thing) from j18 from its agenda run-2eb42d, first seated in run-2eb42d j18.",
+"code": "ronke.hail('hawker');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w18",
+"other": null
+},
+{
+"id": "wt_c3a82a7dfd",
+"kind": "func_call",
+"text": "Someone at the projector tapped the computer village subject and called ronke.hail(what=hawker:Thing) from j18 from its agenda run-2eb42d, first seated in run-2eb42d j18.",
 "code": "ronke.hail('hawker');",
 "author": "projector",
 "run": "run-2eb42d",
@@ -3223,6 +3223,16 @@
 "run": "run-5a58c4",
 "card": "j6",
 "other": "marker_b"
+},
+{
+"id": "wf_584e5456ad",
+"kind": "consequence",
+"text": "A Bird note with Bisola's name and 'envelope corner' on it, turns up inside the brown envelope at the wser, and Bisola reads the name twice.",
+"code": "jnoel.interactwith(wser){ wser.receives(jnoel.corner); wser.remembers(bisola, 'envelope corner'); wser.tucks(jnoel, 'bird note into the brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j7",
+"other": "jnoel"
 }
 ],
 "blessings_subject": [
@@ -6849,16 +6859,6 @@
 ],
 "kazeem": [
 {
-"id": "wt_87ebcd3078",
-"kind": "func_call",
-"text": "The kazeem hears it (because pepu.setMany(amount=many:Quantity) from j17).",
-"code": "kazeem.hears(computer_village_subject, 'setMany');",
-"author": "projector",
-"run": "run-2eb42d",
-"card": "w17",
-"other": null
-},
-{
 "id": "wt_300cf2bfaf",
 "kind": "func_call",
 "text": "The kazeem hears it (because ronke.mend(act=even:Action) from j17).",
@@ -6893,6 +6893,16 @@
 "kind": "func_call",
 "text": "The kazeem hears it (because ronke.hail(what=hawker:Thing) from j18).",
 "code": "kazeem.hears(marina_ferry_terminal_subject, 'hail');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w18",
+"other": null
+},
+{
+"id": "wt_3ee13f524c",
+"kind": "func_call",
+"text": "The kazeem hears it (because ronke.hail(what=hawker:Thing) from j18).",
+"code": "kazeem.hears(computer_village_subject, 'hail');",
 "author": "projector",
 "run": "run-2eb42d",
 "card": "w18",
@@ -7113,6 +7123,16 @@
 "run": "run-2eb42d",
 "card": "j7",
 "other": "tf_mom"
+},
+{
+"id": "wf_717c553e2e",
+"kind": "consequence",
+"text": "The mkdwo leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "precision.interactwith(mkdwo){ mkdwo.receives(precision.envelope); mkdwo.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "precision"
 }
 ],
 "asmathic": [
@@ -7339,16 +7359,6 @@
 ],
 "hear": [
 {
-"id": "wt_73ca5301c0",
-"kind": "func_call",
-"text": "The hear hears it (because pepu.setMany(amount=many:Quantity) from j17).",
-"code": "hear.hears(computer_village_subject, 'setMany');",
-"author": "projector",
-"run": "run-2eb42d",
-"card": "w17",
-"other": null
-},
-{
 "id": "wt_e4b522795b",
 "kind": "func_call",
 "text": "The hear hears it (because ronke.mend(act=even:Action) from j17).",
@@ -7387,19 +7397,19 @@
 "run": "run-2eb42d",
 "card": "w18",
 "other": null
+},
+{
+"id": "wt_8dfcd1a6c4",
+"kind": "func_call",
+"text": "The hear hears it (because ronke.hail(what=hawker:Thing) from j18).",
+"code": "hear.hears(computer_village_subject, 'hail');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w18",
+"other": null
 }
 ],
 "mamaronke": [
-{
-"id": "wt_f23c353bab",
-"kind": "func_call",
-"text": "The mamaronke hears it (because pepu.setMany(amount=many:Quantity) from j17).",
-"code": "mamaronke.hears(computer_village_subject, 'setMany');",
-"author": "projector",
-"run": "run-2eb42d",
-"card": "w17",
-"other": null
-},
 {
 "id": "wt_1fad77677a",
 "kind": "func_call",
@@ -7435,6 +7445,16 @@
 "kind": "func_call",
 "text": "The mamaronke hears it (because ronke.hail(what=hawker:Thing) from j18).",
 "code": "mamaronke.hears(marina_ferry_terminal_subject, 'hail');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w18",
+"other": null
+},
+{
+"id": "wt_73adfd67fc",
+"kind": "func_call",
+"text": "The mamaronke hears it (because ronke.hail(what=hawker:Thing) from j18).",
+"code": "mamaronke.hears(computer_village_subject, 'hail');",
 "author": "projector",
 "run": "run-2eb42d",
 "card": "w18",
@@ -7925,16 +7945,6 @@
 ],
 "k": [
 {
-"id": "wt_1f9ec2a508",
-"kind": "func_call",
-"text": "The customer typed k.qa573(cliqa573cli-mwmjo8q3) on run-2eb42d j32. It came back: K qa573 cliqa573cli-mwmjo8q3. Implementation: function qa573(what){\n  K_QA573_COUNT += 1;\n  this.lastQa573 = \"cliqa573cli-mwmjo8q3\";\n  return \"K qa573 cliqa573cli-mwmjo8q3\";\n}. k now has k.qa573 as a method on this agenda, and it can be called again.",
-"code": "k.qa573(cliqa573cli-mwmjo8q3);",
-"author": "customer",
-"run": "run-2eb42d",
-"card": "j32",
-"other": null
-},
-{
 "id": "wt_a46d92f38d",
 "kind": "func_call",
 "text": "The customer typed k.qa573(cliqa573alt-mwmjpc93) on run-2eb42d j32. It came back: K qa573 cliqa573alt-mwmjpc93. Implementation: function qa573(what){\n  K_QA573_COUNT += 1;\n  this.lastQa573 = \"cliqa573alt-mwmjpc93\";\n  return \"K qa573 cliqa573alt-mwmjpc93\";\n}.",
@@ -7969,6 +7979,16 @@
 "kind": "func_call",
 "text": "The customer typed k.qa573(probe573-mwmjrl4e) on run-2eb42d j32. It came back: K qa573 probe573-mwmjrl4e. Implementation: function qa573(what){\n  K_QA573_COUNT += 1;\n  this.lastQa573 = \"probe573-mwmjrl4e\";\n  return \"K qa573 probe573-mwmjrl4e\";\n}.",
 "code": "k.qa573(probe573-mwmjrl4e);",
+"author": "customer",
+"run": "run-2eb42d",
+"card": "j32",
+"other": null
+},
+{
+"id": "wt_1ff82e282d",
+"kind": "func_call",
+"text": "The customer typed k.qa573(cliqa573cli-mwmk4dje) on run-2eb42d j32. It came back: K qa573 cliqa573cli-mwmk4dje. Implementation: function qa573(what){\n  K_QA573_COUNT += 1;\n  this.lastQa573 = \"cliqa573cli-mwmk4dje\";\n  return \"K qa573 cliqa573cli-mwmk4dje\";\n}.",
+"code": "k.qa573(cliqa573cli-mwmk4dje);",
 "author": "customer",
 "run": "run-2eb42d",
 "card": "j32",
@@ -8205,50 +8225,6 @@
 ]
 },
 "consequences": [
-{
-"id": "wf_b44864c1f0",
-"ts": "2026-11-18T12:47:00-0500",
-"a": "atp",
-"b": "matches",
-"code": "atp.interactwith(matches){ matches.receives(atp.envelope); matches.remembers(bisola, 'brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the matches, which is still found.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
-"id": "wf_bc1186930e",
-"ts": "2026-11-18T12:49:40-0500",
-"a": "b_md",
-"b": "computer_village",
-"code": "b_md.interactwith(computer_village){ computer_village.receives(b_md.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the computer village, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
-"id": "wf_f5fd9d338d",
-"ts": "2026-11-18T12:50:32-0500",
-"a": "computer_village",
-"b": "teach",
-"code": "computer_village.interactwith(teach){ teach.receives(computer_village.envelope); teach.remembers(bisola, 'brown envelope'); }",
-"text": "The teach leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
-"id": "wf_25fce5d467",
-"ts": "2026-11-18T12:51:25-0500",
-"a": "computer_village",
-"b": "mlkahb",
-"code": "computer_village.interactwith(mlkahb){ mlkahb.receives(computer_village.envelope); mlkahb.remembers(bisola, 'brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the streetlights, which is still all dead since 7:35pm.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
 {
 "id": "wf_4888599611",
 "ts": "2026-11-18T12:52:18-0500",
@@ -8644,6 +8620,50 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j2"
+},
+{
+"id": "wf_a385255a24",
+"ts": "2026-11-18T15:07:24-0500",
+"a": "asmathic",
+"b": "danfo_speaker",
+"code": "asmathic.interactwith(danfo_speaker){ danfo_speaker.receives(asmathic.envelope); danfo_speaker.remembers(bisola, 'brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the danfo speaker, which is still playing the same love song.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
+},
+{
+"id": "wf_13a0fbac36",
+"ts": "2026-11-18T15:09:09-0500",
+"a": "computer_village",
+"b": "red_white_cap",
+"code": "computer_village.interactwith(red_white_cap){ red_white_cap.receives(computer_village.envelope); red_white_cap.remembers(bisola, 'brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the red and white cap, which is still worn.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
+},
+{
+"id": "wf_584e5456ad",
+"ts": "2026-11-18T15:10:01-0500",
+"a": "jnoel",
+"b": "wser",
+"code": "jnoel.interactwith(wser){ wser.receives(jnoel.corner); wser.remembers(bisola, 'envelope corner'); wser.tucks(jnoel, 'bird note into the brown envelope'); }",
+"text": "A Bird note with Bisola's name and 'envelope corner' on it, turns up inside the brown envelope at the wser, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j7"
+},
+{
+"id": "wf_717c553e2e",
+"ts": "2026-11-18T15:11:47-0500",
+"a": "precision",
+"b": "mkdwo",
+"code": "precision.interactwith(mkdwo){ mkdwo.receives(precision.envelope); mkdwo.remembers(bisola, 'brown envelope'); }",
+"text": "The mkdwo leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -8747,5 +8767,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T15:04:46-0500"
+"updated": "2026-11-18T15:11:47-0500"
 }
