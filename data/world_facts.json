@@ -980,16 +980,6 @@
 ],
 "red_white_cap": [
 {
-"id": "wf_ba2a9af2b2",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the red white cap, and Taiwo reads the name twice.",
-"code": "plastic_sheet.interactwith(red_white_cap){ red_white_cap.receives(plastic_sheet.envelope); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "plastic_sheet"
-},
-{
 "id": "wf_7168d093f5",
 "kind": "consequence",
 "text": "A Bed note with Taiwo's name and 'egbe note' on it, turns up with the red and white cap, which is still worn.",
@@ -1008,6 +998,16 @@
 "run": "run-2eb42d",
 "card": "w6",
 "other": "streetlights"
+},
+{
+"id": "wf_28236b6aaa",
+"kind": "consequence",
+"text": "The red white cap now remembers the miami: 11:45pm, Monday 2 November 2026: A phone on the counter starts the off-key chorus, then.",
+"code": "miami.interactwith(red_white_cap){ red_white_cap.receives(miami.phone); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j29",
+"other": "miami"
 },
 {
 "id": "wf_3fdb648208",
@@ -1031,16 +1031,6 @@
 }
 ],
 "streetlights": [
-{
-"id": "wf_8b0e2e41fc",
-"kind": "consequence",
-"text": "A Kerosene lamp note with Taiwo's name and 'change' on it, turns up inside the brown envelope at the streetlights, and Bisola reads the name twice.",
-"code": "kerosene_lamp.interactwith(streetlights){ streetlights.receives(kerosene_lamp.change); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "w",
-"other": "kerosene_lamp"
-},
 {
 "id": "wf_ee5d2d83b4",
 "kind": "consequence",
@@ -1070,6 +1060,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "b_md"
+},
+{
+"id": "wf_1c5e9d8dc5",
+"kind": "consequence",
+"text": "A Mama ronke note with Ejiro's name and 'ttb note' on it, turns up with the streetlights, which is still all dead since 7:35pm.",
+"code": "mama_ronke.interactwith(streetlights){ streetlights.receives(mama_ronke.note); streetlights.remembers(ejiro, 'ttb note'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "mama_ronke"
 },
 {
 "id": "wf_32b4be23e9",
@@ -6973,28 +6973,6 @@
 },
 "consequences": [
 {
-"id": "wf_2967e52a01",
-"ts": "2026-11-18T00:23:49-0500",
-"a": "wser",
-"b": "mkdwo",
-"code": "wser.interactwith(mkdwo){ mkdwo.receives(wser.envelope); mkdwo.remembers(bisola, 'brown envelope'); }",
-"text": "The mkdwo leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
-"id": "wf_62be2a822a",
-"ts": "2026-11-18T00:27:16-0500",
-"a": "love",
-"b": "ronke",
-"code": "love.interactwith(ronke){ ronke.receives(love.envelope); ronke.remembers(bisola, 'brown envelope'); ronke.tucks(love, 'yaba bookshop receipt into the green shirt'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the green shirt at the ronke, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
 "id": "wf_2d0a3e1a91",
 "ts": "2026-11-18T00:28:09-0500",
 "a": "miami",
@@ -7411,6 +7389,28 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_28236b6aaa",
+"ts": "2026-11-18T08:54:55-0500",
+"a": "miami",
+"b": "red_white_cap",
+"code": "miami.interactwith(red_white_cap){ red_white_cap.receives(miami.phone); }",
+"text": "The red white cap now remembers the miami: 11:45pm, Monday 2 November 2026: A phone on the counter starts the off-key chorus, then.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j29"
+},
+{
+"id": "wf_1c5e9d8dc5",
+"ts": "2026-11-18T08:56:40-0500",
+"a": "mama_ronke",
+"b": "streetlights",
+"code": "mama_ronke.interactwith(streetlights){ streetlights.receives(mama_ronke.note); streetlights.remembers(ejiro, 'ttb note'); }",
+"text": "A Mama ronke note with Ejiro's name and 'ttb note' on it, turns up with the streetlights, which is still all dead since 7:35pm.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -7514,5 +7514,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T08:54:02-0500"
+"updated": "2026-11-18T08:57:33-0500"
 }
