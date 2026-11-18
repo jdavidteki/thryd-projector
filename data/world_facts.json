@@ -1863,16 +1863,6 @@
 ],
 "ronke": [
 {
-"id": "wt_9ec5ff514a",
-"kind": "func_call",
-"text": "Someone at the projector tapped the ronke and called ronke.hail(what=hawker:Thing) from j18, first seated in run-2eb42d j18.",
-"code": "ronke.hail('hawker');",
-"author": "projector",
-"run": "run-2eb42d",
-"card": "w18",
-"other": null
-},
-{
 "id": "wt_3fe7ba95c9",
 "kind": "func_call",
 "text": "Someone at the projector tapped the person and called ronke.hail(what=currentaffairs:Thing) from its agenda run-2eb42d, first seated in run-2eb42d j18.",
@@ -1906,6 +1896,16 @@
 "id": "wt_418fb96438",
 "kind": "func_call",
 "text": "Someone at the projector tapped the ojuelegba bus stop subject second and called ronke.hail(what=hawker:Thing) from j18 from its agenda run-2eb42d, first seated in run-2eb42d j18.",
+"code": "ronke.hail('hawker');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w18",
+"other": null
+},
+{
+"id": "wt_5d3dabff36",
+"kind": "func_call",
+"text": "Someone at the projector tapped the ikeja subject and called ronke.hail(what=hawker:Thing) from j18 from its agenda run-2eb42d, first seated in run-2eb42d j18.",
 "code": "ronke.hail('hawker');",
 "author": "projector",
 "run": "run-2eb42d",
@@ -6729,16 +6729,6 @@
 ],
 "kazeem": [
 {
-"id": "wt_749b277104",
-"kind": "func_call",
-"text": "The kazeem hears it (because ronke.hail(what=hawker:Thing) from j18).",
-"code": "kazeem.hears(ronke, 'hail');",
-"author": "projector",
-"run": "run-2eb42d",
-"card": "w18",
-"other": null
-},
-{
 "id": "wf_86d832941d",
 "kind": "consequence",
 "text": "The Mushin street lamp that goes out in j20 drops Ejiro's Ttb note into the keke, and Kazeem keeps it folded with his change.",
@@ -6773,6 +6763,16 @@
 "kind": "func_call",
 "text": "The kazeem hears it (because ronke.hail(what=hawker:Thing) from j18).",
 "code": "kazeem.hears(ojuelegba_bus_stop_subject_second, 'hail');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w18",
+"other": null
+},
+{
+"id": "wt_180523be04",
+"kind": "func_call",
+"text": "The kazeem hears it (because ronke.hail(what=hawker:Thing) from j18).",
+"code": "kazeem.hears(ikeja_subject, 'hail');",
 "author": "projector",
 "run": "run-2eb42d",
 "card": "w18",
@@ -7079,16 +7079,6 @@
 ],
 "hear": [
 {
-"id": "wt_8f2e62c6b8",
-"kind": "func_call",
-"text": "The hear hears it (because ronke.hail(what=currentaffairs:Thing)).",
-"code": "hear.hears(person, 'hail');",
-"author": "projector",
-"run": "run-2eb42d",
-"card": "w18",
-"other": null
-},
-{
 "id": "wt_f907f1ebf2",
 "kind": "func_call",
 "text": "The hear hears it (because ronke.hail(what=hawker:Thing) from j18).",
@@ -7127,19 +7117,19 @@
 "run": "run-2eb42d",
 "card": "w18",
 "other": null
-}
-],
-"mamaronke": [
+},
 {
-"id": "wt_e93197f42f",
+"id": "wt_c1ac8213e1",
 "kind": "func_call",
-"text": "The mamaronke hears it (because ronke.hail(what=currentaffairs:Thing)).",
-"code": "mamaronke.hears(person, 'hail');",
+"text": "The hear hears it (because ronke.hail(what=hawker:Thing) from j18).",
+"code": "hear.hears(ikeja_subject, 'hail');",
 "author": "projector",
 "run": "run-2eb42d",
 "card": "w18",
 "other": null
-},
+}
+],
+"mamaronke": [
 {
 "id": "wt_3fae71aaf1",
 "kind": "func_call",
@@ -7175,6 +7165,16 @@
 "kind": "func_call",
 "text": "The mamaronke hears it (because ronke.hail(what=hawker:Thing) from j18).",
 "code": "mamaronke.hears(ojuelegba_bus_stop_subject_second, 'hail');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w18",
+"other": null
+},
+{
+"id": "wt_722696423f",
+"kind": "func_call",
+"text": "The mamaronke hears it (because ronke.hail(what=hawker:Thing) from j18).",
+"code": "mamaronke.hears(ikeja_subject, 'hail');",
 "author": "projector",
 "run": "run-2eb42d",
 "card": "w18",
@@ -7285,6 +7285,16 @@
 "run": "run-2eb42d",
 "card": "j8",
 "other": "lady"
+},
+{
+"id": "wf_b9bed30a5a",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the green shirt at the ojuelegba bus stop, and Bisola reads the name twice.",
+"code": "abeokuta_parlour.interactwith(ojuelegba_bus_stop){ ojuelegba_bus_stop.receives(abeokuta_parlour.envelope); … }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "abeokuta_parlour"
 }
 ],
 "usher_by_kiss": [
@@ -7325,17 +7335,6 @@
 ]
 },
 "consequences": [
-{
-"id": "wf_8516f16678",
-"ts": "2026-11-18T08:38:15-0500",
-"a": "streetlights",
-"b": "red_white_cap",
-"code": "streetlights.interactwith(red_white_cap){ streetlights.db.copyto(red_white_cap); red_white_cap.keeps(streetlights, 'streetlights, still all dead since 7:35pm'); }",
-"text": "The streetlights ends up with the red white cap, still all dead since 7:35pm.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "w6"
-},
 {
 "id": "wf_b14fedb475",
 "ts": "2026-11-18T08:39:09-0500",
@@ -7764,6 +7763,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j8"
+},
+{
+"id": "wf_b9bed30a5a",
+"ts": "2026-11-18T11:07:04-0500",
+"a": "abeokuta_parlour",
+"b": "ojuelegba_bus_stop",
+"code": "abeokuta_parlour.interactwith(ojuelegba_bus_stop){ ojuelegba_bus_stop.receives(abeokuta_parlour.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the green shirt at the ojuelegba bus stop, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -7867,5 +7877,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T11:06:09-0500"
+"updated": "2026-11-18T11:07:04-0500"
 }
