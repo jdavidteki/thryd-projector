@@ -106,8 +106,8 @@
     "on",
     "come"
    ],
-   "instances": 353,
-   "arg_instances": 36,
+   "instances": 355,
+   "arg_instances": 39,
    "parent": null,
    "chain": [
     "Thing"
@@ -1082,8 +1082,8 @@
    "class": "Thing",
    "cue": "default",
    "first_run": "run-2eb42d",
-   "first_job": null,
-   "source": "stage",
+   "first_job": "j18",
+   "source": "pick",
    "runs": [
     "run-2eb42d",
     "run-0ae93c",
@@ -1092,7 +1092,12 @@
     "run-b9b963",
     "run-dfd59e"
    ],
-   "tweets": []
+   "tweets": [
+    {
+     "text": "[[egbe]] - ok, lez go back to me being ure boss",
+     "year": "2025"
+    }
+   ]
   },
   "coordinates": {
    "class": "Thing",
@@ -2035,6 +2040,22 @@
    ],
    "tweets": []
   },
+  "hawker": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-2eb42d",
+   "first_job": "j18",
+   "source": "pick",
+   "runs": [
+    "run-2eb42d"
+   ],
+   "tweets": [
+    {
+     "text": "#seniorgehs - abi demdo send the faya ni! she busssst!",
+     "year": "2025"
+    }
+   ]
+  },
   "healthsector": {
    "class": "Thing",
    "cue": "default",
@@ -2878,6 +2899,22 @@
     "run-0bd7c0"
    ],
    "tweets": []
+  },
+  "lid": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-2eb42d",
+   "first_job": "j18",
+   "source": "pick",
+   "runs": [
+    "run-2eb42d"
+   ],
+   "tweets": [
+    {
+     "text": "- say him for tell angel gabriel make he no worry",
+     "year": "2025"
+    }
+   ]
   },
   "lie": {
    "class": "Thing",
@@ -6477,6 +6514,18 @@
     "pick"
    ],
    [
+    "lid",
+    "Thing",
+    "j18",
+    "pick"
+   ],
+   [
+    "hawker",
+    "Thing",
+    "j18",
+    "pick"
+   ],
+   [
     "currentaffairs",
     "Thing",
     null,
@@ -9280,7 +9329,10 @@
   "oyinboman.know": "know(what: Thing)",
   "pepu.setmany": "setMany(amount: Quantity)",
   "ronke.mend": "mend(act: Action)",
-  "yorubbbygehinny.getagenda": "getAgenda()"
+  "yorubbbygehinny.getagenda": "getAgenda()",
+  "kazeem.lift": "lift(what: Thing)",
+  "mamaronke.claim": "claim(what: Thing)",
+  "ronke.hail": "hail(what: Thing)"
  },
  "parent": {
   "Person": "Thing",
@@ -9696,5 +9748,5 @@
   "epilogue": "quiet",
   "coda": "quiet"
  },
- "updated": "2026-11-17T23:53:22-05:00"
+ "updated": "2026-11-18T09:35:00-05:00"
 }

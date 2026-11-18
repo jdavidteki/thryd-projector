@@ -5376,16 +5376,6 @@
 ],
 "miami": [
 {
-"id": "wf_8dcadc0ef3",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up beside the phone at the miami.",
-"code": "itmoai.interactwith(miami){ miami.receives(itmoai.envelope); miami.remembers(bisola, 'brown envelope'); }",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6",
-"other": "itmoai"
-},
-{
 "id": "wf_1ad7a999a6",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up beside the phone at the miami.",
@@ -5424,6 +5414,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "wser"
+},
+{
+"id": "wf_1a96188fa7",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up beside the phone at the miami.",
+"code": "bow.interactwith(miami){ miami.receives(bow.envelope); miami.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "bow"
 }
 ],
 "teo": [
@@ -7037,53 +7037,45 @@
 "card": "j6",
 "other": "people_scene"
 }
+],
+"genius": [
+{
+"id": "wf_14926d7426",
+"kind": "consequence",
+"text": "The genius leaves with a Chair note with Taiwo's name and '11:20pm' on it.",
+"code": "chair.interactwith(genius){ genius.receives(chair.pm); genius.remembers(taiwo, '11:20pm'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w6",
+"other": "chair"
+}
+],
+"carbohydrates_maggi": [
+{
+"id": "wf_847a16fdd8",
+"kind": "consequence",
+"text": "The carbohydrates maggi leaves with an Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997.",
+"code": "egbe.interactwith(carbohydrates_maggi){ carbohydrates_maggi.receives(egbe.joke); carbohydrates_maggi.remembers(bisola, 'boss joke'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j1",
+"other": "egbe"
+}
+],
+"yaba": [
+{
+"id": "wf_50299f6dad",
+"kind": "consequence",
+"text": "The yaba now remembers the miami: 11:45pm, Monday 2 November 2026: A phone on the counter starts the off-key chorus, then.",
+"code": "miami.interactwith(yaba){ yaba.receives(miami.phone); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j29",
+"other": "miami"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_5cc8d0dace",
-"ts": "2026-11-18T00:48:07-0500",
-"a": "saturday_october",
-"b": "again",
-"code": "saturday_october.interactwith(again){ again.receives(saturday_october.envelope); again.remembers(bisola, 'brown envelope'); }",
-"text": "The again leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
-"id": "wf_12d05bd268",
-"ts": "2026-11-18T00:53:20-0500",
-"a": "ttb",
-"b": "patagonia",
-"code": "ttb.interactwith(patagonia){ patagonia.receives(ttb.code); patagonia.remembers(ejiro, 'juju code'); }",
-"text": "The patagonia leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j2"
-},
-{
-"id": "wf_2653c8a5e2",
-"ts": "2026-11-18T04:50:51-0500",
-"a": "wiitbaw",
-"b": "laptop",
-"code": "wiitbaw.interactwith(laptop){ laptop.receives(wiitbaw.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the lamp soot at the laptop, and Taiwo reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
-"id": "wt_836e6dea8e",
-"ts": "2026-11-18T04:55:00-0500",
-"a": "patagonia",
-"b": "mama_ronke",
-"code": "patagonia.interactwith(mama_ronke){ mama_ronke.receives(patagonia, 'juju code'); … }",
-"text": "At Mama Ronke's gate the patagonia's Ttb note is laid beside the juju code, and Ejiro sees both carry his name in the same handwriting.",
-"author": "thryd",
-"run": "run-2eb42d",
-"card": "j6"
-},
 {
 "id": "wt_5afb033ddb",
 "ts": "2026-11-18T04:55:30-0500",
@@ -7479,6 +7471,50 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j2"
+},
+{
+"id": "wf_1a96188fa7",
+"ts": "2026-11-18T09:31:29-0500",
+"a": "bow",
+"b": "miami",
+"code": "bow.interactwith(miami){ miami.receives(bow.envelope); miami.remembers(bisola, 'brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up beside the phone at the miami.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
+},
+{
+"id": "wf_14926d7426",
+"ts": "2026-11-18T09:32:22-0500",
+"a": "chair",
+"b": "genius",
+"code": "chair.interactwith(genius){ genius.receives(chair.pm); genius.remembers(taiwo, '11:20pm'); }",
+"text": "The genius leaves with a Chair note with Taiwo's name and '11:20pm' on it.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w6"
+},
+{
+"id": "wf_847a16fdd8",
+"ts": "2026-11-18T09:33:14-0500",
+"a": "egbe",
+"b": "carbohydrates_maggi",
+"code": "egbe.interactwith(carbohydrates_maggi){ carbohydrates_maggi.receives(egbe.joke); carbohydrates_maggi.remembers(bisola, 'boss joke'); }",
+"text": "The carbohydrates maggi leaves with an Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j1"
+},
+{
+"id": "wf_50299f6dad",
+"ts": "2026-11-18T09:34:07-0500",
+"a": "miami",
+"b": "yaba",
+"code": "miami.interactwith(yaba){ yaba.receives(miami.phone); }",
+"text": "The yaba now remembers the miami: 11:45pm, Monday 2 November 2026: A phone on the counter starts the off-key chorus, then.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j29"
 }
 ],
 "memories": [
@@ -7582,5 +7618,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T09:30:36-0500"
+"updated": "2026-11-18T09:34:07-0500"
 }
