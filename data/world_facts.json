@@ -1925,16 +1925,6 @@
 ],
 "bird": [
 {
-"id": "wf_79cd81af0c",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the envelope corner at the bird, and Bisola reads the name twice.",
-"code": "b_md.interactwith(bird){ bird.receives(b_md.envelope); bird.remembers(bisola, 'brown envelope'); bird.tucks(b_md, 'yaba bookshop receipt into the envelope corner'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "b_md"
-},
-{
 "id": "wf_7e006495ba",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the envelope corner at the bird, and Bisola reads the name twice.",
@@ -1953,6 +1943,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "precision"
+},
+{
+"id": "wf_b4c6cfda9a",
+"kind": "consequence",
+"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the envelope corner at the bird, and Bisola reads the name twice.",
+"code": "imhf.interactwith(bird){ bird.receives(imhf.shirt); bird.remembers(bisola, 'green shirt'); bird.tucks(imhf, 'ikeja laundromat receipt into the envelope corner'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j8",
+"other": "imhf"
 },
 {
 "id": "wt_c6ff1d186b",
@@ -7003,6 +7003,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "saturday_october"
+},
+{
+"id": "wf_35c0dca806",
+"kind": "consequence",
+"text": "The wiitbaw leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "computer_village.interactwith(wiitbaw){ wiitbaw.receives(computer_village.envelope); wiitbaw.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "computer_village"
 }
 ],
 "listen": [
@@ -8268,28 +8278,6 @@
 },
 "consequences": [
 {
-"id": "wf_b83dbca34a",
-"ts": "2026-11-18T14:41:58-0500",
-"a": "jnoel",
-"b": "kazeem",
-"code": "jnoel.interactwith(kazeem){ kazeem.receives(jnoel.corner); kazeem.remembers(bisola, 'envelope corner'); }",
-"text": "The kazeem leaves with a Bird note with Bisola's name and 'envelope corner' on it.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j7"
-},
-{
-"id": "wf_2b4f2d55f9",
-"ts": "2026-11-18T14:47:49-0500",
-"a": "twgs",
-"b": "mama_ronke",
-"code": "twgs.interactwith(mama_ronke){ mama_ronke.receives(twgs.number); mama_ronke.remembers(kunle, 'scorched container number'); }",
-"text": "A Sheep note with Kunle's name and 'scorched container number' on it, turns up with the Mama Ronke, which is still present.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "w7"
-},
-{
 "id": "wf_83a0173277",
 "ts": "2026-11-18T14:48:41-0500",
 "a": "teach",
@@ -8706,6 +8694,28 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_35c0dca806",
+"ts": "2026-11-18T16:38:07-0500",
+"a": "computer_village",
+"b": "wiitbaw",
+"code": "computer_village.interactwith(wiitbaw){ wiitbaw.receives(computer_village.envelope); wiitbaw.remembers(bisola, 'brown envelope'); }",
+"text": "The wiitbaw leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
+},
+{
+"id": "wf_b4c6cfda9a",
+"ts": "2026-11-18T16:39:52-0500",
+"a": "imhf",
+"b": "bird",
+"code": "imhf.interactwith(bird){ bird.receives(imhf.shirt); bird.remembers(bisola, 'green shirt'); bird.tucks(imhf, 'ikeja laundromat receipt into the envelope corner'); }",
+"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the envelope corner at the bird, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j8"
 }
 ],
 "memories": [
@@ -8809,5 +8819,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T16:32:49-0500"
+"updated": "2026-11-18T16:39:52-0500"
 }
