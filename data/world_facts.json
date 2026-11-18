@@ -1873,16 +1873,6 @@
 ],
 "ronke": [
 {
-"id": "wt_6cdd9773de",
-"kind": "func_call",
-"text": "Someone at the projector tapped the computer village subject and called ronke.hail(what=hawker:Thing) from j18 from its agenda run-2eb42d, first seated in run-2eb42d j18.",
-"code": "ronke.hail('hawker');",
-"author": "projector",
-"run": "run-2eb42d",
-"card": "w18",
-"other": null
-},
-{
 "id": "wt_49f6572c66",
 "kind": "func_call",
 "text": "The customer typed ronke.getlikes().contains(kazeem.goodqualities), which ran as ronke.getlikes().filter(q => kazeem.goodqualities.includes(q)) on run-2eb42d j29. It came back: punctual, generous, funny. Implementation: function filterQualities(){\n  const value = [\"punctual\",\"generous\",\"funny\"];\n  learned.ronke.overlap = value;\n  return value;\n}.",
@@ -1921,6 +1911,16 @@
 "run": "run-2eb42d",
 "card": "w18",
 "other": null
+},
+{
+"id": "wf_93f90e4def",
+"kind": "consequence",
+"text": "The plastic sheet ends up with the ronke, still wet.",
+"code": "plastic_sheet.interactwith(ronke){ plastic_sheet.db.copyto(ronke); ronke.keeps(plastic_sheet, 'plastic sheet, still wet'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w5",
+"other": "plastic_sheet"
 }
 ],
 "bird": [
@@ -7818,17 +7818,6 @@
 },
 "consequences": [
 {
-"id": "wf_a2018b8618",
-"ts": "2026-11-18T11:40:08-0500",
-"a": "jnoel",
-"b": "ojuelegba_bus_stop",
-"code": "jnoel.interactwith(ojuelegba_bus_stop){ ojuelegba_bus_stop.receives(jnoel.corner); … }",
-"text": "A Bird note with Bisola's name and 'envelope corner' on it, turns up inside the brown envelope at the ojuelegba bus stop, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j7"
-},
-{
 "id": "wf_a80022da7b",
 "ts": "2026-11-18T11:45:08-0500",
 "a": "lagos",
@@ -8256,6 +8245,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j7"
+},
+{
+"id": "wf_93f90e4def",
+"ts": "2026-11-18T13:43:08-0500",
+"a": "plastic_sheet",
+"b": "ronke",
+"code": "plastic_sheet.interactwith(ronke){ plastic_sheet.db.copyto(ronke); ronke.keeps(plastic_sheet, 'plastic sheet, still wet'); }",
+"text": "The plastic sheet ends up with the ronke, still wet.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w5"
 }
 ],
 "memories": [
@@ -8359,5 +8359,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T13:39:38-0500"
+"updated": "2026-11-18T13:43:08-0500"
 }
