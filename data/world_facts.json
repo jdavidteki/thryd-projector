@@ -963,16 +963,6 @@
 "other": "love"
 },
 {
-"id": "wf_194e588426",
-"kind": "memory",
-"text": "The plastic sheet at Oke-Ayo bus stop: wet; Ronke and Kazeem had been under it, Mama Ronke stood over it.",
-"code": "plastic_sheet.state('wet');",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "w5",
-"other": null
-},
-{
 "id": "wf_9c5687a8fc",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the plastic sheet, which is still wet.",
@@ -981,6 +971,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "niaw"
+},
+{
+"id": "wf_194e588426",
+"kind": "memory",
+"text": "The plastic sheet at Oke-Ayo bus stop: wet; Ronke and Kazeem had been under it, Mama Ronke stood over it.",
+"code": "plastic_sheet.state('wet');",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w5",
+"other": null
 }
 ],
 "red_white_cap": [
@@ -2897,16 +2897,6 @@
 ],
 "bed": [
 {
-"id": "wf_c70eb5e626",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bed, and Bisola reads the name twice.",
-"code": "plastic_sheet.interactwith(bed){ bed.receives(plastic_sheet.envelope); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "plastic_sheet"
-},
-{
 "id": "wf_6858508cf9",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the bed, and Taiwo reads the name twice.",
@@ -2935,6 +2925,16 @@
 "run": "run-5a58c4",
 "card": "j3",
 "other": "god"
+},
+{
+"id": "wf_10874ef063",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the bed, and Taiwo reads the name twice.",
+"code": "listen.interactwith(bed){ bed.receives(listen.envelope); bed.remembers(bisola, 'brown envelope'); bed.tucks(listen, 'yaba bookshop receipt into the egbe note'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "listen"
 },
 {
 "id": "wt_740c0937a2",
@@ -8862,17 +8862,6 @@
 },
 "consequences": [
 {
-"id": "wf_1262999fd5",
-"ts": "2026-11-18T15:45:15-0500",
-"a": "twgs",
-"b": "patagonia",
-"code": "twgs.interactwith(patagonia){ patagonia.receives(twgs.number); … }",
-"text": "A Sheep note with Kunle's name and 'scorched container number' on it, turns up inside the brown envelope at the patagonia, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "w7"
-},
-{
 "id": "wf_311b372227",
 "ts": "2026-11-18T15:47:00-0500",
 "a": "icsh",
@@ -9300,6 +9289,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_10874ef063",
+"ts": "2026-11-18T18:02:40-0500",
+"a": "listen",
+"b": "bed",
+"code": "listen.interactwith(bed){ bed.receives(listen.envelope); bed.remembers(bisola, 'brown envelope'); bed.tucks(listen, 'yaba bookshop receipt into the egbe note'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the bed, and Taiwo reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -9403,5 +9403,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T17:57:45-0500"
+"updated": "2026-11-18T18:02:40-0500"
 }
