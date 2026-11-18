@@ -1873,16 +1873,6 @@
 ],
 "ronke": [
 {
-"id": "wt_ab1804cb34",
-"kind": "func_call",
-"text": "Someone at the projector tapped the computer village subject and called ronke.hail(what=hawker:Thing) from j18 from its agenda run-2eb42d, first seated in run-2eb42d j18.",
-"code": "ronke.hail('hawker');",
-"author": "projector",
-"run": "run-2eb42d",
-"card": "w18",
-"other": null
-},
-{
 "id": "wt_611c4d0df3",
 "kind": "func_call",
 "text": "Someone at the projector tapped the mile subject and called ronke.hail(what=hawker:Thing) from j18 from its agenda run-2eb42d, first seated in run-2eb42d j18.",
@@ -1916,6 +1906,16 @@
 "id": "wt_a86456bd78",
 "kind": "func_call",
 "text": "Someone at the projector tapped the computer village subject and called ronke.hail(what=hawker:Thing) from j18 from its agenda run-2eb42d, first seated in run-2eb42d j18.",
+"code": "ronke.hail('hawker');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w18",
+"other": null
+},
+{
+"id": "wt_5ac90d4463",
+"kind": "func_call",
+"text": "Someone at the projector tapped the marina ferry terminal subject and called ronke.hail(what=hawker:Thing) from j18 from its agenda run-2eb42d, first seated in run-2eb42d j18.",
 "code": "ronke.hail('hawker');",
 "author": "projector",
 "run": "run-2eb42d",
@@ -6779,16 +6779,6 @@
 ],
 "kazeem": [
 {
-"id": "wt_cdce915a06",
-"kind": "func_call",
-"text": "The kazeem hears it (because ronke.hail(what=hawker:Thing) from j18).",
-"code": "kazeem.hears(computer_village_subject, 'hail');",
-"author": "projector",
-"run": "run-2eb42d",
-"card": "w18",
-"other": null
-},
-{
 "id": "wt_19f9f785c0",
 "kind": "func_call",
 "text": "The kazeem hears it (because ronke.hail(what=hawker:Thing) from j18).",
@@ -6827,19 +6817,19 @@
 "run": "run-2eb42d",
 "card": "w18",
 "other": null
+},
+{
+"id": "wt_dea8604e75",
+"kind": "func_call",
+"text": "The kazeem hears it (because ronke.hail(what=hawker:Thing) from j18).",
+"code": "kazeem.hears(marina_ferry_terminal_subject, 'hail');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w18",
+"other": null
 }
 ],
 "mama_ronke": [
-{
-"id": "wf_9c2a3396cb",
-"kind": "consequence",
-"text": "When Mama Ronke claims the cooler at the Ojuelegba bus stop, Bisola's Yaba bookshop receipt is stuck under the ice, and she pockets it as proof the cooler was bought for her house.",
-"code": "pure_water_cooler.interactwith(mama_ronke){ mama_ronke.receives(pure_water_cooler.brown_envelope); mama_ronke.claims(pure_water_cooler, 'yaba bookshop receipt'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j18",
-"other": "pure_water_cooler"
-},
 {
 "id": "wf_c89fade79e",
 "kind": "memory",
@@ -6869,6 +6859,16 @@
 "run": "run-2eb42d",
 "card": "j7",
 "other": "laptop"
+},
+{
+"id": "wf_e776d294dd",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the Mama Ronke, which is still present.",
+"code": "b_md.interactwith(mama_ronke){ mama_ronke.receives(b_md.envelope); mama_ronke.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "b_md"
 },
 {
 "id": "wt_836e6dea8e",
@@ -7209,16 +7209,6 @@
 ],
 "hear": [
 {
-"id": "wt_459f7bb5f0",
-"kind": "func_call",
-"text": "The hear hears it (because ronke.hail(what=hawker:Thing) from j18).",
-"code": "hear.hears(computer_village_subject, 'hail');",
-"author": "projector",
-"run": "run-2eb42d",
-"card": "w18",
-"other": null
-},
-{
 "id": "wt_12b9b868c2",
 "kind": "func_call",
 "text": "The hear hears it (because ronke.hail(what=hawker:Thing) from j18).",
@@ -7257,19 +7247,19 @@
 "run": "run-2eb42d",
 "card": "w18",
 "other": null
-}
-],
-"mamaronke": [
+},
 {
-"id": "wt_67952bd9ff",
+"id": "wt_8d5c100b61",
 "kind": "func_call",
-"text": "The mamaronke hears it (because ronke.hail(what=hawker:Thing) from j18).",
-"code": "mamaronke.hears(computer_village_subject, 'hail');",
+"text": "The hear hears it (because ronke.hail(what=hawker:Thing) from j18).",
+"code": "hear.hears(marina_ferry_terminal_subject, 'hail');",
 "author": "projector",
 "run": "run-2eb42d",
 "card": "w18",
 "other": null
-},
+}
+],
+"mamaronke": [
 {
 "id": "wt_2a0e81a253",
 "kind": "func_call",
@@ -7305,6 +7295,16 @@
 "kind": "func_call",
 "text": "The mamaronke hears it (because ronke.hail(what=hawker:Thing) from j18).",
 "code": "mamaronke.hears(computer_village_subject, 'hail');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w18",
+"other": null
+},
+{
+"id": "wt_c910f6b2aa",
+"kind": "func_call",
+"text": "The mamaronke hears it (because ronke.hail(what=hawker:Thing) from j18).",
+"code": "mamaronke.hears(marina_ferry_terminal_subject, 'hail');",
 "author": "projector",
 "run": "run-2eb42d",
 "card": "w18",
@@ -7813,21 +7813,20 @@
 "run": "run-2eb42d",
 "card": "j30",
 "other": null
+},
+{
+"id": "wt_be2b572426",
+"kind": "func_call",
+"text": "The customer typed k.g570(cliqa570-mwmhaw4y) on run-2eb42d j32. It came back: K g570 cliqa570-mwmhaw4y. Implementation: function g570(what){\n  K_G570_COUNT += 1;\n  this.lastG570 = \"cliqa570-mwmhaw4y\";\n  return \"K g570 cliqa570-mwmhaw4y\";\n}. k now has k.g570 as a method on this agenda, and it can be called again.",
+"code": "k.g570(cliqa570-mwmhaw4y);",
+"author": "customer",
+"run": "run-2eb42d",
+"card": "j32",
+"other": null
 }
 ]
 },
 "consequences": [
-{
-"id": "wf_402676b7e2",
-"ts": "2026-11-18T11:49:33-0500",
-"a": "computer_village",
-"b": "ronke",
-"code": "computer_village.interactwith(ronke){ ronke.receives(computer_village.shirt); ronke.remembers(bisola, 'green shirt'); }",
-"text": "The ronke leaves with an Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j8"
-},
 {
 "id": "wf_399a69a972",
 "ts": "2026-11-18T11:53:57-0500",
@@ -8256,6 +8255,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_e776d294dd",
+"ts": "2026-11-18T13:54:48-0500",
+"a": "b_md",
+"b": "mama_ronke",
+"code": "b_md.interactwith(mama_ronke){ mama_ronke.receives(b_md.envelope); mama_ronke.remembers(bisola, 'brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the Mama Ronke, which is still present.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -8359,5 +8369,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T13:52:25-0500"
+"updated": "2026-11-18T13:55:40-0500"
 }
