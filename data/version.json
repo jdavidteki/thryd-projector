@@ -1,5 +1,5 @@
 {
-  "v": 571,
-  "at": "2026-11-18T14:09:32-05:00",
-  "note": "Typed lines post as a simple CORS request (POST, text/plain, no custom headers) on their own lane that never waits behind drift, with a 20s timeout and 3 retries alternating the drag and CLI topics, plus a sendBeacon copy. Every event is stamped pv:571 and a short UA; the page shows a pv:571 badge. Any typeline submit immediately shows queued\u2026 and fires a cli_attempt beacon on the proven drift path. Script tags are ?v=571 and a stale index reloads when data/version.json is newer."
+  "v": 572,
+  "at": "2026-11-18T14:26:20-05:00",
+  "note": "Typed lines still post to ntfy.sh first on their own simple-CORS lane. If no HTTP 200 arrives within 8s, the same payload is also posted in parallel to a second, independent no-auth HTTPS pub/sub (a public ntfy host other than ntfy.sh). cli_attempt beacons use the same 8s backup. The box relay subscribes to the backup topic and dedupes by event_id. pv:572 badge and ?v=572 cache-bust."
 }

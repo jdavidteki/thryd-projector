@@ -2622,7 +2622,7 @@
     const post = root.thrydNtfyPost;
     if(body && body.source === 'cli' && root.thrydEnsureCli){ try{ await root.thrydEnsureCli(); }catch(e){} }
     const cliCfg = (body && body.source === 'cli') ? ((root.thrydCli && root.thrydCli()) || (ctx && ctx.CLI) || window.CLI || null) : null;
-    const replyBase = (cliCfg && cliCfg.reply) || (DG && DG.reply);
+    let replyBase = (cliCfg && cliCfg.reply) || (DG && DG.reply);
     const prettyErr = err => prettySendErr(err);
     const paint = item => {
       if(item){ if(item.lastError) rec.lastError = item.lastError; if(item.status) rec.status = item.status; }
@@ -2640,7 +2640,8 @@
         try{
           const r = await post(body, 'call');
           const nid = r && (r.ntfyId || (root.thrydParseNtfyId && root.thrydParseNtfyId(r.raw || '')));
-          if(r && r.ok && nid){ ok = true; rec.ntfyId = nid; }
+          if(r && r.reply) replyBase = r.reply;
+          if(r && r.ok && nid){ ok = true; rec.ntfyId = nid; rec.via = r.via || rec.via; }
           else {
             rec.status = 'queued';
             const why = r && r.ok ? 'ntfy 200 with no id' : (r ? ('HTTP ' + r.status) : 'no_response');

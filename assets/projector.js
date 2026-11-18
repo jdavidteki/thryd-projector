@@ -4,8 +4,8 @@
 // v571: typelines no longer share that lane with drift. They use thrydSimplePost / thrydTypelinePost (own lane,
 // simple CORS, 20s, 3 attempts alternating drag and cli). Drift and typeline counters are separate, so a
 // stalled drift can never hold a typed line (Jesuye 18 Nov 2026 2:00 PM ET "timed out!").
-window.__thrydPV=571;
-window.thrydPageVer=function(){return window.__thrydPV||571;};
+window.__thrydPV=572;
+window.thrydPageVer=function(){return window.__thrydPV||572;};
 window.thrydShortUA=function(){try{const ua=navigator.userAgent||'';const os=(/Android\s+[\d.]+/i.exec(ua)||/iPhone OS [\d_]+/i.exec(ua)||/iPad.*OS [\d_]+/i.exec(ua)||/Mac OS X [\d_]+/i.exec(ua)||/Windows NT [\d.]+/i.exec(ua)||/Linux/i.exec(ua)||['?'])[0];const br=(/(?:Chrome|CriOS|Firefox|FxiOS|Edg|Safari|SamsungBrowser|YaBrowser)\/[\d.]+/i.exec(ua)||['?'])[0];return (os+' '+br).replace(/\s+/g,' ').slice(0,72);}catch(e){return '?';}};
 window.thrydStamp=function(body){if(!body||typeof body!=='object')return body;try{body.pv=window.thrydPageVer();body.ua=window.thrydShortUA();}catch(e){}return body;};
 window.thrydStampOpts=function(opt){if(!opt||opt.body==null)return opt||{};try{const o=typeof opt.body==='string'?JSON.parse(opt.body):opt.body;if(o&&typeof o==='object')return Object.assign({},opt,{body:JSON.stringify(window.thrydStamp(Object.assign({},o)))});}catch(e){}return opt;};
@@ -57,6 +57,20 @@ window.thrydEnsureCli=async function(){
   return null;
 };
 // Parse the ntfy message id from a POST response body (JSON {id} or a bare id).
+window.thrydBackup=function(){try{return window.BACKUP||null;}catch(e){return null;}};
+window.thrydEnsureBackup=async function(){
+  let c=null; try{c=(window.thrydBackup&&window.thrydBackup())||window.BACKUP||null;}catch(e){c=null;}
+  if(c&&c.endpoint) return c;
+  try{
+    const ac=typeof AbortController==='function'?new AbortController():null;
+    const t=setTimeout(()=>window.thrydAbortSignal&&window.thrydAbortSignal(ac,'timed out'),2500);
+    try{
+      const r=await fetch('data/cli_alt.json?t='+Date.now(),Object.assign({cache:'no-store'},ac?{signal:ac.signal}:{}));
+      if(r&&r.ok){const j=await r.json(); if(j&&j.endpoint){window.BACKUP=j;return j;}}
+    }finally{clearTimeout(t);}
+  }catch(e){}
+  return null;
+};
 window.thrydParseNtfyId=function(tx){
   const s=String(tx==null?'':tx).trim();
   if(!s) return null;
@@ -104,28 +118,68 @@ window.thrydCliTopics=async function(){
   if(cli&&cli.endpoint&&(!DG||cli.endpoint!==DG.endpoint)) out.push({name:'cli',ep:cli.endpoint});
   return out;
 };
-// Typed lines: own lane, 20s, 3 attempts alternating drag and cli, plus a sendBeacon copy.
+// Typed lines: ntfy.sh first (own lane, simple CORS). If no 200 within 8s, also post
+// in parallel to an independent backup host (data/cli_alt.json, not ntfy.sh).
 window.thrydTypelinePost=async function(body, kind){
   let payload=window.thrydStamp(Object.assign({},body||{}));
   try{if(JSON.stringify(payload).length>3900){payload=Object.assign({},payload);delete payload.impl;delete payload.const_diff;delete payload.ran_as;delete payload.body_v;}}catch(e){}
   window.thrydAbortNtfyPolls&&window.thrydAbortNtfyPolls('call');
   const topics=await window.thrydCliTopics();
-  if(!topics.length){const e=new Error('no_endpoint');e.status='no_endpoint';window.thrydLogSend({branch:'no_endpoint',kind:kind,event_id:payload.event_id});throw e;}
-  try{const ok=window.thrydSendBeacon(topics[0].ep, payload);window.thrydLogSend({branch:'sendBeacon',ok:ok,endpoint:topics[0].ep,event_id:payload.event_id,kind:kind});}catch(e){}
-  let lastErr='not posted';
-  for(let i=0;i<3;i++){
-    const dest=topics[i%topics.length];
-    try{
-      window.thrydLogSend({branch:'typeline_post',attempt:i+1,topic:dest.name,endpoint:dest.ep,event_id:payload.event_id,kind:kind,source:payload.source});
-      const r=await window.thrydSimplePost(dest.ep, payload, 20000);
-      window.thrydLogSend({branch:'typeline_post_done',attempt:i+1,topic:dest.name,ok:!!(r&&r.ok),status:r&&r.status,id:r&&r.ntfyId,event_id:payload.event_id});
-      if(r&&r.ok&&r.ntfyId) return r;
-      lastErr=r&&r.ok?'ntfy 200 with no id':('HTTP '+(r&&r.status));
-    }catch(e){
-      lastErr=(window.thrydIsTimeout&&window.thrydIsTimeout(e))?'timed out':String(e&&e.message||e);
-      window.thrydLogSend({branch:'typeline_post_throw',attempt:i+1,topic:dest.name,error:lastErr,event_id:payload.event_id});
+  let backup=null; try{backup=await window.thrydEnsureBackup();}catch(e){backup=null;}
+  if(!topics.length&&!(backup&&backup.endpoint)){const e=new Error('no_endpoint');e.status='no_endpoint';window.thrydLogSend({branch:'no_endpoint',kind:kind,event_id:payload.event_id});throw e;}
+  if(topics[0]) try{const ok=window.thrydSendBeacon(topics[0].ep, payload);window.thrydLogSend({branch:'sendBeacon',ok:ok,endpoint:topics[0].ep,event_id:payload.event_id,kind:kind});}catch(e){}
+  let lastErr='not posted', winner=null;
+  const accept=function(r, via){
+    if(winner||!r||!r.ok||!r.ntfyId) return r;
+    r.via=via; r.reply=r.reply||(via==='backup'&&backup&&backup.reply)||null;
+    winner=r;
+    window.thrydLogSend({branch:'typeline_accept',via:via,id:r.ntfyId,event_id:payload.event_id,kind:kind});
+    return r;
+  };
+  const ntfyRun=(async()=>{
+    if(!topics.length) return null;
+    for(let i=0;i<3;i++){
+      if(winner) return winner;
+      const dest=topics[i%topics.length];
+      try{
+        window.thrydLogSend({branch:'typeline_post',attempt:i+1,topic:dest.name,endpoint:dest.ep,event_id:payload.event_id,kind:kind,source:payload.source});
+        const r=await window.thrydSimplePost(dest.ep, payload, 20000);
+        window.thrydLogSend({branch:'typeline_post_done',attempt:i+1,topic:dest.name,ok:!!(r&&r.ok),status:r&&r.status,id:r&&r.ntfyId,event_id:payload.event_id});
+        if(r&&r.ok&&r.ntfyId) return accept(r, dest.name);
+        lastErr=r&&r.ok?'ntfy 200 with no id':('HTTP '+(r&&r.status));
+      }catch(e){
+        lastErr=(window.thrydIsTimeout&&window.thrydIsTimeout(e))?'timed out':String(e&&e.message||e);
+        window.thrydLogSend({branch:'typeline_post_throw',attempt:i+1,topic:dest.name,error:lastErr,event_id:payload.event_id});
+      }
     }
-  }
+    return winner;
+  })();
+  const backupRun=(async()=>{
+    if(!backup||!backup.endpoint) return null;
+    await new Promise(r=>setTimeout(r,8000));
+    if(winner) return winner;
+    const ev=window.thrydStamp(Object.assign({},payload,{transport:'backup'}));
+    window.thrydLogSend({branch:'backup_parallel',event_id:payload.event_id,kind:kind});
+    try{window.thrydSendBeacon(backup.endpoint, ev);}catch(e){}
+    try{
+      const r=await window.thrydSimplePost(backup.endpoint, ev, 20000);
+      window.thrydLogSend({branch:'backup_post_done',ok:!!(r&&r.ok),status:r&&r.status,id:r&&r.ntfyId,event_id:payload.event_id});
+      if(r&&r.ok&&r.ntfyId) return accept(r, 'backup');
+      if(!winner) lastErr=r&&r.ok?'ntfy 200 with no id':('HTTP '+(r&&r.status));
+    }catch(e){
+      const why=(window.thrydIsTimeout&&window.thrydIsTimeout(e))?'timed out':String(e&&e.message||e);
+      window.thrydLogSend({branch:'backup_post_throw',error:why,event_id:payload.event_id});
+      if(!winner) lastErr=why;
+    }
+    return winner;
+  })();
+  // Return as soon as either path gets a 200+id; leave the other running.
+  await Promise.race([
+    ntfyRun.then(r=>r&&r.ntfyId?r:new Promise(()=>{})),
+    backupRun.then(r=>r&&r.ntfyId?r:new Promise(()=>{})),
+    Promise.all([ntfyRun.catch(()=>null), backupRun.catch(()=>null)])
+  ]);
+  if(winner) return winner;
   const err=new Error(lastErr); if(lastErr==='timed out') err.status='timeout'; throw err;
 };
 // Beacon a typeline submit immediately, via the proven drift POST plus sendBeacon.
@@ -136,7 +190,17 @@ window.thrydCliAttempt=function(raw, path){
   try{const DG=(window.thrydDrag&&window.thrydDrag())||window.DRAG; if(DG&&DG.endpoint) window.thrydSendBeacon(DG.endpoint, ev);}catch(e){}
   try{window.thrydDriftPost(ev).then(r=>{window.thrydLogSend({branch:'cli_attempt_drift',ok:!!(r&&r.ok),status:r&&r.status,event_id:eid});}).catch(e=>{window.thrydLogSend({branch:'cli_attempt_drift_fail',error:String(e&&e.message||e),event_id:eid});});}catch(e){}
   // Own typeline lane too: the drift lane can return ntfy_busy, and sendBeacon is best-effort.
-  try{const DG=(window.thrydDrag&&window.thrydDrag())||window.DRAG; if(DG&&DG.endpoint) window.thrydSimplePost(DG.endpoint, ev, 20000).then(r=>{window.thrydLogSend({branch:'cli_attempt_simple',ok:!!(r&&r.ok),status:r&&r.status,id:r&&r.ntfyId,event_id:eid});}).catch(e=>{window.thrydLogSend({branch:'cli_attempt_simple_fail',error:String(e&&e.message||e),event_id:eid});});}catch(e){}
+  let landed=false;
+  try{const DG=(window.thrydDrag&&window.thrydDrag())||window.DRAG; if(DG&&DG.endpoint) window.thrydSimplePost(DG.endpoint, ev, 20000).then(r=>{if(r&&r.ok) landed=true;window.thrydLogSend({branch:'cli_attempt_simple',ok:!!(r&&r.ok),status:r&&r.status,id:r&&r.ntfyId,event_id:eid});}).catch(e=>{window.thrydLogSend({branch:'cli_attempt_simple_fail',error:String(e&&e.message||e),event_id:eid});});}catch(e){}
+  setTimeout(async()=>{
+    if(landed) return;
+    let backup=null; try{backup=await window.thrydEnsureBackup();}catch(e){backup=null;}
+    if(!backup||!backup.endpoint) return;
+    const ev2=window.thrydStamp(Object.assign({},ev,{transport:'backup'}));
+    window.thrydLogSend({branch:'cli_attempt_backup',event_id:eid});
+    try{window.thrydSendBeacon(backup.endpoint, ev2);}catch(e){}
+    try{const r=await window.thrydSimplePost(backup.endpoint, ev2, 20000);window.thrydLogSend({branch:'cli_attempt_backup_done',ok:!!(r&&r.ok),status:r&&r.status,id:r&&r.ntfyId,event_id:eid});}catch(e){window.thrydLogSend({branch:'cli_attempt_backup_fail',error:String(e&&e.message||e),event_id:eid});}
+  },8000);
   return ev;
 };
 window.thrydShowPvBadge=function(){
@@ -1178,7 +1242,7 @@ addEventListener('resize',()=>{regionsKey='';});
 })();
 // ---------- drag a chip onto a place heading -> <object>.setlocation(<place>) via data/drag.json endpoint
 let DRAG=null,CLI=null; (async()=>{try{DRAG=await J('data/drag.json?t='+Date.now());}catch(e){}})();
-(async()=>{try{CLI=window.CLI=await J('data/cli.json?t='+Date.now());}catch(e){}})();
+(async()=>{try{CLI=window.CLI=await J('data/cli.json?t='+Date.now());}catch(e){}})();(async()=>{try{BACKUP=window.BACKUP=await J('data/cli_alt.json?t='+Date.now());}catch(e){}})();
 function toast(msg,bad){let t=document.getElementById('toast');if(!t){t=document.createElement('div');t.id='toast';document.body.appendChild(t);}
   t.textContent=msg;t.className=bad?'bad on':'on';clearTimeout(t._h);t._h=setTimeout(()=>t.className='',2600);}
 window.thrydCtx=()=>({toast,DRAG,CLI,PFULL:typeof PFULL!=='undefined'?PFULL:{},lastM:typeof lastM!=='undefined'?lastM:null}); // prophecy module lives outside this scope
