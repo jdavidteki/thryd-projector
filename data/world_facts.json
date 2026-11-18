@@ -1873,16 +1873,6 @@
 ],
 "ronke": [
 {
-"id": "wt_d1604e3c14",
-"kind": "func_call",
-"text": "Someone at the projector tapped the mushin subject and called ronke.hail(what=hawker:Thing) from j18 from its agenda run-2eb42d, first seated in run-2eb42d j18.",
-"code": "ronke.hail('hawker');",
-"author": "projector",
-"run": "run-2eb42d",
-"card": "w18",
-"other": null
-},
-{
 "id": "wf_8fc8a53a7b",
 "kind": "consequence",
 "text": "The ronke leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
@@ -1921,6 +1911,16 @@
 "run": "run-2eb42d",
 "card": "w18",
 "other": null
+},
+{
+"id": "wf_402676b7e2",
+"kind": "consequence",
+"text": "The ronke leaves with an Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am.",
+"code": "computer_village.interactwith(ronke){ ronke.receives(computer_village.shirt); ronke.remembers(bisola, 'green shirt'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j8",
+"other": "computer_village"
 }
 ],
 "bird": [
@@ -7500,17 +7500,6 @@
 },
 "consequences": [
 {
-"id": "wf_50299f6dad",
-"ts": "2026-11-18T09:34:07-0500",
-"a": "miami",
-"b": "yaba",
-"code": "miami.interactwith(yaba){ yaba.receives(miami.phone); }",
-"text": "The yaba now remembers the miami: 11:45pm, Monday 2 November 2026: A phone on the counter starts the off-key chorus, then.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j29"
-},
-{
 "id": "wf_778fe6bda8",
 "ts": "2026-11-18T09:37:39-0500",
 "a": "lie",
@@ -7938,6 +7927,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j29"
+},
+{
+"id": "wf_402676b7e2",
+"ts": "2026-11-18T11:49:33-0500",
+"a": "computer_village",
+"b": "ronke",
+"code": "computer_village.interactwith(ronke){ ronke.receives(computer_village.shirt); ronke.remembers(bisola, 'green shirt'); }",
+"text": "The ronke leaves with an Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j8"
 }
 ],
 "memories": [
@@ -8041,5 +8041,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T11:46:01-0500"
+"updated": "2026-11-18T11:49:33-0500"
 }
