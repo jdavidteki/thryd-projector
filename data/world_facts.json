@@ -1084,14 +1084,14 @@
 ],
 "kerosene_lamp": [
 {
-"id": "wf_194a95778e",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the kerosene lamp, which is still lit.",
-"code": "icsh.interactwith(kerosene_lamp){ kerosene_lamp.receives(icsh.envelope); kerosene_lamp.remembers(bisola, 'brown envelope'); }",
+"id": "wf_29c8803af0",
+"kind": "memory",
+"text": "The kerosene lamp at Mama Ronke's gate: lit; the only light on the street after the blackout.",
+"code": "kerosene_lamp.state('lit');",
 "author": "cos",
 "run": "run-2eb42d",
-"card": "j6",
-"other": "icsh"
+"card": "w7",
+"other": null
 },
 {
 "id": "wt_7a2b23aa13",
@@ -7514,5 +7514,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T09:19:38-0500"
+"updated": "2026-11-18T09:23:08-0500"
 }
