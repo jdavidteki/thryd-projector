@@ -6842,6 +6842,16 @@
 "run": "run-2eb42d",
 "card": "j29",
 "other": "miami"
+},
+{
+"id": "wf_0119e05c89",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up beside the phone at the atp.",
+"code": "bicycle.interactwith(atp){ atp.receives(bicycle.envelope); atp.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "bicycle"
 }
 ],
 "divine": [
@@ -6903,42 +6913,33 @@
 "card": "j6",
 "other": "b_md"
 }
+],
+"dami_going_japa": [
+{
+"id": "wf_5975bd1418",
+"kind": "consequence",
+"text": "The dami going japa leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "notnotnotnotyn_sep.interactwith(dami_going_japa){ dami_going_japa.receives(notnotnotnotyn_sep.envelope); dami_going_japa.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "notnotnotnotyn_sep"
+}
+],
+"fumiko_nishi": [
+{
+"id": "wf_9fe0b06549",
+"kind": "consequence",
+"text": "The fumiko nishi leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "red_white.interactwith(fumiko_nishi){ fumiko_nishi.receives(red_white.envelope); fumiko_nishi.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "red_white"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_86e47e370b",
-"ts": "2026-11-17T23:48:06-0500",
-"a": "ronke",
-"b": "lady",
-"code": "ronke.interactwith(lady){ lady.receives(ronke.shirt); lady.remembers(bisola, 'green shirt'); }",
-"text": "The lady leaves with an Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j8"
-},
-{
-"id": "wf_9ccd8e2468",
-"ts": "2026-11-17T23:56:49-0500",
-"a": "move",
-"b": "b_md",
-"code": "move.interactwith(b_md){ b_md.receives(move.envelope); b_md.remembers(bisola, 'brown envelope'); }",
-"text": "The b md leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
-"id": "wf_050b0569d2",
-"ts": "2026-11-17T23:57:41-0500",
-"a": "namco",
-"b": "yuwa",
-"code": "namco.interactwith(yuwa){ yuwa.receives(namco.envelope); yuwa.remembers(bisola, 'brown envelope'); }",
-"text": "The yuwa leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
 {
 "id": "wf_a9c56311aa",
 "ts": "2026-11-17T23:58:33-0500",
@@ -7345,6 +7346,39 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_5975bd1418",
+"ts": "2026-11-18T08:15:31-0500",
+"a": "notnotnotnotyn_sep",
+"b": "dami_going_japa",
+"code": "notnotnotnotyn_sep.interactwith(dami_going_japa){ dami_going_japa.receives(notnotnotnotyn_sep.envelope); dami_going_japa.remembers(bisola, 'brown envelope'); }",
+"text": "The dami going japa leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
+},
+{
+"id": "wf_9fe0b06549",
+"ts": "2026-11-18T08:16:24-0500",
+"a": "red_white",
+"b": "fumiko_nishi",
+"code": "red_white.interactwith(fumiko_nishi){ fumiko_nishi.receives(red_white.envelope); fumiko_nishi.remembers(bisola, 'brown envelope'); }",
+"text": "The fumiko nishi leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
+},
+{
+"id": "wf_0119e05c89",
+"ts": "2026-11-18T08:17:18-0500",
+"a": "bicycle",
+"b": "atp",
+"code": "bicycle.interactwith(atp){ atp.receives(bicycle.envelope); atp.remembers(bisola, 'brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up beside the phone at the atp.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -7448,5 +7482,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T08:11:08-0500"
+"updated": "2026-11-18T08:17:18-0500"
 }
