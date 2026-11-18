@@ -1482,6 +1482,46 @@
     requestAnimationFrame(()=> t.classList.add('on')); setTimeout(()=> t.classList.remove('on'), 6000); setTimeout(()=> t.remove(), 8000); }
   function pulse(c){ c.el.classList.remove('gnotice'); void c.el.offsetWidth; c.el.classList.add('gnotice'); setTimeout(()=> c.el.classList.remove('gnotice'), 1300); }
   function codeLine(t, note){ try{ const dl = root.__thrydDriftLines = root.__thrydDriftLines || []; const line=String(t==null?'':t); if(!line)return; dl.unshift({t:line, a: true, note: note==null?'':String(note)}); if(dl.length > 8) dl.length = 8; }catch(e){} }
+  function prettySendErr(err){ const s=String(err||''); if(!s) return 'queued, retrying'; if(/timed out|abort/i.test(s)) return 'timed out, retrying'; return 'retrying \u00b7 ' + s; }
+  function updateCodeNote(code, note){
+    const line=String(code||'').replace(/;+\s*$/,'');
+    if(!line||note==null) return;
+    try{
+      const dl=root.__thrydDriftLines||[];
+      for(const x of dl){ if(x && String(x.t||'').replace(/;+\s*$/,'')===line){ x.note=String(note); break; } }
+    }catch(e){}
+    try{
+      const nodes=document.querySelectorAll('#code > div, #code div');
+      for(const el of nodes){
+        const first=el.childNodes[0];
+        const raw=String((first && first.nodeType===3 ? first.textContent : el.textContent)||'').split('\n')[0].replace(/;?\s*$/,'');
+        if(raw===line || raw.indexOf(line)===0){
+          let span=el.querySelector('span.d');
+          if(!span){ span=document.createElement('span'); span.className='d'; el.appendChild(span); }
+          span.textContent='  // '+note;
+          break;
+        }
+      }
+    }catch(e){}
+  }
+  function setSendNote(code, rec, prefix){
+    rec = rec || {};
+    const err = rec.lastError || rec.error;
+    const st = rec.status;
+    let tail;
+    if(st==='sent'||st==='accepted'||st==='ok') tail='sent to the box';
+    else if(st==='no_reply') tail='sent; no reply from the box yet';
+    else if(st==='qa_not_sent') tail='QA: not sent';
+    else if(st==='rejected') tail='rejected'+(err?(' \u00b7 '+err):'');
+    else if(err) tail=prettySendErr(err);
+    else if(st==='queued'||st==='retrying') tail='queued, retrying';
+    else tail='sending\u2026';
+    const pre=String(prefix||rec.sendPrefix||'').replace(/\s*\u00b7\s*sending\u2026?\s*$/,'').replace(/\s+$/,'');
+    const note=(pre? pre+' \u00b7 ' : '')+tail;
+    rec.sendNote=note;
+    updateCodeNote(code || rec.code || rec.resolved, note);
+    return note;
+  }
   function ingest(calls, quiet){
     const fresh = [];
     (calls || []).forEach(e => {
@@ -2066,11 +2106,21 @@
     const noteLine = (ranAs ? 'ran as: ' + ranAs + ' · ' : '')
       + (piece.result ? '→ ' + piece.result + ' · ' : '')
       + 'new command → this agenda · ' + run + (cuts.length ? ' · ' + cuts.length + ' on stage' : ' · caption');
-    codeLine((piece.resolved || raw).replace(/;?$/, ';'), noteLine);
+    rec.sendPrefix = noteLine;
+    rec.status = rec.status || 'sending';
+    const codeTxt = (piece.resolved || raw).replace(/;?$/, ';');
+    codeLine(codeTxt, noteLine + ' \u00b7 sending\u2026');
+    try{ setSendNote(codeTxt, rec, noteLine); }catch(e){}
     note('free-cmd', rec.id, rec.run, raw, piece.resolved);
     saveFreeLocal();
     if(opts.send !== false) sendCliCall(rec, piece);
     return rec;
+  }
+  function ensureCliSent(rec, piece){
+    if(!rec) return null;
+    if(rec.body && rec.event_id) return rec; // already handed to sendCall
+    const p = piece || {raw: rec.raw || rec.text, resolved: rec.resolved || rec.raw || rec.text, obj: rec.subject || rec.obj, fn: rec.fn || 'cli', args: rec.args || []};
+    try{ return sendCliCall(rec, p); }catch(e){ try{ rec.error = String(e && e.message || e); setSendNote(rec.code || rec.raw, rec); }catch(e2){} return rec; }
   }
   function enqueueRawCli(raw, err, opts){
     opts = opts || {};
@@ -2134,7 +2184,7 @@
     }
     syncFreeCmds();
   }
-  S.applyFreeCmd = applyFreeCmd; S.applyCliLine = applyCliLine; S.enqueueRawCli = enqueueRawCli; S.splitCli = splitCli; S.cleanCliPiece = cleanCliPiece; S.fleshCli = fleshCli; S.parseCliPiece = parseCliPiece; S.everydayImpl = everydayImpl; S.displayNameFor = displayNameFor; S.resolveSafeToken = resolveSafeToken; S.syncFreeCmds = syncFreeCmds; S.currentRun = currentRun; S.parseFree = parseFree; S.registerCliMethod = registerCliMethod;
+  S.applyFreeCmd = applyFreeCmd; S.applyCliLine = applyCliLine; S.enqueueRawCli = enqueueRawCli; S.sendCliCall = sendCliCall; S.ensureCliSent = ensureCliSent; S.splitCli = splitCli; S.cleanCliPiece = cleanCliPiece; S.fleshCli = fleshCli; S.parseCliPiece = parseCliPiece; S.everydayImpl = everydayImpl; S.displayNameFor = displayNameFor; S.resolveSafeToken = resolveSafeToken; S.syncFreeCmds = syncFreeCmds; S.currentRun = currentRun; S.parseFree = parseFree; S.registerCliMethod = registerCliMethod;
   pollFreeCmds(); setInterval(pollFreeCmds, 20000); setInterval(syncFreeCmds, 1000);
 
   // ---------- tap methods (Jesuye 16 Nov 2026 6:39 PM ET "add 2-3 object methods that are clickable. when we tap on an object, users can
@@ -2406,7 +2456,8 @@
     if(it.f.faded){ it.f.faded = false; if(c.el) c.el.classList.remove('gfaded'); rec.revived = true; }
     const myCls = classOf(c), eff = effectOf(f.method, myCls); rec.effect = eff.fx; rec.effect_class = eff.by;
     it.catches = exceptionsFor(c).slice(0, 2); playGfx(c, eff.fx); popTweet(c, it, tw); rec.ripples = ripple(c, f.method, it.resolved || it.t.title); rec.resolved = it.resolved; rec.injected = inj; if(c.el && c.el.isConnected) tagAt(c, code);
-    codeLine(it.resolved || code, 'tapped · ' + (it.scope === 'env' ? name + ' called it from ' + (it.env_scope === 'run' ? it.env_from : 'the safe') + ' · ' : '') + it.id + ' (first seated ' + ((f.defined || {}).run || '?') + ' ' + ((f.defined || {}).job || '') + ') · sending…'); note('func', code, eid);
+    rec.sendPrefix = 'tapped · ' + (it.scope === 'env' ? name + ' called it from ' + (it.env_scope === 'run' ? it.env_from : 'the safe') + ' · ' : '') + it.id + ' (first seated ' + ((f.defined || {}).run || '?') + ' ' + ((f.defined || {}).job || '') + ')';
+    codeLine(it.resolved || code, rec.sendPrefix + ' · sending…'); note('func', code, eid);
     return sendCall(rec, code, eid);
   }
   S.fireFunc = fireFunc;
@@ -2554,7 +2605,8 @@
     if(body.run && !/^run-[0-9a-f]{4,6}$/.test(body.run)) body.run = null; if(body.card && !/^[jw]\d{1,3}$/.test(body.card)) body.card = null;
     const rec = {code, body, status: 'sending', at: Date.now()}; M.sent.push(rec); if(M.sent.length > 40) M.sent.shift();
     if(c.el && c.el.isConnected){ rec.prevLook = c.tapL ? JSON.parse(JSON.stringify({keys: c.tapL.keys, parts: c.tapL.parts})) : null; lookOn(c, fn, args); tagAt(c, code); }
-    codeLine(code, 'tapped · sending to the box…'); note('method', code, eid);
+    rec.sendPrefix = 'tapped';
+    codeLine(code, 'tapped · sending…'); note('method', code, eid);
     return sendCall(rec, code, eid);
   }
   async function sendCall(rec, code, eid){
@@ -2568,10 +2620,16 @@
     if(body && body.source === 'cli' && root.thrydEnsureCli){ try{ await root.thrydEnsureCli(); }catch(e){} }
     const cliCfg = (body && body.source === 'cli') ? ((root.thrydCli && root.thrydCli()) || (ctx && ctx.CLI) || window.CLI || null) : null;
     const replyBase = (cliCfg && cliCfg.reply) || (DG && DG.reply);
-    const prettyErr = err => { if(!err) return 'queued, retrying'; if(/timed out|abort/i.test(String(err))) return 'timed out, retrying'; return 'retrying · ' + err; };
-    const statusToast = item => { toast(code + ' · ' + prettyErr(item && item.lastError)); };
+    const prettyErr = err => prettySendErr(err);
+    const paint = item => {
+      if(item){ if(item.lastError) rec.lastError = item.lastError; if(item.status) rec.status = item.status; }
+      try{ setSendNote(code, rec); }catch(e){}
+      toast(code + ' · ' + prettyErr(item && item.lastError));
+    };
+    const statusToast = paint;
     try{
       rec.status = 'sending';
+      try{ setSendNote(code, rec); }catch(e){}
       const t0 = Math.floor(Date.now() / 1000) - 5;
       let ok = false;
       // First attempt: same ntfy POST the working tap path uses (thrydNtfyPost / ntfySend).
@@ -2603,7 +2661,8 @@
         ok = true;
       }
       if(!ok) throw new Error('not posted');
-      rec.status = 'sent';
+      rec.status = 'sent'; rec.lastError = null;
+      try{ setSendNote(code, rec); }catch(e){}
       toast(code + ' → box…');
       for(const w of [1500, 2500, 4000, 8000, 16000]){ await sleep(w);
         try{ const getter = root.thrydNtfyGet || net; const tx = await (await getter(replyBase + '/json?poll=1&since=' + t0, 8000)).text();
@@ -2615,8 +2674,8 @@
                 if(m.lock && m.lock.queued) toast((m.code || code) + ' \u2713 queued ' + (m.lock.waited_ms / 1000).toFixed(1) + 's behind ' + m.lock.held_by); }
               else toast(code + ' ✗ ' + (m.detail || m.reason || 'rejected'), 1);
               return rec; } } }catch(e){} }
-      rec.status = 'no_reply'; toast(code + ' sent; no reply from the box yet', 1);
-    }catch(e){ rec.status = 'queued'; rec.error = (root.thrydIsTimeout && root.thrydIsTimeout(e)) ? 'timed out' : String(e && e.message || e); toast(code + ' · ' + prettyErr(rec.error)); }
+      rec.status = 'no_reply'; try{ setSendNote(code, rec); }catch(e2){} toast(code + ' sent; no reply from the box yet', 1);
+    }catch(e){ rec.status = 'queued'; rec.error = rec.lastError = (root.thrydIsTimeout && root.thrydIsTimeout(e)) ? 'timed out' : String(e && e.message || e); try{ setSendNote(code, rec); }catch(e2){} toast(code + ' · ' + prettyErr(rec.error)); }
     return rec;
   }
   S.fireMethod = fireMethod;

@@ -1,5 +1,5 @@
 {
-  "v": 568,
-  "at": "2026-11-18T12:54:41-05:00",
-  "note": "Reverts the v566 scrolling change (document touch-action, panel wheel-scroll, and the #code start-aligned spacer). Typelines still use their own ntfy topic (data/cli.json). A parse or flesh-out error no longer drops the typed command: the raw line is still enqueued source=cli with parse_error, the status line shows the error, and if cli.json has not loaded the page retries that fetch then falls back to the drag endpoint. A typed-command error still cannot stop the runner."
+  "v": 569,
+  "at": "2026-11-18T13:25:28-05:00",
+  "note": "Typed typelines now post the moment they are submitted (Go, Enter, or the new \u27a4 button), the same way drags do, with the outbox only as a retry that any tab can pump. A new or unknown command (the 'new command \u2192 this agenda' path) is still sent, even if it was only applied locally. The typeline box has a visible \u27a4 submit button at the right edge that works with the Android keyboard open. The code column shows the last send error instead of a bare sending\u2026. If the CLI topic post fails, the page retries then falls back to the drag topic."
 }

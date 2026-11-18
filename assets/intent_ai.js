@@ -116,18 +116,38 @@
   // ---------- the box
   const css = document.createElement('style'); css.textContent = [
     '#aibox{position:fixed;left:50%;bottom:12vh;transform:translateX(-50%);z-index:10060;display:none;flex-direction:column;gap:.6vh;width:min(92vw,520px);padding:.8vh;border-radius:1vh;background:rgba(12,12,12,.92);box-shadow:0 3px 16px #0009;font:600 max(13px,1.6vh) ui-monospace,Menlo,Consolas,monospace;color:#fff}',
-    '#aibox.on{display:flex}', '#aibox input{font:inherit;color:#fff;background:#222;border:1px solid #666;border-radius:.7vh;padding:.8vh 1vh;outline:none;min-height:36px}',
+    '#aibox.on{display:flex}', '#aibox .airow{display:flex;align-items:stretch;gap:.5vh;width:100%}', '#aibox input{flex:1 1 auto;min-width:0;font:inherit;color:#fff;background:#222;border:1px solid #666;border-radius:.7vh;padding:.8vh 1vh;outline:none;min-height:36px}',
+    '#aibox #aisend{flex:0 0 auto;min-width:44px;min-height:36px;padding:0 .85vh;font:inherit;color:#111;background:#ffd76a;border:1px solid #c9a227;border-radius:.7vh;cursor:pointer;line-height:1}',
     '#aibox input:focus{border-color:#ffd76a}', '#aibox .aim{color:#bbb;font-weight:400;font-size:.85em;min-height:1em}', '#aibox .aic{display:flex;flex-wrap:wrap;gap:.5vh}',
     '#aibox .aic button{font:inherit;color:#fff;background:#2a2a2a;border:1px solid #8a6d2b;border-radius:.8vh;padding:.6vh .9vh;cursor:pointer;min-height:34px}',
     '#aibox .aic button.ch{border-color:#9f7aea}', '#aibox .aic button.off{opacity:.6}', '#aibox .aiu{color:#9fd3ff;cursor:pointer;text-decoration:underline;margin-left:.6em}',
     '#aicmd{min-width:2.6em}'].join('\n'); document.head.appendChild(css);
-  let box = null, inp = null, msg = null, chips = null;
+  let box = null, inp = null, msg = null, chips = null, sendBtn = null, lastSub = 0;
+  function submitNow(ev){
+    if(ev){ ev.preventDefault(); ev.stopPropagation(); }
+    const now = Date.now();
+    if(now - lastSub < 400) return;
+    lastSub = now;
+    const text = inp ? String(inp.value || '') : '';
+    if(inp) inp.value = '';
+    return go(text);
+  }
   function ui(){ if(box) return; box = document.createElement('div'); box.id = 'aibox'; box.setAttribute('role', 'dialog'); box.setAttribute('aria-label', 'Type a call');
-    inp = document.createElement('input'); inp.type = 'text'; inp.autocomplete = 'off'; inp.spellcheck = false; inp.placeholder = 'type a call · teo.fold() · or say what you want';
+    const form = document.createElement('form'); form.className = 'airow'; form.setAttribute('action', ''); form.setAttribute('method', 'get'); form.setAttribute('novalidate', '');
+    inp = document.createElement('input'); inp.type = 'text'; inp.name = 'call'; inp.autocomplete = 'off'; inp.spellcheck = false;
+    inp.setAttribute('enterkeyhint', 'go'); inp.setAttribute('inputmode', 'text');
+    inp.placeholder = 'type a call · teo.fold() · or say what you want';
+    sendBtn = document.createElement('button'); sendBtn.id = 'aisend'; sendBtn.type = 'button'; sendBtn.setAttribute('aria-label', 'Submit');
+    sendBtn.title = 'Send'; sendBtn.textContent = '\u27a4';
+    form.append(inp, sendBtn);
     msg = document.createElement('div'); msg.className = 'aim'; chips = document.createElement('div'); chips.className = 'aic';
-    box.append(inp, msg, chips); document.body.appendChild(box);
-    ['pointerdown', 'click'].forEach(k => box.addEventListener(k, e => e.stopPropagation()));
-    inp.addEventListener('keydown', e => { e.stopPropagation(); if(e.key === 'Escape'){ close(); } else if(e.key === 'Enter'){ e.preventDefault(); go(inp.value); } }); }
+    box.append(form, msg, chips); document.body.appendChild(box);
+    ['pointerdown', 'click'].forEach(k => box.addEventListener(k, e => { if(e.target !== sendBtn) e.stopPropagation(); }));
+    form.addEventListener('submit', e => { e.preventDefault(); e.stopPropagation(); submitNow(e); });
+    // pointerdown + preventDefault keeps the Android keyboard open (input does not blur before send)
+    sendBtn.addEventListener('pointerdown', e => { e.preventDefault(); e.stopPropagation(); submitNow(e); }, {passive: false});
+    sendBtn.addEventListener('click', e => { e.preventDefault(); e.stopPropagation(); submitNow(e); });
+    inp.addEventListener('keydown', e => { e.stopPropagation(); if(e.key === 'Escape'){ close(); } else if(e.key === 'Enter' || e.key === 'Go' || e.key === 'Search' || e.keyCode === 13){ e.preventDefault(); submitNow(e); } }); }
   function open(){ ui(); box.classList.add('on'); msg.textContent = AI.state === 'ready' ? 'AI matching on' + (chromeOk() ? ' · ✨ Chrome AI' : '') : (AI.state === 'loading' ? 'AI model loading… letter matching for now' : 'letter matching'); chips.textContent = ''; inp.value = ''; setTimeout(()=> inp.focus(), 0); }
   function close(){ if(box){ box.classList.remove('on'); inp.blur(); } }
   AI.open = open; AI.close = close;
@@ -181,7 +201,7 @@
               + (evd && evd.result ? ' \u2192 ' + evd.result : '');
               if(!exact && ST().undoIntent){ const u = document.createElement('span'); u.className = 'aiu'; u.textContent = 'undo'; u.onclick = ()=>{ ST().undoIntent(done.c, done.rec, done.id); msg.textContent = 'undone'; }; msg.appendChild(u); }
               setTimeout(()=>{ if(box && box.classList.contains('on') && document.activeElement !== inp) close(); }, 3500); }
-            return;
+            if(done) return; // fire() already started sendCall; otherwise fall through and send as a new typeline
           }
         }catch(e){ /* fall through and still accept / enqueue the raw typeline */ }
       }
@@ -190,6 +210,14 @@
         if(S.applyCliLine) recs = S.applyCliLine(text) || [];
         else recs = parts.map(p => S.applyFreeCmd && S.applyFreeCmd(p)).filter(Boolean);
       }catch(e){ showErr(e); return; }
+      if((!recs || !recs.length) && text){
+        try{ recs = S.enqueueRawCli ? [S.enqueueRawCli(text, 'no parsed command')] : []; }catch(e){ showErr(e); return; }
+      }
+      // Every typeline submit must end in a send (Jesuye 18 Nov 2026 1:15 PM ET): the
+      // 'new command → this agenda' branch used to apply locally and could skip the post.
+      try{
+        (recs || []).forEach(r => { if(r && S.ensureCliSent) S.ensureCliSent(r); });
+      }catch(e){ try{ if(S.enqueueRawCli) S.enqueueRawCli(text, e); }catch(e2){} }
       const rec = recs[0];
       const run = (rec && rec.run) || (S.currentRun && S.currentRun()) || (S.agenda && S.agenda.active) || '';
       const bad = recs.find(r => r && (r.parseError || r.parse_error));
@@ -208,7 +236,7 @@
       setTimeout(()=>{ if(box && box.classList.contains('on') && document.activeElement !== inp) close(); }, 3500);
     }catch(e){ showErr(e); }
   }
-  AI.go = go;
+  AI.go = go; AI.submit = submitNow;
   function button(){ const bar = document.getElementById('modes'); if(!bar){ setTimeout(button, 1000); return; } if(document.getElementById('aicmd')) return;
     const b = document.createElement('button'); b.id = 'aicmd'; b.type = 'button'; b.textContent = '\u203a_'; b.title = 'Type a call (/)'; b.setAttribute('aria-label', 'Type a call');
     b.addEventListener('click', e => { e.stopPropagation(); box && box.classList.contains('on') ? close() : open(); });
