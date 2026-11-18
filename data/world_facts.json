@@ -4820,16 +4820,6 @@
 ],
 "top_deck_charter": [
 {
-"id": "wf_229a637237",
-"kind": "consequence",
-"text": "A Laptop note with Ejiro's name and 'rain-stained receipt' on it, 8:05am, turns up inside the brown envelope at the top deck charter, and Bisola reads the name twice.",
-"code": "marker_c.interactwith(top_deck_charter){ top_deck_charter.receives(marker_c.receipt); … }",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "w5",
-"other": "marker_c"
-},
-{
 "id": "wf_b3f86f7214",
 "kind": "consequence",
 "text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the top deck charter, and Bisola reads the name twice.",
@@ -4868,6 +4858,16 @@
 "run": "run-5a58c4",
 "card": "j6",
 "other": "marker_d"
+},
+{
+"id": "wf_c884100d59",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the top deck charter, and Bisola reads the name twice.",
+"code": "notnotnotnotyn_dec.interactwith(top_deck_charter){ top_deck_charter.receives(notnotnotnotyn_dec.envelope); … }",
+"author": "cos",
+"run": "run-g1-B",
+"card": "j6",
+"other": "notnotnotnotyn_dec"
 }
 ],
 "fire_escape_outside": [
@@ -6135,17 +6135,6 @@
 },
 "consequences": [
 {
-"id": "wf_7efd016d31",
-"ts": "2026-11-17T16:05:57-0500",
-"a": "fire_escape_outside",
-"b": "teo",
-"code": "fire_escape_outside.interactwith(teo){ teo.receives(fire_escape_outside.code); teo.remembers(ejiro, 'juju code'); }",
-"text": "The teo leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j2"
-},
-{
 "id": "wf_5938e15ada",
 "ts": "2026-11-17T16:07:38-0500",
 "a": "love",
@@ -6573,6 +6562,17 @@
 "author": "cos",
 "run": "run-g1-B",
 "card": "j4"
+},
+{
+"id": "wf_c884100d59",
+"ts": "2026-11-17T19:06:49-0500",
+"a": "notnotnotnotyn_dec",
+"b": "top_deck_charter",
+"code": "notnotnotnotyn_dec.interactwith(top_deck_charter){ top_deck_charter.receives(notnotnotnotyn_dec.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the top deck charter, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-g1-B",
+"card": "j6"
 }
 ],
 "memories": [
@@ -6676,5 +6676,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T19:05:56-0500"
+"updated": "2026-11-17T19:06:49-0500"
 }
