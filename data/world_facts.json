@@ -6707,6 +6707,16 @@
 "run": "run-2eb42d",
 "card": "w5",
 "other": "danfo_speaker"
+},
+{
+"id": "wf_b43ad30d24",
+"kind": "consequence",
+"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up with the danfo speaker, which is still playing the same love song.",
+"code": "vex.interactwith(imhf){ imhf.receives(vex.shirt); imhf.remembers(bisola, 'green shirt'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j8",
+"other": "vex"
 }
 ],
 "lady": [
@@ -7584,17 +7594,6 @@
 },
 "consequences": [
 {
-"id": "wf_b92636696c",
-"ts": "2026-11-18T10:36:02-0500",
-"a": "abeokuta_parlour",
-"b": "laptop",
-"code": "abeokuta_parlour.interactwith(laptop){ laptop.receives(abeokuta_parlour.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the lamp soot at the laptop, and Taiwo reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
 "id": "wf_4e36e4621d",
 "ts": "2026-11-18T10:37:48-0500",
 "a": "oke_ayo_bus",
@@ -8022,6 +8021,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_b43ad30d24",
+"ts": "2026-11-18T12:23:48-0500",
+"a": "vex",
+"b": "imhf",
+"code": "vex.interactwith(imhf){ imhf.receives(vex.shirt); imhf.remembers(bisola, 'green shirt'); }",
+"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up with the danfo speaker, which is still playing the same love song.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j8"
 }
 ],
 "memories": [
@@ -8125,5 +8135,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T12:21:11-0500"
+"updated": "2026-11-18T12:23:48-0500"
 }
