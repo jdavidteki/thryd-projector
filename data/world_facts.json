@@ -985,16 +985,6 @@
 ],
 "red_white_cap": [
 {
-"id": "wf_8516f16678",
-"kind": "consequence",
-"text": "The streetlights ends up with the red white cap, still all dead since 7:35pm.",
-"code": "streetlights.interactwith(red_white_cap){ streetlights.db.copyto(red_white_cap); red_white_cap.keeps(streetlights, 'streetlights, still all dead since 7:35pm'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "w6",
-"other": "streetlights"
-},
-{
 "id": "wf_28236b6aaa",
 "kind": "consequence",
 "text": "The red white cap now remembers the miami: 11:45pm, Monday 2 November 2026: A phone on the counter starts the off-key chorus, then.",
@@ -1023,6 +1013,16 @@
 "run": "run-2eb42d",
 "card": "w6",
 "other": null
+},
+{
+"id": "wf_ca993160ae",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the red and white cap, which is still worn.",
+"code": "namco.interactwith(red_white_cap){ red_white_cap.receives(namco.envelope); red_white_cap.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "namco"
 },
 {
 "id": "wt_1115_2356_c",
@@ -2095,16 +2095,6 @@
 ],
 "laptop": [
 {
-"id": "wf_0a1364eace",
-"kind": "consequence",
-"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the lamp soot at the laptop, and Taiwo reads the name twice.",
-"code": "lady.interactwith(laptop){ laptop.receives(lady.shirt); laptop.remembers(bisola, 'green shirt'); laptop.tucks(lady, 'ikeja laundromat receipt into the lamp soot'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j8",
-"other": "lady"
-},
-{
 "id": "wf_5cebb2350c",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the lamp soot at the laptop, and Taiwo reads the name twice.",
@@ -2113,6 +2103,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "asmathic"
+},
+{
+"id": "wf_591671a308",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the lamp soot at the laptop, and Taiwo reads the name twice.",
+"code": "move.interactwith(laptop){ laptop.receives(move.envelope); laptop.remembers(bisola, 'brown envelope'); laptop.tucks(move, 'yaba bookshop receipt into the lamp soot'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "move"
 },
 {
 "id": "wt_00586a397c",
@@ -7897,26 +7897,6 @@
 ],
 "cli": [
 {
-"id": "wt_76e8f0eb39",
-"kind": "func_call",
-"text": "The customer typed jhjjj on run-2eb42d j32. It came back: jhjjj. Implementation: /* jhjjj */.",
-"code": "jhjjj;",
-"author": "customer",
-"run": "run-2eb42d",
-"card": "j32",
-"other": null
-},
-{
-"id": "wt_100f882b04",
-"kind": "func_call",
-"text": "The customer typed jygu on run-2eb42d j32. It came back: jygu. Implementation: /* jygu */.",
-"code": "jygu;",
-"author": "customer",
-"run": "run-2eb42d",
-"card": "j32",
-"other": null
-},
-{
 "id": "wt_8f59a4f3d5",
 "kind": "func_call",
 "text": "The customer typed hello from tablet on run-2eb42d j32. It came back: hello from tablet. Implementation: /* hello from tablet */.",
@@ -7944,6 +7924,26 @@
 "author": "customer",
 "run": "run-2eb42d",
 "card": "j32",
+"other": null
+},
+{
+"id": "wt_c6bd12ba5a",
+"kind": "func_call",
+"text": "The customer typed d1() on run-2eb42d j33. It came back: d1(). Implementation: /* d1() */.",
+"code": "d1();",
+"author": "customer",
+"run": "run-2eb42d",
+"card": "j33",
+"other": null
+},
+{
+"id": "wt_e9ed3e385b",
+"kind": "func_call",
+"text": "The customer typed a3() on run-2eb42d j33. It came back: a3(). Implementation: /* a3() */.",
+"code": "a3();",
+"author": "customer",
+"run": "run-2eb42d",
+"card": "j33",
 "other": null
 }
 ],
@@ -8307,28 +8307,6 @@
 ]
 },
 "consequences": [
-{
-"id": "wf_dbccd1795e",
-"ts": "2026-11-18T15:17:03-0500",
-"a": "twgs",
-"b": "streetlights",
-"code": "twgs.interactwith(streetlights){ streetlights.receives(twgs.number); streetlights.remembers(kunle, 'scorched container number'); }",
-"text": "A Sheep note with Kunle's name and 'scorched container number' on it, turns up with the streetlights, which is still all dead since 7:35pm.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "w7"
-},
-{
-"id": "wf_164944562a",
-"ts": "2026-11-18T15:19:40-0500",
-"a": "imhf",
-"b": "b_md",
-"code": "imhf.interactwith(b_md){ b_md.receives(imhf.shirt); b_md.remembers(bisola, 'green shirt'); b_md.tucks(imhf, 'ikeja laundromat receipt into the brown envelope'); }",
-"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the brown envelope at the b md, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j8"
-},
 {
 "id": "wf_95785185fd",
 "ts": "2026-11-18T15:21:26-0500",
@@ -8746,6 +8724,28 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j8"
+},
+{
+"id": "wf_591671a308",
+"ts": "2026-11-18T17:12:26-0500",
+"a": "move",
+"b": "laptop",
+"code": "move.interactwith(laptop){ laptop.receives(move.envelope); laptop.remembers(bisola, 'brown envelope'); laptop.tucks(move, 'yaba bookshop receipt into the lamp soot'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the lamp soot at the laptop, and Taiwo reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
+},
+{
+"id": "wf_ca993160ae",
+"ts": "2026-11-18T17:16:02-0500",
+"a": "namco",
+"b": "red_white_cap",
+"code": "namco.interactwith(red_white_cap){ red_white_cap.receives(namco.envelope); red_white_cap.remembers(bisola, 'brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the red and white cap, which is still worn.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -8849,5 +8849,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T17:09:47-0500"
+"updated": "2026-11-18T17:16:02-0500"
 }
