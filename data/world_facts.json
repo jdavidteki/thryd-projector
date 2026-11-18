@@ -876,16 +876,6 @@
 ],
 "danfo_speaker": [
 {
-"id": "wf_d0219710ff",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the danfo speaker, and Bisola reads the name twice.",
-"code": "plastic_sheet.interactwith(danfo_speaker){ danfo_speaker.receives(plastic_sheet.envelope); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "plastic_sheet"
-},
-{
 "id": "wf_2d0a3e1a91",
 "kind": "consequence",
 "text": "The danfo speaker now remembers the miami: 11:45pm, Monday 2 November 2026: A phone on the counter starts the off-key chorus, then.",
@@ -894,6 +884,16 @@
 "run": "run-2eb42d",
 "card": "j29",
 "other": "miami"
+},
+{
+"id": "wf_343cd05bf1",
+"kind": "consequence",
+"text": "A Saturday october note with Bisola's name and 'brown envelope' on it, turns up with the danfo speaker, which is still playing the same love song.",
+"code": "saturday_october.interactwith(danfo_speaker){ danfo_speaker.receives(saturday_october.envelope); danfo_speaker.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "saturday_october"
 },
 {
 "id": "wf_bdad55d985",
@@ -3216,6 +3216,16 @@
 "run": "run-b9b963",
 "card": "j2",
 "other": "people_scene"
+},
+{
+"id": "wf_c9c00ffdf4",
+"kind": "consequence",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the juju code at the notnotnotnotyn nov, and Ejiro reads the name twice.",
+"code": "suitcase.interactwith(notnotnotnotyn_nov){ notnotnotnotyn_nov.receives(suitcase.code); … }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j2",
+"other": "suitcase"
 }
 ],
 "divorce": [
@@ -5880,16 +5890,6 @@
 ],
 "jetty_south_pointe": [
 {
-"id": "wf_20af5c16d0",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the jetty south pointe, and Bisola reads the name twice.",
-"code": "marker_c.interactwith(jetty_south_pointe){ jetty_south_pointe.receives(marker_c.envelope); … }",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6",
-"other": "marker_c"
-},
-{
 "id": "wf_3afed96fe9",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the jetty south pointe, and Bisola reads the name twice.",
@@ -5928,6 +5928,16 @@
 "run": "run-5a58c4",
 "card": "j6",
 "other": "god"
+},
+{
+"id": "wf_0cf64fabc7",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the jetty south pointe, and Bisola reads the name twice.",
+"code": "surulere_party_hall.interactwith(jetty_south_pointe){ jetty_south_pointe.receives(surulere_party_hall.envelope); … }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "surulere_party_hall"
 }
 ],
 "plot": [
@@ -6702,6 +6712,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "love"
+},
+{
+"id": "wt_b6604687ff",
+"kind": "func_call",
+"text": "The kazeem hears it (because yorubbbygehinny.getAgenda()).",
+"code": "kazeem.hears(mushin_subject, 'getAgenda');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w17",
+"other": null
 }
 ],
 "mama_ronke": [
@@ -6969,53 +6989,57 @@
 "card": "j6",
 "other": "bus"
 }
+],
+"yorubbbygehinny": [
+{
+"id": "wt_8dab0d12cf",
+"kind": "func_call",
+"text": "Someone at the projector tapped the mushin subject and called yorubbbygehinny.getAgenda() from its agenda run-2eb42d, first seated in run-2eb42d j17.",
+"code": "yorubbbygehinny.getAgenda();",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w17",
+"other": null
+}
+],
+"hear": [
+{
+"id": "wt_37357c6d4e",
+"kind": "func_call",
+"text": "The hear hears it (because yorubbbygehinny.getAgenda()).",
+"code": "hear.hears(mushin_subject, 'getAgenda');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w17",
+"other": null
+}
+],
+"mamaronke": [
+{
+"id": "wt_87cd2db7d8",
+"kind": "func_call",
+"text": "The mamaronke hears it (because yorubbbygehinny.getAgenda()).",
+"code": "mamaronke.hears(mushin_subject, 'getAgenda');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w17",
+"other": null
+}
+],
+"mushin": [
+{
+"id": "wf_07132f45b8",
+"kind": "consequence",
+"text": "The mushin leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "people_scene.interactwith(mushin){ mushin.receives(people_scene.envelope); mushin.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "people_scene"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_3da0fbc31d",
-"ts": "2026-11-18T00:42:03-0500",
-"a": "kazeem",
-"b": "mama_ronke",
-"code": "kazeem.interactwith(mama_ronke){ mama_ronke.receives(kazeem.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the juju code at the mama ronke, and Ejiro reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
-"id": "wf_5a42ba26fb",
-"ts": "2026-11-18T00:44:39-0500",
-"a": "listen",
-"b": "divine",
-"code": "listen.interactwith(divine){ divine.receives(listen.envelope); divine.remembers(bisola, 'brown envelope'); }",
-"text": "The divine leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
-"id": "wf_90f4da8959",
-"ts": "2026-11-18T00:45:31-0500",
-"a": "namco",
-"b": "bow",
-"code": "namco.interactwith(bow){ bow.receives(namco.envelope); bow.remembers(bisola, 'brown envelope'); bow.tucks(namco, 'yaba bookshop receipt into the brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bow, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
-"id": "wf_ca54e55076",
-"ts": "2026-11-18T00:46:23-0500",
-"a": "ronke",
-"b": "saturday_october",
-"code": "ronke.interactwith(saturday_october){ saturday_october.receives(ronke.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the saturday october, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
 {
 "id": "wf_5cc8d0dace",
 "ts": "2026-11-18T00:48:07-0500",
@@ -7411,6 +7435,50 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_0cf64fabc7",
+"ts": "2026-11-18T09:26:39-0500",
+"a": "surulere_party_hall",
+"b": "jetty_south_pointe",
+"code": "surulere_party_hall.interactwith(jetty_south_pointe){ jetty_south_pointe.receives(surulere_party_hall.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the jetty south pointe, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
+},
+{
+"id": "wf_07132f45b8",
+"ts": "2026-11-18T09:27:31-0500",
+"a": "people_scene",
+"b": "mushin",
+"code": "people_scene.interactwith(mushin){ mushin.receives(people_scene.envelope); mushin.remembers(bisola, 'brown envelope'); }",
+"text": "The mushin leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
+},
+{
+"id": "wf_343cd05bf1",
+"ts": "2026-11-18T09:29:44-0500",
+"a": "saturday_october",
+"b": "danfo_speaker",
+"code": "saturday_october.interactwith(danfo_speaker){ danfo_speaker.receives(saturday_october.envelope); danfo_speaker.remembers(bisola, 'brown envelope'); }",
+"text": "A Saturday october note with Bisola's name and 'brown envelope' on it, turns up with the danfo speaker, which is still playing the same love song.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
+},
+{
+"id": "wf_c9c00ffdf4",
+"ts": "2026-11-18T09:30:36-0500",
+"a": "suitcase",
+"b": "notnotnotnotyn_nov",
+"code": "suitcase.interactwith(notnotnotnotyn_nov){ notnotnotnotyn_nov.receives(suitcase.code); … }",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the juju code at the notnotnotnotyn nov, and Ejiro reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j2"
 }
 ],
 "memories": [
@@ -7514,5 +7582,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T09:23:08-0500"
+"updated": "2026-11-18T09:30:36-0500"
 }
