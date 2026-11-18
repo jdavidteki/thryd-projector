@@ -1861,16 +1861,6 @@
 ],
 "ronke": [
 {
-"id": "wf_62be2a822a",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the green shirt at the ronke, and Bisola reads the name twice.",
-"code": "love.interactwith(ronke){ ronke.receives(love.envelope); ronke.remembers(bisola, 'brown envelope'); ronke.tucks(love, 'yaba bookshop receipt into the green shirt'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "love"
-},
-{
 "id": "wt_c8b7755e62",
 "kind": "func_call",
 "text": "Someone at the projector tapped the person and called ronke.hail(what=currentaffairs:Thing) from its agenda run-2eb42d, first seated in run-2eb42d j18.",
@@ -1909,6 +1899,16 @@
 "run": "run-2eb42d",
 "card": "w18",
 "other": null
+},
+{
+"id": "wf_8fc8a53a7b",
+"kind": "consequence",
+"text": "The ronke leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
+"code": "patagonia.interactwith(ronke){ ronke.receives(patagonia.code); ronke.remembers(ejiro, 'juju code'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j2",
+"other": "patagonia"
 }
 ],
 "bird": [
@@ -7302,17 +7302,6 @@
 },
 "consequences": [
 {
-"id": "wf_fde84ede18",
-"ts": "2026-11-18T08:22:32-0500",
-"a": "wser",
-"b": "miami",
-"code": "wser.interactwith(miami){ miami.receives(wser.envelope); miami.remembers(bisola, 'brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up beside the phone at the miami.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
 "id": "wf_d3dfedbd29",
 "ts": "2026-11-18T08:27:46-0500",
 "a": "prior_reality",
@@ -7740,6 +7729,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j5"
+},
+{
+"id": "wf_8fc8a53a7b",
+"ts": "2026-11-18T10:47:30-0500",
+"a": "patagonia",
+"b": "ronke",
+"code": "patagonia.interactwith(ronke){ ronke.receives(patagonia.code); ronke.remembers(ejiro, 'juju code'); }",
+"text": "The ronke leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j2"
 }
 ],
 "memories": [
@@ -7843,5 +7843,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T10:41:19-0500"
+"updated": "2026-11-18T10:47:30-0500"
 }
