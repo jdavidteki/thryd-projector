@@ -1728,6 +1728,8 @@
     const needle = String(line || '').trim();
     if(!needle) return body;
     if(String(body || '').indexOf(needle) >= 0) return body;
+    // keep new lines executable: insert before the last return, else before the closing brace
+    if(/\n\s*return[\s\S]*}\s*$/.test(body)) return String(body).replace(/(\n\s*return[\s\S]*}\s*)$/, '\n  ' + needle + '$1');
     if(/}\s*$/.test(body)) return String(body).replace(/}\s*$/, '  ' + needle + '\n}');
     return (body ? (body + '\n') : '') + needle;
   }
