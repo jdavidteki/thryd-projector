@@ -6769,16 +6769,6 @@
 ],
 "kazeem": [
 {
-"id": "wt_0ec245e352",
-"kind": "func_call",
-"text": "The kazeem hears it (because ronke.hail(what=hawker:Thing) from j18).",
-"code": "kazeem.hears(computer_village_subject, 'hail');",
-"author": "projector",
-"run": "run-2eb42d",
-"card": "w18",
-"other": null
-},
-{
 "id": "wt_0d731c1b9e",
 "kind": "func_call",
 "text": "The kazeem hears it (because ronke.hail(what=hawker:Thing) from j18).",
@@ -6817,6 +6807,16 @@
 "run": "run-2eb42d",
 "card": "w18",
 "other": null
+},
+{
+"id": "wf_bbb969e36a",
+"kind": "consequence",
+"text": "The kazeem leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
+"code": "ttb.interactwith(kazeem){ kazeem.receives(ttb.code); kazeem.remembers(ejiro, 'juju code'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j2",
+"other": "ttb"
 }
 ],
 "mama_ronke": [
@@ -7069,6 +7069,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "listen"
+},
+{
+"id": "wf_40a3fae117",
+"kind": "consequence",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the divine, and Bisola reads the name twice.",
+"code": "patagonia.interactwith(divine){ divine.receives(patagonia.code); divine.remembers(ejiro, 'juju code'); divine.tucks(patagonia, 'ttb note into the brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j2",
+"other": "patagonia"
 }
 ],
 "again": [
@@ -7716,28 +7726,6 @@
 },
 "consequences": [
 {
-"id": "wf_4f0c9930e4",
-"ts": "2026-11-18T11:18:33-0500",
-"a": "ikeja",
-"b": "wholesome_scenes",
-"code": "ikeja.interactwith(wholesome_scenes){ wholesome_scenes.receives(ikeja.bead); wholesome_scenes.remembers(bisola, 'blue glass bead'); }",
-"text": "The wholesome scenes leaves with a Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j5"
-},
-{
-"id": "wf_888f377565",
-"ts": "2026-11-18T11:19:27-0500",
-"a": "streetlights",
-"b": "mlkahb",
-"code": "streetlights.interactwith(mlkahb){ streetlights.db.copyto(mlkahb); mlkahb.keeps(streetlights, 'streetlights, still all dead since 7:35pm'); }",
-"text": "The streetlights ends up with the mlkahb, still all dead since 7:35pm.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "w6"
-},
-{
 "id": "wf_8d4fbc3261",
 "ts": "2026-11-18T11:20:19-0500",
 "a": "mount_mercy",
@@ -8154,6 +8142,28 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_bbb969e36a",
+"ts": "2026-11-18T13:10:15-0500",
+"a": "ttb",
+"b": "kazeem",
+"code": "ttb.interactwith(kazeem){ kazeem.receives(ttb.code); kazeem.remembers(ejiro, 'juju code'); }",
+"text": "The kazeem leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j2"
+},
+{
+"id": "wf_40a3fae117",
+"ts": "2026-11-18T13:14:22-0500",
+"a": "patagonia",
+"b": "divine",
+"code": "patagonia.interactwith(divine){ divine.receives(patagonia.code); divine.remembers(ejiro, 'juju code'); divine.tucks(patagonia, 'ttb note into the brown envelope'); }",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the divine, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j2"
 }
 ],
 "memories": [
@@ -8257,5 +8267,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T13:08:37-0500"
+"updated": "2026-11-18T13:14:22-0500"
 }
