@@ -6261,6 +6261,148 @@
    "prior": [],
    "faded": false,
    "last_run": "run-g1-B"
+  },
+  "adaora.cap": {
+   "object": "adaora",
+   "method": "cap",
+   "args": [
+    "pen"
+   ],
+   "runs": [
+    "run-g1-B"
+   ],
+   "defined": {
+    "run": "run-g1-B",
+    "job": "j16",
+    "card": "j16",
+    "title": "adaora.cap(pen)",
+    "emoji": "🗝️",
+    "at": "2026-11-17T22:50:13-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "adaora.cap(pen)",
+     "emoji": "🗝️",
+     "arg": "pen",
+     "run": "run-g1-B",
+     "job": "j16",
+     "tweets": [
+      {
+       "text": "- [[that’s it]]",
+       "year": "2025"
+      },
+      {
+       "text": "- i can't [[lie]]. we made beautiful [[memory]]",
+       "year": "2025"
+      },
+      {
+       "text": "- p.s the roads are bad",
+       "year": "2025"
+      }
+     ],
+     "consequence": "Adaora underlines the last name once, like a ticket already written.",
+     "consequence_job": "j17",
+     "resolved": "adaora.cap(what=pen:Thing) from j16",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "pen",
+       "from_run": "run-g1-B",
+       "from_job": "j16",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "pen",
+      "first_run": "run-g1-B",
+      "first_job": "j16"
+     }
+    ],
+    "text": "cap(what: Thing)"
+   },
+   "receiver_class": "Person",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "kunle.walk": {
+   "object": "kunle",
+   "method": "walk",
+   "args": [
+    "aisle"
+   ],
+   "runs": [
+    "run-g1-B"
+   ],
+   "defined": {
+    "run": "run-g1-B",
+    "job": "j16",
+    "card": "j16",
+    "title": "kunle.walk(aisle)",
+    "emoji": "🪢",
+    "at": "2026-11-17T22:50:13-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "kunle.walk(aisle)",
+     "emoji": "🪢",
+     "arg": "aisle",
+     "run": "run-g1-B",
+     "job": "j16",
+     "tweets": [
+      {
+       "text": "- this guy is operating on the level",
+       "year": "2025"
+      },
+      {
+       "text": "[[ihai]] - i had no idea! notyn can",
+       "year": "2025"
+      },
+      {
+       "text": "-- popsy no even [[here]] anyting es",
+       "year": "2025"
+      }
+     ],
+     "consequence": "Kunle, mid-aisle, says he can see where this is going, and nobody tells him no.",
+     "consequence_job": "j17",
+     "resolved": "kunle.walk(what=aisle:Thing) from j16",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "aisle",
+       "from_run": "run-g1-B",
+       "from_job": "j16",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "aisle",
+      "first_run": "run-g1-B",
+      "first_job": "j16"
+     }
+    ],
+    "text": "walk(what: Thing)"
+   },
+   "receiver_class": "Person",
+   "prior": [],
+   "faded": false,
+   "last_run": null
   }
  },
  "objects": {
@@ -6280,7 +6422,8 @@
    "adaora.call",
    "adaora.come",
    "adaora.write",
-   "adaora.note"
+   "adaora.note",
+   "adaora.cap"
   ],
   "aotl": [
    "aotl.isline"
@@ -6316,7 +6459,8 @@
    "kunle.teach",
    "kunle.mix",
    "kunle.have",
-   "kunle.read"
+   "kunle.read",
+   "kunle.walk"
   ],
   "danfo_stuck_halfway_subject_seventh": [
    "titi.go",
@@ -6353,7 +6497,8 @@
    "kunle.teach",
    "kunle.mix",
    "kunle.have",
-   "kunle.read"
+   "kunle.read",
+   "kunle.walk"
   ],
   "family_compound_ikorodu_subject_seventh": [
    "titi.go",
@@ -6381,13 +6526,15 @@
    "kunle.teach",
    "kunle.mix",
    "kunle.have",
-   "kunle.read"
+   "kunle.read",
+   "kunle.walk"
   ],
   "kunle_b70200": [
    "kunle.teach",
    "kunle.mix",
    "kunle.have",
-   "kunle.read"
+   "kunle.read",
+   "kunle.walk"
   ],
   "laff": [
    "laff.made"
@@ -6454,7 +6601,8 @@
    "kunle.teach",
    "kunle.mix",
    "kunle.have",
-   "kunle.read"
+   "kunle.read",
+   "kunle.walk"
   ],
   "sia": [
    "sia.count"
@@ -6469,7 +6617,8 @@
    "kunle.teach",
    "kunle.mix",
    "kunle.have",
-   "kunle.read"
+   "kunle.read",
+   "kunle.walk"
   ],
   "tea_bread_stall_subject_sixth": [
    "titi.go",
@@ -6641,6 +6790,8 @@
     "from": "e164727d4c98",
     "title": "326. what the arts can see",
     "funcs": [
+     "kunle.walk",
+     "adaora.cap",
      "kunle.read",
      "folake.keep",
      "adaora.note",
@@ -7861,6 +8012,8 @@
     "from": "e164727d4c98",
     "title": "326. what the arts can see",
     "funcs": [
+     "kunle.walk",
+     "adaora.cap",
      "kunle.read",
      "folake.keep",
      "adaora.note",
@@ -9914,6 +10067,16 @@
     ]
    }
   ],
+  "journey_subject": [
+   {
+    "scope": "safe",
+    "from": "4e7e5fdaefbf",
+    "title": "201. the journey",
+    "funcs": [
+     "adaora.cap"
+    ]
+   }
+  ],
   "kmb": [
    {
     "scope": "run",
@@ -9969,6 +10132,8 @@
     "from": "e164727d4c98",
     "title": "326. what the arts can see",
     "funcs": [
+     "kunle.walk",
+     "adaora.cap",
      "kunle.read",
      "folake.keep",
      "adaora.note",
@@ -14295,7 +14460,9 @@
     "titi.keep",
     "adaora.note",
     "folake.keep",
-    "kunle.read"
+    "kunle.read",
+    "adaora.cap",
+    "kunle.walk"
    ]
   }
  },
@@ -14530,6 +14697,13 @@
    ],
    "runs": []
   },
+  "4e7e5fdaefbf": {
+   "title": "201. the journey",
+   "funcs": [
+    "adaora.cap"
+   ],
+   "runs": []
+  },
   "55db20ef3a0b": {
    "title": "518. nigeria2.0",
    "funcs": [
@@ -14569,6 +14743,13 @@
    "title": "919. bending",
    "funcs": [
     "folake.hold"
+   ],
+   "runs": []
+  },
+  "731d52737690": {
+   "title": "124. temptation",
+   "funcs": [
+    "kunle.walk"
    ],
    "runs": []
   },
@@ -14748,7 +14929,9 @@
     "titi.keep",
     "adaora.note",
     "folake.keep",
-    "kunle.read"
+    "kunle.read",
+    "adaora.cap",
+    "kunle.walk"
    ],
    "runs": [
     "run-d6fc",
@@ -14932,6 +15115,9 @@
   "1*q0hfDA8xcra7qX-9n4EuNw.gif": [
    "6359d118921d"
   ],
+  "1*K6KD20r0VFgbTpduHwvn0Q.gif": [
+   "4e7e5fdaefbf"
+  ],
   "1*Bzh9xE_MoUeXsNFiT79hKA.gif": [
    "0a88bcb1bbe8"
   ],
@@ -15011,6 +15197,9 @@
   ],
   "1*lDKS3MnQQ0QbWboPIBFuYA.gif": [
    "da2bd5e3c2d7"
+  ],
+  "1*7hGQOc0w6RRLWbaL30n3gw.gif": [
+   "731d52737690"
   ],
   "1*MPbkmimVouS6PjL30EIDOA.gif": [
    "1dde946f3407"
@@ -15259,6 +15448,12 @@
    "runs": [],
    "safes": [
     "3408766b5717"
+   ]
+  },
+  "1*K6KD20r0VFgbTpduHwvn0Q.gif": {
+   "runs": [],
+   "safes": [
+    "4e7e5fdaefbf"
    ]
   },
   "1*M7PP8y5XxO_g-lWVYiJqLg.gif": {
@@ -15582,7 +15777,8 @@
    "adaora.call",
    "adaora.come",
    "adaora.write",
-   "adaora.note"
+   "adaora.note",
+   "adaora.cap"
   ],
   "aotl": [
    "aotl.isline"
@@ -15644,7 +15840,8 @@
    "kunle.teach",
    "kunle.mix",
    "kunle.have",
-   "kunle.read"
+   "kunle.read",
+   "kunle.walk"
   ],
   "laff": [
    "laff.made"
@@ -15987,5 +16184,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-17T19:09:26-05:00"
+ "updated": "2026-11-17T22:50:31-05:00"
 }

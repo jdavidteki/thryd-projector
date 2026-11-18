@@ -106,8 +106,8 @@
     "come",
     "keep"
    ],
-   "instances": 348,
-   "arg_instances": 31,
+   "instances": 350,
+   "arg_instances": 33,
    "parent": null,
    "chain": [
     "Thing"
@@ -377,6 +377,22 @@
     "run-345b3d"
    ],
    "tweets": []
+  },
+  "aisle": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-g1-B",
+   "first_job": "j16",
+   "source": "pick",
+   "runs": [
+    "run-g1-B"
+   ],
+   "tweets": [
+    {
+     "text": "- this guy is operating on the level",
+     "year": "2025"
+    }
+   ]
   },
   "akeelaandthebee": {
    "class": "Thing",
@@ -3647,6 +3663,22 @@
    ],
    "tweets": []
   },
+  "pen": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-g1-B",
+   "first_job": "j16",
+   "source": "pick",
+   "runs": [
+    "run-g1-B"
+   ],
+   "tweets": [
+    {
+     "text": "- [[that’s it]]",
+     "year": "2025"
+    }
+   ]
+  },
   "people": {
    "class": "Person",
    "cue": "word",
@@ -6300,6 +6332,18 @@
     "keys",
     "Thing",
     "j15",
+    "pick"
+   ],
+   [
+    "pen",
+    "Thing",
+    "j16",
+    "pick"
+   ],
+   [
+    "aisle",
+    "Thing",
+    "j16",
     "pick"
    ],
    [
@@ -9118,7 +9162,9 @@
   "titi.keep": "keep(what: Thing)",
   "adaora.note": "note(what: Thing)",
   "folake.keep": "keep(what: Thing)",
-  "kunle.read": "read(what: Thing)"
+  "kunle.read": "read(what: Thing)",
+  "adaora.cap": "cap(what: Thing)",
+  "kunle.walk": "walk(what: Thing)"
  },
  "parent": {
   "Person": "Thing",
@@ -9528,5 +9574,5 @@
   "epilogue": "quiet",
   "coda": "quiet"
  },
- "updated": "2026-11-17T19:08:34-05:00"
+ "updated": "2026-11-17T22:50:31-05:00"
 }
