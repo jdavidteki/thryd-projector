@@ -7349,7 +7349,7 @@
   },
   "run-2eb42d": {
    "forked_from": "safe:9525b78aa7f3",
-   "head": "4912ca436e",
+   "head": "17a3626032",
    "commits": [
     {
      "id": "b1965e97d1",
@@ -7456,7 +7456,7 @@
      }
     },
     {
-     "id": "045ad3c21a",
+     "id": "b4d5f91a69",
      "parent": "e92c3ca8ec",
      "branch": "run-2eb42d",
      "job": "j8",
@@ -7472,16 +7472,24 @@
         "code": "ronke.interactwith(miami){ miami.receives(ronke.shirt); miami.remembers(bisola, 'green shirt'); }",
         "scope": null,
         "cause_id": null
+       },
+       {
+        "id": "wf_86e47e370b",
+        "object": "lady",
+        "kind": "consequence",
+        "code": "ronke.interactwith(lady){ lady.receives(ronke.shirt); lady.remembers(bisola, 'green shirt'); }",
+        "scope": null,
+        "cause_id": null
        }
       ],
-      "facts_total": 1,
+      "facts_total": 2,
       "functions": [],
       "instances": []
      }
     },
     {
-     "id": "af5e1fd8be",
-     "parent": "045ad3c21a",
+     "id": "d5e542be8e",
+     "parent": "b4d5f91a69",
      "branch": "run-2eb42d",
      "job": "j16",
      "at": "2026-11-17T23:36:00-05:00",
@@ -7524,8 +7532,8 @@
      }
     },
     {
-     "id": "4912ca436e",
-     "parent": "af5e1fd8be",
+     "id": "17a3626032",
+     "parent": "d5e542be8e",
      "branch": "run-2eb42d",
      "job": "j17",
      "at": "2026-11-17T23:42:23-05:00",
@@ -7970,9 +7978,9 @@
   "run-9e59ca": "59f544b8d8",
   "run-5a58c4": "17d819bcef",
   "run-g1-B": "ba26d490e3",
-  "run-2eb42d": "4912ca436e",
+  "run-2eb42d": "17a3626032",
   "run-cb805f": "8d23a93627"
  },
  "commits": 89,
- "updated": "2026-11-17T23:46:33-05:00"
+ "updated": "2026-11-17T23:48:08-05:00"
 }
