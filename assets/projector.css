@@ -144,7 +144,12 @@ body.idle #zoomui{opacity:.25}
 .prophchip{position:fixed;z-index:62;pointer-events:auto;cursor:pointer;border:1px solid rgba(200,170,255,.7);border-radius:14px;padding:4px 11px;font:13px system-ui,sans-serif;color:#f4ecff;background:rgba(40,20,70,.82);box-shadow:0 0 10px rgba(170,120,255,.45)}
 .prophchip.ok{background:rgba(30,60,30,.88);border-color:#9f9}
 
-html,body{touch-action:none;overscroll-behavior:none;-webkit-text-size-adjust:100%}
+html,body{touch-action:manipulation;overscroll-behavior:none;-webkit-text-size-adjust:100%}
+/* Stage and cuts keep touch-action:none so a drag moves an object, not the page.
+   Menus, typelines, tweet/method popups may pan. (18 Nov 2026, scroll was blocked on html,body.) */
+#canvas,#stage,#gstage,#gworld{touch-action:none}
+#modes,body.menu-open #modes{touch-action:pan-x}
+#gmeth,#gtweet,#aibox,#gpinpop,.bubble,#code{touch-action:pan-y}
 #zoomui{z-index:70;font-size:max(1.4vh,13px);bottom:max(1.5vh,env(safe-area-inset-bottom))}
 #zoomui button{font-size:max(1.6vh,18px);min-width:44px;min-height:40px}
 
@@ -288,8 +293,10 @@ body.cerebro #sound,body.lovemap #sound,body.cerebro #soundnext,body.lovemap #so
     background:#000a;color:var(--ink,#eee);border:1px solid #444;border-radius:.4em;cursor:pointer;z-index:1}
   #menutog:focus-visible{outline:2px solid var(--acc,#ffd76a);outline-offset:2px}
   body:not(.menu-open) #modes{display:none}
-  body.menu-open #modes{display:flex;pointer-events:none;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;
-    gap:6px;row-gap:0;max-width:calc(100vw - 52px);justify-content:flex-end}
+  body.menu-open #modes{display:flex;pointer-events:auto;flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:thin;
+    gap:6px;row-gap:0;max-width:calc(100vw - 52px);justify-content:flex-start}
+  body.menu-open #modes::before{content:"";flex:1 0 0}
+  body.menu-open #modes>*{flex:0 0 auto}
   body.menu-open #modes::-webkit-scrollbar{display:none}
   #modes button,#modes select,#modes input,#modes a#podlink{pointer-events:auto;height:28px;min-height:28px;min-width:28px;
     padding:0 .5em;font-size:11px;line-height:1}

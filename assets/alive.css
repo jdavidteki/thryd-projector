@@ -1,5 +1,7 @@
-#code{position:fixed;top:6vh;right:0;bottom:4vh;width:22vw;padding:1vh 1vw;z-index:3;pointer-events:none;overflow:hidden;background:linear-gradient(90deg,#0000,#000a 12%);font:1.45vh/1.45 ui-monospace,Menlo,Consolas,monospace;color:#5f5;opacity:.78;
- -webkit-mask-image:linear-gradient(#0000,#000 22%);mask-image:linear-gradient(#0000,#000 22%);display:flex;flex-direction:column;justify-content:flex-end}
+#code{position:fixed;top:6vh;right:0;bottom:4vh;width:22vw;padding:1vh 1vw;z-index:3;pointer-events:none;overflow-x:hidden;overflow-y:auto;background:linear-gradient(90deg,#0000,#000a 12%);font:1.45vh/1.45 ui-monospace,Menlo,Consolas,monospace;color:#5f5;opacity:.78;
+ -webkit-mask-image:linear-gradient(#0000,#000 22%);mask-image:linear-gradient(#0000,#000 22%);display:flex;flex-direction:column;justify-content:flex-start}
+#code::before{content:"";flex:1 0 0}
+#code>div{flex:0 0 auto}
 #code div{white-space:pre-wrap;word-break:break-all}#code .a{color:#fb4}#code .d{color:#5f58}#code .cur::after{content:'▋';animation:blink 1s steps(1) infinite}
 #grain{position:fixed;inset:-50%;z-index:20;pointer-events:none;opacity:.07;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");animation:grain .9s steps(6) infinite}
 @keyframes grain{0%{transform:translate(0,0)}20%{transform:translate(-3%,2%)}40%{transform:translate(2%,-3%)}60%{transform:translate(-2%,-1%)}80%{transform:translate(3%,3%)}}
