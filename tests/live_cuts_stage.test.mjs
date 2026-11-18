@@ -8,7 +8,7 @@ const wk = fs.readFileSync(path.join(root, 'assets/stage_worker.js'), 'utf8');
 const pj = fs.readFileSync(path.join(root, 'assets/projector.js'), 'utf8');
 test('live views load as cutouts from their pack, whole frame as fallback', () => {
   assert.match(src, /async function loadLiveCut\(v, fresh\)/);
-  assert.match(src, /loadGroup\(mrow, \{assets: \[mrow\]\}, \{live: true, fresh\}\)/);
+  assert.match(src, /loadGroup\(mrow, \{assets: \[mrow\]\}, \{live: true, fresh, newest: isNewestId\(id\)\}\)/);
   assert.match(src, /return loadLiveFrame\(v, fresh\)/);
   assert.ok(src.includes('.cut\\.json$/.test(String(c.pack))'));
 });

@@ -327,8 +327,12 @@
     return c;
   }
   S.fill = ()=>{ const v = view(), c = coverGrid(v); let n = 0; for(let i = 0; i < c.length; i++) if(c[i] > .2) n++; return +(n / c.length).toFixed(2); };
-  function placeGroup(Dw, Dh){
-    const v = view(), c = coverGrid(v), cw = v.w / GX, ch = v.h / GY; let best = null;
+  function placeGroup(Dw, Dh, opts){
+    const v = view();
+    if(opts && opts.center){
+      return {gx: v.x + (v.w - Dw) / 2, gy: v.y + (v.h - Dh) / 2 - Math.min(40, v.h * 0.04), sc: 1};
+    }
+    const c = coverGrid(v), cw = v.w / GX, ch = v.h / GY; let best = null;
     // seed candidates on the emptiest cells, plus a few random ones
     const order = Array.from(c, (x, i) => [x + Math.random() * .15, i]).sort((a, b) => a[0] - b[0]).slice(0, 10);
     const cand = order.map(([, i]) => [v.x + (i % GX + .5) * cw - Dw / 2, v.y + ((i / GX | 0) + .5) * ch - Dh / 2]);
@@ -357,14 +361,15 @@
     const plan = MC.forSet(set, {assets: [row]});
     if(!plan.ok) throw new Error(plan.reason || 'plan');
     const fw = plan.width, fh = plan.height;
+    if(lo.live) roomForLive(PER_GROUP);
     const room = CAP - S.cuts.length; if(room < 1) throw new Error('cap');
     let objs = plan.objects.map((o, k) => ({o, k, U: unionBox(plan.kind === 'gif' ? o.masks : [o.masks[0]])})).filter(x => x.U && x.U.w > 2 && x.U.h > 2);
     objs.sort((a, b) => b.U.w * b.U.h - a.U.w * a.U.h);
     objs = objs.slice(0, Math.min(room, PER_GROUP));
     if(!objs.length) throw new Error('no_object');
     // on-screen size of the whole source frame for this group
-    let Dh = lo.live ? vh() * (PHONE ? R(0.28, 0.42) : R(0.32, 0.50)) : vh() * (PHONE ? R(0.18, 0.30) : R(0.22, 0.40)), k = Dh / fh;
-    const wmax = lo.live ? (PHONE ? 0.72 : 0.55) : (PHONE ? 0.6 : 0.42);
+    let Dh = lo.live ? vh() * (lo.newest ? (PHONE ? 0.44 : 0.52) : (PHONE ? R(0.28, 0.42) : R(0.32, 0.50))) : vh() * (PHONE ? R(0.18, 0.30) : R(0.22, 0.40)), k = Dh / fh;
+    const wmax = lo.live ? (lo.newest ? (PHONE ? 0.86 : 0.72) : (PHONE ? 0.72 : 0.55)) : (PHONE ? 0.6 : 0.42);
     if(fw * k > vw() * wmax) k = vw() * wmax / fw;
     Dh = fh * k; const Dw = fw * k; let s = Math.min(1, k * DPR);
     const animated = plan.kind === 'gif' && plan.frameCount > 1;
@@ -441,22 +446,31 @@
   const oct = a => ((Math.round(a / (Math.PI / 4)) % 8) + 8) % 8; // 0 = moving right, 2 = down, 4 = left, 6 = up
   S.dirs = ()=>({note: '0=right 1=down-right 2=down 3=down-left 4=left 5=up-left 6=up 7=up-right (heading of travel)', in: DIRS.in, out: DIRS.out, wander: DIRS.wander, cam: DIRS.cam});
   function bytesOf(list){ return list.reduce((n, b) => n + (b ? b.width * b.height * 4 : 0), 0); }
+  function clearRect(gx, gy, Dw, Dh, keepMid){
+    S.groups.filter(g => evictable(g) && g.mid !== keepMid).forEach(g => {
+      const ix = Math.max(0, Math.min(g.x + g.w, gx + Dw) - Math.max(g.x, gx));
+      const iy = Math.max(0, Math.min(g.y + g.h, gy + Dh) - Math.max(g.y, gy));
+      if(ix * iy > 0.22 * Dw * Dh) exitGroup(g, true);
+    });
+  }
   function spawn(row, L){
-    const pos = placeGroup(L.Dw, L.Dh); const v = view();
+    const newest = !!(row.live_view && (row.newest || isNewestId(row.medium_image_id)));
+    const pos = placeGroup(L.Dw, L.Dh, newest ? {center: true} : null); const v = view();
+    if(newest) clearRect(pos.gx, pos.gy, L.Dw, L.Dh, row.medium_image_id);
     const g = {mid: row.medium_image_id, row, kind: L.kind, x: pos.gx, y: pos.gy, w: L.Dw, h: L.Dh, k: L.k, fw: L.fw, fh: L.fh,
-      title: row.title || titleOf(row.medium_image_id), agenda: !!row.agenda, live: !!row.live_view, run: row.run || null, card: row.card || null, born: Date.now(), life: (PHONE ? R(30, 50) : R(35, 70)) * 1000 * (row.live_view ? LIVE_DWELL_K : 1), cuts: [], gone: false, offSince: 0, sha: row.source_sha256 || '', ver: row.pack_version || '1', place: row.place || null, fresh: !!(L.fresh || row.fresh)};
+      title: row.title || titleOf(row.medium_image_id), agenda: !!row.agenda, live: !!row.live_view, run: row.run || null, card: row.card || null, born: Date.now(), life: (PHONE ? R(30, 50) : R(35, 70)) * 1000 * (row.live_view ? LIVE_DWELL_K : 1), cuts: [], gone: false, offSince: 0, sha: row.source_sha256 || '', ver: row.pack_version || '1', place: row.place || null, fresh: !!(L.fresh || row.fresh), newest};
     if(L.bg){
       const c = document.createElement('canvas'); c.className = 'gbg' + (L.bgMask ? ' gm' : '') + (L.bgMask && g.fresh ? ' gfresh' : ''); c.width = L.bg.width; c.height = L.bg.height;
       c.getContext('2d').drawImage(L.bg, 0, 0); L.bg.close && L.bg.close();
       const E = PHONE ? 0.22 : 0.28; // the faded frame reaches well past the group, so neighbouring stories meet instead of black gaps
-      Object.assign(c.style, {left: (g.x - g.w * E) + 'px', top: (g.y - g.h * E) + 'px', width: (g.w * (1 + 2 * E)) + 'px', height: (g.h * (1 + 2 * E)) + 'px'});
+      Object.assign(c.style, {left: (g.x - g.w * E) + 'px', top: (g.y - g.h * E) + 'px', width: (g.w * (1 + 2 * E)) + 'px', height: (g.h * (1 + 2 * E)) + 'px', zIndex: newest ? '70' : ''});
       bgs.appendChild(c); g.bgEl = c; S.bytes += c.width * c.height * 4; g.bgBytes = c.width * c.height * 4;
       g.bx = 0; g.by = 0; g.bvx = 0; g.bvy = 0; bgRetarget(g, performance.now());
       setTimeout(()=> c.classList.add('on'), 60);
     } else if(L.kind === 'live_view' && row.url){
       const c = document.createElement('img'); c.className = 'gbg glive' + (g.fresh ? ' gfresh' : ''); c.alt = ''; c.draggable = false; c.src = row.url;
       const E = PHONE ? 0.22 : 0.28;
-      Object.assign(c.style, {left: (g.x - g.w * E) + 'px', top: (g.y - g.h * E) + 'px', width: (g.w * (1 + 2 * E)) + 'px', height: (g.h * (1 + 2 * E)) + 'px'});
+      Object.assign(c.style, {left: (g.x - g.w * E) + 'px', top: (g.y - g.h * E) + 'px', width: (g.w * (1 + 2 * E)) + 'px', height: (g.h * (1 + 2 * E)) + 'px', zIndex: newest ? '70' : ''});
       bgs.appendChild(c); g.bgEl = c; g.bgBytes = 0;
       g.bx = 0; g.by = 0; g.bvx = 0; g.bvy = 0; bgRetarget(g, performance.now());
       setTimeout(()=> c.classList.add('on'), 60);
@@ -480,10 +494,16 @@
       const cut = {ctx, sid: x.o.state_id || null, g, home: g, el: c, frames: isLive ? [] : fr, label: x.o.label || ('cut' + (x.k + 1)), klass: x.o.model_class || x.o.label || null, i: x.k, U: x.U,
         w: x.U.w * g.k, h: x.U.h * g.k, hx: g.x + x.U.x * g.k, hy: g.y + x.U.y * g.k, entering: true, bytes: isLive ? 0 : bytesOf(fr), area: (x.U.w * x.U.h) / (g.fw * g.fh)};
       cut.left = cut.hx; cut.top = cut.hy;
-      Object.assign(c.style, {left: cut.left + 'px', top: cut.top + 'px', width: cut.w + 'px', height: cut.h + 'px', zIndex: String(10 + Math.round(x.U.y + x.U.h))});
+      Object.assign(c.style, {left: cut.left + 'px', top: cut.top + 'px', width: cut.w + 'px', height: cut.h + 'px', zIndex: String((newest ? 80 : 10) + Math.round(x.U.y + x.U.h))});
       c.style.setProperty('--fd', R(5.5, 9).toFixed(2) + 's'); c.style.setProperty('--fdl', (-R(0, 6)).toFixed(2) + 's');
       S.bytes += cut.bytes; S.cuts.push(cut); g.cuts.push(cut);
       bindDrag(cut);
+      if(newest){
+        // newest active live view appears in place (no off-screen walk-in)
+        c.style.opacity = '0'; cutsL.appendChild(c); cut.entering = true;
+        requestAnimationFrame(()=>{ c.style.transition = 'opacity .65s ease'; c.style.opacity = '1'; });
+        setTimeout(()=>{ cut.entering = false; if(!cut.wan) c.style.transition = ''; }, 750);
+      } else {
       // in along the group's heading, from just off the screen, staggered
       const a1 = ang + R(-.18, .18), off = offTo(cut.left - v.x, cut.top - v.y, cut.w, cut.h, v, a1 + Math.PI);
       c.style.opacity = '0';
@@ -495,6 +515,7 @@
         requestAnimationFrame(()=>{ c.style.opacity = '1'; if(!RM) c.style.translate = '0px 0px'; });
         setTimeout(()=>{ cut.entering = false; if(!cut.wan){ c.style.transition = ''; c.style.translate = ''; } }, dur * 1000 + 100);
       }, delay + 80);
+      }
     });
     DIRS.in[oct(ang)]++;
     S.groups.push(g); S.spawned++; if(!(row && row.chips)){ S.lastMedia = Date.now(); S.mediaAt = S.lastMedia; }
@@ -545,6 +566,7 @@
   }
   function exitGroup(g, quick){
     if(g.gone) return; g.gone = true;
+    const wasNewest = isNewestId(g.mid);
     if(g.live){ try{ LV.left[g.mid] = Date.now(); }catch(e){} }
     const at = S.groups.indexOf(g); if(at >= 0) S.groups.splice(at, 1);
     const v = view(), outAng = Math.random() * Math.PI * 2; if(!quick) DIRS.out[oct(outAng)]++;
@@ -565,6 +587,10 @@
     if(g.tag) g.tag.remove();
     if(!g.cuts.length) clearTimeout(g.timer);
     note('exit', g.mid, quick ? 'offscreen' : 'life', 'on stage ' + S.cuts.length);
+    if(wasNewest){
+      const v = (LV.list || []).find(x => liveId(x) === g.mid);
+      if(v) setTimeout(()=>{ enqueueLive(v, true); if(!paused()) spawnOne(); }, 60);
+    }
     setTimeout(refill, quick ? 0 : 700); // the next story walks in while this one is still walking out
   }
 
@@ -800,11 +826,16 @@
   // seen yet is shown next, without waiting for the no-repeat Medium deck to cycle. The most recent 1–3 of
   // the current agenda (or the newest views overall if that agenda has none yet) come back more often.
   // Ids live in their own space, so they never write thryd_seen_cuts_v1 or steal a deck slot.
+  // Newest active-agenda view (17 Nov 2026): always on stage, in the centre, faded in (no walk-in); older-agenda mix never delays it.
   const LV_URLS = ['data/live_views.json', 'https://raw.githubusercontent.com/jdavidteki/thryd-projector/main/data/live_views.json'];
   const LV = S.liveViews = {list: [], seen: {}, pending: [], activeRun: null, at: 0, src: '', left: {}};
-  const cooling = id => now0() - (LV.left[id] || 0) < LIVE_COOL_MS;
+  const cooling = id => { if(isNewestId(id)) return false; return now0() - (LV.left[id] || 0) < LIVE_COOL_MS; };
   function now0(){ return Date.now(); }
   function liveId(v){ return (v && (v.id || ('live:' + v.run + ':' + v.card))) || ''; }
+  function newestLive(){ return recentLive(1)[0] || null; }
+  function isNewestId(id){ const n = newestLive(); return !!(id && n && liveId(n) === id); }
+  function isNewestGroup(g){ return !!(g && g.live && isNewestId(g.mid)); }
+  function evictable(g){ return !!(g && !g.gone && !g.cuts.some(c => c.dragging) && !isNewestGroup(g)); }
   function liveOk(v){
     if(!v || !v.url || !v.card) return false;
     const card = String(v.card), url = String(v.url);
@@ -821,9 +852,10 @@
   function liveOn(id){
     return S.groups.some(g => !g.gone && g.mid === id) || S.ready.some(it => it.row && it.row.medium_image_id === id) || LV.pending.some(v => liveId(v) === id);
   }
-  function roomForLive(){
-    while((S.cuts.length + 1 > CAP || S.groups.length >= MAX_GROUPS) && S.groups.length){
-      const old = S.groups.filter(g => !g.live && !g.cuts.some(c => c.dragging)).sort((a, b) => a.born - b.born)[0];
+  function roomForLive(needCuts){
+    needCuts = needCuts || PER_GROUP;
+    while((S.cuts.length + needCuts > CAP || S.groups.length >= MAX_GROUPS) && S.groups.length){
+      const old = S.groups.filter(evictable).sort((a, b) => (a.live ? 1 : 0) - (b.live ? 1 : 0) || a.born - b.born)[0];
       if(!old) break;
       exitGroup(old, true);
     }
@@ -847,7 +879,11 @@
     return free[Math.floor(Math.random() * Math.min(4, free.length))];
   }
   function wantLive(){
-    if(Math.random() < 0.35){ const o = olderLive(); if(o) return o; }
+    const newest = newestLive();
+    // the newest live view of the active agenda always comes first; older-agenda
+    // mixing never delays or replaces it
+    if(newest && !liveOn(liveId(newest)) && !S.bad.has(liveId(newest))) return newest;
+    if(newest && liveOn(liveId(newest)) && Math.random() < 0.35){ const o = olderLive(); if(o) return o; }
     const rec = recentLive(LIVE_KEEP);
     if(!rec.length) return olderLive();
     const on = rec.filter(v => liveOn(liveId(v)));
@@ -865,8 +901,8 @@
     const mrow = {medium_image_id: id, kind: 'gif', status: 'ready', url: v.url, pack: c.pack, pack_version: c.pack_version || '1', source_sha256: v.sha256 || ''};
     if(c.frame_size) mrow.frame_size = c.frame_size; if(c.delays_cs) mrow.delays_cs = c.delays_cs;
     roomForLive();
-    const L = await loadGroup(mrow, {assets: [mrow]}, {live: true, fresh});
-    const row = {medium_image_id: id, title: v.title || ((v.card || '') + ' · ' + (v.run || '')), agenda: false, live_view: true, live_cut: true, run: v.run, card: v.card, url: v.url, mtime: v.mtime, place: v.place || null, fresh, source_sha256: v.sha256 || '', pack_version: mrow.pack_version};
+    const L = await loadGroup(mrow, {assets: [mrow]}, {live: true, fresh, newest: isNewestId(id)});
+    const row = {medium_image_id: id, title: v.title || ((v.card || '') + ' · ' + (v.run || '')), agenda: false, live_view: true, live_cut: true, run: v.run, card: v.card, url: v.url, mtime: v.mtime, place: v.place || null, fresh, newest: isNewestId(id), source_sha256: v.sha256 || '', pack_version: mrow.pack_version};
     return {row, L};
   }
   const isFresh = v => recentLive(LIVE_KEEP).some(x => liveId(x) === liveId(v));
@@ -884,12 +920,14 @@
       img.onload = () => {
         const fw = img.naturalWidth || img.width, fh = img.naturalHeight || img.height;
         if(!fw || !fh) return no(new Error('live_view_size'));
-        let Dh = vh() * (PHONE ? R(0.28, 0.42) : R(0.32, 0.50)), k = Dh / fh;
-        if(fw * k > vw() * (PHONE ? 0.72 : 0.55)) k = vw() * (PHONE ? 0.72 : 0.55) / fw;
+        const newest = isNewestId(liveId(v));
+        let Dh = vh() * (newest ? (PHONE ? 0.44 : 0.52) : (PHONE ? R(0.28, 0.42) : R(0.32, 0.50))), k = Dh / fh;
+        const wmax = newest ? (PHONE ? 0.86 : 0.72) : (PHONE ? 0.72 : 0.55);
+        if(fw * k > vw() * wmax) k = vw() * wmax / fw;
         Dh = fh * k; const Dw = fw * k;
         const U = {x: 0, y: 0, w: fw, h: fh};
-        const row = {medium_image_id: liveId(v), title: v.title || ((v.card || '') + ' · ' + (v.run || '')), agenda: false, live_view: true, run: v.run, card: v.card, url: v.url, mtime: v.mtime, place: v.place || null, fresh: !!fresh};
-        const L = {plan: {}, fw, fh, k, Dw, Dh, s: 1, objs: [{o: {label: v.card || 'view', model_class: 'live_view', state_id: null}, k: 0, U}], frames: [[]], delays: [0], bg: null, animated: true, kind: 'live_view', img};
+        const row = {medium_image_id: liveId(v), title: v.title || ((v.card || '') + ' · ' + (v.run || '')), agenda: false, live_view: true, run: v.run, card: v.card, url: v.url, mtime: v.mtime, place: v.place || null, fresh: !!fresh, newest: isNewestId(liveId(v))};
+        const L = {plan: {}, fw, fh, k, Dw, Dh, s: 1, objs: [{o: {label: v.card || 'view', model_class: 'live_view', state_id: null}, k: 0, U}], frames: [[]], delays: [0], bg: null, animated: true, kind: 'live_view', img, newest: !!row.newest};
         ok({row, L});
       };
       img.onerror = () => no(new Error('live_view_fetch'));
@@ -913,7 +951,9 @@
       note('live view', A.row.medium_image_id, A.row.title || '');
       return true;
     }catch(e){
-      failed(id, e && e.message || e); note('live view skip', id, String(e && e.message || e));
+      const why = String(e && e.message || e);
+      if(why === 'cap' && isNewestId(id)){ enqueueLive(v, true); note('live view retry', id, why); return false; }
+      failed(id, why); note('live view skip', id, why);
       return false;
     }finally{ S.loading--; }
   }
@@ -935,12 +975,15 @@
     });
     if(first){
       list.forEach(v => { LV.seen[v.id] = {mtime: v.mtime || 0, sha256: v.sha256 || ''}; });
-      recentLive(LIVE_KEEP).slice().reverse().forEach(v => enqueueLive(v, true));
+      recentLive(LIVE_KEEP).filter(v => !isNewestId(liveId(v))).slice().reverse().forEach(v => enqueueLive(v, true));
+      const newest = newestLive(); if(newest) enqueueLive(newest, true);
     } else {
       fresh.sort((a, b) => (b.mtime || 0) - (a.mtime || 0)).forEach(v => {
         LV.seen[v.id] = {mtime: v.mtime || 0, sha256: v.sha256 || ''};
         enqueueLive(v, true);
       });
+      const newest = newestLive();
+      if(newest && !liveOn(liveId(newest))) enqueueLive(newest, true);
     }
     if(LV.pending.length && !paused()) spawnOne();
   }
@@ -993,11 +1036,12 @@
     S.groups.slice().forEach(g => {
       const vis = g.x < v.x + v.w && g.x + g.w > v.x && g.y < v.y + v.h && g.y + g.h > v.y;
       if(vis) g.offSince = 0; else if(!g.offSince) g.offSince = now;
-      if(g.offSince && now - g.offSince > 12000) exitGroup(g, true);
+      if(isNewestGroup(g)) g.offSince = 0;
+      else if(g.offSince && now - g.offSince > 12000) exitGroup(g, true);
       else if(now - g.born > g.life && !g.cuts.some(c => c.dragging)) exitGroup(g, false);
     });
     // never more than CAP: the oldest group gives way at once
-    if(S.cuts.length > CAP && S.groups.length) exitGroup(S.groups.slice().sort((a, b) => a.born - b.born)[0], true);
+    if(S.cuts.length > CAP && S.groups.length){ const old = S.groups.filter(evictable).sort((a, b) => a.born - b.born)[0]; if(old) exitGroup(old, true); }
     S.maxSeen = Math.max(S.maxSeen, S.cuts.length);
     // starvation guard: no GIF / image / agenda group for 4 min while online and running -> lift every cooldown and retry
     if(!paused() && !netHeld() && manifest && (manifest.assets || []).length && now - S.lastMedia > 240000){
@@ -1894,7 +1938,7 @@
     const row = (manifest.assets || []).find(a => a && a.medium_image_id === mid && a.status === 'ready'); if(!row) return null;
     let g = S.groups.find(x => x.mid === mid && !x.gone);
     if(!g){
-      while(S.cuts.length > CAP - PER_GROUP && S.groups.length) exitGroup(S.groups.slice().sort((a, b) => a.born - b.born)[0], true);
+      while(S.cuts.length > CAP - PER_GROUP && S.groups.length){ const old = S.groups.filter(evictable).sort((a, b) => a.born - b.born)[0]; if(!old) break; exitGroup(old, true); }
       S.loading++;
       try{ spawn(row, await loadGroup(row)); }catch(e){ note('library skip', mid, String(e && e.message || e)); return null; } finally{ S.loading--; }
       g = S.groups.find(x => x.mid === mid && !x.gone); if(g) g.life += 60000;

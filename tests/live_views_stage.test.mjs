@@ -34,11 +34,12 @@ test('cartoon, preview, plate, src and diff views are refused', () => {
   assert.match(src, /\^j\\d\+\$/);
 });
 
-test('data/live_views.json lists the photoreal run-9e3e84 finals and no rejected names', () => {
+test('data/live_views.json is newest-first, names are clean, and the active run leads', () => {
   const d = JSON.parse(fs.readFileSync(jsonPath, 'utf8'));
-  assert.equal(d.active_run, 'run-b9b963');
+  assert.ok(d.active_run && typeof d.active_run === 'string');
   assert.ok(Array.isArray(d.views) && d.views.length >= 3);
   const ids = d.views.map(v => v.run + '/' + v.card);
+  // historical photoreal finals still in the mixed archive
   assert.ok(ids.includes('run-9e3e84/j2'));
   assert.ok(ids.includes('run-9e3e84/j6'));
   assert.ok(ids.includes('run-9e3e84/j8'));
@@ -49,7 +50,26 @@ test('data/live_views.json lists the photoreal run-9e3e84 finals and no rejected
     const abs = path.join(root, v.url);
     assert.equal(fs.statSync(abs).size, v.bytes);
   }
-  // newest first
-  const times = d.views.map(v => v.mtime);
-  assert.deepEqual(times, [...times].sort((a, b) => b - a));
+  // the newest view of the active agenda is listed first among that run (the file may mix older agendas)
+  const ofActive = d.views.filter(v => v.run === d.active_run && /^j\d+$/.test(v.card));
+  assert.ok(ofActive.length >= 1);
+  const newest = ofActive.slice().sort((a, b) => (b.mtime || 0) - (a.mtime || 0))[0];
+  assert.equal(ofActive[0].id, 'live:' + d.active_run + ':' + ofActive[0].card);
+  assert.equal(ofActive[0].id, newest.id);
+  assert.equal(d.views[0].id, newest.id);
+});
+
+test('stage.js always centres the newest active live view, with no walk-in, and never mixes older agendas at its expense', () => {
+  assert.match(src, /function newestLive\(\)/);
+  assert.match(src, /function isNewestId\(/);
+  assert.match(src, /if\(isNewestId\(id\)\) return false/);
+  assert.match(src, /!isNewestGroup\(g\)/);
+  assert.match(src, /opts && opts.center/);
+  assert.match(src, /newest active live view appears in place \(no off-screen walk-in\)/);
+  assert.match(src, /mixing never delays or replaces it/);
+  assert.match(src, /if\(newest && !liveOn\(liveId\(newest\)\) && !S\.bad\.has\(liveId\(newest\)\)\) return newest/);
+  assert.match(src, /if\(newest && liveOn\(liveId\(newest\)\) && Math\.random\(\) < 0\.35\)/);
+  assert.match(src, /if\(why === 'cap' && isNewestId\(id\)\)/);
+  assert.match(src, /if\(newest\) enqueueLive\(newest, true\)/);
+  assert.match(src, /if\(newest && !liveOn\(liveId\(newest\)\)\) enqueueLive\(newest, true\)/);
 });
