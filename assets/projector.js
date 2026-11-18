@@ -43,21 +43,23 @@ window.thrydEnsureCli=async function(){
   }catch(e){}
   return null;
 };
-// Typed commands (source=cli) post to data/cli.json, a topic of their own, so drag/drift
-// traffic on data/drag.json cannot eat the typeline budget (Jesuye 18 Nov 2026 11:56 AM ET).
-// If cli.json has not loaded (window.CLI is null), retry the load, then fall back to the drag endpoint
-// so a typeline still leaves the page (Jesuye 18 Nov 2026 12:46 PM ET).
+// Parse the ntfy message id from a POST response body (JSON {id} or a bare id).
+window.thrydParseNtfyId=function(tx){
+  const s=String(tx==null?'':tx).trim();
+  if(!s) return null;
+  try{const j=JSON.parse(s); if(j&&j.id) return String(j.id);}catch(e){}
+  if(/^[A-Za-z0-9_-]{5,64}$/.test(s)) return s;
+  return null;
+};
+window.thrydLogSend=function(info){try{console.log('[thryd send]',info);}catch(e){}};
+// Typed typelines and taps share this POST: always the drag topic (the path a tap uses at ntfySend
+// / projector.js ~811). Jesuye's tablet could post taps/drags to the drag topic but typelines that
+// went to the CLI topic never arrived and showed no error (18 Nov 2026 1:40 PM ET). The CLI topic
+// is only an extra fire-and-forget copy, never the status-bearing send.
 window.thrydNtfyPost=async function(body, kind){
-  const isCli=!!(body&&body.source==='cli');
   const dragOf=()=>{try{return (window.thrydDrag&&window.thrydDrag())||window.DRAG||null;}catch(e){return null;}};
-  let DG;
-  if(isCli){
-    try{DG=await window.thrydEnsureCli();}catch(e){DG=null;}
-    if(!DG||!DG.endpoint) DG=dragOf();
-  }else{
-    DG=dragOf();
-  }
-  if(!DG||!DG.endpoint||(DG.transport&&DG.transport!=='ntfy')){const e=new Error('no_endpoint');e.status='no_endpoint';throw e;}
+  const DG=dragOf();
+  if(!DG||!DG.endpoint||(DG.transport&&DG.transport!=='ntfy')){const e=new Error('no_endpoint');e.status='no_endpoint';window.thrydLogSend({branch:'no_endpoint',kind:kind,source:body&&body.source,event_id:body&&body.event_id});throw e;}
   let payload=body||{};
   try{if(JSON.stringify(payload).length>3900){payload=Object.assign({},payload);delete payload.impl;delete payload.const_diff;delete payload.ran_as;delete payload.body_v;}}catch(e){}
   window.thrydAbortNtfyPolls&&window.thrydAbortNtfyPolls('call');
@@ -67,7 +69,8 @@ window.thrydNtfyPost=async function(body, kind){
     try{
       const r=await fetch(ep,Object.assign({method:'POST',body:JSON.stringify(payload)},ac?{signal:ac.signal}:{}));
       const tx=await r.text();
-      return {ok:r.ok,status:r.status,retryAfter:r.headers&&r.headers.get&&r.headers.get('Retry-After')||null,text:()=>Promise.resolve(tx),json:()=>Promise.resolve().then(()=>JSON.parse(tx)),endpoint:ep};
+      const id=window.thrydParseNtfyId(tx);
+      return {ok:r.ok,status:r.status,retryAfter:r.headers&&r.headers.get&&r.headers.get('Retry-After')||null,text:()=>Promise.resolve(tx),json:()=>Promise.resolve().then(()=>JSON.parse(tx)),endpoint:ep,ntfyId:id,raw:tx};
     }finally{clearTimeout(t);}
   };
   const once=async ep=>{
@@ -80,21 +83,28 @@ window.thrydNtfyPost=async function(body, kind){
       throw e;
     }
   };
-  const fallbackDrag=async()=>{
-    if(!isCli) return null;
-    const d=dragOf();
-    if(!d||!d.endpoint||d.endpoint===DG.endpoint) return null;
-    return await once(d.endpoint);
-  };
+  // Same endpoint a tap uses: DRAG.endpoint, via the same POST helper.
+  let r;
+  try{ r=await once(DG.endpoint); }
+  catch(e){ window.thrydLogSend({branch:'drag_post_throw',kind:kind,source:payload&&payload.source,type:payload&&payload.type,endpoint:DG.endpoint,error:String(e&&e.message||e),event_id:payload&&payload.event_id}); throw e; }
+  window.thrydLogSend({branch:'drag_post',kind:kind,source:payload&&payload.source,type:payload&&payload.type,endpoint:DG.endpoint,ok:!!(r&&r.ok),status:r&&r.status,id:r&&r.ntfyId,event_id:payload&&payload.event_id});
+  // Harmless extra copy to the typeline CLI topic. Must not affect the visible status.
   try{
-    const r=await once(DG.endpoint);
-    if(r&&r.ok) return r;
-    try{const r2=await fallbackDrag(); if(r2) return r2;}catch(e){}
-    return r;
-  }catch(e){
-    try{const r2=await fallbackDrag(); if(r2) return r2;}catch(e2){}
-    throw e;
-  }
+    const isCli=!!(payload&&payload.source==='cli');
+    if(isCli){
+      let cli=null; try{cli=(window.thrydCli&&window.thrydCli())||window.CLI||null;}catch(e){cli=null;}
+      if((!cli||!cli.endpoint)&&window.thrydEnsureCli){ try{cli=await window.thrydEnsureCli();}catch(e){cli=null;} }
+      if(cli&&cli.endpoint&&cli.endpoint!==DG.endpoint){
+        window.thrydLogSend({branch:'cli_copy',endpoint:cli.endpoint,event_id:payload&&payload.event_id});
+        Promise.resolve().then(()=>once(cli.endpoint)).then(r2=>{
+          window.thrydLogSend({branch:'cli_copy_done',ok:!!(r2&&r2.ok),status:r2&&r2.status,id:r2&&r2.ntfyId,event_id:payload&&payload.event_id});
+        }).catch(e=>{
+          window.thrydLogSend({branch:'cli_copy_fail',error:String(e&&e.message||e),event_id:payload&&payload.event_id});
+        });
+      }
+    }
+  }catch(e){}
+  return r;
 };
 window.thrydOutboxLeader=(function(){
   const LOCK='thryd_outbox_lock_v1';
@@ -131,9 +141,11 @@ window.thrydEnqueueCall=(function(){
       if(item.sendingAt&&(now-item.sendingAt)<20000&&item.sendingBy&&item.sendingBy!==tab)continue;
       item.sendingAt=now;item.sendingBy=tab;item.attempts=(item.attempts||0)+1;item.status='retrying';save();notify(item,'retrying');
       try{
-        const r=await window.thrydNtfyPost(item.body,'call');
-        if(r&&r.ok){item.status='sent';item.done=true;item.sentAt=new Date().toISOString();item.lastError=null;item.sendingAt=0;save();notify(item,'sent',r);continue;}
-        item.status='queued';item.sendingAt=0;item.nextAt=Date.now()+retryMs(r,item.attempts);item.lastError=r?('HTTP '+r.status):'no_response';save();notify(item,'retrying');
+        const r=await window.thrydNtfyPost(item.body,'outbox');
+        const nid=r&&(r.ntfyId||window.thrydParseNtfyId&&window.thrydParseNtfyId(r.raw||''));
+        window.thrydLogSend&&window.thrydLogSend({branch:'outbox_retry',ok:!!(r&&r.ok),status:r&&r.status,id:nid,event_id:item.body&&item.body.event_id,attempts:item.attempts});
+        if(r&&r.ok&&nid){item.status='sent';item.done=true;item.ntfyId=nid;item.sentAt=new Date().toISOString();item.lastError=null;item.sendingAt=0;save();notify(item,'sent',r);continue;}
+        item.status='queued';item.sendingAt=0;item.nextAt=Date.now()+retryMs(r,item.attempts);item.lastError=r&&r.ok?'ntfy 200 with no id':(r?('HTTP '+r.status):'no_response');save();notify(item,'retrying');
       }catch(e){item.status='queued';item.sendingAt=0;item.nextAt=Date.now()+retryMs(null,item.attempts);item.lastError=(window.thrydIsTimeout&&window.thrydIsTimeout(e))?'timed out':String(e&&e.message||e);save();notify(item,'retrying');}
     }
     box=box.filter(i=>i&&!i.done);save();

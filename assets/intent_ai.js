@@ -123,13 +123,14 @@
     '#aibox .aic button.ch{border-color:#9f7aea}', '#aibox .aic button.off{opacity:.6}', '#aibox .aiu{color:#9fd3ff;cursor:pointer;text-decoration:underline;margin-left:.6em}',
     '#aicmd{min-width:2.6em}'].join('\n'); document.head.appendChild(css);
   let box = null, inp = null, msg = null, chips = null, sendBtn = null, lastSub = 0;
-  function submitNow(ev){
+  function submitNow(ev, how){
     if(ev){ ev.preventDefault(); ev.stopPropagation(); }
     const now = Date.now();
     if(now - lastSub < 400) return;
     lastSub = now;
     const text = inp ? String(inp.value || '') : '';
     if(inp) inp.value = '';
+    try{ console.log('[thryd send]', {branch: 'submit', how: how || (ev && ev.type) || 'go', text: String(text).slice(0, 80)}); }catch(e){}
     return go(text);
   }
   function ui(){ if(box) return; box = document.createElement('div'); box.id = 'aibox'; box.setAttribute('role', 'dialog'); box.setAttribute('aria-label', 'Type a call');
@@ -143,11 +144,13 @@
     msg = document.createElement('div'); msg.className = 'aim'; chips = document.createElement('div'); chips.className = 'aic';
     box.append(form, msg, chips); document.body.appendChild(box);
     ['pointerdown', 'click'].forEach(k => box.addEventListener(k, e => { if(e.target !== sendBtn) e.stopPropagation(); }));
-    form.addEventListener('submit', e => { e.preventDefault(); e.stopPropagation(); submitNow(e); });
+    form.addEventListener('submit', e => { e.preventDefault(); e.stopPropagation(); submitNow(e, 'form_submit'); });
     // pointerdown + preventDefault keeps the Android keyboard open (input does not blur before send)
-    sendBtn.addEventListener('pointerdown', e => { e.preventDefault(); e.stopPropagation(); submitNow(e); }, {passive: false});
-    sendBtn.addEventListener('click', e => { e.preventDefault(); e.stopPropagation(); submitNow(e); });
-    inp.addEventListener('keydown', e => { e.stopPropagation(); if(e.key === 'Escape'){ close(); } else if(e.key === 'Enter' || e.key === 'Go' || e.key === 'Search' || e.keyCode === 13){ e.preventDefault(); submitNow(e); } }); }
+    sendBtn.addEventListener('pointerdown', e => { e.preventDefault(); e.stopPropagation(); submitNow(e, 'button_pointerdown'); }, {passive: false});
+    sendBtn.addEventListener('click', e => { e.preventDefault(); e.stopPropagation(); submitNow(e, 'button_click'); });
+    inp.addEventListener('keydown', e => { e.stopPropagation(); if(e.key === 'Escape'){ close(); } else if(e.key === 'Enter' || e.key === 'Go' || e.key === 'Search' || e.keyCode === 13){ e.preventDefault(); submitNow(e, 'keydown_' + (e.key || e.keyCode)); } });
+    // Android Chrome IME Go often fires beforeinput insertLineBreak instead of (or before) keydown Enter
+    inp.addEventListener('beforeinput', e => { if(e.inputType === 'insertLineBreak' || e.inputType === 'insertParagraph'){ e.preventDefault(); e.stopPropagation(); submitNow(e, 'beforeinput_' + e.inputType); } }); }
   function open(){ ui(); box.classList.add('on'); msg.textContent = AI.state === 'ready' ? 'AI matching on' + (chromeOk() ? ' · ✨ Chrome AI' : '') : (AI.state === 'loading' ? 'AI model loading… letter matching for now' : 'letter matching'); chips.textContent = ''; inp.value = ''; setTimeout(()=> inp.focus(), 0); }
   function close(){ if(box){ box.classList.remove('on'); inp.blur(); } }
   AI.open = open; AI.close = close;

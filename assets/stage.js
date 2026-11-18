@@ -1509,12 +1509,13 @@
     const err = rec.lastError || rec.error;
     const st = rec.status;
     let tail;
-    if(st==='sent'||st==='accepted'||st==='ok') tail='sent to the box';
-    else if(st==='no_reply') tail='sent; no reply from the box yet';
+    if((st==='sent'||st==='accepted'||st==='ok') && rec.ntfyId) tail='sent \u2713 '+rec.ntfyId;
+    else if(st==='sent'||st==='accepted'||st==='ok') tail='sent, waiting for an ntfy id';
+    else if(st==='no_reply') tail='sent \u2713 '+(rec.ntfyId||'')+' \u00b7 no reply from the box yet';
     else if(st==='qa_not_sent') tail='QA: not sent';
     else if(st==='rejected') tail='rejected'+(err?(' \u00b7 '+err):'');
     else if(err) tail=prettySendErr(err);
-    else if(st==='queued'||st==='retrying') tail='queued, retrying';
+    else if(st==='queued'||st==='retrying') tail='queued, retrying'+(err?(' \u00b7 '+err):'');
     else tail='sending\u2026';
     const pre=String(prefix||rec.sendPrefix||'').replace(/\s*\u00b7\s*sending\u2026?\s*$/,'').replace(/\s+$/,'');
     const note=(pre? pre+' \u00b7 ' : '')+tail;
@@ -2636,34 +2637,51 @@
       if(post){
         try{
           const r = await post(body, 'call');
-          if(r && r.ok) ok = true;
+          const nid = r && (r.ntfyId || (root.thrydParseNtfyId && root.thrydParseNtfyId(r.raw || '')));
+          if(r && r.ok && nid){ ok = true; rec.ntfyId = nid; }
           else {
             rec.status = 'queued';
-            statusToast({lastError: r ? ('HTTP ' + r.status) : 'no_response'});
-            if(!enqueue) throw new Error(r ? ('HTTP ' + r.status) : 'no_response');
+            const why = r && r.ok ? 'ntfy 200 with no id' : (r ? ('HTTP ' + r.status) : 'no_response');
+            rec.lastError = why;
+            statusToast({lastError: why});
+            if(!enqueue) throw new Error(why);
             const ra = r && r.retryAfter; let wait = 2000; if(ra){ const n = parseInt(ra, 10); wait = isFinite(n) ? Math.min(60000, Math.max(500, n * 1000)) : 2000; }
-            await enqueue(body, {attempts: 1, nextAt: Date.now() + wait, lastError: r ? ('HTTP ' + r.status) : 'no_response', onStatus: (s, item) => { rec.status = s; if(s === 'retrying' || s === 'queued') statusToast(item); }});
-            ok = true;
+            const queued = await enqueue(body, {attempts: 1, nextAt: Date.now() + wait, lastError: why, onStatus: (s, item) => { rec.status = s; if(item && item.ntfyId) rec.ntfyId = item.ntfyId; if(s === 'retrying' || s === 'queued') statusToast(item); if(s === 'sent' && item && item.ntfyId){ rec.ntfyId = item.ntfyId; rec.lastError = null; try{ setSendNote(code, rec); }catch(e){} } }});
+            if(queued && queued.ntfyId){ rec.ntfyId = queued.ntfyId; ok = true; }
+            else if(rec.ntfyId) ok = true;
+            else throw new Error(why);
           }
         }catch(e){
           rec.status = 'queued';
           const why = (root.thrydIsTimeout && root.thrydIsTimeout(e)) ? 'timed out' : String(e && e.message || e);
+          rec.lastError = why;
           statusToast({lastError: why});
           if(!enqueue) throw e;
-          await enqueue(body, {attempts: 1, nextAt: Date.now() + (why === 'timed out' ? 0 : 1500), lastError: why, onStatus: (s, item) => { rec.status = s; if(s === 'retrying' || s === 'queued') statusToast(item); }});
-          ok = true;
+          const queued = await enqueue(body, {attempts: 1, nextAt: Date.now() + (why === 'timed out' ? 0 : 1500), lastError: why, onStatus: (s, item) => { rec.status = s; if(item && item.ntfyId) rec.ntfyId = item.ntfyId; if(s === 'retrying' || s === 'queued') statusToast(item); if(s === 'sent' && item && item.ntfyId){ rec.ntfyId = item.ntfyId; rec.lastError = null; try{ setSendNote(code, rec); }catch(e2){} } }});
+          if(queued && queued.ntfyId){ rec.ntfyId = queued.ntfyId; ok = true; }
+          else if(rec.ntfyId) ok = true;
+          else throw new Error(why);
         }
+      } else if(DG && DG.endpoint){
+        // exact tap fallback: thrydNetFetch(DRAG.endpoint) — same as projector.js ntfySend ~811
+        const r = await net(DG.endpoint, {method: 'POST', body: JSON.stringify(body)}, 20000, 'normal');
+        const tx = r && r.text ? await r.text() : '';
+        const nid = (root.thrydParseNtfyId && root.thrydParseNtfyId(tx)) || null;
+        try{ root.thrydLogSend && root.thrydLogSend({branch:'drag_netfetch',ok:!!(r&&r.ok),status:r&&r.status,id:nid,event_id:body&&body.event_id}); }catch(e){}
+        if(!r || !r.ok || !nid) throw new Error(r && r.ok ? 'ntfy 200 with no id' : (r ? ('HTTP ' + r.status) : 'ntfy_busy'));
+        rec.ntfyId = nid; ok = true;
       } else if(enqueue){
-        await enqueue(body, {onStatus: (s, item) => { rec.status = s; if(s === 'retrying' || s === 'queued') statusToast(item); }});
-        ok = true;
+        const queued = await enqueue(body, {onStatus: (s, item) => { rec.status = s; if(item && item.ntfyId) rec.ntfyId = item.ntfyId; if(s === 'retrying' || s === 'queued') statusToast(item); }});
+        if(queued && queued.ntfyId){ rec.ntfyId = queued.ntfyId; ok = true; }
+        else if(rec.ntfyId) ok = true;
+        else throw new Error('not posted');
       } else {
-        const r = await net(DG.endpoint, {method: 'POST', body: JSON.stringify(body)}, 20000, 'normal'); if(!r || !r.ok) throw new Error(r ? ('HTTP ' + r.status) : 'ntfy_busy');
-        ok = true;
+        throw new Error('no_endpoint');
       }
-      if(!ok) throw new Error('not posted');
+      if(!ok || !rec.ntfyId) throw new Error(rec.lastError || 'not posted');
       rec.status = 'sent'; rec.lastError = null;
       try{ setSendNote(code, rec); }catch(e){}
-      toast(code + ' → box…');
+      toast(code + ' \u00b7 sent \u2713 ' + rec.ntfyId);
       for(const w of [1500, 2500, 4000, 8000, 16000]){ await sleep(w);
         try{ const getter = root.thrydNtfyGet || net; const tx = await (await getter(replyBase + '/json?poll=1&since=' + t0, 8000)).text();
           for(const l of tx.split('\n')){ if(!l) continue; let m; try{ m = JSON.parse(l); m = JSON.parse(m.message || '{}'); }catch(e){ continue; }

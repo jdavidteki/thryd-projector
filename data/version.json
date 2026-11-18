@@ -1,5 +1,5 @@
 {
-  "v": 569,
-  "at": "2026-11-18T13:25:28-05:00",
-  "note": "Typed typelines now post the moment they are submitted (Go, Enter, or the new \u27a4 button), the same way drags do, with the outbox only as a retry that any tab can pump. A new or unknown command (the 'new command \u2192 this agenda' path) is still sent, even if it was only applied locally. The typeline box has a visible \u27a4 submit button at the right edge that works with the Android keyboard open. The code column shows the last send error instead of a bare sending\u2026. If the CLI topic post fails, the page retries then falls back to the drag topic."
+  "v": 570,
+  "at": "2026-11-18T13:46:57-05:00",
+  "note": "Typed lines now post through the same drag-topic path a tap uses, not a separate CLI topic. The CLI topic is only an extra copy. The typeline shows \u201csent \u2713\u201d and the ntfy id only after ntfy returns 200 with an id; otherwise it shows the error. Android Go is handled via keydown Enter, form submit, and beforeinput insertLineBreak, plus the \u27a4 button."
 }
