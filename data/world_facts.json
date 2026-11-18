@@ -5376,16 +5376,6 @@
 ],
 "miami": [
 {
-"id": "wf_1ad7a999a6",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up beside the phone at the miami.",
-"code": "thoughts_marisol.interactwith(miami){ miami.receives(thoughts_marisol.envelope); miami.remembers(bisola, 'brown envelope'); }",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6",
-"other": "thoughts_marisol"
-},
-{
 "id": "wf_e3ba384c70",
 "kind": "consequence",
 "text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up beside the phone at the miami.",
@@ -5424,6 +5414,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "bow"
+},
+{
+"id": "wf_778fe6bda8",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up beside the phone at the miami.",
+"code": "lie.interactwith(miami){ miami.receives(lie.envelope); miami.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "lie"
 }
 ],
 "teo": [
@@ -7073,31 +7073,21 @@
 "card": "j29",
 "other": "miami"
 }
+],
+"from_anambra": [
+{
+"id": "wf_6429588533",
+"kind": "consequence",
+"text": "The from anambra leaves with a Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it.",
+"code": "inside_odunlade_brain.interactwith(from_anambra){ from_anambra.receives(inside_odunlade_brain.bead); from_anambra.remembers(bisola, 'blue glass bead'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j5",
+"other": "inside_odunlade_brain"
+}
 ]
 },
 "consequences": [
-{
-"id": "wt_5afb033ddb",
-"ts": "2026-11-18T04:55:30-0500",
-"a": "bow",
-"b": "saturday_october",
-"code": "bow.interactwith(saturday_october){ saturday_october.receives(bow.brown_envelope); … }",
-"text": "Two copies of the same 7:40am Yaba receipt meet when the bow is set down on saturday october, and Bisola realises one of them is a carbon.",
-"author": "thryd",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
-"id": "wt_980de70ea6",
-"ts": "2026-11-18T04:56:00-0500",
-"a": "beach_lummus_park",
-"b": "no_go_fold",
-"code": "beach_lummus_park.interactwith(no_go_fold){ no_go_fold.receives(beach_lummus_park, 'blue glass bead'); … }",
-"text": "Sand from beach lummus park dusts the chalked no go fold, and the blue glass bead settles in Kemi's chalk circle like a pin on the map.",
-"author": "thryd",
-"run": "run-g1-B",
-"card": "j29"
-},
 {
 "id": "wf_fa270e91db",
 "ts": "2026-11-18T07:03:58-0500",
@@ -7515,6 +7505,28 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j29"
+},
+{
+"id": "wf_778fe6bda8",
+"ts": "2026-11-18T09:37:39-0500",
+"a": "lie",
+"b": "miami",
+"code": "lie.interactwith(miami){ miami.receives(lie.envelope); miami.remembers(bisola, 'brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up beside the phone at the miami.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
+},
+{
+"id": "wf_6429588533",
+"ts": "2026-11-18T09:38:32-0500",
+"a": "inside_odunlade_brain",
+"b": "from_anambra",
+"code": "inside_odunlade_brain.interactwith(from_anambra){ from_anambra.receives(inside_odunlade_brain.bead); from_anambra.remembers(bisola, 'blue glass bead'); }",
+"text": "The from anambra leaves with a Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j5"
 }
 ],
 "memories": [
@@ -7618,5 +7630,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T09:34:07-0500"
+"updated": "2026-11-18T09:38:32-0500"
 }
