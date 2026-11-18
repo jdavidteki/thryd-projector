@@ -881,16 +881,6 @@
 ],
 "danfo_speaker": [
 {
-"id": "wf_cf4016a231",
-"kind": "consequence",
-"text": "A Bed note with Taiwo's name and 'egbe note' on it, turns up with the danfo speaker, which is still playing the same love song.",
-"code": "bed.interactwith(danfo_speaker){ danfo_speaker.receives(bed.note); danfo_speaker.remembers(taiwo, 'egbe note'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "w6",
-"other": "bed"
-},
-{
 "id": "wf_2dd95d9ccd",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the danfo speaker, which is still playing the same love song.",
@@ -899,6 +889,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "bus"
+},
+{
+"id": "wf_e2618014f1",
+"kind": "consequence",
+"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up with the danfo speaker, which is still playing the same love song.",
+"code": "b_md.interactwith(danfo_speaker){ danfo_speaker.receives(b_md.shirt); danfo_speaker.remembers(bisola, 'green shirt'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j8",
+"other": "b_md"
 },
 {
 "id": "wf_bdad55d985",
@@ -933,16 +933,6 @@
 ],
 "plastic_sheet": [
 {
-"id": "wf_8fd201d379",
-"kind": "consequence",
-"text": "The danfo speaker ends up with the plastic sheet, still playing the same love song.",
-"code": "ojuelegba_bus_stop.interactwith(plastic_sheet){ ojuelegba_bus_stop.db.copyto(plastic_sheet); … }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "w5",
-"other": "ojuelegba_bus_stop"
-},
-{
 "id": "wf_794d3ec949",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the plastic sheet, which is still wet.",
@@ -971,6 +961,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "niaw"
+},
+{
+"id": "wf_bbd8e2dfa8",
+"kind": "consequence",
+"text": "The plastic sheet now remembers the wiitbaw: The customer typed [[wiitbaw]] on run-qa j1.",
+"code": "wiitbaw.interactwith(plastic_sheet){ plastic_sheet.receives(wiitbaw.something); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j1",
+"other": "wiitbaw"
 },
 {
 "id": "wf_194e588426",
@@ -9154,28 +9154,6 @@
 },
 "consequences": [
 {
-"id": "wf_1a2ddd6746",
-"ts": "2026-11-18T16:21:27-0500",
-"a": "bed",
-"b": "kerosene_lamp",
-"code": "bed.interactwith(kerosene_lamp){ kerosene_lamp.receives(bed.note); kerosene_lamp.remembers(taiwo, 'egbe note'); }",
-"text": "A Bed note with Taiwo's name and 'egbe note' on it, turns up with the kerosene lamp, which is still lit.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "w6"
-},
-{
-"id": "wf_83d4902759",
-"ts": "2026-11-18T16:24:04-0500",
-"a": "vex",
-"b": "tie",
-"code": "vex.interactwith(tie){ tie.receives(vex.shirt); tie.remembers(bisola, 'green shirt'); tie.tucks(vex, 'ikeja laundromat receipt into the brown envelope'); }",
-"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the brown envelope at the tie, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j8"
-},
-{
 "id": "wf_56d2610fbf",
 "ts": "2026-11-18T16:24:57-0500",
 "a": "vex",
@@ -9592,6 +9570,28 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_e2618014f1",
+"ts": "2026-11-18T18:42:11-0500",
+"a": "b_md",
+"b": "danfo_speaker",
+"code": "b_md.interactwith(danfo_speaker){ danfo_speaker.receives(b_md.shirt); danfo_speaker.remembers(bisola, 'green shirt'); }",
+"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up with the danfo speaker, which is still playing the same love song.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j8"
+},
+{
+"id": "wf_bbd8e2dfa8",
+"ts": "2026-11-18T18:43:56-0500",
+"a": "wiitbaw",
+"b": "plastic_sheet",
+"code": "wiitbaw.interactwith(plastic_sheet){ plastic_sheet.receives(wiitbaw.something); }",
+"text": "The plastic sheet now remembers the wiitbaw: The customer typed [[wiitbaw]] on run-qa j1.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j1"
 }
 ],
 "memories": [
@@ -9695,5 +9695,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T18:39:34-0500"
+"updated": "2026-11-18T18:44:49-0500"
 }
