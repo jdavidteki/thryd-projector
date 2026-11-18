@@ -1,5 +1,5 @@
 {
-  "v": 557,
-  "at": "2026-11-17T22:02:26-05:00",
-  "note": "Place pins no longer count toward the story-cut cap (72 desktop / 36 phone), MAX_GROUPS, or the byte budget. storyCuts() is used everywhere the cap is checked."
+  "v": 558,
+  "at": "2026-11-17T22:24:22-05:00",
+  "note": "Every group/cut exit uses a gentle walk-off (or a 1.5s fade if already off-screen). Soft cap starts evictions 6 below CAP. Memory pressure walks groups off. Auto-refresh reloads only for a real code version bump, and only when the tab is hidden or idle 60s."
 }
