@@ -772,16 +772,6 @@
 ],
 "pure_water_cooler": [
 {
-"id": "wf_e20f35af9c",
-"kind": "consequence",
-"text": "A Danfo speaker note with Taiwo's name and 'egbe note' on it, turns up inside the container number at the pure water cooler, and Kunle reads the name twice.",
-"code": "danfo_speaker.interactwith(pure_water_cooler){ pure_water_cooler.receives(danfo_speaker.note); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "w6",
-"other": "danfo_speaker"
-},
-{
 "id": "wf_df8f1b71b1",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it, turns up with the pure-water cooler, which is still carried home through the flood.",
@@ -800,6 +790,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "saturday_october"
+},
+{
+"id": "wf_64f857e0b7",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the pure-water cooler, which is still carried home through the flood.",
+"code": "red_white.interactwith(pure_water_cooler){ pure_water_cooler.receives(red_white.envelope); pure_water_cooler.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "red_white"
 },
 {
 "id": "wf_6554ef5dcc",
@@ -6891,42 +6891,21 @@
 "card": "j5",
 "other": "club_terrace_admiralty"
 }
+],
+"seniorgehs": [
+{
+"id": "wf_0da334b9d2",
+"kind": "consequence",
+"text": "The seniorgehs leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "b_md.interactwith(seniorgehs){ seniorgehs.receives(b_md.envelope); seniorgehs.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "b_md"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_1a789d9da6",
-"ts": "2026-11-17T23:40:13-0500",
-"a": "saturday_october",
-"b": "streetlights",
-"code": "saturday_october.interactwith(streetlights){ streetlights.receives(saturday_october.envelope); streetlights.remembers(bisola, 'brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the streetlights, which is still all dead since 7:35pm.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
-"id": "wf_f6015d5c1f",
-"ts": "2026-11-17T23:42:50-0500",
-"a": "love",
-"b": "miami",
-"code": "love.interactwith(miami){ miami.receives(love.envelope); miami.remembers(bisola, 'brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up beside the phone at the miami.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
-"id": "wf_411694aa6b",
-"ts": "2026-11-17T23:43:44-0500",
-"a": "danfo_speaker",
-"b": "imhf",
-"code": "danfo_speaker.interactwith(imhf){ danfo_speaker.db.copyto(imhf); imhf.keeps(danfo_speaker, 'danfo speaker, still playing the same love song'); }",
-"text": "The danfo speaker ends up with the imhf, still playing the same love song.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "w5"
-},
 {
 "id": "wf_86e47e370b",
 "ts": "2026-11-17T23:48:06-0500",
@@ -7333,6 +7312,39 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j5"
+},
+{
+"id": "wf_457f15909c",
+"ts": "2026-11-18T08:08:30-0500",
+"a": "wiitbaw",
+"b": "kerosene_lamp",
+"code": "wiitbaw.interactwith(kerosene_lamp){ kerosene_lamp.receives(wiitbaw.envelope); kerosene_lamp.remembers(bisola, 'brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the kerosene lamp, which is still lit.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
+},
+{
+"id": "wf_64f857e0b7",
+"ts": "2026-11-18T08:10:15-0500",
+"a": "red_white",
+"b": "pure_water_cooler",
+"code": "red_white.interactwith(pure_water_cooler){ pure_water_cooler.receives(red_white.envelope); pure_water_cooler.remembers(bisola, 'brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the pure-water cooler, which is still carried home through the flood.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
+},
+{
+"id": "wf_0da334b9d2",
+"ts": "2026-11-18T08:11:08-0500",
+"a": "b_md",
+"b": "seniorgehs",
+"code": "b_md.interactwith(seniorgehs){ seniorgehs.receives(b_md.envelope); seniorgehs.remembers(bisola, 'brown envelope'); }",
+"text": "The seniorgehs leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -7436,5 +7448,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T08:06:45-0500"
+"updated": "2026-11-18T08:11:08-0500"
 }
