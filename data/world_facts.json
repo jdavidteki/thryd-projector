@@ -6545,20 +6545,21 @@
 "card": "w4",
 "other": "agbada"
 }
+],
+"climb_heaven": [
+{
+"id": "wf_657f07764b",
+"kind": "consequence",
+"text": "The climb heaven leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "people_scene.interactwith(climb_heaven){ climb_heaven.receives(people_scene.envelope); climb_heaven.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-g1-B",
+"card": "j6",
+"other": "people_scene"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_c567439619",
-"ts": "2026-11-17T19:05:56-0500",
-"a": "off_key",
-"b": "saturday_october",
-"code": "off_key.interactwith(saturday_october){ saturday_october.receives(off_key.envelope); saturday_october.remembers(bisola, 'brown envelope'); }",
-"text": "The saturday october leaves with a Nla agbara figure receipt with Bisola's name and 'brown envelope' on it.",
-"author": "cos",
-"run": "run-g1-B",
-"card": "j4"
-},
 {
 "id": "wf_c884100d59",
 "ts": "2026-11-17T19:06:49-0500",
@@ -6987,6 +6988,17 @@
 "author": "cos",
 "run": "run-g1-B",
 "card": "w4"
+},
+{
+"id": "wf_657f07764b",
+"ts": "2026-11-17T23:19:06-0500",
+"a": "people_scene",
+"b": "climb_heaven",
+"code": "people_scene.interactwith(climb_heaven){ climb_heaven.receives(people_scene.envelope); climb_heaven.remembers(bisola, 'brown envelope'); }",
+"text": "The climb heaven leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-g1-B",
+"card": "j6"
 }
 ],
 "memories": [
@@ -7090,5 +7102,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T23:16:30-0500"
+"updated": "2026-11-17T23:19:06-0500"
 }
