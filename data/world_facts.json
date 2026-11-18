@@ -1873,16 +1873,6 @@
 ],
 "ronke": [
 {
-"id": "wt_68543424a7",
-"kind": "func_call",
-"text": "Ronke, staying behind, lands on 'deya skiming to tuff your moni'.",
-"code": "ronke.stay('behind');",
-"author": "thryd",
-"run": "run-2eb42d",
-"card": "w33",
-"other": null
-},
-{
 "id": "wt_7ad17e4a7b",
 "kind": "func_call",
 "text": "Ronke flags the ticket and lands on 'if you see something, say something' / 'i see something coming'.",
@@ -1920,6 +1910,16 @@
 "author": "thryd",
 "run": "run-2eb42d",
 "card": "w37",
+"other": null
+},
+{
+"id": "wt_943156194c",
+"kind": "func_call",
+"text": "Ronke writes a note. Already woven into posted w39; this row only logs the seated pick.",
+"code": "ronke.write('note');",
+"author": "thryd",
+"run": "run-2eb42d",
+"card": "w38",
 "other": null
 }
 ],
@@ -6939,16 +6939,6 @@
 ],
 "kazeem": [
 {
-"id": "wt_17c788a8cd",
-"kind": "func_call",
-"text": "Kazeem says the nuts are hot, landing on 'fink about it'. Line 3: [[wksif]] -- fink about it! finking finking!",
-"code": "kazeem.say('hot');",
-"author": "thryd",
-"run": "run-2eb42d",
-"card": "w32",
-"other": null
-},
-{
 "id": "wt_4b8c529a02",
 "kind": "func_call",
 "text": "Kazeem says the nuts are hot, landing on 'fink about it'.",
@@ -6986,6 +6976,16 @@
 "author": "thryd",
 "run": "run-2eb42d",
 "card": "w36",
+"other": null
+},
+{
+"id": "wt_dcd5fac7bc",
+"kind": "func_call",
+"text": "Kazeem passes his phone. Already woven into posted w39; this row only logs the seated pick.",
+"code": "kazeem.pass('phone');",
+"author": "thryd",
+"run": "run-2eb42d",
+"card": "w38",
 "other": null
 }
 ],
@@ -7541,16 +7541,6 @@
 ],
 "mamaronke": [
 {
-"id": "wt_4b02c55c62",
-"kind": "func_call",
-"text": "Folake lands on the phd in the sky / a line that connects all the ideas, like a needle.",
-"code": "mamaronke.say('bus');",
-"author": "thryd",
-"run": "run-2eb42d",
-"card": "w33",
-"other": null
-},
-{
 "id": "wt_951ff4bb62",
 "kind": "func_call",
 "text": "Folake buys the hot wrap through the glass and tells the boy 'do ure hard', paying full price. Line 3: #seniorboys — iinnnnnm the valley!",
@@ -7588,6 +7578,16 @@
 "author": "thryd",
 "run": "run-2eb42d",
 "card": "w36",
+"other": null
+},
+{
+"id": "wt_9786b458ee",
+"kind": "func_call",
+"text": "Folake's b3 line lands on 'no give us dsl! eez big'. Already woven into posted w39; this row only logs the letter-call.",
+"code": "mamaronke.say('ready');",
+"author": "thryd",
+"run": "run-2eb42d",
+"card": "w38",
 "other": null
 }
 ],
@@ -9046,6 +9046,66 @@
 "card": "j38",
 "other": null
 }
+],
+"speaker": [
+{
+"id": "wt_001e8b356f",
+"kind": "func_call",
+"text": "The speaker plays a mix. Already woven into posted w39; this row only logs the seated pick.",
+"code": "speaker.play('mix');",
+"author": "thryd",
+"run": "run-2eb42d",
+"card": "w38",
+"other": null
+}
+],
+"radio": [
+{
+"id": "wt_7fa696eaba",
+"kind": "func_call",
+"text": "A small transistor radio on the table plays a station next to the phone Kazeem passes.",
+"code": "radio.play('station');",
+"author": "thryd",
+"run": "run-2eb42d",
+"card": "w38",
+"other": null
+}
+],
+"clip": [
+{
+"id": "wt_d57c4dc213",
+"kind": "func_call",
+"text": "A metal paperclip holds Ronke's note on the registration table.",
+"code": "clip.hold('note');",
+"author": "thryd",
+"run": "run-2eb42d",
+"card": "w38",
+"other": null
+}
+],
+"ice": [
+{
+"id": "wt_12f37da375",
+"kind": "func_call",
+"text": "A cup of ice sits beside the speaker.",
+"code": "ice.sit('cup');",
+"author": "thryd",
+"run": "run-2eb42d",
+"card": "w38",
+"other": null
+}
+],
+"sign": [
+{
+"id": "wt_4eb93a4c79",
+"kind": "func_call",
+"text": "A small cardboard sign on the table reads ready.",
+"code": "sign.show('ready');",
+"author": "thryd",
+"run": "run-2eb42d",
+"card": "w38",
+"other": null
+}
 ]
 },
 "consequences": [
@@ -9591,5 +9651,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T18:23:44-0500"
+"updated": "2026-11-18T18:25:29-0500"
 }
