@@ -6935,6 +6935,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "saturday_october"
+},
+{
+"id": "wf_02d293a333",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the lie, and Bisola reads the name twice.",
+"code": "bow.interactwith(lie){ lie.receives(bow.envelope); lie.remembers(bisola, 'brown envelope'); lie.tucks(bow, 'yaba bookshop receipt into the brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "bow"
 }
 ],
 "kazeem": [
@@ -7061,6 +7071,16 @@
 "run": "run-2eb42d",
 "card": "j8",
 "other": "example"
+},
+{
+"id": "wt_67f9639994",
+"kind": "func_call",
+"text": "The customer typed #thryd.importtheme(indomie) on run-2eb42d j39. It came back: Thryd importtheme indomie. Implementation: function importtheme(what){\n  THRYD_IMPORTTHEME_COUNT += 1;\n  this.lastImporttheme = \"indomie\";\n  return \"Thryd importtheme indomie\";\n}. thryd now has thryd.importtheme as a method on this agenda, and it can be called again.",
+"code": "#thryd.importtheme(indomie);",
+"author": "customer",
+"run": "run-2eb42d",
+"card": "j39",
+"other": null
 }
 ],
 "wiitbaw": [
@@ -7967,46 +7987,6 @@
 ],
 "cli": [
 {
-"id": "wt_3340de56e6",
-"kind": "func_call",
-"text": "The customer typed a1() on run-2eb42d j37. It came back: a1(). Implementation: /* a1() */.",
-"code": "a1();",
-"author": "customer",
-"run": "run-2eb42d",
-"card": "j37",
-"other": null
-},
-{
-"id": "wt_3c9bfbbca3",
-"kind": "func_call",
-"text": "The customer typed #thryd.miracle.log(1) on run-2eb42d j37. It came back: #thryd.miracle.log(1). Implementation: /* #thryd.miracle.log(1) */.",
-"code": "#thryd.miracle.log(1);",
-"author": "customer",
-"run": "run-2eb42d",
-"card": "j37",
-"other": null
-},
-{
-"id": "wt_433ca41c44",
-"kind": "func_call",
-"text": "The customer typed #thryd.miracle.log(1) on run-2eb42d j37. It came back: #thryd.miracle.log(1). Implementation: /* #thryd.miracle.log(1) */.",
-"code": "#thryd.miracle.log(1);",
-"author": "customer",
-"run": "run-2eb42d",
-"card": "j37",
-"other": null
-},
-{
-"id": "wt_e741bbe231",
-"kind": "func_call",
-"text": "The customer typed b3() on run-2eb42d j38. It came back: b3(). Implementation: /* b3() */.",
-"code": "b3();",
-"author": "customer",
-"run": "run-2eb42d",
-"card": "j38",
-"other": null
-},
-{
 "id": "wt_01e1bf578d",
 "kind": "func_call",
 "text": "The customer typed [[6mia]] on run-2eb42d j38. It came back: [[6mia]]. Implementation: /* [[6mia]] */.",
@@ -8014,6 +7994,46 @@
 "author": "customer",
 "run": "run-2eb42d",
 "card": "j38",
+"other": null
+},
+{
+"id": "wt_2e19a095e2",
+"kind": "func_call",
+"text": "The customer typed #thryd.miracle.log(1) on run-2eb42d j39. It came back: #thryd.miracle.log(1). Implementation: /* #thryd.miracle.log(1) */.",
+"code": "#thryd.miracle.log(1);",
+"author": "customer",
+"run": "run-2eb42d",
+"card": "j39",
+"other": null
+},
+{
+"id": "wt_3df7d6774d",
+"kind": "func_call",
+"text": "The customer typed #sessy on run-2eb42d j39. It came back: #sessy. Implementation: /* #sessy */.",
+"code": "#sessy;",
+"author": "customer",
+"run": "run-2eb42d",
+"card": "j39",
+"other": null
+},
+{
+"id": "wt_23ad968848",
+"kind": "func_call",
+"text": "The customer typed a3() on run-2eb42d j39. It came back: a3(). Implementation: /* a3() */.",
+"code": "a3();",
+"author": "customer",
+"run": "run-2eb42d",
+"card": "j39",
+"other": null
+},
+{
+"id": "wt_a7273d2c1d",
+"kind": "func_call",
+"text": "The customer typed d1() on run-2eb42d j39. It came back: d1(). Implementation: /* d1() */.",
+"code": "d1();",
+"author": "customer",
+"run": "run-2eb42d",
+"card": "j39",
 "other": null
 }
 ],
@@ -9118,20 +9138,21 @@
 "card": "j6",
 "other": "sports_ball"
 }
+],
+"ti": [
+{
+"id": "wt_5b7bf3f6f6",
+"kind": "func_call",
+"text": "The customer typed [[ti]] on run-2eb42d j39.",
+"code": "[[ti]];",
+"author": "customer",
+"run": "run-2eb42d",
+"card": "j39",
+"other": null
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_601434fb42",
-"ts": "2026-11-18T16:17:56-0500",
-"a": "patagonia",
-"b": "cell_phone",
-"code": "patagonia.interactwith(cell_phone){ cell_phone.receives(patagonia.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the cell phone, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
 {
 "id": "wf_1a2ddd6746",
 "ts": "2026-11-18T16:21:27-0500",
@@ -9560,6 +9581,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_02d293a333",
+"ts": "2026-11-18T18:39:34-0500",
+"a": "bow",
+"b": "lie",
+"code": "bow.interactwith(lie){ lie.receives(bow.envelope); lie.remembers(bisola, 'brown envelope'); lie.tucks(bow, 'yaba bookshop receipt into the brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the lie, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -9663,5 +9695,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T18:37:49-0500"
+"updated": "2026-11-18T18:39:34-0500"
 }
