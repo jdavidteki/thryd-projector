@@ -125,25 +125,27 @@
     '#gstage .gtag.on{opacity:.85}',
     '#gstage .gtag.gcarry{color:#f0d7a2;z-index:9998}',
     '@media (prefers-reduced-motion:reduce){#gstage .gcut.fl,#gstage .gcut.gnotice{animation:none}}',
-    '#gstage .gcut.gmap{overflow:hidden;border-radius:1.1vh;background:#1a2228;box-shadow:0 1vh 2.4vh #0007,0 0 0 1px #fff2;color:#eef4f8;display:flex;flex-direction:column;font:600 max(11px,1.25vh)/1.2 system-ui,sans-serif}',
+    '#gstage .gcut.gmap{overflow:hidden;border-radius:.9vh;background:#1a2228;box-shadow:0 .6vh 1.6vh #0007,0 0 0 1px #fff2;color:#eef4f8;display:block;font:600 max(9px,1.05vh)/1.2 system-ui,sans-serif}',
+    '#gstage .gcut.gmap.gmap-live{box-shadow:0 0 0 2px #fff8,0 0 1.4vh var(--pin,#f0c14b),0 .6vh 1.6vh #0007;animation:mcfloat var(--fd,7s) ease-in-out var(--fdl,0s) infinite,gmaplive 1.6s ease-in-out infinite}',
     '#gstage .gcut.gmap.gmap-focus,#gstage .gcut.gmap[data-dragging="1"]{animation:none}',
-    '#gstage .gmap-bar{flex:0 0 auto;display:flex;align-items:center;gap:.5em;padding:.35em .6em;background:#12181ccc;color:#eef4f8;cursor:grab;z-index:3;user-select:none;pointer-events:auto}',
-    '#gstage .gmap-bar .gmap-title{flex:1;letter-spacing:.04em;text-transform:lowercase}',
-    '#gstage .gmap-bar button{pointer-events:auto;cursor:pointer;border:0;border-radius:.4em;background:#fff2;color:inherit;font:inherit;padding:.15em .5em}',
-    '#gstage .gmap-pane{flex:1 1 auto;min-height:0;position:relative;background:#243038}',
+    '#gstage .gcut.gmap.gmap-focus{box-shadow:0 1vh 2.4vh #0008,0 0 0 1px #fff3;z-index:80}',
+    '#gstage .gmap-bar,#gstage .gmap-legend,#gstage .gcut.gmap:not(.gmap-focus) .leaflet-control-zoom{display:none!important}',
+    '#gstage .gmap-pane{position:absolute;inset:0;overflow:hidden;background:#243038}',
+    '#gstage .gmap-tile{position:absolute;inset:-20%;width:140%;height:140%;object-fit:cover;pointer-events:none;-webkit-user-drag:none}',
+    '#gstage .gcut.gmap .gmappin{position:absolute;width:12px;height:12px;margin-left:-6px;margin-top:-10px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);border:1.5px solid #fff;box-shadow:0 1px 4px #0008;z-index:2;pointer-events:none}',
+    '#gstage .gcut.gmap .gmappin.live{animation:gmappulse 1.4s ease-in-out infinite;box-shadow:0 0 0 2px #fff9,0 0 10px currentColor}',
+    '#gstage .gmap-run{position:absolute;left:4px;bottom:3px;z-index:3;padding:0 5px;border-radius:99px;background:#0008;color:#eef;font:600 max(8px,1.0vh)/1.5 ui-monospace,Menlo,monospace;pointer-events:none;max-width:90%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}',
+    '#gstage .gmap-attr{position:absolute;right:3px;bottom:2px;z-index:3;color:#fff;font:500 7px/1.2 ui-monospace,Menlo,monospace;background:#0006;padding:0 3px;border-radius:3px;pointer-events:none;opacity:.75}',
+    '#gstage .gmap-leaf{position:absolute;inset:0;z-index:1}',
     '#gstage .gcut.gmap:not(.gmap-focus) .leaflet-container{pointer-events:none}',
     '#gstage .gcut.gmap.gmap-focus .leaflet-container{pointer-events:auto;cursor:grab}',
-    '#gstage .gmap-legend{flex:0 0 auto;display:flex;flex-wrap:wrap;gap:.25em .45em;padding:.25em .5em .35em;background:#12181ccc;pointer-events:none;max-height:7.5vh;overflow:hidden}',
-    '#gstage .gmap-legend .chip{pointer-events:none;display:inline-flex;align-items:center;gap:.3em;padding:0 .35em;margin:0;position:static;font:500 max(9px,1.05vh)/1.4 ui-monospace,Menlo,monospace;border-radius:99px;background:#0005;border:1px solid #fff2;color:#eef}',
-    '#gstage .gmap-legend .sw{width:.7em;height:.7em;border-radius:50%;display:inline-block;flex:0 0 auto;box-shadow:0 0 0 1px #0006}',
-    '#gstage .gmap-legend .chip.live .sw{box-shadow:0 0 0 1px #fff8,0 0 .5em currentColor;animation:gmappulse 1.4s ease-in-out infinite}',
-    '#gstage .gmappin{width:14px;height:14px;margin-left:-7px;margin-top:-7px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);border:1.5px solid #fff;box-shadow:0 1px 4px #0008}',
-    '#gstage .gmappin.live{animation:gmappulse 1.4s ease-in-out infinite;box-shadow:0 0 0 2px #fff9,0 0 10px currentColor}',
-    '#gstage .gmappin i{display:none}',
+    '#gstage .gcut.gmap.gmap-focus .gmap-run{pointer-events:auto;cursor:grab}',
+    '#gstage .gcut.gmap.gmap-focus .gmap-tile{display:none}',
     '@keyframes gmappulse{0%,100%{filter:brightness(1);transform:rotate(-45deg) scale(1)}50%{filter:brightness(1.35);transform:rotate(-45deg) scale(1.18)}}',
+    '@keyframes gmaplive{0%,100%{box-shadow:0 0 0 2px #fff6,0 0 .8vh var(--pin,#f0c14b),0 .6vh 1.6vh #0007}50%{box-shadow:0 0 0 3px #fff,0 0 1.8vh var(--pin,#f0c14b),0 .6vh 1.6vh #0007}}',
     '.gmap-pop{font:500 12px/1.35 system-ui,sans-serif;color:#152;min-width:10em}',
     '.gmap-pop b{display:block;font:700 13px/1.3 system-ui,sans-serif;color:#081}',
-    '.gmap-pop .meta{color:#456;font:500 11px/1.3 ui-monospace,Menlo,monospace}'
+    '.gmap-pop .meta{color:#456;font:500 11px/1.3 ui-monospace,Menlo,monospace}' 
   ].join('\n');
   document.head.appendChild(css);
   const stage = document.createElement('div'); stage.id = 'gstage';
@@ -835,7 +837,7 @@
   // decoding fills a small queue of ready groups; a group goes on stage the moment there is room (cap, budget, an empty patch)
   S.ready = []; S.pend = [];
   function place(item){
-    if(S.cuts.length + item.L.objs.length > CAP || S.groups.length >= MAX_GROUPS) return false;
+    if(S.cuts.filter(c => !c.map).length + item.L.objs.length > CAP || S.groups.filter(g => !g.map).length >= MAX_GROUPS) return false;
     S.ready.splice(S.ready.indexOf(item), 1); S.bytes -= item.held;
     try{ spawn(item.row, item.L); }catch(e){ note('spawn fail', item.row.medium_image_id, String(e && e.message || e)); item.L.frames.forEach(f => f.forEach(b => b.close && b.close())); }
     return true;
@@ -875,7 +877,7 @@
   }
   function roomForLive(needCuts){
     needCuts = needCuts || PER_GROUP;
-    while((S.cuts.length + needCuts > CAP || S.groups.length >= MAX_GROUPS) && S.groups.length){
+    while((S.cuts.filter(c => !c.map).length + needCuts > CAP || S.groups.filter(g => !g.map).length >= MAX_GROUPS) && S.groups.filter(evictable).length){
       const old = S.groups.filter(evictable).sort((a, b) => (a.live ? 1 : 0) - (b.live ? 1 : 0) || a.born - b.born)[0];
       if(!old) break;
       exitGroup(old, true);
@@ -1026,8 +1028,8 @@
       return;
     }
     if(!manifest) return;
-    if(S.ready.length >= READY || S.cuts.length >= CAP || S.bytes > BUDGET * .9) return;
-    if(S.groups.length + S.ready.length >= MAX_GROUPS && S.cuts.length >= CAP - 2) return;
+    if(S.ready.length >= READY || S.cuts.filter(c => !c.map).length >= CAP || S.bytes > BUDGET * .9) return;
+    if(S.groups.filter(g => !g.map).length + S.ready.length >= MAX_GROUPS && S.cuts.filter(c => !c.map).length >= CAP - 2) return;
     const prefer = netHeld() ? null : wantLive();
     if(prefer){
       await spawnLive(prefer);
@@ -1069,7 +1071,7 @@
       else if(!netHeld() && now - g.born > g.life && !g.cuts.some(c => c.dragging)) exitGroup(g, false);
     });
     // never more than CAP: the oldest group gives way at once
-    if(S.cuts.length > CAP && S.groups.length){ const old = S.groups.filter(evictable).sort((a, b) => a.born - b.born)[0]; if(old) exitGroup(old, true); }
+    if(S.cuts.filter(c => !c.map).length > CAP && S.groups.length){ const old = S.groups.filter(evictable).sort((a, b) => a.born - b.born)[0]; if(old) exitGroup(old, true); }
     S.maxSeen = Math.max(S.maxSeen, S.cuts.length);
     // starvation guard: no GIF / image / agenda group for 4 min while online and running -> lift every cooldown and retry
     if(!paused() && !netHeld() && manifest && (manifest.assets || []).length && now - S.lastMedia > 240000){
@@ -1328,6 +1330,7 @@
   addEventListener('pointerup', e => { const d = tapD; tapD = null; if(!d || !d.c || d.m) return;
     if(Math.hypot(e.clientX - d.x, e.clientY - d.y) >= 6) return; const dur = performance.now() - d.t;
     if(dur >= 450){ try{ openMethods(d.c, {full: true}); }catch(err){} return; } // long-press: always the whole menu
+    if(d.c && d.c.map){ try{ if(!d.c.mapFocus) setMapFocus(d.c, true); else armMapIdle(d.c); }catch(err){} return; }
     if(dur >= 300) return;
     if(d.snap) note('snap', objName(d.c));
     if(tagName(d.c)) toggleTag(d.c); try{ tapIntent(d.c); }catch(err){ note('methods', String(err && err.message || err)); } }, {capture: true, passive: true});
@@ -1834,7 +1837,7 @@
       x.textContent = (soft ? '\u21af twist: ' : '\u26a0 throws: ') + e.text + (e.job ? ' (' + e.job + ')' : ''); box.appendChild(x); });
     if(c.g && c.g.map){
       const b = document.createElement('button'); b.type = 'button'; b.setAttribute('role', 'menuitem'); b.className = 'gfn';
-      b.textContent = c.mapFocus ? 'Done looking' : 'Look around';
+      b.textContent = c.mapFocus ? 'Collapse' : 'Expand';
       b.addEventListener('pointerdown', ev => ev.stopPropagation());
       b.addEventListener('click', ev => { ev.stopPropagation(); ev.preventDefault(); try{ setMapFocus(c, !c.mapFocus); }catch(err){} closeMethods(); });
       box.appendChild(b);
@@ -1868,7 +1871,7 @@
     M.timer = setTimeout(closeMethods, 12000);
   }
   S.openMethods = openMethods;
-  addEventListener('pointerdown', e => { if(M.el && !M.el.contains(e.target)) closeMethods(); }, {capture: true, passive: true}); // outside tap closes
+  addEventListener('pointerdown', e => { if(M.el && !M.el.contains(e.target)) closeMethods(); const t = e.target; S.cuts.forEach(c => { if(c.mapFocus && !(t && t.closest && t.closest('.gcut.gmap.gmap-focus') === c.el)) try{ setMapFocus(c, false); }catch(err){} }); }, {capture: true, passive: true}); // outside tap closes
   addEventListener('keydown', e => { if(e.key === 'Escape') closeMethods(); });
   function lookOn(c, fn, args){ // the tapped cut only, through the same VERBS/FNS as typed commands
     const L = c.tapL || (c.tapL = {sk: 'tap:' + objName(c), name: objName(c), parts: {}, keys: {}, cast: false});
@@ -1995,15 +1998,18 @@
     L._stage = true;
   })(0);
 
-  // ---------- floating map object (Jesuye 17 Nov 2026 8:27 PM ET): a regular .gcut that
-  // floats, drifts, drags, taps and sits in z-order like the others — not a fixed panel.
-  // Leaflet 1.9.4 is self-hosted (assets/lib/leaflet/, no API key) with OSM tiles.
-  // Map pan/zoom only after tap-to-focus ("Look around"); otherwise the whole object
-  // drags. The title-bar handle still moves it while focused. Bad or empty
-  // data/map_pins.json keeps the last good file, or an empty map, and must not throw.
+  // ---------- thumbnail map objects (Jesuye 17 Nov 2026 8:41 PM ET): one floating
+  // .gcut per agenda, each with a single pin at that run's latest place in
+  // places.jsonl. Thumbnail ~128px (no header, zoom, or legend); tap expands to
+  // ~280px with pan/zoom, then collapses on a tap outside or after ~8s. Leaflet
+  // is lazy: a static OSM tile while collapsed, a real map only when expanded
+  // (and paused/destroyed when off-screen or collapsed). Live agenda pulses.
+  // Bad or empty data/map_pins.json keeps the last good file and must not throw.
   const MAP_LEAFLET_JS = 'assets/lib/leaflet/leaflet.js?v=1.9.4';
   const MAP_LEAFLET_CSS = 'assets/lib/leaflet/leaflet.css?v=1.9.4';
   const MAP_IMG_PATH = 'assets/lib/leaflet/images/';
+  const MAP_THUMB_W = 128, MAP_THUMB_H = 124, MAP_EXPAND_W = 280, MAP_EXPAND_H = 240;
+  const MAP_TILE_Z = 10, MAP_IDLE_MS = 8000;
   function loadLeaflet(){
     if(root.L && L.map) return Promise.resolve(root.L);
     if(S._leafletP) return S._leafletP;
@@ -2023,194 +2029,260 @@
   }
   function readPinFile(d){
     if(!d || typeof d !== 'object') return null;
-    const pins = (Array.isArray(d.pins) ? d.pins : []).filter(p => p && isFinite(+p.lat) && isFinite(+p.lon) && Math.abs(+p.lat) <= 90 && Math.abs(+p.lon) <= 180);
+    const pins = (Array.isArray(d.pins) ? d.pins : []).filter(p => p && p.run && isFinite(+p.lat) && isFinite(+p.lon) && Math.abs(+p.lat) <= 90 && Math.abs(+p.lon) <= 180);
     const runs = (Array.isArray(d.runs) ? d.runs : []).filter(r => r && r.run);
     return {v: d.v, sig: d.sig, active_run: d.active_run || null, pins, runs, unresolved: Array.isArray(d.unresolved) ? d.unresolved : []};
   }
   function loadMapPins(){
     return fetch('data/map_pins.json?t=' + Date.now(), {cache: 'no-store'}).then(r => r.ok ? r.json() : null).then(d => {
       const parsed = readPinFile(d);
-      if(parsed) S.mapData = parsed;
+      if(parsed && parsed.pins.length) S.mapData = parsed;
+      else if(parsed && !S.mapData) S.mapData = parsed;
       return S.mapData || {pins: [], runs: [], sig: '', active_run: null};
     }).catch(()=> S.mapData || {pins: [], runs: [], sig: '', active_run: null});
   }
+  function osmTile(lat, lon, z){
+    z = z || MAP_TILE_Z;
+    const n = 1 << z, rad = lat * Math.PI / 180;
+    const xt = (lon + 180) / 360 * n;
+    const yt = (1 - Math.log(Math.tan(rad) + 1 / Math.cos(rad)) / Math.PI) / 2 * n;
+    const x = Math.floor(xt), y = Math.max(0, Math.min(n - 1, Math.floor(yt)));
+    return {url: 'https://tile.openstreetmap.org/' + z + '/' + ((x % n) + n) % n + '/' + y + '.png', fx: xt - Math.floor(xt), fy: yt - Math.floor(yt), z: z};
+  }
+  function runShort(run){ return String(run || '').replace(/^run-/, '') || 'run'; }
+  function sizeMap(cut, w, h){
+    if(!cut || !cut.el) return;
+    const cx = cut.left + cut.w / 2, cy = cut.top + cut.h / 2;
+    cut.w = w; cut.h = h; if(cut.U){ cut.U.w = w; cut.U.h = h; }
+    cut.left = Math.max(0, Math.min((W.w || vw()) - w, cx - w / 2));
+    cut.top = Math.max(0, Math.min((W.h || vh()) - h, cy - h / 2));
+    const g = cut.g; if(g){ g.w = w; g.h = h; g.x = cut.left; g.y = cut.top; g.fw = w; g.fh = h; }
+    cut.hx = cut.left; cut.hy = cut.top;
+    Object.assign(cut.el.style, {left: cut.left + 'px', top: cut.top + 'px', width: w + 'px', height: h + 'px'});
+    if(cut.leaflet) try{ cut.leaflet.invalidateSize(); }catch(e){}
+  }
+  function destroyLeaflet(cut){
+    if(!cut || !cut.leaflet) return;
+    try{ cut.leaflet.remove(); }catch(e){}
+    cut.leaflet = null; cut.pinLayer = null;
+    if(cut.leafEl){ try{ cut.leafEl.remove(); }catch(e){} cut.leafEl = null; }
+    if(cut.tileEl) cut.tileEl.style.display = '';
+  }
+  function pauseMap(cut){
+    if(!cut) return;
+    if(cut.mapFocus) setMapFocus(cut, false);
+    else destroyLeaflet(cut);
+  }
   function setMapFocus(cut, on){
     if(!cut || !cut.el) return;
-    cut.mapFocus = !!on;
-    cut.el.classList.toggle('gmap-focus', !!on);
-    const btn = cut.el.querySelector('.gmap-look');
-    if(btn) btn.textContent = on ? 'Done' : 'Look around';
-    const map = cut.leaflet;
-    if(!map) return;
-    try{
-      if(on){
-        cut.el.style.animation = 'none';
-        map.dragging && map.dragging.enable();
-        map.scrollWheelZoom && map.scrollWheelZoom.enable();
-        map.touchZoom && map.touchZoom.enable();
-        map.doubleClickZoom && map.doubleClickZoom.enable();
-        map.invalidateSize && map.invalidateSize();
-      } else {
-        map.dragging && map.dragging.disable();
-        map.scrollWheelZoom && map.scrollWheelZoom.disable();
-        map.touchZoom && map.touchZoom.disable();
-        map.doubleClickZoom && map.doubleClickZoom.disable();
-        if(!cut.dragging) cut.el.style.animation = '';
-      }
-    }catch(e){}
+    on = !!on;
+    if(cut._idle){ clearTimeout(cut._idle); cut._idle = 0; }
+    cut.mapFocus = on;
+    cut.el.classList.toggle('gmap-focus', on);
+    sizeMap(cut, on ? MAP_EXPAND_W : MAP_THUMB_W, on ? MAP_EXPAND_H : MAP_THUMB_H);
+    if(on){
+      cut.el.style.animation = 'none';
+      cut.el.style.zIndex = '80';
+      ensureLeaflet(cut).then(map => {
+        if(!cut.mapFocus || !map) return;
+        try{
+          map.dragging && map.dragging.enable();
+          map.scrollWheelZoom && map.scrollWheelZoom.enable();
+          map.touchZoom && map.touchZoom.enable();
+          map.doubleClickZoom && map.doubleClickZoom.enable();
+          if(map.zoomControl && map.zoomControl._container) map.zoomControl._container.style.display = '';
+          map.invalidateSize();
+          const p = cut.pin;
+          if(p) map.setView([+p.lat, +p.lon], 12, {animate: false});
+        }catch(e){}
+      }).catch(()=>{});
+      armMapIdle(cut);
+    } else {
+      try{
+        const map = cut.leaflet;
+        if(map){
+          map.dragging && map.dragging.disable();
+          map.scrollWheelZoom && map.scrollWheelZoom.disable();
+          map.touchZoom && map.touchZoom.disable();
+          map.doubleClickZoom && map.doubleClickZoom.disable();
+          if(map.zoomControl && map.zoomControl._container) map.zoomControl._container.style.display = 'none';
+        }
+      }catch(e){}
+      destroyLeaflet(cut);
+      if(!cut.dragging) cut.el.style.animation = '';
+      cut.el.style.zIndex = String(10 + Math.round((cut.g && cut.g.y) || cut.top || 0));
+    }
   }
-  function pinIcon(color, live){
-    const L = root.L;
-    return L.divIcon({
-      className: '',
-      html: '<div class="gmappin' + (live ? ' live' : '') + '" style="background:' + color + ';color:' + color + '"></div>',
-      iconSize: [14, 14], iconAnchor: [7, 14], popupAnchor: [0, -12]
+  function armMapIdle(cut){
+    if(cut._idle) clearTimeout(cut._idle);
+    cut._idle = setTimeout(()=>{ cut._idle = 0; if(cut.mapFocus && !cut.dragging) setMapFocus(cut, false); }, MAP_IDLE_MS);
+  }
+  function ensureLeaflet(cut){
+    if(cut.leaflet) return Promise.resolve(cut.leaflet);
+    const p = cut.pin; if(!p) return Promise.resolve(null);
+    return loadLeaflet().then(L => {
+      if(cut.leaflet) return cut.leaflet;
+      if(!cut.el || !cut.el.isConnected) return null;
+      try{
+        if(L.Icon && L.Icon.Default) L.Icon.Default.imagePath = MAP_IMG_PATH;
+        const host = document.createElement('div'); host.className = 'gmap-leaf';
+        const pane = cut.el.querySelector('.gmap-pane') || cut.el;
+        pane.appendChild(host); cut.leafEl = host;
+        const map = L.map(host, {
+          zoomControl: true, attributionControl: false,
+          dragging: false, scrollWheelZoom: false, doubleClickZoom: false,
+          boxZoom: false, keyboard: false, tap: false, touchZoom: false,
+          zoomSnap: 0.5, zoomAnimation: false, fadeAnimation: false, markerZoomAnimation: false,
+          preferCanvas: true, maxZoom: 16
+        });
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          maxZoom: 16, minZoom: 3, keepBuffer: 0, updateWhenIdle: true, updateWhenZooming: false
+        }).addTo(map);
+        const col = p.color || '#e85d4c';
+        const icon = L.divIcon({className: '', html: '<div class="gmappin' + (p.live ? ' live' : '') + '" data-marker="1" style="background:' + col + '"></div>', iconSize: [14, 14], iconAnchor: [7, 14], popupAnchor: [0, -12]});
+        const mk = L.marker([+p.lat, +p.lon], {icon: icon, keyboard: false, interactive: true, title: p.place || ''});
+        const when = p.time || p.beat || '';
+        mk.bindPopup('<div class="gmap-pop"><b>' + String(p.place || 'place').replace(/[<>&]/g, '') + '</b><div class="meta">' + [p.run, p.job, when].filter(Boolean).join(' · ').replace(/[<>&]/g, '') + '</div></div>', {closeButton: true, maxWidth: 240});
+        mk.addTo(map);
+        map.setView([+p.lat, +p.lon], 11, {animate: false});
+        map.on('moveend zoomend click', ()=> { if(cut.mapFocus) armMapIdle(cut); });
+        if(map.zoomControl && map.zoomControl._container) map.zoomControl._container.style.display = cut.mapFocus ? '' : 'none';
+        cut.leaflet = map;
+        if(cut.tileEl) cut.tileEl.style.display = 'none';
+        setTimeout(()=>{ try{ map.invalidateSize(); }catch(e){} }, 60);
+        return map;
+      }catch(e){ note('map leaflet', String(e && e.message || e)); return null; }
     });
   }
-  function applyMapPins(cut, data){
-    const L = root.L, map = cut && cut.leaflet;
-    if(!map || !L) return;
-    try{
-      if(cut.pinLayer){ map.removeLayer(cut.pinLayer); cut.pinLayer = null; }
-      const layer = L.layerGroup();
-      const bounds = [];
-      (data.pins || []).forEach(p => {
-        const col = p.color || '#e85d4c';
-        const m = L.marker([+p.lat, +p.lon], {icon: pinIcon(col, !!p.live), keyboard: false, riseOnHover: true, title: p.place || ''});
-        const job = p.job ? String(p.job) : '';
-        const when = p.time || p.beat || '';
-        const html = '<div class="gmap-pop"><b></b><div class="meta"></div></div>';
-        m.bindPopup(html, {closeButton: true, maxWidth: 260, className: 'gmap-popup'});
-        m.on('popupopen', ev => {
-          try{
-            const el = ev.popup && ev.popup.getElement(); if(!el) return;
-            const b = el.querySelector('b'), meta = el.querySelector('.meta');
-            if(b) b.textContent = p.place || 'place';
-            if(meta) meta.textContent = [p.run, job, when].filter(Boolean).join(' · ');
-          }catch(e){}
-        });
-        m.addTo(layer); bounds.push([+p.lat, +p.lon]);
-      });
-      layer.addTo(map); cut.pinLayer = layer;
-      if(bounds.length){
-        try{ map.fitBounds(bounds, {padding: [18, 18], maxZoom: bounds.length === 1 ? 10 : 12}); }
-        catch(e){ try{ map.setView(bounds[0], 4); }catch(err){} }
-      } else {
-        try{ map.setView([9.0, 8.0], 3); }catch(e){}
-      }
-      const leg = cut.el && cut.el.querySelector('.gmap-legend');
-      if(leg){
-        leg.textContent = '';
-        (data.runs || []).forEach(r => {
-          const c = document.createElement('span'); c.className = 'chip' + (r.live ? ' live' : '');
-          const sw = document.createElement('span'); sw.className = 'sw'; sw.style.background = r.color || '#888';
-          c.appendChild(sw);
-          const lab = document.createElement('span');
-          lab.textContent = (r.live ? 'live ' : '') + String(r.run || '').replace(/^run-/, '');
-          c.appendChild(lab);
-          leg.appendChild(c);
-        });
-      }
-      cut.pinSig = data.sig || '';
-    }catch(e){ note('map pins', String(e && e.message || e)); }
+  function paintThumb(cut, pin){
+    if(!cut || !cut.el || !pin) return;
+    const tile = osmTile(+pin.lat, +pin.lon, MAP_TILE_Z);
+    if(cut.tileEl){ cut.tileEl.src = tile.url; }
+    const mark = cut.el.querySelector('.gmappin');
+    if(mark){
+      mark.style.background = pin.color || '#e85d4c';
+      mark.style.left = (tile.fx * 100) + '%';
+      mark.style.top = (tile.fy * 100) + '%';
+      mark.classList.toggle('live', !!pin.live);
+    }
+    const lab = cut.el.querySelector('.gmap-run');
+    if(lab) lab.textContent = (pin.live ? 'live ' : '') + runShort(pin.run);
+    cut.el.classList.toggle('gmap-live', !!pin.live);
+    cut.pin = pin; cut.pinSig = (pin.run || '') + '|' + (pin.job || '') + '|' + pin.lat + '|' + pin.lon;
   }
-  function spawnMap(data){
-    if(S.groups.some(g => g.map && !g.gone)) return S.groups.find(g => g.map && !g.gone);
-    data = data || S.mapData || {pins: [], runs: []};
-    const v = view();
-    const Dh = vh() * (PHONE ? 0.26 : 0.32), Dw = Math.min(vw() * (PHONE ? 0.68 : 0.40), Dh * 1.28);
-    const pos = placeGroup(Dw, Dh);
-    const g = {mid: 'map', kind: 'map', map: true, x: pos.gx, y: pos.gy, w: Dw, h: Dh, k: 1, fw: Dw, fh: Dh,
-      title: 'map', agenda: false, live: false, run: (data && data.active_run) || null, card: null,
-      born: Date.now(), life: 24 * 3600 * 1000, cuts: [], gone: false, offSince: 0, sha: '', ver: '1', place: null, fresh: false, newest: false};
+  function mapVisible(cut){
+    if(!cut || !cut.el || !cut.el.isConnected || (cut.g && cut.g.gone)) return false;
+    const v = view(), x = cut.left, y = cut.top, w = cut.w, h = cut.h;
+    return x < v.x + v.w && x + w > v.x && y < v.y + v.h && y + h > v.y;
+  }
+  function tickMaps(){
+    (S.cuts || []).forEach(c => {
+      if(!c.map) return;
+      const vis = mapVisible(c);
+      if(!vis && c.leaflet && !c.mapFocus && !c.dragging) pauseMap(c);
+    });
+  }
+  function spawnOneMap(pin, slot){
+    if(!pin || !pin.run) return null;
+    if(S.groups.some(g => g.map && !g.gone && g.run === pin.run)) return null;
+    const Dw = MAP_THUMB_W, Dh = MAP_THUMB_H;
+    const pos = slot || placeGroup(Dw, Dh);
+    const g = {mid: 'map:' + pin.run, kind: 'map', map: true, x: pos.gx, y: pos.gy, w: Dw, h: Dh, k: 1, fw: Dw, fh: Dh,
+      title: runShort(pin.run), agenda: false, live: !!pin.live, run: pin.run, card: pin.card || pin.job || null,
+      born: Date.now(), life: 24 * 3600 * 1000, cuts: [], gone: false, offSince: 0, sha: '', ver: '1', place: pin.place || null, fresh: false, newest: false};
     const el = document.createElement('div');
-    el.className = 'gcut gmap' + (RM ? '' : ' fl');
-    el.dataset.kind = 'map';
+    el.className = 'gcut gmap' + (pin.live ? ' gmap-live' : '') + (RM ? '' : ' fl');
+    el.dataset.kind = 'map'; el.dataset.run = pin.run;
     el.setAttribute('role', 'img');
-    el.setAttribute('aria-label', 'map');
-    const bar = document.createElement('div'); bar.className = 'gmap-bar';
-    const title = document.createElement('span'); title.className = 'gmap-title'; title.textContent = 'map'; bar.appendChild(title);
-    const look = document.createElement('button'); look.type = 'button'; look.className = 'gmap-look'; look.textContent = 'Look around';
-    look.addEventListener('pointerdown', ev => ev.stopPropagation());
-    look.addEventListener('click', ev => { ev.stopPropagation(); ev.preventDefault(); const c = g.cuts[0]; if(c) setMapFocus(c, !c.mapFocus); });
-    bar.appendChild(look);
+    el.setAttribute('aria-label', 'map ' + runShort(pin.run));
     const pane = document.createElement('div'); pane.className = 'gmap-pane';
-    const legend = document.createElement('div'); legend.className = 'gmap-legend';
-    el.appendChild(bar); el.appendChild(pane); el.appendChild(legend);
+    const tile = osmTile(+pin.lat, +pin.lon, MAP_TILE_Z);
+    const img = document.createElement('img'); img.className = 'gmap-tile'; img.alt = ''; img.draggable = false;
+    img.loading = 'lazy'; img.decoding = 'async'; img.src = tile.url;
+    const mark = document.createElement('div'); mark.className = 'gmappin' + (pin.live ? ' live' : ''); mark.dataset.marker = '1';
+    mark.style.background = pin.color || '#e85d4c';
+    mark.style.left = (tile.fx * 100) + '%'; mark.style.top = (tile.fy * 100) + '%';
+    pane.appendChild(img); pane.appendChild(mark);
+    const lab = document.createElement('div'); lab.className = 'gmap-run'; lab.textContent = (pin.live ? 'live ' : '') + runShort(pin.run);
+    const attr = document.createElement('div'); attr.className = 'gmap-attr'; attr.textContent = '© OSM';
+    el.appendChild(pane); el.appendChild(lab); el.appendChild(attr);
     const cut = {ctx: null, sid: null, g, home: g, el, frames: [], label: 'map', klass: 'map', i: 0,
-      U: {x: 0, y: 0, w: Dw, h: Dh}, w: Dw, h: Dh, hx: g.x, hy: g.y, entering: true, bytes: 0, area: 0.22, map: true, mapFocus: false, leaflet: null};
+      U: {x: 0, y: 0, w: Dw, h: Dh}, w: Dw, h: Dh, hx: g.x, hy: g.y, entering: true, bytes: 0, area: 0.18,
+      map: true, mapFocus: false, leaflet: null, pin: pin, tileEl: img};
     cut.left = cut.hx; cut.top = cut.hy;
-    Object.assign(el.style, {left: cut.left + 'px', top: cut.top + 'px', width: cut.w + 'px', height: cut.h + 'px', zIndex: String(10 + Math.round(g.y + g.h))});
+    Object.assign(el.style, {left: cut.left + 'px', top: cut.top + 'px', width: cut.w + 'px', height: cut.h + 'px', zIndex: String((pin.live ? 16 : 10) + Math.round(g.y))});
     el.style.setProperty('--fd', (R(5.5, 9)).toFixed(2) + 's'); el.style.setProperty('--fdl', (-R(0, 6)).toFixed(2) + 's');
     cut.canDrag = ev => {
       if(cut.mapFocus){
         const t = ev.target;
-        return !!(t && t.closest && t.closest('.gmap-bar, .gmap-handle, .gmap-legend, .gmap-title, .gmap-look'));
+        return !!(t && t.closest && t.closest('.gmap-run, .gmap-attr, .gmap-bar, .gmap-handle'));
       }
       return true;
     };
     bindDrag(cut);
     S.cuts.push(cut); g.cuts.push(cut);
+    const v = view();
     const ang = g.inAng = Math.random() * Math.PI * 2;
     const off = offTo(cut.left - v.x, cut.top - v.y, cut.w, cut.h, v, ang + Math.PI);
     el.style.opacity = '0';
     if(!RM){ el.style.transition = 'none'; el.style.translate = off[0].toFixed(0) + 'px ' + off[1].toFixed(0) + 'px'; }
     cutsL.appendChild(el);
-    const dur = RM ? 2 : R(5, 9);
+    const dur = RM ? 1.4 : R(4, 7), delay = 40 + Math.random() * 500;
     setTimeout(()=>{
-      el.style.transition = RM ? 'opacity 2s' : 'translate ' + dur.toFixed(2) + 's cubic-bezier(.22,.1,.25,1), opacity 1.4s';
+      el.style.transition = RM ? 'opacity 1.2s' : 'translate ' + dur.toFixed(2) + 's cubic-bezier(.22,.1,.25,1), opacity 1.2s';
       requestAnimationFrame(()=>{ el.style.opacity = '1'; if(!RM) el.style.translate = '0px 0px'; });
       setTimeout(()=>{ cut.entering = false; if(!cut.wan){ el.style.transition = ''; el.style.translate = ''; } }, dur * 1000 + 100);
-    }, 80);
+    }, delay);
     S.groups.push(g); S.spawned++;
-    note('spawn', 'map', (data.pins || []).length + ' pins', (data.runs || []).length + ' runs');
-    const t = document.createElement('div'); t.className = 'gtag'; t.textContent = 'map'; Object.assign(t.style, {left: (g.x + g.w / 2) + 'px', top: (g.y + g.h + 6) + 'px'});
-    cutsL.appendChild(t); g.tag = t; setTimeout(()=> t.classList.add('on'), 2500); setTimeout(()=> t.classList.remove('on'), 11000);
-    loadLeaflet().then(L => {
-      try{
-        if(L && L.Icon && L.Icon.Default) L.Icon.Default.imagePath = MAP_IMG_PATH;
-        const map = L.map(pane, {
-          zoomControl: true, attributionControl: true,
-          dragging: false, scrollWheelZoom: false, doubleClickZoom: false,
-          boxZoom: false, keyboard: false, tap: false, touchZoom: false,
-          zoomSnap: 0.25
-        });
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-          attribution: '&copy; OpenStreetMap', maxZoom: 19, detectRetina: true
-        }).addTo(map);
-        cut.leaflet = map; g.leaflet = map;
-        applyMapPins(cut, data);
-        setTimeout(()=>{ try{ map.invalidateSize(); applyMapPins(cut, S.mapData || data); }catch(e){} }, 900);
-      }catch(e){ note('map leaflet', String(e && e.message || e)); }
-    }).catch(e => note('map leaflet', String(e && e.message || e)));
-    S.mapCut = cut;
     return g;
+  }
+  function mapSlots(n){
+    const slots = [], padX = Math.max(16, vw() * 0.04), padY = Math.max(24, vh() * 0.08);
+    const ww = (W.w || vw()), wh = (W.h || vh());
+    const cols = Math.max(3, Math.ceil(Math.sqrt(n * 1.6)));
+    const rows = Math.max(2, Math.ceil(n / cols));
+    const used = [];
+    for(let i = 0; i < n; i++){
+      const c = i % cols, r = (i / cols | 0);
+      let gx = padX + (c + 0.35 + (i % 3) * 0.12) / cols * (ww - MAP_THUMB_W - padX * 2);
+      let gy = padY + (r + 0.3 + ((i * 2) % 5) * 0.08) / rows * (wh - MAP_THUMB_H - padY * 2);
+      gx = Math.max(0, Math.min(ww - MAP_THUMB_W, gx));
+      gy = Math.max(0, Math.min(wh - MAP_THUMB_H, gy));
+      // nudge away from already-placed maps
+      used.forEach(u => { if(Math.hypot(gx - u.gx, gy - u.gy) < MAP_THUMB_W * 0.95){ gx = Math.min(ww - MAP_THUMB_W, gx + MAP_THUMB_W * 0.7); gy = Math.min(wh - MAP_THUMB_H, gy + MAP_THUMB_H * 0.35); } });
+      const s = {gx, gy}; used.push(s); slots.push(s);
+    }
+    return slots;
+  }
+  function syncMaps(data){
+    data = data || S.mapData || {pins: []};
+    const pins = (data.pins || []).filter(p => p && p.run && isFinite(+p.lat) && isFinite(+p.lon));
+    const want = new Map(pins.map(p => [p.run, p]));
+    S.groups.slice().forEach(g => {
+      if(!g.map || g.gone) return;
+      const pin = want.get(g.run);
+      if(!pin){ try{ if(g.cuts[0] && g.cuts[0].leaflet) destroyLeaflet(g.cuts[0]); }catch(e){} exitGroup(g, true); return; }
+      const cut = g.cuts[0];
+      if(cut) paintThumb(cut, pin);
+      want.delete(g.run);
+    });
+    const missing = pins.filter(p => want.has(p.run));
+    const slots = mapSlots(Math.max(missing.length, pins.length));
+    missing.forEach((p, i) => { try{ spawnOneMap(p, slots[i] || placeGroup(MAP_THUMB_W, MAP_THUMB_H)); }catch(e){ note('map spawn', String(e && e.message || e)); } });
+    note('maps', pins.length + ' agendas');
   }
   function bootMap(){
     if(S._mapBooting) return S._mapBooting;
-    S._mapBooting = loadMapPins().then(d => {
-      S._mapBooting = null;
-      if(S.groups.some(g => g.map && !g.gone)){
-        const g = S.groups.find(x => x.map && !x.gone);
-        const cut = g && g.cuts && g.cuts[0];
-        if(cut && cut.leaflet && d && d.sig !== cut.pinSig) applyMapPins(cut, d);
-        return g;
-      }
-      return spawnMap(d);
-    }).catch(e => { S._mapBooting = null; note('map boot', String(e && e.message || e)); try{ return spawnMap(S.mapData || {pins: [], runs: []}); }catch(err){ return null; } });
+    S._mapBooting = loadMapPins().then(d => { S._mapBooting = null; try{ syncMaps(d); }catch(e){ note('map boot', String(e && e.message || e)); } }).catch(e => { S._mapBooting = null; note('map boot', String(e && e.message || e)); try{ syncMaps(S.mapData || {pins: []}); }catch(err){} });
     return S._mapBooting;
   }
   function pollMapPins(){
-    loadMapPins().then(d => {
-      const g = S.groups.find(x => x.map && !x.gone);
-      const cut = g && g.cuts && g.cuts[0];
-      if(cut && cut.leaflet && d && d.sig !== cut.pinSig) applyMapPins(cut, d);
-    }).catch(()=>{});
+    loadMapPins().then(d => { try{ syncMaps(d); }catch(e){} }).catch(()=>{});
   }
-  S.bootMap = bootMap; S.setMapFocus = setMapFocus;
-
-
+  S.bootMap = bootMap; S.setMapFocus = setMapFocus; S.syncMaps = syncMaps;
+  setInterval(tickMaps, 2000);
   bootMap(); setInterval(pollMapPins, 45000);
+
   pollLiveViews(); setInterval(pollLiveViews, LIVE_POLL_MS);
   MC.loadManifest().then(m => { manifest = m || {assets: []}; note('manifest', (manifest.assets || []).length + ' assets'); spawner();
     let q = S.pendingLib; try{ q = q || new URLSearchParams(location.search).get('mlib'); }catch(e){} if(q) showOnStage(String(q).trim()); })
