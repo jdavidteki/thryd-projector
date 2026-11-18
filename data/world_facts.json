@@ -9106,20 +9106,21 @@
 "card": "w38",
 "other": null
 }
+],
+"ibidunni_oyelade": [
+{
+"id": "wf_d06d5077f2",
+"kind": "consequence",
+"text": "The ibidunni oyelade leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "sports_ball.interactwith(ibidunni_oyelade){ ibidunni_oyelade.receives(sports_ball.envelope); ibidunni_oyelade.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "sports_ball"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_aecb579ad3",
-"ts": "2026-11-18T16:14:26-0500",
-"a": "divine",
-"b": "computer_village",
-"code": "divine.interactwith(computer_village){ computer_village.receives(divine.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the computer village, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
 {
 "id": "wf_601434fb42",
 "ts": "2026-11-18T16:17:56-0500",
@@ -9548,6 +9549,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j8"
+},
+{
+"id": "wf_d06d5077f2",
+"ts": "2026-11-18T18:37:49-0500",
+"a": "sports_ball",
+"b": "ibidunni_oyelade",
+"code": "sports_ball.interactwith(ibidunni_oyelade){ ibidunni_oyelade.receives(sports_ball.envelope); ibidunni_oyelade.remembers(bisola, 'brown envelope'); }",
+"text": "The ibidunni oyelade leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -9651,5 +9663,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T18:25:29-0500"
+"updated": "2026-11-18T18:37:49-0500"
 }
