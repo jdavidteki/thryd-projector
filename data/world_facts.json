@@ -881,16 +881,6 @@
 ],
 "danfo_speaker": [
 {
-"id": "wf_09b87b94e2",
-"kind": "consequence",
-"text": "A Sheep note with Kunle's name and 'scorched container number' on it, turns up with the danfo speaker, which is still playing the same love song.",
-"code": "sheep.interactwith(danfo_speaker){ danfo_speaker.receives(sheep.number); danfo_speaker.remembers(kunle, 'scorched container number'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "w7",
-"other": "sheep"
-},
-{
 "id": "wf_900ee80b4e",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the danfo speaker, which is still playing the same love song.",
@@ -899,6 +889,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "sports_ball"
+},
+{
+"id": "wf_cf4016a231",
+"kind": "consequence",
+"text": "A Bed note with Taiwo's name and 'egbe note' on it, turns up with the danfo speaker, which is still playing the same love song.",
+"code": "bed.interactwith(danfo_speaker){ danfo_speaker.receives(bed.note); danfo_speaker.remembers(taiwo, 'egbe note'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w6",
+"other": "bed"
 },
 {
 "id": "wf_bdad55d985",
@@ -7887,16 +7887,6 @@
 ],
 "cli": [
 {
-"id": "wt_d01399c8ef",
-"kind": "func_call",
-"text": "The customer typed g2() on run-2eb42d j32. It came back: g2(). Implementation: /* g2() */.",
-"code": "g2();",
-"author": "customer",
-"run": "run-2eb42d",
-"card": "j32",
-"other": null
-},
-{
 "id": "wt_76e8f0eb39",
 "kind": "func_call",
 "text": "The customer typed jhjjj on run-2eb42d j32. It came back: jhjjj. Implementation: /* jhjjj */.",
@@ -7931,6 +7921,16 @@
 "kind": "func_call",
 "text": "The customer typed sammmmyyyyy on run-2eb42d j32. It came back: sammmmyyyyy. Implementation: /* sammmmyyyyy */.",
 "code": "sammmmyyyyy;",
+"author": "customer",
+"run": "run-2eb42d",
+"card": "j32",
+"other": null
+},
+{
+"id": "wt_7d2ce31613",
+"kind": "func_call",
+"text": "The customer typed b1() on run-2eb42d j32. It came back: b1(). Implementation: /* b1() */.",
+"code": "b1();",
 "author": "customer",
 "run": "run-2eb42d",
 "card": "j32",
@@ -8297,28 +8297,6 @@
 ]
 },
 "consequences": [
-{
-"id": "wf_a385255a24",
-"ts": "2026-11-18T15:07:24-0500",
-"a": "asmathic",
-"b": "danfo_speaker",
-"code": "asmathic.interactwith(danfo_speaker){ danfo_speaker.receives(asmathic.envelope); danfo_speaker.remembers(bisola, 'brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the danfo speaker, which is still playing the same love song.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
-"id": "wf_13a0fbac36",
-"ts": "2026-11-18T15:09:09-0500",
-"a": "computer_village",
-"b": "red_white_cap",
-"code": "computer_village.interactwith(red_white_cap){ red_white_cap.receives(computer_village.envelope); red_white_cap.remembers(bisola, 'brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the red and white cap, which is still worn.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
 {
 "id": "wf_584e5456ad",
 "ts": "2026-11-18T15:10:01-0500",
@@ -8736,6 +8714,28 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j8"
+},
+{
+"id": "wf_5deeb06314",
+"ts": "2026-11-18T17:00:04-0500",
+"a": "imhf",
+"b": "kerosene_lamp",
+"code": "imhf.interactwith(kerosene_lamp){ kerosene_lamp.receives(imhf.shirt); kerosene_lamp.remembers(bisola, 'green shirt'); }",
+"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up with the kerosene lamp, which is still lit.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j8"
+},
+{
+"id": "wf_cf4016a231",
+"ts": "2026-11-18T17:01:50-0500",
+"a": "bed",
+"b": "danfo_speaker",
+"code": "bed.interactwith(danfo_speaker){ danfo_speaker.receives(bed.note); danfo_speaker.remembers(taiwo, 'egbe note'); }",
+"text": "A Bed note with Taiwo's name and 'egbe note' on it, turns up with the danfo speaker, which is still playing the same love song.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w6"
 }
 ],
 "memories": [
@@ -8839,5 +8839,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T16:57:26-0500"
+"updated": "2026-11-18T17:02:43-0500"
 }
