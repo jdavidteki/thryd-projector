@@ -1481,7 +1481,7 @@
     Object.assign(t.style, {left: (c.left + c.w / 2) + 'px', top: (c.top - 16) + 'px'}); cutsL.appendChild(t);
     requestAnimationFrame(()=> t.classList.add('on')); setTimeout(()=> t.classList.remove('on'), 6000); setTimeout(()=> t.remove(), 8000); }
   function pulse(c){ c.el.classList.remove('gnotice'); void c.el.offsetWidth; c.el.classList.add('gnotice'); setTimeout(()=> c.el.classList.remove('gnotice'), 1300); }
-  function codeLine(t, note){ const dl = root.__thrydDriftLines = root.__thrydDriftLines || []; dl.unshift({t, a: true, note}); if(dl.length > 8) dl.length = 8; }
+  function codeLine(t, note){ try{ const dl = root.__thrydDriftLines = root.__thrydDriftLines || []; const line=String(t==null?'':t); if(!line)return; dl.unshift({t:line, a: true, note: note==null?'':String(note)}); if(dl.length > 8) dl.length = 8; }catch(e){} }
   function ingest(calls, quiet){
     const fresh = [];
     (calls || []).forEach(e => {
@@ -2033,7 +2033,7 @@
     rec.body = body; rec.code = code; rec.event_id = eid;
     const Mbox = S.methods || (S.methods = {sent: []});
     Mbox.sent.push(rec); if(Mbox.sent.length > 40) Mbox.sent.shift();
-    try{ return sendCall(rec, code, eid); }catch(e){ rec.status = 'failed'; rec.error = String(e && e.message || e); return rec; }
+    try{ const p = sendCall(rec, code, eid); if(p && typeof p.then === 'function') p.catch(e=>{ rec.status = 'failed'; rec.error = String(e && e.message || e); }); return p; }catch(e){ rec.status = 'failed'; rec.error = String(e && e.message || e); return rec; }
   }
   function applyFreeCmd(text, opts){
     opts = opts || {};
@@ -2075,7 +2075,7 @@
   function applyCliLine(text, opts){
     opts = opts || {};
     const parts = splitCli(text);
-    const recs = parts.map(p => applyFreeCmd(p, Object.assign({}, opts, {piece: parseCliPiece(p)})));
+    const recs = parts.map(p => { try{ return applyFreeCmd(p, Object.assign({}, opts, {piece: parseCliPiece(p)})); }catch(e){ try{ note('free-cmd error', String(e && e.message || e)); }catch(e2){} return null; } });
     return recs.filter(Boolean);
   }
   async function pollFreeCmds(){
