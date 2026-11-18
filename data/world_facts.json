@@ -6605,20 +6605,21 @@
 "card": "j8",
 "other": "ronke"
 }
+],
+"b_md": [
+{
+"id": "wf_9ccd8e2468",
+"kind": "consequence",
+"text": "The b md leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "move.interactwith(b_md){ b_md.receives(move.envelope); b_md.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "move"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_11db316c1d",
-"ts": "2026-11-17T19:38:19-0500",
-"a": "agenda_scene",
-"b": "iya_bose",
-"code": "agenda_scene.interactwith(iya_bose){ iya_bose.receives(agenda_scene.envelope); iya_bose.remembers(bisola, 'brown envelope'); }",
-"text": "The iya bose leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it.",
-"author": "cos",
-"run": "run-g1-B",
-"card": "j4"
-},
 {
 "id": "wt_bac468d1f7",
 "ts": "2026-11-17T19:52:22-0500",
@@ -7047,6 +7048,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j8"
+},
+{
+"id": "wf_9ccd8e2468",
+"ts": "2026-11-17T23:56:49-0500",
+"a": "move",
+"b": "b_md",
+"code": "move.interactwith(b_md){ b_md.receives(move.envelope); b_md.remembers(bisola, 'brown envelope'); }",
+"text": "The b md leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -7150,5 +7162,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T23:48:06-0500"
+"updated": "2026-11-17T23:56:49-0500"
 }

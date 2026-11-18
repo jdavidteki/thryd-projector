@@ -7349,7 +7349,7 @@
   },
   "run-2eb42d": {
    "forked_from": "safe:9525b78aa7f3",
-   "head": "5d7d5af979",
+   "head": "19825a9cab",
    "commits": [
     {
      "id": "b1965e97d1",
@@ -7400,7 +7400,7 @@
      }
     },
     {
-     "id": "f79ab212df",
+     "id": "cd4859f10d",
      "parent": "f0375af628",
      "branch": "run-2eb42d",
      "job": "j6",
@@ -7424,16 +7424,24 @@
         "code": "love.interactwith(miami){ miami.receives(love.envelope); miami.remembers(bisola, 'brown envelope'); }",
         "scope": null,
         "cause_id": null
+       },
+       {
+        "id": "wf_9ccd8e2468",
+        "object": "b_md",
+        "kind": "consequence",
+        "code": "move.interactwith(b_md){ b_md.receives(move.envelope); b_md.remembers(bisola, 'brown envelope'); }",
+        "scope": null,
+        "cause_id": null
        }
       ],
-      "facts_total": 2,
+      "facts_total": 3,
       "functions": [],
       "instances": []
      }
     },
     {
-     "id": "e92c3ca8ec",
-     "parent": "f79ab212df",
+     "id": "354955d0ae",
+     "parent": "cd4859f10d",
      "branch": "run-2eb42d",
      "job": "j7",
      "at": "2026-11-17T23:39:21-0500",
@@ -7456,8 +7464,8 @@
      }
     },
     {
-     "id": "b4d5f91a69",
-     "parent": "e92c3ca8ec",
+     "id": "fbd0474af6",
+     "parent": "354955d0ae",
      "branch": "run-2eb42d",
      "job": "j8",
      "at": "2026-11-17T23:36:43-0500",
@@ -7488,8 +7496,8 @@
      }
     },
     {
-     "id": "d5e542be8e",
-     "parent": "b4d5f91a69",
+     "id": "bd4371b9a2",
+     "parent": "fbd0474af6",
      "branch": "run-2eb42d",
      "job": "j16",
      "at": "2026-11-17T23:36:00-05:00",
@@ -7532,8 +7540,8 @@
      }
     },
     {
-     "id": "5d7d5af979",
-     "parent": "d5e542be8e",
+     "id": "19825a9cab",
+     "parent": "bd4371b9a2",
      "branch": "run-2eb42d",
      "job": "j17",
      "at": "2026-11-17T23:42:23-05:00",
@@ -7987,9 +7995,9 @@
   "run-9e59ca": "59f544b8d8",
   "run-5a58c4": "17d819bcef",
   "run-g1-B": "ba26d490e3",
-  "run-2eb42d": "5d7d5af979",
+  "run-2eb42d": "19825a9cab",
   "run-cb805f": "8d23a93627"
  },
  "commits": 89,
- "updated": "2026-11-17T23:54:14-05:00"
+ "updated": "2026-11-17T23:56:50-05:00"
 }
