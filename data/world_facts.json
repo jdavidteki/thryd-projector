@@ -1809,16 +1809,6 @@
 ],
 "bicycle": [
 {
-"id": "wf_6c0ce9ef8b",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bicycle, and Bisola reads the name twice.",
-"code": "matches.interactwith(bicycle){ bicycle.receives(matches.envelope); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "matches"
-},
-{
 "id": "wf_0d8f2b3511",
 "kind": "consequence",
 "text": "An Ats note with Bisola's name and 'brown envelope' on it, turns up inside the brown envelope at the bicycle, and Bisola reads the name twice.",
@@ -1857,19 +1847,19 @@
 "run": "run-5a58c4",
 "card": "j2",
 "other": "mbtij"
+},
+{
+"id": "wf_dd77450fd8",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bicycle, and Bisola reads the name twice.",
+"code": "again.interactwith(bicycle){ bicycle.receives(again.envelope); … }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "again"
 }
 ],
 "ronke": [
-{
-"id": "wf_506b0033c6",
-"kind": "consequence",
-"text": "The ronke leaves with an Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am.",
-"code": "ikeja_laundromat.interactwith(ronke){ ronke.receives(ikeja_laundromat.shirt); ronke.remembers(bisola, 'green shirt'); }",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j8",
-"other": "ikeja_laundromat"
-},
 {
 "id": "wf_62be2a822a",
 "kind": "consequence",
@@ -1901,13 +1891,23 @@
 "other": null
 },
 {
-"id": "wt_f0d3ff02c1",
+"id": "wt_3fe7ba95c9",
 "kind": "func_call",
-"text": "The customer typed ronke.getlikes().contains(kazeem.goodqualities), which ran as ronke.getlikes().filter(q => kazeem.goodqualities.includes(q)) on run-2eb42d j21. ronke now has ronke.getlikes as a method on this agenda, and it can be called again.",
-"code": "ronke.getlikes().filter(q => kazeem.goodqualities.includes(q));",
-"author": "customer",
+"text": "Someone at the projector tapped the person and called ronke.hail(what=currentaffairs:Thing) from its agenda run-2eb42d, first seated in run-2eb42d j18.",
+"code": "ronke.hail('currentaffairs');",
+"author": "projector",
 "run": "run-2eb42d",
-"card": "j21",
+"card": "w18",
+"other": null
+},
+{
+"id": "wt_d1604e3c14",
+"kind": "func_call",
+"text": "Someone at the projector tapped the mushin subject and called ronke.hail(what=hawker:Thing) from j18 from its agenda run-2eb42d, first seated in run-2eb42d j18.",
+"code": "ronke.hail('hawker');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w18",
 "other": null
 }
 ],
@@ -6727,26 +6727,6 @@
 ],
 "kazeem": [
 {
-"id": "wf_a93c64b3b4",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the kazeem, and Bisola reads the name twice.",
-"code": "love.interactwith(kazeem){ kazeem.receives(love.envelope); … }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "love"
-},
-{
-"id": "wt_b6604687ff",
-"kind": "func_call",
-"text": "The kazeem hears it (because yorubbbygehinny.getAgenda()).",
-"code": "kazeem.hears(mushin_subject, 'getAgenda');",
-"author": "projector",
-"run": "run-2eb42d",
-"card": "w17",
-"other": null
-},
-{
 "id": "wt_81011798d4",
 "kind": "func_call",
 "text": "The kazeem hears it (because ronke.hail(what=currentaffairs:Thing)).",
@@ -6775,6 +6755,26 @@
 "run": "run-2eb42d",
 "card": "j20",
 "other": "streetlights"
+},
+{
+"id": "wt_775e4c2262",
+"kind": "func_call",
+"text": "The kazeem hears it (because ronke.hail(what=currentaffairs:Thing)).",
+"code": "kazeem.hears(person, 'hail');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w18",
+"other": null
+},
+{
+"id": "wt_f7e0a6b9ee",
+"kind": "func_call",
+"text": "The kazeem hears it (because ronke.hail(what=hawker:Thing) from j18).",
+"code": "kazeem.hears(mushin_subject, 'hail');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w18",
+"other": null
 }
 ],
 "mama_ronke": [
@@ -6841,16 +6841,6 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "saturday_october"
-},
-{
-"id": "wt_96af55ff28",
-"kind": "func_call",
-"text": "The customer typed [[wiitbaw]] on run-2eb42d j21.",
-"code": "[[wiitbaw]];",
-"author": "customer",
-"run": "run-2eb42d",
-"card": "j21",
-"other": null
 }
 ],
 "listen": [
@@ -7105,6 +7095,26 @@
 "run": "run-2eb42d",
 "card": "w18",
 "other": null
+},
+{
+"id": "wt_bc4a1185c7",
+"kind": "func_call",
+"text": "The hear hears it (because ronke.hail(what=currentaffairs:Thing)).",
+"code": "hear.hears(person, 'hail');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w18",
+"other": null
+},
+{
+"id": "wt_1dcc47abd0",
+"kind": "func_call",
+"text": "The hear hears it (because ronke.hail(what=hawker:Thing) from j18).",
+"code": "hear.hears(mushin_subject, 'hail');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w18",
+"other": null
 }
 ],
 "mamaronke": [
@@ -7133,6 +7143,26 @@
 "kind": "func_call",
 "text": "The mamaronke hears it (because ronke.hail(what=hawker:Thing) from j18).",
 "code": "mamaronke.hears(ronke, 'hail');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w18",
+"other": null
+},
+{
+"id": "wt_f08e993c59",
+"kind": "func_call",
+"text": "The mamaronke hears it (because ronke.hail(what=currentaffairs:Thing)).",
+"code": "mamaronke.hears(person, 'hail');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w18",
+"other": null
+},
+{
+"id": "wt_e28edcc9a4",
+"kind": "func_call",
+"text": "The mamaronke hears it (because ronke.hail(what=hawker:Thing) from j18).",
+"code": "mamaronke.hears(mushin_subject, 'hail');",
 "author": "projector",
 "run": "run-2eb42d",
 "card": "w18",
@@ -7199,88 +7229,44 @@
 "other": "inside_odunlade_brain"
 }
 ],
-"dcbh": [
+"she_wants_hood": [
 {
-"id": "wt_91d8ef0353",
-"kind": "func_call",
-"text": "The customer typed [[dcbh]] on run-2eb42d j21.",
-"code": "[[dcbh]];",
-"author": "customer",
+"id": "wf_064a5ecdd9",
+"kind": "consequence",
+"text": "The she wants hood leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "surulere_party_hall.interactwith(she_wants_hood){ she_wants_hood.receives(surulere_party_hall.envelope); she_wants_hood.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
 "run": "run-2eb42d",
-"card": "j21",
-"other": null
+"card": "j6",
+"other": "surulere_party_hall"
 }
 ],
-"cooler": [
+"kano_wedding_tent": [
 {
-"id": "wt_affacf0e65",
-"kind": "func_call",
-"text": "The customer typed cooler.getdatemanufactured() on run-2eb42d j21.",
-"code": "cooler.getdatemanufactured();",
-"author": "customer",
+"id": "wf_f1d06d07f7",
+"kind": "consequence",
+"text": "The kano wedding tent leaves with a Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it.",
+"code": "oke_ayo_bus.interactwith(kano_wedding_tent){ kano_wedding_tent.receives(oke_ayo_bus.bead); kano_wedding_tent.remembers(bisola, 'blue glass bead'); }",
+"author": "cos",
 "run": "run-2eb42d",
-"card": "j21",
-"other": null
+"card": "j5",
+"other": "oke_ayo_bus"
 }
 ],
-"qa_foo": [
+"ojuelegba_bus_stop": [
 {
-"id": "wt_3338b0d4b8",
-"kind": "func_call",
-"text": "The customer typed qa560foo.bar(1795015549888) on run-2eb42d j21. qa560foo now has qa560foo.bar as a method on this agenda, and it can be called again.",
-"code": "qa560foo.bar(1795015549888);",
-"author": "customer",
+"id": "wf_9e8269a8db",
+"kind": "consequence",
+"text": "The danfo speaker ends up with the ojuelegba bus stop, still playing the same love song.",
+"code": "danfo_speaker.interactwith(ojuelegba_bus_stop){ danfo_speaker.db.copyto(ojuelegba_bus_stop); … }",
+"author": "cos",
 "run": "run-2eb42d",
-"card": "j21",
-"other": null
+"card": "w5",
+"other": "danfo_speaker"
 }
 ]
 },
 "consequences": [
-{
-"id": "wf_5975bd1418",
-"ts": "2026-11-18T08:15:31-0500",
-"a": "notnotnotnotyn_sep",
-"b": "dami_going_japa",
-"code": "notnotnotnotyn_sep.interactwith(dami_going_japa){ dami_going_japa.receives(notnotnotnotyn_sep.envelope); dami_going_japa.remembers(bisola, 'brown envelope'); }",
-"text": "The dami going japa leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
-"id": "wf_9fe0b06549",
-"ts": "2026-11-18T08:16:24-0500",
-"a": "red_white",
-"b": "fumiko_nishi",
-"code": "red_white.interactwith(fumiko_nishi){ fumiko_nishi.receives(red_white.envelope); fumiko_nishi.remembers(bisola, 'brown envelope'); }",
-"text": "The fumiko nishi leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
-"id": "wf_0119e05c89",
-"ts": "2026-11-18T08:17:18-0500",
-"a": "bicycle",
-"b": "atp",
-"code": "bicycle.interactwith(atp){ atp.receives(bicycle.envelope); atp.remembers(bisola, 'brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up beside the phone at the atp.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
-"id": "wf_e12df36b59",
-"ts": "2026-11-18T08:19:04-0500",
-"a": "wiitbaw",
-"b": "tie",
-"code": "wiitbaw.interactwith(tie){ tie.receives(wiitbaw.envelope); tie.remembers(bisola, 'brown envelope'); tie.tucks(wiitbaw, 'yaba bookshop receipt into the brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the tie, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
 {
 "id": "wf_7168d093f5",
 "ts": "2026-11-18T08:19:56-0500",
@@ -7676,6 +7662,50 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j21"
+},
+{
+"id": "wf_064a5ecdd9",
+"ts": "2026-11-18T10:28:52-0500",
+"a": "surulere_party_hall",
+"b": "she_wants_hood",
+"code": "surulere_party_hall.interactwith(she_wants_hood){ she_wants_hood.receives(surulere_party_hall.envelope); she_wants_hood.remembers(bisola, 'brown envelope'); }",
+"text": "The she wants hood leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
+},
+{
+"id": "wf_f1d06d07f7",
+"ts": "2026-11-18T10:29:36-0500",
+"a": "oke_ayo_bus",
+"b": "kano_wedding_tent",
+"code": "oke_ayo_bus.interactwith(kano_wedding_tent){ kano_wedding_tent.receives(oke_ayo_bus.bead); kano_wedding_tent.remembers(bisola, 'blue glass bead'); }",
+"text": "The kano wedding tent leaves with a Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j5"
+},
+{
+"id": "wf_9e8269a8db",
+"ts": "2026-11-18T10:32:23-0500",
+"a": "danfo_speaker",
+"b": "ojuelegba_bus_stop",
+"code": "danfo_speaker.interactwith(ojuelegba_bus_stop){ danfo_speaker.db.copyto(ojuelegba_bus_stop); … }",
+"text": "The danfo speaker ends up with the ojuelegba bus stop, still playing the same love song.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w5"
+},
+{
+"id": "wf_dd77450fd8",
+"ts": "2026-11-18T10:33:16-0500",
+"a": "again",
+"b": "bicycle",
+"code": "again.interactwith(bicycle){ bicycle.receives(again.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bicycle, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -7779,5 +7809,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T10:27:58-0500"
+"updated": "2026-11-18T10:33:16-0500"
 }
