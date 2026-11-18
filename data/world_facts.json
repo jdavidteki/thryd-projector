@@ -933,16 +933,6 @@
 ],
 "plastic_sheet": [
 {
-"id": "wf_65561aa93e",
-"kind": "memory",
-"text": "The plastic sheet at Oke-Ayo bus stop: wet; Ronke and Kazeem had been under it, Mama Ronke stood over it.",
-"code": "plastic_sheet.state('wet');",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "w5",
-"other": null
-},
-{
 "id": "wf_f5e12d9286",
 "kind": "consequence",
 "text": "A Truth note with Titi's name and 'egbe note' on it, turns up inside the brown envelope at the plastic sheet, and Bisola reads the name twice.",
@@ -981,6 +971,16 @@
 "run": "run-2eb42d",
 "card": "w5",
 "other": null
+},
+{
+"id": "wf_794d3ec949",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the plastic sheet, which is still wet.",
+"code": "computer_village.interactwith(plastic_sheet){ plastic_sheet.receives(computer_village.envelope); plastic_sheet.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "computer_village"
 }
 ],
 "red_white_cap": [
@@ -7850,17 +7850,6 @@
 },
 "consequences": [
 {
-"id": "wf_3032605525",
-"ts": "2026-11-18T12:04:30-0500",
-"a": "ttb",
-"b": "again",
-"code": "ttb.interactwith(again){ again.receives(ttb.code); again.remembers(ejiro, 'juju code'); again.tucks(ttb, 'ttb note into the brown envelope'); }",
-"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the again, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j2"
-},
-{
 "id": "wf_d6551b2d9b",
 "ts": "2026-11-18T12:11:18-0500",
 "a": "mkdwo",
@@ -8288,6 +8277,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_794d3ec949",
+"ts": "2026-11-18T14:38:08-0500",
+"a": "computer_village",
+"b": "plastic_sheet",
+"code": "computer_village.interactwith(plastic_sheet){ plastic_sheet.receives(computer_village.envelope); plastic_sheet.remembers(bisola, 'brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the plastic sheet, which is still wet.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -8391,5 +8391,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T14:30:27-0500"
+"updated": "2026-11-18T14:38:08-0500"
 }
