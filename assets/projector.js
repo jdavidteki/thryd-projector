@@ -29,9 +29,13 @@ window.thrydNtfyGet=async function(url,ms){
   }finally{clearTimeout(t);if(slot.p===p){slot.p=null;slot.ac=null;}}})();
   slot.p=p;return p;
 };
+window.thrydCli=function(){try{return window.CLI||null;}catch(e){return null;}};
+// Typed commands (source=cli) post to data/cli.json, a topic of their own, so drag/drift
+// traffic on data/drag.json cannot eat the typeline budget (Jesuye 18 Nov 2026 11:56 AM ET).
 window.thrydNtfyPost=async function(body, kind){
-  const DG=window.thrydDrag&&window.thrydDrag();
-  if(!DG||!DG.endpoint||DG.transport!=='ntfy'){const e=new Error('no_endpoint');e.status='no_endpoint';throw e;}
+  const isCli=!!(body&&body.source==='cli');
+  const DG=isCli?(window.thrydCli&&window.thrydCli()):(window.thrydDrag&&window.thrydDrag());
+  if(!DG||!DG.endpoint||(DG.transport&&DG.transport!=='ntfy')){const e=new Error('no_endpoint');e.status='no_endpoint';throw e;}
   let payload=body||{};
   try{if(JSON.stringify(payload).length>3900){payload=Object.assign({},payload);delete payload.impl;delete payload.const_diff;delete payload.ran_as;delete payload.body_v;}}catch(e){}
   window.thrydAbortNtfyPolls&&window.thrydAbortNtfyPolls('call');
@@ -1043,10 +1047,11 @@ addEventListener('resize',()=>{regionsKey='';});
   setMode(MODE);
 })();
 // ---------- drag a chip onto a place heading -> <object>.setlocation(<place>) via data/drag.json endpoint
-let DRAG=null; (async()=>{try{DRAG=await J('data/drag.json?t='+Date.now());}catch(e){}})();
+let DRAG=null,CLI=null; (async()=>{try{DRAG=await J('data/drag.json?t='+Date.now());}catch(e){}})();
+(async()=>{try{CLI=window.CLI=await J('data/cli.json?t='+Date.now());}catch(e){}})();
 function toast(msg,bad){let t=document.getElementById('toast');if(!t){t=document.createElement('div');t.id='toast';document.body.appendChild(t);}
   t.textContent=msg;t.className=bad?'bad on':'on';clearTimeout(t._h);t._h=setTimeout(()=>t.className='',2600);}
-window.thrydCtx=()=>({toast,DRAG,PFULL:typeof PFULL!=='undefined'?PFULL:{},lastM:typeof lastM!=='undefined'?lastM:null}); // prophecy module lives outside this scope
+window.thrydCtx=()=>({toast,DRAG,CLI,PFULL:typeof PFULL!=='undefined'?PFULL:{},lastM:typeof lastM!=='undefined'?lastM:null}); // prophecy module lives outside this scope
 function setReg(id,r){if(!lastM)return;const nm=id.slice(2);(id[0]==='c'?lastM.chars:lastM.objs).forEach(x=>{if((x.name||x.label)===nm){x.region=r;if(x.off!==undefined)x.off=r!==lastM.here;}});
   if(!lastM.regions.includes(r))lastM.regions.push(r);place(lastM);}
 function qaOn(){ return QA_MODE||!!(typeof window!=='undefined'&&window.__THRYD_QA); }

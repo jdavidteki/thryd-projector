@@ -2101,7 +2101,7 @@
   // click a method and it will fire in the db"). A tap (under 6 px and 300 ms, the same test as the name tag; a drag never opens it) shows
   // three buttons: glow() / glow('off'), grow() / shrink(), and setmood('happy'|'sad') for a figure or dim() / brighten() for a thing.
   // A click: the tapped cut reacts at once (its own look only, nothing else on stage changes), the line types into #code, and
-  // {v:1,type:'call',...} goes over the drag relay (data/drag.json ntfy endpoint -> relay.py -> server.py handle_call), where the box
+  // {v:1,type:'call',...} goes over the drag relay (taps/intent: data/drag.json; typelines source=cli: data/cli.json -> relay.py -> server.py handle_call), where the box
   // rebuilds `<object>.<verb>(<arg>);` from a whitelist and writes it with #thryd's /workspace/thryd-db/world.py add (world.db).
   const MCSS = document.createElement('style');
   MCSS.textContent = ['#gmeth{position:fixed;z-index:10050;display:flex;gap:.5vh;flex-wrap:wrap;max-width:min(92vw,520px);padding:.6vh;border-radius:1vh;background:rgba(12,12,12,.9);box-shadow:0 2px 12px #0007;font:600 max(12px,1.5vh) ui-monospace,Menlo,Consolas,monospace;transform:translateX(-50%)}',
@@ -2525,6 +2525,8 @@
     const net = root.thrydNetFetch || ((u, o)=> fetch(u, o));
     const enqueue = root.thrydEnqueueCall;
     const post = root.thrydNtfyPost;
+    const cliCfg = (body && body.source === 'cli') ? ((root.thrydCli && root.thrydCli()) || (ctx && ctx.CLI) || null) : null;
+    const replyBase = (cliCfg && cliCfg.reply) || (DG && DG.reply);
     const prettyErr = err => { if(!err) return 'queued, retrying'; if(/timed out|abort/i.test(String(err))) return 'timed out, retrying'; return 'retrying · ' + err; };
     const statusToast = item => { toast(code + ' · ' + prettyErr(item && item.lastError)); };
     try{
@@ -2563,7 +2565,7 @@
       rec.status = 'sent';
       toast(code + ' → box…');
       for(const w of [1500, 2500, 4000, 8000, 16000]){ await sleep(w);
-        try{ const getter = root.thrydNtfyGet || net; const tx = await (await getter(DG.reply + '/json?poll=1&since=' + t0, 8000)).text();
+        try{ const getter = root.thrydNtfyGet || net; const tx = await (await getter(replyBase + '/json?poll=1&since=' + t0, 8000)).text();
           for(const l of tx.split('\n')){ if(!l) continue; let m; try{ m = JSON.parse(l); m = JSON.parse(m.message || '{}'); }catch(e){ continue; }
             if(m.rid === body.rid || m.event_id === eid){ rec.status = m.status || (m.ok ? 'accepted' : 'rejected'); rec.reply = m;
               if(m.ok){ toast((m.code || code) + ' ✓ in the db'); codeLine(m.resolved || m.code || code, 'tapped · in the world db' + (m.run ? ' · ' + m.run + (m.card ? '/' + m.card : '') : ''));
