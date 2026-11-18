@@ -7755,6 +7755,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "computer_village"
+},
+{
+"id": "wf_8bf4c4131d",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the mlkahb, and Bisola reads the name twice.",
+"code": "icsh.interactwith(mlkahb){ mlkahb.receives(icsh.envelope); … }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "icsh"
 }
 ],
 "uncle_ebo": [
@@ -8714,17 +8724,6 @@
 },
 "consequences": [
 {
-"id": "wf_ab89493629",
-"ts": "2026-11-18T15:35:29-0500",
-"a": "mlkahb",
-"b": "ronke",
-"code": "mlkahb.interactwith(ronke){ ronke.receives(mlkahb.envelope); ronke.remembers(bisola, 'brown envelope'); }",
-"text": "The ronke leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
 "id": "wf_227f586b2b",
 "ts": "2026-11-18T15:38:08-0500",
 "a": "bicycle",
@@ -9152,6 +9151,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j8"
+},
+{
+"id": "wf_8bf4c4131d",
+"ts": "2026-11-18T17:46:10-0500",
+"a": "icsh",
+"b": "mlkahb",
+"code": "icsh.interactwith(mlkahb){ mlkahb.receives(icsh.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the mlkahb, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -9255,5 +9265,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T17:45:17-0500"
+"updated": "2026-11-18T17:46:10-0500"
 }
