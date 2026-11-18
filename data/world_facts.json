@@ -859,16 +859,6 @@
 "other": "seniorgehs"
 },
 {
-"id": "wf_eff49442c3",
-"kind": "memory",
-"text": "The agbada at Oke-Ayo bus stop: worn by a stranger haggler; not for fokanicer.",
-"code": "agbada.state('worn by a stranger haggler');",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "w4",
-"other": null
-},
-{
 "id": "wf_5b709e5424",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the agbada, which is still worn by a stranger haggler.",
@@ -877,6 +867,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "computer_village"
+},
+{
+"id": "wf_eff49442c3",
+"kind": "memory",
+"text": "The agbada at Oke-Ayo bus stop: worn by a stranger haggler; not for fokanicer.",
+"code": "agbada.state('worn by a stranger haggler');",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w4",
+"other": null
 }
 ],
 "danfo_speaker": [
@@ -6901,16 +6901,6 @@
 ],
 "mama_ronke": [
 {
-"id": "wf_69cab0fa75",
-"kind": "consequence",
-"text": "A Laptop note with Taiwo's name and 'lamp soot' on it, turns up with the Mama Ronke, which is still present.",
-"code": "laptop.interactwith(mama_ronke){ mama_ronke.receives(laptop.soot); mama_ronke.remembers(taiwo, 'lamp soot'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j7",
-"other": "laptop"
-},
-{
 "id": "wf_e776d294dd",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the Mama Ronke, which is still present.",
@@ -6939,6 +6929,16 @@
 "run": "run-2eb42d",
 "card": "w7",
 "other": "twgs"
+},
+{
+"id": "wf_dcec71707d",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the Mama Ronke, which is still present.",
+"code": "computer_village.interactwith(mama_ronke){ mama_ronke.receives(computer_village.envelope); mama_ronke.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "computer_village"
 },
 {
 "id": "wt_836e6dea8e",
@@ -7663,16 +7663,6 @@
 ],
 "computer_village": [
 {
-"id": "wf_31655424ad",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the computer village, and Bisola reads the name twice.",
-"code": "bow.interactwith(computer_village){ computer_village.receives(bow.envelope); … }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "bow"
-},
-{
 "id": "wf_8c8abe63e3",
 "kind": "consequence",
 "text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the brown envelope at the computer village, and Bisola reads the name twice.",
@@ -7711,6 +7701,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "yuwa"
+},
+{
+"id": "wf_fc1dbab20d",
+"kind": "consequence",
+"text": "A Laptop note with Taiwo's name and 'lamp soot' on it, turns up inside the brown envelope at the computer village, and Bisola reads the name twice.",
+"code": "tf_mom.interactwith(computer_village){ computer_village.receives(tf_mom.soot); … }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j7",
+"other": "tf_mom"
 }
 ],
 "oh_pls_shaaatttaaapppp": [
@@ -8186,28 +8186,6 @@
 },
 "consequences": [
 {
-"id": "wf_d22d361b19",
-"ts": "2026-11-18T12:34:10-0500",
-"a": "example",
-"b": "thryd",
-"code": "example.interactwith(thryd){ thryd.receives(example.shirt); thryd.remembers(bisola, 'green shirt'); }",
-"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up with the agbada, which is still worn by a stranger haggler.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j8"
-},
-{
-"id": "wf_4788445afd",
-"ts": "2026-11-18T12:38:32-0500",
-"a": "oke_ayo_bus",
-"b": "computer_village",
-"code": "oke_ayo_bus.interactwith(computer_village){ computer_village.receives(oke_ayo_bus.bead); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it, turns up inside the brown envelope at the computer village, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j5"
-},
-{
 "id": "wf_be10af15cb",
 "ts": "2026-11-18T12:42:10-0500",
 "a": "cup",
@@ -8624,6 +8602,28 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_dcec71707d",
+"ts": "2026-11-18T14:52:37-0500",
+"a": "computer_village",
+"b": "mama_ronke",
+"code": "computer_village.interactwith(mama_ronke){ mama_ronke.receives(computer_village.envelope); mama_ronke.remembers(bisola, 'brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the Mama Ronke, which is still present.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
+},
+{
+"id": "wf_fc1dbab20d",
+"ts": "2026-11-18T14:53:29-0500",
+"a": "tf_mom",
+"b": "computer_village",
+"code": "tf_mom.interactwith(computer_village){ computer_village.receives(tf_mom.soot); … }",
+"text": "A Laptop note with Taiwo's name and 'lamp soot' on it, turns up inside the brown envelope at the computer village, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j7"
 }
 ],
 "memories": [
@@ -8727,5 +8727,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T14:49:34-0500"
+"updated": "2026-11-18T14:53:29-0500"
 }
