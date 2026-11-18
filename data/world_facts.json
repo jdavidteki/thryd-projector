@@ -2095,16 +2095,6 @@
 ],
 "laptop": [
 {
-"id": "wf_b92636696c",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the lamp soot at the laptop, and Taiwo reads the name twice.",
-"code": "abeokuta_parlour.interactwith(laptop){ laptop.receives(abeokuta_parlour.envelope); … }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "abeokuta_parlour"
-},
-{
 "id": "wf_1cf900e32c",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the lamp soot at the laptop, and Taiwo reads the name twice.",
@@ -2113,6 +2103,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "namco"
+},
+{
+"id": "wf_22ed36bfd5",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the lamp soot at the laptop, and Taiwo reads the name twice.",
+"code": "icsh.interactwith(laptop){ laptop.receives(icsh.envelope); laptop.remembers(bisola, 'brown envelope'); laptop.tucks(icsh, 'yaba bookshop receipt into the lamp soot'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "icsh"
 },
 {
 "id": "wt_00586a397c",
@@ -7584,17 +7584,6 @@
 },
 "consequences": [
 {
-"id": "wf_4026658dd2",
-"ts": "2026-11-18T10:34:09-0500",
-"a": "oke_ayo_bus",
-"b": "usher_by_kiss",
-"code": "oke_ayo_bus.interactwith(usher_by_kiss){ usher_by_kiss.receives(oke_ayo_bus.bead); usher_by_kiss.remembers(bisola, 'blue glass bead'); }",
-"text": "The usher by kiss leaves with a Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j5"
-},
-{
 "id": "wf_b92636696c",
 "ts": "2026-11-18T10:36:02-0500",
 "a": "abeokuta_parlour",
@@ -8022,6 +8011,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_22ed36bfd5",
+"ts": "2026-11-18T12:21:11-0500",
+"a": "icsh",
+"b": "laptop",
+"code": "icsh.interactwith(laptop){ laptop.receives(icsh.envelope); laptop.remembers(bisola, 'brown envelope'); laptop.tucks(icsh, 'yaba bookshop receipt into the lamp soot'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the lamp soot at the laptop, and Taiwo reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -8125,5 +8125,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T12:17:10-0500"
+"updated": "2026-11-18T12:21:11-0500"
 }
