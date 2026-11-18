@@ -1873,16 +1873,6 @@
 ],
 "ronke": [
 {
-"id": "wt_107bc950ef",
-"kind": "func_call",
-"text": "Someone at the projector tapped the computer village subject and called ronke.hail(what=hawker:Thing) from j18 from its agenda run-2eb42d, first seated in run-2eb42d j18.",
-"code": "ronke.hail('hawker');",
-"author": "projector",
-"run": "run-2eb42d",
-"card": "w18",
-"other": null
-},
-{
 "id": "wt_a3bf81a0b5",
 "kind": "func_call",
 "text": "Someone at the projector tapped the computer village subject and called ronke.hail(what=hawker:Thing) from j18 from its agenda run-2eb42d, first seated in run-2eb42d j18.",
@@ -1916,6 +1906,16 @@
 "id": "wt_ab1804cb34",
 "kind": "func_call",
 "text": "Someone at the projector tapped the computer village subject and called ronke.hail(what=hawker:Thing) from j18 from its agenda run-2eb42d, first seated in run-2eb42d j18.",
+"code": "ronke.hail('hawker');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w18",
+"other": null
+},
+{
+"id": "wt_611c4d0df3",
+"kind": "func_call",
+"text": "Someone at the projector tapped the mile subject and called ronke.hail(what=hawker:Thing) from j18 from its agenda run-2eb42d, first seated in run-2eb42d j18.",
 "code": "ronke.hail('hawker');",
 "author": "projector",
 "run": "run-2eb42d",
@@ -6769,16 +6769,6 @@
 ],
 "kazeem": [
 {
-"id": "wt_120c702dc4",
-"kind": "func_call",
-"text": "The kazeem hears it (because ronke.hail(what=hawker:Thing) from j18).",
-"code": "kazeem.hears(computer_village_subject, 'hail');",
-"author": "projector",
-"run": "run-2eb42d",
-"card": "w18",
-"other": null
-},
-{
 "id": "wt_0ec245e352",
 "kind": "func_call",
 "text": "The kazeem hears it (because ronke.hail(what=hawker:Thing) from j18).",
@@ -6817,19 +6807,19 @@
 "run": "run-2eb42d",
 "card": "w18",
 "other": null
+},
+{
+"id": "wt_19f9f785c0",
+"kind": "func_call",
+"text": "The kazeem hears it (because ronke.hail(what=hawker:Thing) from j18).",
+"code": "kazeem.hears(mile_subject, 'hail');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w18",
+"other": null
 }
 ],
 "mama_ronke": [
-{
-"id": "wf_3da0fbc31d",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the juju code at the mama ronke, and Ejiro reads the name twice.",
-"code": "kazeem.interactwith(mama_ronke){ mama_ronke.receives(kazeem.envelope); … }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "kazeem"
-},
 {
 "id": "wf_9c2a3396cb",
 "kind": "consequence",
@@ -6859,6 +6849,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "move"
+},
+{
+"id": "wf_69cab0fa75",
+"kind": "consequence",
+"text": "A Laptop note with Taiwo's name and 'lamp soot' on it, turns up with the Mama Ronke, which is still present.",
+"code": "laptop.interactwith(mama_ronke){ mama_ronke.receives(laptop.soot); mama_ronke.remembers(taiwo, 'lamp soot'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j7",
+"other": "laptop"
 },
 {
 "id": "wt_836e6dea8e",
@@ -6981,6 +6981,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "again"
+},
+{
+"id": "wf_bcb1d5304b",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the niaw, and Bisola reads the name twice.",
+"code": "listen.interactwith(niaw){ niaw.receives(listen.envelope); … }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "listen"
 }
 ],
 "mkdwo": [
@@ -7179,16 +7189,6 @@
 ],
 "hear": [
 {
-"id": "wt_e3ce0f5607",
-"kind": "func_call",
-"text": "The hear hears it (because ronke.hail(what=hawker:Thing) from j18).",
-"code": "hear.hears(surulere_subject, 'hail');",
-"author": "projector",
-"run": "run-2eb42d",
-"card": "w18",
-"other": null
-},
-{
 "id": "wt_dc66a61d2f",
 "kind": "func_call",
 "text": "The hear hears it (because ronke.hail(what=hawker:Thing) from j18).",
@@ -7227,19 +7227,19 @@
 "run": "run-2eb42d",
 "card": "w18",
 "other": null
-}
-],
-"mamaronke": [
+},
 {
-"id": "wt_7ef7a59be0",
+"id": "wt_5d49880a0b",
 "kind": "func_call",
-"text": "The mamaronke hears it (because ronke.hail(what=hawker:Thing) from j18).",
-"code": "mamaronke.hears(surulere_subject, 'hail');",
+"text": "The hear hears it (because ronke.hail(what=hawker:Thing) from j18).",
+"code": "hear.hears(mile_subject, 'hail');",
 "author": "projector",
 "run": "run-2eb42d",
 "card": "w18",
 "other": null
-},
+}
+],
+"mamaronke": [
 {
 "id": "wt_5869f58e82",
 "kind": "func_call",
@@ -7275,6 +7275,16 @@
 "kind": "func_call",
 "text": "The mamaronke hears it (because ronke.hail(what=hawker:Thing) from j18).",
 "code": "mamaronke.hears(computer_village_subject, 'hail');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w18",
+"other": null
+},
+{
+"id": "wt_62261310fe",
+"kind": "func_call",
+"text": "The mamaronke hears it (because ronke.hail(what=hawker:Thing) from j18).",
+"code": "mamaronke.hears(mile_subject, 'hail');",
 "author": "projector",
 "run": "run-2eb42d",
 "card": "w18",
@@ -7706,28 +7716,6 @@
 },
 "consequences": [
 {
-"id": "wf_81eaa25b19",
-"ts": "2026-11-18T11:11:29-0500",
-"a": "agenda_scene",
-"b": "people_scene",
-"code": "agenda_scene.interactwith(people_scene){ people_scene.receives(agenda_scene.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, turns up inside the brown envelope at the people scene, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j4"
-},
-{
-"id": "wf_65ccf067fb",
-"ts": "2026-11-18T11:12:22-0500",
-"a": "b_md",
-"b": "sheep",
-"code": "b_md.interactwith(sheep){ sheep.receives(b_md.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the scorched container number at the sheep, and Kunle reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
 "id": "wf_d34a42e344",
 "ts": "2026-11-18T11:13:15-0500",
 "a": "atp",
@@ -8144,6 +8132,28 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_bcb1d5304b",
+"ts": "2026-11-18T13:01:26-0500",
+"a": "listen",
+"b": "niaw",
+"code": "listen.interactwith(niaw){ niaw.receives(listen.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the niaw, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
+},
+{
+"id": "wf_69cab0fa75",
+"ts": "2026-11-18T13:04:05-0500",
+"a": "laptop",
+"b": "mama_ronke",
+"code": "laptop.interactwith(mama_ronke){ mama_ronke.receives(laptop.soot); mama_ronke.remembers(taiwo, 'lamp soot'); }",
+"text": "A Laptop note with Taiwo's name and 'lamp soot' on it, turns up with the Mama Ronke, which is still present.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j7"
 }
 ],
 "memories": [
@@ -8247,5 +8257,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T12:58:49-0500"
+"updated": "2026-11-18T13:04:05-0500"
 }
