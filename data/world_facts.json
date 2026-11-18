@@ -6243,20 +6243,21 @@
 "card": "j5",
 "other": "saturday_october"
 }
+],
+"map": [
+{
+"id": "wf_25e9fb2225",
+"kind": "consequence",
+"text": "The map leaves with a Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it.",
+"code": "saturday_october.interactwith(map){ map.receives(saturday_october.bead); map.remembers(bisola, 'blue glass bead'); }",
+"author": "cos",
+"run": "run-g1-B",
+"card": "j5",
+"other": "saturday_october"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_ae613c0e3c",
-"ts": "2026-11-17T16:41:08-0500",
-"a": "marker_b",
-"b": "wser",
-"code": "marker_b.interactwith(wser){ wser.receives(marker_b.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the wser, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
 {
 "id": "wf_85a5da197b",
 "ts": "2026-11-17T16:47:01-0500",
@@ -6685,6 +6686,17 @@
 "author": "cos",
 "run": "run-g1-B",
 "card": "j5"
+},
+{
+"id": "wf_25e9fb2225",
+"ts": "2026-11-17T20:42:54-0500",
+"a": "saturday_october",
+"b": "map",
+"code": "saturday_october.interactwith(map){ map.receives(saturday_october.bead); map.remembers(bisola, 'blue glass bead'); }",
+"text": "The map leaves with a Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it.",
+"author": "cos",
+"run": "run-g1-B",
+"card": "j5"
 }
 ],
 "memories": [
@@ -6788,5 +6800,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T20:12:26-0500"
+"updated": "2026-11-17T20:42:54-0500"
 }
