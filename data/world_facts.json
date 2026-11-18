@@ -963,16 +963,6 @@
 "other": "computer_village"
 },
 {
-"id": "wf_194e588426",
-"kind": "memory",
-"text": "The plastic sheet at Oke-Ayo bus stop: wet; Ronke and Kazeem had been under it, Mama Ronke stood over it.",
-"code": "plastic_sheet.state('wet');",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "w5",
-"other": null
-},
-{
 "id": "wf_0ccd93683f",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the plastic sheet, which is still wet.",
@@ -981,6 +971,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "love"
+},
+{
+"id": "wf_194e588426",
+"kind": "memory",
+"text": "The plastic sheet at Oke-Ayo bus stop: wet; Ronke and Kazeem had been under it, Mama Ronke stood over it.",
+"code": "plastic_sheet.state('wet');",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w5",
+"other": null
 }
 ],
 "red_white_cap": [
@@ -7723,16 +7723,6 @@
 ],
 "computer_village": [
 {
-"id": "wf_2c725daca8",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the computer village, and Bisola reads the name twice.",
-"code": "yuwa.interactwith(computer_village){ computer_village.receives(yuwa.envelope); … }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "yuwa"
-},
-{
 "id": "wf_fc1dbab20d",
 "kind": "consequence",
 "text": "A Laptop note with Taiwo's name and 'lamp soot' on it, turns up inside the brown envelope at the computer village, and Bisola reads the name twice.",
@@ -7771,6 +7761,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "icsh"
+},
+{
+"id": "wf_b147bc2420",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the computer village, and Bisola reads the name twice.",
+"code": "namco.interactwith(computer_village){ computer_village.receives(namco.envelope); … }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "namco"
 }
 ],
 "oh_pls_shaaatttaaapppp": [
@@ -8268,17 +8268,6 @@
 },
 "consequences": [
 {
-"id": "wf_0c3a4289ef",
-"ts": "2026-11-18T13:51:33-0500",
-"a": "patagonia",
-"b": "computer_village",
-"code": "patagonia.interactwith(computer_village){ computer_village.receives(patagonia.code); … }",
-"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the green shirt at the computer village, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j2"
-},
-{
 "id": "wf_ab62a79e69",
 "ts": "2026-11-18T13:52:25-0500",
 "a": "bow",
@@ -8706,6 +8695,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_b147bc2420",
+"ts": "2026-11-18T16:01:16-0500",
+"a": "namco",
+"b": "computer_village",
+"code": "namco.interactwith(computer_village){ computer_village.receives(namco.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the computer village, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -8809,5 +8809,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T16:00:23-0500"
+"updated": "2026-11-18T16:01:16-0500"
 }
