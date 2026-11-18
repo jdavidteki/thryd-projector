@@ -1870,16 +1870,6 @@
 ],
 "bird": [
 {
-"id": "wf_2ea17fcdf9",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bird, and Bisola reads the name twice.",
-"code": "omo.interactwith(bird){ bird.receives(omo.envelope); bird.remembers(bisola, 'brown envelope'); bird.tucks(omo, 'yaba bookshop receipt into the brown envelope'); }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "omo"
-},
-{
 "id": "wf_232ba67cda",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the lamp soot at the bird, and Taiwo reads the name twice.",
@@ -1898,6 +1888,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "kweshon"
+},
+{
+"id": "wf_79cd81af0c",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the envelope corner at the bird, and Bisola reads the name twice.",
+"code": "b_md.interactwith(bird){ bird.receives(b_md.envelope); bird.remembers(bisola, 'brown envelope'); bird.tucks(b_md, 'yaba bookshop receipt into the envelope corner'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "b_md"
 },
 {
 "id": "wt_c6ff1d186b",
@@ -6617,53 +6617,45 @@
 "card": "j6",
 "other": "move"
 }
+],
+"yuwa": [
+{
+"id": "wf_050b0569d2",
+"kind": "consequence",
+"text": "The yuwa leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "namco.interactwith(yuwa){ yuwa.receives(namco.envelope); yuwa.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "namco"
+}
+],
+"lie": [
+{
+"id": "wf_a9c56311aa",
+"kind": "consequence",
+"text": "The lie leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "saturday_october.interactwith(lie){ lie.receives(saturday_october.envelope); lie.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "saturday_october"
+}
+],
+"kazeem": [
+{
+"id": "wf_0e2fa723d4",
+"kind": "consequence",
+"text": "The kazeem leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "icsh.interactwith(kazeem){ kazeem.receives(icsh.envelope); kazeem.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "icsh"
+}
 ]
 },
 "consequences": [
-{
-"id": "wt_bac468d1f7",
-"ts": "2026-11-17T19:52:22-0500",
-"a": "oven",
-"b": "beach_lummus_park",
-"code": "oven.interactwith(beach_lummus_park){ beach_lummus_park.receives(oven.bead); beach_lummus_park.find('footprint').add('blue glass bead'); oven.state('sandy'); }",
-"text": "The oven ends up out on the sand at beach lummus park, and the blue glass bead rolls from its rack into a footprint the tide has not reached yet.",
-"author": "thryd",
-"run": "run-g1-B",
-"card": "j13"
-},
-{
-"id": "wt_cab5febc51",
-"ts": "2026-11-17T19:52:22-0500",
-"a": "miami",
-"b": "me_boy_same",
-"code": "miami.interactwith(me_boy_same){ me_boy_same.receives(miami.brown_envelope); me_boy_same.holds(miami, 'brown envelope, unopened'); me_boy_same.state('waiting'); }",
-"text": "In Miami, the boy who keeps saying \"me, same\" is handed the brown envelope at a bus stop and holds it without asking whose name is inside.",
-"author": "thryd",
-"run": "run-g1-B",
-"card": "j29"
-},
-{
-"id": "wt_b71c64da50",
-"ts": "2026-11-17T19:52:22-0500",
-"a": "oya_dance_subject",
-"b": "no_go_fold",
-"code": "oya_dance_subject.interactwith(no_go_fold){ no_go_fold.set('crease', 'chalked over'); … }",
-"text": "Kemi rehearses her Oya dance on the folded map and stamps a chalk circle right on the no go fold, so nobody can refold it the old way.",
-"author": "thryd",
-"run": "run-g1-B",
-"card": "j29"
-},
-{
-"id": "wf_2bede10446",
-"ts": "2026-11-17T20:12:26-0500",
-"a": "saturday_october",
-"b": "talk_woman",
-"code": "saturday_october.interactwith(talk_woman){ talk_woman.receives(saturday_october.bead); talk_woman.remembers(bisola, 'blue glass bead'); }",
-"text": "The talk woman leaves with a Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it.",
-"author": "cos",
-"run": "run-g1-B",
-"card": "j5"
-},
 {
 "id": "wf_25e9fb2225",
 "ts": "2026-11-17T20:42:54-0500",
@@ -7059,6 +7051,50 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_050b0569d2",
+"ts": "2026-11-17T23:57:41-0500",
+"a": "namco",
+"b": "yuwa",
+"code": "namco.interactwith(yuwa){ yuwa.receives(namco.envelope); yuwa.remembers(bisola, 'brown envelope'); }",
+"text": "The yuwa leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
+},
+{
+"id": "wf_a9c56311aa",
+"ts": "2026-11-17T23:58:33-0500",
+"a": "saturday_october",
+"b": "lie",
+"code": "saturday_october.interactwith(lie){ lie.receives(saturday_october.envelope); lie.remembers(bisola, 'brown envelope'); }",
+"text": "The lie leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
+},
+{
+"id": "wf_79cd81af0c",
+"ts": "2026-11-18T00:00:18-0500",
+"a": "b_md",
+"b": "bird",
+"code": "b_md.interactwith(bird){ bird.receives(b_md.envelope); bird.remembers(bisola, 'brown envelope'); bird.tucks(b_md, 'yaba bookshop receipt into the envelope corner'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the envelope corner at the bird, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
+},
+{
+"id": "wf_0e2fa723d4",
+"ts": "2026-11-18T00:01:10-0500",
+"a": "icsh",
+"b": "kazeem",
+"code": "icsh.interactwith(kazeem){ kazeem.receives(icsh.envelope); kazeem.remembers(bisola, 'brown envelope'); }",
+"text": "The kazeem leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -7162,5 +7198,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T23:56:49-0500"
+"updated": "2026-11-18T00:01:10-0500"
 }
