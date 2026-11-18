@@ -1873,16 +1873,6 @@
 ],
 "ronke": [
 {
-"id": "wt_5d3dabff36",
-"kind": "func_call",
-"text": "Someone at the projector tapped the ikeja subject and called ronke.hail(what=hawker:Thing) from j18 from its agenda run-2eb42d, first seated in run-2eb42d j18.",
-"code": "ronke.hail('hawker');",
-"author": "projector",
-"run": "run-2eb42d",
-"card": "w18",
-"other": null
-},
-{
 "id": "wt_9521f7caff",
 "kind": "func_call",
 "text": "Someone at the projector tapped the surulere subject and called ronke.hail(what=hawker:Thing) from j18 from its agenda run-2eb42d, first seated in run-2eb42d j18.",
@@ -1914,6 +1904,16 @@
 },
 {
 "id": "wt_107bc950ef",
+"kind": "func_call",
+"text": "Someone at the projector tapped the computer village subject and called ronke.hail(what=hawker:Thing) from j18 from its agenda run-2eb42d, first seated in run-2eb42d j18.",
+"code": "ronke.hail('hawker');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w18",
+"other": null
+},
+{
+"id": "wt_a3bf81a0b5",
 "kind": "func_call",
 "text": "Someone at the projector tapped the computer village subject and called ronke.hail(what=hawker:Thing) from j18 from its agenda run-2eb42d, first seated in run-2eb42d j18.",
 "code": "ronke.hail('hawker');",
@@ -6769,16 +6769,6 @@
 ],
 "kazeem": [
 {
-"id": "wt_f7e0a6b9ee",
-"kind": "func_call",
-"text": "The kazeem hears it (because ronke.hail(what=hawker:Thing) from j18).",
-"code": "kazeem.hears(mushin_subject, 'hail');",
-"author": "projector",
-"run": "run-2eb42d",
-"card": "w18",
-"other": null
-},
-{
 "id": "wt_cb55c59602",
 "kind": "func_call",
 "text": "The kazeem hears it (because ronke.hail(what=hawker:Thing) from j18).",
@@ -6810,6 +6800,16 @@
 },
 {
 "id": "wt_120c702dc4",
+"kind": "func_call",
+"text": "The kazeem hears it (because ronke.hail(what=hawker:Thing) from j18).",
+"code": "kazeem.hears(computer_village_subject, 'hail');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w18",
+"other": null
+},
+{
+"id": "wt_0ec245e352",
 "kind": "func_call",
 "text": "The kazeem hears it (because ronke.hail(what=hawker:Thing) from j18).",
 "code": "kazeem.hears(computer_village_subject, 'hail');",
@@ -7169,16 +7169,6 @@
 ],
 "hear": [
 {
-"id": "wt_1dcc47abd0",
-"kind": "func_call",
-"text": "The hear hears it (because ronke.hail(what=hawker:Thing) from j18).",
-"code": "hear.hears(mushin_subject, 'hail');",
-"author": "projector",
-"run": "run-2eb42d",
-"card": "w18",
-"other": null
-},
-{
 "id": "wt_855ea30ec5",
 "kind": "func_call",
 "text": "The hear hears it (because ronke.hail(what=hawker:Thing) from j18).",
@@ -7217,19 +7207,19 @@
 "run": "run-2eb42d",
 "card": "w18",
 "other": null
-}
-],
-"mamaronke": [
+},
 {
-"id": "wt_e28edcc9a4",
+"id": "wt_168e051f5b",
 "kind": "func_call",
-"text": "The mamaronke hears it (because ronke.hail(what=hawker:Thing) from j18).",
-"code": "mamaronke.hears(mushin_subject, 'hail');",
+"text": "The hear hears it (because ronke.hail(what=hawker:Thing) from j18).",
+"code": "hear.hears(computer_village_subject, 'hail');",
 "author": "projector",
 "run": "run-2eb42d",
 "card": "w18",
 "other": null
-},
+}
+],
+"mamaronke": [
 {
 "id": "wt_1a9ff24142",
 "kind": "func_call",
@@ -7262,6 +7252,16 @@
 },
 {
 "id": "wt_5869f58e82",
+"kind": "func_call",
+"text": "The mamaronke hears it (because ronke.hail(what=hawker:Thing) from j18).",
+"code": "mamaronke.hears(computer_village_subject, 'hail');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w18",
+"other": null
+},
+{
+"id": "wt_658ad83256",
 "kind": "func_call",
 "text": "The mamaronke hears it (because ronke.hail(what=hawker:Thing) from j18).",
 "code": "mamaronke.hears(computer_village_subject, 'hail');",
@@ -7493,16 +7493,6 @@
 ],
 "computer_village": [
 {
-"id": "wf_adc71f653a",
-"kind": "consequence",
-"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the green shirt at the computer village, and Bisola reads the name twice.",
-"code": "ttb.interactwith(computer_village){ computer_village.receives(ttb.code); … }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j2",
-"other": "ttb"
-},
-{
 "id": "wf_399a69a972",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the green shirt at the computer village, and Bisola reads the name twice.",
@@ -7541,6 +7531,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "wser"
+},
+{
+"id": "wf_4788445afd",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it, turns up inside the brown envelope at the computer village, and Bisola reads the name twice.",
+"code": "oke_ayo_bus.interactwith(computer_village){ computer_village.receives(oke_ayo_bus.bead); … }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j5",
+"other": "oke_ayo_bus"
 }
 ],
 "oh_pls_shaaatttaaapppp": [
@@ -7603,17 +7603,6 @@
 ]
 },
 "consequences": [
-{
-"id": "wf_8fc8a53a7b",
-"ts": "2026-11-18T10:47:30-0500",
-"a": "patagonia",
-"b": "ronke",
-"code": "patagonia.interactwith(ronke){ ronke.receives(patagonia.code); ronke.remembers(ejiro, 'juju code'); }",
-"text": "The ronke leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j2"
-},
 {
 "id": "wf_7e777a31b2",
 "ts": "2026-11-18T10:52:56-0500",
@@ -8042,6 +8031,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j8"
+},
+{
+"id": "wf_4788445afd",
+"ts": "2026-11-18T12:38:32-0500",
+"a": "oke_ayo_bus",
+"b": "computer_village",
+"code": "oke_ayo_bus.interactwith(computer_village){ computer_village.receives(oke_ayo_bus.bead); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it, turns up inside the brown envelope at the computer village, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j5"
 }
 ],
 "memories": [
@@ -8145,5 +8145,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T12:34:10-0500"
+"updated": "2026-11-18T12:38:32-0500"
 }
