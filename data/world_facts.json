@@ -4684,6 +4684,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "family_compound_ikorodu"
+},
+{
+"id": "wf_bd3eb7ade5",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the as poor man, and Bisola reads the name twice.",
+"code": "notnotnotnotyn_jan.interactwith(as_poor_man){ as_poor_man.receives(notnotnotnotyn_jan.envelope); … }",
+"author": "cos",
+"run": "run-g1-B",
+"card": "j6",
+"other": "notnotnotnotyn_jan"
 }
 ],
 "secret": [
@@ -6419,53 +6429,45 @@
 "card": "j6",
 "other": "neck_ostrich"
 }
+],
+"entertainment_nobel": [
+{
+"id": "wf_5b5d12ad65",
+"kind": "consequence",
+"text": "The entertainment nobel leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "notnotnotnotyn_dec.interactwith(entertainment_nobel){ entertainment_nobel.receives(notnotnotnotyn_dec.envelope); … }",
+"author": "cos",
+"run": "run-g1-B",
+"card": "j6",
+"other": "notnotnotnotyn_dec"
+}
+],
+"unc_status": [
+{
+"id": "wf_b34c834196",
+"kind": "consequence",
+"text": "The unc status leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "people_scene.interactwith(unc_status){ unc_status.receives(people_scene.envelope); unc_status.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-g1-B",
+"card": "j6",
+"other": "people_scene"
+}
+],
+"umbrella": [
+{
+"id": "wf_7afeb6748e",
+"kind": "consequence",
+"text": "The umbrella now remembers the miami: 11:45pm, Monday 2 November 2026: A phone on the counter starts the off-key chorus, then.",
+"code": "miami.interactwith(umbrella){ umbrella.receives(miami.phone); }",
+"author": "cos",
+"run": "run-g1-B",
+"card": "j29",
+"other": "miami"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_535296da9e",
-"ts": "2026-11-17T17:17:50-0500",
-"a": "hard",
-"b": "marker_b",
-"code": "hard.interactwith(marker_b){ marker_b.receives(hard.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the marker b, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
-"id": "wf_62884f3410",
-"ts": "2026-11-17T17:20:23-0500",
-"a": "matbaotstaili",
-"b": "icsh",
-"code": "matbaotstaili.interactwith(icsh){ icsh.receives(matbaotstaili.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the juju code at the icsh, and Ejiro reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
-"id": "wf_481315784a",
-"ts": "2026-11-17T17:21:15-0500",
-"a": "hard",
-"b": "amnhagc",
-"code": "hard.interactwith(amnhagc){ amnhagc.receives(hard.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the lamp soot at the amnhagc, and Taiwo reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
-"id": "wf_70bc57a833",
-"ts": "2026-11-17T17:22:57-0500",
-"a": "hard",
-"b": "marina_biscayne_bay",
-"code": "hard.interactwith(marina_biscayne_bay){ marina_biscayne_bay.receives(hard.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the marina biscayne bay, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
 {
 "id": "wf_1ad7a999a6",
 "ts": "2026-11-17T17:30:54-0500",
@@ -6861,6 +6863,50 @@
 "author": "cos",
 "run": "run-g1-B",
 "card": "j6"
+},
+{
+"id": "wf_5b5d12ad65",
+"ts": "2026-11-17T22:34:44-0500",
+"a": "notnotnotnotyn_dec",
+"b": "entertainment_nobel",
+"code": "notnotnotnotyn_dec.interactwith(entertainment_nobel){ entertainment_nobel.receives(notnotnotnotyn_dec.envelope); … }",
+"text": "The entertainment nobel leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-g1-B",
+"card": "j6"
+},
+{
+"id": "wf_bd3eb7ade5",
+"ts": "2026-11-17T22:36:29-0500",
+"a": "notnotnotnotyn_jan",
+"b": "as_poor_man",
+"code": "notnotnotnotyn_jan.interactwith(as_poor_man){ as_poor_man.receives(notnotnotnotyn_jan.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the as poor man, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-g1-B",
+"card": "j6"
+},
+{
+"id": "wf_b34c834196",
+"ts": "2026-11-17T22:38:14-0500",
+"a": "people_scene",
+"b": "unc_status",
+"code": "people_scene.interactwith(unc_status){ unc_status.receives(people_scene.envelope); unc_status.remembers(bisola, 'brown envelope'); }",
+"text": "The unc status leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-g1-B",
+"card": "j6"
+},
+{
+"id": "wf_7afeb6748e",
+"ts": "2026-11-17T22:39:06-0500",
+"a": "miami",
+"b": "umbrella",
+"code": "miami.interactwith(umbrella){ umbrella.receives(miami.phone); }",
+"text": "The umbrella now remembers the miami: 11:45pm, Monday 2 November 2026: A phone on the counter starts the off-key chorus, then.",
+"author": "cos",
+"run": "run-g1-B",
+"card": "j29"
 }
 ],
 "memories": [
@@ -6964,5 +7010,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T22:33:52-0500"
+"updated": "2026-11-17T22:39:06-0500"
 }
