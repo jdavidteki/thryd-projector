@@ -6628,7 +6628,7 @@
   },
   "run-g1-B": {
    "forked_from": "safe:e164727d4c98",
-   "head": "f77fe8c187",
+   "head": "c0b88adf48",
    "commits": [
     {
      "id": "bcc23f8753",
@@ -6655,7 +6655,7 @@
      }
     },
     {
-     "id": "0e5f32144d",
+     "id": "7ec87780d6",
      "parent": "bcc23f8753",
      "branch": "run-g1-B",
      "job": "j4",
@@ -6687,16 +6687,24 @@
         "code": "off_key.interactwith(lagos_cinema){ lagos_cinema.receives(off_key.envelope); lagos_cinema.remembers(bisola, 'brown envelope'); }",
         "scope": null,
         "cause_id": null
+       },
+       {
+        "id": "wf_6da4a90c1d",
+        "object": "know_place",
+        "kind": "consequence",
+        "code": "agbada.interactwith(know_place){ agbada.db.copyto(know_place); know_place.keeps(agbada, 'agbada, still worn by a stranger haggler'); }",
+        "scope": null,
+        "cause_id": null
        }
       ],
-      "facts_total": 3,
+      "facts_total": 4,
       "functions": [],
       "instances": []
      }
     },
     {
-     "id": "6ca210990a",
-     "parent": "0e5f32144d",
+     "id": "61658a69d4",
+     "parent": "7ec87780d6",
      "branch": "run-g1-B",
      "job": "j5",
      "at": "2026-11-17T19:13:28-0500",
@@ -6815,8 +6823,8 @@
      }
     },
     {
-     "id": "d273a1fd61",
-     "parent": "6ca210990a",
+     "id": "6849ca21f8",
+     "parent": "61658a69d4",
      "branch": "run-g1-B",
      "job": "j6",
      "at": "2026-11-17T18:38:33-0500",
@@ -6983,8 +6991,8 @@
      }
     },
     {
-     "id": "2e10d40b19",
-     "parent": "d273a1fd61",
+     "id": "60ad850d4e",
+     "parent": "6849ca21f8",
      "branch": "run-g1-B",
      "job": "j10",
      "at": "2026-11-17T17:31:50-05:00",
@@ -7027,8 +7035,8 @@
      }
     },
     {
-     "id": "e4f8d5f884",
-     "parent": "2e10d40b19",
+     "id": "de0a4cfbbf",
+     "parent": "60ad850d4e",
      "branch": "run-g1-B",
      "job": "j11",
      "at": "2026-11-17T18:25:59-05:00",
@@ -7080,8 +7088,8 @@
      }
     },
     {
-     "id": "15655c858a",
-     "parent": "e4f8d5f884",
+     "id": "bae414de1e",
+     "parent": "de0a4cfbbf",
      "branch": "run-g1-B",
      "job": "j12",
      "at": "2026-11-17T18:33:35-05:00",
@@ -7124,8 +7132,8 @@
      }
     },
     {
-     "id": "af723f1505",
-     "parent": "15655c858a",
+     "id": "c869af1111",
+     "parent": "bae414de1e",
      "branch": "run-g1-B",
      "job": "j13",
      "at": "2026-11-17T18:41:05-05:00",
@@ -7159,8 +7167,8 @@
      }
     },
     {
-     "id": "929ffccfaf",
-     "parent": "af723f1505",
+     "id": "bafa70550a",
+     "parent": "c869af1111",
      "branch": "run-g1-B",
      "job": "j14",
      "at": "2026-11-17T18:55:49-05:00",
@@ -7203,8 +7211,8 @@
      }
     },
     {
-     "id": "60c61d4216",
-     "parent": "929ffccfaf",
+     "id": "7b223e0f49",
+     "parent": "bafa70550a",
      "branch": "run-g1-B",
      "job": "j15",
      "at": "2026-11-17T19:08:15-05:00",
@@ -7247,8 +7255,8 @@
      }
     },
     {
-     "id": "042d520579",
-     "parent": "60c61d4216",
+     "id": "5f4d7689f0",
+     "parent": "7b223e0f49",
      "branch": "run-g1-B",
      "job": "j16",
      "at": "2026-11-17T22:50:13-05:00",
@@ -7282,8 +7290,8 @@
      }
     },
     {
-     "id": "f77fe8c187",
-     "parent": "042d520579",
+     "id": "c0b88adf48",
+     "parent": "5f4d7689f0",
      "branch": "run-g1-B",
      "job": "j29",
      "at": "2026-11-17T19:34:50-0500",
@@ -7744,9 +7752,9 @@
   "run-bd649b": "8ed6c18a56",
   "run-9e59ca": "59f544b8d8",
   "run-5a58c4": "17d819bcef",
-  "run-g1-B": "f77fe8c187",
+  "run-g1-B": "c0b88adf48",
   "run-cb805f": "8d23a93627"
  },
  "commits": 82,
- "updated": "2026-11-17T23:14:47-05:00"
+ "updated": "2026-11-17T23:16:32-05:00"
 }
