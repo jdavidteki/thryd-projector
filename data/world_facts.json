@@ -6182,16 +6182,6 @@
 ],
 "saturday_october": [
 {
-"id": "wf_76f51c5366",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the blue glass bead at the saturday october, and Bisola reads the name twice.",
-"code": "neck_ostrich.interactwith(saturday_october){ saturday_october.receives(neck_ostrich.envelope); … }",
-"author": "cos",
-"run": "run-g1-B",
-"card": "j6",
-"other": "neck_ostrich"
-},
-{
 "id": "wf_ba7be32f8d",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the saturday october, and Bisola reads the name twice.",
@@ -6220,6 +6210,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "ronke"
+},
+{
+"id": "wf_fa270e91db",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the saturday october, and Bisola reads the name twice.",
+"code": "namco.interactwith(saturday_october){ saturday_october.receives(namco.envelope); … }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "namco"
 },
 {
 "id": "wt_5afb033ddb",
@@ -6883,17 +6883,6 @@
 },
 "consequences": [
 {
-"id": "wf_e3ba384c70",
-"ts": "2026-11-17T23:36:43-0500",
-"a": "ronke",
-"b": "miami",
-"code": "ronke.interactwith(miami){ miami.receives(ronke.shirt); miami.remembers(bisola, 'green shirt'); }",
-"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up beside the phone at the miami.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j8"
-},
-{
 "id": "wf_b6a2c669fe",
 "ts": "2026-11-17T23:39:21-0500",
 "a": "laptop",
@@ -7321,6 +7310,17 @@
 "author": "thryd",
 "run": "run-g1-B",
 "card": "j29"
+},
+{
+"id": "wf_fa270e91db",
+"ts": "2026-11-18T07:03:58-0500",
+"a": "namco",
+"b": "saturday_october",
+"code": "namco.interactwith(saturday_october){ saturday_october.receives(namco.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the saturday october, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -7424,5 +7424,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T04:50:51-0500"
+"updated": "2026-11-18T07:03:58-0500"
 }
