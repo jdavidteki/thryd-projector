@@ -78,8 +78,8 @@
     "listen",
     "see"
    ],
-   "instances": 10,
-   "arg_instances": 3,
+   "instances": 11,
+   "arg_instances": 4,
    "parent": "Thing",
    "chain": [
     "Place",
@@ -106,8 +106,8 @@
     "come",
     "know"
    ],
-   "instances": 343,
-   "arg_instances": 26,
+   "instances": 345,
+   "arg_instances": 28,
    "parent": null,
    "chain": [
     "Thing"
@@ -1878,6 +1878,22 @@
    ],
    "tweets": []
   },
+  "hand": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-g1-B",
+   "first_job": "j14",
+   "source": "pick",
+   "runs": [
+    "run-g1-B"
+   ],
+   "tweets": [
+    {
+     "text": "- want me to hold your hand",
+     "year": "2025"
+    }
+   ]
+  },
   "hands": {
    "class": "Thing",
    "cue": "default",
@@ -2099,6 +2115,22 @@
     "run-2eb42d"
    ],
    "tweets": []
+  },
+  "image": {
+   "class": "Place",
+   "cue": "tweet: in/at the ...",
+   "first_run": "run-g1-B",
+   "first_job": "j14",
+   "source": "pick",
+   "runs": [
+    "run-g1-B"
+   ],
+   "tweets": [
+    {
+     "text": "- we can write from this image",
+     "year": "2025"
+    }
+   ]
   },
   "imhf": {
    "class": "Thing",
@@ -4345,6 +4377,22 @@
    ],
    "tweets": []
   },
+  "signal": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-g1-B",
+   "first_job": "j14",
+   "source": "pick",
+   "runs": [
+    "run-g1-B"
+   ],
+   "tweets": [
+    {
+     "text": "trying to keep the signal pure.",
+     "year": "2026"
+    }
+   ]
+  },
   "since": {
    "class": "Thing",
    "cue": "default",
@@ -6168,6 +6216,24 @@
     "finish",
     "Thing",
     "j13",
+    "pick"
+   ],
+   [
+    "image",
+    "Place",
+    "j14",
+    "pick"
+   ],
+   [
+    "hand",
+    "Thing",
+    "j14",
+    "pick"
+   ],
+   [
+    "signal",
+    "Thing",
+    "j14",
     "pick"
    ],
    [
@@ -8980,7 +9046,10 @@
   "adaora.come": "come(what: Thing)",
   "folake.see": "see(who: Person)",
   "titi.listen": "listen(where: Place)",
-  "titi.let": "let(what: Thing)"
+  "titi.let": "let(what: Thing)",
+  "adaora.write": "write(where: Place)",
+  "folake.hold": "hold(what: Thing)",
+  "titi.keep": "keep(what: Thing)"
  },
  "parent": {
   "Person": "Thing",
@@ -9162,6 +9231,7 @@
     "Thing"
    ],
    "objects": [
+    "folake",
     "kunle",
     "lateef",
     "nobody"
@@ -9388,5 +9458,5 @@
   "epilogue": "quiet",
   "coda": "quiet"
  },
- "updated": "2026-11-17T18:41:11-05:00"
+ "updated": "2026-11-17T19:02:28-05:00"
 }
