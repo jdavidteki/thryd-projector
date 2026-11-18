@@ -1089,14 +1089,14 @@
 ],
 "kerosene_lamp": [
 {
-"id": "wf_29c8803af0",
-"kind": "memory",
-"text": "The kerosene lamp at Mama Ronke's gate: lit; the only light on the street after the blackout.",
-"code": "kerosene_lamp.state('lit');",
+"id": "wf_1a2ddd6746",
+"kind": "consequence",
+"text": "A Bed note with Taiwo's name and 'egbe note' on it, turns up with the kerosene lamp, which is still lit.",
+"code": "bed.interactwith(kerosene_lamp){ kerosene_lamp.receives(bed.note); kerosene_lamp.remembers(taiwo, 'egbe note'); }",
 "author": "cos",
 "run": "run-2eb42d",
-"card": "w7",
-"other": null
+"card": "w6",
+"other": "bed"
 },
 {
 "id": "wt_7a2b23aa13",
@@ -2673,16 +2673,6 @@
 ],
 "cell_phone": [
 {
-"id": "wf_ec25c6aa4a",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the cell phone, and Bisola reads the name twice.",
-"code": "sessy.interactwith(cell_phone){ cell_phone.receives(sessy.envelope); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "sessy"
-},
-{
 "id": "wf_4802e871b3",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the cell phone, and Bisola reads the name twice.",
@@ -2711,6 +2701,16 @@
 "run": "run-5a58c4",
 "card": "j6",
 "other": "tbp"
+},
+{
+"id": "wf_601434fb42",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the cell phone, and Bisola reads the name twice.",
+"code": "patagonia.interactwith(cell_phone){ cell_phone.receives(patagonia.envelope); … }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "patagonia"
 },
 {
 "id": "wt_775c701ecb",
@@ -8268,28 +8268,6 @@
 },
 "consequences": [
 {
-"id": "wf_c9b506bcd4",
-"ts": "2026-11-18T14:02:41-0500",
-"a": "surulere_party_hall",
-"b": "product_manager",
-"code": "surulere_party_hall.interactwith(product_manager){ product_manager.receives(surulere_party_hall.envelope); product_manager.remembers(bisola, 'brown envelope'); }",
-"text": "The product manager leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
-"id": "wf_4a1f61dce3",
-"ts": "2026-11-18T14:07:03-0500",
-"a": "bird",
-"b": "mama_ronke",
-"code": "bird.interactwith(mama_ronke){ mama_ronke.receives(bird.corner); mama_ronke.remembers(bisola, 'envelope corner'); }",
-"text": "A Bird note with Bisola's name and 'envelope corner' on it, turns up with the Mama Ronke, which is still present.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j7"
-},
-{
 "id": "wf_b475585693",
 "ts": "2026-11-18T14:11:59-0500",
 "a": "move",
@@ -8706,6 +8684,28 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_601434fb42",
+"ts": "2026-11-18T16:17:56-0500",
+"a": "patagonia",
+"b": "cell_phone",
+"code": "patagonia.interactwith(cell_phone){ cell_phone.receives(patagonia.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the cell phone, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
+},
+{
+"id": "wf_1a2ddd6746",
+"ts": "2026-11-18T16:21:27-0500",
+"a": "bed",
+"b": "kerosene_lamp",
+"code": "bed.interactwith(kerosene_lamp){ kerosene_lamp.receives(bed.note); kerosene_lamp.remembers(taiwo, 'egbe note'); }",
+"text": "A Bed note with Taiwo's name and 'egbe note' on it, turns up with the kerosene lamp, which is still lit.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w6"
 }
 ],
 "memories": [
@@ -8809,5 +8809,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T16:14:26-0500"
+"updated": "2026-11-18T16:21:27-0500"
 }
