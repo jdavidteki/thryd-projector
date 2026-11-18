@@ -772,16 +772,6 @@
 ],
 "pure_water_cooler": [
 {
-"id": "wf_b396cfd396",
-"kind": "consequence",
-"text": "A Red white cap note with Taiwo's name and 'egbe note' on it, 11:20pm, turns up inside the container number at the pure water cooler, and Kunle reads the name twice.",
-"code": "red_white_cap.interactwith(pure_water_cooler){ pure_water_cooler.receives(red_white_cap.note); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "w7",
-"other": "red_white_cap"
-},
-{
 "id": "wf_e796dfa216",
 "kind": "consequence",
 "text": "An Ats note with Bisola's name and 'brown envelope' on it, turns up inside the container number at the pure water cooler, and Kunle reads the name twice.",
@@ -812,6 +802,16 @@
 "other": "dapo"
 },
 {
+"id": "wf_6554ef5dcc",
+"kind": "memory",
+"text": "The pure-water cooler at Mama Ronke's house: carried home through the flood; dinner is over.",
+"code": "pure_water_cooler.state('carried home through the flood');",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w1",
+"other": null
+},
+{
 "id": "wt_61e16c7796",
 "kind": "consequence",
 "text": "The pure water cooler is set down beside a container at the Apapa yard, and when Kunle lifts it again the container number has printed in sweat on its base, the same number pencilled inside the brown envelope.",
@@ -823,16 +823,6 @@
 }
 ],
 "agbada": [
-{
-"id": "wf_5744cd23db",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the agbada, and Bisola reads the name twice.",
-"code": "sessy.interactwith(agbada){ agbada.receives(sessy.envelope); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "sessy"
-},
 {
 "id": "wf_8fc197f28c",
 "kind": "consequence",
@@ -872,19 +862,19 @@
 "run": "run-bd649b",
 "card": "j2",
 "other": "family_compound_ikorodu"
+},
+{
+"id": "wf_eff49442c3",
+"kind": "memory",
+"text": "The agbada at Oke-Ayo bus stop: worn by a stranger haggler; not for fokanicer.",
+"code": "agbada.state('worn by a stranger haggler');",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w4",
+"other": null
 }
 ],
 "danfo_speaker": [
-{
-"id": "wf_53de3503a6",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the danfo speaker, and Bisola reads the name twice.",
-"code": "morir.interactwith(danfo_speaker){ danfo_speaker.receives(morir.envelope); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "morir"
-},
 {
 "id": "wf_4c5b1b6257",
 "kind": "consequence",
@@ -904,6 +894,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "plastic_sheet"
+},
+{
+"id": "wf_bdad55d985",
+"kind": "memory",
+"text": "The danfo speaker at danfo at the curb, song heard again at Mama Ronke's gate: playing the same love song.",
+"code": "danfo_speaker.state('playing the same love song');",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w5",
+"other": null
 },
 {
 "id": "wt_c1a9e05d21",
@@ -927,16 +927,6 @@
 }
 ],
 "plastic_sheet": [
-{
-"id": "wf_89d3b6d817",
-"kind": "consequence",
-"text": "An Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997, turns up inside the brown envelope at the plastic sheet, and Bisola reads the name twice.",
-"code": "game.interactwith(plastic_sheet){ plastic_sheet.receives(game.joke); … }",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j1",
-"other": "game"
-},
 {
 "id": "wf_16449b28ce",
 "kind": "consequence",
@@ -976,19 +966,19 @@
 "run": "run-0bd7c0",
 "card": "j4",
 "other": "truth"
+},
+{
+"id": "wf_194e588426",
+"kind": "memory",
+"text": "The plastic sheet at Oke-Ayo bus stop: wet; Ronke and Kazeem had been under it, Mama Ronke stood over it.",
+"code": "plastic_sheet.state('wet');",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w5",
+"other": null
 }
 ],
 "red_white_cap": [
-{
-"id": "wf_7a66dae594",
-"kind": "consequence",
-"text": "A Kerosene lamp note with Taiwo's name and 'change' on it, turns up inside the egbe note at the red white cap, and Taiwo reads the name twice.",
-"code": "kerosene_lamp.interactwith(red_white_cap){ red_white_cap.receives(kerosene_lamp.change); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "w",
-"other": "kerosene_lamp"
-},
 {
 "id": "wf_e46943bb37",
 "kind": "consequence",
@@ -1020,6 +1010,16 @@
 "other": "plastic_sheet"
 },
 {
+"id": "wf_3fdb648208",
+"kind": "memory",
+"text": "The red and white cap on Kazeem, Mama Ronke's house and gate: worn; boasted about while talking hacking.",
+"code": "red_white_cap.state('worn');",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w6",
+"other": null
+},
+{
 "id": "wt_1115_2356_c",
 "kind": "consequence",
 "text": "Taiwo turns the kerosene lamp low and tucks the egbe note under the red white cap's brim, so whoever wears it home tomorrow carries the meeting time without knowing it.",
@@ -1031,16 +1031,6 @@
 }
 ],
 "streetlights": [
-{
-"id": "wf_7f9d0c8b86",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the streetlights, and Bisola reads the name twice.",
-"code": "kweshon.interactwith(streetlights){ streetlights.receives(kweshon.envelope); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "kweshon"
-},
 {
 "id": "wf_8250b674bb",
 "kind": "consequence",
@@ -1080,18 +1070,28 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "plastic_sheet"
+},
+{
+"id": "wf_32b4be23e9",
+"kind": "memory",
+"text": "The streetlights at the street: all dead since 7:35pm.",
+"code": "streetlights.state('all dead since 7:35pm');",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w6",
+"other": null
 }
 ],
 "kerosene_lamp": [
 {
-"id": "wf_040fe5d4ce",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the change at the kerosene lamp, and Taiwo reads the name twice.",
-"code": "omo.interactwith(kerosene_lamp){ kerosene_lamp.receives(omo.envelope); … }",
+"id": "wf_29c8803af0",
+"kind": "memory",
+"text": "The kerosene lamp at Mama Ronke's gate: lit; the only light on the street after the blackout.",
+"code": "kerosene_lamp.state('lit');",
 "author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "omo"
+"run": "run-2eb42d",
+"card": "w7",
+"other": null
 },
 {
 "id": "wt_7a2b23aa13",
@@ -1136,16 +1136,6 @@
 ],
 "matches": [
 {
-"id": "wf_7678b3ee91",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the matches, and Bisola reads the name twice.",
-"code": "plastic_sheet.interactwith(matches){ matches.receives(plastic_sheet.envelope); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "plastic_sheet"
-},
-{
 "id": "wf_b30497c3b6",
 "kind": "consequence",
 "text": "A Red white cap note with Taiwo's name and 'egbe note' on it, 11:20pm, turns up inside the brown envelope at the matches, and Bisola reads the name twice.",
@@ -1184,6 +1174,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "streetlights"
+},
+{
+"id": "wf_d40998bca5",
+"kind": "memory",
+"text": "The matches at doorway, Mama Ronke's house: found; rattled in the doorway as she came back.",
+"code": "matches.state('found');",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w7",
+"other": null
 }
 ],
 "gbagada_hospital_waiting": [
@@ -6557,6 +6557,18 @@
 "card": "j6",
 "other": "people_scene"
 }
+],
+"iae": [
+{
+"id": "wf_ff8f4d2e73",
+"kind": "memory",
+"text": "The iae at Oke-Ayo bus stop: initialized.",
+"code": "iae.state('initialized');",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w1",
+"other": null
+}
 ]
 },
 "consequences": [
@@ -7102,5 +7114,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T23:19:06-0500"
+"updated": "2026-11-17T23:32:20-0500"
 }
