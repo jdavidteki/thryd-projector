@@ -1,56 +1,33 @@
 {
  "v": 1,
  "run": "run-g1-B",
- "card": "w16",
- "job": "j16",
+ "card": "w17",
+ "job": "j17",
  "mood": {
-  "from": "run/w16_mood.json",
-  "beat": "go",
+  "beat": null,
   "theme": [],
-  "scene_words": [
-   "lines"
-  ]
+  "moods": [
+   "time",
+   "god",
+   "dance"
+  ],
+  "from": "derived"
  },
  "query": [
   {
-   "term": "kunle",
-   "w": 2.6,
-   "via": "j16 beat"
-  },
-  {
-   "term": "walks",
-   "w": 2.6,
-   "via": "j16 beat"
-  },
-  {
-   "term": "aisle",
-   "w": 2.6,
-   "via": "j16 beat"
-  },
-  {
-   "term": "kite",
-   "w": 2.6,
-   "via": "j16 beat"
-  },
-  {
-   "term": "lifts",
-   "w": 2.6,
-   "via": "j16 beat"
-  },
-  {
-   "term": "draft",
-   "w": 2.6,
-   "via": "j16 beat"
-  },
-  {
-   "term": "lines",
-   "w": 2.2,
-   "via": "j16 scene"
-  },
-  {
-   "term": "juss",
-   "w": 1.85,
+   "term": "titi",
+   "w": 2.9,
    "via": "j10 “if look: titi.go(juss) 🏃”"
+  },
+  {
+   "term": "already",
+   "w": 2.37,
+   "via": "j17 scene"
+  },
+  {
+   "term": "data",
+   "w": 1.75,
+   "via": "j17 scene"
   },
   {
    "term": "maybe",
@@ -68,49 +45,74 @@
    "via": "j10 maybeknow map"
   },
   {
-   "term": "titi",
+   "term": "juss",
    "w": 1.5,
    "via": "j10 “if look: titi.go(juss) 🏃”"
   },
   {
+   "term": "time (mood)",
+   "w": 1.42,
+   "via": "j17 scene"
+  },
+  {
+   "term": "lines",
+   "w": 1.4,
+   "via": "j17 scene"
+  },
+  {
+   "term": "05pm",
+   "w": 1.4,
+   "via": "j17 scene"
+  },
+  {
    "term": "side",
-   "w": 1.02,
-   "via": "j16 scene"
+   "w": 1.4,
+   "via": "j17 scene"
   },
   {
    "term": "door",
-   "w": 1.02,
-   "via": "j16 scene"
+   "w": 1.4,
+   "via": "j17 scene"
   },
   {
-   "term": "line",
-   "w": 0.95,
-   "via": "j16 scene"
+   "term": "street",
+   "w": 1.4,
+   "via": "j17 scene"
   },
   {
-   "term": "eya",
-   "w": 0.84,
-   "via": "j16 card folake catch"
+   "term": "tomorrow",
+   "w": 1.4,
+   "via": "j17 scene"
   },
   {
-   "term": "notyn",
-   "w": 0.7,
-   "via": "j16 card kunle walk"
+   "term": "colored",
+   "w": 1.4,
+   "via": "j17 scene"
   },
   {
-   "term": "40pm",
-   "w": 0.6,
-   "via": "j16 scene"
+   "term": "kunle",
+   "w": 1.4,
+   "via": "j17 scene"
   },
   {
-   "term": "open",
-   "w": 0.6,
-   "via": "j16 scene"
+   "term": "mid",
+   "w": 1.4,
+   "via": "j17 scene"
   },
   {
-   "term": "without",
-   "w": 0.6,
-   "via": "j16 scene"
+   "term": "aisle",
+   "w": 1.4,
+   "via": "j17 scene"
+  },
+  {
+   "term": "says",
+   "w": 1.4,
+   "via": "j17 scene"
+  },
+  {
+   "term": "going",
+   "w": 1.4,
+   "via": "j17 scene"
   }
  ],
  "songs_indexed": 399,
@@ -118,696 +120,690 @@
  "note": "BM25 over africariyoki lyric lines; top ~8 candidates with scores (no id tiebreak). query = live mood note + scene + seated lines + typed themes (tools/yoki_match.py)",
  "candidates": [
   {
-   "id": "TIKF16oagBY",
-   "title": "Abule",
-   "artist": "Patoranking",
-   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/TIKF16oagBY.mp3",
-   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/TIKF16oagBY.lrc",
-   "score": 38.741,
+   "id": "00R4dOtzDIA",
+   "title": "Jealous",
+   "artist": "Fireboy DML",
+   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/00R4dOtzDIA.mp3",
+   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/00R4dOtzDIA.lrc",
+   "score": 43.109,
    "matches": [
     {
-     "t": 28.61,
-     "line": "i went there with my best friend kunle",
-     "score": 23.184,
+     "t": 51.46,
+     "line": "oh im getting jealous already oh already oh",
+     "score": 23.302,
      "terms": [
-      "kunle"
+      "already"
      ],
-     "term": "kunle",
-     "via": "j16 beat"
+     "term": "already",
+     "via": "j17 scene"
     },
     {
-     "t": 30.95,
-     "line": "kunle dey there with hin girlfriend shile",
-     "score": 22.002,
+     "t": 144.68,
+     "line": "im getting jealous already oh already oh",
+     "score": 23.302,
      "terms": [
-      "kunle",
-      "dey"
+      "already"
      ],
-     "term": "kunle",
-     "via": "j16 beat"
+     "term": "already",
+     "via": "j17 scene"
     },
     {
-     "t": 45.13,
-     "line": "i get many girls wey dem dey come from mowe",
-     "score": 1.704,
+     "t": 42.18,
+     "line": "oh im getting jealous already",
+     "score": 18.757,
      "terms": [
-      "dey",
-      "come"
+      "already"
      ],
-     "term": "dey",
-     "via": "j16 card folake catch"
+     "term": "already",
+     "via": "j17 scene"
     }
    ],
-   "why": "♪ matched: “i went there with my best friend kunle” ↔ j16 beat"
+   "why": "♪ matched: “oh im getting jealous already oh already oh” ↔ j17 scene"
   },
   {
-   "id": "1P-AAhpqHfU",
-   "title": "Chop My Money Remix",
-   "artist": "P-Square Ft. Akon, MayD",
-   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/1P-AAhpqHfU.mp3",
-   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/1P-AAhpqHfU.lrc",
-   "score": 31.423,
+   "id": "zq0DH1tyLgk",
+   "title": "Secret",
+   "artist": "Burna Boy ft Serani, Jeremih",
+   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/zq0DH1tyLgk.mp3",
+   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/zq0DH1tyLgk.lrc",
+   "score": 42.793,
    "matches": [
     {
-     "t": 19.69,
-     "line": "Walks down the streets every guy wants to jump on your behind",
-     "score": 19.894,
+     "t": 27.09,
+     "line": "Say my name no time",
+     "score": 22.534,
      "terms": [
-      "walks",
-      "guy"
+      "name",
+      "time",
+      "time (mood)"
      ],
-     "term": "walks",
-     "via": "j16 beat"
+     "term": "name",
+     "via": "j17 scene"
     },
     {
-     "t": 23.45,
-     "line": "its your seduction that makes sure that we stay in line",
-     "score": 5.839,
+     "t": 54.74,
+     "line": "You already know that when I got you on the plaque",
+     "score": 21.359,
      "terms": [
-      "line"
+      "already"
      ],
-     "term": "line",
-     "via": "j16 scene"
+     "term": "already",
+     "via": "j17 scene"
     },
     {
-     "t": 80.61,
-     "line": "EhI no dey lie no dey lie",
-     "score": 5.032,
+     "t": 57.03,
+     "line": "I know you wanna spend more time spend more time",
+     "score": 13.8,
      "terms": [
-      "lie",
-      "dey"
+      "time",
+      "time (mood)"
      ],
-     "term": "lie",
-     "via": "j16 card adaora cap"
+     "term": "time",
+     "via": "j17 scene"
     }
    ],
-   "why": "♪ matched: “Walks down the streets every guy wants to jump on your beh…” ↔ j16 beat"
+   "why": "♪ matched: “Say my name no time” ↔ j17 scene"
   },
   {
-   "id": "HE8p1lJaPyg",
-   "title": "Olufunmi",
+   "id": "rL1RRLZIHGA",
+   "title": "Four Years",
    "artist": "Styl-Plus",
-   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/HE8p1lJaPyg.mp3",
-   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/HE8p1lJaPyg.lrc",
-   "score": 29.625,
+   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/rL1RRLZIHGA.mp3",
+   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/rL1RRLZIHGA.lrc",
+   "score": 42.555,
    "matches": [
     {
-     "t": 158.41,
-     "line": "You could be the one Id take on a date down the aisle",
-     "score": 25.068,
+     "t": 50.69,
+     "line": "But we say that today is already better",
+     "score": 22.126,
      "terms": [
-      "aisle"
+      "already",
+      "time (mood)"
      ],
-     "term": "aisle",
-     "via": "j16 beat"
+     "term": "already",
+     "via": "j17 scene"
     },
     {
-     "t": 153.99,
-     "line": "Come on girl you could be the one to make me smile",
-     "score": 1.181,
+     "t": 111.91,
+     "line": "Then I wander how they can see tomorrow o o",
+     "score": 16.979,
      "terms": [
-      "come"
+      "tomorrow",
+      "time (mood)"
      ],
-     "term": "come",
-     "via": "None “come awa studio come…”"
+     "term": "tomorrow",
+     "via": "j17 scene"
     },
     {
-     "t": 93.62,
-     "line": "Ill pause my heart for you when you come home youd be the one to make it move only you",
-     "score": 0.946,
+     "t": 120.24,
+     "line": "Maybe I go wound e e e",
+     "score": 12.621,
      "terms": [
-      "come",
-      "romance (mood)"
+      "maybe"
      ],
-     "term": "come",
-     "via": "None “come awa studio come…”"
+     "term": "maybe",
+     "via": "j10 maybeknow map"
     }
    ],
-   "why": "♪ matched: “You could be the one Id take on a date down the aisle” ↔ j16 beat"
+   "why": "♪ matched: “But we say that today is already better” ↔ j17 scene"
   },
   {
-   "id": "Gih_Nk9NBBw",
-   "title": "Holy Father",
-   "artist": "Mayorkun",
-   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/Gih_Nk9NBBw.mp3",
-   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/Gih_Nk9NBBw.lrc",
-   "score": 28.895,
-   "matches": [
-    {
-     "t": 59.34,
-     "line": "Give me your map o",
-     "score": 15.639,
-     "terms": [
-      "map"
-     ],
-     "term": "map",
-     "via": "j10 maybeknow map"
-    },
-    {
-     "t": 75.63,
-     "line": "Give me your map",
-     "score": 15.639,
-     "terms": [
-      "map"
-     ],
-     "term": "map",
-     "via": "j10 maybeknow map"
-    },
-    {
-     "t": 52.93,
-     "line": "Im running back to you",
-     "score": 7.5,
-     "terms": [
-      "running",
-      "back"
-     ],
-     "term": "running",
-     "via": "j16 card titi watch"
-    }
-   ],
-   "why": "♪ matched: “Give me your map o” ↔ j10 maybeknow map"
-  },
-  {
-   "id": "onQmiURQCyU",
-   "title": "Odogwu",
+   "id": "XlCPF3-IyIw",
+   "title": "Bank On It",
    "artist": "Burna Boy",
-   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/onQmiURQCyU.mp3",
-   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/onQmiURQCyU.lrc",
-   "score": 26.757,
+   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/XlCPF3-IyIw.mp3",
+   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/XlCPF3-IyIw.lrc",
+   "score": 39.482,
    "matches": [
     {
-     "t": 30.49,
-     "line": "Say na who dey draw the map e oh Odogwu",
-     "score": 15.309,
+     "t": 152.33,
+     "line": "nobody know tomorrow",
+     "score": 24.242,
      "terms": [
-      "map",
-      "draw",
-      "dey",
-      "na"
+      "tomorrow",
+      "nobody",
+      "time (mood)"
      ],
-     "term": "map",
-     "via": "j10 maybeknow map"
+     "term": "tomorrow",
+     "via": "j17 scene"
     },
     {
-     "t": 139.84,
-     "line": "Say na who dey draw the map oh Odogwu",
-     "score": 15.309,
+     "t": 47.5,
+     "line": "who is knocking at my door",
+     "score": 12.615,
      "terms": [
-      "map",
-      "draw",
-      "dey",
-      "na"
+      "door"
      ],
-     "term": "map",
-     "via": "j10 maybeknow map"
+     "term": "door",
+     "via": "j17 scene"
     },
     {
-     "t": 109.59,
-     "line": "You con dey bother me I go need my apology",
-     "score": 2.137,
+     "t": 124.03,
+     "line": "i aint going out breda",
+     "score": 9.78,
      "terms": [
-      "dey",
-      "need"
+      "going"
      ],
-     "term": "dey",
-     "via": "j16 card folake catch"
+     "term": "going",
+     "via": "j17 scene"
     }
    ],
-   "why": "♪ matched: “Say na who dey draw the map e oh Odogwu” ↔ j10 maybeknow map"
+   "why": "♪ matched: “nobody know tomorrow” ↔ j17 scene"
   },
   {
-   "id": "AWdE6ivnA78",
-   "title": "Know You",
-   "artist": "Ladipoe ft Simi",
-   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/AWdE6ivnA78.mp3",
-   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/AWdE6ivnA78.lrc",
-   "score": 24.374,
+   "id": "1kU5BzdfDfg",
+   "title": "Higher",
+   "artist": "Tems",
+   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/1kU5BzdfDfg.mp3",
+   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/1kU5BzdfDfg.lrc",
+   "score": 39.255,
    "matches": [
     {
-     "t": 56.19,
-     "line": "Maybe not in this life",
-     "score": 12.621,
+     "t": 41.18,
+     "line": "But you knew that already",
+     "score": 21.359,
+     "terms": [
+      "already"
+     ],
+     "term": "already",
+     "via": "j17 scene"
+    },
+    {
+     "t": 156.54,
+     "line": "Cry now from the side now call my name",
+     "score": 12.374,
+     "terms": [
+      "name",
+      "side"
+     ],
+     "term": "name",
+     "via": "j17 scene"
+    },
+    {
+     "t": 85.49,
+     "line": "Can you put the time on a rewind yeah",
+     "score": 11.401,
+     "terms": [
+      "time",
+      "time (mood)"
+     ],
+     "term": "time",
+     "via": "j17 scene"
+    }
+   ],
+   "why": "♪ matched: “But you knew that already” ↔ j17 scene"
+  },
+  {
+   "id": "B_kC9Ggellw",
+   "title": "Oruka",
+   "artist": "Sunny Nneji",
+   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/B_kC9Ggellw.mp3",
+   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/B_kC9Ggellw.lrc",
+   "score": 39.145,
+   "matches": [
+    {
+     "t": 10.06,
+     "line": "Ko seni to le ya yin titi lai titi lai o",
+     "score": 20.767,
+     "terms": [
+      "titi"
+     ],
+     "term": "titi",
+     "via": "j10 “if look: titi.go(juss) 🏃”"
+    },
+    {
+     "t": 186.87,
+     "line": "Ko seni to le ya yin titi lai titi lai lai",
+     "score": 19.627,
+     "terms": [
+      "titi"
+     ],
+     "term": "titi",
+     "via": "j10 “if look: titi.go(juss) 🏃”"
+    },
+    {
+     "t": 207.11,
+     "line": "Ko seni to le ya yin titi lai titi lai lai lai lai",
+     "score": 17.685,
+     "terms": [
+      "titi"
+     ],
+     "term": "titi",
+     "via": "j10 “if look: titi.go(juss) 🏃”"
+    }
+   ],
+   "why": "♪ matched: “Ko seni to le ya yin titi lai titi lai o” ↔ j10 “if look: titi.go(juss) 🏃”"
+  },
+  {
+   "id": "ocBG1DTN5nc",
+   "title": "Jaiye Jaiye",
+   "artist": "Wizkid, Femi Kuti",
+   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/ocBG1DTN5nc.mp3",
+   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/ocBG1DTN5nc.lrc",
+   "score": 37.128,
+   "matches": [
+    {
+     "t": 106.59,
+     "line": "Ahhh you already know",
+     "score": 21.359,
+     "terms": [
+      "already"
+     ],
+     "term": "already",
+     "via": "j17 scene"
+    },
+    {
+     "t": 62.0,
+     "line": "Lagos today and London tomorrow",
+     "score": 14.537,
+     "terms": [
+      "tomorrow",
+      "time (mood)"
+     ],
+     "term": "tomorrow",
+     "via": "j17 scene"
+    },
+    {
+     "t": 91.11,
+     "line": "Let nobody do me bad or intrude",
+     "score": 7.262,
+     "terms": [
+      "nobody"
+     ],
+     "term": "nobody",
+     "via": "j17 scene"
+    }
+   ],
+   "why": "♪ matched: “Ahhh you already know” ↔ j17 scene"
+  },
+  {
+   "id": "lG_-2gU6kUk",
+   "title": "One Trouser",
+   "artist": "Falz",
+   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/lG_-2gU6kUk.mp3",
+   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/lG_-2gU6kUk.lrc",
+   "score": 36.641,
+   "matches": [
+    {
+     "t": 39.2,
+     "line": "so he put a brand new range on the titi",
+     "score": 20.403,
+     "terms": [
+      "titi",
+      "new"
+     ],
+     "term": "titi",
+     "via": "j10 “if look: titi.go(juss) 🏃”"
+    },
+    {
+     "t": 122.82,
+     "line": "na when this danfo dey commot my street oh kurombe",
+     "score": 9.603,
+     "terms": [
+      "street",
+      "na",
+      "dey"
+     ],
+     "term": "street",
+     "via": "j17 scene"
+    },
+    {
+     "t": 113.1,
+     "line": "maybe call police and try to report us",
+     "score": 8.913,
      "terms": [
       "maybe"
      ],
      "term": "maybe",
      "via": "j10 maybeknow map"
-    },
-    {
-     "t": 84.62,
-     "line": "Or maybe Im just busy for me",
-     "score": 12.621,
-     "terms": [
-      "maybe"
-     ],
-     "term": "maybe",
-     "via": "j10 maybeknow map"
-    },
-    {
-     "t": 24.82,
-     "line": "And maybe every other place baby",
-     "score": 9.28,
-     "terms": [
-      "maybe",
-      "romance (mood)"
-     ],
-     "term": "maybe",
-     "via": "j10 maybeknow map"
     }
    ],
-   "why": "♪ matched: “Maybe not in this life” ↔ j10 maybeknow map"
-  },
-  {
-   "id": "jowVh4hblsg",
-   "title": "Colorado",
-   "artist": "Zugo & Dai Verse",
-   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/jowVh4hblsg.mp3",
-   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/jowVh4hblsg.lrc",
-   "score": 22.671,
-   "matches": [
-    {
-     "t": 117.79,
-     "line": "catwalk that aisle like an adarego follow me follow me follow me go fine girl oya ibadi jo",
-     "score": 11.508,
-     "terms": [
-      "aisle",
-      "romance (mood)"
-     ],
-     "term": "aisle",
-     "via": "j16 beat"
-    },
-    {
-     "t": 127.28,
-     "line": "catwalk that aisle like an adarego follow me follow me follow me go cuz there is something bout your body way day high me like i don smoke c",
-     "score": 9.703,
-     "terms": [
-      "aisle"
-     ],
-     "term": "aisle",
-     "via": "j16 beat"
-    },
-    {
-     "t": 102.06,
-     "line": "girlie don make a bad man to surrender",
-     "score": 4.776,
-     "terms": [
-      "man",
-      "bad"
-     ],
-     "term": "man",
-     "via": "j16 scene"
-    }
-   ],
-   "why": "♪ matched: “catwalk that aisle like an adarego follow me follow me fol…” ↔ j16 beat"
-  },
-  {
-   "id": "eFlQrm1RiDM",
-   "title": "Ayo Girl",
-   "artist": "Rema ::: Jason Derulo, Sepp Krassnitzer",
-   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/eFlQrm1RiDM.mp3",
-   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/eFlQrm1RiDM.lrc",
-   "score": 21.178,
-   "matches": [
-    {
-     "t": 130.55,
-     "line": "Maybe maybe",
-     "score": 16.224,
-     "terms": [
-      "maybe"
-     ],
-     "term": "maybe",
-     "via": "j10 maybeknow map"
-    },
-    {
-     "t": 119.77,
-     "line": "And even you drive me crazy",
-     "score": 3.148,
-     "terms": [
-      "even"
-     ],
-     "term": "even",
-     "via": "j16 card kunle walk"
-    },
-    {
-     "t": 63.47,
-     "line": "It be the reason many man want you",
-     "score": 2.603,
-     "terms": [
-      "man"
-     ],
-     "term": "man",
-     "via": "j16 scene"
-    }
-   ],
-   "why": "♪ matched: “Maybe maybe” ↔ j10 maybeknow map"
+   "why": "♪ matched: “so he put a brand new range on the titi” ↔ j10 “if look: titi.go(juss) 🏃”"
   }
  ],
  "top": [
   {
-   "id": "TIKF16oagBY",
-   "title": "Abule",
-   "artist": "Patoranking",
-   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/TIKF16oagBY.mp3",
-   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/TIKF16oagBY.lrc",
-   "score": 38.741,
+   "id": "00R4dOtzDIA",
+   "title": "Jealous",
+   "artist": "Fireboy DML",
+   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/00R4dOtzDIA.mp3",
+   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/00R4dOtzDIA.lrc",
+   "score": 43.109,
    "matches": [
     {
-     "t": 28.61,
-     "line": "i went there with my best friend kunle",
-     "score": 23.184,
+     "t": 51.46,
+     "line": "oh im getting jealous already oh already oh",
+     "score": 23.302,
      "terms": [
-      "kunle"
+      "already"
      ],
-     "term": "kunle",
-     "via": "j16 beat"
+     "term": "already",
+     "via": "j17 scene"
     },
     {
-     "t": 30.95,
-     "line": "kunle dey there with hin girlfriend shile",
-     "score": 22.002,
+     "t": 144.68,
+     "line": "im getting jealous already oh already oh",
+     "score": 23.302,
      "terms": [
-      "kunle",
-      "dey"
+      "already"
      ],
-     "term": "kunle",
-     "via": "j16 beat"
+     "term": "already",
+     "via": "j17 scene"
     },
     {
-     "t": 45.13,
-     "line": "i get many girls wey dem dey come from mowe",
-     "score": 1.704,
+     "t": 42.18,
+     "line": "oh im getting jealous already",
+     "score": 18.757,
      "terms": [
-      "dey",
-      "come"
+      "already"
      ],
-     "term": "dey",
-     "via": "j16 card folake catch"
+     "term": "already",
+     "via": "j17 scene"
     }
    ],
-   "why": "♪ matched: “i went there with my best friend kunle” ↔ j16 beat"
+   "why": "♪ matched: “oh im getting jealous already oh already oh” ↔ j17 scene"
   },
   {
-   "id": "1P-AAhpqHfU",
-   "title": "Chop My Money Remix",
-   "artist": "P-Square Ft. Akon, MayD",
-   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/1P-AAhpqHfU.mp3",
-   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/1P-AAhpqHfU.lrc",
-   "score": 31.423,
+   "id": "zq0DH1tyLgk",
+   "title": "Secret",
+   "artist": "Burna Boy ft Serani, Jeremih",
+   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/zq0DH1tyLgk.mp3",
+   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/zq0DH1tyLgk.lrc",
+   "score": 42.793,
    "matches": [
     {
-     "t": 19.69,
-     "line": "Walks down the streets every guy wants to jump on your behind",
-     "score": 19.894,
+     "t": 27.09,
+     "line": "Say my name no time",
+     "score": 22.534,
      "terms": [
-      "walks",
-      "guy"
+      "name",
+      "time",
+      "time (mood)"
      ],
-     "term": "walks",
-     "via": "j16 beat"
+     "term": "name",
+     "via": "j17 scene"
     },
     {
-     "t": 23.45,
-     "line": "its your seduction that makes sure that we stay in line",
-     "score": 5.839,
+     "t": 54.74,
+     "line": "You already know that when I got you on the plaque",
+     "score": 21.359,
      "terms": [
-      "line"
+      "already"
      ],
-     "term": "line",
-     "via": "j16 scene"
+     "term": "already",
+     "via": "j17 scene"
     },
     {
-     "t": 80.61,
-     "line": "EhI no dey lie no dey lie",
-     "score": 5.032,
+     "t": 57.03,
+     "line": "I know you wanna spend more time spend more time",
+     "score": 13.8,
      "terms": [
-      "lie",
-      "dey"
+      "time",
+      "time (mood)"
      ],
-     "term": "lie",
-     "via": "j16 card adaora cap"
+     "term": "time",
+     "via": "j17 scene"
     }
    ],
-   "why": "♪ matched: “Walks down the streets every guy wants to jump on your beh…” ↔ j16 beat"
+   "why": "♪ matched: “Say my name no time” ↔ j17 scene"
   },
   {
-   "id": "HE8p1lJaPyg",
-   "title": "Olufunmi",
+   "id": "rL1RRLZIHGA",
+   "title": "Four Years",
    "artist": "Styl-Plus",
-   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/HE8p1lJaPyg.mp3",
-   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/HE8p1lJaPyg.lrc",
-   "score": 29.625,
+   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/rL1RRLZIHGA.mp3",
+   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/rL1RRLZIHGA.lrc",
+   "score": 42.555,
    "matches": [
     {
-     "t": 158.41,
-     "line": "You could be the one Id take on a date down the aisle",
-     "score": 25.068,
+     "t": 50.69,
+     "line": "But we say that today is already better",
+     "score": 22.126,
      "terms": [
-      "aisle"
+      "already",
+      "time (mood)"
      ],
-     "term": "aisle",
-     "via": "j16 beat"
+     "term": "already",
+     "via": "j17 scene"
     },
     {
-     "t": 153.99,
-     "line": "Come on girl you could be the one to make me smile",
-     "score": 1.181,
+     "t": 111.91,
+     "line": "Then I wander how they can see tomorrow o o",
+     "score": 16.979,
      "terms": [
-      "come"
+      "tomorrow",
+      "time (mood)"
      ],
-     "term": "come",
-     "via": "None “come awa studio come…”"
+     "term": "tomorrow",
+     "via": "j17 scene"
     },
     {
-     "t": 93.62,
-     "line": "Ill pause my heart for you when you come home youd be the one to make it move only you",
-     "score": 0.946,
+     "t": 120.24,
+     "line": "Maybe I go wound e e e",
+     "score": 12.621,
      "terms": [
-      "come",
-      "romance (mood)"
+      "maybe"
      ],
-     "term": "come",
-     "via": "None “come awa studio come…”"
+     "term": "maybe",
+     "via": "j10 maybeknow map"
     }
    ],
-   "why": "♪ matched: “You could be the one Id take on a date down the aisle” ↔ j16 beat"
+   "why": "♪ matched: “But we say that today is already better” ↔ j17 scene"
   },
   {
-   "id": "Gih_Nk9NBBw",
-   "title": "Holy Father",
-   "artist": "Mayorkun",
-   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/Gih_Nk9NBBw.mp3",
-   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/Gih_Nk9NBBw.lrc",
-   "score": 28.895,
-   "matches": [
-    {
-     "t": 59.34,
-     "line": "Give me your map o",
-     "score": 15.639,
-     "terms": [
-      "map"
-     ],
-     "term": "map",
-     "via": "j10 maybeknow map"
-    },
-    {
-     "t": 75.63,
-     "line": "Give me your map",
-     "score": 15.639,
-     "terms": [
-      "map"
-     ],
-     "term": "map",
-     "via": "j10 maybeknow map"
-    },
-    {
-     "t": 52.93,
-     "line": "Im running back to you",
-     "score": 7.5,
-     "terms": [
-      "running",
-      "back"
-     ],
-     "term": "running",
-     "via": "j16 card titi watch"
-    }
-   ],
-   "why": "♪ matched: “Give me your map o” ↔ j10 maybeknow map"
-  },
-  {
-   "id": "onQmiURQCyU",
-   "title": "Odogwu",
+   "id": "XlCPF3-IyIw",
+   "title": "Bank On It",
    "artist": "Burna Boy",
-   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/onQmiURQCyU.mp3",
-   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/onQmiURQCyU.lrc",
-   "score": 26.757,
+   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/XlCPF3-IyIw.mp3",
+   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/XlCPF3-IyIw.lrc",
+   "score": 39.482,
    "matches": [
     {
-     "t": 30.49,
-     "line": "Say na who dey draw the map e oh Odogwu",
-     "score": 15.309,
+     "t": 152.33,
+     "line": "nobody know tomorrow",
+     "score": 24.242,
      "terms": [
-      "map",
-      "draw",
-      "dey",
-      "na"
+      "tomorrow",
+      "nobody",
+      "time (mood)"
      ],
-     "term": "map",
-     "via": "j10 maybeknow map"
+     "term": "tomorrow",
+     "via": "j17 scene"
     },
     {
-     "t": 139.84,
-     "line": "Say na who dey draw the map oh Odogwu",
-     "score": 15.309,
+     "t": 47.5,
+     "line": "who is knocking at my door",
+     "score": 12.615,
      "terms": [
-      "map",
-      "draw",
-      "dey",
-      "na"
+      "door"
      ],
-     "term": "map",
-     "via": "j10 maybeknow map"
+     "term": "door",
+     "via": "j17 scene"
     },
     {
-     "t": 109.59,
-     "line": "You con dey bother me I go need my apology",
-     "score": 2.137,
+     "t": 124.03,
+     "line": "i aint going out breda",
+     "score": 9.78,
      "terms": [
-      "dey",
-      "need"
+      "going"
      ],
-     "term": "dey",
-     "via": "j16 card folake catch"
+     "term": "going",
+     "via": "j17 scene"
     }
    ],
-   "why": "♪ matched: “Say na who dey draw the map e oh Odogwu” ↔ j10 maybeknow map"
+   "why": "♪ matched: “nobody know tomorrow” ↔ j17 scene"
   },
   {
-   "id": "AWdE6ivnA78",
-   "title": "Know You",
-   "artist": "Ladipoe ft Simi",
-   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/AWdE6ivnA78.mp3",
-   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/AWdE6ivnA78.lrc",
-   "score": 24.374,
+   "id": "1kU5BzdfDfg",
+   "title": "Higher",
+   "artist": "Tems",
+   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/1kU5BzdfDfg.mp3",
+   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/1kU5BzdfDfg.lrc",
+   "score": 39.255,
    "matches": [
     {
-     "t": 56.19,
-     "line": "Maybe not in this life",
-     "score": 12.621,
+     "t": 41.18,
+     "line": "But you knew that already",
+     "score": 21.359,
+     "terms": [
+      "already"
+     ],
+     "term": "already",
+     "via": "j17 scene"
+    },
+    {
+     "t": 156.54,
+     "line": "Cry now from the side now call my name",
+     "score": 12.374,
+     "terms": [
+      "name",
+      "side"
+     ],
+     "term": "name",
+     "via": "j17 scene"
+    },
+    {
+     "t": 85.49,
+     "line": "Can you put the time on a rewind yeah",
+     "score": 11.401,
+     "terms": [
+      "time",
+      "time (mood)"
+     ],
+     "term": "time",
+     "via": "j17 scene"
+    }
+   ],
+   "why": "♪ matched: “But you knew that already” ↔ j17 scene"
+  },
+  {
+   "id": "B_kC9Ggellw",
+   "title": "Oruka",
+   "artist": "Sunny Nneji",
+   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/B_kC9Ggellw.mp3",
+   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/B_kC9Ggellw.lrc",
+   "score": 39.145,
+   "matches": [
+    {
+     "t": 10.06,
+     "line": "Ko seni to le ya yin titi lai titi lai o",
+     "score": 20.767,
+     "terms": [
+      "titi"
+     ],
+     "term": "titi",
+     "via": "j10 “if look: titi.go(juss) 🏃”"
+    },
+    {
+     "t": 186.87,
+     "line": "Ko seni to le ya yin titi lai titi lai lai",
+     "score": 19.627,
+     "terms": [
+      "titi"
+     ],
+     "term": "titi",
+     "via": "j10 “if look: titi.go(juss) 🏃”"
+    },
+    {
+     "t": 207.11,
+     "line": "Ko seni to le ya yin titi lai titi lai lai lai lai",
+     "score": 17.685,
+     "terms": [
+      "titi"
+     ],
+     "term": "titi",
+     "via": "j10 “if look: titi.go(juss) 🏃”"
+    }
+   ],
+   "why": "♪ matched: “Ko seni to le ya yin titi lai titi lai o” ↔ j10 “if look: titi.go(juss) 🏃”"
+  },
+  {
+   "id": "ocBG1DTN5nc",
+   "title": "Jaiye Jaiye",
+   "artist": "Wizkid, Femi Kuti",
+   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/ocBG1DTN5nc.mp3",
+   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/ocBG1DTN5nc.lrc",
+   "score": 37.128,
+   "matches": [
+    {
+     "t": 106.59,
+     "line": "Ahhh you already know",
+     "score": 21.359,
+     "terms": [
+      "already"
+     ],
+     "term": "already",
+     "via": "j17 scene"
+    },
+    {
+     "t": 62.0,
+     "line": "Lagos today and London tomorrow",
+     "score": 14.537,
+     "terms": [
+      "tomorrow",
+      "time (mood)"
+     ],
+     "term": "tomorrow",
+     "via": "j17 scene"
+    },
+    {
+     "t": 91.11,
+     "line": "Let nobody do me bad or intrude",
+     "score": 7.262,
+     "terms": [
+      "nobody"
+     ],
+     "term": "nobody",
+     "via": "j17 scene"
+    }
+   ],
+   "why": "♪ matched: “Ahhh you already know” ↔ j17 scene"
+  },
+  {
+   "id": "lG_-2gU6kUk",
+   "title": "One Trouser",
+   "artist": "Falz",
+   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/lG_-2gU6kUk.mp3",
+   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/lG_-2gU6kUk.lrc",
+   "score": 36.641,
+   "matches": [
+    {
+     "t": 39.2,
+     "line": "so he put a brand new range on the titi",
+     "score": 20.403,
+     "terms": [
+      "titi",
+      "new"
+     ],
+     "term": "titi",
+     "via": "j10 “if look: titi.go(juss) 🏃”"
+    },
+    {
+     "t": 122.82,
+     "line": "na when this danfo dey commot my street oh kurombe",
+     "score": 9.603,
+     "terms": [
+      "street",
+      "na",
+      "dey"
+     ],
+     "term": "street",
+     "via": "j17 scene"
+    },
+    {
+     "t": 113.1,
+     "line": "maybe call police and try to report us",
+     "score": 8.913,
      "terms": [
       "maybe"
      ],
      "term": "maybe",
      "via": "j10 maybeknow map"
-    },
-    {
-     "t": 84.62,
-     "line": "Or maybe Im just busy for me",
-     "score": 12.621,
-     "terms": [
-      "maybe"
-     ],
-     "term": "maybe",
-     "via": "j10 maybeknow map"
-    },
-    {
-     "t": 24.82,
-     "line": "And maybe every other place baby",
-     "score": 9.28,
-     "terms": [
-      "maybe",
-      "romance (mood)"
-     ],
-     "term": "maybe",
-     "via": "j10 maybeknow map"
     }
    ],
-   "why": "♪ matched: “Maybe not in this life” ↔ j10 maybeknow map"
-  },
-  {
-   "id": "jowVh4hblsg",
-   "title": "Colorado",
-   "artist": "Zugo & Dai Verse",
-   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/jowVh4hblsg.mp3",
-   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/jowVh4hblsg.lrc",
-   "score": 22.671,
-   "matches": [
-    {
-     "t": 117.79,
-     "line": "catwalk that aisle like an adarego follow me follow me follow me go fine girl oya ibadi jo",
-     "score": 11.508,
-     "terms": [
-      "aisle",
-      "romance (mood)"
-     ],
-     "term": "aisle",
-     "via": "j16 beat"
-    },
-    {
-     "t": 127.28,
-     "line": "catwalk that aisle like an adarego follow me follow me follow me go cuz there is something bout your body way day high me like i don smoke c",
-     "score": 9.703,
-     "terms": [
-      "aisle"
-     ],
-     "term": "aisle",
-     "via": "j16 beat"
-    },
-    {
-     "t": 102.06,
-     "line": "girlie don make a bad man to surrender",
-     "score": 4.776,
-     "terms": [
-      "man",
-      "bad"
-     ],
-     "term": "man",
-     "via": "j16 scene"
-    }
-   ],
-   "why": "♪ matched: “catwalk that aisle like an adarego follow me follow me fol…” ↔ j16 beat"
-  },
-  {
-   "id": "eFlQrm1RiDM",
-   "title": "Ayo Girl",
-   "artist": "Rema ::: Jason Derulo, Sepp Krassnitzer",
-   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/eFlQrm1RiDM.mp3",
-   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/eFlQrm1RiDM.lrc",
-   "score": 21.178,
-   "matches": [
-    {
-     "t": 130.55,
-     "line": "Maybe maybe",
-     "score": 16.224,
-     "terms": [
-      "maybe"
-     ],
-     "term": "maybe",
-     "via": "j10 maybeknow map"
-    },
-    {
-     "t": 119.77,
-     "line": "And even you drive me crazy",
-     "score": 3.148,
-     "terms": [
-      "even"
-     ],
-     "term": "even",
-     "via": "j16 card kunle walk"
-    },
-    {
-     "t": 63.47,
-     "line": "It be the reason many man want you",
-     "score": 2.603,
-     "terms": [
-      "man"
-     ],
-     "term": "man",
-     "via": "j16 scene"
-    }
-   ],
-   "why": "♪ matched: “Maybe maybe” ↔ j10 maybeknow map"
+   "why": "♪ matched: “so he put a brand new range on the titi” ↔ j10 “if look: titi.go(juss) 🏃”"
   }
  ],
- "sig": "e414cc0a0e31",
- "generated": "2026-11-17T18:55:17-0500"
+ "sig": "7ff7a4f3e83d",
+ "generated": "2026-11-17T19:09:26-0500"
 }
