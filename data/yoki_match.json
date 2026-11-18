@@ -4,30 +4,53 @@
  "card": "w17",
  "job": "j17",
  "mood": {
-  "beat": null,
+  "from": "run/w17_mood.json",
+  "beat": "see",
   "theme": [],
-  "moods": [
-   "time",
-   "god",
-   "dance"
-  ],
-  "from": "derived"
+  "scene_words": [
+   "lines"
+  ]
  },
  "query": [
   {
+   "term": "already",
+   "w": 3.02,
+   "via": "j17 beat"
+  },
+  {
+   "term": "street",
+   "w": 2.6,
+   "via": "j17 beat"
+  },
+  {
+   "term": "tomorrow",
+   "w": 2.6,
+   "via": "j17 beat"
+  },
+  {
+   "term": "colored",
+   "w": 2.6,
+   "via": "j17 beat"
+  },
+  {
+   "term": "lines",
+   "w": 2.2,
+   "via": "j17 scene"
+  },
+  {
    "term": "titi",
-   "w": 2.9,
+   "w": 2.1,
    "via": "j10 “if look: titi.go(juss) 🏃”"
   },
   {
-   "term": "already",
-   "w": 2.37,
-   "via": "j17 scene"
+   "term": "time (mood)",
+   "w": 2.02,
+   "via": "j17 beat"
   },
   {
-   "term": "data",
-   "w": 1.75,
-   "via": "j17 scene"
+   "term": "seniorboys",
+   "w": 1.72,
+   "via": "j17 card kunle see"
   },
   {
    "term": "maybe",
@@ -50,68 +73,43 @@
    "via": "j10 “if look: titi.go(juss) 🏃”"
   },
   {
-   "term": "time (mood)",
-   "w": 1.42,
-   "via": "j17 scene"
-  },
-  {
-   "term": "lines",
-   "w": 1.4,
-   "via": "j17 scene"
-  },
-  {
-   "term": "05pm",
-   "w": 1.4,
-   "via": "j17 scene"
-  },
-  {
-   "term": "side",
-   "w": 1.4,
-   "via": "j17 scene"
-  },
-  {
-   "term": "door",
-   "w": 1.4,
-   "via": "j17 scene"
-  },
-  {
-   "term": "street",
-   "w": 1.4,
-   "via": "j17 scene"
-  },
-  {
-   "term": "tomorrow",
-   "w": 1.4,
-   "via": "j17 scene"
-  },
-  {
-   "term": "colored",
-   "w": 1.4,
-   "via": "j17 scene"
-  },
-  {
-   "term": "kunle",
-   "w": 1.4,
-   "via": "j17 scene"
-  },
-  {
-   "term": "mid",
-   "w": 1.4,
-   "via": "j17 scene"
-  },
-  {
-   "term": "aisle",
-   "w": 1.4,
-   "via": "j17 scene"
-  },
-  {
-   "term": "says",
-   "w": 1.4,
-   "via": "j17 scene"
+   "term": "need",
+   "w": 1.22,
+   "via": "j17 card kunle see"
   },
   {
    "term": "going",
-   "w": 1.4,
+   "w": 0.95,
+   "via": "j17 scene"
+  },
+  {
+   "term": "time",
+   "w": 0.95,
+   "via": "j17 scene"
+  },
+  {
+   "term": "oyinboman",
+   "w": 0.86,
+   "via": "j17 card titi name"
+  },
+  {
+   "term": "desire",
+   "w": 0.73,
+   "via": "j17 card kunle see"
+  },
+  {
+   "term": "textyng",
+   "w": 0.7,
+   "via": "j17 card kunle see"
+  },
+  {
+   "term": "seniorgehs",
+   "w": 0.67,
+   "via": "j17 card titi name"
+  },
+  {
+   "term": "05pm",
+   "w": 0.6,
    "via": "j17 scene"
   }
  ],
@@ -120,119 +118,34 @@
  "note": "BM25 over africariyoki lyric lines; top ~8 candidates with scores (no id tiebreak). query = live mood note + scene + seated lines + typed themes (tools/yoki_match.py)",
  "candidates": [
   {
-   "id": "00R4dOtzDIA",
-   "title": "Jealous",
-   "artist": "Fireboy DML",
-   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/00R4dOtzDIA.mp3",
-   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/00R4dOtzDIA.lrc",
-   "score": 43.109,
-   "matches": [
-    {
-     "t": 51.46,
-     "line": "oh im getting jealous already oh already oh",
-     "score": 23.302,
-     "terms": [
-      "already"
-     ],
-     "term": "already",
-     "via": "j17 scene"
-    },
-    {
-     "t": 144.68,
-     "line": "im getting jealous already oh already oh",
-     "score": 23.302,
-     "terms": [
-      "already"
-     ],
-     "term": "already",
-     "via": "j17 scene"
-    },
-    {
-     "t": 42.18,
-     "line": "oh im getting jealous already",
-     "score": 18.757,
-     "terms": [
-      "already"
-     ],
-     "term": "already",
-     "via": "j17 scene"
-    }
-   ],
-   "why": "♪ matched: “oh im getting jealous already oh already oh” ↔ j17 scene"
-  },
-  {
-   "id": "zq0DH1tyLgk",
-   "title": "Secret",
-   "artist": "Burna Boy ft Serani, Jeremih",
-   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/zq0DH1tyLgk.mp3",
-   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/zq0DH1tyLgk.lrc",
-   "score": 42.793,
-   "matches": [
-    {
-     "t": 27.09,
-     "line": "Say my name no time",
-     "score": 22.534,
-     "terms": [
-      "name",
-      "time",
-      "time (mood)"
-     ],
-     "term": "name",
-     "via": "j17 scene"
-    },
-    {
-     "t": 54.74,
-     "line": "You already know that when I got you on the plaque",
-     "score": 21.359,
-     "terms": [
-      "already"
-     ],
-     "term": "already",
-     "via": "j17 scene"
-    },
-    {
-     "t": 57.03,
-     "line": "I know you wanna spend more time spend more time",
-     "score": 13.8,
-     "terms": [
-      "time",
-      "time (mood)"
-     ],
-     "term": "time",
-     "via": "j17 scene"
-    }
-   ],
-   "why": "♪ matched: “Say my name no time” ↔ j17 scene"
-  },
-  {
    "id": "rL1RRLZIHGA",
    "title": "Four Years",
    "artist": "Styl-Plus",
    "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/rL1RRLZIHGA.mp3",
    "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/rL1RRLZIHGA.lrc",
-   "score": 42.555,
+   "score": 57.206,
    "matches": [
     {
      "t": 50.69,
      "line": "But we say that today is already better",
-     "score": 22.126,
+     "score": 28.949,
      "terms": [
       "already",
       "time (mood)"
      ],
      "term": "already",
-     "via": "j17 scene"
+     "via": "j17 beat"
     },
     {
      "t": 111.91,
      "line": "Then I wander how they can see tomorrow o o",
-     "score": 16.979,
+     "score": 28.882,
      "terms": [
       "tomorrow",
       "time (mood)"
      ],
      "term": "tomorrow",
-     "via": "j17 scene"
+     "via": "j17 beat"
     },
     {
      "t": 120.24,
@@ -245,134 +158,48 @@
      "via": "j10 maybeknow map"
     }
    ],
-   "why": "♪ matched: “But we say that today is already better” ↔ j17 scene"
+   "why": "♪ matched: “But we say that today is already better” ↔ j17 beat"
   },
   {
-   "id": "XlCPF3-IyIw",
-   "title": "Bank On It",
-   "artist": "Burna Boy",
-   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/XlCPF3-IyIw.mp3",
-   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/XlCPF3-IyIw.lrc",
-   "score": 39.482,
+   "id": "00R4dOtzDIA",
+   "title": "Jealous",
+   "artist": "Fireboy DML",
+   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/00R4dOtzDIA.mp3",
+   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/00R4dOtzDIA.lrc",
+   "score": 55.784,
    "matches": [
     {
-     "t": 152.33,
-     "line": "nobody know tomorrow",
-     "score": 24.242,
-     "terms": [
-      "tomorrow",
-      "nobody",
-      "time (mood)"
-     ],
-     "term": "tomorrow",
-     "via": "j17 scene"
-    },
-    {
-     "t": 47.5,
-     "line": "who is knocking at my door",
-     "score": 12.615,
-     "terms": [
-      "door"
-     ],
-     "term": "door",
-     "via": "j17 scene"
-    },
-    {
-     "t": 124.03,
-     "line": "i aint going out breda",
-     "score": 9.78,
-     "terms": [
-      "going"
-     ],
-     "term": "going",
-     "via": "j17 scene"
-    }
-   ],
-   "why": "♪ matched: “nobody know tomorrow” ↔ j17 scene"
-  },
-  {
-   "id": "1kU5BzdfDfg",
-   "title": "Higher",
-   "artist": "Tems",
-   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/1kU5BzdfDfg.mp3",
-   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/1kU5BzdfDfg.lrc",
-   "score": 39.255,
-   "matches": [
-    {
-     "t": 41.18,
-     "line": "But you knew that already",
-     "score": 21.359,
+     "t": 51.46,
+     "line": "oh im getting jealous already oh already oh",
+     "score": 29.647,
      "terms": [
       "already"
      ],
      "term": "already",
-     "via": "j17 scene"
+     "via": "j17 beat"
     },
     {
-     "t": 156.54,
-     "line": "Cry now from the side now call my name",
-     "score": 12.374,
+     "t": 144.68,
+     "line": "im getting jealous already oh already oh",
+     "score": 29.647,
      "terms": [
-      "name",
-      "side"
+      "already"
      ],
-     "term": "name",
-     "via": "j17 scene"
+     "term": "already",
+     "via": "j17 beat"
     },
     {
-     "t": 85.49,
-     "line": "Can you put the time on a rewind yeah",
-     "score": 11.401,
+     "t": 42.18,
+     "line": "oh im getting jealous already",
+     "score": 23.865,
      "terms": [
-      "time",
-      "time (mood)"
+      "already"
      ],
-     "term": "time",
-     "via": "j17 scene"
+     "term": "already",
+     "via": "j17 beat"
     }
    ],
-   "why": "♪ matched: “But you knew that already” ↔ j17 scene"
-  },
-  {
-   "id": "B_kC9Ggellw",
-   "title": "Oruka",
-   "artist": "Sunny Nneji",
-   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/B_kC9Ggellw.mp3",
-   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/B_kC9Ggellw.lrc",
-   "score": 39.145,
-   "matches": [
-    {
-     "t": 10.06,
-     "line": "Ko seni to le ya yin titi lai titi lai o",
-     "score": 20.767,
-     "terms": [
-      "titi"
-     ],
-     "term": "titi",
-     "via": "j10 “if look: titi.go(juss) 🏃”"
-    },
-    {
-     "t": 186.87,
-     "line": "Ko seni to le ya yin titi lai titi lai lai",
-     "score": 19.627,
-     "terms": [
-      "titi"
-     ],
-     "term": "titi",
-     "via": "j10 “if look: titi.go(juss) 🏃”"
-    },
-    {
-     "t": 207.11,
-     "line": "Ko seni to le ya yin titi lai titi lai lai lai lai",
-     "score": 17.685,
-     "terms": [
-      "titi"
-     ],
-     "term": "titi",
-     "via": "j10 “if look: titi.go(juss) 🏃”"
-    }
-   ],
-   "why": "♪ matched: “Ko seni to le ya yin titi lai titi lai o” ↔ j10 “if look: titi.go(juss) 🏃”"
+   "why": "♪ matched: “oh im getting jealous already oh already oh” ↔ j17 beat"
   },
   {
    "id": "ocBG1DTN5nc",
@@ -380,33 +207,33 @@
    "artist": "Wizkid, Femi Kuti",
    "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/ocBG1DTN5nc.mp3",
    "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/ocBG1DTN5nc.lrc",
-   "score": 37.128,
+   "score": 48.103,
    "matches": [
     {
      "t": 106.59,
      "line": "Ahhh you already know",
-     "score": 21.359,
+     "score": 27.175,
      "terms": [
       "already"
      ],
      "term": "already",
-     "via": "j17 scene"
+     "via": "j17 beat"
     },
     {
      "t": 62.0,
      "line": "Lagos today and London tomorrow",
-     "score": 14.537,
+     "score": 24.138,
      "terms": [
       "tomorrow",
       "time (mood)"
      ],
      "term": "tomorrow",
-     "via": "j17 scene"
+     "via": "j17 beat"
     },
     {
      "t": 91.11,
      "line": "Let nobody do me bad or intrude",
-     "score": 7.262,
+     "score": 3.112,
      "terms": [
       "nobody"
      ],
@@ -414,168 +241,253 @@
      "via": "j17 scene"
     }
    ],
-   "why": "♪ matched: “Ahhh you already know” ↔ j17 scene"
+   "why": "♪ matched: “Ahhh you already know” ↔ j17 beat"
   },
   {
-   "id": "lG_-2gU6kUk",
-   "title": "One Trouser",
-   "artist": "Falz",
-   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/lG_-2gU6kUk.mp3",
-   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/lG_-2gU6kUk.lrc",
-   "score": 36.641,
+   "id": "Ri_VVDbpkdY",
+   "title": "Cloak & Dagger",
+   "artist": "Burna Boy ft J Hus",
+   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/Ri_VVDbpkdY.mp3",
+   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/Ri_VVDbpkdY.lrc",
+   "score": 48.083,
    "matches": [
     {
-     "t": 39.2,
-     "line": "so he put a brand new range on the titi",
-     "score": 20.403,
+     "t": 129.71,
+     "line": "We go and see them tomorrow",
+     "score": 32.888,
      "terms": [
-      "titi",
-      "new"
+      "tomorrow",
+      "time (mood)"
      ],
-     "term": "titi",
-     "via": "j10 “if look: titi.go(juss) 🏃”"
+     "term": "tomorrow",
+     "via": "j17 beat"
     },
     {
-     "t": 122.82,
-     "line": "na when this danfo dey commot my street oh kurombe",
-     "score": 9.603,
+     "t": 126.28,
+     "line": "When your time has come dont make it harder",
+     "score": 11.744,
      "terms": [
-      "street",
-      "na",
-      "dey"
+      "time (mood)",
+      "time"
      ],
-     "term": "street",
+     "term": "time",
      "via": "j17 scene"
     },
     {
-     "t": 113.1,
-     "line": "maybe call police and try to report us",
-     "score": 8.913,
+     "t": 128.54,
+     "line": "Cant catch him today",
+     "score": 7.675,
      "terms": [
-      "maybe"
+      "time (mood)"
      ],
-     "term": "maybe",
-     "via": "j10 maybeknow map"
+     "term": "time",
+     "via": "j17 beat"
     }
    ],
-   "why": "♪ matched: “so he put a brand new range on the titi” ↔ j10 “if look: titi.go(juss) 🏃”"
+   "why": "♪ matched: “We go and see them tomorrow” ↔ j17 beat"
+  },
+  {
+   "id": "zq0DH1tyLgk",
+   "title": "Secret",
+   "artist": "Burna Boy ft Serani, Jeremih",
+   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/zq0DH1tyLgk.mp3",
+   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/zq0DH1tyLgk.lrc",
+   "score": 46.527,
+   "matches": [
+    {
+     "t": 54.74,
+     "line": "You already know that when I got you on the plaque",
+     "score": 27.175,
+     "terms": [
+      "already"
+     ],
+     "term": "already",
+     "via": "j17 beat"
+    },
+    {
+     "t": 27.09,
+     "line": "Say my name no time",
+     "score": 17.35,
+     "terms": [
+      "time (mood)",
+      "time",
+      "name"
+     ],
+     "term": "time",
+     "via": "j17 scene"
+    },
+    {
+     "t": 57.03,
+     "line": "I know you wanna spend more time spend more time",
+     "score": 14.215,
+     "terms": [
+      "time (mood)",
+      "time"
+     ],
+     "term": "time",
+     "via": "j17 scene"
+    }
+   ],
+   "why": "♪ matched: “You already know that when I got you on the plaque” ↔ j17 beat"
+  },
+  {
+   "id": "NDAOa6qp8Hg",
+   "title": "Ghetto",
+   "artist": "Kizz Daniel ft Nasty C",
+   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/NDAOa6qp8Hg.mp3",
+   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/NDAOa6qp8Hg.lrc",
+   "score": 46.275,
+   "matches": [
+    {
+     "t": 77.56,
+     "line": "from the street i know",
+     "score": 24.387,
+     "terms": [
+      "street"
+     ],
+     "term": "street",
+     "via": "j17 beat"
+    },
+    {
+     "t": 67.73,
+     "line": "started from the street i know",
+     "score": 21.004,
+     "terms": [
+      "street"
+     ],
+     "term": "street",
+     "via": "j17 beat"
+    },
+    {
+     "t": 108.03,
+     "line": "street i know thats my home",
+     "score": 20.444,
+     "terms": [
+      "street",
+      "home (mood)"
+     ],
+     "term": "street",
+     "via": "j17 beat"
+    }
+   ],
+   "why": "♪ matched: “from the street i know” ↔ j17 beat"
+  },
+  {
+   "id": "ts5NDTV4QIo",
+   "title": "Rara Rira",
+   "artist": "Brymo",
+   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/ts5NDTV4QIo.mp3",
+   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/ts5NDTV4QIo.lrc",
+   "score": 46.161,
+   "matches": [
+    {
+     "t": 111.33,
+     "line": "must to come true tomorrow",
+     "score": 25.746,
+     "terms": [
+      "tomorrow",
+      "time (mood)"
+     ],
+     "term": "tomorrow",
+     "via": "j17 beat"
+    },
+    {
+     "t": 27.9,
+     "line": "dem go come true tomorrow",
+     "score": 23.225,
+     "terms": [
+      "tomorrow",
+      "time (mood)"
+     ],
+     "term": "tomorrow",
+     "via": "j17 beat"
+    },
+    {
+     "t": 40.92,
+     "line": "we no get the time to dey force",
+     "score": 11.744,
+     "terms": [
+      "time (mood)",
+      "time"
+     ],
+     "term": "time",
+     "via": "j17 scene"
+    }
+   ],
+   "why": "♪ matched: “must to come true tomorrow” ↔ j17 beat"
+  },
+  {
+   "id": "6U7S6qzRr6M",
+   "title": "King of Parole",
+   "artist": "Ajebutter22",
+   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/6U7S6qzRr6M.mp3",
+   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/6U7S6qzRr6M.lrc",
+   "score": 46.049,
+   "matches": [
+    {
+     "t": 4.92,
+     "line": "If you see me for the street",
+     "score": 24.387,
+     "terms": [
+      "street"
+     ],
+     "term": "street",
+     "via": "j17 beat"
+    },
+    {
+     "t": 170.09,
+     "line": "She say butter you dey for street dey for street",
+     "score": 21.303,
+     "terms": [
+      "street"
+     ],
+     "term": "street",
+     "via": "j17 beat"
+    },
+    {
+     "t": 0.13,
+     "line": "How you know I dey for street",
+     "score": 21.004,
+     "terms": [
+      "street"
+     ],
+     "term": "street",
+     "via": "j17 beat"
+    }
+   ],
+   "why": "♪ matched: “If you see me for the street” ↔ j17 beat"
   }
  ],
  "top": [
   {
-   "id": "00R4dOtzDIA",
-   "title": "Jealous",
-   "artist": "Fireboy DML",
-   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/00R4dOtzDIA.mp3",
-   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/00R4dOtzDIA.lrc",
-   "score": 43.109,
-   "matches": [
-    {
-     "t": 51.46,
-     "line": "oh im getting jealous already oh already oh",
-     "score": 23.302,
-     "terms": [
-      "already"
-     ],
-     "term": "already",
-     "via": "j17 scene"
-    },
-    {
-     "t": 144.68,
-     "line": "im getting jealous already oh already oh",
-     "score": 23.302,
-     "terms": [
-      "already"
-     ],
-     "term": "already",
-     "via": "j17 scene"
-    },
-    {
-     "t": 42.18,
-     "line": "oh im getting jealous already",
-     "score": 18.757,
-     "terms": [
-      "already"
-     ],
-     "term": "already",
-     "via": "j17 scene"
-    }
-   ],
-   "why": "♪ matched: “oh im getting jealous already oh already oh” ↔ j17 scene"
-  },
-  {
-   "id": "zq0DH1tyLgk",
-   "title": "Secret",
-   "artist": "Burna Boy ft Serani, Jeremih",
-   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/zq0DH1tyLgk.mp3",
-   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/zq0DH1tyLgk.lrc",
-   "score": 42.793,
-   "matches": [
-    {
-     "t": 27.09,
-     "line": "Say my name no time",
-     "score": 22.534,
-     "terms": [
-      "name",
-      "time",
-      "time (mood)"
-     ],
-     "term": "name",
-     "via": "j17 scene"
-    },
-    {
-     "t": 54.74,
-     "line": "You already know that when I got you on the plaque",
-     "score": 21.359,
-     "terms": [
-      "already"
-     ],
-     "term": "already",
-     "via": "j17 scene"
-    },
-    {
-     "t": 57.03,
-     "line": "I know you wanna spend more time spend more time",
-     "score": 13.8,
-     "terms": [
-      "time",
-      "time (mood)"
-     ],
-     "term": "time",
-     "via": "j17 scene"
-    }
-   ],
-   "why": "♪ matched: “Say my name no time” ↔ j17 scene"
-  },
-  {
    "id": "rL1RRLZIHGA",
    "title": "Four Years",
    "artist": "Styl-Plus",
    "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/rL1RRLZIHGA.mp3",
    "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/rL1RRLZIHGA.lrc",
-   "score": 42.555,
+   "score": 57.206,
    "matches": [
     {
      "t": 50.69,
      "line": "But we say that today is already better",
-     "score": 22.126,
+     "score": 28.949,
      "terms": [
       "already",
       "time (mood)"
      ],
      "term": "already",
-     "via": "j17 scene"
+     "via": "j17 beat"
     },
     {
      "t": 111.91,
      "line": "Then I wander how they can see tomorrow o o",
-     "score": 16.979,
+     "score": 28.882,
      "terms": [
       "tomorrow",
       "time (mood)"
      ],
      "term": "tomorrow",
-     "via": "j17 scene"
+     "via": "j17 beat"
     },
     {
      "t": 120.24,
@@ -588,134 +500,48 @@
      "via": "j10 maybeknow map"
     }
    ],
-   "why": "♪ matched: “But we say that today is already better” ↔ j17 scene"
+   "why": "♪ matched: “But we say that today is already better” ↔ j17 beat"
   },
   {
-   "id": "XlCPF3-IyIw",
-   "title": "Bank On It",
-   "artist": "Burna Boy",
-   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/XlCPF3-IyIw.mp3",
-   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/XlCPF3-IyIw.lrc",
-   "score": 39.482,
+   "id": "00R4dOtzDIA",
+   "title": "Jealous",
+   "artist": "Fireboy DML",
+   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/00R4dOtzDIA.mp3",
+   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/00R4dOtzDIA.lrc",
+   "score": 55.784,
    "matches": [
     {
-     "t": 152.33,
-     "line": "nobody know tomorrow",
-     "score": 24.242,
-     "terms": [
-      "tomorrow",
-      "nobody",
-      "time (mood)"
-     ],
-     "term": "tomorrow",
-     "via": "j17 scene"
-    },
-    {
-     "t": 47.5,
-     "line": "who is knocking at my door",
-     "score": 12.615,
-     "terms": [
-      "door"
-     ],
-     "term": "door",
-     "via": "j17 scene"
-    },
-    {
-     "t": 124.03,
-     "line": "i aint going out breda",
-     "score": 9.78,
-     "terms": [
-      "going"
-     ],
-     "term": "going",
-     "via": "j17 scene"
-    }
-   ],
-   "why": "♪ matched: “nobody know tomorrow” ↔ j17 scene"
-  },
-  {
-   "id": "1kU5BzdfDfg",
-   "title": "Higher",
-   "artist": "Tems",
-   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/1kU5BzdfDfg.mp3",
-   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/1kU5BzdfDfg.lrc",
-   "score": 39.255,
-   "matches": [
-    {
-     "t": 41.18,
-     "line": "But you knew that already",
-     "score": 21.359,
+     "t": 51.46,
+     "line": "oh im getting jealous already oh already oh",
+     "score": 29.647,
      "terms": [
       "already"
      ],
      "term": "already",
-     "via": "j17 scene"
+     "via": "j17 beat"
     },
     {
-     "t": 156.54,
-     "line": "Cry now from the side now call my name",
-     "score": 12.374,
+     "t": 144.68,
+     "line": "im getting jealous already oh already oh",
+     "score": 29.647,
      "terms": [
-      "name",
-      "side"
+      "already"
      ],
-     "term": "name",
-     "via": "j17 scene"
+     "term": "already",
+     "via": "j17 beat"
     },
     {
-     "t": 85.49,
-     "line": "Can you put the time on a rewind yeah",
-     "score": 11.401,
+     "t": 42.18,
+     "line": "oh im getting jealous already",
+     "score": 23.865,
      "terms": [
-      "time",
-      "time (mood)"
+      "already"
      ],
-     "term": "time",
-     "via": "j17 scene"
+     "term": "already",
+     "via": "j17 beat"
     }
    ],
-   "why": "♪ matched: “But you knew that already” ↔ j17 scene"
-  },
-  {
-   "id": "B_kC9Ggellw",
-   "title": "Oruka",
-   "artist": "Sunny Nneji",
-   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/B_kC9Ggellw.mp3",
-   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/B_kC9Ggellw.lrc",
-   "score": 39.145,
-   "matches": [
-    {
-     "t": 10.06,
-     "line": "Ko seni to le ya yin titi lai titi lai o",
-     "score": 20.767,
-     "terms": [
-      "titi"
-     ],
-     "term": "titi",
-     "via": "j10 “if look: titi.go(juss) 🏃”"
-    },
-    {
-     "t": 186.87,
-     "line": "Ko seni to le ya yin titi lai titi lai lai",
-     "score": 19.627,
-     "terms": [
-      "titi"
-     ],
-     "term": "titi",
-     "via": "j10 “if look: titi.go(juss) 🏃”"
-    },
-    {
-     "t": 207.11,
-     "line": "Ko seni to le ya yin titi lai titi lai lai lai lai",
-     "score": 17.685,
-     "terms": [
-      "titi"
-     ],
-     "term": "titi",
-     "via": "j10 “if look: titi.go(juss) 🏃”"
-    }
-   ],
-   "why": "♪ matched: “Ko seni to le ya yin titi lai titi lai o” ↔ j10 “if look: titi.go(juss) 🏃”"
+   "why": "♪ matched: “oh im getting jealous already oh already oh” ↔ j17 beat"
   },
   {
    "id": "ocBG1DTN5nc",
@@ -723,33 +549,33 @@
    "artist": "Wizkid, Femi Kuti",
    "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/ocBG1DTN5nc.mp3",
    "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/ocBG1DTN5nc.lrc",
-   "score": 37.128,
+   "score": 48.103,
    "matches": [
     {
      "t": 106.59,
      "line": "Ahhh you already know",
-     "score": 21.359,
+     "score": 27.175,
      "terms": [
       "already"
      ],
      "term": "already",
-     "via": "j17 scene"
+     "via": "j17 beat"
     },
     {
      "t": 62.0,
      "line": "Lagos today and London tomorrow",
-     "score": 14.537,
+     "score": 24.138,
      "terms": [
       "tomorrow",
       "time (mood)"
      ],
      "term": "tomorrow",
-     "via": "j17 scene"
+     "via": "j17 beat"
     },
     {
      "t": 91.11,
      "line": "Let nobody do me bad or intrude",
-     "score": 7.262,
+     "score": 3.112,
      "terms": [
       "nobody"
      ],
@@ -757,53 +583,223 @@
      "via": "j17 scene"
     }
    ],
-   "why": "♪ matched: “Ahhh you already know” ↔ j17 scene"
+   "why": "♪ matched: “Ahhh you already know” ↔ j17 beat"
   },
   {
-   "id": "lG_-2gU6kUk",
-   "title": "One Trouser",
-   "artist": "Falz",
-   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/lG_-2gU6kUk.mp3",
-   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/lG_-2gU6kUk.lrc",
-   "score": 36.641,
+   "id": "Ri_VVDbpkdY",
+   "title": "Cloak & Dagger",
+   "artist": "Burna Boy ft J Hus",
+   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/Ri_VVDbpkdY.mp3",
+   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/Ri_VVDbpkdY.lrc",
+   "score": 48.083,
    "matches": [
     {
-     "t": 39.2,
-     "line": "so he put a brand new range on the titi",
-     "score": 20.403,
+     "t": 129.71,
+     "line": "We go and see them tomorrow",
+     "score": 32.888,
      "terms": [
-      "titi",
-      "new"
+      "tomorrow",
+      "time (mood)"
      ],
-     "term": "titi",
-     "via": "j10 “if look: titi.go(juss) 🏃”"
+     "term": "tomorrow",
+     "via": "j17 beat"
     },
     {
-     "t": 122.82,
-     "line": "na when this danfo dey commot my street oh kurombe",
-     "score": 9.603,
+     "t": 126.28,
+     "line": "When your time has come dont make it harder",
+     "score": 11.744,
      "terms": [
-      "street",
-      "na",
-      "dey"
+      "time (mood)",
+      "time"
      ],
-     "term": "street",
+     "term": "time",
      "via": "j17 scene"
     },
     {
-     "t": 113.1,
-     "line": "maybe call police and try to report us",
-     "score": 8.913,
+     "t": 128.54,
+     "line": "Cant catch him today",
+     "score": 7.675,
      "terms": [
-      "maybe"
+      "time (mood)"
      ],
-     "term": "maybe",
-     "via": "j10 maybeknow map"
+     "term": "time",
+     "via": "j17 beat"
     }
    ],
-   "why": "♪ matched: “so he put a brand new range on the titi” ↔ j10 “if look: titi.go(juss) 🏃”"
+   "why": "♪ matched: “We go and see them tomorrow” ↔ j17 beat"
+  },
+  {
+   "id": "zq0DH1tyLgk",
+   "title": "Secret",
+   "artist": "Burna Boy ft Serani, Jeremih",
+   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/zq0DH1tyLgk.mp3",
+   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/zq0DH1tyLgk.lrc",
+   "score": 46.527,
+   "matches": [
+    {
+     "t": 54.74,
+     "line": "You already know that when I got you on the plaque",
+     "score": 27.175,
+     "terms": [
+      "already"
+     ],
+     "term": "already",
+     "via": "j17 beat"
+    },
+    {
+     "t": 27.09,
+     "line": "Say my name no time",
+     "score": 17.35,
+     "terms": [
+      "time (mood)",
+      "time",
+      "name"
+     ],
+     "term": "time",
+     "via": "j17 scene"
+    },
+    {
+     "t": 57.03,
+     "line": "I know you wanna spend more time spend more time",
+     "score": 14.215,
+     "terms": [
+      "time (mood)",
+      "time"
+     ],
+     "term": "time",
+     "via": "j17 scene"
+    }
+   ],
+   "why": "♪ matched: “You already know that when I got you on the plaque” ↔ j17 beat"
+  },
+  {
+   "id": "NDAOa6qp8Hg",
+   "title": "Ghetto",
+   "artist": "Kizz Daniel ft Nasty C",
+   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/NDAOa6qp8Hg.mp3",
+   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/NDAOa6qp8Hg.lrc",
+   "score": 46.275,
+   "matches": [
+    {
+     "t": 77.56,
+     "line": "from the street i know",
+     "score": 24.387,
+     "terms": [
+      "street"
+     ],
+     "term": "street",
+     "via": "j17 beat"
+    },
+    {
+     "t": 67.73,
+     "line": "started from the street i know",
+     "score": 21.004,
+     "terms": [
+      "street"
+     ],
+     "term": "street",
+     "via": "j17 beat"
+    },
+    {
+     "t": 108.03,
+     "line": "street i know thats my home",
+     "score": 20.444,
+     "terms": [
+      "street",
+      "home (mood)"
+     ],
+     "term": "street",
+     "via": "j17 beat"
+    }
+   ],
+   "why": "♪ matched: “from the street i know” ↔ j17 beat"
+  },
+  {
+   "id": "ts5NDTV4QIo",
+   "title": "Rara Rira",
+   "artist": "Brymo",
+   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/ts5NDTV4QIo.mp3",
+   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/ts5NDTV4QIo.lrc",
+   "score": 46.161,
+   "matches": [
+    {
+     "t": 111.33,
+     "line": "must to come true tomorrow",
+     "score": 25.746,
+     "terms": [
+      "tomorrow",
+      "time (mood)"
+     ],
+     "term": "tomorrow",
+     "via": "j17 beat"
+    },
+    {
+     "t": 27.9,
+     "line": "dem go come true tomorrow",
+     "score": 23.225,
+     "terms": [
+      "tomorrow",
+      "time (mood)"
+     ],
+     "term": "tomorrow",
+     "via": "j17 beat"
+    },
+    {
+     "t": 40.92,
+     "line": "we no get the time to dey force",
+     "score": 11.744,
+     "terms": [
+      "time (mood)",
+      "time"
+     ],
+     "term": "time",
+     "via": "j17 scene"
+    }
+   ],
+   "why": "♪ matched: “must to come true tomorrow” ↔ j17 beat"
+  },
+  {
+   "id": "6U7S6qzRr6M",
+   "title": "King of Parole",
+   "artist": "Ajebutter22",
+   "audio": "https://storage.googleapis.com/africariyoki-4b634.appspot.com/music/6U7S6qzRr6M.mp3",
+   "lrc": "https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/lrc/6U7S6qzRr6M.lrc",
+   "score": 46.049,
+   "matches": [
+    {
+     "t": 4.92,
+     "line": "If you see me for the street",
+     "score": 24.387,
+     "terms": [
+      "street"
+     ],
+     "term": "street",
+     "via": "j17 beat"
+    },
+    {
+     "t": 170.09,
+     "line": "She say butter you dey for street dey for street",
+     "score": 21.303,
+     "terms": [
+      "street"
+     ],
+     "term": "street",
+     "via": "j17 beat"
+    },
+    {
+     "t": 0.13,
+     "line": "How you know I dey for street",
+     "score": 21.004,
+     "terms": [
+      "street"
+     ],
+     "term": "street",
+     "via": "j17 beat"
+    }
+   ],
+   "why": "♪ matched: “If you see me for the street” ↔ j17 beat"
   }
  ],
- "sig": "7ff7a4f3e83d",
- "generated": "2026-11-17T19:09:26-0500"
+ "sig": "cb399e9f07f0",
+ "generated": "2026-11-17T19:11:12-0500"
 }
