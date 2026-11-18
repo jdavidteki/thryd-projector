@@ -5418,16 +5418,6 @@
 ],
 "teo": [
 {
-"id": "wf_363939a52f",
-"kind": "consequence",
-"text": "A Cassette spine note with Kunle's name and 'pharmacy stamp' on it, turns up inside the folded receipt at the teo, and Bisola reads the name twice.",
-"code": "cassette_spine.interactwith(teo){ teo.receives(cassette_spine.stamp); … }",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j8",
-"other": "cassette_spine"
-},
-{
 "id": "wt_34aadff19f",
 "kind": "func_call",
 "text": "Someone at the projector tapped the teo and called teo.fold(how=like:Manner) from j27, first seated in run-5a58c4 j25.",
@@ -5456,6 +5446,16 @@
 "run": "run-5a58c4",
 "card": "j3",
 "other": "god"
+},
+{
+"id": "wf_b008d3351c",
+"kind": "consequence",
+"text": "The teo now remembers the miami: 11:45pm, Monday 2 November 2026: A phone on the counter starts the off-key chorus, then.",
+"code": "miami.interactwith(teo){ teo.receives(miami.phone); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j29",
+"other": "miami"
 },
 {
 "id": "wt_183d3cde12",
@@ -6953,17 +6953,6 @@
 },
 "consequences": [
 {
-"id": "wf_882de53ca5",
-"ts": "2026-11-18T00:06:24-0500",
-"a": "saturday_october",
-"b": "wiitbaw",
-"code": "saturday_october.interactwith(wiitbaw){ wiitbaw.receives(saturday_october.envelope); wiitbaw.remembers(bisola, 'brown envelope'); }",
-"text": "The wiitbaw leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
 "id": "wf_b849852435",
 "ts": "2026-11-18T00:07:17-0500",
 "a": "bus",
@@ -7391,6 +7380,17 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": "j6"
+},
+{
+"id": "wf_b008d3351c",
+"ts": "2026-11-18T08:29:31-0500",
+"a": "miami",
+"b": "teo",
+"code": "miami.interactwith(teo){ teo.receives(miami.phone); }",
+"text": "The teo now remembers the miami: 11:45pm, Monday 2 November 2026: A phone on the counter starts the off-key chorus, then.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j29"
 }
 ],
 "memories": [
@@ -7494,5 +7494,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T08:27:46-0500"
+"updated": "2026-11-18T08:29:31-0500"
 }
