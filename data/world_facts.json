@@ -933,16 +933,6 @@
 ],
 "plastic_sheet": [
 {
-"id": "wf_a3a347b7fb",
-"kind": "consequence",
-"text": "The plastic sheet now remembers the miami: 11:45pm, Monday 2 November 2026: A phone on the counter starts the off-key chorus, then.",
-"code": "miami.interactwith(plastic_sheet){ plastic_sheet.receives(miami.phone); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j29",
-"other": "miami"
-},
-{
 "id": "wf_8fd201d379",
 "kind": "consequence",
 "text": "The danfo speaker ends up with the plastic sheet, still playing the same love song.",
@@ -981,6 +971,16 @@
 "run": "run-2eb42d",
 "card": "w5",
 "other": null
+},
+{
+"id": "wf_9c5687a8fc",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the plastic sheet, which is still wet.",
+"code": "niaw.interactwith(plastic_sheet){ plastic_sheet.receives(niaw.envelope); plastic_sheet.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "niaw"
 }
 ],
 "red_white_cap": [
@@ -1873,16 +1873,6 @@
 ],
 "ronke": [
 {
-"id": "wt_ca2a1c4c4e",
-"kind": "func_call",
-"text": "Ronke tells them to share. Line 2: - they tok say all the ansas are [[here]]",
-"code": "ronke.tell('share');",
-"author": "thryd",
-"run": "run-2eb42d",
-"card": "w32",
-"other": null
-},
-{
 "id": "wt_daa21b5174",
 "kind": "func_call",
 "text": "Ronke tells them to share.",
@@ -1920,6 +1910,16 @@
 "author": "thryd",
 "run": "run-2eb42d",
 "card": "w35",
+"other": null
+},
+{
+"id": "wt_357f972be3",
+"kind": "func_call",
+"text": "Ronke asks the river and lands on 'only you want boat, missipi and niger, nawa o'.",
+"code": "ronke.ask('river');",
+"author": "thryd",
+"run": "run-2eb42d",
+"card": "w36",
 "other": null
 }
 ],
@@ -6909,16 +6909,6 @@
 ],
 "kazeem": [
 {
-"id": "wt_654b35ddca",
-"kind": "func_call",
-"text": "Kazeem says the nuts are hot, landing on 'fink about it'. Line 3: [[wksif]] -- fink about it! finking finking!",
-"code": "kazeem.say('hot');",
-"author": "thryd",
-"run": "run-2eb42d",
-"card": "w32",
-"other": null
-},
-{
 "id": "wt_17c788a8cd",
 "kind": "func_call",
 "text": "Kazeem says the nuts are hot, landing on 'fink about it'. Line 3: [[wksif]] -- fink about it! finking finking!",
@@ -6956,6 +6946,16 @@
 "author": "thryd",
 "run": "run-2eb42d",
 "card": "w35",
+"other": null
+},
+{
+"id": "wt_e3677f74aa",
+"kind": "func_call",
+"text": "Kazeem smells the pot: everything is part of the smell; Folake says she only does sugar now.",
+"code": "kazeem.smell('pot');",
+"author": "thryd",
+"run": "run-2eb42d",
+"card": "w36",
 "other": null
 }
 ],
@@ -7501,16 +7501,6 @@
 ],
 "mamaronke": [
 {
-"id": "wt_4c94fe66c7",
-"kind": "func_call",
-"text": "Folake buys the hot wrap through the glass and tells the boy 'do ure hard', paying full price.",
-"code": "mamaronke.buy('wrap');",
-"author": "thryd",
-"run": "run-2eb42d",
-"card": "w32",
-"other": null
-},
-{
 "id": "wt_4b02c55c62",
 "kind": "func_call",
 "text": "Folake lands on the phd in the sky / a line that connects all the ideas, like a needle.",
@@ -7548,6 +7538,16 @@
 "author": "thryd",
 "run": "run-2eb42d",
 "card": "w35",
+"other": null
+},
+{
+"id": "wt_a8670492bc",
+"kind": "func_call",
+"text": "Folake gives the money and lands on 'we can use some of that money in the ghetto / if i was president'.",
+"code": "mamaronke.give('money');",
+"author": "thryd",
+"run": "run-2eb42d",
+"card": "w36",
 "other": null
 }
 ],
@@ -8387,6 +8387,16 @@
 "run": "run-2eb42d",
 "card": "w35",
 "other": null
+},
+{
+"id": "wt_24388fbc52",
+"kind": "func_call",
+"text": "The boat lifts this guy; Folake wanted to put him in his place, but he is the main chairman.",
+"code": "boat.lift('guy');",
+"author": "thryd",
+"run": "run-2eb42d",
+"card": "w36",
+"other": null
 }
 ],
 "dragon": [
@@ -8627,6 +8637,16 @@
 "run": "run-2eb42d",
 "card": "j35",
 "other": null
+},
+{
+"id": "wt_b45eb011a1",
+"kind": "func_call",
+"text": "Ronke joins the town hall meeting as a new guest.",
+"code": "townhallmeeting.newguest('ronke');",
+"author": "thryd",
+"run": "run-2eb42d",
+"card": "w35",
+"other": null
 }
 ],
 "ias": [
@@ -8730,20 +8750,117 @@
 "card": "j4",
 "other": null
 }
+],
+"trophy": [
+{
+"id": "wt_f952159b2d",
+"kind": "func_call",
+"text": "A small plastic trophy sits on the ticket counter; Folake is counting rooms, not trophies.",
+"code": "trophy.count('rooms');",
+"author": "thryd",
+"run": "run-2eb42d",
+"card": "w35",
+"other": null
+}
+],
+"face": [
+{
+"id": "wt_a3c5ac7cd9",
+"kind": "func_call",
+"text": "A gasping-face sticker is stuck to the bench slat beside the whispered gossip.",
+"code": "face.gasp('gossip');",
+"author": "thryd",
+"run": "run-2eb42d",
+"card": "w35",
+"other": null
+}
+],
+"phone": [
+{
+"id": "wt_a970fda8e6",
+"kind": "func_call",
+"text": "A phone in his hand shows its lock screen.",
+"code": "phone.show('screen');",
+"author": "thryd",
+"run": "run-2eb42d",
+"card": "w35",
+"other": null
+}
+],
+"headphone": [
+{
+"id": "wt_fd63acb07a",
+"kind": "func_call",
+"text": "A pair of wired earbuds hangs off the timetable board.",
+"code": "headphone.wear('ear');",
+"author": "thryd",
+"run": "run-2eb42d",
+"card": "w35",
+"other": null
+}
+],
+"ferry": [
+{
+"id": "wt_96ece42342",
+"kind": "func_call",
+"text": "A ferry pictogram is printed on the arrival board.",
+"code": "ferry.show('sign');",
+"author": "thryd",
+"run": "run-2eb42d",
+"card": "w36",
+"other": null
+}
+],
+"clover": [
+{
+"id": "wt_bc1ba8cc52",
+"kind": "func_call",
+"text": "A four-leaf clover charm is clipped to the naira note Folake hands over.",
+"code": "clover.show('charm');",
+"author": "thryd",
+"run": "run-2eb42d",
+"card": "w36",
+"other": null
+}
+],
+"wave": [
+{
+"id": "wt_34770d8e24",
+"kind": "func_call",
+"text": "A wave slaps the Ikorodu jetty as they step off.",
+"code": "wave.slap('jetty');",
+"author": "thryd",
+"run": "run-2eb42d",
+"card": "w36",
+"other": null
+}
+],
+"nose": [
+{
+"id": "wt_600ea64b7f",
+"kind": "func_call",
+"text": "Steam from a pot of stew on the deck meets you at the nose.",
+"code": "nose.catch('steam');",
+"author": "thryd",
+"run": "run-2eb42d",
+"card": "w36",
+"other": null
+}
+],
+"porch_top": [
+{
+"id": "wt_21f88e3890",
+"kind": "func_call",
+"text": "[[fwr]] resolves uniquely by title initials to 730. flowers well received (https://notnotnotnotyn.medium.com/730-flowers-well-received-9fe88cfb7528). Those flowers now sit on the porch top. The flowers page has no literal obj.method() calls.",
+"code": "porch.top.addobject('flowers');",
+"author": "thryd",
+"run": "run-2eb42d",
+"card": "w34",
+"other": null
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_5cebb2350c",
-"ts": "2026-11-18T15:42:37-0500",
-"a": "asmathic",
-"b": "laptop",
-"code": "asmathic.interactwith(laptop){ laptop.receives(asmathic.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the lamp soot at the laptop, and Taiwo reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
 {
 "id": "wf_1262999fd5",
 "ts": "2026-11-18T15:45:15-0500",
@@ -9172,6 +9289,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_9c5687a8fc",
+"ts": "2026-11-18T17:57:45-0500",
+"a": "niaw",
+"b": "plastic_sheet",
+"code": "niaw.interactwith(plastic_sheet){ plastic_sheet.receives(niaw.envelope); plastic_sheet.remembers(bisola, 'brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the plastic sheet, which is still wet.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -9275,5 +9403,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T17:51:28-0500"
+"updated": "2026-11-18T17:57:45-0500"
 }
