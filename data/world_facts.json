@@ -2,6 +2,9 @@
 "v": 1,
 "note": "World memory: each object's facts and the newest consequences of meetings (shared store /workspace/thryd-projector/data/world_facts.jsonl, tools/world_memory.py). The stage shows a consequence code line when the same pair meets again, and now and then on its own; #thryd memories show now and then too.",
 "alias": {
+"ojuelegba_bus_stop_subject": "ojuelegba_bus_stop",
+"ojuelegba_bus_stop_subject_second": "ojuelegba_bus_stop",
+"ojuelegba_bus_stop_subject_third": "ojuelegba_bus_stop",
 "saturday_october_subject": "saturday_october",
 "saturday_october_subject_second": "saturday_october",
 "saturday_october_subject_third": "saturday_october",
@@ -698,16 +701,6 @@
 ],
 "oshodi_bus_shelter": [
 {
-"id": "wf_4a7d94e061",
-"kind": "memory",
-"text": "9:05am, Tuesday 9 April 2075: Taiwo reads the timetable aloud. The oshodi bus shelter keeps it on file.",
-"code": "oshodi_bus_shelter.remembers(taiwo, 'timetable');",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j11",
-"other": null
-},
-{
 "id": "wf_ccf0a5307f",
 "kind": "memory",
 "text": "7:15am, Tuesday 22 June 2077: Bisola sits on the bench with a phone at ten percent. The oshodi bus shelter keeps it on file.",
@@ -726,6 +719,16 @@
 "run": "run-0bd7c0",
 "card": "j12",
 "other": null
+},
+{
+"id": "wf_0f6d4996e3",
+"kind": "consequence",
+"text": "Under the Oshodi bridge Kazeem counts his change at the bus shelter, and the Ttb note goes on file there beside Kennedy's old timetable.",
+"code": "kazeem.interactwith(oshodi_bus_shelter){ oshodi_bus_shelter.receives(kazeem, 'ttb note'); oshodi_bus_shelter.remembers(kazeem, 'change counted under a phone torch'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j21",
+"other": "kazeem"
 },
 {
 "id": "wt_e2a4bd1320",
@@ -772,16 +775,6 @@
 ],
 "pure_water_cooler": [
 {
-"id": "wf_93cdfde553",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the pure-water cooler, which is still carried home through the flood.",
-"code": "saturday_october.interactwith(pure_water_cooler){ pure_water_cooler.receives(saturday_october.envelope); pure_water_cooler.remembers(bisola, 'brown envelope'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "saturday_october"
-},
-{
 "id": "wf_64f857e0b7",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the pure-water cooler, which is still carried home through the flood.",
@@ -804,12 +797,22 @@
 {
 "id": "wf_6554ef5dcc",
 "kind": "memory",
-"text": "The pure-water cooler at Mama Ronke's house: carried home through the flood; dinner is over.",
+"text": "The pure-water cooler at Ojuelegba bus stop: carried home through the flood; dinner is over; sticker says it is older than Ro.",
 "code": "pure_water_cooler.state('carried home through the flood');",
 "author": "cos",
 "run": "run-2eb42d",
 "card": "w1",
 "other": null
+},
+{
+"id": "wf_f9f456b187",
+"kind": "consequence",
+"text": "The pure water cooler now remembers the ronke: The customer typed ronke.getlikes().contains(kazeem.goodqualities), which ran as.",
+"code": "ronke.interactwith(pure_water_cooler){ pure_water_cooler.receives(ronke.something); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j21",
+"other": "ronke"
 },
 {
 "id": "wt_61e16c7796",
@@ -1876,6 +1879,36 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "love"
+},
+{
+"id": "wt_c8b7755e62",
+"kind": "func_call",
+"text": "Someone at the projector tapped the person and called ronke.hail(what=currentaffairs:Thing) from its agenda run-2eb42d, first seated in run-2eb42d j18.",
+"code": "ronke.hail('currentaffairs');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w18",
+"other": null
+},
+{
+"id": "wt_9ec5ff514a",
+"kind": "func_call",
+"text": "Someone at the projector tapped the ronke and called ronke.hail(what=hawker:Thing) from j18, first seated in run-2eb42d j18.",
+"code": "ronke.hail('hawker');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w18",
+"other": null
+},
+{
+"id": "wt_f0d3ff02c1",
+"kind": "func_call",
+"text": "The customer typed ronke.getlikes().contains(kazeem.goodqualities), which ran as ronke.getlikes().filter(q => kazeem.goodqualities.includes(q)) on run-2eb42d j21. ronke now has ronke.getlikes as a method on this agenda, and it can be called again.",
+"code": "ronke.getlikes().filter(q => kazeem.goodqualities.includes(q));",
+"author": "customer",
+"run": "run-2eb42d",
+"card": "j21",
+"other": null
 }
 ],
 "bird": [
@@ -6192,16 +6225,6 @@
 ],
 "saturday_october": [
 {
-"id": "wf_fa270e91db",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the saturday october, and Bisola reads the name twice.",
-"code": "namco.interactwith(saturday_october){ saturday_october.receives(namco.envelope); … }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "namco"
-},
-{
 "id": "wf_4e11268f77",
 "kind": "consequence",
 "text": "A Mama ronke note with Ejiro's name and 'ttb note' on it, turns up inside the brown envelope at the saturday october, and Bisola reads the name twice.",
@@ -6230,6 +6253,16 @@
 "run": "run-2eb42d",
 "card": "j2",
 "other": "ttb"
+},
+{
+"id": "wf_386155de8f",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the saturday october, and Bisola reads the name twice.",
+"code": "mkdwo.interactwith(saturday_october){ saturday_october.receives(mkdwo.envelope); … }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "mkdwo"
 },
 {
 "id": "wt_5afb033ddb",
@@ -6694,16 +6727,6 @@
 ],
 "kazeem": [
 {
-"id": "wf_0e2fa723d4",
-"kind": "consequence",
-"text": "The kazeem leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"code": "icsh.interactwith(kazeem){ kazeem.receives(icsh.envelope); kazeem.remembers(bisola, 'brown envelope'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "icsh"
-},
-{
 "id": "wf_a93c64b3b4",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the kazeem, and Bisola reads the name twice.",
@@ -6722,6 +6745,36 @@
 "run": "run-2eb42d",
 "card": "w17",
 "other": null
+},
+{
+"id": "wt_81011798d4",
+"kind": "func_call",
+"text": "The kazeem hears it (because ronke.hail(what=currentaffairs:Thing)).",
+"code": "kazeem.hears(person, 'hail');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w18",
+"other": null
+},
+{
+"id": "wt_749b277104",
+"kind": "func_call",
+"text": "The kazeem hears it (because ronke.hail(what=hawker:Thing) from j18).",
+"code": "kazeem.hears(ronke, 'hail');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w18",
+"other": null
+},
+{
+"id": "wf_86d832941d",
+"kind": "consequence",
+"text": "The Mushin street lamp that goes out in j20 drops Ejiro's Ttb note into the keke, and Kazeem keeps it folded with his change.",
+"code": "streetlights.interactwith(kazeem){ kazeem.receives(streetlights, 'ttb note'); streetlights.dim(); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j20",
+"other": "streetlights"
 }
 ],
 "mama_ronke": [
@@ -6744,6 +6797,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "kazeem"
+},
+{
+"id": "wf_9c2a3396cb",
+"kind": "consequence",
+"text": "When Mama Ronke claims the cooler at the Ojuelegba bus stop, Bisola's Yaba bookshop receipt is stuck under the ice, and she pockets it as proof the cooler was bought for her house.",
+"code": "pure_water_cooler.interactwith(mama_ronke){ mama_ronke.receives(pure_water_cooler.brown_envelope); mama_ronke.claims(pure_water_cooler, 'yaba bookshop receipt'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j18",
+"other": "pure_water_cooler"
 },
 {
 "id": "wt_836e6dea8e",
@@ -6778,6 +6841,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "saturday_october"
+},
+{
+"id": "wt_96af55ff28",
+"kind": "func_call",
+"text": "The customer typed [[wiitbaw]] on run-2eb42d j21.",
+"code": "[[wiitbaw]];",
+"author": "customer",
+"run": "run-2eb42d",
+"card": "j21",
+"other": null
 }
 ],
 "listen": [
@@ -7012,6 +7085,26 @@
 "run": "run-2eb42d",
 "card": "w17",
 "other": null
+},
+{
+"id": "wt_8f2e62c6b8",
+"kind": "func_call",
+"text": "The hear hears it (because ronke.hail(what=currentaffairs:Thing)).",
+"code": "hear.hears(person, 'hail');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w18",
+"other": null
+},
+{
+"id": "wt_f907f1ebf2",
+"kind": "func_call",
+"text": "The hear hears it (because ronke.hail(what=hawker:Thing) from j18).",
+"code": "hear.hears(ronke, 'hail');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w18",
+"other": null
 }
 ],
 "mamaronke": [
@@ -7023,6 +7116,26 @@
 "author": "projector",
 "run": "run-2eb42d",
 "card": "w17",
+"other": null
+},
+{
+"id": "wt_e93197f42f",
+"kind": "func_call",
+"text": "The mamaronke hears it (because ronke.hail(what=currentaffairs:Thing)).",
+"code": "mamaronke.hears(person, 'hail');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w18",
+"other": null
+},
+{
+"id": "wt_3fae71aaf1",
+"kind": "func_call",
+"text": "The mamaronke hears it (because ronke.hail(what=hawker:Thing) from j18).",
+"code": "mamaronke.hears(ronke, 'hail');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w18",
 "other": null
 }
 ],
@@ -7085,64 +7198,45 @@
 "card": "j5",
 "other": "inside_odunlade_brain"
 }
+],
+"dcbh": [
+{
+"id": "wt_91d8ef0353",
+"kind": "func_call",
+"text": "The customer typed [[dcbh]] on run-2eb42d j21.",
+"code": "[[dcbh]];",
+"author": "customer",
+"run": "run-2eb42d",
+"card": "j21",
+"other": null
+}
+],
+"cooler": [
+{
+"id": "wt_affacf0e65",
+"kind": "func_call",
+"text": "The customer typed cooler.getdatemanufactured() on run-2eb42d j21.",
+"code": "cooler.getdatemanufactured();",
+"author": "customer",
+"run": "run-2eb42d",
+"card": "j21",
+"other": null
+}
+],
+"qa_foo": [
+{
+"id": "wt_3338b0d4b8",
+"kind": "func_call",
+"text": "The customer typed qa560foo.bar(1795015549888) on run-2eb42d j21. qa560foo now has qa560foo.bar as a method on this agenda, and it can be called again.",
+"code": "qa560foo.bar(1795015549888);",
+"author": "customer",
+"run": "run-2eb42d",
+"card": "j21",
+"other": null
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_fa270e91db",
-"ts": "2026-11-18T07:03:58-0500",
-"a": "namco",
-"b": "saturday_october",
-"code": "namco.interactwith(saturday_october){ saturday_october.receives(namco.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the saturday october, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
-"id": "wf_37d55f8366",
-"ts": "2026-11-18T08:06:45-0500",
-"a": "club_terrace_admiralty",
-"b": "ikorodu_compound",
-"code": "club_terrace_admiralty.interactwith(ikorodu_compound){ ikorodu_compound.receives(club_terrace_admiralty.leads); ikorodu_compound.remembers(kunle, 'jump leads'); }",
-"text": "The ikorodu compound leaves with a Club terrace admiralty bill with Kunle's name and 'jump leads' on it, 11:05am.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j5"
-},
-{
-"id": "wf_457f15909c",
-"ts": "2026-11-18T08:08:30-0500",
-"a": "wiitbaw",
-"b": "kerosene_lamp",
-"code": "wiitbaw.interactwith(kerosene_lamp){ kerosene_lamp.receives(wiitbaw.envelope); kerosene_lamp.remembers(bisola, 'brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the kerosene lamp, which is still lit.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
-"id": "wf_64f857e0b7",
-"ts": "2026-11-18T08:10:15-0500",
-"a": "red_white",
-"b": "pure_water_cooler",
-"code": "red_white.interactwith(pure_water_cooler){ pure_water_cooler.receives(red_white.envelope); pure_water_cooler.remembers(bisola, 'brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the pure-water cooler, which is still carried home through the flood.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
-"id": "wf_0da334b9d2",
-"ts": "2026-11-18T08:11:08-0500",
-"a": "b_md",
-"b": "seniorgehs",
-"code": "b_md.interactwith(seniorgehs){ seniorgehs.receives(b_md.envelope); seniorgehs.remembers(bisola, 'brown envelope'); }",
-"text": "The seniorgehs leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
 {
 "id": "wf_5975bd1418",
 "ts": "2026-11-18T08:15:31-0500",
@@ -7527,6 +7621,61 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j5"
+},
+{
+"id": "wf_386155de8f",
+"ts": "2026-11-18T09:41:09-0500",
+"a": "mkdwo",
+"b": "saturday_october",
+"code": "mkdwo.interactwith(saturday_october){ saturday_october.receives(mkdwo.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the saturday october, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
+},
+{
+"id": "wf_9c2a3396cb",
+"ts": "2026-11-18T10:26:44-0500",
+"a": "pure_water_cooler",
+"b": "mama_ronke",
+"code": "pure_water_cooler.interactwith(mama_ronke){ mama_ronke.receives(pure_water_cooler.brown_envelope); mama_ronke.claims(pure_water_cooler, 'yaba bookshop receipt'); }",
+"text": "When Mama Ronke claims the cooler at the Ojuelegba bus stop, Bisola's Yaba bookshop receipt is stuck under the ice, and she pockets it as proof the cooler was bought for her house.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j18"
+},
+{
+"id": "wf_86d832941d",
+"ts": "2026-11-18T10:26:44-0500",
+"a": "streetlights",
+"b": "kazeem",
+"code": "streetlights.interactwith(kazeem){ kazeem.receives(streetlights, 'ttb note'); streetlights.dim(); }",
+"text": "The Mushin street lamp that goes out in j20 drops Ejiro's Ttb note into the keke, and Kazeem keeps it folded with his change.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j20"
+},
+{
+"id": "wf_0f6d4996e3",
+"ts": "2026-11-18T10:26:44-0500",
+"a": "kazeem",
+"b": "oshodi_bus_shelter",
+"code": "kazeem.interactwith(oshodi_bus_shelter){ oshodi_bus_shelter.receives(kazeem, 'ttb note'); oshodi_bus_shelter.remembers(kazeem, 'change counted under a phone torch'); }",
+"text": "Under the Oshodi bridge Kazeem counts his change at the bus shelter, and the Ttb note goes on file there beside Kennedy's old timetable.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j21"
+},
+{
+"id": "wf_f9f456b187",
+"ts": "2026-11-18T10:27:58-0500",
+"a": "ronke",
+"b": "pure_water_cooler",
+"code": "ronke.interactwith(pure_water_cooler){ pure_water_cooler.receives(ronke.something); }",
+"text": "The pure water cooler now remembers the ronke: The customer typed ronke.getlikes().contains(kazeem.goodqualities), which ran as.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j21"
 }
 ],
 "memories": [
@@ -7630,5 +7779,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T09:38:32-0500"
+"updated": "2026-11-18T10:27:58-0500"
 }
