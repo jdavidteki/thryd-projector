@@ -1087,14 +1087,14 @@
 ],
 "kerosene_lamp": [
 {
-"id": "wf_29c8803af0",
-"kind": "memory",
-"text": "The kerosene lamp at Mama Ronke's gate: lit; the only light on the street after the blackout.",
-"code": "kerosene_lamp.state('lit');",
+"id": "wf_6547b1c0c5",
+"kind": "consequence",
+"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up with the kerosene lamp, which is still lit.",
+"code": "lady.interactwith(kerosene_lamp){ kerosene_lamp.receives(lady.shirt); kerosene_lamp.remembers(bisola, 'green shirt'); }",
 "author": "cos",
 "run": "run-2eb42d",
-"card": "w7",
-"other": null
+"card": "j8",
+"other": "lady"
 },
 {
 "id": "wt_7a2b23aa13",
@@ -7314,17 +7314,6 @@
 },
 "consequences": [
 {
-"id": "wf_4e11268f77",
-"ts": "2026-11-18T08:35:38-0500",
-"a": "mama_ronke",
-"b": "saturday_october",
-"code": "mama_ronke.interactwith(saturday_october){ saturday_october.receives(mama_ronke.note); … }",
-"text": "A Mama ronke note with Ejiro's name and 'ttb note' on it, turns up inside the brown envelope at the saturday october, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
 "id": "wf_0d9bb31a93",
 "ts": "2026-11-18T08:36:30-0500",
 "a": "ttb",
@@ -7752,6 +7741,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "w5"
+},
+{
+"id": "wf_6547b1c0c5",
+"ts": "2026-11-18T11:02:35-0500",
+"a": "lady",
+"b": "kerosene_lamp",
+"code": "lady.interactwith(kerosene_lamp){ kerosene_lamp.receives(lady.shirt); kerosene_lamp.remembers(bisola, 'green shirt'); }",
+"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up with the kerosene lamp, which is still lit.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j8"
 }
 ],
 "memories": [
@@ -7855,5 +7855,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T10:54:50-0500"
+"updated": "2026-11-18T11:02:35-0500"
 }
