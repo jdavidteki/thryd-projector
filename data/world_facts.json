@@ -7317,16 +7317,6 @@
 ],
 "ojuelegba_bus_stop": [
 {
-"id": "wf_9e8269a8db",
-"kind": "consequence",
-"text": "The danfo speaker ends up with the ojuelegba bus stop, still playing the same love song.",
-"code": "danfo_speaker.interactwith(ojuelegba_bus_stop){ danfo_speaker.db.copyto(ojuelegba_bus_stop); … }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "w5",
-"other": "danfo_speaker"
-},
-{
 "id": "wf_f41d037b18",
 "kind": "consequence",
 "text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up with the danfo speaker, which is still playing the same love song.",
@@ -7365,6 +7355,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "atp"
+},
+{
+"id": "wf_a2018b8618",
+"kind": "consequence",
+"text": "A Bird note with Bisola's name and 'envelope corner' on it, turns up inside the brown envelope at the ojuelegba bus stop, and Bisola reads the name twice.",
+"code": "jnoel.interactwith(ojuelegba_bus_stop){ ojuelegba_bus_stop.receives(jnoel.corner); … }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j7",
+"other": "jnoel"
 }
 ],
 "usher_by_kiss": [
@@ -7475,17 +7475,6 @@
 ]
 },
 "consequences": [
-{
-"id": "wf_1a96188fa7",
-"ts": "2026-11-18T09:31:29-0500",
-"a": "bow",
-"b": "miami",
-"code": "bow.interactwith(miami){ miami.receives(bow.envelope); miami.remembers(bisola, 'brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up beside the phone at the miami.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
 {
 "id": "wf_14926d7426",
 "ts": "2026-11-18T09:32:22-0500",
@@ -7914,6 +7903,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j8"
+},
+{
+"id": "wf_a2018b8618",
+"ts": "2026-11-18T11:40:08-0500",
+"a": "jnoel",
+"b": "ojuelegba_bus_stop",
+"code": "jnoel.interactwith(ojuelegba_bus_stop){ ojuelegba_bus_stop.receives(jnoel.corner); … }",
+"text": "A Bird note with Bisola's name and 'envelope corner' on it, turns up inside the brown envelope at the ojuelegba bus stop, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j7"
 }
 ],
 "memories": [
@@ -8017,5 +8017,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T11:36:36-0500"
+"updated": "2026-11-18T11:40:08-0500"
 }
