@@ -6465,53 +6465,57 @@
 "card": "j29",
 "other": "miami"
 }
+],
+"lagos_cinema": [
+{
+"id": "wf_9e8269e5b8",
+"kind": "consequence",
+"text": "The lagos cinema leaves with a Nla agbara figure receipt with Bisola's name and 'brown envelope' on it.",
+"code": "off_key.interactwith(lagos_cinema){ lagos_cinema.receives(off_key.envelope); lagos_cinema.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-g1-B",
+"card": "j4",
+"other": "off_key"
+}
+],
+"cyrus_beene": [
+{
+"id": "wf_a3ea6f4ea6",
+"kind": "consequence",
+"text": "The cyrus beene leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "people_scene.interactwith(cyrus_beene){ cyrus_beene.receives(people_scene.envelope); cyrus_beene.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-g1-B",
+"card": "j6",
+"other": "people_scene"
+}
+],
+"order_pure_water": [
+{
+"id": "wf_6ccfe978b5",
+"kind": "consequence",
+"text": "The order pure water leaves with a Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it.",
+"code": "famz.interactwith(order_pure_water){ order_pure_water.receives(famz.bead); order_pure_water.remembers(bisola, 'blue glass bead'); }",
+"author": "cos",
+"run": "run-g1-B",
+"card": "j5",
+"other": "famz"
+}
+],
+"namco": [
+{
+"id": "wf_a8ad2241c4",
+"kind": "consequence",
+"text": "The namco leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "bowl.interactwith(namco){ namco.receives(bowl.envelope); namco.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-g1-B",
+"card": "j6",
+"other": "bowl"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_1ad7a999a6",
-"ts": "2026-11-17T17:30:54-0500",
-"a": "thoughts_marisol",
-"b": "miami",
-"code": "thoughts_marisol.interactwith(miami){ miami.receives(thoughts_marisol.envelope); miami.remembers(bisola, 'brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up beside the phone at the miami.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
-"id": "wf_9cc15ad026",
-"ts": "2026-11-17T17:31:50-0500",
-"a": "hpr",
-"b": "laptop",
-"code": "hpr.interactwith(laptop){ laptop.receives(hpr.envelope); laptop.remembers(bisola, 'brown envelope'); laptop.tucks(hpr, 'yaba bookshop receipt into the lamp soot'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the lamp soot at the laptop, and Taiwo reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
-"id": "wf_b5b3b6389a",
-"ts": "2026-11-17T17:32:44-0500",
-"a": "tnw",
-"b": "sheep",
-"code": "tnw.interactwith(sheep){ sheep.receives(tnw.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the scorched container number at the sheep, and Kunle reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
-"id": "wf_9a4ce30914",
-"ts": "2026-11-17T17:34:33-0500",
-"a": "marker_b",
-"b": "quiet_stretch_sand",
-"code": "marker_b.interactwith(quiet_stretch_sand){ quiet_stretch_sand.receives(marker_b.envelope); quiet_stretch_sand.remembers(bisola, 'brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up beside the morning at the quiet stretch sand.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
 {
 "id": "wf_bf8263a9fe",
 "ts": "2026-11-17T17:35:29-0500",
@@ -6907,6 +6911,50 @@
 "author": "cos",
 "run": "run-g1-B",
 "card": "j29"
+},
+{
+"id": "wf_9e8269e5b8",
+"ts": "2026-11-17T22:39:59-0500",
+"a": "off_key",
+"b": "lagos_cinema",
+"code": "off_key.interactwith(lagos_cinema){ lagos_cinema.receives(off_key.envelope); lagos_cinema.remembers(bisola, 'brown envelope'); }",
+"text": "The lagos cinema leaves with a Nla agbara figure receipt with Bisola's name and 'brown envelope' on it.",
+"author": "cos",
+"run": "run-g1-B",
+"card": "j4"
+},
+{
+"id": "wf_a3ea6f4ea6",
+"ts": "2026-11-17T22:40:51-0500",
+"a": "people_scene",
+"b": "cyrus_beene",
+"code": "people_scene.interactwith(cyrus_beene){ cyrus_beene.receives(people_scene.envelope); cyrus_beene.remembers(bisola, 'brown envelope'); }",
+"text": "The cyrus beene leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-g1-B",
+"card": "j6"
+},
+{
+"id": "wf_6ccfe978b5",
+"ts": "2026-11-17T22:41:43-0500",
+"a": "famz",
+"b": "order_pure_water",
+"code": "famz.interactwith(order_pure_water){ order_pure_water.receives(famz.bead); order_pure_water.remembers(bisola, 'blue glass bead'); }",
+"text": "The order pure water leaves with a Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it.",
+"author": "cos",
+"run": "run-g1-B",
+"card": "j5"
+},
+{
+"id": "wf_a8ad2241c4",
+"ts": "2026-11-17T22:44:25-0500",
+"a": "bowl",
+"b": "namco",
+"code": "bowl.interactwith(namco){ namco.receives(bowl.envelope); namco.remembers(bisola, 'brown envelope'); }",
+"text": "The namco leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-g1-B",
+"card": "j6"
 }
 ],
 "memories": [
@@ -7010,5 +7058,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T22:39:06-0500"
+"updated": "2026-11-17T22:44:25-0500"
 }
