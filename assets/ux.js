@@ -36,7 +36,46 @@
   // (bubble phase on the bar itself, so each control's own handler still runs first)
   function guard(){ ['modes', 'zoomui'].forEach(function(id){ var el = document.getElementById(id); if(!el || el._uxGuard) return; el._uxGuard = 1;
     el.addEventListener('click', function(e){ if(e.target && e.target.closest && e.target.closest('button, select')) e.stopPropagation(); }); }); }
-  function init(){ label(); guard(); }
+  // small screens (max-width 1100px): menu starts collapsed behind #menutog, auto-collapses after a
+  // choice or 4s idle, and the bar itself never eats pointer events (CSS). Desktop is unchanged.
+  var compactT = 0;
+  function compactOn(){ return !!(window.matchMedia && window.matchMedia('(max-width: 1100px)').matches); }
+  function openMenu(){ document.body.classList.add('menu-open'); var t = document.getElementById('menutog'); if(t) t.setAttribute('aria-expanded', 'true'); bumpCompact(); }
+  function closeMenu(){ document.body.classList.remove('menu-open'); var t = document.getElementById('menutog'); if(t) t.setAttribute('aria-expanded', 'false'); clearTimeout(compactT); }
+  function bumpCompact(){ clearTimeout(compactT); if(document.body.classList.contains('menu-open')) compactT = setTimeout(closeMenu, 4000); }
+  function setupCompact(){
+    var bar = document.getElementById('bar'); if(!bar) return;
+    var tog = document.getElementById('menutog');
+    if(!tog){
+      tog = document.createElement('button'); tog.id = 'menutog'; tog.type = 'button';
+      tog.textContent = '\u2630'; tog.title = 'Show or hide the menu';
+      tog.setAttribute('aria-label', 'Menu'); tog.setAttribute('aria-expanded', 'false');
+      tog.addEventListener('click', function(e){ e.preventDefault(); e.stopPropagation();
+        if(document.body.classList.contains('menu-open')) closeMenu(); else openMenu(); });
+      bar.appendChild(tog);
+    }
+    if(!bar._compactBound){
+      bar._compactBound = 1;
+      bar.addEventListener('pointerdown', function(e){ if(e.target && e.target.closest && e.target.closest('#modes, #menutog') && document.body.classList.contains('menu-open')) bumpCompact(); }, {passive: true});
+      bar.addEventListener('click', function(e){
+        if(!compactOn() || !document.body.classList.contains('menu-open')) return;
+        var t = e.target && e.target.closest && e.target.closest('button, a, select');
+        if(!t || t.id === 'menutog' || t.tagName === 'SELECT') return;
+        setTimeout(closeMenu, 450);
+      });
+      bar.addEventListener('change', function(e){ if(compactOn() && e.target && e.target.tagName === 'SELECT') setTimeout(closeMenu, 500); });
+    }
+    if(!window._thrydCompactMq){
+      try{
+        var mq = window.matchMedia('(max-width: 1100px)');
+        var sync = function(){ if(!mq.matches) closeMenu(); };
+        if(mq.addEventListener) mq.addEventListener('change', sync); else if(mq.addListener) mq.addListener(sync);
+        window._thrydCompactMq = mq;
+      }catch(err){}
+    }
+    if(!compactOn()) closeMenu();
+  }
+  function init(){ label(); guard(); setupCompact(); }
   if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
   setTimeout(init, 3000); setTimeout(init, 9000); // buttons added later by stage.js / extras.js (bgmode, sound)
   var first = false; try{ first = !localStorage.getItem('thryd_ux_hint'); if(first) localStorage.setItem('thryd_ux_hint', '1'); }catch(err){}

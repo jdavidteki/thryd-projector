@@ -274,3 +274,28 @@ body.cerebro #sound,body.lovemap #sound,body.cerebro #soundnext,body.lovemap #so
 #modes a#podlink{box-sizing:border-box;height:30px;min-height:30px;min-width:30px;padding:0 .7em;display:inline-flex;align-items:center;justify-content:center;background:#000a;color:var(--dim);border:1px solid #444;border-radius:.4em;font-size:max(13px,1.5vh);line-height:1;text-decoration:none;cursor:pointer}
 #modes a#podlink:hover{border-color:var(--acc,#ffd76a)}#modes a#podlink:focus-visible{outline:2px solid var(--acc,#ffd76a);outline-offset:2px}
 @media (pointer:coarse){#modes a#podlink{height:40px;min-height:40px;min-width:40px}}
+
+/* compact controls on small screens (Jesuye 17 Nov 10:57 PM ET "can we make the drop down menu smaller
+   on smaller screens? it prevents dragging things to the top."): a slim toggle, one short row when open,
+   empty bar/zoom areas do not capture pointers so cuts can be dragged to the top edge. Desktop unchanged. */
+#menutog{display:none}
+@media (max-width:1100px){
+  #bar{pointer-events:none;height:auto;min-height:0;padding:6px 8px;padding-top:max(6px,env(safe-area-inset-top,0px));
+    background:none;flex-wrap:nowrap;align-items:flex-start;justify-content:flex-end;row-gap:0}
+  #bar #title{display:none}
+  #menutog{display:inline-flex;pointer-events:auto;align-items:center;justify-content:center;box-sizing:border-box;
+    height:28px;min-height:28px;min-width:32px;padding:0 .45em;margin:0;font-size:16px;line-height:1;
+    background:#000a;color:var(--ink,#eee);border:1px solid #444;border-radius:.4em;cursor:pointer;z-index:1}
+  #menutog:focus-visible{outline:2px solid var(--acc,#ffd76a);outline-offset:2px}
+  body:not(.menu-open) #modes{display:none}
+  body.menu-open #modes{display:flex;pointer-events:none;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;
+    gap:6px;row-gap:0;max-width:calc(100vw - 52px);justify-content:flex-end}
+  body.menu-open #modes::-webkit-scrollbar{display:none}
+  #modes button,#modes select,#modes input,#modes a#podlink{pointer-events:auto;height:28px;min-height:28px;min-width:28px;
+    padding:0 .5em;font-size:11px;line-height:1}
+  #bgmode{min-width:0!important}
+  #yoki_line,#lofi_credit{top:calc(28px + max(6px,env(safe-area-inset-top,0px)) + 6px);max-width:min(70vw,420px)}
+  #zoomui{pointer-events:none;gap:4px;font-size:11px;bottom:max(8px,env(safe-area-inset-bottom,0px));right:8px}
+  #zoomui button{pointer-events:auto;min-width:28px;min-height:28px;font-size:13px;padding:0 .35em}
+  #zoomui span{min-width:2.4em;font-size:11px}
+}
