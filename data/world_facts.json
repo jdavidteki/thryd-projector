@@ -6831,16 +6831,6 @@
 ],
 "mama_ronke": [
 {
-"id": "wf_c89fade79e",
-"kind": "memory",
-"text": "The Mama Ronke: present; answers to Folake on this agenda.",
-"code": "mama_ronke.state('present');",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "",
-"other": null
-},
-{
 "id": "wf_4888599611",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the Mama Ronke, which is still present.",
@@ -6869,6 +6859,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "b_md"
+},
+{
+"id": "wf_4a1f61dce3",
+"kind": "consequence",
+"text": "A Bird note with Bisola's name and 'envelope corner' on it, turns up with the Mama Ronke, which is still present.",
+"code": "bird.interactwith(mama_ronke){ mama_ronke.receives(bird.corner); mama_ronke.remembers(bisola, 'envelope corner'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j7",
+"other": "bird"
 },
 {
 "id": "wt_836e6dea8e",
@@ -7840,17 +7840,6 @@
 },
 "consequences": [
 {
-"id": "wf_48c726544c",
-"ts": "2026-11-18T11:58:28-0500",
-"a": "listen",
-"b": "ronke",
-"code": "listen.interactwith(ronke){ ronke.receives(listen.envelope); ronke.remembers(bisola, 'brown envelope'); }",
-"text": "The ronke leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
 "id": "wf_a950db7668",
 "ts": "2026-11-18T11:59:21-0500",
 "a": "mkdwo",
@@ -8278,6 +8267,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_4a1f61dce3",
+"ts": "2026-11-18T14:07:03-0500",
+"a": "bird",
+"b": "mama_ronke",
+"code": "bird.interactwith(mama_ronke){ mama_ronke.receives(bird.corner); mama_ronke.remembers(bisola, 'envelope corner'); }",
+"text": "A Bird note with Bisola's name and 'envelope corner' on it, turns up with the Mama Ronke, which is still present.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j7"
 }
 ],
 "memories": [
@@ -8381,5 +8381,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T14:02:41-0500"
+"updated": "2026-11-18T14:07:03-0500"
 }
