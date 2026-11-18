@@ -139,21 +139,21 @@
     return {c, rec, id: 'f:' + x.it.t.title}; }
   async function go(text){ text = String(text || '').trim(); if(!text) return; pushTyped(text); ctxSig = ''; later(text);
     msg.textContent = '…'; chips.textContent = ''; const R = await resolve(text), top = R.top;
-    if(!top.length){ msg.textContent = 'no functions loaded yet'; return; }
-    const exact = !R.P.free && top[0].lex >= .999, conf = top[0].s - (top[1] ? top[1].s : 0);
-    if(exact || (top[0].s >= .82 && conf >= .08 && top[0].live)){
+    const exact = !!(top.length && !R.P.free && top[0].lex >= .999), conf = top.length ? top[0].s - (top[1] ? top[1].s : 0) : 0;
+    if(top.length && (exact || (top[0].s >= .82 && conf >= .08 && top[0].live))){
       const done = fire(top[0], exact ? 'typed' : 'did you mean (' + top[0].s.toFixed(2) + ')');
       if(done){ inp.value = ''; msg.textContent = (exact ? '' : 'did you mean ') + label(top[0]) + (exact ? ' · ran' : '? · applied');
         if(!exact && ST().undoIntent){ const u = document.createElement('span'); u.className = 'aiu'; u.textContent = 'undo'; u.onclick = ()=>{ ST().undoIntent(done.c, done.rec, done.id); msg.textContent = 'undone'; }; msg.appendChild(u); }
         setTimeout(()=>{ if(box && box.classList.contains('on') && document.activeElement !== inp) close(); }, 3500); }
       return; }
-    msg.textContent = 'did you mean' + (R.used === 'embeddings' ? '' : ' (letter match)') + ':';
-    const show = (r, cls, pre) => { const b = document.createElement('button'); b.type = 'button'; b.textContent = (pre || '') + label(r); if(cls) b.className = cls; if(!r.live) b.classList.add('off');
-      b.title = r.live ? 'run it on stage' : 'not on stage right now'; b.onclick = ()=>{ const d = fire(r, 'did you mean · picked'); if(d){ inp.value = ''; msg.textContent = label(r) + ' · ran'; } }; chips.appendChild(b); };
-    top.slice(0, 3).forEach(r => show(r));
-    if(R.P.free && chromeOk()){ const live = onStage(), ids = [...new Set(top.map(r => r.id).concat([...live.keys()], Object.keys(OMF())))].slice(0, 60);
-      const pick = await chromeSuggest(text, ids); if(pick){ const F = OMF(); const r = top.find(x => x.id === pick) || {id: pick, f: F[pick], live: live.get(pick) || null};
-        const b0 = chips.firstChild; show(r, 'ch', '\u2728 '); if(b0) chips.insertBefore(chips.lastChild, b0); } } }
+    // unknown or not-yet-existing call: accept it for the live agenda only (Jesuye 18 Nov 2026 9:15 AM ET)
+    const S = ST(); let rec = null;
+    try{ rec = S.applyFreeCmd && S.applyFreeCmd(text); }catch(e){}
+    const run = (rec && rec.run) || (S.currentRun && S.currentRun()) || (S.agenda && S.agenda.active) || '';
+    msg.textContent = 'new command \u2192 this agenda' + (run ? ' \u00b7 ' + run : '');
+    chips.textContent = ''; inp.value = '';
+    setTimeout(()=>{ if(box && box.classList.contains('on') && document.activeElement !== inp) close(); }, 3500); }
+  AI.go = go;
   function button(){ const bar = document.getElementById('modes'); if(!bar){ setTimeout(button, 1000); return; } if(document.getElementById('aicmd')) return;
     const b = document.createElement('button'); b.id = 'aicmd'; b.type = 'button'; b.textContent = '\u203a_'; b.title = 'Type a call (/)'; b.setAttribute('aria-label', 'Type a call');
     b.addEventListener('click', e => { e.stopPropagation(); box && box.classList.contains('on') ? close() : open(); });

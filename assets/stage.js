@@ -1504,7 +1504,7 @@
   }
   function applyLooks(){
     CMD.looks.forEach((L, sk) => { const cuts = Object.keys(L.parts).length ? subjCuts(sk) : [];
-      cuts.forEach(c => { if(c.tapL) return; // a cut someone tapped a method on keeps that look (tap methods, 16 Nov 2026)
+      cuts.forEach(c => { if(c.tapL || c.freeLook) return; // a cut someone tapped a method on, or a new agenda command, keeps that look
         if(c.look !== L || c.lookN !== Object.keys(L.keys).length){ paint(c, L); c.lookN = Object.keys(L.keys).length; CMD.applied++; }
         if(c.castNew){ c.castNew = false; tagAt(c, String(L.name || sk) + ' · ' + Object.keys(L.keys).filter(k => L.keys[k].known).map(k => k + '=' + lowv(L.keys[k].value)).join(', ')); } }); });
     // a cut whose part was dropped goes back to its own look
@@ -1528,6 +1528,154 @@
   // test hook (and for #thryd): feed calls straight in, e.g. thrydStageCmd([{id:'qa1',subject:'dapo',subject_key:'dapo',fn:'setskincomplexion',args:['light'],change:{key:'skincomplexion',value:'light'},raw:'dapo.setskincomplexion(light)'}])
   root.thrydStageCmd = calls => { const fresh = ingest(calls, false); applyLooks(); announce(fresh); return fresh.length; };
   pollCmds(); setInterval(pollCmds, 20000); setInterval(applyLooks, 1000);
+
+  // ---------- new commands for the current agenda only (Jesuye 18 Nov 2026 9:15 AM ET): the ›_ prompt accepts any
+  // typed call, even one that does not exist yet. Known commands still go through fireFunc / commands.json. An unknown
+  // call is stored with the live run id and a timestamp (localStorage + data/agenda_cmds.json), never applied to other
+  // agendas, and shown on stage (look / highlight / caption, or a tweet-style bubble tied to this agenda).
+  const FREE_KEY = 'thryd_agenda_cmds_v1';
+  const FREE_URLS = ['data/agenda_cmds.json', 'https://raw.githubusercontent.com/jdavidteki/thryd-projector/main/data/agenda_cmds.json'];
+  const FREE = S.freeCmds = {list: [], byId: new Map(), looks: new Map(), at: 0, src: null};
+  function currentRun(){ return (LV && LV.activeRun) || (AG && AG.active) || null; }
+  function parseFree(text){
+    const s = String(text || '').trim().replace(/^\/+/, '').replace(/;+\s*$/, '');
+    let m = s.match(/^#?([A-Za-z_][\w]*)\s*\.\s*([A-Za-z_][\w]*)\s*(?:\((.*)\))?$/) || s.match(/^#?([A-Za-z_][\w]*)\s+([A-Za-z_][\w]*)(?:\s*\((.*)\))?$/);
+    if(m) return {obj: m[1], fn: m[2], args: m[3] != null ? m[3].split(',').map(x => x.trim().replace(/^['"]|['"]$/g, '')).filter(Boolean) : [], free: false, raw: s};
+    return {free: true, obj: null, fn: null, args: [], words: s.toLowerCase().split(/[^a-z0-9_]+/).filter(w => w.length > 1), raw: s};
+  }
+  function loadFreeLocal(){
+    try{ return JSON.parse(localStorage.getItem(FREE_KEY) || '[]'); }catch(e){ return []; }
+  }
+  function saveFreeLocal(){
+    try{ localStorage.setItem(FREE_KEY, JSON.stringify(FREE.list.filter(c => c && c.local).map(c => ({id: c.id, run: c.run, raw: c.raw, text: c.text, subject: c.subject, fn: c.fn, args: c.args, at: c.at, t: c.t})))); }catch(e){}
+  }
+  function rememberFree(rec){
+    if(!rec || !rec.id || FREE.byId.has(rec.id)) return FREE.byId.get(rec && rec.id) || rec;
+    FREE.byId.set(rec.id, rec); FREE.list.push(rec);
+    if(FREE.list.length > 200){ const drop = FREE.list.shift(); if(drop) FREE.byId.delete(drop.id); }
+    if(rec.local) saveFreeLocal();
+    return rec;
+  }
+  function agendaNames(run){
+    const r = (AG.runs || []).find(x => x && x.run === run), out = [];
+    if(r){
+      (r.objects || []).forEach(o => { if(o) out.push(o.name || o.id || o.label); });
+      (r.characters || []).forEach(c => { if(c) out.push(c.name || c.id); });
+    }
+    S.cuts.forEach(c => { if(c && c.home && c.home.run === run){ out.push(c.label, c.klass, c.castAs); } });
+    return out.filter(Boolean);
+  }
+  function matchFreeCuts(sk, run){
+    if(!sk) return [];
+    const same = S.cuts.filter(c => !c.leaving && c.home && c.home.run === run && (ckey(c.label) === sk || ckey(c.klass) === sk || ckey(nkey(c.label)) === sk || ckey(nkey(c.klass)) === sk || ckey(c.castAs) === sk));
+    if(same.length) return same;
+    return S.cuts.filter(c => !c.leaving && (ckey(c.label) === sk || ckey(c.klass) === sk || ckey(nkey(c.label)) === sk || ckey(nkey(c.klass)) === sk || ckey(c.castAs) === sk));
+  }
+  function freeLookOf(P){
+    if(!P || P.free || !P.fn) return null;
+    const fn = String(P.fn || '').toLowerCase();
+    let key = null, val = null;
+    if(/^set/.test(fn) && VERBS[fn.slice(3)]){ key = fn.slice(3); val = P.args && P.args[0]; }
+    else if(VERBS[fn]){ key = fn; val = (P.args && P.args[0] != null) ? P.args[0] : true; }
+    else if(FNS[fn]){ key = FNS[fn][0]; val = (P.args && P.args[0] != null && fn === 'glow') ? P.args[0] : FNS[fn][1]; }
+    if(!key || !VERBS[key]) return null;
+    const look = VERBS[key](val);
+    return look ? {key, val, look} : null;
+  }
+  function ensureCmdBub(rec){
+    let el = rec.el;
+    if(el && !el.isConnected) el = rec.el = null;
+    if(!el){
+      el = document.createElement('div'); el.className = 'gcmdbub'; el.dataset.agendaCmd = rec.id; el.dataset.run = rec.run || '';
+      el.innerHTML = '<div class="gct">' + String(rec.raw || rec.text || '').replace(/[<>&]/g, ch => ({'<':'&lt;','>':'&gt;','&':'&amp;'}[ch])) + '</div>'
+        + '<div class="gcr">' + String(rec.run || '') + '</div>';
+      cutsL.appendChild(el); rec.el = el;
+    }
+    return el;
+  }
+  function placeCmdBub(rec){
+    const el = ensureCmdBub(rec); if(!el) return;
+    const cuts = rec.sk ? matchFreeCuts(rec.sk, rec.run) : [];
+    const c = cuts[0];
+    if(c){
+      el.style.left = (c.left + c.w / 2) + 'px';
+      el.style.top = (c.top - 10) + 'px';
+      el.style.transform = 'translate(-50%,-100%)';
+    } else {
+      const g = S.groups.find(x => !x.gone && !x.map && x.run === rec.run) || S.groups.find(x => !x.gone && !x.map);
+      const v = view();
+      el.style.left = ((g ? g.x + g.w / 2 : v.x + v.w * 0.5)) + 'px';
+      el.style.top = ((g ? g.y + 16 : v.y + 72)) + 'px';
+      el.style.transform = 'translate(-50%,0)';
+    }
+  }
+  function clearFreeLooks(){
+    S.cuts.forEach(c => { if(c.freeLook){ c.el.style.filter = ''; if(!c.entering && !c.leaving) c.el.style.opacity = ''; c.el.style.scale = ''; c.freeLook = null; c.el.classList.remove('gcmdlit'); } });
+  }
+  function syncFreeCmds(){
+    const run = currentRun();
+    clearFreeLooks();
+    FREE.list.forEach(rec => {
+      const on = !!(rec.run && rec.run === run);
+      if(rec.el){ rec.el.style.display = on ? '' : 'none'; rec.el.setAttribute('aria-hidden', on ? 'false' : 'true'); }
+      if(!on) return;
+      if(rec.sk && rec.look){
+        matchFreeCuts(rec.sk, rec.run).forEach(c => {
+          if(c.tapL) return;
+          const p = rec.look;
+          if(p.filter) c.el.style.filter = p.filter;
+          if(p.scale) c.el.style.scale = String(p.scale);
+          if(p.opacity != null && !c.entering && !c.leaving) c.el.style.opacity = String(p.opacity);
+          c.freeLook = rec;
+          c.el.classList.add('gcmdlit');
+        });
+      }
+      placeCmdBub(rec);
+    });
+  }
+  function applyFreeCmd(text, opts){
+    opts = opts || {};
+    const raw = String(text || '').trim(); if(!raw) return null;
+    const run = opts.run || currentRun();
+    if(!run){ note('free-cmd skip', 'no current agenda'); return null; }
+    const P = parseFree(raw);
+    const sk = P.free ? null : ckey(P.obj);
+    const inAg = sk && agendaNames(run).some(n => ckey(n) === sk || ckey(nkey(n)) === sk);
+    const cuts = sk ? matchFreeCuts(sk, run) : [];
+    const named = !!(sk && (inAg || cuts.length));
+    const look = named ? freeLookOf(P) : null;
+    const rec = rememberFree({
+      id: opts.id || ('fc-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 7)),
+      run, raw, text: raw, subject: named ? P.obj : null, fn: P.fn || null, args: P.args || [],
+      sk: named ? sk : null, look: look && look.look, at: new Date().toISOString(), t: Date.now(), local: opts.local !== false
+    });
+    syncFreeCmds();
+    if(named && cuts.length){
+      cuts.forEach((c, n) => setTimeout(()=>{ if(c.el && c.el.isConnected){ pulse(c); c.el.classList.add('gcmdlit'); if(n === 0) tagAt(c, raw.slice(0, 60)); } }, n * 180));
+    }
+    codeLine(raw.replace(/;?$/, ';'), 'new command → this agenda · ' + run + (named && cuts.length ? ' · ' + cuts.length + ' on stage' : ' · caption'));
+    note('free-cmd', rec.id, rec.run, raw);
+    saveFreeLocal();
+    return rec;
+  }
+  async function pollFreeCmds(){
+    loadFreeLocal().forEach(e => { if(e && e.id){ e.local = true; rememberFree(e); } });
+    let d = null;
+    for(const u of FREE_URLS){ try{ const r = await fetch(u + '?t=' + Date.now(), {cache: 'no-store'}); if(r.ok){ d = await r.json(); FREE.src = u.startsWith('http') ? 'raw' : 'pages'; break; } }catch(e){} }
+    if(d && Array.isArray(d.calls)){
+      d.calls.forEach(e => {
+        if(!e || !e.id || !e.run) return;
+        rememberFree({id: e.id, run: e.run, raw: e.raw || e.text, text: e.text || e.raw, subject: e.subject, fn: e.fn, args: e.args || [],
+          sk: e.subject ? ckey(e.subject) : (parseFree(e.raw || e.text || '').free ? null : ckey(parseFree(e.raw || e.text || '').obj)),
+          look: freeLookOf(parseFree(e.raw || e.text || '')) && freeLookOf(parseFree(e.raw || e.text || '')).look,
+          at: e.at, t: e.t || 0, local: false});
+      });
+      FREE.at = d.updated || Date.now();
+    }
+    syncFreeCmds();
+  }
+  S.applyFreeCmd = applyFreeCmd; S.syncFreeCmds = syncFreeCmds; S.currentRun = currentRun; S.parseFree = parseFree;
+  pollFreeCmds(); setInterval(pollFreeCmds, 20000); setInterval(syncFreeCmds, 1000);
 
   // ---------- tap methods (Jesuye 16 Nov 2026 6:39 PM ET "add 2-3 object methods that are clickable. when we tap on an object, users can
   // click a method and it will fire in the db"). A tap (under 6 px and 300 ms, the same test as the name tag; a drag never opens it) shows
