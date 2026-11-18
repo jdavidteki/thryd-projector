@@ -1873,16 +1873,6 @@
 ],
 "ronke": [
 {
-"id": "wt_263c661453",
-"kind": "func_call",
-"text": "Someone at the projector tapped the third mainland bridge subject and called ronke.hail(what=hawker:Thing) from j18 from its agenda run-2eb42d, first seated in run-2eb42d j18.",
-"code": "ronke.hail('hawker');",
-"author": "projector",
-"run": "run-2eb42d",
-"card": "w18",
-"other": null
-},
-{
 "id": "wf_93f90e4def",
 "kind": "consequence",
 "text": "The plastic sheet ends up with the ronke, still wet.",
@@ -1920,6 +1910,16 @@
 "author": "projector",
 "run": "run-2eb42d",
 "card": "w17",
+"other": null
+},
+{
+"id": "wt_62bcf6ef99",
+"kind": "func_call",
+"text": "Someone at the projector tapped the computer village subject and called ronke.hail(what=hawker:Thing) from j18 from its agenda run-2eb42d, first seated in run-2eb42d j18.",
+"code": "ronke.hail('hawker');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w18",
 "other": null
 }
 ],
@@ -6849,16 +6849,6 @@
 ],
 "kazeem": [
 {
-"id": "wt_0fcfc5e5ad",
-"kind": "func_call",
-"text": "The kazeem hears it (because mamaronke.claim(what=lid:Thing) from j18).",
-"code": "kazeem.hears(computer_village_subject, 'claim');",
-"author": "projector",
-"run": "run-2eb42d",
-"card": "w18",
-"other": null
-},
-{
 "id": "wf_b83dbca34a",
 "kind": "consequence",
 "text": "The kazeem leaves with a Bird note with Bisola's name and 'envelope corner' on it.",
@@ -6896,6 +6886,16 @@
 "author": "projector",
 "run": "run-2eb42d",
 "card": "w16",
+"other": null
+},
+{
+"id": "wt_57d8ae6cb7",
+"kind": "func_call",
+"text": "The kazeem hears it (because ronke.hail(what=hawker:Thing) from j18).",
+"code": "kazeem.hears(computer_village_subject, 'hail');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w18",
 "other": null
 }
 ],
@@ -7329,16 +7329,6 @@
 ],
 "hear": [
 {
-"id": "wt_424742eaa4",
-"kind": "func_call",
-"text": "The hear hears it (because pepu.setMany(amount=many:Quantity) from j17).",
-"code": "hear.hears(computer_village_subject, 'setMany');",
-"author": "projector",
-"run": "run-2eb42d",
-"card": "w17",
-"other": null
-},
-{
 "id": "wt_ad989109d4",
 "kind": "func_call",
 "text": "The hear hears it (because mamaronke.claim(what=lid:Thing) from j18).",
@@ -7377,19 +7367,19 @@
 "run": "run-2eb42d",
 "card": "w16",
 "other": null
+},
+{
+"id": "wt_7db3185a64",
+"kind": "func_call",
+"text": "The hear hears it (because ronke.hail(what=hawker:Thing) from j18).",
+"code": "hear.hears(computer_village_subject, 'hail');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w18",
+"other": null
 }
 ],
 "mamaronke": [
-{
-"id": "wt_7c6ee0a978",
-"kind": "func_call",
-"text": "The mamaronke hears it (because pepu.setMany(amount=many:Quantity) from j17).",
-"code": "mamaronke.hears(computer_village_subject, 'setMany');",
-"author": "projector",
-"run": "run-2eb42d",
-"card": "w17",
-"other": null
-},
 {
 "id": "wt_77ea5ab77c",
 "kind": "func_call",
@@ -7428,6 +7418,16 @@
 "author": "projector",
 "run": "run-2eb42d",
 "card": "w16",
+"other": null
+},
+{
+"id": "wt_a3b301b71c",
+"kind": "func_call",
+"text": "The mamaronke hears it (because ronke.hail(what=hawker:Thing) from j18).",
+"code": "mamaronke.hears(computer_village_subject, 'hail');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w18",
 "other": null
 }
 ],
@@ -7915,40 +7915,50 @@
 ],
 "k": [
 {
-"id": "wt_6e0e715cfb",
+"id": "wt_4967e267b6",
 "kind": "func_call",
-"text": "The customer typed k.g() on run-2eb42d j30. It came back: K g. Implementation: function g(){\n  K_G_COUNT += 1;\n  this.lastG = \"K g\";\n  return \"K g\";\n}. k now has k.g as a method on this agenda, and it can be called again.",
+"text": "The customer typed k.g() on run-2eb42d j32. It came back: K g. Implementation: function g(){\n  K_G_COUNT += 1;\n  this.lastG = \"K g\";\n  return \"K g\";\n}.",
 "code": "k.g();",
-"author": "customer",
-"run": "run-2eb42d",
-"card": "j30",
-"other": null
-},
-{
-"id": "wt_491fefe2c3",
-"kind": "func_call",
-"text": "The customer typed k.g() on run-2eb42d j30. It came back: K g. Implementation: function g(){\n  K_G_COUNT += 1;\n  this.lastG = \"K g\";\n  return \"K g\";\n}.",
-"code": "k.g();",
-"author": "customer",
-"run": "run-2eb42d",
-"card": "j30",
-"other": null
-},
-{
-"id": "wt_be2b572426",
-"kind": "func_call",
-"text": "The customer typed k.g570(cliqa570-mwmhaw4y) on run-2eb42d j32. It came back: K g570 cliqa570-mwmhaw4y. Implementation: function g570(what){\n  K_G570_COUNT += 1;\n  this.lastG570 = \"cliqa570-mwmhaw4y\";\n  return \"K g570 cliqa570-mwmhaw4y\";\n}. k now has k.g570 as a method on this agenda, and it can be called again.",
-"code": "k.g570(cliqa570-mwmhaw4y);",
 "author": "customer",
 "run": "run-2eb42d",
 "card": "j32",
 "other": null
 },
 {
-"id": "wt_4967e267b6",
+"id": "wt_1f9ec2a508",
 "kind": "func_call",
-"text": "The customer typed k.g() on run-2eb42d j32. It came back: K g. Implementation: function g(){\n  K_G_COUNT += 1;\n  this.lastG = \"K g\";\n  return \"K g\";\n}.",
-"code": "k.g();",
+"text": "The customer typed k.qa573(cliqa573cli-mwmjo8q3) on run-2eb42d j32. It came back: K qa573 cliqa573cli-mwmjo8q3. Implementation: function qa573(what){\n  K_QA573_COUNT += 1;\n  this.lastQa573 = \"cliqa573cli-mwmjo8q3\";\n  return \"K qa573 cliqa573cli-mwmjo8q3\";\n}. k now has k.qa573 as a method on this agenda, and it can be called again.",
+"code": "k.qa573(cliqa573cli-mwmjo8q3);",
+"author": "customer",
+"run": "run-2eb42d",
+"card": "j32",
+"other": null
+},
+{
+"id": "wt_a46d92f38d",
+"kind": "func_call",
+"text": "The customer typed k.qa573(cliqa573alt-mwmjpc93) on run-2eb42d j32. It came back: K qa573 cliqa573alt-mwmjpc93. Implementation: function qa573(what){\n  K_QA573_COUNT += 1;\n  this.lastQa573 = \"cliqa573alt-mwmjpc93\";\n  return \"K qa573 cliqa573alt-mwmjpc93\";\n}.",
+"code": "k.qa573(cliqa573alt-mwmjpc93);",
+"author": "customer",
+"run": "run-2eb42d",
+"card": "j32",
+"other": null
+},
+{
+"id": "wt_e486389f70",
+"kind": "func_call",
+"text": "The customer typed k.g570(cliqa570-mwmjppyr) on run-2eb42d j32. It came back: K g570 cliqa570-mwmjppyr. Implementation: function g570(what){\n  K_G570_COUNT += 1;\n  this.lastG570 = \"cliqa570-mwmjppyr\";\n  return \"K g570 cliqa570-mwmjppyr\";\n}.",
+"code": "k.g570(cliqa570-mwmjppyr);",
+"author": "customer",
+"run": "run-2eb42d",
+"card": "j32",
+"other": null
+},
+{
+"id": "wt_7662a522f4",
+"kind": "func_call",
+"text": "The customer typed k.qa572(cliqa572p-mwmjprrj-kd) on run-2eb42d j32. It came back: K qa572 cliqa572p-mwmjprrj-kd. Implementation: function qa572(what){\n  K_QA572_COUNT += 1;\n  this.lastQa572 = \"cliqa572p-mwmjprrj-kd\";\n  return \"K qa572 cliqa572p-mwmjprrj-kd\";\n}. k now has k.qa572 as a method on this agenda, and it can be called again.",
+"code": "k.qa572(cliqa572p-mwmjprrj-kd);",
 "author": "customer",
 "run": "run-2eb42d",
 "card": "j32",
@@ -8727,5 +8737,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T14:53:29-0500"
+"updated": "2026-11-18T15:00:22-0500"
 }
