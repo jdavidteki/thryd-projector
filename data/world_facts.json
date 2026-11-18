@@ -1089,14 +1089,14 @@
 ],
 "kerosene_lamp": [
 {
-"id": "wf_9fda621b3b",
-"kind": "consequence",
-"text": "A Bird note with Bisola's name and 'envelope corner' on it, turns up with the kerosene lamp, which is still lit.",
-"code": "jnoel.interactwith(kerosene_lamp){ kerosene_lamp.receives(jnoel.corner); kerosene_lamp.remembers(bisola, 'envelope corner'); }",
+"id": "wf_29c8803af0",
+"kind": "memory",
+"text": "The kerosene lamp at Mama Ronke's gate: lit; the only light on the street after the blackout.",
+"code": "kerosene_lamp.state('lit');",
 "author": "cos",
 "run": "run-2eb42d",
-"card": "j7",
-"other": "jnoel"
+"card": "w7",
+"other": null
 },
 {
 "id": "wt_7a2b23aa13",
@@ -7387,16 +7387,6 @@
 ],
 "ojuelegba_bus_stop": [
 {
-"id": "wf_b9bed30a5a",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the green shirt at the ojuelegba bus stop, and Bisola reads the name twice.",
-"code": "abeokuta_parlour.interactwith(ojuelegba_bus_stop){ ojuelegba_bus_stop.receives(abeokuta_parlour.envelope); … }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "abeokuta_parlour"
-},
-{
 "id": "wf_8c7e3d6dd3",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the ojuelegba bus stop, and Bisola reads the name twice.",
@@ -7435,6 +7425,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "icsh"
+},
+{
+"id": "wf_4ba9fe6c22",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the ojuelegba bus stop, and Bisola reads the name twice.",
+"code": "move.interactwith(ojuelegba_bus_stop){ ojuelegba_bus_stop.receives(move.envelope); … }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "move"
 }
 ],
 "usher_by_kiss": [
@@ -7667,13 +7667,53 @@
 ],
 "cli": [
 {
-"id": "wt_84f47bd0b4",
+"id": "wt_d07f0cecfd",
 "kind": "func_call",
-"text": "The customer typed b2() on run-2eb42d j29. It came back: b2(). Implementation: /* b2() */. cli now has cli.cli as a method on this agenda, and it can be called again.",
-"code": "b2();",
+"text": "The customer typed a masterclass in creative architecture - #thryd v569mwmg9efw on run-2eb42d j30. It came back: a masterclass in creative architecture - #thryd v569mwmg9efw. Implementation: /* a masterclass in creative architecture - #thryd v569mwmg9efw */.",
+"code": "a masterclass in creative architecture - #thryd v569mwmg9efw;",
 "author": "customer",
 "run": "run-2eb42d",
-"card": "j29",
+"card": "j30",
+"other": null
+},
+{
+"id": "wt_282c847fe0",
+"kind": "func_call",
+"text": "The customer typed two-tab typeline v569mwmg9efw b() on run-2eb42d j30. It came back: two-tab typeline v569mwmg9efw b(). Implementation: /* two-tab typeline v569mwmg9efw b() */.",
+"code": "two-tab typeline v569mwmg9efw b();",
+"author": "customer",
+"run": "run-2eb42d",
+"card": "j30",
+"other": null
+},
+{
+"id": "wt_14c2199147",
+"kind": "func_call",
+"text": "The customer typed a masterclass in creative architecture - #thryd v569mwmgb5ik on run-2eb42d j30. It came back: a masterclass in creative architecture - #thryd v569mwmgb5ik. Implementation: /* a masterclass in creative architecture - #thryd v569mwmgb5ik */.",
+"code": "a masterclass in creative architecture - #thryd v569mwmgb5ik;",
+"author": "customer",
+"run": "run-2eb42d",
+"card": "j30",
+"other": null
+},
+{
+"id": "wt_3525ea02b3",
+"kind": "func_call",
+"text": "The customer typed two-tab typeline v569mwmgb5ik b() on run-2eb42d j30. It came back: two-tab typeline v569mwmgb5ik b(). Implementation: /* two-tab typeline v569mwmgb5ik b() */.",
+"code": "two-tab typeline v569mwmgb5ik b();",
+"author": "customer",
+"run": "run-2eb42d",
+"card": "j30",
+"other": null
+},
+{
+"id": "wt_5d8d45e19d",
+"kind": "func_call",
+"text": "The customer typed background typeline v569mwmgb5ik c() on run-2eb42d j30. It came back: background typeline v569mwmgb5ik c(). Implementation: /* background typeline v569mwmgb5ik c() */.",
+"code": "background typeline v569mwmgb5ik c();",
+"author": "customer",
+"run": "run-2eb42d",
+"card": "j30",
 "other": null
 }
 ],
@@ -7721,32 +7761,42 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "lie"
+},
+{
+"id": "wf_8883e0f5c1",
+"kind": "consequence",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the precision, and Bisola reads the name twice.",
+"code": "patagonia.interactwith(precision){ precision.receives(patagonia.code); … }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j2",
+"other": "patagonia"
+}
+],
+"k": [
+{
+"id": "wt_6e0e715cfb",
+"kind": "func_call",
+"text": "The customer typed k.g() on run-2eb42d j30. It came back: K g. Implementation: function g(){\n  K_G_COUNT += 1;\n  this.lastG = \"K g\";\n  return \"K g\";\n}. k now has k.g as a method on this agenda, and it can be called again.",
+"code": "k.g();",
+"author": "customer",
+"run": "run-2eb42d",
+"card": "j30",
+"other": null
+},
+{
+"id": "wt_491fefe2c3",
+"kind": "func_call",
+"text": "The customer typed k.g() on run-2eb42d j30. It came back: K g. Implementation: function g(){\n  K_G_COUNT += 1;\n  this.lastG = \"K g\";\n  return \"K g\";\n}.",
+"code": "k.g();",
+"author": "customer",
+"run": "run-2eb42d",
+"card": "j30",
+"other": null
 }
 ]
 },
 "consequences": [
-{
-"id": "wf_a11c35da01",
-"ts": "2026-11-18T11:21:12-0500",
-"a": "notnotnotnotyn_nov",
-"b": "notnotnotnotyn_mar",
-"code": "notnotnotnotyn_nov.interactwith(notnotnotnotyn_mar){ notnotnotnotyn_mar.receives(notnotnotnotyn_nov.code); notnotnotnotyn_mar.remembers(ejiro, 'juju code'); }",
-"text": "The notnotnotnotyn mar leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j2"
-},
-{
-"id": "wf_4a90a049fc",
-"ts": "2026-11-18T11:24:17-0500",
-"a": "vex",
-"b": "example",
-"code": "vex.interactwith(example){ example.receives(vex.shirt); … }",
-"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the brown envelope at the example, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j8"
-},
 {
 "id": "wf_f64ea2af73",
 "ts": "2026-11-18T11:25:10-0500",
@@ -8164,6 +8214,28 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j7"
+},
+{
+"id": "wf_4ba9fe6c22",
+"ts": "2026-11-18T13:25:03-0500",
+"a": "move",
+"b": "ojuelegba_bus_stop",
+"code": "move.interactwith(ojuelegba_bus_stop){ ojuelegba_bus_stop.receives(move.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the ojuelegba bus stop, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
+},
+{
+"id": "wf_8883e0f5c1",
+"ts": "2026-11-18T13:25:56-0500",
+"a": "patagonia",
+"b": "precision",
+"code": "patagonia.interactwith(precision){ precision.receives(patagonia.code); … }",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the precision, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j2"
 }
 ],
 "memories": [
@@ -8267,5 +8339,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T13:21:05-0500"
+"updated": "2026-11-18T13:25:56-0500"
 }
