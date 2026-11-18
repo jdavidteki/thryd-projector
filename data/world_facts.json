@@ -1873,16 +1873,6 @@
 ],
 "ronke": [
 {
-"id": "wt_a3bf81a0b5",
-"kind": "func_call",
-"text": "Someone at the projector tapped the computer village subject and called ronke.hail(what=hawker:Thing) from j18 from its agenda run-2eb42d, first seated in run-2eb42d j18.",
-"code": "ronke.hail('hawker');",
-"author": "projector",
-"run": "run-2eb42d",
-"card": "w18",
-"other": null
-},
-{
 "id": "wt_6cdd9773de",
 "kind": "func_call",
 "text": "Someone at the projector tapped the computer village subject and called ronke.hail(what=hawker:Thing) from j18 from its agenda run-2eb42d, first seated in run-2eb42d j18.",
@@ -1916,6 +1906,16 @@
 "id": "wt_611c4d0df3",
 "kind": "func_call",
 "text": "Someone at the projector tapped the mile subject and called ronke.hail(what=hawker:Thing) from j18 from its agenda run-2eb42d, first seated in run-2eb42d j18.",
+"code": "ronke.hail('hawker');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w18",
+"other": null
+},
+{
+"id": "wt_263c661453",
+"kind": "func_call",
+"text": "Someone at the projector tapped the third mainland bridge subject and called ronke.hail(what=hawker:Thing) from j18 from its agenda run-2eb42d, first seated in run-2eb42d j18.",
 "code": "ronke.hail('hawker');",
 "author": "projector",
 "run": "run-2eb42d",
@@ -6779,16 +6779,6 @@
 ],
 "kazeem": [
 {
-"id": "wt_0d731c1b9e",
-"kind": "func_call",
-"text": "The kazeem hears it (because ronke.hail(what=hawker:Thing) from j18).",
-"code": "kazeem.hears(computer_village_subject, 'hail');",
-"author": "projector",
-"run": "run-2eb42d",
-"card": "w18",
-"other": null
-},
-{
 "id": "wf_be10af15cb",
 "kind": "consequence",
 "text": "The kazeem leaves with a Cup note with Ejiro's name and 'juju code' on it.",
@@ -6827,6 +6817,16 @@
 "run": "run-2eb42d",
 "card": "j2",
 "other": "ttb"
+},
+{
+"id": "wt_8e4dea6623",
+"kind": "func_call",
+"text": "The kazeem hears it (because ronke.hail(what=hawker:Thing) from j18).",
+"code": "kazeem.hears(third_mainland_bridge_subject, 'hail');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w18",
+"other": null
 }
 ],
 "mama_ronke": [
@@ -7209,16 +7209,6 @@
 ],
 "hear": [
 {
-"id": "wt_dc66a61d2f",
-"kind": "func_call",
-"text": "The hear hears it (because ronke.hail(what=hawker:Thing) from j18).",
-"code": "hear.hears(computer_village_subject, 'hail');",
-"author": "projector",
-"run": "run-2eb42d",
-"card": "w18",
-"other": null
-},
-{
 "id": "wt_168e051f5b",
 "kind": "func_call",
 "text": "The hear hears it (because ronke.hail(what=hawker:Thing) from j18).",
@@ -7257,19 +7247,19 @@
 "run": "run-2eb42d",
 "card": "w18",
 "other": null
-}
-],
-"mamaronke": [
+},
 {
-"id": "wt_5869f58e82",
+"id": "wt_54ca3288b3",
 "kind": "func_call",
-"text": "The mamaronke hears it (because ronke.hail(what=hawker:Thing) from j18).",
-"code": "mamaronke.hears(computer_village_subject, 'hail');",
+"text": "The hear hears it (because ronke.hail(what=hawker:Thing) from j18).",
+"code": "hear.hears(third_mainland_bridge_subject, 'hail');",
 "author": "projector",
 "run": "run-2eb42d",
 "card": "w18",
 "other": null
-},
+}
+],
+"mamaronke": [
 {
 "id": "wt_658ad83256",
 "kind": "func_call",
@@ -7305,6 +7295,16 @@
 "kind": "func_call",
 "text": "The mamaronke hears it (because ronke.hail(what=hawker:Thing) from j18).",
 "code": "mamaronke.hears(mile_subject, 'hail');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w18",
+"other": null
+},
+{
+"id": "wt_abc74f7daa",
+"kind": "func_call",
+"text": "The mamaronke hears it (because ronke.hail(what=hawker:Thing) from j18).",
+"code": "mamaronke.hears(third_mainland_bridge_subject, 'hail');",
 "author": "projector",
 "run": "run-2eb42d",
 "card": "w18",
@@ -8359,5 +8359,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T13:32:17-0500"
+"updated": "2026-11-18T13:34:57-0500"
 }
