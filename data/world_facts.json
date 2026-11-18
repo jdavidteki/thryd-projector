@@ -1873,16 +1873,6 @@
 ],
 "ronke": [
 {
-"id": "wt_3fe7ba95c9",
-"kind": "func_call",
-"text": "Someone at the projector tapped the person and called ronke.hail(what=currentaffairs:Thing) from its agenda run-2eb42d, first seated in run-2eb42d j18.",
-"code": "ronke.hail('currentaffairs');",
-"author": "projector",
-"run": "run-2eb42d",
-"card": "w18",
-"other": null
-},
-{
 "id": "wt_d1604e3c14",
 "kind": "func_call",
 "text": "Someone at the projector tapped the mushin subject and called ronke.hail(what=hawker:Thing) from j18 from its agenda run-2eb42d, first seated in run-2eb42d j18.",
@@ -1916,6 +1906,16 @@
 "id": "wt_5d3dabff36",
 "kind": "func_call",
 "text": "Someone at the projector tapped the ikeja subject and called ronke.hail(what=hawker:Thing) from j18 from its agenda run-2eb42d, first seated in run-2eb42d j18.",
+"code": "ronke.hail('hawker');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w18",
+"other": null
+},
+{
+"id": "wt_9521f7caff",
+"kind": "func_call",
+"text": "Someone at the projector tapped the surulere subject and called ronke.hail(what=hawker:Thing) from j18 from its agenda run-2eb42d, first seated in run-2eb42d j18.",
 "code": "ronke.hail('hawker');",
 "author": "projector",
 "run": "run-2eb42d",
@@ -6759,16 +6759,6 @@
 ],
 "kazeem": [
 {
-"id": "wf_86d832941d",
-"kind": "consequence",
-"text": "The Mushin street lamp that goes out in j20 drops Ejiro's Ttb note into the keke, and Kazeem keeps it folded with his change.",
-"code": "streetlights.interactwith(kazeem){ kazeem.receives(streetlights, 'ttb note'); streetlights.dim(); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j20",
-"other": "streetlights"
-},
-{
 "id": "wt_775e4c2262",
 "kind": "func_call",
 "text": "The kazeem hears it (because ronke.hail(what=currentaffairs:Thing)).",
@@ -6803,6 +6793,16 @@
 "kind": "func_call",
 "text": "The kazeem hears it (because ronke.hail(what=hawker:Thing) from j18).",
 "code": "kazeem.hears(ikeja_subject, 'hail');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w18",
+"other": null
+},
+{
+"id": "wt_13b578bd82",
+"kind": "func_call",
+"text": "The kazeem hears it (because ronke.hail(what=hawker:Thing) from j18).",
+"code": "kazeem.hears(surulere_subject, 'hail');",
 "author": "projector",
 "run": "run-2eb42d",
 "card": "w18",
@@ -6963,6 +6963,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "wser"
+},
+{
+"id": "wf_39a9b82735",
+"kind": "consequence",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the mkdwo, and Bisola reads the name twice.",
+"code": "ttb.interactwith(mkdwo){ mkdwo.receives(ttb.code); mkdwo.remembers(ejiro, 'juju code'); mkdwo.tucks(ttb, 'ttb note into the brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j2",
+"other": "ttb"
 }
 ],
 "asmathic": [
@@ -7093,6 +7103,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "bus"
+},
+{
+"id": "wf_4a90a049fc",
+"kind": "consequence",
+"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the brown envelope at the example, and Bisola reads the name twice.",
+"code": "vex.interactwith(example){ example.receives(vex.shirt); … }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j8",
+"other": "vex"
 }
 ],
 "yorubbbygehinny": [
@@ -7108,16 +7128,6 @@
 }
 ],
 "hear": [
-{
-"id": "wt_f907f1ebf2",
-"kind": "func_call",
-"text": "The hear hears it (because ronke.hail(what=hawker:Thing) from j18).",
-"code": "hear.hears(ronke, 'hail');",
-"author": "projector",
-"run": "run-2eb42d",
-"card": "w18",
-"other": null
-},
 {
 "id": "wt_bc4a1185c7",
 "kind": "func_call",
@@ -7157,19 +7167,19 @@
 "run": "run-2eb42d",
 "card": "w18",
 "other": null
-}
-],
-"mamaronke": [
+},
 {
-"id": "wt_3fae71aaf1",
+"id": "wt_e3ce0f5607",
 "kind": "func_call",
-"text": "The mamaronke hears it (because ronke.hail(what=hawker:Thing) from j18).",
-"code": "mamaronke.hears(ronke, 'hail');",
+"text": "The hear hears it (because ronke.hail(what=hawker:Thing) from j18).",
+"code": "hear.hears(surulere_subject, 'hail');",
 "author": "projector",
 "run": "run-2eb42d",
 "card": "w18",
 "other": null
-},
+}
+],
+"mamaronke": [
 {
 "id": "wt_f08e993c59",
 "kind": "func_call",
@@ -7205,6 +7215,16 @@
 "kind": "func_call",
 "text": "The mamaronke hears it (because ronke.hail(what=hawker:Thing) from j18).",
 "code": "mamaronke.hears(ikeja_subject, 'hail');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w18",
+"other": null
+},
+{
+"id": "wt_7ef7a59be0",
+"kind": "func_call",
+"text": "The mamaronke hears it (because ronke.hail(what=hawker:Thing) from j18).",
+"code": "mamaronke.hears(surulere_subject, 'hail');",
 "author": "projector",
 "run": "run-2eb42d",
 "card": "w18",
@@ -7430,53 +7450,31 @@
 "card": "j2",
 "other": "notnotnotnotyn_nov"
 }
+],
+"computer_village": [
+{
+"id": "wf_f64ea2af73",
+"kind": "consequence",
+"text": "The computer village leaves with an Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am.",
+"code": "example.interactwith(computer_village){ computer_village.receives(example.shirt); computer_village.remembers(bisola, 'green shirt'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j8",
+"other": "example"
+},
+{
+"id": "wf_adc71f653a",
+"kind": "consequence",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the green shirt at the computer village, and Bisola reads the name twice.",
+"code": "ttb.interactwith(computer_village){ computer_village.receives(ttb.code); … }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j2",
+"other": "ttb"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_194a95778e",
-"ts": "2026-11-18T09:19:38-0500",
-"a": "icsh",
-"b": "kerosene_lamp",
-"code": "icsh.interactwith(kerosene_lamp){ kerosene_lamp.receives(icsh.envelope); kerosene_lamp.remembers(bisola, 'brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the kerosene lamp, which is still lit.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
-"id": "wf_0cf64fabc7",
-"ts": "2026-11-18T09:26:39-0500",
-"a": "surulere_party_hall",
-"b": "jetty_south_pointe",
-"code": "surulere_party_hall.interactwith(jetty_south_pointe){ jetty_south_pointe.receives(surulere_party_hall.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the jetty south pointe, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
-"id": "wf_07132f45b8",
-"ts": "2026-11-18T09:27:31-0500",
-"a": "people_scene",
-"b": "mushin",
-"code": "people_scene.interactwith(mushin){ mushin.receives(people_scene.envelope); mushin.remembers(bisola, 'brown envelope'); }",
-"text": "The mushin leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
-"id": "wf_343cd05bf1",
-"ts": "2026-11-18T09:29:44-0500",
-"a": "saturday_october",
-"b": "danfo_speaker",
-"code": "saturday_october.interactwith(danfo_speaker){ danfo_speaker.receives(saturday_october.envelope); danfo_speaker.remembers(bisola, 'brown envelope'); }",
-"text": "A Saturday october note with Bisola's name and 'brown envelope' on it, turns up with the danfo speaker, which is still playing the same love song.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
 {
 "id": "wf_c9c00ffdf4",
 "ts": "2026-11-18T09:30:36-0500",
@@ -7872,6 +7870,50 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j2"
+},
+{
+"id": "wf_4a90a049fc",
+"ts": "2026-11-18T11:24:17-0500",
+"a": "vex",
+"b": "example",
+"code": "vex.interactwith(example){ example.receives(vex.shirt); … }",
+"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the brown envelope at the example, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j8"
+},
+{
+"id": "wf_f64ea2af73",
+"ts": "2026-11-18T11:25:10-0500",
+"a": "example",
+"b": "computer_village",
+"code": "example.interactwith(computer_village){ computer_village.receives(example.shirt); computer_village.remembers(bisola, 'green shirt'); }",
+"text": "The computer village leaves with an Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j8"
+},
+{
+"id": "wf_adc71f653a",
+"ts": "2026-11-18T11:26:03-0500",
+"a": "ttb",
+"b": "computer_village",
+"code": "ttb.interactwith(computer_village){ computer_village.receives(ttb.code); … }",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the green shirt at the computer village, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j2"
+},
+{
+"id": "wf_39a9b82735",
+"ts": "2026-11-18T11:27:48-0500",
+"a": "ttb",
+"b": "mkdwo",
+"code": "ttb.interactwith(mkdwo){ mkdwo.receives(ttb.code); mkdwo.remembers(ejiro, 'juju code'); mkdwo.tucks(ttb, 'ttb note into the brown envelope'); }",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the mkdwo, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j2"
 }
 ],
 "memories": [
@@ -7975,5 +8017,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T11:21:12-0500"
+"updated": "2026-11-18T11:27:48-0500"
 }
