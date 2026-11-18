@@ -6869,16 +6869,6 @@
 ],
 "kazeem": [
 {
-"id": "wt_60c3a437b0",
-"kind": "func_call",
-"text": "The kazeem hears it (because ronke.hail(what=hawker:Thing) from j18).",
-"code": "kazeem.hears(marina_ferry_terminal_subject, 'hail');",
-"author": "projector",
-"run": "run-2eb42d",
-"card": "w18",
-"other": null
-},
-{
 "id": "wt_3ee13f524c",
 "kind": "func_call",
 "text": "The kazeem hears it (because ronke.hail(what=hawker:Thing) from j18).",
@@ -6917,6 +6907,16 @@
 "run": "run-2eb42d",
 "card": "w18",
 "other": null
+},
+{
+"id": "wf_257541b6c1",
+"kind": "consequence",
+"text": "The kazeem leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "ojuelegba_bus_stop.interactwith(kazeem){ kazeem.receives(ojuelegba_bus_stop.envelope); kazeem.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "ojuelegba_bus_stop"
 }
 ],
 "mama_ronke": [
@@ -7243,6 +7243,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "teach"
+},
+{
+"id": "wf_6ca517fb86",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the patagonia, and Bisola reads the name twice.",
+"code": "mlkahb.interactwith(patagonia){ patagonia.receives(mlkahb.envelope); … }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "mlkahb"
 }
 ],
 "ikorodu_compound": [
@@ -7703,16 +7713,6 @@
 ],
 "computer_village": [
 {
-"id": "wf_0c3a4289ef",
-"kind": "consequence",
-"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the green shirt at the computer village, and Bisola reads the name twice.",
-"code": "patagonia.interactwith(computer_village){ computer_village.receives(patagonia.code); … }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j2",
-"other": "patagonia"
-},
-{
 "id": "wf_b475585693",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the green shirt at the computer village, and Bisola reads the name twice.",
@@ -7751,6 +7751,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "again"
+},
+{
+"id": "wf_8a38066ea2",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the computer village, and Bisola reads the name twice.",
+"code": "since.interactwith(computer_village){ computer_village.receives(since.envelope); … }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "since"
 }
 ],
 "oh_pls_shaaatttaaapppp": [
@@ -8248,39 +8258,6 @@
 },
 "consequences": [
 {
-"id": "wf_69cab0fa75",
-"ts": "2026-11-18T13:04:05-0500",
-"a": "laptop",
-"b": "mama_ronke",
-"code": "laptop.interactwith(mama_ronke){ mama_ronke.receives(laptop.soot); mama_ronke.remembers(taiwo, 'lamp soot'); }",
-"text": "A Laptop note with Taiwo's name and 'lamp soot' on it, turns up with the Mama Ronke, which is still present.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j7"
-},
-{
-"id": "wf_37bbbe8b3e",
-"ts": "2026-11-18T13:08:37-0500",
-"a": "icsh",
-"b": "ojuelegba_bus_stop",
-"code": "icsh.interactwith(ojuelegba_bus_stop){ ojuelegba_bus_stop.receives(icsh.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the ojuelegba bus stop, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
-"id": "wf_bbb969e36a",
-"ts": "2026-11-18T13:10:15-0500",
-"a": "ttb",
-"b": "kazeem",
-"code": "ttb.interactwith(kazeem){ kazeem.receives(ttb.code); kazeem.remembers(ejiro, 'juju code'); }",
-"text": "The kazeem leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j2"
-},
-{
 "id": "wf_40a3fae117",
 "ts": "2026-11-18T13:14:22-0500",
 "a": "patagonia",
@@ -8686,6 +8663,39 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_257541b6c1",
+"ts": "2026-11-18T15:28:29-0500",
+"a": "ojuelegba_bus_stop",
+"b": "kazeem",
+"code": "ojuelegba_bus_stop.interactwith(kazeem){ kazeem.receives(ojuelegba_bus_stop.envelope); kazeem.remembers(bisola, 'brown envelope'); }",
+"text": "The kazeem leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
+},
+{
+"id": "wf_8a38066ea2",
+"ts": "2026-11-18T15:30:14-0500",
+"a": "since",
+"b": "computer_village",
+"code": "since.interactwith(computer_village){ computer_village.receives(since.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the computer village, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
+},
+{
+"id": "wf_6ca517fb86",
+"ts": "2026-11-18T15:32:52-0500",
+"a": "mlkahb",
+"b": "patagonia",
+"code": "mlkahb.interactwith(patagonia){ patagonia.receives(mlkahb.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the patagonia, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -8789,5 +8799,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T15:27:36-0500"
+"updated": "2026-11-18T15:32:52-0500"
 }
