@@ -7473,16 +7473,6 @@
 ],
 "computer_village": [
 {
-"id": "wf_f64ea2af73",
-"kind": "consequence",
-"text": "The computer village leaves with an Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am.",
-"code": "example.interactwith(computer_village){ computer_village.receives(example.shirt); computer_village.remembers(bisola, 'green shirt'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j8",
-"other": "example"
-},
-{
 "id": "wf_adc71f653a",
 "kind": "consequence",
 "text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the green shirt at the computer village, and Bisola reads the name twice.",
@@ -7521,6 +7511,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "mkdwo"
+},
+{
+"id": "wf_8db0c807af",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the computer village, and Bisola reads the name twice.",
+"code": "wser.interactwith(computer_village){ computer_village.receives(wser.envelope); … }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "wser"
 }
 ],
 "oh_pls_shaaatttaaapppp": [
@@ -7583,17 +7583,6 @@
 ]
 },
 "consequences": [
-{
-"id": "wf_dd77450fd8",
-"ts": "2026-11-18T10:33:16-0500",
-"a": "again",
-"b": "bicycle",
-"code": "again.interactwith(bicycle){ bicycle.receives(again.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bicycle, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
 {
 "id": "wf_4026658dd2",
 "ts": "2026-11-18T10:34:09-0500",
@@ -8022,6 +8011,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_8db0c807af",
+"ts": "2026-11-18T12:17:10-0500",
+"a": "wser",
+"b": "computer_village",
+"code": "wser.interactwith(computer_village){ computer_village.receives(wser.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the computer village, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -8125,5 +8125,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T12:13:03-0500"
+"updated": "2026-11-18T12:17:10-0500"
 }
