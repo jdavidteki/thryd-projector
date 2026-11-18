@@ -1873,16 +1873,6 @@
 ],
 "ronke": [
 {
-"id": "wt_418fb96438",
-"kind": "func_call",
-"text": "Someone at the projector tapped the ojuelegba bus stop subject second and called ronke.hail(what=hawker:Thing) from j18 from its agenda run-2eb42d, first seated in run-2eb42d j18.",
-"code": "ronke.hail('hawker');",
-"author": "projector",
-"run": "run-2eb42d",
-"card": "w18",
-"other": null
-},
-{
 "id": "wt_5d3dabff36",
 "kind": "func_call",
 "text": "Someone at the projector tapped the ikeja subject and called ronke.hail(what=hawker:Thing) from j18 from its agenda run-2eb42d, first seated in run-2eb42d j18.",
@@ -1921,6 +1911,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "listen"
+},
+{
+"id": "wt_107bc950ef",
+"kind": "func_call",
+"text": "Someone at the projector tapped the computer village subject and called ronke.hail(what=hawker:Thing) from j18 from its agenda run-2eb42d, first seated in run-2eb42d j18.",
+"code": "ronke.hail('hawker');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w18",
+"other": null
 }
 ],
 "bird": [
@@ -6759,16 +6759,6 @@
 ],
 "kazeem": [
 {
-"id": "wt_775e4c2262",
-"kind": "func_call",
-"text": "The kazeem hears it (because ronke.hail(what=currentaffairs:Thing)).",
-"code": "kazeem.hears(person, 'hail');",
-"author": "projector",
-"run": "run-2eb42d",
-"card": "w18",
-"other": null
-},
-{
 "id": "wt_f7e0a6b9ee",
 "kind": "func_call",
 "text": "The kazeem hears it (because ronke.hail(what=hawker:Thing) from j18).",
@@ -6803,6 +6793,16 @@
 "kind": "func_call",
 "text": "The kazeem hears it (because ronke.hail(what=hawker:Thing) from j18).",
 "code": "kazeem.hears(surulere_subject, 'hail');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w18",
+"other": null
+},
+{
+"id": "wt_120c702dc4",
+"kind": "func_call",
+"text": "The kazeem hears it (because ronke.hail(what=hawker:Thing) from j18).",
+"code": "kazeem.hears(computer_village_subject, 'hail');",
 "author": "projector",
 "run": "run-2eb42d",
 "card": "w18",
@@ -6895,6 +6895,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "bus"
+},
+{
+"id": "wf_d6551b2d9b",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the listen, and Bisola reads the name twice.",
+"code": "mkdwo.interactwith(listen){ listen.receives(mkdwo.envelope); … }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "mkdwo"
 }
 ],
 "jnoel": [
@@ -7139,16 +7149,6 @@
 ],
 "hear": [
 {
-"id": "wt_bc4a1185c7",
-"kind": "func_call",
-"text": "The hear hears it (because ronke.hail(what=currentaffairs:Thing)).",
-"code": "hear.hears(person, 'hail');",
-"author": "projector",
-"run": "run-2eb42d",
-"card": "w18",
-"other": null
-},
-{
 "id": "wt_1dcc47abd0",
 "kind": "func_call",
 "text": "The hear hears it (because ronke.hail(what=hawker:Thing) from j18).",
@@ -7187,19 +7187,19 @@
 "run": "run-2eb42d",
 "card": "w18",
 "other": null
-}
-],
-"mamaronke": [
+},
 {
-"id": "wt_f08e993c59",
+"id": "wt_dc66a61d2f",
 "kind": "func_call",
-"text": "The mamaronke hears it (because ronke.hail(what=currentaffairs:Thing)).",
-"code": "mamaronke.hears(person, 'hail');",
+"text": "The hear hears it (because ronke.hail(what=hawker:Thing) from j18).",
+"code": "hear.hears(computer_village_subject, 'hail');",
 "author": "projector",
 "run": "run-2eb42d",
 "card": "w18",
 "other": null
-},
+}
+],
+"mamaronke": [
 {
 "id": "wt_e28edcc9a4",
 "kind": "func_call",
@@ -7235,6 +7235,16 @@
 "kind": "func_call",
 "text": "The mamaronke hears it (because ronke.hail(what=hawker:Thing) from j18).",
 "code": "mamaronke.hears(surulere_subject, 'hail');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w18",
+"other": null
+},
+{
+"id": "wt_5869f58e82",
+"kind": "func_call",
+"text": "The mamaronke hears it (because ronke.hail(what=hawker:Thing) from j18).",
+"code": "mamaronke.hears(computer_village_subject, 'hail');",
 "author": "projector",
 "run": "run-2eb42d",
 "card": "w18",
@@ -7548,20 +7558,31 @@
 "card": "j6",
 "other": "art_making_money"
 }
+],
+"cooler": [
+{
+"id": "wt_18e936c1f2",
+"kind": "func_call",
+"text": "The customer typed cooler.clilive567mdh8en() on run-2eb42d j26. It came back: Cooler clilive567mdh8en. Implementation: function clilive567mdh8en(){\n  COOLER_CLILIVE567MDH8EN_COUNT += 1;\n  this.lastClilive567mdh8en = \"Cooler clilive567mdh8en\";\n  return \"Cooler clilive567mdh8en\";\n}. cooler now has cooler.clilive567mdh8en as a method on this agenda, and it can be called again.",
+"code": "cooler.clilive567mdh8en();",
+"author": "customer",
+"run": "run-2eb42d",
+"card": "j26",
+"other": null
+},
+{
+"id": "wt_72c67b2954",
+"kind": "func_call",
+"text": "The customer typed cooler.clilive567mdkxvp() on run-2eb42d j27. It came back: Cooler clilive567mdkxvp. Implementation: function clilive567mdkxvp(){\n  COOLER_CLILIVE567MDKXVP_COUNT += 1;\n  this.lastClilive567mdkxvp = \"Cooler clilive567mdkxvp\";\n  return \"Cooler clilive567mdkxvp\";\n}. cooler now has cooler.clilive567mdkxvp as a method on this agenda, and it can be called again.",
+"code": "cooler.clilive567mdkxvp();",
+"author": "customer",
+"run": "run-2eb42d",
+"card": "j27",
+"other": null
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_f1d06d07f7",
-"ts": "2026-11-18T10:29:36-0500",
-"a": "oke_ayo_bus",
-"b": "kano_wedding_tent",
-"code": "oke_ayo_bus.interactwith(kano_wedding_tent){ kano_wedding_tent.receives(oke_ayo_bus.bead); kano_wedding_tent.remembers(bisola, 'blue glass bead'); }",
-"text": "The kano wedding tent leaves with a Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j5"
-},
 {
 "id": "wf_9e8269a8db",
 "ts": "2026-11-18T10:32:23-0500",
@@ -7990,6 +8011,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j2"
+},
+{
+"id": "wf_d6551b2d9b",
+"ts": "2026-11-18T12:11:18-0500",
+"a": "mkdwo",
+"b": "listen",
+"code": "mkdwo.interactwith(listen){ listen.receives(mkdwo.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the listen, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -8093,5 +8125,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T12:04:30-0500"
+"updated": "2026-11-18T12:11:18-0500"
 }
