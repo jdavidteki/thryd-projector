@@ -6921,16 +6921,6 @@
 ],
 "mama_ronke": [
 {
-"id": "wf_e776d294dd",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the Mama Ronke, which is still present.",
-"code": "b_md.interactwith(mama_ronke){ mama_ronke.receives(b_md.envelope); mama_ronke.remembers(bisola, 'brown envelope'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "b_md"
-},
-{
 "id": "wf_4a1f61dce3",
 "kind": "consequence",
 "text": "A Bird note with Bisola's name and 'envelope corner' on it, turns up with the Mama Ronke, which is still present.",
@@ -6959,6 +6949,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "computer_village"
+},
+{
+"id": "wf_f7edfb25cd",
+"kind": "consequence",
+"text": "The mama ronke now remembers the mkdwo: The customer typed [[mkdwo]] on run-2eb42d j29.",
+"code": "mkdwo.interactwith(mama_ronke){ mama_ronke.receives(mkdwo.something); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j29",
+"other": "mkdwo"
 },
 {
 "id": "wt_836e6dea8e",
@@ -8268,17 +8268,6 @@
 },
 "consequences": [
 {
-"id": "wf_8c8abe63e3",
-"ts": "2026-11-18T13:32:17-0500",
-"a": "lady",
-"b": "computer_village",
-"code": "lady.interactwith(computer_village){ computer_village.receives(lady.shirt); … }",
-"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the brown envelope at the computer village, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j8"
-},
-{
 "id": "wf_6192e85b8c",
 "ts": "2026-11-18T13:38:28-0500",
 "a": "laptop",
@@ -8706,6 +8695,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_f7edfb25cd",
+"ts": "2026-11-18T15:50:13-0500",
+"a": "mkdwo",
+"b": "mama_ronke",
+"code": "mkdwo.interactwith(mama_ronke){ mama_ronke.receives(mkdwo.something); }",
+"text": "The mama ronke now remembers the mkdwo: The customer typed [[mkdwo]] on run-2eb42d j29.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j29"
 }
 ],
 "memories": [
@@ -8809,5 +8809,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T15:47:00-0500"
+"updated": "2026-11-18T15:50:14-0500"
 }
