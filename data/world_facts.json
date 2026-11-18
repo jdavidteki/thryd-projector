@@ -6231,20 +6231,21 @@
 "card": "j29",
 "other": "oya_dance_subject"
 }
+],
+"talk_woman": [
+{
+"id": "wf_2bede10446",
+"kind": "consequence",
+"text": "The talk woman leaves with a Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it.",
+"code": "saturday_october.interactwith(talk_woman){ talk_woman.receives(saturday_october.bead); talk_woman.remembers(bisola, 'blue glass bead'); }",
+"author": "cos",
+"run": "run-g1-B",
+"card": "j5",
+"other": "saturday_october"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_9705347cfe",
-"ts": "2026-11-17T16:38:34-0500",
-"a": "marker_c",
-"b": "fire_escape_outside",
-"code": "marker_c.interactwith(fire_escape_outside){ fire_escape_outside.receives(marker_c.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the juju code at the fire escape outside, and Ejiro reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
 {
 "id": "wf_ae613c0e3c",
 "ts": "2026-11-17T16:41:08-0500",
@@ -6673,6 +6674,17 @@
 "author": "thryd",
 "run": "run-g1-B",
 "card": "j29"
+},
+{
+"id": "wf_2bede10446",
+"ts": "2026-11-17T20:12:26-0500",
+"a": "saturday_october",
+"b": "talk_woman",
+"code": "saturday_october.interactwith(talk_woman){ talk_woman.receives(saturday_october.bead); talk_woman.remembers(bisola, 'blue glass bead'); }",
+"text": "The talk woman leaves with a Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it.",
+"author": "cos",
+"run": "run-g1-B",
+"card": "j5"
 }
 ],
 "memories": [
@@ -6776,5 +6788,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T19:52:51-0500"
+"updated": "2026-11-17T20:12:26-0500"
 }
