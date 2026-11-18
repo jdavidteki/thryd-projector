@@ -7377,16 +7377,6 @@
 ],
 "ojuelegba_bus_stop": [
 {
-"id": "wf_f41d037b18",
-"kind": "consequence",
-"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up with the danfo speaker, which is still playing the same love song.",
-"code": "lady.interactwith(ojuelegba_bus_stop){ ojuelegba_bus_stop.receives(lady.shirt); ojuelegba_bus_stop.remembers(bisola, 'green shirt'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j8",
-"other": "lady"
-},
-{
 "id": "wf_b9bed30a5a",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the green shirt at the ojuelegba bus stop, and Bisola reads the name twice.",
@@ -7425,6 +7415,16 @@
 "run": "run-2eb42d",
 "card": "j7",
 "other": "jnoel"
+},
+{
+"id": "wf_37bbbe8b3e",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the ojuelegba bus stop, and Bisola reads the name twice.",
+"code": "icsh.interactwith(ojuelegba_bus_stop){ ojuelegba_bus_stop.receives(icsh.envelope); … }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "icsh"
 }
 ],
 "usher_by_kiss": [
@@ -7715,17 +7715,6 @@
 ]
 },
 "consequences": [
-{
-"id": "wf_d34a42e344",
-"ts": "2026-11-18T11:13:15-0500",
-"a": "atp",
-"b": "ojuelegba_bus_stop",
-"code": "atp.interactwith(ojuelegba_bus_stop){ ojuelegba_bus_stop.receives(atp.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the ojuelegba bus stop, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
 {
 "id": "wf_4f0c9930e4",
 "ts": "2026-11-18T11:18:33-0500",
@@ -8154,6 +8143,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j7"
+},
+{
+"id": "wf_37bbbe8b3e",
+"ts": "2026-11-18T13:08:37-0500",
+"a": "icsh",
+"b": "ojuelegba_bus_stop",
+"code": "icsh.interactwith(ojuelegba_bus_stop){ ojuelegba_bus_stop.receives(icsh.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the ojuelegba bus stop, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -8257,5 +8257,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T13:04:05-0500"
+"updated": "2026-11-18T13:08:37-0500"
 }
