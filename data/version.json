@@ -1,5 +1,5 @@
 {
-  "v": 555,
-  "at": "2026-11-17T21:22:12-05:00",
-  "note": "Live views on the stage are cut-outs only. The raw rectangle GIF is never mounted (not as a fallback, not as a plate). If a cut is not ready, that view stays off until the cut exists; the last cut view can remain."
+  "v": 556,
+  "at": "2026-11-17T21:28:16-05:00",
+  "note": "Fix: v555 left a stray isLive reference that threw on every scene cut, so only place pins stayed on stage. Objects and live-view cut-outs are back. Pins are not counted as stories and do not evict them. Raw live-view GIFs are still never mounted."
 }

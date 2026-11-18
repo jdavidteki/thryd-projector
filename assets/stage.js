@@ -496,7 +496,7 @@
       const c = document.createElement('canvas'); c.className = 'gcut' + (RM ? '' : ' fl'); c.width = fr[0].width; c.height = fr[0].height;
       const ctx = c.getContext('2d'); ctx.drawImage(fr[0], 0, 0);
       const cut = {ctx, sid: x.o.state_id || null, g, home: g, el: c, frames: fr, label: x.o.label || ('cut' + (x.k + 1)), klass: x.o.model_class || x.o.label || null, i: x.k, U: x.U,
-        w: x.U.w * g.k, h: x.U.h * g.k, hx: g.x + x.U.x * g.k, hy: g.y + x.U.y * g.k, entering: true, bytes: isLive ? 0 : bytesOf(fr), area: (x.U.w * x.U.h) / (g.fw * g.fh)};
+        w: x.U.w * g.k, h: x.U.h * g.k, hx: g.x + x.U.x * g.k, hy: g.y + x.U.y * g.k, entering: true, bytes: bytesOf(fr), area: (x.U.w * x.U.h) / (g.fw * g.fh)};
       cut.left = cut.hx; cut.top = cut.hy;
       Object.assign(c.style, {left: cut.left + 'px', top: cut.top + 'px', width: cut.w + 'px', height: cut.h + 'px', zIndex: String((newest ? 80 : 10) + Math.round(x.U.y + x.U.h))});
       c.style.setProperty('--fd', R(5.5, 9).toFixed(2) + 's'); c.style.setProperty('--fdl', (-R(0, 6)).toFixed(2) + 's');
@@ -841,7 +841,14 @@
   function newestLive(){ return recentLive(1)[0] || null; }
   function isNewestId(id){ const n = newestLive(); return !!(id && n && liveId(n) === id); }
   function isNewestGroup(g){ return !!(g && g.live && isNewestId(g.mid)); }
-  function evictable(g){ return !!(g && !g.gone && !g.map && !g.cuts.some(c => c.dragging) && !isNewestGroup(g)); }
+  function lastCutLiveOnStage(g){
+    // keep the last cut view of the active agenda on stage while the true newest is still loading its pack
+    if(!g || !g.live || g.gone) return false;
+    const n = newestLive();
+    if(!n || g.run !== n.run || g.mid === liveId(n)) return false;
+    return !liveOn(liveId(n));
+  }
+  function evictable(g){ return !!(g && !g.gone && !g.map && !g.cuts.some(c => c.dragging) && !isNewestGroup(g) && !lastCutLiveOnStage(g)); }
   function hasCut(v){
     const c = v && v.cut;
     if(!c || !c.pack || !/^assets\/live_views\/[^?#]+\.cut\.json$/.test(String(c.pack))) return false;
@@ -948,7 +955,7 @@
       return true;
     }catch(e){
       const why = String(e && e.message || e);
-      if(isNewestId(id) && (why === 'cap' || S.bad.isNet(why) || why === 'live_view_fetch')){ enqueueLive(v, true); note('live view retry', id, why); return false; }
+      if(isNewestId(id)){ enqueueLive(v, true); note('live view retry', id, why); failed(id, why); return false; }
       failed(id, why); note('live view skip', id, why);
       return false;
     }finally{ S.loading--; }
@@ -1066,8 +1073,10 @@
   let updBusy = false;
   const upd = ()=>{ const u = document.getElementById('upd'); if(!u || updBusy) return; const t = u.textContent || '';
     if(t && t !== 'loading' && t !== 'loading cuts' && !t.startsWith('on stage')) return;
-    const n = S.groups.length, f = focus && !focus.gone ? (focus.title || '') : '';
-    const want = n ? 'on stage: ' + n + (n === 1 ? ' story' : ' stories') + (f ? ' · ' + String(f).slice(0, 48) : '') : 'loading';
+    const stories = S.groups.filter(g => !g.gone && !g.map);
+    const n = stories.length, foc = focus && !focus.gone && !focus.map ? focus : stories.find(g => g.live && g.newest) || stories[0] || null;
+    const f = foc ? (foc.title || '') : '';
+    const want = n ? 'on stage: ' + n + (n === 1 ? ' story' : ' stories') + (f ? ' · ' + String(f).slice(0, 48) : '') : (S.groups.some(g => g.map && !g.gone) ? 'on stage: 0 stories' : 'loading');
     if(t !== want){ updBusy = true; u.textContent = want; updBusy = false; } };
   setInterval(upd, 2000);
   (function watch(){ const u = document.getElementById('upd'); if(!u || typeof MutationObserver !== 'function'){ setTimeout(watch, 500); return; }
