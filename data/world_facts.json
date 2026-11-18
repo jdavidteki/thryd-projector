@@ -3758,16 +3758,6 @@
 ],
 "bow": [
 {
-"id": "wf_0e5d19ca6a",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bow, and Bisola reads the name twice.",
-"code": "wsr.interactwith(bow){ bow.receives(wsr.envelope); bow.remembers(bisola, 'brown envelope'); bow.tucks(wsr, 'yaba bookshop receipt into the brown envelope'); }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "wsr"
-},
-{
 "id": "wf_0cfc415318",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bow, and Bisola reads the name twice.",
@@ -3806,6 +3796,16 @@
 "run": "run-0bd7c0",
 "card": "j6",
 "other": "plastic_sheet"
+},
+{
+"id": "wf_90f4da8959",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bow, and Bisola reads the name twice.",
+"code": "namco.interactwith(bow){ bow.receives(namco.envelope); bow.remembers(bisola, 'brown envelope'); bow.tucks(namco, 'yaba bookshop receipt into the brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "namco"
 }
 ],
 "crown": [
@@ -6182,16 +6182,6 @@
 ],
 "saturday_october": [
 {
-"id": "wf_c567439619",
-"kind": "consequence",
-"text": "The saturday october leaves with a Nla agbara figure receipt with Bisola's name and 'brown envelope' on it.",
-"code": "off_key.interactwith(saturday_october){ saturday_october.receives(off_key.envelope); saturday_october.remembers(bisola, 'brown envelope'); }",
-"author": "cos",
-"run": "run-g1-B",
-"card": "j4",
-"other": "off_key"
-},
-{
 "id": "wf_e1c71567ef",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it, turns up inside the brown envelope at the saturday october, and Bisola reads the name twice.",
@@ -6230,6 +6220,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "kazeem"
+},
+{
+"id": "wf_ca54e55076",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the saturday october, and Bisola reads the name twice.",
+"code": "ronke.interactwith(saturday_october){ saturday_october.receives(ronke.envelope); … }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "ronke"
 }
 ],
 "sports_ball_scene": [
@@ -6694,6 +6694,16 @@
 "run": "run-2eb42d",
 "card": "j2",
 "other": "ttb"
+},
+{
+"id": "wf_3da0fbc31d",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the juju code at the mama ronke, and Ejiro reads the name twice.",
+"code": "kazeem.interactwith(mama_ronke){ mama_ronke.receives(kazeem.envelope); … }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "kazeem"
 }
 ],
 "thryd": [
@@ -6813,53 +6823,21 @@
 "card": "j29",
 "other": "miami"
 }
+],
+"divine": [
+{
+"id": "wf_5a42ba26fb",
+"kind": "consequence",
+"text": "The divine leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "listen.interactwith(divine){ divine.receives(listen.envelope); divine.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "listen"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_7afeb6748e",
-"ts": "2026-11-17T22:39:06-0500",
-"a": "miami",
-"b": "umbrella",
-"code": "miami.interactwith(umbrella){ umbrella.receives(miami.phone); }",
-"text": "The umbrella now remembers the miami: 11:45pm, Monday 2 November 2026: A phone on the counter starts the off-key chorus, then.",
-"author": "cos",
-"run": "run-g1-B",
-"card": "j29"
-},
-{
-"id": "wf_9e8269e5b8",
-"ts": "2026-11-17T22:39:59-0500",
-"a": "off_key",
-"b": "lagos_cinema",
-"code": "off_key.interactwith(lagos_cinema){ lagos_cinema.receives(off_key.envelope); lagos_cinema.remembers(bisola, 'brown envelope'); }",
-"text": "The lagos cinema leaves with a Nla agbara figure receipt with Bisola's name and 'brown envelope' on it.",
-"author": "cos",
-"run": "run-g1-B",
-"card": "j4"
-},
-{
-"id": "wf_a3ea6f4ea6",
-"ts": "2026-11-17T22:40:51-0500",
-"a": "people_scene",
-"b": "cyrus_beene",
-"code": "people_scene.interactwith(cyrus_beene){ cyrus_beene.receives(people_scene.envelope); cyrus_beene.remembers(bisola, 'brown envelope'); }",
-"text": "The cyrus beene leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-g1-B",
-"card": "j6"
-},
-{
-"id": "wf_6ccfe978b5",
-"ts": "2026-11-17T22:41:43-0500",
-"a": "famz",
-"b": "order_pure_water",
-"code": "famz.interactwith(order_pure_water){ order_pure_water.receives(famz.bead); order_pure_water.remembers(bisola, 'blue glass bead'); }",
-"text": "The order pure water leaves with a Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it.",
-"author": "cos",
-"run": "run-g1-B",
-"card": "j5"
-},
 {
 "id": "wf_a8ad2241c4",
 "ts": "2026-11-17T22:44:25-0500",
@@ -7255,6 +7233,50 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j29"
+},
+{
+"id": "wf_3da0fbc31d",
+"ts": "2026-11-18T00:42:03-0500",
+"a": "kazeem",
+"b": "mama_ronke",
+"code": "kazeem.interactwith(mama_ronke){ mama_ronke.receives(kazeem.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the juju code at the mama ronke, and Ejiro reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
+},
+{
+"id": "wf_5a42ba26fb",
+"ts": "2026-11-18T00:44:39-0500",
+"a": "listen",
+"b": "divine",
+"code": "listen.interactwith(divine){ divine.receives(listen.envelope); divine.remembers(bisola, 'brown envelope'); }",
+"text": "The divine leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
+},
+{
+"id": "wf_90f4da8959",
+"ts": "2026-11-18T00:45:31-0500",
+"a": "namco",
+"b": "bow",
+"code": "namco.interactwith(bow){ bow.receives(namco.envelope); bow.remembers(bisola, 'brown envelope'); bow.tucks(namco, 'yaba bookshop receipt into the brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bow, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
+},
+{
+"id": "wf_ca54e55076",
+"ts": "2026-11-18T00:46:23-0500",
+"a": "ronke",
+"b": "saturday_october",
+"code": "ronke.interactwith(saturday_october){ saturday_october.receives(ronke.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the saturday october, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -7358,5 +7380,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T00:41:11-0500"
+"updated": "2026-11-18T00:46:23-0500"
 }
