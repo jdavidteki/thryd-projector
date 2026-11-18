@@ -829,16 +829,6 @@
 ],
 "agbada": [
 {
-"id": "wf_b40bb8976b",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the agbada, and Bisola reads the name twice.",
-"code": "sessy.interactwith(agbada){ agbada.receives(sessy.envelope); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "sessy"
-},
-{
 "id": "wf_690eb969bf",
 "kind": "consequence",
 "text": "A Truth note with Titi's name and 'egbe note' on it, turns up inside the brown envelope at the agbada, and Bisola reads the name twice.",
@@ -867,6 +857,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "mkdwo"
+},
+{
+"id": "wf_fcd96d03c0",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the agbada, which is still worn by a stranger haggler.",
+"code": "seniorgehs.interactwith(agbada){ agbada.receives(seniorgehs.envelope); agbada.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "seniorgehs"
 },
 {
 "id": "wf_eff49442c3",
@@ -7584,17 +7584,6 @@
 },
 "consequences": [
 {
-"id": "wf_9e8269a8db",
-"ts": "2026-11-18T10:32:23-0500",
-"a": "danfo_speaker",
-"b": "ojuelegba_bus_stop",
-"code": "danfo_speaker.interactwith(ojuelegba_bus_stop){ danfo_speaker.db.copyto(ojuelegba_bus_stop); … }",
-"text": "The danfo speaker ends up with the ojuelegba bus stop, still playing the same love song.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "w5"
-},
-{
 "id": "wf_dd77450fd8",
 "ts": "2026-11-18T10:33:16-0500",
 "a": "again",
@@ -8022,6 +8011,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_fcd96d03c0",
+"ts": "2026-11-18T12:12:11-0500",
+"a": "seniorgehs",
+"b": "agbada",
+"code": "seniorgehs.interactwith(agbada){ agbada.receives(seniorgehs.envelope); agbada.remembers(bisola, 'brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the agbada, which is still worn by a stranger haggler.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -8125,5 +8125,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T12:11:18-0500"
+"updated": "2026-11-18T12:13:03-0500"
 }
