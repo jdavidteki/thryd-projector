@@ -6255,20 +6255,21 @@
 "card": "j5",
 "other": "saturday_october"
 }
+],
+"mount_mercy": [
+{
+"id": "wf_b4f260e785",
+"kind": "consequence",
+"text": "The mount mercy leaves with a Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it.",
+"code": "saturday_october.interactwith(mount_mercy){ mount_mercy.receives(saturday_october.bead); mount_mercy.remembers(bisola, 'blue glass bead'); }",
+"author": "cos",
+"run": "run-g1-B",
+"card": "j5",
+"other": "saturday_october"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_85a5da197b",
-"ts": "2026-11-17T16:47:01-0500",
-"a": "thoughts_marisol",
-"b": "teomarisollove",
-"code": "thoughts_marisol.interactwith(teomarisollove){ teomarisollove.receives(thoughts_marisol.envelope); teomarisollove.remembers(bisola, 'brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the teomarisollove, which is still in love, said out loud by Marisol (w14 causeway).",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
 {
 "id": "wf_af0538c295",
 "ts": "2026-11-17T16:49:33-0500",
@@ -6697,6 +6698,17 @@
 "author": "cos",
 "run": "run-g1-B",
 "card": "j5"
+},
+{
+"id": "wf_b4f260e785",
+"ts": "2026-11-17T20:58:37-0500",
+"a": "saturday_october",
+"b": "mount_mercy",
+"code": "saturday_october.interactwith(mount_mercy){ mount_mercy.receives(saturday_october.bead); mount_mercy.remembers(bisola, 'blue glass bead'); }",
+"text": "The mount mercy leaves with a Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it.",
+"author": "cos",
+"run": "run-g1-B",
+"card": "j5"
 }
 ],
 "memories": [
@@ -6800,5 +6812,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T20:42:54-0500"
+"updated": "2026-11-17T20:58:37-0500"
 }
