@@ -772,16 +772,6 @@
 ],
 "pure_water_cooler": [
 {
-"id": "wf_df8f1b71b1",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it, turns up with the pure-water cooler, which is still carried home through the flood.",
-"code": "dapo.interactwith(pure_water_cooler){ pure_water_cooler.receives(dapo.bead); pure_water_cooler.remembers(bisola, 'blue glass bead'); }",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j5",
-"other": "dapo"
-},
-{
 "id": "wf_93cdfde553",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the pure-water cooler, which is still carried home through the flood.",
@@ -800,6 +790,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "red_white"
+},
+{
+"id": "wf_cd5f48c361",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the pure-water cooler, which is still carried home through the flood.",
+"code": "bicycle.interactwith(pure_water_cooler){ pure_water_cooler.receives(bicycle.envelope); pure_water_cooler.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "bicycle"
 },
 {
 "id": "wf_6554ef5dcc",
@@ -5118,16 +5118,6 @@
 ],
 "marker_b": [
 {
-"id": "wf_c7fd36c202",
-"kind": "consequence",
-"text": "The marker b leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
-"code": "texts_marisol.interactwith(marker_b){ marker_b.receives(texts_marisol.code); marker_b.remembers(ejiro, 'juju code'); }",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j2",
-"other": "texts_marisol"
-},
-{
 "id": "wf_d613a31122",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the juju code at the marker b, and Ejiro reads the name twice.",
@@ -5166,6 +5156,16 @@
 "run": "run-5a58c4",
 "card": "j6",
 "other": "hard"
+},
+{
+"id": "wf_e6bbb8ce04",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the marker b, and Bisola reads the name twice.",
+"code": "itmoai.interactwith(marker_b){ marker_b.receives(itmoai.envelope); … }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "itmoai"
 }
 ],
 "house": [
@@ -6973,28 +6973,6 @@
 },
 "consequences": [
 {
-"id": "wf_2d0a3e1a91",
-"ts": "2026-11-18T00:28:09-0500",
-"a": "miami",
-"b": "danfo_speaker",
-"code": "miami.interactwith(danfo_speaker){ danfo_speaker.receives(miami.phone); }",
-"text": "The danfo speaker now remembers the miami: 11:45pm, Monday 2 November 2026: A phone on the counter starts the off-key chorus, then.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j29"
-},
-{
-"id": "wf_a3a347b7fb",
-"ts": "2026-11-18T00:29:53-0500",
-"a": "miami",
-"b": "plastic_sheet",
-"code": "miami.interactwith(plastic_sheet){ plastic_sheet.receives(miami.phone); }",
-"text": "The plastic sheet now remembers the miami: 11:45pm, Monday 2 November 2026: A phone on the counter starts the off-key chorus, then.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j29"
-},
-{
 "id": "wf_93cdfde553",
 "ts": "2026-11-18T00:35:07-0500",
 "a": "saturday_october",
@@ -7411,6 +7389,28 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_cd5f48c361",
+"ts": "2026-11-18T09:00:11-0500",
+"a": "bicycle",
+"b": "pure_water_cooler",
+"code": "bicycle.interactwith(pure_water_cooler){ pure_water_cooler.receives(bicycle.envelope); pure_water_cooler.remembers(bisola, 'brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the pure-water cooler, which is still carried home through the flood.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
+},
+{
+"id": "wf_e6bbb8ce04",
+"ts": "2026-11-18T09:02:03-0500",
+"a": "itmoai",
+"b": "marker_b",
+"code": "itmoai.interactwith(marker_b){ marker_b.receives(itmoai.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the marker b, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
 }
 ],
 "memories": [
@@ -7514,5 +7514,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T08:57:33-0500"
+"updated": "2026-11-18T09:02:03-0500"
 }
