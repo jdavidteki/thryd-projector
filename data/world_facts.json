@@ -7123,6 +7123,16 @@
 "run": "run-2eb42d",
 "card": "j2",
 "other": "ttb"
+},
+{
+"id": "wf_d884364b9c",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the juju code at the patagonia, and Ejiro reads the name twice.",
+"code": "teach.interactwith(patagonia){ patagonia.receives(teach.envelope); … }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "teach"
 }
 ],
 "ikorodu_compound": [
@@ -7840,17 +7850,6 @@
 },
 "consequences": [
 {
-"id": "wf_7e006495ba",
-"ts": "2026-11-18T12:02:29-0500",
-"a": "mkdwo",
-"b": "bird",
-"code": "mkdwo.interactwith(bird){ bird.receives(mkdwo.envelope); bird.remembers(bisola, 'brown envelope'); bird.tucks(mkdwo, 'yaba bookshop receipt into the envelope corner'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the envelope corner at the bird, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
 "id": "wf_3032605525",
 "ts": "2026-11-18T12:04:30-0500",
 "a": "ttb",
@@ -8278,6 +8277,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_d884364b9c",
+"ts": "2026-11-18T14:30:27-0500",
+"a": "teach",
+"b": "patagonia",
+"code": "teach.interactwith(patagonia){ patagonia.receives(teach.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the juju code at the patagonia, and Ejiro reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -8381,5 +8391,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T14:25:12-0500"
+"updated": "2026-11-18T14:30:27-0500"
 }
