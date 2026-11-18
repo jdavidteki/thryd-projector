@@ -1873,16 +1873,6 @@
 ],
 "ronke": [
 {
-"id": "wt_49f6572c66",
-"kind": "func_call",
-"text": "The customer typed ronke.getlikes().contains(kazeem.goodqualities), which ran as ronke.getlikes().filter(q => kazeem.goodqualities.includes(q)) on run-2eb42d j29. It came back: punctual, generous, funny. Implementation: function filterQualities(){\n  const value = [\"punctual\",\"generous\",\"funny\"];\n  learned.ronke.overlap = value;\n  return value;\n}.",
-"code": "ronke.getlikes().filter(q => kazeem.goodqualities.includes(q));",
-"author": "customer",
-"run": "run-2eb42d",
-"card": "j29",
-"other": null
-},
-{
 "id": "wt_ab1804cb34",
 "kind": "func_call",
 "text": "Someone at the projector tapped the computer village subject and called ronke.hail(what=hawker:Thing) from j18 from its agenda run-2eb42d, first seated in run-2eb42d j18.",
@@ -1921,6 +1911,16 @@
 "run": "run-2eb42d",
 "card": "w5",
 "other": "plastic_sheet"
+},
+{
+"id": "wt_a86456bd78",
+"kind": "func_call",
+"text": "Someone at the projector tapped the computer village subject and called ronke.hail(what=hawker:Thing) from j18 from its agenda run-2eb42d, first seated in run-2eb42d j18.",
+"code": "ronke.hail('hawker');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w18",
+"other": null
 }
 ],
 "bird": [
@@ -4043,16 +4043,6 @@
 ],
 "sports_ball": [
 {
-"id": "wf_e20216b451",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the sports ball, and Bisola reads the name twice.",
-"code": "agbada.interactwith(sports_ball){ sports_ball.receives(agbada.envelope); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "agbada"
-},
-{
 "id": "wf_4060885edf",
 "kind": "consequence",
 "text": "A Kerosene lamp note with Taiwo's name and 'change' on it, turns up inside the brown envelope at the sports ball, and Bisola reads the name twice.",
@@ -4091,6 +4081,16 @@
 "run": "run-5a58c4",
 "card": "j3",
 "other": "marker"
+},
+{
+"id": "wf_ab62a79e69",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the sports ball, and Bisola reads the name twice.",
+"code": "bow.interactwith(sports_ball){ sports_ball.receives(bow.envelope); … }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "bow"
 }
 ],
 "danfo_stuck": [
@@ -6779,16 +6779,6 @@
 ],
 "kazeem": [
 {
-"id": "wf_be10af15cb",
-"kind": "consequence",
-"text": "The kazeem leaves with a Cup note with Ejiro's name and 'juju code' on it.",
-"code": "cup.interactwith(kazeem){ kazeem.receives(cup.code); kazeem.remembers(ejiro, 'juju code'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j2",
-"other": "cup"
-},
-{
 "id": "wt_cdce915a06",
 "kind": "func_call",
 "text": "The kazeem hears it (because ronke.hail(what=hawker:Thing) from j18).",
@@ -6823,6 +6813,16 @@
 "kind": "func_call",
 "text": "The kazeem hears it (because ronke.hail(what=hawker:Thing) from j18).",
 "code": "kazeem.hears(third_mainland_bridge_subject, 'hail');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w18",
+"other": null
+},
+{
+"id": "wt_c2f0653c6b",
+"kind": "func_call",
+"text": "The kazeem hears it (because ronke.hail(what=hawker:Thing) from j18).",
+"code": "kazeem.hears(computer_village_subject, 'hail');",
 "author": "projector",
 "run": "run-2eb42d",
 "card": "w18",
@@ -7209,16 +7209,6 @@
 ],
 "hear": [
 {
-"id": "wt_168e051f5b",
-"kind": "func_call",
-"text": "The hear hears it (because ronke.hail(what=hawker:Thing) from j18).",
-"code": "hear.hears(computer_village_subject, 'hail');",
-"author": "projector",
-"run": "run-2eb42d",
-"card": "w18",
-"other": null
-},
-{
 "id": "wt_459f7bb5f0",
 "kind": "func_call",
 "text": "The hear hears it (because ronke.hail(what=hawker:Thing) from j18).",
@@ -7257,19 +7247,19 @@
 "run": "run-2eb42d",
 "card": "w18",
 "other": null
-}
-],
-"mamaronke": [
+},
 {
-"id": "wt_658ad83256",
+"id": "wt_f732099ab2",
 "kind": "func_call",
-"text": "The mamaronke hears it (because ronke.hail(what=hawker:Thing) from j18).",
-"code": "mamaronke.hears(computer_village_subject, 'hail');",
+"text": "The hear hears it (because ronke.hail(what=hawker:Thing) from j18).",
+"code": "hear.hears(computer_village_subject, 'hail');",
 "author": "projector",
 "run": "run-2eb42d",
 "card": "w18",
 "other": null
-},
+}
+],
+"mamaronke": [
 {
 "id": "wt_67952bd9ff",
 "kind": "func_call",
@@ -7305,6 +7295,16 @@
 "kind": "func_call",
 "text": "The mamaronke hears it (because ronke.hail(what=hawker:Thing) from j18).",
 "code": "mamaronke.hears(third_mainland_bridge_subject, 'hail');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w18",
+"other": null
+},
+{
+"id": "wt_5254cc09b1",
+"kind": "func_call",
+"text": "The mamaronke hears it (because ronke.hail(what=hawker:Thing) from j18).",
+"code": "mamaronke.hears(computer_village_subject, 'hail');",
 "author": "projector",
 "run": "run-2eb42d",
 "card": "w18",
@@ -7543,16 +7543,6 @@
 ],
 "computer_village": [
 {
-"id": "wf_4788445afd",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it, turns up inside the brown envelope at the computer village, and Bisola reads the name twice.",
-"code": "oke_ayo_bus.interactwith(computer_village){ computer_village.receives(oke_ayo_bus.bead); … }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j5",
-"other": "oke_ayo_bus"
-},
-{
 "id": "wf_e5490a2966",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the computer village, and Bisola reads the name twice.",
@@ -7591,6 +7581,16 @@
 "run": "run-2eb42d",
 "card": "j8",
 "other": "lady"
+},
+{
+"id": "wf_0c3a4289ef",
+"kind": "consequence",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the green shirt at the computer village, and Bisola reads the name twice.",
+"code": "patagonia.interactwith(computer_village){ computer_village.receives(patagonia.code); … }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j2",
+"other": "patagonia"
 }
 ],
 "oh_pls_shaaatttaaapppp": [
@@ -7817,28 +7817,6 @@
 ]
 },
 "consequences": [
-{
-"id": "wf_a80022da7b",
-"ts": "2026-11-18T11:45:08-0500",
-"a": "lagos",
-"b": "oh_pls_shaaatttaaapppp",
-"code": "lagos.interactwith(oh_pls_shaaatttaaapppp){ oh_pls_shaaatttaaapppp.receives(lagos.bead); oh_pls_shaaatttaaapppp.remembers(bisola, 'blue glass bead'); }",
-"text": "The oh pls shaaatttaaapppp leaves with a Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j5"
-},
-{
-"id": "wf_931ec02917",
-"ts": "2026-11-18T11:46:01-0500",
-"a": "yaba",
-"b": "fear_god",
-"code": "yaba.interactwith(fear_god){ fear_god.receives(yaba.phone); }",
-"text": "The fear god now remembers the yaba: The yaba now remembers the miami: 11:45pm, Monday 2 November 2026: A phone on the counter.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j29"
-},
 {
 "id": "wf_402676b7e2",
 "ts": "2026-11-18T11:49:33-0500",
@@ -8256,6 +8234,28 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "w5"
+},
+{
+"id": "wf_0c3a4289ef",
+"ts": "2026-11-18T13:51:33-0500",
+"a": "patagonia",
+"b": "computer_village",
+"code": "patagonia.interactwith(computer_village){ computer_village.receives(patagonia.code); … }",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the green shirt at the computer village, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j2"
+},
+{
+"id": "wf_ab62a79e69",
+"ts": "2026-11-18T13:52:25-0500",
+"a": "bow",
+"b": "sports_ball",
+"code": "bow.interactwith(sports_ball){ sports_ball.receives(bow.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the sports ball, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -8359,5 +8359,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T13:46:38-0500"
+"updated": "2026-11-18T13:52:25-0500"
 }
