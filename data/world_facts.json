@@ -7161,6 +7161,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "listen"
+},
+{
+"id": "wf_d3b17d0cd1",
+"kind": "consequence",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the niaw, and Bisola reads the name twice.",
+"code": "ttb.interactwith(niaw){ niaw.receives(ttb.code); niaw.remembers(ejiro, 'juju code'); niaw.tucks(ttb, 'ttb note into the brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j2",
+"other": "ttb"
 }
 ],
 "mkdwo": [
@@ -7657,16 +7667,6 @@
 ],
 "ojuelegba_bus_stop": [
 {
-"id": "wf_600bda5faa",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the ojuelegba bus stop, and Bisola reads the name twice.",
-"code": "teach.interactwith(ojuelegba_bus_stop){ ojuelegba_bus_stop.receives(teach.envelope); … }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "teach"
-},
-{
 "id": "wf_00bfe3b8ff",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the ojuelegba bus stop, and Bisola reads the name twice.",
@@ -7705,6 +7705,16 @@
 "run": "run-2eb42d",
 "card": "j8",
 "other": "thryd"
+},
+{
+"id": "wf_ded81a2d89",
+"kind": "consequence",
+"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the green shirt at the ojuelegba bus stop, and Bisola reads the name twice.",
+"code": "divine.interactwith(ojuelegba_bus_stop){ ojuelegba_bus_stop.receives(divine.shirt); … }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j8",
+"other": "divine"
 }
 ],
 "usher_by_kiss": [
@@ -9030,28 +9040,6 @@
 },
 "consequences": [
 {
-"id": "wf_b147bc2420",
-"ts": "2026-11-18T16:01:16-0500",
-"a": "namco",
-"b": "computer_village",
-"code": "namco.interactwith(computer_village){ computer_village.receives(namco.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the computer village, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
-"id": "wf_550b2c4bf1",
-"ts": "2026-11-18T16:06:31-0500",
-"a": "precision",
-"b": "bird",
-"code": "precision.interactwith(bird){ bird.receives(precision.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the envelope corner at the bird, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
 "id": "wf_02dd03d128",
 "ts": "2026-11-18T16:11:48-0500",
 "a": "precision",
@@ -9468,6 +9456,28 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_ded81a2d89",
+"ts": "2026-11-18T18:21:58-0500",
+"a": "divine",
+"b": "ojuelegba_bus_stop",
+"code": "divine.interactwith(ojuelegba_bus_stop){ ojuelegba_bus_stop.receives(divine.shirt); … }",
+"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the green shirt at the ojuelegba bus stop, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j8"
+},
+{
+"id": "wf_d3b17d0cd1",
+"ts": "2026-11-18T18:22:50-0500",
+"a": "ttb",
+"b": "niaw",
+"code": "ttb.interactwith(niaw){ niaw.receives(ttb.code); niaw.remembers(ejiro, 'juju code'); niaw.tucks(ttb, 'ttb note into the brown envelope'); }",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the niaw, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j2"
 }
 ],
 "memories": [
@@ -9571,5 +9581,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T18:21:04-0500"
+"updated": "2026-11-18T18:22:50-0500"
 }
