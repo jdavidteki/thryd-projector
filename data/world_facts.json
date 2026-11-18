@@ -6835,20 +6835,21 @@
 "card": "j6",
 "other": "listen"
 }
+],
+"again": [
+{
+"id": "wf_5cc8d0dace",
+"kind": "consequence",
+"text": "The again leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "saturday_october.interactwith(again){ again.receives(saturday_october.envelope); again.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "saturday_october"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_a8ad2241c4",
-"ts": "2026-11-17T22:44:25-0500",
-"a": "bowl",
-"b": "namco",
-"code": "bowl.interactwith(namco){ namco.receives(bowl.envelope); namco.remembers(bisola, 'brown envelope'); }",
-"text": "The namco leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-g1-B",
-"card": "j6"
-},
 {
 "id": "wf_eadf694fee",
 "ts": "2026-11-17T23:09:34-0500",
@@ -7277,6 +7278,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_5cc8d0dace",
+"ts": "2026-11-18T00:48:07-0500",
+"a": "saturday_october",
+"b": "again",
+"code": "saturday_october.interactwith(again){ again.receives(saturday_october.envelope); again.remembers(bisola, 'brown envelope'); }",
+"text": "The again leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -7380,5 +7392,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T00:46:23-0500"
+"updated": "2026-11-18T00:48:07-0500"
 }
