@@ -6879,20 +6879,21 @@
 "card": "j2",
 "other": "ttb"
 }
+],
+"ikorodu_compound": [
+{
+"id": "wf_37d55f8366",
+"kind": "consequence",
+"text": "The ikorodu compound leaves with a Club terrace admiralty bill with Kunle's name and 'jump leads' on it, 11:05am.",
+"code": "club_terrace_admiralty.interactwith(ikorodu_compound){ ikorodu_compound.receives(club_terrace_admiralty.leads); ikorodu_compound.remembers(kunle, 'jump leads'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j5",
+"other": "club_terrace_admiralty"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_b6a2c669fe",
-"ts": "2026-11-17T23:39:21-0500",
-"a": "laptop",
-"b": "tf_mom",
-"code": "laptop.interactwith(tf_mom){ tf_mom.receives(laptop.soot); tf_mom.remembers(taiwo, 'lamp soot'); }",
-"text": "The tf mom leaves with a Laptop note with Taiwo's name and 'lamp soot' on it.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j7"
-},
 {
 "id": "wf_1a789d9da6",
 "ts": "2026-11-17T23:40:13-0500",
@@ -7321,6 +7322,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_37d55f8366",
+"ts": "2026-11-18T08:06:45-0500",
+"a": "club_terrace_admiralty",
+"b": "ikorodu_compound",
+"code": "club_terrace_admiralty.interactwith(ikorodu_compound){ ikorodu_compound.receives(club_terrace_admiralty.leads); ikorodu_compound.remembers(kunle, 'jump leads'); }",
+"text": "The ikorodu compound leaves with a Club terrace admiralty bill with Kunle's name and 'jump leads' on it, 11:05am.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j5"
 }
 ],
 "memories": [
@@ -7424,5 +7436,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T07:03:58-0500"
+"updated": "2026-11-18T08:06:45-0500"
 }
