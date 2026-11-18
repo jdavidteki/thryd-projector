@@ -2095,16 +2095,6 @@
 ],
 "laptop": [
 {
-"id": "wf_5cebb2350c",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the lamp soot at the laptop, and Taiwo reads the name twice.",
-"code": "asmathic.interactwith(laptop){ laptop.receives(asmathic.envelope); … }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "asmathic"
-},
-{
 "id": "wf_591671a308",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the lamp soot at the laptop, and Taiwo reads the name twice.",
@@ -2113,6 +2103,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "move"
+},
+{
+"id": "wf_267bc16dc0",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the lamp soot at the laptop, and Taiwo reads the name twice.",
+"code": "mlkahb.interactwith(laptop){ laptop.receives(mlkahb.envelope); … }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "mlkahb"
 },
 {
 "id": "wt_00586a397c",
@@ -8308,17 +8308,6 @@
 },
 "consequences": [
 {
-"id": "wf_257541b6c1",
-"ts": "2026-11-18T15:28:29-0500",
-"a": "ojuelegba_bus_stop",
-"b": "kazeem",
-"code": "ojuelegba_bus_stop.interactwith(kazeem){ kazeem.receives(ojuelegba_bus_stop.envelope); kazeem.remembers(bisola, 'brown envelope'); }",
-"text": "The kazeem leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
 "id": "wf_8a38066ea2",
 "ts": "2026-11-18T15:30:14-0500",
 "a": "since",
@@ -8746,6 +8735,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_267bc16dc0",
+"ts": "2026-11-18T17:26:38-0500",
+"a": "mlkahb",
+"b": "laptop",
+"code": "mlkahb.interactwith(laptop){ laptop.receives(mlkahb.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the lamp soot at the laptop, and Taiwo reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -8849,5 +8849,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T17:17:49-0500"
+"updated": "2026-11-18T17:26:38-0500"
 }
