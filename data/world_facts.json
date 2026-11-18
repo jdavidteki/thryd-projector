@@ -829,16 +829,6 @@
 ],
 "agbada": [
 {
-"id": "wf_12d8e471b2",
-"kind": "consequence",
-"text": "The agbada worn to the Ikorodu burial remembers the moment Titi pulled a second will out of her gele, next to the egbe note it already carried for her.",
-"code": "agbada.interactwith(family_compound_ikorodu){ agbada.state('worn to the ikorodu burial'); agbada.remembers(titi, 'second will from her gele'); }",
-"author": "cos",
-"run": "run-bd649b",
-"card": "j2",
-"other": "family_compound_ikorodu"
-},
-{
 "id": "wf_cb820861db",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the agbada, which is still worn by a stranger haggler.",
@@ -869,6 +859,16 @@
 "other": "computer_village"
 },
 {
+"id": "wf_f3d4afd494",
+"kind": "consequence",
+"text": "The pure-water cooler ends up with the agbada, still carried home through the flood.",
+"code": "pure_water_cooler.interactwith(agbada){ pure_water_cooler.db.copyto(agbada); agbada.keeps(pure_water_cooler, 'pure-water cooler, still carried home through the flood'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w1",
+"other": "pure_water_cooler"
+},
+{
 "id": "wf_eff49442c3",
 "kind": "memory",
 "text": "The agbada at Oke-Ayo bus stop: worn by a stranger haggler; not for fokanicer.",
@@ -881,16 +881,6 @@
 ],
 "danfo_speaker": [
 {
-"id": "wf_900ee80b4e",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the danfo speaker, which is still playing the same love song.",
-"code": "sports_ball.interactwith(danfo_speaker){ danfo_speaker.receives(sports_ball.envelope); danfo_speaker.remembers(bisola, 'brown envelope'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "sports_ball"
-},
-{
 "id": "wf_cf4016a231",
 "kind": "consequence",
 "text": "A Bed note with Taiwo's name and 'egbe note' on it, turns up with the danfo speaker, which is still playing the same love song.",
@@ -899,6 +889,16 @@
 "run": "run-2eb42d",
 "card": "w6",
 "other": "bed"
+},
+{
+"id": "wf_2dd95d9ccd",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the danfo speaker, which is still playing the same love song.",
+"code": "bus.interactwith(danfo_speaker){ danfo_speaker.receives(bus.envelope); danfo_speaker.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "bus"
 },
 {
 "id": "wf_bdad55d985",
@@ -1873,16 +1873,6 @@
 ],
 "ronke": [
 {
-"id": "wt_daa21b5174",
-"kind": "func_call",
-"text": "Ronke tells them to share.",
-"code": "ronke.tell('share');",
-"author": "thryd",
-"run": "run-2eb42d",
-"card": "w32",
-"other": null
-},
-{
 "id": "wt_68543424a7",
 "kind": "func_call",
 "text": "Ronke, staying behind, lands on 'deya skiming to tuff your moni'.",
@@ -1920,6 +1910,16 @@
 "author": "thryd",
 "run": "run-2eb42d",
 "card": "w36",
+"other": null
+},
+{
+"id": "wt_587ef88ba6",
+"kind": "func_call",
+"text": "Ronke greets the special guest, investor sabinus; the hall already heard jeff abestos and wan collect fulfillment in posted j38, so this row only logs the seated pick.",
+"code": "ronke.greet('guest');",
+"author": "thryd",
+"run": "run-2eb42d",
+"card": "w37",
 "other": null
 }
 ],
@@ -4789,16 +4789,6 @@
 ],
 "calla": [
 {
-"id": "wf_9d322fe6db",
-"kind": "consequence",
-"text": "The calla leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"code": "family_compound_ikorodu.interactwith(calla){ calla.receives(family_compound_ikorodu.envelope); calla.remembers(bisola, 'brown envelope'); }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "family_compound_ikorodu"
-},
-{
 "id": "wt_487c2ac014",
 "kind": "func_call",
 "text": "The calla hears it (because teo.fold(how=like:Manner) from j27).",
@@ -4830,6 +4820,16 @@
 },
 {
 "id": "wt_b8eac23954",
+"kind": "func_call",
+"text": "The calla hears it (because song.hit(what=mistake:Thing) from j35).",
+"code": "calla.hears(miami_subject, 'hit');",
+"author": "projector",
+"run": "run-5a58c4",
+"card": "w22",
+"other": null
+},
+{
+"id": "wt_f7d8da9b8a",
 "kind": "func_call",
 "text": "The calla hears it (because song.hit(what=mistake:Thing) from j35).",
 "code": "calla.hears(miami_subject, 'hit');",
@@ -6175,6 +6175,16 @@
 "run": "run-5a58c4",
 "card": "w22",
 "other": null
+},
+{
+"id": "wt_aeb77e697a",
+"kind": "func_call",
+"text": "The blender hears it (because song.hit(what=mistake:Thing) from j35).",
+"code": "blender.hears(miami_subject, 'hit');",
+"author": "projector",
+"run": "run-5a58c4",
+"card": "w22",
+"other": null
 }
 ],
 "code": [
@@ -6206,6 +6216,16 @@
 "author": "projector",
 "run": "run-5a58c4",
 "card": "w25",
+"other": null
+},
+{
+"id": "wt_bd7dc1e4ec",
+"kind": "func_call",
+"text": "The code hears it (because song.hit(what=mistake:Thing) from j35).",
+"code": "code.hears(miami_subject, 'hit');",
+"author": "projector",
+"run": "run-5a58c4",
+"card": "w22",
 "other": null
 }
 ],
@@ -7449,16 +7469,6 @@
 ],
 "hear": [
 {
-"id": "wt_8dfcd1a6c4",
-"kind": "func_call",
-"text": "The hear hears it (because ronke.hail(what=hawker:Thing) from j18).",
-"code": "hear.hears(computer_village_subject, 'hail');",
-"author": "projector",
-"run": "run-2eb42d",
-"card": "w18",
-"other": null
-},
-{
 "id": "wt_f4fe16a7d8",
 "kind": "func_call",
 "text": "The hear hears it (because ronke.hail(what=hawker:Thing) from j18).",
@@ -7496,6 +7506,16 @@
 "author": "projector",
 "run": "run-2eb42d",
 "card": "w18",
+"other": null
+},
+{
+"id": "wt_3b79021b6e",
+"kind": "func_call",
+"text": "The hear hears it (because pepu.setMany(amount=many:Quantity) from j17).",
+"code": "hear.hears(car, 'setMany');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w17",
 "other": null
 }
 ],
@@ -8205,6 +8225,16 @@
 "run": "run-5a58c4",
 "card": "w22",
 "other": null
+},
+{
+"id": "wt_1640026d2e",
+"kind": "func_call",
+"text": "Someone at the projector tapped the miami subject and called song.hit(what=mistake:Thing) from j35 from its agenda run-5a58c4, first seated in run-5a58c4 j22.",
+"code": "song.hit('mistake');",
+"author": "projector",
+"run": "run-5a58c4",
+"card": "w22",
+"other": null
 }
 ],
 "h": [
@@ -8297,6 +8327,16 @@
 "run": "run-2eb42d",
 "card": "w17",
 "other": null
+},
+{
+"id": "wt_33e51dea5f",
+"kind": "func_call",
+"text": "Someone at the projector tapped the car and called pepu.setMany(amount=many:Quantity) from j17 from its agenda run-2eb42d, first seated in run-2eb42d j17.",
+"code": "pepu.setMany('many');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w17",
+"other": null
 }
 ],
 "g": [
@@ -8344,6 +8384,16 @@
 "author": "customer",
 "run": "run-2eb42d",
 "card": "j34",
+"other": null
+},
+{
+"id": "wt_656b56cf29",
+"kind": "func_call",
+"text": "Funke shows the certificate from sweducer school. The posted j38 already wove the certificate and closed office; this row only logs the seated pick.",
+"code": "funke.show('certificate');",
+"author": "thryd",
+"run": "run-2eb42d",
+"card": "w37",
 "other": null
 }
 ],
@@ -8858,31 +8908,103 @@
 "card": "w34",
 "other": null
 }
+],
+"townhall": [
+{
+"id": "wt_78d45a50ba",
+"kind": "func_call",
+"text": "The town hall opens for the meeting, landing on '[[so]] + [[gima]] - for the meeting'.",
+"code": "townhall.open('meeting');",
+"author": "thryd",
+"run": "run-2eb42d",
+"card": "w37",
+"other": null
+}
+],
+"chairman": [
+{
+"id": "wt_5977c645a4",
+"kind": "func_call",
+"text": "The chairman reads the message and lands on 'chairman, i receive your msg'. Already used in posted j38; this row only logs the letter-call.",
+"code": "chairman.read('msg');",
+"author": "thryd",
+"run": "run-2eb42d",
+"card": "w37",
+"other": null
+}
+],
+"thryd_miracle": [
+{
+"id": "wt_a0c9aab67f",
+"kind": "func_call",
+"text": "The miracle log records 1. CoS already wove a small miracle into the j38 minutes book; this row only logs the typed call against stub 489.",
+"code": "thryd.miracle.log(1);",
+"author": "thryd",
+"run": "run-2eb42d",
+"card": "w37",
+"other": null
+},
+{
+"id": "wt_8a1e068433",
+"kind": "func_call",
+"text": "The miracle log records 1. CoS already wove a small miracle into the j38 minutes book; this row only logs the typed call against stub 490.",
+"code": "thryd.miracle.log(1);",
+"author": "thryd",
+"run": "run-2eb42d",
+"card": "w37",
+"other": null
+}
+],
+"microphone": [
+{
+"id": "wt_3d211322ba",
+"kind": "func_call",
+"text": "A wired microphone stands on its floor stand next to Ronke.",
+"code": "microphone.stand('floor');",
+"author": "thryd",
+"run": "run-2eb42d",
+"card": "w37",
+"other": null
+}
+],
+"cap": [
+{
+"id": "wt_7d05da20a5",
+"kind": "func_call",
+"text": "A graduation cap sits on the table beside Funke's certificate.",
+"code": "cap.sit('table');",
+"author": "thryd",
+"run": "run-2eb42d",
+"card": "w37",
+"other": null
+}
+],
+"ballot": [
+{
+"id": "wt_5f7fd3522a",
+"kind": "func_call",
+"text": "A plastic ballot box sits on the registration table.",
+"code": "ballot.sit('table');",
+"author": "thryd",
+"run": "run-2eb42d",
+"card": "w37",
+"other": null
+}
+],
+"envelope": [
+{
+"id": "wt_de855f7b5d",
+"kind": "func_call",
+"text": "The chairman's message is in a manila envelope on the table.",
+"code": "envelope.show('paper');",
+"author": "thryd",
+"run": "run-2eb42d",
+"card": "w37",
+"other": null
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_77d81e51f6",
-"ts": "2026-11-18T15:59:31-0500",
-"a": "computer_village",
-"b": "ronke",
-"code": "computer_village.interactwith(ronke){ ronke.receives(computer_village.envelope); ronke.remembers(bisola, 'brown envelope'); }",
-"text": "The ronke leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
-"id": "wf_0ccd93683f",
-"ts": "2026-11-18T16:00:23-0500",
-"a": "love",
-"b": "plastic_sheet",
-"code": "love.interactwith(plastic_sheet){ plastic_sheet.receives(love.envelope); plastic_sheet.remembers(bisola, 'brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the plastic sheet, which is still wet.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
 {
 "id": "wf_b147bc2420",
 "ts": "2026-11-18T16:01:16-0500",
@@ -9300,6 +9422,28 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j8"
+},
+{
+"id": "wf_f3d4afd494",
+"ts": "2026-11-18T18:11:04-0500",
+"a": "pure_water_cooler",
+"b": "agbada",
+"code": "pure_water_cooler.interactwith(agbada){ pure_water_cooler.db.copyto(agbada); agbada.keeps(pure_water_cooler, 'pure-water cooler, still carried home through the flood'); }",
+"text": "The pure-water cooler ends up with the agbada, still carried home through the flood.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w1"
+},
+{
+"id": "wf_2dd95d9ccd",
+"ts": "2026-11-18T18:12:04-0500",
+"a": "bus",
+"b": "danfo_speaker",
+"code": "bus.interactwith(danfo_speaker){ danfo_speaker.receives(bus.envelope); danfo_speaker.remembers(bisola, 'brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the danfo speaker, which is still playing the same love song.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -9403,5 +9547,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T18:10:11-0500"
+"updated": "2026-11-18T18:15:48-0500"
 }
