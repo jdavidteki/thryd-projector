@@ -116,27 +116,35 @@
   // ---------- the box
   const css = document.createElement('style'); css.textContent = [
     '#aibox{position:fixed;left:50%;bottom:12vh;transform:translateX(-50%);z-index:10060;display:none;flex-direction:column;gap:.6vh;width:min(92vw,520px);padding:.8vh;border-radius:1vh;background:rgba(12,12,12,.92);box-shadow:0 3px 16px #0009;font:600 max(13px,1.6vh) ui-monospace,Menlo,Consolas,monospace;color:#fff}',
-    '#aibox.on{display:flex}', '#aibox .airow{display:flex;align-items:stretch;gap:.5vh;width:100%}', '#aibox input{flex:1 1 auto;min-width:0;font:inherit;color:#fff;background:#222;border:1px solid #666;border-radius:.7vh;padding:.8vh 1vh;outline:none;min-height:36px}',
+    '#aibox.on{display:flex}', '#aibox .airow{display:flex;align-items:stretch;gap:.5vh;width:100%}', '#aibox input,#aibox textarea{flex:1 1 auto;min-width:0;font:inherit;color:#fff;background:#222;border:1px solid #666;border-radius:.7vh;padding:.8vh 1vh;outline:none;min-height:36px;resize:none;overflow:hidden;line-height:1.3}',
     '#aibox #aisend{flex:0 0 auto;min-width:44px;min-height:36px;padding:0 .85vh;font:inherit;color:#111;background:#ffd76a;border:1px solid #c9a227;border-radius:.7vh;cursor:pointer;line-height:1}',
-    '#aibox input:focus{border-color:#ffd76a}', '#aibox .aim{color:#bbb;font-weight:400;font-size:.85em;min-height:1em}', '#aibox .aic{display:flex;flex-wrap:wrap;gap:.5vh}',
+    '#aibox input:focus,#aibox textarea:focus{border-color:#ffd76a}', '#aibox .aim{color:#bbb;font-weight:400;font-size:.85em;min-height:1em}', '#aibox .aic{display:flex;flex-wrap:wrap;gap:.5vh}',
     '#aibox .aic button{font:inherit;color:#fff;background:#2a2a2a;border:1px solid #8a6d2b;border-radius:.8vh;padding:.6vh .9vh;cursor:pointer;min-height:34px}',
     '#aibox .aic button.ch{border-color:#9f7aea}', '#aibox .aic button.off{opacity:.6}', '#aibox .aiu{color:#9fd3ff;cursor:pointer;text-decoration:underline;margin-left:.6em}',
     '#aicmd{min-width:2.6em}'].join('\n'); document.head.appendChild(css);
   let box = null, inp = null, msg = null, chips = null, sendBtn = null, lastSub = 0;
+  function markQueued(text){
+    const line = String(text || '').replace(/;?$/, ';');
+    try{ const S = ST(); if(S && S.markQueued) S.markQueued(line, 'queued\u2026'); }catch(e){}
+    try{ if(msg) msg.textContent = 'queued\u2026 \u00b7 pv:' + ((window.thrydPageVer && window.thrydPageVer()) || ''); }catch(e){}
+  }
   function submitNow(ev, how){
     if(ev){ ev.preventDefault(); ev.stopPropagation(); }
     const now = Date.now();
     if(now - lastSub < 400) return;
     lastSub = now;
-    const text = inp ? String(inp.value || '') : '';
+    let text = inp ? String(inp.value || '') : '';
+    if(/\n/.test(text)) text = text.replace(/\n/g, ' ').replace(/\s+/g, ' ').trim();
     if(inp) inp.value = '';
-    try{ console.log('[thryd send]', {branch: 'submit', how: how || (ev && ev.type) || 'go', text: String(text).slice(0, 80)}); }catch(e){}
+    const path = how || (ev && ev.type) || 'go';
+    try{ console.log('[thryd send]', {branch: 'submit', how: path, text: String(text).slice(0, 80)}); }catch(e){}
+    if(text){ markQueued(text); try{ if(window.thrydCliAttempt) window.thrydCliAttempt(text, path); }catch(e){} }
     return go(text);
   }
   function ui(){ if(box) return; box = document.createElement('div'); box.id = 'aibox'; box.setAttribute('role', 'dialog'); box.setAttribute('aria-label', 'Type a call');
     const form = document.createElement('form'); form.className = 'airow'; form.setAttribute('action', ''); form.setAttribute('method', 'get'); form.setAttribute('novalidate', '');
-    inp = document.createElement('input'); inp.type = 'text'; inp.name = 'call'; inp.autocomplete = 'off'; inp.spellcheck = false;
-    inp.setAttribute('enterkeyhint', 'go'); inp.setAttribute('inputmode', 'text');
+    inp = document.createElement('textarea'); inp.rows = 1; inp.name = 'call'; inp.autocomplete = 'off'; inp.spellcheck = false;
+    inp.setAttribute('enterkeyhint', 'go'); inp.setAttribute('inputmode', 'text'); inp.setAttribute('aria-label', 'Type a call');
     inp.placeholder = 'type a call · teo.fold() · or say what you want';
     sendBtn = document.createElement('button'); sendBtn.id = 'aisend'; sendBtn.type = 'button'; sendBtn.setAttribute('aria-label', 'Submit');
     sendBtn.title = 'Send'; sendBtn.textContent = '\u27a4';
@@ -147,11 +155,14 @@
     form.addEventListener('submit', e => { e.preventDefault(); e.stopPropagation(); submitNow(e, 'form_submit'); });
     // pointerdown + preventDefault keeps the Android keyboard open (input does not blur before send)
     sendBtn.addEventListener('pointerdown', e => { e.preventDefault(); e.stopPropagation(); submitNow(e, 'button_pointerdown'); }, {passive: false});
+    sendBtn.addEventListener('touchend', e => { e.preventDefault(); e.stopPropagation(); submitNow(e, 'button_touchend'); }, {passive: false});
     sendBtn.addEventListener('click', e => { e.preventDefault(); e.stopPropagation(); submitNow(e, 'button_click'); });
     inp.addEventListener('keydown', e => { e.stopPropagation(); if(e.key === 'Escape'){ close(); } else if(e.key === 'Enter' || e.key === 'Go' || e.key === 'Search' || e.keyCode === 13){ e.preventDefault(); submitNow(e, 'keydown_' + (e.key || e.keyCode)); } });
+    inp.addEventListener('keyup', e => { e.stopPropagation(); if(e.key === 'Enter' || e.key === 'Go' || e.key === 'Search' || e.keyCode === 13){ e.preventDefault(); submitNow(e, 'keyup_' + (e.key || e.keyCode)); } });
     // Android Chrome IME Go often fires beforeinput insertLineBreak instead of (or before) keydown Enter
-    inp.addEventListener('beforeinput', e => { if(e.inputType === 'insertLineBreak' || e.inputType === 'insertParagraph'){ e.preventDefault(); e.stopPropagation(); submitNow(e, 'beforeinput_' + e.inputType); } }); }
-  function open(){ ui(); box.classList.add('on'); msg.textContent = AI.state === 'ready' ? 'AI matching on' + (chromeOk() ? ' · ✨ Chrome AI' : '') : (AI.state === 'loading' ? 'AI model loading… letter matching for now' : 'letter matching'); chips.textContent = ''; inp.value = ''; setTimeout(()=> inp.focus(), 0); }
+    inp.addEventListener('beforeinput', e => { if(e.inputType === 'insertLineBreak' || e.inputType === 'insertParagraph'){ e.preventDefault(); e.stopPropagation(); submitNow(e, 'beforeinput_' + e.inputType); } });
+    inp.addEventListener('input', e => { if(inp && /\n/.test(String(inp.value || ''))){ if(e.preventDefault) e.preventDefault(); submitNow(e, 'input_newline'); } }); }
+  function open(){ ui(); box.classList.add('on'); msg.textContent = AI.state === 'ready' ? 'AI matching on' + (chromeOk() ? ' · ✨ Chrome AI' : '') : (AI.state === 'loading' ? 'AI model loading… letter matching for now' : 'letter matching'); chips.textContent = ''; inp.value = ''; try{ if(msg) msg.textContent = (msg.textContent||'') + ' \u00b7 pv:' + ((window.thrydPageVer&&window.thrydPageVer())||''); }catch(e){} setTimeout(()=> inp.focus(), 0); }
   function close(){ if(box){ box.classList.remove('on'); inp.blur(); } }
   AI.open = open; AI.close = close;
   function label(r){ return r.id.split('.')[0] + '.' + ((r.f && r.f.method) || r.id.split('.').slice(1).join('.')) + '()'; }

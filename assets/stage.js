@@ -1482,7 +1482,7 @@
     requestAnimationFrame(()=> t.classList.add('on')); setTimeout(()=> t.classList.remove('on'), 6000); setTimeout(()=> t.remove(), 8000); }
   function pulse(c){ c.el.classList.remove('gnotice'); void c.el.offsetWidth; c.el.classList.add('gnotice'); setTimeout(()=> c.el.classList.remove('gnotice'), 1300); }
   function codeLine(t, note){ try{ const dl = root.__thrydDriftLines = root.__thrydDriftLines || []; const line=String(t==null?'':t); if(!line)return; dl.unshift({t:line, a: true, note: note==null?'':String(note)}); if(dl.length > 8) dl.length = 8; }catch(e){} }
-  function prettySendErr(err){ const s=String(err||''); if(!s) return 'queued, retrying'; if(/timed out|abort/i.test(s)) return 'timed out, retrying'; return 'retrying \u00b7 ' + s; }
+  function prettySendErr(err, final){ const s=String(err||''); if(!s) return 'queued\u2026'; if(/timed out|abort/i.test(s)) return final ? 'timed out!' : 'timed out, retrying'; return 'retrying \u00b7 ' + s; }
   function updateCodeNote(code, note){
     const line=String(code||'').replace(/;+\s*$/,'');
     if(!line||note==null) return;
@@ -1514,8 +1514,9 @@
     else if(st==='no_reply') tail='sent \u2713 '+(rec.ntfyId||'')+' \u00b7 no reply from the box yet';
     else if(st==='qa_not_sent') tail='QA: not sent';
     else if(st==='rejected') tail='rejected'+(err?(' \u00b7 '+err):'');
-    else if(err) tail=prettySendErr(err);
-    else if(st==='queued'||st==='retrying') tail='queued, retrying'+(err?(' \u00b7 '+err):'');
+    else if(st==='failed') tail=prettySendErr(err, true);
+    else if(err) tail=prettySendErr(err, false);
+    else if(st==='queued'||st==='retrying') tail='queued\u2026'+(err?(' \u00b7 '+prettySendErr(err,false)):'');
     else tail='sending\u2026';
     const pre=String(prefix||rec.sendPrefix||'').replace(/\s*\u00b7\s*sending\u2026?\s*$/,'').replace(/\s+$/,'');
     const note=(pre? pre+' \u00b7 ' : '')+tail;
@@ -2185,6 +2186,7 @@
     }
     syncFreeCmds();
   }
+  S.markQueued = function(code, note){ try{ codeLine(String(code==null?'':code).replace(/;?$/, ';'), note||'queued\u2026'); }catch(e){} };
   S.applyFreeCmd = applyFreeCmd; S.applyCliLine = applyCliLine; S.enqueueRawCli = enqueueRawCli; S.sendCliCall = sendCliCall; S.ensureCliSent = ensureCliSent; S.splitCli = splitCli; S.cleanCliPiece = cleanCliPiece; S.fleshCli = fleshCli; S.parseCliPiece = parseCliPiece; S.everydayImpl = everydayImpl; S.displayNameFor = displayNameFor; S.resolveSafeToken = resolveSafeToken; S.syncFreeCmds = syncFreeCmds; S.currentRun = currentRun; S.parseFree = parseFree; S.registerCliMethod = registerCliMethod;
   pollFreeCmds(); setInterval(pollFreeCmds, 20000); setInterval(syncFreeCmds, 1000);
 
@@ -2693,7 +2695,7 @@
               else toast(code + ' ✗ ' + (m.detail || m.reason || 'rejected'), 1);
               return rec; } } }catch(e){} }
       rec.status = 'no_reply'; try{ setSendNote(code, rec); }catch(e2){} toast(code + ' sent; no reply from the box yet', 1);
-    }catch(e){ rec.status = 'queued'; rec.error = rec.lastError = (root.thrydIsTimeout && root.thrydIsTimeout(e)) ? 'timed out' : String(e && e.message || e); try{ setSendNote(code, rec); }catch(e2){} toast(code + ' · ' + prettyErr(rec.error)); }
+    }catch(e){ rec.status = 'failed'; rec.error = rec.lastError = (root.thrydIsTimeout && root.thrydIsTimeout(e)) ? 'timed out' : String(e && e.message || e); try{ setSendNote(code, rec); }catch(e2){} toast(code + ' · ' + prettySendErr(rec.error, true)); }
     return rec;
   }
   S.fireMethod = fireMethod;

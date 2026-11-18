@@ -1,5 +1,5 @@
 {
-  "v": 570,
-  "at": "2026-11-18T13:46:57-05:00",
-  "note": "Typed lines now post through the same drag-topic path a tap uses, not a separate CLI topic. The CLI topic is only an extra copy. The typeline shows \u201csent \u2713\u201d and the ntfy id only after ntfy returns 200 with an id; otherwise it shows the error. Android Go is handled via keydown Enter, form submit, and beforeinput insertLineBreak, plus the \u27a4 button."
+  "v": 571,
+  "at": "2026-11-18T14:09:32-05:00",
+  "note": "Typed lines post as a simple CORS request (POST, text/plain, no custom headers) on their own lane that never waits behind drift, with a 20s timeout and 3 retries alternating the drag and CLI topics, plus a sendBeacon copy. Every event is stamped pv:571 and a short UA; the page shows a pv:571 badge. Any typeline submit immediately shows queued\u2026 and fires a cli_attempt beacon on the proven drift path. Script tags are ?v=571 and a stale index reloads when data/version.json is newer."
 }

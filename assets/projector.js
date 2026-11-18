@@ -1,14 +1,27 @@
 // drag / ntfy requests (Jesuye 15 Nov 2026 4:47 PM ET "no images anymore", page open ~5 h): a stalled ntfy.sh request never ended, they
 // piled up for hours until Chrome refused every new request on the page (net::ERR_INSUFFICIENT_RESOURCES), images included. Every
 // call to the drag endpoint now gives up after 20 s (body included) and at most 4 are open at once; extra calls are skipped, not queued.
+// v571: typelines no longer share that lane with drift. They use thrydSimplePost / thrydTypelinePost (own lane,
+// simple CORS, 20s, 3 attempts alternating drag and cli). Drift and typeline counters are separate, so a
+// stalled drift can never hold a typed line (Jesuye 18 Nov 2026 2:00 PM ET "timed out!").
+window.__thrydPV=571;
+window.thrydPageVer=function(){return window.__thrydPV||571;};
+window.thrydShortUA=function(){try{const ua=navigator.userAgent||'';const os=(/Android\s+[\d.]+/i.exec(ua)||/iPhone OS [\d_]+/i.exec(ua)||/iPad.*OS [\d_]+/i.exec(ua)||/Mac OS X [\d_]+/i.exec(ua)||/Windows NT [\d.]+/i.exec(ua)||/Linux/i.exec(ua)||['?'])[0];const br=(/(?:Chrome|CriOS|Firefox|FxiOS|Edg|Safari|SamsungBrowser|YaBrowser)\/[\d.]+/i.exec(ua)||['?'])[0];return (os+' '+br).replace(/\s+/g,' ').slice(0,72);}catch(e){return '?';}};
+window.thrydStamp=function(body){if(!body||typeof body!=='object')return body;try{body.pv=window.thrydPageVer();body.ua=window.thrydShortUA();}catch(e){}return body;};
+window.thrydStampOpts=function(opt){if(!opt||opt.body==null)return opt||{};try{const o=typeof opt.body==='string'?JSON.parse(opt.body):opt.body;if(o&&typeof o==='object')return Object.assign({},opt,{body:JSON.stringify(window.thrydStamp(Object.assign({},o)))});}catch(e){}return opt;};
 window.thrydAbortSignal=function(ac,reason){if(!ac)return;const why=reason||'timed out';try{ac.abort(typeof DOMException==='function'?new DOMException(why,'AbortError'):why);}catch(e){try{ac.abort();}catch(e2){}}};
 window.thrydIsTimeout=function(e){if(!e)return false;if(e.name==='AbortError'||e.name==='TimeoutError'||e.status==='timeout')return true;return /abort|timed out|The operation was aborted/i.test(String(e.message||e));};
-window.thrydNetFetch=window.thrydNetFetch||(()=>{let open=0,wait=[];
-  const take=prio=>new Promise((res,rej)=>{const cap=prio==='drift'?3:4;if(prio==='call'){if(open<4){open++;return res(1);}wait.push(res);return;}if(open>=cap)return rej(new Error('ntfy_busy'));open++;res(1);});
-  const give=()=>{open=Math.max(0,open-1);if(wait.length&&open<4){open++;wait.shift()(1);}};
-  return (url,opt,ms,prio)=>take(prio||'normal').then(()=>{const ac=typeof AbortController==='function'?new AbortController():null;const t=setTimeout(()=>{window.thrydAbortSignal(ac,'timed out');},ms||20000);
+window.thrydNetFetch=window.thrydNetFetch||(()=>{let openDrift=0,openOther=0,waitCall=[];
+  const take=prio=>new Promise((res,rej)=>{
+    if(prio==='cli'||prio==='typeline')return res(1); // typelines never wait behind drift
+    if(prio==='drift'){if(openDrift>=3)return rej(new Error('ntfy_busy'));openDrift++;return res(1);}
+    if(prio==='call'){if(openOther<4){openOther++;return res(1);}waitCall.push(res);return;}
+    if(openOther>=4)return rej(new Error('ntfy_busy'));openOther++;res(1);
+  });
+  const give=prio=>{if(prio==='cli'||prio==='typeline')return;if(prio==='drift'){openDrift=Math.max(0,openDrift-1);return;}openOther=Math.max(0,openOther-1);if(waitCall.length&&openOther<4){openOther++;waitCall.shift()(1);}};
+  return (url,opt,ms,prio)=>{prio=prio||'normal';opt=window.thrydStampOpts?window.thrydStampOpts(opt):opt;return take(prio).then(()=>{const ac=typeof AbortController==='function'?new AbortController():null;const t=setTimeout(()=>{window.thrydAbortSignal(ac,'timed out');},ms||20000);
     return fetch(url,Object.assign({},opt||{},ac?{signal:ac.signal}:{})).then(r=>r.text().then(tx=>({ok:r.ok,status:r.status,retryAfter:r.headers&&r.headers.get&&r.headers.get('Retry-After')||null,text:()=>Promise.resolve(tx),json:()=>Promise.resolve().then(()=>JSON.parse(tx))})))
-      .finally(()=>{clearTimeout(t);give();});});})();
+      .finally(()=>{clearTimeout(t);give(prio);});});};})();
 // Shared ntfy POST for taps and typelines (18 Nov 2026 11:09 AM ET). Call/CLI posts bypass the
 // 4-slot limiter (the same limiter was skipping typelines as ntfy_busy while drift held the slots)
 // and use a plain fetch with a 20s abort, just like a successful tap.
@@ -52,59 +65,113 @@ window.thrydParseNtfyId=function(tx){
   return null;
 };
 window.thrydLogSend=function(info){try{console.log('[thryd send]',info);}catch(e){}};
-// Typed typelines and taps share this POST: always the drag topic (the path a tap uses at ntfySend
-// / projector.js ~811). Jesuye's tablet could post taps/drags to the drag topic but typelines that
-// went to the CLI topic never arrived and showed no error (18 Nov 2026 1:40 PM ET). The CLI topic
-// is only an extra fire-and-forget copy, never the status-bearing send.
-window.thrydNtfyPost=async function(body, kind){
-  const dragOf=()=>{try{return (window.thrydDrag&&window.thrydDrag())||window.DRAG||null;}catch(e){return null;}};
-  const DG=dragOf();
-  if(!DG||!DG.endpoint||(DG.transport&&DG.transport!=='ntfy')){const e=new Error('no_endpoint');e.status='no_endpoint';window.thrydLogSend({branch:'no_endpoint',kind:kind,source:body&&body.source,event_id:body&&body.event_id});throw e;}
-  let payload=body||{};
+// Simple CORS POST, no custom headers, so the browser sends text/plain (no preflight) — the same
+// shape a drift POST uses. Own AbortController, never the poll controller, never the drift lane.
+window.thrydSimplePost=async function(url, body, ms){
+  const payload=window.thrydStamp(body&&typeof body==='object'?Object.assign({},body):body);
+  const raw=typeof payload==='string'?payload:JSON.stringify(payload);
+  const ac=typeof AbortController==='function'?new AbortController():null;
+  const t=setTimeout(()=>window.thrydAbortSignal(ac,'timed out'),ms||20000);
+  try{
+    const r=await fetch(url,{method:'POST',body:raw,mode:'cors',credentials:'omit',cache:'no-store',signal:ac?ac.signal:undefined});
+    const tx=await r.text();
+    const id=window.thrydParseNtfyId(tx);
+    return {ok:r.ok,status:r.status,retryAfter:r.headers&&r.headers.get&&r.headers.get('Retry-After')||null,text:()=>Promise.resolve(tx),json:()=>Promise.resolve().then(()=>JSON.parse(tx)),endpoint:url,ntfyId:id,raw:tx};
+  }finally{clearTimeout(t);}
+};
+// The exact POST a drift uses (thrydNetFetch + DRAG.endpoint, prio drift). Proven on Jesuye's tablet.
+window.thrydDriftPost=function(body){
+  const DG=(window.thrydDrag&&window.thrydDrag())||window.DRAG;
+  if(!DG||!DG.endpoint){const e=new Error('no_endpoint');e.status='no_endpoint';throw e;}
+  const payload=window.thrydStamp(body&&typeof body==='object'?Object.assign({},body):body);
+  return (window.thrydNetFetch||fetch)(DG.endpoint,{method:'POST',body:JSON.stringify(payload)},20000,'drift');
+};
+window.thrydSendBeacon=function(url, body){
+  try{
+    if(!url||!navigator.sendBeacon) return false;
+    const payload=window.thrydStamp(body&&typeof body==='object'?Object.assign({},body):body);
+    const raw=typeof payload==='string'?payload:JSON.stringify(payload);
+    const blob=typeof Blob==='function'?new Blob([raw],{type:'text/plain'}):raw;
+    return !!navigator.sendBeacon(url, blob);
+  }catch(e){return false;}
+};
+window.thrydCliTopics=async function(){
+  const out=[];
+  const DG=(window.thrydDrag&&window.thrydDrag())||window.DRAG;
+  if(DG&&DG.endpoint) out.push({name:'drag',ep:DG.endpoint});
+  let cli=null; try{cli=(window.thrydCli&&window.thrydCli())||window.CLI||null;}catch(e){cli=null;}
+  if((!cli||!cli.endpoint)&&window.thrydEnsureCli){try{cli=await window.thrydEnsureCli();}catch(e){cli=null;}}
+  if(cli&&cli.endpoint&&(!DG||cli.endpoint!==DG.endpoint)) out.push({name:'cli',ep:cli.endpoint});
+  return out;
+};
+// Typed lines: own lane, 20s, 3 attempts alternating drag and cli, plus a sendBeacon copy.
+window.thrydTypelinePost=async function(body, kind){
+  let payload=window.thrydStamp(Object.assign({},body||{}));
   try{if(JSON.stringify(payload).length>3900){payload=Object.assign({},payload);delete payload.impl;delete payload.const_diff;delete payload.ran_as;delete payload.body_v;}}catch(e){}
   window.thrydAbortNtfyPolls&&window.thrydAbortNtfyPolls('call');
-  const postTo=async ep=>{
-    const ac=typeof AbortController==='function'?new AbortController():null;
-    const t=setTimeout(()=>window.thrydAbortSignal(ac,'timed out'),20000);
+  const topics=await window.thrydCliTopics();
+  if(!topics.length){const e=new Error('no_endpoint');e.status='no_endpoint';window.thrydLogSend({branch:'no_endpoint',kind:kind,event_id:payload.event_id});throw e;}
+  try{const ok=window.thrydSendBeacon(topics[0].ep, payload);window.thrydLogSend({branch:'sendBeacon',ok:ok,endpoint:topics[0].ep,event_id:payload.event_id,kind:kind});}catch(e){}
+  let lastErr='not posted';
+  for(let i=0;i<3;i++){
+    const dest=topics[i%topics.length];
     try{
-      const r=await fetch(ep,Object.assign({method:'POST',body:JSON.stringify(payload)},ac?{signal:ac.signal}:{}));
-      const tx=await r.text();
-      const id=window.thrydParseNtfyId(tx);
-      return {ok:r.ok,status:r.status,retryAfter:r.headers&&r.headers.get&&r.headers.get('Retry-After')||null,text:()=>Promise.resolve(tx),json:()=>Promise.resolve().then(()=>JSON.parse(tx)),endpoint:ep,ntfyId:id,raw:tx};
-    }finally{clearTimeout(t);}
-  };
-  const once=async ep=>{
-    try{return await postTo(ep);}
-    catch(e){
-      if(window.thrydIsTimeout&&window.thrydIsTimeout(e)){
-        try{return await postTo(ep);}
-        catch(e2){const err=new Error('timed out');err.status='timeout';throw err;}
-      }
-      throw e;
+      window.thrydLogSend({branch:'typeline_post',attempt:i+1,topic:dest.name,endpoint:dest.ep,event_id:payload.event_id,kind:kind,source:payload.source});
+      const r=await window.thrydSimplePost(dest.ep, payload, 20000);
+      window.thrydLogSend({branch:'typeline_post_done',attempt:i+1,topic:dest.name,ok:!!(r&&r.ok),status:r&&r.status,id:r&&r.ntfyId,event_id:payload.event_id});
+      if(r&&r.ok&&r.ntfyId) return r;
+      lastErr=r&&r.ok?'ntfy 200 with no id':('HTTP '+(r&&r.status));
+    }catch(e){
+      lastErr=(window.thrydIsTimeout&&window.thrydIsTimeout(e))?'timed out':String(e&&e.message||e);
+      window.thrydLogSend({branch:'typeline_post_throw',attempt:i+1,topic:dest.name,error:lastErr,event_id:payload.event_id});
     }
-  };
-  // Same endpoint a tap uses: DRAG.endpoint, via the same POST helper.
-  let r;
-  try{ r=await once(DG.endpoint); }
-  catch(e){ window.thrydLogSend({branch:'drag_post_throw',kind:kind,source:payload&&payload.source,type:payload&&payload.type,endpoint:DG.endpoint,error:String(e&&e.message||e),event_id:payload&&payload.event_id}); throw e; }
-  window.thrydLogSend({branch:'drag_post',kind:kind,source:payload&&payload.source,type:payload&&payload.type,endpoint:DG.endpoint,ok:!!(r&&r.ok),status:r&&r.status,id:r&&r.ntfyId,event_id:payload&&payload.event_id});
-  // Harmless extra copy to the typeline CLI topic. Must not affect the visible status.
+  }
+  const err=new Error(lastErr); if(lastErr==='timed out') err.status='timeout'; throw err;
+};
+// Beacon a typeline submit immediately, via the proven drift POST plus sendBeacon.
+window.thrydCliAttempt=function(raw, path){
+  const eid=(function(){try{if(window.crypto&&crypto.randomUUID)return 'att-'+crypto.randomUUID();}catch(e){}return 'att-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,12);})();
+  const ev=window.thrydStamp({v:1,type:'cli_attempt',event_id:eid,rid:eid+'-r',raw:String(raw||'').slice(0,500),path:String(path||''),client_ts:new Date().toISOString()});
+  window.thrydLogSend({branch:'cli_attempt',path:ev.path,event_id:eid,raw:ev.raw.slice(0,80)});
+  try{const DG=(window.thrydDrag&&window.thrydDrag())||window.DRAG; if(DG&&DG.endpoint) window.thrydSendBeacon(DG.endpoint, ev);}catch(e){}
+  try{window.thrydDriftPost(ev).then(r=>{window.thrydLogSend({branch:'cli_attempt_drift',ok:!!(r&&r.ok),status:r&&r.status,event_id:eid});}).catch(e=>{window.thrydLogSend({branch:'cli_attempt_drift_fail',error:String(e&&e.message||e),event_id:eid});});}catch(e){}
+  // Own typeline lane too: the drift lane can return ntfy_busy, and sendBeacon is best-effort.
+  try{const DG=(window.thrydDrag&&window.thrydDrag())||window.DRAG; if(DG&&DG.endpoint) window.thrydSimplePost(DG.endpoint, ev, 20000).then(r=>{window.thrydLogSend({branch:'cli_attempt_simple',ok:!!(r&&r.ok),status:r&&r.status,id:r&&r.ntfyId,event_id:eid});}).catch(e=>{window.thrydLogSend({branch:'cli_attempt_simple_fail',error:String(e&&e.message||e),event_id:eid});});}catch(e){}
+  return ev;
+};
+window.thrydShowPvBadge=function(){
   try{
-    const isCli=!!(payload&&payload.source==='cli');
-    if(isCli){
-      let cli=null; try{cli=(window.thrydCli&&window.thrydCli())||window.CLI||null;}catch(e){cli=null;}
-      if((!cli||!cli.endpoint)&&window.thrydEnsureCli){ try{cli=await window.thrydEnsureCli();}catch(e){cli=null;} }
-      if(cli&&cli.endpoint&&cli.endpoint!==DG.endpoint){
-        window.thrydLogSend({branch:'cli_copy',endpoint:cli.endpoint,event_id:payload&&payload.event_id});
-        Promise.resolve().then(()=>once(cli.endpoint)).then(r2=>{
-          window.thrydLogSend({branch:'cli_copy_done',ok:!!(r2&&r2.ok),status:r2&&r2.status,id:r2&&r2.ntfyId,event_id:payload&&payload.event_id});
-        }).catch(e=>{
-          window.thrydLogSend({branch:'cli_copy_fail',error:String(e&&e.message||e),event_id:payload&&payload.event_id});
-        });
-      }
+    let el=document.getElementById('thrydpv');
+    if(!el){
+      const css=document.createElement('style');
+      css.textContent='#thrydpv{position:fixed;top:max(4px,env(safe-area-inset-top,0px));left:8px;z-index:10050;pointer-events:auto;font:600 11px ui-monospace,Menlo,Consolas,monospace;color:#ffd76a;background:#000c;border:1px solid #8a6d2b;border-radius:6px;padding:3px 7px;line-height:1.3;letter-spacing:.02em}';
+      document.head.appendChild(css);
+      el=document.createElement('span'); el.id='thrydpv';
+      (document.body||document.documentElement).appendChild(el);
     }
+    el.textContent='pv:'+window.thrydPageVer();
+    el.title='page version '+window.thrydPageVer()+' \u00b7 '+(window.thrydShortUA&&window.thrydShortUA()||'');
   }catch(e){}
-  return r;
+};
+if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',window.thrydShowPvBadge,{once:true});
+else window.thrydShowPvBadge();
+window.thrydNtfyPost=async function(body, kind){
+  const isTypeline=!!(body&&(body.source==='cli'||body.type==='cli_attempt'||kind==='cli'||kind==='outbox'));
+  if(isTypeline&&window.thrydTypelinePost) return window.thrydTypelinePost(body, kind||'call');
+  const DG=(window.thrydDrag&&window.thrydDrag())||window.DRAG;
+  if(!DG||!DG.endpoint||(DG.transport&&DG.transport!=='ntfy')){const e=new Error('no_endpoint');e.status='no_endpoint';window.thrydLogSend({branch:'no_endpoint',kind:kind,source:body&&body.source,event_id:body&&body.event_id});throw e;}
+  let payload=window.thrydStamp(Object.assign({},body||{}));
+  try{if(JSON.stringify(payload).length>3900){payload=Object.assign({},payload);delete payload.impl;delete payload.const_diff;delete payload.ran_as;delete payload.body_v;}}catch(e){}
+  window.thrydAbortNtfyPolls&&window.thrydAbortNtfyPolls('call');
+  try{
+    const r=await window.thrydSimplePost(DG.endpoint, payload, 20000);
+    window.thrydLogSend({branch:'drag_post',kind:kind,source:payload.source,type:payload.type,endpoint:DG.endpoint,ok:!!(r&&r.ok),status:r&&r.status,id:r&&r.ntfyId,event_id:payload.event_id});
+    if(r&&r.ok) return r;
+    return r;
+  }catch(e){
+    window.thrydLogSend({branch:'drag_post_throw',kind:kind,source:payload.source,type:payload.type,endpoint:DG.endpoint,error:String(e&&e.message||e),event_id:payload.event_id});
+    throw e;
+  }
 };
 window.thrydOutboxLeader=(function(){
   const LOCK='thryd_outbox_lock_v1';
