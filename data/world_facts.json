@@ -6407,20 +6407,21 @@
 "card": "j6",
 "other": "saturday_october"
 }
+],
+"nana_akufo_addo": [
+{
+"id": "wf_94678919cb",
+"kind": "consequence",
+"text": "The nana akufo addo leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "neck_ostrich.interactwith(nana_akufo_addo){ nana_akufo_addo.receives(neck_ostrich.envelope); nana_akufo_addo.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-g1-B",
+"card": "j6",
+"other": "neck_ostrich"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_4d0ebc4ce6",
-"ts": "2026-11-17T17:16:09-0500",
-"a": "marker_c",
-"b": "quiet_stretch_sand",
-"code": "marker_c.interactwith(quiet_stretch_sand){ quiet_stretch_sand.receives(marker_c.envelope); quiet_stretch_sand.remembers(bisola, 'brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up beside the morning at the quiet stretch sand.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
 {
 "id": "wf_535296da9e",
 "ts": "2026-11-17T17:17:50-0500",
@@ -6849,6 +6850,17 @@
 "author": "cos",
 "run": "run-g1-B",
 "card": "j6"
+},
+{
+"id": "wf_94678919cb",
+"ts": "2026-11-17T22:33:52-0500",
+"a": "neck_ostrich",
+"b": "nana_akufo_addo",
+"code": "neck_ostrich.interactwith(nana_akufo_addo){ nana_akufo_addo.receives(neck_ostrich.envelope); nana_akufo_addo.remembers(bisola, 'brown envelope'); }",
+"text": "The nana akufo addo leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-g1-B",
+"card": "j6"
 }
 ],
 "memories": [
@@ -6952,5 +6964,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T22:14:35-0500"
+"updated": "2026-11-17T22:33:52-0500"
 }
