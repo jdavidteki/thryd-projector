@@ -6130,21 +6130,20 @@
 "run": "run-g1-B",
 "card": "j4",
 "other": "off_key"
+},
+{
+"id": "wf_e1c71567ef",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it, turns up inside the brown envelope at the saturday october, and Bisola reads the name twice.",
+"code": "inside_odunlade_brain.interactwith(saturday_october){ saturday_october.receives(inside_odunlade_brain.bead); … }",
+"author": "cos",
+"run": "run-g1-B",
+"card": "j5",
+"other": "inside_odunlade_brain"
 }
 ]
 },
 "consequences": [
-{
-"id": "wf_5938e15ada",
-"ts": "2026-11-17T16:07:38-0500",
-"a": "love",
-"b": "dez",
-"code": "love.interactwith(dez){ dez.receives(love.note); dez.remembers(bisola, 'egbe note'); dez.tucks(love, 'danfo speaker note into the brown envelope'); }",
-"text": "A Danfo speaker note with Bisola's name and 'egbe note' on it, turns up inside the brown envelope at the dez, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "w"
-},
 {
 "id": "wf_3a0e493e8b",
 "ts": "2026-11-17T16:08:31-0500",
@@ -6573,6 +6572,17 @@
 "author": "cos",
 "run": "run-g1-B",
 "card": "j6"
+},
+{
+"id": "wf_e1c71567ef",
+"ts": "2026-11-17T19:13:28-0500",
+"a": "inside_odunlade_brain",
+"b": "saturday_october",
+"code": "inside_odunlade_brain.interactwith(saturday_october){ saturday_october.receives(inside_odunlade_brain.bead); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it, turns up inside the brown envelope at the saturday october, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-g1-B",
+"card": "j5"
 }
 ],
 "memories": [
@@ -6676,5 +6686,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T19:06:49-0500"
+"updated": "2026-11-17T19:13:28-0500"
 }
