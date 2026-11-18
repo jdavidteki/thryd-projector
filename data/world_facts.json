@@ -6349,20 +6349,21 @@
 "card": "j6",
 "other": "saturday_october"
 }
+],
+"uch": [
+{
+"id": "wf_efeeb45208",
+"kind": "consequence",
+"text": "The uch leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "mrs_morenike_daramola.interactwith(uch){ uch.receives(mrs_morenike_daramola.envelope); uch.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-g1-B",
+"card": "j6",
+"other": "mrs_morenike_daramola"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_fc968e3bb3",
-"ts": "2026-11-17T17:00:58-0500",
-"a": "god",
-"b": "bed",
-"code": "god.interactwith(bed){ bed.receives(god.sign); bed.remembers(kunle, 'nice day sign'); bed.tucks(god, 'marker note into the egbe note'); }",
-"text": "A Marker note with Kunle's name and 'nice day sign' on it, turns up inside the egbe note at the bed, and Taiwo reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j3"
-},
 {
 "id": "wf_3afed96fe9",
 "ts": "2026-11-17T17:05:10-0500",
@@ -6791,6 +6792,17 @@
 "author": "cos",
 "run": "run-g1-B",
 "card": "j6"
+},
+{
+"id": "wf_efeeb45208",
+"ts": "2026-11-17T22:05:53-0500",
+"a": "mrs_morenike_daramola",
+"b": "uch",
+"code": "mrs_morenike_daramola.interactwith(uch){ uch.receives(mrs_morenike_daramola.envelope); uch.remembers(bisola, 'brown envelope'); }",
+"text": "The uch leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-g1-B",
+"card": "j6"
 }
 ],
 "memories": [
@@ -6894,5 +6906,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T21:33:55-0500"
+"updated": "2026-11-17T22:05:53-0500"
 }
