@@ -5768,6 +5768,16 @@
 "run": "run-5a58c4",
 "card": "j3",
 "other": "marker"
+},
+{
+"id": "wf_6e4cdeed7e",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the nice day sign at the god, and Kunle reads the name twice.",
+"code": "love.interactwith(god){ god.receives(love.envelope); god.remembers(bisola, 'brown envelope'); god.tucks(love, 'yaba bookshop receipt into the nice day sign'); }",
+"author": "cos",
+"run": "run-g1-B",
+"card": "j6",
+"other": "love"
 }
 ],
 "tnw": [
@@ -6523,31 +6533,21 @@
 "card": "j6",
 "other": "bowl"
 }
+],
+"know_place": [
+{
+"id": "wf_6da4a90c1d",
+"kind": "consequence",
+"text": "The agbada ends up with the know place, still worn by a stranger haggler.",
+"code": "agbada.interactwith(know_place){ agbada.db.copyto(know_place); know_place.keeps(agbada, 'agbada, still worn by a stranger haggler'); }",
+"author": "cos",
+"run": "run-g1-B",
+"card": "w4",
+"other": "agbada"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_b6ef76feb0",
-"ts": "2026-11-17T18:36:52-0500",
-"a": "egbe",
-"b": "quiet_stretch_sand",
-"code": "egbe.interactwith(quiet_stretch_sand){ quiet_stretch_sand.receives(egbe.joke); quiet_stretch_sand.remembers(bisola, 'boss joke'); }",
-"text": "An Egbe note with Bisola's name and 'boss joke' on it, 7:20am, 2 May 1997, turns up beside the morning at the quiet stretch sand.",
-"author": "cos",
-"run": "run-g1-B",
-"card": "j1"
-},
-{
-"id": "wf_c68dc250d1",
-"ts": "2026-11-17T18:38:33-0500",
-"a": "mrs_morenike_daramola",
-"b": "gitf",
-"code": "mrs_morenike_daramola.interactwith(gitf){ gitf.receives(mrs_morenike_daramola.envelope); gitf.remembers(bisola, 'brown envelope'); }",
-"text": "The gitf leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-g1-B",
-"card": "j6"
-},
 {
 "id": "wf_c567439619",
 "ts": "2026-11-17T19:05:56-0500",
@@ -6965,6 +6965,28 @@
 "author": "cos",
 "run": "run-g1-B",
 "card": "j6"
+},
+{
+"id": "wf_6e4cdeed7e",
+"ts": "2026-11-17T23:14:45-0500",
+"a": "love",
+"b": "god",
+"code": "love.interactwith(god){ god.receives(love.envelope); god.remembers(bisola, 'brown envelope'); god.tucks(love, 'yaba bookshop receipt into the nice day sign'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the nice day sign at the god, and Kunle reads the name twice.",
+"author": "cos",
+"run": "run-g1-B",
+"card": "j6"
+},
+{
+"id": "wf_6da4a90c1d",
+"ts": "2026-11-17T23:16:30-0500",
+"a": "agbada",
+"b": "know_place",
+"code": "agbada.interactwith(know_place){ agbada.db.copyto(know_place); know_place.keeps(agbada, 'agbada, still worn by a stranger haggler'); }",
+"text": "The agbada ends up with the know place, still worn by a stranger haggler.",
+"author": "cos",
+"run": "run-g1-B",
+"card": "w4"
 }
 ],
 "memories": [
@@ -7068,5 +7090,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T23:10:26-0500"
+"updated": "2026-11-17T23:16:30-0500"
 }
