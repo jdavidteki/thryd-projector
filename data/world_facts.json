@@ -1141,16 +1141,6 @@
 ],
 "matches": [
 {
-"id": "wf_13940b7c23",
-"kind": "consequence",
-"text": "A Morir note with Kunle's name and 'container number' on it, turns up inside the brown envelope at the matches, and Bisola reads the name twice.",
-"code": "morir.interactwith(matches){ matches.receives(morir.number); matches.remembers(kunle, 'container number'); matches.tucks(morir, 'morir note into the brown envelope'); }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "w7",
-"other": "morir"
-},
-{
 "id": "wf_98668c11d4",
 "kind": "consequence",
 "text": "An Ats note with Bisola's name and 'brown envelope' on it, turns up inside the brown envelope at the matches, and Bisola reads the name twice.",
@@ -1179,6 +1169,16 @@
 "run": "run-2eb42d",
 "card": "j2",
 "other": "ttb"
+},
+{
+"id": "wf_f2253220ea",
+"kind": "consequence",
+"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up with the matches, which is still found.",
+"code": "computer_village.interactwith(matches){ matches.receives(computer_village.shirt); matches.remembers(bisola, 'green shirt'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j8",
+"other": "computer_village"
 },
 {
 "id": "wf_d40998bca5",
@@ -7476,17 +7476,6 @@
 },
 "consequences": [
 {
-"id": "wf_c9c00ffdf4",
-"ts": "2026-11-18T09:30:36-0500",
-"a": "suitcase",
-"b": "notnotnotnotyn_nov",
-"code": "suitcase.interactwith(notnotnotnotyn_nov){ notnotnotnotyn_nov.receives(suitcase.code); … }",
-"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the juju code at the notnotnotnotyn nov, and Ejiro reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j2"
-},
-{
 "id": "wf_1a96188fa7",
 "ts": "2026-11-18T09:31:29-0500",
 "a": "bow",
@@ -7914,6 +7903,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j2"
+},
+{
+"id": "wf_f2253220ea",
+"ts": "2026-11-18T11:30:26-0500",
+"a": "computer_village",
+"b": "matches",
+"code": "computer_village.interactwith(matches){ matches.receives(computer_village.shirt); matches.remembers(bisola, 'green shirt'); }",
+"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up with the matches, which is still found.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j8"
 }
 ],
 "memories": [
@@ -8017,5 +8017,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T11:27:48-0500"
+"updated": "2026-11-18T11:36:36-0500"
 }
