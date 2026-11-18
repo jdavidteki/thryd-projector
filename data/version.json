@@ -1,5 +1,5 @@
 {
-  "v": 556,
-  "at": "2026-11-17T21:28:16-05:00",
-  "note": "Fix: v555 left a stray isLive reference that threw on every scene cut, so only place pins stayed on stage. Objects and live-view cut-outs are back. Pins are not counted as stories and do not evict them. Raw live-view GIFs are still never mounted."
+  "v": 557,
+  "at": "2026-11-17T22:02:26-05:00",
+  "note": "Place pins no longer count toward the story-cut cap (72 desktop / 36 phone), MAX_GROUPS, or the byte budget. storyCuts() is used everywhere the cap is checked."
 }

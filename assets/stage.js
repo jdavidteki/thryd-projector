@@ -61,12 +61,16 @@
   // busy (Jesuye 11-12 11:09 PM "make it very busy"): many small story groups at once, arriving in quick overlapping waves
   // full (Jesuye 11-12 11:41 PM "too much black space ... plenty objects floating all the time"): more cuts, a decoded
   // group always waiting in the wings so a leaving story is replaced at once, and spawns aimed at the emptiest part of the screen
-  const CAP = PHONE ? 36 : 72;               // cuts on screen at once
-  const MAX_GROUPS = PHONE ? 18 : 36;     // most scenes carry 1-2 cuts, so the cut count comes from many groups
+  const CAP = PHONE ? 36 : 72;               // story cuts on screen at once (place pins do not count)
+  const MAX_GROUPS = PHONE ? 18 : 36;     // story groups; pins do not count
   const PER_GROUP = PHONE ? 4 : 6;
   const READY = PHONE ? 1 : 2;               // decoded groups kept in the wings
   const MAXF = PHONE ? 10 : 20;              // stored frames per animated cut (longer GIFs keep every k-th frame, delays summed)
   const BUDGET = (PHONE ? 90 : 260) * 1048576; // decoded bitmap bytes held by the stage
+  // pins float on the stage but never count toward CAP, MAX_GROUPS, or the byte budget (Jesuye 17 Nov 9:57 PM ET)
+  const storyCuts = ()=> S.cuts.filter(c => !c.map);
+  const storyGroups = ()=> S.groups.filter(g => !g.map && !g.gone);
+  S.storyCuts = storyCuts; S.storyGroups = storyGroups; S.CAP = CAP; S.MAX_GROUPS = MAX_GROUPS;
   const PG_MAX = (PHONE ? 6 : 16) * 1048576;  // one group's sprite frames; bigger ones are drawn at a lower resolution
   const INFLIGHT = PHONE ? 1 : 2;             // groups decoding at the same time (in the decode worker, off the main thread)
   const BG_P = PHONE ? 0.8 : 0.9;             // share of groups that get the faded source-frame backdrop (covers the gaps)
@@ -379,7 +383,7 @@
     if(!plan.ok) throw new Error(plan.reason || 'plan');
     const fw = plan.width, fh = plan.height;
     if(lo.live) roomForLive(PER_GROUP);
-    const room = CAP - S.cuts.length; if(room < 1) throw new Error('cap');
+    const room = CAP - storyCuts().length; if(room < 1) throw new Error('cap');
     let objs = plan.objects.map((o, k) => ({o, k, U: unionBox(plan.kind === 'gif' ? o.masks : [o.masks[0]])})).filter(x => x.U && x.U.w > 2 && x.U.h > 2);
     objs.sort((a, b) => b.U.w * b.U.h - a.U.w * a.U.h);
     objs = objs.slice(0, Math.min(room, PER_GROUP));
@@ -525,8 +529,8 @@
     S.groups.push(g); S.spawned++; if(!(row && row.chips)){ S.lastMedia = Date.now(); S.mediaAt = S.lastMedia; }
     if(g.cuts.length <= 2 && Math.random() < 0.5) S.near = g;
     S.recent.push(g.mid); if(S.recent.length > 40) S.recent.shift();
-    S.maxSeen = Math.max(S.maxSeen, S.cuts.length);
-    note('spawn', g.mid, L.kind, g.cuts.length + ' cuts', 'on stage ' + S.cuts.length + '/' + CAP, g.title || '');
+    S.maxSeen = Math.max(S.maxSeen, storyCuts().length);
+    note('spawn', g.mid, L.kind, g.cuts.length + ' cuts', 'on stage ' + storyCuts().length + '/' + CAP, g.title || '');
     if(L.animated && L.kind !== 'live_view') animate(g, L.delays);
     setTimeout(()=> carry(g), 6000 + Math.random() * 3000); // once it has walked in, earlier moves of the same object carry over here
   }
@@ -590,7 +594,7 @@
     if(g.bgEl){ g.bgEl.classList.remove('on'); setTimeout(()=>{ try{ g.bgEl.width = 0; }catch(e){} g.bgEl.remove(); S.bytes -= g.bgBytes || 0; }, quick ? 50 : 4000); }
     if(g.tag) g.tag.remove();
     if(!g.cuts.length) clearTimeout(g.timer);
-    note('exit', g.mid, quick ? 'offscreen' : 'life', 'on stage ' + S.cuts.length);
+    note('exit', g.mid, quick ? 'offscreen' : 'life', 'on stage ' + storyCuts().length);
     if(wasNewest){
       const v = (LV.list || []).find(x => liveId(x) === g.mid);
       if(v) setTimeout(()=>{ enqueueLive(v, true); if(!paused()) spawnOne(); }, 60);
@@ -764,7 +768,7 @@
     const e = AG.map[key], fs = e.frame_size || [480, 270], fw = fs[0], fh = fs[1];
     let objs = (e.objects || []).filter(o => o && o.sprite && Array.isArray(o.bbox)).map((o, k) => ({o: {label: o.label, model_class: o.label, state_id: o.state_id || null}, k,
       U: {x: Math.round(o.bbox[0] * fw), y: Math.round(o.bbox[1] * fh), w: Math.max(3, Math.round(o.bbox[2] * fw)), h: Math.max(3, Math.round(o.bbox[3] * fh))}, src: o.sprite}));
-    objs.sort((a, b) => b.U.w * b.U.h - a.U.w * a.U.h); objs = objs.slice(0, Math.min(PER_GROUP, CAP - S.cuts.length)); if(!objs.length) throw new Error('cap');
+    objs.sort((a, b) => b.U.w * b.U.h - a.U.w * a.U.h); objs = objs.slice(0, Math.min(PER_GROUP, CAP - storyCuts().length)); if(!objs.length) throw new Error('cap');
     let Dh = vh() * (PHONE ? R(0.2, 0.32) : R(0.24, 0.40)), k = Dh / fh; if(fw * k > vw() * (PHONE ? 0.62 : 0.44)) k = vw() * (PHONE ? 0.62 : 0.44) / fw;
     Dh = fh * k; const Dw = fw * k, s = Math.min(2.5, k * DPR);
     const frames = await Promise.all(objs.map(async x => { const r = await fetch(x.src, {cache: 'force-cache'}); if(!r.ok) throw new Error('sprite'); const b = await r.blob();
@@ -802,7 +806,7 @@
       items = [].concat((st.characters || []).map(c => ({label: c.name || c.id, id: c.id || null, kind: 'character'})), (st.objects || []).map(o => ({label: o.label, id: o.db_id || null, kind: 'object'})));
     }
     if(!items.length) throw new Error('no_items');
-    const pick = items.slice(0, Math.min(PER_GROUP, CAP - S.cuts.length)); if(!pick.length) throw new Error('cap');
+    const pick = items.slice(0, Math.min(PER_GROUP, CAP - storyCuts().length)); if(!pick.length) throw new Error('cap');
     // a real sprite crop of the same object in the same run is used when there is one; otherwise a plain text chip
     const bms = await Promise.all(pick.map(async i => { const sp = run && AG.sprite.get(run + '|' + ckey(i.label));
       if(sp){ try{ const r = await fetch(sp, {cache: 'force-cache'}); if(r.ok){ const b = await createImageBitmap(await r.blob()); const sc = Math.min(1, (vh() * .16 * DPR) / Math.max(b.width, b.height));
@@ -820,7 +824,7 @@
   // decoding fills a small queue of ready groups; a group goes on stage the moment there is room (cap, budget, an empty patch)
   S.ready = []; S.pend = [];
   function place(item){
-    if(S.cuts.filter(c => !c.map).length + item.L.objs.length > CAP || S.groups.filter(g => !g.map).length >= MAX_GROUPS) return false;
+    if(storyCuts().length + item.L.objs.length > CAP || storyGroups().length >= MAX_GROUPS) return false;
     S.ready.splice(S.ready.indexOf(item), 1); S.bytes -= item.held;
     try{ spawn(item.row, item.L); }catch(e){ note('spawn fail', item.row.medium_image_id, String(e && e.message || e)); item.L.frames.forEach(f => f.forEach(b => b.close && b.close())); }
     return true;
@@ -873,7 +877,7 @@
   }
   function roomForLive(needCuts){
     needCuts = needCuts || PER_GROUP;
-    while((S.cuts.filter(c => !c.map).length + needCuts > CAP || S.groups.filter(g => !g.map).length >= MAX_GROUPS) && S.groups.filter(evictable).length){
+    while((storyCuts().length + needCuts > CAP || storyGroups().length >= MAX_GROUPS) && S.groups.filter(evictable).length){
       const old = S.groups.filter(evictable).sort((a, b) => (a.live ? 1 : 0) - (b.live ? 1 : 0) || a.born - b.born)[0];
       if(!old) break;
       exitGroup(old, true);
@@ -1006,8 +1010,8 @@
       return;
     }
     if(!manifest) return;
-    if(S.ready.length >= READY || S.cuts.filter(c => !c.map).length >= CAP || S.bytes > BUDGET * .9) return;
-    if(S.groups.filter(g => !g.map).length + S.ready.length >= MAX_GROUPS && S.cuts.filter(c => !c.map).length >= CAP - 2) return;
+    if(S.ready.length >= READY || storyCuts().length >= CAP || S.bytes > BUDGET * .9) return;
+    if(storyGroups().length + S.ready.length >= MAX_GROUPS && storyCuts().length >= CAP - 2) return;
     const prefer = netHeld() ? null : wantLive();
     if(prefer){
       await spawnLive(prefer);
@@ -1035,7 +1039,7 @@
     if(!paused()) setTimeout(spawnOne, 50);
   }
   function spawner(){
-    const wait = S.groups.length < MAX_GROUPS * 0.5 ? R(150, 400) : R(500, 1400);
+    const wait = storyGroups().length < MAX_GROUPS * 0.5 ? R(150, 400) : R(500, 1400);
     setTimeout(()=>{ if(!paused()) refill(); spawner(); }, wait);
   }
   function house(){
@@ -1049,8 +1053,8 @@
       else if(!netHeld() && now - g.born > g.life && !g.cuts.some(c => c.dragging)) exitGroup(g, false);
     });
     // never more than CAP: the oldest group gives way at once
-    if(S.cuts.filter(c => !c.map).length > CAP && S.groups.length){ const old = S.groups.filter(evictable).sort((a, b) => a.born - b.born)[0]; if(old) exitGroup(old, true); }
-    S.maxSeen = Math.max(S.maxSeen, S.cuts.length);
+    if(storyCuts().length > CAP && storyGroups().length){ const old = S.groups.filter(evictable).sort((a, b) => a.born - b.born)[0]; if(old) exitGroup(old, true); }
+    S.maxSeen = Math.max(S.maxSeen, storyCuts().length);
     // starvation guard: no GIF / image / agenda group for 4 min while online and running -> lift every cooldown and retry
     if(!paused() && !netHeld() && manifest && (manifest.assets || []).length && now - S.lastMedia > 240000){
       const n = S.bad.release(); S.badCut.clear(); S.recent = S.recent.slice(-5); S.lastMedia = now; S.releases++; note('starve guard: released', n, 'cooled items');
@@ -1367,7 +1371,7 @@
     const right = (l + r) / 2 > vw() / 2;
     return {left: l, right: r, top: t, height: b - t, r: right};
   };
-  S.stats = ()=>({groups: S.groups.length, stories: [...new Set(S.groups.map(g => g.mid))], cuts: S.cuts.length, cap: CAP, maxSeen: S.maxSeen, mb: +(S.bytes / 1048576).toFixed(1), spawned: S.spawned, left: S.left, fails: S.fails, carries: S.carries || 0, loading: S.loading, visible: S.groups.filter(g => { const v = view(); return g.x < v.x + v.w && g.x + g.w > v.x && g.y < v.y + v.h && g.y + g.h > v.y; }).length, cam: {x: Math.round(cam.x), y: Math.round(cam.y)}, ready: S.ready.length, fill: S.fill(), cmd: {calls: CMD.calls, looks: CMD.looks.size, applied: CMD.applied, src: CMD.src, cast: S.cuts.filter(c => c.castAs).length}, agenda: {active: AG.active, runs: AG.runs.length, runObjects: AG.runs.reduce((n, r) => n + (r.objects || []).length + (r.characters || []).length, 0), activeOnStage: S.cuts.filter(c => c.home && c.home.agenda && c.home.run === AG.active).length, scenes: AG.keys.length, sprites: AG.avail, chipsAvail: AG.availChips, groupsSpawned: AG.spawned, chipGroups: AG.chips, onStageGroups: S.groups.filter(g => g.agenda).length, onStageCuts: S.cuts.filter(c => c.home && c.home.agenda).length}, loop: S.loop, cooled: S.bad.size, net: {held: netHeld(), holds: S.net.holds}, releases: S.releases, mediaAgoS: Math.round((Date.now() - S.lastMedia) / 1000), worker: WK.off ? 'off' : 'on', decodeMs: WK.ms.length ? Math.round(WK.ms.reduce((a, b) => a + b, 0) / WK.ms.length) : null, focus: focus && focus.mid, rm: RM, phone: PHONE});
+  S.stats = ()=>({groups: storyGroups().length, stories: [...new Set(storyGroups().map(g => g.mid))], cuts: storyCuts().length, pins: S.cuts.filter(c => c.map).length, cap: CAP, maxSeen: S.maxSeen, mb: +(S.bytes / 1048576).toFixed(1), spawned: S.spawned, left: S.left, fails: S.fails, carries: S.carries || 0, loading: S.loading, visible: S.groups.filter(g => { const v = view(); return g.x < v.x + v.w && g.x + g.w > v.x && g.y < v.y + v.h && g.y + g.h > v.y; }).length, cam: {x: Math.round(cam.x), y: Math.round(cam.y)}, ready: S.ready.length, fill: S.fill(), cmd: {calls: CMD.calls, looks: CMD.looks.size, applied: CMD.applied, src: CMD.src, cast: S.cuts.filter(c => c.castAs).length}, agenda: {active: AG.active, runs: AG.runs.length, runObjects: AG.runs.reduce((n, r) => n + (r.objects || []).length + (r.characters || []).length, 0), activeOnStage: S.cuts.filter(c => c.home && c.home.agenda && c.home.run === AG.active).length, scenes: AG.keys.length, sprites: AG.avail, chipsAvail: AG.availChips, groupsSpawned: AG.spawned, chipGroups: AG.chips, onStageGroups: S.groups.filter(g => g.agenda).length, onStageCuts: S.cuts.filter(c => c.home && c.home.agenda).length}, loop: S.loop, cooled: S.bad.size, net: {held: netHeld(), holds: S.net.holds}, releases: S.releases, mediaAgoS: Math.round((Date.now() - S.lastMedia) / 1000), worker: WK.off ? 'off' : 'on', decodeMs: WK.ms.length ? Math.round(WK.ms.reduce((a, b) => a + b, 0) / WK.ms.length) : null, focus: focus && focus.mid, rm: RM, phone: PHONE});
 
   // ---------- typed commands on the stage (Jesuye 11-13 12:43 AM "if dapo was on the screens i did dapo.setskincomplexion(light),
   // it should show on the projector"). Source: #thryd's typed_calls.json (every seated typed call of every agenda), published
@@ -1959,7 +1963,7 @@
     const row = (manifest.assets || []).find(a => a && a.medium_image_id === mid && a.status === 'ready'); if(!row) return null;
     let g = S.groups.find(x => x.mid === mid && !x.gone);
     if(!g){
-      while(S.cuts.length > CAP - PER_GROUP && S.groups.length){ const old = S.groups.filter(evictable).sort((a, b) => a.born - b.born)[0]; if(!old) break; exitGroup(old, true); }
+      while(storyCuts().length > CAP - PER_GROUP && storyGroups().length){ const old = S.groups.filter(evictable).sort((a, b) => a.born - b.born)[0]; if(!old) break; exitGroup(old, true); }
       S.loading++;
       try{ spawn(row, await loadGroup(row)); }catch(e){ note('library skip', mid, String(e && e.message || e)); return null; } finally{ S.loading--; }
       g = S.groups.find(x => x.mid === mid && !x.gone); if(g) g.life += 60000;
@@ -2084,7 +2088,7 @@
     Object.assign(el.style, {left: cut.left + 'px', top: cut.top + 'px', width: cut.w + 'px', height: cut.h + 'px', zIndex: String((pin.live ? 16 : 10) + Math.round(g.y))});
     el.style.setProperty('--fd', (R(5.5, 9)).toFixed(2) + 's'); el.style.setProperty('--fdl', (-R(0, 6)).toFixed(2) + 's');
     bindDrag(cut);
-    S.cuts.push(cut); g.cuts.push(cut);
+    S.cuts.push(cut); g.cuts.push(cut); // pin: bytes stay 0; not added to S.bytes / BUDGET
     const v = view();
     const ang = g.inAng = Math.random() * Math.PI * 2;
     const off = offTo(cut.left - v.x, cut.top - v.y, cut.w, cut.h, v, ang + Math.PI);
