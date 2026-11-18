@@ -137,48 +137,77 @@
     try{ S.fireFunc(c, name, x.it, 'intent'); }catch(e){ msg.textContent = 'could not run ' + label(r); return null; }
     const M = S.methods || {}, rec = (M.sent || [])[M.sent.length - 1]; if(rec) rec.intent = {why: how, typed: true};
     return {c, rec, id: 'f:' + x.it.t.title}; }
-  async function go(text){ text = String(text || '').trim(); if(!text) return; pushTyped(text); ctxSig = ''; later(text);
-    msg.textContent = '…'; chips.textContent = '';
+  async function go(text){
+    ui();
+    text = String(text || '').trim(); if(!text) return; pushTyped(text); ctxSig = ''; later(text);
+    try{ msg.textContent = '\u2026'; }catch(e){}
+    try{ chips.textContent = ''; }catch(e){}
     const S = ST();
-    const parts = (S.splitCli ? S.splitCli(text) : [text]).filter(Boolean);
-    const multi = parts.length > 1;
-    if(!multi && parts[0]){
-      const R = await resolve(parts[0]), top = R.top;
-      const exact = !!(top.length && !R.P.free && top[0].lex >= .999), conf = top.length ? top[0].s - (top[1] ? top[1].s : 0) : 0;
-      if(top.length && (exact || (top[0].s >= .82 && conf >= .08 && top[0].live))){
-        let evd = null;
-        try{
-          const run = (S.currentRun && S.currentRun()) || '';
-          if(S.everydayImpl && S.parseCliPiece && run){
-            evd = S.everydayImpl(run, S.parseCliPiece(parts[0]));
-            if(evd) S._pendingFlesh = evd;
-          }
-        }catch(e){}
-        const done = fire(top[0], exact ? 'typed' : 'did you mean (' + top[0].s.toFixed(2) + ')');
-        S._pendingFlesh = null;
-        if(done){ inp.value = ''; msg.textContent = (exact ? '' : 'did you mean ') + label(top[0]) + (exact ? ' · ran' : '? · applied')
-          + (evd && evd.ranAs ? ' · ran as: ' + evd.ranAs : '')
-          + (evd && evd.result ? ' \u2192 ' + evd.result : '');
-          if(!exact && ST().undoIntent){ const u = document.createElement('span'); u.className = 'aiu'; u.textContent = 'undo'; u.onclick = ()=>{ ST().undoIntent(done.c, done.rec, done.id); msg.textContent = 'undone'; }; msg.appendChild(u); }
-          setTimeout(()=>{ if(box && box.classList.contains('on') && document.activeElement !== inp) close(); }, 3500); }
-        return; }
-    }
-    // unknown, pasted, or not-yet-existing call: accept every piece for the live agenda (Jesuye 18 Nov 2026)
-    let recs = [];
+    const showErr = (err) => {
+      const why = String((err && (err.message || err.reason)) || err || 'parse_error');
+      try{ if(S.enqueueRawCli) S.enqueueRawCli(text, why); }catch(e){}
+      try{ msg.textContent = 'parse error \u00b7 ' + why + ' \u00b7 still sending raw'; }catch(e){}
+      try{ const toast = (window.thrydCtx && window.thrydCtx().toast) || (()=>{}); toast(text + ' \u00b7 parse error \u00b7 ' + why + ' \u00b7 still sending raw'); }catch(e){}
+      try{ inp.value = ''; }catch(e){}
+    };
+    const simpleCall = (s) => {
+      s = String(s || '').trim().replace(/;+\s*$/, '');
+      return /^#?[A-Za-z_][\w]*\s*\.\s*[A-Za-z_][\w]*\s*(?:\([^()]*\))?$/.test(s)
+        || /^#?[A-Za-z_][\w]*\s+[A-Za-z_][\w]*(?:\s*\([^()]*\))?$/.test(s);
+    };
     try{
-      if(S.applyCliLine) recs = S.applyCliLine(text) || [];
-      else recs = parts.map(p => S.applyFreeCmd && S.applyFreeCmd(p)).filter(Boolean);
-    }catch(e){}
-    const rec = recs[0];
-    const run = (rec && rec.run) || (S.currentRun && S.currentRun()) || (S.agenda && S.agenda.active) || '';
-    const fleshed = recs.find(r => r && r.fleshed && r.resolved && r.resolved !== r.raw) || recs.find(r => r && r.fleshed && r.resolved);
-    const got = recs.find(r => r && r.result && !(fleshed && r === fleshed));
-    const n = recs.length || parts.length || 1;
-    msg.textContent = (n === 1 ? 'new command' : (n + ' commands')) + ' \u2192 this agenda' + (run ? ' \u00b7 ' + run : '')
-      + (fleshed ? ' \u00b7 ran as: ' + fleshed.resolved : '')
-      + (got ? ' \u2192 ' + got.result : '');
-    chips.textContent = ''; inp.value = '';
-    setTimeout(()=>{ if(box && box.classList.contains('on') && document.activeElement !== inp) close(); }, 3500); }
+      let parts;
+      try{ parts = (S.splitCli ? S.splitCli(text) : [text]).filter(Boolean); }
+      catch(e){ showErr(e); return; }
+      const multi = parts.length > 1;
+      const simple = !multi && parts[0] && simpleCall(parts[0]);
+      if(simple){
+        try{
+          const R = await resolve(parts[0]), top = R.top;
+          const exact = !!(top.length && !R.P.free && top[0].lex >= .999), conf = top.length ? top[0].s - (top[1] ? top[1].s : 0) : 0;
+          if(top.length && (exact || (top[0].s >= .82 && conf >= .08 && top[0].live))){
+            let evd = null;
+            try{
+              const run = (S.currentRun && S.currentRun()) || '';
+              if(S.everydayImpl && S.parseCliPiece && run){
+                evd = S.everydayImpl(run, S.parseCliPiece(parts[0]));
+                if(evd) S._pendingFlesh = evd;
+              }
+            }catch(e){}
+            const done = fire(top[0], exact ? 'typed' : 'did you mean (' + top[0].s.toFixed(2) + ')');
+            S._pendingFlesh = null;
+            if(done){ inp.value = ''; msg.textContent = (exact ? '' : 'did you mean ') + label(top[0]) + (exact ? ' \u00b7 ran' : '? \u00b7 applied')
+              + (evd && evd.ranAs ? ' \u00b7 ran as: ' + evd.ranAs : '')
+              + (evd && evd.result ? ' \u2192 ' + evd.result : '');
+              if(!exact && ST().undoIntent){ const u = document.createElement('span'); u.className = 'aiu'; u.textContent = 'undo'; u.onclick = ()=>{ ST().undoIntent(done.c, done.rec, done.id); msg.textContent = 'undone'; }; msg.appendChild(u); }
+              setTimeout(()=>{ if(box && box.classList.contains('on') && document.activeElement !== inp) close(); }, 3500); }
+            return;
+          }
+        }catch(e){ /* fall through and still accept / enqueue the raw typeline */ }
+      }
+      let recs = [];
+      try{
+        if(S.applyCliLine) recs = S.applyCliLine(text) || [];
+        else recs = parts.map(p => S.applyFreeCmd && S.applyFreeCmd(p)).filter(Boolean);
+      }catch(e){ showErr(e); return; }
+      const rec = recs[0];
+      const run = (rec && rec.run) || (S.currentRun && S.currentRun()) || (S.agenda && S.agenda.active) || '';
+      const bad = recs.find(r => r && (r.parseError || r.parse_error));
+      const fleshed = recs.find(r => r && r.fleshed && r.resolved && r.resolved !== r.raw) || recs.find(r => r && r.fleshed && r.resolved);
+      const got = recs.find(r => r && r.result && !(fleshed && r === fleshed) && !(r.parseError || r.parse_error));
+      const n = recs.length || parts.length || 1;
+      if(bad){
+        msg.textContent = 'parse error \u00b7 ' + (bad.parseError || bad.parse_error) + ' \u00b7 still sending raw'
+          + (run ? ' \u00b7 ' + run : '');
+      } else {
+        msg.textContent = (n === 1 ? 'new command' : (n + ' commands')) + ' \u2192 this agenda' + (run ? ' \u00b7 ' + run : '')
+          + (fleshed ? ' \u00b7 ran as: ' + fleshed.resolved : '')
+          + (got ? ' \u2192 ' + got.result : '');
+      }
+      chips.textContent = ''; inp.value = '';
+      setTimeout(()=>{ if(box && box.classList.contains('on') && document.activeElement !== inp) close(); }, 3500);
+    }catch(e){ showErr(e); }
+  }
   AI.go = go;
   function button(){ const bar = document.getElementById('modes'); if(!bar){ setTimeout(button, 1000); return; } if(document.getElementById('aicmd')) return;
     const b = document.createElement('button'); b.id = 'aicmd'; b.type = 'button'; b.textContent = '\u203a_'; b.title = 'Type a call (/)'; b.setAttribute('aria-label', 'Type a call');

@@ -30,11 +30,28 @@ window.thrydNtfyGet=async function(url,ms){
   slot.p=p;return p;
 };
 window.thrydCli=function(){try{return window.CLI||null;}catch(e){return null;}};
+window.thrydEnsureCli=async function(){
+  let c=null; try{c=(window.thrydCli&&window.thrydCli())||window.CLI||null;}catch(e){c=null;}
+  if(c&&c.endpoint) return c;
+  try{
+    const r=await fetch('data/cli.json?t='+Date.now(),{cache:'no-store'});
+    if(r&&r.ok){const j=await r.json(); if(j&&j.endpoint){window.CLI=j;return j;}}
+  }catch(e){}
+  return null;
+};
 // Typed commands (source=cli) post to data/cli.json, a topic of their own, so drag/drift
 // traffic on data/drag.json cannot eat the typeline budget (Jesuye 18 Nov 2026 11:56 AM ET).
+// If cli.json has not loaded (window.CLI is null), retry the load, then fall back to the drag endpoint
+// so a typeline still leaves the page (Jesuye 18 Nov 2026 12:46 PM ET).
 window.thrydNtfyPost=async function(body, kind){
   const isCli=!!(body&&body.source==='cli');
-  const DG=isCli?(window.thrydCli&&window.thrydCli()):(window.thrydDrag&&window.thrydDrag());
+  let DG;
+  if(isCli){
+    try{DG=await window.thrydEnsureCli();}catch(e){DG=null;}
+    if(!DG||!DG.endpoint){try{DG=(window.thrydDrag&&window.thrydDrag())||window.DRAG||null;}catch(e){DG=null;}}
+  }else{
+    DG=(window.thrydDrag&&window.thrydDrag());
+  }
   if(!DG||!DG.endpoint||(DG.transport&&DG.transport!=='ntfy')){const e=new Error('no_endpoint');e.status='no_endpoint';throw e;}
   let payload=body||{};
   try{if(JSON.stringify(payload).length>3900){payload=Object.assign({},payload);delete payload.impl;delete payload.const_diff;delete payload.ran_as;delete payload.body_v;}}catch(e){}

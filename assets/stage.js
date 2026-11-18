@@ -2072,10 +2072,50 @@
     if(opts.send !== false) sendCliCall(rec, piece);
     return rec;
   }
+  function enqueueRawCli(raw, err, opts){
+    opts = opts || {};
+    const msg = String((err && (err.message || err.reason)) || err || 'parse_error');
+    const text = String(raw == null ? '' : raw);
+    const run = opts.run || currentRun();
+    const eid = (function(){ try{ if(root.crypto && crypto.randomUUID) return 'cli-' + crypto.randomUUID(); }catch(e){} return 'cli-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 12); })();
+    const job = currentJob();
+    const Hrun = run && /^run-[0-9a-f]{4,6}$/.test(run) ? run : null;
+    const code = text.replace(/;?\s*$/, ';');
+    const rec = rememberFree({
+      id: opts.id || ('fc-err-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 7)),
+      run, raw: text, text, resolved: text, fleshed: false, subjects: [], subject: null, fn: 'cli', args: [],
+      sk: null, look: null, at: new Date().toISOString(), t: Date.now(), local: opts.local !== false,
+      safe: false, cli: true, parseError: msg, parse_error: msg
+    });
+    rec.body = {v: 1, type: 'call', event_id: eid, rid: eid + '-r', source: 'cli', run: Hrun, card: job, job,
+      object: 'cli', fn: 'cli', args: [], raw: text, resolved: text, title: text, parse_error: msg,
+      client_ts: new Date().toISOString()};
+    rec.code = code; rec.event_id = eid; rec.error = msg; rec.status = 'sending';
+    try{
+      const ctx = root.thrydCtx ? root.thrydCtx() : {};
+      const toast = ctx.toast || (()=>{});
+      toast(code + ' · parse error · ' + msg + ' · still sending raw');
+      codeLine(code, 'parse error · ' + msg + ' · still sending raw');
+      note('free-cmd parse_error', rec.id, run, text, msg);
+    }catch(e){}
+    if(opts.send !== false){
+      try{ const p = sendCall(rec, code, eid); if(p && typeof p.then === 'function') p.catch(()=>{}); }catch(e){}
+    }
+    return rec;
+  }
   function applyCliLine(text, opts){
     opts = opts || {};
-    const parts = splitCli(text);
-    const recs = parts.map(p => { try{ return applyFreeCmd(p, Object.assign({}, opts, {piece: parseCliPiece(p)})); }catch(e){ try{ note('free-cmd error', String(e && e.message || e)); }catch(e2){} return null; } });
+    let parts;
+    try{ parts = splitCli(text); }catch(e){ return [enqueueRawCli(text, e, opts)].filter(Boolean); }
+    if((!parts || !parts.length) && String(text || '').trim()) return [enqueueRawCli(text, 'empty after parse', opts)].filter(Boolean);
+    const recs = (parts || []).map(p => {
+      try{
+        let piece;
+        try{ piece = parseCliPiece(p); }catch(e){ return enqueueRawCli(p, e, opts); }
+        try{ return applyFreeCmd(p, Object.assign({}, opts, {piece: piece})); }
+        catch(e){ return enqueueRawCli(p, e, opts); }
+      }catch(e){ return enqueueRawCli(p, e, opts); }
+    });
     return recs.filter(Boolean);
   }
   async function pollFreeCmds(){
@@ -2094,7 +2134,7 @@
     }
     syncFreeCmds();
   }
-  S.applyFreeCmd = applyFreeCmd; S.applyCliLine = applyCliLine; S.splitCli = splitCli; S.cleanCliPiece = cleanCliPiece; S.fleshCli = fleshCli; S.parseCliPiece = parseCliPiece; S.everydayImpl = everydayImpl; S.displayNameFor = displayNameFor; S.resolveSafeToken = resolveSafeToken; S.syncFreeCmds = syncFreeCmds; S.currentRun = currentRun; S.parseFree = parseFree; S.registerCliMethod = registerCliMethod;
+  S.applyFreeCmd = applyFreeCmd; S.applyCliLine = applyCliLine; S.enqueueRawCli = enqueueRawCli; S.splitCli = splitCli; S.cleanCliPiece = cleanCliPiece; S.fleshCli = fleshCli; S.parseCliPiece = parseCliPiece; S.everydayImpl = everydayImpl; S.displayNameFor = displayNameFor; S.resolveSafeToken = resolveSafeToken; S.syncFreeCmds = syncFreeCmds; S.currentRun = currentRun; S.parseFree = parseFree; S.registerCliMethod = registerCliMethod;
   pollFreeCmds(); setInterval(pollFreeCmds, 20000); setInterval(syncFreeCmds, 1000);
 
   // ---------- tap methods (Jesuye 16 Nov 2026 6:39 PM ET "add 2-3 object methods that are clickable. when we tap on an object, users can
@@ -2525,7 +2565,8 @@
     const net = root.thrydNetFetch || ((u, o)=> fetch(u, o));
     const enqueue = root.thrydEnqueueCall;
     const post = root.thrydNtfyPost;
-    const cliCfg = (body && body.source === 'cli') ? ((root.thrydCli && root.thrydCli()) || (ctx && ctx.CLI) || null) : null;
+    if(body && body.source === 'cli' && root.thrydEnsureCli){ try{ await root.thrydEnsureCli(); }catch(e){} }
+    const cliCfg = (body && body.source === 'cli') ? ((root.thrydCli && root.thrydCli()) || (ctx && ctx.CLI) || window.CLI || null) : null;
     const replyBase = (cliCfg && cliCfg.reply) || (DG && DG.reply);
     const prettyErr = err => { if(!err) return 'queued, retrying'; if(/timed out|abort/i.test(String(err))) return 'timed out, retrying'; return 'retrying · ' + err; };
     const statusToast = item => { toast(code + ' · ' + prettyErr(item && item.lastError)); };
