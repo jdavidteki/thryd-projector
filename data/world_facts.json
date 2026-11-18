@@ -2050,16 +2050,6 @@
 ],
 "laptop": [
 {
-"id": "wf_9cc15ad026",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the lamp soot at the laptop, and Taiwo reads the name twice.",
-"code": "hpr.interactwith(laptop){ laptop.receives(hpr.envelope); laptop.remembers(bisola, 'brown envelope'); laptop.tucks(hpr, 'yaba bookshop receipt into the lamp soot'); }",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6",
-"other": "hpr"
-},
-{
 "id": "wf_3bbf0c8e40",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the lamp soot at the laptop, and Taiwo reads the name twice.",
@@ -2068,6 +2058,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "yuwa"
+},
+{
+"id": "wf_2653c8a5e2",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the lamp soot at the laptop, and Taiwo reads the name twice.",
+"code": "wiitbaw.interactwith(laptop){ laptop.receives(wiitbaw.envelope); … }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "wiitbaw"
 },
 {
 "id": "wt_00586a397c",
@@ -6182,16 +6182,6 @@
 ],
 "saturday_october": [
 {
-"id": "wf_e1c71567ef",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'blue glass bead' on it, turns up inside the brown envelope at the saturday october, and Bisola reads the name twice.",
-"code": "inside_odunlade_brain.interactwith(saturday_october){ saturday_october.receives(inside_odunlade_brain.bead); … }",
-"author": "cos",
-"run": "run-g1-B",
-"card": "j5",
-"other": "inside_odunlade_brain"
-},
-{
 "id": "wf_76f51c5366",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the blue glass bead at the saturday october, and Bisola reads the name twice.",
@@ -6230,6 +6220,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "ronke"
+},
+{
+"id": "wt_5afb033ddb",
+"kind": "consequence",
+"text": "Two copies of the same 7:40am Yaba receipt meet when the bow is set down on saturday october, and Bisola realises one of them is a carbon.",
+"code": "bow.interactwith(saturday_october){ saturday_october.receives(bow.brown_envelope); … }",
+"author": "thryd",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "bow"
 }
 ],
 "sports_ball_scene": [
@@ -6300,6 +6300,16 @@
 "run": "run-g1-B",
 "card": "j29",
 "other": "oya_dance_subject"
+},
+{
+"id": "wt_980de70ea6",
+"kind": "consequence",
+"text": "Sand from beach lummus park dusts the chalked no go fold, and the blue glass bead settles in Kemi's chalk circle like a pin on the map.",
+"code": "beach_lummus_park.interactwith(no_go_fold){ no_go_fold.receives(beach_lummus_park, 'blue glass bead'); … }",
+"author": "thryd",
+"run": "run-g1-B",
+"card": "j29",
+"other": "beach_lummus_park"
 }
 ],
 "talk_woman": [
@@ -6704,6 +6714,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "kazeem"
+},
+{
+"id": "wt_836e6dea8e",
+"kind": "consequence",
+"text": "At Mama Ronke's gate the patagonia's Ttb note is laid beside the juju code, and Ejiro sees both carry his name in the same handwriting.",
+"code": "patagonia.interactwith(mama_ronke){ mama_ronke.receives(patagonia, 'juju code'); … }",
+"author": "thryd",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "patagonia"
 }
 ],
 "thryd": [
@@ -6847,64 +6867,21 @@
 "card": "j6",
 "other": "saturday_october"
 }
+],
+"patagonia": [
+{
+"id": "wf_12d05bd268",
+"kind": "consequence",
+"text": "The patagonia leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
+"code": "ttb.interactwith(patagonia){ patagonia.receives(ttb.code); patagonia.remembers(ejiro, 'juju code'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j2",
+"other": "ttb"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_eadf694fee",
-"ts": "2026-11-17T23:09:34-0500",
-"a": "surulere_party_hall",
-"b": "notnotnotnotyn_jan",
-"code": "surulere_party_hall.interactwith(notnotnotnotyn_jan){ notnotnotnotyn_jan.receives(surulere_party_hall.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the notnotnotnotyn jan, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-g1-B",
-"card": "j6"
-},
-{
-"id": "wf_a78acf10d7",
-"ts": "2026-11-17T23:10:26-0500",
-"a": "ikorodu_marina",
-"b": "people_scene",
-"code": "ikorodu_marina.interactwith(people_scene){ people_scene.receives(ikorodu_marina.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the people scene, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-g1-B",
-"card": "j6"
-},
-{
-"id": "wf_6e4cdeed7e",
-"ts": "2026-11-17T23:14:45-0500",
-"a": "love",
-"b": "god",
-"code": "love.interactwith(god){ god.receives(love.envelope); god.remembers(bisola, 'brown envelope'); god.tucks(love, 'yaba bookshop receipt into the nice day sign'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the nice day sign at the god, and Kunle reads the name twice.",
-"author": "cos",
-"run": "run-g1-B",
-"card": "j6"
-},
-{
-"id": "wf_6da4a90c1d",
-"ts": "2026-11-17T23:16:30-0500",
-"a": "agbada",
-"b": "know_place",
-"code": "agbada.interactwith(know_place){ agbada.db.copyto(know_place); know_place.keeps(agbada, 'agbada, still worn by a stranger haggler'); }",
-"text": "The agbada ends up with the know place, still worn by a stranger haggler.",
-"author": "cos",
-"run": "run-g1-B",
-"card": "w4"
-},
-{
-"id": "wf_657f07764b",
-"ts": "2026-11-17T23:19:06-0500",
-"a": "people_scene",
-"b": "climb_heaven",
-"code": "people_scene.interactwith(climb_heaven){ climb_heaven.receives(people_scene.envelope); climb_heaven.remembers(bisola, 'brown envelope'); }",
-"text": "The climb heaven leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-g1-B",
-"card": "j6"
-},
 {
 "id": "wf_e3ba384c70",
 "ts": "2026-11-17T23:36:43-0500",
@@ -7289,6 +7266,61 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_12d05bd268",
+"ts": "2026-11-18T00:53:20-0500",
+"a": "ttb",
+"b": "patagonia",
+"code": "ttb.interactwith(patagonia){ patagonia.receives(ttb.code); patagonia.remembers(ejiro, 'juju code'); }",
+"text": "The patagonia leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j2"
+},
+{
+"id": "wf_2653c8a5e2",
+"ts": "2026-11-18T04:50:51-0500",
+"a": "wiitbaw",
+"b": "laptop",
+"code": "wiitbaw.interactwith(laptop){ laptop.receives(wiitbaw.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the lamp soot at the laptop, and Taiwo reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
+},
+{
+"id": "wt_836e6dea8e",
+"ts": "2026-11-18T04:55:00-0500",
+"a": "patagonia",
+"b": "mama_ronke",
+"code": "patagonia.interactwith(mama_ronke){ mama_ronke.receives(patagonia, 'juju code'); … }",
+"text": "At Mama Ronke's gate the patagonia's Ttb note is laid beside the juju code, and Ejiro sees both carry his name in the same handwriting.",
+"author": "thryd",
+"run": "run-2eb42d",
+"card": "j6"
+},
+{
+"id": "wt_5afb033ddb",
+"ts": "2026-11-18T04:55:30-0500",
+"a": "bow",
+"b": "saturday_october",
+"code": "bow.interactwith(saturday_october){ saturday_october.receives(bow.brown_envelope); … }",
+"text": "Two copies of the same 7:40am Yaba receipt meet when the bow is set down on saturday october, and Bisola realises one of them is a carbon.",
+"author": "thryd",
+"run": "run-2eb42d",
+"card": "j6"
+},
+{
+"id": "wt_980de70ea6",
+"ts": "2026-11-18T04:56:00-0500",
+"a": "beach_lummus_park",
+"b": "no_go_fold",
+"code": "beach_lummus_park.interactwith(no_go_fold){ no_go_fold.receives(beach_lummus_park, 'blue glass bead'); … }",
+"text": "Sand from beach lummus park dusts the chalked no go fold, and the blue glass bead settles in Kemi's chalk circle like a pin on the map.",
+"author": "thryd",
+"run": "run-g1-B",
+"card": "j29"
 }
 ],
 "memories": [
@@ -7392,5 +7424,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T00:48:07-0500"
+"updated": "2026-11-18T04:50:51-0500"
 }
