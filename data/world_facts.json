@@ -2,6 +2,7 @@
 "v": 1,
 "note": "World memory: each object's facts and the newest consequences of meetings (shared store /workspace/thryd-projector/data/world_facts.jsonl, tools/world_memory.py). The stage shows a consequence code line when the same pair meets again, and now and then on its own; #thryd memories show now and then too.",
 "alias": {
+"computer_village_subject": "computer_village",
 "ojuelegba_bus_stop_subject": "ojuelegba_bus_stop",
 "ojuelegba_bus_stop_subject_second": "ojuelegba_bus_stop",
 "ojuelegba_bus_stop_subject_third": "ojuelegba_bus_stop",
@@ -1861,16 +1862,6 @@
 ],
 "ronke": [
 {
-"id": "wt_c8b7755e62",
-"kind": "func_call",
-"text": "Someone at the projector tapped the person and called ronke.hail(what=currentaffairs:Thing) from its agenda run-2eb42d, first seated in run-2eb42d j18.",
-"code": "ronke.hail('currentaffairs');",
-"author": "projector",
-"run": "run-2eb42d",
-"card": "w18",
-"other": null
-},
-{
 "id": "wt_9ec5ff514a",
 "kind": "func_call",
 "text": "Someone at the projector tapped the ronke and called ronke.hail(what=hawker:Thing) from j18, first seated in run-2eb42d j18.",
@@ -1909,6 +1900,16 @@
 "run": "run-2eb42d",
 "card": "j2",
 "other": "patagonia"
+},
+{
+"id": "wt_418fb96438",
+"kind": "func_call",
+"text": "Someone at the projector tapped the ojuelegba bus stop subject second and called ronke.hail(what=hawker:Thing) from j18 from its agenda run-2eb42d, first seated in run-2eb42d j18.",
+"code": "ronke.hail('hawker');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w18",
+"other": null
 }
 ],
 "bird": [
@@ -6727,16 +6728,6 @@
 ],
 "kazeem": [
 {
-"id": "wt_81011798d4",
-"kind": "func_call",
-"text": "The kazeem hears it (because ronke.hail(what=currentaffairs:Thing)).",
-"code": "kazeem.hears(person, 'hail');",
-"author": "projector",
-"run": "run-2eb42d",
-"card": "w18",
-"other": null
-},
-{
 "id": "wt_749b277104",
 "kind": "func_call",
 "text": "The kazeem hears it (because ronke.hail(what=hawker:Thing) from j18).",
@@ -6771,6 +6762,16 @@
 "kind": "func_call",
 "text": "The kazeem hears it (because ronke.hail(what=hawker:Thing) from j18).",
 "code": "kazeem.hears(mushin_subject, 'hail');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w18",
+"other": null
+},
+{
+"id": "wt_cb55c59602",
+"kind": "func_call",
+"text": "The kazeem hears it (because ronke.hail(what=hawker:Thing) from j18).",
+"code": "kazeem.hears(ojuelegba_bus_stop_subject_second, 'hail');",
 "author": "projector",
 "run": "run-2eb42d",
 "card": "w18",
@@ -7077,16 +7078,6 @@
 ],
 "hear": [
 {
-"id": "wt_37357c6d4e",
-"kind": "func_call",
-"text": "The hear hears it (because yorubbbygehinny.getAgenda()).",
-"code": "hear.hears(mushin_subject, 'getAgenda');",
-"author": "projector",
-"run": "run-2eb42d",
-"card": "w17",
-"other": null
-},
-{
 "id": "wt_8f2e62c6b8",
 "kind": "func_call",
 "text": "The hear hears it (because ronke.hail(what=currentaffairs:Thing)).",
@@ -7125,19 +7116,19 @@
 "run": "run-2eb42d",
 "card": "w18",
 "other": null
+},
+{
+"id": "wt_855ea30ec5",
+"kind": "func_call",
+"text": "The hear hears it (because ronke.hail(what=hawker:Thing) from j18).",
+"code": "hear.hears(ojuelegba_bus_stop_subject_second, 'hail');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w18",
+"other": null
 }
 ],
 "mamaronke": [
-{
-"id": "wt_87cd2db7d8",
-"kind": "func_call",
-"text": "The mamaronke hears it (because yorubbbygehinny.getAgenda()).",
-"code": "mamaronke.hears(mushin_subject, 'getAgenda');",
-"author": "projector",
-"run": "run-2eb42d",
-"card": "w17",
-"other": null
-},
 {
 "id": "wt_e93197f42f",
 "kind": "func_call",
@@ -7173,6 +7164,16 @@
 "kind": "func_call",
 "text": "The mamaronke hears it (because ronke.hail(what=hawker:Thing) from j18).",
 "code": "mamaronke.hears(mushin_subject, 'hail');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w18",
+"other": null
+},
+{
+"id": "wt_1a9ff24142",
+"kind": "func_call",
+"text": "The mamaronke hears it (because ronke.hail(what=hawker:Thing) from j18).",
+"code": "mamaronke.hears(ojuelegba_bus_stop_subject_second, 'hail');",
 "author": "projector",
 "run": "run-2eb42d",
 "card": "w18",
@@ -7273,6 +7274,16 @@
 "run": "run-2eb42d",
 "card": "w5",
 "other": "danfo_speaker"
+},
+{
+"id": "wf_f41d037b18",
+"kind": "consequence",
+"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up with the danfo speaker, which is still playing the same love song.",
+"code": "lady.interactwith(ojuelegba_bus_stop){ ojuelegba_bus_stop.receives(lady.shirt); ojuelegba_bus_stop.remembers(bisola, 'green shirt'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j8",
+"other": "lady"
 }
 ],
 "usher_by_kiss": [
@@ -7313,17 +7324,6 @@
 ]
 },
 "consequences": [
-{
-"id": "wf_0d9bb31a93",
-"ts": "2026-11-18T08:36:30-0500",
-"a": "ttb",
-"b": "matches",
-"code": "ttb.interactwith(matches){ matches.receives(ttb.code); matches.remembers(ejiro, 'juju code'); }",
-"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up with the matches, which is still found.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j2"
-},
 {
 "id": "wf_8516f16678",
 "ts": "2026-11-18T08:38:15-0500",
@@ -7752,6 +7752,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j8"
+},
+{
+"id": "wf_f41d037b18",
+"ts": "2026-11-18T11:04:21-0500",
+"a": "lady",
+"b": "ojuelegba_bus_stop",
+"code": "lady.interactwith(ojuelegba_bus_stop){ ojuelegba_bus_stop.receives(lady.shirt); ojuelegba_bus_stop.remembers(bisola, 'green shirt'); }",
+"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up with the danfo speaker, which is still playing the same love song.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j8"
 }
 ],
 "memories": [
@@ -7855,5 +7866,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T11:03:28-0500"
+"updated": "2026-11-18T11:05:14-0500"
 }
