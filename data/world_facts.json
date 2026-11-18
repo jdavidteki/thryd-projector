@@ -881,24 +881,24 @@
 ],
 "danfo_speaker": [
 {
-"id": "wf_343cd05bf1",
+"id": "wf_09b87b94e2",
 "kind": "consequence",
-"text": "A Saturday october note with Bisola's name and 'brown envelope' on it, turns up with the danfo speaker, which is still playing the same love song.",
-"code": "saturday_october.interactwith(danfo_speaker){ danfo_speaker.receives(saturday_october.envelope); danfo_speaker.remembers(bisola, 'brown envelope'); }",
+"text": "A Sheep note with Kunle's name and 'scorched container number' on it, turns up with the danfo speaker, which is still playing the same love song.",
+"code": "sheep.interactwith(danfo_speaker){ danfo_speaker.receives(sheep.number); danfo_speaker.remembers(kunle, 'scorched container number'); }",
 "author": "cos",
 "run": "run-2eb42d",
-"card": "j6",
-"other": "saturday_october"
+"card": "w7",
+"other": "sheep"
 },
 {
-"id": "wf_a385255a24",
+"id": "wf_900ee80b4e",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the danfo speaker, which is still playing the same love song.",
-"code": "asmathic.interactwith(danfo_speaker){ danfo_speaker.receives(asmathic.envelope); danfo_speaker.remembers(bisola, 'brown envelope'); }",
+"code": "sports_ball.interactwith(danfo_speaker){ danfo_speaker.receives(sports_ball.envelope); danfo_speaker.remembers(bisola, 'brown envelope'); }",
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6",
-"other": "asmathic"
+"other": "sports_ball"
 },
 {
 "id": "wf_bdad55d985",
@@ -6879,16 +6879,6 @@
 ],
 "kazeem": [
 {
-"id": "wt_0bdd4e7642",
-"kind": "func_call",
-"text": "The kazeem hears it (because ronke.hail(what=hawker:Thing) from j18).",
-"code": "kazeem.hears(computer_village_subject, 'hail');",
-"author": "projector",
-"run": "run-2eb42d",
-"card": "w18",
-"other": null
-},
-{
 "id": "wt_0ea8a268cc",
 "kind": "func_call",
 "text": "The kazeem hears it (because ronke.hail(what=hawker:Thing) from j18).",
@@ -6927,6 +6917,16 @@
 "run": "run-2eb42d",
 "card": "w18",
 "other": null
+},
+{
+"id": "wf_c88b3ede31",
+"kind": "consequence",
+"text": "The kazeem leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "wser.interactwith(kazeem){ kazeem.receives(wser.envelope); kazeem.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "wser"
 }
 ],
 "mama_ronke": [
@@ -8298,39 +8298,6 @@
 },
 "consequences": [
 {
-"id": "wf_dcec71707d",
-"ts": "2026-11-18T14:52:37-0500",
-"a": "computer_village",
-"b": "mama_ronke",
-"code": "computer_village.interactwith(mama_ronke){ mama_ronke.receives(computer_village.envelope); mama_ronke.remembers(bisola, 'brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the Mama Ronke, which is still present.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
-"id": "wf_fc1dbab20d",
-"ts": "2026-11-18T14:53:29-0500",
-"a": "tf_mom",
-"b": "computer_village",
-"code": "tf_mom.interactwith(computer_village){ computer_village.receives(tf_mom.soot); … }",
-"text": "A Laptop note with Taiwo's name and 'lamp soot' on it, turns up inside the brown envelope at the computer village, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j7"
-},
-{
-"id": "wf_66ded0f50f",
-"ts": "2026-11-18T15:03:01-0500",
-"a": "tf_mom",
-"b": "mkdwo",
-"code": "tf_mom.interactwith(mkdwo){ mkdwo.receives(tf_mom.soot); mkdwo.remembers(taiwo, 'lamp soot'); }",
-"text": "The mkdwo leaves with a Laptop note with Taiwo's name and 'lamp soot' on it.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j7"
-},
-{
 "id": "wf_95e618e3ff",
 "ts": "2026-11-18T15:03:54-0500",
 "a": "cup",
@@ -8736,6 +8703,39 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "w18"
+},
+{
+"id": "wf_09b87b94e2",
+"ts": "2026-11-18T16:48:39-0500",
+"a": "sheep",
+"b": "danfo_speaker",
+"code": "sheep.interactwith(danfo_speaker){ danfo_speaker.receives(sheep.number); danfo_speaker.remembers(kunle, 'scorched container number'); }",
+"text": "A Sheep note with Kunle's name and 'scorched container number' on it, turns up with the danfo speaker, which is still playing the same love song.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w7"
+},
+{
+"id": "wf_c88b3ede31",
+"ts": "2026-11-18T16:51:17-0500",
+"a": "wser",
+"b": "kazeem",
+"code": "wser.interactwith(kazeem){ kazeem.receives(wser.envelope); kazeem.remembers(bisola, 'brown envelope'); }",
+"text": "The kazeem leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
+},
+{
+"id": "wf_900ee80b4e",
+"ts": "2026-11-18T16:52:10-0500",
+"a": "sports_ball",
+"b": "danfo_speaker",
+"code": "sports_ball.interactwith(danfo_speaker){ danfo_speaker.receives(sports_ball.envelope); danfo_speaker.remembers(bisola, 'brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the danfo speaker, which is still playing the same love song.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -8839,5 +8839,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T16:46:54-0500"
+"updated": "2026-11-18T16:53:02-0500"
 }
