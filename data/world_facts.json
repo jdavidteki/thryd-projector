@@ -772,16 +772,6 @@
 ],
 "pure_water_cooler": [
 {
-"id": "wf_e796dfa216",
-"kind": "consequence",
-"text": "An Ats note with Bisola's name and 'brown envelope' on it, turns up inside the container number at the pure water cooler, and Kunle reads the name twice.",
-"code": "ats.interactwith(pure_water_cooler){ pure_water_cooler.receives(ats.envelope); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j2",
-"other": "ats"
-},
-{
 "id": "wf_e20f35af9c",
 "kind": "consequence",
 "text": "A Danfo speaker note with Taiwo's name and 'egbe note' on it, turns up inside the container number at the pure water cooler, and Kunle reads the name twice.",
@@ -800,6 +790,16 @@
 "run": "run-5a58c4",
 "card": "j5",
 "other": "dapo"
+},
+{
+"id": "wf_93cdfde553",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the pure-water cooler, which is still carried home through the flood.",
+"code": "saturday_october.interactwith(pure_water_cooler){ pure_water_cooler.receives(saturday_october.envelope); pure_water_cooler.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "saturday_october"
 },
 {
 "id": "wf_6554ef5dcc",
@@ -6793,17 +6793,6 @@
 },
 "consequences": [
 {
-"id": "wf_94678919cb",
-"ts": "2026-11-17T22:33:52-0500",
-"a": "neck_ostrich",
-"b": "nana_akufo_addo",
-"code": "neck_ostrich.interactwith(nana_akufo_addo){ nana_akufo_addo.receives(neck_ostrich.envelope); nana_akufo_addo.remembers(bisola, 'brown envelope'); }",
-"text": "The nana akufo addo leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-g1-B",
-"card": "j6"
-},
-{
 "id": "wf_5b5d12ad65",
 "ts": "2026-11-17T22:34:44-0500",
 "a": "notnotnotnotyn_dec",
@@ -7231,6 +7220,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j29"
+},
+{
+"id": "wf_93cdfde553",
+"ts": "2026-11-18T00:35:07-0500",
+"a": "saturday_october",
+"b": "pure_water_cooler",
+"code": "saturday_october.interactwith(pure_water_cooler){ pure_water_cooler.receives(saturday_october.envelope); pure_water_cooler.remembers(bisola, 'brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the pure-water cooler, which is still carried home through the flood.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -7334,5 +7334,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T00:30:45-0500"
+"updated": "2026-11-18T00:35:59-0500"
 }
