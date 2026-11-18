@@ -67,9 +67,18 @@ test('stage.js always centres the newest active live view, with no walk-in, and 
   assert.match(src, /opts && opts.center/);
   assert.match(src, /newest active live view appears in place \(no off-screen walk-in\)/);
   assert.match(src, /mixing never delays or replaces it/);
-  assert.match(src, /if\(newest && !liveOn\(liveId\(newest\)\) && !S\.bad\.has\(liveId\(newest\)\)\) return newest/);
+  assert.match(src, /if\(newest && !liveOn\(liveId\(newest\)\)\)\{ S\.bad\.ok\(liveId\(newest\)\); return newest; \}/);
   assert.match(src, /if\(newest && liveOn\(liveId\(newest\)\) && Math\.random\(\) < 0\.35\)/);
-  assert.match(src, /if\(why === 'cap' && isNewestId\(id\)\)/);
+  assert.match(src, /isNewestId\(id\) && \(why === 'cap' \|\| S\.bad\.isNet\(why\) \|\| why === 'live_view_fetch'\)/);
   assert.match(src, /if\(newest\) enqueueLive\(newest, true\)/);
   assert.match(src, /if\(newest && !liveOn\(liveId\(newest\)\)\) enqueueLive\(newest, true\)/);
+});
+
+test('a bad or empty live_views payload, a fetch error, or a held network must not empty the stage', () => {
+  assert.match(src, /empty payload ignored/);
+  assert.match(src, /if\(isNewestId\(id\)\){ note\('live view keep'/);
+  assert.match(src, /isNewestId\(id\) && \(why === 'cap' \|\| S\.bad\.isNet\(why\) \|\| why === 'live_view_fetch'\)/);
+  assert.match(src, /if\(isNewestGroup\(g\) \|\| netHeld\(\)\) g\.offSince = 0/);
+  assert.match(src, /else if\(!netHeld\(\) && now - g\.born > g\.life/);
+  assert.match(src, /keep the last good bank; a malformed export must not wipe it/);
 });

@@ -38,7 +38,7 @@
   function netOk(){ S.net.k = 0; S.net.fails = []; }
   const netHeld = ()=> navigator.onLine === false || Date.now() < S.net.hold;
   addEventListener('online', ()=>{ S.net.hold = 0; S.net.k = 0; S.bad.release(); });
-  function failed(id, why){ const w = String(why || ''); if(S.bad.isNet(w) || navigator.onLine === false){ netFail(); if(navigator.onLine === false) return; } S.bad.add(id, w); }
+  function failed(id, why){ const w = String(why || ''); if(S.bad.isNet(w) || navigator.onLine === false){ netFail(); if(navigator.onLine === false) return; } if(isNewestId(id)){ note('live view keep', id, w); return; } S.bad.add(id, w); }
   const note = (...a)=>{ S.log.push([new Date().toISOString().slice(11,19)].concat(a).join(' ')); if(S.log.length > 120) S.log.splice(0, S.log.length - 120); };
 
   // 1. the slideshow stays parked: every backdrop() call is refused while stage mode is on, so no GIF is fetched for the hidden #stage
@@ -827,6 +827,7 @@
   // the current agenda (or the newest views overall if that agenda has none yet) come back more often.
   // Ids live in their own space, so they never write thryd_seen_cuts_v1 or steal a deck slot.
   // Newest active-agenda view (17 Nov 2026): always on stage, in the centre, faded in (no walk-in); older-agenda mix never delays it.
+  // 17 Nov 7:51 PM ET: a world-writer batch or a Pages 503 must not empty the stage — skip bad entries, keep the last good list, never cool the newest on a fetch error, and do not drain groups while the network breaker is held.
   const LV_URLS = ['data/live_views.json', 'https://raw.githubusercontent.com/jdavidteki/thryd-projector/main/data/live_views.json'];
   const LV = S.liveViews = {list: [], seen: {}, pending: [], activeRun: null, at: 0, src: '', left: {}};
   const cooling = id => { if(isNewestId(id)) return false; return now0() - (LV.left[id] || 0) < LIVE_COOL_MS; };
@@ -863,7 +864,8 @@
   function enqueueLive(v, front){
     if(!v || !liveOk(v)) return;
     const id = liveId(v); v.id = id;
-    if(liveOn(id) || S.bad.has(id)) return;
+    if(isNewestId(id) && S.bad.has(id)) S.bad.ok(id);
+    if(liveOn(id) || (S.bad.has(id) && !isNewestId(id))) return;
     if(LV.pending.some(p => liveId(p) === id)) return;
     if(front) LV.pending.unshift(v); else LV.pending.push(v);
   }
@@ -882,7 +884,7 @@
     const newest = newestLive();
     // the newest live view of the active agenda always comes first; older-agenda
     // mixing never delays or replaces it
-    if(newest && !liveOn(liveId(newest)) && !S.bad.has(liveId(newest))) return newest;
+    if(newest && !liveOn(liveId(newest))){ S.bad.ok(liveId(newest)); return newest; }
     if(newest && liveOn(liveId(newest)) && Math.random() < 0.35){ const o = olderLive(); if(o) return o; }
     const rec = recentLive(LIVE_KEEP);
     if(!rec.length) return olderLive();
@@ -936,7 +938,8 @@
   }
   async function spawnLive(v){
     const id = liveId(v);
-    if(!id || liveOn(id) || S.bad.has(id)) return false;
+    if(!id || liveOn(id)) return false;
+    if(S.bad.has(id) && !isNewestId(id)) return false;
     if(S.loading >= INFLIGHT){ enqueueLive(v, true); return false; }
     S.loading++;
     try{
@@ -952,19 +955,22 @@
       return true;
     }catch(e){
       const why = String(e && e.message || e);
-      if(why === 'cap' && isNewestId(id)){ enqueueLive(v, true); note('live view retry', id, why); return false; }
+      if(isNewestId(id) && (why === 'cap' || S.bad.isNet(why) || why === 'live_view_fetch')){ enqueueLive(v, true); note('live view retry', id, why); return false; }
       failed(id, why); note('live view skip', id, why);
       return false;
     }finally{ S.loading--; }
   }
   async function pollLiveViews(){
     let d = null, src = '';
+    try{
     for(const u of LV_URLS){
       try{ const r = await fetch(u + '?t=' + Date.now(), {cache: 'no-store'}); if(r.ok){ d = await r.json(); src = u.startsWith('http') ? 'raw' : 'pages'; break; } }catch(e){}
     }
-    if(!d || !Array.isArray(d.views)) return;
-    LV.src = src; LV.at = Date.now(); LV.activeRun = d.active_run || null;
-    const list = d.views.filter(liveOk).map(v => { v.id = liveId(v); return v; });
+    if(!d || !Array.isArray(d.views)) return; // keep whatever is already on the stage
+    const list = [];
+    d.views.forEach(v => { try{ if(!liveOk(v)) return; v.id = liveId(v); list.push(v); }catch(e){} });
+    if(!list.length && (LV.list || []).length){ note('live views poll', 'empty payload ignored'); return; }
+    LV.src = src; LV.at = Date.now(); LV.activeRun = d.active_run || LV.activeRun || null;
     LV.list = list;
     const first = !Object.keys(LV.seen).length;
     const fresh = [];
@@ -986,6 +992,7 @@
       if(newest && !liveOn(liveId(newest))) enqueueLive(newest, true);
     }
     if(LV.pending.length && !paused()) spawnOne();
+    }catch(e){ note('live views poll', String(e && e.message || e)); }
   }
   S.pollLiveViews = pollLiveViews; S.enqueueLive = enqueueLive; S.recentLive = recentLive;
 
@@ -1036,9 +1043,9 @@
     S.groups.slice().forEach(g => {
       const vis = g.x < v.x + v.w && g.x + g.w > v.x && g.y < v.y + v.h && g.y + g.h > v.y;
       if(vis) g.offSince = 0; else if(!g.offSince) g.offSince = now;
-      if(isNewestGroup(g)) g.offSince = 0;
+      if(isNewestGroup(g) || netHeld()) g.offSince = 0;
       else if(g.offSince && now - g.offSince > 12000) exitGroup(g, true);
-      else if(now - g.born > g.life && !g.cuts.some(c => c.dragging)) exitGroup(g, false);
+      else if(!netHeld() && now - g.born > g.life && !g.cuts.some(c => c.dragging)) exitGroup(g, false);
     });
     // never more than CAP: the oldest group gives way at once
     if(S.cuts.length > CAP && S.groups.length){ const old = S.groups.filter(evictable).sort((a, b) => a.born - b.born)[0]; if(old) exitGroup(old, true); }
@@ -1135,10 +1142,12 @@
   const WM = S.worldMem = {cons: [], alias: {}, shown: new Map(), pair: new Map(), lastAmb: Date.now(), PAIR_CD: 90000, LINE_CD: 600000, AMB_MS: 120000, at: 0};
   const WM_TOUCH = /^(?:meets|interactwith|arrivesat|passes|remembers)$/;
   function loadWM(){ fetch('data/world_facts.json?t=' + Date.now(), {cache: 'no-store'}).then(r => r.ok ? r.json() : null).then(d => {
-    if(!d || !Array.isArray(d.consequences)) return;
-    const ok = c => c && c.id && /^[a-z][a-z0-9_]*\.[a-z]+\(/.test(String(c.code || '')) && !/\bcut\d+\b/.test(String(c.code));
-    WM.cons = d.consequences.concat(Array.isArray(d.memories) ? d.memories : []).filter(ok).sort((x, y) => String(x.ts || '') < String(y.ts || '') ? -1 : 1);
-    WM.alias = d.alias || {}; WM.at = Date.now(); }).catch(()=>{}); }
+    if(!d || !Array.isArray(d.consequences)) return; // keep the last good bank; a malformed export must not wipe it
+    const ok = c => { try{ return !!(c && c.id && /^[a-z][a-z0-9_]*\.[a-z]+\(/.test(String(c.code || '')) && !/\bcut\d+\b/.test(String(c.code))); }catch(e){ return false; } };
+    const next = d.consequences.concat(Array.isArray(d.memories) ? d.memories : []).filter(ok);
+    if(!next.length && WM.cons.length) return;
+    next.sort((x, y) => String(x.ts || '') < String(y.ts || '') ? -1 : 1);
+    WM.cons = next; WM.alias = (d.alias && typeof d.alias === 'object') ? d.alias : (WM.alias || {}); WM.at = Date.now(); }).catch(()=>{}); }
   loadWM(); setInterval(loadWM, 300000);
   const wmName = n => (WM.alias && WM.alias[n]) || n;
   function wmPick(a, b){

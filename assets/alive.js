@@ -2,10 +2,11 @@
 const code=$('div','code'),live=$('div','live'),crawl=$('div','crawl');$('div','grain');
 const bad=/explicit|never explicit/i,clean=s=>String(s||'').replace(/\s+/g,' ').trim();
 const get=u=>fetch(u+'?t='+Date.now(),{cache:'no-store'}).then(r=>r.ok?r.json():null).catch(()=>null);
+const validTz=tz=>{if(!tz||typeof tz!=='string')return null;try{Intl.DateTimeFormat('en-US',{timeZone:tz}).format(new Date());return tz;}catch(e){return null;}};
 let storyT=null,storyAt=0,storyLabel='',storyTz='Africa/Lagos',lastSeat=null,pulse=false;const flash=()=>{const d=live.querySelector('.dot');if(d){d.classList.remove('fl');void d.offsetWidth;d.classList.add('fl')}};let real=[],seat='',arch=[],seatN=0,runId='run';
 const R=a=>a[Math.random()*a.length|0];
-async function load(first){const [st,tl,cf,lt]=await Promise.all([get('data/state.json'),get('data/timeline.json'),get('data/code_feed.json'),get('data/live_time.json')]);
- const L=[];if(lt){if(lt.story_time)storyLabel=String(lt.story_time);if(lt.tz)storyTz=String(lt.tz);}else if(!storyLabel&&st&&(st.story_time_label||st.story_time)){const raw=st.story_time_label||st.story_time;const parsed=new Date(raw);if(!isNaN(parsed)&&/T\d\d:/.test(String(raw))){storyT=parsed;storyAt=Date.now();}else storyLabel=String(raw);}if(st){runId=st.run||runId;seat=st.seats?st.seats.split(' ')[0]:(st.seated_count?st.seated_count+'/30':'');seatN=st.seated_count||0;
+async function load(first){try{const [st,tl,cf,lt]=await Promise.all([get('data/state.json'),get('data/timeline.json'),get('data/code_feed.json'),get('data/live_time.json')]);
+ const L=[];if(lt){if(lt.story_time)storyLabel=String(lt.story_time);const z=validTz(lt.tz);if(z)storyTz=z;}else if(!storyLabel&&st&&(st.story_time_label||st.story_time)){const raw=st.story_time_label||st.story_time;const parsed=new Date(raw);if(!isNaN(parsed)&&/T\d\d:/.test(String(raw))){storyT=parsed;storyAt=Date.now();}else storyLabel=String(raw);}if(st){runId=st.run||runId;seat=st.seats?st.seats.split(' ')[0]:(st.seated_count?st.seated_count+'/30':'');seatN=st.seated_count||0;
   if(st.current_card)L.push(`thryd.card = ${st.current_card}`);if(st.ticker&&st.ticker.line)L.push(clean(st.ticker.line).slice(0,140));}
  if(tl&&tl.events){for(const e of tl.events){const l=clean(e.label);if(!l||bad.test(l))continue;
   const k=e.kind;L.push(k==='move'?`>> ${l.replace(/^move /,'')}`:k==='theme'?`#thryd.importtheme("${l.replace(/^theme imported:? ?/,'')}")`:k==='scene'?`-- ${l}`:k==='miracle'?`!! miracle: ${l}`:`${k}: ${l}`);}}
@@ -23,14 +24,14 @@ async function load(first){const [st,tl,cf,lt]=await Promise.all([get('data/stat
   if(seat){ if(!seatEl){ seatEl=document.createElement('span'); seatEl.className='seat'; (extra||live).appendChild(seatEl); } seatEl.textContent='seats '+seat; if(pulse){ seatEl.classList.add('pulse'); } }
   else if(seatEl) seatEl.remove();
  }
- pulse=false; tick();}
+ pulse=false; try{tick();}catch(e){}}catch(e){try{tick();}catch(e2){}}}
 const syn=()=>{const j='j'+(1+Math.random()*30|0);return R([`>> thryd.db.seat(${j}) ok`,`scanning archive... ${900+Math.random()*600|0} lines`,`cooldown(line) = ${2+Math.random()*6|0} agendas`,`fetch state.json 200 ${20+Math.random()*80|0}ms`,`dice.roll(d20) = ${1+Math.random()*20|0}`,`${runId}.heartbeat()`,`gc: freed ${Math.random()*9|0}.${Math.random()*9|0}MB`,`seated ${seatN||'?'}/30 · queue ${Math.random()*4|0}`])};
 let ri=0,mvTurn=0;const next=()=>{const dl=window.__thrydDriftLines;if(dl&&dl.length&&!/phone\.html$/.test(location.pathname))return dl.shift();const mv=(++mvTurn%2===0&&window.thrydMoveNext)?window.thrydMoveNext():null;if(mv)return mv;return Math.random()<.55&&real.length?{t:real[ri++%real.length],a:true}:{t:syn(),a:false};};
 function type(){const n=next(),d=document.createElement('div');d.className=(n.a?'a ':'')+'cur';code.appendChild(d);
  while(code.children.length>60)code.firstChild.remove();let i=0;const s=n.t;
  const step=()=>{d.textContent=s.slice(0,++i);if(i<s.length)setTimeout(step,14+Math.random()*40);else{d.classList.remove('cur');if(n.note){const e=document.createElement('span');e.className='d';e.textContent='  // '+n.note;d.appendChild(e);}setTimeout(type,250+Math.random()*900)}};step();}
 function zoneAbbr(tz){try{const p=new Intl.DateTimeFormat('en-US',{timeZone:tz,timeZoneName:'short'}).formatToParts(new Date());const n=(p.find(x=>x.type==='timeZoneName')||{}).value||'';if(/^GMT|^UTC/i.test(n)&&tz==='Africa/Lagos')return 'WAT';return n||'WAT';}catch(e){return tz==='Africa/Lagos'?'WAT':'';}}
-function tick(){const tz=storyTz||'Africa/Lagos';const c=document.getElementById('clk');if(c){c.textContent=new Date().toLocaleTimeString('en-US',{timeZone:tz,hour12:false})+' '+zoneAbbr(tz);if(storyLabel)c.title=storyLabel;}const k=document.getElementById('sclk');if(k){if(storyLabel){k.textContent='· '+storyLabel;k.title=storyLabel;}else if(storyT&&!isNaN(storyT))k.textContent='· story '+new Date(storyT.getTime()+Date.now()-storyAt).toLocaleString('en-US',{weekday:'short',day:'numeric',month:'short',hour:'numeric',minute:'2-digit',second:'2-digit'});else k.textContent='';}}
+function tick(){const tz=validTz(storyTz)||'Africa/Lagos';try{const c=document.getElementById('clk');if(c){c.textContent=new Date().toLocaleTimeString('en-US',{timeZone:tz,hour12:false})+' '+zoneAbbr(tz);if(storyLabel)c.title=storyLabel;}const k=document.getElementById('sclk');if(k){if(storyLabel){k.textContent='· '+storyLabel;k.title=storyLabel;}else if(storyT&&!isNaN(storyT))k.textContent='· story '+new Date(storyT.getTime()+Date.now()-storyAt).toLocaleString('en-US',{weekday:'short',day:'numeric',month:'short',hour:'numeric',minute:'2-digit',second:'2-digit'});else k.textContent='';}}catch(e){}}
 // bottom ticker: real station names reporting #thryd news (Jesuye 11-12 7:05/7:06 PM). Events are only real #thryd data
 // (data/thryd_news.json from the state export: seats, typed jobs, major moves, drift; plus this page's own drift events). Names are text only.
 const ST=['CHANNELS TV','ARISE NEWS','TVC NEWS','AIT','NTA','PUNCH','VANGUARD','PREMIUM TIMES','THE GUARDIAN NIGERIA','CHANNELS TV','ARISE NEWS','TVC NEWS','BBC','CNN'];
@@ -52,10 +53,10 @@ function bulletin(i){const at=i.card?`${i.card}`:'the frame';
 async function loadNews(){const j=await get('data/thryd_news2.json')||await get('data/thryd_news.json');if(j&&Array.isArray(j.items)&&j.items.length)NEWS=j;}
 function localDrifts(){try{return (window.thrydMoves?thrydMoves.list():[]).filter(e=>e.type==='drift'&&Date.now()-Date.parse(e.client_ts)<3600e3).slice(-6).map(e=>({kind:'drift',what:(e.source&&e.source.cut)||e.label||'an object',
   from_scene:e.drift&&e.drift.kind==='arrive'?e.drift.from_scene:(e.source&&e.source.scene),to_scene:e.drift&&e.drift.kind==='leave'?'(travelling)':(e.source&&e.source.scene)}));}catch(e){return [];}}
-function lines(){if(/phone\.html$/.test(location.pathname))return null;const v2=NEWS&&NEWS.v>=2;
+function lines(){try{if(/phone\.html$/.test(location.pathname))return null;const v2=NEWS&&NEWS.v>=2;
   // v2 feeds are already headlines; this page's raw drift rows (cut ids, scene file names) read like code, so they stay out
   const it=[...(NEWS?NEWS.items:[])].sort(()=>Math.random()-.5).slice(0,v2?12:10).concat(v2?[]:localDrifts());if(!it.length)return null;
-  return it.map(bulletin).filter(Boolean).slice(0,14).map(b=>({st:ST[stI++%ST.length],b}));}
+  return it.map(i=>{try{return bulletin(i);}catch(e){return null;}}).filter(Boolean).slice(0,14).map(b=>({st:ST[stI++%ST.length],b}));}catch(e){return null;}}
 let span,x=0,lastT=0;const SPEED=/phone\.html$/.test(location.pathname)?66:26; // px per second (was 1.1px per animation frame ≈ 66px/s at 60Hz)
 function crawlNext(){if(!span){const t=document.createElement('i');t.textContent='#thryd news';crawl.appendChild(t);span=document.createElement('span');crawl.appendChild(span)}
   const L=lines();span.textContent='';
