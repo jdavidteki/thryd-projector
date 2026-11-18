@@ -7357,7 +7357,7 @@
   },
   "run-2eb42d": {
    "forked_from": "safe:9525b78aa7f3",
-   "head": "472b9abd4d",
+   "head": "e347e9bcfc",
    "commits": [
     {
      "id": "b1965e97d1",
@@ -7472,7 +7472,7 @@
      }
     },
     {
-     "id": "c87dd73464",
+     "id": "21767f20b7",
      "parent": "9315951941",
      "branch": "run-2eb42d",
      "job": "j6",
@@ -7760,16 +7760,24 @@
         "code": "bus.interactwith(example){ example.receives(bus.envelope); example.remembers(bisola, 'brown envelope'); }",
         "scope": null,
         "cause_id": null
+       },
+       {
+        "id": "wf_fde84ede18",
+        "object": "miami",
+        "kind": "consequence",
+        "code": "wser.interactwith(miami){ miami.receives(wser.envelope); miami.remembers(bisola, 'brown envelope'); }",
+        "scope": null,
+        "cause_id": null
        }
       ],
-      "facts_total": 35,
+      "facts_total": 36,
       "functions": [],
       "instances": []
      }
     },
     {
-     "id": "5a1b007cf5",
-     "parent": "c87dd73464",
+     "id": "1b17957d64",
+     "parent": "21767f20b7",
      "branch": "run-2eb42d",
      "job": "j7",
      "at": "2026-11-17T23:39:21-0500",
@@ -7816,8 +7824,8 @@
      }
     },
     {
-     "id": "800ce18f69",
-     "parent": "5a1b007cf5",
+     "id": "9c81ddffbd",
+     "parent": "1b17957d64",
      "branch": "run-2eb42d",
      "job": "j8",
      "at": "2026-11-17T23:36:43-0500",
@@ -7848,8 +7856,8 @@
      }
     },
     {
-     "id": "06f6bbc904",
-     "parent": "800ce18f69",
+     "id": "09b44e80e5",
+     "parent": "9c81ddffbd",
      "branch": "run-2eb42d",
      "job": "j16",
      "at": "2026-11-17T23:36:00-05:00",
@@ -7892,8 +7900,8 @@
      }
     },
     {
-     "id": "49f94a6a54",
-     "parent": "06f6bbc904",
+     "id": "914c974b71",
+     "parent": "09b44e80e5",
      "branch": "run-2eb42d",
      "job": "j17",
      "at": "2026-11-17T23:42:23-05:00",
@@ -7932,8 +7940,8 @@
      }
     },
     {
-     "id": "472b9abd4d",
-     "parent": "49f94a6a54",
+     "id": "e347e9bcfc",
+     "parent": "914c974b71",
      "branch": "run-2eb42d",
      "job": "j29",
      "at": "2026-11-18T00:20:20-0500",
@@ -8395,9 +8403,9 @@
   "run-9e59ca": "59f544b8d8",
   "run-5a58c4": "9d51450826",
   "run-g1-B": "3542a65307",
-  "run-2eb42d": "472b9abd4d",
+  "run-2eb42d": "e347e9bcfc",
   "run-cb805f": "8d23a93627"
  },
  "commits": 92,
- "updated": "2026-11-18T08:21:41-05:00"
+ "updated": "2026-11-18T08:22:33-05:00"
 }
