@@ -1873,16 +1873,6 @@
 ],
 "ronke": [
 {
-"id": "wf_402676b7e2",
-"kind": "consequence",
-"text": "The ronke leaves with an Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am.",
-"code": "computer_village.interactwith(ronke){ ronke.receives(computer_village.shirt); ronke.remembers(bisola, 'green shirt'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j8",
-"other": "computer_village"
-},
-{
 "id": "wf_48c726544c",
 "kind": "consequence",
 "text": "The ronke leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
@@ -1920,6 +1910,16 @@
 "author": "projector",
 "run": "run-2eb42d",
 "card": "w18",
+"other": null
+},
+{
+"id": "wt_49f6572c66",
+"kind": "func_call",
+"text": "The customer typed ronke.getlikes().contains(kazeem.goodqualities), which ran as ronke.getlikes().filter(q => kazeem.goodqualities.includes(q)) on run-2eb42d j29. It came back: punctual, generous, funny. Implementation: function filterQualities(){\n  const value = [\"punctual\",\"generous\",\"funny\"];\n  learned.ronke.overlap = value;\n  return value;\n}.",
+"code": "ronke.getlikes().filter(q => kazeem.goodqualities.includes(q));",
+"author": "customer",
+"run": "run-2eb42d",
+"card": "j29",
 "other": null
 }
 ],
@@ -6821,16 +6821,6 @@
 ],
 "mama_ronke": [
 {
-"id": "wf_5abcc396f0",
-"kind": "consequence",
-"text": "The mama ronke leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
-"code": "ttb.interactwith(mama_ronke){ mama_ronke.receives(ttb.code); mama_ronke.remembers(ejiro, 'juju code'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j2",
-"other": "ttb"
-},
-{
 "id": "wf_3da0fbc31d",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the juju code at the mama ronke, and Ejiro reads the name twice.",
@@ -6859,6 +6849,16 @@
 "run": "run-2eb42d",
 "card": "",
 "other": null
+},
+{
+"id": "wf_4888599611",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the Mama Ronke, which is still present.",
+"code": "move.interactwith(mama_ronke){ mama_ronke.receives(move.envelope); mama_ronke.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "move"
 },
 {
 "id": "wt_836e6dea8e",
@@ -7003,6 +7003,16 @@
 "run": "run-2eb42d",
 "card": "j2",
 "other": "ttb"
+},
+{
+"id": "wt_c45d96d2c5",
+"kind": "func_call",
+"text": "The customer typed [[mkdwo]] on run-2eb42d j29.",
+"code": "[[mkdwo]];",
+"author": "customer",
+"run": "run-2eb42d",
+"card": "j29",
+"other": null
 }
 ],
 "asmathic": [
@@ -7622,31 +7632,79 @@
 "card": "j6",
 "other": "computer_village"
 }
+],
+"new": [
+{
+"id": "wt_02f05f26cd",
+"kind": "func_call",
+"text": "The customer typed new business() on run-2eb42d j29. It came back: New business. Implementation: function business(){\n  NEW_BUSINESS_COUNT += 1;\n  this.lastBusiness = \"New business\";\n  return \"New business\";\n}.",
+"code": "new business();",
+"author": "customer",
+"run": "run-2eb42d",
+"card": "j29",
+"other": null
+}
+],
+"cli": [
+{
+"id": "wt_84f47bd0b4",
+"kind": "func_call",
+"text": "The customer typed b2() on run-2eb42d j29. It came back: b2(). Implementation: /* b2() */. cli now has cli.cli as a method on this agenda, and it can be called again.",
+"code": "b2();",
+"author": "customer",
+"run": "run-2eb42d",
+"card": "j29",
+"other": null
+}
+],
+"qa_cli": [
+{
+"id": "wt_881983ad0e",
+"kind": "func_call",
+"text": "The customer typed qa568cli.nullfallback() on run-2eb42d j29. It came back: Qa568cli nullfallback. Implementation: function nullfallback(){\n  QA568CLI_NULLFALLBACK_COUNT += 1;\n  this.lastNullfallback = \"Qa568cli nullfallback\";\n  return \"Qa568cli nullfallback\";\n}. qa568cli now has qa568cli.nullfallback as a method on this agenda, and it can be called again.",
+"code": "qa568cli.nullfallback();",
+"author": "customer",
+"run": "run-2eb42d",
+"card": "j29",
+"other": null
+},
+{
+"id": "wt_681503e55a",
+"kind": "func_call",
+"text": "The customer typed qa568cli.dragfallback(). qa568cli now has qa568cli.dragfallback as a method on this agenda, and it can be called again.",
+"code": "qa568cli.dragfallback();",
+"author": "customer",
+"run": null,
+"card": null,
+"other": null
+}
+],
+"qa_forced": [
+{
+"id": "wt_4c2c5924aa",
+"kind": "func_call",
+"text": "The customer typed qa568forced.parseboom() on run-2eb42d j29. It came back: Qa568forced parseboom. Implementation: function parseboom(){\n  QA568FORCED_PARSEBOOM_COUNT += 1;\n  this.lastParseboom = \"Qa568forced parseboom\";\n  return \"Qa568forced parseboom\";\n}. qa568forced now has qa568forced.parseboom as a method on this agenda, and it can be called again.",
+"code": "qa568forced.parseboom();",
+"author": "customer",
+"run": "run-2eb42d",
+"card": "j29",
+"other": null
+}
+],
+"precision": [
+{
+"id": "wf_26b8e9c5b2",
+"kind": "consequence",
+"text": "The precision leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "lie.interactwith(precision){ precision.receives(lie.envelope); precision.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "lie"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_771c449363",
-"ts": "2026-11-18T11:08:50-0500",
-"a": "uch",
-"b": "notnotnotnotyn_sep",
-"code": "uch.interactwith(notnotnotnotyn_sep){ notnotnotnotyn_sep.receives(uch.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the notnotnotnotyn sep, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
-"id": "wf_8c7e3d6dd3",
-"ts": "2026-11-18T11:09:43-0500",
-"a": "ikorodu_marina",
-"b": "ojuelegba_bus_stop",
-"code": "ikorodu_marina.interactwith(ojuelegba_bus_stop){ ojuelegba_bus_stop.receives(ikorodu_marina.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the ojuelegba bus stop, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
 {
 "id": "wf_9788872028",
 "ts": "2026-11-18T11:10:35-0500",
@@ -8064,6 +8122,28 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_4888599611",
+"ts": "2026-11-18T12:52:18-0500",
+"a": "move",
+"b": "mama_ronke",
+"code": "move.interactwith(mama_ronke){ mama_ronke.receives(move.envelope); mama_ronke.remembers(bisola, 'brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the Mama Ronke, which is still present.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
+},
+{
+"id": "wf_26b8e9c5b2",
+"ts": "2026-11-18T12:57:03-0500",
+"a": "lie",
+"b": "precision",
+"code": "lie.interactwith(precision){ precision.receives(lie.envelope); precision.remembers(bisola, 'brown envelope'); }",
+"text": "The precision leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -8167,5 +8247,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T12:51:25-0500"
+"updated": "2026-11-18T12:57:03-0500"
 }
