@@ -7,26 +7,40 @@ window.thrydNetFetch=window.thrydNetFetch||(()=>{let open=0,wait=[];
   return (url,opt,ms,prio)=>take(prio||'normal').then(()=>{const ac=typeof AbortController==='function'?new AbortController():null;const t=setTimeout(()=>{try{ac&&ac.abort();}catch(e){}},ms||20000);
     return fetch(url,Object.assign({},opt||{},ac?{signal:ac.signal}:{})).then(r=>r.text().then(tx=>({ok:r.ok,status:r.status,retryAfter:r.headers&&r.headers.get&&r.headers.get('Retry-After')||null,text:()=>Promise.resolve(tx),json:()=>Promise.resolve().then(()=>JSON.parse(tx))})))
       .finally(()=>{clearTimeout(t);give();});});})();
-// Call/CLI outbox (18 Nov 2026): typelines are persisted and retried with backoff (honours Retry-After)
-// until a 2xx. The page says "queued, retrying" and never "not sent" for a busy or 429 ntfy topic.
+// Shared ntfy POST for taps and typelines (18 Nov 2026 11:09 AM ET). Call/CLI posts bypass the
+// 4-slot limiter (the same limiter was skipping typelines as ntfy_busy while drift held the slots)
+// and use a plain fetch with a 20s abort, just like a successful tap.
+window.thrydDrag=function(){try{const c=window.thrydCtx&&window.thrydCtx();return (c&&c.DRAG)||window.DRAG||null;}catch(e){return null;}};
+window.thrydCallsQueued=function(){if(window.__thrydCallHold)return true;try{const box=JSON.parse(localStorage.getItem('thryd_call_outbox_v1')||'[]');return Array.isArray(box)&&box.some(i=>i&&!i.done&&i.status!=='sent');}catch(e){return false;}};
+window.thrydNtfyPost=async function(body, kind){
+  const DG=window.thrydDrag&&window.thrydDrag();
+  if(!DG||!DG.endpoint||DG.transport!=='ntfy'){const e=new Error('no_endpoint');e.status='no_endpoint';throw e;}
+  let payload=body||{};
+  try{if(JSON.stringify(payload).length>3900){payload=Object.assign({},payload);delete payload.impl;delete payload.const_diff;delete payload.ran_as;delete payload.body_v;}}catch(e){}
+  const ac=typeof AbortController==='function'?new AbortController():null;
+  const t=setTimeout(()=>{try{ac&&ac.abort();}catch(e){}},20000);
+  try{
+    const r=await fetch(DG.endpoint,Object.assign({method:'POST',body:JSON.stringify(payload)},ac?{signal:ac.signal}:{}));
+    const tx=await r.text();
+    return {ok:r.ok,status:r.status,retryAfter:r.headers&&r.headers.get&&r.headers.get('Retry-After')||null,text:()=>Promise.resolve(tx),json:()=>Promise.resolve().then(()=>JSON.parse(tx))};
+  }finally{clearTimeout(t);}
+};
 window.thrydEnqueueCall=window.thrydEnqueueCall||(function(){
   const KEY='thryd_call_outbox_v1';
   let box=[], pumping=false;
   const load=()=>{try{box=JSON.parse(localStorage.getItem(KEY)||'[]')||[];}catch(e){box=[];}if(!Array.isArray(box))box=[];};
-  const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(box.slice(-40)));}catch(e){}};
-  load();
+  const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(box.slice(-40)));}catch(e){}window.__thrydCallHold=box.some(i=>i&&!i.done&&i.status!=='sent');};
+  load(); save();
   const waiters={};
-  const retryMs=(r,attempts)=>{const h=r&&r.retryAfter;if(h){const n=parseInt(h,10);if(isFinite(n))return Math.min(60000,Math.max(500,n*1000));const d=Date.parse(h);if(isFinite(d))return Math.min(60000,Math.max(500,d-Date.now()));}return Math.min(30000,1000*Math.pow(2,Math.min(8,attempts||0)));};
+  const retryMs=(r,attempts)=>{const h=r&&r.retryAfter;if(h){const n=parseInt(h,10);if(isFinite(n))return Math.min(60000,Math.max(500,n*1000));const d=Date.parse(h);if(isFinite(d))return Math.min(60000,Math.max(500,d-Date.now()));}return Math.min(15000,800*Math.pow(2,Math.min(6,attempts||0)));};
   const notify=(item,status,val)=>{const w=waiters[item.id];if(w&&w.opts&&w.opts.onStatus)try{w.opts.onStatus(status,item);}catch(e){}
     if(status==='sent'&&w){delete waiters[item.id];w.resolve(val||item);} };
-  const drag=()=>{try{const c=window.thrydCtx&&window.thrydCtx();return (c&&c.DRAG)||window.DRAG||null;}catch(e){return null;}};
   async function pump(){if(pumping)return;pumping=true;try{load();const now=Date.now();
     for(const item of box){if(!item||item.done||item.status==='sent')continue;if((item.nextAt||0)>now)continue;
       item.attempts=(item.attempts||0)+1;item.status='retrying';save();notify(item,'retrying');
-      const DG=drag();if(!DG||!DG.endpoint||DG.transport!=='ntfy'){item.status='queued';item.nextAt=Date.now()+1500;item.lastError='no_endpoint';save();notify(item,'retrying');continue;}
       try{
-        const r=await window.thrydNetFetch(DG.endpoint,{method:'POST',body:JSON.stringify(item.body)},20000,'call');
-        if(r&&r.ok){item.status='sent';item.done=true;item.sentAt=new Date().toISOString();save();notify(item,'sent',r);continue;}
+        const r=await window.thrydNtfyPost(item.body,'call');
+        if(r&&r.ok){item.status='sent';item.done=true;item.sentAt=new Date().toISOString();item.lastError=null;save();notify(item,'sent',r);continue;}
         item.status='queued';item.nextAt=Date.now()+retryMs(r,item.attempts);item.lastError=r?('HTTP '+r.status):'no_response';save();notify(item,'retrying');
       }catch(e){item.status='queued';item.nextAt=Date.now()+retryMs(null,item.attempts);item.lastError=String(e&&e.message||e);save();notify(item,'retrying');}
     }
@@ -36,7 +50,8 @@ window.thrydEnqueueCall=window.thrydEnqueueCall||(function(){
   setTimeout(()=>{pump().catch(()=>{});},400);
   return function enqueue(body,opts){opts=opts||{};const id=String((body&&(body.event_id||body.rid))||('out-'+Date.now()));
     load();let item=box.find(i=>i&&i.id===id);
-    if(!item){item={id,body,status:'queued',attempts:0,nextAt:0,at:new Date().toISOString()};box.push(item);save();}
+    if(!item){item={id,body,status:'queued',attempts:opts.attempts||0,nextAt:opts.nextAt||0,lastError:opts.lastError||null,at:new Date().toISOString()};box.push(item);save();}
+    window.__thrydCallHold=true;
     return new Promise(resolve=>{waiters[id]={resolve,opts};pump().catch(()=>{});});};
 })();
 const LIVE_STATE=async()=>{try{const r=await fetch('https://raw.githubusercontent.com/jdavidteki/thryd-projector/main/data/state.json?t='+Date.now(),{cache:'no-store'});if(!r.ok)throw 0;return await r.json();}catch(e){try{const r=await fetch('data/state.json?_='+Date.now(),{cache:'no-store'});if(!r.ok)throw 0;return await r.json();}catch(e2){throw e2;}}};
@@ -683,8 +698,12 @@ const MOVES=(()=>{const KEY='thryd_moves_v1',MAX=400;let box=null;
     const b={event_id:ev.event_id,rid:ev.event_id+'-r',run,frame:fr,object_id:null,scene:s.scene,cut:s.cut,raw:{unit:'percent',from:ev.from,to:ev.to},normalized:{unit:'frame',from:f,to:t,clamped:cl},
       current_card:a.card?String(a.card).toLowerCase():null,client_ts:ev.client_ts,cut_meta:meta};
     return {body:b,medium:true};};
+  let lastDE=0;const DRIFT_POST_GAP=60000; // all automatic drift shares one ntfy slot per minute; calls, taps, and real drags are reserved the rest of the budget
+  const driftHeld=()=>!!(window.thrydCallsQueued&&window.thrydCallsQueued());
+  const driftBudgetOk=()=>!driftHeld()&&(Date.now()-(lastDE||0)>=DRIFT_POST_GAP);
   const ntfySend=async body=>{if(!DRAG||!DRAG.endpoint||DRAG.transport!=='ntfy')throw new Error('no drag endpoint');
-    const t0=Math.floor(Date.now()/1000)-5;const r=await thrydNetFetch(DRAG.endpoint,{method:'POST',body:JSON.stringify(body)},20000,body&&body.type==='drift'?'drift':'normal');if(!r.ok)throw new Error('ntfy HTTP '+r.status);
+    if(body&&body.type==='drift'){if(driftHeld())throw new Error('drift_paused_for_call');if(!driftBudgetOk())throw new Error('drift_throttle');lastDE=Date.now();}
+    const t0=Math.floor(Date.now()/1000)-5;const r=(body&&body.type==='call'&&window.thrydNtfyPost)?await window.thrydNtfyPost(body,'call'):await thrydNetFetch(DRAG.endpoint,{method:'POST',body:JSON.stringify(body)},20000,body&&body.type==='drift'?'drift':'normal');if(!r.ok)throw new Error('ntfy HTTP '+r.status+(r.retryAfter?(' retry-after '+r.retryAfter):''));
     for(const w of [2000,4000,8000,16000,30000]){await new Promise(z=>setTimeout(z,w));   // light polling, stops on the ack
       try{const tx=await (await thrydNetFetch(DRAG.reply+'/json?poll=1&since='+t0,{cache:'no-store'})).text();
         for(const l of tx.split('\n')){if(!l)continue;let m;try{m=JSON.parse(l);m=JSON.parse(m.message||'{}');}catch(e){continue;}if(m.rid===body.rid||m.event_id===body.event_id)return m;}}catch(e){}}
@@ -694,6 +713,7 @@ const MOVES=(()=>{const KEY='thryd_moves_v1',MAX=400;let box=null;
     const b=bodyFor(ev);if(!b.body){ev.emit=Object.assign({},ev.emit||{},{status:'held',reason:b.hold});save();return;}
     // QA: nothing is sent, except an explicit QA test of the Medium create path (window.__THRYD_QA_SEND_MEDIUM), flagged cut_meta.test:true
     if(qaOn()&&!(b.medium&&window.__THRYD_QA_SEND_MEDIUM&&(ev.qa_send=true)&&(b.body=bodyFor(ev).body))){ev.emit={status:'qa_not_sent',body:b.body,medium:!!b.medium};save();return;}
+    if(ev.type==='drift'){if(driftHeld()){ev.emit={status:'held',reason:'drift_paused_for_call'};save();return;}if(!driftBudgetOk()){ev.emit={status:'held',reason:'drift_throttle'};save();return;}}
     ev.emit=Object.assign({},ev.emit||{},{status:'sending',attempts:((ev.emit&&ev.emit.attempts)||0)+1,at:new Date().toISOString()});if(b.medium)ev.emit.medium=true;save();
     const m=await ntfySend(b.body);
     ev.emit=Object.assign(ev.emit,m?{status:m.status||(m.ok?'accepted':'rejected'),committed:m.committed===true,reply:m}:{status:'no_reply'});
@@ -702,11 +722,11 @@ const MOVES=(()=>{const KEY='thryd_moves_v1',MAX=400;let box=null;
     if(m&&m.kind==='drift'&&m.code&&!/phone\.html$/.test(location.pathname)&&/\.(?:meets|interactwith|passes|approaches|leaves|leavesfrom|arrivesat|remembers)\(/.test(String(m.code))&&!/\bcut\d+\b/.test(String(m.code))){(window.__thrydDriftLines=window.__thrydDriftLines||[]).push({t:String(m.code).slice(0,160)+';',a:true,note:'drift ack · engine logged it · no consequence'});}
   }catch(e){ev.emit=Object.assign({},ev.emit||{},{status:'failed',reason:String(e&&e.message||e)});}save();};
   // retry queue: unanswered sends go again (idempotent by event_id), at most 6 tries, every 2 minutes
-  setInterval(()=>{box.events.filter(e=>e.emit&&(e.emit.status==='no_reply'||e.emit.status==='failed'||e.emit.status==='sending')&&(e.emit.attempts||0)<6&&Date.now()-Date.parse(e.emit.at||0)>110000).slice(0,3).forEach(e=>emit(e));
+  setInterval(()=>{box.events.filter(e=>e.type!=='drift'&&e.emit&&(e.emit.status==='no_reply'||e.emit.status==='failed'||e.emit.status==='sending')&&(e.emit.attempts||0)<6&&Date.now()-Date.parse(e.emit.at||0)>110000).slice(0,3).forEach(e=>emit(e));
     // unmapped Medium drags the engine could not map yet: try again every 10 min, up to 30 tries (only ones this build sent, never older holds)
     box.events.filter(e=>e.emit&&e.emit.retry&&e.emit.status==='held'&&e.emit.reason==='unmapped'&&(e.emit.attempts||0)<30&&Date.now()-Date.parse(e.emit.at||0)>600000).slice(0,2).forEach(e=>emit(e));},120000);
-  let lastDE=0;const driftSentAt={},driftPending={};
-  setInterval(()=>{const now=Date.now();Object.keys(driftPending).forEach(k=>{const p=driftPending[k];if(!p||now-(driftSentAt[k]||0)<4000)return;delete driftPending[k];driftSentAt[k]=now;if(p.ev){p.ev.emit={status:'sending'};emit(p.ev);}});},1000);
+  const driftSentAt={},driftPending={};
+  setInterval(()=>{if(!driftBudgetOk())return;const keys=Object.keys(driftPending);if(!keys.length)return;const k=keys[keys.length-1];keys.forEach(x=>{const p=driftPending[x];if(x!==k&&p&&p.ev)p.ev.emit={status:'held',reason:'drift_dropped'};delete driftPending[x];});const p=driftPending[k];delete driftPending[k];if(p&&p.ev)emit(p.ev);},2000);
   function record(inp){try{
     const scene=inp.scene||null, ev={v:1,type:inp.type||'move',event_id:uid(),client_ts:new Date().toISOString(),
       source:{scene,scene_kind:inp.scene_kind||null,cut:inp.cut||null,cut_index:inp.cut_index==null?null:inp.cut_index,klass:inp.klass||null,source_frame_index:inp.source_frame_index==null?null:inp.source_frame_index,frame_count:inp.frame_count||null,run:inp.run||runOfKey(scene)||null,...(inp.visitor_in?{visitor_in:inp.visitor_in}:{}),frame:((String(scene||'').match(/(?:^|[^A-Za-z0-9])(j\d+)(?![0-9])/)||[])[1])||null,place_key:inp.place_key||null},
@@ -717,10 +737,9 @@ const MOVES=(()=>{const KEY='thryd_moves_v1',MAX=400;let box=null;
     if(ev.type==='drift')ev.drift={kind:inp.kind||'wander',from_scene:inp.from_scene||null,from_title:inp.from_title||null,edge:inp.edge||null,...(inp.kind==='meet'?{with:inp.with||null,verb:inp.verb||null,with_scene:inp.with_scene||null}:{}),note:'automatic trip: recorded and shown as code, never a customer move, never changes the story'};
     const ks=keysOf(ev);if(ev.type!=='drift')ev.caused_by=box.events.filter(p=>p.type!=='consequence'&&p.type!=='drift'&&p.object_key===ev.object_key&&p.event_id!==ev.event_id).slice(-3).map(p=>p.event_id);
     box.events.push(ev);save();
-    if(ev.type==='drift'){const dk=String(ev.object_key||ev.object_id||ev.label||(ev.source&&ev.source.cut)||'object').toLowerCase();const now=Date.now();const gap=4000;const last=driftSentAt[dk]||0;
-      if(ev.drift&&ev.drift.kind==='wander'&&now-lastDE<60000){ev.emit={status:'held',reason:'drift_throttle'};save();return ev;}
-      if(now-last<gap){if(driftPending[dk]&&driftPending[dk].ev)driftPending[dk].ev.emit={status:'held',reason:'drift_dropped'};ev.emit={status:'held',reason:'drift_coalesce'};driftPending[dk]={ev,at:now};save();return ev;}
-      if(ev.drift&&ev.drift.kind==='wander')lastDE=now;driftSentAt[dk]=now;delete driftPending[dk];emit(ev);return ev;}
+    if(ev.type==='drift'){if(driftHeld()){ev.emit={status:'held',reason:'drift_paused_for_call'};save();return ev;}
+      if(!driftBudgetOk()){if(driftPending._one&&driftPending._one.ev&&driftPending._one.ev!==ev)driftPending._one.ev.emit={status:'held',reason:'drift_dropped'};ev.emit={status:'held',reason:'drift_throttle'};driftPending._one={ev,at:Date.now()};save();return ev;}
+      emit(ev);return ev;}
     emit(ev);
     const n=box.events.filter(p=>p.type!=='consequence'&&p.type!=='drift'&&p.object_key===ev.object_key).length;
     show(`● ${ev.label||ev.object_key} ${ev.type==='setlocation'?'→ '+short(ev.place||''):'moved'} · saved${n>1?' · move '+n+' for '+ev.object_key:''}`);

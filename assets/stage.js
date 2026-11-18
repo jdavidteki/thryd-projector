@@ -2521,17 +2521,42 @@
     const ctx = root.thrydCtx ? root.thrydCtx() : {}, toast = ctx.toast || (()=>{}), DG = ctx.DRAG;
     if(root.thrydQA && root.thrydQA.log){ try{ root.thrydQA.log({kind: 'methodCall', ...body}); }catch(e){} }
     if(root.thrydQA && root.thrydQA.on && root.thrydQA.on()){ rec.status = 'qa_not_sent'; toast(code + ' (QA: not sent)'); return rec; }
-    if(!DG || !DG.endpoint || DG.transport !== 'ntfy'){ rec.status = 'queued'; toast(code + ' · queued, retrying'); }
     const net = root.thrydNetFetch || ((u, o)=> fetch(u, o));
     const enqueue = root.thrydEnqueueCall;
+    const post = root.thrydNtfyPost;
+    const statusToast = item => { const err = item && item.lastError; toast(code + ' · ' + (err ? ('retrying · ' + err) : 'queued, retrying')); };
     try{
-      rec.status = 'queued';
+      rec.status = 'sending';
       const t0 = Math.floor(Date.now() / 1000) - 5;
-      if(enqueue){
-        await enqueue(body, {onStatus: s => { rec.status = s; if(s === 'retrying') toast(code + ' · queued, retrying'); }});
+      let ok = false;
+      // First attempt: same ntfy POST the working tap path uses (thrydNtfyPost / ntfySend).
+      if(post){
+        try{
+          const r = await post(body, 'call');
+          if(r && r.ok) ok = true;
+          else {
+            rec.status = 'queued';
+            statusToast({lastError: r ? ('HTTP ' + r.status) : 'no_response'});
+            if(!enqueue) throw new Error(r ? ('HTTP ' + r.status) : 'no_response');
+            const ra = r && r.retryAfter; let wait = 2000; if(ra){ const n = parseInt(ra, 10); wait = isFinite(n) ? Math.min(60000, Math.max(500, n * 1000)) : 2000; }
+            await enqueue(body, {attempts: 1, nextAt: Date.now() + wait, lastError: r ? ('HTTP ' + r.status) : 'no_response', onStatus: (s, item) => { rec.status = s; if(s === 'retrying' || s === 'queued') statusToast(item); }});
+            ok = true;
+          }
+        }catch(e){
+          rec.status = 'queued';
+          statusToast({lastError: String(e && e.message || e)});
+          if(!enqueue) throw e;
+          await enqueue(body, {attempts: 1, nextAt: Date.now() + 1500, lastError: String(e && e.message || e), onStatus: (s, item) => { rec.status = s; if(s === 'retrying' || s === 'queued') statusToast(item); }});
+          ok = true;
+        }
+      } else if(enqueue){
+        await enqueue(body, {onStatus: (s, item) => { rec.status = s; if(s === 'retrying' || s === 'queued') statusToast(item); }});
+        ok = true;
       } else {
-        const r = await net(DG.endpoint, {method: 'POST', body: JSON.stringify(body)}, 20000, 'call'); if(!r || !r.ok) throw new Error(r ? ('relay HTTP ' + r.status) : 'ntfy_busy');
+        const r = await net(DG.endpoint, {method: 'POST', body: JSON.stringify(body)}, 20000, 'normal'); if(!r || !r.ok) throw new Error(r ? ('HTTP ' + r.status) : 'ntfy_busy');
+        ok = true;
       }
+      if(!ok) throw new Error('not posted');
       rec.status = 'sent';
       toast(code + ' → box…');
       for(const w of [1500, 2500, 4000, 8000, 16000]){ await sleep(w);
