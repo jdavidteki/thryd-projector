@@ -7365,7 +7365,7 @@
   },
   "run-2eb42d": {
    "forked_from": "safe:9525b78aa7f3",
-   "head": "aa1144f854",
+   "head": "126f6e5e15",
    "commits": [
     {
      "id": "b1965e97d1",
@@ -7504,7 +7504,7 @@
      }
     },
     {
-     "id": "24a631f85d",
+     "id": "c75b9769ee",
      "parent": "bc1b2559d0",
      "branch": "run-2eb42d",
      "job": "j6",
@@ -7872,16 +7872,24 @@
         "code": "icsh.interactwith(kerosene_lamp){ kerosene_lamp.receives(icsh.envelope); kerosene_lamp.remembers(bisola, 'brown envelope'); }",
         "scope": null,
         "cause_id": null
+       },
+       {
+        "id": "wf_0cf64fabc7",
+        "object": "jetty_south_pointe",
+        "kind": "consequence",
+        "code": "surulere_party_hall.interactwith(jetty_south_pointe){ jetty_south_pointe.receives(surulere_party_hall.envelope); jetty_south_pointe.remember",
+        "scope": null,
+        "cause_id": null
        }
       ],
-      "facts_total": 45,
+      "facts_total": 46,
       "functions": [],
       "instances": []
      }
     },
     {
-     "id": "25d3811eed",
-     "parent": "24a631f85d",
+     "id": "336ca000d1",
+     "parent": "c75b9769ee",
      "branch": "run-2eb42d",
      "job": "j7",
      "at": "2026-11-17T23:39:21-0500",
@@ -7928,8 +7936,8 @@
      }
     },
     {
-     "id": "2b76a10390",
-     "parent": "25d3811eed",
+     "id": "6c8ab07e1c",
+     "parent": "336ca000d1",
      "branch": "run-2eb42d",
      "job": "j8",
      "at": "2026-11-17T23:36:43-0500",
@@ -7960,8 +7968,8 @@
      }
     },
     {
-     "id": "7543359e16",
-     "parent": "2b76a10390",
+     "id": "b57b14504a",
+     "parent": "6c8ab07e1c",
      "branch": "run-2eb42d",
      "job": "j16",
      "at": "2026-11-17T23:36:00-05:00",
@@ -8004,16 +8012,49 @@
      }
     },
     {
-     "id": "e79d6aa0a0",
-     "parent": "7543359e16",
+     "id": "43e3866ce9",
+     "parent": "b57b14504a",
      "branch": "run-2eb42d",
      "job": "j17",
      "at": "2026-11-17T23:42:23-05:00",
      "genre": "rising",
      "beat": "chase",
      "diff": {
-      "facts": [],
-      "facts_total": 0,
+      "facts": [
+       {
+        "id": "wt_8dab0d12cf",
+        "object": "yorubbbygehinny",
+        "kind": "func_call",
+        "code": "yorubbbygehinny.getAgenda();",
+        "scope": "env",
+        "cause_id": null
+       },
+       {
+        "id": "wt_37357c6d4e",
+        "object": "hear",
+        "kind": "func_call",
+        "code": "hear.hears(mushin_subject, 'getAgenda');",
+        "scope": "ripple",
+        "cause_id": "wt_8dab0d12cf"
+       },
+       {
+        "id": "wt_b6604687ff",
+        "object": "kazeem",
+        "kind": "func_call",
+        "code": "kazeem.hears(mushin_subject, 'getAgenda');",
+        "scope": "ripple",
+        "cause_id": "wt_8dab0d12cf"
+       },
+       {
+        "id": "wt_87cd2db7d8",
+        "object": "mamaronke",
+        "kind": "func_call",
+        "code": "mamaronke.hears(mushin_subject, 'getAgenda');",
+        "scope": "ripple",
+        "cause_id": "wt_8dab0d12cf"
+       }
+      ],
+      "facts_total": 4,
       "functions": [
        {
         "func": "pepu.setmany",
@@ -8044,8 +8085,8 @@
      }
     },
     {
-     "id": "aa1144f854",
-     "parent": "e79d6aa0a0",
+     "id": "126f6e5e15",
+     "parent": "43e3866ce9",
      "branch": "run-2eb42d",
      "job": "j29",
      "at": "2026-11-18T00:20:20-0500",
@@ -8523,9 +8564,9 @@
   "run-9e59ca": "59f544b8d8",
   "run-5a58c4": "1f46bfbaa7",
   "run-g1-B": "3542a65307",
-  "run-2eb42d": "aa1144f854",
+  "run-2eb42d": "126f6e5e15",
   "run-cb805f": "8d23a93627"
  },
  "commits": 92,
- "updated": "2026-11-18T09:19:39-05:00"
+ "updated": "2026-11-18T09:26:40-05:00"
 }
