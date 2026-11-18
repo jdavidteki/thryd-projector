@@ -7349,7 +7349,7 @@
   },
   "run-2eb42d": {
    "forked_from": "safe:9525b78aa7f3",
-   "head": "19825a9cab",
+   "head": "2094259e75",
    "commits": [
     {
      "id": "b1965e97d1",
@@ -7400,7 +7400,7 @@
      }
     },
     {
-     "id": "cd4859f10d",
+     "id": "1b8430a500",
      "parent": "f0375af628",
      "branch": "run-2eb42d",
      "job": "j6",
@@ -7432,16 +7432,24 @@
         "code": "move.interactwith(b_md){ b_md.receives(move.envelope); b_md.remembers(bisola, 'brown envelope'); }",
         "scope": null,
         "cause_id": null
+       },
+       {
+        "id": "wf_050b0569d2",
+        "object": "yuwa",
+        "kind": "consequence",
+        "code": "namco.interactwith(yuwa){ yuwa.receives(namco.envelope); yuwa.remembers(bisola, 'brown envelope'); }",
+        "scope": null,
+        "cause_id": null
        }
       ],
-      "facts_total": 3,
+      "facts_total": 4,
       "functions": [],
       "instances": []
      }
     },
     {
-     "id": "354955d0ae",
-     "parent": "cd4859f10d",
+     "id": "dd9b0d897c",
+     "parent": "1b8430a500",
      "branch": "run-2eb42d",
      "job": "j7",
      "at": "2026-11-17T23:39:21-0500",
@@ -7464,8 +7472,8 @@
      }
     },
     {
-     "id": "fbd0474af6",
-     "parent": "354955d0ae",
+     "id": "c301e11575",
+     "parent": "dd9b0d897c",
      "branch": "run-2eb42d",
      "job": "j8",
      "at": "2026-11-17T23:36:43-0500",
@@ -7496,8 +7504,8 @@
      }
     },
     {
-     "id": "bd4371b9a2",
-     "parent": "fbd0474af6",
+     "id": "839a1cd2c9",
+     "parent": "c301e11575",
      "branch": "run-2eb42d",
      "job": "j16",
      "at": "2026-11-17T23:36:00-05:00",
@@ -7540,8 +7548,8 @@
      }
     },
     {
-     "id": "19825a9cab",
-     "parent": "bd4371b9a2",
+     "id": "2094259e75",
+     "parent": "839a1cd2c9",
      "branch": "run-2eb42d",
      "job": "j17",
      "at": "2026-11-17T23:42:23-05:00",
@@ -7995,9 +8003,9 @@
   "run-9e59ca": "59f544b8d8",
   "run-5a58c4": "17d819bcef",
   "run-g1-B": "ba26d490e3",
-  "run-2eb42d": "19825a9cab",
+  "run-2eb42d": "2094259e75",
   "run-cb805f": "8d23a93627"
  },
  "commits": 89,
- "updated": "2026-11-17T23:56:50-05:00"
+ "updated": "2026-11-17T23:57:42-05:00"
 }
