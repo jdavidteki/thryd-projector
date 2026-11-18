@@ -2,7 +2,7 @@
 //   off   default; nothing plays
 //   lofi  a short list of Creative Commons / free-to-stream stations, starting with ABM Lofi
 //         (https://radio.audiobookmanager.com/), then Frekvenci Chill and freeCodeCamp Code Radio
-//   yoki  africariyoki songs, picked to match the live job by assets/yoki_dj.js (shuffled only as a fallback), from the africariyoki songs API (www.africariyoki.com/api/songs.json; until that PR is
+//   yoki  africariyoki songs, shuffled (Fisher–Yates over the full catalog via assets/yoki_dj.js; bag kept in localStorage), from the africariyoki songs API (www.africariyoki.com/api/songs.json; until that PR is
 //         merged, the PR branch's raw copy); a small credit shows song · artist · africariyoki, and the current LRC line faintly
 // Audio starts only from a user gesture (autoplay rules). The choice is saved as thryd_sound (migrated from thryd_mute, '0' = lofi);
 // a reload with a saved mode tries to resume, and if the browser refuses it waits for the next tap anywhere. One audio element,
@@ -73,15 +73,14 @@ function loadSongs(){ if(ylist) return Promise.resolve(ylist); let i=0;
       const s=(d&&d.songs||[]).filter(x=>x&&/^https:\/\//.test(String(x.audio||''))); if(!s.length) throw new Error('empty');
       ylist=s; ybase=u.replace(/[^/]*$/,''); return s; }).catch(tryOne); };
   return tryOne(); }
-function pick(){ if(!ybag.length){ ybag=ylist.slice(); for(let i=ybag.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1)); const t=ybag[i]; ybag[i]=ybag[j]; ybag[j]=t;} }
+function pick(){ if(!ybag.length){ ybag=ylist.slice(); for(let i=ybag.length-1;i>0;i--){ let j; try{const u=new Uint32Array(1);crypto.getRandomValues(u);j=Math.floor(u[0]/4294967296*(i+1));}catch(e){j=Math.floor(Math.random()*(i+1));} const t=ybag[i]; ybag[i]=ybag[j]; ybag[j]=t;} }
   return ybag.pop(); }
 function parseLrc(t){ const out=[]; String(t||'').split('\n').forEach(l=>{ const m=l.match(/^\[(\d+):(\d+(?:\.\d+)?)\](.*)$/); if(m){ const x=m[3].trim(); out.push([+m[1]*60+ +m[2], x.length>90?x.slice(0,88)+'…':x]); } });
   return out.sort((a,b)=>a[0]-b[0]); }
 function loadLrc(s){ ylrc=[]; if(!s||!s.lrc) return; const id=++yreq; const u=/^https?:/.test(s.lrc)?s.lrc:ybase+s.lrc;
   fetch(u).then(r=>r.ok?r.text():'').then(t=>{ if(id===yreq) ylrc=parseLrc(t); }).catch(()=>{}); }
-// yoki DJ (17 Nov 2026, Jesuye 👍 "pick songs from the live agenda"): assets/yoki_dj.js ranks the songs against the live job
-// (scene, seated tweets, imported theme); nextSong() plays its best unplayed match and shows a fading why-note. ⏭ = next-best.
-// If the DJ is missing, slow (6 s) or fails, the old shuffle bag picks instead.
+// yoki DJ: assets/yoki_dj.js shuffles the full africariyoki catalog (Fisher–Yates, localStorage bag).
+// If the DJ is missing, slow (6 s) or fails, extras.js's own shuffle bag picks instead.
 let ytok=0;
 const YDJ=()=>window.thrydYokiDJ&&window.thrydYokiDJ.next?window.thrydYokiDJ:null;
 function nextSong(){ if(!ylist||!ylist.length) return start(false); const tok=++ytok, dj=YDJ();
