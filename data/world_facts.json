@@ -6816,6 +6816,16 @@
 "run": "run-2eb42d",
 "card": "j7",
 "other": "jnoel"
+},
+{
+"id": "wf_97ab229cbb",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the envelope corner at the niaw, and Bisola reads the name twice.",
+"code": "again.interactwith(niaw){ niaw.receives(again.envelope); niaw.remembers(bisola, 'brown envelope'); niaw.tucks(again, 'yaba bookshop receipt into the envelope corner'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "again"
 }
 ],
 "mkdwo": [
@@ -6962,17 +6972,6 @@
 ]
 },
 "consequences": [
-{
-"id": "wf_9ea64a7301",
-"ts": "2026-11-18T00:21:12-0500",
-"a": "jnoel",
-"b": "niaw",
-"code": "jnoel.interactwith(niaw){ niaw.receives(jnoel.corner); niaw.remembers(bisola, 'envelope corner'); }",
-"text": "A Bird note with Bisola's name and 'envelope corner' on it, turns up beside the phone at the niaw.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j7"
-},
 {
 "id": "wf_2967e52a01",
 "ts": "2026-11-18T00:23:49-0500",
@@ -7401,6 +7400,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j29"
+},
+{
+"id": "wf_97ab229cbb",
+"ts": "2026-11-18T08:54:02-0500",
+"a": "again",
+"b": "niaw",
+"code": "again.interactwith(niaw){ niaw.receives(again.envelope); niaw.remembers(bisola, 'brown envelope'); niaw.tucks(again, 'yaba bookshop receipt into the envelope corner'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the envelope corner at the niaw, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -7504,5 +7514,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T08:42:41-0500"
+"updated": "2026-11-18T08:54:02-0500"
 }
