@@ -6170,6 +6170,16 @@
 "run": "run-g1-B",
 "card": "j6",
 "other": "neck_ostrich"
+},
+{
+"id": "wf_ba7be32f8d",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the saturday october, and Bisola reads the name twice.",
+"code": "ikorodu_marina.interactwith(saturday_october){ saturday_october.receives(ikorodu_marina.envelope); … }",
+"author": "cos",
+"run": "run-g1-B",
+"card": "j6",
+"other": "ikorodu_marina"
 }
 ],
 "sports_ball_scene": [
@@ -6361,42 +6371,33 @@
 "card": "j6",
 "other": "mrs_morenike_daramola"
 }
+],
+"surulere_party_hall": [
+{
+"id": "wf_cd84074d1b",
+"kind": "consequence",
+"text": "The surulere party hall leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "saturday_october.interactwith(surulere_party_hall){ surulere_party_hall.receives(saturday_october.envelope); surulere_party_hall.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-g1-B",
+"card": "j6",
+"other": "saturday_october"
+}
+],
+"ikorodu_marina": [
+{
+"id": "wf_785fbe3453",
+"kind": "consequence",
+"text": "The ikorodu marina leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "uch.interactwith(ikorodu_marina){ ikorodu_marina.receives(uch.envelope); ikorodu_marina.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-g1-B",
+"card": "j6",
+"other": "uch"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_3afed96fe9",
-"ts": "2026-11-17T17:05:10-0500",
-"a": "marker_b",
-"b": "jetty_south_pointe",
-"code": "marker_b.interactwith(jetty_south_pointe){ jetty_south_pointe.receives(marker_b.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the jetty south pointe, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
-"id": "wf_699bb8f10b",
-"ts": "2026-11-17T17:10:09-0500",
-"a": "marker_d",
-"b": "top_deck_charter",
-"code": "marker_d.interactwith(top_deck_charter){ top_deck_charter.receives(marker_d.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the top deck charter, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
-"id": "wf_77fab3d7ff",
-"ts": "2026-11-17T17:11:50-0500",
-"a": "marker_b",
-"b": "sheep",
-"code": "marker_b.interactwith(sheep){ sheep.receives(marker_b.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the scorched container number at the sheep, and Kunle reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
 {
 "id": "wf_79c3284f9d",
 "ts": "2026-11-17T17:12:43-0500",
@@ -6803,6 +6804,39 @@
 "author": "cos",
 "run": "run-g1-B",
 "card": "j6"
+},
+{
+"id": "wf_cd84074d1b",
+"ts": "2026-11-17T22:06:46-0500",
+"a": "saturday_october",
+"b": "surulere_party_hall",
+"code": "saturday_october.interactwith(surulere_party_hall){ surulere_party_hall.receives(saturday_october.envelope); surulere_party_hall.remembers(bisola, 'brown envelope'); }",
+"text": "The surulere party hall leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-g1-B",
+"card": "j6"
+},
+{
+"id": "wf_785fbe3453",
+"ts": "2026-11-17T22:07:38-0500",
+"a": "uch",
+"b": "ikorodu_marina",
+"code": "uch.interactwith(ikorodu_marina){ ikorodu_marina.receives(uch.envelope); ikorodu_marina.remembers(bisola, 'brown envelope'); }",
+"text": "The ikorodu marina leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-g1-B",
+"card": "j6"
+},
+{
+"id": "wf_ba7be32f8d",
+"ts": "2026-11-17T22:09:23-0500",
+"a": "ikorodu_marina",
+"b": "saturday_october",
+"code": "ikorodu_marina.interactwith(saturday_october){ saturday_october.receives(ikorodu_marina.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the saturday october, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-g1-B",
+"card": "j6"
 }
 ],
 "memories": [
@@ -6906,5 +6940,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-17T22:05:53-0500"
+"updated": "2026-11-17T22:09:23-0500"
 }
