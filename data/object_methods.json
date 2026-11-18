@@ -6404,6 +6404,110 @@
    "faded": false,
    "last_run": "run-g1-B"
   },
+  "hear.setword": {
+   "object": "hear",
+   "method": "setWord",
+   "args": [
+    "dem"
+   ],
+   "runs": [
+    "run-2eb42d"
+   ],
+   "defined": {
+    "run": "run-2eb42d",
+    "job": "j16",
+    "card": "w16",
+    "title": "hear.setWord(dem)",
+    "emoji": "🦘",
+    "at": "2026-11-17T23:36:00-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "hear.setWord(dem)",
+     "emoji": "🦘",
+     "arg": "dem",
+     "run": "run-2eb42d",
+     "job": "j16",
+     "tweets": [
+      {
+       "text": "#yorubbbygehinny - dem go hear word today!!!!",
+       "year": "2025"
+      },
+      {
+       "text": "#seniorboys[[drab]] -- they give their parents",
+       "year": "2025"
+      },
+      {
+       "text": "[[the book]] - they crafted on [[the journey]]",
+       "year": "2025"
+      }
+     ],
+     "consequence": "Mama Ronke ties her wrapper tight and promises, \"dem go hear word today!!!!\" Ronke laughs into Kazeem's shoulder and keeps walking.",
+     "consequence_job": "j17",
+     "resolved": "hear.setWord(what=dem:Thing) from j16",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "dem",
+       "from_run": "run-2eb42d",
+       "from_job": "j16",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "dem",
+      "first_run": "run-2eb42d",
+      "first_job": "j16"
+     }
+    ],
+    "text": "setWord(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [
+    {
+     "id": "teo.say",
+     "title": "teo.say(else)",
+     "run": "run-5a58c4",
+     "job": "j31",
+     "at": "2026-11-17T15:19:01-05:00",
+     "why": "same verb family (say)"
+    },
+    {
+     "id": "road.air",
+     "title": "road.air(shu)",
+     "run": "run-5a58c4",
+     "job": "j26",
+     "at": "2026-11-17T11:07:01-05:00",
+     "why": "same verb family (say)"
+    },
+    {
+     "id": "code.say",
+     "title": "code.say(accuracy)",
+     "run": "run-5a58c4",
+     "job": "j25",
+     "at": "2026-11-17T10:35:56-05:00",
+     "why": "same verb family (say)"
+    },
+    {
+     "id": "laff.made",
+     "title": "laff.made(sugar)",
+     "run": "run-5a58c4",
+     "job": "j25",
+     "at": "2026-11-17T10:35:56-05:00",
+     "why": "same verb family (say)"
+    }
+   ],
+   "faded": false,
+   "last_run": null
+  },
   "nobody.bring": {
    "object": "nobody",
    "method": "bring",
@@ -6610,7 +6714,7 @@
        "year": "2025"
       }
      ],
-     "consequence": "9:54pm, at the Ojuelegba bus stop down the road.",
+     "consequence": "9:54pm, on Adeniran Ogunsanya Street.",
      "consequence_job": "j18",
      "resolved": "pepu.setMany(amount=many:Quantity) from j17",
      "injected": [
@@ -6640,6 +6744,14 @@
    "receiver_class": "Thing",
    "prior": [
     {
+     "id": "hear.setword",
+     "title": "hear.setWord(dem)",
+     "run": "run-2eb42d",
+     "job": "j16",
+     "at": "2026-11-17T23:36:00-05:00",
+     "why": "same verb family (say)"
+    },
+    {
      "id": "teo.say",
      "title": "teo.say(else)",
      "run": "run-5a58c4",
@@ -6658,14 +6770,6 @@
     {
      "id": "code.say",
      "title": "code.say(accuracy)",
-     "run": "run-5a58c4",
-     "job": "j25",
-     "at": "2026-11-17T10:35:56-05:00",
-     "why": "same verb family (say)"
-    },
-    {
-     "id": "laff.made",
-     "title": "laff.made(sugar)",
      "run": "run-5a58c4",
      "job": "j25",
      "at": "2026-11-17T10:35:56-05:00",
@@ -6714,7 +6818,7 @@
        "year": "2024"
       }
      ],
-     "consequence": "9:54pm, at the Ojuelegba bus stop down the road.",
+     "consequence": "9:54pm, on Adeniran Ogunsanya Street.",
      "consequence_job": "j18",
      "resolved": "yorubbbygehinny.getAgenda()",
      "injected": []
@@ -6837,6 +6941,9 @@
    "folake.see",
    "folake.hold",
    "folake.keep"
+  ],
+  "hear": [
+   "hear.setword"
   ],
   "history": [
    "history.see"
@@ -7028,7 +7135,8 @@
      "yorubbbygehinny.getagenda",
      "pepu.setmany",
      "oyinboman.know",
-     "nobody.bring"
+     "nobody.bring",
+     "hear.setword"
     ]
    }
   ],
@@ -7040,7 +7148,8 @@
      "yorubbbygehinny.getagenda",
      "pepu.setmany",
      "oyinboman.know",
-     "nobody.bring"
+     "nobody.bring",
+     "hear.setword"
     ]
    }
   ],
@@ -7052,7 +7161,8 @@
      "yorubbbygehinny.getagenda",
      "pepu.setmany",
      "oyinboman.know",
-     "nobody.bring"
+     "nobody.bring",
+     "hear.setword"
     ]
    }
   ],
@@ -7064,7 +7174,8 @@
      "yorubbbygehinny.getagenda",
      "pepu.setmany",
      "oyinboman.know",
-     "nobody.bring"
+     "nobody.bring",
+     "hear.setword"
     ]
    }
   ],
@@ -7106,7 +7217,8 @@
      "yorubbbygehinny.getagenda",
      "pepu.setmany",
      "oyinboman.know",
-     "nobody.bring"
+     "nobody.bring",
+     "hear.setword"
     ]
    }
   ],
@@ -7118,7 +7230,8 @@
      "yorubbbygehinny.getagenda",
      "pepu.setmany",
      "oyinboman.know",
-     "nobody.bring"
+     "nobody.bring",
+     "hear.setword"
     ]
    }
   ],
@@ -7227,7 +7340,8 @@
      "yorubbbygehinny.getagenda",
      "pepu.setmany",
      "oyinboman.know",
-     "nobody.bring"
+     "nobody.bring",
+     "hear.setword"
     ]
    }
   ],
@@ -7239,7 +7353,8 @@
      "yorubbbygehinny.getagenda",
      "pepu.setmany",
      "oyinboman.know",
-     "nobody.bring"
+     "nobody.bring",
+     "hear.setword"
     ]
    }
   ],
@@ -7251,7 +7366,8 @@
      "yorubbbygehinny.getagenda",
      "pepu.setmany",
      "oyinboman.know",
-     "nobody.bring"
+     "nobody.bring",
+     "hear.setword"
     ]
    }
   ],
@@ -7263,7 +7379,8 @@
      "yorubbbygehinny.getagenda",
      "pepu.setmany",
      "oyinboman.know",
-     "nobody.bring"
+     "nobody.bring",
+     "hear.setword"
     ]
    }
   ],
@@ -7275,7 +7392,8 @@
      "yorubbbygehinny.getagenda",
      "pepu.setmany",
      "oyinboman.know",
-     "nobody.bring"
+     "nobody.bring",
+     "hear.setword"
     ]
    }
   ],
@@ -7287,7 +7405,8 @@
      "yorubbbygehinny.getagenda",
      "pepu.setmany",
      "oyinboman.know",
-     "nobody.bring"
+     "nobody.bring",
+     "hear.setword"
     ]
    }
   ],
@@ -7369,7 +7488,8 @@
      "yorubbbygehinny.getagenda",
      "pepu.setmany",
      "oyinboman.know",
-     "nobody.bring"
+     "nobody.bring",
+     "hear.setword"
     ]
    }
   ],
@@ -8250,7 +8370,8 @@
      "yorubbbygehinny.getagenda",
      "pepu.setmany",
      "oyinboman.know",
-     "nobody.bring"
+     "nobody.bring",
+     "hear.setword"
     ]
    }
   ],
@@ -8262,7 +8383,8 @@
      "yorubbbygehinny.getagenda",
      "pepu.setmany",
      "oyinboman.know",
-     "nobody.bring"
+     "nobody.bring",
+     "hear.setword"
     ]
    }
   ],
@@ -8274,7 +8396,8 @@
      "yorubbbygehinny.getagenda",
      "pepu.setmany",
      "oyinboman.know",
-     "nobody.bring"
+     "nobody.bring",
+     "hear.setword"
     ]
    }
   ],
@@ -8523,7 +8646,8 @@
      "yorubbbygehinny.getagenda",
      "pepu.setmany",
      "oyinboman.know",
-     "nobody.bring"
+     "nobody.bring",
+     "hear.setword"
     ]
    }
   ],
@@ -8535,7 +8659,8 @@
      "yorubbbygehinny.getagenda",
      "pepu.setmany",
      "oyinboman.know",
-     "nobody.bring"
+     "nobody.bring",
+     "hear.setword"
     ]
    }
   ],
@@ -8547,7 +8672,8 @@
      "yorubbbygehinny.getagenda",
      "pepu.setmany",
      "oyinboman.know",
-     "nobody.bring"
+     "nobody.bring",
+     "hear.setword"
     ]
    }
   ],
@@ -8559,7 +8685,8 @@
      "yorubbbygehinny.getagenda",
      "pepu.setmany",
      "oyinboman.know",
-     "nobody.bring"
+     "nobody.bring",
+     "hear.setword"
     ]
    }
   ],
@@ -8571,7 +8698,8 @@
      "yorubbbygehinny.getagenda",
      "pepu.setmany",
      "oyinboman.know",
-     "nobody.bring"
+     "nobody.bring",
+     "hear.setword"
     ]
    }
   ],
@@ -8583,7 +8711,8 @@
      "yorubbbygehinny.getagenda",
      "pepu.setmany",
      "oyinboman.know",
-     "nobody.bring"
+     "nobody.bring",
+     "hear.setword"
     ]
    }
   ],
@@ -8595,7 +8724,8 @@
      "yorubbbygehinny.getagenda",
      "pepu.setmany",
      "oyinboman.know",
-     "nobody.bring"
+     "nobody.bring",
+     "hear.setword"
     ]
    }
   ],
@@ -8663,7 +8793,8 @@
      "yorubbbygehinny.getagenda",
      "pepu.setmany",
      "oyinboman.know",
-     "nobody.bring"
+     "nobody.bring",
+     "hear.setword"
     ]
    }
   ],
@@ -8675,7 +8806,8 @@
      "yorubbbygehinny.getagenda",
      "pepu.setmany",
      "oyinboman.know",
-     "nobody.bring"
+     "nobody.bring",
+     "hear.setword"
     ]
    }
   ],
@@ -8687,7 +8819,8 @@
      "yorubbbygehinny.getagenda",
      "pepu.setmany",
      "oyinboman.know",
-     "nobody.bring"
+     "nobody.bring",
+     "hear.setword"
     ]
    }
   ],
@@ -8699,7 +8832,8 @@
      "yorubbbygehinny.getagenda",
      "pepu.setmany",
      "oyinboman.know",
-     "nobody.bring"
+     "nobody.bring",
+     "hear.setword"
     ]
    }
   ],
@@ -8852,7 +8986,8 @@
      "yorubbbygehinny.getagenda",
      "pepu.setmany",
      "oyinboman.know",
-     "nobody.bring"
+     "nobody.bring",
+     "hear.setword"
     ]
    }
   ],
@@ -8953,7 +9088,8 @@
      "yorubbbygehinny.getagenda",
      "pepu.setmany",
      "oyinboman.know",
-     "nobody.bring"
+     "nobody.bring",
+     "hear.setword"
     ]
    }
   ],
@@ -10179,7 +10315,8 @@
      "yorubbbygehinny.getagenda",
      "pepu.setmany",
      "oyinboman.know",
-     "nobody.bring"
+     "nobody.bring",
+     "hear.setword"
     ]
    }
   ],
@@ -10191,7 +10328,8 @@
      "yorubbbygehinny.getagenda",
      "pepu.setmany",
      "oyinboman.know",
-     "nobody.bring"
+     "nobody.bring",
+     "hear.setword"
     ]
    },
    {
@@ -10260,7 +10398,8 @@
      "yorubbbygehinny.getagenda",
      "pepu.setmany",
      "oyinboman.know",
-     "nobody.bring"
+     "nobody.bring",
+     "hear.setword"
     ]
    }
   ],
@@ -10822,7 +10961,8 @@
      "yorubbbygehinny.getagenda",
      "pepu.setmany",
      "oyinboman.know",
-     "nobody.bring"
+     "nobody.bring",
+     "hear.setword"
     ]
    }
   ],
@@ -10854,7 +10994,8 @@
      "yorubbbygehinny.getagenda",
      "pepu.setmany",
      "oyinboman.know",
-     "nobody.bring"
+     "nobody.bring",
+     "hear.setword"
     ]
    }
   ],
@@ -10866,7 +11007,8 @@
      "yorubbbygehinny.getagenda",
      "pepu.setmany",
      "oyinboman.know",
-     "nobody.bring"
+     "nobody.bring",
+     "hear.setword"
     ]
    }
   ],
@@ -10927,7 +11069,8 @@
      "yorubbbygehinny.getagenda",
      "pepu.setmany",
      "oyinboman.know",
-     "nobody.bring"
+     "nobody.bring",
+     "hear.setword"
     ]
    }
   ],
@@ -10939,7 +11082,8 @@
      "yorubbbygehinny.getagenda",
      "pepu.setmany",
      "oyinboman.know",
-     "nobody.bring"
+     "nobody.bring",
+     "hear.setword"
     ]
    }
   ],
@@ -10989,7 +11133,8 @@
      "yorubbbygehinny.getagenda",
      "pepu.setmany",
      "oyinboman.know",
-     "nobody.bring"
+     "nobody.bring",
+     "hear.setword"
     ]
    }
   ],
@@ -11001,7 +11146,8 @@
      "yorubbbygehinny.getagenda",
      "pepu.setmany",
      "oyinboman.know",
-     "nobody.bring"
+     "nobody.bring",
+     "hear.setword"
     ]
    }
   ],
@@ -11013,7 +11159,8 @@
      "yorubbbygehinny.getagenda",
      "pepu.setmany",
      "oyinboman.know",
-     "nobody.bring"
+     "nobody.bring",
+     "hear.setword"
     ]
    },
    {
@@ -11082,7 +11229,8 @@
      "yorubbbygehinny.getagenda",
      "pepu.setmany",
      "oyinboman.know",
-     "nobody.bring"
+     "nobody.bring",
+     "hear.setword"
     ]
    }
   ],
@@ -12079,7 +12227,8 @@
      "yorubbbygehinny.getagenda",
      "pepu.setmany",
      "oyinboman.know",
-     "nobody.bring"
+     "nobody.bring",
+     "hear.setword"
     ]
    }
   ],
@@ -12738,7 +12887,8 @@
      "yorubbbygehinny.getagenda",
      "pepu.setmany",
      "oyinboman.know",
-     "nobody.bring"
+     "nobody.bring",
+     "hear.setword"
     ]
    }
   ],
@@ -12750,7 +12900,8 @@
      "yorubbbygehinny.getagenda",
      "pepu.setmany",
      "oyinboman.know",
-     "nobody.bring"
+     "nobody.bring",
+     "hear.setword"
     ]
    }
   ],
@@ -12772,7 +12923,8 @@
      "yorubbbygehinny.getagenda",
      "pepu.setmany",
      "oyinboman.know",
-     "nobody.bring"
+     "nobody.bring",
+     "hear.setword"
     ]
    }
   ],
@@ -12784,7 +12936,8 @@
      "yorubbbygehinny.getagenda",
      "pepu.setmany",
      "oyinboman.know",
-     "nobody.bring"
+     "nobody.bring",
+     "hear.setword"
     ]
    }
   ],
@@ -12796,7 +12949,8 @@
      "yorubbbygehinny.getagenda",
      "pepu.setmany",
      "oyinboman.know",
-     "nobody.bring"
+     "nobody.bring",
+     "hear.setword"
     ]
    }
   ],
@@ -12857,7 +13011,8 @@
      "yorubbbygehinny.getagenda",
      "pepu.setmany",
      "oyinboman.know",
-     "nobody.bring"
+     "nobody.bring",
+     "hear.setword"
     ]
    }
   ],
@@ -12998,7 +13153,8 @@
      "yorubbbygehinny.getagenda",
      "pepu.setmany",
      "oyinboman.know",
-     "nobody.bring"
+     "nobody.bring",
+     "hear.setword"
     ]
    }
   ],
@@ -13079,7 +13235,8 @@
      "yorubbbygehinny.getagenda",
      "pepu.setmany",
      "oyinboman.know",
-     "nobody.bring"
+     "nobody.bring",
+     "hear.setword"
     ]
    }
   ],
@@ -13151,7 +13308,8 @@
      "yorubbbygehinny.getagenda",
      "pepu.setmany",
      "oyinboman.know",
-     "nobody.bring"
+     "nobody.bring",
+     "hear.setword"
     ]
    }
   ],
@@ -14032,7 +14190,8 @@
      "yorubbbygehinny.getagenda",
      "pepu.setmany",
      "oyinboman.know",
-     "nobody.bring"
+     "nobody.bring",
+     "hear.setword"
     ]
    }
   ],
@@ -14072,7 +14231,8 @@
      "yorubbbygehinny.getagenda",
      "pepu.setmany",
      "oyinboman.know",
-     "nobody.bring"
+     "nobody.bring",
+     "hear.setword"
     ]
    }
   ],
@@ -14182,7 +14342,8 @@
      "yorubbbygehinny.getagenda",
      "pepu.setmany",
      "oyinboman.know",
-     "nobody.bring"
+     "nobody.bring",
+     "hear.setword"
     ]
    }
   ],
@@ -14194,7 +14355,8 @@
      "yorubbbygehinny.getagenda",
      "pepu.setmany",
      "oyinboman.know",
-     "nobody.bring"
+     "nobody.bring",
+     "hear.setword"
     ]
    }
   ],
@@ -14206,7 +14368,8 @@
      "yorubbbygehinny.getagenda",
      "pepu.setmany",
      "oyinboman.know",
-     "nobody.bring"
+     "nobody.bring",
+     "hear.setword"
     ]
    }
   ],
@@ -14239,7 +14402,8 @@
      "yorubbbygehinny.getagenda",
      "pepu.setmany",
      "oyinboman.know",
-     "nobody.bring"
+     "nobody.bring",
+     "hear.setword"
     ]
    }
   ],
@@ -14300,7 +14464,8 @@
      "yorubbbygehinny.getagenda",
      "pepu.setmany",
      "oyinboman.know",
-     "nobody.bring"
+     "nobody.bring",
+     "hear.setword"
     ]
    }
   ],
@@ -14312,7 +14477,8 @@
      "yorubbbygehinny.getagenda",
      "pepu.setmany",
      "oyinboman.know",
-     "nobody.bring"
+     "nobody.bring",
+     "hear.setword"
     ]
    }
   ],
@@ -14422,7 +14588,8 @@
      "yorubbbygehinny.getagenda",
      "pepu.setmany",
      "oyinboman.know",
-     "nobody.bring"
+     "nobody.bring",
+     "hear.setword"
     ]
    }
   ],
@@ -14659,7 +14826,8 @@
      "yorubbbygehinny.getagenda",
      "pepu.setmany",
      "oyinboman.know",
-     "nobody.bring"
+     "nobody.bring",
+     "hear.setword"
     ]
    }
   ],
@@ -14720,7 +14888,8 @@
      "yorubbbygehinny.getagenda",
      "pepu.setmany",
      "oyinboman.know",
-     "nobody.bring"
+     "nobody.bring",
+     "hear.setword"
     ]
    }
   ],
@@ -15186,7 +15355,8 @@
      "yorubbbygehinny.getagenda",
      "pepu.setmany",
      "oyinboman.know",
-     "nobody.bring"
+     "nobody.bring",
+     "hear.setword"
     ]
    }
   ],
@@ -15198,7 +15368,8 @@
      "yorubbbygehinny.getagenda",
      "pepu.setmany",
      "oyinboman.know",
-     "nobody.bring"
+     "nobody.bring",
+     "hear.setword"
     ]
    }
   ],
@@ -15220,7 +15391,8 @@
      "yorubbbygehinny.getagenda",
      "pepu.setmany",
      "oyinboman.know",
-     "nobody.bring"
+     "nobody.bring",
+     "hear.setword"
     ]
    }
   ],
@@ -15351,7 +15523,8 @@
      "yorubbbygehinny.getagenda",
      "pepu.setmany",
      "oyinboman.know",
-     "nobody.bring"
+     "nobody.bring",
+     "hear.setword"
     ]
    }
   ],
@@ -15383,7 +15556,8 @@
      "yorubbbygehinny.getagenda",
      "pepu.setmany",
      "oyinboman.know",
-     "nobody.bring"
+     "nobody.bring",
+     "hear.setword"
     ]
    },
    {
@@ -15442,7 +15616,8 @@
      "yorubbbygehinny.getagenda",
      "pepu.setmany",
      "oyinboman.know",
-     "nobody.bring"
+     "nobody.bring",
+     "hear.setword"
     ]
    }
   ],
@@ -15513,7 +15688,8 @@
      "yorubbbygehinny.getagenda",
      "pepu.setmany",
      "oyinboman.know",
-     "nobody.bring"
+     "nobody.bring",
+     "hear.setword"
     ]
    }
   ],
@@ -15557,6 +15733,7 @@
   "run-2eb42d": {
    "safe": "9525b78aa7f3",
    "funcs": [
+    "hear.setword",
     "nobody.bring",
     "oyinboman.know",
     "pepu.setmany",
@@ -15855,6 +16032,13 @@
    ],
    "runs": []
   },
+  "2926a1e178ed": {
+   "title": "1225. only happy endings",
+   "funcs": [
+    "hear.setword"
+   ],
+   "runs": []
+  },
   "2c6971a8d401": {
    "title": "927. this is what we need",
    "funcs": [
@@ -15984,6 +16168,7 @@
   "9525b78aa7f3": {
    "title": "214. paradigm shift",
    "funcs": [
+    "hear.setword",
     "nobody.bring",
     "oyinboman.know",
     "pepu.setmany",
@@ -16358,6 +16543,9 @@
   ],
   "1*TboWtv3mCjG0__y8McqEAw.gif": [
    "18bf0d97a456"
+  ],
+  "1*pmgi5jXH1w3Cq_TFIC23HA.gif": [
+   "2926a1e178ed"
   ],
   "1*GPQAaJE07cSsR2iEm5y9Aw.gif": [
    "f81f21521253"
@@ -17121,6 +17309,9 @@
    "folake.hold",
    "folake.keep"
   ],
+  "hear": [
+   "hear.setword"
+  ],
   "history": [
    "history.see"
   ],
@@ -17361,6 +17552,7 @@
    "Watchable",
    "Weighable"
   ],
+  "hear": [],
   "oyinboman": [
    "Readable"
   ],
@@ -17369,6 +17561,7 @@
  },
  "casts": {
   "run-2eb42d": [
+   "hear",
    "kazeem",
    "mamaronke",
    "nobody",
@@ -17498,5 +17691,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-17T23:43:46-05:00"
+ "updated": "2026-11-17T23:46:23-05:00"
 }

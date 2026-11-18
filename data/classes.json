@@ -106,8 +106,8 @@
     "on",
     "come"
    ],
-   "instances": 352,
-   "arg_instances": 35,
+   "instances": 353,
+   "arg_instances": 36,
    "parent": null,
    "chain": [
     "Thing"
@@ -1270,6 +1270,22 @@
     "run-f73e23"
    ],
    "tweets": []
+  },
+  "dem": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-2eb42d",
+   "first_job": "j16",
+   "source": "pick",
+   "runs": [
+    "run-2eb42d"
+   ],
+   "tweets": [
+    {
+     "text": "#yorubbbygehinny - dem go hear word today!!!!",
+     "year": "2025"
+    }
+   ]
   },
   "den": {
    "class": "Thing",
@@ -6415,6 +6431,12 @@
   ],
   "run-2eb42d": [
    [
+    "dem",
+    "Thing",
+    "j16",
+    "pick"
+   ],
+   [
     "adire",
     "Thing",
     "j16",
@@ -9231,6 +9253,7 @@
   "kunle.read": "read(what: Thing)",
   "adaora.cap": "cap(what: Thing)",
   "kunle.walk": "walk(what: Thing)",
+  "hear.setword": "setWord(what: Thing)",
   "nobody.bring": "bring(what: Thing)",
   "oyinboman.know": "know(what: Thing)",
   "pepu.setmany": "setMany(amount: Quantity)",
@@ -9459,6 +9482,7 @@
  },
  "casts": {
   "run-2eb42d": [
+   "hear",
    "kazeem",
    "mamaronke",
    "nobody",
@@ -9649,5 +9673,5 @@
   "epilogue": "quiet",
   "coda": "quiet"
  },
- "updated": "2026-11-17T23:42:51-05:00"
+ "updated": "2026-11-17T23:46:23-05:00"
 }
