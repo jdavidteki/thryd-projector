@@ -7175,6 +7175,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "mkdwo"
+},
+{
+"id": "wf_5b75de7737",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the listen, and Bisola reads the name twice.",
+"code": "patagonia.interactwith(listen){ listen.receives(patagonia.envelope); … }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "patagonia"
 }
 ],
 "jnoel": [
@@ -9524,28 +9534,6 @@
 },
 "consequences": [
 {
-"id": "wf_3af8908fdf",
-"ts": "2026-11-18T18:47:26-0500",
-"a": "yuwa",
-"b": "tie",
-"code": "yuwa.interactwith(tie){ tie.receives(yuwa.envelope); tie.remembers(bisola, 'brown envelope'); tie.tucks(yuwa, 'yaba bookshop receipt into the green shirt'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the green shirt at the tie, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
-"id": "wf_eaa747f60c",
-"ts": "2026-11-18T19:03:08-0500",
-"a": "imhf",
-"b": "ronke",
-"code": "imhf.interactwith(ronke){ ronke.receives(imhf.shirt); ronke.remembers(bisola, 'green shirt'); }",
-"text": "The ronke leaves with an Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j8"
-},
-{
 "id": "wf_40a47717aa",
 "ts": "2026-11-18T19:11:01-0500",
 "a": "listen",
@@ -9962,6 +9950,28 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_0cc781a976",
+"ts": "2026-11-19T07:29:16-0500",
+"a": "again",
+"b": "ronke",
+"code": "again.interactwith(ronke){ ronke.receives(again.envelope); ronke.remembers(bisola, 'brown envelope'); }",
+"text": "The ronke leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
+},
+{
+"id": "wf_5b75de7737",
+"ts": "2026-11-19T07:30:09-0500",
+"a": "patagonia",
+"b": "listen",
+"code": "patagonia.interactwith(listen){ listen.receives(patagonia.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the listen, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -10065,5 +10075,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-19T07:24:52-0500"
+"updated": "2026-11-19T07:30:09-0500"
 }
