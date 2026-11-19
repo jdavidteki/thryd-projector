@@ -6397,16 +6397,6 @@
 ],
 "saturday_october": [
 {
-"id": "wf_4e11268f77",
-"kind": "consequence",
-"text": "A Mama ronke note with Ejiro's name and 'ttb note' on it, turns up inside the brown envelope at the saturday october, and Bisola reads the name twice.",
-"code": "mama_ronke.interactwith(saturday_october){ saturday_october.receives(mama_ronke.note); … }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "mama_ronke"
-},
-{
 "id": "wf_7c5816f9c5",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the saturday october, and Bisola reads the name twice.",
@@ -6435,6 +6425,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "mkdwo"
+},
+{
+"id": "wf_ee90ac8d57",
+"kind": "consequence",
+"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the brown envelope at the saturday october, and Bisola reads the name twice.",
+"code": "example.interactwith(saturday_october){ saturday_october.receives(example.shirt); … }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j8",
+"other": "example"
 },
 {
 "id": "wt_5afb033ddb",
@@ -9482,17 +9482,6 @@
 },
 "consequences": [
 {
-"id": "wf_f3d2c62e81",
-"ts": "2026-11-18T17:36:19-0500",
-"a": "lady",
-"b": "streetlights",
-"code": "lady.interactwith(streetlights){ streetlights.receives(lady.shirt); streetlights.remembers(bisola, 'green shirt'); }",
-"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up with the streetlights, which is still all dead since 7:35pm.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j8"
-},
-{
 "id": "wf_8862c81ec2",
 "ts": "2026-11-18T17:37:11-0500",
 "a": "vex",
@@ -9920,6 +9909,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_ee90ac8d57",
+"ts": "2026-11-18T20:29:35-0500",
+"a": "example",
+"b": "saturday_october",
+"code": "example.interactwith(saturday_october){ saturday_october.receives(example.shirt); … }",
+"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the brown envelope at the saturday october, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j8"
 }
 ],
 "memories": [
@@ -10023,5 +10023,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T20:23:31-0500"
+"updated": "2026-11-18T20:29:35-0500"
 }
