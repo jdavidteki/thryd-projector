@@ -1005,16 +1005,6 @@
 "other": "precision"
 },
 {
-"id": "wf_3fdb648208",
-"kind": "memory",
-"text": "The red and white cap on Kazeem, Mama Ronke's house and gate: worn; boasted about while talking hacking.",
-"code": "red_white_cap.state('worn');",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "w6",
-"other": null
-},
-{
 "id": "wf_2e3f75d4bf",
 "kind": "consequence",
 "text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up with the red and white cap, which is still worn.",
@@ -1023,6 +1013,16 @@
 "run": "run-2eb42d",
 "card": "j8",
 "other": "example"
+},
+{
+"id": "wf_3fdb648208",
+"kind": "memory",
+"text": "The red and white cap on Kazeem, Mama Ronke's house and gate: worn; boasted about while talking hacking.",
+"code": "red_white_cap.state('worn');",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w6",
+"other": null
 },
 {
 "id": "wt_1115_2356_c",
@@ -9842,17 +9842,6 @@
 },
 "consequences": [
 {
-"id": "wf_9a796688dc",
-"ts": "2026-11-19T10:40:41-0500",
-"a": "ttb",
-"b": "danfo_speaker",
-"code": "ttb.interactwith(danfo_speaker){ danfo_speaker.receives(ttb.code); danfo_speaker.remembers(ejiro, 'juju code'); }",
-"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up with the danfo speaker, which is still playing the same love song.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j2"
-},
-{
 "id": "wf_a7ce4b3694",
 "ts": "2026-11-19T10:55:43-0500",
 "a": "computer_village",
@@ -10280,6 +10269,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j8"
+},
+{
+"id": "wf_b0dbf167aa",
+"ts": "2026-11-19T13:39:54-0500",
+"a": "sports_ball",
+"b": "kazeem",
+"code": "sports_ball.interactwith(kazeem){ kazeem.receives(sports_ball.envelope); kazeem.remembers(bisola, 'brown envelope'); }",
+"text": "The kazeem leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -10383,5 +10383,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-19T13:35:31-0500"
+"updated": "2026-11-19T13:39:54-0500"
 }
