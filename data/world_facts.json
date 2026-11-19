@@ -2569,16 +2569,6 @@
 ],
 "cup": [
 {
-"id": "wf_a0b861694c",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the juju code at the cup, and Ejiro reads the name twice.",
-"code": "bow.interactwith(cup){ cup.receives(bow.envelope); cup.remembers(bisola, 'brown envelope'); cup.tucks(bow, 'yaba bookshop receipt into the juju code'); }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "bow"
-},
-{
 "id": "wf_631ccd57a3",
 "kind": "consequence",
 "text": "A Pure water cooler note with Kunle's name and 'container number' on it, 9:20am, turns up inside the juju code at the cup, and Ejiro reads the name twice.",
@@ -2607,6 +2597,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "patagonia"
+},
+{
+"id": "wf_34cbecdc03",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the juju code at the cup, and Ejiro reads the name twice.",
+"code": "precision.interactwith(cup){ cup.receives(precision.envelope); … }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "precision"
 },
 {
 "id": "wt_9a530635c7",
@@ -9544,17 +9544,6 @@
 },
 "consequences": [
 {
-"id": "wf_35b34e0f2f",
-"ts": "2026-11-18T20:06:34-0500",
-"a": "move",
-"b": "wser",
-"code": "move.interactwith(wser){ wser.receives(move.envelope); wser.remembers(bisola, 'brown envelope'); }",
-"text": "The wser leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
 "id": "wf_e05fe8f4cc",
 "ts": "2026-11-18T20:10:57-0500",
 "a": "love",
@@ -9982,6 +9971,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_34cbecdc03",
+"ts": "2026-11-19T10:07:37-0500",
+"a": "precision",
+"b": "cup",
+"code": "precision.interactwith(cup){ cup.receives(precision.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the juju code at the cup, and Ejiro reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -10085,5 +10085,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-19T09:56:06-0500"
+"updated": "2026-11-19T10:07:37-0500"
 }
