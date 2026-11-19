@@ -2907,16 +2907,6 @@
 ],
 "bed": [
 {
-"id": "wf_6858508cf9",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the bed, and Taiwo reads the name twice.",
-"code": "morir_r.interactwith(bed){ bed.receives(morir_r.envelope); bed.remembers(bisola, 'brown envelope'); bed.tucks(morir_r, 'yaba bookshop receipt into the egbe note'); }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "morir_r"
-},
-{
 "id": "wf_8de4442dcb",
 "kind": "consequence",
 "text": "A Teo note with Bisola's name and 'folded receipt' on it, turns up inside the egbe note at the bed, and Taiwo reads the name twice.",
@@ -2945,6 +2935,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "listen"
+},
+{
+"id": "wf_a134c7311e",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the bed, and Taiwo reads the name twice.",
+"code": "seniorgehs.interactwith(bed){ bed.receives(seniorgehs.envelope); … }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "seniorgehs"
 },
 {
 "id": "wt_740c0937a2",
@@ -7709,36 +7709,6 @@
 ],
 "hear": [
 {
-"id": "wt_9ea7c4df3a",
-"kind": "func_call",
-"text": "The hear hears it (because pepu.setMany(amount=many:Quantity) from j17).",
-"code": "hear.hears(third_mainland_bridge, 'setMany');",
-"author": "projector",
-"run": "run-2eb42d",
-"card": "w17",
-"other": null
-},
-{
-"id": "wt_d6d066a183",
-"kind": "func_call",
-"text": "The hear hears it (because pepu.setMany(amount=many:Quantity) from j17).",
-"code": "hear.hears(third_mainland_bridge, 'setMany');",
-"author": "projector",
-"run": "run-2eb42d",
-"card": "w17",
-"other": null
-},
-{
-"id": "wt_a0d1f4e360",
-"kind": "func_call",
-"text": "The hear hears it (because pepu.setMany(amount=many:Quantity) from j17).",
-"code": "hear.hears(third_mainland_bridge, 'setMany');",
-"author": "projector",
-"run": "run-2eb42d",
-"card": "w17",
-"other": null
-},
-{
 "id": "wt_9878bfac2e",
 "kind": "func_call",
 "text": "The hear hears it (because pepu.setMany(amount=many:Quantity) from j17).",
@@ -7756,6 +7726,36 @@
 "author": "projector",
 "run": "run-2eb42d",
 "card": "w17",
+"other": null
+},
+{
+"id": "wt_e66b37c09b",
+"kind": "func_call",
+"text": "The hear hears it (because ronke.hail(what=hawker:Thing) from j18).",
+"code": "hear.hears(ronke, 'hail');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w18",
+"other": null
+},
+{
+"id": "wt_982760b672",
+"kind": "func_call",
+"text": "The hear hears it (because ronke.hail(what=hawker:Thing) from j18).",
+"code": "hear.hears(ronke, 'hail');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w18",
+"other": null
+},
+{
+"id": "wt_1bb98ee6c0",
+"kind": "func_call",
+"text": "The hear hears it (because ronke.hail(what=hawker:Thing) from j18).",
+"code": "hear.hears(ronke, 'hail');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w18",
 "other": null
 }
 ],
@@ -9798,17 +9798,6 @@
 },
 "consequences": [
 {
-"id": "wf_34cbecdc03",
-"ts": "2026-11-19T10:07:37-0500",
-"a": "precision",
-"b": "cup",
-"code": "precision.interactwith(cup){ cup.receives(precision.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the juju code at the cup, and Ejiro reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
 "id": "wf_99a2b3e11d",
 "ts": "2026-11-19T10:15:38-0500",
 "a": "teach",
@@ -10236,6 +10225,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_a134c7311e",
+"ts": "2026-11-19T12:51:27-0500",
+"a": "seniorgehs",
+"b": "bed",
+"code": "seniorgehs.interactwith(bed){ bed.receives(seniorgehs.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the bed, and Taiwo reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -10339,5 +10339,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-19T12:50:35-0500"
+"updated": "2026-11-19T12:55:00-0500"
 }
