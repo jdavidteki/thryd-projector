@@ -7083,16 +7083,6 @@
 ],
 "thryd": [
 {
-"id": "wt_46a965148d",
-"kind": "func_call",
-"text": "The customer typed #thryd.importtheme(theadelekes) on run-2eb42d j40. It came back: Thryd importtheme theadelekes. Implementation: function importtheme(what){\n  THRYD_IMPORTTHEME_COUNT += 1;\n  this.lastImporttheme = \"indomie\";\n  this.lastImporttheme = \"theadelekes\";\n  return \"Thryd importtheme indomie\";\n}.",
-"code": "#thryd.importtheme(theadelekes);",
-"author": "customer",
-"run": "run-2eb42d",
-"card": "j40",
-"other": null
-},
-{
 "id": "wf_dfa38d7493",
 "kind": "consequence",
 "text": "The thryd leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
@@ -7121,6 +7111,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "icsh"
+},
+{
+"id": "wf_34f21acb53",
+"kind": "consequence",
+"text": "The thryd leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "computer_village.interactwith(thryd){ thryd.receives(computer_village.envelope); thryd.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "computer_village"
 },
 {
 "id": "wt_705361bf07",
@@ -9544,17 +9544,6 @@
 },
 "consequences": [
 {
-"id": "wf_2a8336f1cc",
-"ts": "2026-11-18T19:13:39-0500",
-"a": "since",
-"b": "cell_phone",
-"code": "since.interactwith(cell_phone){ cell_phone.receives(since.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the cell phone, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
 "id": "wf_511338a16a",
 "ts": "2026-11-18T19:14:32-0500",
 "a": "oyinboman",
@@ -9982,6 +9971,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j7"
+},
+{
+"id": "wf_34f21acb53",
+"ts": "2026-11-19T08:37:13-0500",
+"a": "computer_village",
+"b": "thryd",
+"code": "computer_village.interactwith(thryd){ thryd.receives(computer_village.envelope); thryd.remembers(bisola, 'brown envelope'); }",
+"text": "The thryd leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -10085,5 +10085,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-19T07:42:29-0500"
+"updated": "2026-11-19T08:37:13-0500"
 }
