@@ -6101,6 +6101,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "seniorgehs"
+},
+{
+"id": "wf_b29f18de72",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the icsh, and Bisola reads the name twice.",
+"code": "lie.interactwith(icsh){ icsh.receives(lie.envelope); icsh.remembers(bisola, 'brown envelope'); icsh.tucks(lie, 'yaba bookshop receipt into the brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "lie"
 }
 ],
 "jetty_south_pointe": [
@@ -7263,6 +7273,16 @@
 "run": "run-2eb42d",
 "card": "j2",
 "other": "ttb"
+},
+{
+"id": "wf_94b56db8c9",
+"kind": "consequence",
+"text": "The wiitbaw leaves with a Bird note with Bisola's name and 'envelope corner' on it.",
+"code": "bird.interactwith(wiitbaw){ wiitbaw.receives(bird.corner); wiitbaw.remembers(bisola, 'envelope corner'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j7",
+"other": "bird"
 }
 ],
 "listen": [
@@ -7343,16 +7363,6 @@
 ],
 "niaw": [
 {
-"id": "wf_5ba2bd2de7",
-"kind": "consequence",
-"text": "The niaw now remembers the miami: 11:45pm, Monday 2 November 2026: A phone on the counter starts the off-key chorus, then.",
-"code": "miami.interactwith(niaw){ niaw.receives(miami.phone); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j29",
-"other": "miami"
-},
-{
 "id": "wf_9ea64a7301",
 "kind": "consequence",
 "text": "A Bird note with Bisola's name and 'envelope corner' on it, turns up beside the phone at the niaw.",
@@ -7391,6 +7401,16 @@
 "run": "run-2eb42d",
 "card": "j2",
 "other": "ttb"
+},
+{
+"id": "wf_f6eea685e1",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the niaw, and Bisola reads the name twice.",
+"code": "seniorgehs.interactwith(niaw){ niaw.receives(seniorgehs.envelope); … }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "seniorgehs"
 }
 ],
 "mkdwo": [
@@ -9806,42 +9826,21 @@
 "card": "w1",
 "other": null
 }
+],
+"old_men_see_figure": [
+{
+"id": "wt_7932de0350",
+"kind": "call",
+"text": "Someone at the projector tapped the old men see figure and made it grow.",
+"code": "old_men_see_figure.grow();",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w1",
+"other": null
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_53406735c0",
-"ts": "2026-11-19T10:29:59-0500",
-"a": "listen",
-"b": "laptop",
-"code": "listen.interactwith(laptop){ laptop.receives(listen.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the lamp soot at the laptop, and Taiwo reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
-"id": "wf_f1d015a1ec",
-"ts": "2026-11-19T10:30:53-0500",
-"a": "divine",
-"b": "kerosene_lamp",
-"code": "divine.interactwith(kerosene_lamp){ kerosene_lamp.receives(divine.shirt); kerosene_lamp.remembers(bisola, 'green shirt'); }",
-"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up with the kerosene lamp, which is still lit.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j8"
-},
-{
-"id": "wf_91c3309c7a",
-"ts": "2026-11-19T10:33:33-0500",
-"a": "cup",
-"b": "ronke",
-"code": "cup.interactwith(ronke){ ronke.receives(cup.code); ronke.remembers(ejiro, 'juju code'); }",
-"text": "The ronke leaves with a Cup note with Ejiro's name and 'juju code' on it.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j2"
-},
 {
 "id": "wf_3774781078",
 "ts": "2026-11-19T10:38:00-0500",
@@ -10248,6 +10247,39 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_b29f18de72",
+"ts": "2026-11-19T13:16:09-0500",
+"a": "lie",
+"b": "icsh",
+"code": "lie.interactwith(icsh){ icsh.receives(lie.envelope); icsh.remembers(bisola, 'brown envelope'); icsh.tucks(lie, 'yaba bookshop receipt into the brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the icsh, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
+},
+{
+"id": "wf_f6eea685e1",
+"ts": "2026-11-19T13:17:55-0500",
+"a": "seniorgehs",
+"b": "niaw",
+"code": "seniorgehs.interactwith(niaw){ niaw.receives(seniorgehs.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the niaw, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
+},
+{
+"id": "wf_94b56db8c9",
+"ts": "2026-11-19T13:19:41-0500",
+"a": "bird",
+"b": "wiitbaw",
+"code": "bird.interactwith(wiitbaw){ wiitbaw.receives(bird.corner); wiitbaw.remembers(bisola, 'envelope corner'); }",
+"text": "The wiitbaw leaves with a Bird note with Bisola's name and 'envelope corner' on it.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j7"
 }
 ],
 "memories": [
@@ -10351,5 +10383,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-19T13:13:31-0500"
+"updated": "2026-11-19T13:19:41-0500"
 }
