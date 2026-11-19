@@ -3205,16 +3205,6 @@
 ],
 "wser": [
 {
-"id": "wt_6c308925a8",
-"kind": "func_call",
-"text": "The customer typed [[wser]] on run-2eb42d j35.",
-"code": "[[wser]];",
-"author": "customer",
-"run": "run-2eb42d",
-"card": "j35",
-"other": null
-},
-{
 "id": "wf_b0b5bd7169",
 "kind": "consequence",
 "text": "The wser leaves with an Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am.",
@@ -3253,6 +3243,16 @@
 "run": "run-2eb42d",
 "card": "w38",
 "other": "ronke"
+},
+{
+"id": "wf_52b5aa1e71",
+"kind": "consequence",
+"text": "The wser leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "ojuelegba_bus_stop.interactwith(wser){ wser.receives(ojuelegba_bus_stop.envelope); wser.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "ojuelegba_bus_stop"
 }
 ],
 "blessings_subject": [
@@ -7275,16 +7275,6 @@
 ],
 "mkdwo": [
 {
-"id": "wt_c45d96d2c5",
-"kind": "func_call",
-"text": "The customer typed [[mkdwo]] on run-2eb42d j29.",
-"code": "[[mkdwo]];",
-"author": "customer",
-"run": "run-2eb42d",
-"card": "j29",
-"other": null
-},
-{
 "id": "wf_66ded0f50f",
 "kind": "consequence",
 "text": "The mkdwo leaves with a Laptop note with Taiwo's name and 'lamp soot' on it.",
@@ -7323,6 +7313,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "move"
+},
+{
+"id": "wf_d75767f6f1",
+"kind": "consequence",
+"text": "The mkdwo leaves with a Laptop note with Taiwo's name and 'lamp soot' on it.",
+"code": "laptop.interactwith(mkdwo){ mkdwo.receives(laptop.soot); mkdwo.remembers(taiwo, 'lamp soot'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j7",
+"other": "laptop"
 }
 ],
 "asmathic": [
@@ -9544,28 +9544,6 @@
 },
 "consequences": [
 {
-"id": "wf_f748da0c96",
-"ts": "2026-11-18T19:47:13-0500",
-"a": "niaw",
-"b": "computer_village",
-"code": "niaw.interactwith(computer_village){ computer_village.receives(niaw.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the green shirt at the computer village, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
-"id": "wf_93c14edc56",
-"ts": "2026-11-18T19:56:02-0500",
-"a": "twgs",
-"b": "teach",
-"code": "twgs.interactwith(teach){ teach.receives(twgs.number); teach.remembers(kunle, 'scorched container number'); teach.tucks(twgs, 'sheep note into the brown envelope'); }",
-"text": "A Sheep note with Kunle's name and 'scorched container number' on it, turns up inside the brown envelope at the teach, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "w7"
-},
-{
 "id": "wf_96b7fd35c9",
 "ts": "2026-11-18T20:02:12-0500",
 "a": "b_md",
@@ -9982,6 +9960,28 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j7"
+},
+{
+"id": "wf_d75767f6f1",
+"ts": "2026-11-19T09:29:05-0500",
+"a": "laptop",
+"b": "mkdwo",
+"code": "laptop.interactwith(mkdwo){ mkdwo.receives(laptop.soot); mkdwo.remembers(taiwo, 'lamp soot'); }",
+"text": "The mkdwo leaves with a Laptop note with Taiwo's name and 'lamp soot' on it.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j7"
+},
+{
+"id": "wf_52b5aa1e71",
+"ts": "2026-11-19T09:48:07-0500",
+"a": "ojuelegba_bus_stop",
+"b": "wser",
+"code": "ojuelegba_bus_stop.interactwith(wser){ wser.receives(ojuelegba_bus_stop.envelope); wser.remembers(bisola, 'brown envelope'); }",
+"text": "The wser leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -10085,5 +10085,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-19T09:28:11-0500"
+"updated": "2026-11-19T09:48:08-0500"
 }
