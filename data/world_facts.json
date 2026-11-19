@@ -6815,16 +6815,6 @@
 ],
 "iae": [
 {
-"id": "wf_ff8f4d2e73",
-"kind": "memory",
-"text": "The iae at Oke-Ayo bus stop: initialized.",
-"code": "iae.state('initialized');",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "w1",
-"other": null
-},
-{
 "id": "wf_aad3fe6051",
 "kind": "consequence",
 "text": "The iae now remembers the miami: 11:45pm, Monday 2 November 2026: A phone on the counter starts the off-key chorus, then.",
@@ -6863,6 +6853,16 @@
 "run": "run-2eb42d",
 "card": "j8",
 "other": "divine"
+},
+{
+"id": "wf_a7ce4b3694",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the iae, which is still initialized.",
+"code": "computer_village.interactwith(iae){ iae.receives(computer_village.envelope); iae.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "computer_village"
 }
 ],
 "tf_mom": [
@@ -9586,17 +9586,6 @@
 },
 "consequences": [
 {
-"id": "wf_fc9f65fd67",
-"ts": "2026-11-18T21:21:59-0500",
-"a": "divine",
-"b": "red_white_cap",
-"code": "divine.interactwith(red_white_cap){ red_white_cap.receives(divine.shirt); red_white_cap.remembers(bisola, 'green shirt'); }",
-"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up with the red and white cap, which is still worn.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j8"
-},
-{
 "id": "wf_b54fa1fe77",
 "ts": "2026-11-18T21:23:54-0500",
 "a": "twgs",
@@ -10024,6 +10013,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j2"
+},
+{
+"id": "wf_a7ce4b3694",
+"ts": "2026-11-19T10:55:43-0500",
+"a": "computer_village",
+"b": "iae",
+"code": "computer_village.interactwith(iae){ iae.receives(computer_village.envelope); iae.remembers(bisola, 'brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the iae, which is still initialized.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -10127,5 +10127,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-19T10:41:34-0500"
+"updated": "2026-11-19T10:55:43-0500"
 }
