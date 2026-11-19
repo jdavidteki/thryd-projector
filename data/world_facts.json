@@ -6915,16 +6915,6 @@
 ],
 "iae": [
 {
-"id": "wf_0b6767d3bf",
-"kind": "consequence",
-"text": "The iae now remembers the ronke: Someone at the projector tapped the computer village subject and called.",
-"code": "ronke.interactwith(iae){ iae.receives(ronke.something); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "w18",
-"other": "ronke"
-},
-{
 "id": "wf_b432e9a6cb",
 "kind": "consequence",
 "text": "A Chair note with Taiwo's name and '11:20pm' on it, turns up with the iae, which is still initialized.",
@@ -6963,6 +6953,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "bus"
+},
+{
+"id": "wf_d4dc717f44",
+"kind": "consequence",
+"text": "The iae now remembers the kazeem: Kazeem passes his phone. Already woven into posted w39; this row only logs the seated pick.",
+"code": "kazeem.interactwith(iae){ iae.receives(kazeem.something); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w38",
+"other": "kazeem"
 }
 ],
 "tf_mom": [
@@ -9842,17 +9842,6 @@
 },
 "consequences": [
 {
-"id": "wf_b1e3ef3980",
-"ts": "2026-11-19T11:16:02-0500",
-"a": "lie",
-"b": "computer_village",
-"code": "lie.interactwith(computer_village){ computer_village.receives(lie.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the computer village, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
 "id": "wf_f79464398c",
 "ts": "2026-11-19T11:22:36-0500",
 "a": "precision",
@@ -10280,6 +10269,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "w1"
+},
+{
+"id": "wf_d4dc717f44",
+"ts": "2026-11-19T14:08:56-0500",
+"a": "kazeem",
+"b": "iae",
+"code": "kazeem.interactwith(iae){ iae.receives(kazeem.something); }",
+"text": "The iae now remembers the kazeem: Kazeem passes his phone. Already woven into posted w39; this row only logs the seated pick.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w38"
 }
 ],
 "memories": [
@@ -10383,5 +10383,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-19T14:02:47-0500"
+"updated": "2026-11-19T14:08:56-0500"
 }
