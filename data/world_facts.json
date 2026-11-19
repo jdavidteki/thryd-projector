@@ -2095,16 +2095,6 @@
 ],
 "laptop": [
 {
-"id": "wf_591671a308",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the lamp soot at the laptop, and Taiwo reads the name twice.",
-"code": "move.interactwith(laptop){ laptop.receives(move.envelope); laptop.remembers(bisola, 'brown envelope'); laptop.tucks(move, 'yaba bookshop receipt into the lamp soot'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "move"
-},
-{
 "id": "wf_267bc16dc0",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the lamp soot at the laptop, and Taiwo reads the name twice.",
@@ -2113,6 +2103,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "mlkahb"
+},
+{
+"id": "wf_53406735c0",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the lamp soot at the laptop, and Taiwo reads the name twice.",
+"code": "listen.interactwith(laptop){ laptop.receives(listen.envelope); … }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "listen"
 },
 {
 "id": "wt_00586a397c",
@@ -9574,28 +9574,6 @@
 },
 "consequences": [
 {
-"id": "wf_efced8dcac",
-"ts": "2026-11-18T21:00:51-0500",
-"a": "computer_village",
-"b": "pure_water_cooler",
-"code": "computer_village.interactwith(pure_water_cooler){ pure_water_cooler.receives(computer_village.envelope); pure_water_cooler.remembers(bisola, 'brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the pure-water cooler, which is still carried home through the flood.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
-"id": "wf_8d828da71b",
-"ts": "2026-11-18T21:06:59-0500",
-"a": "ojuelegba_bus_stop",
-"b": "matches",
-"code": "ojuelegba_bus_stop.interactwith(matches){ matches.receives(ojuelegba_bus_stop.envelope); matches.remembers(bisola, 'brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the matches, which is still found.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
 "id": "wf_2256505437",
 "ts": "2026-11-18T21:10:31-0500",
 "a": "tf_mom",
@@ -10012,6 +9990,28 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j8"
+},
+{
+"id": "wf_53406735c0",
+"ts": "2026-11-19T10:29:59-0500",
+"a": "listen",
+"b": "laptop",
+"code": "listen.interactwith(laptop){ laptop.receives(listen.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the lamp soot at the laptop, and Taiwo reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
+},
+{
+"id": "wf_f1d015a1ec",
+"ts": "2026-11-19T10:30:53-0500",
+"a": "divine",
+"b": "kerosene_lamp",
+"code": "divine.interactwith(kerosene_lamp){ kerosene_lamp.receives(divine.shirt); kerosene_lamp.remembers(bisola, 'green shirt'); }",
+"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up with the kerosene lamp, which is still lit.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j8"
 }
 ],
 "memories": [
@@ -10115,5 +10115,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-19T10:26:25-0500"
+"updated": "2026-11-19T10:31:47-0500"
 }
