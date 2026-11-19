@@ -7737,16 +7737,6 @@
 ],
 "ojuelegba_bus_stop": [
 {
-"id": "wf_00bfe3b8ff",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the ojuelegba bus stop, and Bisola reads the name twice.",
-"code": "lie.interactwith(ojuelegba_bus_stop){ ojuelegba_bus_stop.receives(lie.envelope); … }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "lie"
-},
-{
 "id": "wf_02dd03d128",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the ojuelegba bus stop, and Bisola reads the name twice.",
@@ -7785,6 +7775,16 @@
 "run": "run-2eb42d",
 "card": "j8",
 "other": "divine"
+},
+{
+"id": "wf_94a5c0d03c",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the green shirt at the ojuelegba bus stop, and Bisola reads the name twice.",
+"code": "namco.interactwith(ojuelegba_bus_stop){ ojuelegba_bus_stop.receives(namco.envelope); … }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "namco"
 }
 ],
 "usher_by_kiss": [
@@ -7893,16 +7893,6 @@
 ],
 "computer_village": [
 {
-"id": "wf_aecb579ad3",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the computer village, and Bisola reads the name twice.",
-"code": "divine.interactwith(computer_village){ computer_village.receives(divine.envelope); … }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "divine"
-},
-{
 "id": "wf_56d2610fbf",
 "kind": "consequence",
 "text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the brown envelope at the computer village, and Bisola reads the name twice.",
@@ -7941,6 +7931,16 @@
 "run": "run-2eb42d",
 "card": "j8",
 "other": "imhf"
+},
+{
+"id": "wf_f748da0c96",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the green shirt at the computer village, and Bisola reads the name twice.",
+"code": "niaw.interactwith(computer_village){ computer_village.receives(niaw.envelope); … }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "niaw"
 }
 ],
 "oh_pls_shaaatttaaapppp": [
@@ -9402,28 +9402,6 @@
 },
 "consequences": [
 {
-"id": "wf_93054da0d3",
-"ts": "2026-11-18T16:57:26-0500",
-"a": "imhf",
-"b": "computer_village",
-"code": "imhf.interactwith(computer_village){ computer_village.receives(imhf.shirt); … }",
-"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the brown envelope at the computer village, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j8"
-},
-{
-"id": "wf_5deeb06314",
-"ts": "2026-11-18T17:00:04-0500",
-"a": "imhf",
-"b": "kerosene_lamp",
-"code": "imhf.interactwith(kerosene_lamp){ kerosene_lamp.receives(imhf.shirt); kerosene_lamp.remembers(bisola, 'green shirt'); }",
-"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up with the kerosene lamp, which is still lit.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j8"
-},
-{
 "id": "wf_cf4016a231",
 "ts": "2026-11-18T17:01:50-0500",
 "a": "bed",
@@ -9840,6 +9818,28 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_94a5c0d03c",
+"ts": "2026-11-18T19:46:20-0500",
+"a": "namco",
+"b": "ojuelegba_bus_stop",
+"code": "namco.interactwith(ojuelegba_bus_stop){ ojuelegba_bus_stop.receives(namco.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the green shirt at the ojuelegba bus stop, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
+},
+{
+"id": "wf_f748da0c96",
+"ts": "2026-11-18T19:47:13-0500",
+"a": "niaw",
+"b": "computer_village",
+"code": "niaw.interactwith(computer_village){ computer_village.receives(niaw.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the green shirt at the computer village, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -9943,5 +9943,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T19:36:00-0500"
+"updated": "2026-11-18T19:47:13-0500"
 }
