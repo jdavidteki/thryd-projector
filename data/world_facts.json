@@ -1037,16 +1037,6 @@
 ],
 "streetlights": [
 {
-"id": "wf_f3d2c62e81",
-"kind": "consequence",
-"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up with the streetlights, which is still all dead since 7:35pm.",
-"code": "lady.interactwith(streetlights){ streetlights.receives(lady.shirt); streetlights.remembers(bisola, 'green shirt'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j8",
-"other": "lady"
-},
-{
 "id": "wf_2f53183a19",
 "kind": "consequence",
 "text": "A Laptop note with Taiwo's name and 'lamp soot' on it, turns up with the streetlights, which is still all dead since 7:35pm.",
@@ -1085,6 +1075,16 @@
 "run": "run-2eb42d",
 "card": "w6",
 "other": null
+},
+{
+"id": "wf_c4492f219e",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the streetlights, which is still all dead since 7:35pm.",
+"code": "bicycle.interactwith(streetlights){ streetlights.receives(bicycle.envelope); streetlights.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "bicycle"
 }
 ],
 "kerosene_lamp": [
@@ -9544,17 +9544,6 @@
 },
 "consequences": [
 {
-"id": "wf_96b7fd35c9",
-"ts": "2026-11-18T20:02:12-0500",
-"a": "b_md",
-"b": "bicycle",
-"code": "b_md.interactwith(bicycle){ bicycle.receives(b_md.shirt); … }",
-"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the brown envelope at the bicycle, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j8"
-},
-{
 "id": "wf_13e4e9f54c",
 "ts": "2026-11-18T20:03:04-0500",
 "a": "ttb",
@@ -9982,6 +9971,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_c4492f219e",
+"ts": "2026-11-19T09:53:27-0500",
+"a": "bicycle",
+"b": "streetlights",
+"code": "bicycle.interactwith(streetlights){ streetlights.receives(bicycle.envelope); streetlights.remembers(bisola, 'brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the streetlights, which is still all dead since 7:35pm.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -10085,5 +10085,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-19T09:48:08-0500"
+"updated": "2026-11-19T09:53:27-0500"
 }
