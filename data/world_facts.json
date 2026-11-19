@@ -829,16 +829,6 @@
 ],
 "agbada": [
 {
-"id": "wf_cb820861db",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the agbada, which is still worn by a stranger haggler.",
-"code": "mkdwo.interactwith(agbada){ agbada.receives(mkdwo.envelope); agbada.remembers(bisola, 'brown envelope'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "mkdwo"
-},
-{
 "id": "wf_fcd96d03c0",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the agbada, which is still worn by a stranger haggler.",
@@ -867,6 +857,16 @@
 "run": "run-2eb42d",
 "card": "w1",
 "other": "pure_water_cooler"
+},
+{
+"id": "wf_6f44dd0ca6",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the agbada, which is still worn by a stranger haggler.",
+"code": "b_md.interactwith(agbada){ agbada.receives(b_md.envelope); agbada.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "b_md"
 },
 {
 "id": "wf_eff49442c3",
@@ -1067,16 +1067,6 @@
 "other": "computer_village"
 },
 {
-"id": "wf_32b4be23e9",
-"kind": "memory",
-"text": "The streetlights at the street: all dead since 7:35pm.",
-"code": "streetlights.state('all dead since 7:35pm');",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "w6",
-"other": null
-},
-{
 "id": "wf_c4492f219e",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the streetlights, which is still all dead since 7:35pm.",
@@ -1085,6 +1075,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "bicycle"
+},
+{
+"id": "wf_32b4be23e9",
+"kind": "memory",
+"text": "The streetlights at the street: all dead since 7:35pm.",
+"code": "streetlights.state('all dead since 7:35pm');",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w6",
+"other": null
 }
 ],
 "kerosene_lamp": [
@@ -9544,17 +9544,6 @@
 },
 "consequences": [
 {
-"id": "wf_13e4e9f54c",
-"ts": "2026-11-18T20:03:04-0500",
-"a": "ttb",
-"b": "wser",
-"code": "ttb.interactwith(wser){ wser.receives(ttb.code); wser.remembers(ejiro, 'juju code'); }",
-"text": "The wser leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j2"
-},
-{
 "id": "wf_35b34e0f2f",
 "ts": "2026-11-18T20:06:34-0500",
 "a": "move",
@@ -9982,6 +9971,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_6f44dd0ca6",
+"ts": "2026-11-19T09:55:13-0500",
+"a": "b_md",
+"b": "agbada",
+"code": "b_md.interactwith(agbada){ agbada.receives(b_md.envelope); agbada.remembers(bisola, 'brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the agbada, which is still worn by a stranger haggler.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -10085,5 +10085,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-19T09:53:27-0500"
+"updated": "2026-11-19T09:56:06-0500"
 }
