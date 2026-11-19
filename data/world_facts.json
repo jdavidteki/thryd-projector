@@ -7255,16 +7255,6 @@
 ],
 "mkdwo": [
 {
-"id": "wf_2967e52a01",
-"kind": "consequence",
-"text": "The mkdwo leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"code": "wser.interactwith(mkdwo){ mkdwo.receives(wser.envelope); mkdwo.remembers(bisola, 'brown envelope'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "wser"
-},
-{
 "id": "wf_39a9b82735",
 "kind": "consequence",
 "text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the mkdwo, and Bisola reads the name twice.",
@@ -7303,6 +7293,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "precision"
+},
+{
+"id": "wf_eb728b062c",
+"kind": "consequence",
+"text": "The mkdwo leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "bow.interactwith(mkdwo){ mkdwo.receives(bow.envelope); mkdwo.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "bow"
 }
 ],
 "asmathic": [
@@ -9524,17 +9524,6 @@
 },
 "consequences": [
 {
-"id": "wf_bbd8e2dfa8",
-"ts": "2026-11-18T18:43:56-0500",
-"a": "wiitbaw",
-"b": "plastic_sheet",
-"code": "wiitbaw.interactwith(plastic_sheet){ plastic_sheet.receives(wiitbaw.something); }",
-"text": "The plastic sheet now remembers the wiitbaw: The customer typed [[wiitbaw]] on run-qa j1.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j1"
-},
-{
 "id": "wf_3af8908fdf",
 "ts": "2026-11-18T18:47:26-0500",
 "a": "yuwa",
@@ -9962,6 +9951,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_eb728b062c",
+"ts": "2026-11-19T07:24:52-0500",
+"a": "bow",
+"b": "mkdwo",
+"code": "bow.interactwith(mkdwo){ mkdwo.receives(bow.envelope); mkdwo.remembers(bisola, 'brown envelope'); }",
+"text": "The mkdwo leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -10065,5 +10065,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-19T07:21:20-0500"
+"updated": "2026-11-19T07:24:52-0500"
 }
