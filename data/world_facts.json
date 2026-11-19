@@ -777,16 +777,6 @@
 ],
 "pure_water_cooler": [
 {
-"id": "wf_f9f456b187",
-"kind": "consequence",
-"text": "The pure water cooler now remembers the ronke: The customer typed ronke.getlikes().contains(kazeem.goodqualities), which ran as.",
-"code": "ronke.interactwith(pure_water_cooler){ pure_water_cooler.receives(ronke.something); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j21",
-"other": "ronke"
-},
-{
 "id": "wf_eda95b4dfd",
 "kind": "consequence",
 "text": "The iae ends up with the pure water cooler, still initialized.",
@@ -815,6 +805,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "computer_village"
+},
+{
+"id": "wf_4e29b7a6b5",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the pure-water cooler, which is still carried home through the flood.",
+"code": "ojuelegba_bus_stop.interactwith(pure_water_cooler){ pure_water_cooler.receives(ojuelegba_bus_stop.envelope); pure_water_cooler.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "ojuelegba_bus_stop"
 },
 {
 "id": "wt_61e16c7796",
@@ -9626,17 +9626,6 @@
 },
 "consequences": [
 {
-"id": "wf_0cc781a976",
-"ts": "2026-11-19T07:29:16-0500",
-"a": "again",
-"b": "ronke",
-"code": "again.interactwith(ronke){ ronke.receives(again.envelope); ronke.remembers(bisola, 'brown envelope'); }",
-"text": "The ronke leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
 "id": "wf_5b75de7737",
 "ts": "2026-11-19T07:30:09-0500",
 "a": "patagonia",
@@ -10064,6 +10053,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_4e29b7a6b5",
+"ts": "2026-11-19T11:39:46-0500",
+"a": "ojuelegba_bus_stop",
+"b": "pure_water_cooler",
+"code": "ojuelegba_bus_stop.interactwith(pure_water_cooler){ pure_water_cooler.receives(ojuelegba_bus_stop.envelope); pure_water_cooler.remembers(bisola, 'brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the pure-water cooler, which is still carried home through the flood.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -10167,5 +10167,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-19T11:33:08-0500"
+"updated": "2026-11-19T11:39:46-0500"
 }
