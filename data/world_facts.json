@@ -3205,16 +3205,6 @@
 ],
 "wser": [
 {
-"id": "wf_584e5456ad",
-"kind": "consequence",
-"text": "A Bird note with Bisola's name and 'envelope corner' on it, turns up inside the brown envelope at the wser, and Bisola reads the name twice.",
-"code": "jnoel.interactwith(wser){ wser.receives(jnoel.corner); wser.remembers(bisola, 'envelope corner'); wser.tucks(jnoel, 'bird note into the brown envelope'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j7",
-"other": "jnoel"
-},
-{
 "id": "wt_6c308925a8",
 "kind": "func_call",
 "text": "The customer typed [[wser]] on run-2eb42d j35.",
@@ -3253,6 +3243,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "move"
+},
+{
+"id": "wf_38a494fe95",
+"kind": "consequence",
+"text": "The wser now remembers the ronke: Ronke writes a note. Already woven into posted w39; this row only logs the seated pick.",
+"code": "ronke.interactwith(wser){ wser.receives(ronke.something); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w38",
+"other": "ronke"
 }
 ],
 "blessings_subject": [
@@ -9534,17 +9534,6 @@
 },
 "consequences": [
 {
-"id": "wf_40a47717aa",
-"ts": "2026-11-18T19:11:01-0500",
-"a": "listen",
-"b": "seniorgehs",
-"code": "listen.interactwith(seniorgehs){ seniorgehs.receives(listen.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the seniorgehs, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
 "id": "wf_dfa38d7493",
 "ts": "2026-11-18T19:12:46-0500",
 "a": "since",
@@ -9972,6 +9961,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_38a494fe95",
+"ts": "2026-11-19T07:41:36-0500",
+"a": "ronke",
+"b": "wser",
+"code": "ronke.interactwith(wser){ wser.receives(ronke.something); }",
+"text": "The wser now remembers the ronke: Ronke writes a note. Already woven into posted w39; this row only logs the seated pick.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w38"
 }
 ],
 "memories": [
@@ -10075,5 +10075,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-19T07:30:09-0500"
+"updated": "2026-11-19T07:41:36-0500"
 }
