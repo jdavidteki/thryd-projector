@@ -7197,6 +7197,16 @@
 "run": "run-2eb42d",
 "card": "j7",
 "other": "bird"
+},
+{
+"id": "wf_8ae640e811",
+"kind": "consequence",
+"text": "A Laptop note with Taiwo's name and 'lamp soot' on it, turns up inside the envelope corner at the jnoel, and Bisola reads the name twice.",
+"code": "tf_mom.interactwith(jnoel){ jnoel.receives(tf_mom.soot); jnoel.remembers(taiwo, 'lamp soot'); jnoel.tucks(tf_mom, 'laptop note into the envelope corner'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j7",
+"other": "tf_mom"
 }
 ],
 "twgs": [
@@ -9534,17 +9544,6 @@
 },
 "consequences": [
 {
-"id": "wf_dfa38d7493",
-"ts": "2026-11-18T19:12:46-0500",
-"a": "since",
-"b": "thryd",
-"code": "since.interactwith(thryd){ thryd.receives(since.envelope); thryd.remembers(bisola, 'brown envelope'); }",
-"text": "The thryd leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
 "id": "wf_2a8336f1cc",
 "ts": "2026-11-18T19:13:39-0500",
 "a": "since",
@@ -9972,6 +9971,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "w38"
+},
+{
+"id": "wf_8ae640e811",
+"ts": "2026-11-19T07:42:29-0500",
+"a": "tf_mom",
+"b": "jnoel",
+"code": "tf_mom.interactwith(jnoel){ jnoel.receives(tf_mom.soot); jnoel.remembers(taiwo, 'lamp soot'); jnoel.tucks(tf_mom, 'laptop note into the envelope corner'); }",
+"text": "A Laptop note with Taiwo's name and 'lamp soot' on it, turns up inside the envelope corner at the jnoel, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j7"
 }
 ],
 "memories": [
@@ -10075,5 +10085,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-19T07:41:36-0500"
+"updated": "2026-11-19T07:42:29-0500"
 }
