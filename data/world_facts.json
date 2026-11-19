@@ -1037,16 +1037,6 @@
 ],
 "streetlights": [
 {
-"id": "wf_b14fedb475",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the streetlights, which is still all dead since 7:35pm.",
-"code": "b_md.interactwith(streetlights){ streetlights.receives(b_md.envelope); streetlights.remembers(bisola, 'brown envelope'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "b_md"
-},
-{
 "id": "wf_1c5e9d8dc5",
 "kind": "consequence",
 "text": "A Mama ronke note with Ejiro's name and 'ttb note' on it, turns up with the streetlights, which is still all dead since 7:35pm.",
@@ -1085,6 +1075,16 @@
 "run": "run-2eb42d",
 "card": "w6",
 "other": null
+},
+{
+"id": "wf_2f53183a19",
+"kind": "consequence",
+"text": "A Laptop note with Taiwo's name and 'lamp soot' on it, turns up with the streetlights, which is still all dead since 7:35pm.",
+"code": "tf_mom.interactwith(streetlights){ streetlights.receives(tf_mom.soot); streetlights.remembers(taiwo, 'lamp soot'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j7",
+"other": "tf_mom"
 }
 ],
 "kerosene_lamp": [
@@ -7053,16 +7053,6 @@
 ],
 "thryd": [
 {
-"id": "wf_d22d361b19",
-"kind": "consequence",
-"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up with the agbada, which is still worn by a stranger haggler.",
-"code": "example.interactwith(thryd){ thryd.receives(example.shirt); thryd.remembers(bisola, 'green shirt'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j8",
-"other": "example"
-},
-{
 "id": "wt_67f9639994",
 "kind": "func_call",
 "text": "The customer typed #thryd.importtheme(indomie) on run-2eb42d j39. It came back: Thryd importtheme indomie. Implementation: function importtheme(what){\n  THRYD_IMPORTTHEME_COUNT += 1;\n  this.lastImporttheme = \"indomie\";\n  return \"Thryd importtheme indomie\";\n}. thryd now has thryd.importtheme as a method on this agenda, and it can be called again.",
@@ -7091,6 +7081,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "since"
+},
+{
+"id": "wt_18b643c459",
+"kind": "func_call",
+"text": "The customer typed #thryd.importtheme(starwars) on run-2eb42d j41. It came back: Thryd importtheme starwars. Implementation: function importtheme(what){\n  THRYD_IMPORTTHEME_COUNT += 1;\n  this.lastImporttheme = \"indomie\";\n  this.lastImporttheme = \"theadelekes\";\n  this.lastImporttheme = \"starwars\";\n  return \"Thryd importtheme indomie\";\n}.",
+"code": "#thryd.importtheme(starwars);",
+"author": "customer",
+"run": "run-2eb42d",
+"card": "j41",
+"other": null
 },
 {
 "id": "wt_705361bf07",
@@ -8017,53 +8017,53 @@
 ],
 "cli": [
 {
-"id": "wt_23ad968848",
+"id": "wt_350df69777",
 "kind": "func_call",
-"text": "The customer typed a3() on run-2eb42d j39. It came back: a3(). Implementation: /* a3() */.",
-"code": "a3();",
+"text": "The customer typed c3() on run-2eb42d j41. It came back: c3(). Implementation: /* c3() */.",
+"code": "c3();",
 "author": "customer",
 "run": "run-2eb42d",
-"card": "j39",
+"card": "j41",
 "other": null
 },
 {
-"id": "wt_a7273d2c1d",
+"id": "wt_6c107ebfd1",
 "kind": "func_call",
-"text": "The customer typed d1() on run-2eb42d j39. It came back: d1(). Implementation: /* d1() */.",
-"code": "d1();",
+"text": "The customer typed #thryd.miracle.log(1) on run-2eb42d j41. It came back: #thryd.miracle.log(1). Implementation: /* #thryd.miracle.log(1) */.",
+"code": "#thryd.miracle.log(1);",
 "author": "customer",
 "run": "run-2eb42d",
-"card": "j39",
+"card": "j41",
 "other": null
 },
 {
-"id": "wt_ad8e2938ba",
+"id": "wt_67bbc9010e",
 "kind": "func_call",
-"text": "The customer typed d3() on run-2eb42d j40. It came back: d3(). Implementation: /* d3() */.",
-"code": "d3();",
+"text": "The customer typed #thryd.miracle.log(1) on run-2eb42d j41. It came back: #thryd.miracle.log(1). Implementation: /* #thryd.miracle.log(1) */.",
+"code": "#thryd.miracle.log(1);",
 "author": "customer",
 "run": "run-2eb42d",
-"card": "j40",
+"card": "j41",
 "other": null
 },
 {
-"id": "wt_52229e1442",
+"id": "wt_76d74ea5d4",
 "kind": "func_call",
-"text": "The customer typed [[🍑🍑]] on run-2eb42d j40. It came back: [[🍑🍑]]. Implementation: /* [[🍑🍑]] */.",
-"code": "[[🍑🍑]];",
+"text": "The customer typed #thryd.miracle.log(1) on run-2eb42d j41. It came back: #thryd.miracle.log(1). Implementation: /* #thryd.miracle.log(1) */.",
+"code": "#thryd.miracle.log(1);",
 "author": "customer",
 "run": "run-2eb42d",
-"card": "j40",
+"card": "j41",
 "other": null
 },
 {
-"id": "wt_83af3d0bf4",
+"id": "wt_e612a34a8d",
 "kind": "func_call",
-"text": "The customer typed [[tp$on]] on run-2eb42d j40. It came back: [[tp$on]]. Implementation: /* [[tp$on]] */.",
-"code": "[[tp$on]];",
+"text": "The customer typed a2() on run-2eb42d j41. It came back: a2(). Implementation: /* a2() */.",
+"code": "a2();",
 "author": "customer",
 "run": "run-2eb42d",
-"card": "j40",
+"card": "j41",
 "other": null
 }
 ],
@@ -9270,20 +9270,81 @@
 "card": "w16",
 "other": "oyinboman"
 }
+],
+"jealous": [
+{
+"id": "wt_2687a0e57f",
+"kind": "func_call",
+"text": "The customer typed [[jealous]] on run-2eb42d j41.",
+"code": "[[jealous]];",
+"author": "customer",
+"run": "run-2eb42d",
+"card": "j41",
+"other": null
+}
+],
+"drake": [
+{
+"id": "wt_25c589979c",
+"kind": "func_call",
+"text": "The customer typed [[drake]] on run-2eb42d j41.",
+"code": "[[drake]];",
+"author": "customer",
+"run": "run-2eb42d",
+"card": "j41",
+"other": null
+}
+],
+"tob": [
+{
+"id": "wt_f61f6f38a2",
+"kind": "func_call",
+"text": "The customer typed [[tob]] on run-2eb42d j41.",
+"code": "[[tob]];",
+"author": "customer",
+"run": "run-2eb42d",
+"card": "j41",
+"other": null
+}
+],
+"ami": [
+{
+"id": "wt_b478064411",
+"kind": "func_call",
+"text": "The customer typed [[ami]] on run-2eb42d j41.",
+"code": "[[ami]];",
+"author": "customer",
+"run": "run-2eb42d",
+"card": "j41",
+"other": null
+}
+],
+"nh": [
+{
+"id": "wt_dcdd5aca75",
+"kind": "func_call",
+"text": "The customer typed [[nh]] on run-2eb42d j41.",
+"code": "[[nh]];",
+"author": "customer",
+"run": "run-2eb42d",
+"card": "j41",
+"other": null
+}
+],
+"nwbf": [
+{
+"id": "wt_7fafd36bec",
+"kind": "func_call",
+"text": "The customer typed [[nwbf]] on run-2eb42d j41.",
+"code": "[[nwbf]];",
+"author": "customer",
+"run": "run-2eb42d",
+"card": "j41",
+"other": null
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_0b6767d3bf",
-"ts": "2026-11-18T16:46:54-0500",
-"a": "ronke",
-"b": "iae",
-"code": "ronke.interactwith(iae){ iae.receives(ronke.something); }",
-"text": "The iae now remembers the ronke: Someone at the projector tapped the computer village subject and called.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "w18"
-},
 {
 "id": "wf_09b87b94e2",
 "ts": "2026-11-18T16:48:39-0500",
@@ -9712,6 +9773,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "w1"
+},
+{
+"id": "wf_2f53183a19",
+"ts": "2026-11-18T19:28:59-0500",
+"a": "tf_mom",
+"b": "streetlights",
+"code": "tf_mom.interactwith(streetlights){ streetlights.receives(tf_mom.soot); streetlights.remembers(taiwo, 'lamp soot'); }",
+"text": "A Laptop note with Taiwo's name and 'lamp soot' on it, turns up with the streetlights, which is still all dead since 7:35pm.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j7"
 }
 ],
 "memories": [
@@ -9815,5 +9887,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T19:19:46-0500"
+"updated": "2026-11-18T19:28:59-0500"
 }
