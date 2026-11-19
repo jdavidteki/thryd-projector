@@ -1171,16 +1171,6 @@
 "other": "icsh"
 },
 {
-"id": "wf_d40998bca5",
-"kind": "memory",
-"text": "The matches at doorway, Mama Ronke's house: found; rattled in the doorway as she came back.",
-"code": "matches.state('found');",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "w7",
-"other": null
-},
-{
 "id": "wf_8d828da71b",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the matches, which is still found.",
@@ -1189,6 +1179,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "ojuelegba_bus_stop"
+},
+{
+"id": "wf_d40998bca5",
+"kind": "memory",
+"text": "The matches at doorway, Mama Ronke's house: found; rattled in the doorway as she came back.",
+"code": "matches.state('found');",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w7",
+"other": null
 }
 ],
 "gbagada_hospital_waiting": [
@@ -2189,16 +2189,6 @@
 ],
 "sheep": [
 {
-"id": "wf_77fab3d7ff",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the scorched container number at the sheep, and Kunle reads the name twice.",
-"code": "marker_b.interactwith(sheep){ sheep.receives(marker_b.envelope); … }",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6",
-"other": "marker_b"
-},
-{
 "id": "wf_b5b3b6389a",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the scorched container number at the sheep, and Kunle reads the name twice.",
@@ -2227,6 +2217,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "since"
+},
+{
+"id": "wf_2256505437",
+"kind": "consequence",
+"text": "A Laptop note with Taiwo's name and 'lamp soot' on it, turns up inside the scorched container number at the sheep, and Kunle reads the name twice.",
+"code": "tf_mom.interactwith(sheep){ sheep.receives(tf_mom.soot); sheep.remembers(taiwo, 'lamp soot'); sheep.tucks(tf_mom, 'laptop note into the scorched container number'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j7",
+"other": "tf_mom"
 },
 {
 "id": "wt_5dd9c9e121",
@@ -9482,17 +9482,6 @@
 },
 "consequences": [
 {
-"id": "wf_7d9ce96099",
-"ts": "2026-11-18T17:50:35-0500",
-"a": "niaw",
-"b": "chair",
-"code": "niaw.interactwith(chair){ chair.receives(niaw.envelope); chair.remembers(bisola, 'brown envelope'); chair.tucks(niaw, 'yaba bookshop receipt into the 11:20pm'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the 11:20pm at the chair, and Taiwo reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
 "id": "wf_9c5687a8fc",
 "ts": "2026-11-18T17:57:45-0500",
 "a": "niaw",
@@ -9920,6 +9909,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_2256505437",
+"ts": "2026-11-18T21:10:31-0500",
+"a": "tf_mom",
+"b": "sheep",
+"code": "tf_mom.interactwith(sheep){ sheep.receives(tf_mom.soot); sheep.remembers(taiwo, 'lamp soot'); sheep.tucks(tf_mom, 'laptop note into the scorched container number'); }",
+"text": "A Laptop note with Taiwo's name and 'lamp soot' on it, turns up inside the scorched container number at the sheep, and Kunle reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j7"
 }
 ],
 "memories": [
@@ -10023,5 +10023,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T21:06:59-0500"
+"updated": "2026-11-18T21:10:31-0500"
 }
