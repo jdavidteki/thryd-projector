@@ -7011,16 +7011,6 @@
 ],
 "mama_ronke": [
 {
-"id": "wf_2b4f2d55f9",
-"kind": "consequence",
-"text": "A Sheep note with Kunle's name and 'scorched container number' on it, turns up with the Mama Ronke, which is still present.",
-"code": "twgs.interactwith(mama_ronke){ mama_ronke.receives(twgs.number); mama_ronke.remembers(kunle, 'scorched container number'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "w7",
-"other": "twgs"
-},
-{
 "id": "wf_dcec71707d",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the Mama Ronke, which is still present.",
@@ -7049,6 +7039,16 @@
 "run": "run-2eb42d",
 "card": "w7",
 "other": "sheep"
+},
+{
+"id": "wf_e05fe8f4cc",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the Mama Ronke, which is still present.",
+"code": "love.interactwith(mama_ronke){ mama_ronke.receives(love.envelope); mama_ronke.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "love"
 },
 {
 "id": "wt_836e6dea8e",
@@ -9482,17 +9482,6 @@
 },
 "consequences": [
 {
-"id": "wf_591671a308",
-"ts": "2026-11-18T17:12:26-0500",
-"a": "move",
-"b": "laptop",
-"code": "move.interactwith(laptop){ laptop.receives(move.envelope); laptop.remembers(bisola, 'brown envelope'); laptop.tucks(move, 'yaba bookshop receipt into the lamp soot'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the lamp soot at the laptop, and Taiwo reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
 "id": "wf_ca993160ae",
 "ts": "2026-11-18T17:16:02-0500",
 "a": "namco",
@@ -9920,6 +9909,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_e05fe8f4cc",
+"ts": "2026-11-18T20:10:57-0500",
+"a": "love",
+"b": "mama_ronke",
+"code": "love.interactwith(mama_ronke){ mama_ronke.receives(love.envelope); mama_ronke.remembers(bisola, 'brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the Mama Ronke, which is still present.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -10023,5 +10023,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T20:06:34-0500"
+"updated": "2026-11-18T20:10:57-0500"
 }
