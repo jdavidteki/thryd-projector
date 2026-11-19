@@ -4589,6 +4589,16 @@
 "run": "run-2eb42d",
 "card": "w7",
 "other": "twgs"
+},
+{
+"id": "wf_58cdeb657a",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the move, and Bisola reads the name twice.",
+"code": "vex.interactwith(move){ move.receives(vex.envelope); move.remembers(bisola, 'brown envelope'); move.tucks(vex, 'yaba bookshop receipt into the brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "vex"
 }
 ],
 "ayok_focus": [
@@ -9768,17 +9778,6 @@
 },
 "consequences": [
 {
-"id": "wf_44ca30d515",
-"ts": "2026-11-19T09:26:25-0500",
-"a": "listen",
-"b": "computer_village",
-"code": "listen.interactwith(computer_village){ computer_village.receives(listen.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the computer village, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
 "id": "wf_a688d36f3b",
 "ts": "2026-11-19T09:27:18-0500",
 "a": "laptop",
@@ -10206,6 +10205,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_58cdeb657a",
+"ts": "2026-11-19T12:37:26-0500",
+"a": "vex",
+"b": "move",
+"code": "vex.interactwith(move){ move.receives(vex.envelope); move.remembers(bisola, 'brown envelope'); move.tucks(vex, 'yaba bookshop receipt into the brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the move, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -10309,5 +10319,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-19T12:26:02-0500"
+"updated": "2026-11-19T12:37:26-0500"
 }
