@@ -1141,16 +1141,6 @@
 ],
 "matches": [
 {
-"id": "wf_0d9bb31a93",
-"kind": "consequence",
-"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up with the matches, which is still found.",
-"code": "ttb.interactwith(matches){ matches.receives(ttb.code); matches.remembers(ejiro, 'juju code'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j2",
-"other": "ttb"
-},
-{
 "id": "wf_f2253220ea",
 "kind": "consequence",
 "text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up with the matches, which is still found.",
@@ -1189,6 +1179,16 @@
 "run": "run-2eb42d",
 "card": "w7",
 "other": null
+},
+{
+"id": "wf_8d828da71b",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the matches, which is still found.",
+"code": "ojuelegba_bus_stop.interactwith(matches){ matches.receives(ojuelegba_bus_stop.envelope); matches.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "ojuelegba_bus_stop"
 }
 ],
 "gbagada_hospital_waiting": [
@@ -9482,17 +9482,6 @@
 },
 "consequences": [
 {
-"id": "wf_b3bfb3fc36",
-"ts": "2026-11-18T17:47:57-0500",
-"a": "sheep",
-"b": "ronke",
-"code": "sheep.interactwith(ronke){ ronke.receives(sheep.number); ronke.remembers(kunle, 'scorched container number'); }",
-"text": "The ronke leaves with a Sheep note with Kunle's name and 'scorched container number' on it.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "w7"
-},
-{
 "id": "wf_7d9ce96099",
 "ts": "2026-11-18T17:50:35-0500",
 "a": "niaw",
@@ -9920,6 +9909,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_8d828da71b",
+"ts": "2026-11-18T21:06:59-0500",
+"a": "ojuelegba_bus_stop",
+"b": "matches",
+"code": "ojuelegba_bus_stop.interactwith(matches){ matches.receives(ojuelegba_bus_stop.envelope); matches.remembers(bisola, 'brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the matches, which is still found.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -10023,5 +10023,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T21:00:51-0500"
+"updated": "2026-11-18T21:06:59-0500"
 }
