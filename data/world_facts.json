@@ -985,16 +985,6 @@
 ],
 "red_white_cap": [
 {
-"id": "wf_0887f1aee2",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the red and white cap, which is still worn.",
-"code": "bicycle.interactwith(red_white_cap){ red_white_cap.receives(bicycle.envelope); red_white_cap.remembers(bisola, 'brown envelope'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "bicycle"
-},
-{
 "id": "wf_fc9f65fd67",
 "kind": "consequence",
 "text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up with the red and white cap, which is still worn.",
@@ -1023,6 +1013,16 @@
 "run": "run-2eb42d",
 "card": "w6",
 "other": null
+},
+{
+"id": "wf_2e3f75d4bf",
+"kind": "consequence",
+"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up with the red and white cap, which is still worn.",
+"code": "example.interactwith(red_white_cap){ red_white_cap.receives(example.shirt); red_white_cap.remembers(bisola, 'green shirt'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j8",
+"other": "example"
 },
 {
 "id": "wt_1115_2356_c",
@@ -7193,16 +7193,6 @@
 ],
 "thryd": [
 {
-"id": "wf_2c5dd4aaca",
-"kind": "consequence",
-"text": "The thryd leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"code": "icsh.interactwith(thryd){ thryd.receives(icsh.envelope); thryd.remembers(bisola, 'brown envelope'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "icsh"
-},
-{
 "id": "wf_34f21acb53",
 "kind": "consequence",
 "text": "The thryd leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
@@ -7231,6 +7221,16 @@
 "run": "run-2eb42d",
 "card": "j43",
 "other": null
+},
+{
+"id": "wf_55c3941222",
+"kind": "consequence",
+"text": "The thryd leaves with a Cup note with Ejiro's name and 'juju code' on it.",
+"code": "cup.interactwith(thryd){ thryd.receives(cup.code); thryd.remembers(ejiro, 'juju code'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j2",
+"other": "cup"
 },
 {
 "id": "wt_705361bf07",
@@ -9842,28 +9842,6 @@
 },
 "consequences": [
 {
-"id": "wf_3774781078",
-"ts": "2026-11-19T10:38:00-0500",
-"a": "uch",
-"b": "wynwood",
-"code": "uch.interactwith(wynwood){ wynwood.receives(uch.envelope); wynwood.remembers(bisola, 'brown envelope'); }",
-"text": "The wynwood leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
-"id": "wf_38dc9b483f",
-"ts": "2026-11-19T10:39:47-0500",
-"a": "vex",
-"b": "laptop",
-"code": "vex.interactwith(laptop){ laptop.receives(vex.shirt); laptop.remembers(bisola, 'green shirt'); laptop.tucks(vex, 'ikeja laundromat receipt into the lamp soot'); }",
-"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the lamp soot at the laptop, and Taiwo reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j8"
-},
-{
 "id": "wf_9a796688dc",
 "ts": "2026-11-19T10:40:41-0500",
 "a": "ttb",
@@ -10280,6 +10258,28 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j7"
+},
+{
+"id": "wf_55c3941222",
+"ts": "2026-11-19T13:34:38-0500",
+"a": "cup",
+"b": "thryd",
+"code": "cup.interactwith(thryd){ thryd.receives(cup.code); thryd.remembers(ejiro, 'juju code'); }",
+"text": "The thryd leaves with a Cup note with Ejiro's name and 'juju code' on it.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j2"
+},
+{
+"id": "wf_2e3f75d4bf",
+"ts": "2026-11-19T13:35:31-0500",
+"a": "example",
+"b": "red_white_cap",
+"code": "example.interactwith(red_white_cap){ red_white_cap.receives(example.shirt); red_white_cap.remembers(bisola, 'green shirt'); }",
+"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up with the red and white cap, which is still worn.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j8"
 }
 ],
 "memories": [
@@ -10383,5 +10383,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-19T13:25:50-0500"
+"updated": "2026-11-19T13:35:31-0500"
 }
