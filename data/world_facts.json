@@ -2409,16 +2409,6 @@
 ],
 "bus": [
 {
-"id": "wf_29c9f7ad52",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bus, and Bisola reads the name twice.",
-"code": "kweshon.interactwith(bus){ bus.receives(kweshon.envelope); bus.remembers(bisola, 'brown envelope'); bus.tucks(kweshon, 'yaba bookshop receipt into the brown envelope'); }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "kweshon"
-},
-{
 "id": "wf_68cc55a056",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bus, and Bisola reads the name twice.",
@@ -2457,6 +2447,16 @@
 "run": "run-5a58c4",
 "card": "j2",
 "other": "house"
+},
+{
+"id": "wf_862a4ca1d5",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bus, and Bisola reads the name twice.",
+"code": "since.interactwith(bus){ bus.receives(since.envelope); bus.remembers(bisola, 'brown envelope'); bus.tucks(since, 'yaba bookshop receipt into the brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "since"
 }
 ],
 "hands": [
@@ -9744,17 +9744,6 @@
 },
 "consequences": [
 {
-"id": "wf_a1589fe142",
-"ts": "2026-11-19T09:08:40-0500",
-"a": "move",
-"b": "mkdwo",
-"code": "move.interactwith(mkdwo){ mkdwo.receives(move.envelope); mkdwo.remembers(bisola, 'brown envelope'); }",
-"text": "The mkdwo leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
 "id": "wf_a27d7d4d80",
 "ts": "2026-11-19T09:13:58-0500",
 "a": "listen",
@@ -10182,6 +10171,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_862a4ca1d5",
+"ts": "2026-11-19T12:14:34-0500",
+"a": "since",
+"b": "bus",
+"code": "since.interactwith(bus){ bus.receives(since.envelope); bus.remembers(bisola, 'brown envelope'); bus.tucks(since, 'yaba bookshop receipt into the brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bus, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -10285,5 +10285,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-19T12:11:56-0500"
+"updated": "2026-11-19T12:14:34-0500"
 }
