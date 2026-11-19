@@ -963,16 +963,6 @@
 "other": "wiitbaw"
 },
 {
-"id": "wf_194e588426",
-"kind": "memory",
-"text": "The plastic sheet at Oke-Ayo bus stop: wet; Ronke and Kazeem had been under it, Mama Ronke stood over it.",
-"code": "plastic_sheet.state('wet');",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "w5",
-"other": null
-},
-{
 "id": "wf_99a2b3e11d",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the plastic sheet, which is still wet.",
@@ -981,6 +971,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "teach"
+},
+{
+"id": "wf_194e588426",
+"kind": "memory",
+"text": "The plastic sheet at Oke-Ayo bus stop: wet; Ronke and Kazeem had been under it, Mama Ronke stood over it.",
+"code": "plastic_sheet.state('wet');",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w5",
+"other": null
 }
 ],
 "red_white_cap": [
@@ -1037,16 +1037,6 @@
 ],
 "streetlights": [
 {
-"id": "wf_2f53183a19",
-"kind": "consequence",
-"text": "A Laptop note with Taiwo's name and 'lamp soot' on it, turns up with the streetlights, which is still all dead since 7:35pm.",
-"code": "tf_mom.interactwith(streetlights){ streetlights.receives(tf_mom.soot); streetlights.remembers(taiwo, 'lamp soot'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j7",
-"other": "tf_mom"
-},
-{
 "id": "wf_7ec9c15d17",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the streetlights, which is still all dead since 7:35pm.",
@@ -1075,6 +1065,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "bicycle"
+},
+{
+"id": "wf_99ff1ba63c",
+"kind": "consequence",
+"text": "A Laptop note with Taiwo's name and 'lamp soot' on it, turns up with the streetlights, which is still all dead since 7:35pm.",
+"code": "laptop.interactwith(streetlights){ streetlights.receives(laptop.soot); streetlights.remembers(taiwo, 'lamp soot'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j7",
+"other": "laptop"
 },
 {
 "id": "wf_32b4be23e9",
@@ -9544,17 +9544,6 @@
 },
 "consequences": [
 {
-"id": "wf_ee073fb33e",
-"ts": "2026-11-18T20:17:38-0500",
-"a": "lady",
-"b": "kazeem",
-"code": "lady.interactwith(kazeem){ kazeem.receives(lady.shirt); kazeem.remembers(bisola, 'green shirt'); }",
-"text": "The kazeem leaves with an Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j8"
-},
-{
 "id": "wf_5d8ba09fab",
 "ts": "2026-11-18T20:18:31-0500",
 "a": "example",
@@ -9982,6 +9971,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_99ff1ba63c",
+"ts": "2026-11-19T10:16:32-0500",
+"a": "laptop",
+"b": "streetlights",
+"code": "laptop.interactwith(streetlights){ streetlights.receives(laptop.soot); streetlights.remembers(taiwo, 'lamp soot'); }",
+"text": "A Laptop note with Taiwo's name and 'lamp soot' on it, turns up with the streetlights, which is still all dead since 7:35pm.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j7"
 }
 ],
 "memories": [
@@ -10085,5 +10085,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-19T10:15:38-0500"
+"updated": "2026-11-19T10:17:26-0500"
 }
