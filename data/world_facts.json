@@ -2569,16 +2569,6 @@
 ],
 "cup": [
 {
-"id": "wf_a75e3e2ef2",
-"kind": "consequence",
-"text": "A Red white cap note with Taiwo's name and 'egbe note' on it, 11:20pm, turns up inside the juju code at the cup, and Ejiro reads the name twice.",
-"code": "red_white_cap.interactwith(cup){ cup.receives(red_white_cap.note); cup.remembers(taiwo, 'egbe note'); cup.tucks(red_white_cap, 'red white cap note into the juju code'); }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "w7",
-"other": "red_white_cap"
-},
-{
 "id": "wf_a0b861694c",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the juju code at the cup, and Ejiro reads the name twice.",
@@ -2607,6 +2597,16 @@
 "run": "run-5a58c4",
 "card": "j3",
 "other": "marker"
+},
+{
+"id": "wf_e9faa0c1e9",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the juju code at the cup, and Ejiro reads the name twice.",
+"code": "patagonia.interactwith(cup){ cup.receives(patagonia.envelope); … }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "patagonia"
 },
 {
 "id": "wt_9a530635c7",
@@ -7831,6 +7831,16 @@
 "run": "run-2eb42d",
 "card": "j8",
 "other": "lady"
+},
+{
+"id": "wf_164cee9d92",
+"kind": "consequence",
+"text": "A Bird note with Bisola's name and 'envelope corner' on it, turns up inside the green shirt at the vex, and Bisola reads the name twice.",
+"code": "jnoel.interactwith(vex){ vex.receives(jnoel.corner); vex.remembers(bisola, 'envelope corner'); vex.tucks(jnoel, 'bird note into the green shirt'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j7",
+"other": "jnoel"
 }
 ],
 "wholesome_scenes": [
@@ -9504,39 +9514,6 @@
 },
 "consequences": [
 {
-"id": "wf_8de965603f",
-"ts": "2026-11-18T18:23:44-0500",
-"a": "vex",
-"b": "b_md",
-"code": "vex.interactwith(b_md){ b_md.receives(vex.shirt); b_md.remembers(bisola, 'green shirt'); b_md.tucks(vex, 'ikeja laundromat receipt into the green shirt'); }",
-"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the green shirt at the b md, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j8"
-},
-{
-"id": "wf_d06d5077f2",
-"ts": "2026-11-18T18:37:49-0500",
-"a": "sports_ball",
-"b": "ibidunni_oyelade",
-"code": "sports_ball.interactwith(ibidunni_oyelade){ ibidunni_oyelade.receives(sports_ball.envelope); ibidunni_oyelade.remembers(bisola, 'brown envelope'); }",
-"text": "The ibidunni oyelade leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
-"id": "wf_02d293a333",
-"ts": "2026-11-18T18:39:34-0500",
-"a": "bow",
-"b": "lie",
-"code": "bow.interactwith(lie){ lie.receives(bow.envelope); lie.remembers(bisola, 'brown envelope'); lie.tucks(bow, 'yaba bookshop receipt into the brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the lie, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
 "id": "wf_e2618014f1",
 "ts": "2026-11-18T18:42:11-0500",
 "a": "b_md",
@@ -9942,6 +9919,39 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_e9faa0c1e9",
+"ts": "2026-11-19T07:01:59-0500",
+"a": "patagonia",
+"b": "cup",
+"code": "patagonia.interactwith(cup){ cup.receives(patagonia.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the juju code at the cup, and Ejiro reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
+},
+{
+"id": "wf_e1b826bbe5",
+"ts": "2026-11-19T07:04:39-0500",
+"a": "plastic_sheet",
+"b": "kazeem",
+"code": "plastic_sheet.interactwith(kazeem){ plastic_sheet.db.copyto(kazeem); kazeem.keeps(plastic_sheet, 'plastic sheet, still wet'); }",
+"text": "The plastic sheet ends up with the kazeem, still wet.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w5"
+},
+{
+"id": "wf_164cee9d92",
+"ts": "2026-11-19T07:05:32-0500",
+"a": "jnoel",
+"b": "vex",
+"code": "jnoel.interactwith(vex){ vex.receives(jnoel.corner); vex.remembers(bisola, 'envelope corner'); vex.tucks(jnoel, 'bird note into the green shirt'); }",
+"text": "A Bird note with Bisola's name and 'envelope corner' on it, turns up inside the green shirt at the vex, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j7"
 }
 ],
 "memories": [
@@ -10045,5 +10055,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-19T06:59:21-0500"
+"updated": "2026-11-19T07:05:33-0500"
 }
