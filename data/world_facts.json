@@ -6619,6 +6619,16 @@
 "run": "run-g1-B",
 "card": "j5",
 "other": "mount_mercy"
+},
+{
+"id": "wf_706b80ddea",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the blue glass bead at the lagos, and Bisola reads the name twice.",
+"code": "uch.interactwith(lagos){ lagos.receives(uch.envelope); lagos.remembers(bisola, 'brown envelope'); lagos.tucks(uch, 'yaba bookshop receipt into the blue glass bead'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "uch"
 }
 ],
 "oke_ayo_bus": [
@@ -7891,6 +7901,16 @@
 "run": "run-2eb42d",
 "card": "j7",
 "other": "jnoel"
+},
+{
+"id": "wf_4a439f91c7",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the green shirt at the vex, and Bisola reads the name twice.",
+"code": "mlkahb.interactwith(vex){ vex.receives(mlkahb.envelope); vex.remembers(bisola, 'brown envelope'); vex.tucks(mlkahb, 'yaba bookshop receipt into the green shirt'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "mlkahb"
 }
 ],
 "wholesome_scenes": [
@@ -9596,39 +9616,6 @@
 },
 "consequences": [
 {
-"id": "wf_19f5cee8ab",
-"ts": "2026-11-19T06:53:11-0500",
-"a": "computer_village",
-"b": "streetlights",
-"code": "computer_village.interactwith(streetlights){ streetlights.receives(computer_village.envelope); streetlights.remembers(bisola, 'brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the streetlights, which is still all dead since 7:35pm.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
-"id": "wf_145593d448",
-"ts": "2026-11-19T06:58:28-0500",
-"a": "computer_village",
-"b": "matches",
-"code": "computer_village.interactwith(matches){ matches.receives(computer_village.envelope); matches.remembers(bisola, 'brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the matches, which is still found.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
-"id": "wf_e9faa0c1e9",
-"ts": "2026-11-19T07:01:59-0500",
-"a": "patagonia",
-"b": "cup",
-"code": "patagonia.interactwith(cup){ cup.receives(patagonia.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the juju code at the cup, and Ejiro reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
 "id": "wf_e1b826bbe5",
 "ts": "2026-11-19T07:04:39-0500",
 "a": "plastic_sheet",
@@ -10034,6 +10021,39 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "w6"
+},
+{
+"id": "wf_706b80ddea",
+"ts": "2026-11-19T11:08:08-0500",
+"a": "uch",
+"b": "lagos",
+"code": "uch.interactwith(lagos){ lagos.receives(uch.envelope); lagos.remembers(bisola, 'brown envelope'); lagos.tucks(uch, 'yaba bookshop receipt into the blue glass bead'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the blue glass bead at the lagos, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
+},
+{
+"id": "wf_4a439f91c7",
+"ts": "2026-11-19T11:09:01-0500",
+"a": "mlkahb",
+"b": "vex",
+"code": "mlkahb.interactwith(vex){ vex.receives(mlkahb.envelope); vex.remembers(bisola, 'brown envelope'); vex.tucks(mlkahb, 'yaba bookshop receipt into the green shirt'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the green shirt at the vex, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
+},
+{
+"id": "wf_79a83ca11a",
+"ts": "2026-11-19T11:11:39-0500",
+"a": "again",
+"b": "kazeem",
+"code": "again.interactwith(kazeem){ kazeem.receives(again.envelope); kazeem.remembers(bisola, 'brown envelope'); }",
+"text": "The kazeem leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -10137,5 +10157,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-19T11:07:15-0500"
+"updated": "2026-11-19T11:11:39-0500"
 }
