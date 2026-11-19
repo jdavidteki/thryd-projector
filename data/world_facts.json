@@ -6091,6 +6091,16 @@
 "run": "run-5a58c4",
 "card": "j7",
 "other": "plot"
+},
+{
+"id": "wf_e549b7fb9c",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the icsh, and Bisola reads the name twice.",
+"code": "seniorgehs.interactwith(icsh){ icsh.receives(seniorgehs.envelope); … }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "seniorgehs"
 }
 ],
 "jetty_south_pointe": [
@@ -7699,16 +7709,6 @@
 ],
 "hear": [
 {
-"id": "wt_3bf73b06b6",
-"kind": "func_call",
-"text": "The hear hears it (because pepu.setMany(amount=many:Quantity) from j17).",
-"code": "hear.hears(third_mainland_bridge, 'setMany');",
-"author": "projector",
-"run": "run-2eb42d",
-"card": "w17",
-"other": null
-},
-{
 "id": "wt_9ea7c4df3a",
 "kind": "func_call",
 "text": "The hear hears it (because pepu.setMany(amount=many:Quantity) from j17).",
@@ -7740,6 +7740,16 @@
 },
 {
 "id": "wt_9878bfac2e",
+"kind": "func_call",
+"text": "The hear hears it (because pepu.setMany(amount=many:Quantity) from j17).",
+"code": "hear.hears(car, 'setMany');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w17",
+"other": null
+},
+{
+"id": "wt_32b92c615d",
 "kind": "func_call",
 "text": "The hear hears it (because pepu.setMany(amount=many:Quantity) from j17).",
 "code": "hear.hears(car, 'setMany');",
@@ -8207,26 +8217,6 @@
 ],
 "cli": [
 {
-"id": "wt_350df69777",
-"kind": "func_call",
-"text": "The customer typed c3() on run-2eb42d j41. It came back: c3(). Implementation: /* c3() */.",
-"code": "c3();",
-"author": "customer",
-"run": "run-2eb42d",
-"card": "j41",
-"other": null
-},
-{
-"id": "wt_6c107ebfd1",
-"kind": "func_call",
-"text": "The customer typed #thryd.miracle.log(1) on run-2eb42d j41. It came back: #thryd.miracle.log(1). Implementation: /* #thryd.miracle.log(1) */.",
-"code": "#thryd.miracle.log(1);",
-"author": "customer",
-"run": "run-2eb42d",
-"card": "j41",
-"other": null
-},
-{
 "id": "wt_67bbc9010e",
 "kind": "func_call",
 "text": "The customer typed #thryd.miracle.log(1) on run-2eb42d j41. It came back: #thryd.miracle.log(1). Implementation: /* #thryd.miracle.log(1) */.",
@@ -8254,6 +8244,26 @@
 "author": "customer",
 "run": "run-2eb42d",
 "card": "j41",
+"other": null
+},
+{
+"id": "wt_9513944b87",
+"kind": "func_call",
+"text": "The customer typed c2() on run-2eb42d j42. It came back: c2(). Implementation: /* c2() */.",
+"code": "c2();",
+"author": "customer",
+"run": "run-2eb42d",
+"card": "j42",
+"other": null
+},
+{
+"id": "wt_5fa7e8f92e",
+"kind": "func_call",
+"text": "The customer typed a2() on run-2eb42d j42. It came back: a2(). Implementation: /* a2() */.",
+"code": "a2();",
+"author": "customer",
+"run": "run-2eb42d",
+"card": "j42",
 "other": null
 }
 ],
@@ -8569,16 +8579,6 @@
 ],
 "pepu": [
 {
-"id": "wt_422e3fb48b",
-"kind": "func_call",
-"text": "Someone at the projector tapped the third mainland bridge and called pepu.setMany(amount=many:Quantity) from j17 from its agenda run-2eb42d, first seated in run-2eb42d j17.",
-"code": "pepu.setMany('many');",
-"author": "projector",
-"run": "run-2eb42d",
-"card": "w17",
-"other": null
-},
-{
 "id": "wt_4b56deb9b9",
 "kind": "func_call",
 "text": "Someone at the projector tapped the third mainland bridge and called pepu.setMany(amount=many:Quantity) from j17 from its agenda run-2eb42d, first seated in run-2eb42d j17.",
@@ -8610,6 +8610,16 @@
 },
 {
 "id": "wt_a2f1dad40a",
+"kind": "func_call",
+"text": "Someone at the projector tapped the car and called pepu.setMany(amount=many:Quantity) from j17 from its agenda run-2eb42d, first seated in run-2eb42d j17.",
+"code": "pepu.setMany('many');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w17",
+"other": null
+},
+{
+"id": "wt_297b913864",
 "kind": "func_call",
 "text": "Someone at the projector tapped the car and called pepu.setMany(amount=many:Quantity) from j17 from its agenda run-2eb42d, first seated in run-2eb42d j17.",
 "code": "pepu.setMany('many');",
@@ -9788,28 +9798,6 @@
 },
 "consequences": [
 {
-"id": "wf_52b5aa1e71",
-"ts": "2026-11-19T09:48:07-0500",
-"a": "ojuelegba_bus_stop",
-"b": "wser",
-"code": "ojuelegba_bus_stop.interactwith(wser){ wser.receives(ojuelegba_bus_stop.envelope); wser.remembers(bisola, 'brown envelope'); }",
-"text": "The wser leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
-"id": "wf_c4492f219e",
-"ts": "2026-11-19T09:53:27-0500",
-"a": "bicycle",
-"b": "streetlights",
-"code": "bicycle.interactwith(streetlights){ streetlights.receives(bicycle.envelope); streetlights.remembers(bisola, 'brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the streetlights, which is still all dead since 7:35pm.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
 "id": "wf_6f44dd0ca6",
 "ts": "2026-11-19T09:55:13-0500",
 "a": "b_md",
@@ -10226,6 +10214,28 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_8ff1e4ccd8",
+"ts": "2026-11-19T12:43:34-0500",
+"a": "iae",
+"b": "kerosene_lamp",
+"code": "iae.interactwith(kerosene_lamp){ iae.db.copyto(kerosene_lamp); kerosene_lamp.keeps(iae, 'iae, still initialized'); }",
+"text": "The iae ends up with the kerosene lamp, still initialized.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w1"
+},
+{
+"id": "wf_e549b7fb9c",
+"ts": "2026-11-19T12:47:04-0500",
+"a": "seniorgehs",
+"b": "icsh",
+"code": "seniorgehs.interactwith(icsh){ icsh.receives(seniorgehs.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the icsh, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -10329,5 +10339,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-19T12:40:56-0500"
+"updated": "2026-11-19T12:47:04-0500"
 }
