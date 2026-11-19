@@ -777,16 +777,6 @@
 ],
 "pure_water_cooler": [
 {
-"id": "wf_eda95b4dfd",
-"kind": "consequence",
-"text": "The iae ends up with the pure water cooler, still initialized.",
-"code": "iae.interactwith(pure_water_cooler){ iae.db.copyto(pure_water_cooler); pure_water_cooler.keeps(iae, 'iae, still initialized'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "w1",
-"other": "iae"
-},
-{
 "id": "wf_92df529134",
 "kind": "consequence",
 "text": "A Bird note with Bisola's name and 'envelope corner' on it, turns up with the pure-water cooler, which is still carried home through the flood.",
@@ -815,6 +805,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "ojuelegba_bus_stop"
+},
+{
+"id": "wf_0a391e4322",
+"kind": "consequence",
+"text": "The pure water cooler now remembers the kazeem: Kazeem passes his phone. Already woven into posted w39; this row only logs the seated pick.",
+"code": "kazeem.interactwith(pure_water_cooler){ pure_water_cooler.receives(kazeem.something); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w38",
+"other": "kazeem"
 },
 {
 "id": "wt_61e16c7796",
@@ -1508,6 +1508,16 @@
 }
 ],
 "ttb": [
+{
+"id": "wf_50fd7887cb",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the juju code at the ttb, and Ejiro reads the name twice.",
+"code": "teach.interactwith(ttb){ ttb.receives(teach.envelope); ttb.remembers(bisola, 'brown envelope'); ttb.tucks(teach, 'yaba bookshop receipt into the juju code'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "teach"
+},
 {
 "id": "wt_c16fd95017",
 "kind": "memory",
@@ -9734,28 +9744,6 @@
 },
 "consequences": [
 {
-"id": "wf_38a494fe95",
-"ts": "2026-11-19T07:41:36-0500",
-"a": "ronke",
-"b": "wser",
-"code": "ronke.interactwith(wser){ wser.receives(ronke.something); }",
-"text": "The wser now remembers the ronke: Ronke writes a note. Already woven into posted w39; this row only logs the seated pick.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "w38"
-},
-{
-"id": "wf_8ae640e811",
-"ts": "2026-11-19T07:42:29-0500",
-"a": "tf_mom",
-"b": "jnoel",
-"code": "tf_mom.interactwith(jnoel){ jnoel.receives(tf_mom.soot); jnoel.remembers(taiwo, 'lamp soot'); jnoel.tucks(tf_mom, 'laptop note into the envelope corner'); }",
-"text": "A Laptop note with Taiwo's name and 'lamp soot' on it, turns up inside the envelope corner at the jnoel, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j7"
-},
-{
 "id": "wf_34f21acb53",
 "ts": "2026-11-19T08:37:13-0500",
 "a": "computer_village",
@@ -10172,6 +10160,28 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j7"
+},
+{
+"id": "wf_50fd7887cb",
+"ts": "2026-11-19T11:53:27-0500",
+"a": "teach",
+"b": "ttb",
+"code": "teach.interactwith(ttb){ ttb.receives(teach.envelope); ttb.remembers(bisola, 'brown envelope'); ttb.tucks(teach, 'yaba bookshop receipt into the juju code'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the juju code at the ttb, and Ejiro reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
+},
+{
+"id": "wf_0a391e4322",
+"ts": "2026-11-19T11:54:20-0500",
+"a": "kazeem",
+"b": "pure_water_cooler",
+"code": "kazeem.interactwith(pure_water_cooler){ pure_water_cooler.receives(kazeem.something); }",
+"text": "The pure water cooler now remembers the kazeem: Kazeem passes his phone. Already woven into posted w39; this row only logs the seated pick.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w38"
 }
 ],
 "memories": [
@@ -10275,5 +10285,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-19T11:48:33-0500"
+"updated": "2026-11-19T11:54:20-0500"
 }
