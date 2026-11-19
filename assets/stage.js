@@ -134,16 +134,17 @@
     '#gstage .gtag.on{opacity:.85}',
     '#gstage .gtag.gcarry{color:#f0d7a2;z-index:9998}',
     '@media (prefers-reduced-motion:reduce){#gstage .gcut.fl,#gstage .gcut.gnotice{animation:none}}',
-    '#gstage .gcut.gpin{overflow:hidden;background:transparent;border:0;box-shadow:none;width:36px;height:40px}',
+    '#gstage .gcut.gpin{overflow:hidden;background:transparent;border:0;box-shadow:none;width:40px;height:40px}',
     '#gstage .gcut.gpin.gmap-live{filter:drop-shadow(0 0 5px color-mix(in srgb, var(--pin, #f0c14b) 70%, transparent))}',
-    '#gstage .gcut.gpin .gmappin{position:absolute;left:50%;top:3px;width:18px;height:18px;margin-left:-9px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);border:1.5px solid #fff;box-shadow:0 1px 3px #0008;pointer-events:none}',
-    '#gstage .gcut.gpin .gmappin::after{content:"";position:absolute;left:50%;top:50%;width:6px;height:6px;margin:-3px 0 0 -3px;border-radius:50%;background:#fff9}',
+    '#gstage .gcut.gpin .gmappin{position:absolute;left:0;right:0;top:0;height:22px;width:auto;margin:0;border:0;border-radius:0;background:transparent !important;box-shadow:none;transform:none;display:flex;align-items:center;justify-content:center;font:15px/1 system-ui,"Apple Color Emoji","Noto Color Emoji","Segoe UI Emoji",sans-serif;letter-spacing:-0.08em;text-shadow:0 1px 2px #000a;pointer-events:none;white-space:nowrap}',
+    '#gstage .gcut.gpin .gmappin::after{content:none;display:none}',
     '#gstage .gcut.gpin .gmappin.live{animation:gpinpulse 1.8s ease-in-out infinite}',
     '@keyframes gpinpulse{0%,100%{filter:brightness(1)}50%{filter:brightness(1.25) drop-shadow(0 0 3px #fff8)}}',
     '#gstage .gcut.gpin .gpin-lab{position:absolute;left:1px;right:1px;bottom:1px;font:600 8px/1.05 "IBM Plex Mono",ui-monospace,monospace;color:#fff;text-align:center;letter-spacing:-0.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-shadow:0 0 3px #000,0 1px 2px #000c;pointer-events:none}',
     '#gpinpop{position:absolute;z-index:40;width:180px;padding:8px 8px 6px;background:#141210f2;border:1px solid #ffffff22;border-radius:8px;box-shadow:0 10px 24px #000c;color:#eee;transform:translateX(-50%);pointer-events:auto}',
     '#gpinpop .gpin-name{font:600 11px/1.25 "IBM Plex Sans",sans-serif;margin:0 0 2px}',
     '#gpinpop .gpin-meta{font:500 9px/1.2 "IBM Plex Mono",monospace;color:#bbb;margin:0 0 6px}',
+    '#gpinpop .gpin-wxl{font:500 10px/1.2 "IBM Plex Mono",monospace;color:#eee;margin:0 0 6px}',
     '#gpinpop .gpin-prev{position:relative;width:164px;height:110px;overflow:hidden;border-radius:5px;background:#1a1814}',
     '#gpinpop .gpin-prev img{display:block;width:100%;height:100%;object-fit:cover;pointer-events:none}',
     '#gpinpop .gpin-prev .gmappin{position:absolute;width:14px;height:14px;margin:-10px 0 0 -7px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);border:1.5px solid #fff;pointer-events:none}',
@@ -2785,9 +2786,11 @@
   // ---------- small place pins (Jesuye 17 Nov 2026 8:48 PM ET): no map tiles on the
   // stage. Each agenda with a place in data/map_pins.json is one floating coloured
   // pin (~40px) plus a tiny place label, like the other small chips. The live
-  // agenda's pin pulses. Tap opens a small popup (place, run, jN, optional static
-  // OSM preview). Leaflet is never mounted on the stage. Bad pin data never throws.
-  const PIN_W = 36, PIN_H = 40;
+  // agenda's pin pulses. The marker itself is 📍 plus the place's weather emoji
+  // (📍🌙, 📍🌧️), always visible, nothing on hover. Tap opens a small popup
+  // (place, run, jN, optional temperature · condition, static OSM preview).
+  // Leaflet is never mounted on the stage. Bad pin data never throws.
+  const PIN_W = 40, PIN_H = 40;
   function readPinFile(d){
     if(!d || typeof d !== 'object') return null;
     const pins = (Array.isArray(d.pins) ? d.pins : []).filter(p => p && p.run && isFinite(+p.lat) && isFinite(+p.lon) && Math.abs(+p.lat) <= 90 && Math.abs(+p.lon) <= 180);
@@ -2821,6 +2824,41 @@
     if(pinPop.el){ try{ pinPop.el.remove(); }catch(e){} pinPop.el = null; }
     pinPop.cut = null;
   }
+  function wxOf(pin){
+    const w = pin && pin.weather;
+    if(!w || !w.emoji) return null;
+    const emoji = String(w.emoji);
+    const temp = (w.temp_c != null && isFinite(+w.temp_c)) ? (Math.round(+w.temp_c * 10) / 10) : null;
+    const desc = (w.desc && String(w.desc).trim()) || '';
+    const line = [temp != null ? (temp + '\u00b0C') : '', desc].filter(Boolean).join(' \u00b7 ');
+    return {emoji, temp, desc, line};
+  }
+  function wxPaint(cut){
+    if(!cut || !cut.el) return;
+    const pin = cut.pin;
+    const w = wxOf(pin);
+    const mark = cut.el.querySelector('.gmappin');
+    const icon = '\uD83D\uDCCD' + (w && w.emoji ? w.emoji : '');
+    cut.el.classList.toggle('gwx', !!w);
+    if(mark){
+      mark.style.background = 'transparent';
+      if(mark.textContent !== icon) mark.textContent = icon;
+    }
+    // Jesuye 19 Nov 1:03 PM ET: marker itself is the weather; nothing on hover
+    cut.el.removeAttribute('title');
+    cut.el.setAttribute('aria-label', [icon, (pin && pin.place) || 'pin', runShort(pin && pin.run)].filter(Boolean).join(' '));
+  }
+  root.thrydWeather = ()=>{
+    const pins = [...document.querySelectorAll('#gstage .gcut.gpin')].map(el => {
+      const mark = el.querySelector('.gmappin');
+      const r = mark && mark.getBoundingClientRect();
+      const lab = el.querySelector('.gpin-lab');
+      const icon = mark ? String(mark.textContent || '') : '';
+      const shown = !!(mark && r && r.width > 0 && r.height > 0 && /^\uD83D\uDCCD\S/u.test(icon) && getComputedStyle(mark).visibility !== 'hidden' && getComputedStyle(mark).display !== 'none');
+      return {run: el.dataset.run || '', place: lab ? lab.textContent : '', emoji: icon, shown, title: el.getAttribute('title') || '', w: el.getBoundingClientRect().width, h: el.getBoundingClientRect().height};
+    });
+    return {n: pins.length, shown: pins.filter(p => p.shown).length, pins};
+  };
   function showPinPop(cut){
     closePinPop();
     const pin = cut && cut.pin; if(!pin || !cut.el || !cut.el.isConnected) return;
@@ -2829,6 +2867,8 @@
     const meta = document.createElement('div'); meta.className = 'gpin-meta';
     meta.textContent = [pin.run, pin.job || pin.card, pin.time || pin.beat].filter(Boolean).join(' \u00b7 ');
     box.appendChild(meta);
+    const w = wxOf(pin);
+    if(w && w.line){ const wl = document.createElement('div'); wl.className = 'gpin-wxl'; wl.textContent = w.line; box.appendChild(wl); }
     try{
       const t = osmTile(+pin.lat, +pin.lon, 12);
       const prev = document.createElement('div'); prev.className = 'gpin-prev';
@@ -2852,15 +2892,16 @@
   function paintPin(cut, pin){
     if(!cut || !cut.el || !pin) return;
     const mark = cut.el.querySelector('.gmappin');
-    if(mark){ mark.style.background = pin.color || '#e85d4c'; mark.classList.toggle('live', !!pin.live); }
+    if(mark){ mark.style.background = 'transparent'; mark.classList.toggle('live', !!pin.live); }
     const lab = cut.el.querySelector('.gpin-lab');
     if(lab) lab.textContent = pinLabel(pin);
     cut.el.classList.toggle('gmap-live', !!pin.live);
     cut.el.dataset.run = pin.run || '';
-    cut.el.title = [pin.place, pin.run, pin.job].filter(Boolean).join(' \u00b7 ');
+    cut.el.removeAttribute('title');
     cut.pin = pin; cut.label = pin.place || 'pin';
     if(cut.g){ cut.g.live = !!pin.live; cut.g.place = pin.place; cut.g.card = pin.card || pin.job || null; cut.g.title = pinLabel(pin); }
     cut.el.style.setProperty('--pin', pin.color || '#f0c14b');
+    try{ wxPaint(cut); }catch(e){}
   }
   function spawnOnePin(pin, slot){
     if(!pin || !pin.run) return null;
@@ -2876,14 +2917,15 @@
     el.setAttribute('role', 'img');
     el.setAttribute('aria-label', (pin.place || 'pin') + ' ' + runShort(pin.run));
     el.style.setProperty('--pin', pin.color || '#f0c14b');
-    el.title = [pin.place, pin.run, pin.job].filter(Boolean).join(' \u00b7 ');
+    el.removeAttribute('title');
     const mark = document.createElement('div'); mark.className = 'gmappin' + (pin.live ? ' live' : ''); mark.dataset.marker = '1';
-    mark.style.background = pin.color || '#e85d4c';
+    mark.style.background = 'transparent';
     const lab = document.createElement('div'); lab.className = 'gpin-lab'; lab.textContent = pinLabel(pin);
     el.appendChild(mark); el.appendChild(lab);
     const cut = {ctx: null, sid: null, g, home: g, el, frames: [], label: pin.place || 'pin', klass: 'pin', i: 0,
       U: {x: 0, y: 0, w: Dw, h: Dh}, w: Dw, h: Dh, hx: g.x, hy: g.y, entering: true, bytes: 0, area: 0.08,
       map: true, pin: pin};
+    try{ wxPaint(cut); }catch(e){}
     cut.left = cut.hx; cut.top = cut.hy;
     Object.assign(el.style, {left: cut.left + 'px', top: cut.top + 'px', width: cut.w + 'px', height: cut.h + 'px', zIndex: String((pin.live ? 16 : 10) + Math.round(g.y))});
     el.style.setProperty('--fd', (R(5.5, 9)).toFixed(2) + 's'); el.style.setProperty('--fdl', (-R(0, 6)).toFixed(2) + 's');
