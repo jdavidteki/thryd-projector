@@ -985,16 +985,6 @@
 ],
 "red_white_cap": [
 {
-"id": "wf_28236b6aaa",
-"kind": "consequence",
-"text": "The red white cap now remembers the miami: 11:45pm, Monday 2 November 2026: A phone on the counter starts the off-key chorus, then.",
-"code": "miami.interactwith(red_white_cap){ red_white_cap.receives(miami.phone); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j29",
-"other": "miami"
-},
-{
 "id": "wf_13a0fbac36",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the red and white cap, which is still worn.",
@@ -1013,6 +1003,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "namco"
+},
+{
+"id": "wf_0887f1aee2",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the red and white cap, which is still worn.",
+"code": "bicycle.interactwith(red_white_cap){ red_white_cap.receives(bicycle.envelope); red_white_cap.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "bicycle"
 },
 {
 "id": "wf_3fdb648208",
@@ -2673,16 +2673,6 @@
 ],
 "cell_phone": [
 {
-"id": "wf_7931f07a6c",
-"kind": "consequence",
-"text": "On the Third Mainland Bridge, Bisola's phone at ten percent picks up the danfo's memory of Kunle's dead stop chalked on the route board, so it is the last thing she reads before the screen dies.",
-"code": "danfo_stuck_third.interactwith(cell_phone){ cell_phone.receives(danfo_stuck_third, 'dead stop chalked on route board'); … }",
-"author": "cos",
-"run": "run-9e59ca",
-"card": "j4",
-"other": "danfo_stuck_third"
-},
-{
 "id": "wf_e3222026cf",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the cell phone, and Bisola reads the name twice.",
@@ -2711,6 +2701,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "bow"
+},
+{
+"id": "wf_2a8336f1cc",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the cell phone, and Bisola reads the name twice.",
+"code": "since.interactwith(cell_phone){ cell_phone.receives(since.envelope); … }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "since"
 },
 {
 "id": "wt_775c701ecb",
@@ -9258,42 +9258,21 @@
 "card": "w1",
 "other": null
 }
+],
+"oloriburuku": [
+{
+"id": "wf_511338a16a",
+"kind": "consequence",
+"text": "The oloriburuku now remembers the oyinboman: Someone at the projector tapped the computer village subject and called.",
+"code": "oyinboman.interactwith(oloriburuku){ oloriburuku.receives(oyinboman.something); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w16",
+"other": "oyinboman"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_60ef3b9ef8",
-"ts": "2026-11-18T16:32:49-0500",
-"a": "atp",
-"b": "computer_village",
-"code": "atp.interactwith(computer_village){ computer_village.receives(atp.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the green shirt at the computer village, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
-"id": "wf_35c0dca806",
-"ts": "2026-11-18T16:38:07-0500",
-"a": "computer_village",
-"b": "wiitbaw",
-"code": "computer_village.interactwith(wiitbaw){ wiitbaw.receives(computer_village.envelope); wiitbaw.remembers(bisola, 'brown envelope'); }",
-"text": "The wiitbaw leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
-"id": "wf_b4c6cfda9a",
-"ts": "2026-11-18T16:39:52-0500",
-"a": "imhf",
-"b": "bird",
-"code": "imhf.interactwith(bird){ bird.receives(imhf.shirt); bird.remembers(bisola, 'green shirt'); bird.tucks(imhf, 'ikeja laundromat receipt into the envelope corner'); }",
-"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the envelope corner at the bird, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j8"
-},
 {
 "id": "wf_0a84630064",
 "ts": "2026-11-18T16:44:16-0500",
@@ -9700,6 +9679,39 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_2a8336f1cc",
+"ts": "2026-11-18T19:13:39-0500",
+"a": "since",
+"b": "cell_phone",
+"code": "since.interactwith(cell_phone){ cell_phone.receives(since.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the cell phone, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
+},
+{
+"id": "wf_511338a16a",
+"ts": "2026-11-18T19:14:32-0500",
+"a": "oyinboman",
+"b": "oloriburuku",
+"code": "oyinboman.interactwith(oloriburuku){ oloriburuku.receives(oyinboman.something); }",
+"text": "The oloriburuku now remembers the oyinboman: Someone at the projector tapped the computer village subject and called.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w16"
+},
+{
+"id": "wf_0887f1aee2",
+"ts": "2026-11-18T19:15:24-0500",
+"a": "bicycle",
+"b": "red_white_cap",
+"code": "bicycle.interactwith(red_white_cap){ red_white_cap.receives(bicycle.envelope); red_white_cap.remembers(bisola, 'brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the red and white cap, which is still worn.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -9803,5 +9815,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T19:12:46-0500"
+"updated": "2026-11-18T19:16:17-0500"
 }
