@@ -881,16 +881,6 @@
 ],
 "danfo_speaker": [
 {
-"id": "wf_2dd95d9ccd",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the danfo speaker, which is still playing the same love song.",
-"code": "bus.interactwith(danfo_speaker){ danfo_speaker.receives(bus.envelope); danfo_speaker.remembers(bisola, 'brown envelope'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "bus"
-},
-{
 "id": "wf_e2618014f1",
 "kind": "consequence",
 "text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up with the danfo speaker, which is still playing the same love song.",
@@ -899,6 +889,16 @@
 "run": "run-2eb42d",
 "card": "j8",
 "other": "b_md"
+},
+{
+"id": "wf_a688d36f3b",
+"kind": "consequence",
+"text": "A Laptop note with Taiwo's name and 'lamp soot' on it, turns up with the danfo speaker, which is still playing the same love song.",
+"code": "laptop.interactwith(danfo_speaker){ danfo_speaker.receives(laptop.soot); danfo_speaker.remembers(taiwo, 'lamp soot'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j7",
+"other": "laptop"
 },
 {
 "id": "wf_bdad55d985",
@@ -7943,16 +7943,6 @@
 ],
 "computer_village": [
 {
-"id": "wf_56d2610fbf",
-"kind": "consequence",
-"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the brown envelope at the computer village, and Bisola reads the name twice.",
-"code": "vex.interactwith(computer_village){ computer_village.receives(vex.shirt); … }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j8",
-"other": "vex"
-},
-{
 "id": "wf_7e39aeadd0",
 "kind": "consequence",
 "text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the green shirt at the computer village, and Bisola reads the name twice.",
@@ -7991,6 +7981,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "niaw"
+},
+{
+"id": "wf_44ca30d515",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the computer village, and Bisola reads the name twice.",
+"code": "listen.interactwith(computer_village){ computer_village.receives(listen.envelope); … }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "listen"
 }
 ],
 "oh_pls_shaaatttaaapppp": [
@@ -9544,28 +9544,6 @@
 },
 "consequences": [
 {
-"id": "wf_9537bb0ead",
-"ts": "2026-11-18T19:35:08-0500",
-"a": "sports_ball",
-"b": "kerosene_lamp",
-"code": "sports_ball.interactwith(kerosene_lamp){ kerosene_lamp.receives(sports_ball.envelope); kerosene_lamp.remembers(bisola, 'brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the kerosene lamp, which is still lit.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
-"id": "wf_94a5c0d03c",
-"ts": "2026-11-18T19:46:20-0500",
-"a": "namco",
-"b": "ojuelegba_bus_stop",
-"code": "namco.interactwith(ojuelegba_bus_stop){ ojuelegba_bus_stop.receives(namco.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the green shirt at the ojuelegba bus stop, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
 "id": "wf_f748da0c96",
 "ts": "2026-11-18T19:47:13-0500",
 "a": "niaw",
@@ -9982,6 +9960,28 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_44ca30d515",
+"ts": "2026-11-19T09:26:25-0500",
+"a": "listen",
+"b": "computer_village",
+"code": "listen.interactwith(computer_village){ computer_village.receives(listen.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the computer village, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
+},
+{
+"id": "wf_a688d36f3b",
+"ts": "2026-11-19T09:27:18-0500",
+"a": "laptop",
+"b": "danfo_speaker",
+"code": "laptop.interactwith(danfo_speaker){ danfo_speaker.receives(laptop.soot); danfo_speaker.remembers(taiwo, 'lamp soot'); }",
+"text": "A Laptop note with Taiwo's name and 'lamp soot' on it, turns up with the danfo speaker, which is still playing the same love song.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j7"
 }
 ],
 "memories": [
@@ -10085,5 +10085,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-19T09:21:58-0500"
+"updated": "2026-11-19T09:28:11-0500"
 }
