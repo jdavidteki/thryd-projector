@@ -1037,16 +1037,6 @@
 ],
 "streetlights": [
 {
-"id": "wf_1c5e9d8dc5",
-"kind": "consequence",
-"text": "A Mama ronke note with Ejiro's name and 'ttb note' on it, turns up with the streetlights, which is still all dead since 7:35pm.",
-"code": "mama_ronke.interactwith(streetlights){ streetlights.receives(mama_ronke.note); streetlights.remembers(ejiro, 'ttb note'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "mama_ronke"
-},
-{
 "id": "wf_dbccd1795e",
 "kind": "consequence",
 "text": "A Sheep note with Kunle's name and 'scorched container number' on it, turns up with the streetlights, which is still all dead since 7:35pm.",
@@ -1075,6 +1065,16 @@
 "run": "run-2eb42d",
 "card": "j7",
 "other": "tf_mom"
+},
+{
+"id": "wf_7ec9c15d17",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the streetlights, which is still all dead since 7:35pm.",
+"code": "precision.interactwith(streetlights){ streetlights.receives(precision.envelope); streetlights.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "precision"
 },
 {
 "id": "wf_32b4be23e9",
@@ -9482,28 +9482,6 @@
 },
 "consequences": [
 {
-"id": "wf_9c5687a8fc",
-"ts": "2026-11-18T17:57:45-0500",
-"a": "niaw",
-"b": "plastic_sheet",
-"code": "niaw.interactwith(plastic_sheet){ plastic_sheet.receives(niaw.envelope); plastic_sheet.remembers(bisola, 'brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the plastic sheet, which is still wet.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
-"id": "wf_10874ef063",
-"ts": "2026-11-18T18:02:40-0500",
-"a": "listen",
-"b": "bed",
-"code": "listen.interactwith(bed){ bed.receives(listen.envelope); bed.remembers(bisola, 'brown envelope'); bed.tucks(listen, 'yaba bookshop receipt into the egbe note'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the bed, and Taiwo reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
 "id": "wf_a0e2a3700f",
 "ts": "2026-11-18T18:07:02-0500",
 "a": "since",
@@ -9920,6 +9898,28 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j7"
+},
+{
+"id": "wf_7ec9c15d17",
+"ts": "2026-11-18T21:15:50-0500",
+"a": "precision",
+"b": "streetlights",
+"code": "precision.interactwith(streetlights){ streetlights.receives(precision.envelope); streetlights.remembers(bisola, 'brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the streetlights, which is still all dead since 7:35pm.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
+},
+{
+"id": "wf_f42cea72ff",
+"ts": "2026-11-18T21:17:36-0500",
+"a": "kazeem",
+"b": "ronke",
+"code": "kazeem.interactwith(ronke){ ronke.receives(kazeem.something); }",
+"text": "The ronke now remembers the kazeem: Kazeem passes his phone. Already woven into posted w39; this row only logs the seated pick.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w38"
 }
 ],
 "memories": [
@@ -10023,5 +10023,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T21:10:31-0500"
+"updated": "2026-11-18T21:17:36-0500"
 }
