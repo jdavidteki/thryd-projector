@@ -777,16 +777,6 @@
 ],
 "pure_water_cooler": [
 {
-"id": "wf_64f857e0b7",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the pure-water cooler, which is still carried home through the flood.",
-"code": "red_white.interactwith(pure_water_cooler){ pure_water_cooler.receives(red_white.envelope); pure_water_cooler.remembers(bisola, 'brown envelope'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "red_white"
-},
-{
 "id": "wf_cd5f48c361",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the pure-water cooler, which is still carried home through the flood.",
@@ -815,6 +805,16 @@
 "run": "run-2eb42d",
 "card": "j21",
 "other": "ronke"
+},
+{
+"id": "wf_eda95b4dfd",
+"kind": "consequence",
+"text": "The iae ends up with the pure water cooler, still initialized.",
+"code": "iae.interactwith(pure_water_cooler){ iae.db.copyto(pure_water_cooler); pure_water_cooler.keeps(iae, 'iae, still initialized'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w1",
+"other": "iae"
 },
 {
 "id": "wt_61e16c7796",
@@ -9274,17 +9274,6 @@
 },
 "consequences": [
 {
-"id": "wf_0a84630064",
-"ts": "2026-11-18T16:44:16-0500",
-"a": "example",
-"b": "divine",
-"code": "example.interactwith(divine){ divine.receives(example.shirt); … }",
-"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the brown envelope at the divine, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j8"
-},
-{
 "id": "wf_0b6767d3bf",
 "ts": "2026-11-18T16:46:54-0500",
 "a": "ronke",
@@ -9712,6 +9701,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_eda95b4dfd",
+"ts": "2026-11-18T19:19:46-0500",
+"a": "iae",
+"b": "pure_water_cooler",
+"code": "iae.interactwith(pure_water_cooler){ iae.db.copyto(pure_water_cooler); pure_water_cooler.keeps(iae, 'iae, still initialized'); }",
+"text": "The iae ends up with the pure water cooler, still initialized.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w1"
 }
 ],
 "memories": [
@@ -9815,5 +9815,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T19:16:17-0500"
+"updated": "2026-11-18T19:19:46-0500"
 }
