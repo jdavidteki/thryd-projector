@@ -2409,16 +2409,6 @@
 ],
 "bus": [
 {
-"id": "wf_68cc55a056",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bus, and Bisola reads the name twice.",
-"code": "morir_r.interactwith(bus){ bus.receives(morir_r.envelope); bus.remembers(bisola, 'brown envelope'); bus.tucks(morir_r, 'yaba bookshop receipt into the brown envelope'); }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "morir_r"
-},
-{
 "id": "wf_bc53e48a29",
 "kind": "consequence",
 "text": "A Red white cap note with Taiwo's name and 'egbe note' on it, 11:20pm, turns up inside the brown envelope at the bus, and Bisola reads the name twice.",
@@ -2457,6 +2447,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "since"
+},
+{
+"id": "wf_bd1035aee3",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bus, and Bisola reads the name twice.",
+"code": "jnoel.interactwith(bus){ bus.receives(jnoel.envelope); bus.remembers(bisola, 'brown envelope'); bus.tucks(jnoel, 'yaba bookshop receipt into the brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "jnoel"
 }
 ],
 "hands": [
@@ -7709,16 +7709,6 @@
 ],
 "hear": [
 {
-"id": "wt_9878bfac2e",
-"kind": "func_call",
-"text": "The hear hears it (because pepu.setMany(amount=many:Quantity) from j17).",
-"code": "hear.hears(car, 'setMany');",
-"author": "projector",
-"run": "run-2eb42d",
-"card": "w17",
-"other": null
-},
-{
 "id": "wt_32b92c615d",
 "kind": "func_call",
 "text": "The hear hears it (because pepu.setMany(amount=many:Quantity) from j17).",
@@ -7750,6 +7740,16 @@
 },
 {
 "id": "wt_1bb98ee6c0",
+"kind": "func_call",
+"text": "The hear hears it (because ronke.hail(what=hawker:Thing) from j18).",
+"code": "hear.hears(ronke, 'hail');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w18",
+"other": null
+},
+{
+"id": "wt_f3fde80e66",
 "kind": "func_call",
 "text": "The hear hears it (because ronke.hail(what=hawker:Thing) from j18).",
 "code": "hear.hears(ronke, 'hail');",
@@ -9798,17 +9798,6 @@
 },
 "consequences": [
 {
-"id": "wf_99a2b3e11d",
-"ts": "2026-11-19T10:15:38-0500",
-"a": "teach",
-"b": "plastic_sheet",
-"code": "teach.interactwith(plastic_sheet){ plastic_sheet.receives(teach.envelope); plastic_sheet.remembers(bisola, 'brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the plastic sheet, which is still wet.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
 "id": "wf_99ff1ba63c",
 "ts": "2026-11-19T10:16:32-0500",
 "a": "laptop",
@@ -10236,6 +10225,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_bd1035aee3",
+"ts": "2026-11-19T12:57:56-0500",
+"a": "jnoel",
+"b": "bus",
+"code": "jnoel.interactwith(bus){ bus.receives(jnoel.envelope); bus.remembers(bisola, 'brown envelope'); bus.tucks(jnoel, 'yaba bookshop receipt into the brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bus, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -10339,5 +10339,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-19T12:55:00-0500"
+"updated": "2026-11-19T12:59:41-0500"
 }
