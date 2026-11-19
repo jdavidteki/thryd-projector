@@ -1925,16 +1925,6 @@
 ],
 "bird": [
 {
-"id": "wf_550b2c4bf1",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the envelope corner at the bird, and Bisola reads the name twice.",
-"code": "precision.interactwith(bird){ bird.receives(precision.envelope); … }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "precision"
-},
-{
 "id": "wf_b4c6cfda9a",
 "kind": "consequence",
 "text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the envelope corner at the bird, and Bisola reads the name twice.",
@@ -1953,6 +1943,16 @@
 "run": "run-2eb42d",
 "card": "j8",
 "other": "vex"
+},
+{
+"id": "wf_5d8ba09fab",
+"kind": "consequence",
+"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the envelope corner at the bird, and Bisola reads the name twice.",
+"code": "example.interactwith(bird){ bird.receives(example.shirt); … }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j8",
+"other": "example"
 },
 {
 "id": "wt_c6ff1d186b",
@@ -9482,28 +9482,6 @@
 },
 "consequences": [
 {
-"id": "wf_ca993160ae",
-"ts": "2026-11-18T17:16:02-0500",
-"a": "namco",
-"b": "red_white_cap",
-"code": "namco.interactwith(red_white_cap){ red_white_cap.receives(namco.envelope); red_white_cap.remembers(bisola, 'brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the red and white cap, which is still worn.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
-"id": "wf_f1bd4f6cf0",
-"ts": "2026-11-18T17:16:55-0500",
-"a": "icsh",
-"b": "matches",
-"code": "icsh.interactwith(matches){ matches.receives(icsh.envelope); matches.remembers(bisola, 'brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the matches, which is still found.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
 "id": "wf_267bc16dc0",
 "ts": "2026-11-18T17:26:38-0500",
 "a": "mlkahb",
@@ -9920,6 +9898,28 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_ee073fb33e",
+"ts": "2026-11-18T20:17:38-0500",
+"a": "lady",
+"b": "kazeem",
+"code": "lady.interactwith(kazeem){ kazeem.receives(lady.shirt); kazeem.remembers(bisola, 'green shirt'); }",
+"text": "The kazeem leaves with an Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j8"
+},
+{
+"id": "wf_5d8ba09fab",
+"ts": "2026-11-18T20:18:31-0500",
+"a": "example",
+"b": "bird",
+"code": "example.interactwith(bird){ bird.receives(example.shirt); … }",
+"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the envelope corner at the bird, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j8"
 }
 ],
 "memories": [
@@ -10023,5 +10023,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T20:10:57-0500"
+"updated": "2026-11-18T20:18:31-0500"
 }
