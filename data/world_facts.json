@@ -1935,16 +1935,6 @@
 ],
 "bird": [
 {
-"id": "wf_b4c6cfda9a",
-"kind": "consequence",
-"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the envelope corner at the bird, and Bisola reads the name twice.",
-"code": "imhf.interactwith(bird){ bird.receives(imhf.shirt); bird.remembers(bisola, 'green shirt'); bird.tucks(imhf, 'ikeja laundromat receipt into the envelope corner'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j8",
-"other": "imhf"
-},
-{
 "id": "wf_8862c81ec2",
 "kind": "consequence",
 "text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the envelope corner at the bird, and Bisola reads the name twice.",
@@ -1963,6 +1953,16 @@
 "run": "run-2eb42d",
 "card": "j8",
 "other": "example"
+},
+{
+"id": "wf_c61e376368",
+"kind": "consequence",
+"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the envelope corner at the bird, and Bisola reads the name twice.",
+"code": "lady.interactwith(bird){ bird.receives(lady.shirt); bird.remembers(bisola, 'green shirt'); bird.tucks(lady, 'ikeja laundromat receipt into the envelope corner'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j8",
+"other": "lady"
 },
 {
 "id": "wt_c6ff1d186b",
@@ -7395,16 +7395,6 @@
 ],
 "mkdwo": [
 {
-"id": "wf_717c553e2e",
-"kind": "consequence",
-"text": "The mkdwo leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"code": "precision.interactwith(mkdwo){ mkdwo.receives(precision.envelope); mkdwo.remembers(bisola, 'brown envelope'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "precision"
-},
-{
 "id": "wf_eb728b062c",
 "kind": "consequence",
 "text": "The mkdwo leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
@@ -7443,6 +7433,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "asmathic"
+},
+{
+"id": "wf_929405f6b9",
+"kind": "consequence",
+"text": "The mkdwo leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "teach.interactwith(mkdwo){ mkdwo.receives(teach.envelope); mkdwo.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "teach"
 }
 ],
 "asmathic": [
@@ -9798,28 +9798,6 @@
 },
 "consequences": [
 {
-"id": "wf_99ff1ba63c",
-"ts": "2026-11-19T10:16:32-0500",
-"a": "laptop",
-"b": "streetlights",
-"code": "laptop.interactwith(streetlights){ streetlights.receives(laptop.soot); streetlights.remembers(taiwo, 'lamp soot'); }",
-"text": "A Laptop note with Taiwo's name and 'lamp soot' on it, turns up with the streetlights, which is still all dead since 7:35pm.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j7"
-},
-{
-"id": "wf_09854b0b4a",
-"ts": "2026-11-19T10:21:53-0500",
-"a": "chairman",
-"b": "townhall",
-"code": "chairman.interactwith(townhall){ chairman.db.copyto(townhall); townhall.remembers(chairman, 'minutes: investor cheque pledged to the hall fund'); }",
-"text": "After the long night at Ikorodu town hall, the chairman leaves his copy of the minutes at the hall, so the hall now remembers the investor's cheque pledge and the 2-minute item that ran two hours.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j40"
-},
-{
 "id": "wf_0684f67d81",
 "ts": "2026-11-19T10:21:53-0500",
 "a": "kazeem",
@@ -10236,6 +10214,28 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_c61e376368",
+"ts": "2026-11-19T13:04:57-0500",
+"a": "lady",
+"b": "bird",
+"code": "lady.interactwith(bird){ bird.receives(lady.shirt); bird.remembers(bisola, 'green shirt'); bird.tucks(lady, 'ikeja laundromat receipt into the envelope corner'); }",
+"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the envelope corner at the bird, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j8"
+},
+{
+"id": "wf_929405f6b9",
+"ts": "2026-11-19T13:09:07-0500",
+"a": "teach",
+"b": "mkdwo",
+"code": "teach.interactwith(mkdwo){ mkdwo.receives(teach.envelope); mkdwo.remembers(bisola, 'brown envelope'); }",
+"text": "The mkdwo leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -10339,5 +10339,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-19T12:59:41-0500"
+"updated": "2026-11-19T13:09:07-0500"
 }
