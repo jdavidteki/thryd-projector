@@ -985,16 +985,6 @@
 ],
 "red_white_cap": [
 {
-"id": "wf_13a0fbac36",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the red and white cap, which is still worn.",
-"code": "computer_village.interactwith(red_white_cap){ red_white_cap.receives(computer_village.envelope); red_white_cap.remembers(bisola, 'brown envelope'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "computer_village"
-},
-{
 "id": "wf_ca993160ae",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the red and white cap, which is still worn.",
@@ -1013,6 +1003,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "bicycle"
+},
+{
+"id": "wf_fc9f65fd67",
+"kind": "consequence",
+"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up with the red and white cap, which is still worn.",
+"code": "divine.interactwith(red_white_cap){ red_white_cap.receives(divine.shirt); red_white_cap.remembers(bisola, 'green shirt'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j8",
+"other": "divine"
 },
 {
 "id": "wf_3fdb648208",
@@ -1141,16 +1141,6 @@
 ],
 "matches": [
 {
-"id": "wf_f2253220ea",
-"kind": "consequence",
-"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up with the matches, which is still found.",
-"code": "computer_village.interactwith(matches){ matches.receives(computer_village.shirt); matches.remembers(bisola, 'green shirt'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j8",
-"other": "computer_village"
-},
-{
 "id": "wf_b44864c1f0",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the matches, which is still found.",
@@ -1179,6 +1169,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "ojuelegba_bus_stop"
+},
+{
+"id": "wf_b37816f8e3",
+"kind": "consequence",
+"text": "A Sheep note with Kunle's name and 'scorched container number' on it, turns up with the matches, which is still found.",
+"code": "twgs.interactwith(matches){ matches.receives(twgs.number); matches.remembers(kunle, 'scorched container number'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w7",
+"other": "twgs"
 },
 {
 "id": "wf_d40998bca5",
@@ -4569,6 +4569,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "teach"
+},
+{
+"id": "wf_b54fa1fe77",
+"kind": "consequence",
+"text": "A Sheep note with Kunle's name and 'scorched container number' on it, turns up inside the brown envelope at the move, and Bisola reads the name twice.",
+"code": "twgs.interactwith(move){ move.receives(twgs.number); move.remembers(kunle, 'scorched container number'); move.tucks(twgs, 'sheep note into the brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w7",
+"other": "twgs"
 }
 ],
 "ayok_focus": [
@@ -7497,16 +7507,6 @@
 ],
 "yorubbbygehinny": [
 {
-"id": "wt_8dab0d12cf",
-"kind": "func_call",
-"text": "Someone at the projector tapped the mushin subject and called yorubbbygehinny.getAgenda() from its agenda run-2eb42d, first seated in run-2eb42d j17.",
-"code": "yorubbbygehinny.getAgenda();",
-"author": "projector",
-"run": "run-2eb42d",
-"card": "w17",
-"other": null
-},
-{
 "id": "wt_8ccca8ac01",
 "kind": "func_call",
 "text": "Someone at the projector tapped the computer village subject and called yorubbbygehinny.getAgenda() from its agenda run-2eb42d, first seated in run-2eb42d j17.",
@@ -7545,19 +7545,19 @@
 "run": "run-2eb42d",
 "card": "w17",
 "other": null
+},
+{
+"id": "wt_6aec52082d",
+"kind": "func_call",
+"text": "Someone at the projector tapped the the groundnut boy and called yorubbbygehinny.getAgenda() from its agenda run-2eb42d, first seated in run-2eb42d j17.",
+"code": "yorubbbygehinny.getAgenda();",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w17",
+"other": null
 }
 ],
 "hear": [
-{
-"id": "wt_c9f8bf9be9",
-"kind": "func_call",
-"text": "Someone at the projector tapped the the groundnut boy and called hear.setWord(what=lid:Thing) from j18 from its agenda run-2eb42d, first seated in run-2eb42d j16.",
-"code": "hear.setWord('lid');",
-"author": "projector",
-"run": "run-2eb42d",
-"card": "w16",
-"other": null
-},
 {
 "id": "wt_414c81a6e8",
 "kind": "func_call",
@@ -7593,6 +7593,16 @@
 "kind": "func_call",
 "text": "The hear hears it (because ronke.mend(act=even:Action) from j17).",
 "code": "hear.hears(the_groundnut_boy, 'mend');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w17",
+"other": null
+},
+{
+"id": "wt_23a8538991",
+"kind": "func_call",
+"text": "The hear hears it (because yorubbbygehinny.getAgenda()).",
+"code": "hear.hears(the_groundnut_boy, 'getAgenda');",
 "author": "projector",
 "run": "run-2eb42d",
 "card": "w17",
@@ -9482,39 +9492,6 @@
 },
 "consequences": [
 {
-"id": "wf_a0e2a3700f",
-"ts": "2026-11-18T18:07:02-0500",
-"a": "since",
-"b": "sheep",
-"code": "since.interactwith(sheep){ sheep.receives(since.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the scorched container number at the sheep, and Kunle reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
-"id": "wf_3c4a623a5a",
-"ts": "2026-11-18T18:10:11-0500",
-"a": "lady",
-"b": "tie",
-"code": "lady.interactwith(tie){ tie.receives(lady.shirt); tie.remembers(bisola, 'green shirt'); tie.tucks(lady, 'ikeja laundromat receipt into the green shirt'); }",
-"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the green shirt at the tie, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j8"
-},
-{
-"id": "wf_f3d4afd494",
-"ts": "2026-11-18T18:11:04-0500",
-"a": "pure_water_cooler",
-"b": "agbada",
-"code": "pure_water_cooler.interactwith(agbada){ pure_water_cooler.db.copyto(agbada); agbada.keeps(pure_water_cooler, 'pure-water cooler, still carried home through the flood'); }",
-"text": "The pure-water cooler ends up with the agbada, still carried home through the flood.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "w1"
-},
-{
 "id": "wf_2dd95d9ccd",
 "ts": "2026-11-18T18:12:04-0500",
 "a": "bus",
@@ -9920,6 +9897,39 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "w38"
+},
+{
+"id": "wf_b37816f8e3",
+"ts": "2026-11-18T21:20:14-0500",
+"a": "twgs",
+"b": "matches",
+"code": "twgs.interactwith(matches){ matches.receives(twgs.number); matches.remembers(kunle, 'scorched container number'); }",
+"text": "A Sheep note with Kunle's name and 'scorched container number' on it, turns up with the matches, which is still found.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w7"
+},
+{
+"id": "wf_fc9f65fd67",
+"ts": "2026-11-18T21:21:59-0500",
+"a": "divine",
+"b": "red_white_cap",
+"code": "divine.interactwith(red_white_cap){ red_white_cap.receives(divine.shirt); red_white_cap.remembers(bisola, 'green shirt'); }",
+"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up with the red and white cap, which is still worn.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j8"
+},
+{
+"id": "wf_b54fa1fe77",
+"ts": "2026-11-18T21:23:54-0500",
+"a": "twgs",
+"b": "move",
+"code": "twgs.interactwith(move){ move.receives(twgs.number); move.remembers(kunle, 'scorched container number'); move.tucks(twgs, 'sheep note into the brown envelope'); }",
+"text": "A Sheep note with Kunle's name and 'scorched container number' on it, turns up inside the brown envelope at the move, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w7"
 }
 ],
 "memories": [
@@ -10023,5 +10033,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T21:17:36-0500"
+"updated": "2026-11-18T21:23:54-0500"
 }
