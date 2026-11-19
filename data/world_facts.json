@@ -3205,16 +3205,6 @@
 ],
 "wser": [
 {
-"id": "wf_ae613c0e3c",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the wser, and Bisola reads the name twice.",
-"code": "marker_b.interactwith(wser){ wser.receives(marker_b.envelope); … }",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6",
-"other": "marker_b"
-},
-{
 "id": "wf_584e5456ad",
 "kind": "consequence",
 "text": "A Bird note with Bisola's name and 'envelope corner' on it, turns up inside the brown envelope at the wser, and Bisola reads the name twice.",
@@ -3253,6 +3243,16 @@
 "run": "run-2eb42d",
 "card": "j2",
 "other": "ttb"
+},
+{
+"id": "wf_35b34e0f2f",
+"kind": "consequence",
+"text": "The wser leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "move.interactwith(wser){ wser.receives(move.envelope); wser.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "move"
 }
 ],
 "blessings_subject": [
@@ -9466,20 +9466,21 @@
 "card": "w33",
 "other": null
 }
+],
+"new_culture_figure": [
+{
+"id": "wt_7ead38836c",
+"kind": "call",
+"text": "Someone at the projector tapped the new culture figure and made it grow.",
+"code": "new_culture_figure.grow();",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w1",
+"other": null
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_feee0cd1e5",
-"ts": "2026-11-18T17:09:47-0500",
-"a": "thryd",
-"b": "ojuelegba_bus_stop",
-"code": "thryd.interactwith(ojuelegba_bus_stop){ ojuelegba_bus_stop.receives(thryd.shirt); … }",
-"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the brown envelope at the ojuelegba bus stop, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j8"
-},
 {
 "id": "wf_591671a308",
 "ts": "2026-11-18T17:12:26-0500",
@@ -9908,6 +9909,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j2"
+},
+{
+"id": "wf_35b34e0f2f",
+"ts": "2026-11-18T20:06:34-0500",
+"a": "move",
+"b": "wser",
+"code": "move.interactwith(wser){ wser.receives(move.envelope); wser.remembers(bisola, 'brown envelope'); }",
+"text": "The wser leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -10011,5 +10023,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T20:03:04-0500"
+"updated": "2026-11-18T20:06:34-0500"
 }
