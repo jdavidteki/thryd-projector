@@ -7053,16 +7053,6 @@
 ],
 "thryd": [
 {
-"id": "wf_4089b51d19",
-"kind": "consequence",
-"text": "The agbada ends up with the thryd, still worn by a stranger haggler.",
-"code": "agbada.interactwith(thryd){ agbada.db.copyto(thryd); thryd.keeps(agbada, 'agbada, still worn by a stranger haggler'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "w4",
-"other": "agbada"
-},
-{
 "id": "wf_d22d361b19",
 "kind": "consequence",
 "text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up with the agbada, which is still worn by a stranger haggler.",
@@ -7090,6 +7080,26 @@
 "author": "customer",
 "run": "run-2eb42d",
 "card": "j40",
+"other": null
+},
+{
+"id": "wf_dfa38d7493",
+"kind": "consequence",
+"text": "The thryd leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "since.interactwith(thryd){ thryd.receives(since.envelope); thryd.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "since"
+},
+{
+"id": "wt_705361bf07",
+"kind": "func_call",
+"text": "A new theme carton lands on the table beside the leftover noodles, from the typed importtheme call.",
+"code": "thryd.importtheme('theadelekes');",
+"author": "thryd",
+"run": "run-2eb42d",
+"card": "w40",
 "other": null
 }
 ],
@@ -7417,6 +7427,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "b_md"
+},
+{
+"id": "wf_40a47717aa",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the seniorgehs, and Bisola reads the name twice.",
+"code": "listen.interactwith(seniorgehs){ seniorgehs.receives(listen.envelope); … }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "listen"
 }
 ],
 "dami_going_japa": [
@@ -7519,16 +7539,6 @@
 ],
 "hear": [
 {
-"id": "wt_f4fe16a7d8",
-"kind": "func_call",
-"text": "The hear hears it (because ronke.hail(what=hawker:Thing) from j18).",
-"code": "hear.hears(ronke, 'hail');",
-"author": "projector",
-"run": "run-2eb42d",
-"card": "w18",
-"other": null
-},
-{
 "id": "wt_5e879d9862",
 "kind": "func_call",
 "text": "The hear hears it (because ronke.hail(what=hawker:Thing) from j18).",
@@ -7567,19 +7577,19 @@
 "run": "run-2eb42d",
 "card": "w17",
 "other": null
+},
+{
+"id": "wt_c9f8bf9be9",
+"kind": "func_call",
+"text": "Someone at the projector tapped the the groundnut boy and called hear.setWord(what=lid:Thing) from j18 from its agenda run-2eb42d, first seated in run-2eb42d j16.",
+"code": "hear.setWord('lid');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w16",
+"other": null
 }
 ],
 "mamaronke": [
-{
-"id": "wt_951ff4bb62",
-"kind": "func_call",
-"text": "Folake buys the hot wrap through the glass and tells the boy 'do ure hard', paying full price. Line 3: #seniorboys — iinnnnnm the valley!",
-"code": "mamaronke.buy('wrap');",
-"author": "thryd",
-"run": "run-2eb42d",
-"card": "w32",
-"other": null
-},
 {
 "id": "wt_8dce34b8e4",
 "kind": "func_call",
@@ -7618,6 +7628,16 @@
 "author": "thryd",
 "run": "run-2eb42d",
 "card": "w38",
+"other": null
+},
+{
+"id": "wt_0a7be0d8c4",
+"kind": "func_call",
+"text": "d3(): Folake counts the money and the line lands on '[[when]] - you were [[tuff]] the money'.",
+"code": "mamaronke.count('money');",
+"author": "thryd",
+"run": "run-2eb42d",
+"card": "w40",
 "other": null
 }
 ],
@@ -8179,16 +8199,6 @@
 ],
 "nobody": [
 {
-"id": "wt_b1197a2521",
-"kind": "func_call",
-"text": "The nobody hears it (because kazeem.lift(what=lid:Thing) from j18).",
-"code": "nobody.hears(computer_village_subject, 'lift');",
-"author": "projector",
-"run": "run-2eb42d",
-"card": "w18",
-"other": null
-},
-{
 "id": "wt_eee68fca9f",
 "kind": "func_call",
 "text": "The nobody hears it (because mamaronke.claim(what=lid:Thing) from j18).",
@@ -8223,6 +8233,16 @@
 "kind": "func_call",
 "text": "The nobody hears it (because hear.setWord(what=lid:Thing) from j18).",
 "code": "nobody.hears(computer_village_subject, 'setWord');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w16",
+"other": null
+},
+{
+"id": "wt_9d2c26df18",
+"kind": "func_call",
+"text": "The nobody hears it (because hear.setWord(what=lid:Thing) from j18).",
+"code": "nobody.hears(the_groundnut_boy, 'setWord');",
 "author": "projector",
 "run": "run-2eb42d",
 "card": "w16",
@@ -8981,6 +9001,36 @@
 "run": "run-2eb42d",
 "card": "w37",
 "other": null
+},
+{
+"id": "wt_59d11bc149",
+"kind": "func_call",
+"text": "From [[when]] = 724. when, which has no literal code: the chairman looks up from the table and asks if everybody is ready to go now.",
+"code": "chairman.ask('ready');",
+"author": "thryd",
+"run": "run-2eb42d",
+"card": "w40",
+"other": null
+},
+{
+"id": "wt_59fa6559d5",
+"kind": "func_call",
+"text": "From [[tuff]] = 725. tuff, which has no literal code: the chairman says welcome, sir, your reputation precedes you.",
+"code": "chairman.welcome('sir');",
+"author": "thryd",
+"run": "run-2eb42d",
+"card": "w40",
+"other": null
+},
+{
+"id": "wt_fd09ec9fad",
+"kind": "func_call",
+"text": "From [[tp$on]] = 924. the president$ of nigeria, which has no literal code: the chairman holds the line and says, hold on, ok, hello?",
+"code": "chairman.answer('hello');",
+"author": "thryd",
+"run": "run-2eb42d",
+"card": "w40",
+"other": null
 }
 ],
 "thryd_miracle": [
@@ -9172,31 +9222,45 @@
 "card": "j40",
 "other": null
 }
+],
+"hall": [
+{
+"id": "wt_d0053392eb",
+"kind": "func_call",
+"text": "From [[aip]] = 1228. anything is possible, which has no literal code: someone at the table says anything is possible, anybody can be anything they want.",
+"code": "hall.say('possible');",
+"author": "thryd",
+"run": "run-2eb42d",
+"card": "w40",
+"other": null
+}
+],
+"coin": [
+{
+"id": "wt_9203afd491",
+"kind": "func_call",
+"text": "A small stack of coins sits on the table while Folake counts.",
+"code": "coin.sit('table');",
+"author": "thryd",
+"run": "run-2eb42d",
+"card": "w40",
+"other": null
+}
+],
+"only_goodness_figure": [
+{
+"id": "wt_7b10799429",
+"kind": "call",
+"text": "Someone at the projector tapped the only goodness figure and made it grow.",
+"code": "only_goodness_figure.grow();",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w1",
+"other": null
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_7e39aeadd0",
-"ts": "2026-11-18T16:26:42-0500",
-"a": "thryd",
-"b": "computer_village",
-"code": "thryd.interactwith(computer_village){ computer_village.receives(thryd.shirt); … }",
-"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the green shirt at the computer village, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j8"
-},
-{
-"id": "wf_0a065ebcbd",
-"ts": "2026-11-18T16:28:27-0500",
-"a": "asmathic",
-"b": "ojuelegba_bus_stop",
-"code": "asmathic.interactwith(ojuelegba_bus_stop){ ojuelegba_bus_stop.receives(asmathic.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the ojuelegba bus stop, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
 {
 "id": "wf_60ef3b9ef8",
 "ts": "2026-11-18T16:32:49-0500",
@@ -9614,6 +9678,28 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j8"
+},
+{
+"id": "wf_40a47717aa",
+"ts": "2026-11-18T19:11:01-0500",
+"a": "listen",
+"b": "seniorgehs",
+"code": "listen.interactwith(seniorgehs){ seniorgehs.receives(listen.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the seniorgehs, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
+},
+{
+"id": "wf_dfa38d7493",
+"ts": "2026-11-18T19:12:46-0500",
+"a": "since",
+"b": "thryd",
+"code": "since.interactwith(thryd){ thryd.receives(since.envelope); thryd.remembers(bisola, 'brown envelope'); }",
+"text": "The thryd leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -9717,5 +9803,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T19:10:09-0500"
+"updated": "2026-11-18T19:12:46-0500"
 }
