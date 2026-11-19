@@ -1821,16 +1821,6 @@
 ],
 "bicycle": [
 {
-"id": "wf_0d8f2b3511",
-"kind": "consequence",
-"text": "An Ats note with Bisola's name and 'brown envelope' on it, turns up inside the brown envelope at the bicycle, and Bisola reads the name twice.",
-"code": "ats.interactwith(bicycle){ bicycle.receives(ats.envelope); bicycle.remembers(bisola, 'brown envelope'); bicycle.tucks(ats, 'ats note into the brown envelope'); }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j2",
-"other": "ats"
-},
-{
 "id": "wf_f39c976faa",
 "kind": "consequence",
 "text": "A Truth note with Titi's name and 'egbe note' on it, turns up inside the brown envelope at the bicycle, and Bisola reads the name twice.",
@@ -1869,6 +1859,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "again"
+},
+{
+"id": "wf_96b7fd35c9",
+"kind": "consequence",
+"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the brown envelope at the bicycle, and Bisola reads the name twice.",
+"code": "b_md.interactwith(bicycle){ bicycle.receives(b_md.shirt); … }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j8",
+"other": "b_md"
 }
 ],
 "ronke": [
@@ -3205,16 +3205,6 @@
 ],
 "wser": [
 {
-"id": "wf_7d5211a064",
-"kind": "consequence",
-"text": "The wser leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"code": "called.interactwith(wser){ wser.receives(called.envelope); wser.remembers(bisola, 'brown envelope'); }",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j6",
-"other": "called"
-},
-{
 "id": "wf_ae613c0e3c",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the wser, and Bisola reads the name twice.",
@@ -3253,6 +3243,16 @@
 "run": "run-2eb42d",
 "card": "j8",
 "other": "computer_village"
+},
+{
+"id": "wf_13e4e9f54c",
+"kind": "consequence",
+"text": "The wser leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
+"code": "ttb.interactwith(wser){ wser.receives(ttb.code); wser.remembers(ejiro, 'juju code'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j2",
+"other": "ttb"
 }
 ],
 "blessings_subject": [
@@ -5573,16 +5573,6 @@
 ],
 "teo": [
 {
-"id": "wf_7efd016d31",
-"kind": "consequence",
-"text": "The teo leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
-"code": "fire_escape_outside.interactwith(teo){ teo.receives(fire_escape_outside.code); teo.remembers(ejiro, 'juju code'); }",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j2",
-"other": "fire_escape_outside"
-},
-{
 "id": "wf_af0538c295",
 "kind": "consequence",
 "text": "The teo leaves with a Marker note with Kunle's name and 'nice day sign' on it.",
@@ -5607,6 +5597,16 @@
 "kind": "func_call",
 "text": "Someone at the projector tapped the florida subject fifth and called teo.know(what=tnw:Thing) from j23 from its agenda run-5a58c4, first seated in run-5a58c4 j33.",
 "code": "teo.know('tnw');",
+"author": "projector",
+"run": "run-5a58c4",
+"card": "w33",
+"other": null
+},
+{
+"id": "wt_2921df2746",
+"kind": "func_call",
+"text": "Someone at the projector tapped the marina biscayne bay subject fourth and called teo.respond(what=scandal:Thing) from j6 from its agenda run-5a58c4, first seated in run-5a58c4 j33.",
+"code": "teo.respond('scandal');",
 "author": "projector",
 "run": "run-5a58c4",
 "card": "w33",
@@ -7549,16 +7549,6 @@
 ],
 "hear": [
 {
-"id": "wt_3b79021b6e",
-"kind": "func_call",
-"text": "The hear hears it (because pepu.setMany(amount=many:Quantity) from j17).",
-"code": "hear.hears(car, 'setMany');",
-"author": "projector",
-"run": "run-2eb42d",
-"card": "w17",
-"other": null
-},
-{
 "id": "wt_c9f8bf9be9",
 "kind": "func_call",
 "text": "Someone at the projector tapped the the groundnut boy and called hear.setWord(what=lid:Thing) from j18 from its agenda run-2eb42d, first seated in run-2eb42d j16.",
@@ -7593,6 +7583,16 @@
 "kind": "func_call",
 "text": "The hear hears it (because pepu.setMany(amount=many:Quantity) from j17).",
 "code": "hear.hears(third_mainland_bridge, 'setMany');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w17",
+"other": null
+},
+{
+"id": "wt_e38f9f1af2",
+"kind": "func_call",
+"text": "The hear hears it (because ronke.mend(act=even:Action) from j17).",
+"code": "hear.hears(the_groundnut_boy, 'mend');",
 "author": "projector",
 "run": "run-2eb42d",
 "card": "w17",
@@ -9430,31 +9430,45 @@
 "card": "w1",
 "other": null
 }
+],
+"marina_biscayne_bay_subject_fifth": [
+{
+"id": "wt_4dd183831b",
+"kind": "func_call",
+"text": "The marina biscayne bay subject fifth hears it (because teo.respond(what=scandal:Thing) from j6).",
+"code": "marina_biscayne_bay_subject_fifth.hears(marina_biscayne_bay_subject_fourth, 'respond');",
+"author": "projector",
+"run": "run-5a58c4",
+"card": "w33",
+"other": null
+}
+],
+"marina_biscayne_bay_subject_second": [
+{
+"id": "wt_fdea7d28e2",
+"kind": "func_call",
+"text": "The marina biscayne bay subject second hears it (because teo.respond(what=scandal:Thing) from j6).",
+"code": "marina_biscayne_bay_subject_second.hears(marina_biscayne_bay_subject_fourth, 'respond');",
+"author": "projector",
+"run": "run-5a58c4",
+"card": "w33",
+"other": null
+}
+],
+"marina_biscayne_bay_subject_sixth": [
+{
+"id": "wt_12223abd79",
+"kind": "func_call",
+"text": "The marina biscayne bay subject sixth hears it (because teo.respond(what=scandal:Thing) from j6).",
+"code": "marina_biscayne_bay_subject_sixth.hears(marina_biscayne_bay_subject_fourth, 'respond');",
+"author": "projector",
+"run": "run-5a58c4",
+"card": "w33",
+"other": null
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_b432e9a6cb",
-"ts": "2026-11-18T17:04:29-0500",
-"a": "chair",
-"b": "iae",
-"code": "chair.interactwith(iae){ iae.receives(chair.pm); iae.remembers(taiwo, '11:20pm'); }",
-"text": "A Chair note with Taiwo's name and '11:20pm' on it, turns up with the iae, which is still initialized.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "w6"
-},
-{
-"id": "wf_0ee749ad89",
-"ts": "2026-11-18T17:06:16-0500",
-"a": "sheep",
-"b": "mama_ronke",
-"code": "sheep.interactwith(mama_ronke){ mama_ronke.receives(sheep.number); mama_ronke.remembers(kunle, 'scorched container number'); }",
-"text": "A Sheep note with Kunle's name and 'scorched container number' on it, turns up with the Mama Ronke, which is still present.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "w7"
-},
 {
 "id": "wf_feee0cd1e5",
 "ts": "2026-11-18T17:09:47-0500",
@@ -9872,6 +9886,28 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "w7"
+},
+{
+"id": "wf_96b7fd35c9",
+"ts": "2026-11-18T20:02:12-0500",
+"a": "b_md",
+"b": "bicycle",
+"code": "b_md.interactwith(bicycle){ bicycle.receives(b_md.shirt); … }",
+"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the brown envelope at the bicycle, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j8"
+},
+{
+"id": "wf_13e4e9f54c",
+"ts": "2026-11-18T20:03:04-0500",
+"a": "ttb",
+"b": "wser",
+"code": "ttb.interactwith(wser){ wser.receives(ttb.code); wser.remembers(ejiro, 'juju code'); }",
+"text": "The wser leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j2"
 }
 ],
 "memories": [
@@ -9975,5 +10011,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T19:56:02-0500"
+"updated": "2026-11-18T20:03:04-0500"
 }
