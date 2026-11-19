@@ -7183,16 +7183,6 @@
 ],
 "thryd": [
 {
-"id": "wf_dfa38d7493",
-"kind": "consequence",
-"text": "The thryd leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"code": "since.interactwith(thryd){ thryd.receives(since.envelope); thryd.remembers(bisola, 'brown envelope'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "since"
-},
-{
 "id": "wt_18b643c459",
 "kind": "func_call",
 "text": "The customer typed #thryd.importtheme(starwars) on run-2eb42d j41. It came back: Thryd importtheme starwars. Implementation: function importtheme(what){\n  THRYD_IMPORTTHEME_COUNT += 1;\n  this.lastImporttheme = \"indomie\";\n  this.lastImporttheme = \"theadelekes\";\n  this.lastImporttheme = \"starwars\";\n  return \"Thryd importtheme indomie\";\n}.",
@@ -7221,6 +7211,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "computer_village"
+},
+{
+"id": "wf_94748694ad",
+"kind": "consequence",
+"text": "The thryd leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "patagonia.interactwith(thryd){ thryd.receives(patagonia.envelope); thryd.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "patagonia"
 },
 {
 "id": "wt_705361bf07",
@@ -7395,16 +7395,6 @@
 ],
 "mkdwo": [
 {
-"id": "wf_eb728b062c",
-"kind": "consequence",
-"text": "The mkdwo leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"code": "bow.interactwith(mkdwo){ mkdwo.receives(bow.envelope); mkdwo.remembers(bisola, 'brown envelope'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "bow"
-},
-{
 "id": "wf_a1589fe142",
 "kind": "consequence",
 "text": "The mkdwo leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
@@ -7443,6 +7433,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "teach"
+},
+{
+"id": "wf_de53435e3d",
+"kind": "consequence",
+"text": "The mkdwo leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "ojuelegba_bus_stop.interactwith(mkdwo){ mkdwo.receives(ojuelegba_bus_stop.envelope); mkdwo.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "ojuelegba_bus_stop"
 }
 ],
 "asmathic": [
@@ -7709,7 +7709,17 @@
 ],
 "hear": [
 {
-"id": "wt_32b92c615d",
+"id": "wt_f3fde80e66",
+"kind": "func_call",
+"text": "The hear hears it (because ronke.hail(what=hawker:Thing) from j18).",
+"code": "hear.hears(ronke, 'hail');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w18",
+"other": null
+},
+{
+"id": "wt_c399f04da8",
 "kind": "func_call",
 "text": "The hear hears it (because pepu.setMany(amount=many:Quantity) from j17).",
 "code": "hear.hears(car, 'setMany');",
@@ -7719,37 +7729,27 @@
 "other": null
 },
 {
-"id": "wt_e66b37c09b",
+"id": "wt_2e356b0389",
 "kind": "func_call",
-"text": "The hear hears it (because ronke.hail(what=hawker:Thing) from j18).",
-"code": "hear.hears(ronke, 'hail');",
+"text": "The hear hears it (because pepu.setMany(amount=many:Quantity) from j17).",
+"code": "hear.hears(car, 'setMany');",
 "author": "projector",
 "run": "run-2eb42d",
-"card": "w18",
+"card": "w17",
 "other": null
 },
 {
-"id": "wt_982760b672",
+"id": "wt_05ebc23785",
 "kind": "func_call",
-"text": "The hear hears it (because ronke.hail(what=hawker:Thing) from j18).",
-"code": "hear.hears(ronke, 'hail');",
+"text": "The hear hears it (because pepu.setMany(amount=many:Quantity) from j17).",
+"code": "hear.hears(car, 'setMany');",
 "author": "projector",
 "run": "run-2eb42d",
-"card": "w18",
+"card": "w17",
 "other": null
 },
 {
-"id": "wt_1bb98ee6c0",
-"kind": "func_call",
-"text": "The hear hears it (because ronke.hail(what=hawker:Thing) from j18).",
-"code": "hear.hears(ronke, 'hail');",
-"author": "projector",
-"run": "run-2eb42d",
-"card": "w18",
-"other": null
-},
-{
-"id": "wt_f3fde80e66",
+"id": "wt_ee4ff67131",
 "kind": "func_call",
 "text": "The hear hears it (because ronke.hail(what=hawker:Thing) from j18).",
 "code": "hear.hears(ronke, 'hail');",
@@ -8579,50 +8579,50 @@
 ],
 "pepu": [
 {
-"id": "wt_4b56deb9b9",
-"kind": "func_call",
-"text": "Someone at the projector tapped the third mainland bridge and called pepu.setMany(amount=many:Quantity) from j17 from its agenda run-2eb42d, first seated in run-2eb42d j17.",
-"code": "pepu.setMany('many');",
-"author": "projector",
-"run": "run-2eb42d",
-"card": "w17",
-"other": null
-},
-{
-"id": "wt_581fe27d6b",
-"kind": "func_call",
-"text": "Someone at the projector tapped the third mainland bridge and called pepu.setMany(amount=many:Quantity) from j17 from its agenda run-2eb42d, first seated in run-2eb42d j17.",
-"code": "pepu.setMany('many');",
-"author": "projector",
-"run": "run-2eb42d",
-"card": "w17",
-"other": null
-},
-{
-"id": "wt_e26c58defd",
-"kind": "func_call",
-"text": "Someone at the projector tapped the third mainland bridge and called pepu.setMany(amount=many:Quantity) from j17 from its agenda run-2eb42d, first seated in run-2eb42d j17.",
-"code": "pepu.setMany('many');",
-"author": "projector",
-"run": "run-2eb42d",
-"card": "w17",
-"other": null
-},
-{
-"id": "wt_a2f1dad40a",
-"kind": "func_call",
-"text": "Someone at the projector tapped the car and called pepu.setMany(amount=many:Quantity) from j17 from its agenda run-2eb42d, first seated in run-2eb42d j17.",
-"code": "pepu.setMany('many');",
-"author": "projector",
-"run": "run-2eb42d",
-"card": "w17",
-"other": null
-},
-{
 "id": "wt_297b913864",
 "kind": "func_call",
 "text": "Someone at the projector tapped the car and called pepu.setMany(amount=many:Quantity) from j17 from its agenda run-2eb42d, first seated in run-2eb42d j17.",
 "code": "pepu.setMany('many');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w17",
+"other": null
+},
+{
+"id": "wt_1e03514ee3",
+"kind": "func_call",
+"text": "Someone at the projector tapped the car and called pepu.setMany(amount=many:Quantity) from j17 from its agenda run-2eb42d, first seated in run-2eb42d j17.",
+"code": "pepu.setMany('many');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w17",
+"other": null
+},
+{
+"id": "wt_d66eab1a80",
+"kind": "func_call",
+"text": "Someone at the projector tapped the car and called pepu.setMany(amount=many:Quantity) from j17 from its agenda run-2eb42d, first seated in run-2eb42d j17.",
+"code": "pepu.setMany('many');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w17",
+"other": null
+},
+{
+"id": "wt_9f241a3e5e",
+"kind": "func_call",
+"text": "Someone at the projector tapped the car and called pepu.setMany(amount=many:Quantity) from j17 from its agenda run-2eb42d, first seated in run-2eb42d j17.",
+"code": "pepu.setMany('many');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w17",
+"other": null
+},
+{
+"id": "wt_cdb7574282",
+"kind": "func_undo",
+"text": "Someone at the projector undid the smart tap pepu.setMany('many');",
+"code": "pepu.remembers('Someone at the projector');",
 "author": "projector",
 "run": "run-2eb42d",
 "card": "w17",
@@ -9794,42 +9794,21 @@
 "card": "j6",
 "other": "abeokuta_parlour"
 }
+],
+"cake_by_ocean_figure": [
+{
+"id": "wt_0497f6526c",
+"kind": "call",
+"text": "Someone at the projector tapped the cake by ocean figure and made it grow.",
+"code": "cake_by_ocean_figure.grow();",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w1",
+"other": null
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_0684f67d81",
-"ts": "2026-11-19T10:21:53-0500",
-"a": "kazeem",
-"b": "mamaronke",
-"code": "kazeem.interactwith(mamaronke){ mamaronke.receives(kazeem, 'file'); mamaronke.remembers(kazeem, 'investor file page with the pledged amount'); }",
-"text": "Kazeem, still checking the investor's file line by line, hands Mama Ronke the page with the pledged amount so her money count and his file agree.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j40"
-},
-{
-"id": "wf_d821ee81c9",
-"ts": "2026-11-19T10:21:53-0500",
-"a": "generator",
-"b": "townhall",
-"code": "townhall.set('power', 'generator off, lanterns on until fuel is bought');",
-"text": "Because the generator cut out again during the egusi, the town hall is now noted as running on lanterns until someone buys fuel in the morning.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j41"
-},
-{
-"id": "wf_b067528817",
-"ts": "2026-11-19T10:26:25-0500",
-"a": "divine",
-"b": "iae",
-"code": "divine.interactwith(iae){ iae.receives(divine.shirt); iae.remembers(bisola, 'green shirt'); }",
-"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up with the iae, which is still initialized.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j8"
-},
 {
 "id": "wf_53406735c0",
 "ts": "2026-11-19T10:29:59-0500",
@@ -10236,6 +10215,39 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_de53435e3d",
+"ts": "2026-11-19T13:10:00-0500",
+"a": "ojuelegba_bus_stop",
+"b": "mkdwo",
+"code": "ojuelegba_bus_stop.interactwith(mkdwo){ mkdwo.receives(ojuelegba_bus_stop.envelope); mkdwo.remembers(bisola, 'brown envelope'); }",
+"text": "The mkdwo leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
+},
+{
+"id": "wf_7171ee9545",
+"ts": "2026-11-19T13:10:53-0500",
+"a": "computer_village",
+"b": "kazeem",
+"code": "computer_village.interactwith(kazeem){ kazeem.receives(computer_village.envelope); kazeem.remembers(bisola, 'brown envelope'); }",
+"text": "The kazeem leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
+},
+{
+"id": "wf_94748694ad",
+"ts": "2026-11-19T13:13:31-0500",
+"a": "patagonia",
+"b": "thryd",
+"code": "patagonia.interactwith(thryd){ thryd.receives(patagonia.envelope); thryd.remembers(bisola, 'brown envelope'); }",
+"text": "The thryd leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -10339,5 +10351,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-19T13:09:07-0500"
+"updated": "2026-11-19T13:13:31-0500"
 }
