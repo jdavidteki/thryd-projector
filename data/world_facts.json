@@ -7549,36 +7549,6 @@
 ],
 "hear": [
 {
-"id": "wt_5e879d9862",
-"kind": "func_call",
-"text": "The hear hears it (because ronke.hail(what=hawker:Thing) from j18).",
-"code": "hear.hears(computer_village_subject, 'hail');",
-"author": "projector",
-"run": "run-2eb42d",
-"card": "w18",
-"other": null
-},
-{
-"id": "wt_cbebb77783",
-"kind": "func_call",
-"text": "The hear hears it (because ronke.hail(what=hawker:Thing) from j18).",
-"code": "hear.hears(marina_ferry_terminal_subject, 'hail');",
-"author": "projector",
-"run": "run-2eb42d",
-"card": "w18",
-"other": null
-},
-{
-"id": "wt_733c7c10d2",
-"kind": "func_call",
-"text": "The hear hears it (because ronke.hail(what=hawker:Thing) from j18).",
-"code": "hear.hears(computer_village_subject, 'hail');",
-"author": "projector",
-"run": "run-2eb42d",
-"card": "w18",
-"other": null
-},
-{
 "id": "wt_3b79021b6e",
 "kind": "func_call",
 "text": "The hear hears it (because pepu.setMany(amount=many:Quantity) from j17).",
@@ -7596,6 +7566,36 @@
 "author": "projector",
 "run": "run-2eb42d",
 "card": "w16",
+"other": null
+},
+{
+"id": "wt_414c81a6e8",
+"kind": "func_call",
+"text": "The hear hears it (because ronke.mend(act=even:Action) from j17).",
+"code": "hear.hears(third_mainland_bridge, 'mend');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w17",
+"other": null
+},
+{
+"id": "wt_67181dbd11",
+"kind": "func_call",
+"text": "The hear hears it (because ronke.hail(what=hawker:Thing) from j18).",
+"code": "hear.hears(third_mainland_bridge, 'hail');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w18",
+"other": null
+},
+{
+"id": "wt_55b7b76fa0",
+"kind": "func_call",
+"text": "The hear hears it (because pepu.setMany(amount=many:Quantity) from j17).",
+"code": "hear.hears(third_mainland_bridge, 'setMany');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w17",
 "other": null
 }
 ],
@@ -8412,6 +8412,16 @@
 "id": "wt_33e51dea5f",
 "kind": "func_call",
 "text": "Someone at the projector tapped the car and called pepu.setMany(amount=many:Quantity) from j17 from its agenda run-2eb42d, first seated in run-2eb42d j17.",
+"code": "pepu.setMany('many');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w17",
+"other": null
+},
+{
+"id": "wt_2a34f0bd11",
+"kind": "func_call",
+"text": "Someone at the projector tapped the third mainland bridge and called pepu.setMany(amount=many:Quantity) from j17 from its agenda run-2eb42d, first seated in run-2eb42d j17.",
 "code": "pepu.setMany('many');",
 "author": "projector",
 "run": "run-2eb42d",
@@ -9398,6 +9408,18 @@
 "card": "w41",
 "other": null
 }
+],
+"inside_vase_figure": [
+{
+"id": "wt_0d98db08e1",
+"kind": "call",
+"text": "Someone at the projector tapped the inside vase figure and made it grow.",
+"code": "inside_vase_figure.grow();",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w1",
+"other": null
+}
 ]
 },
 "consequences": [
@@ -9943,5 +9965,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T19:47:13-0500"
+"updated": "2026-11-18T19:48:58-0500"
 }
