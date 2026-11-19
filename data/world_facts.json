@@ -2043,16 +2043,6 @@
 ],
 "tie": [
 {
-"id": "wf_48fbae7f6c",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the tie, and Bisola reads the name twice.",
-"code": "heat.interactwith(tie){ tie.receives(heat.envelope); tie.remembers(bisola, 'brown envelope'); tie.tucks(heat, 'yaba bookshop receipt into the brown envelope'); }",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6",
-"other": "heat"
-},
-{
 "id": "wf_e12df36b59",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the tie, and Bisola reads the name twice.",
@@ -2091,6 +2081,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "yuwa"
+},
+{
+"id": "wf_20fbec1c58",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the tie, and Bisola reads the name twice.",
+"code": "precision.interactwith(tie){ tie.receives(precision.envelope); … }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "precision"
 }
 ],
 "laptop": [
@@ -7031,16 +7031,6 @@
 ],
 "mama_ronke": [
 {
-"id": "wf_f7edfb25cd",
-"kind": "consequence",
-"text": "The mama ronke now remembers the mkdwo: The customer typed [[mkdwo]] on run-2eb42d j29.",
-"code": "mkdwo.interactwith(mama_ronke){ mama_ronke.receives(mkdwo.something); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j29",
-"other": "mkdwo"
-},
-{
 "id": "wf_0ee749ad89",
 "kind": "consequence",
 "text": "A Sheep note with Kunle's name and 'scorched container number' on it, turns up with the Mama Ronke, which is still present.",
@@ -7069,6 +7059,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "listen"
+},
+{
+"id": "wf_2341ea8441",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the Mama Ronke, which is still present.",
+"code": "bus.interactwith(mama_ronke){ mama_ronke.receives(bus.envelope); mama_ronke.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "bus"
 },
 {
 "id": "wt_836e6dea8e",
@@ -9544,28 +9544,6 @@
 },
 "consequences": [
 {
-"id": "wf_92df529134",
-"ts": "2026-11-18T19:29:52-0500",
-"a": "bird",
-"b": "pure_water_cooler",
-"code": "bird.interactwith(pure_water_cooler){ pure_water_cooler.receives(bird.corner); pure_water_cooler.remembers(bisola, 'envelope corner'); }",
-"text": "A Bird note with Bisola's name and 'envelope corner' on it, turns up with the pure-water cooler, which is still carried home through the flood.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j7"
-},
-{
-"id": "wf_b0b5bd7169",
-"ts": "2026-11-18T19:30:45-0500",
-"a": "computer_village",
-"b": "wser",
-"code": "computer_village.interactwith(wser){ wser.receives(computer_village.shirt); wser.remembers(bisola, 'green shirt'); }",
-"text": "The wser leaves with an Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j8"
-},
-{
 "id": "wf_9537bb0ead",
 "ts": "2026-11-18T19:35:08-0500",
 "a": "sports_ball",
@@ -9982,6 +9960,28 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_20fbec1c58",
+"ts": "2026-11-19T09:19:19-0500",
+"a": "precision",
+"b": "tie",
+"code": "precision.interactwith(tie){ tie.receives(precision.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the tie, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
+},
+{
+"id": "wf_2341ea8441",
+"ts": "2026-11-19T09:21:58-0500",
+"a": "bus",
+"b": "mama_ronke",
+"code": "bus.interactwith(mama_ronke){ mama_ronke.receives(bus.envelope); mama_ronke.remembers(bisola, 'brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the Mama Ronke, which is still present.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -10085,5 +10085,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-19T09:14:51-0500"
+"updated": "2026-11-19T09:21:58-0500"
 }
