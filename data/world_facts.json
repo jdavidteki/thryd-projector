@@ -985,16 +985,6 @@
 ],
 "red_white_cap": [
 {
-"id": "wf_ca993160ae",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the red and white cap, which is still worn.",
-"code": "namco.interactwith(red_white_cap){ red_white_cap.receives(namco.envelope); red_white_cap.remembers(bisola, 'brown envelope'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "namco"
-},
-{
 "id": "wf_0887f1aee2",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the red and white cap, which is still worn.",
@@ -1013,6 +1003,16 @@
 "run": "run-2eb42d",
 "card": "j8",
 "other": "divine"
+},
+{
+"id": "wf_f79464398c",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the red and white cap, which is still worn.",
+"code": "precision.interactwith(red_white_cap){ red_white_cap.receives(precision.envelope); red_white_cap.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "precision"
 },
 {
 "id": "wf_3fdb648208",
@@ -7051,16 +7051,6 @@
 ],
 "mama_ronke": [
 {
-"id": "wf_0ee749ad89",
-"kind": "consequence",
-"text": "A Sheep note with Kunle's name and 'scorched container number' on it, turns up with the Mama Ronke, which is still present.",
-"code": "sheep.interactwith(mama_ronke){ mama_ronke.receives(sheep.number); mama_ronke.remembers(kunle, 'scorched container number'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "w7",
-"other": "sheep"
-},
-{
 "id": "wf_e05fe8f4cc",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the Mama Ronke, which is still present.",
@@ -7089,6 +7079,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "bus"
+},
+{
+"id": "wf_7047cf8340",
+"kind": "consequence",
+"text": "The mama ronke now remembers the thryd: A new theme carton lands on the table beside the leftover noodles, from the typed.",
+"code": "thryd.interactwith(mama_ronke){ mama_ronke.receives(thryd.something); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w40",
+"other": "thryd"
 },
 {
 "id": "wt_836e6dea8e",
@@ -9616,28 +9616,6 @@
 },
 "consequences": [
 {
-"id": "wf_164cee9d92",
-"ts": "2026-11-19T07:05:32-0500",
-"a": "jnoel",
-"b": "vex",
-"code": "jnoel.interactwith(vex){ vex.receives(jnoel.corner); vex.remembers(bisola, 'envelope corner'); vex.tucks(jnoel, 'bird note into the green shirt'); }",
-"text": "A Bird note with Bisola's name and 'envelope corner' on it, turns up inside the green shirt at the vex, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j7"
-},
-{
-"id": "wf_3ac4c12e8f",
-"ts": "2026-11-19T07:21:20-0500",
-"a": "love",
-"b": "b_md",
-"code": "love.interactwith(b_md){ b_md.receives(love.envelope); b_md.remembers(bisola, 'brown envelope'); b_md.tucks(love, 'yaba bookshop receipt into the green shirt'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the green shirt at the b md, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
 "id": "wf_eb728b062c",
 "ts": "2026-11-19T07:24:52-0500",
 "a": "bow",
@@ -10054,6 +10032,28 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_f79464398c",
+"ts": "2026-11-19T11:22:36-0500",
+"a": "precision",
+"b": "red_white_cap",
+"code": "precision.interactwith(red_white_cap){ red_white_cap.receives(precision.envelope); red_white_cap.remembers(bisola, 'brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the red and white cap, which is still worn.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
+},
+{
+"id": "wf_7047cf8340",
+"ts": "2026-11-19T11:24:21-0500",
+"a": "thryd",
+"b": "mama_ronke",
+"code": "thryd.interactwith(mama_ronke){ mama_ronke.receives(thryd.something); }",
+"text": "The mama ronke now remembers the thryd: A new theme carton lands on the table beside the leftover noodles, from the typed.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w40"
 }
 ],
 "memories": [
@@ -10157,5 +10157,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-19T11:16:02-0500"
+"updated": "2026-11-19T11:24:21-0500"
 }
