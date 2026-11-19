@@ -1821,16 +1821,6 @@
 ],
 "bicycle": [
 {
-"id": "wf_f39c976faa",
-"kind": "consequence",
-"text": "A Truth note with Titi's name and 'egbe note' on it, turns up inside the brown envelope at the bicycle, and Bisola reads the name twice.",
-"code": "truth.interactwith(bicycle){ bicycle.receives(truth.note); bicycle.remembers(titi, 'egbe note'); bicycle.tucks(truth, 'truth note into the brown envelope'); }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j4",
-"other": "truth"
-},
-{
 "id": "wf_94f05d48b1",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bicycle, and Bisola reads the name twice.",
@@ -1869,6 +1859,16 @@
 "run": "run-2eb42d",
 "card": "j8",
 "other": "b_md"
+},
+{
+"id": "wf_73014556cd",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the green shirt at the bicycle, and Bisola reads the name twice.",
+"code": "listen.interactwith(bicycle){ bicycle.receives(listen.envelope); … }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "listen"
 }
 ],
 "ronke": [
@@ -9482,17 +9482,6 @@
 },
 "consequences": [
 {
-"id": "wf_8862c81ec2",
-"ts": "2026-11-18T17:37:11-0500",
-"a": "vex",
-"b": "bird",
-"code": "vex.interactwith(bird){ bird.receives(vex.shirt); bird.remembers(bisola, 'green shirt'); bird.tucks(vex, 'ikeja laundromat receipt into the envelope corner'); }",
-"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the envelope corner at the bird, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j8"
-},
-{
 "id": "wf_8bf4c4131d",
 "ts": "2026-11-18T17:46:10-0500",
 "a": "icsh",
@@ -9920,6 +9909,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j8"
+},
+{
+"id": "wf_73014556cd",
+"ts": "2026-11-18T20:55:33-0500",
+"a": "listen",
+"b": "bicycle",
+"code": "listen.interactwith(bicycle){ bicycle.receives(listen.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the green shirt at the bicycle, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -10023,5 +10023,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T20:29:35-0500"
+"updated": "2026-11-18T20:55:33-0500"
 }
