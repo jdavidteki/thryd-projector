@@ -1141,16 +1141,6 @@
 ],
 "matches": [
 {
-"id": "wf_b44864c1f0",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the matches, which is still found.",
-"code": "atp.interactwith(matches){ matches.receives(atp.envelope); matches.remembers(bisola, 'brown envelope'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "atp"
-},
-{
 "id": "wf_f1bd4f6cf0",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the matches, which is still found.",
@@ -1179,6 +1169,16 @@
 "run": "run-2eb42d",
 "card": "w7",
 "other": "twgs"
+},
+{
+"id": "wf_145593d448",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the matches, which is still found.",
+"code": "computer_village.interactwith(matches){ matches.receives(computer_village.envelope); matches.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "computer_village"
 },
 {
 "id": "wf_d40998bca5",
@@ -7559,26 +7559,6 @@
 ],
 "hear": [
 {
-"id": "wt_67181dbd11",
-"kind": "func_call",
-"text": "The hear hears it (because ronke.hail(what=hawker:Thing) from j18).",
-"code": "hear.hears(third_mainland_bridge, 'hail');",
-"author": "projector",
-"run": "run-2eb42d",
-"card": "w18",
-"other": null
-},
-{
-"id": "wt_55b7b76fa0",
-"kind": "func_call",
-"text": "The hear hears it (because pepu.setMany(amount=many:Quantity) from j17).",
-"code": "hear.hears(third_mainland_bridge, 'setMany');",
-"author": "projector",
-"run": "run-2eb42d",
-"card": "w17",
-"other": null
-},
-{
 "id": "wt_e38f9f1af2",
 "kind": "func_call",
 "text": "The hear hears it (because ronke.mend(act=even:Action) from j17).",
@@ -7600,6 +7580,26 @@
 },
 {
 "id": "wt_47ddab5cfa",
+"kind": "func_call",
+"text": "The hear hears it (because pepu.setMany(amount=many:Quantity) from j17).",
+"code": "hear.hears(third_mainland_bridge, 'setMany');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w17",
+"other": null
+},
+{
+"id": "wt_9eea3796b4",
+"kind": "func_call",
+"text": "The hear hears it (because pepu.setMany(amount=many:Quantity) from j17).",
+"code": "hear.hears(third_mainland_bridge, 'setMany');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w17",
+"other": null
+},
+{
+"id": "wt_6f50924377",
 "kind": "func_call",
 "text": "The hear hears it (because pepu.setMany(amount=many:Quantity) from j17).",
 "code": "hear.hears(third_mainland_bridge, 'setMany');",
@@ -8399,26 +8399,6 @@
 ],
 "pepu": [
 {
-"id": "wt_4d6f457291",
-"kind": "func_call",
-"text": "Someone at the projector tapped the computer village subject and called pepu.setMany(amount=many:Quantity) from j17 from its agenda run-2eb42d, first seated in run-2eb42d j17.",
-"code": "pepu.setMany('many');",
-"author": "projector",
-"run": "run-2eb42d",
-"card": "w17",
-"other": null
-},
-{
-"id": "wt_e4d0c3b357",
-"kind": "func_call",
-"text": "Someone at the projector tapped the computer village subject and called pepu.setMany(amount=many:Quantity) from j17 from its agenda run-2eb42d, first seated in run-2eb42d j17.",
-"code": "pepu.setMany('many');",
-"author": "projector",
-"run": "run-2eb42d",
-"card": "w17",
-"other": null
-},
-{
 "id": "wt_33e51dea5f",
 "kind": "func_call",
 "text": "Someone at the projector tapped the car and called pepu.setMany(amount=many:Quantity) from j17 from its agenda run-2eb42d, first seated in run-2eb42d j17.",
@@ -8440,6 +8420,26 @@
 },
 {
 "id": "wt_2593a63722",
+"kind": "func_call",
+"text": "Someone at the projector tapped the third mainland bridge and called pepu.setMany(amount=many:Quantity) from j17 from its agenda run-2eb42d, first seated in run-2eb42d j17.",
+"code": "pepu.setMany('many');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w17",
+"other": null
+},
+{
+"id": "wt_afd60cfcc6",
+"kind": "func_call",
+"text": "Someone at the projector tapped the third mainland bridge and called pepu.setMany(amount=many:Quantity) from j17 from its agenda run-2eb42d, first seated in run-2eb42d j17.",
+"code": "pepu.setMany('many');",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w17",
+"other": null
+},
+{
+"id": "wt_7d3a356ddb",
 "kind": "func_call",
 "text": "Someone at the projector tapped the third mainland bridge and called pepu.setMany(amount=many:Quantity) from j17 from its agenda run-2eb42d, first seated in run-2eb42d j17.",
 "code": "pepu.setMany('many');",
@@ -9504,17 +9504,6 @@
 },
 "consequences": [
 {
-"id": "wf_d3b17d0cd1",
-"ts": "2026-11-18T18:22:50-0500",
-"a": "ttb",
-"b": "niaw",
-"code": "ttb.interactwith(niaw){ niaw.receives(ttb.code); niaw.remembers(ejiro, 'juju code'); niaw.tucks(ttb, 'ttb note into the brown envelope'); }",
-"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the niaw, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j2"
-},
-{
 "id": "wf_8de965603f",
 "ts": "2026-11-18T18:23:44-0500",
 "a": "vex",
@@ -9942,6 +9931,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_145593d448",
+"ts": "2026-11-19T06:58:28-0500",
+"a": "computer_village",
+"b": "matches",
+"code": "computer_village.interactwith(matches){ matches.receives(computer_village.envelope); matches.remembers(bisola, 'brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the matches, which is still found.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -10045,5 +10045,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-19T06:54:04-0500"
+"updated": "2026-11-19T06:59:21-0500"
 }
