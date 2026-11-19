@@ -2105,16 +2105,6 @@
 ],
 "laptop": [
 {
-"id": "wf_53406735c0",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the lamp soot at the laptop, and Taiwo reads the name twice.",
-"code": "listen.interactwith(laptop){ laptop.receives(listen.envelope); … }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "listen"
-},
-{
 "id": "wf_38dc9b483f",
 "kind": "consequence",
 "text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the lamp soot at the laptop, and Taiwo reads the name twice.",
@@ -2123,6 +2113,16 @@
 "run": "run-2eb42d",
 "card": "j8",
 "other": "vex"
+},
+{
+"id": "wf_8b1d35b071",
+"kind": "consequence",
+"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the lamp soot at the laptop, and Taiwo reads the name twice.",
+"code": "imhf.interactwith(laptop){ laptop.receives(imhf.shirt); laptop.remembers(bisola, 'green shirt'); laptop.tucks(imhf, 'ikeja laundromat receipt into the lamp soot'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j8",
+"other": "imhf"
 },
 {
 "id": "wt_00586a397c",
@@ -9744,17 +9744,6 @@
 },
 "consequences": [
 {
-"id": "wf_34f21acb53",
-"ts": "2026-11-19T08:37:13-0500",
-"a": "computer_village",
-"b": "thryd",
-"code": "computer_village.interactwith(thryd){ thryd.receives(computer_village.envelope); thryd.remembers(bisola, 'brown envelope'); }",
-"text": "The thryd leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
 "id": "wf_4a0846b464",
 "ts": "2026-11-19T09:06:53-0500",
 "a": "patagonia",
@@ -10182,6 +10171,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "w38"
+},
+{
+"id": "wf_8b1d35b071",
+"ts": "2026-11-19T12:04:01-0500",
+"a": "imhf",
+"b": "laptop",
+"code": "imhf.interactwith(laptop){ laptop.receives(imhf.shirt); laptop.remembers(bisola, 'green shirt'); laptop.tucks(imhf, 'ikeja laundromat receipt into the lamp soot'); }",
+"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the lamp soot at the laptop, and Taiwo reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j8"
 }
 ],
 "memories": [
@@ -10285,5 +10285,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-19T11:54:20-0500"
+"updated": "2026-11-19T12:04:01-0500"
 }
