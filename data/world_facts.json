@@ -1831,16 +1831,6 @@
 ],
 "bicycle": [
 {
-"id": "wf_74991d7e21",
-"kind": "consequence",
-"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the bicycle, and Bisola reads the name twice.",
-"code": "mbtij.interactwith(bicycle){ bicycle.receives(mbtij.code); bicycle.remembers(ejiro, 'juju code'); bicycle.tucks(mbtij, 'ttb note into the brown envelope'); }",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j2",
-"other": "mbtij"
-},
-{
 "id": "wf_dd77450fd8",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bicycle, and Bisola reads the name twice.",
@@ -1879,6 +1869,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "lie"
+},
+{
+"id": "wf_5e78ac8390",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bicycle, and Bisola reads the name twice.",
+"code": "namco.interactwith(bicycle){ bicycle.receives(namco.envelope); … }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "namco"
 }
 ],
 "ronke": [
@@ -9740,31 +9740,33 @@
 "card": "j10",
 "other": null
 }
+],
+"if_heaven_then_figure": [
+{
+"id": "wt_16a385e1c2",
+"kind": "call",
+"text": "Someone at the projector tapped the if heaven then figure and made it grow.",
+"code": "if_heaven_then_figure.grow();",
+"author": "projector",
+"run": "run-2eb42d",
+"card": "w1",
+"other": null
+}
+],
+"no_palmgrove_close": [
+{
+"id": "wf_1eeed20848",
+"kind": "consequence",
+"text": "The no palmgrove close leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "abeokuta_parlour.interactwith(no_palmgrove_close){ no_palmgrove_close.receives(abeokuta_parlour.envelope); no_palmgrove_close.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "abeokuta_parlour"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_a27d7d4d80",
-"ts": "2026-11-19T09:13:58-0500",
-"a": "listen",
-"b": "mama_ronke",
-"code": "listen.interactwith(mama_ronke){ mama_ronke.receives(listen.envelope); mama_ronke.remembers(bisola, 'brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the Mama Ronke, which is still present.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
-"id": "wf_fc0d8e206b",
-"ts": "2026-11-19T09:14:51-0500",
-"a": "lie",
-"b": "bicycle",
-"code": "lie.interactwith(bicycle){ bicycle.receives(lie.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bicycle, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
 {
 "id": "wf_20fbec1c58",
 "ts": "2026-11-19T09:19:19-0500",
@@ -10182,6 +10184,28 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_5e78ac8390",
+"ts": "2026-11-19T12:18:59-0500",
+"a": "namco",
+"b": "bicycle",
+"code": "namco.interactwith(bicycle){ bicycle.receives(namco.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bicycle, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
+},
+{
+"id": "wf_1eeed20848",
+"ts": "2026-11-19T12:20:45-0500",
+"a": "abeokuta_parlour",
+"b": "no_palmgrove_close",
+"code": "abeokuta_parlour.interactwith(no_palmgrove_close){ no_palmgrove_close.receives(abeokuta_parlour.envelope); no_palmgrove_close.remembers(bisola, 'brown envelope'); }",
+"text": "The no palmgrove close leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -10285,5 +10309,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-19T12:14:34-0500"
+"updated": "2026-11-19T12:20:45-0500"
 }
