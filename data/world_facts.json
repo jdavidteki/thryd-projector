@@ -7063,16 +7063,6 @@
 ],
 "thryd": [
 {
-"id": "wt_67f9639994",
-"kind": "func_call",
-"text": "The customer typed #thryd.importtheme(indomie) on run-2eb42d j39. It came back: Thryd importtheme indomie. Implementation: function importtheme(what){\n  THRYD_IMPORTTHEME_COUNT += 1;\n  this.lastImporttheme = \"indomie\";\n  return \"Thryd importtheme indomie\";\n}. thryd now has thryd.importtheme as a method on this agenda, and it can be called again.",
-"code": "#thryd.importtheme(indomie);",
-"author": "customer",
-"run": "run-2eb42d",
-"card": "j39",
-"other": null
-},
-{
 "id": "wt_46a965148d",
 "kind": "func_call",
 "text": "The customer typed #thryd.importtheme(theadelekes) on run-2eb42d j40. It came back: Thryd importtheme theadelekes. Implementation: function importtheme(what){\n  THRYD_IMPORTTHEME_COUNT += 1;\n  this.lastImporttheme = \"indomie\";\n  this.lastImporttheme = \"theadelekes\";\n  return \"Thryd importtheme indomie\";\n}.",
@@ -7101,6 +7091,16 @@
 "run": "run-2eb42d",
 "card": "j41",
 "other": null
+},
+{
+"id": "wf_2c5dd4aaca",
+"kind": "consequence",
+"text": "The thryd leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "icsh.interactwith(thryd){ thryd.receives(icsh.envelope); thryd.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "icsh"
 },
 {
 "id": "wt_705361bf07",
@@ -9482,17 +9482,6 @@
 },
 "consequences": [
 {
-"id": "wf_267bc16dc0",
-"ts": "2026-11-18T17:26:38-0500",
-"a": "mlkahb",
-"b": "laptop",
-"code": "mlkahb.interactwith(laptop){ laptop.receives(mlkahb.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the lamp soot at the laptop, and Taiwo reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
 "id": "wf_f3d2c62e81",
 "ts": "2026-11-18T17:36:19-0500",
 "a": "lady",
@@ -9920,6 +9909,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j8"
+},
+{
+"id": "wf_2c5dd4aaca",
+"ts": "2026-11-18T20:23:31-0500",
+"a": "icsh",
+"b": "thryd",
+"code": "icsh.interactwith(thryd){ thryd.receives(icsh.envelope); thryd.remembers(bisola, 'brown envelope'); }",
+"text": "The thryd leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -10023,5 +10023,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T20:18:31-0500"
+"updated": "2026-11-18T20:23:31-0500"
 }
