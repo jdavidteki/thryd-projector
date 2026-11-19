@@ -7275,16 +7275,6 @@
 ],
 "mkdwo": [
 {
-"id": "wf_39a9b82735",
-"kind": "consequence",
-"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the mkdwo, and Bisola reads the name twice.",
-"code": "ttb.interactwith(mkdwo){ mkdwo.receives(ttb.code); mkdwo.remembers(ejiro, 'juju code'); mkdwo.tucks(ttb, 'ttb note into the brown envelope'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j2",
-"other": "ttb"
-},
-{
 "id": "wt_c45d96d2c5",
 "kind": "func_call",
 "text": "The customer typed [[mkdwo]] on run-2eb42d j29.",
@@ -7323,6 +7313,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "bow"
+},
+{
+"id": "wf_a1589fe142",
+"kind": "consequence",
+"text": "The mkdwo leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "move.interactwith(mkdwo){ mkdwo.receives(move.envelope); mkdwo.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "move"
 }
 ],
 "asmathic": [
@@ -9544,17 +9544,6 @@
 },
 "consequences": [
 {
-"id": "wf_0887f1aee2",
-"ts": "2026-11-18T19:15:24-0500",
-"a": "bicycle",
-"b": "red_white_cap",
-"code": "bicycle.interactwith(red_white_cap){ red_white_cap.receives(bicycle.envelope); red_white_cap.remembers(bisola, 'brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the red and white cap, which is still worn.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
 "id": "wf_eda95b4dfd",
 "ts": "2026-11-18T19:19:46-0500",
 "a": "iae",
@@ -9982,6 +9971,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_a1589fe142",
+"ts": "2026-11-19T09:08:40-0500",
+"a": "move",
+"b": "mkdwo",
+"code": "move.interactwith(mkdwo){ mkdwo.receives(move.envelope); mkdwo.remembers(bisola, 'brown envelope'); }",
+"text": "The mkdwo leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -10085,5 +10085,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-19T09:06:53-0500"
+"updated": "2026-11-19T09:08:40-0500"
 }
