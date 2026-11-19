@@ -2631,16 +2631,6 @@
 ],
 "chair": [
 {
-"id": "wf_a269c1e6aa",
-"kind": "consequence",
-"text": "A Pure water cooler note with Kunle's name and 'container number' on it, 9:20am, turns up inside the brown envelope at the chair, and Bisola reads the name twice.",
-"code": "pure_water_cooler.interactwith(chair){ chair.receives(pure_water_cooler.number); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "w1",
-"other": "pure_water_cooler"
-},
-{
 "id": "wf_dbbbafd659",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the chair, and Bisola reads the name twice.",
@@ -2669,6 +2659,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "niaw"
+},
+{
+"id": "wf_1738c4cb8c",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the 11:20pm at the chair, and Taiwo reads the name twice.",
+"code": "patagonia.interactwith(chair){ chair.receives(patagonia.envelope); … }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "patagonia"
 },
 {
 "id": "wt_d7412f0d94",
@@ -9798,17 +9798,6 @@
 },
 "consequences": [
 {
-"id": "wf_6f44dd0ca6",
-"ts": "2026-11-19T09:55:13-0500",
-"a": "b_md",
-"b": "agbada",
-"code": "b_md.interactwith(agbada){ agbada.receives(b_md.envelope); agbada.remembers(bisola, 'brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the agbada, which is still worn by a stranger haggler.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
 "id": "wf_34cbecdc03",
 "ts": "2026-11-19T10:07:37-0500",
 "a": "precision",
@@ -10236,6 +10225,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_1738c4cb8c",
+"ts": "2026-11-19T12:50:34-0500",
+"a": "patagonia",
+"b": "chair",
+"code": "patagonia.interactwith(chair){ chair.receives(patagonia.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the 11:20pm at the chair, and Taiwo reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -10339,5 +10339,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-19T12:47:04-0500"
+"updated": "2026-11-19T12:50:35-0500"
 }
