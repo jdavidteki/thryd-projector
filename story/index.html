@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta http-equiv="Cache-Control" content="no-cache">
+<title>#thryd · the story so far, painted by code</title>
+<meta name="description" content="#thryd: every agenda painted on one building, each fired call coloured by its method.">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="data:,">
+<style>
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:#fff;color:#141414;font:16px/1.5 Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;text-align:center;padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
+header,main,footer{max-width:1480px;margin:0 auto;padding:0 16px}
+header{padding-top:18px}
+.back{font:500 13px ui-monospace,Menlo,Consolas,monospace;color:#555;text-decoration:none;float:left}
+.back:hover,.back:focus-visible{color:#141414;text-decoration:underline}
+h1{font:700 clamp(20px,3.6vw,30px)/1.2 ui-monospace,Menlo,Consolas,monospace;margin:26px 0 6px;letter-spacing:-.01em;clear:both}
+.cap{margin:0 auto 16px;color:#555;max-width:860px}
+figure{margin:0}
+#story{display:block;width:100%;max-width:1440px;height:auto;margin:0 auto;background:#fff;aspect-ratio:1440/900}
+.meta{font:500 12px ui-monospace,Menlo,Consolas,monospace;color:#888;margin:10px 0 26px}
+.meta a{color:#0b5cad}
+</style>
+</head>
+<body>
+<header><a class="back" href="../" aria-label="Back to the projector">← projector</a>
+<h1>the story so far, painted by code</h1>
+<p class="cap" id="cap">📐 The story so far: every agenda painted on one building, each fired call coloured by its method. Grey beams are the edges still to draw.</p>
+</header>
+<main>
+<figure>
+<img id="story" src="story_painted_3d.png" alt="The #thryd story building: every agenda painted on one white isometric building, coloured by the code that fired">
+<noscript><img src="story_painted_3d.png" alt="The #thryd story building (still)" style="width:100%;max-width:1440px"></noscript>
+</figure>
+<p class="meta" id="meta"><a id="still" href="story_painted_3d.png">still (PNG)</a></p>
+</main>
+<script>
+/* GIF first, PNG still as the fallback. ?v= = the GIF's version from story.json (its mtime), so a re-render is never served stale. */
+(function(){
+  var img=document.getElementById('story'),meta=document.getElementById('meta'),still=document.getElementById('still');
+  function show(j){
+    var v=(j&&j.v)||Date.now();
+    img.onerror=function(){img.onerror=null;img.src='story_painted_3d.png?v='+v;};
+    img.src='story_painted_3d.gif?v='+v; still.href='story_painted_3d.png?v='+v;
+    if(j&&j.caption)document.getElementById('cap').textContent=j.caption;
+    if(j&&j.at){var s=document.createElement('span');s.textContent=' · drawn '+j.at;meta.appendChild(s);}
+  }
+  fetch('story.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).then(show).catch(function(){show(null)});
+})();
+</script>
+</body>
+</html>
