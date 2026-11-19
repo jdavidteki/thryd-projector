@@ -7121,16 +7121,6 @@
 ],
 "mama_ronke": [
 {
-"id": "wf_e05fe8f4cc",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the Mama Ronke, which is still present.",
-"code": "love.interactwith(mama_ronke){ mama_ronke.receives(love.envelope); mama_ronke.remembers(bisola, 'brown envelope'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "love"
-},
-{
 "id": "wf_a27d7d4d80",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the Mama Ronke, which is still present.",
@@ -7159,6 +7149,16 @@
 "run": "run-2eb42d",
 "card": "w40",
 "other": "thryd"
+},
+{
+"id": "wf_c2da49ff46",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the Mama Ronke, which is still present.",
+"code": "ojuelegba_bus_stop.interactwith(mama_ronke){ mama_ronke.receives(ojuelegba_bus_stop.envelope); mama_ronke.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "ojuelegba_bus_stop"
 },
 {
 "id": "wt_836e6dea8e",
@@ -7243,6 +7243,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "computer_village"
+},
+{
+"id": "wf_ab723a297a",
+"kind": "consequence",
+"text": "The wiitbaw leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
+"code": "ttb.interactwith(wiitbaw){ wiitbaw.receives(ttb.code); wiitbaw.remembers(ejiro, 'juju code'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j2",
+"other": "ttb"
 }
 ],
 "listen": [
@@ -9778,28 +9788,6 @@
 },
 "consequences": [
 {
-"id": "wf_a688d36f3b",
-"ts": "2026-11-19T09:27:18-0500",
-"a": "laptop",
-"b": "danfo_speaker",
-"code": "laptop.interactwith(danfo_speaker){ danfo_speaker.receives(laptop.soot); danfo_speaker.remembers(taiwo, 'lamp soot'); }",
-"text": "A Laptop note with Taiwo's name and 'lamp soot' on it, turns up with the danfo speaker, which is still playing the same love song.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j7"
-},
-{
-"id": "wf_d75767f6f1",
-"ts": "2026-11-19T09:29:05-0500",
-"a": "laptop",
-"b": "mkdwo",
-"code": "laptop.interactwith(mkdwo){ mkdwo.receives(laptop.soot); mkdwo.remembers(taiwo, 'lamp soot'); }",
-"text": "The mkdwo leaves with a Laptop note with Taiwo's name and 'lamp soot' on it.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j7"
-},
-{
 "id": "wf_52b5aa1e71",
 "ts": "2026-11-19T09:48:07-0500",
 "a": "ojuelegba_bus_stop",
@@ -10216,6 +10204,28 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_ab723a297a",
+"ts": "2026-11-19T12:40:03-0500",
+"a": "ttb",
+"b": "wiitbaw",
+"code": "ttb.interactwith(wiitbaw){ wiitbaw.receives(ttb.code); wiitbaw.remembers(ejiro, 'juju code'); }",
+"text": "The wiitbaw leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j2"
+},
+{
+"id": "wf_c2da49ff46",
+"ts": "2026-11-19T12:40:56-0500",
+"a": "ojuelegba_bus_stop",
+"b": "mama_ronke",
+"code": "ojuelegba_bus_stop.interactwith(mama_ronke){ mama_ronke.receives(ojuelegba_bus_stop.envelope); mama_ronke.remembers(bisola, 'brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the Mama Ronke, which is still present.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -10319,5 +10329,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-19T12:37:26-0500"
+"updated": "2026-11-19T12:40:56-0500"
 }
