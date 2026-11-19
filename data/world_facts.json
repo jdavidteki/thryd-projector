@@ -6931,6 +6931,16 @@
 "run": "run-2eb42d",
 "card": "j8",
 "other": "vex"
+},
+{
+"id": "wf_3ac4c12e8f",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the green shirt at the b md, and Bisola reads the name twice.",
+"code": "love.interactwith(b_md){ b_md.receives(love.envelope); b_md.remembers(bisola, 'brown envelope'); b_md.tucks(love, 'yaba bookshop receipt into the green shirt'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "love"
 }
 ],
 "yuwa": [
@@ -9514,17 +9524,6 @@
 },
 "consequences": [
 {
-"id": "wf_e2618014f1",
-"ts": "2026-11-18T18:42:11-0500",
-"a": "b_md",
-"b": "danfo_speaker",
-"code": "b_md.interactwith(danfo_speaker){ danfo_speaker.receives(b_md.shirt); danfo_speaker.remembers(bisola, 'green shirt'); }",
-"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up with the danfo speaker, which is still playing the same love song.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j8"
-},
-{
 "id": "wf_bbd8e2dfa8",
 "ts": "2026-11-18T18:43:56-0500",
 "a": "wiitbaw",
@@ -9952,6 +9951,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j7"
+},
+{
+"id": "wf_3ac4c12e8f",
+"ts": "2026-11-19T07:21:20-0500",
+"a": "love",
+"b": "b_md",
+"code": "love.interactwith(b_md){ b_md.receives(love.envelope); b_md.remembers(bisola, 'brown envelope'); b_md.tucks(love, 'yaba bookshop receipt into the green shirt'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the green shirt at the b md, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -10055,5 +10065,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-19T07:05:33-0500"
+"updated": "2026-11-19T07:21:20-0500"
 }
