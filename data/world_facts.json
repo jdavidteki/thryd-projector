@@ -6885,16 +6885,6 @@
 ],
 "iae": [
 {
-"id": "wf_aad3fe6051",
-"kind": "consequence",
-"text": "The iae now remembers the miami: 11:45pm, Monday 2 November 2026: A phone on the counter starts the off-key chorus, then.",
-"code": "miami.interactwith(iae){ iae.receives(miami.phone); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j29",
-"other": "miami"
-},
-{
 "id": "wf_0b6767d3bf",
 "kind": "consequence",
 "text": "The iae now remembers the ronke: Someone at the projector tapped the computer village subject and called.",
@@ -6933,6 +6923,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "computer_village"
+},
+{
+"id": "wf_89a874d513",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the iae, which is still initialized.",
+"code": "bus.interactwith(iae){ iae.receives(bus.envelope); iae.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "bus"
 }
 ],
 "tf_mom": [
@@ -7365,16 +7365,6 @@
 ],
 "mkdwo": [
 {
-"id": "wf_66ded0f50f",
-"kind": "consequence",
-"text": "The mkdwo leaves with a Laptop note with Taiwo's name and 'lamp soot' on it.",
-"code": "tf_mom.interactwith(mkdwo){ mkdwo.receives(tf_mom.soot); mkdwo.remembers(taiwo, 'lamp soot'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j7",
-"other": "tf_mom"
-},
-{
 "id": "wf_717c553e2e",
 "kind": "consequence",
 "text": "The mkdwo leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
@@ -7413,6 +7403,16 @@
 "run": "run-2eb42d",
 "card": "j7",
 "other": "laptop"
+},
+{
+"id": "wf_2d7c956046",
+"kind": "consequence",
+"text": "The mkdwo leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "asmathic.interactwith(mkdwo){ mkdwo.receives(asmathic.envelope); mkdwo.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "asmathic"
 }
 ],
 "asmathic": [
@@ -9768,28 +9768,6 @@
 },
 "consequences": [
 {
-"id": "wf_20fbec1c58",
-"ts": "2026-11-19T09:19:19-0500",
-"a": "precision",
-"b": "tie",
-"code": "precision.interactwith(tie){ tie.receives(precision.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the tie, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
-"id": "wf_2341ea8441",
-"ts": "2026-11-19T09:21:58-0500",
-"a": "bus",
-"b": "mama_ronke",
-"code": "bus.interactwith(mama_ronke){ mama_ronke.receives(bus.envelope); mama_ronke.remembers(bisola, 'brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the Mama Ronke, which is still present.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
 "id": "wf_44ca30d515",
 "ts": "2026-11-19T09:26:25-0500",
 "a": "listen",
@@ -10206,6 +10184,28 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_2d7c956046",
+"ts": "2026-11-19T12:23:25-0500",
+"a": "asmathic",
+"b": "mkdwo",
+"code": "asmathic.interactwith(mkdwo){ mkdwo.receives(asmathic.envelope); mkdwo.remembers(bisola, 'brown envelope'); }",
+"text": "The mkdwo leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
+},
+{
+"id": "wf_89a874d513",
+"ts": "2026-11-19T12:26:02-0500",
+"a": "bus",
+"b": "iae",
+"code": "bus.interactwith(iae){ iae.receives(bus.envelope); iae.remembers(bisola, 'brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the iae, which is still initialized.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -10309,5 +10309,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-19T12:20:45-0500"
+"updated": "2026-11-19T12:26:02-0500"
 }
