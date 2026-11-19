@@ -126,7 +126,7 @@
   function markQueued(text){
     const line = String(text || '').replace(/;?$/, ';');
     try{ const S = ST(); if(S && S.markQueued) S.markQueued(line, 'queued\u2026'); }catch(e){}
-    try{ if(msg) msg.textContent = 'queued\u2026 \u00b7 pv:' + ((window.thrydPageVer && window.thrydPageVer()) || ''); }catch(e){}
+    try{ if(msg) msg.textContent = 'queued\u2026'; }catch(e){}
   }
   function submitNow(ev, how){
     if(ev){ ev.preventDefault(); ev.stopPropagation(); }
@@ -162,7 +162,7 @@
     // Android Chrome IME Go often fires beforeinput insertLineBreak instead of (or before) keydown Enter
     inp.addEventListener('beforeinput', e => { if(e.inputType === 'insertLineBreak' || e.inputType === 'insertParagraph'){ e.preventDefault(); e.stopPropagation(); submitNow(e, 'beforeinput_' + e.inputType); } });
     inp.addEventListener('input', e => { if(inp && /\n/.test(String(inp.value || ''))){ if(e.preventDefault) e.preventDefault(); submitNow(e, 'input_newline'); } }); }
-  function open(){ ui(); box.classList.add('on'); msg.textContent = AI.state === 'ready' ? 'AI matching on' + (chromeOk() ? ' · ✨ Chrome AI' : '') : (AI.state === 'loading' ? 'AI model loading… letter matching for now' : 'letter matching'); chips.textContent = ''; inp.value = ''; try{ if(msg) msg.textContent = (msg.textContent||'') + ' \u00b7 pv:' + ((window.thrydPageVer&&window.thrydPageVer())||''); }catch(e){} setTimeout(()=> inp.focus(), 0); }
+  function open(){ ui(); box.classList.add('on'); msg.textContent = AI.state === 'ready' ? 'AI matching on' + (chromeOk() ? ' · ✨ Chrome AI' : '') : (AI.state === 'loading' ? 'AI model loading… letter matching for now' : 'letter matching'); chips.textContent = ''; inp.value = ''; setTimeout(()=> inp.focus(), 0); }
   function close(){ if(box){ box.classList.remove('on'); inp.blur(); } }
   AI.open = open; AI.close = close;
   function label(r){ return r.id.split('.')[0] + '.' + ((r.f && r.f.method) || r.id.split('.').slice(1).join('.')) + '()'; }
