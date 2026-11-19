@@ -6853,6 +6853,16 @@
 "run": "run-2eb42d",
 "card": "w6",
 "other": "chair"
+},
+{
+"id": "wf_b067528817",
+"kind": "consequence",
+"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up with the iae, which is still initialized.",
+"code": "divine.interactwith(iae){ iae.receives(divine.shirt); iae.remembers(bisola, 'green shirt'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j8",
+"other": "divine"
 }
 ],
 "tf_mom": [
@@ -9061,6 +9071,26 @@
 ],
 "townhall": [
 {
+"id": "wf_09854b0b4a",
+"kind": "consequence",
+"text": "After the long night at Ikorodu town hall, the chairman leaves his copy of the minutes at the hall, so the hall now remembers the investor's cheque pledge and the 2-minute item that ran two hours.",
+"code": "chairman.interactwith(townhall){ chairman.db.copyto(townhall); townhall.remembers(chairman, 'minutes: investor cheque pledged to the hall fund'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j40",
+"other": "chairman"
+},
+{
+"id": "wf_d821ee81c9",
+"kind": "consequence",
+"text": "Because the generator cut out again during the egusi, the town hall is now noted as running on lanterns until someone buys fuel in the morning.",
+"code": "townhall.set('power', 'generator off, lanterns on until fuel is bought');",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j41",
+"other": "generator"
+},
+{
 "id": "wt_78d45a50ba",
 "kind": "func_call",
 "text": "The town hall opens for the meeting, landing on '[[so]] + [[gima]] - for the meeting'.",
@@ -9544,50 +9574,6 @@
 },
 "consequences": [
 {
-"id": "wf_5d8ba09fab",
-"ts": "2026-11-18T20:18:31-0500",
-"a": "example",
-"b": "bird",
-"code": "example.interactwith(bird){ bird.receives(example.shirt); … }",
-"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the envelope corner at the bird, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j8"
-},
-{
-"id": "wf_2c5dd4aaca",
-"ts": "2026-11-18T20:23:31-0500",
-"a": "icsh",
-"b": "thryd",
-"code": "icsh.interactwith(thryd){ thryd.receives(icsh.envelope); thryd.remembers(bisola, 'brown envelope'); }",
-"text": "The thryd leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
-"id": "wf_ee90ac8d57",
-"ts": "2026-11-18T20:29:35-0500",
-"a": "example",
-"b": "saturday_october",
-"code": "example.interactwith(saturday_october){ saturday_october.receives(example.shirt); … }",
-"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the brown envelope at the saturday october, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j8"
-},
-{
-"id": "wf_73014556cd",
-"ts": "2026-11-18T20:55:33-0500",
-"a": "listen",
-"b": "bicycle",
-"code": "listen.interactwith(bicycle){ bicycle.receives(listen.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the green shirt at the bicycle, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
 "id": "wf_efced8dcac",
 "ts": "2026-11-18T21:00:51-0500",
 "a": "computer_village",
@@ -9982,6 +9968,50 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j7"
+},
+{
+"id": "wf_09854b0b4a",
+"ts": "2026-11-19T10:21:53-0500",
+"a": "chairman",
+"b": "townhall",
+"code": "chairman.interactwith(townhall){ chairman.db.copyto(townhall); townhall.remembers(chairman, 'minutes: investor cheque pledged to the hall fund'); }",
+"text": "After the long night at Ikorodu town hall, the chairman leaves his copy of the minutes at the hall, so the hall now remembers the investor's cheque pledge and the 2-minute item that ran two hours.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j40"
+},
+{
+"id": "wf_0684f67d81",
+"ts": "2026-11-19T10:21:53-0500",
+"a": "kazeem",
+"b": "mamaronke",
+"code": "kazeem.interactwith(mamaronke){ mamaronke.receives(kazeem, 'file'); mamaronke.remembers(kazeem, 'investor file page with the pledged amount'); }",
+"text": "Kazeem, still checking the investor's file line by line, hands Mama Ronke the page with the pledged amount so her money count and his file agree.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j40"
+},
+{
+"id": "wf_d821ee81c9",
+"ts": "2026-11-19T10:21:53-0500",
+"a": "generator",
+"b": "townhall",
+"code": "townhall.set('power', 'generator off, lanterns on until fuel is bought');",
+"text": "Because the generator cut out again during the egusi, the town hall is now noted as running on lanterns until someone buys fuel in the morning.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j41"
+},
+{
+"id": "wf_b067528817",
+"ts": "2026-11-19T10:26:25-0500",
+"a": "divine",
+"b": "iae",
+"code": "divine.interactwith(iae){ iae.receives(divine.shirt); iae.remembers(bisola, 'green shirt'); }",
+"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up with the iae, which is still initialized.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j8"
 }
 ],
 "memories": [
@@ -10085,5 +10115,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-19T10:17:26-0500"
+"updated": "2026-11-19T10:26:25-0500"
 }
