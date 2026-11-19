@@ -777,16 +777,6 @@
 ],
 "pure_water_cooler": [
 {
-"id": "wf_cd5f48c361",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the pure-water cooler, which is still carried home through the flood.",
-"code": "bicycle.interactwith(pure_water_cooler){ pure_water_cooler.receives(bicycle.envelope); pure_water_cooler.remembers(bisola, 'brown envelope'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "bicycle"
-},
-{
 "id": "wf_6554ef5dcc",
 "kind": "memory",
 "text": "The pure-water cooler at Ojuelegba bus stop: carried home through the flood; dinner is over; sticker says it is older than Ro.",
@@ -815,6 +805,16 @@
 "run": "run-2eb42d",
 "card": "w1",
 "other": "iae"
+},
+{
+"id": "wf_92df529134",
+"kind": "consequence",
+"text": "A Bird note with Bisola's name and 'envelope corner' on it, turns up with the pure-water cooler, which is still carried home through the flood.",
+"code": "bird.interactwith(pure_water_cooler){ pure_water_cooler.receives(bird.corner); pure_water_cooler.remembers(bisola, 'envelope corner'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j7",
+"other": "bird"
 },
 {
 "id": "wt_61e16c7796",
@@ -1067,16 +1067,6 @@
 "other": "lady"
 },
 {
-"id": "wf_32b4be23e9",
-"kind": "memory",
-"text": "The streetlights at the street: all dead since 7:35pm.",
-"code": "streetlights.state('all dead since 7:35pm');",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "w6",
-"other": null
-},
-{
 "id": "wf_2f53183a19",
 "kind": "consequence",
 "text": "A Laptop note with Taiwo's name and 'lamp soot' on it, turns up with the streetlights, which is still all dead since 7:35pm.",
@@ -1085,6 +1075,16 @@
 "run": "run-2eb42d",
 "card": "j7",
 "other": "tf_mom"
+},
+{
+"id": "wf_32b4be23e9",
+"kind": "memory",
+"text": "The streetlights at the street: all dead since 7:35pm.",
+"code": "streetlights.state('all dead since 7:35pm');",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w6",
+"other": null
 }
 ],
 "kerosene_lamp": [
@@ -3243,6 +3243,16 @@
 "run": "run-2eb42d",
 "card": "j35",
 "other": null
+},
+{
+"id": "wf_b0b5bd7169",
+"kind": "consequence",
+"text": "The wser leaves with an Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am.",
+"code": "computer_village.interactwith(wser){ wser.receives(computer_village.shirt); wser.remembers(bisola, 'green shirt'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j8",
+"other": "computer_village"
 }
 ],
 "blessings_subject": [
@@ -9031,6 +9041,16 @@
 "run": "run-2eb42d",
 "card": "w40",
 "other": null
+},
+{
+"id": "wt_66d349895a",
+"kind": "func_call",
+"text": "a2(): chairman.pour(tea) lands on '- i go [[pp]] banana fall for your case o'. CoS also logged banana.drop(peel) id 594; this row records the option title.",
+"code": "chairman.pour('tea');",
+"author": "thryd",
+"run": "run-2eb42d",
+"card": "w41",
+"other": null
 }
 ],
 "thryd_miracle": [
@@ -9342,31 +9362,45 @@
 "card": "j41",
 "other": null
 }
+],
+"secretary": [
+{
+"id": "wt_8019c10377",
+"kind": "func_call",
+"text": "c3(): secretary.pack(plates) lands on '- na the red line [[when]] dey down'. CoS also logged this as secretary.point(red line) id 588; this row records the option title.",
+"code": "secretary.pack('plates');",
+"author": "thryd",
+"run": "run-2eb42d",
+"card": "w41",
+"other": null
+}
+],
+"box": [
+{
+"id": "wt_e58ce9a881",
+"kind": "func_call",
+"text": "A cardboard box holds the packed plates.",
+"code": "box.hold('plates');",
+"author": "thryd",
+"run": "run-2eb42d",
+"card": "w41",
+"other": null
+}
+],
+"teacup": [
+{
+"id": "wt_c9ba304d25",
+"kind": "func_call",
+"text": "A teacup of hot tea sits on the table beside the chairman.",
+"code": "teacup.sit('table');",
+"author": "thryd",
+"run": "run-2eb42d",
+"card": "w41",
+"other": null
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_09b87b94e2",
-"ts": "2026-11-18T16:48:39-0500",
-"a": "sheep",
-"b": "danfo_speaker",
-"code": "sheep.interactwith(danfo_speaker){ danfo_speaker.receives(sheep.number); danfo_speaker.remembers(kunle, 'scorched container number'); }",
-"text": "A Sheep note with Kunle's name and 'scorched container number' on it, turns up with the danfo speaker, which is still playing the same love song.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "w7"
-},
-{
-"id": "wf_c88b3ede31",
-"ts": "2026-11-18T16:51:17-0500",
-"a": "wser",
-"b": "kazeem",
-"code": "wser.interactwith(kazeem){ kazeem.receives(wser.envelope); kazeem.remembers(bisola, 'brown envelope'); }",
-"text": "The kazeem leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
 {
 "id": "wf_900ee80b4e",
 "ts": "2026-11-18T16:52:10-0500",
@@ -9784,6 +9818,28 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j7"
+},
+{
+"id": "wf_92df529134",
+"ts": "2026-11-18T19:29:52-0500",
+"a": "bird",
+"b": "pure_water_cooler",
+"code": "bird.interactwith(pure_water_cooler){ pure_water_cooler.receives(bird.corner); pure_water_cooler.remembers(bisola, 'envelope corner'); }",
+"text": "A Bird note with Bisola's name and 'envelope corner' on it, turns up with the pure-water cooler, which is still carried home through the flood.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j7"
+},
+{
+"id": "wf_b0b5bd7169",
+"ts": "2026-11-18T19:30:45-0500",
+"a": "computer_village",
+"b": "wser",
+"code": "computer_village.interactwith(wser){ wser.receives(computer_village.shirt); wser.remembers(bisola, 'green shirt'); }",
+"text": "The wser leaves with an Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j8"
 }
 ],
 "memories": [
@@ -9887,5 +9943,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T19:28:59-0500"
+"updated": "2026-11-18T19:30:45-0500"
 }
