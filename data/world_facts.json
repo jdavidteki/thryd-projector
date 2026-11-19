@@ -8011,6 +8011,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "computer_village"
+},
+{
+"id": "wf_93c14edc56",
+"kind": "consequence",
+"text": "A Sheep note with Kunle's name and 'scorched container number' on it, turns up inside the brown envelope at the teach, and Bisola reads the name twice.",
+"code": "twgs.interactwith(teach){ teach.receives(twgs.number); teach.remembers(kunle, 'scorched container number'); teach.tucks(twgs, 'sheep note into the brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w7",
+"other": "twgs"
 }
 ],
 "new": [
@@ -9424,17 +9434,6 @@
 },
 "consequences": [
 {
-"id": "wf_cf4016a231",
-"ts": "2026-11-18T17:01:50-0500",
-"a": "bed",
-"b": "danfo_speaker",
-"code": "bed.interactwith(danfo_speaker){ danfo_speaker.receives(bed.note); danfo_speaker.remembers(taiwo, 'egbe note'); }",
-"text": "A Bed note with Taiwo's name and 'egbe note' on it, turns up with the danfo speaker, which is still playing the same love song.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "w6"
-},
-{
 "id": "wf_b432e9a6cb",
 "ts": "2026-11-18T17:04:29-0500",
 "a": "chair",
@@ -9862,6 +9861,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_93c14edc56",
+"ts": "2026-11-18T19:56:02-0500",
+"a": "twgs",
+"b": "teach",
+"code": "twgs.interactwith(teach){ teach.receives(twgs.number); teach.remembers(kunle, 'scorched container number'); teach.tucks(twgs, 'sheep note into the brown envelope'); }",
+"text": "A Sheep note with Kunle's name and 'scorched container number' on it, turns up inside the brown envelope at the teach, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w7"
 }
 ],
 "memories": [
@@ -9965,5 +9975,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-18T19:48:58-0500"
+"updated": "2026-11-18T19:56:02-0500"
 }
