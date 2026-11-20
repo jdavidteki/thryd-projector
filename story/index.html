@@ -22,6 +22,21 @@ figure{margin:0}
 #story{display:block;width:100%;max-width:1440px;height:auto;margin:0 auto;background:#fff;aspect-ratio:1440/900}
 .meta{font:500 12px ui-monospace,Menlo,Consolas,monospace;color:#888;margin:10px 0 26px}
 .meta a{color:#0b5cad}
+#gode{max-width:980px;margin:0 auto 34px;text-align:left}
+#gode h2{font:700 18px/1.2 ui-monospace,Menlo,Consolas,monospace;margin:0 0 4px;text-align:center}
+#gode .sub{font:500 12px ui-monospace,Menlo,Consolas,monospace;color:#777;text-align:center;margin:0 0 14px}
+#gode h3{font:700 13px ui-monospace,Menlo,Consolas,monospace;margin:16px 0 6px;color:#333}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;justify-content:center;margin:0 0 6px;padding:0;list-style:none;font:500 12px ui-monospace,Menlo,Consolas,monospace}
+.legend li{display:flex;align-items:center;gap:6px}
+.sw{display:inline-block;width:14px;height:14px;border-radius:3px;flex:none}
+.edges{list-style:none;margin:0;padding:0}
+.edges li{display:flex;align-items:center;gap:10px;border-left:6px solid var(--c);background:color-mix(in srgb,var(--c) 9%,#fff);border-radius:6px;padding:8px 10px;margin:6px 0;font:500 14px/1.35 ui-monospace,Menlo,Consolas,monospace}
+.edges li .lb{flex:1;min-width:0;overflow-wrap:anywhere}
+.edges li .st{font-size:12px;font-weight:700;padding:2px 7px;border-radius:10px;color:#fff;background:var(--c);white-space:nowrap}
+.edges li.skipped,.edges li.closed{opacity:.72}
+.edges li.skipped .lb{text-decoration:line-through;text-decoration-thickness:1px}
+.edges li.current{box-shadow:0 0 0 2px var(--c)}
+.edges li.upcoming .st{background:#fff;color:var(--c);box-shadow:inset 0 0 0 1.5px var(--c)}
 </style>
 </head>
 <body>
@@ -35,6 +50,15 @@ figure{margin:0}
 <noscript><img src="story_painted_3d.png" alt="The #thryd story building (still)" style="width:100%;max-width:1440px"></noscript>
 </figure>
 <p class="meta" id="meta"><a id="still" href="story_painted_3d.png">still (PNG)</a></p>
+<section id="gode" aria-labelledby="godet" hidden>
+<h2 id="godet">painted by gode</h2>
+<p class="sub" id="godesub"></p>
+<ul class="legend" id="godelegend" aria-label="painted by gode"></ul>
+<h3 id="edgesh">edges</h3>
+<ul class="edges" id="edges"></ul>
+<h3>agendas</h3>
+<ul class="edges" id="agendas"></ul>
+</section>
 </main>
 <script>
 /* GIF first, PNG still as the fallback. ?v= = the GIF's version from story.json (its mtime), so a re-render is never served stale. */
@@ -48,6 +72,33 @@ figure{margin:0}
     if(j&&j.at){var s=document.createElement('span');s.textContent=' · drawn '+j.at;meta.appendChild(s);}
   }
   fetch('story.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).then(show).catch(function(){show(null)});
+})();
+/* painted by gode: every agenda and edge in its own colour, from edges.json (regenerated + published as data after every seat/jump).
+   Re-fetched every 60 s, cache-busted; this never reloads the page. */
+(function(){
+  var sec=document.getElementById('gode'),last='';
+  function el(t,c,txt){var e=document.createElement(t);if(c)e.className=c;if(txt!=null)e.textContent=txt;return e;}
+  var ST={skipped:'closed NO (skipped)',closed:'closed',current:'now',upcoming:'next'};
+  function row(c,label,st,cls){var li=el('li',cls);li.style.setProperty('--c',c);li.appendChild(el('span','lb',label));if(st)li.appendChild(el('span','st',st));return li;}
+  function render(d){
+    var key=JSON.stringify([d.edges,d.agendas,d.story]);if(key===last)return;last=key;
+    var t=d.legend_title||'painted by gode';document.getElementById('godet').textContent=t;document.getElementById('godelegend').setAttribute('aria-label',t);
+    var sb=d.story||{};document.getElementById('godesub').textContent=(sb.d?'story → '+sb.d+' · ':'')+(sb.budget||'')+(sb.current?' · now '+sb.current:'')+(d.at?' · updated '+d.at:'');
+    var lg=document.getElementById('godelegend'),E=document.getElementById('edges'),A=document.getElementById('agendas');lg.textContent='';E.textContent='';A.textContent='';
+    (d.edges||[]).forEach(function(e){
+      var li=el('li');var sw=el('span','sw');sw.style.background=e.hex;li.appendChild(sw);li.appendChild(el('span',null,e.dot+' '+e.job+' '+e.beam));lg.appendChild(li);
+      var st=e.status==='closed'?('closed '+(e.verdict||'')).trim():ST[e.status]||e.status;
+      var r=row(e.hex,e.label+' · '+e.lines_in+' of '+e.m+' lines',st,e.status);r.dataset.job=e.job;r.dataset.hex=e.hex;r.dataset.dot=e.dot;E.appendChild(r);
+    });
+    (d.agendas||[]).forEach(function(a){
+      var li=el('li');var sw=el('span','sw');sw.style.background=a.hex;li.appendChild(sw);li.appendChild(el('span',null,a.dot+' '+a.run+(a.live?' (live)':'')));lg.appendChild(li);
+      var lab=a.dot+' '+a.run+(a.jobs?' · '+a.jobs:'')+(a.calls!=null?' · '+a.calls+' calls':'')+(a.d?' · '+a.d:'');
+      var r=row(a.hex,lab,a.live?(a.progress||'live'):(a.locked?'locked':''),a.live?'current':'closed');r.dataset.run=a.run;r.dataset.hex=a.hex;A.appendChild(r);
+    });
+    sec.hidden=false;
+  }
+  function load(){fetch('edges.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).then(function(d){if(d)render(d);}).catch(function(){});}
+  load();setInterval(load,60000);
 })();
 </script>
 </body>
