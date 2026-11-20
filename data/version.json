@@ -1,5 +1,5 @@
 {
-  "v": 588,
-  "at": "2026-11-19T20:20:00-05:00",
-  "note": "v588: the story page and the projector's mini story card can now paint the object-to-object graph (objects, characters and methods as vertices at fixed data-derived places; one edge per call from subject to argument object or method, numbered by call order, coloured by agenda, painted in index order, vertex labels; tap an edge for its call) from story/graph.json as soon as story_paint.py exports it. That arrives as a data-only update; until then the current strokes stay as the fallback."
+  "v": 589,
+  "at": "2026-11-19T20:23:00-05:00",
+  "note": "v589: the story page's comet always finds the current edge, even when the edge data arrives before the effects script loads (slow networks). v588 graph rendering unchanged: story/graph.json paints the object-to-object graph once story_paint.py exports it; strokes stay the fallback."
 }

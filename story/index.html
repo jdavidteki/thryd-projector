@@ -136,13 +136,13 @@ header,main{position:relative;z-index:1}
       var lab=a.dot+' '+a.run+(a.jobs?' · '+a.jobs:'')+(a.calls!=null?' · '+a.calls+' calls':'')+(a.d?' · '+a.d:'');
       var r=row(a.hex,lab,a.live?(a.progress||'live'):(a.locked?'locked':''),a.live?'current':'closed');r.dataset.run=a.run;r.dataset.key=a.run;r.tabIndex=0;r.style.setProperty('--j',String(A.children.length));r.dataset.hex=a.hex;A.appendChild(r);
     });
-    sec.hidden=false;sec.classList.remove('ink');void sec.offsetWidth;sec.classList.add('ink');document.dispatchEvent(new CustomEvent('gode:edges',{detail:d}));
+    sec.hidden=false;sec.classList.remove('ink');void sec.offsetWidth;sec.classList.add('ink');window.thrydGodeEdges=d;document.dispatchEvent(new CustomEvent('gode:edges',{detail:d}));
   }
   function load(){fetch('edges.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).then(function(d){if(d)render(d);}).catch(function(){});}
   load();setInterval(load,60000);
 })();
 </script>
 <script src="gode.js?v=7"></script>
-<script src="gode_fx.js?v=3"></script>
+<script src="gode_fx.js?v=4"></script>
 </body>
 </html>

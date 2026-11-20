@@ -55,6 +55,8 @@
     addEventListener('deviceorientation',function(e){if(e.gamma==null)return;par(e.gamma/30,(e.beta-45)/30);},{passive:true});}
   // ---- newest job's edge
   document.addEventListener('gode:edges',function(e){var d=e.detail||{};current=(d.story&&d.story.current)||null;kick();});
+  // v589: edges.json may have landed before this script loaded (slow network): pick up the current edge from the page
+  if(window.thrydGodeEdges){var d0=window.thrydGodeEdges;current=(d0.story&&d0.story.current)||null;}
   // ---- loop
   function frame(t){raf=0;if(document.hidden){run=false;return;}var sp=(window.thrydGode&&thrydGode.speed)?thrydGode.speed():1;var dt=(lt?Math.min(0.05,(t-lt)/1000):0.016)*Math.sqrt(sp);lt=t;frames++;ft+=dt*1000;
     c.clearRect(0,0,W,H);
