@@ -179,16 +179,22 @@
   }
   function inkStroke(x,s,sv){
     var a=s.pa,b=s.pb;if(!a||!b)return;
+    var story=s.edge_k!=null&&s.edge_k!=='';
     var conn=s.kind==='connection';
     x.save();x.lineCap='round';x.lineJoin='round';x.strokeStyle=s.hex||'#2563eb';
-    x.lineWidth=conn?2.4:(s.style==='solid'?3.0:2.5);x.globalAlpha=0.95;
-    if(s.style!=='solid'||conn)x.setLineDash([6,4]);
+    // church edges: thick, full colour, on top. live run strokes: thin and faded underneath.
+    x.lineWidth=story?(s.style==='solid'?5.4:4.4):(conn?1.2:1.4);
+    x.globalAlpha=story?1:0.40;
+    if(s.style!=='solid'||(!story&&conn))x.setLineDash(story?[7,4]:[5,4]);
     x.beginPath();x.moveTo(a[0],a[1]);x.lineTo(a[0]+(b[0]-a[0])*sv,a[1]+(b[1]-a[1])*sv);x.stroke();x.restore();
   }
   function drawingUnits(d){
     var units=[];
     if(d.strokes&&d.strokes.length){
-      var src=d.strokes.slice().sort(function(a,b){return (a.index-b.index)||((a.subord||0)-(b.subord||0))||((a.i||0)-(b.i||0));});
+      var src=d.strokes.slice().sort(function(a,b){
+        var sa=(a.edge_k!=null&&a.edge_k!=='')?1:0, sb=(b.edge_k!=null&&b.edge_k!=='')?1:0;
+        return (sa-sb)||((a.index-b.index)||((a.subord||0)-(b.subord||0))||((a.i||0)-(b.i||0)));
+      });
       src.forEach(function(s,j){
         if(!s.pa||!s.pb)return;
         function at(t){return [s.pa[0]+(s.pb[0]-s.pa[0])*t,s.pa[1]+(s.pb[1]-s.pa[1])*t];}
@@ -276,8 +282,10 @@
   // ---------------- floaters: story objects + characters drifting around the page, never over the diagram
   var box=document.getElementById('floaters'),F=[],ex=null,fr=0,lt=0;
   function exRect(){var r=window.thrydView?thrydView.rect():(function(b){return {l:b.left,t:b.top,r:b.right,b:b.bottom};})(fig.getBoundingClientRect()),m=26;ex={l:r.l-m,t:r.t-m,r:r.r+m,b:r.b+m};} // follows the panned/zoomed building
-  function inEx(x,y,w,h){return ex&&x<ex.r&&x+w>ex.l&&y<ex.b&&y+h>ex.t;}
-  function spot(w,h){var W=innerWidth,H=innerHeight;for(var k=0;k<60;k++){var x=Math.random()*(W-w),y=Math.random()*(H-h);if(!inEx(x,y,w,h))return [x,y];}return [Math.random()*(W-w),Math.random()<.5?Math.max(0,ex.t-h-4):Math.min(H-h,ex.b+4)];}
+  function textRect(){var h=document.querySelector('header');if(!h)return null;var r=h.getBoundingClientRect(),m=10;return {l:r.left-m,t:Math.max(0,r.top-m),r:r.right+m,b:r.bottom+m};}
+  function inBox(b,x,y,w,h){return b&&x<b.r&&x+w>b.l&&y<b.b&&y+h>b.t;}
+  function inEx(x,y,w,h){return inBox(ex,x,y,w,h)||inBox(textRect(),x,y,w,h);} // also stay off the title/description text
+  function spot(w,h){var W=innerWidth,H=innerHeight,tr=textRect(),y0=tr?Math.min(H-h,tr.b+6):0;for(var k=0;k<80;k++){var x=Math.random()*(W-w),y=y0+Math.random()*Math.max(1,H-h-y0);if(!inEx(x,y,w,h))return [x,y];}return [Math.random()*(W-w),ex?Math.min(H-h,Math.max(y0,ex.b+4)):y0];}
   function makeFloaters(list){
     box.textContent='';F=[];var max=innerWidth<640?20:26;exRect();
     list.slice(0,max).forEach(function(o,i){
