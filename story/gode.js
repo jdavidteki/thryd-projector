@@ -112,7 +112,7 @@
 
   // ---------------- floaters: story objects + characters drifting around the page, never over the diagram
   var box=document.getElementById('floaters'),F=[],ex=null,fr=0,lt=0;
-  function exRect(){var r=fig.getBoundingClientRect(),m=26;ex={l:r.left-m,t:r.top-m,r:r.right+m,b:r.bottom+m};}
+  function exRect(){var r=window.thrydView?thrydView.rect():(function(b){return {l:b.left,t:b.top,r:b.right,b:b.bottom};})(fig.getBoundingClientRect()),m=26;ex={l:r.l-m,t:r.t-m,r:r.r+m,b:r.b+m};} // follows the panned/zoomed building
   function inEx(x,y,w,h){return ex&&x<ex.r&&x+w>ex.l&&y<ex.b&&y+h>ex.t;}
   function spot(w,h){var W=innerWidth,H=innerHeight;for(var k=0;k<60;k++){var x=Math.random()*(W-w),y=Math.random()*(H-h);if(!inEx(x,y,w,h))return [x,y];}return [Math.random()*(W-w),Math.random()<.5?Math.max(0,ex.t-h-4):Math.min(H-h,ex.b+4)];}
   function makeFloaters(list){
@@ -148,5 +148,8 @@
   var fl0='';
   function loadF(){fetch('edges.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).then(function(d){
     if(!d||!d.floaters)return;var k=JSON.stringify(d.floaters.map(function(o){return [o.id,o.hex]}));if(k===fl0)return;fl0=k;makeFloaters(d.floaters);}).catch(function(){});}
-  if(box){loadF();setInterval(loadF,60000);addEventListener('resize',function(){exRect();});}
+  // reduced motion: floaters stay still, but if a scroll or zoom brings the building under one, it is quietly re-placed (no animation)
+  function settle(){if(!RM)return;exRect();F.forEach(function(f){if(inEx(f.x,f.y,f.w,f.h)){var p=spot(f.w,f.h);f.x=p[0];f.y=p[1];f.e.style.transform='translate3d('+f.x.toFixed(1)+'px,'+f.y.toFixed(1)+'px,0)';}});}
+  var sq=0;function settleSoon(){if(!sq)sq=requestAnimationFrame(function(){sq=0;settle();});}
+  if(box){loadF();setInterval(loadF,60000);addEventListener('resize',function(){exRect();settleSoon();});addEventListener('scroll',settleSoon,{passive:true});setInterval(settle,1000);}
 })();
