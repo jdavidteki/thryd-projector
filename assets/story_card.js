@@ -60,7 +60,7 @@
      reduced motion = the final picture. New job data (after every seat/jump publish) swaps in without a page reload. */
   var cv=a.querySelector('canvas'),cx=cv.getContext&&cv.getContext('2d'),jb=a.querySelector('.jb');
   var RMc=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var MW=264,MH=165,mm=null,mbase=null,mlay=[],mdone=document.createElement('canvas'),mwork=document.createElement('canvas'),mph='paint',mi=0,mt=0,mcyc=0,mlast=0,mraf=0,mcur=null,mv=null;
+  var MW=264,MH=165,mm=null,mbase=null,mlay=[],mdone=document.createElement('canvas'),mwork=document.createElement('canvas'),mph='mesh',mi=0,mt=0,mcyc=0,mlast=0,mraf=0,mcur=null,mv=null,MESH_HOLD=1200;
   mdone.width=mwork.width=MW;mdone.height=mwork.height=MH;var md=mdone.getContext('2d'),mw=mwork.getContext('2d');
   function shrink(im,w,h){var c=document.createElement('canvas');c.width=Math.max(1,Math.round(w));c.height=Math.max(1,Math.round(h));c.getContext('2d').drawImage(im,0,0,c.width,c.height);return c;}
   function li(src){return new Promise(function(r){var i=new Image();i.onload=function(){r(i)};i.onerror=function(){r(null)};i.src=src;});}
@@ -68,7 +68,8 @@
   function mframe(t){mraf=0;if(document.hidden||!mm){mlast=0;return;}
     var dt=mlast?Math.min(80,t-mlast):33;if(mlast&&t-mlast<30){mraf=requestAnimationFrame(mframe);return;}mlast=t;
     var k=MW/mm.w,L=mlay[mi];
-    if(mph==='paint'){
+    if(mph==='mesh'){cx.clearRect(0,0,MW,MH);if(mbase)cx.drawImage(mbase,0,0);mt+=dt;if(mt>=MESH_HOLD){mph='paint';mt=0;mi=0;}}
+    else if(mph==='paint'){
       if(!L){mph='hold';mt=0;}
       else if(L.gd){mt+=dt;var gu=Math.min(1,mt/L.T);cx.clearRect(0,0,MW,MH);cx.drawImage(mdone,0,0);L.gd(cx,gu);
         while(gu>=1&&L&&L.gd){L.gd(md,1);mi++;mt-=L.T;L=mlay[mi];gu=L?Math.min(1,mt/L.T):0;}}
@@ -82,7 +83,7 @@
     }
     if(mph==='hold'){mt+=dt;cx.clearRect(0,0,MW,MH);cx.drawImage(mdone,0,0);if(mt>2200){mph='wash';mt=0;}}
     else if(mph==='wash'){mt+=dt;var w=Math.min(1,mt/1100);cx.clearRect(0,0,MW,MH);cx.drawImage(mbase,0,0);cx.globalAlpha=1-w;cx.drawImage(mdone,0,0);cx.globalAlpha=1;
-      if(w>=1){mph='paint';mi=0;mt=0;mcyc++;mreset();}}
+      if(w>=1){mph=(a.classList.contains('drawing')?'mesh':'paint');mi=0;mt=0;mcyc++;mreset();}}
     a.dataset.mini=mph+':'+mcyc;mraf=requestAnimationFrame(mframe);}
   function mkick(){if(!mraf&&!RMc)mraf=requestAnimationFrame(mframe);}
   document.addEventListener('visibilitychange',function(){if(!document.hidden)mkick();});
@@ -114,15 +115,38 @@
       a.classList.add('mini');a.dataset.layersV=String(v);mreset();
       if(RMc){mlay.forEach(function(L){md.drawImage(L.c,L.x*k,L.y*k);});cx.clearRect(0,0,MW,MH);cx.drawImage(mdone,0,0);a.dataset.mini='done:0';return;}
       mph='paint';mi=0;mt=0;mkick();});}
+  var mdrawing=null;
+  var EDGE_DOTS={1:'🟪',2:'🟨',3:'🟫',4:'🟩',5:'⬛'};
+  function edgeChip(job, drawing){
+    if(!drawing||!drawing.edge_colours||!job)return null;
+    for(var k in drawing.edge_colours){
+      var r=drawing.edge_colours[k];
+      if((r.jobs||[]).indexOf(job)>=0)return {job:job,hex:r.hex,dot:EDGE_DOTS[k]||'',k:+k};
+    }
+    return null;
+  }
   function medges(d){if(!d||!d.edges)return;
     var seated=(d.story&&d.story.latest_seated)||d.latest_seated;
-    var e=seated?d.edges.filter(function(x){return x.job===seated;})[0]:null;
+    var chip=edgeChip(seated,mdrawing);
+    var e=chip||(seated?d.edges.filter(function(x){return x.job===seated;})[0]:null);
     if(seated&&!e)e={job:seated,dot:'',hex:''};
     if(!e)e=d.edges.filter(function(x){return x.status==='current';})[0];
     mcur=e?e.job:(seated||null);
     jb.textContent=e?('· '+e.job+(e.dot?(' '+e.dot):'')):'';if(e&&e.hex)jb.style.color=e.hex;a.dataset.job=mcur||'';a.dataset.edgesAt=d.at||'';}
   function dunits(d,k){
     var out=[];
+    if(d.strokes&&d.strokes.length){
+      var src=d.strokes.slice().sort(function(a,b){return (a.index-b.index)||((a.subord||0)-(b.subord||0))||((a.i||0)-(b.i||0));});
+      src.forEach(function(s,j){
+        if(!s.pa||!s.pb)return;
+        var a=[s.pa[0]*k,s.pa[1]*k],b=[s.pb[0]*k,s.pb[1]*k],hex=s.hex||'#2563eb',conn=s.kind==='connection',story=s.edge_k!=null&&s.edge_k!=='';
+        out.push({T:story?700:180,key:'s'+j,hash:[s.index,s.call,hex,s.kind].join(':'),gd:function(x,sv){
+          x.save();x.lineCap='round';x.strokeStyle=hex;x.lineWidth=conn?1.5:(s.style==='solid'?1.8:1.4);x.globalAlpha=0.95;
+          if(s.style!=='solid'||conn)x.setLineDash([4,3]);
+          x.beginPath();x.moveTo(a[0],a[1]);x.lineTo(a[0]+(b[0]-a[0])*sv,a[1]+(b[1]-a[1])*sv);x.stroke();x.restore();}});
+      });
+      return out;
+    }
     (d.fills||[]).forEach(function(f,j){
       var e=d.edges[f.edge];if(!e)return;var hex=f.hex||'#7c3aed';
       var a=[e.pa[0]*k,e.pa[1]*k],b=[e.pb[0]*k,e.pb[1]*k];
@@ -133,11 +157,18 @@
     });
     return out;
   }
-  function mloadD(m,d){var gv='d'+(d.v||d.sig||d.n_edges);if(mv===gv)return;
+  function mloadD(m,d){mdrawing=d;var gv='d'+(d.v||d.sig||d.n_edges);if(mv===gv)return;
     li('story/'+(d.base||'drawing_base.png')+'?v='+(d.v||m.v)).then(function(b){if(!b)return;var k=MW/(d.w||m.w||1440);
       mm=m;mv=gv;mbase=shrink(b,MW,MH);mlay=dunits(d,k);a.classList.add('mini');a.classList.add('drawing');a.dataset.layersV=gv;mreset();
-      if(RMc){mlay.forEach(function(L){L.gd(md,1);});cx.clearRect(0,0,MW,MH);cx.drawImage(mdone,0,0);a.dataset.mini='done:0';return;}
-      mph='paint';mi=0;mt=0;mkick();});}
+      if(RMc){mlay.forEach(function(L){L.gd(md,1);});cx.clearRect(0,0,MW,MH);cx.drawImage(mdone,0,0);a.dataset.mini='done:0';applySeatedChip();return;}
+      mph='mesh';mi=0;mt=0;mkick();applySeatedChip();});}
+  function applySeatedChip(){
+    var job=mcur||a.dataset.job;
+    var chip=edgeChip(job,mdrawing);
+    if(!chip||!jb)return;
+    jb.textContent='· '+chip.job+(chip.dot?(' '+chip.dot):'');
+    jb.style.color=chip.hex;
+  }
   function mpoll(){var t=Date.now();
     fetch('story/layers.json?t='+t,{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).then(mload).catch(function(){});
     fetch('story/edges.json?t='+t,{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).then(medges).catch(function(){});}

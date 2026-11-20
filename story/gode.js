@@ -49,7 +49,7 @@
   // loop (Jesuye 7:41 PM ET: "the painting should be on a loop, and sliders should direct the speed"):
   // paint everything in -> hold -> wash back to white -> repaint. Every phase advances by dt*speed(), read each frame,
   // so dragging the slider changes the rate at once without restarting. A key highlight holds the loop on the painted picture.
-  var phase='paint',ph=0,cycle=0,HOLD=2600,WASH=1500,hold=false,prog=0;
+  var phase='paint',ph=0,cycle=0,HOLD=2600,WASH=1500,MESH_HOLD=1400,hold=false,prog=0;
   function frame(t){
     raf=0;var dt=last?Math.min(64,t-last):16;last=t;var sp=speed(),sdt=dt*sp;
     if(phase==='paint'){
@@ -72,7 +72,11 @@
       ctx.clearRect(0,0,cv.width,cv.height);ctx.globalAlpha=1;ctx.drawImage(base,0,0);
       ctx.globalAlpha=1-ease(w);ctx.drawImage(done,0,0);ctx.globalAlpha=1;
       ctx.fillStyle='rgba(255,255,255,'+(0.35*Math.sin(Math.PI*w)).toFixed(3)+')';ctx.fillRect(0,0,cv.width,cv.height);
-      if(w>=1){cycle++;phase='paint';reset();man.layers.forEach(function(L){if(imgs[L.key])queue.push({L:L,s0:0});});}
+      if(w>=1){cycle++;reset();ph=0;if(man&&man.drawing){phase='mesh';}else{phase='paint';man.layers.forEach(function(L){if(imgs[L.key])queue.push({L:L,s0:0});});}}
+    } else if(phase==='mesh'){
+      ph+=sdt;prog+=sdt;
+      ctx.clearRect(0,0,cv.width,cv.height);ctx.drawImage(base,0,0);
+      if(ph>=MESH_HOLD&&!hold){phase='paint';ph=0;man.layers.forEach(function(L){if(imgs[L.key])queue.push({L:L,s0:0});});}
     }
     if(!hold||phase==='paint')drawSparks(dt);
     cv.dataset.state=phase==='paint'?(active?('painting '+active.L.key):'queued'):phase;
@@ -81,9 +85,10 @@
   }
   function kick(){if(!raf&&!RM)raf=requestAnimationFrame(frame);}
   function reset(){dctx.clearRect(0,0,done.width,done.height);dctx.drawImage(base,0,0);shown={};if(typeof graphReset==='function')graphReset();}
-  function playAll(){queue=[];active=null;sparks=[];reset();phase='paint';ph=0;
+  function playAll(){queue=[];active=null;sparks=[];reset();ph=0;
     if(RM){man.layers.forEach(function(L){if(imgs[L.key])commit(L);});ctx.clearRect(0,0,cv.width,cv.height);ctx.drawImage(done,0,0);cv.dataset.state='done';return;}
-    man.layers.forEach(function(L){if(imgs[L.key])queue.push({L:L,s0:0});});kick();}
+    if(man&&man.drawing){phase='mesh';kick();return;}
+    phase='paint';man.layers.forEach(function(L){if(imgs[L.key])queue.push({L:L,s0:0});});kick();}
   document.addEventListener('visibilitychange',function(){last=0;});
   function apply(m,fresh){
     // only new strokes: a layer whose hash we already show stays; a grown live layer paints on from where it was
@@ -172,8 +177,29 @@
     if(e.style!=='solid'||e.hidden)x.setLineDash([6,4]);
     x.beginPath();x.moveTo(a[0],a[1]);x.lineTo(a[0]+(b[0]-a[0])*sv,a[1]+(b[1]-a[1])*sv);x.stroke();x.restore();
   }
+  function inkStroke(x,s,sv){
+    var a=s.pa,b=s.pb;if(!a||!b)return;
+    var conn=s.kind==='connection';
+    x.save();x.lineCap='round';x.lineJoin='round';x.strokeStyle=s.hex||'#2563eb';
+    x.lineWidth=conn?2.4:(s.style==='solid'?3.0:2.5);x.globalAlpha=0.95;
+    if(s.style!=='solid'||conn)x.setLineDash([6,4]);
+    x.beginPath();x.moveTo(a[0],a[1]);x.lineTo(a[0]+(b[0]-a[0])*sv,a[1]+(b[1]-a[1])*sv);x.stroke();x.restore();
+  }
   function drawingUnits(d){
     var units=[];
+    if(d.strokes&&d.strokes.length){
+      var src=d.strokes.slice().sort(function(a,b){return (a.index-b.index)||((a.subord||0)-(b.subord||0))||((a.i||0)-(b.i||0));});
+      src.forEach(function(s,j){
+        if(!s.pa||!s.pb)return;
+        function at(t){return [s.pa[0]+(s.pb[0]-s.pa[0])*t,s.pa[1]+(s.pb[1]-s.pa[1])*t];}
+        function draw(x,sv){inkStroke(x,s,sv);}
+        var story=s.edge_k!=null&&s.edge_k!=='';
+        units.push({key:'s'+j,kind:'dink',n:story?24:16,hex:s.hex,hash:[s.index,s.call,s.hex,s.kind,s.edge].join(':'),i:s.index,e:s,
+          g:{dur:story?820:200,at:at,draw:draw,verts:function(){}},
+          label:(s.label||s.call||('#'+s.index))+' · '+(s.job||'')});
+      });
+      return units;
+    }
     (d.fills||[]).forEach(function(f,j){
       var e=d.edges[f.edge];if(!e)return;var hex=f.hex||'#7c3aed';
       function at(t){return [e.pa[0]+(e.pb[0]-e.pa[0])*t,e.pa[1]+(e.pb[1]-e.pa[1])*t];}
@@ -244,7 +270,7 @@
   cv.addEventListener('pointerleave',function(ev){if(ev.pointerType==='mouse'&&tipEl.dataset.pin!=='1')hideTip();});
   cv.addEventListener('pointerdown',function(ev){tdown=[ev.clientX,ev.clientY];});
   cv.addEventListener('pointerup',function(ev){if(tdown&&Math.abs(ev.clientX-tdown[0])+Math.abs(ev.clientY-tdown[1])<10)showTip(ev,true);tdown=null;});
-  window.thrydGode={speed:speed,strokes:function(){return man&&man.strokes?{graph:!!man.graph,drawing:!!man.drawing,vertices:GM?Object.keys(GM.V).length:(DM&&DM.n_verts||0),n:man.drawing&&DM?DM.edges.length:man.strokes.length,calls:man.drawing?(DM&&DM.n_fills||man.strokes.length):man.strokes.filter(function(x){return x.kind==='call'}).length,hash:man.stroke_hash,v:man.v}:null;},hit:function(x,y){return hit(x,y);},tip:function(){return {on:tipEl.classList.contains('on'),text:tipEl.textContent,call:tipEl.dataset.call};},state:function(){return {state:cv.dataset.state,cycle:cycle,phase:phase,progress:Math.round(prog),queue:queue.length,active:active&&active.L.key,shown:Object.keys(shown),speed:speed(),rm:RM,layers:man?man.layers.length:0};},poll:poll,setHold:function(b){hold=!!b;if(!b)kick();},
+  window.thrydGode={speed:speed,strokes:function(){return man&&man.strokes?{graph:!!man.graph,drawing:!!man.drawing,vertices:GM?Object.keys(GM.V).length:(DM&&DM.n_verts||0),n:man.drawing&&DM?DM.edges.length:man.strokes.length,calls:man.drawing?(DM&&(DM.n_strokes||DM.n_fills)||man.strokes.length):man.strokes.filter(function(x){return x.kind==='call'}).length,hash:man.stroke_hash,v:man.v}:null;},hit:function(x,y){return hit(x,y);},tip:function(){return {on:tipEl.classList.contains('on'),text:tipEl.textContent,call:tipEl.dataset.call};},state:function(){return {state:cv.dataset.state,cycle:cycle,phase:phase,progress:Math.round(prog),queue:queue.length,active:active&&active.L.key,shown:Object.keys(shown),speed:speed(),rm:RM,layers:man?man.layers.length:0};},poll:poll,setHold:function(b){hold=!!b;if(!b)kick();},
     _i:{man:function(){return man},imgs:imgs,base:function(){return base},done:done,ctx:ctx,cv:cv,busy:function(){return !!(active||queue.length)},front:frontPt}};
 
   // ---------------- floaters: story objects + characters drifting around the page, never over the diagram
