@@ -282,10 +282,25 @@
   // ---------------- floaters: story objects + characters drifting around the page, never over the diagram
   var box=document.getElementById('floaters'),F=[],ex=null,fr=0,lt=0;
   function exRect(){var r=window.thrydView?thrydView.rect():(function(b){return {l:b.left,t:b.top,r:b.right,b:b.bottom};})(fig.getBoundingClientRect()),m=26;ex={l:r.l-m,t:r.t-m,r:r.r+m,b:r.b+m};} // follows the panned/zoomed building
-  function textRect(){var h=document.querySelector('header');if(!h)return null;var r=h.getBoundingClientRect(),m=10;return {l:r.left-m,t:Math.max(0,r.top-m),r:r.right+m,b:r.bottom+m};}
+  // exclude the actual title/caption/back ink, not the full-width header (that left no parking on desktop)
+  function textBoxes(){
+    var out=[], m=12;
+    function add(n, maxw){if(!n)return;var z=n.getBoundingClientRect();var l=z.left,r=z.right;if(maxw&&z.width>maxw){var c=(z.left+z.right)/2;l=c-maxw/2;r=c+maxw/2;}out.push({l:l-m,t:z.top-m,r:r+m,b:z.bottom+m});}
+    add(document.querySelector('header .back'));
+    add(document.querySelector('header h1'), 720);
+    add(document.getElementById('cap'), 900);
+    return out;
+  }
   function inBox(b,x,y,w,h){return b&&x<b.r&&x+w>b.l&&y<b.b&&y+h>b.t;}
-  function inEx(x,y,w,h){return inBox(ex,x,y,w,h)||inBox(textRect(),x,y,w,h);} // also stay off the title/description text
-  function spot(w,h){var W=innerWidth,H=innerHeight,tr=textRect(),y0=tr?Math.min(H-h,tr.b+6):0;for(var k=0;k<80;k++){var x=Math.random()*(W-w),y=y0+Math.random()*Math.max(1,H-h-y0);if(!inEx(x,y,w,h))return [x,y];}return [Math.random()*(W-w),ex?Math.min(H-h,Math.max(y0,ex.b+4)):y0];}
+  function inText(x,y,w,h){return textBoxes().some(function(b){return inBox(b,x,y,w,h);});}
+  function inEx(x,y,w,h){return inBox(ex,x,y,w,h)||inText(x,y,w,h);}
+  function pushOut(f,box){var dl=f.x+f.w-box.l,dr=box.r-f.x,dtp=f.y+f.h-box.t,db=box.b-f.y,mn=Math.min(dl,dr,dtp,db);
+    if(mn===dl){f.x=box.l-f.w;f.vx=-Math.abs(f.vx);}else if(mn===dr){f.x=box.r;f.vx=Math.abs(f.vx);}
+    else if(mn===dtp){f.y=box.t-f.h;f.vy=-Math.abs(f.vy);}else{f.y=box.b;f.vy=Math.abs(f.vy);}}
+  function spot(w,h){var W=innerWidth,H=innerHeight;for(var k=0;k<80;k++){var x=Math.random()*(W-w),y=Math.random()*(H-h);if(!inEx(x,y,w,h))return [x,y];}
+    // last resort: just below the diagram, or a top corner beside the title
+    if(ex){var y=Math.min(H-h,Math.max(0,ex.b+4));if(!inEx(Math.max(0,(W-w)/2),y,w,h))return [Math.max(0,(W-w)/2),y];}
+    return [4, Math.max(0, (ex&&ex.t>h+8)?4: (H-h))];}
   function makeFloaters(list){
     box.textContent='';F=[];var max=innerWidth<640?20:26;exRect();
     list.slice(0,max).forEach(function(o,i){
@@ -305,12 +320,9 @@
       f.x+=f.vx*dt;f.y+=f.vy*dt+Math.sin(t/1800+f.ph)*0.12;
       if(f.x<0){f.x=0;f.vx=Math.abs(f.vx);}if(f.x+f.w>W){f.x=W-f.w;f.vx=-Math.abs(f.vx);}
       if(f.y<0){f.y=0;f.vy=Math.abs(f.vy);}if(f.y+f.h>H){f.y=H-f.h;f.vy=-Math.abs(f.vy);}
-      if(inEx(f.x,f.y,f.w,f.h)){ // push out along the shallowest side and bounce
-        var dl=f.x+f.w-ex.l,dr=ex.r-f.x,dtp=f.y+f.h-ex.t,db=ex.b-f.y,mn=Math.min(dl,dr,dtp,db);
-        if(mn===dl){f.x=ex.l-f.w;f.vx=-Math.abs(f.vx);}else if(mn===dr){f.x=ex.r;f.vx=Math.abs(f.vx);}
-        else if(mn===dtp){f.y=ex.t-f.h;f.vy=-Math.abs(f.vy);}else{f.y=ex.b;f.vy=Math.abs(f.vy);}
-        if(inEx(f.x,f.y,f.w,f.h)||f.x<0||f.x+f.w>W||f.y<0||f.y+f.h>H){var p=spot(f.w,f.h);f.x=p[0];f.y=p[1];}
-      }
+      if(inBox(ex,f.x,f.y,f.w,f.h)) pushOut(f,ex);
+      textBoxes().forEach(function(b){if(inBox(b,f.x,f.y,f.w,f.h))pushOut(f,b);});
+      if(inEx(f.x,f.y,f.w,f.h)||f.x<0||f.x+f.w>W||f.y<0||f.y+f.h>H){var p=spot(f.w,f.h);f.x=p[0];f.y=p[1];}
       f.e.style.transform='translate3d('+f.x.toFixed(1)+'px,'+f.y.toFixed(1)+'px,0)';
     }
     fr=requestAnimationFrame(drift);
