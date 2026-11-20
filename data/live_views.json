@@ -1,9 +1,9 @@
 {
  "v": 1,
- "note": "Final jN live views for the stage. Newest first. Size-capped at 3 MiB. Written by export_live_views.py; published by cmd_loop.sh (data only).",
+ "note": "Final jN live views for the stage. Newest first. Size-capped at 3 MiB. One staged cut version per job (older versions are alternates, packs kept). Written by export_live_views.py; published by cmd_loop.sh (data only).",
  "active_run": "run-2eb42d",
  "max_bytes": 3145728,
- "updated": 1795141818,
+ "updated": 1795142525,
  "views": [
   {
    "id": "live:run-bd649b:j4",
@@ -73,7 +73,8 @@
     ],
     "objects": 10,
     "by": "live-multi:liven-geometry:sam-vit-b-box+yolov8s-seg"
-   }
+   },
+   "stage": true
   },
   {
    "id": "live:run-2eb42d:j37·3",
@@ -138,7 +139,8 @@
     ],
     "objects": 7,
     "by": "live-multi:frame0+ecc-affine:yolov8s-seg"
-   }
+   },
+   "stage": true
   },
   {
    "id": "live:run-2eb42d:j37·2",
@@ -152,7 +154,8 @@
    "sha256": "033413e3e40cb130868c2f83d2602889c5a6805957c4b52d6cc1de9dd5e90036",
    "title": "j37 · run-2eb42d · 2",
    "place": null,
-   "cut": {
+   "cut": null,
+   "archive_cut": {
     "pack": "assets/live_views/run-2eb42d/j37.v2.cut.json",
     "pack_version": "lc2",
     "frame_size": [
@@ -203,7 +206,10 @@
     ],
     "objects": 6,
     "by": "live-multi:frame0+ecc-affine:yolov8s-seg"
-   }
+   },
+   "alternate": true,
+   "stage": false,
+   "alternate_of": "live:run-2eb42d:j37·3"
   },
   {
    "id": "live:run-2eb42d:j37",
@@ -217,7 +223,8 @@
    "sha256": "f9f2ed0c15113a5e003690f58ab4fe7ca6a48d5f7641e808849b3886fb1c3095",
    "title": "j37 · run-2eb42d",
    "place": null,
-   "cut": {
+   "cut": null,
+   "archive_cut": {
     "pack": "assets/live_views/run-2eb42d/j37.cut.json",
     "pack_version": "lc2",
     "frame_size": [
@@ -268,7 +275,10 @@
     ],
     "objects": 5,
     "by": "live-multi:frame0+ecc-affine:yolov8s-seg"
-   }
+   },
+   "alternate": true,
+   "stage": false,
+   "alternate_of": "live:run-2eb42d:j37·3"
   },
   {
    "id": "live:run-2eb42d:j14",
@@ -292,7 +302,8 @@
     "delays_cs": null,
     "objects": 3,
     "by": "live-multi:still-frame0:isnet-general-use-component+yolov8s-seg"
-   }
+   },
+   "stage": true
   },
   {
    "id": "live:run-5a58c4:j28·2",
@@ -362,7 +373,8 @@
     ],
     "objects": 9,
     "by": "live-multi:liven-geometry:sam-vit-b-box+yolov8s-seg"
-   }
+   },
+   "stage": true
   },
   {
    "id": "live:run-5a58c4:j28",
@@ -376,7 +388,8 @@
    "sha256": "bf3ec457083871bee4dc7c9140d1a6be8a87c567c26bde3cb1554f9b74642450",
    "title": "j28 · run-5a58c4",
    "place": "jetty_south_pointe",
-   "cut": {
+   "cut": null,
+   "archive_cut": {
     "pack": "assets/live_views/run-5a58c4/j28.cut.json",
     "pack_version": "lc2",
     "frame_size": [
@@ -432,7 +445,10 @@
     ],
     "objects": 9,
     "by": "live-multi:liven-geometry:sam-vit-b-box+yolov8s-seg"
-   }
+   },
+   "alternate": true,
+   "stage": false,
+   "alternate_of": "live:run-5a58c4:j28·2"
   },
   {
    "id": "live:run-9e59ca:j1",
@@ -502,7 +518,8 @@
     ],
     "objects": 10,
     "by": "live-multi:liven-geometry:sam-vit-b-box+yolov8s-seg"
-   }
+   },
+   "stage": true
   },
   {
    "id": "live:run-2eb42d:j9",
@@ -526,7 +543,8 @@
     "delays_cs": null,
     "objects": 3,
     "by": "live-multi:still-frame0:isnet-general-use-component+yolov8s-seg"
-   }
+   },
+   "stage": true
   },
   {
    "id": "live:run-5a58c4:j17",
@@ -596,7 +614,8 @@
     ],
     "objects": 9,
     "by": "live-multi:liven-geometry:sam-vit-b-box+yolov8s-seg"
-   }
+   },
+   "stage": true
   },
   {
    "id": "live:run-fa5946:j14",
@@ -669,7 +688,8 @@
     ],
     "objects": 4,
     "by": "live-multi:frame0+ecc-affine:yolov8s-seg"
-   }
+   },
+   "stage": true
   },
   {
    "id": "live:run-3a15d2:j5",
@@ -739,7 +759,8 @@
     ],
     "objects": 6,
     "by": "live-multi:liven-geometry:sam-vit-b-box+yolov8s-seg"
-   }
+   },
+   "stage": true
   },
   {
    "id": "live:run-2eb42d:j22·3",
@@ -804,7 +825,8 @@
     ],
     "objects": 6,
     "by": "live-multi:frame0+ecc-affine:yolov8s-seg"
-   }
+   },
+   "stage": true
   },
   {
    "id": "live:run-2eb42d:j22·2",
@@ -818,7 +840,8 @@
    "sha256": "fc5c8bd7cc891ad372e684f8ece584f23fdb8d3a4fe381bd515d953d066d14ca",
    "title": "j22 · run-2eb42d · 2",
    "place": "computer_village",
-   "cut": {
+   "cut": null,
+   "archive_cut": {
     "pack": "assets/live_views/run-2eb42d/j22.v2.cut.json",
     "pack_version": "lc2",
     "frame_size": [
@@ -869,7 +892,10 @@
     ],
     "objects": 6,
     "by": "live-multi:frame0+ecc-affine:yolov8s-seg"
-   }
+   },
+   "alternate": true,
+   "stage": false,
+   "alternate_of": "live:run-2eb42d:j22·3"
   },
   {
    "id": "live:run-2eb42d:j22",
@@ -883,7 +909,8 @@
    "sha256": "afadbe41cf7e7fc4522fb6100b6b08da4cdd8d8be333a037b889b924b82c8289",
    "title": "j22 · run-2eb42d",
    "place": "computer_village",
-   "cut": {
+   "cut": null,
+   "archive_cut": {
     "pack": "assets/live_views/run-2eb42d/j22.cut.json",
     "pack_version": "lc2",
     "frame_size": [
@@ -934,7 +961,10 @@
     ],
     "objects": 6,
     "by": "live-multi:frame0+ecc-affine:yolov8s-seg"
-   }
+   },
+   "alternate": true,
+   "stage": false,
+   "alternate_of": "live:run-2eb42d:j22·3"
   },
   {
    "id": "live:run-0bd7c0:j8",
@@ -995,7 +1025,8 @@
     ],
     "objects": 5,
     "by": "live-multi:liven-geometry:yolov8s-seg"
-   }
+   },
+   "stage": true
   },
   {
    "id": "live:run-0ae93c:j4",
@@ -1060,7 +1091,8 @@
     ],
     "objects": 10,
     "by": "live-multi:frame0+ecc-affine:yolov8s-seg"
-   }
+   },
+   "stage": true
   },
   {
    "id": "live:run-ff3591:j1",
@@ -1130,7 +1162,8 @@
     ],
     "objects": 7,
     "by": "live-multi:liven-geometry:sam-vit-b-box+yolov8s-seg"
-   }
+   },
+   "stage": true
   },
   {
    "id": "live:run-3a15d2:j1",
@@ -1200,7 +1233,8 @@
     ],
     "objects": 10,
     "by": "live-multi:liven-geometry:sam-vit-b-box+yolov8s-seg"
-   }
+   },
+   "stage": true
   },
   {
    "id": "live:run-5a58c4:j12",
@@ -1270,7 +1304,8 @@
     ],
     "objects": 4,
     "by": "live-multi:liven-geometry:box+sam-vit-b-box+yolov8s-seg"
-   }
+   },
+   "stage": true
   },
   {
    "id": "live:run-2eb42d:j18",
@@ -1335,7 +1370,8 @@
     ],
     "objects": 7,
     "by": "live-multi:frame0+ecc-affine:yolov8s-seg"
-   }
+   },
+   "stage": true
   },
   {
    "id": "live:run-fa5946:j6",
@@ -1408,7 +1444,8 @@
     ],
     "objects": 4,
     "by": "live-multi:frame0+ecc-affine:yolov8s-seg"
-   }
+   },
+   "stage": true
   },
   {
    "id": "live:run-2eb42d:j32·2",
@@ -1473,7 +1510,8 @@
     ],
     "objects": 10,
     "by": "live-multi:liven-geometry:sam-vit-b-box+yolov8s-seg"
-   }
+   },
+   "stage": true
   },
   {
    "id": "live:run-2eb42d:j32",
@@ -1487,7 +1525,8 @@
    "sha256": "19c5c79ba990b0b59477164ecada9b4e1486db217712c52f30529b306a21259b",
    "title": "j32 · run-2eb42d",
    "place": null,
-   "cut": {
+   "cut": null,
+   "archive_cut": {
     "pack": "assets/live_views/run-2eb42d/j32.cut.json",
     "pack_version": "lc2",
     "frame_size": [
@@ -1538,7 +1577,10 @@
     ],
     "objects": 10,
     "by": "live-multi:liven-geometry:sam-vit-b-box+yolov8s-seg"
-   }
+   },
+   "alternate": true,
+   "stage": false,
+   "alternate_of": "live:run-2eb42d:j32·2"
   },
   {
    "id": "live:run-0bd7c0:j9",
@@ -1599,7 +1641,8 @@
     ],
     "objects": 5,
     "by": "live-multi:liven-geometry:yolov8s-seg"
-   }
+   },
+   "stage": true
   },
   {
    "id": "live:run-0ae93c:j10",
@@ -1623,7 +1666,8 @@
     "delays_cs": null,
     "objects": 5,
     "by": "live-multi:still-frame0:yolov8s-seg"
-   }
+   },
+   "stage": true
   },
   {
    "id": "live:run-0ae93c:j2",
@@ -1688,7 +1732,8 @@
     ],
     "objects": 10,
     "by": "live-multi:frame0+ecc-affine:yolov8s-seg"
-   }
+   },
+   "stage": true
   },
   {
    "id": "live:run-b9b963:j4",
@@ -1733,7 +1778,8 @@
     ],
     "objects": 6,
     "by": "live-multi:frame0+ecc-affine:yolov8s-seg"
-   }
+   },
+   "stage": true
   },
   {
    "id": "live:run-5a58c4:j35",
@@ -1803,7 +1849,8 @@
     ],
     "objects": 8,
     "by": "live-multi:liven-geometry:sam-vit-b-box+yolov8s-seg"
-   }
+   },
+   "stage": true
   },
   {
    "id": "live:run-9e3e84:j6",
@@ -1868,7 +1915,8 @@
     ],
     "objects": 3,
     "by": "live-multi:frame0+ecc-affine:yolov8s-seg"
-   }
+   },
+   "stage": true
   },
   {
    "id": "live:run-g1-B:j14",
@@ -1938,7 +1986,8 @@
     ],
     "objects": 10,
     "by": "live-multi:liven-geometry:yolov8s-seg"
-   }
+   },
+   "stage": true
   },
   {
    "id": "live:run-3a15d2:j8",
@@ -2008,7 +2057,8 @@
     ],
     "objects": 5,
     "by": "live-multi:liven-geometry:sam-vit-b-box+yolov8s-seg"
-   }
+   },
+   "stage": true
   },
   {
    "id": "live:run-ff3591:j5",
@@ -2078,7 +2128,8 @@
     ],
     "objects": 8,
     "by": "live-multi:liven-geometry:sam-vit-b-box+yolov8s-seg"
-   }
+   },
+   "stage": true
   },
   {
    "id": "live:run-0bd7c0:j12",
@@ -2139,7 +2190,8 @@
     ],
     "objects": 3,
     "by": "live-multi:liven-geometry:yolov8s-seg"
-   }
+   },
+   "stage": true
   },
   {
    "id": "live:run-0ae93c:j9",
@@ -2163,7 +2215,8 @@
     "delays_cs": null,
     "objects": 5,
     "by": "live-multi:still-frame0:yolov8s-seg"
-   }
+   },
+   "stage": true
   },
   {
    "id": "live:run-g1-B:j13",
@@ -2233,7 +2286,8 @@
     ],
     "objects": 10,
     "by": "live-multi:liven-geometry:sam-vit-b-box+yolov8s-seg"
-   }
+   },
+   "stage": true
   },
   {
    "id": "live:run-9780ba:j5",
@@ -2303,7 +2357,8 @@
     ],
     "objects": 10,
     "by": "live-multi:liven-geometry:sam-vit-b-box+yolov8s-seg"
-   }
+   },
+   "stage": true
   },
   {
    "id": "live:run-bd649b:j5",
@@ -2373,7 +2428,8 @@
     ],
     "objects": 8,
     "by": "live-multi:liven-geometry:sam-vit-b-box+yolov8s-seg"
-   }
+   },
+   "stage": true
   },
   {
    "id": "live:run-bd649b:j2",
@@ -2443,7 +2499,8 @@
     ],
     "objects": 10,
     "by": "live-multi:liven-geometry:sam-vit-b-box+yolov8s-seg"
-   }
+   },
+   "stage": true
   },
   {
    "id": "live:run-9e3e84:j2",
@@ -2467,7 +2524,8 @@
     "delays_cs": null,
     "objects": 4,
     "by": "live-multi:still-frame0:isnet-general-use-component+yolov8s-seg"
-   }
+   },
+   "stage": true
   },
   {
    "id": "live:run-9e59ca:j4",
@@ -2537,7 +2595,8 @@
     ],
     "objects": 9,
     "by": "live-multi:liven-geometry:sam-vit-b-box+yolov8s-seg"
-   }
+   },
+   "stage": true
   },
   {
    "id": "live:run-5a58c4:j6",
@@ -2607,7 +2666,8 @@
     ],
     "objects": 6,
     "by": "live-multi:liven-geometry:sam-vit-b-box+yolov8s-seg"
-   }
+   },
+   "stage": true
   },
   {
    "id": "live:run-2eb42d:j11",
@@ -2631,7 +2691,8 @@
     "delays_cs": null,
     "objects": 3,
     "by": "live-multi:still-frame0:isnet-general-use-component+yolov8s-seg"
-   }
+   },
+   "stage": true
   },
   {
    "id": "live:run-0ae93c:j6",
@@ -2696,7 +2757,8 @@
     ],
     "objects": 6,
     "by": "live-multi:frame0+ecc-affine:yolov8s-seg"
-   }
+   },
+   "stage": true
   },
   {
    "id": "live:run-5a58c4:j29·2",
@@ -2766,7 +2828,8 @@
     ],
     "objects": 10,
     "by": "live-multi:liven-geometry:sam-vit-b-box+yolov8s-seg"
-   }
+   },
+   "stage": true
   },
   {
    "id": "live:run-5a58c4:j29",
@@ -2780,7 +2843,8 @@
    "sha256": "41bd97a6009497ea8267884ac8b791d0401898a41765634907f5945b9b38c52a",
    "title": "j29 · run-5a58c4",
    "place": "miami",
-   "cut": {
+   "cut": null,
+   "archive_cut": {
     "pack": "assets/live_views/run-5a58c4/j29.cut.json",
     "pack_version": "lc2",
     "frame_size": [
@@ -2836,7 +2900,10 @@
     ],
     "objects": 10,
     "by": "live-multi:liven-geometry:sam-vit-b-box+yolov8s-seg"
-   }
+   },
+   "alternate": true,
+   "stage": false,
+   "alternate_of": "live:run-5a58c4:j29·2"
   },
   {
    "id": "live:run-5a58c4:j31·2",
@@ -2906,7 +2973,8 @@
     ],
     "objects": 10,
     "by": "live-multi:liven-geometry:sam-vit-b-box+yolov8s-seg"
-   }
+   },
+   "stage": true
   },
   {
    "id": "live:run-5a58c4:j31",
@@ -2920,7 +2988,8 @@
    "sha256": "fe27aaec45b8a9820401b11665d8c6a739440e5e936f419342f8b4d97950e143",
    "title": "j31 · run-5a58c4",
    "place": "quiet_stretch_sand",
-   "cut": {
+   "cut": null,
+   "archive_cut": {
     "pack": "assets/live_views/run-5a58c4/j31.cut.json",
     "pack_version": "lc2",
     "frame_size": [
@@ -2976,7 +3045,10 @@
     ],
     "objects": 10,
     "by": "live-multi:liven-geometry:sam-vit-b-box+yolov8s-seg"
-   }
+   },
+   "alternate": true,
+   "stage": false,
+   "alternate_of": "live:run-5a58c4:j31·2"
   },
   {
    "id": "live:run-2eb42d:j13",
@@ -3000,7 +3072,8 @@
     "delays_cs": null,
     "objects": 3,
     "by": "live-multi:still-frame0:isnet-general-use-component+yolov8s-seg"
-   }
+   },
+   "stage": true
   },
   {
    "id": "live:run-b9b963:j7",
@@ -3051,7 +3124,8 @@
     ],
     "objects": 8,
     "by": "live-multi:frame0+ecc-affine:yolov8s-seg"
-   }
+   },
+   "stage": true
   },
   {
    "id": "live:run-9e3e84:j8",
@@ -3116,7 +3190,8 @@
     ],
     "objects": 4,
     "by": "live-multi:frame0+ecc-affine:yolov8s-seg"
-   }
+   },
+   "stage": true
   },
   {
    "id": "live:run-5a58c4:j23",
@@ -3186,7 +3261,8 @@
     ],
     "objects": 8,
     "by": "live-multi:liven-geometry:sam-vit-b-box+yolov8s-seg"
-   }
+   },
+   "stage": true
   },
   {
    "id": "live:run-2eb42d:j1",
@@ -3251,7 +3327,8 @@
     ],
     "objects": 6,
     "by": "live-multi:liven-geometry:sam-vit-b-box"
-   }
+   },
+   "stage": true
   }
  ]
 }
