@@ -70,6 +70,8 @@
     var k=MW/mm.w,L=mlay[mi];
     if(mph==='paint'){
       if(!L){mph='hold';mt=0;}
+      else if(L.gd){mt+=dt;var gu=Math.min(1,mt/L.T);cx.clearRect(0,0,MW,MH);cx.drawImage(mdone,0,0);L.gd(cx,gu);
+        while(gu>=1&&L&&L.gd){L.gd(md,1);mi++;mt-=L.T;L=mlay[mi];gu=L?Math.min(1,mt/L.T):0;}}
       else{mt+=dt;var T=Math.min(3200,700+6*L.n),u=Math.min(1,mt/T),st=Math.max(1,Math.min(L.n,24)),q=u*st,i=Math.floor(q),sv=Math.min(1,(i+(q-i))/st);
         var ax=mm.axis,F=30,span=(L.pmax-L.pmin)*k+F,pos=L.pmin*k+sv*span;
         cx.clearRect(0,0,MW,MH);cx.drawImage(mdone,0,0);
@@ -84,7 +86,25 @@
     a.dataset.mini=mph+':'+mcyc;mraf=requestAnimationFrame(mframe);}
   function mkick(){if(!mraf&&!RMc)mraf=requestAnimationFrame(mframe);}
   document.addEventListener('visibilitychange',function(){if(!document.hidden)mkick();});
-  function mload(m){if(!cx||!m||!m.layers)return;if(mv===m.v)return;var v=m.v;
+  /* v588 graph mode: when story/graph.json exists (objects/characters/methods as vertices, one edge per call, subject -> argument
+     object or method, numbered by call order, coloured by agenda) the mini paints those edges in index order; else the strokes above. */
+  function gp(o,w){var v=o&&(o[w+'_px']||o[w+'_screen']||(o.px&&o.px[w])||(o.screen&&o.screen[w]));if(!v)return null;return Array.isArray(v)?[+v[0],+v[1]]:[+v.x,+v.y];}
+  function gunits(g,k){var V={};(g.vertices||g.nodes||[]).forEach(function(v){var p=v.px||v.screen||(v.x!=null?[v.x,v.y]:null);if(p)V[String(v.id||v.key||v.name)]=Array.isArray(p)?[+p[0],+p[1]]:[+p.x,+p.y];});
+    var E=(g.edges||[]).map(function(e,j){return {e:e,i:e.index!=null?+e.index:(e.i!=null?+e.i:j)};}).sort(function(x,y){return x.i-y.i;}),T=Math.max(10,Math.min(400,14000/Math.max(1,E.length))),rep={},out=[];
+    E.forEach(function(o){var e=o.e,A=gp(e,'from')||V[String(e.from)],B=gp(e,'to')||V[String(e.to)];if(!A||!B)return;var fa=String(e.from),tb=String(e.to);
+      var pk=fa<tb?fa+'|'+tb:tb+'|'+fa,r=rep[pk]=(rep[pk]||0)+1,a=[A[0]*k,A[1]*k],b=[B[0]*k,B[1]*k],dx=b[0]-a[0],dy=b[1]-a[1],len=Math.hypot(dx,dy)||1,
+          off=(len<0.5?0:(10+7*Math.floor((r-1)/2))*((r%2)?1:-1)*(fa<tb?1:-1))*k,c=[(a[0]+b[0])/2-dy/len*off,(a[1]+b[1])/2+dx/len*off],hex=e.hex||'#7c3aed';
+      out.push({T:T,key:'e'+o.i,gd:function(x,sv){var N=10,m=Math.max(1,Math.ceil(N*sv));x.save();x.strokeStyle=hex;x.globalAlpha=.85;x.lineWidth=1;x.lineCap='round';x.beginPath();x.moveTo(a[0],a[1]);
+        for(var q=1;q<=m;q++){var t=Math.min(sv,q/N),u=1-t;x.lineTo(u*u*a[0]+2*u*t*c[0]+t*t*b[0],u*u*a[1]+2*u*t*c[1]+t*t*b[1]);}x.stroke();
+        if(sv>=1){x.fillStyle='#444';x.globalAlpha=1;x.fillRect(a[0]-1,a[1]-1,2,2);x.fillRect(b[0]-1,b[1]-1,2,2);}x.restore();}});});
+    return out;}
+  function mload(m){if(!cx||!m||!m.layers)return;
+    fetch('story/graph.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).catch(function(){return null;}).then(function(g){
+      if(g&&g.edges&&g.edges.length){var gv='g'+(g.v||g.hash||g.edges.length)+':'+g.edges.length;if(mv===gv)return;
+        li('story/'+m.base+'?v='+m.v).then(function(b){if(!b)return;var k=MW/m.w;mm=m;mv=gv;mbase=shrink(b,MW,MH);mlay=gunits(g,k);a.classList.add('mini');a.classList.add('graph');a.dataset.layersV=gv;mreset();
+          if(RMc){mlay.forEach(function(L){L.gd(md,1);});cx.clearRect(0,0,MW,MH);cx.drawImage(mdone,0,0);a.dataset.mini='done:0';return;}mph='paint';mi=0;mt=0;mkick();});return;}
+      mloadL(m);});}
+  function mloadL(m){if(mv===m.v)return;var v=m.v;
     Promise.all([li('story/'+m.base+'?v='+v)].concat(m.layers.map(function(L){return li('story/'+L.src+'?v='+v);}))).then(function(r){
       if(!r[0])return;var k=MW/m.w;mm=m;mv=v;mbase=shrink(r[0],MW,MH);
       mlay=m.layers.map(function(L,j){return r[j+1]?{c:shrink(r[j+1],L.w*k,L.h*k),x:L.x,y:L.y,n:L.n,pmin:L.pmin,pmax:L.pmax,key:L.key}:null;}).filter(Boolean);

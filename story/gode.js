@@ -20,9 +20,10 @@
   function load(src){return new Promise(function(res){var i=new Image();i.decoding='async';i.onload=function(){res(i)};i.onerror=function(){res(null)};i.src=src;});}
   function ease(u){return u<.5?4*u*u*u:1-Math.pow(-2*u+2,3)/2;}
   function hexA(h,a){var n=parseInt(h.slice(1),16);return 'rgba('+(n>>16&255)+','+(n>>8&255)+','+(n&255)+','+a+')';}
-  function dur(L){return Math.min(7,1.4+0.012*L.n)*1000;}
-  function frontPt(L,s){var p=L.pts;if(!p||!p.length)return [L.x+L.w*s,L.y+L.h/2];var f=s*(p.length-1),i=Math.floor(f),t=f-i,a=p[i],b=p[Math.min(p.length-1,i+1)];return [a[0]+(b[0]-a[0])*t,a[1]+(b[1]-a[1])*t];}
+  function dur(L){if(L.g)return L.g.dur;return Math.min(7,1.4+0.012*L.n)*1000;}
+  function frontPt(L,s){if(L.g)return L.g.at(s);var p=L.pts;if(!p||!p.length)return [L.x+L.w*s,L.y+L.h/2];var f=s*(p.length-1),i=Math.floor(f),t=f-i,a=p[i],b=p[Math.min(p.length-1,i+1)];return [a[0]+(b[0]-a[0])*t,a[1]+(b[1]-a[1])*t];}
   function drawPartial(L,s){
+    if(L.g){L.g.draw(ctx,s);return;}
     var im=imgs[L.key];if(!im)return;var ax=man.axis,F=56,span=L.pmax-L.pmin+F,pos=L.pmin+s*span;
     wctx.globalCompositeOperation='source-over';wctx.clearRect(0,0,work.width,work.height);wctx.drawImage(im,L.x,L.y);
     wctx.globalCompositeOperation='destination-in';
@@ -44,7 +45,7 @@
       ctx.fillStyle=hexA(p.c,.8*a);ctx.beginPath();ctx.arc(p.x,p.y,p.r*(0.6+a),0,7);ctx.fill();ctx.fillStyle='rgba(255,255,255,'+(.7*a)+')';ctx.beginPath();ctx.arc(p.x,p.y,p.r*.45,0,7);ctx.fill();return true;});
     ctx.restore();
   }
-  function commit(L){dctx.drawImage(imgs[L.key],L.x,L.y);shown[L.key]={hash:L.hash,n:L.n};}
+  function commit(L){if(L.g){L.g.draw(dctx,1);L.g.verts(dctx);shown[L.key]={hash:L.hash,n:1};return;}dctx.drawImage(imgs[L.key],L.x,L.y);shown[L.key]={hash:L.hash,n:L.n};}
   // loop (Jesuye 7:41 PM ET: "the painting should be on a loop, and sliders should direct the speed"):
   // paint everything in -> hold -> wash back to white -> repaint. Every phase advances by dt*speed(), read each frame,
   // so dragging the slider changes the rate at once without restarting. A key highlight holds the loop on the painted picture.
@@ -79,7 +80,7 @@
     if(!RM)raf=requestAnimationFrame(frame);else last=0;
   }
   function kick(){if(!raf&&!RM)raf=requestAnimationFrame(frame);}
-  function reset(){dctx.clearRect(0,0,done.width,done.height);dctx.drawImage(base,0,0);shown={};}
+  function reset(){dctx.clearRect(0,0,done.width,done.height);dctx.drawImage(base,0,0);shown={};if(typeof graphReset==='function')graphReset();}
   function playAll(){queue=[];active=null;sparks=[];reset();phase='paint';ph=0;
     if(RM){man.layers.forEach(function(L){if(imgs[L.key])commit(L);});ctx.clearRect(0,0,cv.width,cv.height);ctx.drawImage(done,0,0);cv.dataset.state='done';return;}
     man.layers.forEach(function(L){if(imgs[L.key])queue.push({L:L,s0:0});});kick();}
@@ -98,7 +99,62 @@
     });
     var prev=shown;
   }
-  function poll(){fetch('layers.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).then(function(n){if(n&&man&&n.v!==man.v)apply(n);}).catch(function(){});}
+  function poll(){if(GM){pollGraph();return;}fetch('layers.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).then(function(n){if(n&&man&&n.v!==man.v)apply(n);}).catch(function(){});}
+
+  // ---------------- object-to-object graph mode (story/graph.json, exported from story_paint.py as story_graph.json)
+  // Vertices = objects, characters and methods at fixed, data-derived places in the building; edges = one per call
+  // (subject -> argument object or method), numbered by call order, coloured by agenda, painted in index order.
+  // Until graph.json exists the stroke layers above stay the fallback.
+  var GM=null;
+  function P2(o,w){var v=o&&(o[w+'_px']||o[w+'_screen']||(o.px&&o.px[w])||(o.screen&&o.screen[w]));if(!v)return null;return Array.isArray(v)?[+v[0],+v[1]]:[+v.x,+v.y];}
+  function VP(v){var p=v.px||v.screen||(v.x!=null?[v.x,v.y]:null);if(!p)return null;return Array.isArray(p)?[+p[0],+p[1]]:[+p.x,+p.y];}
+  function graphUnits(g){
+    var V={},vl=g.vertices||g.nodes||[];vl.forEach(function(v){var id=String(v.id||v.key||v.name);var p=VP(v);if(p)V[id]={id:id,p:p,label:v.label||v.name||id,kind:v.kind||'',on:false};});
+    var E=(g.edges||[]).slice().map(function(e,k){return {e:e,i:(e.index!=null?+e.index:(e.i!=null?+e.i:k))};}).sort(function(a,b){return a.i-b.i;});
+    var n=E.length,per=Math.max(25,Math.min(400,22000/Math.max(1,n))),rep={},newest=(g.newest_job||null),units=[];
+    if(!newest&&n){newest=E[n-1].e.job;}
+    E.forEach(function(o){var e=o.e,a=P2(e,'from'),b=P2(e,'to');
+      var fa=String(e.from),tb=String(e.to);if(!a&&V[fa])a=V[fa].p;if(!b&&V[tb])b=V[tb].p;if(!a||!b)return;
+      if(!V[fa])V[fa]={id:fa,p:a,label:fa,kind:'',on:false};if(!V[tb])V[tb]={id:tb,p:b,label:tb,kind:'',on:false};
+      var pk=fa<tb?fa+'|'+tb:tb+'|'+fa,r=rep[pk]=(rep[pk]||0)+1,dx=b[0]-a[0],dy=b[1]-a[1],len=Math.hypot(dx,dy),self=len<2;
+      var off=(self?0:(10+7*Math.floor((r-1)/2))*((r%2)?1:-1)*(fa<tb?1:-1)),nx=self?0:-dy/len,ny=self?0:dx/len;
+      var c=[(a[0]+b[0])/2+nx*off,(a[1]+b[1])/2+ny*off];
+      function at(t){if(self){var ang=t*6.283,rr=9+3*((r-1)%4);return [a[0]+rr*Math.sin(ang),a[1]-rr+rr*Math.cos(ang)];}var u=1-t;return [u*u*a[0]+2*u*t*c[0]+t*t*b[0],u*u*a[1]+2*u*t*c[1]+t*t*b[1]];}
+      var num=(n<=120||o.i%10===0||e.job===newest),hex=e.hex||'#7c3aed';
+      function draw(x,sv){var N=self?18:14,m=Math.max(1,Math.ceil(N*sv));x.save();x.lineCap='round';x.lineJoin='round';
+        x.strokeStyle=hex;x.globalAlpha=0.85;x.lineWidth=e.run===undefined||e.run==='run-2eb42d'?1.3:1.7;x.beginPath();var p0=at(0);x.moveTo(p0[0],p0[1]);
+        for(var k=1;k<=m;k++){var q=at(Math.min(sv,k/N));x.lineTo(q[0],q[1]);}x.stroke();
+        if(sv>=1&&!self){var q1=at(0.92),q2=at(1),an=Math.atan2(q2[1]-q1[1],q2[0]-q1[0]);x.globalAlpha=0.9;x.fillStyle=hex;x.beginPath();x.moveTo(q2[0],q2[1]);
+          x.lineTo(q2[0]-6*Math.cos(an-0.45),q2[1]-6*Math.sin(an-0.45));x.lineTo(q2[0]-6*Math.cos(an+0.45),q2[1]-6*Math.sin(an+0.45));x.closePath();x.fill();}
+        if(sv>=1&&num){var mq=at(0.5);x.globalAlpha=1;x.font='600 8.5px ui-monospace,Menlo,Consolas,monospace';x.textAlign='center';x.textBaseline='middle';
+          x.lineWidth=3;x.strokeStyle='rgba(255,255,255,.95)';x.strokeText(String(o.i),mq[0],mq[1]);x.fillStyle=hex;x.fillText(String(o.i),mq[0],mq[1]);}
+        x.restore();}
+      function verts(x){[V[fa],V[tb]].forEach(function(v){if(!v||v.on)return;v.on=true;drawV(x,v);});}
+      units.push({key:'e'+o.i,kind:'gedge',n:1,hex:hex,hash:String(o.i)+':'+(e.call||'')+':'+hex,i:o.i,e:e,a:a,b:b,
+        g:{dur:per,at:at,draw:draw,verts:verts},label:'#'+o.i+' · '+(e.label||((e.job||'')+' · '+fa+' → '+tb))});
+    });
+    return {units:units,V:V,newest:newest};
+  }
+  function drawV(x,v){x.save();var p=v.p,k=v.kind;x.lineWidth=1.4;x.strokeStyle='#555';x.fillStyle=k==='person'||k==='character'?'#333':'#fff';
+    x.beginPath();if(k==='method'){x.moveTo(p[0],p[1]-5);x.lineTo(p[0]+5,p[1]);x.lineTo(p[0],p[1]+5);x.lineTo(p[0]-5,p[1]);x.closePath();}else x.arc(p[0],p[1],4.2,0,7);x.fill();x.stroke();
+    x.font='600 10px ui-monospace,Menlo,Consolas,monospace';x.textAlign='left';x.textBaseline='middle';x.lineWidth=3.2;x.strokeStyle='rgba(255,255,255,.95)';
+    x.strokeText(v.label,p[0]+7,p[1]-1);x.fillStyle='#222';x.fillText(v.label,p[0]+7,p[1]-1);x.restore();}
+  function graphReset(){if(!GM)return;Object.keys(GM.V).forEach(function(k){GM.V[k].on=false;});}
+  function bootGraph(g,b){
+    var gu=graphUnits(g);if(!gu.units.length)return false;GM=gu;GM.v=g.v||g.hash||gu.units.length;
+    man={v:'g'+GM.v,w:1440,h:900,axis:[1,0],layers:gu.units,strokes:gu.units.map(function(u){return {k:u.i,kind:'call',call:u.e.call||'',job:u.e.job,run:u.e.run,label:u.label,hex:u.hex,x:u.g.at(0.5)[0],y:u.g.at(0.5)[1],actor:String(u.e.from),floor:''};}),stroke_hash:g.hash||g.edge_hash||null,graph:true};
+    gu.units.forEach(function(u){imgs[u.key]=1;});
+    cv.width=done.width=work.width=1440;cv.height=done.height=work.height=900;dctx=done.getContext('2d');wctx=work.getContext('2d');
+    base=b;fig.classList.add('live');fig.classList.add('graph');ctx.drawImage(base,0,0);playAll();
+    setInterval(pollGraph,60000);return true;}
+  function pollGraph(){fetch('graph.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).then(function(g){
+    if(!g||!g.edges||!GM)return;var gu=graphUnits(g);var have={};man.layers.forEach(function(u){have[u.key]=u.hash;});
+    var add=gu.units.filter(function(u){return have[u.key]!==u.hash;});if(!add.length)return;
+    // new jobs only append: the old edges keep their place; only the new ones paint in
+    GM.V=gu.V;GM.newest=gu.newest;man.layers=gu.units;man.strokes=gu.units.map(function(u){return {k:u.i,kind:'call',call:u.e.call||'',job:u.e.job,run:u.e.run,label:u.label,hex:u.hex,x:u.g.at(0.5)[0],y:u.g.at(0.5)[1],actor:String(u.e.from),floor:''};});
+    man.v='g'+(g.v||g.hash||gu.units.length);gu.units.forEach(function(u){imgs[u.key]=1;});
+    reset();graphReset();man.layers.forEach(function(u){if(have[u.key]===u.hash)commit(u);});
+    add.forEach(function(u){queue.push({L:u,s0:0});});phase='paint';ph=0;kick();}).catch(function(){});}
   function boot(m){
     man=m;cv.width=done.width=work.width=m.w;cv.height=done.height=work.height=m.h;dctx=done.getContext('2d');wctx=work.getContext('2d');
     Promise.all([load(m.base+'?v='+m.v)].concat(m.layers.map(function(L){return load(L.src+'?v='+m.v).then(function(i){imgs[L.key]=i;});}))).then(function(r){
@@ -106,13 +162,18 @@
       setInterval(poll,60000);
     });
   }
-  fetch('layers.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).then(function(m){if(m&&m.layers)boot(m);}).catch(function(){});
+  fetch('layers.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).then(function(m){
+    if(!m||!m.layers)return;
+    fetch('graph.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).catch(function(){return null;}).then(function(g){
+      if(g&&g.edges&&g.edges.length){load(m.base+'?v='+m.v).then(function(b){if(!(b&&bootGraph(g,b)))boot(m);});}else boot(m);});
+  }).catch(function(){});
 
   // ---- tap / hover a stroke: its call (Jesuye 8:07 PM ET). Strokes come from layers.json (data only: call id, job, actor, method, floor).
   var tipEl=document.createElement('div');tipEl.id='stip';tipEl.setAttribute('role','status');fig.appendChild(tipEl);var grid=null,gridV=null;
   function buildGrid(){if(!man||!man.strokes)return;if(gridV===man.v)return;grid={};gridV=man.v;
     man.strokes.forEach(function(st){if(st.x==null)return;var k=Math.floor(st.x/16)+','+Math.floor(st.y/16);(grid[k]=grid[k]||[]).push(st);});}
-  function hit(cx,cy){buildGrid();if(!grid)return null;var best=null,bd=11*11,gx=Math.floor(cx/16),gy=Math.floor(cy/16);
+  function hit(cx,cy){if(GM){var best=null,bd=10*10;man.layers.forEach(function(u){for(var t=0;t<=1.0001;t+=0.125){var q=u.g.at(t),d=(q[0]-cx)*(q[0]-cx)+(q[1]-cy)*(q[1]-cy);if(d<bd){bd=d;best=u;}}});return best?{call:best.e.call||best.key,label:best.label,hex:best.hex,kind:'call',run:best.e.run||'',actor:'',floor:''}:null;}
+    buildGrid();if(!grid)return null;var best=null,bd=11*11,gx=Math.floor(cx/16),gy=Math.floor(cy/16);
     for(var i=-1;i<=1;i++)for(var j=-1;j<=1;j++){(grid[(gx+i)+','+(gy+j)]||[]).forEach(function(st){var d=(st.x-cx)*(st.x-cx)+(st.y-cy)*(st.y-cy);if(d<bd){bd=d;best=st;}});}
     if(best)return best;
     // story edge beams: nearest point on the edge layer's path
@@ -129,7 +190,7 @@
   cv.addEventListener('pointerleave',function(ev){if(ev.pointerType==='mouse'&&tipEl.dataset.pin!=='1')hideTip();});
   cv.addEventListener('pointerdown',function(ev){tdown=[ev.clientX,ev.clientY];});
   cv.addEventListener('pointerup',function(ev){if(tdown&&Math.abs(ev.clientX-tdown[0])+Math.abs(ev.clientY-tdown[1])<10)showTip(ev,true);tdown=null;});
-  window.thrydGode={speed:speed,strokes:function(){return man&&man.strokes?{n:man.strokes.length,calls:man.strokes.filter(function(x){return x.kind==='call'}).length,hash:man.stroke_hash,v:man.v}:null;},hit:function(x,y){return hit(x,y);},tip:function(){return {on:tipEl.classList.contains('on'),text:tipEl.textContent,call:tipEl.dataset.call};},state:function(){return {state:cv.dataset.state,cycle:cycle,phase:phase,progress:Math.round(prog),queue:queue.length,active:active&&active.L.key,shown:Object.keys(shown),speed:speed(),rm:RM,layers:man?man.layers.length:0};},poll:poll,setHold:function(b){hold=!!b;if(!b)kick();},
+  window.thrydGode={speed:speed,strokes:function(){return man&&man.strokes?{graph:!!man.graph,vertices:GM?Object.keys(GM.V).length:0,n:man.strokes.length,calls:man.strokes.filter(function(x){return x.kind==='call'}).length,hash:man.stroke_hash,v:man.v}:null;},hit:function(x,y){return hit(x,y);},tip:function(){return {on:tipEl.classList.contains('on'),text:tipEl.textContent,call:tipEl.dataset.call};},state:function(){return {state:cv.dataset.state,cycle:cycle,phase:phase,progress:Math.round(prog),queue:queue.length,active:active&&active.L.key,shown:Object.keys(shown),speed:speed(),rm:RM,layers:man?man.layers.length:0};},poll:poll,setHold:function(b){hold=!!b;if(!b)kick();},
     _i:{man:function(){return man},imgs:imgs,base:function(){return base},done:done,ctx:ctx,cv:cv,busy:function(){return !!(active||queue.length)},front:frontPt}};
 
   // ---------------- floaters: story objects + characters drifting around the page, never over the diagram
