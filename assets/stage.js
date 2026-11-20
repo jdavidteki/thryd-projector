@@ -483,7 +483,7 @@
     const pos = placeGroup(L.Dw, L.Dh, newest ? {center: true} : null); const v = view();
     if(newest) clearRect(pos.gx, pos.gy, L.Dw, L.Dh, row.medium_image_id);
     const g = {mid: row.medium_image_id, row, kind: L.kind, x: pos.gx, y: pos.gy, w: L.Dw, h: L.Dh, k: L.k, fw: L.fw, fh: L.fh,
-      title: row.title || titleOf(row.medium_image_id), agenda: !!row.agenda, live: !!row.live_view, run: row.run || null, card: row.card || null, born: Date.now(), life: (PHONE ? R(30, 50) : R(35, 70)) * 1000 * (row.live_view ? LIVE_DWELL_K : 1), cuts: [], gone: false, offSince: 0, sha: row.source_sha256 || '', ver: row.pack_version || '1', place: row.place || null, fresh: !!(L.fresh || row.fresh), newest};
+      title: row.title || titleOf(row.medium_image_id), agenda: !!row.agenda, live: !!row.live_view, run: row.run || null, card: row.card || null, born: Date.now(), life: (PHONE ? R(30, 50) : R(35, 70)) * 1000 * (row.live_view ? LIVE_DWELL_K : 1), cuts: [], gone: false, offSince: 0, sha: row.source_sha256 || '', ver: row.pack_version || '1', place: row.place || null, colour: row.colour || row.color || null, fresh: !!(L.fresh || row.fresh), newest};
     if(L.bg && !row.live_view){
       const c = document.createElement('canvas'); c.className = 'gbg' + (L.bgMask ? ' gm' : '') + (L.bgMask && g.fresh ? ' gfresh' : ''); c.width = L.bg.width; c.height = L.bg.height;
       c.getContext('2d').drawImage(L.bg, 0, 0); L.bg.close && L.bg.close();
@@ -493,7 +493,7 @@
       g.bx = 0; g.by = 0; g.bvx = 0; g.bvy = 0; bgRetarget(g, performance.now());
       setTimeout(()=> c.classList.add('on'), 60);
     } else if(L.bg){ try{ L.bg.close && L.bg.close(); }catch(e){} }
-    if(g.title){ const t = document.createElement('div'); t.className = 'gtag'; t.textContent = String(g.title).slice(0, 60); Object.assign(t.style, {left: (g.x + g.w / 2) + 'px', top: (g.y + g.h + 6) + 'px'}); cutsL.appendChild(t); g.tag = t;
+    if(g.title){ const t = document.createElement('div'); t.className = 'gtag'; t.textContent = String(g.title).slice(0, 60); const col = (g.colour && (g.colour.hex || g.colour)) || g.color || g.hex || (row.colour && (row.colour.hex || row.colour)) || row.color || null; if(col && /^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/.test(String(col))){ t.style.color = col; t.style.boxShadow = '0 0 0 1px ' + col; } Object.assign(t.style, {left: (g.x + g.w / 2) + 'px', top: (g.y + g.h + 6) + 'px'}); cutsL.appendChild(t); g.tag = t;
       setTimeout(()=> t.classList.add('on'), 2500); setTimeout(()=> t.classList.remove('on'), 11000); }
     // directions (11-12 11:41 PM): each story walks in along a random heading from any edge or corner (no left-to-right bias)
     const ang = g.inAng = Math.random() * Math.PI * 2;
@@ -963,7 +963,7 @@
     if(c.frame_size) mrow.frame_size = c.frame_size; if(c.delays_cs) mrow.delays_cs = c.delays_cs;
     roomForLive();
     const L = await loadGroup(mrow, {assets: [mrow]}, {live: true, fresh, newest: isNewestId(id)});
-    const row = {medium_image_id: id, title: v.title || ((v.card || '') + ' · ' + (v.run || '')), agenda: false, live_view: true, live_cut: true, run: v.run, card: v.card, url: v.url, mtime: v.mtime, place: v.place || null, fresh, newest: isNewestId(id), source_sha256: v.sha256 || '', pack_version: mrow.pack_version};
+    const row = {medium_image_id: id, title: v.title || ((v.card || '') + ' · ' + (v.run || '')), agenda: false, live_view: true, live_cut: true, run: v.run, card: v.card, url: v.url, mtime: v.mtime, place: v.place || null, colour: v.colour || v.color || null, fresh, newest: isNewestId(id), source_sha256: v.sha256 || '', pack_version: mrow.pack_version};
     return {row, L};
   }
   const isFresh = v => recentLive(LIVE_KEEP).some(x => liveId(x) === liveId(v));
@@ -1020,10 +1020,17 @@
       const newer = !prev || ((v.mtime || 0) > (prev.mtime || 0)) || (v.sha256 && prev.sha256 && v.sha256 !== prev.sha256);
       if(newer) fresh.push(v);
     });
+    const isStoryView = v => /^story-draw-/.test((v && v.run) || '');
+    const queueStory = front => {
+      list.filter(v => isStoryView(v) && hasCut(v) && !isNewestId(liveId(v)))
+        .sort((a, b) => (a.mtime || 0) - (b.mtime || 0))
+        .forEach(v => enqueueLive(v, !!front));
+    };
     if(first){
       list.forEach(v => { LV.seen[v.id] = {mtime: v.mtime || 0, sha256: v.sha256 || ''}; });
       recentLive(LIVE_KEEP).filter(v => !isNewestId(liveId(v))).slice().reverse().forEach(v => enqueueLive(v, true));
       const newest = newestLive(); if(newest) enqueueLive(newest, true);
+      queueStory(false); // behind the newest active-agenda view, never in front of it
     } else {
       fresh.sort((a, b) => (b.mtime || 0) - (a.mtime || 0)).forEach(v => {
         LV.seen[v.id] = {mtime: v.mtime || 0, sha256: v.sha256 || ''};
@@ -1031,6 +1038,7 @@
       });
       const newest = newestLive();
       if(newest && !liveOn(liveId(newest))) enqueueLive(newest, true);
+      queueStory(false);
     }
     if(LV.pending.length && !paused()) spawnOne();
     }catch(e){ note('live views poll', String(e && e.message || e)); }
