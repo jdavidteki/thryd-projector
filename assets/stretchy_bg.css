@@ -4,13 +4,16 @@
   z-index:0;pointer-events:none;border:0;display:none;
   transform:translateZ(0);
 }
-body.stage-white:not(.stage-replay):not(.cerebro):not(.lovemap) #stretchy-bg{display:block}
-/* let the field show through the page and the stage */
+/* live stage, white or black: show the field behind the cuts */
+body.stage1:not(.stage-replay):not(.cerebro):not(.lovemap) #stretchy-bg{display:block}
+/* let the field show through the stage (and the page in white mode) */
 html{background:transparent!important}
-body.stage-white:not(.stage-replay):not(.cerebro):not(.lovemap),
-body.stage-white:not(.stage-replay):not(.cerebro):not(.lovemap) #gstage{
+body.stage1.stage-white:not(.stage-replay):not(.cerebro):not(.lovemap),
+body.stage1:not(.stage-replay):not(.cerebro):not(.lovemap) #gstage{
   background:transparent!important;
 }
+/* the dark edge vignette would swallow the quiet plates and the grid on black */
+body.stage1:not(.stage-replay):not(.cerebro):not(.lovemap) #vignette{display:none!important}
 /* sample the original plates into the shader; do not paint them twice */
 body.stretchy-bg #gbgs .gbg{
   opacity:0!important;

@@ -3,24 +3,29 @@
    tweet popups stay in the DOM, unwarped. Preview copy only. */
 (function(){
   'use strict';
-  var STYLE_OK = 'body.stage-white:not(.stage-replay):not(.cerebro):not(.lovemap)';
+  var LIVE_OK = 'body.stage1:not(.stage-replay):not(.cerebro):not(.lovemap)';
   var BREATHE_MS = 8000;  // slow ghostly fade, 15% ↔ 60%
   var GRID_A = 0.08;     // very faint; the stretched image carries the feel
+  var GRID_A_DARK = 0.14; // a touch stronger so the grid still reads on black
   var COMPOSE_MS = 120;  // recache GIF/plate texture at most this often
   // Incommensurate warp periods (ms) and phase offsets (rad).
   var T1 = 7300, T2 = 11900, T3 = 17700, T4 = 23100;
   var PH1 = 0.0, PH2 = 1.7, PH3 = 3.1, PH4 = 4.9;
   var MAX_RW = 1280, MAX_RH = 720;
 
-  function matchesWhite(){
+  function matchesLiveStage(){
     try{
       var b = document.body;
       if(!b) return false;
-      return b.classList.contains('stage-white')
+      return b.classList.contains('stage1')
         && !b.classList.contains('stage-replay')
         && !b.classList.contains('cerebro')
         && !b.classList.contains('lovemap');
     }catch(e){ return false; }
+  }
+
+  function isDark(){
+    try{ return !document.body.classList.contains('stage-white'); }catch(e){ return false; }
   }
 
   function wrapPhase(ms, period, offset){
@@ -130,8 +135,9 @@
       ov = document.createElement('style');
       ov.id = 'stretchy-bg-override';
       ov.textContent = [
-        'html body.stage-white:not(.stage-replay):not(.cerebro):not(.lovemap),',
-        'html body.stage-white:not(.stage-replay):not(.cerebro):not(.lovemap) #gstage{background:transparent!important}',
+        'html body.stage1:not(.stage-replay):not(.cerebro):not(.lovemap) #gstage{background:transparent!important}',
+        'html body.stage1.stage-white:not(.stage-replay):not(.cerebro):not(.lovemap){background:transparent!important}',
+        'html body.stage1:not(.stage-replay):not(.cerebro):not(.lovemap) #vignette{display:none!important}',
         'html body.stretchy-bg #gbgs .gbg{opacity:0!important;transition:none!important;filter:none!important}'
       ].join('\n');
       document.head.appendChild(ov);
@@ -273,6 +279,7 @@
       'uniform vec4 uP;',
       'uniform float uBreathe;',
       'uniform float uGrid;',
+      'uniform float uDark;',
       'vec2 warp(vec2 p){',
       '  float cx1 = uCss.x * (0.5 + 0.16 * cos(uP.x) + 0.09 * cos(uP.y + 0.4));',
       '  float cy1 = uCss.y * (0.5 + 0.12 * sin(uP.y) + 0.08 * sin(uP.z + 1.1));',
@@ -297,19 +304,25 @@
       '  float fr = 0.5 + 0.5 * sin(s.x / 200.0 + s.y / 280.0);',
       '  float fg = 0.5 + 0.5 * cos(s.x / 240.0 - s.y / 180.0);',
       '  float fb = 0.5 + 0.5 * sin(s.y / 220.0 + s.x / 320.0);',
-      '  vec3 pastel = vec3(1.0) - vec3(0.10, 0.07, 0.03) * vec3(fr, fg, fb);',
+      '  vec3 pastelL = vec3(1.0) - vec3(0.10, 0.07, 0.03) * vec3(fr, fg, fb);',
+      '  vec3 pastelD = vec3(0.035, 0.038, 0.048) + vec3(0.07, 0.055, 0.045) * vec3(fr, fg, fb);',
+      '  vec3 pastel = mix(pastelL, pastelD, uDark);',
       '  vec2 cell = s / 32.0;',
       '  vec2 fw = abs(fract(cell) - 0.5);',
       '  float line = 1.0 - smoothstep(0.015, 0.038, min(fw.x, fw.y));',
-      '  vec3 gridCol = vec3(0.62, 0.66, 0.72);',
+      '  vec3 gridL = vec3(0.62, 0.66, 0.72);',
+      '  vec3 gridD = vec3(0.48, 0.52, 0.60);',
+      '  vec3 gridCol = mix(gridL, gridD, uDark);',
       '  pastel = mix(pastel, gridCol, line * uGrid);',
       '  vec2 uv = vec2(s.x / uCss.x, 1.0 - s.y / uCss.y);',
       '  vec4 scene = vec4(0.0);',
       '  if(uv.x >= 0.0 && uv.x <= 1.0 && uv.y >= 0.0 && uv.y <= 1.0){',
       '    scene = texture2D(uScene, uv);',
       '  }',
-      '  float a = scene.a * uBreathe;',
-      '  vec3 rgb = mix(pastel, scene.rgb, a);',
+      '  vec3 plate = mix(scene.rgb, clamp(scene.rgb * 1.18 + vec3(0.08), 0.0, 1.0), uDark);',
+      '  float a = scene.a * uBreathe * mix(1.0, 1.2, uDark);',
+      '  a = min(a, 0.85);',
+      '  vec3 rgb = mix(pastel, plate, a);',
       '  gl_FragColor = vec4(rgb, 1.0);',
       '}'
     ].join('\n'));
@@ -329,8 +342,10 @@
     var uP = gl.getUniformLocation(prog, 'uP');
     var uBreathe = gl.getUniformLocation(prog, 'uBreathe');
     var uGrid = gl.getUniformLocation(prog, 'uGrid');
+    var uDark = gl.getUniformLocation(prog, 'uDark');
     gl.uniform1i(uScene, 0);
     gl.uniform1f(uGrid, GRID_A);
+    gl.uniform1f(uDark, 0.0);
 
     var tex = gl.createTexture();
     gl.activeTexture(gl.TEXTURE0);
@@ -405,15 +420,18 @@
     function tick(){
       if(fellBack) return;
       if(gl.isContextLost && gl.isContextLost()){ fallBack2D(); return; }
-      var on = matchesWhite();
+      var on = matchesLiveStage();
       canvas.style.display = on ? 'block' : 'none';
       if(!on) return;
       sizeTo();
       var ts = animNow();
       maybeCompose(ts);
       var ms = ts - t0;
+      var dark = isDark();
       gl.uniform4f(uP, wrapPhase(ms, T1, PH1), wrapPhase(ms, T2, PH2), wrapPhase(ms, T3, PH3), wrapPhase(ms, T4, PH4));
       gl.uniform1f(uBreathe, breatheAmt(ms));
+      gl.uniform1f(uGrid, dark ? GRID_A_DARK : GRID_A);
+      gl.uniform1f(uDark, dark ? 1.0 : 0.0);
       gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
     }
     arm(tick);
@@ -444,7 +462,7 @@
     }
     var t0 = animNow();
     function tick(){
-      var on = matchesWhite();
+      var on = matchesLiveStage();
       canvas.style.display = on ? 'block' : 'none';
       if(!on) return;
       var sz = sizeTo(), W = sz.rs.w, H = sz.rs.h, css = sz.css;
@@ -481,21 +499,35 @@
           var fr = 0.5 + 0.5 * Math.sin(qx / 200 + qy / 280);
           var fg = 0.5 + 0.5 * Math.cos(qx / 240 - qy / 180);
           var fb = 0.5 + 0.5 * Math.sin(qy / 220 + qx / 320);
-          var R = 1 - 0.10 * fr, G = 1 - 0.07 * fg, B = 1 - 0.03 * fb;
+          var dark = isDark();
+          var R, G, B, gA;
+          if(dark){
+            R = 0.035 + 0.07 * fr; G = 0.038 + 0.055 * fg; B = 0.048 + 0.045 * fb;
+            gA = GRID_A_DARK;
+          } else {
+            R = 1 - 0.10 * fr; G = 1 - 0.07 * fg; B = 1 - 0.03 * fb;
+            gA = GRID_A;
+          }
           var cellx = qx / 32, celly = qy / 32;
           var fx = Math.abs(cellx - Math.floor(cellx) - 0.5);
           var fy = Math.abs(celly - Math.floor(celly) - 0.5);
-          var line = Math.min(fx, fy) < 0.03 ? GRID_A : 0;
-          if(line){ R = R * (1-line) + 0.62 * line; G = G * (1-line) + 0.66 * line; B = B * (1-line) + 0.72 * line; }
+          var line = Math.min(fx, fy) < 0.03 ? gA : 0;
+          if(line){
+            if(dark){ R = R * (1-line) + 0.48 * line; G = G * (1-line) + 0.52 * line; B = B * (1-line) + 0.60 * line; }
+            else { R = R * (1-line) + 0.62 * line; G = G * (1-line) + 0.66 * line; B = B * (1-line) + 0.72 * line; }
+          }
           if(srcd){
             var ix = Math.round(qx * sx), iy = Math.round(qy * sy);
             if(ix >= 0 && iy >= 0 && ix < W && iy < H){
               var o = (iy * W + ix) * 4;
-              var a = (srcd[o+3] / 255) * br;
+              var a = (srcd[o+3] / 255) * br * (dark ? 1.2 : 1);
+              if(a > 0.85) a = 0.85;
               if(a > 0){
-                R = R * (1-a) + (srcd[o] / 255) * a;
-                G = G * (1-a) + (srcd[o+1] / 255) * a;
-                B = B * (1-a) + (srcd[o+2] / 255) * a;
+                var sr = srcd[o] / 255, sg = srcd[o+1] / 255, sb = srcd[o+2] / 255;
+                if(dark){ sr = Math.min(1, sr * 1.18 + 0.08); sg = Math.min(1, sg * 1.18 + 0.08); sb = Math.min(1, sb * 1.18 + 0.08); }
+                R = R * (1-a) + sr * a;
+                G = G * (1-a) + sg * a;
+                B = B * (1-a) + sb * a;
               }
             }
           }
