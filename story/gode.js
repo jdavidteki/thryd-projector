@@ -37,7 +37,7 @@
     var g=ctx.createRadialGradient(p[0],p[1],0,p[0],p[1],r);g.addColorStop(0,'rgba(255,255,255,.55)');g.addColorStop(.35,hexA(L.hex,.35));g.addColorStop(1,hexA(L.hex,0));
     ctx.fillStyle=g;ctx.beginPath();ctx.arc(p[0],p[1],r,0,7);ctx.fill();ctx.restore();
   }
-  function sparkAt(L,s){var p=frontPt(L,s);for(var i=0;i<5;i++){var a=Math.random()*6.283,v=.03+Math.random()*.07;sparks.push({x:p[0],y:p[1],vx:Math.cos(a)*v,vy:Math.sin(a)*v-.03,life:0,max:600+Math.random()*500,c:L.hex,r:1.5+Math.random()*2.2});}}
+  function sparkAt(L,s){var p=frontPt(L,s);if(window.thrydGodeFx)try{thrydGodeFx.land(L,p);}catch(e){}for(var i=0;i<5;i++){var a=Math.random()*6.283,v=.03+Math.random()*.07;sparks.push({x:p[0],y:p[1],vx:Math.cos(a)*v,vy:Math.sin(a)*v-.03,life:0,max:600+Math.random()*500,c:L.hex,r:1.5+Math.random()*2.2});}}
   function drawSparks(dt){
     if(!sparks.length)return;ctx.save();ctx.globalCompositeOperation='lighter';
     sparks=sparks.filter(function(p){p.life+=dt;if(p.life>p.max)return false;p.x+=p.vx*dt;p.y+=p.vy*dt;var a=1-p.life/p.max;
@@ -89,11 +89,12 @@
   }
   rep.addEventListener('click',function(){if(man&&base)playAll();});
   fetch('layers.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).then(function(m){if(m&&m.layers)boot(m);}).catch(function(){});
-  window.thrydGode={state:function(){return {state:cv.dataset.state,queue:queue.length,active:active&&active.L.key,shown:Object.keys(shown),speed:speed(),rm:RM,layers:man?man.layers.length:0};},replay:function(){rep.click();},poll:poll};
+  window.thrydGode={state:function(){return {state:cv.dataset.state,queue:queue.length,active:active&&active.L.key,shown:Object.keys(shown),speed:speed(),rm:RM,layers:man?man.layers.length:0};},replay:function(){rep.click();},poll:poll,
+    _i:{man:function(){return man},imgs:imgs,base:function(){return base},done:done,ctx:ctx,cv:cv,busy:function(){return !!(active||queue.length)},front:frontPt}};
 
   // ---------------- floaters: story objects + characters drifting around the page, never over the diagram
   var box=document.getElementById('floaters'),F=[],ex=null,fr=0,lt=0;
-  function exRect(){var r=fig.getBoundingClientRect(),m=14;ex={l:r.left-m,t:r.top-m,r:r.right+m,b:r.bottom+m};}
+  function exRect(){var r=fig.getBoundingClientRect(),m=26;ex={l:r.left-m,t:r.top-m,r:r.right+m,b:r.bottom+m};}
   function inEx(x,y,w,h){return ex&&x<ex.r&&x+w>ex.l&&y<ex.b&&y+h>ex.t;}
   function spot(w,h){var W=innerWidth,H=innerHeight;for(var k=0;k<60;k++){var x=Math.random()*(W-w),y=Math.random()*(H-h);if(!inEx(x,y,w,h))return [x,y];}return [Math.random()*(W-w),Math.random()<.5?Math.max(0,ex.t-h-4):Math.min(H-h,ex.b+4)];}
   function makeFloaters(list){

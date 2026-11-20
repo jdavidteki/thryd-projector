@@ -54,6 +54,22 @@ header,main{position:relative;z-index:1}
 .edges li.skipped .lb{text-decoration:line-through;text-decoration-thickness:1px}
 .edges li.current{box-shadow:0 0 0 2px var(--c)}
 .edges li.upcoming .st{background:#fff;color:var(--c);box-shadow:inset 0 0 0 1.5px var(--c)}
+
+/* v582 magic */
+#fx{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+#fig{transform-style:preserve-3d;transition:transform .35s ease-out;will-change:transform}
+#ctl #chime[aria-pressed=true]{background:#7c3aed;color:#fff}
+[data-key]{cursor:pointer}
+.legend li[data-key]{padding:2px 6px;border-radius:8px;transition:background .2s,opacity .2s}
+.legend li[data-key].hl,.edges li.hl{outline:2px solid var(--c,#7c3aed);outline-offset:1px}
+#gode.hlon .legend li[data-key]:not(.hl),#gode.hlon .edges li:not(.hl){opacity:.38}
+.edges li .lb{clip-path:inset(0 0 0 0)}
+#gode.ink .edges li .lb{animation:inkw 1.1s cubic-bezier(.4,.1,.3,1) both;animation-delay:calc(var(--i,0)*0.22s + .1s)}
+#gode.ink #agendas li .lb{animation-delay:calc(1.3s + var(--j,0)*0.18s)}
+@keyframes inkw{from{clip-path:inset(0 100% 0 0);filter:blur(1.2px)}60%{filter:blur(0)}to{clip-path:inset(0 0 0 0)}}
+.edges li.current{animation:edgepulse 2.6s ease-in-out infinite}
+@keyframes edgepulse{0%,100%{box-shadow:0 0 0 2px var(--c),0 0 0 0 color-mix(in srgb,var(--c) 0%,transparent)}50%{box-shadow:0 0 0 2px var(--c),0 0 18px 4px color-mix(in srgb,var(--c) 45%,transparent)}}
+@media (prefers-reduced-motion:reduce){#gode.ink .edges li .lb{animation:none}.edges li.current{animation:none}#fig{transition:none}}
 </style>
 </head>
 <body>
@@ -65,10 +81,11 @@ header,main{position:relative;z-index:1}
 <main>
 <figure id="fig">
 <canvas id="paint" width="1440" height="900" role="img" aria-label="The story building painting itself in, agenda by agenda (painted by gode)"></canvas>
+<canvas id="fx" width="720" height="450" aria-hidden="true"></canvas>
 <img id="story" src="story_painted_3d.png" alt="The #thryd story building: every agenda painted on one white isometric building, coloured by the code that fired">
 <noscript><img src="story_painted_3d.png" alt="The #thryd story building (still)" style="width:100%;max-width:1440px"></noscript>
 </figure>
-<div class="ctl" id="ctl"><label for="speed">speed <input type="range" id="speed" min="-2" max="2" step="0.05" value="0" aria-label="painting speed, 0.25× to 4×"><output id="speedv" for="speed">1×</output></label><button type="button" id="replay">↻ replay</button></div>
+<div class="ctl" id="ctl"><label for="speed">speed <input type="range" id="speed" min="-2" max="2" step="0.05" value="0" aria-label="painting speed, 0.25× to 4×"><output id="speedv" for="speed">1×</output></label><button type="button" id="replay">↻ replay</button><button type="button" id="chime" aria-pressed="false" title="soft chime as each stroke lands (off by default)">🔇 chime</button></div>
 <p class="meta" id="meta"><a id="still" href="story_painted_3d.png">still (PNG)</a></p>
 <section id="gode" aria-labelledby="godet" hidden>
 <h2 id="godet">painted by gode</h2>
@@ -106,21 +123,22 @@ header,main{position:relative;z-index:1}
     var sb=d.story||{};document.getElementById('godesub').textContent=(sb.d?'story → '+sb.d+' · ':'')+(sb.budget||'')+(sb.current?' · now '+sb.current:'')+(d.at?' · updated '+d.at:'');
     var lg=document.getElementById('godelegend'),E=document.getElementById('edges'),A=document.getElementById('agendas');lg.textContent='';E.textContent='';A.textContent='';
     (d.edges||[]).forEach(function(e){
-      var li=el('li');var sw=el('span','sw');sw.style.background=e.hex;li.appendChild(sw);li.appendChild(el('span',null,e.dot+' '+e.job+' '+e.beam));lg.appendChild(li);
+      var li=el('li');li.dataset.key=e.job;li.tabIndex=0;var sw=el('span','sw');sw.style.background=e.hex;li.appendChild(sw);li.appendChild(el('span',null,e.dot+' '+e.job+' '+e.beam));lg.appendChild(li);
       var st=e.status==='closed'?('closed '+(e.verdict||'')).trim():ST[e.status]||e.status;
-      var r=row(e.hex,e.label+' · '+e.lines_in+' of '+e.m+' lines',st,e.status);r.dataset.job=e.job;r.dataset.hex=e.hex;r.dataset.dot=e.dot;E.appendChild(r);
+      var r=row(e.hex,e.label+' · '+e.lines_in+' of '+e.m+' lines',st,e.status);r.dataset.job=e.job;r.dataset.key=e.job;r.tabIndex=0;r.style.setProperty('--i',String(e.k));r.dataset.hex=e.hex;r.dataset.dot=e.dot;E.appendChild(r);
     });
     (d.agendas||[]).forEach(function(a){
-      var li=el('li');var sw=el('span','sw');sw.style.background=a.hex;li.appendChild(sw);li.appendChild(el('span',null,a.dot+' '+a.run+(a.live?' (live)':'')));lg.appendChild(li);
+      var li=el('li');li.dataset.key=a.run;li.tabIndex=0;var sw=el('span','sw');sw.style.background=a.hex;li.appendChild(sw);li.appendChild(el('span',null,a.dot+' '+a.run+(a.live?' (live)':'')));lg.appendChild(li);
       var lab=a.dot+' '+a.run+(a.jobs?' · '+a.jobs:'')+(a.calls!=null?' · '+a.calls+' calls':'')+(a.d?' · '+a.d:'');
-      var r=row(a.hex,lab,a.live?(a.progress||'live'):(a.locked?'locked':''),a.live?'current':'closed');r.dataset.run=a.run;r.dataset.hex=a.hex;A.appendChild(r);
+      var r=row(a.hex,lab,a.live?(a.progress||'live'):(a.locked?'locked':''),a.live?'current':'closed');r.dataset.run=a.run;r.dataset.key=a.run;r.tabIndex=0;r.style.setProperty('--j',String(A.children.length));r.dataset.hex=a.hex;A.appendChild(r);
     });
-    sec.hidden=false;
+    sec.hidden=false;sec.classList.remove('ink');void sec.offsetWidth;sec.classList.add('ink');document.dispatchEvent(new CustomEvent('gode:edges',{detail:d}));
   }
   function load(){fetch('edges.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).then(function(d){if(d)render(d);}).catch(function(){});}
   load();setInterval(load,60000);
 })();
 </script>
-<script src="gode.js?v=1"></script>
+<script src="gode.js?v=2"></script>
+<script src="gode_fx.js?v=1"></script>
 </body>
 </html>
