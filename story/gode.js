@@ -106,18 +106,18 @@
   // (subject -> argument object or method), numbered by call order, coloured by agenda, painted in index order.
   // Until graph.json exists the stroke layers above stay the fallback.
   var GM=null;
-  function P2(o,w){var v=o&&(o[w+'_px']||o[w+'_screen']||(o.px&&o.px[w])||(o.screen&&o.screen[w]));if(!v)return null;return Array.isArray(v)?[+v[0],+v[1]]:[+v.x,+v.y];}
-  function VP(v){var p=v.px||v.screen||(v.x!=null?[v.x,v.y]:null);if(!p)return null;return Array.isArray(p)?[+p[0],+p[1]]:[+p.x,+p.y];}
+  function P2(o,w){var v=o&&(o[w+'_px']||o[w+'_screen']||(o.px&&o.px[w])||(o.screen&&o.screen[w])||o[w+'_xyz']);if(v&&!Array.isArray(v)&&v.px!=null)return [+v.px,+v.py];if(!v)return null;return Array.isArray(v)?[+v[0],+v[1]]:[+v.x,+v.y];}
+  function VP(v){if(typeof v.px==='number')return [v.px,v.py];var p=v.px||v.screen||(v.x!=null?[v.x,v.y]:null);if(!p)return null;return Array.isArray(p)?[+p[0],+p[1]]:[+p.x,+p.y];}
   function graphUnits(g){
-    var V={},vl=g.vertices||g.nodes||[];vl.forEach(function(v){var id=String(v.id||v.key||v.name);var p=VP(v);if(p)V[id]={id:id,p:p,label:v.label||v.name||id,kind:v.kind||'',on:false};});
+    var V={},vl=g.vertices||g.nodes||[];if(!Array.isArray(vl))vl=Object.keys(vl).map(function(k){var o=vl[k];if(o.id==null)o.id=k;return o;});vl.forEach(function(v){var id=String(v.id||v.key||v.name);var p=VP(v);if(p)V[id]={id:id,p:p,label:v.label||v.name||id,kind:v.kind||'',on:false};});
     var E=(g.edges||[]).slice().map(function(e,k){return {e:e,i:(e.index!=null?+e.index:(e.i!=null?+e.i:k))};}).sort(function(a,b){return a.i-b.i;});
     var n=E.length,per=Math.max(25,Math.min(400,22000/Math.max(1,n))),rep={},newest=(g.newest_job||null),units=[];
     if(!newest&&n){newest=E[n-1].e.job;}
-    E.forEach(function(o){var e=o.e,a=P2(e,'from'),b=P2(e,'to');
+    E.forEach(function(o,j){var e=o.e,a=P2(e,'from'),b=P2(e,'to');
       var fa=String(e.from),tb=String(e.to);if(!a&&V[fa])a=V[fa].p;if(!b&&V[tb])b=V[tb].p;if(!a||!b)return;
       if(!V[fa])V[fa]={id:fa,p:a,label:fa,kind:'',on:false};if(!V[tb])V[tb]={id:tb,p:b,label:tb,kind:'',on:false};
       var pk=fa<tb?fa+'|'+tb:tb+'|'+fa,r=rep[pk]=(rep[pk]||0)+1,dx=b[0]-a[0],dy=b[1]-a[1],len=Math.hypot(dx,dy),self=len<2;
-      var off=(self?0:(10+7*Math.floor((r-1)/2))*((r%2)?1:-1)*(fa<tb?1:-1)),nx=self?0:-dy/len,ny=self?0:dx/len;
+      var off=(self?0:Math.min(16,8+2*Math.floor((r-1)/2))*((r%2)?1:-1)*(fa<tb?1:-1)),nx=self?0:-dy/len,ny=self?0:dx/len;
       var c=[(a[0]+b[0])/2+nx*off,(a[1]+b[1])/2+ny*off];
       function at(t){if(self){var ang=t*6.283,rr=9+3*((r-1)%4);return [a[0]+rr*Math.sin(ang),a[1]-rr+rr*Math.cos(ang)];}var u=1-t;return [u*u*a[0]+2*u*t*c[0]+t*t*b[0],u*u*a[1]+2*u*t*c[1]+t*t*b[1]];}
       var num=(n<=120||o.i%10===0||e.job===newest),hex=e.hex||'#7c3aed';
@@ -130,19 +130,19 @@
           x.lineWidth=3;x.strokeStyle='rgba(255,255,255,.95)';x.strokeText(String(o.i),mq[0],mq[1]);x.fillStyle=hex;x.fillText(String(o.i),mq[0],mq[1]);}
         x.restore();}
       function verts(x){[V[fa],V[tb]].forEach(function(v){if(!v||v.on)return;v.on=true;drawV(x,v);});}
-      units.push({key:'e'+o.i,kind:'gedge',n:1,hex:hex,hash:String(o.i)+':'+(e.call||'')+':'+hex,i:o.i,e:e,a:a,b:b,
+      units.push({key:'e'+j,kind:'gedge',n:1,hex:hex,hash:String(o.i)+':'+(e.call||'')+':'+hex,i:o.i,e:e,a:a,b:b,
         g:{dur:per,at:at,draw:draw,verts:verts},label:'#'+o.i+' · '+(e.label||((e.job||'')+' · '+fa+' → '+tb))});
     });
     return {units:units,V:V,newest:newest};
   }
-  function drawV(x,v){x.save();var p=v.p,k=v.kind;x.lineWidth=1.4;x.strokeStyle='#555';x.fillStyle=k==='person'||k==='character'?'#333':'#fff';
+  function drawV(x,v){if(GM&&GM.baked){x.save();x.lineWidth=1.6;x.strokeStyle='rgba(30,30,30,.75)';x.beginPath();x.arc(v.p[0],v.p[1],5.5,0,7);x.stroke();x.restore();return;}x.save();var p=v.p,k=v.kind;x.lineWidth=1.4;x.strokeStyle='#555';x.fillStyle=k==='person'||k==='character'?'#333':'#fff';
     x.beginPath();if(k==='method'){x.moveTo(p[0],p[1]-5);x.lineTo(p[0]+5,p[1]);x.lineTo(p[0],p[1]+5);x.lineTo(p[0]-5,p[1]);x.closePath();}else x.arc(p[0],p[1],4.2,0,7);x.fill();x.stroke();
     x.font='600 10px ui-monospace,Menlo,Consolas,monospace';x.textAlign='left';x.textBaseline='middle';x.lineWidth=3.2;x.strokeStyle='rgba(255,255,255,.95)';
     x.strokeText(v.label,p[0]+7,p[1]-1);x.fillStyle='#222';x.fillText(v.label,p[0]+7,p[1]-1);x.restore();}
   function graphReset(){if(!GM)return;Object.keys(GM.V).forEach(function(k){GM.V[k].on=false;});}
   function bootGraph(g,b){
-    var gu=graphUnits(g);if(!gu.units.length)return false;GM=gu;GM.v=g.v||g.hash||gu.units.length;
-    man={v:'g'+GM.v,w:1440,h:900,axis:[1,0],layers:gu.units,strokes:gu.units.map(function(u){return {k:u.i,kind:'call',call:u.e.call||'',job:u.e.job,run:u.e.run,label:u.label,hex:u.hex,x:u.g.at(0.5)[0],y:u.g.at(0.5)[1],actor:String(u.e.from),floor:''};}),stroke_hash:g.hash||g.edge_hash||null,graph:true};
+    var gu=graphUnits(g);if(!gu.units.length)return false;GM=gu;GM.baked=(g.schema_version>=2);GM.v=g.stroke_hash?String(g.stroke_hash).slice(0,12):(g.v||g.hash||gu.units.length);
+    man={v:'g'+GM.v,w:1440,h:900,axis:[1,0],layers:gu.units,strokes:gu.units.map(function(u){return {k:u.i,kind:'call',call:u.e.call||'',job:u.e.job,run:u.e.run,label:u.label,hex:u.hex,x:u.g.at(0.5)[0],y:u.g.at(0.5)[1],actor:String(u.e.from),floor:''};}),stroke_hash:g.stroke_hash||g.hash||g.edge_hash||null,graph:true};
     gu.units.forEach(function(u){imgs[u.key]=1;});
     cv.width=done.width=work.width=1440;cv.height=done.height=work.height=900;dctx=done.getContext('2d');wctx=work.getContext('2d');
     base=b;fig.classList.add('live');fig.classList.add('graph');ctx.drawImage(base,0,0);playAll();
@@ -151,8 +151,8 @@
     if(!g||!g.edges||!GM)return;var gu=graphUnits(g);var have={};man.layers.forEach(function(u){have[u.key]=u.hash;});
     var add=gu.units.filter(function(u){return have[u.key]!==u.hash;});if(!add.length)return;
     // new jobs only append: the old edges keep their place; only the new ones paint in
-    GM.V=gu.V;GM.newest=gu.newest;man.layers=gu.units;man.strokes=gu.units.map(function(u){return {k:u.i,kind:'call',call:u.e.call||'',job:u.e.job,run:u.e.run,label:u.label,hex:u.hex,x:u.g.at(0.5)[0],y:u.g.at(0.5)[1],actor:String(u.e.from),floor:''};});
-    man.v='g'+(g.v||g.hash||gu.units.length);gu.units.forEach(function(u){imgs[u.key]=1;});
+    GM.V=gu.V;GM.newest=gu.newest;GM.baked=(g.schema_version>=2);man.layers=gu.units;man.strokes=gu.units.map(function(u){return {k:u.i,kind:'call',call:u.e.call||'',job:u.e.job,run:u.e.run,label:u.label,hex:u.hex,x:u.g.at(0.5)[0],y:u.g.at(0.5)[1],actor:String(u.e.from),floor:''};});
+    man.v='g'+(g.stroke_hash?String(g.stroke_hash).slice(0,12):(g.v||g.hash||gu.units.length));gu.units.forEach(function(u){imgs[u.key]=1;});
     reset();graphReset();man.layers.forEach(function(u){if(have[u.key]===u.hash)commit(u);});
     add.forEach(function(u){queue.push({L:u,s0:0});});phase='paint';ph=0;kick();}).catch(function(){});}
   function boot(m){
