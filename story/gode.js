@@ -189,7 +189,7 @@
     var units=drawingUnits(d);DM=d;
     man={v:'d'+(d.v||d.sig||units.length),w:d.w||1440,h:d.h||900,axis:[1,0],layers:units,
       strokes:units.map(function(u){var q=u.g.at(0.5);return {k:u.i,kind:'call',call:(u.e&&u.e.call)||'',job:(u.e&&u.e.job)||'',run:'',label:u.label,hex:u.hex,x:q[0],y:q[1],actor:'',floor:''};}),
-      stroke_hash:d.sig||null,graph:false,drawing:true};
+      stroke_hash:d.sig||null,graph:false,drawing:true,outline:d.edges||[]};
     units.forEach(function(u){imgs[u.key]=1;});
     cv.width=done.width=work.width=man.w;cv.height=done.height=work.height=man.h;dctx=done.getContext('2d');wctx=work.getContext('2d');
     base=b;fig.classList.add('live');fig.classList.add('drawing');ctx.drawImage(base,0,0);playAll();
@@ -199,7 +199,7 @@
     if(!d||!d.edges||!DM)return;if(String(d.v||d.sig)===String(DM.v||DM.sig))return;
     var units=drawingUnits(d),have={};man.layers.forEach(function(u){have[u.key]=u.hash;});
     var add=units.filter(function(u){return have[u.key]!==u.hash;});
-    DM=d;man.layers=units;man.v='d'+(d.v||d.sig||units.length);man.stroke_hash=d.sig||null;
+    DM=d;man.layers=units;man.v='d'+(d.v||d.sig||units.length);man.stroke_hash=d.sig||null;man.outline=d.edges||[];man.drawing=true;
     man.strokes=units.map(function(u){var q=u.g.at(0.5);return {k:u.i,kind:'call',call:(u.e&&u.e.call)||'',job:(u.e&&u.e.job)||'',run:'',label:u.label,hex:u.hex,x:q[0],y:q[1],actor:'',floor:''};});
     units.forEach(function(u){imgs[u.key]=1;});
     reset();man.layers.forEach(function(u){if(have[u.key]===u.hash)commit(u);});
