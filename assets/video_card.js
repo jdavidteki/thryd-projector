@@ -74,7 +74,7 @@
   function rel(u){return !u?'':/^https?:/.test(u)?u:u;}
   function apply(row){
     if(!row||!row.video)return false;
-    vid.src=rel(row.video);
+    vid.src=rel(row.card_video||row.video);
     if(row.poster)vid.poster=rel(row.poster);
     var job=row.j||'scene', place=row.place||'';
     jb.textContent=job+(place?(' · '+place):'');
