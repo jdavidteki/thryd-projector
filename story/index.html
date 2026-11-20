@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta http-equiv="Cache-Control" content="no-cache">
-<title>#thryd · the story so far, painted by code</title>
-<meta name="description" content="#thryd: every agenda painted on one building, each fired call coloured by its method.">
+<title>#thryd · the story so far, painted by gode</title>
+<meta name="description" content="#thryd: every agenda painted on one building, each in its own colour (painted by gode).">
 <meta name="theme-color" content="#ffffff">
 <link rel="icon" href="data:,">
 <style>
@@ -16,12 +16,29 @@ header,main,footer{max-width:1480px;margin:0 auto;padding:0 16px}
 header{padding-top:18px}
 .back{font:500 13px ui-monospace,Menlo,Consolas,monospace;color:#555;text-decoration:none;float:left}
 .back:hover,.back:focus-visible{color:#141414;text-decoration:underline}
-h1{font:700 clamp(20px,3.6vw,30px)/1.2 ui-monospace,Menlo,Consolas,monospace;margin:26px 0 6px;letter-spacing:-.01em;clear:both}
+h1{text-shadow:0 0 6px #fff,0 0 2px #fff;font:700 clamp(20px,3.6vw,30px)/1.2 ui-monospace,Menlo,Consolas,monospace;margin:26px 0 6px;letter-spacing:-.01em;clear:both}
 .cap{margin:0 auto 16px;color:#555;max-width:860px}
 figure{margin:0}
 #story{display:block;width:100%;max-width:1440px;height:auto;margin:0 auto;background:#fff;aspect-ratio:1440/900}
 .meta{font:500 12px ui-monospace,Menlo,Consolas,monospace;color:#888;margin:10px 0 26px}
 .meta a{color:#0b5cad}
+header,main{position:relative;z-index:1}
+#fig{position:relative;max-width:1440px;margin:0 auto;background:#fff;border-radius:6px}
+#paint{display:none;width:100%;height:auto;aspect-ratio:1440/900;background:#fff}
+#fig.live #paint{display:block}#fig.live #story{display:none}
+.ctl{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;justify-content:center;margin:12px auto 0;font:600 13px ui-monospace,Menlo,Consolas,monospace;color:#333}
+.ctl label{display:flex;align-items:center;gap:8px}
+.ctl input[type=range]{width:min(260px,52vw);accent-color:#7c3aed;height:28px}
+.ctl output{min-width:3.6em;text-align:left}
+.ctl button{font:inherit;padding:7px 14px;min-height:34px;border-radius:17px;border:1.5px solid #7c3aed;background:#fff;color:#7c3aed;cursor:pointer}
+.ctl button:hover,.ctl button:focus-visible{background:#7c3aed;color:#fff}
+#floaters{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.fl{position:absolute;left:0;top:0;display:inline-flex;align-items:center;gap:4px;padding:3px 8px 3px 5px;border-radius:14px;border:1.5px solid var(--c);
+  background:color-mix(in srgb,var(--c) 10%,#fff);color:#222;font:600 11px/1.2 ui-monospace,Menlo,Consolas,monospace;white-space:nowrap;opacity:.62;
+  box-shadow:0 2px 8px color-mix(in srgb,var(--c) 30%,transparent);will-change:transform}
+.fl b{font-size:16px;font-weight:400;line-height:1}
+.fl.pp{border-radius:16px 16px 16px 4px}
+@media (max-width:640px){.fl{opacity:.5;font-size:10px;padding:2px 6px 2px 4px}.fl b{font-size:14px}}
 #gode{max-width:980px;margin:0 auto 34px;text-align:left}
 #gode h2{font:700 18px/1.2 ui-monospace,Menlo,Consolas,monospace;margin:0 0 4px;text-align:center}
 #gode .sub{font:500 12px ui-monospace,Menlo,Consolas,monospace;color:#777;text-align:center;margin:0 0 14px}
@@ -40,15 +57,18 @@ figure{margin:0}
 </style>
 </head>
 <body>
+<div id="floaters" aria-hidden="true"></div>
 <header><a class="back" href="../" aria-label="Back to the projector">← projector</a>
-<h1>the story so far, painted by code</h1>
-<p class="cap" id="cap">📐 The story so far: every agenda painted on one building, each fired call coloured by its method. Grey beams are the edges still to draw.</p>
+<h1>the story so far, painted by gode</h1>
+<p class="cap" id="cap">📐 The story so far: every agenda painted on one building, each agenda in its own colour, painting in stroke by stroke. Dashed beams are the story edges still to draw.</p>
 </header>
 <main>
-<figure>
+<figure id="fig">
+<canvas id="paint" width="1440" height="900" role="img" aria-label="The story building painting itself in, agenda by agenda (painted by gode)"></canvas>
 <img id="story" src="story_painted_3d.png" alt="The #thryd story building: every agenda painted on one white isometric building, coloured by the code that fired">
 <noscript><img src="story_painted_3d.png" alt="The #thryd story building (still)" style="width:100%;max-width:1440px"></noscript>
 </figure>
+<div class="ctl" id="ctl"><label for="speed">speed <input type="range" id="speed" min="-2" max="2" step="0.05" value="0" aria-label="painting speed, 0.25× to 4×"><output id="speedv" for="speed">1×</output></label><button type="button" id="replay">↻ replay</button></div>
 <p class="meta" id="meta"><a id="still" href="story_painted_3d.png">still (PNG)</a></p>
 <section id="gode" aria-labelledby="godet" hidden>
 <h2 id="godet">painted by gode</h2>
@@ -101,5 +121,6 @@ figure{margin:0}
   load();setInterval(load,60000);
 })();
 </script>
+<script src="gode.js?v=1"></script>
 </body>
 </html>
