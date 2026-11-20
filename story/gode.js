@@ -183,9 +183,11 @@
     var conn=s.kind==='connection';
     x.save();x.lineCap='round';x.lineJoin='round';x.strokeStyle=s.hex||'#2563eb';
     // church edges: thick, full colour, on top. live run strokes: thin and faded underneath.
-    x.lineWidth=story?(s.style==='solid'?5.4:4.4):(conn?1.2:1.4);
-    x.globalAlpha=story?1:0.40;
-    if(s.style!=='solid'||(!story&&conn))x.setLineDash(story?[7,4]:[5,4]);
+    // v596: source agendas (any non-live ink off the story edges) read in their own colour; live blue recedes.
+    var src=!story&&String(s.hex||'#2563eb').toLowerCase()!=='#2563eb';
+    x.lineWidth=story?(s.style==='solid'?5.4:4.4):(src?2.6:(conn?1.1:1.3));
+    x.globalAlpha=story?1:(src?0.9:0.32);
+    if(s.style!=='solid'||(!story&&conn))x.setLineDash(story?[7,4]:(src?[8,3]:[5,4]));
     x.beginPath();x.moveTo(a[0],a[1]);x.lineTo(a[0]+(b[0]-a[0])*sv,a[1]+(b[1]-a[1])*sv);x.stroke();x.restore();
   }
   function drawingUnits(d){

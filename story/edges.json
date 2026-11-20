@@ -1,20 +1,23 @@
 {
- "v": 1795149981,
- "at": "2026-11-19 11:46 PM ET",
+ "v": 1795155561,
+ "at": "2026-11-20 01:19 AM ET",
  "legend_title": "painted by gode",
- "latest_seated": "j49",
+ "latest_seated": "j50",
  "story": {
   "d": "egusi on tissue papers",
   "m": 65,
   "budget": "story: 65 lines (~2 hrs)",
-  "lines_in": 33,
+  "lines_in": 42,
   "current": "j50",
-  "latest_seated": "j49",
-  "header": "j50: edge 5 of 5 ⬛ · egusi.serve(tissue) · 0 of 14 lines in."
+  "latest_seated": "j50",
+  "header": "j50: edge 5 of 5 ⬛ · egusi.serve(tissue) · 9 of 14 lines in."
  },
  "edges": [
   {
    "job": "j46",
+   "jobs": [
+    "j46"
+   ],
    "k": 1,
    "n": 5,
    "beam": "investor.trust 1 → 2",
@@ -28,11 +31,15 @@
   },
   {
    "job": "j47",
+   "jobs": [
+    "j47",
+    "j48"
+   ],
    "k": 2,
    "n": 5,
    "beam": "kazeem.pay(fuel)",
    "m": 15,
-   "lines_in": 0,
+   "lines_in": 18,
    "status": "closed",
    "verdict": "NO",
    "dot": "🟨",
@@ -41,11 +48,14 @@
   },
   {
    "job": "j48",
+   "jobs": [
+    "j49"
+   ],
    "k": 3,
    "n": 5,
    "beam": "replay of j39",
    "m": 6,
-   "lines_in": 6,
+   "lines_in": 15,
    "status": "closed",
    "verdict": "YES",
    "dot": "🟫",
@@ -54,6 +64,9 @@
   },
   {
    "job": "j49",
+   "jobs": [
+    "j49"
+   ],
    "k": 4,
    "n": 5,
    "beam": "cooler.quantity 0 → 12",
@@ -67,11 +80,14 @@
   },
   {
    "job": "j50",
+   "jobs": [
+    "j50"
+   ],
    "k": 5,
    "n": 5,
    "beam": "egusi.serve(tissue)",
    "m": 14,
-   "lines_in": 0,
+   "lines_in": 9,
    "status": "current",
    "verdict": "PENDING",
    "dot": "⬛",
@@ -191,7 +207,7 @@
    "agenda": "j48",
    "hex": "#92400e",
    "dot": "🟫",
-   "job": "j49"
+   "job": "j50"
   },
   {
    "id": "mamaronke",
@@ -199,10 +215,10 @@
    "kind": "person",
    "emoji": "👵🏾",
    "img": null,
-   "agenda": "j49",
-   "hex": "#16a34a",
-   "dot": "🟩",
-   "job": "j49"
+   "agenda": "j50",
+   "hex": "#1f2937",
+   "dot": "⬛",
+   "job": "j50"
   },
   {
    "id": "investor",
@@ -227,17 +243,6 @@
    "job": "j40"
   },
   {
-   "id": "chairman",
-   "name": "chairman",
-   "kind": "person",
-   "emoji": "🧑🏾‍💼",
-   "img": null,
-   "agenda": "run-2eb42d",
-   "hex": "#2563eb",
-   "dot": "🟦",
-   "job": "j44"
-  },
-  {
    "id": "secretary",
    "name": "secretary",
    "kind": "person",
@@ -247,6 +252,17 @@
    "hex": "#2563eb",
    "dot": "🟦",
    "job": "j49"
+  },
+  {
+   "id": "chairman",
+   "name": "chairman",
+   "kind": "person",
+   "emoji": "🧑🏾‍💼",
+   "img": null,
+   "agenda": "run-2eb42d",
+   "hex": "#2563eb",
+   "dot": "🟦",
+   "job": "j50"
   },
   {
    "id": "zobo",
@@ -382,7 +398,7 @@
   }
  ],
  "source": {
-  "copy": "/workspace/story-draw-120",
+  "copy": "/tmp/audit_stage_src",
   "state": ".draw_state.json",
   "palette": "/workspace/run-2eb42d/run/lovemap/agenda_palette.json"
  }

@@ -1,4 +1,5 @@
-/* v586: the card now shows a live mini painting (see 'v586 live mini painting' below).
+/* v10 (20 Nov 1:05 AM ET): source-agenda strokes thicker, live blue fainter.
+   v586: the card now shows a live mini painting (see 'v586 live mini painting' below).
    v579 story card = v577 card (same size, same layer: body-level fixed, z-index 12) + a gentle float.
    Float (Jesuye 19 Nov 7:09 PM ET: "revert this change and just make it float"): slow 5 s bob of a few px (CSS transform),
    paused while dragged, off for prefers-reduced-motion. The v578 lowest-layer/half-size change is reverted.
@@ -149,16 +150,19 @@
     var out=[];
     if(d.strokes&&d.strokes.length){
       var src=d.strokes.slice().sort(function(a,b){
-        var sa=(a.edge_k!=null&&a.edge_k!=='')?1:0, sb=(b.edge_k!=null&&b.edge_k!=='')?1:0;
+        var rk=function(s){return (s.edge_k!=null&&s.edge_k!=='')?2:(((s.hex||'#2563eb').toLowerCase()!=='#2563eb')?1:0);};
+        var sa=rk(a), sb=rk(b);
         return (sa-sb)||((a.index-b.index)||((a.subord||0)-(b.subord||0))||((a.i||0)-(b.i||0)));
       });
       src.forEach(function(s,j){
         if(!s.pa||!s.pb)return;
-        var a=[s.pa[0]*k,s.pa[1]*k],b=[s.pb[0]*k,s.pb[1]*k],hex=s.hex||'#2563eb',conn=s.kind==='connection',story=s.edge_k!=null&&s.edge_k!=='';
-        out.push({T:story?700:180,key:'s'+j,hash:[s.index,s.call,hex,s.kind].join(':'),gd:function(x,sv){
+        var a=[s.pa[0]*k,s.pa[1]*k],b=[s.pb[0]*k,s.pb[1]*k],hex=s.hex||'#2563eb',conn=s.kind==='connection',story=s.edge_k!=null&&s.edge_k!=='',srcA=!story&&hex.toLowerCase()!=='#2563eb';
+        out.push({T:story?700:(srcA?320:120),key:'s'+j,hash:[s.index,s.call,hex,s.kind].join(':'),gd:function(x,sv){
           x.save();x.lineCap='round';x.strokeStyle=hex;
-          x.lineWidth=story?(s.style==='solid'?2.8:2.3):(conn?0.8:1.0);x.globalAlpha=story?1:0.40;
-          if(s.style!=='solid'||(!story&&conn))x.setLineDash(story?[5,3]:[4,3]);
+          /* v10 (Jesuye 20 Nov 1:01 AM ET "still one colour on thr projector"): live blue recedes, source agendas and
+             story edges carry the colour so 5+ inks read at 264x165 */
+          x.lineWidth=story?(s.style==='solid'?3.2:2.8):(srcA?1.5:(conn?0.7:0.8));x.globalAlpha=story?1:(srcA?0.9:0.32);
+          if(s.style!=='solid'||(!story&&conn))x.setLineDash(story?[5,3]:(srcA?[5,2]:[3,3]));
           x.beginPath();x.moveTo(a[0],a[1]);x.lineTo(a[0]+(b[0]-a[0])*sv,a[1]+(b[1]-a[1])*sv);x.stroke();x.restore();}});
       });
       return out;
