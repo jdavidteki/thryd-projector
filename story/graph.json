@@ -550,6 +550,18 @@
    "location": null,
    "source": "sha256"
   },
+  "body": {
+   "id": "body",
+   "kind": "object",
+   "floor": "GROUND",
+   "x": 4.8553,
+   "y": 2.47,
+   "z": 2.13223,
+   "px": 566.8,
+   "py": 584.4,
+   "location": "townhall",
+   "source": "world_objects.location"
+  },
   "booking": {
    "id": "booking",
    "kind": "object",
@@ -2926,6 +2938,18 @@
    "location": "townhall",
    "source": "world_objects.location"
   },
+  "nkan": {
+   "id": "nkan",
+   "kind": "object",
+   "floor": "GROUND",
+   "x": 4.82887,
+   "y": 2.47,
+   "z": 2.42,
+   "px": 551.0,
+   "py": 592.0,
+   "location": "townhall",
+   "source": "world_objects.location"
+  },
   "nobody": {
    "id": "nobody",
    "kind": "object",
@@ -4378,6 +4402,18 @@
    "location": null,
    "source": "sha256"
   },
+  "trace": {
+   "id": "trace",
+   "kind": "method",
+   "floor": "GROUND",
+   "x": 4.39726,
+   "y": 2.47,
+   "z": 1.8038,
+   "px": 560.3,
+   "py": 561.6,
+   "location": null,
+   "source": "sha256"
+  },
   "trophy": {
    "id": "trophy",
    "kind": "object",
@@ -4544,6 +4580,18 @@
    "px": 359.2,
    "py": 451.5,
    "location": "village",
+   "source": "world_objects.location"
+  },
+  "wana": {
+   "id": "wana",
+   "kind": "object",
+   "floor": "GROUND",
+   "x": 5.49211,
+   "y": 2.47,
+   "z": 2.42,
+   "px": 584.3,
+   "py": 611.2,
+   "location": "townhall",
    "source": "world_objects.location"
   },
   "wanow": {
@@ -21527,12 +21575,168 @@
    "hex": "#2563eb",
    "label": "j44 \u00b7 kazeem.hear(inside)",
    "outline": "#a8be17"
+  },
+  {
+   "from": "kazeem",
+   "to": "ronke",
+   "from_xyz": {
+    "x": 4.693,
+    "y": 0.02,
+    "z": 1.67601,
+    "px": 581.5,
+    "py": 708.5
+   },
+   "to_xyz": {
+    "x": 2.27364,
+    "y": 2.47,
+    "z": 0.28,
+    "px": 530.1,
+    "py": 455.8
+   },
+   "index": 634,
+   "job": "j47",
+   "run": "run-2eb42d",
+   "call": "run-2eb42d:j47:body.run()#1.1",
+   "method": "see",
+   "hex": "#ca8a04",
+   "label": "j47 \u00b7 kazeem.see(ronke)",
+   "outline": "#1a80d9"
+  },
+  {
+   "from": "mamaronke",
+   "to": "nkan",
+   "from_xyz": {
+    "x": 0.77041,
+    "y": 2.47,
+    "z": 2.42,
+    "px": 347.1,
+    "py": 474.3
+   },
+   "to_xyz": {
+    "x": 4.82887,
+    "y": 2.47,
+    "z": 2.42,
+    "px": 551.0,
+    "py": 592.0
+   },
+   "index": 635,
+   "job": "j47",
+   "run": "run-2eb42d",
+   "call": "run-2eb42d:j47:body.run()#1.2",
+   "method": "hear",
+   "hex": "#ca8a04",
+   "label": "j47 \u00b7 mamaronke.hear(nkan)",
+   "outline": "#a8be17"
+  },
+  {
+   "from": "mamaronke",
+   "to": "ronke",
+   "from_xyz": {
+    "x": 0.77041,
+    "y": 2.47,
+    "z": 2.42,
+    "px": 347.1,
+    "py": 474.3
+   },
+   "to_xyz": {
+    "x": 2.27364,
+    "y": 2.47,
+    "z": 0.28,
+    "px": 530.1,
+    "py": 455.8
+   },
+   "index": 636,
+   "job": "j47",
+   "run": "run-2eb42d",
+   "call": "run-2eb42d:j47:body.run()#2.1",
+   "method": "see",
+   "hex": "#ca8a04",
+   "label": "j47 \u00b7 mamaronke.see(ronke)",
+   "outline": "#1a80d9"
+  },
+  {
+   "from": "kazeem",
+   "to": "real",
+   "from_xyz": {
+    "x": 4.693,
+    "y": 0.02,
+    "z": 1.67601,
+    "px": 581.5,
+    "py": 708.5
+   },
+   "to_xyz": {
+    "x": 5.66987,
+    "y": 2.47,
+    "z": 2.12922,
+    "px": 607.8,
+    "py": 607.9
+   },
+   "index": 637,
+   "job": "j47",
+   "run": "run-2eb42d",
+   "call": "run-2eb42d:j47:body.run()#2.2",
+   "method": "hear",
+   "hex": "#ca8a04",
+   "label": "j47 \u00b7 kazeem.hear(real)",
+   "outline": "#a8be17"
+  },
+  {
+   "from": "kazeem",
+   "to": "code",
+   "from_xyz": {
+    "x": 4.693,
+    "y": 0.02,
+    "z": 1.67601,
+    "px": 581.5,
+    "py": 708.5
+   },
+   "to_xyz": {
+    "x": 5.27764,
+    "y": 2.47,
+    "z": 2.13888,
+    "px": 587.7,
+    "py": 596.8
+   },
+   "index": 638,
+   "job": "j47",
+   "run": "run-2eb42d",
+   "call": "run-2eb42d:j47:body.run()#3.1",
+   "method": "trace",
+   "hex": "#ca8a04",
+   "label": "j47 \u00b7 kazeem.trace(code)",
+   "outline": "#be9d17"
+  },
+  {
+   "from": "ronke",
+   "to": "wana",
+   "from_xyz": {
+    "x": 2.27364,
+    "y": 2.47,
+    "z": 0.28,
+    "px": 530.1,
+    "py": 455.8
+   },
+   "to_xyz": {
+    "x": 5.49211,
+    "y": 2.47,
+    "z": 2.42,
+    "px": 584.3,
+    "py": 611.2
+   },
+   "index": 639,
+   "job": "j47",
+   "run": "run-2eb42d",
+   "call": "run-2eb42d:j47:body.run()#3.2",
+   "method": "hear",
+   "hex": "#ca8a04",
+   "label": "j47 \u00b7 ronke.hear(wana)",
+   "outline": "#a8be17"
   }
  ],
- "n_vertices": 402,
- "n_edges": 642,
- "n_object_vertices": 282,
- "n_method_vertices": 120,
+ "n_vertices": 406,
+ "n_edges": 648,
+ "n_object_vertices": 285,
+ "n_method_vertices": 121,
  "agenda_palette": {
   "j46": {
    "dot": "\ud83d\udfea",
@@ -21637,7 +21841,7 @@
    ],
    "name": "run-2eb42d",
    "lines": "246 of 270 lines",
-   "jobs": "j16\u2013j44",
+   "jobs": "j16\u2013j47",
    "s": "[[shift]] - my womb na pregnancy",
    "d": "1118. egusi on tissue papers",
    "kind": "agenda"
@@ -21787,5 +21991,5 @@
    "kind": "edge"
   }
  ],
- "stroke_hash": "4db7950d84b3e3a54d197a33dde85ca86eb58b9b22114273559f41a0c1f8dfb8"
+ "stroke_hash": "449ef7f06ad7d61cb8fc79b0e61e312cca698cde77a5fda07f4a3da04c90c0a5"
 }
