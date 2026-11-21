@@ -1,6 +1,6 @@
 {
- "v": 1795289271,
- "at": "2026-11-21 02:27 PM ET",
+ "v": 1795289327,
+ "at": "2026-11-21 02:28 PM ET",
  "legend_title": "painted by gode",
  "latest_seated": "j101",
  "story": {
@@ -31,7 +31,8 @@
    "verdict": "NO",
    "dot": "🟪",
    "hex": "#7c3aed",
-   "label": "j46: edge 1 of 5 🟪 · investor.trust 1 → 2"
+   "label": "j46: edge 1 of 5 🟪 · investor.trust 1 → 2",
+   "school": "default"
   },
   {
    "job": "j47",
@@ -48,7 +49,8 @@
    "verdict": "NO",
    "dot": "🟨",
    "hex": "#ca8a04",
-   "label": "j47: edge 2 of 5 🟨 · kazeem.pay(fuel)"
+   "label": "j47: edge 2 of 5 🟨 · kazeem.pay(fuel)",
+   "school": "default"
   },
   {
    "job": "j48",
@@ -64,7 +66,8 @@
    "verdict": "YES",
    "dot": "🟫",
    "hex": "#92400e",
-   "label": "j48: edge 3 of 5 🟫 · replay of j39"
+   "label": "j48: edge 3 of 5 🟫 · replay of j39",
+   "school": "default"
   },
   {
    "job": "j49",
@@ -81,7 +84,8 @@
    "verdict": "PENDING",
    "dot": "🟩",
    "hex": "#16a34a",
-   "label": "j49: edge 4 of 5 🟩 · cooler.quantity 0 → 12"
+   "label": "j49: edge 4 of 5 🟩 · cooler.quantity 0 → 12",
+   "school": "default"
   },
   {
    "job": "j50",
@@ -98,7 +102,8 @@
    "verdict": "PENDING",
    "dot": "⬛",
    "hex": "#1f2937",
-   "label": "j50: edge 5 of 5 ⬛ · egusi.serve(tissue)"
+   "label": "j50: edge 5 of 5 ⬛ · egusi.serve(tissue)",
+   "school": "default"
   }
  ],
  "agendas": [
@@ -106,8 +111,8 @@
    "run": "run-2eb42d",
    "dot": "🟦",
    "hex": "#2563eb",
-   "jobs": "j16–j103",
-   "calls": 822,
+   "jobs": "j16–j104",
+   "calls": 828,
    "s": "[[shift]] - my womb na pregnancy",
    "d": "1118. egusi on tissue papers",
    "locked": true,
@@ -614,6 +619,76 @@
    "job": "j40"
   }
  ],
+ "school": {
+  "id": "default",
+  "name": "The Default School",
+  "tag": "",
+  "philosophy": "today's church behaviour, exactly",
+  "mode": "auto",
+  "scope": null,
+  "score": {
+   "total": 0.5438,
+   "score_raw": 0.5438,
+   "metrics": {
+    "edges_closed": {
+     "value": 0.2,
+     "weight": 1.0,
+     "contrib": 0.0667
+    },
+    "colour_in_shape": {
+     "value": 0.9532,
+     "weight": 1.0,
+     "contrib": 0.3177
+    },
+    "provenance_coverage": {
+     "value": 0.4783,
+     "weight": 1.0,
+     "contrib": 0.1594
+    }
+   },
+   "raw": {
+    "edges": 5,
+    "edges_yes": 1,
+    "edges_resolved": 3,
+    "rows": 299,
+    "rows_in_shape": 285,
+    "rows_with_archive_provenance": 143,
+    "refrain_subjects": 5,
+    "room_rows": 277,
+    "chance_rows": 1,
+    "pidgin_rows": 28,
+    "erase_events": 0,
+    "erased_rows": 0,
+    "gaps": 4
+   }
+  },
+  "leading": null,
+  "evidence": null,
+  "per_scope": {
+   "edge:1": "default",
+   "edge:2": "default",
+   "edge:3": "default",
+   "edge:4": "default",
+   "edge:5": "default",
+   "source:run-5a58c4": "default",
+   "source:run-bd649b": "default",
+   "source:run-cb805f": "default",
+   "source:run-g1-B": "default",
+   "source:j39": "default",
+   "source:awa-run": "default",
+   "source:bzn-run": "default",
+   "source:fada-run": "default",
+   "source:mog-run": "default",
+   "source:dsr-run": "default",
+   "source:fyp-run": "default",
+   "source:hallelujah-tsis-run": "default",
+   "source:namco-run": "default",
+   "source:replenish-run": "default",
+   "source:rjp-run": "default"
+  },
+  "switches": [],
+  "erasures": []
+ },
  "source": {
   "copy": "/workspace/story-draw-120",
   "state": ".draw_state.json",
