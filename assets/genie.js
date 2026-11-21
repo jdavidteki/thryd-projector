@@ -1,3 +1,5 @@
+// v605 (Jesuye 3:01 PM "make the djinee moving less flashy but still smooth"): one soft thin double trail, a few faint
+// sparkles, a brief soft glow instead of the rayed flash, no additive blending, slower smooth easing; cadence unchanged.
 // genie return (Jesuye 21 Nov 2026 2:10 PM ET: "sometimes the objects go back inside its background like how the djinee goes back
 // into its lamp. make it flamboyant and dont break anything"; 2:11 PM "only for the projector"; 2:12 PM "anytime, to any object").
 // 2:16 PM "an object can slip into ANY other background". Every several seconds one visible object (stage cut, slideshow run-view
@@ -30,15 +32,15 @@
     '#objs .dpatch.genie-hole{opacity:1!important}',
     'canvas.genie-fx{position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none;z-index:2147483000}',
     '.genie-ember{position:absolute;width:14px;height:14px;margin:-7px 0 0 -7px;border-radius:50%;pointer-events:none;z-index:2147482999;',
-    'background:radial-gradient(circle,#fff 0,var(--gc,#ffd27a) 35%,transparent 70%);mix-blend-mode:screen;animation:genieEmber 1.7s ease-in-out infinite}',
-    '@keyframes genieEmber{0%,100%{opacity:.25;transform:scale(.6)}50%{opacity:.95;transform:scale(1.35)}}'
+    'background:radial-gradient(circle,var(--gc,#ffd27a) 0,transparent 70%);animation:genieEmber 3.2s ease-in-out infinite}',
+    '@keyframes genieEmber{0%,100%{opacity:.12;transform:scale(.7)}50%{opacity:.4;transform:scale(1.1)}}'
   ].join('\n');
   document.head.appendChild(css);
 
   const R = (a, b) => a + Math.random() * (b - a);
   const clamp = (x, a, b) => Math.max(a, Math.min(b, x));
-  const easeIn = t => t * t * (2.2 - 1.2 * t);
-  const easeOutBack = t => { const c = 1.9; return 1 + (c + 1) * Math.pow(t - 1, 3) + c * Math.pow(t - 1, 2); };
+  const easeIn = t => t * t * t * (t * (t * 6 - 15) + 10); // smootherstep: slow start, slow finish
+  const easeOutBack = t => t * t * t * (t * (t * 6 - 15) + 10); // v605: no overshoot pop, same smootherstep
   function hexRgb(h){ h = String(h || '').trim(); const m = h.match(/^#?([0-9a-f]{3}|[0-9a-f]{6})$/i); if(!m) return null; let s = m[1]; if(s.length === 3) s = s.split('').map(c => c + c).join('');
     return [parseInt(s.slice(0, 2), 16), parseInt(s.slice(2, 4), 16), parseInt(s.slice(4, 6), 16)]; }
   function hueRgb(key){ let h = 0; key = String(key || 'thryd'); for(let i = 0; i < key.length; i++) h = (h * 31 + key.charCodeAt(i)) >>> 0;
@@ -49,7 +51,7 @@
   const darken = (c, k) => c.map(v => Math.round(v * (1 - k)));
   // white stage: additive glow vanishes on white, so draw normally with deeper tones there
   const WHITE = () => !!(document.body && document.body.classList.contains('stage-white') && document.body.classList.contains('stage1'));
-  const GLOW = () => WHITE() ? 'source-over' : 'lighter';
+  const GLOW = () => 'source-over'; // v605: never additive
   const WHITE_RGB = () => WHITE() ? [70, 40, 140] : [255, 255, 255];
 
   function paused(){ const b = document.body && document.body.classList; if(!b) return true;
@@ -114,35 +116,33 @@
     P.push({t: 'smoke', x, y, vx: Math.cos(a) * v, vy: Math.sin(a) * v - R(0, .4), r: R(4, 10), gr: R(.25, .6), life: R(700, 1300), age: 0, col: Math.random() < .35 ? (WHITE() ? darken(col, .35) : [255, 255, 255]) : col, sw: swirl || 0}); } }
   function sparkle(P, x, y, col, n, spread){ for(let k = 0; k < n; k++){ const a = R(0, Math.PI * 2), v = R(.6, 1.6) * spread;
     const W = WHITE(), c = Math.random() < .3 ? (W ? [214, 150, 20] : [255, 236, 170]) : (Math.random() < .3 ? WHITE_RGB() : (W ? darken(col, R(0, .3)) : lighten(col, R(0, .35))));
-    P.push({t: 'spark', x, y, vx: Math.cos(a) * v, vy: Math.sin(a) * v, r: R(3, 8), life: R(500, 1100), age: 0, col: c, rot: R(0, 6.3), tw: R(8, 16)}); } }
+    P.push({t: 'spark', x, y, vx: Math.cos(a) * v * .6, vy: Math.sin(a) * v * .6, r: R(1.5, 3.2), life: R(500, 1100), age: 0, col: c, rot: R(0, 6.3), tw: R(8, 16)}); } }
   function drawParticles(g, P, dt){
     for(let k = P.length - 1; k >= 0; k--){ const p = P[k]; p.age += dt; if(p.age >= p.life){ P.splice(k, 1); continue; }
       const f = p.age / p.life, s = dt / 16.7;
       if(p.sw){ const vx = p.vx; p.vx += -p.vy * p.sw * .02 * s; p.vy += vx * p.sw * .02 * s; }
       p.x += p.vx * s; p.y += p.vy * s; p.vx *= Math.pow(.97, s); p.vy *= Math.pow(.97, s);
-      if(p.t === 'smoke'){ const r = p.r * (1 + f * 3.2 * p.gr * 3); const a = .38 * (1 - f) * Math.min(1, f * 6);
+      if(p.t === 'smoke'){ const r = p.r * (1 + f * 3.2 * p.gr * 3); const a = .14 * (1 - f) * Math.min(1, f * 6);
         const gr = g.createRadialGradient(p.x, p.y, 0, p.x, p.y, r); gr.addColorStop(0, rgba(p.col, a)); gr.addColorStop(1, rgba(p.col, 0));
         g.fillStyle = gr; g.beginPath(); g.arc(p.x, p.y, r, 0, 6.2832); g.fill(); }
-      else { const a = (1 - f) * (.55 + .45 * Math.sin(p.age / 1000 * p.tw * 6.28)); const r = p.r * (1 - f * .5); star(g, p.x, p.y, r, p.rot + f * 2, rgba(p.col, clamp(a, 0, 1))); }
+      else { const a = .45 * (1 - f) * (.6 + .4 * Math.sin(p.age / 1000 * p.tw * 3.14)); const r = p.r * (1 - f * .5); star(g, p.x, p.y, r, p.rot + f * 2, rgba(p.col, clamp(a, 0, 1))); }
     } }
   function star(g, x, y, r, rot, fill){ g.save(); g.translate(x, y); g.rotate(rot); g.fillStyle = fill; g.beginPath();
     for(let k = 0; k < 8; k++){ const rr = k % 2 ? r * .22 : r, a = k * Math.PI / 4; g.lineTo(Math.cos(a) * rr, Math.sin(a) * rr); } g.closePath(); g.fill(); g.restore(); }
-  function flash(g, x, y, col, f, big){ const R0 = big * (0.35 + f * 1.4), a = (1 - f);
-    g.save(); g.globalCompositeOperation = GLOW();
-    const gr = g.createRadialGradient(x, y, 0, x, y, R0); gr.addColorStop(0, rgba(WHITE() ? [255, 214, 90] : [255, 255, 255], .95 * a)); gr.addColorStop(.25, rgba(lighten(col, .3), .7 * a)); gr.addColorStop(1, rgba(col, 0));
-    g.fillStyle = gr; g.beginPath(); g.arc(x, y, R0, 0, 6.2832); g.fill();
-    g.strokeStyle = rgba(lighten(col, .5), .8 * a); g.lineWidth = 2 + 4 * a; g.beginPath(); g.arc(x, y, big * (.2 + f * 1.9), 0, 6.2832); g.stroke();
-    for(let k = 0; k < 6; k++){ const ang = k * Math.PI / 3 + f; g.strokeStyle = rgba(WHITE() ? [200, 140, 20] : [255, 248, 220], .6 * a); g.lineWidth = 1.5; g.beginPath();
-      g.moveTo(x + Math.cos(ang) * big * .15, y + Math.sin(ang) * big * .15); g.lineTo(x + Math.cos(ang) * big * (.5 + f * 1.3), y + Math.sin(ang) * big * (.5 + f * 1.3)); g.stroke(); }
-    g.restore(); }
-  function trail(g, H, col, w0){ // tapered swirling ribbon, three strands, glowing
-    if(H.length < 3) return; g.save(); g.globalCompositeOperation = GLOW(); const W = WHITE(); g.lineCap = 'round';
-    for(let s = 0; s < 3; s++){ const ph = s * 2.1;
-      for(let k = 1; k < H.length; k++){ const a = H[k - 1], b = H[k], f = k / H.length;
-        const off = Math.sin(k * .45 + ph) * w0 * .25 * (1 - f);
-        g.strokeStyle = s === 1 ? rgba(W ? [214, 150, 20] : [255, 250, 230], (W ? .5 : .32) * f) : rgba(W ? darken(col, s * .15) : lighten(col, s * .2), (W ? .35 : .45) * f);
-        g.lineWidth = Math.max(.6, w0 * f * (s === 1 ? .22 : .5));
-        g.beginPath(); g.moveTo(a.x + off, a.y - off); g.lineTo(b.x + off, b.y - off); g.stroke(); } }
+  function flash(g, x, y, col, f, big){ // v605: a brief soft glow, no ring, no rays
+    const a = Math.sin(Math.PI * clamp(f, 0, 1)) * .28, R0 = big * (.35 + f * .45);
+    g.save(); const gr = g.createRadialGradient(x, y, 0, x, y, R0);
+    gr.addColorStop(0, rgba(lighten(col, .45), a)); gr.addColorStop(.5, rgba(col, a * .45)); gr.addColorStop(1, rgba(col, 0));
+    g.fillStyle = gr; g.beginPath(); g.arc(x, y, R0, 0, 6.2832); g.fill(); g.restore(); }
+  function trail(g, H, col, w0){ // v605: two thin soft strands, low opacity
+    if(H.length < 3) return; g.save(); g.lineCap = 'round'; g.lineJoin = 'round'; const W = WHITE();
+    for(let s = 0; s < 2; s++){ const ph = s * 2.6;
+      g.beginPath();
+      for(let k = 0; k < H.length; k++){ const f = k / H.length, off = Math.sin(k * .3 + ph) * w0 * .12 * (1 - f);
+        if(k === 0) g.moveTo(H[k].x + off, H[k].y - off); else g.lineTo(H[k].x + off, H[k].y - off); }
+      const end = H[H.length - 1], st = H[0], gr = g.createLinearGradient(st.x, st.y, end.x, end.y);
+      const c = W ? darken(col, .1) : lighten(col, .25); gr.addColorStop(0, rgba(c, 0)); gr.addColorStop(1, rgba(c, s ? .16 : .24));
+      g.strokeStyle = gr; g.lineWidth = Math.max(1, w0 * (s ? .1 : .16)); g.stroke(); }
     g.restore(); }
 
   function vanishPoint(r){ return {x: r.left + r.width * .5, y: r.top + r.height * .78}; }
@@ -202,27 +202,27 @@
     hide(c, true); G.away.push(c); G.anims++; G.count.in++;
     G.last = {dir: 'in', kind: c.kind, at: Date.now(), label: (c.cut && c.cut.label) || (c.el.dataset && c.el.dataset.label) || '', into: tgt.g ? ('group ' + (tgt.g.title || tgt.g.mid || '')).slice(0, 60) : (tgt.el.className || tgt.el.tagName), own: !!(c.cut && tgt.g && c.cut.g === tgt.g)};
     const C0 = {x: r0.left + r0.width / 2, y: r0.top + r0.height / 2}, big = Math.max(r0.width, r0.height);
-    const dur = R(2100, 2800), turns = R(2.2, 3.4) * (Math.random() < .5 ? -1 : 1), ph = R(0, 6.28), amp = Math.max(40, big * .55);
+    const dur = R(3000, 3600), turns = R(1.6, 2.4) * (Math.random() < .5 ? -1 : 1), ph = R(0, 6.28), amp = Math.max(40, big * .55);
     const P = Particles(), H = []; let t0 = 0, last = 0, flashAt = 0, V = tPoint(tgt, vanishPoint(r0));
     effects.push({step(g, now){
-      if(!t0){ t0 = now; last = now; puff(P, C0.x, C0.y, c.colour, 8, 1.4, 1); sparkle(P, C0.x, C0.y, c.colour, 10, 1.8); }
+      if(!t0){ t0 = now; last = now; puff(P, C0.x, C0.y, c.colour, 3, .8, 1); }
       const dt = Math.min(50, now - last); last = now; const e = (now - t0) / dur;
       V = tPoint(tgt, V); // follows the target background as the camera drifts
       if(e < 1){
         const p = easeIn(clamp(e, 0, 1)), pt = swirlAt(C0, V, p, turns, amp, ph), x = pt.x, y = pt.y;
-        const s = Math.pow(1 - p, 1.2), sx = s * (1 - .35 * Math.sin(Math.PI * p)), sy = s * (1 + .45 * Math.sin(Math.PI * p));
+        const s = Math.pow(1 - p, 1.2), sx = s * (1 - .1 * Math.sin(Math.PI * p)), sy = s * (1 + .12 * Math.sin(Math.PI * p));
         H.push({x, y}); if(H.length > 52) H.shift();
-        trail(g, H, c.colour, big * .45 * s + 7);
-        if(Math.random() < .85) puff(P, x, y, c.colour, 1, 1.2, turns > 0 ? 1 : -1);
-        if(Math.random() < .75) sparkle(P, x, y, c.colour, 2, 1.4);
+        trail(g, H, c.colour, big * .3 * s + 6);
+        if(Math.random() < .25) puff(P, x, y, c.colour, 1, .7, turns > 0 ? 1 : -1);
+        if(Math.random() < .08) sparkle(P, x, y, c.colour, 1, .8);
         drawParticles(g, P, dt);
         if(s > .015){ g.save(); g.translate(x, y); g.rotate((pt.th - ph) * .22); g.scale(sx, sy); g.globalAlpha = clamp(1.2 - p, 0, 1);
-          g.shadowColor = rgba(lighten(c.colour, .2), .9); g.shadowBlur = 18 * p + 4;
+          g.shadowColor = rgba(c.colour, .35); g.shadowBlur = 8 * p + 2;
           g.drawImage(snap, -r0.width / 2, -r0.height / 2, r0.width, r0.height); g.restore(); }
         return true;
       }
-      if(!flashAt){ flashAt = now; sparkle(P, V.x, V.y, c.colour, 28, 2.8); puff(P, V.x, V.y, c.colour, 10, 1.6, 1); ember(c, true); }
-      const f = (now - flashAt) / 750; if(f < 1) flash(g, V.x, V.y, c.colour, f, Math.max(60, big * .6));
+      if(!flashAt){ flashAt = now; sparkle(P, V.x, V.y, c.colour, 3, .9); puff(P, V.x, V.y, c.colour, 3, .8, 1); ember(c, true); }
+      const f = (now - flashAt) / 900; if(f < 1) flash(g, V.x, V.y, c.colour, f, Math.max(50, big * .45));
       H.splice(0, Math.max(1, Math.ceil(H.length * .12))); trail(g, H, c.colour, 6);
       drawParticles(g, P, dt);
       if(f >= 1 && !P.length && !H.length){ G.anims--; c.inAt = Date.now(); return false; }
@@ -243,23 +243,23 @@
     ensureFx(c.host); G.anims++; G.count.out++; G.last = {dir: 'out', kind: c.kind, at: Date.now(), from: src ? (src.g ? ('group ' + (src.g.title || src.g.mid || '')).slice(0, 60) : (src.el.className || src.el.tagName)) : 'home', same: !!(src && c.tgt && (src.g ? src.g === c.tgt.g : src.el === c.tgt.el))};
     const C1 = {x: rr.left + rr.width / 2, y: rr.top + rr.height / 2}, big = Math.max(rr.width, rr.height);
     const V = tPoint(src, vanishPoint(rr));
-    const dur = R(1700, 2300), turns = R(1.6, 2.6) * (Math.random() < .5 ? -1 : 1), ph = R(0, 6.28), amp = Math.max(36, big * .5);
+    const dur = R(2600, 3200), turns = R(1.2, 2) * (Math.random() < .5 ? -1 : 1), ph = R(0, 6.28), amp = Math.max(36, big * .5);
     const P = Particles(), H = []; let t0 = 0, last = 0, shown = false;
     effects.push({step(g, now){
-      if(!t0){ t0 = now; last = now; sparkle(P, V.x, V.y, c.colour, 32, 3); puff(P, V.x, V.y, c.colour, 14, 2.2, -1); }
+      if(!t0){ t0 = now; last = now; sparkle(P, V.x, V.y, c.colour, 3, .9); puff(P, V.x, V.y, c.colour, 3, .9, -1); }
       const dt = Math.min(50, now - last); last = now; const e = (now - t0) / dur;
-      const ff = (now - t0) / 650; if(ff < 1) flash(g, V.x, V.y, c.colour, ff, Math.max(60, big * .65));
+      const ff = (now - t0) / 900; if(ff < 1) flash(g, V.x, V.y, c.colour, ff, Math.max(50, big * .45));
       const home = c.el.isConnected ? boxOf(c) : rr, Ch = home.width > 2 ? {x: home.left + home.width / 2, y: home.top + home.height / 2} : C1;
       if(e < 1){
         const p = clamp(e, 0, 1), q = 1 - p, pt = swirlAt(V, Ch, 1 - Math.pow(1 - p, 2.2), turns, amp, ph), x = pt.x, y = pt.y, s = clamp(easeOutBack(p), 0, 1.12);
-        H.push({x, y}); if(H.length > 44) H.shift(); trail(g, H, c.colour, big * .35 * Math.min(1, s) + 5);
-        if(Math.random() < .8) sparkle(P, x, y, c.colour, 2, 1.6); if(Math.random() < .6) puff(P, x, y, c.colour, 1, 1, -1);
+        H.push({x, y}); if(H.length > 44) H.shift(); trail(g, H, c.colour, big * .25 * Math.min(1, s) + 5);
+        if(Math.random() < .08) sparkle(P, x, y, c.colour, 1, .8); if(Math.random() < .2) puff(P, x, y, c.colour, 1, .7, -1);
         drawParticles(g, P, dt);
-        g.save(); g.translate(x, y); g.rotate(-(pt.th - ph) * .15 * q); g.scale(s * (1 + .25 * Math.sin(Math.PI * p)), s * (1 - .2 * Math.sin(Math.PI * p))); g.globalAlpha = clamp(p * 2.5, 0, 1);
-        g.shadowColor = rgba(lighten(c.colour, .2), .9); g.shadowBlur = 20 * q + 4; g.drawImage(snap, -home.width / 2, -home.height / 2, home.width || rr.width, home.height || rr.height); g.restore();
+        g.save(); g.translate(x, y); g.rotate(-(pt.th - ph) * .15 * q); g.scale(s * (1 + .08 * Math.sin(Math.PI * p)), s * (1 - .06 * Math.sin(Math.PI * p))); g.globalAlpha = clamp(p * 1.8, 0, 1);
+        g.shadowColor = rgba(c.colour, .35); g.shadowBlur = 8 * q + 2; g.drawImage(snap, -home.width / 2, -home.height / 2, home.width || rr.width, home.height || rr.height); g.restore();
         return true;
       }
-      if(!shown){ shown = true; hide(c, false); const k = G.away.indexOf(c); if(k >= 0) G.away.splice(k, 1); sparkle(P, Ch.x, Ch.y, c.colour, 20, 2.4); puff(P, Ch.x, Ch.y, c.colour, 6, 1.2, 1); }
+      if(!shown){ shown = true; hide(c, false); const k = G.away.indexOf(c); if(k >= 0) G.away.splice(k, 1); puff(P, Ch.x, Ch.y, c.colour, 2, .6, 1); }
       H.splice(0, Math.max(1, Math.ceil(H.length * .15))); trail(g, H, c.colour, 5); drawParticles(g, P, dt);
       if(!P.length && !H.length){ G.anims--; return false; }
       return true;
