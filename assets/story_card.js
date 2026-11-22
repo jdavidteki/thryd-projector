@@ -13,7 +13,7 @@
   if(window.__thrydStoryCard) return; window.__thrydStoryCard=1;
   var URL_='https://jdavidteki.github.io/thryd-projector/story/', KEY='thryd_storycard_pos', TH=6;
   var css=document.createElement('style');
-  css.textContent='#storycard{position:fixed;z-index:13;display:flex;flex-direction:column;align-items:stretch;width:168px;padding:5px;'+
+  css.textContent='#storycard{position:fixed;z-index:13;display:flex;flex-direction:column;align-items:stretch;width:132px;padding:5px;'+
     'background:#fffffff2;color:#141414;border-radius:9px;box-shadow:0 4px 16px #0009;text-decoration:none;touch-action:none;'+
     'user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;cursor:grab;font:600 11px/1.25 system-ui,-apple-system,sans-serif;animation:thrydStoryBob 5s ease-in-out infinite;will-change:transform}'+
     '@keyframes thrydStoryBob{0%,100%{transform:translate(0,0)}25%{transform:translate(1px,-3px)}50%{transform:translate(0,-4px)}75%{transform:translate(-1px,-2px)}}'+
@@ -22,16 +22,16 @@
     '#storycard canvas{display:none;width:100%;aspect-ratio:1440/900;border-radius:5px;background:#fff;pointer-events:none}#storycard.mini canvas{display:block}#storycard.mini img{display:none}'+
     '#storycard .jb{font-weight:700;white-space:nowrap}'+
     '#storycard img{display:block;width:100%;aspect-ratio:1440/900;object-fit:cover;border-radius:5px;background:#fff;pointer-events:none}'+
-    '#storycard .sl{display:flex;justify-content:space-between;align-items:center;gap:4px;margin-top:4px;pointer-events:none;white-space:nowrap}'+
+    '#storycard .sl{display:flex;justify-content:space-between;align-items:center;gap:4px;margin-top:4px;pointer-events:none;white-space:nowrap;font-size:9px}'+
     '#storycard .sl>span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}'+
     '#storycard .go{display:none}'+
-    '#storycard .oc{display:block;margin-top:3px;font:700 10px/1.3 system-ui,-apple-system,sans-serif;color:#222;pointer-events:none;letter-spacing:-0.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}'+
-    '@media (max-width:640px){#storycard{width:156px;font-size:10px;padding:4px}#storycard .go{display:none}#storycard .oc{font-size:10px}}';
+    '#storycard .oc{display:block;margin-top:3px;font:700 8px/1.25 system-ui,-apple-system,sans-serif;color:#222;pointer-events:none;letter-spacing:-0.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}'+
+    '@media (max-width:640px){#storycard{width:100px;font-size:10px;padding:4px}#storycard .go{display:none}#storycard .sl{font-size:8px}#storycard .oc{font-size:7px}}';
   document.head.appendChild(css);
   var a=document.createElement('a'); a.id='storycard'; a.href=URL_; a.target='_blank'; a.rel='noopener';
   a.title='Open the story so far (painted by code)'; a.setAttribute('aria-label','📐 the story so far: open the story diagram in a new tab');
   a.draggable=false;
-  a.innerHTML='<canvas width="264" height="165" aria-hidden="true"></canvas><img alt="" src="story/story_painted_3d.png"><span class="sl"><span>📐 the story so far <span class="jb"></span></span><span class="go">open ↗</span></span><span class="oc" aria-live="polite">0 coloured · 0/319 outline</span>';
+  a.innerHTML='<canvas width="264" height="165" aria-hidden="true"></canvas><img alt="" src="story/story_painted_3d.png"><span class="sl"><span>📐 the story <span class="jb"></span></span><span class="go">open ↗</span></span><span class="oc" aria-live="polite">0 coloured · 0/319</span>';
   var img=a.querySelector('img');
   fetch('story/story.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).then(function(j){if(j&&j.v)img.src='story/story_painted_3d.png?v='+j.v;}).catch(function(){});
   function clamp(x,y){var w=a.offsetWidth||132,h=a.offsetHeight||100;return [Math.max(4,Math.min(innerWidth-w-4,x)),Math.max(4,Math.min(innerHeight-h-4,y))];}
@@ -156,7 +156,7 @@
     var tb=mtitleBlock()||{}, c=tb.count, n=moutlineNow(), total=tb.n_outline||(mdrawing&&mdrawing.n_edges)||0;
     var line=countLine();
     var lab=a.querySelector('.oc');
-    if(lab)lab.textContent=line;
+    if(lab)lab.textContent=fmtCount(mstrokesNow())+' coloured · '+moutlineNow()+'/'+(tb.n_outline||(mdrawing&&mdrawing.n_edges)||0);
     a.dataset.outline=n+'/'+total;
     a.dataset.coloured=String(mstrokesNow());
     if(!c||!x||!mm)return;
