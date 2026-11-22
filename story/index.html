@@ -26,6 +26,8 @@ header,main{position:relative;z-index:1}
 #fig{position:relative;max-width:1440px;margin:0 auto;background:#fff;border-radius:6px}
 #paint{display:none;width:100%;height:auto;aspect-ratio:1440/900;background:#fff}
 #fig.live #paint{display:block}#fig.live #story{display:none}
+#fig.drawing #paint{cursor:grab;touch-action:none}
+#fig.drawing.spin-drag #paint{cursor:grabbing}
 .ctl{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;justify-content:center;margin:12px auto 0;font:600 13px ui-monospace,Menlo,Consolas,monospace;color:#333}
 .ctl label{display:flex;align-items:center;gap:8px}
 .ctl input[type=range]{width:min(260px,52vw);accent-color:#7c3aed;height:28px}
@@ -252,7 +254,7 @@ header,main{position:relative;z-index:1}
   load();setInterval(load,300000);
 })();
 </script>
-<script src="gode.js?v=20"></script>
+<script src="gode.js?v=21"></script>
 <script src="gode_fx.js?v=6"></script>
 </body>
 </html>
