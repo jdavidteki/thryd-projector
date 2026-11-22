@@ -250,9 +250,7 @@
   }
   function fmtCount(n){n=Math.max(0,Math.floor(+n||0));return String(n).replace(/\B(?=(\d{3})+(?!\d))/g,',');}
   function countLine(){
-    var outline=outlineColouredNow();
-    var nOutline=(DM&&((DM.title_block&&DM.title_block.n_outline)||DM.n_edges))||0;
-    return fmtCount(strokesColouredNow())+' coloured · '+outline+'/'+nOutline+' outline';
+    return fmtCount(strokesColouredNow())+' coloured';
   }
   var ocLab=document.getElementById('oclabel');
   function syncOutlineLabel(){

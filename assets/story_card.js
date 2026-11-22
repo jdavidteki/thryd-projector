@@ -30,7 +30,7 @@
   var a=document.createElement('a'); a.id='storycard'; a.href=URL_; a.target='_blank'; a.rel='noopener';
   a.title='Open the story so far (painted by code)'; a.setAttribute('aria-label','📐 the story so far: open the story diagram in a new tab');
   a.draggable=false;
-  a.innerHTML='<canvas width="264" height="165" aria-hidden="true"></canvas><img alt="" src="story/story_painted_3d.png"><span class="sl"><span>📐 the story so far <span class="jb"></span></span><span class="go">open ↗</span></span><span class="oc" aria-live="polite">0 coloured · 0/319 outline</span>';
+  a.innerHTML='<canvas width="264" height="165" aria-hidden="true"></canvas><img alt="" src="story/story_painted_3d.png"><span class="sl"><span>📐 the story so far <span class="jb"></span></span><span class="go">open ↗</span></span><span class="oc" aria-live="polite">0 coloured</span>';
   var img=a.querySelector('img');
   fetch('story/story.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).then(function(j){if(j&&j.v)img.src='story/story_painted_3d.png?v='+j.v;}).catch(function(){});
   function clamp(x,y){var w=a.offsetWidth||132,h=a.offsetHeight||100;return [Math.max(4,Math.min(innerWidth-w-4,x)),Math.max(4,Math.min(innerHeight-h-4,y))];}
@@ -95,8 +95,7 @@
   }
   function fmtCount(n){n=Math.max(0,Math.floor(+n||0));return String(n).replace(/\B(?=(\d{3})+(?!\d))/g,',');}
   function countLine(){
-    var outline=moutlineNow(), nOutline=(mdrawing&&((mdrawing.title_block&&mdrawing.title_block.n_outline)||mdrawing.n_edges))||0;
-    return fmtCount(mstrokesNow())+' coloured · '+outline+'/'+nOutline+' outline';
+    return fmtCount(mstrokesNow())+' coloured';
   }
   function mpaintOutlineCount(x){
     var tb=mtitleBlock()||{}, c=tb.count, n=moutlineNow(), total=tb.n_outline||(mdrawing&&mdrawing.n_edges)||0;
