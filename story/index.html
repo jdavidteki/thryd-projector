@@ -83,6 +83,30 @@ header,main{position:relative;z-index:1}
 #scenevid .scenecap{margin:0 auto 10px;color:#333;max-width:860px;text-align:center}
 #scenevid .scenelink{font:500 13px ui-monospace,Menlo,Consolas,monospace;text-align:center;margin:0}
 #scenevid .scenelink a{color:#0b5cad}
+/* shape carousel (v608): reads shapes/carousel.json; textbook solids first, then other shapes */
+#shapecar{max-width:1440px;margin:4px auto 30px;text-align:left}
+#shapecar h2{font:700 18px/1.2 ui-monospace,Menlo,Consolas,monospace;margin:0 0 4px;text-align:center}
+#shapecar .sub{font:500 12px ui-monospace,Menlo,Consolas,monospace;color:#777;text-align:center;margin:0 0 12px}
+#shapecar .car{position:relative}
+#shapecar .track{display:flex;align-items:flex-start;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding:4px 4px 14px;scrollbar-width:thin}
+#shapecar .slide{flex:0 0 min(360px,82vw);scroll-snap-align:start;border:1.5px solid #e4e4e7;border-radius:12px;background:#fff;overflow:hidden;box-shadow:0 2px 10px #0000000d;margin:0}
+#shapecar .slide.tb{background:#f2eee2;border-color:#d6d0bf}
+#shapecar .slide.top{border-color:#7c3aed;box-shadow:0 0 0 2px #7c3aed33}
+#shapecar .slide img{display:block;width:100%;height:auto;aspect-ratio:16/10;object-fit:contain;background:#f6f5f0}
+#shapecar .slide.tb img{background:#fff}
+#shapecar .b{padding:10px 12px 12px}
+#shapecar .rk{font:600 11px ui-monospace,Menlo,monospace;color:#888;margin-bottom:4px}
+#shapecar .n{display:flex;justify-content:space-between;gap:8px;font:700 14px/1.3 ui-monospace,Menlo,Consolas,monospace}
+#shapecar .f{flex:none;color:#fff;background:#7c3aed;border-radius:10px;padding:1px 8px;font-size:12px}
+#shapecar .bar{height:5px;border-radius:3px;background:#ede9fe;margin:8px 0}
+#shapecar .bar i{display:block;height:100%;border-radius:3px;background:#7c3aed}
+#shapecar .sm{font:600 13.5px/1.45 Inter,system-ui,sans-serif;color:#111;margin:0 0 6px}
+#shapecar .sm b{font:700 11px ui-monospace,Menlo,monospace;color:#7c3aed;margin-right:4px}
+#shapecar .s{font:500 12.5px/1.45 Inter,system-ui,sans-serif;color:#444;margin:0 0 8px}
+#shapecar .r{font:500 11.5px/1.35 ui-monospace,Menlo,Consolas,monospace;color:#777;margin:0;border-top:1px dashed #d6d0bf;padding-top:6px}
+#shapecar .nav{position:absolute;top:38%;width:38px;height:38px;border-radius:50%;border:1.5px solid #7c3aed;background:#fffffff0;color:#7c3aed;font-size:20px;cursor:pointer;z-index:2}
+#shapecar .prev{left:-6px}#shapecar .next{right:-6px}
+@media (max-width:640px){#shapecar .nav{display:none}}
 </style>
 </head>
 <body>
@@ -100,6 +124,7 @@ header,main{position:relative;z-index:1}
 </figure>
 <div class="ctl" id="ctl"><label for="speed">speed <input type="range" id="speed" min="-2" max="2" step="0.05" value="0" aria-label="painting speed, 0.25× to 4× (also the drift of the floating objects and sparkles)"><output id="speedv" for="speed">1×</output></label><button type="button" id="chime" aria-pressed="false" title="soft chime as each stroke lands (off by default)">🔇 chime</button></div>
 <p class="meta" id="meta"><a id="still" href="story_painted_3d.png">still (PNG)</a></p>
+<section id="shapecar" aria-labelledby="shapecarh" hidden><h2 id="shapecarh">what shape wants to come out</h2><p class="sub" id="shapecarsub"></p><div id="shapecarrows"></div></section>
 <section id="gode" aria-labelledby="godet" hidden>
 <h2 id="godet">painted by gode</h2>
 <p class="sub" id="godesub"></p>
@@ -187,6 +212,44 @@ header,main{position:relative;z-index:1}
     c.textContent=row.caption||row.story||'';
     sec.hidden=false;
   }).catch(function(){});
+})();
+</script>
+<script>
+/* v608 shape carousel: data in shapes/carousel.json (re-rendered + published as data); first GIF eager, the rest lazy as they near the viewport. */
+(function(){
+  var sec=document.getElementById('shapecar'),rows=document.getElementById('shapecarrows'),sub=document.getElementById('shapecarsub');
+  if(!sec||!window.fetch)return;
+  function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e;}
+  var io=('IntersectionObserver' in window)?new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){var i=e.target;if(i.dataset.src){i.src=i.dataset.src;delete i.dataset.src;}io.unobserve(i);}});},{rootMargin:'200px 400px'}):null;
+  function render(d){
+    rows.textContent='';var first=true,n=0;
+    (d.sections||[]).forEach(function(s){
+      if(!s.slides||!s.slides.length)return;
+      var h=el('h3','sub',s.title+' · '+s.slides.length+(s.sub?' · '+s.sub:''));rows.appendChild(h);
+      var car=el('div','car'),tr=el('div','track');tr.setAttribute('role','list');tr.setAttribute('aria-label',s.title);
+      s.slides.forEach(function(x,k){
+        var f=el('figure','slide'+(s.id==='textbook'?' tb':'')+(k===0?' top':''));f.setAttribute('role','listitem');
+        var img=document.createElement('img');img.alt=x.name+': the story drawing turning into this shape';img.width=720;img.height=450;img.decoding='async';
+        if(first){img.src=x.gif;first=false;}else{img.loading='lazy';if(io){img.dataset.src=x.gif;io.observe(img);}else img.src=x.gif;}
+        f.appendChild(img);
+        var b=el('figcaption','b');b.appendChild(el('div','rk','#'+(k+1)+(x.by?' · '+x.by:'')+(x.pill?' · '+x.pill:'')));
+        var nm=el('div','n');nm.appendChild(el('span','',x.name));nm.appendChild(el('span','f',x.fit!=null?'fit '+Number(x.fit).toFixed(2):(s.id==='textbook'?'fit pending':'my read')));b.appendChild(nm);
+        if(x.fit!=null){var bar=el('div','bar'),i=el('i');i.style.width=Math.max(0,Math.min(100,x.fit*100))+'%';bar.appendChild(i);b.appendChild(bar);}
+        if(x.summary){var sm=el('p','sm');sm.appendChild(el('b','','story'));sm.appendChild(document.createTextNode(x.summary));b.appendChild(sm);}
+        if(x.story)b.appendChild(el('p','s',x.story));
+        if(x.legend)b.appendChild(el('p','r',x.legend));
+        f.appendChild(b);tr.appendChild(f);n++;
+      });
+      function go(dir){var sl=tr.querySelector('.slide');var w=sl?sl.getBoundingClientRect().width+14:300;tr.scrollBy({left:dir*w,behavior:'smooth'});}
+      var p=el('button','nav prev','\u2039'),q=el('button','nav next','\u203a');p.type=q.type='button';p.setAttribute('aria-label','previous shape');q.setAttribute('aria-label','next shape');
+      p.onclick=function(){go(-1)};q.onclick=function(){go(1)};
+      car.appendChild(p);car.appendChild(tr);car.appendChild(q);rows.appendChild(car);
+    });
+    if(n){sub.textContent=(d.run?'agenda '+d.run+' · ':'')+n+' shapes · swipe \u2192';sec.hidden=false;}
+  }
+  var last=null;
+  function load(){fetch('shapes/carousel.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).then(function(d){if(d&&d.v!==last){last=d.v;render(d);}}).catch(function(){});}
+  load();setInterval(load,300000);
 })();
 </script>
 <script src="gode.js?v=14"></script>
