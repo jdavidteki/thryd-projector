@@ -4966,6 +4966,18 @@
    "location": null,
    "source": "sha256"
   },
+  "need": {
+   "id": "need",
+   "kind": "object",
+   "floor": "GROUND",
+   "x": 2.15093,
+   "y": 2.47,
+   "z": 0.50953,
+   "px": 512.4,
+   "py": 458.9,
+   "location": null,
+   "source": "sha256"
+  },
   "needle": {
    "id": "needle",
    "kind": "object",
@@ -6081,6 +6093,18 @@
    "py": 543.9,
    "location": "jetty",
    "source": "world_objects.location"
+  },
+  "rj": {
+   "id": "rj",
+   "kind": "method",
+   "floor": "GROUND",
+   "x": 4.7298,
+   "y": 2.47,
+   "z": 1.6431,
+   "px": 585.0,
+   "py": 566.6,
+   "location": null,
+   "source": "sha256"
   },
   "road": {
    "id": "road",
@@ -41359,12 +41383,220 @@
    "hex": "#2563eb",
    "label": "j132 \u00b7 kneel.mend(oyinboman)",
    "outline": "#60a314"
+  },
+  {
+   "from": "cli",
+   "to": "cli",
+   "from_xyz": {
+    "x": 2.71485,
+    "y": 2.47,
+    "z": 2.40047,
+    "px": 445.8,
+    "py": 530.1
+   },
+   "to_xyz": {
+    "x": 2.71485,
+    "y": 2.47,
+    "z": 2.40047,
+    "px": 445.8,
+    "py": 530.1
+   },
+   "index": 1258,
+   "job": "j133",
+   "run": "run-2eb42d",
+   "call": "fc1226",
+   "method": "cli",
+   "hex": "#2563eb",
+   "label": "j133 \u00b7 #thryd.miracle.log(1)",
+   "outline": "#1a80d9"
+  },
+  {
+   "from": "cli",
+   "to": "cli",
+   "from_xyz": {
+    "x": 2.71485,
+    "y": 2.47,
+    "z": 2.40047,
+    "px": 445.8,
+    "py": 530.1
+   },
+   "to_xyz": {
+    "x": 2.71485,
+    "y": 2.47,
+    "z": 2.40047,
+    "px": 445.8,
+    "py": 530.1
+   },
+   "index": 1259,
+   "job": "j133",
+   "run": "run-2eb42d",
+   "call": "fc1227",
+   "method": "cli",
+   "hex": "#2563eb",
+   "label": "j133 \u00b7 cli.cli(cli)",
+   "outline": "#1a80d9"
+  },
+  {
+   "from": "cli",
+   "to": "cli",
+   "from_xyz": {
+    "x": 2.71485,
+    "y": 2.47,
+    "z": 2.40047,
+    "px": 445.8,
+    "py": 530.1
+   },
+   "to_xyz": {
+    "x": 2.71485,
+    "y": 2.47,
+    "z": 2.40047,
+    "px": 445.8,
+    "py": 530.1
+   },
+   "index": 1260,
+   "job": "j133",
+   "run": "run-2eb42d",
+   "call": "fc1228",
+   "method": "cli",
+   "hex": "#2563eb",
+   "label": "j133 \u00b7 #thryd.miracle.log(1)",
+   "outline": "#1a80d9"
+  },
+  {
+   "from": "rj",
+   "to": "safe",
+   "from_xyz": {
+    "x": 4.7298,
+    "y": 2.47,
+    "z": 1.6431,
+    "px": 585.0,
+    "py": 566.6
+   },
+   "to_xyz": {
+    "x": 1.74311,
+    "y": 2.47,
+    "z": 1.63673,
+    "px": 435.3,
+    "py": 479.8
+   },
+   "index": 1261,
+   "job": "j133",
+   "run": "run-2eb42d",
+   "call": "fc1229",
+   "method": "rj",
+   "hex": "#2563eb",
+   "label": "j133 \u00b7 [[rj]](safe)",
+   "outline": "#a31490"
+  },
+  {
+   "from": "ronke",
+   "to": "need",
+   "from_xyz": {
+    "x": 2.27364,
+    "y": 2.47,
+    "z": 0.28,
+    "px": 530.1,
+    "py": 455.8
+   },
+   "to_xyz": {
+    "x": 2.15093,
+    "y": 2.47,
+    "z": 0.50953,
+    "px": 512.4,
+    "py": 458.9
+   },
+   "index": 1262,
+   "job": "j133",
+   "run": "run-2eb42d",
+   "call": "sfc1230",
+   "method": "count",
+   "hex": "#2563eb",
+   "label": "j133 \u00b7 ronke.count(need)",
+   "outline": "#887010"
+  },
+  {
+   "from": "thryd",
+   "to": "swap",
+   "from_xyz": {
+    "x": 5.35552,
+    "y": 2.47,
+    "z": 2.11477,
+    "px": 592.8,
+    "py": 598.4
+   },
+   "to_xyz": {
+    "x": 2.85108,
+    "y": 2.47,
+    "z": 1.81723,
+    "px": 481.9,
+    "py": 517.1
+   },
+   "index": 1263,
+   "job": "j133",
+   "run": "run-2eb42d",
+   "call": "sfc1231",
+   "method": "swap",
+   "hex": "#2563eb",
+   "label": "j133 \u00b7 thryd.swap(heaven)",
+   "outline": "#1ad974"
+  },
+  {
+   "from": "mamaronke",
+   "to": "ronke",
+   "from_xyz": {
+    "x": 0.77041,
+    "y": 2.47,
+    "z": 2.42,
+    "px": 347.1,
+    "py": 474.3
+   },
+   "to_xyz": {
+    "x": 2.27364,
+    "y": 2.47,
+    "z": 0.28,
+    "px": 530.1,
+    "py": 455.8
+   },
+   "index": 1264,
+   "job": "j133",
+   "run": "run-2eb42d",
+   "call": "sfc1232",
+   "method": "see",
+   "hex": "#2563eb",
+   "label": "j133 \u00b7 mamaronke.see(ronke)",
+   "outline": "#1a80d9"
+  },
+  {
+   "from": "das",
+   "to": "deliver",
+   "from_xyz": {
+    "x": 5.53085,
+    "y": 2.47,
+    "z": 1.30913,
+    "px": 642.1,
+    "py": 580.1
+   },
+   "to_xyz": {
+    "x": 4.70211,
+    "y": 2.47,
+    "z": 1.85981,
+    "px": 572.8,
+    "py": 572.0
+   },
+   "index": 1265,
+   "job": "j133",
+   "run": "run-2eb42d",
+   "call": "sfc1233",
+   "method": "deliver",
+   "hex": "#2563eb",
+   "label": "j133 \u00b7 das.deliver(rule)",
+   "outline": "#14a357"
   }
  ],
- "n_vertices": 694,
- "n_edges": 1270,
- "n_object_vertices": 462,
- "n_method_vertices": 232,
+ "n_vertices": 696,
+ "n_edges": 1278,
+ "n_object_vertices": 463,
+ "n_method_vertices": 233,
  "agenda_palette": {
   "atbl-kmb-run": {
    "dot": "\ud83c\udf40",
@@ -41888,5 +42120,5 @@
    "kind": "edge"
   }
  ],
- "stroke_hash": "f9e6b226d82f4b9f51c888c26b9186094bf15ad4cd7f1515fdd667aaae3c2394"
+ "stroke_hash": "b52dac2b083c1bcdd840c94e42c5df4cca1d694b8345e3331f9db7b895b279f3"
 }
