@@ -2098,6 +2098,18 @@
    "location": null,
    "source": "sha256"
   },
+  "eachoda": {
+   "id": "eachoda",
+   "kind": "object",
+   "floor": "GROUND",
+   "x": 0.43626,
+   "y": 2.47,
+   "z": 2.32531,
+   "px": 335.1,
+   "py": 461.8,
+   "location": null,
+   "source": "sha256"
+  },
   "eai": {
    "id": "eai",
    "kind": "method",
@@ -4558,6 +4570,18 @@
    "location": null,
    "source": "sha256"
   },
+  "love": {
+   "id": "love",
+   "kind": "object",
+   "floor": "GROUND",
+   "x": 2.74093,
+   "y": 2.47,
+   "z": 0.52904,
+   "px": 541.1,
+   "py": 476.6,
+   "location": null,
+   "source": "sha256"
+  },
   "lyinnhhgggggg": {
    "id": "lyinnhhgggggg",
    "kind": "object",
@@ -6430,6 +6454,18 @@
    "location": null,
    "source": "sha256"
   },
+  "sense": {
+   "id": "sense",
+   "kind": "object",
+   "floor": "GROUND",
+   "x": 0.59883,
+   "y": 2.47,
+   "z": 0.95029,
+   "px": 412.3,
+   "py": 426.7,
+   "location": null,
+   "source": "sha256"
+  },
   "sessy": {
    "id": "sessy",
    "kind": "object",
@@ -7027,6 +7063,18 @@
    "z": 1.61927,
    "px": 522.6,
    "py": 529.1,
+   "location": null,
+   "source": "sha256"
+  },
+  "tales": {
+   "id": "tales",
+   "kind": "object",
+   "floor": "GROUND",
+   "x": 5.61921,
+   "y": 2.47,
+   "z": 1.57345,
+   "px": 633.2,
+   "py": 590.3,
    "location": null,
    "source": "sha256"
   },
@@ -37706,7 +37754,7 @@
   },
   {
    "from": "look",
-   "to": "mend",
+   "to": "love",
    "from_xyz": {
     "x": 0.8442,
     "y": 2.47,
@@ -37715,11 +37763,11 @@
     "py": 464.7
    },
    "to_xyz": {
-    "x": 2.53179,
+    "x": 2.74093,
     "y": 2.47,
-    "z": 1.89477,
-    "px": 462.0,
-    "py": 510.1
+    "z": 0.52904,
+    "px": 541.1,
+    "py": 476.6
    },
    "index": 1116,
    "job": "j114",
@@ -41733,11 +41781,115 @@
    "hex": "#2563eb",
    "label": "j134 \u00b7 ronke.follow(wan)",
    "outline": "#1a80d9"
+  },
+  {
+   "from": "again",
+   "to": "again",
+   "from_xyz": {
+    "x": 3.54318,
+    "y": 2.47,
+    "z": 1.67147,
+    "px": 524.0,
+    "py": 533.0
+   },
+   "to_xyz": {
+    "x": 3.54318,
+    "y": 2.47,
+    "z": 1.67147,
+    "px": 524.0,
+    "py": 533.0
+   },
+   "index": 1271,
+   "job": "j135",
+   "run": "run-2eb42d",
+   "call": "fc1242",
+   "method": "again",
+   "hex": "#2563eb",
+   "label": "j135 \u00b7 [[again]]()",
+   "outline": "#14a357"
+  },
+  {
+   "from": "ronke",
+   "to": "tales",
+   "from_xyz": {
+    "x": 2.27364,
+    "y": 2.47,
+    "z": 0.28,
+    "px": 530.1,
+    "py": 455.8
+   },
+   "to_xyz": {
+    "x": 5.61921,
+    "y": 2.47,
+    "z": 1.57345,
+    "px": 633.2,
+    "py": 590.3
+   },
+   "index": 1272,
+   "job": "j135",
+   "run": "run-2eb42d",
+   "call": "sfc1239",
+   "method": "follow",
+   "hex": "#2563eb",
+   "label": "j135 \u00b7 ronke.follow(tales)",
+   "outline": "#1a80d9"
+  },
+  {
+   "from": "eachoda",
+   "to": "trace",
+   "from_xyz": {
+    "x": 0.43626,
+    "y": 2.47,
+    "z": 2.32531,
+    "px": 335.1,
+    "py": 461.8
+   },
+   "to_xyz": {
+    "x": 4.39726,
+    "y": 2.47,
+    "z": 1.8038,
+    "px": 560.3,
+    "py": 561.6
+   },
+   "index": 1273,
+   "job": "j135",
+   "run": "run-2eb42d",
+   "call": "sfc1240",
+   "method": "trace",
+   "hex": "#2563eb",
+   "label": "j135 \u00b7 eachoda.trace(tfobp)",
+   "outline": "#be9d17"
+  },
+  {
+   "from": "sense",
+   "to": "mend",
+   "from_xyz": {
+    "x": 0.59883,
+    "y": 2.47,
+    "z": 0.95029,
+    "px": 412.3,
+    "py": 426.7
+   },
+   "to_xyz": {
+    "x": 2.53179,
+    "y": 2.47,
+    "z": 1.89477,
+    "px": 462.0,
+    "py": 510.1
+   },
+   "index": 1274,
+   "job": "j135",
+   "run": "run-2eb42d",
+   "call": "sfc1241",
+   "method": "mend",
+   "hex": "#2563eb",
+   "label": "j135 \u00b7 sense.mend(again)",
+   "outline": "#60a314"
   }
  ],
- "n_vertices": 697,
- "n_edges": 1283,
- "n_object_vertices": 464,
+ "n_vertices": 701,
+ "n_edges": 1287,
+ "n_object_vertices": 468,
  "n_method_vertices": 233,
  "agenda_palette": {
   "atbl-kmb-run": {
@@ -42262,5 +42414,5 @@
    "kind": "edge"
   }
  ],
- "stroke_hash": "b64bb2c56516b772f8a0ae8f3d709ced266afa52529242b5db5fc6208af3dbd2"
+ "stroke_hash": "9790781f4db264f2af54a379de607257f21e987471ac09394cbfb18cf37b21dc"
 }
