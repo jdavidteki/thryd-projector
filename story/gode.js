@@ -250,16 +250,11 @@
   }
   function fmtCount(n){n=Math.max(0,Math.floor(+n||0));return String(n).replace(/\B(?=(\d{3})+(?!\d))/g,',');}
   function countLine(){
-    return fmtCount(strokesColouredNow())+' coloured';
-  }
-  var ocLab=document.getElementById('oclabel');
-  function syncOutlineLabel(){
-    if(!ocLab)return;
-    var s=countLine();
-    if(ocLab.textContent!==s)ocLab.textContent=s;
+    var outline=outlineColouredNow();
+    var nOutline=(DM&&((DM.title_block&&DM.title_block.n_outline)||DM.n_edges))||0;
+    return fmtCount(strokesColouredNow())+' coloured · '+outline+'/'+nOutline+' outline';
   }
   function paintOutlineCount(x){
-    syncOutlineLabel();
     if(!DM||!x)return;
     var tb=titleBlock(DM), c=tb&&tb.count; if(!c)return;
     var paper=tb.paper||[242,240,234], ink=tb.fill||[36,36,38];
@@ -345,7 +340,6 @@
     add(document.querySelector('header .back'));
     add(document.querySelector('header h1'), 720);
     add(document.getElementById('cap'), 900);
-    add(document.getElementById('oclabel'));
     add(document.getElementById('ctl'));
     return out;
   }
