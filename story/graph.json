@@ -418,6 +418,18 @@
    "location": null,
    "source": "sha256"
   },
+  "ashc": {
+   "id": "ashc",
+   "kind": "method",
+   "floor": "GROUND",
+   "x": 1.5001,
+   "y": 2.47,
+   "z": 2.13393,
+   "px": 398.2,
+   "py": 487.1,
+   "location": null,
+   "source": "sha256"
+  },
   "ask": {
    "id": "ask",
    "kind": "method",
@@ -2422,6 +2434,18 @@
    "location": "road",
    "source": "world_objects.location"
   },
+  "find": {
+   "id": "find",
+   "kind": "object",
+   "floor": "GROUND",
+   "x": 3.91595,
+   "y": 2.47,
+   "z": 0.56863,
+   "px": 598.1,
+   "py": 511.8,
+   "location": null,
+   "source": "sha256"
+  },
   "fishes": {
    "id": "fishes",
    "kind": "object",
@@ -3958,6 +3982,18 @@
    "location": null,
    "source": "sha256"
   },
+  "juniorboys": {
+   "id": "juniorboys",
+   "kind": "object",
+   "floor": "BASEMENT",
+   "x": 3.66423,
+   "y": 0.02,
+   "z": 0.41905,
+   "px": 593.0,
+   "py": 642.3,
+   "location": null,
+   "source": "sha256"
+  },
   "juniorgirls": {
    "id": "juniorgirls",
    "kind": "object",
@@ -4101,6 +4137,18 @@
    "py": 460.0,
    "location": "terminal",
    "source": "world_objects.location"
+  },
+  "kneel": {
+   "id": "kneel",
+   "kind": "object",
+   "floor": "GROUND",
+   "x": 1.22853,
+   "y": 2.47,
+   "z": 1.39623,
+   "px": 421.6,
+   "py": 457.9,
+   "location": null,
+   "source": "sha256"
   },
   "knew": {
    "id": "knew",
@@ -4555,6 +4603,18 @@
    "z": 1.77372,
    "px": 460.4,
    "py": 502.2,
+   "location": null,
+   "source": "sha256"
+  },
+  "main": {
+   "id": "main",
+   "kind": "method",
+   "floor": "GROUND",
+   "x": 1.94539,
+   "y": 2.47,
+   "z": 1.74886,
+   "px": 439.9,
+   "py": 488.9,
    "location": null,
    "source": "sha256"
   },
@@ -11428,7 +11488,7 @@
   },
   {
    "from": "bobo",
-   "to": "on",
+   "to": "juniorboys",
    "from_xyz": {
     "x": 1.13174,
     "y": 2.47,
@@ -11437,11 +11497,11 @@
     "py": 478.4
    },
    "to_xyz": {
-    "x": 3.63755,
-    "y": 2.47,
-    "z": 1.49943,
-    "px": 537.4,
-    "py": 530.7
+    "x": 3.66423,
+    "y": 0.02,
+    "z": 0.41905,
+    "px": 593.0,
+    "py": 642.3
    },
    "index": 115,
    "job": "j10",
@@ -32774,7 +32834,7 @@
   },
   {
    "from": "principal",
-   "to": "mix",
+   "to": "juniorboys",
    "from_xyz": {
     "x": 0.94212,
     "y": 2.47,
@@ -32783,11 +32843,11 @@
     "py": 430.6
    },
    "to_xyz": {
-    "x": 4.03426,
-    "y": 2.47,
-    "z": 1.66342,
-    "px": 549.1,
-    "py": 547.0
+    "x": 3.66423,
+    "y": 0.02,
+    "z": 0.41905,
+    "px": 593.0,
+    "py": 642.3
    },
    "index": 931,
    "job": "j82",
@@ -40964,7 +41024,7 @@
   },
   {
    "from": "wisdom",
-   "to": "mix",
+   "to": "juniorboys",
    "from_xyz": {
     "x": 3.32972,
     "y": 2.47,
@@ -40973,11 +41033,11 @@
     "py": 519.8
    },
    "to_xyz": {
-    "x": 4.03426,
-    "y": 2.47,
-    "z": 1.66342,
-    "px": 549.1,
-    "py": 547.0
+    "x": 3.66423,
+    "y": 0.02,
+    "z": 0.41905,
+    "px": 593.0,
+    "py": 642.3
    },
    "index": 1245,
    "job": "j131",
@@ -40987,12 +41047,324 @@
    "hex": "#2563eb",
    "label": "j131 \u00b7 wisdom.mix(juniorboys)",
    "outline": "#14a386"
+  },
+  {
+   "from": "thryd",
+   "to": "importtheme",
+   "from_xyz": {
+    "x": 5.35552,
+    "y": 2.47,
+    "z": 2.11477,
+    "px": 592.8,
+    "py": 598.4
+   },
+   "to_xyz": {
+    "x": 1.77751,
+    "y": 2.47,
+    "z": 2.12227,
+    "px": 412.7,
+    "py": 494.8
+   },
+   "index": 1246,
+   "job": "j132",
+   "run": "run-2eb42d",
+   "call": "fc1214",
+   "method": "importtheme",
+   "hex": "#2563eb",
+   "label": "j132 \u00b7 #thryd.importtheme(putin)",
+   "outline": "#d9741a"
+  },
+  {
+   "from": "uyp",
+   "to": "safe",
+   "from_xyz": {
+    "x": 2.31246,
+    "y": 2.47,
+    "z": 2.14198,
+    "px": 438.6,
+    "py": 510.9
+   },
+   "to_xyz": {
+    "x": 1.74311,
+    "y": 2.47,
+    "z": 1.63673,
+    "px": 435.3,
+    "py": 479.8
+   },
+   "index": 1247,
+   "job": "j132",
+   "run": "run-2eb42d",
+   "call": "fc1215",
+   "method": "uyp",
+   "hex": "#2563eb",
+   "label": "j132 \u00b7 [[uyp]](safe)",
+   "outline": "#8614a3"
+  },
+  {
+   "from": "cli",
+   "to": "cli",
+   "from_xyz": {
+    "x": 2.71485,
+    "y": 2.47,
+    "z": 2.40047,
+    "px": 445.8,
+    "py": 530.1
+   },
+   "to_xyz": {
+    "x": 2.71485,
+    "y": 2.47,
+    "z": 2.40047,
+    "px": 445.8,
+    "py": 530.1
+   },
+   "index": 1248,
+   "job": "j132",
+   "run": "run-2eb42d",
+   "call": "fc1216",
+   "method": "cli",
+   "hex": "#2563eb",
+   "label": "j132 \u00b7 #thryd.miracle.log(1)",
+   "outline": "#1a80d9"
+  },
+  {
+   "from": "cli",
+   "to": "cli",
+   "from_xyz": {
+    "x": 2.71485,
+    "y": 2.47,
+    "z": 2.40047,
+    "px": 445.8,
+    "py": 530.1
+   },
+   "to_xyz": {
+    "x": 2.71485,
+    "y": 2.47,
+    "z": 2.40047,
+    "px": 445.8,
+    "py": 530.1
+   },
+   "index": 1249,
+   "job": "j132",
+   "run": "run-2eb42d",
+   "call": "fc1217",
+   "method": "cli",
+   "hex": "#2563eb",
+   "label": "j132 \u00b7 cli.cli(cli)",
+   "outline": "#1a80d9"
+  },
+  {
+   "from": "cli",
+   "to": "cli",
+   "from_xyz": {
+    "x": 2.71485,
+    "y": 2.47,
+    "z": 2.40047,
+    "px": 445.8,
+    "py": 530.1
+   },
+   "to_xyz": {
+    "x": 2.71485,
+    "y": 2.47,
+    "z": 2.40047,
+    "px": 445.8,
+    "py": 530.1
+   },
+   "index": 1250,
+   "job": "j132",
+   "run": "run-2eb42d",
+   "call": "fc1218",
+   "method": "cli",
+   "hex": "#2563eb",
+   "label": "j132 \u00b7 #thryd.miracle.log(1)",
+   "outline": "#1a80d9"
+  },
+  {
+   "from": "cli",
+   "to": "cli",
+   "from_xyz": {
+    "x": 2.71485,
+    "y": 2.47,
+    "z": 2.40047,
+    "px": 445.8,
+    "py": 530.1
+   },
+   "to_xyz": {
+    "x": 2.71485,
+    "y": 2.47,
+    "z": 2.40047,
+    "px": 445.8,
+    "py": 530.1
+   },
+   "index": 1251,
+   "job": "j132",
+   "run": "run-2eb42d",
+   "call": "fc1219",
+   "method": "cli",
+   "hex": "#2563eb",
+   "label": "j132 \u00b7 cli.b1()",
+   "outline": "#1a80d9"
+  },
+  {
+   "from": "ashc",
+   "to": "safe",
+   "from_xyz": {
+    "x": 1.5001,
+    "y": 2.47,
+    "z": 2.13393,
+    "px": 398.2,
+    "py": 487.1
+   },
+   "to_xyz": {
+    "x": 1.74311,
+    "y": 2.47,
+    "z": 1.63673,
+    "px": 435.3,
+    "py": 479.8
+   },
+   "index": 1252,
+   "job": "j132",
+   "run": "run-2eb42d",
+   "call": "fc1220",
+   "method": "ashc",
+   "hex": "#2563eb",
+   "label": "j132 \u00b7 [[ashc]](safe)",
+   "outline": "#887010"
+  },
+  {
+   "from": "cli",
+   "to": "cli",
+   "from_xyz": {
+    "x": 2.71485,
+    "y": 2.47,
+    "z": 2.40047,
+    "px": 445.8,
+    "py": 530.1
+   },
+   "to_xyz": {
+    "x": 2.71485,
+    "y": 2.47,
+    "z": 2.40047,
+    "px": 445.8,
+    "py": 530.1
+   },
+   "index": 1253,
+   "job": "j132",
+   "run": "run-2eb42d",
+   "call": "fc1221",
+   "method": "cli",
+   "hex": "#2563eb",
+   "label": "j132 \u00b7 cli.c4()",
+   "outline": "#1a80d9"
+  },
+  {
+   "from": "cli",
+   "to": "cli",
+   "from_xyz": {
+    "x": 2.71485,
+    "y": 2.47,
+    "z": 2.40047,
+    "px": 445.8,
+    "py": 530.1
+   },
+   "to_xyz": {
+    "x": 2.71485,
+    "y": 2.47,
+    "z": 2.40047,
+    "px": 445.8,
+    "py": 530.1
+   },
+   "index": 1254,
+   "job": "j132",
+   "run": "run-2eb42d",
+   "call": "fc1222",
+   "method": "cli",
+   "hex": "#2563eb",
+   "label": "j132 \u00b7 [[cli]](cli)",
+   "outline": "#1a80d9"
+  },
+  {
+   "from": "main",
+   "to": "safe",
+   "from_xyz": {
+    "x": 1.94539,
+    "y": 2.47,
+    "z": 1.74886,
+    "px": 439.9,
+    "py": 488.9
+   },
+   "to_xyz": {
+    "x": 1.74311,
+    "y": 2.47,
+    "z": 1.63673,
+    "px": 435.3,
+    "py": 479.8
+   },
+   "index": 1255,
+   "job": "j132",
+   "run": "run-2eb42d",
+   "call": "fc1223",
+   "method": "main",
+   "hex": "#2563eb",
+   "label": "j132 \u00b7 [[main]](safe)",
+   "outline": "#1a41d9"
+  },
+  {
+   "from": "juniorboys",
+   "to": "find",
+   "from_xyz": {
+    "x": 3.66423,
+    "y": 0.02,
+    "z": 0.41905,
+    "px": 593.0,
+    "py": 642.3
+   },
+   "to_xyz": {
+    "x": 3.91595,
+    "y": 2.47,
+    "z": 0.56863,
+    "px": 598.1,
+    "py": 511.8
+   },
+   "index": 1256,
+   "job": "j132",
+   "run": "run-2eb42d",
+   "call": "sfc1224",
+   "method": "cook",
+   "hex": "#2563eb",
+   "label": "j132 \u00b7 juniorboys.cook(find)",
+   "outline": "#60a314"
+  },
+  {
+   "from": "kneel",
+   "to": "oyinboman",
+   "from_xyz": {
+    "x": 1.22853,
+    "y": 2.47,
+    "z": 1.39623,
+    "px": 421.6,
+    "py": 457.9
+   },
+   "to_xyz": {
+    "x": 1.08957,
+    "y": 0.02,
+    "z": 1.12553,
+    "px": 428.2,
+    "py": 588.1
+   },
+   "index": 1257,
+   "job": "j132",
+   "run": "run-2eb42d",
+   "call": "sfc1225",
+   "method": "mend",
+   "hex": "#2563eb",
+   "label": "j132 \u00b7 kneel.mend(oyinboman)",
+   "outline": "#60a314"
   }
  ],
- "n_vertices": 689,
- "n_edges": 1258,
- "n_object_vertices": 459,
- "n_method_vertices": 230,
+ "n_vertices": 694,
+ "n_edges": 1270,
+ "n_object_vertices": 462,
+ "n_method_vertices": 232,
  "agenda_palette": {
   "atbl-kmb-run": {
    "dot": "\ud83c\udf40",
@@ -41516,5 +41888,5 @@
    "kind": "edge"
   }
  ],
- "stroke_hash": "19ca48ebe416af73bad988e5dc8212288cf833c0a9ed4b7d1322101ca0c18ff9"
+ "stroke_hash": "f9e6b226d82f4b9f51c888c26b9186094bf15ad4cd7f1515fdd667aaae3c2394"
 }
