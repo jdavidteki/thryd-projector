@@ -2,7 +2,7 @@
 //   off   default; nothing plays
 //   lofi  a short list of Creative Commons / free-to-stream stations, starting with ABM Lofi
 //         (https://radio.audiobookmanager.com/), then Frekvenci Chill and freeCodeCamp Code Radio
-//   yoki  africariyoki songs, shuffled (Fisher–Yates over the full catalog via assets/yoki_dj.js; bag kept in localStorage), from the africariyoki songs API (www.africariyoki.com/api/songs.json; until that PR is
+//   yoki  africariyoki songs that follow the story's pulse (assets/yoki_dj.js reads story/yoki_pulse.json; shuffle only as fallback), from the africariyoki songs API (www.africariyoki.com/api/songs.json; until that PR is
 //         merged, the PR branch's raw copy); a small credit shows song · artist · africariyoki, and the current LRC line faintly
 // Audio starts only from a user gesture (autoplay rules). The choice is saved as thryd_sound (migrated from thryd_mute, '0' = lofi);
 // a reload with a saved mode tries to resume, and if the browser refuses it waits for the next tap anywhere. One audio element,
@@ -79,7 +79,8 @@ function parseLrc(t){ const out=[]; String(t||'').split('\n').forEach(l=>{ const
   return out.sort((a,b)=>a[0]-b[0]); }
 function loadLrc(s){ ylrc=[]; if(!s||!s.lrc) return; const id=++yreq; const u=/^https?:/.test(s.lrc)?s.lrc:ybase+s.lrc;
   fetch(u).then(r=>r.ok?r.text():'').then(t=>{ if(id===yreq) ylrc=parseLrc(t); }).catch(()=>{}); }
-// yoki DJ: assets/yoki_dj.js shuffles the full africariyoki catalog (Fisher–Yates, localStorage bag).
+// yoki DJ (v606, Jesuye 22 Nov "the story should sing its own soundtrack"): assets/yoki_dj.js picks from story/yoki_pulse.json
+// (the open card + newest seats ranked against the lyrics), skipping the last 40 played; full-catalog shuffle as fallback.
 // If the DJ is missing, slow (6 s) or fails, extras.js's own shuffle bag picks instead.
 let ytok=0;
 const YDJ=()=>window.thrydYokiDJ&&window.thrydYokiDJ.next?window.thrydYokiDJ:null;
