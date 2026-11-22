@@ -534,9 +534,15 @@ function backdrop(set,force){ if(!libPin.allow(set))return; if(Date.now()<HOLD)r
   // advance only to a frame that has fully arrived; otherwise hold the current frame (never a half-loaded black frame)
   const tick=()=>{if(bgI>0&&!shown)return; const im=pre[bgI%set.frames]; if(bgI>0&&!(im&&im.complete&&im.naturalWidth))return; on.src=im?im.src:`${set.dir}/f${String(bgI%set.frames).padStart(3,'0')}.webp`;bgI++;};
   tick(); whenReady(on,()=>{flip();preload();});
-  bgTimer=setInterval(tick,Math.max(80,set.ms||120));
+  bgTimer=setInterval(tick,bgMs(set));window.__thrydBgTick=tick;window.__thrydBgSet=set;
   bindScene(set);
 }
+/* story speed link (Jesuye 22 Nov 2026 1:50 PM ET, staffroom: "link them!!!"): the story page's speed slider (localStorage
+   thryd_gode_speed, 0.25x-4x) also sets the projector's pace on the same device: slide changes, side steps and GIF frame rate
+   all run at that multiple, and a change in the story tab applies here at once via the storage event. */
+function storySp(){try{const v=parseFloat(localStorage.getItem('thryd_gode_speed'));if(isFinite(v)&&v>=0.25&&v<=4)return v;}catch(e){}return 1;}
+window.thrydStorySp=()=>storySp();function bgMs(set){return Math.max(40,Math.round((set&&set.ms||120)/storySp()));}
+addEventListener('storage',e=>{if(e.key!=='thryd_gode_speed')return;try{startSlide();}catch(err){}try{if(bgTimer&&window.__thrydBgTick){clearInterval(bgTimer);bgTimer=setInterval(window.__thrydBgTick,bgMs(window.__thrydBgSet));}}catch(err){}});
 let POOL=[],poolI=0,slideCursor='',LXTRA=[],CUR_RUN=null,coldBooting=false; const RUNX=()=>LXTRA.filter(x=>CUR_RUN&&x.run===CUR_RUN);
 // slide speed: 8s default, 30s, 60s (?slide=30 or the bar select; remembered)
 let kept=null; try{kept=window.ThrydKeep&&ThrydKeep.settings();}catch(e){kept=null;} if(kept&&(kept.mute===0||kept.mute===1)){try{localStorage.setItem('thryd_mute',kept.mute?'1':'0');}catch(e){}} let SLIDE=+(Q.get('slide')||(kept&&kept.slide)||localStorage.getItem('thryd_slide')||8); if(![8,30,60].includes(SLIDE))SLIDE=8; let slideT=null;
@@ -548,7 +554,7 @@ function startSlide(){clearInterval(slideT);slideT=setInterval(()=>{
   const moved=ThrydLiveReturn.step(slideCycle,{pool:POOL,poolI,cursor:slideCursor,hold:libPin.pinned(),newest:()=>MODE==='live'?NEWEST():null});
   if(moved.action==='idle'||moved.action==='hold'){prefetchNext();return;}
   poolI=moved.poolI; if(moved.cursor)slideCursor=moved.cursor; backdrop(moved.set,true); prefetchNext();
-},SLIDE*1000);}
+},Math.max(1000,SLIDE*1000/storySp()));}
 /* context (17 Nov 2026 2:54 PM ET): warm the likely next scene's file in the browser's idle time (rel=prefetch, once per URL), never on
    Save-Data or 2g, so the next slide flips without a wait */
 const PREF=new Set();
@@ -892,7 +898,7 @@ const SIDES=(()=>{let P=null,cur=[],rot=0,nSc=0;const D={};
     try{place(lastM||{regions:[],here:'',chars:[],objs:[]});}catch(e){}};
   const load=async()=>{try{const d=await J('data/side_pool.json');d.byId={};(d.scenes||[]).forEach(s=>d.byId[s.id]=s);if(d.story&&d.story.places){const sn=new Set();d.story.places=d.story.places.filter(p=>{const k=nameOf(p);if(sn.has(k))return false;sn.add(k);return true;});}P=d;fill();step();}catch(e){}};
   const sceneOf=id=>P&&P.byId&&P.byId[id]||null;
-  if(MODE==='live'&&Q.get('sides')!=='0'&&!/phone\.html$/.test(location.pathname)){load();setInterval(load,600000);(function tick(){setTimeout(()=>{step();tick();},Math.max(6000,SLIDE*900));})();}
+  if(MODE==='live'&&Q.get('sides')!=='0'&&!/phone\.html$/.test(location.pathname)){load();setInterval(load,600000);(function tick(){setTimeout(()=>{step();tick();},Math.max(1500,SLIDE*900/storySp()));})();}
   return {augment(m){if(!P||!m)return m;const have=new Set([m.here,...(m.regions||[])].filter(Boolean).map(n=>String(n).toLowerCase()));const libs=[],regs=[];
     const st=stageReg();[...(st?[st]:[]),...cur].forEach(r=>{const k=r.name.toLowerCase();if(have.has(k))return;have.add(k);regs.push(r.name);r.items.forEach(i=>libs.push({region:r.name,label:i.label,kind:i.kind}));});
     return Object.assign({},m,{regions:[...(m.regions||[]),...regs],libs});},
@@ -1105,7 +1111,7 @@ function say(L,who){ const e=ents['c:'+who]; if(!e)return;
   b.style.top=Math.min(innerHeight-BH/2-M,Math.max(BH/2+M,r.top+r.height/2))+'px';
   const base=Math.min(Math.max(SLIDE*900,4000),7000)+3000; /* +3000: tweets stay 3s longer */ if(window.ThrydTweet)ThrydTweet.mount(b,L,base); else b.classList.remove('on');
 }
-const everyS=f=>{const g=gen;const run=()=>{const t=setTimeout(()=>{if(g!==gen)return;f();run();},SLIDE*1000);timers.push(t);};run();};
+const everyS=f=>{const g=gen;const run=()=>{const t=setTimeout(()=>{if(g!==gen)return;f();run();},SLIDE*1000/storySp());timers.push(t);};run();};
 const every=(f,ms)=>{const g=gen;const t=setInterval(()=>{if(g===gen)f();},ms);timers.push(t);};
 function reset(){gen++;timers.forEach(t=>{clearInterval(t);clearTimeout(t);});timers=[];Object.keys(ents).forEach(k=>{ents[k].remove();delete ents[k];});regionsKey='';$('bubble').classList.remove('on'); if(window.ThrydTweet)ThrydTweet.dismiss($('bubble'));}
 // ---------- LIVE from state.json
