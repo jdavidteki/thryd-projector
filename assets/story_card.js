@@ -22,9 +22,10 @@
     '#storycard canvas{display:none;width:100%;aspect-ratio:1440/900;border-radius:5px;background:#fff;pointer-events:none}#storycard.mini canvas{display:block}#storycard.mini img{display:none}'+
     '#storycard .jb{font-weight:700;white-space:nowrap}'+
     '#storycard img{display:block;width:100%;aspect-ratio:1440/900;object-fit:cover;border-radius:5px;background:#fff;pointer-events:none}'+
-    '#storycard .sl{display:flex;justify-content:space-between;align-items:center;gap:4px;margin-top:4px;pointer-events:none}'+
-    '#storycard .go{font-size:10px;color:#0b5cad;white-space:nowrap}'+
-    '#storycard .oc{display:block;margin-top:3px;font:700 11px/1.3 system-ui,-apple-system,sans-serif;color:#222;pointer-events:none;letter-spacing:-0.02em}'+
+    '#storycard .sl{display:flex;justify-content:space-between;align-items:center;gap:4px;margin-top:4px;pointer-events:none;white-space:nowrap}'+
+    '#storycard .sl>span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}'+
+    '#storycard .go{display:none}'+
+    '#storycard .oc{display:block;margin-top:3px;font:700 10px/1.3 system-ui,-apple-system,sans-serif;color:#222;pointer-events:none;letter-spacing:-0.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}'+
     '@media (max-width:640px){#storycard{width:156px;font-size:10px;padding:4px}#storycard .go{display:none}#storycard .oc{font-size:10px}}';
   document.head.appendChild(css);
   var a=document.createElement('a'); a.id='storycard'; a.href=URL_; a.target='_blank'; a.rel='noopener';
