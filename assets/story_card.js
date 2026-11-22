@@ -66,6 +66,34 @@
   function shrink(im,w,h){var c=document.createElement('canvas');c.width=Math.max(1,Math.round(w));c.height=Math.max(1,Math.round(h));c.getContext('2d').drawImage(im,0,0,c.width,c.height);return c;}
   function li(src){return new Promise(function(r){var i=new Image();i.onload=function(){r(i)};i.onerror=function(){r(null)};i.src=src;});}
   function mreset(){md.clearRect(0,0,MW,MH);if(mbase)md.drawImage(mbase,0,0);}
+  function mtitleBlock(){
+    var d=mdrawing; if(!d)return null;
+    if(d.title_block&&d.title_block.count)return d.title_block;
+    var tw=420, path=String(d.coherence||''), approx=Math.max(2, Math.ceil(path.length/54));
+    var th=168+12*approx, x0=(d.w||1440)-tw-18, y0=(d.h||900)-th-16;
+    return {n_outline:d.n_edges||0,paper:[242,240,234],fill:[36,36,38],
+      count:{x:x0+12,y:y0+65,w:tw-24,h:15,size:11,prefix:'outline coloured  ',suffix:' of '+(d.n_edges||0)}};
+  }
+  function moutlineNow(){
+    if(!mdrawing||mph==='mesh')return 0;
+    var seen={}, n=0, i, L;
+    function add(s){if(s&&s.kind==='outline'&&s.edge!=null&&seen[s.edge]==null){seen[s.edge]=1;n++;}}
+    for(i=0;i<mi;i++)add(mlay[i]);
+    if(mph==='paint'||mph==='hold'||mph==='wash')add(mlay[mi]);
+    return n;
+  }
+  function mpaintOutlineCount(x){
+    var tb=mtitleBlock(), c=tb&&tb.count; if(!c||!x||!mm)return;
+    var k=MW/(mm.w||1440), paper=tb.paper||[242,240,234], ink=tb.fill||[36,36,38], n=moutlineNow(), total=tb.n_outline||mdrawing.n_edges||0;
+    x.save();
+    x.fillStyle='rgb('+paper[0]+','+paper[1]+','+paper[2]+')';
+    x.fillRect(c.x*k-1,c.y*k-1,(c.w||396)*k+2,(c.h||15)*k+2);
+    x.fillStyle='rgb('+ink[0]+','+ink[1]+','+ink[2]+')';
+    x.font=Math.max(3,(c.size||11)*k)+'px "Nimbus Roman","Times New Roman",Times,serif';
+    x.textAlign='left';x.textBaseline='top';
+    x.fillText((c.prefix||'outline coloured  ')+n+(c.suffix||(' of '+total)), c.x*k, c.y*k);
+    x.restore();
+  }
   function mframe(t){mraf=0;if(document.hidden||!mm){mlast=0;return;}
     var dt=mlast?Math.min(80,t-mlast):33;if(mlast&&t-mlast<30){mraf=requestAnimationFrame(mframe);return;}mlast=t;
     var k=MW/mm.w,L=mlay[mi];
@@ -85,6 +113,7 @@
     if(mph==='hold'){mt+=dt;cx.clearRect(0,0,MW,MH);cx.drawImage(mdone,0,0);if(mt>2200){mph='wash';mt=0;}}
     else if(mph==='wash'){mt+=dt;var w=Math.min(1,mt/1100);cx.clearRect(0,0,MW,MH);cx.drawImage(mbase,0,0);cx.globalAlpha=1-w;cx.drawImage(mdone,0,0);cx.globalAlpha=1;
       if(w>=1){mph=(a.classList.contains('drawing')?'mesh':'paint');mi=0;mt=0;mcyc++;mreset();}}
+    if(a.classList.contains('drawing'))mpaintOutlineCount(cx);
     a.dataset.mini=mph+':'+mcyc;mraf=requestAnimationFrame(mframe);}
   function mkick(){if(!mraf&&!RMc)mraf=requestAnimationFrame(mframe);}
   document.addEventListener('visibilitychange',function(){if(!document.hidden)mkick();});
@@ -107,14 +136,14 @@
     fetch('story/graph.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).catch(function(){return null;}).then(function(g){
       if(g&&g.edges&&g.edges.length){var gv='g'+(g.stroke_hash?String(g.stroke_hash).slice(0,12):(g.v||g.hash||g.edges.length))+':'+g.edges.length;if(mv===gv)return;
         li('story/'+m.base+'?v='+m.v).then(function(b){if(!b)return;var k=MW/m.w;mm=m;mv=gv;mbase=shrink(b,MW,MH);mlay=gunits(g,k);a.classList.add('mini');a.classList.add('graph');a.dataset.layersV=gv;mreset();
-          if(RMc){mlay.forEach(function(L){L.gd(md,1);});cx.clearRect(0,0,MW,MH);cx.drawImage(mdone,0,0);a.dataset.mini='done:0';return;}mph='paint';mi=0;mt=0;mkick();});return;}
+          if(RMc){mlay.forEach(function(L){L.gd(md,1);});cx.clearRect(0,0,MW,MH);cx.drawImage(mdone,0,0);if(a.classList.contains('drawing'))mpaintOutlineCount(cx);a.dataset.mini='done:0';return;}mph='paint';mi=0;mt=0;mkick();});return;}
       mloadL(m);});});}
   function mloadL(m){if(mv===m.v)return;var v=m.v;
     Promise.all([li('story/'+m.base+'?v='+v)].concat(m.layers.map(function(L){return li('story/'+L.src+'?v='+v);}))).then(function(r){
       if(!r[0])return;var k=MW/m.w;mm=m;mv=v;mbase=shrink(r[0],MW,MH);
       mlay=m.layers.map(function(L,j){return r[j+1]?{c:shrink(r[j+1],L.w*k,L.h*k),x:L.x,y:L.y,n:L.n,pmin:L.pmin,pmax:L.pmax,key:L.key}:null;}).filter(Boolean);
       a.classList.add('mini');a.dataset.layersV=String(v);mreset();
-      if(RMc){mlay.forEach(function(L){md.drawImage(L.c,L.x*k,L.y*k);});cx.clearRect(0,0,MW,MH);cx.drawImage(mdone,0,0);a.dataset.mini='done:0';return;}
+      if(RMc){mlay.forEach(function(L){md.drawImage(L.c,L.x*k,L.y*k);});cx.clearRect(0,0,MW,MH);cx.drawImage(mdone,0,0);if(a.classList.contains('drawing'))mpaintOutlineCount(cx);a.dataset.mini='done:0';return;}
       mph='paint';mi=0;mt=0;mkick();});}
   var mdrawing=null;
   var EDGE_DOTS={1:'🟪',2:'🟨',3:'🟫',4:'🟩',5:'⬛'};
@@ -157,7 +186,7 @@
       src.forEach(function(s,j){
         if(!s.pa||!s.pb)return;
         var a=[s.pa[0]*k,s.pa[1]*k],b=[s.pb[0]*k,s.pb[1]*k],hex=s.hex||'#2563eb',conn=s.kind==='connection',story=s.edge_k!=null&&s.edge_k!=='',srcA=!story&&hex.toLowerCase()!=='#2563eb';
-        out.push({T:story?700:(srcA?320:120),key:'s'+j,hash:[s.index,s.call,hex,s.kind].join(':'),gd:function(x,sv){
+        out.push({T:story?700:(srcA?320:120),key:'s'+j,hash:[s.index,s.call,hex,s.kind].join(':'),kind:s.kind,edge:s.edge,gd:function(x,sv){
           x.save();x.lineCap='round';x.strokeStyle=hex;
           /* v10 (Jesuye 20 Nov 1:01 AM ET "still one colour on thr projector"): live blue recedes, source agendas and
              story edges carry the colour so 5+ inks read at 264x165 */
@@ -180,7 +209,7 @@
   function mloadD(m,d){mdrawing=d;var gv='d'+(d.v||d.sig||d.n_edges);if(mv===gv)return;
     li('story/'+(d.base||'drawing_base.png')+'?v='+(d.v||m.v)).then(function(b){if(!b)return;var k=MW/(d.w||m.w||1440);
       mm=m;mv=gv;mbase=shrink(b,MW,MH);mlay=dunits(d,k);a.classList.add('mini');a.classList.add('drawing');a.dataset.layersV=gv;mreset();
-      if(RMc){mlay.forEach(function(L){L.gd(md,1);});cx.clearRect(0,0,MW,MH);cx.drawImage(mdone,0,0);a.dataset.mini='done:0';applySeatedChip();return;}
+      if(RMc){mlay.forEach(function(L){L.gd(md,1);});cx.clearRect(0,0,MW,MH);cx.drawImage(mdone,0,0);if(a.classList.contains('drawing'))mpaintOutlineCount(cx);a.dataset.mini='done:0';applySeatedChip();return;}
       mph='mesh';mi=0;mt=0;mkick();applySeatedChip();});}
   function applySeatedChip(){
     var job=newestFromDrawing(mdrawing)||mcur||a.dataset.job;

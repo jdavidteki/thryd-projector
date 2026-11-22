@@ -79,6 +79,7 @@
       if(ph>=MESH_HOLD&&!hold){phase='paint';ph=0;man.layers.forEach(function(L){if(imgs[L.key])queue.push({L:L,s0:0});});}
     }
     if(!hold||phase==='paint')drawSparks(dt);
+    if(man&&man.drawing)paintOutlineCount(ctx);
     cv.dataset.state=phase==='paint'?(active?('painting '+active.L.key):'queued'):phase;
     cv.dataset.cycle=String(cycle);
     if(!RM)raf=requestAnimationFrame(frame);else last=0;
@@ -86,7 +87,7 @@
   function kick(){if(!raf&&!RM)raf=requestAnimationFrame(frame);}
   function reset(){dctx.clearRect(0,0,done.width,done.height);dctx.drawImage(base,0,0);shown={};if(typeof graphReset==='function')graphReset();}
   function playAll(){queue=[];active=null;sparks=[];reset();ph=0;
-    if(RM){man.layers.forEach(function(L){if(imgs[L.key])commit(L);});ctx.clearRect(0,0,cv.width,cv.height);ctx.drawImage(done,0,0);cv.dataset.state='done';return;}
+    if(RM){man.layers.forEach(function(L){if(imgs[L.key])commit(L);});ctx.clearRect(0,0,cv.width,cv.height);ctx.drawImage(done,0,0);if(man&&man.drawing)paintOutlineCount(ctx);cv.dataset.state='done';return;}
     if(man&&man.drawing){phase='mesh';kick();return;}
     phase='paint';man.layers.forEach(function(L){if(imgs[L.key])queue.push({L:L,s0:0});});kick();}
   document.addEventListener('visibilitychange',function(){last=0;});
@@ -219,7 +220,39 @@
     });
     return units;
   }
-  function bootDrawing(d,b){
+  function titleBlock(d){
+    if(d&&d.title_block&&d.title_block.count)return d.title_block;
+    if(!d)return null;
+    // fallback for older drawing.json: same layout as story_drawing.title_block_geom
+    var tw=420, path=String(d.coherence||''), approx=Math.max(2, Math.ceil(path.length/54));
+    var th=168+12*approx, x0=(d.w||1440)-tw-18, y0=(d.h||900)-th-16;
+    return {x:x0,y:y0,w:tw,h:th,n_outline:d.n_edges||0,paper:[242,240,234],fill:[36,36,38],
+      count:{x:x0+12,y:y0+65,w:tw-24,h:15,size:11,prefix:'outline coloured  ',suffix:' of '+(d.n_edges||0)}};
+  }
+  function outlineColouredNow(){
+    if(!DM)return 0;
+    if(phase==='mesh')return 0;
+    var seen={}, n=0;
+    function add(s){if(s&&s.kind==='outline'&&s.edge!=null&&seen[s.edge]==null){seen[s.edge]=1;n++;}}
+    (man&&man.layers||[]).forEach(function(L){if(shown[L.key]&&L.e)add(L.e);});
+    if(active&&active.L&&active.L.e)add(active.L.e);
+    return n;
+  }
+  function paintOutlineCount(x){
+    if(!DM||!x)return;
+    var tb=titleBlock(DM), c=tb&&tb.count; if(!c)return;
+    var n=outlineColouredNow();
+    var paper=tb.paper||[242,240,234], ink=tb.fill||[36,36,38], total=tb.n_outline||DM.n_edges||0;
+    x.save();
+    x.fillStyle='rgb('+paper[0]+','+paper[1]+','+paper[2]+')';
+    x.fillRect(c.x-1,c.y-1,(c.w||396)+2,(c.h||15)+2);
+    x.fillStyle='rgb('+ink[0]+','+ink[1]+','+ink[2]+')';
+    x.font=(c.size||11)+'px "Nimbus Roman","Times New Roman",Times,serif';
+    x.textAlign='left';x.textBaseline='top';
+    x.fillText((c.prefix||'outline coloured  ')+n+(c.suffix||(' of '+total)), c.x, c.y);
+    x.restore();
+  }
+    function bootDrawing(d,b){
     var units=drawingUnits(d);DM=d;
     man={v:'d'+(d.v||d.sig||units.length),w:d.w||1440,h:d.h||900,axis:[1,0],layers:units,
       strokes:units.map(function(u){var q=u.g.at(0.5);return {k:u.i,kind:'call',call:(u.e&&u.e.call)||'',job:(u.e&&u.e.job)||'',run:'',label:u.label,hex:u.hex,x:q[0],y:q[1],actor:'',floor:''};}),
