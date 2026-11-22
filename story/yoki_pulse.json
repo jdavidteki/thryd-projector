@@ -1,16 +1,32 @@
 {
  "v": 1,
  "run": "story-4b1689",
- "job": "j133",
- "card": "w133",
- "sig": "7963f5bc3c94",
- "generated": "2026-11-22T16:44:08-0500",
+ "job": "j134",
+ "card": "w134",
+ "sig": "5e595d7d4e2f",
+ "generated": "2026-11-22T16:54:56-0500",
  "pulse": {
-  "story": "At the cooler, find y, and kneel.",
-  "place": "Àjọ ledger, Ikorodu Town Hall 📓",
-  "problem": "Kazeem has the oyinboman kneeling by the cooler while the junior boys hunt for “y”, but this week’s page of the Àjọ ledger has gone missing, so nobody can prove who already paid toward “the promised land”. Where did the page go, and who has to kneel next?",
+  "story": "At the cooler, i need igbo and shayoo!, and the machinery of heaven will be at your disposal, and e say your enemies are not even here, and das y if you don’t respect the rule of law.",
+  "place": "MINUTES, Ikorodu Town Hall, by phone torch 🔦",
+  "problem": "Ronke's count of the need came out higher than anyone expected, and the das has just read the rule out loud, but the minutes are being written by phone torch and the torch is on its last bar. Who holds the light, and which line goes in the minutes before it dies?",
   "d": "1220. the promised land",
   "seats": [
+   {
+    "job": "j133",
+    "line": "#oyinboman - i need igbo and shayooo!"
+   },
+   {
+    "job": "j133",
+    "line": "#thryd - the machinery of heaven will be at your disposal"
+   },
+   {
+    "job": "j133",
+    "line": "#time - e say your enemies are not even here"
+   },
+   {
+    "job": "j133",
+    "line": "— das y if you don’t respect the rule of law"
+   },
    {
     "job": "j132",
     "line": "#juniorboys - find y"
@@ -26,25 +42,24 @@
    {
     "job": "j131",
     "line": "#seniorboys - stop!!"
-   },
-   {
-    "job": "j131",
-    "line": "#seniorgehs - on gaahhhhddd!"
-   },
-   {
-    "job": "j131",
-    "line": "#juniorboys - wisdom"
-   },
-   {
-    "job": "j130",
-    "line": "[[idhtct]] - but you have to login"
-   },
-   {
-    "job": "j130",
-    "line": "#yorubbbygehinny - ila asepo"
    }
   ],
   "consequences": [
+   {
+    "job": "j133",
+    "call": "#thryd.miracle.log(1)",
+    "consequence": "#thryd.miracle.log(1)"
+   },
+   {
+    "job": "j133",
+    "call": "#tqid",
+    "consequence": "#tqid"
+   },
+   {
+    "job": "j133",
+    "call": "#thryd.miracle.log(1)",
+    "consequence": "#thryd.miracle.log(1)"
+   },
    {
     "job": "j132",
     "call": "[[hoc:na]]",
@@ -59,583 +74,568 @@
     "job": "j132",
     "call": "b1()",
     "consequence": "b1()"
-   },
-   {
-    "job": "j132",
-    "call": "#thryd.miracle.log(1)",
-    "consequence": "#thryd.miracle.log(1)"
-   },
-   {
-    "job": "j132",
-    "call": "[[@",
-    "consequence": "[[@"
-   },
-   {
-    "job": "j132",
-    "call": "#thryd.miracle.log(1)",
-    "consequence": "#thryd.miracle.log(1)"
    }
   ],
   "terms": [
-   "kneel",
-   "juniorboys",
+   "need",
+   "das",
+   "rule",
+   "_god",
+   "heaven",
    "oyinboman",
-   "find",
-   "promised",
-   "land",
-   "cooler",
-   "page",
-   "ajo",
-   "ledger",
-   "na",
-   "mend",
+   "time",
+   "minutes",
+   "torch",
    "miracle",
    "log",
-   "shu",
-   "bring"
+   "igbo",
+   "machinery",
+   "disposal",
+   "enemies",
+   "even"
   ]
  },
  "note": "story pulse → africariyoki lyric match (tools/story_yoki_pulse.py): open card + newest seats + func_call consequences, BM25 over lyric lines; the page picks among the best unplayed few",
  "candidates": [
   {
-   "id": "hES6z44NHJc",
-   "title": "Wiz Party",
-   "artist": "Wizkid",
-   "score": 43.845,
-   "why": "♪ j133: “Na you I dey find find find” ↔ j132 seat “#juniorboys - find y”",
-   "line": "Na you I dey find find find",
-   "via": "j132 seat “#juniorboys - find y”"
-  },
-  {
-   "id": "mV_zjss2nlY",
-   "title": "Bunieya Enu",
-   "artist": "P-square",
-   "score": 43.601,
-   "why": "♪ j133: “Kpata kpata we dey kneel down and pray” ↔ j132 seat “#oyinboman - kneel”",
-   "line": "Kpata kpata we dey kneel down and pray",
-   "via": "j132 seat “#oyinboman - kneel”"
-  },
-  {
-   "id": "5VVdLympnQE",
-   "title": "Do Like That",
-   "artist": "Korede Bello",
-   "score": 41.435,
-   "why": "♪ j133: “Just bend like say you want to kneel for daddy” ↔ j132 seat “#oyinboman - kneel”",
-   "line": "Just bend like say you want to kneel for daddy",
-   "via": "j132 seat “#oyinboman - kneel”"
-  },
-  {
-   "id": "xalbSIl3O3s",
-   "title": "Dangote",
-   "artist": "Burna Boy",
-   "score": 40.473,
-   "why": "♪ j133: “Find money find money” ↔ j132 seat “#juniorboys - find y”",
-   "line": "Find money find money",
-   "via": "j132 seat “#juniorboys - find y”"
-  },
-  {
-   "id": "QRNPNNz85s0",
-   "title": "Mama",
-   "artist": "Kiss Daniel",
-   "score": 37.895,
-   "why": "♪ j133: “All I seek I find it in you” ↔ j132 seat “#juniorboys - find y”",
-   "line": "All I seek I find it in you",
-   "via": "j132 seat “#juniorboys - find y”"
-  },
-  {
-   "id": "_KXHTdq9URg",
-   "title": "Mighty Wine",
-   "artist": "Wizkid",
-   "score": 34.394,
-   "why": "♪ j133: “Say I dey find you truly yeah” ↔ j132 seat “#juniorboys - find y”",
-   "line": "Say I dey find you truly yeah",
-   "via": "j132 seat “#juniorboys - find y”"
-  },
-  {
-   "id": "jcD9olHl_XE",
-   "title": "Adore Her",
-   "artist": "Ladipoe ft Funbi",
-   "score": 32.189,
-   "why": "♪ j133: “Let him find out” ↔ j132 seat “#juniorboys - find y”",
-   "line": "Let him find out",
-   "via": "j132 seat “#juniorboys - find y”"
-  },
-  {
-   "id": "7sbj_7mRyAg",
-   "title": "No One Like You",
-   "artist": "Psquare",
-   "score": 31.69,
-   "why": "♪ j133: “Thank God I find you eh” ↔ j132 seat “#juniorboys - find y”",
-   "line": "Thank God I find you eh",
-   "via": "j132 seat “#juniorboys - find y”"
-  },
-  {
-   "id": "WhXEndUf0w4",
-   "title": "Everything (Amen)",
-   "artist": "Timi Dakolo",
-   "score": 30.842,
-   "why": "♪ j133: “If you dey find work” ↔ j132 seat “#juniorboys - find y”",
-   "line": "If you dey find work",
-   "via": "j132 seat “#juniorboys - find y”"
-  },
-  {
-   "id": "uaYOrqb8U8w",
-   "title": "Double Wahala",
-   "artist": "Oritse Femi",
-   "score": 30.801,
-   "why": "♪ j133: “Na wahala you dey find oh oh” ↔ j132 seat “#juniorboys - find y”",
-   "line": "Na wahala you dey find oh oh",
-   "via": "j132 seat “#juniorboys - find y”"
+   "id": "bp6UdUPtXxE",
+   "title": "Safe",
+   "artist": "M.I ft Djinee",
+   "score": 83.107,
+   "why": "♪ j134: “Christ has to rule me” ↔ j133 seat “— das y if you don’t respect the rule of law”",
+   "line": "Christ has to rule me",
+   "via": "j133 seat “— das y if you don’t respect the rule of law”"
   },
   {
    "id": "VDcEJE633rM",
    "title": "Free Mind",
    "artist": "Tems",
-   "score": 29.999,
-   "why": "♪ j133: “I need to find release” ↔ j132 seat “#juniorboys - find y”",
-   "line": "I need to find release",
-   "via": "j132 seat “#juniorboys - find y”"
+   "score": 61.47,
+   "why": "♪ j134: “I really need I really need time now” ↔ j133 seat “#oyinboman - i need igbo and shayooo!”",
+   "line": "I really need I really need time now",
+   "via": "j133 seat “#oyinboman - i need igbo and shayooo!”"
   },
   {
-   "id": "UdKTx-8EvtM",
-   "title": "Corny",
-   "artist": "Rema",
-   "score": 29.454,
-   "why": "♪ j133: “This your body na miracle ah” ↔ j132 #thryd.miracle.log(1)",
-   "line": "This your body na miracle ah",
-   "via": "j132 #thryd.miracle.log(1)"
+   "id": "fev13TZr2TA",
+   "title": "Running",
+   "artist": "Ladipoe, FireboyDML",
+   "score": 61.167,
+   "why": "♪ j134: “And thats on God only heaven knows” ↔ j133 seat “#thryd - the machinery of heaven will be at your”",
+   "line": "And thats on God only heaven knows",
+   "via": "j133 seat “#thryd - the machinery of heaven will be at your”"
   },
   {
-   "id": "JDy-ZLlYEGw",
-   "title": "Holla At Your Boy",
-   "artist": "Wizkid",
-   "score": 29.26,
-   "why": "♪ j133: “I find more swag holla at your boy” ↔ j132 seat “#juniorboys - find y”",
-   "line": "I find more swag holla at your boy",
-   "via": "j132 seat “#juniorboys - find y”"
+   "id": "CDOl5EM2Xns",
+   "title": "Living Tings",
+   "artist": "9ice",
+   "score": 60.913,
+   "why": "♪ j134: “God no go come down from heaven” ↔ j133 seat “#thryd - the machinery of heaven will be at your”",
+   "line": "God no go come down from heaven",
+   "via": "j133 seat “#thryd - the machinery of heaven will be at your”"
   },
   {
-   "id": "UVte8a_2q80",
-   "title": "Sweet in the Middle",
-   "artist": "Davido ft Wurld, Naira Marley, Zlatan",
-   "score": 29.195,
-   "why": "♪ j133: “You can find me in the middle” ↔ j132 seat “#juniorboys - find y”",
-   "line": "You can find me in the middle",
-   "via": "j132 seat “#juniorboys - find y”"
-  },
-  {
-   "id": "2lY1oZq-8N0",
-   "title": "My Car",
-   "artist": "Tony Tetuila",
-   "score": 28.62,
-   "why": "♪ j133: “Wetin you dey find” ↔ j132 seat “#juniorboys - find y”",
-   "line": "Wetin you dey find",
-   "via": "j132 seat “#juniorboys - find y”"
-  },
-  {
-   "id": "dXeOBkKdiAg",
-   "title": "Real Life (feat. Stormzy)",
-   "artist": "Burna Boy",
-   "score": 28.607,
-   "why": "♪ j133: “Tryna find my peace of mind” ↔ j132 seat “#juniorboys - find y”",
-   "line": "Tryna find my peace of mind",
-   "via": "j132 seat “#juniorboys - find y”"
-  },
-  {
-   "id": "lta5go9P-go",
-   "title": "FEM",
-   "artist": "Davido",
-   "score": 28.516,
-   "why": "♪ j133: “you wey dey find the pity” ↔ j132 seat “#juniorboys - find y”",
-   "line": "you wey dey find the pity",
-   "via": "j132 seat “#juniorboys - find y”"
-  },
-  {
-   "id": "v8SNlvR86xc",
-   "title": "overdose",
-   "artist": "mavins",
-   "score": 28.175,
-   "why": "♪ j133: “I dey find for four days four days” ↔ j132 seat “#juniorboys - find y”",
-   "line": "I dey find for four days four days",
-   "via": "j132 seat “#juniorboys - find y”"
-  },
-  {
-   "id": "8pZGsNSAfLo",
-   "title": "Ozumba Mbadiwe",
-   "artist": "Reekado Banks",
-   "score": 28.139,
-   "why": "♪ j133: “Cos Dey dont know how to find me” ↔ j132 seat “#juniorboys - find y”",
-   "line": "Cos Dey dont know how to find me",
-   "via": "j132 seat “#juniorboys - find y”"
-  },
-  {
-   "id": "G0M8goEBVHU",
-   "title": "Surulere",
-   "artist": "Dr. SID ft Don Jazzy",
-   "score": 27.725,
-   "why": "♪ j133: “Una go find out eh” ↔ j132 seat “#juniorboys - find y”",
-   "line": "Una go find out eh",
-   "via": "j132 seat “#juniorboys - find y”"
-  },
-  {
-   "id": "HE8p1lJaPyg",
-   "title": "Olufunmi",
-   "artist": "Styl-Plus",
-   "score": 26.658,
-   "why": "♪ j133: “Thats why when I think about you leaving I find myself gri…” ↔ j132 seat “#juniorboys - find y”",
-   "line": "Thats why when I think about you leaving I find myself grieving",
-   "via": "j132 seat “#juniorboys - find y”"
-  },
-  {
-   "id": "Snpa4_kUkkg",
-   "title": "Gentility",
-   "artist": "melvitto ft Wande Coal",
-   "score": 26.402,
-   "why": "♪ j133: “If you lost me girl i go find oh” ↔ j132 seat “#juniorboys - find y”",
-   "line": "If you lost me girl i go find oh",
-   "via": "j132 seat “#juniorboys - find y”"
-  },
-  {
-   "id": "xFulOpi23R0",
-   "title": "london",
-   "artist": "tomi agape",
-   "score": 26.241,
-   "why": "♪ j133: “So I pick up my pen and I put it to the page” ↔ j133 📖 problem",
-   "line": "So I pick up my pen and I put it to the page",
-   "via": "j133 📖 problem"
-  },
-  {
-   "id": "xygb3dw2nTY",
-   "title": "O Wa N'bę",
-   "artist": "Simi",
-   "score": 25.966,
-   "why": "♪ j133: “na there where you go find mummy risi” ↔ j132 seat “#juniorboys - find y”",
-   "line": "na there where you go find mummy risi",
-   "via": "j132 seat “#juniorboys - find y”"
-  },
-  {
-   "id": "onQmiURQCyU",
-   "title": "Odogwu",
-   "artist": "Burna Boy",
-   "score": 25.954,
-   "why": "♪ j133: “And nobody can stop you na so we dey fly pass oh” ↔ j131 seat “#seniorboys - stop!!”",
-   "line": "And nobody can stop you na so we dey fly pass oh",
-   "via": "j131 seat “#seniorboys - stop!!”"
-  },
-  {
-   "id": "Yp9Bvu-qNeQ",
-   "title": "Particula",
-   "artist": "Major Lazer feat Nasty C, Ice Prince, Patoranking & Jidenna",
-   "score": 25.941,
-   "why": "♪ j133: “Aint nothing cooler than the wrong moves” ↔ j133 📖 problem",
-   "line": "Aint nothing cooler than the wrong moves",
-   "via": "j133 📖 problem"
-  },
-  {
-   "id": "Yvdp4mWMDv8",
-   "title": "Shayo",
-   "artist": "Bigiano",
-   "score": 25.83,
-   "why": "♪ j133: “London people don dey find bigiano” ↔ j132 seat “#juniorboys - find y”",
-   "line": "London people don dey find bigiano",
-   "via": "j132 seat “#juniorboys - find y”"
+   "id": "2AldEx7Nx5E",
+   "title": "Unconditionally",
+   "artist": "Ajebutter22",
+   "score": 54.974,
+   "why": "♪ j134: “Youre all I need do you need me” ↔ j133 seat “#oyinboman - i need igbo and shayooo!”",
+   "line": "Youre all I need do you need me",
+   "via": "j133 seat “#oyinboman - i need igbo and shayooo!”"
   },
   {
    "id": "0rLSi6m2Ll4",
    "title": "Hallelujah",
    "artist": "Funbi",
-   "score": 25.658,
-   "why": "♪ j133: “Seek and you shall find” ↔ j132 seat “#juniorboys - find y”",
-   "line": "Seek and you shall find",
-   "via": "j132 seat “#juniorboys - find y”"
+   "score": 54.82,
+   "why": "♪ j134: “Cant you see the hand of heaven is upon yeah yeah” ↔ j133 seat “#thryd - the machinery of heaven will be at your”",
+   "line": "Cant you see the hand of heaven is upon yeah yeah",
+   "via": "j133 seat “#thryd - the machinery of heaven will be at your”"
   },
   {
    "id": "utPhQUnLqc4",
    "title": "Hallelujah",
    "artist": "Funbi",
-   "score": 25.658,
-   "why": "♪ j133: “Seek and you shall find” ↔ j132 seat “#juniorboys - find y”",
-   "line": "Seek and you shall find",
-   "via": "j132 seat “#juniorboys - find y”"
+   "score": 54.82,
+   "why": "♪ j134: “Cant you see the hand of heaven is upon yeah yeah” ↔ j133 seat “#thryd - the machinery of heaven will be at your”",
+   "line": "Cant you see the hand of heaven is upon yeah yeah",
+   "via": "j133 seat “#thryd - the machinery of heaven will be at your”"
   },
   {
-   "id": "N5G7Mvo0tkM",
-   "title": "Say Your Love",
-   "artist": "P-Square",
-   "score": 25.509,
-   "why": "♪ j133: “Make you get out of my sight make you find your way” ↔ j132 seat “#juniorboys - find y”",
-   "line": "Make you get out of my sight make you find your way",
-   "via": "j132 seat “#juniorboys - find y”"
+   "id": "yfM_ctb0tOo",
+   "title": "Bumper to Bumper",
+   "artist": "Wande Coal",
+   "score": 54.544,
+   "why": "♪ j134: “Das why I blow the golden kiss” ↔ j133 seat “— das y if you don’t respect the rule of law”",
+   "line": "Das why I blow the golden kiss",
+   "via": "j133 seat “— das y if you don’t respect the rule of law”"
   },
   {
-   "id": "zgi30OqnKN4",
-   "title": "Okay",
-   "artist": "Adekunle Gold",
-   "score": 25.445,
-   "why": "♪ j133: “na craze you dey find” ↔ j132 seat “#juniorboys - find y”",
-   "line": "na craze you dey find",
-   "via": "j132 seat “#juniorboys - find y”"
+   "id": "ai0RgtrRGSY",
+   "title": "LIKE IT",
+   "artist": "Amaarae",
+   "score": 53.879,
+   "why": "♪ j134: “Do you need it like I need it” ↔ j133 seat “#oyinboman - i need igbo and shayooo!”",
+   "line": "Do you need it like I need it",
+   "via": "j133 seat “#oyinboman - i need igbo and shayooo!”"
   },
   {
-   "id": "0u1K1w8La5A",
-   "title": "Yes/No",
-   "artist": "Banky W",
-   "score": 25.358,
-   "why": "♪ j133: “Cause na you I dey find baby make up your mind” ↔ j132 seat “#juniorboys - find y”",
-   "line": "Cause na you I dey find baby make up your mind",
-   "via": "j132 seat “#juniorboys - find y”"
-  },
-  {
-   "id": "PlL23GFOCZo",
-   "title": "Go outside",
-   "artist": "Nonso Amadi ft Mr Eazi",
-   "score": 24.99,
-   "why": "♪ j133: “Make evil eye no fit find us” ↔ j132 seat “#juniorboys - find y”",
-   "line": "Make evil eye no fit find us",
-   "via": "j132 seat “#juniorboys - find y”"
-  },
-  {
-   "id": "Zcw4QJWD0MY",
-   "title": "MJ",
-   "artist": "Bad Boy Timz",
-   "score": 24.634,
-   "why": "♪ j133: “I gas come find you” ↔ j132 seat “#juniorboys - find y”",
-   "line": "I gas come find you",
-   "via": "j132 seat “#juniorboys - find y”"
-  },
-  {
-   "id": "1kU5BzdfDfg",
-   "title": "Higher",
-   "artist": "Tems",
-   "score": 24.59,
-   "why": "♪ j133: “Running away to the land of discovery” ↔ j133 📖 problem",
-   "line": "Running away to the land of discovery",
-   "via": "j133 📖 problem"
-  },
-  {
-   "id": "osmCHfPKgLQ",
-   "title": "Bloody Samaritan",
-   "artist": "Ayra starr",
-   "score": 24.478,
-   "why": "♪ j133: “There you shall find a piece of advice” ↔ j132 seat “#juniorboys - find y”",
-   "line": "There you shall find a piece of advice",
-   "via": "j132 seat “#juniorboys - find y”"
-  },
-  {
-   "id": "ir-DUnDxFQc",
-   "title": "Goons MI",
-   "artist": "Olamide",
-   "score": 24.425,
-   "why": "♪ j133: “jesu man she miracle” ↔ j132 #thryd.miracle.log(1)",
-   "line": "jesu man she miracle",
-   "via": "j132 #thryd.miracle.log(1)"
-  },
-  {
-   "id": "jipQpjUA_o8",
-   "title": "Essence",
-   "artist": "Wizkid ft Tems",
-   "score": 24.396,
-   "why": "♪ j133: “i find you i give you all you needin” ↔ j132 seat “#juniorboys - find y”",
-   "line": "i find you i give you all you needin",
-   "via": "j132 seat “#juniorboys - find y”"
-  },
-  {
-   "id": "iG_WSIotJBI",
-   "title": "Sugarcane Remix",
-   "artist": "DARKOO, King Promise & Mayorkun",
-   "score": 24.357,
-   "why": "♪ j133: “Man dem suffer to find your love” ↔ j132 seat “#juniorboys - find y”",
-   "line": "Man dem suffer to find your love",
-   "via": "j132 seat “#juniorboys - find y”"
-  },
-  {
-   "id": "9EAmNDBjuws",
-   "title": "Soldier",
-   "artist": "Falz ft Simi",
-   "score": 24.294,
-   "why": "♪ j133: “Soldier find another boo just dont fall in love me” ↔ j132 seat “#juniorboys - find y”",
-   "line": "Soldier find another boo just dont fall in love me",
-   "via": "j132 seat “#juniorboys - find y”"
-  },
-  {
-   "id": "bp6UdUPtXxE",
-   "title": "Safe",
-   "artist": "M.I ft Djinee",
-   "score": 23.372,
-   "why": "♪ j133: “Am what the missing” ↔ j133 📖 problem",
-   "line": "Am what the missing",
-   "via": "j133 📖 problem"
-  },
-  {
-   "id": "G7Er0z3zw2s",
-   "title": "GODWIN",
-   "artist": "Korede Bello",
-   "score": 23.349,
-   "why": "♪ j133: “And e don tey wey you dey find but God Win” ↔ j132 seat “#juniorboys - find y”",
-   "line": "And e don tey wey you dey find but God Win",
-   "via": "j132 seat “#juniorboys - find y”"
-  },
-  {
-   "id": "0bjHDNoZrrQ",
-   "title": "Lonely",
-   "artist": "Joeboy",
-   "score": 23.344,
-   "why": "♪ j133: “Your type is just so hard to find” ↔ j132 seat “#juniorboys - find y”",
-   "line": "Your type is just so hard to find",
-   "via": "j132 seat “#juniorboys - find y”"
-  },
-  {
-   "id": "RWoGI1WXjpM",
-   "title": "On Top Your Matter",
-   "artist": "Wizkid",
-   "score": 23.341,
-   "why": "♪ j133: “I find peace with you baby and Ill never leave you my lady” ↔ j132 seat “#juniorboys - find y”",
-   "line": "I find peace with you baby and Ill never leave you my lady",
-   "via": "j132 seat “#juniorboys - find y”"
-  },
-  {
-   "id": "33h-C2WI4UQ",
-   "title": "Omo",
+   "id": "9SwjbjHOFnE",
+   "title": "Last Last",
    "artist": "Burna Boy",
-   "score": 23.319,
-   "why": "♪ j133: “She no dey find anybody wey go control am” ↔ j132 seat “#juniorboys - find y”",
-   "line": "She no dey find anybody wey go control am",
-   "via": "j132 seat “#juniorboys - find y”"
+   "score": 53.359,
+   "why": "♪ j134: “I need Igbo and shayo Shayo” ↔ j133 seat “#oyinboman - i need igbo and shayooo!”",
+   "line": "I need Igbo and shayo Shayo",
+   "via": "j133 seat “#oyinboman - i need igbo and shayooo!”"
   },
   {
-   "id": "EUOD7JVmh8M",
-   "title": "Feel",
-   "artist": "Fireboy DML",
-   "score": 22.693,
-   "why": "♪ j133: “Around the world I don go oh cant find nobody like you” ↔ j132 seat “#juniorboys - find y”",
-   "line": "Around the world I don go oh cant find nobody like you",
-   "via": "j132 seat “#juniorboys - find y”"
+   "id": "UdKTx-8EvtM",
+   "title": "Corny",
+   "artist": "Rema",
+   "score": 51.812,
+   "why": "♪ j134: “This your body na miracle ah” ↔ j133 #thryd.miracle.log(1)",
+   "line": "This your body na miracle ah",
+   "via": "j133 #thryd.miracle.log(1)"
+  },
+  {
+   "id": "65ZUr3n9NAI",
+   "title": "Medicine",
+   "artist": "Jaywillz",
+   "score": 51.562,
+   "why": "♪ j134: “Whenever you need call my phone” ↔ j133 seat “#oyinboman - i need igbo and shayooo!”",
+   "line": "Whenever you need call my phone",
+   "via": "j133 seat “#oyinboman - i need igbo and shayooo!”"
+  },
+  {
+   "id": "iAbnEUA0wpA",
+   "title": "One Dance",
+   "artist": "Wizkid ::: Drake, Kyla",
+   "score": 51.452,
+   "why": "♪ j134: “I need to know where do you wanna go” ↔ j133 seat “#oyinboman - i need igbo and shayooo!”",
+   "line": "I need to know where do you wanna go",
+   "via": "j133 seat “#oyinboman - i need igbo and shayooo!”"
   },
   {
    "id": "cL51JxNZF7w",
    "title": "Toh Bad",
    "artist": "Niyola",
-   "score": 22.585,
-   "why": "♪ j133: “Tears are hard to find” ↔ j132 seat “#juniorboys - find y”",
-   "line": "Tears are hard to find",
-   "via": "j132 seat “#juniorboys - find y”"
+   "score": 49.4,
+   "why": "♪ j134: “I need you” ↔ j133 seat “#oyinboman - i need igbo and shayooo!”",
+   "line": "I need you",
+   "via": "j133 seat “#oyinboman - i need igbo and shayooo!”"
   },
   {
-   "id": "rGjC8ZZveDU",
-   "title": "Cough",
-   "artist": "Kizz Daniel",
-   "score": 22.247,
-   "why": "♪ j133: “You dont want to find my trouble” ↔ j132 seat “#juniorboys - find y”",
-   "line": "You dont want to find my trouble",
-   "via": "j132 seat “#juniorboys - find y”"
+   "id": "mMutBBeqLMQ",
+   "title": "O2",
+   "artist": "Oxlade",
+   "score": 49.236,
+   "why": "♪ j134: “The one that I need” ↔ j133 seat “#oyinboman - i need igbo and shayooo!”",
+   "line": "The one that I need",
+   "via": "j133 seat “#oyinboman - i need igbo and shayooo!”"
   },
   {
-   "id": "EIhynHFVw50",
-   "title": "Buga",
-   "artist": "Kizz Daniel, Tekno",
-   "score": 22.115,
-   "why": "♪ j133: “When I land I land softly on a sofa floor” ↔ j133 📖 problem",
-   "line": "When I land I land softly on a sofa floor",
-   "via": "j133 📖 problem"
-  },
-  {
-   "id": "D4LoolqWCiU",
-   "title": "No Wahala",
-   "artist": "1da Banton",
-   "score": 22.096,
-   "why": "♪ j133: “I no go find your trouble” ↔ j132 seat “#juniorboys - find y”",
-   "line": "I no go find your trouble",
-   "via": "j132 seat “#juniorboys - find y”"
-  },
-  {
-   "id": "YoMEPM2HvtI",
-   "title": "Gobe",
-   "artist": "L.A.X ft Simi, Tiwa Savage",
-   "score": 21.873,
-   "why": "♪ j133: “I go find Sugar Daddy o” ↔ j132 seat “#juniorboys - find y”",
-   "line": "I go find Sugar Daddy o",
-   "via": "j132 seat “#juniorboys - find y”"
-  },
-  {
-   "id": "BKtUjHzyeys",
-   "title": "Fall In Love",
-   "artist": "D’banj",
-   "score": 21.617,
-   "why": "♪ j133: “See I never thought that Ill find someone like you” ↔ j132 seat “#juniorboys - find y”",
-   "line": "See I never thought that Ill find someone like you",
-   "via": "j132 seat “#juniorboys - find y”"
-  },
-  {
-   "id": "JBjA4mVeKC0",
-   "title": "Igwe",
-   "artist": "D'banj",
-   "score": 21.558,
-   "why": "♪ j133: “Osi na nwata oki ro ramafor ki igbo land” ↔ j133 📖 problem",
-   "line": "Osi na nwata oki ro ramafor ki igbo land",
-   "via": "j133 📖 problem"
-  },
-  {
-   "id": "w1sirF_D-3I",
-   "title": "Calm Down",
+   "id": "Rs-uSNj3R4Y",
+   "title": "Dirty",
    "artist": "Rema",
-   "score": 20.965,
-   "why": "♪ j133: “Naim I dey find situation I go use take tell am hello” ↔ j132 seat “#juniorboys - find y”",
-   "line": "Naim I dey find situation I go use take tell am hello",
-   "via": "j132 seat “#juniorboys - find y”"
+   "score": 49.198,
+   "why": "♪ j134: “Lost count count count count” ↔ j134 📖 problem",
+   "line": "Lost count count count count",
+   "via": "j134 📖 problem"
   },
   {
-   "id": "o5KyLuuqFms",
-   "title": "Bad Influence",
-   "artist": "Omah Lay",
-   "score": 20.909,
-   "why": "♪ j133: “place you find yourself you gotta do it” ↔ j132 seat “#juniorboys - find y”",
-   "line": "place you find yourself you gotta do it",
-   "via": "j132 seat “#juniorboys - find y”"
+   "id": "jipQpjUA_o8",
+   "title": "Essence",
+   "artist": "Wizkid ft Tems",
+   "score": 48.219,
+   "why": "♪ j134: “gave you all you need gave you all you need” ↔ j133 seat “#oyinboman - i need igbo and shayooo!”",
+   "line": "gave you all you need gave you all you need",
+   "via": "j133 seat “#oyinboman - i need igbo and shayooo!”"
   },
   {
-   "id": "IahNmvmFOS4",
-   "title": "Yori Yori",
-   "artist": "Bracket",
-   "score": 20.176,
-   "why": "♪ j133: “Nobody can stop me from loving you” ↔ j131 seat “#seniorboys - stop!!”",
-   "line": "Nobody can stop me from loving you",
-   "via": "j131 seat “#seniorboys - stop!!”"
+   "id": "C2ncGGiDZxA",
+   "title": "Oliver Twist",
+   "artist": "D'banj",
+   "score": 48.115,
+   "why": "♪ j134: “You must need the need the bumbum” ↔ j133 seat “#oyinboman - i need igbo and shayooo!”",
+   "line": "You must need the need the bumbum",
+   "via": "j133 seat “#oyinboman - i need igbo and shayooo!”"
+  },
+  {
+   "id": "GWKdV6H7qZM",
+   "title": "Smile (feat. H.E.R.)",
+   "artist": "WizKid",
+   "score": 47.916,
+   "why": "♪ j134: “Youre the only one I need” ↔ j133 seat “#oyinboman - i need igbo and shayooo!”",
+   "line": "Youre the only one I need",
+   "via": "j133 seat “#oyinboman - i need igbo and shayooo!”"
+  },
+  {
+   "id": "nedwzQSZwfE",
+   "title": "Pray",
+   "artist": "Victony",
+   "score": 47.3,
+   "why": "♪ j134: “One day all man go meet for heaven” ↔ j133 seat “#thryd - the machinery of heaven will be at your”",
+   "line": "One day all man go meet for heaven",
+   "via": "j133 seat “#thryd - the machinery of heaven will be at your”"
+  },
+  {
+   "id": "v8SNlvR86xc",
+   "title": "overdose",
+   "artist": "mavins",
+   "score": 47.002,
+   "why": "♪ j134: “I just wanna be there when you need me” ↔ j133 seat “#oyinboman - i need igbo and shayooo!”",
+   "line": "I just wanna be there when you need me",
+   "via": "j133 seat “#oyinboman - i need igbo and shayooo!”"
+  },
+  {
+   "id": "Yvdp4mWMDv8",
+   "title": "Shayo",
+   "artist": "Bigiano",
+   "score": 46.447,
+   "why": "♪ j134: “Even if i like i go smoke igbo o” ↔ j133 seat “#oyinboman - i need igbo and shayooo!”",
+   "line": "Even if i like i go smoke igbo o",
+   "via": "j133 seat “#oyinboman - i need igbo and shayooo!”"
+  },
+  {
+   "id": "EOrFWBjiRik",
+   "title": "Damages",
+   "artist": "Tems",
+   "score": 46.188,
+   "why": "♪ j134: “Im not what you need to be now” ↔ j133 seat “#oyinboman - i need igbo and shayooo!”",
+   "line": "Im not what you need to be now",
+   "via": "j133 seat “#oyinboman - i need igbo and shayooo!”"
+  },
+  {
+   "id": "zhPUUEhkYOY",
+   "title": "Nakupenda",
+   "artist": "chike, Ric Hassani",
+   "score": 45.994,
+   "why": "♪ j134: “I know you need somebody” ↔ j133 seat “#oyinboman - i need igbo and shayooo!”",
+   "line": "I know you need somebody",
+   "via": "j133 seat “#oyinboman - i need igbo and shayooo!”"
+  },
+  {
+   "id": "j5KHNguba7U",
+   "title": "Gaga Shuffle",
+   "artist": "2baba",
+   "score": 45.411,
+   "why": "♪ j134: “Heaven surrounds am start to dey play me now” ↔ j133 seat “#thryd - the machinery of heaven will be at your”",
+   "line": "Heaven surrounds am start to dey play me now",
+   "via": "j133 seat “#thryd - the machinery of heaven will be at your”"
+  },
+  {
+   "id": "N5G7Mvo0tkM",
+   "title": "Say Your Love",
+   "artist": "P-Square",
+   "score": 45.365,
+   "why": "♪ j134: “Make you go I dont need you no more” ↔ j133 seat “#oyinboman - i need igbo and shayooo!”",
+   "line": "Make you go I dont need you no more",
+   "via": "j133 seat “#oyinboman - i need igbo and shayooo!”"
+  },
+  {
+   "id": "FCUk7rIBBAE",
+   "title": "Joro",
+   "artist": "Wizkid",
+   "score": 45.004,
+   "why": "♪ j134: “when i need you by my side” ↔ j133 seat “#oyinboman - i need igbo and shayooo!”",
+   "line": "when i need you by my side",
+   "via": "j133 seat “#oyinboman - i need igbo and shayooo!”"
+  },
+  {
+   "id": "oNYiG6f9W_g",
+   "title": "Action Film",
+   "artist": "M.I ft Brymo",
+   "score": 44.978,
+   "why": "♪ j134: “Cos I do need you too” ↔ j133 seat “#oyinboman - i need igbo and shayooo!”",
+   "line": "Cos I do need you too",
+   "via": "j133 seat “#oyinboman - i need igbo and shayooo!”"
+  },
+  {
+   "id": "ir-DUnDxFQc",
+   "title": "Goons MI",
+   "artist": "Olamide",
+   "score": 44.976,
+   "why": "♪ j134: “jesu man she miracle” ↔ j133 #thryd.miracle.log(1)",
+   "line": "jesu man she miracle",
+   "via": "j133 #thryd.miracle.log(1)"
+  },
+  {
+   "id": "EEvbOgy6KCg",
+   "title": "Again",
+   "artist": "Wande Coal",
+   "score": 44.712,
+   "why": "♪ j134: “No even waste time” ↔ j133 seat “#time - e say your enemies are not even here”",
+   "line": "No even waste time",
+   "via": "j133 seat “#time - e say your enemies are not even here”"
+  },
+  {
+   "id": "X9A0L0MD6T4",
+   "title": "Champion",
+   "artist": "Fireboy DML ft Dsmoke",
+   "score": 44.445,
+   "why": "♪ j134: “I need patience in good time” ↔ j133 seat “#oyinboman - i need igbo and shayooo!”",
+   "line": "I need patience in good time",
+   "via": "j133 seat “#oyinboman - i need igbo and shayooo!”"
+  },
+  {
+   "id": "u7BlxYo50YQ",
+   "title": "Gentleman",
+   "artist": "Ric Hassani",
+   "score": 44.295,
+   "why": "♪ j134: “When the sun goes down and you need somebody” ↔ j133 seat “#oyinboman - i need igbo and shayooo!”",
+   "line": "When the sun goes down and you need somebody",
+   "via": "j133 seat “#oyinboman - i need igbo and shayooo!”"
+  },
+  {
+   "id": "aK5FsO7n31E",
+   "title": "Skin Tight",
+   "artist": "Mr Eazi ft Efya",
+   "score": 44.068,
+   "why": "♪ j134: “You be the only one that I need” ↔ j133 seat “#oyinboman - i need igbo and shayooo!”",
+   "line": "You be the only one that I need",
+   "via": "j133 seat “#oyinboman - i need igbo and shayooo!”"
+  },
+  {
+   "id": "JtEv_3Rwn1o",
+   "title": "Holy Ground",
+   "artist": "Davido ft. Nicki Minaj",
+   "score": 43.259,
+   "why": "♪ j134: “and fuck you to my enemies fuck you to my enemies” ↔ j133 seat “#time - e say your enemies are not even here”",
+   "line": "and fuck you to my enemies fuck you to my enemies",
+   "via": "j133 seat “#time - e say your enemies are not even here”"
+  },
+  {
+   "id": "MCnkHJ0HbDQ",
+   "title": "Damn",
+   "artist": "Omah Lay ft. 6lack",
+   "score": 43.093,
+   "why": "♪ j134: “She loves me when Im lost even when I no need love yeah” ↔ j133 seat “#oyinboman - i need igbo and shayooo!”",
+   "line": "She loves me when Im lost even when I no need love yeah",
+   "via": "j133 seat “#oyinboman - i need igbo and shayooo!”"
   },
   {
    "id": "XlCPF3-IyIw",
    "title": "Bank On It",
    "artist": "Burna Boy",
-   "score": 20.165,
-   "why": "♪ j133: “in a private plane i land pon it” ↔ j133 📖 problem",
-   "line": "in a private plane i land pon it",
-   "via": "j133 📖 problem"
+   "score": 42.672,
+   "why": "♪ j134: “then we all need someone” ↔ j133 seat “#oyinboman - i need igbo and shayooo!”",
+   "line": "then we all need someone",
+   "via": "j133 seat “#oyinboman - i need igbo and shayooo!”"
   },
   {
-   "id": "jMpysHVdAe0",
-   "title": "Lenu - Remix",
-   "artist": "Buju ft Burna Boy",
-   "score": 20.152,
-   "why": "♪ j133: “Because oluwa burna no dey find trouble” ↔ j132 seat “#juniorboys - find y”",
-   "line": "Because oluwa burna no dey find trouble",
-   "via": "j132 seat “#juniorboys - find y”"
+   "id": "ET0LuQ3_ZIw",
+   "title": "Energy (Stay Far Away)",
+   "artist": "Skepta & WizKid",
+   "score": 42.619,
+   "why": "♪ j134: “See I need your love” ↔ j133 seat “#oyinboman - i need igbo and shayooo!”",
+   "line": "See I need your love",
+   "via": "j133 seat “#oyinboman - i need igbo and shayooo!”"
   },
   {
-   "id": "zxDAgjaxDWI",
-   "title": "Somebody’s Son",
-   "artist": "Tiwa Savage ft Brandy",
-   "score": 20.062,
-   "why": "♪ j133: “Somebodys son go find me one day” ↔ j132 seat “#juniorboys - find y”",
-   "line": "Somebodys son go find me one day",
-   "via": "j132 seat “#juniorboys - find y”"
+   "id": "21V7PKLPQqY",
+   "title": "Love Riddim",
+   "artist": "Rotimi",
+   "score": 42.281,
+   "why": "♪ j134: “Baby I need you over” ↔ j133 seat “#oyinboman - i need igbo and shayooo!”",
+   "line": "Baby I need you over",
+   "via": "j133 seat “#oyinboman - i need igbo and shayooo!”"
   },
   {
-   "id": "Gl7SQi4anVk",
-   "title": "Sinner",
-   "artist": "Adekunle Gold ft  Lucky Daye",
-   "score": 19.913,
-   "why": "♪ j133: “My baby slow down come find your love” ↔ j132 seat “#juniorboys - find y”",
-   "line": "My baby slow down come find your love",
-   "via": "j132 seat “#juniorboys - find y”"
+   "id": "OqTpz0ZIgu4",
+   "title": "stand strong",
+   "artist": "davido",
+   "score": 41.616,
+   "why": "♪ j134: “And that is the law of the lantern oh” ↔ j133 seat “— das y if you don’t respect the rule of law”",
+   "line": "And that is the law of the lantern oh",
+   "via": "j133 seat “— das y if you don’t respect the rule of law”"
+  },
+  {
+   "id": "4uIC_66FIAU",
+   "title": "Triumphant",
+   "artist": "Olamide ft Bella Shmurda",
+   "score": 41.579,
+   "why": "♪ j134: “I need no lighter” ↔ j133 seat “#oyinboman - i need igbo and shayooo!”",
+   "line": "I need no lighter",
+   "via": "j133 seat “#oyinboman - i need igbo and shayooo!”"
+  },
+  {
+   "id": "w4gAllVrPVM",
+   "title": "Iskaba",
+   "artist": "DJ Tunez & Wande Coal",
+   "score": 41.457,
+   "why": "♪ j134: “you know you need this loving” ↔ j133 seat “#oyinboman - i need igbo and shayooo!”",
+   "line": "you know you need this loving",
+   "via": "j133 seat “#oyinboman - i need igbo and shayooo!”"
+  },
+  {
+   "id": "lGduJvOtuT8",
+   "title": "Location",
+   "artist": "Dave, Burna Boy",
+   "score": 41.39,
+   "why": "♪ j134: “No time no” ↔ j133 seat “#time - e say your enemies are not even here”",
+   "line": "No time no",
+   "via": "j133 seat “#time - e say your enemies are not even here”"
+  },
+  {
+   "id": "PB4blM5LYPM",
+   "title": "5 and 6",
+   "artist": "Naeto C",
+   "score": 40.848,
+   "why": "♪ j134: “Whatever I need to do” ↔ j133 seat “#oyinboman - i need igbo and shayooo!”",
+   "line": "Whatever I need to do",
+   "via": "j133 seat “#oyinboman - i need igbo and shayooo!”"
+  },
+  {
+   "id": "QUSc5al8JpY",
+   "title": "Blessed",
+   "artist": "Wizkid ft Damian Marley",
+   "score": 40.716,
+   "why": "♪ j134: “But I dey pray for my enemies and truly” ↔ j133 seat “#time - e say your enemies are not even here”",
+   "line": "But I dey pray for my enemies and truly",
+   "via": "j133 seat “#time - e say your enemies are not even here”"
+  },
+  {
+   "id": "b1S9mqXxEKc",
+   "title": "Taboo",
+   "artist": "Wande Coal",
+   "score": 40.691,
+   "why": "♪ j134: “Theres no need for delay” ↔ j133 seat “#oyinboman - i need igbo and shayooo!”",
+   "line": "Theres no need for delay",
+   "via": "j133 seat “#oyinboman - i need igbo and shayooo!”"
+  },
+  {
+   "id": "zq0DH1tyLgk",
+   "title": "Secret",
+   "artist": "Burna Boy ft Serani, Jeremih",
+   "score": 40.683,
+   "why": "♪ j134: “Ill pull up when you need company” ↔ j133 seat “#oyinboman - i need igbo and shayooo!”",
+   "line": "Ill pull up when you need company",
+   "via": "j133 seat “#oyinboman - i need igbo and shayooo!”"
+  },
+  {
+   "id": "u16rE0eaN7o",
+   "title": "Rush",
+   "artist": "Ayra Starr",
+   "score": 40.635,
+   "why": "♪ j134: “Aje you cant count my grace” ↔ j134 📖 problem",
+   "line": "Aje you cant count my grace",
+   "via": "j134 📖 problem"
+  },
+  {
+   "id": "qEEsc8j-FVI",
+   "title": "Reckless",
+   "artist": "Wizkid",
+   "score": 40.532,
+   "why": "♪ j134: “got so many blessings i dey count all night oh lord” ↔ j134 📖 problem",
+   "line": "got so many blessings i dey count all night oh lord",
+   "via": "j134 📖 problem"
+  },
+  {
+   "id": "30SzNkuKzrE",
+   "title": "Fine Lady",
+   "artist": "Lynxxx ft Wizkid",
+   "score": 40.527,
+   "why": "♪ j134: “Suwalamisi need your touch Suwalamisi” ↔ j133 seat “#oyinboman - i need igbo and shayooo!”",
+   "line": "Suwalamisi need your touch Suwalamisi",
+   "via": "j133 seat “#oyinboman - i need igbo and shayooo!”"
+  },
+  {
+   "id": "-hyDrO0uOXQ",
+   "title": "Molowo",
+   "artist": "Samklef ft Wizkid, D'Prince, Ice Prince",
+   "score": 39.99,
+   "why": "♪ j134: “No time having a nice time” ↔ j133 seat “#time - e say your enemies are not even here”",
+   "line": "No time having a nice time",
+   "via": "j133 seat “#time - e say your enemies are not even here”"
+  },
+  {
+   "id": "JDy-ZLlYEGw",
+   "title": "Holla At Your Boy",
+   "artist": "Wizkid",
+   "score": 39.959,
+   "why": "♪ j134: “No need for long thing” ↔ j133 seat “#oyinboman - i need igbo and shayooo!”",
+   "line": "No need for long thing",
+   "via": "j133 seat “#oyinboman - i need igbo and shayooo!”"
+  },
+  {
+   "id": "jcD9olHl_XE",
+   "title": "Adore Her",
+   "artist": "Ladipoe ft Funbi",
+   "score": 39.761,
+   "why": "♪ j134: “1G4 Girl do I need to sign out” ↔ j133 seat “#oyinboman - i need igbo and shayooo!”",
+   "line": "1G4 Girl do I need to sign out",
+   "via": "j133 seat “#oyinboman - i need igbo and shayooo!”"
+  },
+  {
+   "id": "Qbx3UNcoC1Q",
+   "title": "Lova Lova",
+   "artist": "Tiwa Savage Ft Duncan Mighty",
+   "score": 38.952,
+   "why": "♪ j134: “We No Need No Referee” ↔ j133 seat “#oyinboman - i need igbo and shayooo!”",
+   "line": "We No Need No Referee",
+   "via": "j133 seat “#oyinboman - i need igbo and shayooo!”"
+  },
+  {
+   "id": "6xWEh1nW1gQ",
+   "title": "Dangerous Love",
+   "artist": "Tiwa Savage",
+   "score": 38.917,
+   "why": "♪ j134: “even in a different time” ↔ j133 seat “#time - e say your enemies are not even here”",
+   "line": "even in a different time",
+   "via": "j133 seat “#time - e say your enemies are not even here”"
+  },
+  {
+   "id": "0bjHDNoZrrQ",
+   "title": "Lonely",
+   "artist": "Joeboy",
+   "score": 38.907,
+   "why": "♪ j134: “I need you in my space o” ↔ j133 seat “#oyinboman - i need igbo and shayooo!”",
+   "line": "I need you in my space o",
+   "via": "j133 seat “#oyinboman - i need igbo and shayooo!”"
+  },
+  {
+   "id": "so4dgTRaWFk",
+   "title": "Anybody",
+   "artist": "Burna Boy",
+   "score": 38.267,
+   "why": "♪ j134: “Respect is reciprocal” ↔ j133 seat “— das y if you don’t respect the rule of law”",
+   "line": "Respect is reciprocal",
+   "via": "j133 seat “— das y if you don’t respect the rule of law”"
+  },
+  {
+   "id": "423z6m44bIA",
+   "title": "Young Love",
+   "artist": "Adekunle Gold",
+   "score": 38.059,
+   "why": "♪ j134: “One time for the one time” ↔ j133 seat “#time - e say your enemies are not even here”",
+   "line": "One time for the one time",
+   "via": "j133 seat “#time - e say your enemies are not even here”"
+  },
+  {
+   "id": "3Ri26PZuzYc",
+   "title": "Strong Ting",
+   "artist": "Banky W",
+   "score": 37.698,
+   "why": "♪ j134: “Need to know if you will let me” ↔ j133 seat “#oyinboman - i need igbo and shayooo!”",
+   "line": "Need to know if you will let me",
+   "via": "j133 seat “#oyinboman - i need igbo and shayooo!”"
+  },
+  {
+   "id": "DGpwNm0A6gI",
+   "title": "MAD",
+   "artist": "Sars, Wurld",
+   "score": 37.69,
+   "why": "♪ j134: “say you want and you need me” ↔ j133 seat “#oyinboman - i need igbo and shayooo!”",
+   "line": "say you want and you need me",
+   "via": "j133 seat “#oyinboman - i need igbo and shayooo!”"
+  },
+  {
+   "id": "e7VDIy8JAuY",
+   "title": "Scape Goat",
+   "artist": "D'banj",
+   "score": 37.483,
+   "why": "♪ j134: “If you need someone to blame” ↔ j133 seat “#oyinboman - i need igbo and shayooo!”",
+   "line": "If you need someone to blame",
+   "via": "j133 seat “#oyinboman - i need igbo and shayooo!”"
   }
  ]
 }
