@@ -240,7 +240,16 @@
     if(active&&active.L&&active.L.e)add(active.L.e);
     return n;
   }
+  var ocLab=document.getElementById('oclabel');
+  function syncOutlineLabel(){
+    if(!ocLab)return;
+    var total=(DM&&((DM.title_block&&DM.title_block.n_outline)||DM.n_edges))||0;
+    var n=outlineColouredNow();
+    var s='outline coloured '+n+' of '+total;
+    if(ocLab.textContent!==s)ocLab.textContent=s;
+  }
   function paintOutlineCount(x){
+    syncOutlineLabel();
     if(!DM||!x)return;
     var tb=titleBlock(DM), c=tb&&tb.count; if(!c)return;
     var n=outlineColouredNow();
@@ -326,6 +335,8 @@
     add(document.querySelector('header .back'));
     add(document.querySelector('header h1'), 720);
     add(document.getElementById('cap'), 900);
+    add(document.getElementById('oclabel'));
+    add(document.getElementById('ctl'));
     return out;
   }
   function inBox(b,x,y,w,h){return b&&x<b.r&&x+w>b.l&&y<b.b&&y+h>b.t;}

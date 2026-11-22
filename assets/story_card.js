@@ -1,6 +1,6 @@
 /* v10 (20 Nov 1:05 AM ET): source-agenda strokes thicker, live blue fainter.
    v586: the card now shows a live mini painting (see 'v586 live mini painting' below).
-   v579 story card = v577 card (same size, same layer: body-level fixed, z-index 12) + a gentle float.
+   v579 story card = v577 card (same size, body-level fixed) + a gentle float. z-index 13 sits above #videocard (12) so the outline count stays visible.
    Float (Jesuye 19 Nov 7:09 PM ET: "revert this change and just make it float"): slow 5 s bob of a few px (CSS transform),
    paused while dragged, off for prefers-reduced-motion. The v578 lowest-layer/half-size change is reverted.
    v577 card (Jesuye 19 Nov 6:48 PM ET, church: "a small floating card object on the projector that can link you to a story").
@@ -13,7 +13,7 @@
   if(window.__thrydStoryCard) return; window.__thrydStoryCard=1;
   var URL_='https://jdavidteki.github.io/thryd-projector/story/', KEY='thryd_storycard_pos', TH=6;
   var css=document.createElement('style');
-  css.textContent='#storycard{position:fixed;z-index:12;display:flex;flex-direction:column;align-items:stretch;width:168px;padding:5px;'+
+  css.textContent='#storycard{position:fixed;z-index:13;display:flex;flex-direction:column;align-items:stretch;width:168px;padding:5px;'+
     'background:#fffffff2;color:#141414;border-radius:9px;box-shadow:0 4px 16px #0009;text-decoration:none;touch-action:none;'+
     'user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;cursor:grab;font:600 11px/1.25 system-ui,-apple-system,sans-serif;animation:thrydStoryBob 5s ease-in-out infinite;will-change:transform}'+
     '@keyframes thrydStoryBob{0%,100%{transform:translate(0,0)}25%{transform:translate(1px,-3px)}50%{transform:translate(0,-4px)}75%{transform:translate(-1px,-2px)}}'+
