@@ -240,27 +240,39 @@
     if(active&&active.L&&active.L.e)add(active.L.e);
     return n;
   }
+  function strokesColouredNow(){
+    if(!DM)return 0;
+    if(phase==='mesh')return 0;
+    var n=0;
+    (man&&man.layers||[]).forEach(function(L){if(shown[L.key])n++;});
+    if(active&&active.L&&!(shown[active.L.key]))n++;
+    return n;
+  }
+  function fmtCount(n){n=Math.max(0,Math.floor(+n||0));return String(n).replace(/\B(?=(\d{3})+(?!\d))/g,',');}
+  function countLine(){
+    var outline=outlineColouredNow();
+    var nOutline=(DM&&((DM.title_block&&DM.title_block.n_outline)||DM.n_edges))||0;
+    return fmtCount(strokesColouredNow())+' coloured · '+outline+'/'+nOutline+' outline';
+  }
   var ocLab=document.getElementById('oclabel');
   function syncOutlineLabel(){
     if(!ocLab)return;
-    var total=(DM&&((DM.title_block&&DM.title_block.n_outline)||DM.n_edges))||0;
-    var n=outlineColouredNow();
-    var s='outline coloured '+n+' of '+total;
+    var s=countLine();
     if(ocLab.textContent!==s)ocLab.textContent=s;
   }
   function paintOutlineCount(x){
     syncOutlineLabel();
     if(!DM||!x)return;
     var tb=titleBlock(DM), c=tb&&tb.count; if(!c)return;
-    var n=outlineColouredNow();
-    var paper=tb.paper||[242,240,234], ink=tb.fill||[36,36,38], total=tb.n_outline||DM.n_edges||0;
+    var paper=tb.paper||[242,240,234], ink=tb.fill||[36,36,38];
+    var line=countLine();
     x.save();
     x.fillStyle='rgb('+paper[0]+','+paper[1]+','+paper[2]+')';
     x.fillRect(c.x-1,c.y-1,(c.w||396)+2,(c.h||15)+2);
     x.fillStyle='rgb('+ink[0]+','+ink[1]+','+ink[2]+')';
     x.font=(c.size||11)+'px "Nimbus Roman","Times New Roman",Times,serif';
     x.textAlign='left';x.textBaseline='top';
-    x.fillText((c.prefix||'outline coloured  ')+n+(c.suffix||(' of '+total)), c.x, c.y);
+    x.fillText(line, c.x, c.y);
     x.restore();
   }
     function bootDrawing(d,b){
@@ -322,7 +334,7 @@
   cv.addEventListener('pointerleave',function(ev){if(ev.pointerType==='mouse'&&tipEl.dataset.pin!=='1')hideTip();});
   cv.addEventListener('pointerdown',function(ev){tdown=[ev.clientX,ev.clientY];});
   cv.addEventListener('pointerup',function(ev){if(tdown&&Math.abs(ev.clientX-tdown[0])+Math.abs(ev.clientY-tdown[1])<10)showTip(ev,true);tdown=null;});
-  window.thrydGode={speed:speed,strokes:function(){return man&&man.strokes?{graph:!!man.graph,drawing:!!man.drawing,vertices:GM?Object.keys(GM.V).length:(DM&&DM.n_verts||0),n:man.drawing&&DM?DM.edges.length:man.strokes.length,calls:man.drawing?(DM&&(DM.n_strokes||DM.n_fills)||man.strokes.length):man.strokes.filter(function(x){return x.kind==='call'}).length,hash:man.stroke_hash,v:man.v}:null;},hit:function(x,y){return hit(x,y);},tip:function(){return {on:tipEl.classList.contains('on'),text:tipEl.textContent,call:tipEl.dataset.call};},state:function(){return {state:cv.dataset.state,cycle:cycle,phase:phase,progress:Math.round(prog),queue:queue.length,active:active&&active.L.key,shown:Object.keys(shown),speed:speed(),rm:RM,layers:man?man.layers.length:0,outlineColoured:outlineColouredNow(),nOutline:(DM&&(DM.title_block&&DM.title_block.n_outline||DM.n_edges))||0};},poll:poll,setHold:function(b){hold=!!b;if(!b)kick();},
+  window.thrydGode={speed:speed,strokes:function(){return man&&man.strokes?{graph:!!man.graph,drawing:!!man.drawing,vertices:GM?Object.keys(GM.V).length:(DM&&DM.n_verts||0),n:man.drawing&&DM?DM.edges.length:man.strokes.length,calls:man.drawing?(DM&&(DM.n_strokes||DM.n_fills)||man.strokes.length):man.strokes.filter(function(x){return x.kind==='call'}).length,hash:man.stroke_hash,v:man.v}:null;},hit:function(x,y){return hit(x,y);},tip:function(){return {on:tipEl.classList.contains('on'),text:tipEl.textContent,call:tipEl.dataset.call};},state:function(){return {state:cv.dataset.state,cycle:cycle,phase:phase,progress:Math.round(prog),queue:queue.length,active:active&&active.L.key,shown:Object.keys(shown),speed:speed(),rm:RM,layers:man?man.layers.length:0,outlineColoured:outlineColouredNow(),nOutline:(DM&&(DM.title_block&&DM.title_block.n_outline||DM.n_edges))||0,strokesColoured:strokesColouredNow(),nStrokes:(DM&&(DM.n_strokes||(DM.strokes&&DM.strokes.length)))||0,oc:countLine()};},poll:poll,setHold:function(b){hold=!!b;if(!b)kick();},
     _i:{man:function(){return man},imgs:imgs,base:function(){return base},done:done,ctx:ctx,cv:cv,busy:function(){return !!(active||queue.length)},front:frontPt}};
 
   // ---------------- floaters: story objects + characters drifting around the page, never over the diagram

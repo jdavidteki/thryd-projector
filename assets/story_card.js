@@ -24,13 +24,13 @@
     '#storycard img{display:block;width:100%;aspect-ratio:1440/900;object-fit:cover;border-radius:5px;background:#fff;pointer-events:none}'+
     '#storycard .sl{display:flex;justify-content:space-between;align-items:center;gap:4px;margin-top:4px;pointer-events:none}'+
     '#storycard .go{font-size:10px;color:#0b5cad;white-space:nowrap}'+
-    '#storycard .oc{display:block;margin-top:3px;font:700 11px/1.25 system-ui,-apple-system,sans-serif;color:#222;pointer-events:none;letter-spacing:-0.01em}'+
+    '#storycard .oc{display:block;margin-top:3px;font:700 11px/1.3 system-ui,-apple-system,sans-serif;color:#222;pointer-events:none;letter-spacing:-0.02em}'+
     '@media (max-width:640px){#storycard{width:156px;font-size:10px;padding:4px}#storycard .go{display:none}#storycard .oc{font-size:10px}}';
   document.head.appendChild(css);
   var a=document.createElement('a'); a.id='storycard'; a.href=URL_; a.target='_blank'; a.rel='noopener';
   a.title='Open the story so far (painted by code)'; a.setAttribute('aria-label','📐 the story so far: open the story diagram in a new tab');
   a.draggable=false;
-  a.innerHTML='<canvas width="264" height="165" aria-hidden="true"></canvas><img alt="" src="story/story_painted_3d.png"><span class="sl"><span>📐 the story so far <span class="jb"></span></span><span class="go">open ↗</span></span><span class="oc" aria-live="polite">outline coloured 0 of 319</span>';
+  a.innerHTML='<canvas width="264" height="165" aria-hidden="true"></canvas><img alt="" src="story/story_painted_3d.png"><span class="sl"><span>📐 the story so far <span class="jb"></span></span><span class="go">open ↗</span></span><span class="oc" aria-live="polite">0 coloured · 0/319 outline</span>';
   var img=a.querySelector('img');
   fetch('story/story.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).then(function(j){if(j&&j.v)img.src='story/story_painted_3d.png?v='+j.v;}).catch(function(){});
   function clamp(x,y){var w=a.offsetWidth||132,h=a.offsetHeight||100;return [Math.max(4,Math.min(innerWidth-w-4,x)),Math.max(4,Math.min(innerHeight-h-4,y))];}
@@ -76,18 +76,35 @@
       count:{x:x0+12,y:y0+65,w:tw-24,h:15,size:11,prefix:'outline coloured  ',suffix:' of '+(d.n_edges||0)}};
   }
   function moutlineNow(){
-    if(!mdrawing||mph==='mesh')return 0;
-    var seen={}, n=0, i, L;
+    if(!mdrawing)return 0;
+    var seen={}, n=0, i, from=0, to=0;
     function add(s){if(s&&s.kind==='outline'&&s.edge!=null&&seen[s.edge]==null){seen[s.edge]=1;n++;}}
-    for(i=0;i<mi;i++)add(mlay[i]);
+    if(RMc){for(i=0;i<mlay.length;i++)add(mlay[i]);return n;}
+    if(mph==='mesh')return 0;
+    to=(mph==='hold'||mph==='wash')?mlay.length:mi;
+    for(i=0;i<to;i++)add(mlay[i]);
     if(mph==='paint'||mph==='hold'||mph==='wash')add(mlay[mi]);
     return n;
   }
+  function mstrokesNow(){
+    if(!mdrawing)return 0;
+    if(RMc)return mlay.length;
+    if(mph==='mesh')return 0;
+    if(mph==='hold'||mph==='wash')return mlay.length;
+    return mi+(mlay[mi]?1:0);
+  }
+  function fmtCount(n){n=Math.max(0,Math.floor(+n||0));return String(n).replace(/\B(?=(\d{3})+(?!\d))/g,',');}
+  function countLine(){
+    var outline=moutlineNow(), nOutline=(mdrawing&&((mdrawing.title_block&&mdrawing.title_block.n_outline)||mdrawing.n_edges))||0;
+    return fmtCount(mstrokesNow())+' coloured · '+outline+'/'+nOutline+' outline';
+  }
   function mpaintOutlineCount(x){
     var tb=mtitleBlock()||{}, c=tb.count, n=moutlineNow(), total=tb.n_outline||(mdrawing&&mdrawing.n_edges)||0;
+    var line=countLine();
     var lab=a.querySelector('.oc');
-    if(lab)lab.textContent='outline coloured '+n+' of '+total;
+    if(lab)lab.textContent=line;
     a.dataset.outline=n+'/'+total;
+    a.dataset.coloured=String(mstrokesNow());
     if(!c||!x||!mm)return;
     var k=MW/(mm.w||1440), paper=tb.paper||[242,240,234], ink=tb.fill||[36,36,38];
     x.save();
@@ -96,7 +113,7 @@
     x.fillStyle='rgb('+ink[0]+','+ink[1]+','+ink[2]+')';
     x.font=Math.max(3,(c.size||11)*k)+'px "Nimbus Roman","Times New Roman",Times,serif';
     x.textAlign='left';x.textBaseline='top';
-    x.fillText((c.prefix||'outline coloured  ')+n+(c.suffix||(' of '+total)), c.x*k, c.y*k);
+    x.fillText(line, c.x*k, c.y*k);
     x.restore();
   }
   function mframe(t){mraf=0;if(document.hidden||!mm){mlast=0;return;}
@@ -228,5 +245,5 @@
     fetch('story/edges.json?t='+t,{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).then(medges).catch(function(){});}
   mpoll();setInterval(mpoll,45000);
   window.thrydStoryCard={el:a,url:URL_,home:function(){try{localStorage.removeItem(KEY);}catch(e){}home();},poll:mpoll,
-    mini:function(){return {state:a.dataset.mini||'',job:a.dataset.job||'',label:jb.textContent,layersV:a.dataset.layersV||'',live:a.classList.contains('mini'),outline:a.dataset.outline||'',oc:(a.querySelector('.oc')||{}).textContent||''};}};
+    mini:function(){return {state:a.dataset.mini||'',job:a.dataset.job||'',label:jb.textContent,layersV:a.dataset.layersV||'',live:a.classList.contains('mini'),outline:a.dataset.outline||'',coloured:a.dataset.coloured||'',oc:(a.querySelector('.oc')||{}).textContent||''};}};
 })();
