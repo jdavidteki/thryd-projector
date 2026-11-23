@@ -8171,16 +8171,6 @@
 ],
 "computer_village": [
 {
-"id": "wf_f748da0c96",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the green shirt at the computer village, and Bisola reads the name twice.",
-"code": "niaw.interactwith(computer_village){ computer_village.receives(niaw.envelope); … }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "niaw"
-},
-{
 "id": "wf_44ca30d515",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the computer village, and Bisola reads the name twice.",
@@ -8219,6 +8209,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "jnoel"
+},
+{
+"id": "wf_486bcebc39",
+"kind": "consequence",
+"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the brown envelope at the computer village, and Bisola reads the name twice.",
+"code": "precision.interactwith(computer_village){ computer_village.receives(precision.shirt); … }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j8",
+"other": "precision"
 }
 ],
 "oh_pls_shaaatttaaapppp": [
@@ -10204,28 +10204,6 @@
 },
 "consequences": [
 {
-"id": "wf_a7b1dbd73f",
-"ts": "2026-11-20T10:34:43-0500",
-"a": "danfo_speaker",
-"b": "streetlights",
-"code": "danfo_speaker.interactwith(streetlights){ danfo_speaker.plays(streetlights, 'ikorodu fm late bulletin'); streetlights.state('off since the generator cut out'); }",
-"text": "With the streetlights off since the generator cut out, the danfo speaker parked outside the hall carries the Ikorodu FM late bulletin, and people stand under the dark poles to hear it.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j44"
-},
-{
-"id": "wf_d5ac1074e7",
-"ts": "2026-11-20T10:34:43-0500",
-"a": "plastic_sheet",
-"b": "pure_water_cooler",
-"code": "plastic_sheet.interactwith(pure_water_cooler){ plastic_sheet.covers(pure_water_cooler, 'cooler lid'); pure_water_cooler.remembers(ronke, 'tap ran dry'); }",
-"text": "Because the tap ran dry, Ronke pulls the plastic sheet over the pure-water cooler to keep dust out until the water comes back in the morning.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j42"
-},
-{
 "id": "wt_4c5a1ac0c5",
 "ts": "2026-11-21T10:28:37-0500",
 "a": "kazeem",
@@ -10642,6 +10620,28 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_486bcebc39",
+"ts": "2026-11-23T15:40:20-0500",
+"a": "precision",
+"b": "computer_village",
+"code": "precision.interactwith(computer_village){ computer_village.receives(precision.shirt); … }",
+"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the brown envelope at the computer village, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j8"
+},
+{
+"id": "wf_8fff6ac73b",
+"ts": "2026-11-23T15:43:51-0500",
+"a": "ojuelegba_bus_stop",
+"b": "ronke",
+"code": "ojuelegba_bus_stop.interactwith(ronke){ ronke.receives(ojuelegba_bus_stop.envelope); ronke.remembers(bisola, 'brown envelope'); }",
+"text": "The ronke leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -10745,5 +10745,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-23T15:36:44-0500"
+"updated": "2026-11-23T15:43:51-0500"
 }
