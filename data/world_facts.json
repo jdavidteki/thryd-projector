@@ -2587,16 +2587,6 @@
 ],
 "cup": [
 {
-"id": "wf_84bdb43681",
-"kind": "consequence",
-"text": "A Marker note with Kunle's name and 'nice day sign' on it, turns up inside the juju code at the cup, and Ejiro reads the name twice.",
-"code": "marker.interactwith(cup){ cup.receives(marker.sign); cup.remembers(kunle, 'nice day sign'); cup.tucks(marker, 'marker note into the juju code'); }",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j3",
-"other": "marker"
-},
-{
 "id": "wf_e9faa0c1e9",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the juju code at the cup, and Ejiro reads the name twice.",
@@ -2625,6 +2615,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "asmathic"
+},
+{
+"id": "wf_e43deff5fa",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the juju code at the cup, and Ejiro reads the name twice.",
+"code": "jnoel.interactwith(cup){ cup.receives(jnoel.envelope); cup.remembers(bisola, 'brown envelope'); cup.tucks(jnoel, 'yaba bookshop receipt into the juju code'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "jnoel"
 },
 {
 "id": "wt_9a530635c7",
@@ -7641,6 +7641,16 @@
 "run": "run-2eb42d",
 "card": "w7",
 "other": "twgs"
+},
+{
+"id": "wf_9d693aea3f",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the patagonia, and Bisola reads the name twice.",
+"code": "love.interactwith(patagonia){ patagonia.receives(love.envelope); … }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "love"
 }
 ],
 "ikorodu_compound": [
@@ -10194,28 +10204,6 @@
 },
 "consequences": [
 {
-"id": "wf_ec7fe24573",
-"ts": "2026-11-19T14:01:54-0500",
-"a": "pure_water_cooler",
-"b": "streetlights",
-"code": "pure_water_cooler.interactwith(streetlights){ pure_water_cooler.db.copyto(streetlights); … }",
-"text": "The pure-water cooler ends up with the streetlights, still carried home through the flood.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "w1"
-},
-{
-"id": "wf_d4dc717f44",
-"ts": "2026-11-19T14:08:56-0500",
-"a": "kazeem",
-"b": "iae",
-"code": "kazeem.interactwith(iae){ iae.receives(kazeem.something); }",
-"text": "The iae now remembers the kazeem: Kazeem passes his phone. Already woven into posted w39; this row only logs the seated pick.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "w38"
-},
-{
 "id": "wf_63eabd3d29",
 "ts": "2026-11-20T10:34:43-0500",
 "a": "kerosene_lamp",
@@ -10632,6 +10620,28 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_e43deff5fa",
+"ts": "2026-11-23T15:28:19-0500",
+"a": "jnoel",
+"b": "cup",
+"code": "jnoel.interactwith(cup){ cup.receives(jnoel.envelope); cup.remembers(bisola, 'brown envelope'); cup.tucks(jnoel, 'yaba bookshop receipt into the juju code'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the juju code at the cup, and Ejiro reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
+},
+{
+"id": "wf_9d693aea3f",
+"ts": "2026-11-23T15:31:56-0500",
+"a": "love",
+"b": "patagonia",
+"code": "love.interactwith(patagonia){ patagonia.receives(love.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the patagonia, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -10735,5 +10745,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-23T15:27:25-0500"
+"updated": "2026-11-23T15:31:56-0500"
 }
