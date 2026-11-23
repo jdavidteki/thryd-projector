@@ -250,6 +250,18 @@
    "location": null,
    "source": "sha256"
   },
+  "agbada": {
+   "id": "agbada",
+   "kind": "object",
+   "floor": "GROUND",
+   "x": 5.85412,
+   "y": 2.47,
+   "z": 1.14778,
+   "px": 666.4,
+   "py": 584.8,
+   "location": null,
+   "source": "sha256"
+  },
   "agenda": {
    "id": "agenda",
    "kind": "object",
@@ -2251,6 +2263,18 @@
    "z": 1.80046,
    "px": 459.9,
    "py": 503.5,
+   "location": null,
+   "source": "sha256"
+  },
+  "election": {
+   "id": "election",
+   "kind": "method",
+   "floor": "GROUND",
+   "x": 2.96412,
+   "y": 2.47,
+   "z": 1.42647,
+   "px": 507.2,
+   "py": 509.1,
    "location": null,
    "source": "sha256"
   },
@@ -5614,6 +5638,18 @@
    "location": "townhall",
    "source": "world_objects.location"
   },
+  "oomph": {
+   "id": "oomph",
+   "kind": "object",
+   "floor": "GROUND",
+   "x": 5.27124,
+   "y": 2.47,
+   "z": 1.16385,
+   "px": 636.3,
+   "py": 568.4,
+   "location": null,
+   "source": "sha256"
+  },
   "oooo": {
    "id": "oooo",
    "kind": "object",
@@ -5983,6 +6019,18 @@
    "z": 1.76337,
    "px": 520.9,
    "py": 536.5,
+   "location": null,
+   "source": "sha256"
+  },
+  "pray": {
+   "id": "pray",
+   "kind": "object",
+   "floor": "GROUND",
+   "x": 5.3721,
+   "y": 2.47,
+   "z": 0.63828,
+   "px": 667.8,
+   "py": 556.0,
    "location": null,
    "source": "sha256"
   },
@@ -6621,6 +6669,18 @@
    "py": 472.8,
    "location": "road",
    "source": "world_objects.location"
+  },
+  "sdffgmama": {
+   "id": "sdffgmama",
+   "kind": "method",
+   "floor": "GROUND",
+   "x": 2.49203,
+   "y": 2.47,
+   "z": 1.58399,
+   "px": 475.6,
+   "py": 499.9,
+   "location": null,
+   "source": "sha256"
   },
   "se": {
    "id": "se",
@@ -8143,6 +8203,18 @@
    "z": 1.3081,
    "px": 554.7,
    "py": 529.6,
+   "location": null,
+   "source": "sha256"
+  },
+  "ua": {
+   "id": "ua",
+   "kind": "method",
+   "floor": "GROUND",
+   "x": 3.24943,
+   "y": 2.47,
+   "z": 1.58612,
+   "px": 513.5,
+   "py": 522.0,
    "location": null,
    "source": "sha256"
   },
@@ -44177,6 +44249,32 @@
    "outline": "#41d91a"
   },
   {
+   "from": "new",
+   "to": "election",
+   "from_xyz": {
+    "x": 3.47913,
+    "y": 2.47,
+    "z": 1.7542,
+    "px": 516.6,
+    "py": 533.5
+   },
+   "to_xyz": {
+    "x": 2.96412,
+    "y": 2.47,
+    "z": 1.42647,
+    "px": 507.2,
+    "py": 509.1
+   },
+   "index": 1346,
+   "job": "j148",
+   "run": "run-2eb42d",
+   "call": "fc1316",
+   "method": "election",
+   "hex": "#2563eb",
+   "label": "j148 \u00b7 new.new election()",
+   "outline": "#1490a3"
+  },
+  {
    "from": "pepu",
    "to": "still",
    "from_xyz": {
@@ -44193,7 +44291,7 @@
     "px": 424.1,
     "py": 467.8
    },
-   "index": 1346,
+   "index": 1347,
    "job": "j148",
    "run": "run-2eb42d",
    "call": "sfc1314",
@@ -44219,7 +44317,7 @@
     "px": 456.5,
     "py": 524.4
    },
-   "index": 1347,
+   "index": 1348,
    "job": "j148",
    "run": "run-2eb42d",
    "call": "sfc1315",
@@ -44227,12 +44325,220 @@
    "hex": "#2563eb",
    "label": "j148 \u00b7 its.teach(best)",
    "outline": "#a35714"
+  },
+  {
+   "from": "cli",
+   "to": "cli",
+   "from_xyz": {
+    "x": 2.71485,
+    "y": 2.47,
+    "z": 2.40047,
+    "px": 445.8,
+    "py": 530.1
+   },
+   "to_xyz": {
+    "x": 2.71485,
+    "y": 2.47,
+    "z": 2.40047,
+    "px": 445.8,
+    "py": 530.1
+   },
+   "index": 1349,
+   "job": "j149",
+   "run": "run-2eb42d",
+   "call": "fc1317",
+   "method": "cli",
+   "hex": "#2563eb",
+   "label": "j149 \u00b7 #thryd.miracle.log(1)",
+   "outline": "#1a80d9"
+  },
+  {
+   "from": "higher",
+   "to": "safe",
+   "from_xyz": {
+    "x": 3.39293,
+    "y": 2.47,
+    "z": 2.18287,
+    "px": 490.8,
+    "py": 543.4
+   },
+   "to_xyz": {
+    "x": 1.74311,
+    "y": 2.47,
+    "z": 1.63673,
+    "px": 435.3,
+    "py": 479.8
+   },
+   "index": 1350,
+   "job": "j149",
+   "run": "run-2eb42d",
+   "call": "fc1318",
+   "method": "higher",
+   "hex": "#2563eb",
+   "label": "j149 \u00b7 [[higher]](safe)",
+   "outline": "#b31ad9"
+  },
+  {
+   "from": "sdffgmama",
+   "to": "safe",
+   "from_xyz": {
+    "x": 2.49203,
+    "y": 2.47,
+    "z": 1.58399,
+    "px": 475.6,
+    "py": 499.9
+   },
+   "to_xyz": {
+    "x": 1.74311,
+    "y": 2.47,
+    "z": 1.63673,
+    "px": 435.3,
+    "py": 479.8
+   },
+   "index": 1351,
+   "job": "j149",
+   "run": "run-2eb42d",
+   "call": "fc1319",
+   "method": "sdffgmama",
+   "hex": "#2563eb",
+   "label": "j149 \u00b7 [[sdffgmama]](safe)",
+   "outline": "#14a327"
+  },
+  {
+   "from": "atotbojots2",
+   "to": "safe",
+   "from_xyz": {
+    "x": 4.52767,
+    "y": 2.47,
+    "z": 1.48536,
+    "px": 582.8,
+    "py": 556.1
+   },
+   "to_xyz": {
+    "x": 1.74311,
+    "y": 2.47,
+    "z": 1.63673,
+    "px": 435.3,
+    "py": 479.8
+   },
+   "index": 1352,
+   "job": "j149",
+   "run": "run-2eb42d",
+   "call": "fc1320",
+   "method": "atotbojots2",
+   "hex": "#2563eb",
+   "label": "j149 \u00b7 [[atotbojots2]](safe)",
+   "outline": "#b31ad9"
+  },
+  {
+   "from": "ua",
+   "to": "safe",
+   "from_xyz": {
+    "x": 3.24943,
+    "y": 2.47,
+    "z": 1.58612,
+    "px": 513.5,
+    "py": 522.0
+   },
+   "to_xyz": {
+    "x": 1.74311,
+    "y": 2.47,
+    "z": 1.63673,
+    "px": 435.3,
+    "py": 479.8
+   },
+   "index": 1353,
+   "job": "j149",
+   "run": "run-2eb42d",
+   "call": "fc1321",
+   "method": "ua",
+   "hex": "#2563eb",
+   "label": "j149 \u00b7 [[ua]](safe)",
+   "outline": "#d91a41"
+  },
+  {
+   "from": "pray",
+   "to": "seniorboys",
+   "from_xyz": {
+    "x": 5.3721,
+    "y": 2.47,
+    "z": 0.63828,
+    "px": 667.8,
+    "py": 556.0
+   },
+   "to_xyz": {
+    "x": 2.4657,
+    "y": 2.47,
+    "z": 1.712,
+    "px": 467.9,
+    "py": 502.9
+   },
+   "index": 1354,
+   "job": "j149",
+   "run": "run-2eb42d",
+   "call": "sfc1322",
+   "method": "cook",
+   "hex": "#2563eb",
+   "label": "j149 \u00b7 pray.cook(seniorboys)",
+   "outline": "#60a314"
+  },
+  {
+   "from": "oomph",
+   "to": "dont",
+   "from_xyz": {
+    "x": 5.27124,
+    "y": 2.47,
+    "z": 1.16385,
+    "px": 636.3,
+    "py": 568.4
+   },
+   "to_xyz": {
+    "x": 2.24483,
+    "y": 2.47,
+    "z": 1.35013,
+    "px": 474.9,
+    "py": 486.0
+   },
+   "index": 1355,
+   "job": "j149",
+   "run": "run-2eb42d",
+   "call": "sfc1323",
+   "method": "mix",
+   "hex": "#2563eb",
+   "label": "j149 \u00b7 oomph.mix(dont)",
+   "outline": "#14a386"
+  },
+  {
+   "from": "agbada",
+   "to": "count",
+   "from_xyz": {
+    "x": 5.85412,
+    "y": 2.47,
+    "z": 1.14778,
+    "px": 666.4,
+    "py": 584.8
+   },
+   "to_xyz": {
+    "x": 4.31525,
+    "y": 2.47,
+    "z": 1.75026,
+    "px": 558.8,
+    "py": 557.6
+   },
+   "index": 1356,
+   "job": "j149",
+   "run": "run-2eb42d",
+   "call": "sfc1324",
+   "method": "count",
+   "hex": "#2563eb",
+   "label": "j149 \u00b7 agbada.count(gad)",
+   "outline": "#887010"
   }
  ],
- "n_vertices": 738,
- "n_edges": 1360,
- "n_object_vertices": 492,
- "n_method_vertices": 246,
+ "n_vertices": 744,
+ "n_edges": 1369,
+ "n_object_vertices": 495,
+ "n_method_vertices": 249,
  "agenda_palette": {
   "atbl-kmb-run": {
    "dot": "\ud83c\udf40",
@@ -44756,5 +45062,5 @@
    "kind": "edge"
   }
  ],
- "stroke_hash": "17e373d77022476ac6d49b74f4e1586c51f0e9135c2c536b87985f11f47b4b0e"
+ "stroke_hash": "5b1180136823e78ab213e6e7552f068d530cb8761642462aa37d8c5081b58126"
 }
