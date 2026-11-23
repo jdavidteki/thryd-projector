@@ -25,10 +25,10 @@
    "methods": [
     "hide",
     "on",
-    "open"
+    "make"
    ],
-   "instances": 52,
-   "arg_instances": 9,
+   "instances": 54,
+   "arg_instances": 11,
    "parent": "Thing",
    "chain": [
     "Person",
@@ -55,7 +55,7 @@
    "methods": [
     "fold",
     "air",
-    "knew"
+    "go"
    ],
    "instances": 6,
    "arg_instances": 5,
@@ -107,8 +107,8 @@
     "ask",
     "give"
    ],
-   "instances": 399,
-   "arg_instances": 78,
+   "instances": 400,
+   "arg_instances": 79,
    "parent": null,
    "chain": [
     "Thing"
@@ -3295,6 +3295,22 @@
    ],
    "tweets": []
   },
+  "law": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-888ea9",
+   "first_job": "j6",
+   "source": "pick",
+   "runs": [
+    "run-888ea9"
+   ],
+   "tweets": [
+    {
+     "text": "- there is a court of law and order and",
+     "year": "2025"
+    }
+   ]
+  },
   "leaves": {
    "class": "Thing",
    "cue": "default",
@@ -3402,6 +3418,7 @@
    "source": "pick",
    "runs": [
     "run-5a58c4",
+    "run-888ea9",
     "run-9e3e84"
    ],
    "tweets": [
@@ -3412,6 +3429,10 @@
     {
      "text": "how ironic! irony is like two contrasting ideas living in peace and harmony. God must be idan. cos what??? #transition",
      "year": "2023"
+    },
+    {
+     "text": "- like the way my hand is going like this",
+     "year": "2024"
     }
    ]
   },
@@ -6102,6 +6123,22 @@
    ],
    "tweets": []
   },
+  "us": {
+   "class": "Person",
+   "cue": "word",
+   "first_run": "run-888ea9",
+   "first_job": "j6",
+   "source": "pick",
+   "runs": [
+    "run-888ea9"
+   ],
+   "tweets": [
+    {
+     "text": "-- they made phones but [[forget]] to put us inside",
+     "year": "2025"
+    }
+   ]
+  },
   "uwsaas": {
    "class": "Thing",
    "cue": "default",
@@ -6448,6 +6485,22 @@
    "tweets": [
     {
      "text": "#yorubbbygehinny[[nla]] — o lagbara!",
+     "year": "2025"
+    }
+   ]
+  },
+  "you": {
+   "class": "Person",
+   "cue": "word",
+   "first_run": "run-888ea9",
+   "first_job": "j6",
+   "source": "pick",
+   "runs": [
+    "run-888ea9"
+   ],
+   "tweets": [
+    {
+     "text": "- shey dem use grammy to swear for you?",
      "year": "2025"
     }
    ]
@@ -7755,6 +7808,30 @@
     "yuwa",
     "Thing",
     "j5",
+    "pick"
+   ],
+   [
+    "law",
+    "Thing",
+    "j6",
+    "pick"
+   ],
+   [
+    "you",
+    "Person",
+    "j6",
+    "pick"
+   ],
+   [
+    "like",
+    "Manner",
+    "j6",
+    "pick"
+   ],
+   [
+    "us",
+    "Person",
+    "j6",
     "pick"
    ]
   ],
@@ -10343,6 +10420,10 @@
   "accuracy.see": "see(what: Thing)",
   "hands.wash": "wash(what: Thing)",
   "thing.weird": "weird(what: Thing)",
+  "court.order": "order(what: Thing)",
+  "grammy.swear": "swear(who: Person)",
+  "hand.go": "go(how: Manner)",
+  "phones.make": "make(who: Person)",
   "cooler.getdatemanufactured": "getDateManufactured()",
   "ronke.getlikes.contains": "getlikes.contains()",
   "kazeem.goodqualities.filter": "filter()",
@@ -10783,8 +10864,12 @@
   ],
   "run-888ea9": [
    "accuracy",
+   "court",
+   "grammy",
+   "hand",
    "hands",
    "pawa",
+   "phones",
    "thing",
    "tunde",
    "worry"
@@ -10862,5 +10947,5 @@
   "epilogue": "quiet",
   "coda": "quiet"
  },
- "updated": "2026-11-23T18:07:28-05:00"
+ "updated": "2026-11-23T18:21:54-05:00"
 }

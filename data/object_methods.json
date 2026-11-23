@@ -10823,6 +10823,284 @@
    "faded": false,
    "last_run": "run-888ea9"
   },
+  "court.order": {
+   "object": "court",
+   "method": "order",
+   "args": [
+    "law"
+   ],
+   "runs": [
+    "run-888ea9"
+   ],
+   "defined": {
+    "run": "run-888ea9",
+    "job": "j6",
+    "card": "w6",
+    "title": "court.order(law)",
+    "emoji": "⚖️",
+    "at": "2026-11-23T18:21:50-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "court.order(law)",
+     "emoji": "⚖️",
+     "arg": "law",
+     "run": "run-888ea9",
+     "job": "j6",
+     "tweets": [
+      {
+       "text": "- there is a court of law and order and",
+       "year": "2025"
+      }
+     ],
+     "consequence": "4:25pm, Monday 23 September 2058, a Gbagada hospital waiting bench.",
+     "consequence_job": "j7",
+     "resolved": "court.order(what=law:Thing) from j6",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "law",
+       "from_run": "run-888ea9",
+       "from_job": "j6",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "law",
+      "first_run": "run-888ea9",
+      "first_job": "j6"
+     }
+    ],
+    "text": "order(what: Thing)"
+   },
+   "receiver_class": "Place",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "grammy.swear": {
+   "object": "grammy",
+   "method": "swear",
+   "args": [
+    "you"
+   ],
+   "runs": [
+    "run-888ea9"
+   ],
+   "defined": {
+    "run": "run-888ea9",
+    "job": "j6",
+    "card": "w6",
+    "title": "grammy.swear(you)",
+    "emoji": "🫡",
+    "at": "2026-11-23T18:21:50-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "grammy.swear(you)",
+     "emoji": "🫡",
+     "arg": "you",
+     "run": "run-888ea9",
+     "job": "j6",
+     "tweets": [
+      {
+       "text": "- shey dem use grammy to swear for you?",
+       "year": "2025"
+      }
+     ],
+     "consequence": "4:25pm, Monday 23 September 2058, a Gbagada hospital waiting bench.",
+     "consequence_job": "j7",
+     "resolved": "grammy.swear(who=you:Person) from j6",
+     "injected": [
+      {
+       "param": "who",
+       "class": "Person",
+       "instance": "you",
+       "from_run": "run-888ea9",
+       "from_job": "j6",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "who",
+      "class": "Person",
+      "default": "you",
+      "first_run": "run-888ea9",
+      "first_job": "j6"
+     }
+    ],
+    "text": "swear(who: Person)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "hand.go": {
+   "object": "hand",
+   "method": "go",
+   "args": [
+    "like"
+   ],
+   "runs": [
+    "run-888ea9"
+   ],
+   "defined": {
+    "run": "run-888ea9",
+    "job": "j6",
+    "card": "w6",
+    "title": "hand.go(like)",
+    "emoji": "👋🏿",
+    "at": "2026-11-23T18:21:50-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "hand.go(like)",
+     "emoji": "👋🏿",
+     "arg": "like",
+     "run": "run-888ea9",
+     "job": "j6",
+     "tweets": [
+      {
+       "text": "- like the way my hand is going like this",
+       "year": "2024"
+      }
+     ],
+     "consequence": "Bisola sits on the bench with a numbered card in one hand.",
+     "consequence_job": "j7",
+     "resolved": "hand.go(how=like:Manner) from j6",
+     "injected": [
+      {
+       "param": "how",
+       "class": "Manner",
+       "instance": "like",
+       "from_run": "run-888ea9",
+       "from_job": "j6",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "how",
+      "class": "Manner",
+      "default": "like",
+      "first_run": "run-5a58c4",
+      "first_job": "j27"
+     }
+    ],
+    "text": "go(how: Manner)"
+   },
+   "receiver_class": "Thing",
+   "prior": [
+    {
+     "id": "titi.go",
+     "title": "titi.go(juss)",
+     "run": "run-g1-B",
+     "job": "j10",
+     "at": "2026-11-17T17:20:54-05:00",
+     "why": "same method"
+    }
+   ],
+   "faded": false,
+   "last_run": null
+  },
+  "phones.make": {
+   "object": "phones",
+   "method": "make",
+   "args": [
+    "us"
+   ],
+   "runs": [
+    "run-888ea9"
+   ],
+   "defined": {
+    "run": "run-888ea9",
+    "job": "j6",
+    "card": "w6",
+    "title": "phones.make(us)",
+    "emoji": "🪫",
+    "at": "2026-11-23T18:21:50-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "phones.make(us)",
+     "emoji": "🪫",
+     "arg": "us",
+     "run": "run-888ea9",
+     "job": "j6",
+     "tweets": [
+      {
+       "text": "-- they made phones but [[forget]] to put us inside",
+       "year": "2025"
+      }
+     ],
+     "consequence": "4:25pm, Monday 23 September 2058, a Gbagada hospital waiting bench.",
+     "consequence_job": "j7",
+     "resolved": "phones.make(who=us:Person) from j6",
+     "injected": [
+      {
+       "param": "who",
+       "class": "Person",
+       "instance": "us",
+       "from_run": "run-888ea9",
+       "from_job": "j6",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "who",
+      "class": "Person",
+      "default": "us",
+      "first_run": "run-888ea9",
+      "first_job": "j6"
+     }
+    ],
+    "text": "make(who: Person)"
+   },
+   "receiver_class": "Thing",
+   "prior": [
+    {
+     "id": "dez.make",
+     "title": "dez.make(mistake)",
+     "run": "run-5a58c4",
+     "job": "j35",
+     "at": "2026-11-17T16:53:36-05:00",
+     "why": "same method"
+    }
+   ],
+   "faded": false,
+   "last_run": null
+  },
   "cooler.getdatemanufactured": {
    "object": "cooler",
    "method": "getDateManufactured",
@@ -14022,6 +14300,9 @@
    "kazeem.score",
    "kazeem.use"
   ],
+  "court": [
+   "court.order"
+  ],
   "crime": [
    "crime.know"
   ],
@@ -14105,8 +14386,14 @@
   "gol": [
    "gol.lo"
   ],
+  "grammy": [
+   "grammy.swear"
+  ],
   "h": [
    "h.ki"
+  ],
+  "hand": [
+   "hand.go"
   ],
   "hands": [
    "hands.wash"
@@ -14241,6 +14528,9 @@
   ],
   "pepu": [
    "pepu.setmany"
+  ],
+  "phones": [
+   "phones.make"
   ],
   "qa568cli": [
    "qa568cli.nullfallback",
@@ -15838,6 +16128,7 @@
     "from": "0977d3f9e44f",
     "title": "626. moimoi, bread, and content",
     "funcs": [
+     "phones.make",
      "teo.lead",
      "teo.come"
     ]
@@ -18276,6 +18567,14 @@
    }
   ],
   "chinua_achebe_blockchain_figure": [
+   {
+    "scope": "safe",
+    "from": "0edd03763978",
+    "title": "1215. how to [[bring down dollar]]",
+    "funcs": [
+     "court.order"
+    ]
+   },
    {
     "scope": "safe",
     "from": "763a14885cf0",
@@ -24682,6 +24981,16 @@
     ]
    }
   ],
+  "motorcycle": [
+   {
+    "scope": "safe",
+    "from": "d184b52bcb49",
+    "title": "1025. becoming a witch is easy — lemme show you how!",
+    "funcs": [
+     "hand.go"
+    ]
+   }
+  ],
   "move": [
    {
     "scope": "run",
@@ -27960,6 +28269,7 @@
     "from": "7dda41b0801a",
     "title": "208. new information",
     "funcs": [
+     "grammy.swear",
      "ronke.wave"
     ]
    }
@@ -29148,6 +29458,10 @@
     "from": "38688e69edf3",
     "title": "1003. usher by kiss daniel",
     "funcs": [
+     "phones.make",
+     "hand.go",
+     "grammy.swear",
+     "court.order",
      "thing.weird",
      "hands.wash",
      "accuracy.see",
@@ -30141,7 +30455,11 @@
     "worry.have",
     "accuracy.see",
     "hands.wash",
-    "thing.weird"
+    "thing.weird",
+    "court.order",
+    "grammy.swear",
+    "hand.go",
+    "phones.make"
    ]
   },
   "run-bd649b": {
@@ -30291,7 +30609,8 @@
    "title": "626. moimoi, bread, and content",
    "funcs": [
     "teo.come",
-    "teo.lead"
+    "teo.lead",
+    "phones.make"
    ],
    "runs": []
   },
@@ -30356,6 +30675,13 @@
    "title": "918. the magician",
    "funcs": [
     "road.air"
+   ],
+   "runs": []
+  },
+  "0edd03763978": {
+   "title": "1215. how to [[bring down dollar]]",
+   "funcs": [
+    "court.order"
    ],
    "runs": []
   },
@@ -30547,7 +30873,11 @@
     "worry.have",
     "accuracy.see",
     "hands.wash",
-    "thing.weird"
+    "thing.weird",
+    "court.order",
+    "grammy.swear",
+    "hand.go",
+    "phones.make"
    ],
    "runs": [
     "run-888ea9"
@@ -30707,7 +31037,8 @@
   "7dda41b0801a": {
    "title": "208. new information",
    "funcs": [
-    "ronke.wave"
+    "ronke.wave",
+    "grammy.swear"
    ],
    "runs": []
   },
@@ -30995,6 +31326,13 @@
    "title": "803. excuse me",
    "funcs": [
     "history.see"
+   ],
+   "runs": []
+  },
+  "d184b52bcb49": {
+   "title": "1025. becoming a witch is easy — lemme show you how!",
+   "funcs": [
+    "hand.go"
    ],
    "runs": []
   },
@@ -31536,6 +31874,9 @@
   "1*BiRPdRqsYp7KBNTKPU6WUg.gif": [
    "a3d083db0935"
   ],
+  "1*UbI3GVI6TU-dpN53TIUp0Q.gif": [
+   "d184b52bcb49"
+  ],
   "1*rCR8J7XntgX5OUSZI5WAEw.gif": [
    "02c312614f2c",
    "99382b159447"
@@ -31572,7 +31913,8 @@
    "ae0d5fb4a64c"
   ],
   "1*hVDvLB17CmKpndJbRpJ3Pw.gif": [
-   "763a14885cf0"
+   "763a14885cf0",
+   "0edd03763978"
   ],
   "1*KOfHcbZItSwnzB-Xt4fH3A.gif": [
    "1043ee742884"
@@ -32307,6 +32649,12 @@
     "f7873beb34b8"
    ]
   },
+  "1*UbI3GVI6TU-dpN53TIUp0Q.gif": {
+   "runs": [],
+   "safes": [
+    "d184b52bcb49"
+   ]
+  },
   "1*5ro-2vFC2_gpEzZposBVHw.gif": {
    "runs": [],
    "safes": [
@@ -32316,7 +32664,8 @@
   "1*hVDvLB17CmKpndJbRpJ3Pw.gif": {
    "runs": [],
    "safes": [
-    "763a14885cf0"
+    "763a14885cf0",
+    "0edd03763978"
    ]
   },
   "1*XAiSYjFKsqdzhWwoSd6nhw.gif": {
@@ -32436,6 +32785,9 @@
    "cooler.clilive567mdh8en",
    "cooler.clilive567mdkxvp"
   ],
+  "court": [
+   "court.order"
+  ],
   "crime": [
    "crime.know"
   ],
@@ -32484,8 +32836,14 @@
   "gol": [
    "gol.lo"
   ],
+  "grammy": [
+   "grammy.swear"
+  ],
   "h": [
    "h.ki"
+  ],
+  "hand": [
+   "hand.go"
   ],
   "hands": [
    "hands.wash"
@@ -32606,6 +32964,9 @@
   ],
   "pepu": [
    "pepu.setmany"
+  ],
+  "phones": [
+   "phones.make"
   ],
   "qa568cli": [
    "qa568cli.nullfallback",
@@ -32925,6 +33286,10 @@
   ],
   "hands": [],
   "thing": [],
+  "court": [],
+  "grammy": [],
+  "hand": [],
+  "phones": [],
   "cooler": [],
   "kazeem.goodqualities": [],
   "app": [],
@@ -33090,8 +33455,12 @@
   ],
   "run-888ea9": [
    "accuracy",
+   "court",
+   "grammy",
+   "hand",
    "hands",
    "pawa",
+   "phones",
    "thing",
    "tunde",
    "worry"
@@ -33109,5 +33478,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-23T18:08:23-05:00"
+ "updated": "2026-11-23T18:21:54-05:00"
 }
