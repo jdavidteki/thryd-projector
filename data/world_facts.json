@@ -931,16 +931,6 @@
 ],
 "plastic_sheet": [
 {
-"id": "wf_9c5687a8fc",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the plastic sheet, which is still wet.",
-"code": "niaw.interactwith(plastic_sheet){ plastic_sheet.receives(niaw.envelope); plastic_sheet.remembers(bisola, 'brown envelope'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "niaw"
-},
-{
 "id": "wf_bbd8e2dfa8",
 "kind": "consequence",
 "text": "The plastic sheet now remembers the wiitbaw: The customer typed [[wiitbaw]] on run-qa j1.",
@@ -979,6 +969,16 @@
 "run": "run-2eb42d",
 "card": "w5",
 "other": null
+},
+{
+"id": "wf_fa1ba84210",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the plastic sheet, which is still wet.",
+"code": "b_md.interactwith(plastic_sheet){ plastic_sheet.receives(b_md.envelope); plastic_sheet.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "b_md"
 }
 ],
 "red_white_cap": [
@@ -10164,17 +10164,6 @@
 },
 "consequences": [
 {
-"id": "wf_f6eea685e1",
-"ts": "2026-11-19T13:17:55-0500",
-"a": "seniorgehs",
-"b": "niaw",
-"code": "seniorgehs.interactwith(niaw){ niaw.receives(seniorgehs.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the niaw, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
 "id": "wf_94b56db8c9",
 "ts": "2026-11-19T13:19:41-0500",
 "a": "bird",
@@ -10602,6 +10591,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j7"
+},
+{
+"id": "wf_fa1ba84210",
+"ts": "2026-11-23T14:15:43-0500",
+"a": "b_md",
+"b": "plastic_sheet",
+"code": "b_md.interactwith(plastic_sheet){ plastic_sheet.receives(b_md.envelope); plastic_sheet.remembers(bisola, 'brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the plastic sheet, which is still wet.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -10705,5 +10705,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-23T14:02:37-0500"
+"updated": "2026-11-23T14:15:43-0500"
 }
