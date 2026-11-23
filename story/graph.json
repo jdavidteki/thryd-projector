@@ -4018,6 +4018,18 @@
    "location": null,
    "source": "sha256"
   },
+  "its": {
+   "id": "its",
+   "kind": "object",
+   "floor": "GROUND",
+   "x": 4.63933,
+   "y": 2.47,
+   "z": 0.50353,
+   "px": 637.7,
+   "py": 530.9,
+   "location": null,
+   "source": "sha256"
+  },
   "iwytti": {
    "id": "iwytti",
    "kind": "object",
@@ -7243,6 +7255,18 @@
    "z": 2.14367,
    "px": 557.3,
    "py": 579.6,
+   "location": null,
+   "source": "sha256"
+  },
+  "still": {
+   "id": "still",
+   "kind": "object",
+   "floor": "GROUND",
+   "x": 1.42436,
+   "y": 2.47,
+   "z": 1.54243,
+   "px": 424.1,
+   "py": 467.8,
    "location": null,
    "source": "sha256"
   },
@@ -44151,11 +44175,63 @@
    "hex": "#2563eb",
    "label": "j147 \u00b7 ronke.take(juniorgirls)",
    "outline": "#41d91a"
+  },
+  {
+   "from": "pepu",
+   "to": "still",
+   "from_xyz": {
+    "x": 1.55063,
+    "y": 7.37,
+    "z": 1.16992,
+    "px": 449.1,
+    "py": 176.4
+   },
+   "to_xyz": {
+    "x": 1.42436,
+    "y": 2.47,
+    "z": 1.54243,
+    "px": 424.1,
+    "py": 467.8
+   },
+   "index": 1346,
+   "job": "j148",
+   "run": "run-2eb42d",
+   "call": "sfc1314",
+   "method": "count",
+   "hex": "#2563eb",
+   "label": "j148 \u00b7 pepu.count(still)",
+   "outline": "#887010"
+  },
+  {
+   "from": "its",
+   "to": "teach",
+   "from_xyz": {
+    "x": 4.63933,
+    "y": 2.47,
+    "z": 0.50353,
+    "px": 637.7,
+    "py": 530.9
+   },
+   "to_xyz": {
+    "x": 2.72371,
+    "y": 2.47,
+    "z": 2.19548,
+    "px": 456.5,
+    "py": 524.4
+   },
+   "index": 1347,
+   "job": "j148",
+   "run": "run-2eb42d",
+   "call": "sfc1315",
+   "method": "teach",
+   "hex": "#2563eb",
+   "label": "j148 \u00b7 its.teach(best)",
+   "outline": "#a35714"
   }
  ],
- "n_vertices": 736,
- "n_edges": 1358,
- "n_object_vertices": 490,
+ "n_vertices": 738,
+ "n_edges": 1360,
+ "n_object_vertices": 492,
  "n_method_vertices": 246,
  "agenda_palette": {
   "atbl-kmb-run": {
@@ -44680,5 +44756,5 @@
    "kind": "edge"
   }
  ],
- "stroke_hash": "46e5577a1088bf57cc84a6cd43064b540b58235d55b2404bcbe17ece91465208"
+ "stroke_hash": "17e373d77022476ac6d49b74f4e1586c51f0e9135c2c536b87985f11f47b4b0e"
 }
