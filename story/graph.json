@@ -3646,6 +3646,18 @@
    "location": "road",
    "source": "world_objects.location"
   },
+  "hours": {
+   "id": "hours",
+   "kind": "object",
+   "floor": "GROUND",
+   "x": 1.93775,
+   "y": 2.47,
+   "z": 2.39572,
+   "px": 407.0,
+   "py": 507.4,
+   "location": null,
+   "source": "sha256"
+  },
   "hpr": {
    "id": "hpr",
    "kind": "object",
@@ -4591,6 +4603,18 @@
    "z": 1.65743,
    "px": 574.8,
    "py": 561.5,
+   "location": null,
+   "source": "sha256"
+  },
+  "less": {
+   "id": "less",
+   "kind": "object",
+   "floor": "GROUND",
+   "x": 5.15105,
+   "y": 2.47,
+   "z": 2.06912,
+   "px": 584.8,
+   "py": 591.1,
    "location": null,
    "source": "sha256"
   },
@@ -44791,11 +44815,141 @@
    "hex": "#2563eb",
    "label": "j151 \u00b7 hold.hide(wiitbaw)",
    "outline": "#1a41d9"
+  },
+  {
+   "from": "thryd",
+   "to": "importtheme",
+   "from_xyz": {
+    "x": 5.35552,
+    "y": 2.47,
+    "z": 2.11477,
+    "px": 592.8,
+    "py": 598.4
+   },
+   "to_xyz": {
+    "x": 1.77751,
+    "y": 2.47,
+    "z": 2.12227,
+    "px": 412.7,
+    "py": 494.8
+   },
+   "index": 1366,
+   "job": "j152",
+   "run": "run-2eb42d",
+   "call": "fc1334",
+   "method": "importtheme",
+   "hex": "#2563eb",
+   "label": "j152 \u00b7 #thryd.importtheme(uber)",
+   "outline": "#d9741a"
+  },
+  {
+   "from": "cli",
+   "to": "cli",
+   "from_xyz": {
+    "x": 2.71485,
+    "y": 2.47,
+    "z": 2.40047,
+    "px": 445.8,
+    "py": 530.1
+   },
+   "to_xyz": {
+    "x": 2.71485,
+    "y": 2.47,
+    "z": 2.40047,
+    "px": 445.8,
+    "py": 530.1
+   },
+   "index": 1367,
+   "job": "j152",
+   "run": "run-2eb42d",
+   "call": "fc1335",
+   "method": "cli",
+   "hex": "#2563eb",
+   "label": "j152 \u00b7 cli.d4()",
+   "outline": "#1a80d9"
+  },
+  {
+   "from": "cli",
+   "to": "cli",
+   "from_xyz": {
+    "x": 2.71485,
+    "y": 2.47,
+    "z": 2.40047,
+    "px": 445.8,
+    "py": 530.1
+   },
+   "to_xyz": {
+    "x": 2.71485,
+    "y": 2.47,
+    "z": 2.40047,
+    "px": 445.8,
+    "py": 530.1
+   },
+   "index": 1368,
+   "job": "j152",
+   "run": "run-2eb42d",
+   "call": "fc1336",
+   "method": "cli",
+   "hex": "#2563eb",
+   "label": "j152 \u00b7 cli.b3()",
+   "outline": "#1a80d9"
+  },
+  {
+   "from": "less",
+   "to": "hours",
+   "from_xyz": {
+    "x": 5.15105,
+    "y": 2.47,
+    "z": 2.06912,
+    "px": 584.8,
+    "py": 591.1
+   },
+   "to_xyz": {
+    "x": 1.93775,
+    "y": 2.47,
+    "z": 2.39572,
+    "px": 407.0,
+    "py": 507.4
+   },
+   "index": 1369,
+   "job": "j152",
+   "run": "run-2eb42d",
+   "call": "sfc1337",
+   "method": "weigh",
+   "hex": "#2563eb",
+   "label": "j152 \u00b7 less.weigh(hours)",
+   "outline": "#a8be17"
+  },
+  {
+   "from": "ronke",
+   "to": "because",
+   "from_xyz": {
+    "x": 2.27364,
+    "y": 2.47,
+    "z": 0.28,
+    "px": 530.1,
+    "py": 455.8
+   },
+   "to_xyz": {
+    "x": 5.68699,
+    "y": 2.47,
+    "z": 0.30599,
+    "px": 700.3,
+    "py": 555.5
+   },
+   "index": 1370,
+   "job": "j152",
+   "run": "run-2eb42d",
+   "call": "sfc1338",
+   "method": "teach",
+   "hex": "#2563eb",
+   "label": "j152 \u00b7 ronke.teach(because)",
+   "outline": "#a35714"
   }
  ],
- "n_vertices": 746,
- "n_edges": 1378,
- "n_object_vertices": 497,
+ "n_vertices": 748,
+ "n_edges": 1383,
+ "n_object_vertices": 499,
  "n_method_vertices": 249,
  "agenda_palette": {
   "atbl-kmb-run": {
@@ -45320,5 +45474,5 @@
    "kind": "edge"
   }
  ],
- "stroke_hash": "e60468be60d7f95ebd4b9b4b5afa882e4f7aaf5b8ad99e04c57773785fdf58cc"
+ "stroke_hash": "9e2b634f44a5649f0d742bd585db13318cdb9c35da7ece94bbc51c2f125e3583"
 }
