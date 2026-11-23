@@ -7453,16 +7453,6 @@
 ],
 "mkdwo": [
 {
-"id": "wf_a1589fe142",
-"kind": "consequence",
-"text": "The mkdwo leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"code": "move.interactwith(mkdwo){ mkdwo.receives(move.envelope); mkdwo.remembers(bisola, 'brown envelope'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "move"
-},
-{
 "id": "wf_d75767f6f1",
 "kind": "consequence",
 "text": "The mkdwo leaves with a Laptop note with Taiwo's name and 'lamp soot' on it.",
@@ -7501,6 +7491,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "ojuelegba_bus_stop"
+},
+{
+"id": "wf_cbb5f2085f",
+"kind": "consequence",
+"text": "The mkdwo leaves with an Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am.",
+"code": "computer_village.interactwith(mkdwo){ mkdwo.receives(computer_village.shirt); mkdwo.remembers(bisola, 'green shirt'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j8",
+"other": "computer_village"
 }
 ],
 "asmathic": [
@@ -10204,17 +10204,6 @@
 },
 "consequences": [
 {
-"id": "wt_8f5889fe64",
-"ts": "2026-11-21T10:28:37-0500",
-"a": "pure_water_cooler",
-"b": "ronke",
-"code": "ronke.interactwith(pure_water_cooler){ ronke.count(pure_water_cooler, 'change tin'); ronke.receives(pure_water_cooler, 'change tin'); }",
-"text": "Before crossing the room toward the babe in the green cap, Ronke counts the notes in the cooler's change tin, finds the 400 naira and the receipt, and takes the receipt with her so nobody can call it a con later.",
-"author": "cos",
-"run": "story-4b1689",
-"card": "j88"
-},
-{
 "id": "wt_ae5f543dc2",
 "ts": "2026-11-21T10:28:37-0500",
 "a": "ronke",
@@ -10642,6 +10631,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_cbb5f2085f",
+"ts": "2026-11-23T15:53:38-0500",
+"a": "computer_village",
+"b": "mkdwo",
+"code": "computer_village.interactwith(mkdwo){ mkdwo.receives(computer_village.shirt); mkdwo.remembers(bisola, 'green shirt'); }",
+"text": "The mkdwo leaves with an Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j8"
 }
 ],
 "memories": [
@@ -10745,5 +10745,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-23T15:49:08-0500"
+"updated": "2026-11-23T15:53:38-0500"
 }
