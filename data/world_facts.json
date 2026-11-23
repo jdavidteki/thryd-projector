@@ -7567,6 +7567,16 @@
 "run": "run-2eb42d",
 "card": "j8",
 "other": "example"
+},
+{
+"id": "wf_72f2ad1049",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the green shirt at the divine, and Bisola reads the name twice.",
+"code": "lie.interactwith(divine){ divine.receives(lie.envelope); divine.remembers(bisola, 'brown envelope'); divine.tucks(lie, 'yaba bookshop receipt into the green shirt'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "lie"
 }
 ],
 "again": [
@@ -10174,17 +10184,6 @@
 },
 "consequences": [
 {
-"id": "wf_7308551020",
-"ts": "2026-11-19T13:53:57-0500",
-"a": "patagonia",
-"b": "kerosene_lamp",
-"code": "patagonia.interactwith(kerosene_lamp){ kerosene_lamp.receives(patagonia.envelope); kerosene_lamp.remembers(bisola, 'brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the kerosene lamp, which is still lit.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
 "id": "wf_42b7337b52",
 "ts": "2026-11-19T13:56:36-0500",
 "a": "seniorgehs",
@@ -10612,6 +10611,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_72f2ad1049",
+"ts": "2026-11-23T15:13:34-0500",
+"a": "lie",
+"b": "divine",
+"code": "lie.interactwith(divine){ divine.receives(lie.envelope); divine.remembers(bisola, 'brown envelope'); divine.tucks(lie, 'yaba bookshop receipt into the green shirt'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the green shirt at the divine, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -10715,5 +10725,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-23T15:10:52-0500"
+"updated": "2026-11-23T15:13:34-0500"
 }
