@@ -3574,6 +3574,18 @@
    "location": null,
    "source": "sha256"
   },
+  "hall": {
+   "id": "hall",
+   "kind": "object",
+   "floor": "GROUND",
+   "x": 5.69548,
+   "y": 2.47,
+   "z": 1.43682,
+   "px": 643.9,
+   "py": 588.6,
+   "location": null,
+   "source": "sha256"
+  },
   "hand": {
    "id": "hand",
    "kind": "object",
@@ -4855,6 +4867,18 @@
    "z": 1.56838,
    "px": 445.3,
    "py": 481.5,
+   "location": null,
+   "source": "sha256"
+  },
+  "lean": {
+   "id": "lean",
+   "kind": "method",
+   "floor": "GROUND",
+   "x": 1.53659,
+   "y": 2.47,
+   "z": 2.01072,
+   "px": 406.2,
+   "py": 484.6,
    "location": null,
    "source": "sha256"
   },
@@ -7389,6 +7413,18 @@
    "py": 481.0,
    "location": "road",
    "source": "world_objects.location"
+  },
+  "shes": {
+   "id": "shes",
+   "kind": "object",
+   "floor": "GROUND",
+   "x": 3.86988,
+   "y": 2.47,
+   "z": 2.05201,
+   "px": 521.3,
+   "py": 553.5,
+   "location": null,
+   "source": "sha256"
   },
   "shipment": {
    "id": "shipment",
@@ -26519,14 +26555,14 @@
    "outline": "#788810"
   },
   {
-   "from": "chairman",
+   "from": "hall",
    "to": "say",
    "from_xyz": {
-    "x": 1.09578,
+    "x": 5.69548,
     "y": 2.47,
-    "z": 1.14317,
-    "px": 427.6,
-    "py": 446.7
+    "z": 1.43682,
+    "px": 643.9,
+    "py": 588.6
    },
    "to_xyz": {
     "x": 5.07079,
@@ -47005,12 +47041,90 @@
    "hex": "#2563eb",
    "label": "j169 \u00b7 pupsy.mend(enter)",
    "outline": "#60a314"
+  },
+  {
+   "from": "hall",
+   "to": "lean",
+   "from_xyz": {
+    "x": 5.69548,
+    "y": 2.47,
+    "z": 1.43682,
+    "px": 643.9,
+    "py": 588.6
+   },
+   "to_xyz": {
+    "x": 1.53659,
+    "y": 2.47,
+    "z": 2.01072,
+    "px": 406.2,
+    "py": 484.6
+   },
+   "index": 1422,
+   "job": "j170",
+   "run": "run-2eb42d",
+   "call": "lean:j170",
+   "method": "lean",
+   "hex": "#2563eb",
+   "label": "j170 \u00b7 hall.lean(j170: - and the women are now men)",
+   "outline": "#14a357"
+  },
+  {
+   "from": "shes",
+   "to": "tune",
+   "from_xyz": {
+    "x": 3.86988,
+    "y": 2.47,
+    "z": 2.05201,
+    "px": 521.3,
+    "py": 553.5
+   },
+   "to_xyz": {
+    "x": 1.53675,
+    "y": 2.47,
+    "z": 2.03007,
+    "px": 405.2,
+    "py": 485.2
+   },
+   "index": 1423,
+   "job": "j170",
+   "run": "run-2eb42d",
+   "call": "sfc1419",
+   "method": "tune",
+   "hex": "#2563eb",
+   "label": "j170 \u00b7 shes.tune(finer)",
+   "outline": "#1ad9b3"
+  },
+  {
+   "from": "now",
+   "to": "tune",
+   "from_xyz": {
+    "x": 4.45533,
+    "y": 2.47,
+    "z": 2.42,
+    "px": 532.2,
+    "py": 581.1
+   },
+   "to_xyz": {
+    "x": 1.53675,
+    "y": 2.47,
+    "z": 2.03007,
+    "px": 405.2,
+    "py": 485.2
+   },
+   "index": 1424,
+   "job": "j170",
+   "run": "run-2eb42d",
+   "call": "sfc1420",
+   "method": "tune",
+   "hex": "#2563eb",
+   "label": "j170 \u00b7 now.tune(uploaded)",
+   "outline": "#1ad9b3"
   }
  ],
- "n_vertices": 794,
- "n_edges": 1441,
- "n_object_vertices": 533,
- "n_method_vertices": 261,
+ "n_vertices": 797,
+ "n_edges": 1444,
+ "n_object_vertices": 535,
+ "n_method_vertices": 262,
  "agenda_palette": {
   "atbl-kmb-run": {
    "dot": "\ud83c\udf40",
@@ -47534,5 +47648,5 @@
    "kind": "edge"
   }
  ],
- "stroke_hash": "8294aef04cec457d022561a0f1b183fb295a9d837640f2119ab700f3191a7c8c"
+ "stroke_hash": "7cd51e4f1ad4bd61ee82304d7169971be99e17ca8ee5d100a7a0b7af4df9a0e2"
 }
