@@ -879,16 +879,6 @@
 ],
 "danfo_speaker": [
 {
-"id": "wf_4d8147fa2f",
-"kind": "consequence",
-"text": "The iae ends up with the danfo speaker, still initialized.",
-"code": "iae.interactwith(danfo_speaker){ iae.db.copyto(danfo_speaker); danfo_speaker.keeps(iae, 'iae, still initialized'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "w1",
-"other": "iae"
-},
-{
 "id": "wf_618410bf5b",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the danfo speaker, which is still playing the same love song.",
@@ -897,6 +887,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "move"
+},
+{
+"id": "wf_ef76a16e5a",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the danfo speaker, which is still playing the same love song.",
+"code": "computer_village.interactwith(danfo_speaker){ danfo_speaker.receives(computer_village.envelope); danfo_speaker.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "computer_village"
 },
 {
 "id": "wf_bdad55d985",
@@ -10164,17 +10164,6 @@
 },
 "consequences": [
 {
-"id": "wf_55c3941222",
-"ts": "2026-11-19T13:34:38-0500",
-"a": "cup",
-"b": "thryd",
-"code": "cup.interactwith(thryd){ thryd.receives(cup.code); thryd.remembers(ejiro, 'juju code'); }",
-"text": "The thryd leaves with a Cup note with Ejiro's name and 'juju code' on it.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j2"
-},
-{
 "id": "wf_2e3f75d4bf",
 "ts": "2026-11-19T13:35:31-0500",
 "a": "example",
@@ -10602,6 +10591,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_ef76a16e5a",
+"ts": "2026-11-23T14:28:39-0500",
+"a": "computer_village",
+"b": "danfo_speaker",
+"code": "computer_village.interactwith(danfo_speaker){ danfo_speaker.receives(computer_village.envelope); danfo_speaker.remembers(bisola, 'brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the danfo speaker, which is still playing the same love song.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -10705,5 +10705,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-23T14:26:49-0500"
+"updated": "2026-11-23T14:29:34-0500"
 }
