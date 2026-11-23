@@ -77,10 +77,10 @@
    "methods": [
     "follow",
     "getlocation",
-    "listen"
+    "know"
    ],
    "instances": 12,
-   "arg_instances": 5,
+   "arg_instances": 6,
    "parent": "Thing",
    "chain": [
     "Place",
@@ -107,8 +107,8 @@
     "ask",
     "give"
    ],
-   "instances": 400,
-   "arg_instances": 79,
+   "instances": 402,
+   "arg_instances": 82,
    "parent": null,
    "chain": [
     "Thing"
@@ -1819,6 +1819,22 @@
     }
    ]
   },
+  "ella": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-888ea9",
+   "first_job": "j7",
+   "source": "pick",
+   "runs": [
+    "run-888ea9"
+   ],
+   "tweets": [
+    {
+     "text": "- den give am ella! call dicey for me",
+     "year": "2025"
+    }
+   ]
+  },
   "elonmusk": {
    "class": "Thing",
    "cue": "default",
@@ -3167,6 +3183,22 @@
    ],
    "tweets": []
   },
+  "ladipoe": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-888ea9",
+   "first_job": "j7",
+   "source": "pick",
+   "runs": [
+    "run-888ea9"
+   ],
+   "tweets": [
+    {
+     "text": "- a ladipoe [[laakl]] object is an object that looks",
+     "year": "2024"
+    }
+   ]
+  },
   "lady": {
    "class": "Thing",
    "cue": "default",
@@ -3385,13 +3417,19 @@
   "life": {
    "class": "Thing",
    "cue": "default",
-   "first_run": "run-65400f",
+   "first_run": "run-888ea9",
    "first_job": "j7",
-   "source": "typed",
+   "source": "pick",
    "runs": [
+    "run-888ea9",
     "run-65400f"
    ],
-   "tweets": []
+   "tweets": [
+    {
+     "text": "— for out of it are the issues of #life",
+     "year": "2025"
+    }
+   ]
   },
   "lift": {
    "class": "Thing",
@@ -6408,13 +6446,19 @@
   "world": {
    "class": "Place",
    "cue": "word",
-   "first_run": "run-0ae93c",
-   "first_job": null,
-   "source": "stage",
+   "first_run": "run-888ea9",
+   "first_job": "j7",
+   "source": "pick",
    "runs": [
+    "run-888ea9",
     "run-0ae93c"
    ],
-   "tweets": []
+   "tweets": [
+    {
+     "text": "- all over the world they know mama emeka",
+     "year": "2025"
+    }
+   ]
   },
   "wser": {
    "class": "Thing",
@@ -7832,6 +7876,30 @@
     "us",
     "Person",
     "j6",
+    "pick"
+   ],
+   [
+    "ella",
+    "Thing",
+    "j7",
+    "pick"
+   ],
+   [
+    "life",
+    "Thing",
+    "j7",
+    "pick"
+   ],
+   [
+    "world",
+    "Place",
+    "j7",
+    "pick"
+   ],
+   [
+    "ladipoe",
+    "Thing",
+    "j7",
     "pick"
    ]
   ],
@@ -10424,6 +10492,10 @@
   "grammy.swear": "swear(who: Person)",
   "hand.go": "go(how: Manner)",
   "phones.make": "make(who: Person)",
+  "dicey.call": "call(what: Thing)",
+  "issues.out": "out(what: Thing)",
+  "mama.know": "know(where: Place)",
+  "object.look": "look(what: Thing)",
   "cooler.getdatemanufactured": "getDateManufactured()",
   "ronke.getlikes.contains": "getlikes.contains()",
   "kazeem.goodqualities.filter": "filter()",
@@ -10591,6 +10663,7 @@
     "irteiutk",
     "kazeem",
     "kunle",
+    "mama",
     "oyinboman",
     "taking",
     "teo",
@@ -10865,9 +10938,13 @@
   "run-888ea9": [
    "accuracy",
    "court",
+   "dicey",
    "grammy",
    "hand",
    "hands",
+   "issues",
+   "mama",
+   "object",
    "pawa",
    "phones",
    "thing",
@@ -10947,5 +11024,5 @@
   "epilogue": "quiet",
   "coda": "quiet"
  },
- "updated": "2026-11-23T18:21:54-05:00"
+ "updated": "2026-11-23T18:37:41-05:00"
 }

@@ -11101,6 +11101,308 @@
    "faded": false,
    "last_run": "run-888ea9"
   },
+  "dicey.call": {
+   "object": "dicey",
+   "method": "call",
+   "args": [
+    "ella"
+   ],
+   "runs": [
+    "run-888ea9"
+   ],
+   "defined": {
+    "run": "run-888ea9",
+    "job": "j7",
+    "card": "w7",
+    "title": "dicey.call(ella)",
+    "emoji": "📞",
+    "at": "2026-11-23T18:37:05-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "dicey.call(ella)",
+     "emoji": "📞",
+     "arg": "ella",
+     "run": "run-888ea9",
+     "job": "j7",
+     "tweets": [
+      {
+       "text": "- den give am ella! call dicey for me",
+       "year": "2025"
+      }
+     ],
+     "consequence": "The elder finally speaks up: “den give am ella!",
+     "consequence_job": "j8",
+     "resolved": "dicey.call(what=ella:Thing) from j7",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "ella",
+       "from_run": "run-888ea9",
+       "from_job": "j7",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "ella",
+      "first_run": "run-888ea9",
+      "first_job": "j7"
+     }
+    ],
+    "text": "call(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [
+    {
+     "id": "adaora.call",
+     "title": "adaora.call(precision)",
+     "run": "run-g1-B",
+     "job": "j11",
+     "at": "2026-11-17T18:25:59-05:00",
+     "why": "same method"
+    }
+   ],
+   "faded": false,
+   "last_run": null
+  },
+  "issues.out": {
+   "object": "issues",
+   "method": "out",
+   "args": [
+    "life"
+   ],
+   "runs": [
+    "run-888ea9"
+   ],
+   "defined": {
+    "run": "run-888ea9",
+    "job": "j7",
+    "card": "w7",
+    "title": "issues.out(life)",
+    "emoji": "💓",
+    "at": "2026-11-23T18:37:05-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "issues.out(life)",
+     "emoji": "💓",
+     "arg": "life",
+     "run": "run-888ea9",
+     "job": "j7",
+     "tweets": [
+      {
+       "text": "— for out of it are the issues of #life",
+       "year": "2025"
+      }
+     ],
+     "consequence": "call dicey for me”, then “for out of it are the issues of #life”.",
+     "consequence_job": "j8",
+     "resolved": "issues.out(what=life:Thing) from j7",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "life",
+       "from_run": "run-888ea9",
+       "from_job": "j7",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "life",
+      "first_run": "run-888ea9",
+      "first_job": "j7"
+     }
+    ],
+    "text": "out(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "mama.know": {
+   "object": "mama",
+   "method": "know",
+   "args": [
+    "world"
+   ],
+   "runs": [
+    "run-888ea9"
+   ],
+   "defined": {
+    "run": "run-888ea9",
+    "job": "j7",
+    "card": "w7",
+    "title": "mama.know(world)",
+    "emoji": "🌍",
+    "at": "2026-11-23T18:37:05-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "mama.know(world)",
+     "emoji": "🌍",
+     "arg": "world",
+     "run": "run-888ea9",
+     "job": "j7",
+     "tweets": [
+      {
+       "text": "- all over the world they know mama emeka",
+       "year": "2025"
+      }
+     ],
+     "consequence": "The youth leader knows the pots at once: “all over the world they know mama emeka”.",
+     "consequence_job": "j8",
+     "resolved": "mama.know(where=world:Place) from j7",
+     "injected": [
+      {
+       "param": "where",
+       "class": "Place",
+       "instance": "world",
+       "from_run": "run-888ea9",
+       "from_job": "j7",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "where",
+      "class": "Place",
+      "default": "world",
+      "first_run": "run-888ea9",
+      "first_job": "j7"
+     }
+    ],
+    "text": "know(where: Place)"
+   },
+   "receiver_class": "Person",
+   "prior": [
+    {
+     "id": "oyinboman.know",
+     "title": "oyinboman.know(when)",
+     "run": "run-2eb42d",
+     "job": "j16",
+     "at": "2026-11-17T23:36:00-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "teo.know",
+     "title": "teo.know(everything)",
+     "run": "run-5a58c4",
+     "job": "j33",
+     "at": "2026-11-17T16:04:47-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "thrill.know",
+     "title": "thrill.know(wan)",
+     "run": "run-5a58c4",
+     "job": "j26",
+     "at": "2026-11-17T11:07:01-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "crime.know",
+     "title": "crime.know(sometimes)",
+     "run": "run-5a58c4",
+     "job": "j24",
+     "at": "2026-11-17T00:02:09-05:00",
+     "why": "same method"
+    }
+   ],
+   "faded": false,
+   "last_run": null
+  },
+  "object.look": {
+   "object": "object",
+   "method": "look",
+   "args": [
+    "ladipoe"
+   ],
+   "runs": [
+    "run-888ea9"
+   ],
+   "defined": {
+    "run": "run-888ea9",
+    "job": "j7",
+    "card": "w7",
+    "title": "object.look(ladipoe)",
+    "emoji": "🪞",
+    "at": "2026-11-23T18:37:05-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "object.look(ladipoe)",
+     "emoji": "🪞",
+     "arg": "ladipoe",
+     "run": "run-888ea9",
+     "job": "j7",
+     "tweets": [
+      {
+       "text": "- a ladipoe [[laakl]] object is an object that looks",
+       "year": "2024"
+      }
+     ],
+     "consequence": "The tech rebel stares at it: “a ladipoe [[laakl]] object is an object that looks”.",
+     "consequence_job": "j8",
+     "resolved": "object.look(what=ladipoe:Thing) from j7",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "ladipoe",
+       "from_run": "run-888ea9",
+       "from_job": "j7",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "ladipoe",
+      "first_run": "run-888ea9",
+      "first_job": "j7"
+     }
+    ],
+    "text": "look(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
   "cooler.getdatemanufactured": {
    "object": "cooler",
    "method": "getDateManufactured",
@@ -14144,6 +14446,9 @@
   "[nau,god]": [
    "[nau,god].map"
   ],
+  "accountability_subject": [
+   "object.look"
+  ],
   "accuracy": [
    "accuracy.see"
   ],
@@ -14153,6 +14458,9 @@
    "adaora.write",
    "adaora.note",
    "adaora.cap"
+  ],
+  "american_olamide_subject": [
+   "object.look"
   ],
   "aotl": [
    "aotl.isline"
@@ -14168,6 +14476,9 @@
   ],
   "blender": [
    "blender.line"
+  ],
+  "blessings_subject": [
+   "object.look"
   ],
   "boat": [
    "boat.lift",
@@ -14300,6 +14611,9 @@
    "kazeem.score",
    "kazeem.use"
   ],
+  "could_never_make_subject": [
+   "object.look"
+  ],
   "court": [
    "court.order"
   ],
@@ -14334,6 +14648,9 @@
    "dez.use",
    "dez.make"
   ],
+  "dicey": [
+   "dicey.call"
+  ],
   "disstrack": [
    "disstrack.getowner"
   ],
@@ -14364,6 +14681,9 @@
    "titi.let",
    "titi.keep"
   ],
+  "fire_subject": [
+   "object.look"
+  ],
   "flamingo": [
    "flamingo.stand"
   ],
@@ -14382,6 +14702,12 @@
   ],
   "g": [
    "g.mm"
+  ],
+  "giants_world_subject": [
+   "object.look"
+  ],
+  "god_subject": [
+   "object.look"
   ],
   "gol": [
    "gol.lo"
@@ -14404,6 +14730,9 @@
   "history": [
    "history.see"
   ],
+  "imagination_generation_subject": [
+   "object.look"
+  ],
   "investor": [
    "investor.sign",
    "investor.give",
@@ -14411,6 +14740,12 @@
   ],
   "irteiutk": [
    "irteiutk.count"
+  ],
+  "issues": [
+   "issues.out"
+  ],
+  "json_life_subject": [
+   "object.look"
   ],
   "jwvbs": [
    "jwvbs.open"
@@ -14469,8 +14804,14 @@
   "life": [
    "life.give"
   ],
+  "lowaleechelons_subject": [
+   "object.look"
+  ],
   "make": [
    "make.setany"
+  ],
+  "mama": [
+   "mama.know"
   ],
   "mamaronke": [
    "mamaronke.claim",
@@ -14500,13 +14841,25 @@
    "new.election",
    "new.courtcase"
   ],
+  "new_yuwa_running_subject": [
+   "object.look"
+  ],
   "nigeria": [
    "nigeria.setpresident"
+  ],
+  "nnb_subject": [
+   "object.look"
   ],
   "nobody": [
    "nobody.weigh",
    "nobody.rename",
    "nobody.bring"
+  ],
+  "not_me_but_subject": [
+   "object.look"
+  ],
+  "object": [
+   "object.look"
   ],
   "omo": [
    "omo.fold"
@@ -14523,6 +14876,9 @@
   "people": [
    "people.getocsw"
   ],
+  "people_scene_subject": [
+   "object.look"
+  ],
   "pepe": [
    "pepe.settink"
   ],
@@ -14531,6 +14887,9 @@
   ],
   "phones": [
    "phones.make"
+  ],
+  "portable_subject": [
+   "object.look"
   ],
   "qa568cli": [
    "qa568cli.nullfallback",
@@ -14548,6 +14907,9 @@
   ],
   "real": [
    "real.tune"
+  ],
+  "really_democracy_subject": [
+   "object.look"
   ],
   "receipt": [
    "receipt.get"
@@ -14624,6 +14986,9 @@
   "speaker": [
    "speaker.play"
   ],
+  "structure_hit_subject": [
+   "object.look"
+  ],
   "taking": [
    "taking.isnotes"
   ],
@@ -14683,6 +15048,9 @@
   "time": [
    "time.till"
   ],
+  "time_party_subject": [
+   "object.look"
+  ],
   "titi": [
    "titi.go",
    "titi.start",
@@ -14712,6 +15080,9 @@
    "tyn.on",
    "tyn.getdetermines"
   ],
+  "uncle_will_smith_subject": [
+   "object.look"
+  ],
   "use": [
    "use.mend"
   ],
@@ -14721,8 +15092,14 @@
   "weeks": [
    "weeks.gettoattd"
   ],
+  "whatever_happens_me_subject": [
+   "object.look"
+  ],
   "wife": [
    "wife.kill"
+  ],
+  "wifey_subject": [
+   "object.look"
   ],
   "worry": [
    "worry.have"
@@ -27133,6 +27510,16 @@
     ]
    }
   ],
+  "reverse_poverty_capital_figure": [
+   {
+    "scope": "safe",
+    "from": "7ba78a2d336f",
+    "title": "1226. reverse poverty capital",
+    "funcs": [
+     "dicey.call"
+    ]
+   }
+  ],
   "reversible_arguments_figure": [
    {
     "scope": "safe",
@@ -27660,6 +28047,7 @@
     "from": "132d9f3e6cde",
     "title": "1009. are we a joke to yupepu?",
     "funcs": [
+     "issues.out",
      "dez.follow",
      "everywhere.getdayagreeeeeennnn"
     ]
@@ -28055,6 +28443,7 @@
     "from": "143851839774",
     "title": "827. a time after music",
     "funcs": [
+     "object.look",
      "chairman.read",
      "ronke.count"
     ]
@@ -29458,6 +29847,10 @@
     "from": "38688e69edf3",
     "title": "1003. usher by kiss daniel",
     "funcs": [
+     "object.look",
+     "mama.know",
+     "issues.out",
+     "dicey.call",
      "phones.make",
      "hand.go",
      "grammy.swear",
@@ -30459,8 +30852,16 @@
     "court.order",
     "grammy.swear",
     "hand.go",
-    "phones.make"
+    "phones.make",
+    "dicey.call",
+    "issues.out",
+    "mama.know",
+    "object.look"
    ]
+  },
+  "run-93d6ff": {
+   "safe": "ceb79ef77a2c",
+   "funcs": []
   },
   "run-bd649b": {
    "safe": "feb29a74094b",
@@ -30703,7 +31104,8 @@
    "title": "1009. are we a joke to yupepu?",
    "funcs": [
     "everywhere.getdayagreeeeeennnn",
-    "dez.follow"
+    "dez.follow",
+    "issues.out"
    ],
    "runs": []
   },
@@ -30718,7 +31120,8 @@
    "title": "827. a time after music",
    "funcs": [
     "ronke.count",
-    "chairman.read"
+    "chairman.read",
+    "object.look"
    ],
    "runs": []
   },
@@ -30877,7 +31280,11 @@
     "court.order",
     "grammy.swear",
     "hand.go",
-    "phones.make"
+    "phones.make",
+    "dicey.call",
+    "issues.out",
+    "mama.know",
+    "object.look"
    ],
    "runs": [
     "run-888ea9"
@@ -31024,6 +31431,13 @@
    "title": "921. chinua achebe and the blockchain",
    "funcs": [
     "investor.sign"
+   ],
+   "runs": []
+  },
+  "7ba78a2d336f": {
+   "title": "1226. reverse poverty capital",
+   "funcs": [
+    "dicey.call"
    ],
    "runs": []
   },
@@ -31321,6 +31735,15 @@
     "toothbrush.on"
    ],
    "runs": []
+  },
+  "ceb79ef77a2c": {
+   "title": "1208. taste the juju wey mama emeka juss prepare",
+   "funcs": [
+    "mama.know"
+   ],
+   "runs": [
+    "run-93d6ff"
+   ]
   },
   "d15604eed466": {
    "title": "803. excuse me",
@@ -31746,6 +32169,9 @@
   "1*i3myLXP42aKin6hUO3sYzQ.gif": [
    "0d1e8045251b"
   ],
+  "1*wLyltPPcTULRqRooVjkOOQ.gif": [
+   "7ba78a2d336f"
+  ],
   "1*41Tcus9cP3e-v9zjh-PhSQ.gif": [
    "c02614739196"
   ],
@@ -31915,6 +32341,9 @@
   "1*hVDvLB17CmKpndJbRpJ3Pw.gif": [
    "763a14885cf0",
    "0edd03763978"
+  ],
+  "1*_EjFgtPmEaDMbd0l7TYupQ.gif": [
+   "ceb79ef77a2c"
   ],
   "1*KOfHcbZItSwnzB-Xt4fH3A.gif": [
    "1043ee742884"
@@ -32583,6 +33012,12 @@
     "9aa1737aecfa"
    ]
   },
+  "1*wLyltPPcTULRqRooVjkOOQ.gif": {
+   "runs": [],
+   "safes": [
+    "7ba78a2d336f"
+   ]
+  },
   "1*fRybDa0nJYSdJgMbSrO3iw.gif": {
    "runs": [],
    "safes": [
@@ -32798,6 +33233,9 @@
    "dez.use",
    "dez.make"
   ],
+  "dicey": [
+   "dicey.call"
+  ],
   "disstrack": [
    "disstrack.getowner"
   ],
@@ -32862,6 +33300,9 @@
   "irteiutk": [
    "irteiutk.count"
   ],
+  "issues": [
+   "issues.out"
+  ],
   "jwvbs": [
    "jwvbs.open"
   ],
@@ -32915,6 +33356,9 @@
   "make": [
    "make.setany"
   ],
+  "mama": [
+   "mama.know"
+  ],
   "mamaronke": [
    "mamaronke.claim",
    "mamaronke.keep",
@@ -32943,6 +33387,9 @@
    "nobody.weigh",
    "nobody.rename",
    "nobody.bring"
+  ],
+  "object": [
+   "object.look"
   ],
   "omo": [
    "omo.fold"
@@ -33290,6 +33737,12 @@
   "grammy": [],
   "hand": [],
   "phones": [],
+  "dicey": [],
+  "issues": [],
+  "mama": [
+   "Readable"
+  ],
+  "object": [],
   "cooler": [],
   "kazeem.goodqualities": [],
   "app": [],
@@ -33456,9 +33909,13 @@
   "run-888ea9": [
    "accuracy",
    "court",
+   "dicey",
    "grammy",
    "hand",
    "hands",
+   "issues",
+   "mama",
+   "object",
    "pawa",
    "phones",
    "thing",
@@ -33478,5 +33935,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-23T18:22:49-05:00"
+ "updated": "2026-11-23T18:37:42-05:00"
 }
