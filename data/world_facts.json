@@ -8123,6 +8123,16 @@
 "run": "run-2eb42d",
 "card": "j8",
 "other": "lady"
+},
+{
+"id": "wf_c27ecef253",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the green shirt at the mlkahb, and Bisola reads the name twice.",
+"code": "love.interactwith(mlkahb){ mlkahb.receives(love.envelope); mlkahb.remembers(bisola, 'brown envelope'); mlkahb.tucks(love, 'yaba bookshop receipt into the green shirt'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "love"
 }
 ],
 "uncle_ebo": [
@@ -10184,17 +10194,6 @@
 },
 "consequences": [
 {
-"id": "wf_42b7337b52",
-"ts": "2026-11-19T13:56:36-0500",
-"a": "seniorgehs",
-"b": "bird",
-"code": "seniorgehs.interactwith(bird){ bird.receives(seniorgehs.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the envelope corner at the bird, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
 "id": "wf_ec7fe24573",
 "ts": "2026-11-19T14:01:54-0500",
 "a": "pure_water_cooler",
@@ -10622,6 +10621,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_c27ecef253",
+"ts": "2026-11-23T15:27:25-0500",
+"a": "love",
+"b": "mlkahb",
+"code": "love.interactwith(mlkahb){ mlkahb.receives(love.envelope); mlkahb.remembers(bisola, 'brown envelope'); mlkahb.tucks(love, 'yaba bookshop receipt into the green shirt'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the green shirt at the mlkahb, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -10725,5 +10735,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-23T15:13:34-0500"
+"updated": "2026-11-23T15:27:25-0500"
 }
