@@ -3622,6 +3622,18 @@
    "location": "townhall",
    "source": "world_objects.location"
   },
+  "hard": {
+   "id": "hard",
+   "kind": "method",
+   "floor": "GROUND",
+   "x": 4.43919,
+   "y": 2.47,
+   "z": 2.14952,
+   "px": 545.0,
+   "py": 572.8,
+   "location": null,
+   "source": "sha256"
+  },
   "hat": {
    "id": "hat",
    "kind": "object",
@@ -6550,6 +6562,18 @@
    "location": "busstop",
    "source": "world_objects.location"
   },
+  "pupsy": {
+   "id": "pupsy",
+   "kind": "object",
+   "floor": "GROUND",
+   "x": 4.86834,
+   "y": 2.47,
+   "z": 2.04244,
+   "px": 571.9,
+   "py": 582.2,
+   "location": null,
+   "source": "sha256"
+  },
   "put": {
    "id": "put",
    "kind": "method",
@@ -8095,6 +8119,18 @@
    "z": 1.92254,
    "px": 532.3,
    "py": 552.3,
+   "location": null,
+   "source": "sha256"
+  },
+  "thank": {
+   "id": "thank",
+   "kind": "object",
+   "floor": "GROUND",
+   "x": 2.85977,
+   "y": 2.47,
+   "z": 1.07806,
+   "px": 519.5,
+   "py": 495.9,
    "location": null,
    "source": "sha256"
   },
@@ -46865,12 +46901,116 @@
    "hex": "#2563eb",
    "label": "j168 \u00b7 ronke.deliver(time)",
    "outline": "#14a357"
+  },
+  {
+   "from": "hard",
+   "to": "hard",
+   "from_xyz": {
+    "x": 4.43919,
+    "y": 2.47,
+    "z": 2.14952,
+    "px": 545.0,
+    "py": 572.8
+   },
+   "to_xyz": {
+    "x": 4.43919,
+    "y": 2.47,
+    "z": 2.14952,
+    "px": 545.0,
+    "py": 572.8
+   },
+   "index": 1418,
+   "job": "j169",
+   "run": "run-2eb42d",
+   "call": "fc1417",
+   "method": "hard",
+   "hex": "#2563eb",
+   "label": "j169 \u00b7 [[hard]]()",
+   "outline": "#d91a41"
+  },
+  {
+   "from": "yuwa",
+   "to": "thank",
+   "from_xyz": {
+    "x": 5.18251,
+    "y": 2.47,
+    "z": 1.87722,
+    "px": 596.0,
+    "py": 586.5
+   },
+   "to_xyz": {
+    "x": 2.85977,
+    "y": 2.47,
+    "z": 1.07806,
+    "px": 519.5,
+    "py": 495.9
+   },
+   "index": 1419,
+   "job": "j169",
+   "run": "run-2eb42d",
+   "call": "sfc1415",
+   "method": "open",
+   "hex": "#2563eb",
+   "label": "j169 \u00b7 yuwa.open(thank)",
+   "outline": "#8614a3"
+  },
+  {
+   "from": "mamaronke",
+   "to": "know",
+   "from_xyz": {
+    "x": 0.77041,
+    "y": 2.47,
+    "z": 2.42,
+    "px": 347.1,
+    "py": 474.3
+   },
+   "to_xyz": {
+    "x": 3.67997,
+    "y": 2.47,
+    "z": 2.11434,
+    "px": 508.6,
+    "py": 549.8
+   },
+   "index": 1420,
+   "job": "j169",
+   "run": "run-2eb42d",
+   "call": "sfc1416",
+   "method": "hear",
+   "hex": "#2563eb",
+   "label": "j169 \u00b7 mamaronke.hear(know)",
+   "outline": "#a8be17"
+  },
+  {
+   "from": "pupsy",
+   "to": "mend",
+   "from_xyz": {
+    "x": 4.86834,
+    "y": 2.47,
+    "z": 2.04244,
+    "px": 571.9,
+    "py": 582.2
+   },
+   "to_xyz": {
+    "x": 2.53179,
+    "y": 2.47,
+    "z": 1.89477,
+    "px": 462.0,
+    "py": 510.1
+   },
+   "index": 1421,
+   "job": "j169",
+   "run": "run-2eb42d",
+   "call": "sfc1418",
+   "method": "mend",
+   "hex": "#2563eb",
+   "label": "j169 \u00b7 pupsy.mend(enter)",
+   "outline": "#60a314"
   }
  ],
- "n_vertices": 791,
- "n_edges": 1437,
- "n_object_vertices": 531,
- "n_method_vertices": 260,
+ "n_vertices": 794,
+ "n_edges": 1441,
+ "n_object_vertices": 533,
+ "n_method_vertices": 261,
  "agenda_palette": {
   "atbl-kmb-run": {
    "dot": "\ud83c\udf40",
@@ -47394,5 +47534,5 @@
    "kind": "edge"
   }
  ],
- "stroke_hash": "2cb8514c596f4d680f1576f3bdceeac25ab31cc3ad63ced32c1566e113004f52"
+ "stroke_hash": "8294aef04cec457d022561a0f1b183fb295a9d837640f2119ab700f3191a7c8c"
 }
