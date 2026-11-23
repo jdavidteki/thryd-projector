@@ -4,7 +4,7 @@
  "branches": {
   "run-9e3e84": {
    "forked_from": null,
-   "head": "bc9fb56d80",
+   "head": "0c56470f1e",
    "commits": [
     {
      "id": "b2d4898e2b",
@@ -47,7 +47,7 @@
      }
     },
     {
-     "id": "596483ee5d",
+     "id": "2e998b314c",
      "parent": "b2d4898e2b",
      "branch": "run-9e3e84",
      "job": "j6",
@@ -71,16 +71,32 @@
         "code": "yaba_bookshop.remembers(taiwo, 'paperbacks');",
         "scope": null,
         "cause_id": null
+       },
+       {
+        "id": "wt_4e2aeb6425",
+        "object": "red_and_white",
+        "kind": "call",
+        "code": "red_and_white.dim();",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_ea37c3bdf2",
+        "object": "abeokuta_parlour",
+        "kind": "call",
+        "code": "abeokuta_parlour.glow();",
+        "scope": null,
+        "cause_id": null
        }
       ],
-      "facts_total": 2,
+      "facts_total": 4,
       "functions": [],
       "instances": []
      }
     },
     {
-     "id": "bc9fb56d80",
-     "parent": "596483ee5d",
+     "id": "0c56470f1e",
+     "parent": "2e998b314c",
      "branch": "run-9e3e84",
      "job": "j8",
      "at": "2026-11-14T15:33:42-0500",
@@ -111,9 +127,17 @@
         "code": "ikeja_laundromat.remembers('coin');",
         "scope": null,
         "cause_id": null
+       },
+       {
+        "id": "wt_2f389dcdd4",
+        "object": "ikeja_laundromat_subject_second",
+        "kind": "call",
+        "code": "ikeja_laundromat_subject_second.grow();",
+        "scope": null,
+        "cause_id": null
        }
       ],
-      "facts_total": 3,
+      "facts_total": 4,
       "functions": [],
       "instances": []
      }
@@ -160,7 +184,7 @@
   },
   "run-b9b963": {
    "forked_from": null,
-   "head": "c9faa66f95",
+   "head": "32f016232b",
    "commits": [
     {
      "id": "4613d80e33",
@@ -1219,7 +1243,7 @@
      }
     },
     {
-     "id": "6c08e59d4b",
+     "id": "0671f72319",
      "parent": "e0a8522fc0",
      "branch": "run-b9b963",
      "job": "j4",
@@ -1507,16 +1531,24 @@
         "code": "agenda_scene.interactwith(or_something){ or_something.receives(agenda_scene.envelope); or_something.remembers(bisola, 'brown envelope'); }",
         "scope": null,
         "cause_id": null
+       },
+       {
+        "id": "wt_7b0cf77f92",
+        "object": "yaba_bukka_counter_subject",
+        "kind": "call",
+        "code": "yaba_bukka_counter_subject.setmood('happy');",
+        "scope": null,
+        "cause_id": null
        }
       ],
-      "facts_total": 35,
+      "facts_total": 36,
       "functions": [],
       "instances": []
      }
     },
     {
-     "id": "0707497067",
-     "parent": "6c08e59d4b",
+     "id": "e757919332",
+     "parent": "0671f72319",
      "branch": "run-b9b963",
      "job": "j5",
      "at": "2026-11-14T15:33:42-0500",
@@ -1627,8 +1659,8 @@
      }
     },
     {
-     "id": "e7c0c59272",
-     "parent": "0707497067",
+     "id": "b32c35d71e",
+     "parent": "e757919332",
      "branch": "run-b9b963",
      "job": "j6",
      "at": "2026-11-14T15:33:42-0500",
@@ -2123,8 +2155,8 @@
      }
     },
     {
-     "id": "d40e72cd5d",
-     "parent": "e7c0c59272",
+     "id": "437b3fe24b",
+     "parent": "b32c35d71e",
      "branch": "run-b9b963",
      "job": "j7",
      "at": "2026-11-14T15:33:42-0500",
@@ -2219,8 +2251,8 @@
      }
     },
     {
-     "id": "1a99dcba3a",
-     "parent": "d40e72cd5d",
+     "id": "44c0d90e57",
+     "parent": "437b3fe24b",
      "branch": "run-b9b963",
      "job": "j8",
      "at": "2026-11-14T15:39:02-0500",
@@ -2323,8 +2355,8 @@
      }
     },
     {
-     "id": "ac7d94fd52",
-     "parent": "1a99dcba3a",
+     "id": "745d0e7380",
+     "parent": "44c0d90e57",
      "branch": "run-b9b963",
      "job": "j9",
      "at": "2026-11-14T20:33:16-0500",
@@ -2451,8 +2483,8 @@
      }
     },
     {
-     "id": "4be712b63e",
-     "parent": "ac7d94fd52",
+     "id": "30e78cdf0b",
+     "parent": "745d0e7380",
      "branch": "run-b9b963",
      "job": "j10",
      "at": "2026-11-15T04:29:24-0500",
@@ -2491,8 +2523,8 @@
      }
     },
     {
-     "id": "c9faa66f95",
-     "parent": "4be712b63e",
+     "id": "32f016232b",
+     "parent": "30e78cdf0b",
      "branch": "run-b9b963",
      "job": "j11",
      "at": "2026-11-15T04:41:36-0500",
@@ -4713,7 +4745,7 @@
   },
   "run-5a58c4": {
    "forked_from": "safe:f81f21521253",
-   "head": "1f46bfbaa7",
+   "head": "c19ae2da64",
    "commits": [
     {
      "id": "f8dbb5df08",
@@ -5924,7 +5956,7 @@
      }
     },
     {
-     "id": "a1addf6e3b",
+     "id": "037e20c6e2",
      "parent": "aa30cfa46a",
      "branch": "run-5a58c4",
      "job": "j22",
@@ -5932,8 +5964,105 @@
      "genre": "opening",
      "beat": "opening",
      "diff": {
-      "facts": [],
-      "facts_total": 0,
+      "facts": [
+       {
+        "id": "wt_45dfa29000",
+        "object": "song",
+        "kind": "func_call",
+        "code": "song.hit('mistake');",
+        "scope": "env",
+        "cause_id": null
+       },
+       {
+        "id": "wt_c2800ac997",
+        "object": "blender",
+        "kind": "func_call",
+        "code": "blender.hears(miami_subject, 'hit');",
+        "scope": "ripple",
+        "cause_id": "wt_45dfa29000"
+       },
+       {
+        "id": "wt_b8eac23954",
+        "object": "calla",
+        "kind": "func_call",
+        "code": "calla.hears(miami_subject, 'hit');",
+        "scope": "ripple",
+        "cause_id": "wt_45dfa29000"
+       },
+       {
+        "id": "wt_208c012519",
+        "object": "code",
+        "kind": "func_call",
+        "code": "code.hears(miami_subject, 'hit');",
+        "scope": "ripple",
+        "cause_id": "wt_45dfa29000"
+       },
+       {
+        "id": "wt_1640026d2e",
+        "object": "song",
+        "kind": "func_call",
+        "code": "song.hit('mistake');",
+        "scope": "env",
+        "cause_id": null
+       },
+       {
+        "id": "wt_aeb77e697a",
+        "object": "blender",
+        "kind": "func_call",
+        "code": "blender.hears(miami_subject, 'hit');",
+        "scope": "ripple",
+        "cause_id": "wt_1640026d2e"
+       },
+       {
+        "id": "wt_f7d8da9b8a",
+        "object": "calla",
+        "kind": "func_call",
+        "code": "calla.hears(miami_subject, 'hit');",
+        "scope": "ripple",
+        "cause_id": "wt_1640026d2e"
+       },
+       {
+        "id": "wt_bd7dc1e4ec",
+        "object": "code",
+        "kind": "func_call",
+        "code": "code.hears(miami_subject, 'hit');",
+        "scope": "ripple",
+        "cause_id": "wt_1640026d2e"
+       },
+       {
+        "id": "wt_90622726a3",
+        "object": "song",
+        "kind": "func_call",
+        "code": "song.hit('mistake');",
+        "scope": "env",
+        "cause_id": null
+       },
+       {
+        "id": "wt_290578bcad",
+        "object": "blender",
+        "kind": "func_call",
+        "code": "blender.hears(miami_subject, 'hit');",
+        "scope": "ripple",
+        "cause_id": "wt_90622726a3"
+       },
+       {
+        "id": "wt_80574c8159",
+        "object": "calla",
+        "kind": "func_call",
+        "code": "calla.hears(miami_subject, 'hit');",
+        "scope": "ripple",
+        "cause_id": "wt_90622726a3"
+       },
+       {
+        "id": "wt_3737999496",
+        "object": "code",
+        "kind": "func_call",
+        "code": "code.hears(miami_subject, 'hit');",
+        "scope": "ripple",
+        "cause_id": "wt_90622726a3"
+       }
+      ],
+      "facts_total": 12,
       "functions": [
        {
         "func": "song.hit",
@@ -5959,8 +6088,8 @@
      }
     },
     {
-     "id": "4afb00949b",
-     "parent": "a1addf6e3b",
+     "id": "0a2c8afb47",
+     "parent": "037e20c6e2",
      "branch": "run-5a58c4",
      "job": "j23",
      "at": "2026-11-16T23:50:03-05:00",
@@ -5994,8 +6123,8 @@
      }
     },
     {
-     "id": "3f8b6a772f",
-     "parent": "4afb00949b",
+     "id": "69d69b4709",
+     "parent": "0a2c8afb47",
      "branch": "run-5a58c4",
      "job": "j24",
      "at": "2026-11-17T00:02:09-05:00",
@@ -6053,8 +6182,8 @@
      }
     },
     {
-     "id": "bce12628d0",
-     "parent": "3f8b6a772f",
+     "id": "e2c7a81db4",
+     "parent": "69d69b4709",
      "branch": "run-5a58c4",
      "job": "j25",
      "at": "2026-11-17T10:35:56-05:00",
@@ -6125,9 +6254,41 @@
         "code": "code.hears(teo, 'fold');",
         "scope": "ripple",
         "cause_id": "wt_34aadff19f"
+       },
+       {
+        "id": "wt_5a9fe754b5",
+        "object": "code",
+        "kind": "func_call",
+        "code": "code.say('like');",
+        "scope": "env",
+        "cause_id": null
+       },
+       {
+        "id": "wt_0fdb213952",
+        "object": "miami_subject_fifth",
+        "kind": "func_call",
+        "code": "miami_subject_fifth.hears(miami_subject_third, 'say');",
+        "scope": "ripple",
+        "cause_id": "wt_5a9fe754b5"
+       },
+       {
+        "id": "wt_c1411fdf5e",
+        "object": "miami_subject_fourth",
+        "kind": "func_call",
+        "code": "miami_subject_fourth.hears(miami_subject_third, 'say');",
+        "scope": "ripple",
+        "cause_id": "wt_5a9fe754b5"
+       },
+       {
+        "id": "wt_73566dee0a",
+        "object": "miami_subject_second",
+        "kind": "func_call",
+        "code": "miami_subject_second.hears(miami_subject_third, 'say');",
+        "scope": "ripple",
+        "cause_id": "wt_5a9fe754b5"
        }
       ],
-      "facts_total": 8,
+      "facts_total": 12,
       "functions": [
        {
         "func": "code.say",
@@ -6162,8 +6323,8 @@
      }
     },
     {
-     "id": "fb59f29279",
-     "parent": "bce12628d0",
+     "id": "45e9fe4acd",
+     "parent": "e2c7a81db4",
      "branch": "run-5a58c4",
      "job": "j26",
      "at": "2026-11-17T11:07:01-05:00",
@@ -6193,16 +6354,25 @@
      }
     },
     {
-     "id": "7245a552cd",
-     "parent": "fb59f29279",
+     "id": "d119263d08",
+     "parent": "45e9fe4acd",
      "branch": "run-5a58c4",
      "job": "j27",
      "at": "2026-11-17T11:22:49-05:00",
      "genre": "rising",
      "beat": "falling into climax",
      "diff": {
-      "facts": [],
-      "facts_total": 0,
+      "facts": [
+       {
+        "id": "wt_435d347b98",
+        "object": "omo",
+        "kind": "func_call",
+        "code": "omo.fold('like');",
+        "scope": "own",
+        "cause_id": null
+       }
+      ],
+      "facts_total": 1,
       "functions": [
        {
         "func": "omo.fold",
@@ -6228,8 +6398,8 @@
      }
     },
     {
-     "id": "e16a801fd3",
-     "parent": "7245a552cd",
+     "id": "b3c878d757",
+     "parent": "d119263d08",
      "branch": "run-5a58c4",
      "job": "j28",
      "at": "2026-11-17T12:06:03-05:00",
@@ -6254,8 +6424,8 @@
      }
     },
     {
-     "id": "ccbea9499e",
-     "parent": "e16a801fd3",
+     "id": "436ea98443",
+     "parent": "b3c878d757",
      "branch": "run-5a58c4",
      "job": "j29",
      "at": "2026-11-17T12:30:30-05:00",
@@ -6329,16 +6499,49 @@
      }
     },
     {
-     "id": "87def10a30",
-     "parent": "ccbea9499e",
+     "id": "7b62f6bec5",
+     "parent": "436ea98443",
      "branch": "run-5a58c4",
      "job": "j30",
      "at": "2026-11-17T14:49:47-05:00",
      "genre": "resolution",
      "beat": "resolution",
      "diff": {
-      "facts": [],
-      "facts_total": 0,
+      "facts": [
+       {
+        "id": "wt_fb275e9842",
+        "object": "teo",
+        "kind": "func_call",
+        "code": "teo.sit('mistake');",
+        "scope": "env",
+        "cause_id": null
+       },
+       {
+        "id": "wt_5ab91eb5c3",
+        "object": "blender",
+        "kind": "func_call",
+        "code": "blender.hears(marisol, 'sit');",
+        "scope": "ripple",
+        "cause_id": "wt_fb275e9842"
+       },
+       {
+        "id": "wt_68e03f8ed7",
+        "object": "calla",
+        "kind": "func_call",
+        "code": "calla.hears(marisol, 'sit');",
+        "scope": "ripple",
+        "cause_id": "wt_fb275e9842"
+       },
+       {
+        "id": "wt_ce91b4d90c",
+        "object": "code",
+        "kind": "func_call",
+        "code": "code.hears(marisol, 'sit');",
+        "scope": "ripple",
+        "cause_id": "wt_fb275e9842"
+       }
+      ],
+      "facts_total": 4,
       "functions": [
        {
         "func": "calla.stare",
@@ -6364,8 +6567,8 @@
      }
     },
     {
-     "id": "74a509e5d4",
-     "parent": "87def10a30",
+     "id": "61d3eebccd",
+     "parent": "7b62f6bec5",
      "branch": "run-5a58c4",
      "job": "j31",
      "at": "2026-11-17T15:19:01-05:00",
@@ -6425,16 +6628,49 @@
      }
     },
     {
-     "id": "a7a3adcc73",
-     "parent": "74a509e5d4",
+     "id": "9158b43dc8",
+     "parent": "61d3eebccd",
      "branch": "run-5a58c4",
      "job": "j32",
      "at": "2026-11-17T15:46:37-05:00",
      "genre": "quiet",
      "beat": "coda",
      "diff": {
-      "facts": [],
-      "facts_total": 0,
+      "facts": [
+       {
+        "id": "wt_db465b62da",
+        "object": "life",
+        "kind": "func_call",
+        "code": "life.give('mistake');",
+        "scope": "env",
+        "cause_id": null
+       },
+       {
+        "id": "wt_edf9d19eb9",
+        "object": "miami_subject_fifth",
+        "kind": "func_call",
+        "code": "miami_subject_fifth.hears(miami_subject_third, 'give');",
+        "scope": "ripple",
+        "cause_id": "wt_db465b62da"
+       },
+       {
+        "id": "wt_3f49e5714f",
+        "object": "miami_subject_fourth",
+        "kind": "func_call",
+        "code": "miami_subject_fourth.hears(miami_subject_third, 'give');",
+        "scope": "ripple",
+        "cause_id": "wt_db465b62da"
+       },
+       {
+        "id": "wt_ee4df7dae5",
+        "object": "miami_subject_second",
+        "kind": "func_call",
+        "code": "miami_subject_second.hears(miami_subject_third, 'give');",
+        "scope": "ripple",
+        "cause_id": "wt_db465b62da"
+       }
+      ],
+      "facts_total": 4,
       "functions": [
        {
         "func": "calla.see",
@@ -6478,8 +6714,8 @@
      }
     },
     {
-     "id": "f2e82ef090",
-     "parent": "a7a3adcc73",
+     "id": "d1a73b44ab",
+     "parent": "9158b43dc8",
      "branch": "run-5a58c4",
      "job": "j33",
      "at": "2026-11-17T16:04:47-05:00",
@@ -6494,9 +6730,105 @@
         "code": "letter.setlocation(dezroom); letter.set('location', \"Dez's room\");",
         "scope": null,
         "cause_id": null
+       },
+       {
+        "id": "wt_6b154ea08a",
+        "object": "teo",
+        "kind": "func_call",
+        "code": "teo.know('tnw');",
+        "scope": "env",
+        "cause_id": null
+       },
+       {
+        "id": "wt_6f1807dbd6",
+        "object": "florida_subject_fourth",
+        "kind": "func_call",
+        "code": "florida_subject_fourth.hears(florida_subject_fifth, 'know');",
+        "scope": "ripple",
+        "cause_id": "wt_6b154ea08a"
+       },
+       {
+        "id": "wt_5284a78973",
+        "object": "florida_subject_second",
+        "kind": "func_call",
+        "code": "florida_subject_second.hears(florida_subject_fifth, 'know');",
+        "scope": "ripple",
+        "cause_id": "wt_6b154ea08a"
+       },
+       {
+        "id": "wt_1a3d60ab0f",
+        "object": "florida_subject_third",
+        "kind": "func_call",
+        "code": "florida_subject_third.hears(florida_subject_fifth, 'know');",
+        "scope": "ripple",
+        "cause_id": "wt_6b154ea08a"
+       },
+       {
+        "id": "wt_2921df2746",
+        "object": "teo",
+        "kind": "func_call",
+        "code": "teo.respond('scandal');",
+        "scope": "env",
+        "cause_id": null
+       },
+       {
+        "id": "wt_4dd183831b",
+        "object": "marina_biscayne_bay_subject_fifth",
+        "kind": "func_call",
+        "code": "marina_biscayne_bay_subject_fifth.hears(marina_biscayne_bay_subject_fourth, 'respond');",
+        "scope": "ripple",
+        "cause_id": "wt_2921df2746"
+       },
+       {
+        "id": "wt_fdea7d28e2",
+        "object": "marina_biscayne_bay_subject_second",
+        "kind": "func_call",
+        "code": "marina_biscayne_bay_subject_second.hears(marina_biscayne_bay_subject_fourth, 'respond');",
+        "scope": "ripple",
+        "cause_id": "wt_2921df2746"
+       },
+       {
+        "id": "wt_12223abd79",
+        "object": "marina_biscayne_bay_subject_sixth",
+        "kind": "func_call",
+        "code": "marina_biscayne_bay_subject_sixth.hears(marina_biscayne_bay_subject_fourth, 'respond');",
+        "scope": "ripple",
+        "cause_id": "wt_2921df2746"
+       },
+       {
+        "id": "wt_29515f4f7a",
+        "object": "teo",
+        "kind": "func_call",
+        "code": "teo.respond('scandal');",
+        "scope": "env",
+        "cause_id": null
+       },
+       {
+        "id": "wt_2ae4c3a2f4",
+        "object": "marina_biscayne_bay_subject_fourth",
+        "kind": "func_call",
+        "code": "marina_biscayne_bay_subject_fourth.hears(marina_biscayne_bay_subject_fifth, 'respond');",
+        "scope": "ripple",
+        "cause_id": "wt_29515f4f7a"
+       },
+       {
+        "id": "wt_49a5d9347b",
+        "object": "marina_biscayne_bay_subject_second",
+        "kind": "func_call",
+        "code": "marina_biscayne_bay_subject_second.hears(marina_biscayne_bay_subject_fifth, 'respond');",
+        "scope": "ripple",
+        "cause_id": "wt_29515f4f7a"
+       },
+       {
+        "id": "wt_d16b772aa7",
+        "object": "marina_biscayne_bay_subject_sixth",
+        "kind": "func_call",
+        "code": "marina_biscayne_bay_subject_sixth.hears(marina_biscayne_bay_subject_fifth, 'respond');",
+        "scope": "ripple",
+        "cause_id": "wt_29515f4f7a"
        }
       ],
-      "facts_total": 1,
+      "facts_total": 13,
       "functions": [
        {
         "func": "time.till",
@@ -6540,8 +6872,8 @@
      }
     },
     {
-     "id": "1332f9a1e1",
-     "parent": "f2e82ef090",
+     "id": "bcfa5d2d63",
+     "parent": "d1a73b44ab",
      "branch": "run-5a58c4",
      "job": "j34",
      "at": "2026-11-17T16:22:07-05:00",
@@ -6589,8 +6921,8 @@
      }
     },
     {
-     "id": "1f46bfbaa7",
-     "parent": "1332f9a1e1",
+     "id": "c19ae2da64",
+     "parent": "bcfa5d2d63",
      "branch": "run-5a58c4",
      "job": "j35",
      "at": "2026-11-17T16:53:36-05:00",
@@ -6636,7 +6968,7 @@
   },
   "run-g1-B": {
    "forked_from": "safe:e164727d4c98",
-   "head": "3542a65307",
+   "head": "37972c88df",
    "commits": [
     {
      "id": "bcc23f8753",
@@ -7007,7 +7339,7 @@
      }
     },
     {
-     "id": "b5d14f5d02",
+     "id": "6e1d820016",
      "parent": "7302735a59",
      "branch": "run-g1-B",
      "job": "j10",
@@ -7015,8 +7347,41 @@
      "genre": null,
      "beat": null,
      "diff": {
-      "facts": [],
-      "facts_total": 0,
+      "facts": [
+       {
+        "id": "wt_e744796525",
+        "object": "nobody",
+        "kind": "func_call",
+        "code": "nobody.rename('pen');",
+        "scope": "env",
+        "cause_id": null
+       },
+       {
+        "id": "wt_09ca2e6253",
+        "object": "[maybe,know]",
+        "kind": "func_call",
+        "code": "[maybe,know].hears(chair, 'rename');",
+        "scope": "ripple",
+        "cause_id": "wt_e744796525"
+       },
+       {
+        "id": "wt_3119eb5c0e",
+        "object": "adaora",
+        "kind": "func_call",
+        "code": "adaora.hears(chair, 'rename');",
+        "scope": "ripple",
+        "cause_id": "wt_e744796525"
+       },
+       {
+        "id": "wt_f314a61d61",
+        "object": "folake",
+        "kind": "func_call",
+        "code": "folake.hears(chair, 'rename');",
+        "scope": "ripple",
+        "cause_id": "wt_e744796525"
+       }
+      ],
+      "facts_total": 4,
       "functions": [
        {
         "func": "[maybe,know].map",
@@ -7051,8 +7416,8 @@
      }
     },
     {
-     "id": "8fcc9f6701",
-     "parent": "b5d14f5d02",
+     "id": "b10ab71f8e",
+     "parent": "6e1d820016",
      "branch": "run-g1-B",
      "job": "j11",
      "at": "2026-11-17T18:25:59-05:00",
@@ -7104,8 +7469,8 @@
      }
     },
     {
-     "id": "70c8bf9443",
-     "parent": "8fcc9f6701",
+     "id": "5fed0fc449",
+     "parent": "b10ab71f8e",
      "branch": "run-g1-B",
      "job": "j12",
      "at": "2026-11-17T18:33:35-05:00",
@@ -7148,8 +7513,8 @@
      }
     },
     {
-     "id": "557bcc5f50",
-     "parent": "70c8bf9443",
+     "id": "33200b9254",
+     "parent": "5fed0fc449",
      "branch": "run-g1-B",
      "job": "j13",
      "at": "2026-11-17T18:41:05-05:00",
@@ -7164,9 +7529,41 @@
         "code": "oven.interactwith(beach_lummus_park){ beach_lummus_park.receives(oven.bead); beach_lummus_park.find('footprint').add('blue glass bead'); ove",
         "scope": null,
         "cause_id": null
+       },
+       {
+        "id": "wt_be3e99f0ef",
+        "object": "titi",
+        "kind": "func_call",
+        "code": "titi.let('finish');",
+        "scope": "env",
+        "cause_id": null
+       },
+       {
+        "id": "wt_efb558832a",
+        "object": "clock",
+        "kind": "func_call",
+        "code": "clock.hears(laptop, 'let');",
+        "scope": "ripple",
+        "cause_id": "wt_be3e99f0ef"
+       },
+       {
+        "id": "wt_2f2aabb22a",
+        "object": "discover_river_niger_figure",
+        "kind": "func_call",
+        "code": "discover_river_niger_figure.hears(laptop, 'let');",
+        "scope": "ripple",
+        "cause_id": "wt_be3e99f0ef"
+       },
+       {
+        "id": "wt_62e7f92e0c",
+        "object": "cleacky",
+        "kind": "func_call",
+        "code": "cleacky.hears(laptop, 'let');",
+        "scope": "ripple",
+        "cause_id": "wt_be3e99f0ef"
        }
       ],
-      "facts_total": 1,
+      "facts_total": 5,
       "functions": [
        {
         "func": "titi.let",
@@ -7183,8 +7580,8 @@
      }
     },
     {
-     "id": "e43f6e5c5b",
-     "parent": "557bcc5f50",
+     "id": "4308d9b728",
+     "parent": "33200b9254",
      "branch": "run-g1-B",
      "job": "j14",
      "at": "2026-11-17T18:55:49-05:00",
@@ -7227,8 +7624,8 @@
      }
     },
     {
-     "id": "5378098043",
-     "parent": "e43f6e5c5b",
+     "id": "fe444b00a4",
+     "parent": "4308d9b728",
      "branch": "run-g1-B",
      "job": "j15",
      "at": "2026-11-17T19:08:15-05:00",
@@ -7271,8 +7668,8 @@
      }
     },
     {
-     "id": "e5c62f3fdb",
-     "parent": "5378098043",
+     "id": "060d24d405",
+     "parent": "fe444b00a4",
      "branch": "run-g1-B",
      "job": "j16",
      "at": "2026-11-17T22:50:13-05:00",
@@ -7306,8 +7703,8 @@
      }
     },
     {
-     "id": "3542a65307",
-     "parent": "e5c62f3fdb",
+     "id": "37972c88df",
+     "parent": "060d24d405",
      "branch": "run-g1-B",
      "job": "j29",
      "at": "2026-11-17T19:34:50-0500",
@@ -7365,11 +7762,35 @@
   },
   "run-2eb42d": {
    "forked_from": "safe:9525b78aa7f3",
-   "head": "a54e4784d5",
+   "head": "4618a43e02",
    "commits": [
     {
-     "id": "af90702999",
+     "id": "e72c164714",
      "parent": null,
+     "branch": "run-2eb42d",
+     "job": null,
+     "at": "2026-11-18T10:41:19-0500",
+     "genre": null,
+     "beat": null,
+     "diff": {
+      "facts": [
+       {
+        "id": "wf_c89fade79e",
+        "object": "mama_ronke",
+        "kind": "memory",
+        "code": "mama_ronke.state('present');",
+        "scope": null,
+        "cause_id": null
+       }
+      ],
+      "facts_total": 1,
+      "functions": [],
+      "instances": []
+     }
+    },
+    {
+     "id": "6ff3be37d6",
+     "parent": "e72c164714",
      "branch": "run-2eb42d",
      "job": "j1",
      "at": "2026-11-17T23:32:20-0500",
@@ -7392,16 +7813,144 @@
         "code": "egbe.interactwith(carbohydrates_maggi){ carbohydrates_maggi.receives(egbe.joke); carbohydrates_maggi.remembers(bisola, 'boss joke'); }",
         "scope": null,
         "cause_id": null
+       },
+       {
+        "id": "wf_6554ef5dcc",
+        "object": "pure_water_cooler",
+        "kind": "memory",
+        "code": "pure_water_cooler.state('carried home through the flood');",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_d48068a09f",
+        "object": "people_scene_figure",
+        "kind": "call",
+        "code": "people_scene_figure.setmood('happy');",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_f3d4afd494",
+        "object": "agbada",
+        "kind": "consequence",
+        "code": "pure_water_cooler.interactwith(agbada){ pure_water_cooler.db.copyto(agbada); agbada.keeps(pure_water_cooler, 'pure-water cooler, still carri",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_bbd8e2dfa8",
+        "object": "plastic_sheet",
+        "kind": "consequence",
+        "code": "wiitbaw.interactwith(plastic_sheet){ plastic_sheet.receives(wiitbaw.something); }",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_7b10799429",
+        "object": "only_goodness_figure",
+        "kind": "call",
+        "code": "only_goodness_figure.grow();",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_eda95b4dfd",
+        "object": "pure_water_cooler",
+        "kind": "consequence",
+        "code": "iae.interactwith(pure_water_cooler){ iae.db.copyto(pure_water_cooler); pure_water_cooler.keeps(iae, 'iae, still initialized'); }",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_0d98db08e1",
+        "object": "inside_vase_figure",
+        "kind": "call",
+        "code": "inside_vase_figure.grow();",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_7ead38836c",
+        "object": "new_culture_figure",
+        "kind": "call",
+        "code": "new_culture_figure.grow();",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_4f7b3a2566",
+        "object": "niggas_figure",
+        "kind": "call",
+        "code": null,
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_77df862fbe",
+        "object": "notnotnotnotyn_jan_figure",
+        "kind": "call",
+        "code": "notnotnotnotyn_jan_figure.grow();",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_16a385e1c2",
+        "object": "if_heaven_then_figure",
+        "kind": "call",
+        "code": "if_heaven_then_figure.grow();",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_8ff1e4ccd8",
+        "object": "kerosene_lamp",
+        "kind": "consequence",
+        "code": "iae.interactwith(kerosene_lamp){ iae.db.copyto(kerosene_lamp); kerosene_lamp.keeps(iae, 'iae, still initialized'); }",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_0497f6526c",
+        "object": "cake_by_ocean_figure",
+        "kind": "call",
+        "code": "cake_by_ocean_figure.grow();",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_7932de0350",
+        "object": "old_men_see_figure",
+        "kind": "call",
+        "code": "old_men_see_figure.grow();",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_ec7fe24573",
+        "object": "streetlights",
+        "kind": "consequence",
+        "code": "pure_water_cooler.interactwith(streetlights){ pure_water_cooler.db.copyto(streetlights); streetlights.keeps(pure_water_cooler, 'pure-water c",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_1c4c35e592",
+        "object": "shyamoli_chatterjee",
+        "kind": "consequence",
+        "code": "cooler.interactwith(shyamoli_chatterjee){ shyamoli_chatterjee.receives(cooler.something); }",
+        "scope": null,
+        "cause_id": null
        }
       ],
-      "facts_total": 2,
+      "facts_total": 18,
       "functions": [],
       "instances": []
      }
     },
     {
-     "id": "0dd61ad0fc",
-     "parent": "af90702999",
+     "id": "abf3bc0dcb",
+     "parent": "6ff3be37d6",
      "branch": "run-2eb42d",
      "job": "j2",
      "at": "2026-11-18T00:02:55-0500",
@@ -7448,16 +7997,152 @@
         "code": "suitcase.interactwith(notnotnotnotyn_nov){ notnotnotnotyn_nov.receives(suitcase.code); notnotnotnotyn_nov.remembers(ejiro, 'juju code'); not",
         "scope": null,
         "cause_id": null
+       },
+       {
+        "id": "wf_8fc8a53a7b",
+        "object": "ronke",
+        "kind": "consequence",
+        "code": "patagonia.interactwith(ronke){ ronke.receives(patagonia.code); ronke.remembers(ejiro, 'juju code'); }",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_a11c35da01",
+        "object": "notnotnotnotyn_mar",
+        "kind": "consequence",
+        "code": "notnotnotnotyn_nov.interactwith(notnotnotnotyn_mar){ notnotnotnotyn_mar.receives(notnotnotnotyn_nov.code); notnotnotnotyn_mar.remembers(ejir",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_adc71f653a",
+        "object": "computer_village",
+        "kind": "consequence",
+        "code": "ttb.interactwith(computer_village){ computer_village.receives(ttb.code); computer_village.remembers(ejiro, 'juju code'); computer_village.tu",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_39a9b82735",
+        "object": "mkdwo",
+        "kind": "consequence",
+        "code": "ttb.interactwith(mkdwo){ mkdwo.receives(ttb.code); mkdwo.remembers(ejiro, 'juju code'); mkdwo.tucks(ttb, 'ttb note into the brown envelope')",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_3032605525",
+        "object": "again",
+        "kind": "consequence",
+        "code": "ttb.interactwith(again){ again.receives(ttb.code); again.remembers(ejiro, 'juju code'); again.tucks(ttb, 'ttb note into the brown envelope')",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_be10af15cb",
+        "object": "kazeem",
+        "kind": "consequence",
+        "code": "cup.interactwith(kazeem){ kazeem.receives(cup.code); kazeem.remembers(ejiro, 'juju code'); }",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_bbb969e36a",
+        "object": "kazeem",
+        "kind": "consequence",
+        "code": "ttb.interactwith(kazeem){ kazeem.receives(ttb.code); kazeem.remembers(ejiro, 'juju code'); }",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_40a3fae117",
+        "object": "divine",
+        "kind": "consequence",
+        "code": "patagonia.interactwith(divine){ divine.receives(patagonia.code); divine.remembers(ejiro, 'juju code'); divine.tucks(patagonia, 'ttb note int",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_8883e0f5c1",
+        "object": "precision",
+        "kind": "consequence",
+        "code": "patagonia.interactwith(precision){ precision.receives(patagonia.code); precision.remembers(ejiro, 'juju code'); precision.tucks(patagonia, '",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_0c3a4289ef",
+        "object": "computer_village",
+        "kind": "consequence",
+        "code": "patagonia.interactwith(computer_village){ computer_village.receives(patagonia.code); computer_village.remembers(ejiro, 'juju code'); compute",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_95e618e3ff",
+        "object": "kerosene_lamp",
+        "kind": "consequence",
+        "code": "cup.interactwith(kerosene_lamp){ kerosene_lamp.receives(cup.code); kerosene_lamp.remembers(ejiro, 'juju code'); }",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_d3b17d0cd1",
+        "object": "niaw",
+        "kind": "consequence",
+        "code": "ttb.interactwith(niaw){ niaw.receives(ttb.code); niaw.remembers(ejiro, 'juju code'); niaw.tucks(ttb, 'ttb note into the brown envelope'); }",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_13e4e9f54c",
+        "object": "wser",
+        "kind": "consequence",
+        "code": "ttb.interactwith(wser){ wser.receives(ttb.code); wser.remembers(ejiro, 'juju code'); }",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_91c3309c7a",
+        "object": "ronke",
+        "kind": "consequence",
+        "code": "cup.interactwith(ronke){ ronke.receives(cup.code); ronke.remembers(ejiro, 'juju code'); }",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_9a796688dc",
+        "object": "danfo_speaker",
+        "kind": "consequence",
+        "code": "ttb.interactwith(danfo_speaker){ danfo_speaker.receives(ttb.code); danfo_speaker.remembers(ejiro, 'juju code'); }",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_ab723a297a",
+        "object": "wiitbaw",
+        "kind": "consequence",
+        "code": "ttb.interactwith(wiitbaw){ wiitbaw.receives(ttb.code); wiitbaw.remembers(ejiro, 'juju code'); }",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_55c3941222",
+        "object": "thryd",
+        "kind": "consequence",
+        "code": "cup.interactwith(thryd){ thryd.receives(cup.code); thryd.remembers(ejiro, 'juju code'); }",
+        "scope": null,
+        "cause_id": null
        }
       ],
-      "facts_total": 5,
+      "facts_total": 22,
       "functions": [],
       "instances": []
      }
     },
     {
-     "id": "f7b80a0251",
-     "parent": "0dd61ad0fc",
+     "id": "1e3f1dd6d7",
+     "parent": "abf3bc0dcb",
      "branch": "run-2eb42d",
      "job": "j4",
      "at": "2026-11-18T00:05:32-0500",
@@ -7480,16 +8165,24 @@
         "code": "chilling_ibiza.interactwith(kerosene_lamp){ kerosene_lamp.receives(chilling_ibiza.envelope); kerosene_lamp.remembers(bisola, 'brown envelope",
         "scope": null,
         "cause_id": null
+       },
+       {
+        "id": "wf_81eaa25b19",
+        "object": "people_scene",
+        "kind": "consequence",
+        "code": "agenda_scene.interactwith(people_scene){ people_scene.receives(agenda_scene.envelope); people_scene.remembers(bisola, 'brown envelope'); peo",
+        "scope": null,
+        "cause_id": null
        }
       ],
-      "facts_total": 2,
+      "facts_total": 3,
       "functions": [],
       "instances": []
      }
     },
     {
-     "id": "5387015fed",
-     "parent": "f7b80a0251",
+     "id": "e5826cd790",
+     "parent": "1e3f1dd6d7",
      "branch": "run-2eb42d",
      "job": "j5",
      "at": "2026-11-17T23:43:44-0500",
@@ -7520,16 +8213,120 @@
         "code": "inside_odunlade_brain.interactwith(from_anambra){ from_anambra.receives(inside_odunlade_brain.bead); from_anambra.remembers(bisola, 'blue gl",
         "scope": null,
         "cause_id": null
+       },
+       {
+        "id": "wf_f1d06d07f7",
+        "object": "kano_wedding_tent",
+        "kind": "consequence",
+        "code": "oke_ayo_bus.interactwith(kano_wedding_tent){ kano_wedding_tent.receives(oke_ayo_bus.bead); kano_wedding_tent.remembers(bisola, 'blue glass b",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_9e8269a8db",
+        "object": "ojuelegba_bus_stop",
+        "kind": "consequence",
+        "code": "danfo_speaker.interactwith(ojuelegba_bus_stop){ danfo_speaker.db.copyto(ojuelegba_bus_stop); ojuelegba_bus_stop.keeps(danfo_speaker, 'danfo",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_4026658dd2",
+        "object": "usher_by_kiss",
+        "kind": "consequence",
+        "code": "oke_ayo_bus.interactwith(usher_by_kiss){ usher_by_kiss.receives(oke_ayo_bus.bead); usher_by_kiss.remembers(bisola, 'blue glass bead'); }",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_4e36e4621d",
+        "object": "monkification",
+        "kind": "consequence",
+        "code": "oke_ayo_bus.interactwith(monkification){ monkification.receives(oke_ayo_bus.bead); monkification.remembers(bisola, 'blue glass bead'); }",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_8fd201d379",
+        "object": "plastic_sheet",
+        "kind": "consequence",
+        "code": "ojuelegba_bus_stop.interactwith(plastic_sheet){ ojuelegba_bus_stop.db.copyto(plastic_sheet); plastic_sheet.keeps(ojuelegba_bus_stop, 'danfo",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_801ce32365",
+        "object": "notnotnotnotyn_jan",
+        "kind": "consequence",
+        "code": "lagos.interactwith(notnotnotnotyn_jan){ notnotnotnotyn_jan.receives(lagos.bead); notnotnotnotyn_jan.remembers(bisola, 'blue glass bead'); no",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_9788872028",
+        "object": "kunle_afolayon_been",
+        "kind": "consequence",
+        "code": "ikorodu_compound.interactwith(kunle_afolayon_been){ kunle_afolayon_been.receives(ikorodu_compound.leads); kunle_afolayon_been.remembers(kunl",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_4f0c9930e4",
+        "object": "wholesome_scenes",
+        "kind": "consequence",
+        "code": "ikeja.interactwith(wholesome_scenes){ wholesome_scenes.receives(ikeja.bead); wholesome_scenes.remembers(bisola, 'blue glass bead'); }",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_8d4fbc3261",
+        "object": "uncle_ebo",
+        "kind": "consequence",
+        "code": "mount_mercy.interactwith(uncle_ebo){ uncle_ebo.receives(mount_mercy.bead); uncle_ebo.remembers(bisola, 'blue glass bead'); }",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_a80022da7b",
+        "object": "oh_pls_shaaatttaaapppp",
+        "kind": "consequence",
+        "code": "lagos.interactwith(oh_pls_shaaatttaaapppp){ oh_pls_shaaatttaaapppp.receives(lagos.bead); oh_pls_shaaatttaaapppp.remembers(bisola, 'blue glas",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_4788445afd",
+        "object": "computer_village",
+        "kind": "consequence",
+        "code": "oke_ayo_bus.interactwith(computer_village){ computer_village.receives(oke_ayo_bus.bead); computer_village.remembers(bisola, 'blue glass bead",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_93f90e4def",
+        "object": "ronke",
+        "kind": "consequence",
+        "code": "plastic_sheet.interactwith(ronke){ plastic_sheet.db.copyto(ronke); ronke.keeps(plastic_sheet, 'plastic sheet, still wet'); }",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_e1b826bbe5",
+        "object": "kazeem",
+        "kind": "consequence",
+        "code": "plastic_sheet.interactwith(kazeem){ plastic_sheet.db.copyto(kazeem); kazeem.keeps(plastic_sheet, 'plastic sheet, still wet'); }",
+        "scope": null,
+        "cause_id": null
        }
       ],
-      "facts_total": 3,
+      "facts_total": 16,
       "functions": [],
       "instances": []
      }
     },
     {
-     "id": "6992406e7c",
-     "parent": "5387015fed",
+     "id": "6a5b7f328c",
+     "parent": "e5826cd790",
      "branch": "run-2eb42d",
      "job": "j6",
      "at": "2026-11-17T23:40:13-0500",
@@ -7952,16 +8749,80 @@
         "code": "mkdwo.interactwith(saturday_october){ saturday_october.receives(mkdwo.envelope); saturday_october.remembers(bisola, 'brown envelope'); satur",
         "scope": null,
         "cause_id": null
+       },
+       {
+        "id": "wf_064a5ecdd9",
+        "object": "she_wants_hood",
+        "kind": "consequence",
+        "code": "surulere_party_hall.interactwith(she_wants_hood){ she_wants_hood.receives(surulere_party_hall.envelope); she_wants_hood.remembers(bisola, 'b",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_dd77450fd8",
+        "object": "bicycle",
+        "kind": "consequence",
+        "code": "again.interactwith(bicycle){ bicycle.receives(again.envelope); bicycle.remembers(bisola, 'brown envelope'); bicycle.tucks(again, 'yaba books",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_b92636696c",
+        "object": "laptop",
+        "kind": "consequence",
+        "code": "abeokuta_parlour.interactwith(laptop){ laptop.receives(abeokuta_parlour.envelope); laptop.remembers(bisola, 'brown envelope'); laptop.tucks(",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_b9bed30a5a",
+        "object": "ojuelegba_bus_stop",
+        "kind": "consequence",
+        "code": "abeokuta_parlour.interactwith(ojuelegba_bus_stop){ ojuelegba_bus_stop.receives(abeokuta_parlour.envelope); ojuelegba_bus_stop.remembers(biso",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_771c449363",
+        "object": "notnotnotnotyn_sep",
+        "kind": "consequence",
+        "code": "uch.interactwith(notnotnotnotyn_sep){ notnotnotnotyn_sep.receives(uch.envelope); notnotnotnotyn_sep.remembers(bisola, 'brown envelope'); not",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_8c7e3d6dd3",
+        "object": "ojuelegba_bus_stop",
+        "kind": "consequence",
+        "code": "ikorodu_marina.interactwith(ojuelegba_bus_stop){ ojuelegba_bus_stop.receives(ikorodu_marina.envelope); ojuelegba_bus_stop.remembers(bisola,",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_65ccf067fb",
+        "object": "sheep",
+        "kind": "consequence",
+        "code": "b_md.interactwith(sheep){ sheep.receives(b_md.envelope); sheep.remembers(bisola, 'brown envelope'); sheep.tucks(b_md, 'yaba bookshop receipt",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_d34a42e344",
+        "object": "ojuelegba_bus_stop",
+        "kind": "consequence",
+        "code": "atp.interactwith(ojuelegba_bus_stop){ ojuelegba_bus_stop.receives(atp.envelope); ojuelegba_bus_stop.remembers(bisola, 'brown envelope'); oju",
+        "scope": null,
+        "cause_id": null
        }
       ],
-      "facts_total": 52,
+      "facts_total": 209,
       "functions": [],
       "instances": []
      }
     },
     {
-     "id": "41fbd0da50",
-     "parent": "6992406e7c",
+     "id": "fa3c83a142",
+     "parent": "6a5b7f328c",
      "branch": "run-2eb42d",
      "job": "j7",
      "at": "2026-11-17T23:39:21-0500",
@@ -8000,16 +8861,248 @@
         "code": "jnoel.interactwith(niaw){ niaw.receives(jnoel.corner); niaw.remembers(bisola, 'envelope corner'); }",
         "scope": null,
         "cause_id": null
+       },
+       {
+        "id": "wf_a2018b8618",
+        "object": "ojuelegba_bus_stop",
+        "kind": "consequence",
+        "code": "jnoel.interactwith(ojuelegba_bus_stop){ ojuelegba_bus_stop.receives(jnoel.corner); ojuelegba_bus_stop.remembers(bisola, 'envelope corner');",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_69cab0fa75",
+        "object": "mama_ronke",
+        "kind": "consequence",
+        "code": "laptop.interactwith(mama_ronke){ mama_ronke.receives(laptop.soot); mama_ronke.remembers(taiwo, 'lamp soot'); }",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_9fda621b3b",
+        "object": "kerosene_lamp",
+        "kind": "consequence",
+        "code": "jnoel.interactwith(kerosene_lamp){ kerosene_lamp.receives(jnoel.corner); kerosene_lamp.remembers(bisola, 'envelope corner'); }",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_6192e85b8c",
+        "object": "kerosene_lamp",
+        "kind": "consequence",
+        "code": "laptop.interactwith(kerosene_lamp){ kerosene_lamp.receives(laptop.soot); kerosene_lamp.remembers(taiwo, 'lamp soot'); }",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_4a1f61dce3",
+        "object": "mama_ronke",
+        "kind": "consequence",
+        "code": "bird.interactwith(mama_ronke){ mama_ronke.receives(bird.corner); mama_ronke.remembers(bisola, 'envelope corner'); }",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_b83dbca34a",
+        "object": "kazeem",
+        "kind": "consequence",
+        "code": "jnoel.interactwith(kazeem){ kazeem.receives(jnoel.corner); kazeem.remembers(bisola, 'envelope corner'); }",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_2b4f2d55f9",
+        "object": "mama_ronke",
+        "kind": "consequence",
+        "code": "twgs.interactwith(mama_ronke){ mama_ronke.receives(twgs.number); mama_ronke.remembers(kunle, 'scorched container number'); }",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_fc1dbab20d",
+        "object": "computer_village",
+        "kind": "consequence",
+        "code": "tf_mom.interactwith(computer_village){ computer_village.receives(tf_mom.soot); computer_village.remembers(taiwo, 'lamp soot'); computer_vill",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_66ded0f50f",
+        "object": "mkdwo",
+        "kind": "consequence",
+        "code": "tf_mom.interactwith(mkdwo){ mkdwo.receives(tf_mom.soot); mkdwo.remembers(taiwo, 'lamp soot'); }",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_584e5456ad",
+        "object": "wser",
+        "kind": "consequence",
+        "code": "jnoel.interactwith(wser){ wser.receives(jnoel.corner); wser.remembers(bisola, 'envelope corner'); wser.tucks(jnoel, 'bird note into the brow",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_dbccd1795e",
+        "object": "streetlights",
+        "kind": "consequence",
+        "code": "twgs.interactwith(streetlights){ streetlights.receives(twgs.number); streetlights.remembers(kunle, 'scorched container number'); }",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_1262999fd5",
+        "object": "patagonia",
+        "kind": "consequence",
+        "code": "twgs.interactwith(patagonia){ patagonia.receives(twgs.number); patagonia.remembers(kunle, 'scorched container number'); patagonia.tucks(twgs",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_09b87b94e2",
+        "object": "danfo_speaker",
+        "kind": "consequence",
+        "code": "sheep.interactwith(danfo_speaker){ danfo_speaker.receives(sheep.number); danfo_speaker.remembers(kunle, 'scorched container number'); }",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_0ee749ad89",
+        "object": "mama_ronke",
+        "kind": "consequence",
+        "code": "sheep.interactwith(mama_ronke){ mama_ronke.receives(sheep.number); mama_ronke.remembers(kunle, 'scorched container number'); }",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_b3bfb3fc36",
+        "object": "ronke",
+        "kind": "consequence",
+        "code": "sheep.interactwith(ronke){ ronke.receives(sheep.number); ronke.remembers(kunle, 'scorched container number'); }",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_2f53183a19",
+        "object": "streetlights",
+        "kind": "consequence",
+        "code": "tf_mom.interactwith(streetlights){ streetlights.receives(tf_mom.soot); streetlights.remembers(taiwo, 'lamp soot'); }",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_92df529134",
+        "object": "pure_water_cooler",
+        "kind": "consequence",
+        "code": "bird.interactwith(pure_water_cooler){ pure_water_cooler.receives(bird.corner); pure_water_cooler.remembers(bisola, 'envelope corner'); }",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_93c14edc56",
+        "object": "teach",
+        "kind": "consequence",
+        "code": "twgs.interactwith(teach){ teach.receives(twgs.number); teach.remembers(kunle, 'scorched container number'); teach.tucks(twgs, 'sheep note in",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_2256505437",
+        "object": "sheep",
+        "kind": "consequence",
+        "code": "tf_mom.interactwith(sheep){ sheep.receives(tf_mom.soot); sheep.remembers(taiwo, 'lamp soot'); sheep.tucks(tf_mom, 'laptop note into the scor",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_b37816f8e3",
+        "object": "matches",
+        "kind": "consequence",
+        "code": "twgs.interactwith(matches){ matches.receives(twgs.number); matches.remembers(kunle, 'scorched container number'); }",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_b54fa1fe77",
+        "object": "move",
+        "kind": "consequence",
+        "code": "twgs.interactwith(move){ move.receives(twgs.number); move.remembers(kunle, 'scorched container number'); move.tucks(twgs, 'sheep note into t",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_164cee9d92",
+        "object": "vex",
+        "kind": "consequence",
+        "code": "jnoel.interactwith(vex){ vex.receives(jnoel.corner); vex.remembers(bisola, 'envelope corner'); vex.tucks(jnoel, 'bird note into the green sh",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_8ae640e811",
+        "object": "jnoel",
+        "kind": "consequence",
+        "code": "tf_mom.interactwith(jnoel){ jnoel.receives(tf_mom.soot); jnoel.remembers(taiwo, 'lamp soot'); jnoel.tucks(tf_mom, 'laptop note into the enve",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_a688d36f3b",
+        "object": "danfo_speaker",
+        "kind": "consequence",
+        "code": "laptop.interactwith(danfo_speaker){ danfo_speaker.receives(laptop.soot); danfo_speaker.remembers(taiwo, 'lamp soot'); }",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_d75767f6f1",
+        "object": "mkdwo",
+        "kind": "consequence",
+        "code": "laptop.interactwith(mkdwo){ mkdwo.receives(laptop.soot); mkdwo.remembers(taiwo, 'lamp soot'); }",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_99ff1ba63c",
+        "object": "streetlights",
+        "kind": "consequence",
+        "code": "laptop.interactwith(streetlights){ streetlights.receives(laptop.soot); streetlights.remembers(taiwo, 'lamp soot'); }",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_d1db2be24b",
+        "object": "ronke",
+        "kind": "consequence",
+        "code": "tf_mom.interactwith(ronke){ ronke.receives(tf_mom.soot); ronke.remembers(taiwo, 'lamp soot'); }",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_94b56db8c9",
+        "object": "wiitbaw",
+        "kind": "consequence",
+        "code": "bird.interactwith(wiitbaw){ wiitbaw.receives(bird.corner); wiitbaw.remembers(bisola, 'envelope corner'); }",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_05bd6b0a89",
+        "object": "kazeem",
+        "kind": "consequence",
+        "code": "sheep.interactwith(kazeem){ kazeem.receives(sheep.number); kazeem.remembers(kunle, 'scorched container number'); }",
+        "scope": null,
+        "cause_id": null
        }
       ],
-      "facts_total": 4,
+      "facts_total": 33,
       "functions": [],
       "instances": []
      }
     },
     {
-     "id": "ba03a06aca",
-     "parent": "41fbd0da50",
+     "id": "677f14a63e",
+     "parent": "fa3c83a142",
      "branch": "run-2eb42d",
      "job": "j8",
      "at": "2026-11-17T23:36:43-0500",
@@ -8032,24 +9125,481 @@
         "code": "ronke.interactwith(lady){ lady.receives(ronke.shirt); lady.remembers(bisola, 'green shirt'); }",
         "scope": null,
         "cause_id": null
+       },
+       {
+        "id": "wf_7e777a31b2",
+        "object": "vex",
+        "kind": "consequence",
+        "code": "lady.interactwith(vex){ vex.receives(lady.shirt); vex.remembers(bisola, 'green shirt'); }",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_6547b1c0c5",
+        "object": "kerosene_lamp",
+        "kind": "consequence",
+        "code": "lady.interactwith(kerosene_lamp){ kerosene_lamp.receives(lady.shirt); kerosene_lamp.remembers(bisola, 'green shirt'); }",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_f41d037b18",
+        "object": "ojuelegba_bus_stop",
+        "kind": "consequence",
+        "code": "lady.interactwith(ojuelegba_bus_stop){ ojuelegba_bus_stop.receives(lady.shirt); ojuelegba_bus_stop.remembers(bisola, 'green shirt'); }",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_4a90a049fc",
+        "object": "example",
+        "kind": "consequence",
+        "code": "vex.interactwith(example){ example.receives(vex.shirt); example.remembers(bisola, 'green shirt'); example.tucks(vex, 'ikeja laundromat recei",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_f64ea2af73",
+        "object": "computer_village",
+        "kind": "consequence",
+        "code": "example.interactwith(computer_village){ computer_village.receives(example.shirt); computer_village.remembers(bisola, 'green shirt'); }",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_f2253220ea",
+        "object": "matches",
+        "kind": "consequence",
+        "code": "computer_village.interactwith(matches){ matches.receives(computer_village.shirt); matches.remembers(bisola, 'green shirt'); }",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_402676b7e2",
+        "object": "ronke",
+        "kind": "consequence",
+        "code": "computer_village.interactwith(ronke){ ronke.receives(computer_village.shirt); ronke.remembers(bisola, 'green shirt'); }",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_b43ad30d24",
+        "object": "imhf",
+        "kind": "consequence",
+        "code": "vex.interactwith(imhf){ imhf.receives(vex.shirt); imhf.remembers(bisola, 'green shirt'); }",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_d22d361b19",
+        "object": "thryd",
+        "kind": "consequence",
+        "code": "example.interactwith(thryd){ thryd.receives(example.shirt); thryd.remembers(bisola, 'green shirt'); }",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_8c8abe63e3",
+        "object": "computer_village",
+        "kind": "consequence",
+        "code": "lady.interactwith(computer_village){ computer_village.receives(lady.shirt); computer_village.remembers(bisola, 'green shirt'); computer_vill",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_5eff10a8aa",
+        "object": "laptop",
+        "kind": "consequence",
+        "code": "example.interactwith(laptop){ laptop.receives(example.shirt); laptop.remembers(bisola, 'green shirt'); laptop.tucks(example, 'ikeja laundrom",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_0a1364eace",
+        "object": "laptop",
+        "kind": "consequence",
+        "code": "lady.interactwith(laptop){ laptop.receives(lady.shirt); laptop.remembers(bisola, 'green shirt'); laptop.tucks(lady, 'ikeja laundromat receip",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_164944562a",
+        "object": "b_md",
+        "kind": "consequence",
+        "code": "imhf.interactwith(b_md){ b_md.receives(imhf.shirt); b_md.remembers(bisola, 'green shirt'); b_md.tucks(imhf, 'ikeja laundromat receipt into t",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_83d4902759",
+        "object": "tie",
+        "kind": "consequence",
+        "code": "vex.interactwith(tie){ tie.receives(vex.shirt); tie.remembers(bisola, 'green shirt'); tie.tucks(vex, 'ikeja laundromat receipt into the brow",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_56d2610fbf",
+        "object": "computer_village",
+        "kind": "consequence",
+        "code": "vex.interactwith(computer_village){ computer_village.receives(vex.shirt); computer_village.remembers(bisola, 'green shirt'); computer_villag",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_7e39aeadd0",
+        "object": "computer_village",
+        "kind": "consequence",
+        "code": "thryd.interactwith(computer_village){ computer_village.receives(thryd.shirt); computer_village.remembers(bisola, 'green shirt'); computer_vi",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_b4c6cfda9a",
+        "object": "bird",
+        "kind": "consequence",
+        "code": "imhf.interactwith(bird){ bird.receives(imhf.shirt); bird.remembers(bisola, 'green shirt'); bird.tucks(imhf, 'ikeja laundromat receipt into t",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_0a84630064",
+        "object": "divine",
+        "kind": "consequence",
+        "code": "example.interactwith(divine){ divine.receives(example.shirt); divine.remembers(bisola, 'green shirt'); divine.tucks(example, 'ikeja laundrom",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_93054da0d3",
+        "object": "computer_village",
+        "kind": "consequence",
+        "code": "imhf.interactwith(computer_village){ computer_village.receives(imhf.shirt); computer_village.remembers(bisola, 'green shirt'); computer_vill",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_5deeb06314",
+        "object": "kerosene_lamp",
+        "kind": "consequence",
+        "code": "imhf.interactwith(kerosene_lamp){ kerosene_lamp.receives(imhf.shirt); kerosene_lamp.remembers(bisola, 'green shirt'); }",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_feee0cd1e5",
+        "object": "ojuelegba_bus_stop",
+        "kind": "consequence",
+        "code": "thryd.interactwith(ojuelegba_bus_stop){ ojuelegba_bus_stop.receives(thryd.shirt); ojuelegba_bus_stop.remembers(bisola, 'green shirt'); ojuel",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_f3d2c62e81",
+        "object": "streetlights",
+        "kind": "consequence",
+        "code": "lady.interactwith(streetlights){ streetlights.receives(lady.shirt); streetlights.remembers(bisola, 'green shirt'); }",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_8862c81ec2",
+        "object": "bird",
+        "kind": "consequence",
+        "code": "vex.interactwith(bird){ bird.receives(vex.shirt); bird.remembers(bisola, 'green shirt'); bird.tucks(vex, 'ikeja laundromat receipt into the",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_3c4a623a5a",
+        "object": "tie",
+        "kind": "consequence",
+        "code": "lady.interactwith(tie){ tie.receives(lady.shirt); tie.remembers(bisola, 'green shirt'); tie.tucks(lady, 'ikeja laundromat receipt into the g",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_ded81a2d89",
+        "object": "ojuelegba_bus_stop",
+        "kind": "consequence",
+        "code": "divine.interactwith(ojuelegba_bus_stop){ ojuelegba_bus_stop.receives(divine.shirt); ojuelegba_bus_stop.remembers(bisola, 'green shirt'); oju",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_8de965603f",
+        "object": "b_md",
+        "kind": "consequence",
+        "code": "vex.interactwith(b_md){ b_md.receives(vex.shirt); b_md.remembers(bisola, 'green shirt'); b_md.tucks(vex, 'ikeja laundromat receipt into the",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_e2618014f1",
+        "object": "danfo_speaker",
+        "kind": "consequence",
+        "code": "b_md.interactwith(danfo_speaker){ danfo_speaker.receives(b_md.shirt); danfo_speaker.remembers(bisola, 'green shirt'); }",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_eaa747f60c",
+        "object": "ronke",
+        "kind": "consequence",
+        "code": "imhf.interactwith(ronke){ ronke.receives(imhf.shirt); ronke.remembers(bisola, 'green shirt'); }",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_b0b5bd7169",
+        "object": "wser",
+        "kind": "consequence",
+        "code": "computer_village.interactwith(wser){ wser.receives(computer_village.shirt); wser.remembers(bisola, 'green shirt'); }",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_96b7fd35c9",
+        "object": "bicycle",
+        "kind": "consequence",
+        "code": "b_md.interactwith(bicycle){ bicycle.receives(b_md.shirt); bicycle.remembers(bisola, 'green shirt'); bicycle.tucks(b_md, 'ikeja laundromat re",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_ee073fb33e",
+        "object": "kazeem",
+        "kind": "consequence",
+        "code": "lady.interactwith(kazeem){ kazeem.receives(lady.shirt); kazeem.remembers(bisola, 'green shirt'); }",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_5d8ba09fab",
+        "object": "bird",
+        "kind": "consequence",
+        "code": "example.interactwith(bird){ bird.receives(example.shirt); bird.remembers(bisola, 'green shirt'); bird.tucks(example, 'ikeja laundromat recei",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_ee90ac8d57",
+        "object": "saturday_october",
+        "kind": "consequence",
+        "code": "example.interactwith(saturday_october){ saturday_october.receives(example.shirt); saturday_october.remembers(bisola, 'green shirt'); saturda",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_fc9f65fd67",
+        "object": "red_white_cap",
+        "kind": "consequence",
+        "code": "divine.interactwith(red_white_cap){ red_white_cap.receives(divine.shirt); red_white_cap.remembers(bisola, 'green shirt'); }",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_b067528817",
+        "object": "iae",
+        "kind": "consequence",
+        "code": "divine.interactwith(iae){ iae.receives(divine.shirt); iae.remembers(bisola, 'green shirt'); }",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_f1d015a1ec",
+        "object": "kerosene_lamp",
+        "kind": "consequence",
+        "code": "divine.interactwith(kerosene_lamp){ kerosene_lamp.receives(divine.shirt); kerosene_lamp.remembers(bisola, 'green shirt'); }",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_38dc9b483f",
+        "object": "laptop",
+        "kind": "consequence",
+        "code": "vex.interactwith(laptop){ laptop.receives(vex.shirt); laptop.remembers(bisola, 'green shirt'); laptop.tucks(vex, 'ikeja laundromat receipt i",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_8b1d35b071",
+        "object": "laptop",
+        "kind": "consequence",
+        "code": "imhf.interactwith(laptop){ laptop.receives(imhf.shirt); laptop.remembers(bisola, 'green shirt'); laptop.tucks(imhf, 'ikeja laundromat receip",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_c61e376368",
+        "object": "bird",
+        "kind": "consequence",
+        "code": "lady.interactwith(bird){ bird.receives(lady.shirt); bird.remembers(bisola, 'green shirt'); bird.tucks(lady, 'ikeja laundromat receipt into t",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_2e3f75d4bf",
+        "object": "red_white_cap",
+        "kind": "consequence",
+        "code": "example.interactwith(red_white_cap){ red_white_cap.receives(example.shirt); red_white_cap.remembers(bisola, 'green shirt'); }",
+        "scope": null,
+        "cause_id": null
        }
       ],
-      "facts_total": 2,
+      "facts_total": 42,
       "functions": [],
       "instances": []
      }
     },
     {
-     "id": "63600566c2",
-     "parent": "ba03a06aca",
+     "id": "3c809ac57b",
+     "parent": "677f14a63e",
      "branch": "run-2eb42d",
      "job": "j16",
      "at": "2026-11-17T23:36:00-05:00",
      "genre": "rising",
      "beat": "caught",
      "diff": {
-      "facts": [],
-      "facts_total": 0,
+      "facts": [
+       {
+        "id": "wt_50490e6d50",
+        "object": "oyinboman",
+        "kind": "func_call",
+        "code": "oyinboman.know('lid');",
+        "scope": "env",
+        "cause_id": null
+       },
+       {
+        "id": "wt_76698067ec",
+        "object": "hear",
+        "kind": "func_call",
+        "code": "hear.hears(computer_village_subject, 'know');",
+        "scope": "ripple",
+        "cause_id": "wt_50490e6d50"
+       },
+       {
+        "id": "wt_1b5f145ad9",
+        "object": "kazeem",
+        "kind": "func_call",
+        "code": "kazeem.hears(computer_village_subject, 'know');",
+        "scope": "ripple",
+        "cause_id": "wt_50490e6d50"
+       },
+       {
+        "id": "wt_53b70a98b3",
+        "object": "mamaronke",
+        "kind": "func_call",
+        "code": "mamaronke.hears(computer_village_subject, 'know');",
+        "scope": "ripple",
+        "cause_id": "wt_50490e6d50"
+       },
+       {
+        "id": "wt_a0f3a35df7",
+        "object": "oyinboman",
+        "kind": "func_call",
+        "code": "oyinboman.know('lid');",
+        "scope": "env",
+        "cause_id": null
+       },
+       {
+        "id": "wt_734728a0ee",
+        "object": "hear",
+        "kind": "func_call",
+        "code": "hear.hears(computer_village_subject, 'know');",
+        "scope": "ripple",
+        "cause_id": "wt_a0f3a35df7"
+       },
+       {
+        "id": "wt_3257a7eef0",
+        "object": "kazeem",
+        "kind": "func_call",
+        "code": "kazeem.hears(computer_village_subject, 'know');",
+        "scope": "ripple",
+        "cause_id": "wt_a0f3a35df7"
+       },
+       {
+        "id": "wt_9fed3065e1",
+        "object": "mamaronke",
+        "kind": "func_call",
+        "code": "mamaronke.hears(computer_village_subject, 'know');",
+        "scope": "ripple",
+        "cause_id": "wt_a0f3a35df7"
+       },
+       {
+        "id": "wt_0cc07ec2ae",
+        "object": "hear",
+        "kind": "func_call",
+        "code": "hear.setWord('lid');",
+        "scope": "env",
+        "cause_id": null
+       },
+       {
+        "id": "wt_71928222ad",
+        "object": "kazeem",
+        "kind": "func_call",
+        "code": "kazeem.hears(computer_village_subject, 'setWord');",
+        "scope": "ripple",
+        "cause_id": "wt_0cc07ec2ae"
+       },
+       {
+        "id": "wt_9853b17faa",
+        "object": "mamaronke",
+        "kind": "func_call",
+        "code": "mamaronke.hears(computer_village_subject, 'setWord');",
+        "scope": "ripple",
+        "cause_id": "wt_0cc07ec2ae"
+       },
+       {
+        "id": "wt_20c54af0df",
+        "object": "nobody",
+        "kind": "func_call",
+        "code": "nobody.hears(computer_village_subject, 'setWord');",
+        "scope": "ripple",
+        "cause_id": "wt_0cc07ec2ae"
+       },
+       {
+        "id": "wt_c9f8bf9be9",
+        "object": "hear",
+        "kind": "func_call",
+        "code": "hear.setWord('lid');",
+        "scope": "env",
+        "cause_id": null
+       },
+       {
+        "id": "wt_abedce35c1",
+        "object": "kazeem",
+        "kind": "func_call",
+        "code": "kazeem.hears(the_groundnut_boy, 'setWord');",
+        "scope": "ripple",
+        "cause_id": "wt_c9f8bf9be9"
+       },
+       {
+        "id": "wt_96f373ab82",
+        "object": "mamaronke",
+        "kind": "func_call",
+        "code": "mamaronke.hears(the_groundnut_boy, 'setWord');",
+        "scope": "ripple",
+        "cause_id": "wt_c9f8bf9be9"
+       },
+       {
+        "id": "wt_9d2c26df18",
+        "object": "nobody",
+        "kind": "func_call",
+        "code": "nobody.hears(the_groundnut_boy, 'setWord');",
+        "scope": "ripple",
+        "cause_id": "wt_c9f8bf9be9"
+       },
+       {
+        "id": "wf_511338a16a",
+        "object": "oloriburuku",
+        "kind": "consequence",
+        "code": "oyinboman.interactwith(oloriburuku){ oloriburuku.receives(oyinboman.something); }",
+        "scope": null,
+        "cause_id": null
+       }
+      ],
+      "facts_total": 17,
       "functions": [
        {
         "func": "hear.setword",
@@ -8067,25 +9617,12 @@
         "op": "define"
        }
       ],
-      "instances": [
-       [
-        "dem",
-        "Thing"
-       ],
-       [
-        "adire",
-        "Thing"
-       ],
-       [
-        "when",
-        "Thing"
-       ]
-      ]
+      "instances": []
      }
     },
     {
-     "id": "1fe2aabe74",
-     "parent": "63600566c2",
+     "id": "f21d55eee1",
+     "parent": "3c809ac57b",
      "branch": "run-2eb42d",
      "job": "j17",
      "at": "2026-11-17T23:42:23-05:00",
@@ -8124,9 +9661,457 @@
         "code": "mamaronke.hears(mushin_subject, 'getAgenda');",
         "scope": "ripple",
         "cause_id": "wt_8dab0d12cf"
+       },
+       {
+        "id": "wt_8ccca8ac01",
+        "object": "yorubbbygehinny",
+        "kind": "func_call",
+        "code": "yorubbbygehinny.getAgenda();",
+        "scope": "env",
+        "cause_id": null
+       },
+       {
+        "id": "wt_09c741336e",
+        "object": "hear",
+        "kind": "func_call",
+        "code": "hear.hears(computer_village_subject, 'getAgenda');",
+        "scope": "ripple",
+        "cause_id": "wt_8ccca8ac01"
+       },
+       {
+        "id": "wt_e26d111a90",
+        "object": "kazeem",
+        "kind": "func_call",
+        "code": "kazeem.hears(computer_village_subject, 'getAgenda');",
+        "scope": "ripple",
+        "cause_id": "wt_8ccca8ac01"
+       },
+       {
+        "id": "wt_097cf08a07",
+        "object": "mamaronke",
+        "kind": "func_call",
+        "code": "mamaronke.hears(computer_village_subject, 'getAgenda');",
+        "scope": "ripple",
+        "cause_id": "wt_8ccca8ac01"
+       },
+       {
+        "id": "wt_6ee9b39c50",
+        "object": "yorubbbygehinny",
+        "kind": "func_call",
+        "code": "yorubbbygehinny.getAgenda();",
+        "scope": "env",
+        "cause_id": null
+       },
+       {
+        "id": "wt_7cd5d7795d",
+        "object": "hear",
+        "kind": "func_call",
+        "code": "hear.hears(computer_village_subject, 'getAgenda');",
+        "scope": "ripple",
+        "cause_id": "wt_6ee9b39c50"
+       },
+       {
+        "id": "wt_c5f89f73fa",
+        "object": "kazeem",
+        "kind": "func_call",
+        "code": "kazeem.hears(computer_village_subject, 'getAgenda');",
+        "scope": "ripple",
+        "cause_id": "wt_6ee9b39c50"
+       },
+       {
+        "id": "wt_ad16f99c3b",
+        "object": "mamaronke",
+        "kind": "func_call",
+        "code": "mamaronke.hears(computer_village_subject, 'getAgenda');",
+        "scope": "ripple",
+        "cause_id": "wt_6ee9b39c50"
+       },
+       {
+        "id": "wt_f0bfb414aa",
+        "object": "yorubbbygehinny",
+        "kind": "func_call",
+        "code": "yorubbbygehinny.getAgenda();",
+        "scope": "env",
+        "cause_id": null
+       },
+       {
+        "id": "wt_72c1b9d254",
+        "object": "hear",
+        "kind": "func_call",
+        "code": "hear.hears(computer_village_subject, 'getAgenda');",
+        "scope": "ripple",
+        "cause_id": "wt_f0bfb414aa"
+       },
+       {
+        "id": "wt_72e5536aff",
+        "object": "kazeem",
+        "kind": "func_call",
+        "code": "kazeem.hears(computer_village_subject, 'getAgenda');",
+        "scope": "ripple",
+        "cause_id": "wt_f0bfb414aa"
+       },
+       {
+        "id": "wt_16d82164cc",
+        "object": "mamaronke",
+        "kind": "func_call",
+        "code": "mamaronke.hears(computer_village_subject, 'getAgenda');",
+        "scope": "ripple",
+        "cause_id": "wt_f0bfb414aa"
+       },
+       {
+        "id": "wt_372fcb8581",
+        "object": "pepu",
+        "kind": "func_call",
+        "code": "pepu.setMany('many');",
+        "scope": "env",
+        "cause_id": null
+       },
+       {
+        "id": "wt_86504777e0",
+        "object": "hear",
+        "kind": "func_call",
+        "code": "hear.hears(computer_village_subject, 'setMany');",
+        "scope": "ripple",
+        "cause_id": "wt_372fcb8581"
+       },
+       {
+        "id": "wt_e473ebe2ff",
+        "object": "kazeem",
+        "kind": "func_call",
+        "code": "kazeem.hears(computer_village_subject, 'setMany');",
+        "scope": "ripple",
+        "cause_id": "wt_372fcb8581"
+       },
+       {
+        "id": "wt_2366208384",
+        "object": "mamaronke",
+        "kind": "func_call",
+        "code": "mamaronke.hears(computer_village_subject, 'setMany');",
+        "scope": "ripple",
+        "cause_id": "wt_372fcb8581"
+       },
+       {
+        "id": "wt_eaef22b291",
+        "object": "yorubbbygehinny",
+        "kind": "func_call",
+        "code": "yorubbbygehinny.getAgenda();",
+        "scope": "env",
+        "cause_id": null
+       },
+       {
+        "id": "wt_376c6c77bc",
+        "object": "hear",
+        "kind": "func_call",
+        "code": "hear.hears(computer_village_subject, 'getAgenda');",
+        "scope": "ripple",
+        "cause_id": "wt_eaef22b291"
+       },
+       {
+        "id": "wt_c89e6569a4",
+        "object": "kazeem",
+        "kind": "func_call",
+        "code": "kazeem.hears(computer_village_subject, 'getAgenda');",
+        "scope": "ripple",
+        "cause_id": "wt_eaef22b291"
+       },
+       {
+        "id": "wt_c11ca925c5",
+        "object": "mamaronke",
+        "kind": "func_call",
+        "code": "mamaronke.hears(computer_village_subject, 'getAgenda');",
+        "scope": "ripple",
+        "cause_id": "wt_eaef22b291"
+       },
+       {
+        "id": "wt_4d6f457291",
+        "object": "pepu",
+        "kind": "func_call",
+        "code": "pepu.setMany('many');",
+        "scope": "env",
+        "cause_id": null
+       },
+       {
+        "id": "wt_424742eaa4",
+        "object": "hear",
+        "kind": "func_call",
+        "code": "hear.hears(computer_village_subject, 'setMany');",
+        "scope": "ripple",
+        "cause_id": "wt_4d6f457291"
+       },
+       {
+        "id": "wt_ad87dd7c70",
+        "object": "kazeem",
+        "kind": "func_call",
+        "code": "kazeem.hears(computer_village_subject, 'setMany');",
+        "scope": "ripple",
+        "cause_id": "wt_4d6f457291"
+       },
+       {
+        "id": "wt_7c6ee0a978",
+        "object": "mamaronke",
+        "kind": "func_call",
+        "code": "mamaronke.hears(computer_village_subject, 'setMany');",
+        "scope": "ripple",
+        "cause_id": "wt_4d6f457291"
+       },
+       {
+        "id": "wt_e4d0c3b357",
+        "object": "pepu",
+        "kind": "func_call",
+        "code": "pepu.setMany('many');",
+        "scope": "env",
+        "cause_id": null
+       },
+       {
+        "id": "wt_73ca5301c0",
+        "object": "hear",
+        "kind": "func_call",
+        "code": "hear.hears(computer_village_subject, 'setMany');",
+        "scope": "ripple",
+        "cause_id": "wt_e4d0c3b357"
+       },
+       {
+        "id": "wt_87ebcd3078",
+        "object": "kazeem",
+        "kind": "func_call",
+        "code": "kazeem.hears(computer_village_subject, 'setMany');",
+        "scope": "ripple",
+        "cause_id": "wt_e4d0c3b357"
+       },
+       {
+        "id": "wt_f23c353bab",
+        "object": "mamaronke",
+        "kind": "func_call",
+        "code": "mamaronke.hears(computer_village_subject, 'setMany');",
+        "scope": "ripple",
+        "cause_id": "wt_e4d0c3b357"
+       },
+       {
+        "id": "wt_907fc0d965",
+        "object": "ronke",
+        "kind": "func_call",
+        "code": "ronke.mend('even');",
+        "scope": "env",
+        "cause_id": null
+       },
+       {
+        "id": "wt_e4b522795b",
+        "object": "hear",
+        "kind": "func_call",
+        "code": "hear.hears(computer_village_subject, 'mend');",
+        "scope": "ripple",
+        "cause_id": "wt_907fc0d965"
+       },
+       {
+        "id": "wt_300cf2bfaf",
+        "object": "kazeem",
+        "kind": "func_call",
+        "code": "kazeem.hears(computer_village_subject, 'mend');",
+        "scope": "ripple",
+        "cause_id": "wt_907fc0d965"
+       },
+       {
+        "id": "wt_1fad77677a",
+        "object": "mamaronke",
+        "kind": "func_call",
+        "code": "mamaronke.hears(computer_village_subject, 'mend');",
+        "scope": "ripple",
+        "cause_id": "wt_907fc0d965"
+       },
+       {
+        "id": "wt_33e51dea5f",
+        "object": "pepu",
+        "kind": "func_call",
+        "code": "pepu.setMany('many');",
+        "scope": "env",
+        "cause_id": null
+       },
+       {
+        "id": "wt_3b79021b6e",
+        "object": "hear",
+        "kind": "func_call",
+        "code": "hear.hears(car, 'setMany');",
+        "scope": "ripple",
+        "cause_id": "wt_33e51dea5f"
+       },
+       {
+        "id": "wt_b499cee4b0",
+        "object": "kazeem",
+        "kind": "func_call",
+        "code": "kazeem.hears(car, 'setMany');",
+        "scope": "ripple",
+        "cause_id": "wt_33e51dea5f"
+       },
+       {
+        "id": "wt_6fbf0d6784",
+        "object": "mamaronke",
+        "kind": "func_call",
+        "code": "mamaronke.hears(car, 'setMany');",
+        "scope": "ripple",
+        "cause_id": "wt_33e51dea5f"
+       },
+       {
+        "id": "wt_8b5b85b862",
+        "object": "ronke",
+        "kind": "func_call",
+        "code": "ronke.mend('even');",
+        "scope": "env",
+        "cause_id": null
+       },
+       {
+        "id": "wt_414c81a6e8",
+        "object": "hear",
+        "kind": "func_call",
+        "code": "hear.hears(third_mainland_bridge, 'mend');",
+        "scope": "ripple",
+        "cause_id": "wt_8b5b85b862"
+       },
+       {
+        "id": "wt_f4fc2bf065",
+        "object": "kazeem",
+        "kind": "func_call",
+        "code": "kazeem.hears(third_mainland_bridge, 'mend');",
+        "scope": "ripple",
+        "cause_id": "wt_8b5b85b862"
+       },
+       {
+        "id": "wt_b39103065a",
+        "object": "mamaronke",
+        "kind": "func_call",
+        "code": "mamaronke.hears(third_mainland_bridge, 'mend');",
+        "scope": "ripple",
+        "cause_id": "wt_8b5b85b862"
+       },
+       {
+        "id": "wt_2a34f0bd11",
+        "object": "pepu",
+        "kind": "func_call",
+        "code": "pepu.setMany('many');",
+        "scope": "env",
+        "cause_id": null
+       },
+       {
+        "id": "wt_55b7b76fa0",
+        "object": "hear",
+        "kind": "func_call",
+        "code": "hear.hears(third_mainland_bridge, 'setMany');",
+        "scope": "ripple",
+        "cause_id": "wt_2a34f0bd11"
+       },
+       {
+        "id": "wt_e85a86674f",
+        "object": "kazeem",
+        "kind": "func_call",
+        "code": "kazeem.hears(third_mainland_bridge, 'setMany');",
+        "scope": "ripple",
+        "cause_id": "wt_2a34f0bd11"
+       },
+       {
+        "id": "wt_08c33b9886",
+        "object": "mamaronke",
+        "kind": "func_call",
+        "code": "mamaronke.hears(third_mainland_bridge, 'setMany');",
+        "scope": "ripple",
+        "cause_id": "wt_2a34f0bd11"
+       },
+       {
+        "id": "wt_fe4b5702b6",
+        "object": "ronke",
+        "kind": "func_call",
+        "code": "ronke.mend('even');",
+        "scope": "env",
+        "cause_id": null
+       },
+       {
+        "id": "wt_e38f9f1af2",
+        "object": "hear",
+        "kind": "func_call",
+        "code": "hear.hears(the_groundnut_boy, 'mend');",
+        "scope": "ripple",
+        "cause_id": "wt_fe4b5702b6"
+       },
+       {
+        "id": "wt_bb2554ef68",
+        "object": "kazeem",
+        "kind": "func_call",
+        "code": "kazeem.hears(the_groundnut_boy, 'mend');",
+        "scope": "ripple",
+        "cause_id": "wt_fe4b5702b6"
+       },
+       {
+        "id": "wt_7e35e54522",
+        "object": "mamaronke",
+        "kind": "func_call",
+        "code": "mamaronke.hears(the_groundnut_boy, 'mend');",
+        "scope": "ripple",
+        "cause_id": "wt_fe4b5702b6"
+       },
+       {
+        "id": "wt_6aec52082d",
+        "object": "yorubbbygehinny",
+        "kind": "func_call",
+        "code": "yorubbbygehinny.getAgenda();",
+        "scope": "env",
+        "cause_id": null
+       },
+       {
+        "id": "wt_23a8538991",
+        "object": "hear",
+        "kind": "func_call",
+        "code": "hear.hears(the_groundnut_boy, 'getAgenda');",
+        "scope": "ripple",
+        "cause_id": "wt_6aec52082d"
+       },
+       {
+        "id": "wt_7be57c5f0f",
+        "object": "kazeem",
+        "kind": "func_call",
+        "code": "kazeem.hears(the_groundnut_boy, 'getAgenda');",
+        "scope": "ripple",
+        "cause_id": "wt_6aec52082d"
+       },
+       {
+        "id": "wt_0f79a9ccf7",
+        "object": "mamaronke",
+        "kind": "func_call",
+        "code": "mamaronke.hears(the_groundnut_boy, 'getAgenda');",
+        "scope": "ripple",
+        "cause_id": "wt_6aec52082d"
+       },
+       {
+        "id": "wt_2593a63722",
+        "object": "pepu",
+        "kind": "func_call",
+        "code": "pepu.setMany('many');",
+        "scope": "env",
+        "cause_id": null
+       },
+       {
+        "id": "wt_47ddab5cfa",
+        "object": "hear",
+        "kind": "func_call",
+        "code": "hear.hears(third_mainland_bridge, 'setMany');",
+        "scope": "ripple",
+        "cause_id": "wt_2593a63722"
+       },
+       {
+        "id": "wt_d1e6331e08",
+        "object": "kazeem",
+        "kind": "func_call",
+        "code": "kazeem.hears(third_mainland_bridge, 'setMany');",
+        "scope": "ripple",
+        "cause_id": "wt_2593a63722"
+       },
+       {
+        "id": "wt_2dac4034e6",
+        "object": "mamaronke",
+        "kind": "func_call",
+        "code": "mamaronke.hears(third_mainland_bridge, 'setMany');",
+        "scope": "ripple",
+        "cause_id": "wt_2593a63722"
        }
       ],
-      "facts_total": 4,
+      "facts_total": 109,
       "functions": [
        {
         "func": "pepu.setmany",
@@ -8144,29 +10129,501 @@
         "op": "define"
        }
       ],
-      "instances": [
-       [
-        "many",
-        "Quantity"
-       ],
-       [
-        "even",
-        "Action"
-       ]
-      ]
+      "instances": []
      }
     },
     {
-     "id": "22c2090e41",
-     "parent": "1fe2aabe74",
+     "id": "a7d1a09de0",
+     "parent": "f21d55eee1",
      "branch": "run-2eb42d",
      "job": "j18",
      "at": "2026-11-18T09:34:38-05:00",
      "genre": "rising",
      "beat": "guard",
      "diff": {
-      "facts": [],
-      "facts_total": 0,
+      "facts": [
+       {
+        "id": "wt_c8b7755e62",
+        "object": "ronke",
+        "kind": "func_call",
+        "code": "ronke.hail('currentaffairs');",
+        "scope": "env",
+        "cause_id": null
+       },
+       {
+        "id": "wt_8f2e62c6b8",
+        "object": "hear",
+        "kind": "func_call",
+        "code": "hear.hears(person, 'hail');",
+        "scope": "ripple",
+        "cause_id": "wt_c8b7755e62"
+       },
+       {
+        "id": "wt_81011798d4",
+        "object": "kazeem",
+        "kind": "func_call",
+        "code": "kazeem.hears(person, 'hail');",
+        "scope": "ripple",
+        "cause_id": "wt_c8b7755e62"
+       },
+       {
+        "id": "wt_e93197f42f",
+        "object": "mamaronke",
+        "kind": "func_call",
+        "code": "mamaronke.hears(person, 'hail');",
+        "scope": "ripple",
+        "cause_id": "wt_c8b7755e62"
+       },
+       {
+        "id": "wt_9ec5ff514a",
+        "object": "ronke",
+        "kind": "func_call",
+        "code": "ronke.hail('hawker');",
+        "scope": "own",
+        "cause_id": null
+       },
+       {
+        "id": "wt_f907f1ebf2",
+        "object": "hear",
+        "kind": "func_call",
+        "code": "hear.hears(ronke, 'hail');",
+        "scope": "ripple",
+        "cause_id": "wt_9ec5ff514a"
+       },
+       {
+        "id": "wt_749b277104",
+        "object": "kazeem",
+        "kind": "func_call",
+        "code": "kazeem.hears(ronke, 'hail');",
+        "scope": "ripple",
+        "cause_id": "wt_9ec5ff514a"
+       },
+       {
+        "id": "wt_3fae71aaf1",
+        "object": "mamaronke",
+        "kind": "func_call",
+        "code": "mamaronke.hears(ronke, 'hail');",
+        "scope": "ripple",
+        "cause_id": "wt_9ec5ff514a"
+       },
+       {
+        "id": "wf_9c2a3396cb",
+        "object": "mama_ronke",
+        "kind": "consequence",
+        "code": "pure_water_cooler.interactwith(mama_ronke){ mama_ronke.receives(pure_water_cooler.brown_envelope); mama_ronke.claims(pure_water_cooler, 'yab",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_3fe7ba95c9",
+        "object": "ronke",
+        "kind": "func_call",
+        "code": "ronke.hail('currentaffairs');",
+        "scope": "env",
+        "cause_id": null
+       },
+       {
+        "id": "wt_bc4a1185c7",
+        "object": "hear",
+        "kind": "func_call",
+        "code": "hear.hears(person, 'hail');",
+        "scope": "ripple",
+        "cause_id": "wt_3fe7ba95c9"
+       },
+       {
+        "id": "wt_775e4c2262",
+        "object": "kazeem",
+        "kind": "func_call",
+        "code": "kazeem.hears(person, 'hail');",
+        "scope": "ripple",
+        "cause_id": "wt_3fe7ba95c9"
+       },
+       {
+        "id": "wt_f08e993c59",
+        "object": "mamaronke",
+        "kind": "func_call",
+        "code": "mamaronke.hears(person, 'hail');",
+        "scope": "ripple",
+        "cause_id": "wt_3fe7ba95c9"
+       },
+       {
+        "id": "wt_d1604e3c14",
+        "object": "ronke",
+        "kind": "func_call",
+        "code": "ronke.hail('hawker');",
+        "scope": "env",
+        "cause_id": null
+       },
+       {
+        "id": "wt_1dcc47abd0",
+        "object": "hear",
+        "kind": "func_call",
+        "code": "hear.hears(mushin_subject, 'hail');",
+        "scope": "ripple",
+        "cause_id": "wt_d1604e3c14"
+       },
+       {
+        "id": "wt_f7e0a6b9ee",
+        "object": "kazeem",
+        "kind": "func_call",
+        "code": "kazeem.hears(mushin_subject, 'hail');",
+        "scope": "ripple",
+        "cause_id": "wt_d1604e3c14"
+       },
+       {
+        "id": "wt_e28edcc9a4",
+        "object": "mamaronke",
+        "kind": "func_call",
+        "code": "mamaronke.hears(mushin_subject, 'hail');",
+        "scope": "ripple",
+        "cause_id": "wt_d1604e3c14"
+       },
+       {
+        "id": "wt_418fb96438",
+        "object": "ronke",
+        "kind": "func_call",
+        "code": "ronke.hail('hawker');",
+        "scope": "env",
+        "cause_id": null
+       },
+       {
+        "id": "wt_855ea30ec5",
+        "object": "hear",
+        "kind": "func_call",
+        "code": "hear.hears(ojuelegba_bus_stop_subject_second, 'hail');",
+        "scope": "ripple",
+        "cause_id": "wt_418fb96438"
+       },
+       {
+        "id": "wt_cb55c59602",
+        "object": "kazeem",
+        "kind": "func_call",
+        "code": "kazeem.hears(ojuelegba_bus_stop_subject_second, 'hail');",
+        "scope": "ripple",
+        "cause_id": "wt_418fb96438"
+       },
+       {
+        "id": "wt_1a9ff24142",
+        "object": "mamaronke",
+        "kind": "func_call",
+        "code": "mamaronke.hears(ojuelegba_bus_stop_subject_second, 'hail');",
+        "scope": "ripple",
+        "cause_id": "wt_418fb96438"
+       },
+       {
+        "id": "wt_5d3dabff36",
+        "object": "ronke",
+        "kind": "func_call",
+        "code": "ronke.hail('hawker');",
+        "scope": "env",
+        "cause_id": null
+       },
+       {
+        "id": "wt_c1ac8213e1",
+        "object": "hear",
+        "kind": "func_call",
+        "code": "hear.hears(ikeja_subject, 'hail');",
+        "scope": "ripple",
+        "cause_id": "wt_5d3dabff36"
+       },
+       {
+        "id": "wt_180523be04",
+        "object": "kazeem",
+        "kind": "func_call",
+        "code": "kazeem.hears(ikeja_subject, 'hail');",
+        "scope": "ripple",
+        "cause_id": "wt_5d3dabff36"
+       },
+       {
+        "id": "wt_722696423f",
+        "object": "mamaronke",
+        "kind": "func_call",
+        "code": "mamaronke.hears(ikeja_subject, 'hail');",
+        "scope": "ripple",
+        "cause_id": "wt_5d3dabff36"
+       },
+       {
+        "id": "wt_9521f7caff",
+        "object": "ronke",
+        "kind": "func_call",
+        "code": "ronke.hail('hawker');",
+        "scope": "env",
+        "cause_id": null
+       },
+       {
+        "id": "wt_e3ce0f5607",
+        "object": "hear",
+        "kind": "func_call",
+        "code": "hear.hears(surulere_subject, 'hail');",
+        "scope": "ripple",
+        "cause_id": "wt_9521f7caff"
+       },
+       {
+        "id": "wt_13b578bd82",
+        "object": "kazeem",
+        "kind": "func_call",
+        "code": "kazeem.hears(surulere_subject, 'hail');",
+        "scope": "ripple",
+        "cause_id": "wt_9521f7caff"
+       },
+       {
+        "id": "wt_7ef7a59be0",
+        "object": "mamaronke",
+        "kind": "func_call",
+        "code": "mamaronke.hears(surulere_subject, 'hail');",
+        "scope": "ripple",
+        "cause_id": "wt_9521f7caff"
+       },
+       {
+        "id": "wt_107bc950ef",
+        "object": "ronke",
+        "kind": "func_call",
+        "code": "ronke.hail('hawker');",
+        "scope": "env",
+        "cause_id": null
+       },
+       {
+        "id": "wt_dc66a61d2f",
+        "object": "hear",
+        "kind": "func_call",
+        "code": "hear.hears(computer_village_subject, 'hail');",
+        "scope": "ripple",
+        "cause_id": "wt_107bc950ef"
+       },
+       {
+        "id": "wt_120c702dc4",
+        "object": "kazeem",
+        "kind": "func_call",
+        "code": "kazeem.hears(computer_village_subject, 'hail');",
+        "scope": "ripple",
+        "cause_id": "wt_107bc950ef"
+       },
+       {
+        "id": "wt_5869f58e82",
+        "object": "mamaronke",
+        "kind": "func_call",
+        "code": "mamaronke.hears(computer_village_subject, 'hail');",
+        "scope": "ripple",
+        "cause_id": "wt_107bc950ef"
+       },
+       {
+        "id": "wt_a3bf81a0b5",
+        "object": "ronke",
+        "kind": "func_call",
+        "code": "ronke.hail('hawker');",
+        "scope": "env",
+        "cause_id": null
+       },
+       {
+        "id": "wt_168e051f5b",
+        "object": "hear",
+        "kind": "func_call",
+        "code": "hear.hears(computer_village_subject, 'hail');",
+        "scope": "ripple",
+        "cause_id": "wt_a3bf81a0b5"
+       },
+       {
+        "id": "wt_0ec245e352",
+        "object": "kazeem",
+        "kind": "func_call",
+        "code": "kazeem.hears(computer_village_subject, 'hail');",
+        "scope": "ripple",
+        "cause_id": "wt_a3bf81a0b5"
+       },
+       {
+        "id": "wt_658ad83256",
+        "object": "mamaronke",
+        "kind": "func_call",
+        "code": "mamaronke.hears(computer_village_subject, 'hail');",
+        "scope": "ripple",
+        "cause_id": "wt_a3bf81a0b5"
+       },
+       {
+        "id": "wt_6cdd9773de",
+        "object": "ronke",
+        "kind": "func_call",
+        "code": "ronke.hail('hawker');",
+        "scope": "env",
+        "cause_id": null
+       },
+       {
+        "id": "wt_459f7bb5f0",
+        "object": "hear",
+        "kind": "func_call",
+        "code": "hear.hears(computer_village_subject, 'hail');",
+        "scope": "ripple",
+        "cause_id": "wt_6cdd9773de"
+       },
+       {
+        "id": "wt_0d731c1b9e",
+        "object": "kazeem",
+        "kind": "func_call",
+        "code": "kazeem.hears(computer_village_subject, 'hail');",
+        "scope": "ripple",
+        "cause_id": "wt_6cdd9773de"
+       },
+       {
+        "id": "wt_67952bd9ff",
+        "object": "mamaronke",
+        "kind": "func_call",
+        "code": "mamaronke.hears(computer_village_subject, 'hail');",
+        "scope": "ripple",
+        "cause_id": "wt_6cdd9773de"
+       },
+       {
+        "id": "wt_ab1804cb34",
+        "object": "ronke",
+        "kind": "func_call",
+        "code": "ronke.hail('hawker');",
+        "scope": "env",
+        "cause_id": null
+       },
+       {
+        "id": "wt_12b9b868c2",
+        "object": "hear",
+        "kind": "func_call",
+        "code": "hear.hears(computer_village_subject, 'hail');",
+        "scope": "ripple",
+        "cause_id": "wt_ab1804cb34"
+       },
+       {
+        "id": "wt_cdce915a06",
+        "object": "kazeem",
+        "kind": "func_call",
+        "code": "kazeem.hears(computer_village_subject, 'hail');",
+        "scope": "ripple",
+        "cause_id": "wt_ab1804cb34"
+       },
+       {
+        "id": "wt_2a0e81a253",
+        "object": "mamaronke",
+        "kind": "func_call",
+        "code": "mamaronke.hears(computer_village_subject, 'hail');",
+        "scope": "ripple",
+        "cause_id": "wt_ab1804cb34"
+       },
+       {
+        "id": "wt_611c4d0df3",
+        "object": "ronke",
+        "kind": "func_call",
+        "code": "ronke.hail('hawker');",
+        "scope": "env",
+        "cause_id": null
+       },
+       {
+        "id": "wt_5d49880a0b",
+        "object": "hear",
+        "kind": "func_call",
+        "code": "hear.hears(mile_subject, 'hail');",
+        "scope": "ripple",
+        "cause_id": "wt_611c4d0df3"
+       },
+       {
+        "id": "wt_19f9f785c0",
+        "object": "kazeem",
+        "kind": "func_call",
+        "code": "kazeem.hears(mile_subject, 'hail');",
+        "scope": "ripple",
+        "cause_id": "wt_611c4d0df3"
+       },
+       {
+        "id": "wt_62261310fe",
+        "object": "mamaronke",
+        "kind": "func_call",
+        "code": "mamaronke.hears(mile_subject, 'hail');",
+        "scope": "ripple",
+        "cause_id": "wt_611c4d0df3"
+       },
+       {
+        "id": "wt_263c661453",
+        "object": "ronke",
+        "kind": "func_call",
+        "code": "ronke.hail('hawker');",
+        "scope": "env",
+        "cause_id": null
+       },
+       {
+        "id": "wt_54ca3288b3",
+        "object": "hear",
+        "kind": "func_call",
+        "code": "hear.hears(third_mainland_bridge_subject, 'hail');",
+        "scope": "ripple",
+        "cause_id": "wt_263c661453"
+       },
+       {
+        "id": "wt_8e4dea6623",
+        "object": "kazeem",
+        "kind": "func_call",
+        "code": "kazeem.hears(third_mainland_bridge_subject, 'hail');",
+        "scope": "ripple",
+        "cause_id": "wt_263c661453"
+       },
+       {
+        "id": "wt_abc74f7daa",
+        "object": "mamaronke",
+        "kind": "func_call",
+        "code": "mamaronke.hears(third_mainland_bridge_subject, 'hail');",
+        "scope": "ripple",
+        "cause_id": "wt_263c661453"
+       },
+       {
+        "id": "wt_a86456bd78",
+        "object": "ronke",
+        "kind": "func_call",
+        "code": "ronke.hail('hawker');",
+        "scope": "env",
+        "cause_id": null
+       },
+       {
+        "id": "wt_f732099ab2",
+        "object": "hear",
+        "kind": "func_call",
+        "code": "hear.hears(computer_village_subject, 'hail');",
+        "scope": "ripple",
+        "cause_id": "wt_a86456bd78"
+       },
+       {
+        "id": "wt_c2f0653c6b",
+        "object": "kazeem",
+        "kind": "func_call",
+        "code": "kazeem.hears(computer_village_subject, 'hail');",
+        "scope": "ripple",
+        "cause_id": "wt_a86456bd78"
+       },
+       {
+        "id": "wt_5254cc09b1",
+        "object": "mamaronke",
+        "kind": "func_call",
+        "code": "mamaronke.hears(computer_village_subject, 'hail');",
+        "scope": "ripple",
+        "cause_id": "wt_a86456bd78"
+       },
+       {
+        "id": "wt_5ac90d4463",
+        "object": "ronke",
+        "kind": "func_call",
+        "code": "ronke.hail('hawker');",
+        "scope": "env",
+        "cause_id": null
+       },
+       {
+        "id": "wt_8d5c100b61",
+        "object": "hear",
+        "kind": "func_call",
+        "code": "hear.hears(marina_ferry_terminal_subject, 'hail');",
+        "scope": "ripple",
+        "cause_id": "wt_5ac90d4463"
+       },
+       {
+        "id": "wt_dea8604e75",
+        "object": "kazeem",
+        "kind": "func_call",
+        "code": "kazeem.hears(marina_ferry_terminal_subject, 'hail');",
+        "scope": "ripple",
+        "cause_id": "wt_5ac90d4463"
+       }
+      ],
+      "facts_total": 130,
       "functions": [
        {
         "func": "kazeem.lift",
@@ -8184,26 +10641,267 @@
         "op": "define"
        }
       ],
-      "instances": [
-       [
-        "lid",
-        "Thing"
-       ],
-       [
-        "hawker",
-        "Thing"
-       ]
-      ]
+      "instances": []
      }
     },
     {
-     "id": "a54e4784d5",
-     "parent": "22c2090e41",
+     "id": "1f54ea69ad",
+     "parent": "a7d1a09de0",
+     "branch": "run-2eb42d",
+     "job": "j19",
+     "at": "2026-11-18T09:56:09-05:00",
+     "genre": "rising",
+     "beat": "rank",
+     "diff": {
+      "facts": [],
+      "facts_total": 0,
+      "functions": [
+       {
+        "func": "mamaronke.keep",
+        "title": "mamaronke.keep(price)",
+        "op": "define"
+       },
+       {
+        "func": "ronke.ask",
+        "title": "ronke.ask(weird)",
+        "op": "define"
+       },
+       {
+        "func": "ronke.say",
+        "title": "ronke.say(closed)",
+        "op": "define"
+       }
+      ],
+      "instances": []
+     }
+    },
+    {
+     "id": "c22b7684a0",
+     "parent": "1f54ea69ad",
+     "branch": "run-2eb42d",
+     "job": "j20",
+     "at": "2026-11-18T10:08:06-05:00",
+     "genre": "rising",
+     "beat": "pothole",
+     "diff": {
+      "facts": [
+       {
+        "id": "wf_86d832941d",
+        "object": "kazeem",
+        "kind": "consequence",
+        "code": "streetlights.interactwith(kazeem){ kazeem.receives(streetlights, 'ttb note'); streetlights.dim(); }",
+        "scope": null,
+        "cause_id": null
+       }
+      ],
+      "facts_total": 1,
+      "functions": [
+       {
+        "func": "nobody.weigh",
+        "title": "nobody.weigh(undead)",
+        "op": "call"
+       },
+       {
+        "func": "ronke.count",
+        "title": "ronke.count(dya)",
+        "op": "define"
+       }
+      ],
+      "instances": []
+     }
+    },
+    {
+     "id": "3ddc835af4",
+     "parent": "c22b7684a0",
+     "branch": "run-2eb42d",
+     "job": "j21",
+     "at": "2026-11-18T10:26:44-0500",
+     "genre": "rising",
+     "beat": "last stop",
+     "diff": {
+      "facts": [
+       {
+        "id": "wf_0f6d4996e3",
+        "object": "oshodi_bus_shelter",
+        "kind": "consequence",
+        "code": "kazeem.interactwith(oshodi_bus_shelter){ oshodi_bus_shelter.receives(kazeem, 'ttb note'); oshodi_bus_shelter.remembers(kazeem, 'change count",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_f9f456b187",
+        "object": "pure_water_cooler",
+        "kind": "consequence",
+        "code": "ronke.interactwith(pure_water_cooler){ pure_water_cooler.receives(ronke.something); }",
+        "scope": null,
+        "cause_id": null
+       }
+      ],
+      "facts_total": 2,
+      "functions": [],
+      "instances": []
+     }
+    },
+    {
+     "id": "221792caef",
+     "parent": "3ddc835af4",
+     "branch": "run-2eb42d",
+     "job": "j22",
+     "at": "2026-11-18T10:54:56-05:00",
+     "genre": "rising",
+     "beat": "motherboard",
+     "diff": {
+      "facts": [],
+      "facts_total": 0,
+      "functions": [
+       {
+        "func": "kazeem.play",
+        "title": "kazeem.play(gam)",
+        "op": "define"
+       },
+       {
+        "func": "mamaronke.leave",
+        "title": "mamaronke.leave(806)",
+        "op": "define"
+       },
+       {
+        "func": "seller.feel",
+        "title": "seller.feel(wan)",
+        "op": "define"
+       }
+      ],
+      "instances": []
+     }
+    },
+    {
+     "id": "5775157ee5",
+     "parent": "221792caef",
+     "branch": "run-2eb42d",
+     "job": "j23",
+     "at": "2026-11-18T11:22:00-05:00",
+     "genre": "rising",
+     "beat": "suya",
+     "diff": {
+      "facts": [],
+      "facts_total": 0,
+      "functions": [
+       {
+        "func": "kazeem.bet",
+        "title": "kazeem.bet(gowan)",
+        "op": "define"
+       }
+      ],
+      "instances": []
+     }
+    },
+    {
+     "id": "fa0e8160cf",
+     "parent": "5775157ee5",
+     "branch": "run-2eb42d",
+     "job": "j24",
+     "at": "2026-11-18T11:37:20-05:00",
+     "genre": "rising",
+     "beat": "ticket",
+     "diff": {
+      "facts": [],
+      "facts_total": 0,
+      "functions": [
+       {
+        "func": "attendant.put",
+        "title": "attendant.put(ticket)",
+        "op": "define"
+       }
+      ],
+      "instances": []
+     }
+    },
+    {
+     "id": "3f2ce1ec9e",
+     "parent": "fa0e8160cf",
+     "branch": "run-2eb42d",
+     "job": "j25",
+     "at": "2026-11-18T11:37:20-05:00",
+     "genre": "rising",
+     "beat": "press",
+     "diff": {
+      "facts": [],
+      "facts_total": 0,
+      "functions": [
+       {
+        "func": "ronke.say",
+        "title": "ronke.say(past)",
+        "op": "call"
+       },
+       {
+        "func": "kazeem.ask",
+        "title": "kazeem.ask(hangers)",
+        "op": "define"
+       },
+       {
+        "func": "mamaronke.tell",
+        "title": "mamaronke.tell(ice)",
+        "op": "define"
+       }
+      ],
+      "instances": []
+     }
+    },
+    {
+     "id": "0029e21668",
+     "parent": "3f2ce1ec9e",
+     "branch": "run-2eb42d",
+     "job": "j26",
+     "at": "2026-11-18T12:05:41-0500",
+     "genre": "rising",
+     "beat": "beat",
+     "diff": {
+      "facts": [
+       {
+        "id": "wt_18e936c1f2",
+        "object": "cooler",
+        "kind": "func_call",
+        "code": "cooler.clilive567mdh8en();",
+        "scope": null,
+        "cause_id": null
+       }
+      ],
+      "facts_total": 1,
+      "functions": [],
+      "instances": []
+     }
+    },
+    {
+     "id": "72125122fd",
+     "parent": "0029e21668",
+     "branch": "run-2eb42d",
+     "job": "j27",
+     "at": "2026-11-18T12:08:36-0500",
+     "genre": "rising",
+     "beat": "beat",
+     "diff": {
+      "facts": [
+       {
+        "id": "wt_72c67b2954",
+        "object": "cooler",
+        "kind": "func_call",
+        "code": "cooler.clilive567mdkxvp();",
+        "scope": null,
+        "cause_id": null
+       }
+      ],
+      "facts_total": 1,
+      "functions": [],
+      "instances": []
+     }
+    },
+    {
+     "id": "0d02b3490f",
+     "parent": "72125122fd",
      "branch": "run-2eb42d",
      "job": "j29",
-     "at": "2026-11-18T00:20:20-0500",
-     "genre": null,
-     "beat": null,
+     "at": "2026-11-18T12:59:19-05:00",
+     "genre": "rising",
+     "beat": "beat",
      "diff": {
       "facts": [
        {
@@ -8261,9 +10959,2741 @@
         "code": "miami.interactwith(yaba){ yaba.receives(miami.phone); }",
         "scope": null,
         "cause_id": null
+       },
+       {
+        "id": "wf_931ec02917",
+        "object": "fear_god",
+        "kind": "consequence",
+        "code": "yaba.interactwith(fear_god){ fear_god.receives(yaba.phone); }",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_02f05f26cd",
+        "object": "new",
+        "kind": "func_call",
+        "code": "new business();",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_49f6572c66",
+        "object": "ronke",
+        "kind": "func_call",
+        "code": "ronke.getlikes().filter(q => kazeem.goodqualities.includes(q));",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_84f47bd0b4",
+        "object": "cli",
+        "kind": "func_call",
+        "code": "b2();",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_881983ad0e",
+        "object": "qa568cli",
+        "kind": "func_call",
+        "code": "qa568cli.nullfallback();",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_4c2c5924aa",
+        "object": "qa568forced",
+        "kind": "func_call",
+        "code": "qa568forced.parseboom();",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_c45d96d2c5",
+        "object": "mkdwo",
+        "kind": "func_call",
+        "code": "[[mkdwo]];",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_f7edfb25cd",
+        "object": "mama_ronke",
+        "kind": "consequence",
+        "code": "mkdwo.interactwith(mama_ronke){ mama_ronke.receives(mkdwo.something); }",
+        "scope": null,
+        "cause_id": null
+       }
+      ],
+      "facts_total": 15,
+      "functions": [
+       {
+        "func": "mamaronke.say",
+        "title": "mamaronke.say(walk)",
+        "op": "define"
+       }
+      ],
+      "instances": []
+     }
+    },
+    {
+     "id": "1aab5d4599",
+     "parent": "0d02b3490f",
+     "branch": "run-2eb42d",
+     "job": "j30",
+     "at": "2026-11-18T13:26:10-05:00",
+     "genre": "rising",
+     "beat": "beat",
+     "diff": {
+      "facts": [
+       {
+        "id": "wt_d07f0cecfd",
+        "object": "cli",
+        "kind": "func_call",
+        "code": "a masterclass in creative architecture - #thryd v569mwmg9efw;",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_6e0e715cfb",
+        "object": "k",
+        "kind": "func_call",
+        "code": "k.g();",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_282c847fe0",
+        "object": "cli",
+        "kind": "func_call",
+        "code": "two-tab typeline v569mwmg9efw b();",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_491fefe2c3",
+        "object": "k",
+        "kind": "func_call",
+        "code": "k.g();",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_14c2199147",
+        "object": "cli",
+        "kind": "func_call",
+        "code": "a masterclass in creative architecture - #thryd v569mwmgb5ik;",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_3525ea02b3",
+        "object": "cli",
+        "kind": "func_call",
+        "code": "two-tab typeline v569mwmgb5ik b();",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_5d8d45e19d",
+        "object": "cli",
+        "kind": "func_call",
+        "code": "background typeline v569mwmgb5ik c();",
+        "scope": null,
+        "cause_id": null
        }
       ],
       "facts_total": 7,
+      "functions": [
+       {
+        "func": "mamaronke.say",
+        "title": "mamaronke.say(pot)",
+        "op": "define"
+       }
+      ],
+      "instances": []
+     }
+    },
+    {
+     "id": "945f0fee8d",
+     "parent": "1aab5d4599",
+     "branch": "run-2eb42d",
+     "job": "j31",
+     "at": "2026-11-18T13:34:27-05:00",
+     "genre": "rising",
+     "beat": "beat",
+     "diff": {
+      "facts": [],
+      "facts_total": 0,
+      "functions": [
+       {
+        "func": "mamaronke.say",
+        "title": "mamaronke.say(units)",
+        "op": "define"
+       }
+      ],
+      "instances": [
+       [
+        "units",
+        "Thing"
+       ]
+      ]
+     }
+    },
+    {
+     "id": "0e5d50ac4e",
+     "parent": "945f0fee8d",
+     "branch": "run-2eb42d",
+     "job": "j32",
+     "at": "2026-11-18T13:46:06-0500",
+     "genre": "rising",
+     "beat": "beat",
+     "diff": {
+      "facts": [
+       {
+        "id": "wt_e18ba823f7",
+        "object": "cli",
+        "kind": "func_call",
+        "code": "k.g() // v570mwmh2det-enter;",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_60aee4f3cc",
+        "object": "cli",
+        "kind": "func_call",
+        "code": "k.g() // v570mwmh2det-form;",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_212696fc58",
+        "object": "cli",
+        "kind": "func_call",
+        "code": "a masterclass in creative architecture - #thryd v570mwmh2det;",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_d334dddef0",
+        "object": "cli",
+        "kind": "func_call",
+        "code": "k.g() // v570mwmh2det-ime;",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_be2b572426",
+        "object": "k",
+        "kind": "func_call",
+        "code": "k.g570(cliqa570-mwmhaw4y);",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_38d34340d4",
+        "object": "cli",
+        "kind": "func_call",
+        "code": "d3();",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_317e432583",
+        "object": "cli",
+        "kind": "func_call",
+        "code": "d3();",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_01d3296571",
+        "object": "cli",
+        "kind": "func_call",
+        "code": "a4();",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_ba5f3a0260",
+        "object": "h",
+        "kind": "func_call",
+        "code": "h.ki();",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_5558f493be",
+        "object": "cli",
+        "kind": "func_call",
+        "code": "a4();",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_f84c7f718e",
+        "object": "cli",
+        "kind": "func_call",
+        "code": "b3();",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_50b3731ad6",
+        "object": "cli",
+        "kind": "func_call",
+        "code": "c3();",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_f90e76c826",
+        "object": "cli",
+        "kind": "func_call",
+        "code": "c3();",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_079c7b7c34",
+        "object": "cli",
+        "kind": "func_call",
+        "code": "d2();",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_ec76d8e75e",
+        "object": "cli",
+        "kind": "func_call",
+        "code": "lyinnhhgggggg();",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_73e1e81d23",
+        "object": "tola",
+        "kind": "func_call",
+        "code": "tola.why;",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_a9f4dd0061",
+        "object": "gol",
+        "kind": "func_call",
+        "code": "gol.lo();",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_11f81494e5",
+        "object": "ty",
+        "kind": "func_call",
+        "code": "ty.beplo();",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_d01399c8ef",
+        "object": "cli",
+        "kind": "func_call",
+        "code": "g2();",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_4967e267b6",
+        "object": "k",
+        "kind": "func_call",
+        "code": "k.g();",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_f3f3600d87",
+        "object": "g",
+        "kind": "func_call",
+        "code": "g.mm();",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_5eaae4825d",
+        "object": "y",
+        "kind": "func_call",
+        "code": "y.np();",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_76e8f0eb39",
+        "object": "cli",
+        "kind": "func_call",
+        "code": "jhjjj;",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_100f882b04",
+        "object": "cli",
+        "kind": "func_call",
+        "code": "jygu;",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_8f59a4f3d5",
+        "object": "cli",
+        "kind": "func_call",
+        "code": "hello from tablet;",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_6c20d71b51",
+        "object": "cli",
+        "kind": "func_call",
+        "code": "sammmmyyyyy;",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_1f9ec2a508",
+        "object": "k",
+        "kind": "func_call",
+        "code": "k.qa573(cliqa573cli-mwmjo8q3);",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_a46d92f38d",
+        "object": "k",
+        "kind": "func_call",
+        "code": "k.qa573(cliqa573alt-mwmjpc93);",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_e486389f70",
+        "object": "k",
+        "kind": "func_call",
+        "code": "k.g570(cliqa570-mwmjppyr);",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_7662a522f4",
+        "object": "k",
+        "kind": "func_call",
+        "code": "k.qa572(cliqa572p-mwmjprrj-kd);",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_2398816028",
+        "object": "k",
+        "kind": "func_call",
+        "code": "k.qa573(probe573-mwmjrl4e);",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_1ff82e282d",
+        "object": "k",
+        "kind": "func_call",
+        "code": "k.qa573(cliqa573cli-mwmk4dje);",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_af41e6488c",
+        "object": "k",
+        "kind": "func_call",
+        "code": "k.qa573(cliqa573alt-mwmk4k4j);",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_48c57f6331",
+        "object": "k",
+        "kind": "func_call",
+        "code": "k.g570(cliqa570-mwmk4yty);",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_d1c62ae0cf",
+        "object": "k",
+        "kind": "func_call",
+        "code": "k.qa572(cliqa572p-mwmk50nz-kd);",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_91ab256fbf",
+        "object": "k",
+        "kind": "func_call",
+        "code": "k.qa573(cliqa573cli-mwmkkt08);",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_d7facfc2f8",
+        "object": "k",
+        "kind": "func_call",
+        "code": "k.qa573(cliqa573alt-mwmkkzof);",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_1b5817f5db",
+        "object": "k",
+        "kind": "func_call",
+        "code": "k.g570(cliqa570-mwmkle6h);",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_47f26c9d76",
+        "object": "k",
+        "kind": "func_call",
+        "code": "k.qa572(cliqa572p-mwmklg20-kd);",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_99a6081b91",
+        "object": "k",
+        "kind": "func_call",
+        "code": "k.qa573(cliqa573cli-mwml32ou);",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_e3c6c88b5c",
+        "object": "k",
+        "kind": "func_call",
+        "code": "k.qa573(cliqa573alt-mwml394z);",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_90ff3d0ea4",
+        "object": "k",
+        "kind": "func_call",
+        "code": "k.g570(cliqa570-mwml3ndl);",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_b3d44eab6c",
+        "object": "k",
+        "kind": "func_call",
+        "code": "k.qa572(cliqa572p-mwml3pa8-kd);",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_7d2ce31613",
+        "object": "cli",
+        "kind": "func_call",
+        "code": "b1();",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_4c94fe66c7",
+        "object": "mamaronke",
+        "kind": "func_call",
+        "code": "mamaronke.buy('wrap');",
+        "scope": "own",
+        "cause_id": null
+       },
+       {
+        "id": "wt_1641a75587",
+        "object": "dragon",
+        "kind": "func_call",
+        "code": "dragon.show('wrapper');",
+        "scope": "own",
+        "cause_id": "417"
+       },
+       {
+        "id": "wt_928528f4a7",
+        "object": "ronke",
+        "kind": "func_call",
+        "code": "ronke.tell('share');",
+        "scope": "own",
+        "cause_id": null
+       },
+       {
+        "id": "wt_6a8ff2384e",
+        "object": "ronke",
+        "kind": "func_call",
+        "code": "ronke.tell('share');",
+        "scope": "own",
+        "cause_id": null
+       },
+       {
+        "id": "wt_951ff4bb62",
+        "object": "mamaronke",
+        "kind": "func_call",
+        "code": "mamaronke.buy('wrap');",
+        "scope": "own",
+        "cause_id": null
+       },
+       {
+        "id": "wt_654b35ddca",
+        "object": "kazeem",
+        "kind": "func_call",
+        "code": "kazeem.say('hot');",
+        "scope": "own",
+        "cause_id": null
+       },
+       {
+        "id": "wt_17c788a8cd",
+        "object": "kazeem",
+        "kind": "func_call",
+        "code": "kazeem.say('hot');",
+        "scope": "own",
+        "cause_id": null
+       },
+       {
+        "id": "wt_ca2a1c4c4e",
+        "object": "ronke",
+        "kind": "func_call",
+        "code": "ronke.tell('share');",
+        "scope": "own",
+        "cause_id": null
+       },
+       {
+        "id": "wt_7690de5cc0",
+        "object": "boy",
+        "kind": "func_call",
+        "code": "boy.sell('groundnuts');",
+        "scope": "own",
+        "cause_id": null
+       },
+       {
+        "id": "wt_4b8c529a02",
+        "object": "kazeem",
+        "kind": "func_call",
+        "code": "kazeem.say('hot');",
+        "scope": "own",
+        "cause_id": null
+       },
+       {
+        "id": "wt_daa21b5174",
+        "object": "ronke",
+        "kind": "func_call",
+        "code": "ronke.tell('share');",
+        "scope": "own",
+        "cause_id": null
+       },
+       {
+        "id": "wt_35cb4c70ab",
+        "object": "flamingo",
+        "kind": "func_call",
+        "code": "flamingo.stand();",
+        "scope": "own",
+        "cause_id": "435"
+       },
+       {
+        "id": "wt_bbb2991edb",
+        "object": "fuel",
+        "kind": "func_call",
+        "code": "fuel.buy('price');",
+        "scope": "own",
+        "cause_id": "436"
+       },
+       {
+        "id": "wt_fb37dffdb2",
+        "object": "rainbow",
+        "kind": "func_call",
+        "code": "rainbow.show('nylon');",
+        "scope": "own",
+        "cause_id": "437"
+       },
+       {
+        "id": "wt_411740bf3d",
+        "object": "rainbow",
+        "kind": "func_call",
+        "code": "rainbow.show('nylon');",
+        "scope": "own",
+        "cause_id": "429"
+       },
+       {
+        "id": "wt_faed440518",
+        "object": "rainbow",
+        "kind": "func_call",
+        "code": "rainbow.show('nylon');",
+        "scope": "own",
+        "cause_id": "430"
+       }
+      ],
+      "facts_total": 65,
+      "functions": [],
+      "instances": []
+     }
+    },
+    {
+     "id": "e7cd59643c",
+     "parent": "0e5d50ac4e",
+     "branch": "run-2eb42d",
+     "job": "j33",
+     "at": "2026-11-18T17:14:29-0500",
+     "genre": "rising",
+     "beat": "beat",
+     "diff": {
+      "facts": [
+       {
+        "id": "wt_c6bd12ba5a",
+        "object": "cli",
+        "kind": "func_call",
+        "code": "d1();",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_e9ed3e385b",
+        "object": "cli",
+        "kind": "func_call",
+        "code": "a3();",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_4b02c55c62",
+        "object": "mamaronke",
+        "kind": "func_call",
+        "code": "mamaronke.say('bus');",
+        "scope": "own",
+        "cause_id": null
+       },
+       {
+        "id": "wt_0e480476e6",
+        "object": "kazeem",
+        "kind": "func_call",
+        "code": "kazeem.point('danfo');",
+        "scope": "own",
+        "cause_id": null
+       },
+       {
+        "id": "wt_5a353e83e0",
+        "object": "column",
+        "kind": "func_call",
+        "code": "column.stand('porch');",
+        "scope": "own",
+        "cause_id": "419"
+       },
+       {
+        "id": "wt_439ae45aef",
+        "object": "sky",
+        "kind": "func_call",
+        "code": "sky.show('glow');",
+        "scope": "own",
+        "cause_id": "420"
+       },
+       {
+        "id": "wt_68543424a7",
+        "object": "ronke",
+        "kind": "func_call",
+        "code": "ronke.stay('behind');",
+        "scope": "own",
+        "cause_id": null
+       },
+       {
+        "id": "wt_b3cfabb96f",
+        "object": "doorman",
+        "kind": "func_call",
+        "code": "doorman.ask('booking');",
+        "scope": "own",
+        "cause_id": null
+       },
+       {
+        "id": "wt_14ca02c575",
+        "object": "film",
+        "kind": "func_call",
+        "code": "film.show('poster');",
+        "scope": "own",
+        "cause_id": "438"
+       },
+       {
+        "id": "wt_adc42795be",
+        "object": "teapot",
+        "kind": "func_call",
+        "code": "teapot.pour('cup');",
+        "scope": "own",
+        "cause_id": "439"
+       }
+      ],
+      "facts_total": 10,
+      "functions": [
+       {
+        "func": "mamaronke.say",
+        "title": "mamaronke.say(bus)",
+        "op": "define"
+       }
+      ],
+      "instances": [
+       [
+        "bus",
+        "Thing"
+       ]
+      ]
+     }
+    },
+    {
+     "id": "30e066bb9b",
+     "parent": "e7cd59643c",
+     "branch": "run-2eb42d",
+     "job": "j34",
+     "at": "2026-11-18T17:32:20-05:00",
+     "genre": "rising",
+     "beat": "beat",
+     "diff": {
+      "facts": [
+       {
+        "id": "wt_927ef63de2",
+        "object": "cli",
+        "kind": "func_call",
+        "code": "a3();",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_ea52c80b5d",
+        "object": "cli",
+        "kind": "func_call",
+        "code": "porch.top.addobject([[fwr]]);",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_8a87050812",
+        "object": "funke",
+        "kind": "func_call",
+        "code": "funke.getdategraduated();",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_eaab28310f",
+        "object": "boat",
+        "kind": "func_call",
+        "code": "boat.setarrival(twominuteslate);",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_7397577882",
+        "object": "boat",
+        "kind": "func_call",
+        "code": "boat.leave('dock');",
+        "scope": "own",
+        "cause_id": null
+       },
+       {
+        "id": "wt_c6abd525d9",
+        "object": "boat",
+        "kind": "func_call",
+        "code": "boat.show('wake');",
+        "scope": "own",
+        "cause_id": "440"
+       },
+       {
+        "id": "wt_8dce34b8e4",
+        "object": "mamaronke",
+        "kind": "func_call",
+        "code": "mamaronke.sit('bench');",
+        "scope": "own",
+        "cause_id": null
+       },
+       {
+        "id": "wt_831fd5656d",
+        "object": "kazeem",
+        "kind": "func_call",
+        "code": "kazeem.read('board');",
+        "scope": "own",
+        "cause_id": null
+       },
+       {
+        "id": "wt_7ad17e4a7b",
+        "object": "ronke",
+        "kind": "func_call",
+        "code": "ronke.flag('ticket');",
+        "scope": "own",
+        "cause_id": null
+       },
+       {
+        "id": "wt_b9a02a1ad1",
+        "object": "puzzle",
+        "kind": "func_call",
+        "code": "puzzle.fit('piece');",
+        "scope": "own",
+        "cause_id": "454"
+       },
+       {
+        "id": "wt_5c0963fc79",
+        "object": "kite",
+        "kind": "func_call",
+        "code": "kite.fly('board');",
+        "scope": "own",
+        "cause_id": "455"
+       },
+       {
+        "id": "wt_c7055c31c8",
+        "object": "ufo",
+        "kind": "func_call",
+        "code": "ufo.show('sticker');",
+        "scope": "own",
+        "cause_id": "456"
+       },
+       {
+        "id": "wt_21f88e3890",
+        "object": "porch.top",
+        "kind": "func_call",
+        "code": "porch.top.addobject('flowers');",
+        "scope": "own",
+        "cause_id": null
+       }
+      ],
+      "facts_total": 13,
+      "functions": [
+       {
+        "func": "kazeem.read",
+        "title": "kazeem.read(board)",
+        "op": "define"
+       },
+       {
+        "func": "mamaronke.sit",
+        "title": "mamaronke.sit(bench)",
+        "op": "define"
+       },
+       {
+        "func": "ronke.flag",
+        "title": "ronke.flag(ticket)",
+        "op": "define"
+       }
+      ],
+      "instances": [
+       [
+        "board",
+        "Thing"
+       ],
+       [
+        "bench",
+        "Thing"
+       ],
+       [
+        "ticket",
+        "Thing"
+       ]
+      ]
+     }
+    },
+    {
+     "id": "063a4e9e9e",
+     "parent": "30e066bb9b",
+     "branch": "run-2eb42d",
+     "job": "j35",
+     "at": "2026-11-18T17:43:39-05:00",
+     "genre": null,
+     "beat": null,
+     "diff": {
+      "facts": [
+       {
+        "id": "wt_7f6be66df3",
+        "object": "cli",
+        "kind": "func_call",
+        "code": "b3();",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_16cac525bc",
+        "object": "townhallmeeting",
+        "kind": "func_call",
+        "code": "townhallmeeting.newguest(ronke);",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_52842360b3",
+        "object": "cli",
+        "kind": "func_call",
+        "code": "[[hoc:na]];",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_6c308925a8",
+        "object": "wser",
+        "kind": "func_call",
+        "code": "[[wser]];",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_53e7a37bff",
+        "object": "ias",
+        "kind": "func_call",
+        "code": "[[ias]];",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_9ce75e6796",
+        "object": "cli",
+        "kind": "func_call",
+        "code": "a3();",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_33041d4716",
+        "object": "mamaronke",
+        "kind": "func_call",
+        "code": "mamaronke.count('rooms');",
+        "scope": "own",
+        "cause_id": null
+       },
+       {
+        "id": "wt_f680d5f764",
+        "object": "ronke",
+        "kind": "func_call",
+        "code": "ronke.whisper('gossip');",
+        "scope": "own",
+        "cause_id": null
+       },
+       {
+        "id": "wt_09f70385f4",
+        "object": "kazeem",
+        "kind": "func_call",
+        "code": "kazeem.rap('phone');",
+        "scope": "own",
+        "cause_id": null
+       },
+       {
+        "id": "wt_488e41dac7",
+        "object": "boat",
+        "kind": "func_call",
+        "code": "boat.play('gbedu');",
+        "scope": "own",
+        "cause_id": null
+       },
+       {
+        "id": "wt_f952159b2d",
+        "object": "trophy",
+        "kind": "func_call",
+        "code": "trophy.count('rooms');",
+        "scope": "own",
+        "cause_id": "469"
+       },
+       {
+        "id": "wt_a3c5ac7cd9",
+        "object": "face",
+        "kind": "func_call",
+        "code": "face.gasp('gossip');",
+        "scope": "own",
+        "cause_id": "470"
+       },
+       {
+        "id": "wt_a970fda8e6",
+        "object": "phone",
+        "kind": "func_call",
+        "code": "phone.show('screen');",
+        "scope": "own",
+        "cause_id": "471"
+       },
+       {
+        "id": "wt_fd63acb07a",
+        "object": "headphone",
+        "kind": "func_call",
+        "code": "headphone.wear('ear');",
+        "scope": "own",
+        "cause_id": "472"
+       },
+       {
+        "id": "wt_b45eb011a1",
+        "object": "townhallmeeting",
+        "kind": "func_call",
+        "code": "townhallmeeting.newguest('ronke');",
+        "scope": "own",
+        "cause_id": null
+       }
+      ],
+      "facts_total": 15,
+      "functions": [
+       {
+        "func": "mamaronke.count",
+        "title": "mamaronke.count(rooms)",
+        "op": "define"
+       },
+       {
+        "func": "ronke.whisper",
+        "title": "ronke.whisper(gossip)",
+        "op": "define"
+       }
+      ],
+      "instances": [
+       [
+        "rooms",
+        "Thing"
+       ],
+       [
+        "gossip",
+        "Thing"
+       ]
+      ]
+     }
+    },
+    {
+     "id": "5f8f24073e",
+     "parent": "063a4e9e9e",
+     "branch": "run-2eb42d",
+     "job": "j36",
+     "at": "2026-11-18T17:52:40-05:00",
+     "genre": null,
+     "beat": null,
+     "diff": {
+      "facts": [
+       {
+        "id": "wt_24388fbc52",
+        "object": "boat",
+        "kind": "func_call",
+        "code": "boat.lift('guy');",
+        "scope": "own",
+        "cause_id": null
+       },
+       {
+        "id": "wt_a8670492bc",
+        "object": "mamaronke",
+        "kind": "func_call",
+        "code": "mamaronke.give('money');",
+        "scope": "own",
+        "cause_id": null
+       },
+       {
+        "id": "wt_357f972be3",
+        "object": "ronke",
+        "kind": "func_call",
+        "code": "ronke.ask('river');",
+        "scope": "own",
+        "cause_id": null
+       },
+       {
+        "id": "wt_e3677f74aa",
+        "object": "kazeem",
+        "kind": "func_call",
+        "code": "kazeem.smell('pot');",
+        "scope": "own",
+        "cause_id": null
+       },
+       {
+        "id": "wt_96ece42342",
+        "object": "ferry",
+        "kind": "func_call",
+        "code": "ferry.show('sign');",
+        "scope": "own",
+        "cause_id": "473"
+       },
+       {
+        "id": "wt_bc1ba8cc52",
+        "object": "clover",
+        "kind": "func_call",
+        "code": "clover.show('charm');",
+        "scope": "own",
+        "cause_id": "474"
+       },
+       {
+        "id": "wt_34770d8e24",
+        "object": "wave",
+        "kind": "func_call",
+        "code": "wave.slap('jetty');",
+        "scope": "own",
+        "cause_id": "475"
+       },
+       {
+        "id": "wt_600ea64b7f",
+        "object": "nose",
+        "kind": "func_call",
+        "code": "nose.catch('steam');",
+        "scope": "own",
+        "cause_id": "476"
+       }
+      ],
+      "facts_total": 8,
+      "functions": [
+       {
+        "func": "ronke.ask",
+        "title": "ronke.ask(river)",
+        "op": "call"
+       },
+       {
+        "func": "boat.lift",
+        "title": "boat.lift(guy)",
+        "op": "define"
+       },
+       {
+        "func": "kazeem.smell",
+        "title": "kazeem.smell(pot)",
+        "op": "define"
+       },
+       {
+        "func": "mamaronke.give",
+        "title": "mamaronke.give(money)",
+        "op": "define"
+       }
+      ],
+      "instances": [
+       [
+        "river",
+        "Thing"
+       ],
+       [
+        "guy",
+        "Thing"
+       ],
+       [
+        "pot",
+        "Thing"
+       ],
+       [
+        "money",
+        "Thing"
+       ]
+      ]
+     }
+    },
+    {
+     "id": "e9ab262547",
+     "parent": "5f8f24073e",
+     "branch": "run-2eb42d",
+     "job": "j37",
+     "at": "2026-11-18T18:08:48-05:00",
+     "genre": null,
+     "beat": null,
+     "diff": {
+      "facts": [
+       {
+        "id": "wt_76894b714e",
+        "object": "cli",
+        "kind": "func_call",
+        "code": "b1();",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_3340de56e6",
+        "object": "cli",
+        "kind": "func_call",
+        "code": "a1();",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_3c9bfbbca3",
+        "object": "cli",
+        "kind": "func_call",
+        "code": "#thryd.miracle.log(1);",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_433ca41c44",
+        "object": "cli",
+        "kind": "func_call",
+        "code": "#thryd.miracle.log(1);",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_587ef88ba6",
+        "object": "ronke",
+        "kind": "func_call",
+        "code": "ronke.greet('guest');",
+        "scope": "own",
+        "cause_id": null
+       },
+       {
+        "id": "wt_656b56cf29",
+        "object": "funke",
+        "kind": "func_call",
+        "code": "funke.show('certificate');",
+        "scope": "own",
+        "cause_id": null
+       },
+       {
+        "id": "wt_78d45a50ba",
+        "object": "townhall",
+        "kind": "func_call",
+        "code": "townhall.open('meeting');",
+        "scope": "own",
+        "cause_id": null
+       },
+       {
+        "id": "wt_5977c645a4",
+        "object": "chairman",
+        "kind": "func_call",
+        "code": "chairman.read('msg');",
+        "scope": "own",
+        "cause_id": null
+       },
+       {
+        "id": "wt_a0c9aab67f",
+        "object": "thryd.miracle",
+        "kind": "func_call",
+        "code": "thryd.miracle.log(1);",
+        "scope": "own",
+        "cause_id": null
+       },
+       {
+        "id": "wt_8a1e068433",
+        "object": "thryd.miracle",
+        "kind": "func_call",
+        "code": "thryd.miracle.log(1);",
+        "scope": "own",
+        "cause_id": null
+       },
+       {
+        "id": "wt_3d211322ba",
+        "object": "microphone",
+        "kind": "func_call",
+        "code": "microphone.stand('floor');",
+        "scope": "own",
+        "cause_id": "491"
+       },
+       {
+        "id": "wt_7d05da20a5",
+        "object": "cap",
+        "kind": "func_call",
+        "code": "cap.sit('table');",
+        "scope": "own",
+        "cause_id": "492"
+       },
+       {
+        "id": "wt_5f7fd3522a",
+        "object": "ballot",
+        "kind": "func_call",
+        "code": "ballot.sit('table');",
+        "scope": "own",
+        "cause_id": "493"
+       },
+       {
+        "id": "wt_de855f7b5d",
+        "object": "envelope",
+        "kind": "func_call",
+        "code": "envelope.show('paper');",
+        "scope": "own",
+        "cause_id": "494"
+       }
+      ],
+      "facts_total": 14,
+      "functions": [
+       {
+        "func": "funke.show",
+        "title": "funke.show(certificate)",
+        "op": "define"
+       },
+       {
+        "func": "ronke.greet",
+        "title": "ronke.greet(guest)",
+        "op": "define"
+       }
+      ],
+      "instances": [
+       [
+        "certificate",
+        "Thing"
+       ],
+       [
+        "guest",
+        "Thing"
+       ]
+      ]
+     }
+    },
+    {
+     "id": "2d155e1cbd",
+     "parent": "e9ab262547",
+     "branch": "run-2eb42d",
+     "job": "j38",
+     "at": "2026-11-18T18:23:42-05:00",
+     "genre": null,
+     "beat": null,
+     "diff": {
+      "facts": [
+       {
+        "id": "wt_0370c3c7ca",
+        "object": "bds",
+        "kind": "func_call",
+        "code": "[[bds]];",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_13537c1691",
+        "object": "wyw",
+        "kind": "func_call",
+        "code": "[[wyw]];",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_e741bbe231",
+        "object": "cli",
+        "kind": "func_call",
+        "code": "b3();",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_01e1bf578d",
+        "object": "cli",
+        "kind": "func_call",
+        "code": "[[6mia]];",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_dcd5fac7bc",
+        "object": "kazeem",
+        "kind": "func_call",
+        "code": "kazeem.pass('phone');",
+        "scope": "own",
+        "cause_id": null
+       },
+       {
+        "id": "wt_943156194c",
+        "object": "ronke",
+        "kind": "func_call",
+        "code": "ronke.write('note');",
+        "scope": "own",
+        "cause_id": null
+       },
+       {
+        "id": "wt_001e8b356f",
+        "object": "speaker",
+        "kind": "func_call",
+        "code": "speaker.play('mix');",
+        "scope": "own",
+        "cause_id": null
+       },
+       {
+        "id": "wt_9786b458ee",
+        "object": "mamaronke",
+        "kind": "func_call",
+        "code": "mamaronke.say('ready');",
+        "scope": "own",
+        "cause_id": null
+       },
+       {
+        "id": "wt_7fa696eaba",
+        "object": "radio",
+        "kind": "func_call",
+        "code": "radio.play('station');",
+        "scope": "own",
+        "cause_id": "513"
+       },
+       {
+        "id": "wt_d57c4dc213",
+        "object": "clip",
+        "kind": "func_call",
+        "code": "clip.hold('note');",
+        "scope": "own",
+        "cause_id": "514"
+       },
+       {
+        "id": "wt_12f37da375",
+        "object": "ice",
+        "kind": "func_call",
+        "code": "ice.sit('cup');",
+        "scope": "own",
+        "cause_id": "515"
+       },
+       {
+        "id": "wt_4eb93a4c79",
+        "object": "sign",
+        "kind": "func_call",
+        "code": "sign.show('ready');",
+        "scope": "own",
+        "cause_id": "516"
+       },
+       {
+        "id": "wf_f42cea72ff",
+        "object": "ronke",
+        "kind": "consequence",
+        "code": "kazeem.interactwith(ronke){ ronke.receives(kazeem.something); }",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_38a494fe95",
+        "object": "wser",
+        "kind": "consequence",
+        "code": "ronke.interactwith(wser){ wser.receives(ronke.something); }",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_0a391e4322",
+        "object": "pure_water_cooler",
+        "kind": "consequence",
+        "code": "kazeem.interactwith(pure_water_cooler){ pure_water_cooler.receives(kazeem.something); }",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_d4dc717f44",
+        "object": "iae",
+        "kind": "consequence",
+        "code": "kazeem.interactwith(iae){ iae.receives(kazeem.something); }",
+        "scope": null,
+        "cause_id": null
+       }
+      ],
+      "facts_total": 16,
+      "functions": [
+       {
+        "func": "kazeem.pass",
+        "title": "kazeem.pass(phone)",
+        "op": "define"
+       },
+       {
+        "func": "ronke.write",
+        "title": "ronke.write(note)",
+        "op": "define"
+       },
+       {
+        "func": "speaker.play",
+        "title": "speaker.play(mix)",
+        "op": "define"
+       }
+      ],
+      "instances": [
+       [
+        "phone",
+        "Thing"
+       ],
+       [
+        "note",
+        "Thing"
+       ],
+       [
+        "mix",
+        "Action"
+       ]
+      ]
+     }
+    },
+    {
+     "id": "a4cc3befdb",
+     "parent": "2d155e1cbd",
+     "branch": "run-2eb42d",
+     "job": "j39",
+     "at": "2026-11-18T18:40:45-05:00",
+     "genre": null,
+     "beat": null,
+     "diff": {
+      "facts": [
+       {
+        "id": "wt_2e19a095e2",
+        "object": "cli",
+        "kind": "func_call",
+        "code": "#thryd.miracle.log(1);",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_5b7bf3f6f6",
+        "object": "ti",
+        "kind": "func_call",
+        "code": "[[ti]];",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_3df7d6774d",
+        "object": "cli",
+        "kind": "func_call",
+        "code": null,
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_23ad968848",
+        "object": "cli",
+        "kind": "func_call",
+        "code": "a3();",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_67f9639994",
+        "object": "thryd",
+        "kind": "func_call",
+        "code": "#thryd.importtheme(indomie);",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_a7273d2c1d",
+        "object": "cli",
+        "kind": "func_call",
+        "code": "d1();",
+        "scope": null,
+        "cause_id": null
+       }
+      ],
+      "facts_total": 6,
+      "functions": [
+       {
+        "func": "chairman.check",
+        "title": "chairman.check(watch)",
+        "op": "define"
+       },
+       {
+        "func": "investor.sign",
+        "title": "investor.sign(cheque)",
+        "op": "define"
+       }
+      ],
+      "instances": [
+       [
+        "watch",
+        "Action"
+       ],
+       [
+        "cheque",
+        "Thing"
+       ]
+      ]
+     }
+    },
+    {
+     "id": "c95a5ce328",
+     "parent": "a4cc3befdb",
+     "branch": "run-2eb42d",
+     "job": "j40",
+     "at": "2026-11-18T19:11:58-05:00",
+     "genre": null,
+     "beat": null,
+     "diff": {
+      "facts": [
+       {
+        "id": "wt_ad8e2938ba",
+        "object": "cli",
+        "kind": "func_call",
+        "code": "d3();",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_46a965148d",
+        "object": "thryd",
+        "kind": "func_call",
+        "code": "#thryd.importtheme(theadelekes);",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_b495c2f54f",
+        "object": "aip",
+        "kind": "func_call",
+        "code": "[[aip]];",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_52229e1442",
+        "object": "cli",
+        "kind": "func_call",
+        "code": "[[🍑🍑]];",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_83af3d0bf4",
+        "object": "cli",
+        "kind": "func_call",
+        "code": "[[tp$on]];",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_0a7be0d8c4",
+        "object": "mamaronke",
+        "kind": "func_call",
+        "code": "mamaronke.count('money');",
+        "scope": "own",
+        "cause_id": null
+       },
+       {
+        "id": "wt_705361bf07",
+        "object": "thryd",
+        "kind": "func_call",
+        "code": "thryd.importtheme('theadelekes');",
+        "scope": "own",
+        "cause_id": null
+       },
+       {
+        "id": "wt_59d11bc149",
+        "object": "chairman",
+        "kind": "func_call",
+        "code": "chairman.ask('ready');",
+        "scope": "own",
+        "cause_id": null
+       },
+       {
+        "id": "wt_59fa6559d5",
+        "object": "chairman",
+        "kind": "func_call",
+        "code": "chairman.welcome('sir');",
+        "scope": "own",
+        "cause_id": null
+       },
+       {
+        "id": "wt_d0053392eb",
+        "object": "hall",
+        "kind": "func_call",
+        "code": "hall.say('possible');",
+        "scope": "own",
+        "cause_id": null
+       },
+       {
+        "id": "wt_fd09ec9fad",
+        "object": "chairman",
+        "kind": "func_call",
+        "code": "chairman.answer('hello');",
+        "scope": "own",
+        "cause_id": null
+       },
+       {
+        "id": "wt_9203afd491",
+        "object": "coin",
+        "kind": "func_call",
+        "code": "coin.sit('table');",
+        "scope": "own",
+        "cause_id": "548"
+       },
+       {
+        "id": "wf_09854b0b4a",
+        "object": "townhall",
+        "kind": "consequence",
+        "code": "chairman.interactwith(townhall){ chairman.db.copyto(townhall); townhall.remembers(chairman, 'minutes: investor cheque pledged to the hall fu",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_0684f67d81",
+        "object": "mamaronke",
+        "kind": "consequence",
+        "code": "kazeem.interactwith(mamaronke){ mamaronke.receives(kazeem, 'file'); mamaronke.remembers(kazeem, 'investor file page with the pledged amount'",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_7047cf8340",
+        "object": "mama_ronke",
+        "kind": "consequence",
+        "code": "thryd.interactwith(mama_ronke){ mama_ronke.receives(thryd.something); }",
+        "scope": null,
+        "cause_id": null
+       }
+      ],
+      "facts_total": 15,
+      "functions": [
+       {
+        "func": "chairman.read",
+        "title": "chairman.read(message)",
+        "op": "define"
+       },
+       {
+        "func": "investor.give",
+        "title": "investor.give(advice)",
+        "op": "define"
+       },
+       {
+        "func": "kazeem.run",
+        "title": "kazeem.run(code)",
+        "op": "define"
+       }
+      ],
+      "instances": [
+       [
+        "message",
+        "Thing"
+       ],
+       [
+        "advice",
+        "Thing"
+       ],
+       [
+        "code",
+        "Thing"
+       ]
+      ]
+     }
+    },
+    {
+     "id": "326e2c09da",
+     "parent": "c95a5ce328",
+     "branch": "run-2eb42d",
+     "job": "j41",
+     "at": "2026-11-18T19:28:56-05:00",
+     "genre": "rising",
+     "beat": "beat",
+     "diff": {
+      "facts": [
+       {
+        "id": "wt_2687a0e57f",
+        "object": "jealous",
+        "kind": "func_call",
+        "code": "[[jealous]];",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_25c589979c",
+        "object": "drake",
+        "kind": "func_call",
+        "code": "[[drake]];",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_350df69777",
+        "object": "cli",
+        "kind": "func_call",
+        "code": "c3();",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_6c107ebfd1",
+        "object": "cli",
+        "kind": "func_call",
+        "code": "#thryd.miracle.log(1);",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_67bbc9010e",
+        "object": "cli",
+        "kind": "func_call",
+        "code": "#thryd.miracle.log(1);",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_f61f6f38a2",
+        "object": "tob",
+        "kind": "func_call",
+        "code": "[[tob]];",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_18b643c459",
+        "object": "thryd",
+        "kind": "func_call",
+        "code": "#thryd.importtheme(starwars);",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_b478064411",
+        "object": "ami",
+        "kind": "func_call",
+        "code": "[[ami]];",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_dcdd5aca75",
+        "object": "nh",
+        "kind": "func_call",
+        "code": "[[nh]];",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_76d74ea5d4",
+        "object": "cli",
+        "kind": "func_call",
+        "code": "#thryd.miracle.log(1);",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_7fafd36bec",
+        "object": "nwbf",
+        "kind": "func_call",
+        "code": "[[nwbf]];",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_e612a34a8d",
+        "object": "cli",
+        "kind": "func_call",
+        "code": "a2();",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_8019c10377",
+        "object": "secretary",
+        "kind": "func_call",
+        "code": "secretary.pack('plates');",
+        "scope": "own",
+        "cause_id": null
+       },
+       {
+        "id": "wt_66d349895a",
+        "object": "chairman",
+        "kind": "func_call",
+        "code": "chairman.pour('tea');",
+        "scope": "own",
+        "cause_id": null
+       },
+       {
+        "id": "wt_e58ce9a881",
+        "object": "box",
+        "kind": "func_call",
+        "code": "box.hold('plates');",
+        "scope": "own",
+        "cause_id": "595"
+       },
+       {
+        "id": "wt_c9ba304d25",
+        "object": "teacup",
+        "kind": "func_call",
+        "code": "teacup.sit('table');",
+        "scope": "own",
+        "cause_id": "596"
+       },
+       {
+        "id": "wf_d821ee81c9",
+        "object": "townhall",
+        "kind": "consequence",
+        "code": "townhall.set('power', 'generator off, lanterns on until fuel is bought');",
+        "scope": null,
+        "cause_id": null
+       }
+      ],
+      "facts_total": 17,
+      "functions": [
+       {
+        "func": "investor.taste",
+        "title": "investor.taste(egusi)",
+        "op": "define"
+       },
+       {
+        "func": "ronke.wave",
+        "title": "ronke.wave(cleaner)",
+        "op": "define"
+       }
+      ],
+      "instances": [
+       [
+        "egusi",
+        "Thing"
+       ],
+       [
+        "cleaner",
+        "Thing"
+       ]
+      ]
+     }
+    },
+    {
+     "id": "ed2ad5a5f1",
+     "parent": "326e2c09da",
+     "branch": "run-2eb42d",
+     "job": "j42",
+     "at": "2026-11-19T12:49:56-05:00",
+     "genre": "rising",
+     "beat": "beat",
+     "diff": {
+      "facts": [
+       {
+        "id": "wt_9513944b87",
+        "object": "cli",
+        "kind": "func_call",
+        "code": "c2();",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_5fa7e8f92e",
+        "object": "cli",
+        "kind": "func_call",
+        "code": "a2();",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_63eabd3d29",
+        "object": "pure_water_cooler",
+        "kind": "consequence",
+        "code": "kerosene_lamp.interactwith(pure_water_cooler){ kerosene_lamp.lights(pure_water_cooler, 'egusi pot'); pure_water_cooler.remembers(mamaronke,",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wf_d5ac1074e7",
+        "object": "pure_water_cooler",
+        "kind": "consequence",
+        "code": "plastic_sheet.interactwith(pure_water_cooler){ plastic_sheet.covers(pure_water_cooler, 'cooler lid'); pure_water_cooler.remembers(ronke, 'ta",
+        "scope": null,
+        "cause_id": null
+       }
+      ],
+      "facts_total": 4,
+      "functions": [
+       {
+        "func": "mamaronke.sniff",
+        "title": "mamaronke.sniff(cooler)",
+        "op": "define"
+       },
+       {
+        "func": "ronke.watch",
+        "title": "ronke.watch(stories)",
+        "op": "define"
+       }
+      ],
+      "instances": [
+       [
+        "stories",
+        "Thing"
+       ]
+      ]
+     }
+    },
+    {
+     "id": "9ba3175b5b",
+     "parent": "ed2ad5a5f1",
+     "branch": "run-2eb42d",
+     "job": "j43",
+     "at": "2026-11-19T13:31:30-05:00",
+     "genre": "rising",
+     "beat": "beat",
+     "diff": {
+      "facts": [
+       {
+        "id": "wt_c5e7741f96",
+        "object": "cli",
+        "kind": "func_call",
+        "code": "d1();",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_38c5cdb287",
+        "object": "thryd",
+        "kind": "func_call",
+        "code": "#thryd.importtheme(politicalcareer);",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_01b3821893",
+        "object": "cli",
+        "kind": "func_call",
+        "code": "#thryd.miracle.log(1);",
+        "scope": null,
+        "cause_id": null
+       }
+      ],
+      "facts_total": 3,
+      "functions": [
+       {
+        "func": "ronke.mend",
+        "title": "ronke.mend(dat)",
+        "op": "call"
+       },
+       {
+        "func": "use.mend",
+        "title": "use.mend(dose)",
+        "op": "define"
+       }
+      ],
+      "instances": [
+       [
+        "dat",
+        "Thing"
+       ],
+       [
+        "dose",
+        "Thing"
+       ]
+      ]
+     }
+    },
+    {
+     "id": "4618a43e02",
+     "parent": "9ba3175b5b",
+     "branch": "run-2eb42d",
+     "job": "j44",
+     "at": "2026-11-19T16:05:01-05:00",
+     "genre": "rising",
+     "beat": "beat",
+     "diff": {
+      "facts": [
+       {
+        "id": "wf_a7b1dbd73f",
+        "object": "streetlights",
+        "kind": "consequence",
+        "code": "danfo_speaker.interactwith(streetlights){ danfo_speaker.plays(streetlights, 'ikorodu fm late bulletin'); streetlights.state('off since the g",
+        "scope": null,
+        "cause_id": null
+       }
+      ],
+      "facts_total": 1,
+      "functions": [
+       {
+        "func": "buy.fold",
+        "title": "buy.fold(only)",
+        "op": "define"
+       },
+       {
+        "func": "ronke.fold",
+        "title": "ronke.fold(time)",
+        "op": "define"
+       }
+      ],
+      "instances": [
+       [
+        "only",
+        "Thing"
+       ],
+       [
+        "time",
+        "Thing"
+       ]
+      ]
+     }
+    }
+   ]
+  },
+  "run-qa": {
+   "forked_from": null,
+   "head": "e4b61114ec",
+   "commits": [
+    {
+     "id": "e4b61114ec",
+     "parent": null,
+     "branch": "run-qa",
+     "job": "j1",
+     "at": "2026-11-18T11:42:40-0500",
+     "genre": null,
+     "beat": null,
+     "diff": {
+      "facts": [
+       {
+        "id": "wt_3e2990fed5",
+        "object": "cooler",
+        "kind": "func_call",
+        "code": "cooler.getdatemanufactured();",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_44b9446eba",
+        "object": "dcbh",
+        "kind": "func_call",
+        "code": "[[dcbh]];",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_5a1aed4093",
+        "object": "ronke",
+        "kind": "func_call",
+        "code": "ronke.getlikes().filter(q => kazeem.goodqualities.includes(q));",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_7adccd14ff",
+        "object": "wiitbaw",
+        "kind": "func_call",
+        "code": "[[wiitbaw]];",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_fca050fe7c",
+        "object": "dcbh",
+        "kind": "func_call",
+        "code": "[[dcbh]];",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_07602aaa69",
+        "object": "ronke",
+        "kind": "func_call",
+        "code": "ronke.getlikes().filter(q => kazeem.goodqualities.includes(q));",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_d77718e78c",
+        "object": "cooler",
+        "kind": "func_call",
+        "code": "cooler.getdatemanufactured();",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_3ebcd66f48",
+        "object": "dcbh",
+        "kind": "func_call",
+        "code": "[[dcbh]];",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_b696093473",
+        "object": "wiitbaw",
+        "kind": "func_call",
+        "code": "[[wiitbaw]];",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_77ecda13d2",
+        "object": "ronke",
+        "kind": "func_call",
+        "code": "ronke.getlikes().filter(q => kazeem.goodqualities.includes(q));",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_a2e8f1bd39",
+        "object": "wiitbaw",
+        "kind": "func_call",
+        "code": "[[wiitbaw]];",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_955ad74b5e",
+        "object": "dcbh",
+        "kind": "func_call",
+        "code": "[[dcbh]];",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_e55575304a",
+        "object": "cooler",
+        "kind": "func_call",
+        "code": "cooler.getdatemanufactured();",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_33a942c7c6",
+        "object": "dcbh",
+        "kind": "func_call",
+        "code": "[[dcbh]];",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_4d1fc5cfd4",
+        "object": "cooler",
+        "kind": "func_call",
+        "code": "cooler.getdatemanufactured();",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_c51eb507ac",
+        "object": "wiitbaw",
+        "kind": "func_call",
+        "code": "[[wiitbaw]];",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_28ce501305",
+        "object": "ronke",
+        "kind": "func_call",
+        "code": "ronke.getlikes().filter(q => kazeem.goodqualities.includes(q));",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_cac63c5617",
+        "object": "dcbh",
+        "kind": "func_call",
+        "code": "[[dcbh]];",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_064c1f5bb7",
+        "object": "ronke",
+        "kind": "func_call",
+        "code": "ronke.getlikes().filter(q => kazeem.goodqualities.includes(q));",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_f66bc58d24",
+        "object": "cooler",
+        "kind": "func_call",
+        "code": "cooler.getdatemanufactured();",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_e51b06626a",
+        "object": "wiitbaw",
+        "kind": "func_call",
+        "code": "[[wiitbaw]];",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_cc2aeae9f3",
+        "object": "dcbh",
+        "kind": "func_call",
+        "code": "[[dcbh]];",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_ac079cf08a",
+        "object": "ronke",
+        "kind": "func_call",
+        "code": "ronke.getlikes().filter(q => kazeem.goodqualities.includes(q));",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_399c188af0",
+        "object": "cooler",
+        "kind": "func_call",
+        "code": "cooler.getdatemanufactured();",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_6f11140b1a",
+        "object": "wiitbaw",
+        "kind": "func_call",
+        "code": "[[wiitbaw]];",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_b44d00c85e",
+        "object": "dcbh",
+        "kind": "func_call",
+        "code": "[[dcbh]];",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_3e46a0e579",
+        "object": "ronke",
+        "kind": "func_call",
+        "code": "ronke.getlikes().filter(q => kazeem.goodqualities.includes(q));",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_00d422537a",
+        "object": "cooler",
+        "kind": "func_call",
+        "code": "cooler.getdatemanufactured();",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_0985fecb0b",
+        "object": "dcbh",
+        "kind": "func_call",
+        "code": "[[dcbh]];",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_4db849aa06",
+        "object": "ronke",
+        "kind": "func_call",
+        "code": "ronke.getlikes().filter(q => kazeem.goodqualities.includes(q));",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_b7969223ae",
+        "object": "wiitbaw",
+        "kind": "func_call",
+        "code": "[[wiitbaw]];",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_191e750e2a",
+        "object": "ronke",
+        "kind": "func_call",
+        "code": "ronke.getlikes().filter(q => kazeem.goodqualities.includes(q));",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_5b5de60a9e",
+        "object": "dcbh",
+        "kind": "func_call",
+        "code": "[[dcbh]];",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_b103449748",
+        "object": "cooler",
+        "kind": "func_call",
+        "code": "cooler.getdatemanufactured();",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_8d75b56112",
+        "object": "wiitbaw",
+        "kind": "func_call",
+        "code": "[[wiitbaw]];",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_ed6c28f328",
+        "object": "dcbh",
+        "kind": "func_call",
+        "code": "[[dcbh]];",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_91bbdf7db1",
+        "object": "cooler",
+        "kind": "func_call",
+        "code": "cooler.getdatemanufactured();",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_b4c98c0f82",
+        "object": "ronke",
+        "kind": "func_call",
+        "code": "ronke.getlikes().filter(q => kazeem.goodqualities.includes(q));",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_20381c0490",
+        "object": "wiitbaw",
+        "kind": "func_call",
+        "code": "[[wiitbaw]];",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_bc1b17f71f",
+        "object": "k",
+        "kind": "func_call",
+        "code": "k.qa573(cliqa573cli-mwnufu87);",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_faf7879e69",
+        "object": "k",
+        "kind": "func_call",
+        "code": "k.qa573(cliqa573alt-mwnug0oo);",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_193315426e",
+        "object": "k",
+        "kind": "func_call",
+        "code": "k.g570(cliqa570-mwnugehz);",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_60e3ec7482",
+        "object": "k",
+        "kind": "func_call",
+        "code": "k.qa572(cliqa572p-mwnuggaw-kd);",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_b50fe52f52",
+        "object": "dcbh",
+        "kind": "func_call",
+        "code": "[[dcbh]];",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_e05212448b",
+        "object": "cooler",
+        "kind": "func_call",
+        "code": "cooler.getdatemanufactured();",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_fc58c24418",
+        "object": "wiitbaw",
+        "kind": "func_call",
+        "code": "[[wiitbaw]];",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_e8429d4455",
+        "object": "ronke",
+        "kind": "func_call",
+        "code": "ronke.getlikes().filter(q => kazeem.goodqualities.includes(q));",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_549d40d53d",
+        "object": "k",
+        "kind": "func_call",
+        "code": "k.qa573(cliqa573cli-mwnul2ql);",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_181c86e61e",
+        "object": "k",
+        "kind": "func_call",
+        "code": "k.qa573(cliqa573cli-mwnuleb1);",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_cdb2193aaa",
+        "object": "k",
+        "kind": "func_call",
+        "code": "k.qa573(cliqa573alt-mwnul99r);",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_e50a99b3f4",
+        "object": "k",
+        "kind": "func_call",
+        "code": "k.g570(cliqa570-mwnulo59);",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_32a866180d",
+        "object": "k",
+        "kind": "func_call",
+        "code": "k.qa572(cliqa572p-mwnulpzs-kd);",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_d77f31a94f",
+        "object": "k",
+        "kind": "func_call",
+        "code": "k.qa573(cliqa573alt-mwnulkzx);",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_b6bf2038e3",
+        "object": "k",
+        "kind": "func_call",
+        "code": "k.g570(cliqa570-mwnulzft);",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_c267673e52",
+        "object": "k",
+        "kind": "func_call",
+        "code": "k.qa572(cliqa572p-mwnum18t-kd);",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_a7f3b95de4",
+        "object": "dcbh",
+        "kind": "func_call",
+        "code": "[[dcbh]];",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_39c49e5dbf",
+        "object": "wiitbaw",
+        "kind": "func_call",
+        "code": "[[wiitbaw]];",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_50e47690fe",
+        "object": "dcbh",
+        "kind": "func_call",
+        "code": "[[dcbh]];",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_d02ef8eb0c",
+        "object": "cooler",
+        "kind": "func_call",
+        "code": "cooler.getdatemanufactured();",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_8b504e6985",
+        "object": "ronke",
+        "kind": "func_call",
+        "code": "ronke.getlikes().filter(q => kazeem.goodqualities.includes(q));",
+        "scope": null,
+        "cause_id": null
+       }
+      ],
+      "facts_total": 79,
+      "functions": [],
+      "instances": []
+     }
+    }
+   ]
+  },
+  "run-44583f": {
+   "forked_from": null,
+   "head": "ca622f23ee",
+   "commits": [
+    {
+     "id": "ca622f23ee",
+     "parent": null,
+     "branch": "run-44583f",
+     "job": null,
+     "at": "2026-11-19T11:47:36-0500",
+     "genre": null,
+     "beat": null,
+     "diff": {
+      "facts": [
+       {
+        "id": "wt_0b26457ea8",
+        "object": "discover_river_niger_figure",
+        "kind": "call",
+        "code": "discover_river_niger_figure.grow();",
+        "scope": null,
+        "cause_id": null
+       }
+      ],
+      "facts_total": 1,
+      "functions": [],
+      "instances": []
+     }
+    }
+   ]
+  },
+  "run-0ae93c": {
+   "forked_from": null,
+   "head": "a11a1eab61",
+   "commits": [
+    {
+     "id": "a11a1eab61",
+     "parent": null,
+     "branch": "run-0ae93c",
+     "job": "j10",
+     "at": "2026-11-19T11:48:02-0500",
+     "genre": null,
+     "beat": null,
+     "diff": {
+      "facts": [
+       {
+        "id": "wt_a41ec865f7",
+        "object": "person",
+        "kind": "call",
+        "code": "person.grow();",
+        "scope": null,
+        "cause_id": null
+       }
+      ],
+      "facts_total": 1,
+      "functions": [],
+      "instances": []
+     }
+    }
+   ]
+  },
+  "run-3a15d2": {
+   "forked_from": null,
+   "head": "fbc46c6eb7",
+   "commits": [
+    {
+     "id": "fbc46c6eb7",
+     "parent": null,
+     "branch": "run-3a15d2",
+     "job": null,
+     "at": "2026-11-20T21:14:14-0500",
+     "genre": null,
+     "beat": null,
+     "diff": {
+      "facts": [
+       {
+        "id": "wt_020fcb6f7e",
+        "object": "chilling_ibiza_figure",
+        "kind": "call",
+        "code": "chilling_ibiza_figure.grow();",
+        "scope": null,
+        "cause_id": null
+       }
+      ],
+      "facts_total": 1,
+      "functions": [],
+      "instances": []
+     }
+    }
+   ]
+  },
+  "run-ab4653": {
+   "forked_from": null,
+   "head": "dd8e54daee",
+   "commits": [
+    {
+     "id": "dd8e54daee",
+     "parent": null,
+     "branch": "run-ab4653",
+     "job": "j1",
+     "at": "2026-11-20T21:20:33-0500",
+     "genre": "opening",
+     "beat": "opening",
+     "diff": {
+      "facts": [
+       {
+        "id": "wt_b86e903e6a",
+        "object": "kayode",
+        "kind": "call",
+        "code": "kayode.grow();",
+        "scope": null,
+        "cause_id": null
+       }
+      ],
+      "facts_total": 1,
       "functions": [],
       "instances": []
      }
@@ -8674,19 +14104,24 @@
   }
  },
  "heads": {
-  "run-9e3e84": "bc9fb56d80",
+  "run-9e3e84": "0c56470f1e",
   "run-9780ba": "7370812e45",
-  "run-b9b963": "c9faa66f95",
+  "run-b9b963": "32f016232b",
   "run-0bd7c0": "e6eb58a5be",
   "run-ff3591": "5949d8df2a",
   "run-fa5946": "564dd5acda",
   "run-bd649b": "8ed6c18a56",
   "run-9e59ca": "59f544b8d8",
-  "run-5a58c4": "1f46bfbaa7",
-  "run-g1-B": "3542a65307",
-  "run-2eb42d": "a54e4784d5",
+  "run-5a58c4": "c19ae2da64",
+  "run-g1-B": "37972c88df",
+  "run-2eb42d": "4618a43e02",
+  "run-qa": "e4b61114ec",
+  "run-44583f": "ca622f23ee",
+  "run-0ae93c": "a11a1eab61",
+  "run-3a15d2": "fbc46c6eb7",
+  "run-ab4653": "dd8e54daee",
   "run-cb805f": "8d23a93627"
  },
- "commits": 93,
- "updated": "2026-11-18T09:41:10-05:00"
+ "commits": 123,
+ "updated": "2026-11-23T13:11:19-05:00"
 }
