@@ -1087,14 +1087,14 @@
 ],
 "kerosene_lamp": [
 {
-"id": "wf_b69004de25",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the kerosene lamp, which is still lit.",
-"code": "vex.interactwith(kerosene_lamp){ kerosene_lamp.receives(vex.envelope); kerosene_lamp.remembers(bisola, 'brown envelope'); }",
+"id": "wf_29c8803af0",
+"kind": "memory",
+"text": "The kerosene lamp at Mama Ronke's gate: lit; the only light on the street after the blackout.",
+"code": "kerosene_lamp.state('lit');",
 "author": "cos",
 "run": "run-2eb42d",
-"card": "j6",
-"other": "vex"
+"card": "w7",
+"other": null
 },
 {
 "id": "wt_7a2b23aa13",
@@ -3223,16 +3223,6 @@
 ],
 "wser": [
 {
-"id": "wf_52b5aa1e71",
-"kind": "consequence",
-"text": "The wser leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"code": "ojuelegba_bus_stop.interactwith(wser){ wser.receives(ojuelegba_bus_stop.envelope); wser.remembers(bisola, 'brown envelope'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "ojuelegba_bus_stop"
-},
-{
 "id": "wf_0f4adf9568",
 "kind": "consequence",
 "text": "The wser leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
@@ -3271,6 +3261,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "seniorgehs"
+},
+{
+"id": "wf_f0d7ba72b3",
+"kind": "consequence",
+"text": "The wser leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "mlkahb.interactwith(wser){ wser.receives(mlkahb.envelope); wser.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "mlkahb"
 }
 ],
 "blessings_subject": [
@@ -10224,17 +10224,6 @@
 },
 "consequences": [
 {
-"id": "wf_2259c9acb9",
-"ts": "2026-11-23T13:51:59-0500",
-"a": "tf_mom",
-"b": "kerosene_lamp",
-"code": "tf_mom.interactwith(kerosene_lamp){ kerosene_lamp.receives(tf_mom.soot); kerosene_lamp.remembers(taiwo, 'lamp soot'); }",
-"text": "A Laptop note with Taiwo's name and 'lamp soot' on it, turns up with the kerosene lamp, which is still lit.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j7"
-},
-{
 "id": "wf_6d7d783afc",
 "ts": "2026-11-23T13:52:56-0500",
 "a": "ojuelegba_bus_stop",
@@ -10662,6 +10651,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_f0d7ba72b3",
+"ts": "2026-11-23T18:53:30-0500",
+"a": "mlkahb",
+"b": "wser",
+"code": "mlkahb.interactwith(wser){ wser.receives(mlkahb.envelope); wser.remembers(bisola, 'brown envelope'); }",
+"text": "The wser leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -10765,5 +10765,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-23T18:48:13-0500"
+"updated": "2026-11-23T18:53:30-0500"
 }
