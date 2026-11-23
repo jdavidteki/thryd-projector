@@ -1087,14 +1087,14 @@
 ],
 "kerosene_lamp": [
 {
-"id": "wf_2259c9acb9",
-"kind": "consequence",
-"text": "A Laptop note with Taiwo's name and 'lamp soot' on it, turns up with the kerosene lamp, which is still lit.",
-"code": "tf_mom.interactwith(kerosene_lamp){ kerosene_lamp.receives(tf_mom.soot); kerosene_lamp.remembers(taiwo, 'lamp soot'); }",
+"id": "wf_29c8803af0",
+"kind": "memory",
+"text": "The kerosene lamp at Mama Ronke's gate: lit; the only light on the street after the blackout.",
+"code": "kerosene_lamp.state('lit');",
 "author": "cos",
 "run": "run-2eb42d",
-"card": "j7",
-"other": "tf_mom"
+"card": "w7",
+"other": null
 },
 {
 "id": "wt_7a2b23aa13",
@@ -7311,6 +7311,16 @@
 "run": "run-2eb42d",
 "card": "j7",
 "other": "bird"
+},
+{
+"id": "wf_6d7d783afc",
+"kind": "consequence",
+"text": "The wiitbaw leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "ojuelegba_bus_stop.interactwith(wiitbaw){ wiitbaw.receives(ojuelegba_bus_stop.envelope); wiitbaw.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "ojuelegba_bus_stop"
 }
 ],
 "listen": [
@@ -10154,17 +10164,6 @@
 },
 "consequences": [
 {
-"id": "wf_94748694ad",
-"ts": "2026-11-19T13:13:31-0500",
-"a": "patagonia",
-"b": "thryd",
-"code": "patagonia.interactwith(thryd){ thryd.receives(patagonia.envelope); thryd.remembers(bisola, 'brown envelope'); }",
-"text": "The thryd leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
 "id": "wf_b29f18de72",
 "ts": "2026-11-19T13:16:09-0500",
 "a": "lie",
@@ -10592,6 +10591,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j7"
+},
+{
+"id": "wf_6d7d783afc",
+"ts": "2026-11-23T13:52:56-0500",
+"a": "ojuelegba_bus_stop",
+"b": "wiitbaw",
+"code": "ojuelegba_bus_stop.interactwith(wiitbaw){ wiitbaw.receives(ojuelegba_bus_stop.envelope); wiitbaw.remembers(bisola, 'brown envelope'); }",
+"text": "The wiitbaw leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -10695,5 +10705,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-23T13:51:59-0500"
+"updated": "2026-11-23T13:52:56-0500"
 }
