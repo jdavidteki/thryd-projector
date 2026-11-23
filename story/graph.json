@@ -4318,6 +4318,18 @@
    "location": null,
    "source": "sha256"
   },
+  "kweshon": {
+   "id": "kweshon",
+   "kind": "object",
+   "floor": "GROUND",
+   "x": 1.64878,
+   "y": 2.47,
+   "z": 1.99724,
+   "px": 412.5,
+   "py": 487.5,
+   "location": null,
+   "source": "sha256"
+  },
   "laakl": {
    "id": "laakl",
    "kind": "method",
@@ -4723,6 +4735,18 @@
    "z": 1.40134,
    "px": 440.7,
    "py": 469.2,
+   "location": null,
+   "source": "sha256"
+  },
+  "madman": {
+   "id": "madman",
+   "kind": "object",
+   "floor": "GROUND",
+   "x": 4.541,
+   "y": 2.47,
+   "z": 0.66086,
+   "px": 624.9,
+   "py": 532.6,
    "location": null,
    "source": "sha256"
   },
@@ -43149,11 +43173,141 @@
    "hex": "#2563eb",
    "label": "j142 \u00b7 ronke.deliver(eez)",
    "outline": "#14a357"
+  },
+  {
+   "from": "cli",
+   "to": "cli",
+   "from_xyz": {
+    "x": 2.71485,
+    "y": 2.47,
+    "z": 2.40047,
+    "px": 445.8,
+    "py": 530.1
+   },
+   "to_xyz": {
+    "x": 2.71485,
+    "y": 2.47,
+    "z": 2.40047,
+    "px": 445.8,
+    "py": 530.1
+   },
+   "index": 1313,
+   "job": "j143",
+   "run": "run-2eb42d",
+   "call": "fc1281",
+   "method": "cli",
+   "hex": "#2563eb",
+   "label": "j143 \u00b7 #thryd.miracle.log(1)",
+   "outline": "#1a80d9"
+  },
+  {
+   "from": "cli",
+   "to": "cli",
+   "from_xyz": {
+    "x": 2.71485,
+    "y": 2.47,
+    "z": 2.40047,
+    "px": 445.8,
+    "py": 530.1
+   },
+   "to_xyz": {
+    "x": 2.71485,
+    "y": 2.47,
+    "z": 2.40047,
+    "px": 445.8,
+    "py": 530.1
+   },
+   "index": 1314,
+   "job": "j143",
+   "run": "run-2eb42d",
+   "call": "fc1282",
+   "method": "cli",
+   "hex": "#2563eb",
+   "label": "j143 \u00b7 cli.c1()",
+   "outline": "#1a80d9"
+  },
+  {
+   "from": "kweshon",
+   "to": "fold",
+   "from_xyz": {
+    "x": 1.64878,
+    "y": 2.47,
+    "z": 1.99724,
+    "px": 412.5,
+    "py": 487.5
+   },
+   "to_xyz": {
+    "x": 1.62555,
+    "y": 2.47,
+    "z": 1.41458,
+    "px": 440.6,
+    "py": 469.9
+   },
+   "index": 1315,
+   "job": "j143",
+   "run": "run-2eb42d",
+   "call": "sfc1283",
+   "method": "fold",
+   "hex": "#2563eb",
+   "label": "j143 \u00b7 kweshon.fold(professor)",
+   "outline": "#60a314"
+  },
+  {
+   "from": "madman",
+   "to": "swap",
+   "from_xyz": {
+    "x": 4.541,
+    "y": 2.47,
+    "z": 0.66086,
+    "px": 624.9,
+    "py": 532.6
+   },
+   "to_xyz": {
+    "x": 2.85108,
+    "y": 2.47,
+    "z": 1.81723,
+    "px": 481.9,
+    "py": 517.1
+   },
+   "index": 1316,
+   "job": "j143",
+   "run": "run-2eb42d",
+   "call": "sfc1284",
+   "method": "swap",
+   "hex": "#2563eb",
+   "label": "j143 \u00b7 madman.swap(rtvotn)",
+   "outline": "#1ad974"
+  },
+  {
+   "from": "ronke",
+   "to": "life",
+   "from_xyz": {
+    "x": 2.27364,
+    "y": 2.47,
+    "z": 0.28,
+    "px": 530.1,
+    "py": 455.8
+   },
+   "to_xyz": {
+    "x": 4.33584,
+    "y": 2.47,
+    "z": 2.12286,
+    "px": 541.2,
+    "py": 569.0
+   },
+   "index": 1317,
+   "job": "j143",
+   "run": "run-2eb42d",
+   "call": "sfc1285",
+   "method": "lift",
+   "hex": "#2563eb",
+   "label": "j143 \u00b7 ronke.lift(life)",
+   "outline": "#30a314"
   }
  ],
- "n_vertices": 724,
- "n_edges": 1325,
- "n_object_vertices": 482,
+ "n_vertices": 726,
+ "n_edges": 1330,
+ "n_object_vertices": 484,
  "n_method_vertices": 242,
  "agenda_palette": {
   "atbl-kmb-run": {
@@ -43678,5 +43832,5 @@
    "kind": "edge"
   }
  ],
- "stroke_hash": "06c6b06ed34a605b6b72a35410466c2823aa770a0de5cd7ef39cb83eedf7c27e"
+ "stroke_hash": "a5e2f9cda2e5882a930b9ea5c5b80bb41ef6133fda34d829992610a6b381a50f"
 }
