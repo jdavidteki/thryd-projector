@@ -3670,6 +3670,18 @@
    "location": null,
    "source": "sha256"
   },
+  "htsg": {
+   "id": "htsg",
+   "kind": "object",
+   "floor": "GROUND",
+   "x": 3.78172,
+   "y": 2.47,
+   "z": 1.44511,
+   "px": 547.4,
+   "py": 533.3,
+   "location": null,
+   "source": "sha256"
+  },
   "htsn": {
    "id": "htsn",
    "kind": "method",
@@ -7903,6 +7915,18 @@
    "z": 1.52605,
    "px": 428.7,
    "py": 469.5,
+   "location": null,
+   "source": "sha256"
+  },
+  "too": {
+   "id": "too",
+   "kind": "object",
+   "floor": "GROUND",
+   "x": 3.08122,
+   "y": 2.47,
+   "z": 0.34064,
+   "px": 567.7,
+   "py": 481.0,
    "location": null,
    "source": "sha256"
   },
@@ -44533,11 +44557,141 @@
    "hex": "#2563eb",
    "label": "j149 \u00b7 agbada.count(gad)",
    "outline": "#887010"
+  },
+  {
+   "from": "cli",
+   "to": "cli",
+   "from_xyz": {
+    "x": 2.71485,
+    "y": 2.47,
+    "z": 2.40047,
+    "px": 445.8,
+    "py": 530.1
+   },
+   "to_xyz": {
+    "x": 2.71485,
+    "y": 2.47,
+    "z": 2.40047,
+    "px": 445.8,
+    "py": 530.1
+   },
+   "index": 1357,
+   "job": "j150",
+   "run": "run-2eb42d",
+   "call": "fc1325",
+   "method": "cli",
+   "hex": "#2563eb",
+   "label": "j150 \u00b7 cli.b2()",
+   "outline": "#1a80d9"
+  },
+  {
+   "from": "death",
+   "to": "safe",
+   "from_xyz": {
+    "x": 3.91932,
+    "y": 2.47,
+    "z": 2.17366,
+    "px": 517.7,
+    "py": 558.4
+   },
+   "to_xyz": {
+    "x": 1.74311,
+    "y": 2.47,
+    "z": 1.63673,
+    "px": 435.3,
+    "py": 479.8
+   },
+   "index": 1358,
+   "job": "j150",
+   "run": "run-2eb42d",
+   "call": "fc1326",
+   "method": "death",
+   "hex": "#2563eb",
+   "label": "j150 \u00b7 [[death]](safe)",
+   "outline": "#887010"
+  },
+  {
+   "from": "agenda",
+   "to": "mend",
+   "from_xyz": {
+    "x": 4.73615,
+    "y": 2.47,
+    "z": 2.42,
+    "px": 546.3,
+    "py": 589.3
+   },
+   "to_xyz": {
+    "x": 2.53179,
+    "y": 2.47,
+    "z": 1.89477,
+    "px": 462.0,
+    "py": 510.1
+   },
+   "index": 1359,
+   "job": "j150",
+   "run": "run-2eb42d",
+   "call": "sfc1327",
+   "method": "mend",
+   "hex": "#2563eb",
+   "label": "j150 \u00b7 agenda.mend(run)",
+   "outline": "#60a314"
+  },
+  {
+   "from": "too",
+   "to": "now",
+   "from_xyz": {
+    "x": 3.08122,
+    "y": 2.47,
+    "z": 0.34064,
+    "px": 567.7,
+    "py": 481.0
+   },
+   "to_xyz": {
+    "x": 4.45533,
+    "y": 2.47,
+    "z": 2.42,
+    "px": 532.2,
+    "py": 581.1
+   },
+   "index": 1360,
+   "job": "j150",
+   "run": "run-2eb42d",
+   "call": "sfc1328",
+   "method": "fold",
+   "hex": "#2563eb",
+   "label": "j150 \u00b7 too.fold(now)",
+   "outline": "#60a314"
+  },
+  {
+   "from": "ronke",
+   "to": "htsg",
+   "from_xyz": {
+    "x": 2.27364,
+    "y": 2.47,
+    "z": 0.28,
+    "px": 530.1,
+    "py": 455.8
+   },
+   "to_xyz": {
+    "x": 3.78172,
+    "y": 2.47,
+    "z": 1.44511,
+    "px": 547.4,
+    "py": 533.3
+   },
+   "index": 1361,
+   "job": "j150",
+   "run": "run-2eb42d",
+   "call": "sfc1329",
+   "method": "teach",
+   "hex": "#2563eb",
+   "label": "j150 \u00b7 ronke.teach(htsg)",
+   "outline": "#a35714"
   }
  ],
- "n_vertices": 744,
- "n_edges": 1369,
- "n_object_vertices": 495,
+ "n_vertices": 746,
+ "n_edges": 1374,
+ "n_object_vertices": 497,
  "n_method_vertices": 249,
  "agenda_palette": {
   "atbl-kmb-run": {
@@ -45062,5 +45216,5 @@
    "kind": "edge"
   }
  ],
- "stroke_hash": "5b1180136823e78ab213e6e7552f068d530cb8761642462aa37d8c5081b58126"
+ "stroke_hash": "649f19510af48ea0de665e281eff922a98b0af853833d0eccf5f3a0c81115db9"
 }
