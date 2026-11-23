@@ -81,6 +81,7 @@
     }
     if(!hold||phase==='paint')drawSparks(dt);
     if(man&&man.drawing)paintOutlineCount(ctx);
+    if(tipEl&&tipEl.dataset.vertex)placeVertex();
     cv.dataset.state=phase==='paint'?(active?('painting '+active.L.key):'queued'):phase;
     cv.dataset.cycle=String(cycle);
     if(!RM)raf=requestAnimationFrame(frame);else last=0;
@@ -340,7 +341,7 @@
       stroke_hash:d.sig||null,graph:false,drawing:true,outline:d.edges||[]};
     units.forEach(function(u){imgs[u.key]=1;});
     cv.width=done.width=work.width=man.w;cv.height=done.height=work.height=man.h;dctx=done.getContext('2d');wctx=work.getContext('2d');
-    base=b;fig.classList.add('live');fig.classList.add('drawing');ctx.drawImage(base,0,0);playAll();
+    base=b;fig.classList.add('live');fig.classList.add('drawing');ctx.drawImage(base,0,0);playAll();loadAgendaDots();loadVertexLabels();
     setInterval(pollDrawing,60000);return true;
   }
   function pollDrawing(){fetch('drawing.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).then(function(d){
@@ -348,7 +349,7 @@
     fitView(d);
     var units=drawingUnits(d),have={};man.layers.forEach(function(u){have[u.key]=u.hash;});
     var add=units.filter(function(u){return have[u.key]!==u.hash;});
-    DM=d;man.layers=units;man.v='d'+(d.v||d.sig||units.length);man.stroke_hash=d.sig||null;man.outline=d.edges||[];man.drawing=true;
+    DM=d;loadAgendaDots();loadVertexLabels();man.layers=units;man.v='d'+(d.v||d.sig||units.length);man.stroke_hash=d.sig||null;man.outline=d.edges||[];man.drawing=true;
     man.strokes=units.map(function(u){var q=u.g.at(0.5);return {k:u.i,kind:'call',call:(u.e&&u.e.call)||'',job:(u.e&&u.e.job)||'',run:'',label:u.label,hex:u.hex,x:q[0],y:q[1],actor:'',floor:''};});
     units.forEach(function(u){imgs[u.key]=1;});
     reset();man.layers.forEach(function(u){if(have[u.key]===u.hash)commit(u);});
@@ -369,9 +370,79 @@
 
   // ---- tap / hover a stroke: its call (Jesuye 8:07 PM ET). Strokes come from layers.json (data only: call id, job, actor, method, floor).
   var tipEl=document.createElement('div');tipEl.id='stip';tipEl.setAttribute('role','status');fig.appendChild(tipEl);var grid=null,gridV=null;
+  // ---- vertex labels (Jesuye 23 Nov 2026 1:23 AM ET: "is it possible to label the vertices of the story? so tapping and hovering show the object").
+  // Data only, nothing invented: a story-plan object sits on a corner of the solid (story_drawing.place_objects), and a
+  // connection stroke whose BOTH ends land on corners was drawn between two placed objects (connection_geom), so its
+  // a = from-object, b = to-object. Each corner collects those names, the agendas (stroke run), the story edges of the
+  // outline lines meeting there (owner job -> edge_colours[k].jobs), and the newest seated call that touches it.
+  // Projected with pr3() every frame, so the label and its ring ride along while the block spins or is dragged.
+  var vring=document.createElement('div');vring.id='vring';vring.setAttribute('aria-hidden','true');fig.appendChild(vring);
+  var VX=null,VXv=null,AGD={},EDD={},VLAB=null;
+  // story/vertex_labels.json (story_edges_page.py, from the church copy: plain names out of world_objects). Used only when its
+  // drawing_sig matches the drawing on screen; otherwise (or if it is missing) the corners fall back to the object ids in drawing.json.
+  function loadVertexLabels(){fetch('vertex_labels.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).then(function(d){
+    VLAB=(d&&Array.isArray(d.vertices))?d:null;VXv=null;}).catch(function(){VLAB=null;VXv=null;});}
+  function vkey(p){return (+p[0]).toFixed(3)+','+(+p[1]).toFixed(3)+','+(+p[2]).toFixed(3);}
+  function loadAgendaDots(){fetch('edges.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).then(function(d){if(!d)return;
+    (d.agendas||[]).forEach(function(a){if(a&&a.run)AGD[a.run]={dot:a.dot||'',hex:a.hex||''};});
+    (d.edges||[]).forEach(function(e){if(e&&e.k!=null)EDD[String(e.k)]={dot:e.dot||'',beam:e.beam||'',hex:e.hex||''};});}).catch(function(){});}
+  function buildVX(){
+    if(!DM)return null;var useF=!!(VLAB&&VLAB.drawing_sig&&String(VLAB.drawing_sig)===String(DM.sig||''));var key=String(DM.v||DM.sig||'')+(useF?'|f':'');if(VX&&VXv===key)return VX;
+    if(useF){VX=VLAB.vertices.filter(function(o){return o&&o.k&&o.xyz&&o.xyz.length>=3;}).map(function(o){
+        return {k:o.k,p:o.xyz,order:(o.names&&o.names.length?o.names:o.ids)||[],ids:o.ids||[],rorder:o.runs||[],edges:(o.edges||[]).map(String),
+          last:o.line?{label:o.line,job:o.job,call:o.call,hex:''}:null,file:true};});
+      VX.forEach(function(v){var h=null;(DM.strokes||[]).some(function(s){if(s.call&&v.last&&s.call===v.last.call){h=s.hex;return true;}return false;});if(v.last)v.last.hex=h||'#333';});
+      VXv=key;return VX;}
+    var corner={},inc={},ownK={};
+    Object.keys(DM.edge_colours||{}).forEach(function(k){((DM.edge_colours[k]||{}).jobs||[]).forEach(function(j){if(ownK[j]==null)ownK[j]=k;});});
+    (DM.edges||[]).forEach(function(e){[e.a,e.b].forEach(function(p){if(!p||p.length<3)return;var k=vkey(p);corner[k]=p;
+      if(e.owner&&ownK[e.owner]!=null)(inc[k]=inc[k]||{})[ownK[e.owner]]=1;});});
+    var by={};
+    (DM.strokes||[]).forEach(function(s){
+      if(s.kind!=='connection'||!s.a||!s.b)return;var ka=vkey(s.a),kb=vkey(s.b);if(ka===kb||!corner[ka]||!corner[kb])return;
+      [[ka,s.from],[kb,s.to]].forEach(function(t){if(!t[1])return;
+        var v=by[t[0]]||(by[t[0]]={k:t[0],p:corner[t[0]],names:{},order:[],runs:{},rorder:[],last:null,n:0});
+        if(!v.names[t[1]]){v.names[t[1]]=0;v.order.push(t[1]);}v.names[t[1]]++;
+        if(s.run){if(!v.runs[s.run]){v.runs[s.run]=0;v.rorder.push(s.run);}v.runs[s.run]++;}
+        v.n++;if(!v.last||(+s.index||0)>=(+v.last.index||0))v.last=s;});
+    });
+    VX=Object.keys(by).map(function(k){var v=by[k];v.edges=Object.keys(inc[k]||{}).sort();
+      v.order.sort(function(a,b){return v.names[b]-v.names[a];});v.rorder.sort(function(a,b){return v.runs[b]-v.runs[a];});return v;});
+    VXv=key;return VX;
+  }
+  function vertexAt(cx,cy,rad){var L=buildVX();if(!L||!L.length)return null;var best=null,bd=rad*rad;
+    L.forEach(function(v){var q=pr3(v.p);if(!q)return;var d=(q[0]-cx)*(q[0]-cx)+(q[1]-cy)*(q[1]-cy);if(d<bd){bd=d;best=v;}});
+    return best?{kind:'vertex',v:best,call:'vertex '+best.k,hex:(best.last&&best.last.hex)||'#333'}:null;}
+  function vertexLines(v){
+    var name=v.order.join(' · ');
+    var ag=v.rorder.slice(0,3).map(function(r){var a=AGD[r];return (a&&a.dot?a.dot+' ':'')+r;}).join(', ')+(v.rorder.length>3?' +'+(v.rorder.length-3):'');
+    var ed=v.edges.map(function(k){var e=EDD[k]||{},c=(DM.edge_colours||{})[k]||{};return 'edge '+k+(e.dot?' '+e.dot:'');}).join(', ');
+    var meta=[ag,ed].filter(Boolean).join(' · ');
+    var line=v.last?(v.last.label||((v.last.job||'')+' · '+(v.last.call||''))):'';
+    return {name:name,meta:meta,line:line};
+  }
+  function placeVertex(){
+    var k=tipEl.dataset.vertex;if(!k||!tipEl.classList.contains('on'))return;var L=buildVX(),v=null;
+    for(var i=0;L&&i<L.length;i++)if(L[i].k===k){v=L[i];break;}if(!v){hideTip();return;}
+    var q=pr3(v.p);if(!q||!cv.width)return;var sx=cv.offsetWidth/cv.width,sy=cv.offsetHeight/cv.height;
+    var x=cv.offsetLeft+q[0]*sx,y=cv.offsetTop+q[1]*sy,fw=fig.clientWidth||cv.offsetWidth,tw=tipEl.offsetWidth||200,th=tipEl.offsetHeight||40;
+    vring.style.transform='translate3d('+(x-9).toFixed(1)+'px,'+(y-9).toFixed(1)+'px,0)';
+    var lx=Math.max(4,Math.min(fw-tw-4,x+14)),ly=y-th-12;if(ly<4)ly=y+14;
+    tipEl.style.left=lx.toFixed(1)+'px';tipEl.style.top=ly.toFixed(1)+'px';
+    tipEl.dataset.x=String(Math.round(q[0]));tipEl.dataset.y=String(Math.round(q[1]));
+  }
+  function showVertex(st,pin){
+    var v=st.v,t=vertexLines(v);tipEl.textContent='';
+    var b=document.createElement('b');b.className='vn';b.textContent=t.name;tipEl.appendChild(b);
+    if(t.meta){var m=document.createElement('span');m.className='vm';m.textContent=t.meta;tipEl.appendChild(m);}
+    if(t.line){var l=document.createElement('span');l.className='vl';l.textContent=t.line;tipEl.appendChild(l);}
+    var hx=st.hex||'#333';tipEl.style.setProperty('--c',hx);vring.style.setProperty('--c',hx);
+    tipEl.dataset.call=st.call;tipEl.dataset.vertex=v.k;tipEl.dataset.name=t.name;tipEl.dataset.pin=pin?'1':'';
+    tipEl.classList.add('vx');tipEl.classList.add('on');vring.classList.add('on');placeVertex();
+  }
   function buildGrid(){if(!man||!man.strokes)return;if(gridV===man.v)return;grid={};gridV=man.v;
     man.strokes.forEach(function(st){if(st.x==null)return;var k=Math.floor(st.x/16)+','+Math.floor(st.y/16);(grid[k]=grid[k]||[]).push(st);});}
-  function hit(cx,cy){if(DM){var best=null,bd=12*12,list=(DM.edges||[]);
+  function hit(cx,cy,vr){if(DM){var hv=vertexAt(cx,cy,vr||14);if(hv)return hv;var best=null,bd=12*12,list=(DM.edges||[]);
     list.forEach(function(e,i){var pq=inkPts(e);if(!pq)return;var ax=pq[0][0],ay=pq[0][1],bx=pq[1][0],by=pq[1][1],dx=bx-ax,dy=by-ay,L=dx*dx+dy*dy||1,t=Math.max(0,Math.min(1,((cx-ax)*dx+(cy-ay)*dy)/L)),qx=ax+t*dx,qy=ay+t*dy,dd=(qx-cx)*(qx-cx)+(qy-cy)*(qy-cy);
       if(dd<bd){bd=dd;best={call:(e.fill&&e.fill.call)||('edge '+i),label:(e.owner||'')+' · '+(e.style||'')+(e.fill?' · '+e.fill.call:''),hex:(e.fill&&e.fill.hex)||'#333',kind:'call',run:'',actor:'',floor:''};}});
     return best;}
@@ -382,12 +453,15 @@
     // story edge beams: nearest point on the edge layer's path
     var be=null,bd2=14*14;(man.layers||[]).forEach(function(L){if(L.kind!=='edge')return;(L.pts||[]).forEach(function(p){var d=(p[0]-cx)*(p[0]-cx)+(p[1]-cy)*(p[1]-cy);if(d<bd2){bd2=d;be=L;}});});
     if(be){var e=man.strokes.filter(function(st){return st.kind==='edge'&&st.job===be.key;})[0];return e||null;}return null;}
-  function showTip(ev,pin){var r=cv.getBoundingClientRect();if(!r.width)return;var cx=(ev.clientX-r.left)*cv.width/r.width,cy=(ev.clientY-r.top)*cv.height/r.height;var st=hit(cx,cy);
+  function showTip(ev,pin){var r=cv.getBoundingClientRect();if(!r.width)return;var cx=(ev.clientX-r.left)*cv.width/r.width,cy=(ev.clientY-r.top)*cv.height/r.height;
+    var vr=Math.max(12,(ev.pointerType==='mouse'?11:22)*cv.width/r.width);var st=hit(cx,cy,vr);
     if(!st){if(!pin||tipEl.dataset.pin!=='1'||pin)hideTip();return;}
+    if(st.kind==='vertex'){showVertex(st,pin);return;}
+    tipEl.classList.remove('vx');tipEl.dataset.vertex='';vring.classList.remove('on');
     tipEl.textContent=st.label+(st.actor&&st.kind==='call'?'  ·  '+st.run+' · '+st.floor+(st.dir?' · '+st.dir:''):(st.kind==='edge'?'  ·  story edge':''));
     tipEl.style.setProperty('--c',st.hex);tipEl.dataset.call=st.call||st.job;tipEl.dataset.pin=pin?'1':'';
     var fr=fig.getBoundingClientRect();tipEl.style.left=Math.max(4,Math.min(fr.width-260,ev.clientX-fr.left+12))+'px';tipEl.style.top=Math.max(4,ev.clientY-fr.top-34)+'px';tipEl.classList.add('on');}
-  function hideTip(){tipEl.classList.remove('on');tipEl.dataset.pin='';tipEl.dataset.call='';}
+  function hideTip(){tipEl.classList.remove('on');tipEl.classList.remove('vx');tipEl.dataset.pin='';tipEl.dataset.call='';tipEl.dataset.vertex='';vring.classList.remove('on');}
   var tdown=null;
   cv.addEventListener('pointerdown',function(ev){tdown=[ev.clientX,ev.clientY];if(man&&man.drawing){view.px=ev.clientX;view.py=ev.clientY;try{cv.setPointerCapture(ev.pointerId);}catch(e){}}});
   cv.addEventListener('pointermove',function(ev){
@@ -400,7 +474,7 @@
   cv.addEventListener('pointerleave',function(ev){if(ev.pointerType==='mouse'&&tipEl.dataset.pin!=='1'&&!view.drag)hideTip();});
   cv.addEventListener('pointerup',function(ev){if(tdown&&!view.drag&&Math.abs(ev.clientX-tdown[0])+Math.abs(ev.clientY-tdown[1])<10)showTip(ev,true);tdown=null;if(view.drag){view.drag=false;fig.classList.remove('spin-drag');view.idle=0;}});
   cv.addEventListener('pointercancel',function(){tdown=null;if(view.drag){view.drag=false;fig.classList.remove('spin-drag');view.idle=0;}});
-  window.thrydGode={speed:speed,strokes:function(){return man&&man.strokes?{graph:!!man.graph,drawing:!!man.drawing,vertices:GM?Object.keys(GM.V).length:(DM&&DM.n_verts||0),n:man.drawing&&DM?DM.edges.length:man.strokes.length,calls:man.drawing?(DM&&(DM.n_strokes||DM.n_fills)||man.strokes.length):man.strokes.filter(function(x){return x.kind==='call'}).length,hash:man.stroke_hash,v:man.v}:null;},hit:function(x,y){return hit(x,y);},tip:function(){return {on:tipEl.classList.contains('on'),text:tipEl.textContent,call:tipEl.dataset.call};},state:function(){return {state:cv.dataset.state,cycle:cycle,phase:phase,progress:Math.round(prog),queue:queue.length,active:active&&active.L.key,shown:Object.keys(shown),speed:speed(),rm:RM,layers:man?man.layers.length:0,outlineColoured:outlineColouredNow(),nOutline:(DM&&(DM.title_block&&DM.title_block.n_outline||DM.n_edges))||0,strokesColoured:strokesColouredNow(),nStrokes:(DM&&(DM.n_strokes||(DM.strokes&&DM.strokes.length)))||0,oc:countLine(),yaw:view.yaw,pitch:view.pitch};},poll:poll,setHold:function(b){hold=!!b;if(!b)kick();},view:function(){return {yaw:view.yaw,pitch:view.pitch,spin:view.spin,drag:view.drag,rate:view.rate,ox:view.ox,oy:view.oy,S:view.S,cx:view.cx,cy:view.cy,cz:view.cz};},setView:function(o){if(!o)return;if(o.yaw!=null)view.yaw=+o.yaw;if(o.pitch!=null)view.pitch=+o.pitch;if(o.spin!=null)view.spin=!!o.spin;if(o.rate!=null&&isFinite(+o.rate))view.rate=+o.rate;if(o.idle!=null)view.idle=+o.idle;},
+  window.thrydGode={speed:speed,strokes:function(){return man&&man.strokes?{graph:!!man.graph,drawing:!!man.drawing,vertices:GM?Object.keys(GM.V).length:(DM&&DM.n_verts||0),n:man.drawing&&DM?DM.edges.length:man.strokes.length,calls:man.drawing?(DM&&(DM.n_strokes||DM.n_fills)||man.strokes.length):man.strokes.filter(function(x){return x.kind==='call'}).length,hash:man.stroke_hash,v:man.v}:null;},hit:function(x,y){return hit(x,y);},tip:function(){return {on:tipEl.classList.contains('on'),text:tipEl.textContent,call:tipEl.dataset.call,vertex:tipEl.dataset.vertex||'',name:tipEl.dataset.name||'',pin:tipEl.dataset.pin==='1'};},vertices:function(){var L=buildVX()||[],r=cv.getBoundingClientRect();return L.map(function(v){var q=pr3(v.p)||[0,0];return {k:v.k,name:v.order.join(' · '),file:!!v.file,x:q[0],y:q[1],cx:r.left+q[0]*r.width/cv.width,cy:r.top+q[1]*r.height/cv.height};});},state:function(){return {state:cv.dataset.state,cycle:cycle,phase:phase,progress:Math.round(prog),queue:queue.length,active:active&&active.L.key,shown:Object.keys(shown),speed:speed(),rm:RM,layers:man?man.layers.length:0,outlineColoured:outlineColouredNow(),nOutline:(DM&&(DM.title_block&&DM.title_block.n_outline||DM.n_edges))||0,strokesColoured:strokesColouredNow(),nStrokes:(DM&&(DM.n_strokes||(DM.strokes&&DM.strokes.length)))||0,oc:countLine(),yaw:view.yaw,pitch:view.pitch};},poll:poll,setHold:function(b){hold=!!b;if(!b)kick();},view:function(){return {yaw:view.yaw,pitch:view.pitch,spin:view.spin,drag:view.drag,rate:view.rate,ox:view.ox,oy:view.oy,S:view.S,cx:view.cx,cy:view.cy,cz:view.cz};},setView:function(o){if(!o)return;if(o.yaw!=null)view.yaw=+o.yaw;if(o.pitch!=null)view.pitch=+o.pitch;if(o.spin!=null)view.spin=!!o.spin;if(o.rate!=null&&isFinite(+o.rate))view.rate=+o.rate;if(o.idle!=null)view.idle=+o.idle;},
     _i:{man:function(){return man},imgs:imgs,base:function(){return base},done:done,ctx:ctx,cv:cv,busy:function(){return !!(active||queue.length)},front:frontPt}};
 
   // ---------------- floaters: story objects + characters drifting around the page, never over the diagram
