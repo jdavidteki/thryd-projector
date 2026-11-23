@@ -1054,6 +1054,18 @@
    "location": "road",
    "source": "world_objects.location"
   },
+  "bush": {
+   "id": "bush",
+   "kind": "object",
+   "floor": "GROUND",
+   "x": 2.00592,
+   "y": 2.47,
+   "z": 1.22575,
+   "px": 469.2,
+   "py": 475.5,
+   "location": null,
+   "source": "sha256"
+  },
   "business": {
    "id": "business",
    "kind": "method",
@@ -1714,6 +1726,18 @@
    "location": null,
    "source": "sha256"
   },
+  "courtcase": {
+   "id": "courtcase",
+   "kind": "method",
+   "floor": "GROUND",
+   "x": 2.36781,
+   "y": 2.47,
+   "z": 1.84957,
+   "px": 456.0,
+   "py": 504.0,
+   "location": null,
+   "source": "sha256"
+  },
   "crazy": {
    "id": "crazy",
    "kind": "method",
@@ -2119,6 +2143,18 @@
    "z": 1.71105,
    "px": 532.9,
    "py": 540.4,
+   "location": null,
+   "source": "sha256"
+  },
+  "don": {
+   "id": "don",
+   "kind": "object",
+   "floor": "GROUND",
+   "x": 4.1117,
+   "y": 2.47,
+   "z": 1.23777,
+   "px": 574.4,
+   "py": 536.9,
    "location": null,
    "source": "sha256"
   },
@@ -3655,6 +3691,18 @@
    "z": 1.83519,
    "px": 536.4,
    "py": 549.6,
+   "location": null,
+   "source": "sha256"
+  },
+  "hoe": {
+   "id": "hoe",
+   "kind": "method",
+   "floor": "GROUND",
+   "x": 3.54196,
+   "y": 2.47,
+   "z": 1.74297,
+   "px": 520.4,
+   "py": 535.0,
    "location": null,
    "source": "sha256"
   },
@@ -42962,7 +43010,7 @@
   },
   {
    "from": "time",
-   "to": "mend",
+   "to": "don",
    "from_xyz": {
     "x": 5.38701,
     "y": 2.47,
@@ -42971,11 +43019,11 @@
     "py": 608.1
    },
    "to_xyz": {
-    "x": 2.53179,
+    "x": 4.1117,
     "y": 2.47,
-    "z": 1.89477,
-    "px": 462.0,
-    "py": 510.1
+    "z": 1.23777,
+    "px": 574.4,
+    "py": 536.9
    },
    "index": 1290,
    "job": "j137",
@@ -45585,12 +45633,220 @@
    "hex": "#2563eb",
    "label": "j156 \u00b7 ronke.lift(country)",
    "outline": "#30a314"
+  },
+  {
+   "from": "hoe",
+   "to": "safe",
+   "from_xyz": {
+    "x": 3.54196,
+    "y": 2.47,
+    "z": 1.74297,
+    "px": 520.4,
+    "py": 535.0
+   },
+   "to_xyz": {
+    "x": 1.74311,
+    "y": 2.47,
+    "z": 1.63673,
+    "px": 435.3,
+    "py": 479.8
+   },
+   "index": 1391,
+   "job": "j157",
+   "run": "run-2eb42d",
+   "call": "fc1359",
+   "method": "hoe",
+   "hex": "#2563eb",
+   "label": "j157 \u00b7 [[hoe]](safe)",
+   "outline": "#14a357"
+  },
+  {
+   "from": "nigeria",
+   "to": "safe",
+   "from_xyz": {
+    "x": 3.73824,
+    "y": 2.47,
+    "z": 2.00024,
+    "px": 517.3,
+    "py": 548.2
+   },
+   "to_xyz": {
+    "x": 1.74311,
+    "y": 2.47,
+    "z": 1.63673,
+    "px": 435.3,
+    "py": 479.8
+   },
+   "index": 1392,
+   "job": "j157",
+   "run": "run-2eb42d",
+   "call": "fc1360",
+   "method": "nigeria",
+   "hex": "#2563eb",
+   "label": "j157 \u00b7 [[nigeria]](safe)",
+   "outline": "#a35714"
+  },
+  {
+   "from": "new",
+   "to": "courtcase",
+   "from_xyz": {
+    "x": 3.47913,
+    "y": 2.47,
+    "z": 1.7542,
+    "px": 516.6,
+    "py": 533.5
+   },
+   "to_xyz": {
+    "x": 2.36781,
+    "y": 2.47,
+    "z": 1.84957,
+    "px": 456.0,
+    "py": 504.0
+   },
+   "index": 1393,
+   "job": "j157",
+   "run": "run-2eb42d",
+   "call": "fc1361",
+   "method": "courtcase",
+   "hex": "#2563eb",
+   "label": "j157 \u00b7 new.new courtcase()",
+   "outline": "#a32714"
+  },
+  {
+   "from": "cli",
+   "to": "cli",
+   "from_xyz": {
+    "x": 2.71485,
+    "y": 2.47,
+    "z": 2.40047,
+    "px": 445.8,
+    "py": 530.1
+   },
+   "to_xyz": {
+    "x": 2.71485,
+    "y": 2.47,
+    "z": 2.40047,
+    "px": 445.8,
+    "py": 530.1
+   },
+   "index": 1394,
+   "job": "j157",
+   "run": "run-2eb42d",
+   "call": "fc1362",
+   "method": "cli",
+   "hex": "#2563eb",
+   "label": "j157 \u00b7 [[cli]](cli)",
+   "outline": "#1a80d9"
+  },
+  {
+   "from": "thryd",
+   "to": "cook",
+   "from_xyz": {
+    "x": 5.35552,
+    "y": 2.47,
+    "z": 2.11477,
+    "px": 592.8,
+    "py": 598.4
+   },
+   "to_xyz": {
+    "x": 3.03411,
+    "y": 2.47,
+    "z": 2.12748,
+    "px": 475.5,
+    "py": 531.4
+   },
+   "index": 1395,
+   "job": "j157",
+   "run": "run-2eb42d",
+   "call": "sfc1363",
+   "method": "cook",
+   "hex": "#2563eb",
+   "label": "j157 \u00b7 thryd.cook(laugh)",
+   "outline": "#60a314"
+  },
+  {
+   "from": "ronke",
+   "to": "bush",
+   "from_xyz": {
+    "x": 2.27364,
+    "y": 2.47,
+    "z": 0.28,
+    "px": 530.1,
+    "py": 455.8
+   },
+   "to_xyz": {
+    "x": 2.00592,
+    "y": 2.47,
+    "z": 1.22575,
+    "px": 469.2,
+    "py": 475.5
+   },
+   "index": 1396,
+   "job": "j157",
+   "run": "run-2eb42d",
+   "call": "sfc1364",
+   "method": "go",
+   "hex": "#2563eb",
+   "label": "j157 \u00b7 ronke.go(bush)",
+   "outline": "#41d91a"
+  },
+  {
+   "from": "only",
+   "to": "see",
+   "from_xyz": {
+    "x": 5.05844,
+    "y": 2.47,
+    "z": 2.0786,
+    "px": 579.7,
+    "py": 588.7
+   },
+   "to_xyz": {
+    "x": 1.50194,
+    "y": 2.47,
+    "z": 1.7899,
+    "px": 415.5,
+    "py": 477.2
+   },
+   "index": 1397,
+   "job": "j157",
+   "run": "run-2eb42d",
+   "call": "sfc1365",
+   "method": "see",
+   "hex": "#2563eb",
+   "label": "j157 \u00b7 only.see(data)",
+   "outline": "#1a80d9"
+  },
+  {
+   "from": "don",
+   "to": "play",
+   "from_xyz": {
+    "x": 4.1117,
+    "y": 2.47,
+    "z": 1.23777,
+    "px": 574.4,
+    "py": 536.9
+   },
+   "to_xyz": {
+    "x": 3.61164,
+    "y": 2.47,
+    "z": 1.85977,
+    "px": 518.0,
+    "py": 540.4
+   },
+   "index": 1398,
+   "job": "j157",
+   "run": "run-2eb42d",
+   "call": "sfc1366",
+   "method": "mend",
+   "hex": "#2563eb",
+   "label": "j157 \u00b7 don.mend(play)",
+   "outline": "#60a314"
   }
  ],
- "n_vertices": 758,
- "n_edges": 1403,
- "n_object_vertices": 509,
- "n_method_vertices": 249,
+ "n_vertices": 762,
+ "n_edges": 1411,
+ "n_object_vertices": 511,
+ "n_method_vertices": 251,
  "agenda_palette": {
   "atbl-kmb-run": {
    "dot": "\ud83c\udf40",
@@ -46114,5 +46370,5 @@
    "kind": "edge"
   }
  ],
- "stroke_hash": "7315f51a027f3907017ddcc723dd06fe23826ec22ea5788c935680e3819c149e"
+ "stroke_hash": "7622a8ac8767086d610ba0a33925bbc9b2d1860075a1c7c34ace5257c67e7740"
 }
