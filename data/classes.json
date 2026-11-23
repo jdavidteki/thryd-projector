@@ -75,11 +75,11 @@
    "param": "where",
    "methods": [
     "follow",
-    "listen",
-    "see"
+    "getlocation",
+    "listen"
    ],
-   "instances": 11,
-   "arg_instances": 4,
+   "instances": 12,
+   "arg_instances": 5,
    "parent": "Thing",
    "chain": [
     "Place",
@@ -106,8 +106,8 @@
     "ask",
     "give"
    ],
-   "instances": 395,
-   "arg_instances": 73,
+   "instances": 397,
+   "arg_instances": 75,
    "parent": null,
    "chain": [
     "Thing"
@@ -1434,6 +1434,22 @@
     }
    ]
   },
+  "deconversation": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-888ea9",
+   "first_job": "j4",
+   "source": "pick",
+   "runs": [
+    "run-888ea9"
+   ],
+   "tweets": [
+    {
+     "text": "- i said, don’t worry, huh i have a deconversation",
+     "year": "2025"
+    }
+   ]
+  },
   "deepromance": {
    "class": "Thing",
    "cue": "default",
@@ -2129,6 +2145,22 @@
     "run-c51768"
    ],
    "tweets": []
+  },
+  "fu": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-888ea9",
+   "first_job": "j4",
+   "source": "pick",
+   "runs": [
+    "run-888ea9"
+   ],
+   "tweets": [
+    {
+     "text": "- deya not pawa full as in f.u",
+     "year": "2024"
+    }
+   ]
   },
   "fujihouseofcomotion": {
    "class": "Thing",
@@ -3011,6 +3043,22 @@
     {
      "text": "- now you know! now you know",
      "year": "2025"
+    }
+   ]
+  },
+  "kishin": {
+   "class": "Place",
+   "cue": "tweet: in/at the ...",
+   "first_run": "run-888ea9",
+   "first_job": "j4",
+   "source": "pick",
+   "runs": [
+    "run-888ea9"
+   ],
+   "tweets": [
+    {
+     "text": "- do tunde.getlocation() and hiz in the kishin",
+     "year": "2024"
     }
    ]
   },
@@ -7633,6 +7681,26 @@
     "stage"
    ]
   ],
+  "run-888ea9": [
+   [
+    "fu",
+    "Thing",
+    "j4",
+    "pick"
+   ],
+   [
+    "kishin",
+    "Place",
+    "j4",
+    "pick"
+   ],
+   [
+    "deconversation",
+    "Thing",
+    "j4",
+    "pick"
+   ]
+  ],
   "run-b70200": [
    [
     "michaeljackson",
@@ -10212,6 +10280,9 @@
   "use.mend": "mend(what: Thing)",
   "buy.fold": "fold(what: Thing)",
   "ronke.fold": "fold(what: Thing)",
+  "pawa.full": "full(what: Thing)",
+  "tunde.getlocation": "getlocation(where: Place)",
+  "worry.have": "have(what: Thing)",
   "cooler.getdatemanufactured": "getDateManufactured()",
   "ronke.getlikes.contains": "getlikes.contains()",
   "kazeem.goodqualities.filter": "filter()",
@@ -10646,6 +10717,11 @@
    "kunle",
    "nobody",
    "titi"
+  ],
+  "run-888ea9": [
+   "pawa",
+   "tunde",
+   "worry"
   ]
  },
  "genre_types": {
@@ -10720,5 +10796,5 @@
   "epilogue": "quiet",
   "coda": "quiet"
  },
- "updated": "2026-11-23T13:11:19-05:00"
+ "updated": "2026-11-23T17:52:09-05:00"
 }

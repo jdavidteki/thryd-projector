@@ -10399,6 +10399,210 @@
    "faded": false,
    "last_run": "run-2eb42d"
   },
+  "pawa.full": {
+   "object": "pawa",
+   "method": "full",
+   "args": [
+    "fu"
+   ],
+   "runs": [
+    "run-888ea9"
+   ],
+   "defined": {
+    "run": "run-888ea9",
+    "job": "j4",
+    "card": "w4",
+    "title": "pawa.full(fu)",
+    "emoji": "🔋",
+    "at": "2026-11-23T17:51:25-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "pawa.full(fu)",
+     "emoji": "🔋",
+     "arg": "fu",
+     "run": "run-888ea9",
+     "job": "j4",
+     "tweets": [
+      {
+       "text": "- deya not pawa full as in f.u",
+       "year": "2024"
+      }
+     ],
+     "consequence": "Then the laptop flashes “deya not pawa full as in f.u”.",
+     "consequence_job": "j5",
+     "resolved": "pawa.full(what=fu:Thing) from j4",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "fu",
+       "from_run": "run-888ea9",
+       "from_job": "j4",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "fu",
+      "first_run": "run-888ea9",
+      "first_job": "j4"
+     }
+    ],
+    "text": "full(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "tunde.getlocation": {
+   "object": "tunde",
+   "method": "getlocation",
+   "args": [
+    "kishin"
+   ],
+   "runs": [
+    "run-888ea9"
+   ],
+   "defined": {
+    "run": "run-888ea9",
+    "job": "j4",
+    "card": "w4",
+    "title": "tunde.getlocation(kishin)",
+    "emoji": "💍",
+    "at": "2026-11-23T17:51:25-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "tunde.getlocation(kishin)",
+     "emoji": "💍",
+     "arg": "kishin",
+     "run": "run-888ea9",
+     "job": "j4",
+     "tweets": [
+      {
+       "text": "- do tunde.getlocation() and hiz in the kishin",
+       "year": "2024"
+      }
+     ],
+     "consequence": "As it pulls off, the tech rebel types “do tunde.getlocation() and hiz in the kishin”.",
+     "consequence_job": "j5",
+     "resolved": "tunde.getlocation(where=kishin:Place) from j4",
+     "injected": [
+      {
+       "param": "where",
+       "class": "Place",
+       "instance": "kishin",
+       "from_run": "run-888ea9",
+       "from_job": "j4",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "where",
+      "class": "Place",
+      "default": "kishin",
+      "first_run": "run-888ea9",
+      "first_job": "j4"
+     }
+    ],
+    "text": "getlocation(where: Place)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "worry.have": {
+   "object": "worry",
+   "method": "have",
+   "args": [
+    "deconversation"
+   ],
+   "runs": [
+    "run-888ea9"
+   ],
+   "defined": {
+    "run": "run-888ea9",
+    "job": "j4",
+    "card": "w4",
+    "title": "worry.have(deconversation)",
+    "emoji": "🤷",
+    "at": "2026-11-23T17:51:25-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "worry.have(deconversation)",
+     "emoji": "🤷",
+     "arg": "deconversation",
+     "run": "run-888ea9",
+     "job": "j4",
+     "tweets": [
+      {
+       "text": "- i said, don’t worry, huh i have a deconversation",
+       "year": "2025"
+      }
+     ],
+     "consequence": "📍 Safehouse, Lagos streets 🏚️ · 13 of 35 lines in Someone climbs into the keke: “i said, don’t worry, huh i have a deconversation”.",
+     "consequence_job": "j5",
+     "resolved": "worry.have(what=deconversation:Thing) from j4",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "deconversation",
+       "from_run": "run-888ea9",
+       "from_job": "j4",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "deconversation",
+      "first_run": "run-888ea9",
+      "first_job": "j4"
+     }
+    ],
+    "text": "have(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [
+    {
+     "id": "kunle.have",
+     "title": "kunle.have(coordinates)",
+     "run": "run-g1-B",
+     "job": "j11",
+     "at": "2026-11-17T18:25:59-05:00",
+     "why": "same method"
+    }
+   ],
+   "faded": false,
+   "last_run": null
+  },
   "cooler.getdatemanufactured": {
    "object": "cooler",
    "method": "getDateManufactured",
@@ -13800,6 +14004,9 @@
   "oyinboman": [
    "oyinboman.know"
   ],
+  "pawa": [
+   "pawa.full"
+  ],
   "people": [
    "people.getocsw"
   ],
@@ -13976,6 +14183,9 @@
   "townhallmeeting": [
    "townhallmeeting.newguest"
   ],
+  "tunde": [
+   "tunde.getlocation"
+  ],
   "ty": [
    "ty.beplo"
   ],
@@ -13994,6 +14204,9 @@
   ],
   "wife": [
    "wife.kill"
+  ],
+  "worry": [
+   "worry.have"
   ],
   "y": [
    "y.np"
@@ -25409,6 +25622,7 @@
     "from": "0a88bcb1bbe8",
     "title": "603. poetry",
     "funcs": [
+     "worry.have",
      "titi.keep"
     ]
    }
@@ -26900,6 +27114,7 @@
     "from": "9b4b423fcdb7",
     "title": "1026. the sky",
     "funcs": [
+     "tunde.getlocation",
      "attendant.put"
     ]
    }
@@ -28679,6 +28894,18 @@
     ]
    }
   ],
+  "usher_by_kiss_figure": [
+   {
+    "scope": "safe",
+    "from": "38688e69edf3",
+    "title": "1003. usher by kiss daniel",
+    "funcs": [
+     "worry.have",
+     "tunde.getlocation",
+     "pawa.full"
+    ]
+   }
+  ],
   "vex": [
    {
     "scope": "run",
@@ -29655,6 +29882,14 @@
    "safe": "35e37a321959",
    "funcs": []
   },
+  "run-888ea9": {
+   "safe": "38688e69edf3",
+   "funcs": [
+    "pawa.full",
+    "tunde.getlocation",
+    "worry.have"
+   ]
+  },
   "run-bd649b": {
    "safe": "feb29a74094b",
    "funcs": [
@@ -29851,7 +30086,8 @@
   "0a88bcb1bbe8": {
    "title": "603. poetry",
    "funcs": [
-    "titi.keep"
+    "titi.keep",
+    "worry.have"
    ],
    "runs": []
   },
@@ -30048,6 +30284,17 @@
     "thrill.know"
    ],
    "runs": []
+  },
+  "38688e69edf3": {
+   "title": "1003. usher by kiss daniel",
+   "funcs": [
+    "pawa.full",
+    "tunde.getlocation",
+    "worry.have"
+   ],
+   "runs": [
+    "run-888ea9"
+   ]
   },
   "44583f98086d": {
    "title": "405. how to [[discover river niger]]",
@@ -30324,7 +30571,8 @@
   "9b4b423fcdb7": {
    "title": "1026. the sky",
    "funcs": [
-    "attendant.put"
+    "attendant.put",
+    "tunde.getlocation"
    ],
    "runs": []
   },
@@ -30381,6 +30629,13 @@
    "title": "1219. promiscuity",
    "funcs": [
     "kazeem.run"
+   ],
+   "runs": []
+  },
+  "b02906d784b9": {
+   "title": "719. the technicalities of a time traveling device",
+   "funcs": [
+    "pawa.full"
    ],
    "runs": []
   },
@@ -31000,6 +31255,9 @@
   "1*WHi5bGe1yByrJpchMb-ggw.gif": [
    "f3242b82bede"
   ],
+  "1*Pk8Lr8EFN6Audtb8lRp_pA.gif": [
+   "b02906d784b9"
+  ],
   "1*BiRPdRqsYp7KBNTKPU6WUg.gif": [
    "a3d083db0935"
   ],
@@ -31028,6 +31286,9 @@
   ],
   "1*NIUcPPNMbOVZpzrAfqbDZA.jpeg": [
    "483f5ddc9d35"
+  ],
+  "1*fRybDa0nJYSdJgMbSrO3iw.gif": [
+   "38688e69edf3"
   ],
   "1*-TkXCRbWmzDw7ZJy1b6TZg.jpeg": [
    "ba87d1a4bdd9"
@@ -31696,6 +31957,12 @@
     "9aa1737aecfa"
    ]
   },
+  "1*fRybDa0nJYSdJgMbSrO3iw.gif": {
+   "runs": [],
+   "safes": [
+    "38688e69edf3"
+   ]
+  },
   "1*TiL0IvDDPzStKiggW0yuww.gif": {
    "runs": [],
    "safes": [
@@ -32032,6 +32299,9 @@
   "oyinboman": [
    "oyinboman.know"
   ],
+  "pawa": [
+   "pawa.full"
+  ],
   "people": [
    "people.getocsw"
   ],
@@ -32159,6 +32429,9 @@
   "townhallmeeting": [
    "townhallmeeting.newguest"
   ],
+  "tunde": [
+   "tunde.getlocation"
+  ],
   "ty": [
    "ty.beplo"
   ],
@@ -32177,6 +32450,9 @@
   ],
   "wife": [
    "wife.kill"
+  ],
+  "worry": [
+   "worry.have"
   ],
   "y": [
    "y.np"
@@ -32341,6 +32617,9 @@
   "buy": [
    "Foldable"
   ],
+  "pawa": [],
+  "tunde": [],
+  "worry": [],
   "cooler": [],
   "kazeem.goodqualities": [],
   "app": [],
@@ -32503,6 +32782,11 @@
    "kunle",
    "nobody",
    "titi"
+  ],
+  "run-888ea9": [
+   "pawa",
+   "tunde",
+   "worry"
   ]
  },
  "gc": {
@@ -32516,5 +32800,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-23T13:11:20-05:00"
+ "updated": "2026-11-23T17:52:09-05:00"
 }
