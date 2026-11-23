@@ -351,7 +351,7 @@
     var add=units.filter(function(u){return have[u.key]!==u.hash;});
     DM=d;loadAgendaDots();loadVertexLabels();man.layers=units;man.v='d'+(d.v||d.sig||units.length);man.stroke_hash=d.sig||null;man.outline=d.edges||[];man.drawing=true;
     man.strokes=units.map(function(u){var q=u.g.at(0.5);return {k:u.i,kind:'call',call:(u.e&&u.e.call)||'',job:(u.e&&u.e.job)||'',run:'',label:u.label,hex:u.hex,x:q[0],y:q[1],actor:'',floor:''};});
-    units.forEach(function(u){imgs[u.key]=1;});
+    imgs={};units.forEach(function(u){imgs[u.key]=1;});queue=[];active=null;sparks=[]; // replace, never accumulate (23 Nov low-memory)
     reset();man.layers.forEach(function(u){if(have[u.key]===u.hash)commit(u);});
     add.forEach(function(u){queue.push({L:u,s0:0});});phase='paint';ph=0;kick();}).catch(function(){});}
   function bootFromLayers(m){

@@ -530,7 +530,7 @@ function backdrop(set,force){ if(!libPin.allow(set))return; if(Date.now()<HOLD)r
     return;
   }
   // frame 0 first (it goes straight into the hidden image); the rest preload once it is up, so a slow link isn't split 40 ways
-  const pre=[]; const preload=()=>{if(bgSet!==set||pre.length)return; for(let i=0;i<set.frames;i++){const im=new Image();im.src=`${set.dir}/f${String(i).padStart(3,'0')}.webp`;pre.push(im);} const k=viewKey(set); if(k) viewPre.set(k,pre); retainView(set,on);};
+  const pre=[]; const preload=()=>{if(bgSet!==set||pre.length)return; for(let i=0;i<set.frames;i++){const im=new Image();im.decoding='async';im.src=`${set.dir}/f${String(i).padStart(3,'0')}.webp`;pre.push(im);} const k=viewKey(set); if(k) viewPre.set(k,pre); retainView(set,on);};
   // advance only to a frame that has fully arrived; otherwise hold the current frame (never a half-loaded black frame)
   const tick=()=>{if(bgI>0&&!shown)return; const im=pre[bgI%set.frames]; if(bgI>0&&!(im&&im.complete&&im.naturalWidth))return; on.src=im?im.src:`${set.dir}/f${String(bgI%set.frames).padStart(3,'0')}.webp`;bgI++;};
   tick(); whenReady(on,()=>{flip();preload();});

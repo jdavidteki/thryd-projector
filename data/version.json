@@ -1,5 +1,5 @@
 {
- "v": 607,
- "at": "2026-11-23T17:40:00-05:00",
- "note": "v607: low-heat mode (Jesuye, Galaxy Z Fold heating in multiwindow). One shared scheduler (assets/lowheat.js, loaded first): after 60 s without a touch, key or scroll, or when the window loses focus, the news ticker, the /story/ drift, painting and 1 s settle, and the mini story card spin stop; other frames drop to about 10 fps and fast UI timers to every 10 s. While in use, frames are capped at about 30 fps (full rate while a finger is down). Data polls run every 2-5 min (story drawing every 3 min), the version check every 5 min. Hidden tabs pause everything except audio and saving, then refresh once on return. Slideshow, live GIF frames, tweet embeds and saved settings are unchanged. ?lowheat=0 turns it off for a wall projector."
+ "v": 608,
+ "at": "2026-11-23T17:45:00-05:00",
+ "note": "v608: lower memory on phones (Jesuye: Chrome memory on the Fold). Stage bitmap budget on phones 90 MB to 60 MB and 8 stored frames per animated cut (was 10); the story drawing reload replaces its paint queue instead of adding to it; the lovemap 3D graph stops rendering while idle or hidden and resumes on touch; slide frames decode off the main thread. Builds on v607 low-heat mode."
 }

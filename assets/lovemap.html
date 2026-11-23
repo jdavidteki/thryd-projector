@@ -149,6 +149,7 @@ function nodeCol(n){if(n===sel)return '#ffffff'; if(n.kind==='call')return NCOL[
 function init(){
   if(typeof ForceGraph3D!=='function'){document.getElementById('empty').className='on';document.getElementById('empty').textContent='lovemap library failed to load';return}
   var el=document.getElementById('g');
+  setTimeout(function(){if(!G||!window.LH||!LH.on)return;var lhp=function(s){try{if(s==='active')G.resumeAnimation();else G.pauseAnimation();}catch(e){}};LH.on(lhp);if(LH.state!=='active')lhp(LH.state);},0); // low-heat: 3D graph frozen while idle/hidden
   G=ForceGraph3D()(el).backgroundColor('#050505')
    .graphData({nodes:[],links:[]})
    .nodeId('id').nodeVal(nodeVal).nodeRelSize(4).nodeResolution(12)

@@ -66,8 +66,8 @@
   const MAX_GROUPS = PHONE ? 18 : 36;     // story groups; pins do not count
   const PER_GROUP = PHONE ? 4 : 6;
   const READY = PHONE ? 1 : 2;               // decoded groups kept in the wings
-  const MAXF = PHONE ? 10 : 20;              // stored frames per animated cut (longer GIFs keep every k-th frame, delays summed)
-  const BUDGET = (PHONE ? 90 : 260) * 1048576; // decoded bitmap bytes held by the stage
+  const MAXF = PHONE ? 8 : 20;                 // stored frames per animated cut (longer GIFs keep every k-th frame, delays summed)
+  const BUDGET = (PHONE ? 60 : 260) * 1048576; // phone 90→60 MB (23 Nov 2026, Jesuye: Chrome memory on the Fold) // decoded bitmap bytes held by the stage
   // pins float on the stage but never count toward CAP, MAX_GROUPS, or the byte budget (Jesuye 17 Nov 9:57 PM ET)
   const isLeaving = c => !!(c && (c.leaving || (c.g && c.g.gone)));
   const storyCuts = ()=> S.cuts.filter(c => !c.map);
