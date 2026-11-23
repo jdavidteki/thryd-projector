@@ -1139,16 +1139,6 @@
 ],
 "matches": [
 {
-"id": "wf_b37816f8e3",
-"kind": "consequence",
-"text": "A Sheep note with Kunle's name and 'scorched container number' on it, turns up with the matches, which is still found.",
-"code": "twgs.interactwith(matches){ matches.receives(twgs.number); matches.remembers(kunle, 'scorched container number'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "w7",
-"other": "twgs"
-},
-{
 "id": "wf_145593d448",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the matches, which is still found.",
@@ -1187,6 +1177,16 @@
 "run": "run-2eb42d",
 "card": "w7",
 "other": null
+},
+{
+"id": "wf_0f8b3252e7",
+"kind": "consequence",
+"text": "A Sheep note with Kunle's name and 'scorched container number' on it, turns up with the matches, which is still found.",
+"code": "sheep.interactwith(matches){ matches.receives(sheep.number); matches.remembers(kunle, 'scorched container number'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w7",
+"other": "sheep"
 }
 ],
 "gbagada_hospital_waiting": [
@@ -10214,17 +10214,6 @@
 },
 "consequences": [
 {
-"id": "wf_1676f05bef",
-"ts": "2026-11-23T13:27:26-0500",
-"a": "asmathic",
-"b": "plastic_sheet",
-"code": "asmathic.interactwith(plastic_sheet){ plastic_sheet.receives(asmathic.envelope); plastic_sheet.remembers(bisola, 'brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the plastic sheet, which is still wet.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
 "id": "wf_8690520cde",
 "ts": "2026-11-23T13:31:02-0500",
 "a": "vex",
@@ -10652,6 +10641,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_0f8b3252e7",
+"ts": "2026-11-23T18:22:46-0500",
+"a": "sheep",
+"b": "matches",
+"code": "sheep.interactwith(matches){ matches.receives(sheep.number); matches.remembers(kunle, 'scorched container number'); }",
+"text": "A Sheep note with Kunle's name and 'scorched container number' on it, turns up with the matches, which is still found.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w7"
 }
 ],
 "memories": [
@@ -10755,5 +10755,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-23T18:08:20-0500"
+"updated": "2026-11-23T18:22:46-0500"
 }
