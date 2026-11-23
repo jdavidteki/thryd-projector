@@ -574,6 +574,18 @@
    "location": null,
    "source": "sha256"
   },
+  "babe": {
+   "id": "babe",
+   "kind": "object",
+   "floor": "GROUND",
+   "x": 4.5295,
+   "y": 2.47,
+   "z": 1.74987,
+   "px": 569.6,
+   "py": 563.8,
+   "location": null,
+   "source": "sha256"
+  },
   "background typeline v569mwmgb5ik c": {
    "id": "background typeline v569mwmgb5ik c",
    "kind": "object",
@@ -5086,6 +5098,18 @@
    "location": "road",
    "source": "world_objects.location"
   },
+  "mind": {
+   "id": "mind",
+   "kind": "object",
+   "floor": "GROUND",
+   "x": 5.63171,
+   "y": 2.47,
+   "z": 2.36576,
+   "px": 594.0,
+   "py": 613.7,
+   "location": null,
+   "source": "sha256"
+  },
   "minutes": {
    "id": "minutes",
    "kind": "object",
@@ -6595,6 +6619,18 @@
    "z": 1.57242,
    "px": 447.6,
    "py": 483.1,
+   "location": null,
+   "source": "sha256"
+  },
+  "running": {
+   "id": "running",
+   "kind": "object",
+   "floor": "GROUND",
+   "x": 5.04766,
+   "y": 2.47,
+   "z": 2.12867,
+   "px": 576.6,
+   "py": 589.9,
    "location": null,
    "source": "sha256"
   },
@@ -43180,7 +43216,7 @@
   },
   {
    "from": "kiss",
-   "to": "lift",
+   "to": "babe",
    "from_xyz": {
     "x": 5.03497,
     "y": 2.47,
@@ -43189,11 +43225,11 @@
     "py": 556.8
    },
    "to_xyz": {
-    "x": 2.19702,
+    "x": 4.5295,
     "y": 2.47,
-    "z": 1.33128,
-    "px": 473.5,
-    "py": 484.1
+    "z": 1.74987,
+    "px": 569.6,
+    "py": 563.8
    },
    "index": 1303,
    "job": "j139",
@@ -44945,11 +44981,167 @@
    "hex": "#2563eb",
    "label": "j152 \u00b7 ronke.teach(because)",
    "outline": "#a35714"
+  },
+  {
+   "from": "cli",
+   "to": "cli",
+   "from_xyz": {
+    "x": 2.71485,
+    "y": 2.47,
+    "z": 2.40047,
+    "px": 445.8,
+    "py": 530.1
+   },
+   "to_xyz": {
+    "x": 2.71485,
+    "y": 2.47,
+    "z": 2.40047,
+    "px": 445.8,
+    "py": 530.1
+   },
+   "index": 1371,
+   "job": "j153",
+   "run": "run-2eb42d",
+   "call": "fc1339",
+   "method": "cli",
+   "hex": "#2563eb",
+   "label": "j153 \u00b7 cli.c2()",
+   "outline": "#1a80d9"
+  },
+  {
+   "from": "cli",
+   "to": "cli",
+   "from_xyz": {
+    "x": 2.71485,
+    "y": 2.47,
+    "z": 2.40047,
+    "px": 445.8,
+    "py": 530.1
+   },
+   "to_xyz": {
+    "x": 2.71485,
+    "y": 2.47,
+    "z": 2.40047,
+    "px": 445.8,
+    "py": 530.1
+   },
+   "index": 1372,
+   "job": "j153",
+   "run": "run-2eb42d",
+   "call": "fc1340",
+   "method": "cli",
+   "hex": "#2563eb",
+   "label": "j153 \u00b7 [[cli]](cli)",
+   "outline": "#1a80d9"
+  },
+  {
+   "from": "cli",
+   "to": "cli",
+   "from_xyz": {
+    "x": 2.71485,
+    "y": 2.47,
+    "z": 2.40047,
+    "px": 445.8,
+    "py": 530.1
+   },
+   "to_xyz": {
+    "x": 2.71485,
+    "y": 2.47,
+    "z": 2.40047,
+    "px": 445.8,
+    "py": 530.1
+   },
+   "index": 1373,
+   "job": "j153",
+   "run": "run-2eb42d",
+   "call": "fc1341",
+   "method": "cli",
+   "hex": "#2563eb",
+   "label": "j153 \u00b7 #thryd.miracle.log(1)",
+   "outline": "#1a80d9"
+  },
+  {
+   "from": "babe",
+   "to": "tune",
+   "from_xyz": {
+    "x": 4.5295,
+    "y": 2.47,
+    "z": 1.74987,
+    "px": 569.6,
+    "py": 563.8
+   },
+   "to_xyz": {
+    "x": 1.53675,
+    "y": 2.47,
+    "z": 2.03007,
+    "px": 405.2,
+    "py": 485.2
+   },
+   "index": 1374,
+   "job": "j153",
+   "run": "run-2eb42d",
+   "call": "sfc1342",
+   "method": "tune",
+   "hex": "#2563eb",
+   "label": "j153 \u00b7 babe.tune(it)",
+   "outline": "#1ad9b3"
+  },
+  {
+   "from": "ronke",
+   "to": "mind",
+   "from_xyz": {
+    "x": 2.27364,
+    "y": 2.47,
+    "z": 0.28,
+    "px": 530.1,
+    "py": 455.8
+   },
+   "to_xyz": {
+    "x": 5.63171,
+    "y": 2.47,
+    "z": 2.36576,
+    "px": 594.0,
+    "py": 613.7
+   },
+   "index": 1375,
+   "job": "j153",
+   "run": "run-2eb42d",
+   "call": "sfc1343",
+   "method": "see",
+   "hex": "#2563eb",
+   "label": "j153 \u00b7 ronke.see(mind)",
+   "outline": "#1a80d9"
+  },
+  {
+   "from": "running",
+   "to": "ttb",
+   "from_xyz": {
+    "x": 5.04766,
+    "y": 2.47,
+    "z": 2.12867,
+    "px": 576.6,
+    "py": 589.9
+   },
+   "to_xyz": {
+    "x": 3.10029,
+    "y": 2.47,
+    "z": 1.17227,
+    "px": 526.8,
+    "py": 505.6
+   },
+   "index": 1376,
+   "job": "j153",
+   "run": "run-2eb42d",
+   "call": "sfc1344",
+   "method": "teach",
+   "hex": "#2563eb",
+   "label": "j153 \u00b7 running.teach(ttb)",
+   "outline": "#a35714"
   }
  ],
- "n_vertices": 748,
- "n_edges": 1383,
- "n_object_vertices": 499,
+ "n_vertices": 751,
+ "n_edges": 1389,
+ "n_object_vertices": 502,
  "n_method_vertices": 249,
  "agenda_palette": {
   "atbl-kmb-run": {
@@ -45474,5 +45666,5 @@
    "kind": "edge"
   }
  ],
- "stroke_hash": "9e2b634f44a5649f0d742bd585db13318cdb9c35da7ece94bbc51c2f125e3583"
+ "stroke_hash": "89a2ac1fa7e3ad4630925f68bc90309699a6ef4ae482fe3a6d40c29a0eb1156f"
 }
