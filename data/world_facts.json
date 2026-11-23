@@ -6943,16 +6943,6 @@
 ],
 "iae": [
 {
-"id": "wf_b432e9a6cb",
-"kind": "consequence",
-"text": "A Chair note with Taiwo's name and '11:20pm' on it, turns up with the iae, which is still initialized.",
-"code": "chair.interactwith(iae){ iae.receives(chair.pm); iae.remembers(taiwo, '11:20pm'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "w6",
-"other": "chair"
-},
-{
 "id": "wf_b067528817",
 "kind": "consequence",
 "text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up with the iae, which is still initialized.",
@@ -6991,6 +6981,16 @@
 "run": "run-2eb42d",
 "card": "w38",
 "other": "kazeem"
+},
+{
+"id": "wf_000877b1d5",
+"kind": "consequence",
+"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up with the iae, which is still initialized.",
+"code": "computer_village.interactwith(iae){ iae.receives(computer_village.shirt); iae.remembers(bisola, 'green shirt'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j8",
+"other": "computer_village"
 }
 ],
 "tf_mom": [
@@ -10204,17 +10204,6 @@
 },
 "consequences": [
 {
-"id": "wt_300b229123",
-"ts": "2026-11-23T10:27:42-0500",
-"a": "ronke",
-"b": "pure_water_cooler",
-"code": "ronke.interactwith(pure_water_cooler){ ronke.count(pure_water_cooler, 'change tin'); … }",
-"text": "At the end of the night Ronke counts the cooler's change tin again and it comes out full, because nobody's change was short tonight, so the tin is ready for this round's àjọ payout.",
-"author": "cos",
-"run": "story-4b1689",
-"card": "j158"
-},
-{
 "id": "wt_d69f7e3c99",
 "ts": "2026-11-23T10:27:42-0500",
 "a": "ronke",
@@ -10642,6 +10631,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": ""
+},
+{
+"id": "wf_000877b1d5",
+"ts": "2026-11-23T17:03:51-0500",
+"a": "computer_village",
+"b": "iae",
+"code": "computer_village.interactwith(iae){ iae.receives(computer_village.shirt); iae.remembers(bisola, 'green shirt'); }",
+"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up with the iae, which is still initialized.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j8"
 }
 ],
 "memories": [
@@ -10745,5 +10745,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-23T16:52:44-0500"
+"updated": "2026-11-23T17:03:51-0500"
 }
