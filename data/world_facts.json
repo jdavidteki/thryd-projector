@@ -879,16 +879,6 @@
 ],
 "danfo_speaker": [
 {
-"id": "wf_9a796688dc",
-"kind": "consequence",
-"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up with the danfo speaker, which is still playing the same love song.",
-"code": "ttb.interactwith(danfo_speaker){ danfo_speaker.receives(ttb.code); danfo_speaker.remembers(ejiro, 'juju code'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j2",
-"other": "ttb"
-},
-{
 "id": "wf_4d8147fa2f",
 "kind": "consequence",
 "text": "The iae ends up with the danfo speaker, still initialized.",
@@ -897,6 +887,16 @@
 "run": "run-2eb42d",
 "card": "w1",
 "other": "iae"
+},
+{
+"id": "wf_618410bf5b",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the danfo speaker, which is still playing the same love song.",
+"code": "move.interactwith(danfo_speaker){ danfo_speaker.receives(move.envelope); danfo_speaker.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "move"
 },
 {
 "id": "wf_bdad55d985",
@@ -10154,17 +10154,6 @@
 },
 "consequences": [
 {
-"id": "wf_de53435e3d",
-"ts": "2026-11-19T13:10:00-0500",
-"a": "ojuelegba_bus_stop",
-"b": "mkdwo",
-"code": "ojuelegba_bus_stop.interactwith(mkdwo){ mkdwo.receives(ojuelegba_bus_stop.envelope); mkdwo.remembers(bisola, 'brown envelope'); }",
-"text": "The mkdwo leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
 "id": "wf_7171ee9545",
 "ts": "2026-11-19T13:10:53-0500",
 "a": "computer_village",
@@ -10592,6 +10581,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_618410bf5b",
+"ts": "2026-11-23T13:39:08-0500",
+"a": "move",
+"b": "danfo_speaker",
+"code": "move.interactwith(danfo_speaker){ danfo_speaker.receives(move.envelope); danfo_speaker.remembers(bisola, 'brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the danfo speaker, which is still playing the same love song.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -10695,5 +10695,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-23T13:38:14-0500"
+"updated": "2026-11-23T13:40:02-0500"
 }
