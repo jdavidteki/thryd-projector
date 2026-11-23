@@ -8171,16 +8171,6 @@
 ],
 "computer_village": [
 {
-"id": "wf_44ca30d515",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the computer village, and Bisola reads the name twice.",
-"code": "listen.interactwith(computer_village){ computer_village.receives(listen.envelope); … }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "listen"
-},
-{
 "id": "wf_b1e3ef3980",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the computer village, and Bisola reads the name twice.",
@@ -8219,6 +8209,16 @@
 "run": "run-2eb42d",
 "card": "j8",
 "other": "precision"
+},
+{
+"id": "wf_5105223ba9",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the green shirt at the computer village, and Bisola reads the name twice.",
+"code": "patagonia.interactwith(computer_village){ computer_village.receives(patagonia.envelope); … }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "patagonia"
 }
 ],
 "oh_pls_shaaatttaaapppp": [
@@ -10204,17 +10204,6 @@
 },
 "consequences": [
 {
-"id": "wt_d69f7e3c99",
-"ts": "2026-11-23T10:27:42-0500",
-"a": "ronke",
-"b": "secretary",
-"code": "secretary.interactwith(ronke){ secretary.writes(ronke, 'ajo turn'); ronke.set('ajo turn', 'her turn to collect the cooler tin this round, written in the ajo ledger'); }",
-"text": "Reading the full tin, the secretary opens the àjọ ledger and writes that this round's turn is Ronke's, after she swapped her testimony for the floor at the meeting.",
-"author": "cos",
-"run": "story-4b1689",
-"card": "j159"
-},
-{
 "id": "wt_bd2176821c",
 "ts": "2026-11-23T10:27:42-0500",
 "a": "ronke",
@@ -10642,6 +10631,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j8"
+},
+{
+"id": "wf_5105223ba9",
+"ts": "2026-11-23T17:16:28-0500",
+"a": "patagonia",
+"b": "computer_village",
+"code": "patagonia.interactwith(computer_village){ computer_village.receives(patagonia.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the green shirt at the computer village, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -10745,5 +10745,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-23T17:03:51-0500"
+"updated": "2026-11-23T17:16:28-0500"
 }
