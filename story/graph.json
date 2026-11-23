@@ -1042,6 +1042,18 @@
    "location": null,
    "source": "sha256"
   },
+  "busst": {
+   "id": "busst",
+   "kind": "object",
+   "floor": "GROUND",
+   "x": 0.31471,
+   "y": 2.47,
+   "z": 1.41496,
+   "px": 374.7,
+   "py": 431.9,
+   "location": null,
+   "source": "sha256"
+  },
   "buy": {
    "id": "buy",
    "kind": "object",
@@ -5266,6 +5278,18 @@
    "location": null,
    "source": "sha256"
   },
+  "next": {
+   "id": "next",
+   "kind": "object",
+   "floor": "GROUND",
+   "x": 1.65174,
+   "y": 2.47,
+   "z": 2.18288,
+   "px": 403.3,
+   "py": 492.9,
+   "location": null,
+   "source": "sha256"
+  },
   "nh": {
    "id": "nh",
    "kind": "object",
@@ -6451,6 +6475,18 @@
    "z": 1.94261,
    "px": 465.8,
    "py": 515.1,
+   "location": null,
+   "source": "sha256"
+  },
+  "rpc": {
+   "id": "rpc",
+   "kind": "method",
+   "floor": "GROUND",
+   "x": 3.33761,
+   "y": 2.47,
+   "z": 1.8613,
+   "px": 504.2,
+   "py": 532.5,
    "location": null,
    "source": "sha256"
   },
@@ -43959,12 +43995,168 @@
    "hex": "#2563eb",
    "label": "j146 \u00b7 ronke.weigh(tyg)",
    "outline": "#a8be17"
+  },
+  {
+   "from": "rpc",
+   "to": "safe",
+   "from_xyz": {
+    "x": 3.33761,
+    "y": 2.47,
+    "z": 1.8613,
+    "px": 504.2,
+    "py": 532.5
+   },
+   "to_xyz": {
+    "x": 1.74311,
+    "y": 2.47,
+    "z": 1.63673,
+    "px": 435.3,
+    "py": 479.8
+   },
+   "index": 1340,
+   "job": "j147",
+   "run": "run-2eb42d",
+   "call": "fc1308",
+   "method": "rpc",
+   "hex": "#2563eb",
+   "label": "j147 \u00b7 [[rpc]](safe)",
+   "outline": "#80d91a"
+  },
+  {
+   "from": "cli",
+   "to": "cli",
+   "from_xyz": {
+    "x": 2.71485,
+    "y": 2.47,
+    "z": 2.40047,
+    "px": 445.8,
+    "py": 530.1
+   },
+   "to_xyz": {
+    "x": 2.71485,
+    "y": 2.47,
+    "z": 2.40047,
+    "px": 445.8,
+    "py": 530.1
+   },
+   "index": 1341,
+   "job": "j147",
+   "run": "run-2eb42d",
+   "call": "fc1309",
+   "method": "cli",
+   "hex": "#2563eb",
+   "label": "j147 \u00b7 #thryd.miracle.log(1)",
+   "outline": "#1a80d9"
+  },
+  {
+   "from": "cli",
+   "to": "cli",
+   "from_xyz": {
+    "x": 2.71485,
+    "y": 2.47,
+    "z": 2.40047,
+    "px": 445.8,
+    "py": 530.1
+   },
+   "to_xyz": {
+    "x": 2.71485,
+    "y": 2.47,
+    "z": 2.40047,
+    "px": 445.8,
+    "py": 530.1
+   },
+   "index": 1342,
+   "job": "j147",
+   "run": "run-2eb42d",
+   "call": "fc1310",
+   "method": "cli",
+   "hex": "#2563eb",
+   "label": "j147 \u00b7 cli.a4()",
+   "outline": "#1a80d9"
+  },
+  {
+   "from": "next",
+   "to": "go",
+   "from_xyz": {
+    "x": 1.65174,
+    "y": 2.47,
+    "z": 2.18288,
+    "px": 403.3,
+    "py": 492.9
+   },
+   "to_xyz": {
+    "x": 4.07987,
+    "y": 2.47,
+    "z": 1.87573,
+    "px": 540.7,
+    "py": 554.5
+   },
+   "index": 1343,
+   "job": "j147",
+   "run": "run-2eb42d",
+   "call": "sfc1311",
+   "method": "go",
+   "hex": "#2563eb",
+   "label": "j147 \u00b7 next.go(week)",
+   "outline": "#41d91a"
+  },
+  {
+   "from": "busst",
+   "to": "tune",
+   "from_xyz": {
+    "x": 0.31471,
+    "y": 2.47,
+    "z": 1.41496,
+    "px": 374.7,
+    "py": 431.9
+   },
+   "to_xyz": {
+    "x": 1.53675,
+    "y": 2.47,
+    "z": 2.03007,
+    "px": 405.2,
+    "py": 485.2
+   },
+   "index": 1344,
+   "job": "j147",
+   "run": "run-2eb42d",
+   "call": "sfc1312",
+   "method": "tune",
+   "hex": "#2563eb",
+   "label": "j147 \u00b7 busst.tune(youre)",
+   "outline": "#1ad9b3"
+  },
+  {
+   "from": "ronke",
+   "to": "juniorgirls",
+   "from_xyz": {
+    "x": 2.27364,
+    "y": 2.47,
+    "z": 0.28,
+    "px": 530.1,
+    "py": 455.8
+   },
+   "to_xyz": {
+    "x": 2.55922,
+    "y": 2.47,
+    "z": 1.03545,
+    "px": 506.5,
+    "py": 486.0
+   },
+   "index": 1345,
+   "job": "j147",
+   "run": "run-2eb42d",
+   "call": "sfc1313",
+   "method": "take",
+   "hex": "#2563eb",
+   "label": "j147 \u00b7 ronke.take(juniorgirls)",
+   "outline": "#41d91a"
   }
  ],
- "n_vertices": 733,
- "n_edges": 1352,
- "n_object_vertices": 488,
- "n_method_vertices": 245,
+ "n_vertices": 736,
+ "n_edges": 1358,
+ "n_object_vertices": 490,
+ "n_method_vertices": 246,
  "agenda_palette": {
   "atbl-kmb-run": {
    "dot": "\ud83c\udf40",
@@ -44488,5 +44680,5 @@
    "kind": "edge"
   }
  ],
- "stroke_hash": "9314a52535aec12c5507aa45f6534280d825d0b778409377580df40a06b507a3"
+ "stroke_hash": "46e5577a1088bf57cc84a6cd43064b540b58235d55b2404bcbe17ece91465208"
 }
