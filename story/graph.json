@@ -5998,6 +5998,18 @@
    "location": "townhall",
    "source": "world_objects.location"
   },
+  "oohhh": {
+   "id": "oohhh",
+   "kind": "object",
+   "floor": "GROUND",
+   "x": 2.14999,
+   "y": 2.47,
+   "z": 1.68725,
+   "px": 453.2,
+   "py": 493.0,
+   "location": null,
+   "source": "sha256"
+  },
   "oomph": {
    "id": "oomph",
    "kind": "object",
@@ -46801,11 +46813,63 @@
    "hex": "#2563eb",
    "label": "j167 \u00b7 ronke.hear(deh)",
    "outline": "#a8be17"
+  },
+  {
+   "from": "kazeem",
+   "to": "oohhh",
+   "from_xyz": {
+    "x": 4.693,
+    "y": 0.02,
+    "z": 1.67601,
+    "px": 581.5,
+    "py": 708.5
+   },
+   "to_xyz": {
+    "x": 2.14999,
+    "y": 2.47,
+    "z": 1.68725,
+    "px": 453.2,
+    "py": 493.0
+   },
+   "index": 1416,
+   "job": "j168",
+   "run": "run-2eb42d",
+   "call": "sfc1413",
+   "method": "hear",
+   "hex": "#2563eb",
+   "label": "j168 \u00b7 kazeem.hear(oohhh)",
+   "outline": "#a8be17"
+  },
+  {
+   "from": "ronke",
+   "to": "time",
+   "from_xyz": {
+    "x": 2.27364,
+    "y": 2.47,
+    "z": 0.28,
+    "px": 530.1,
+    "py": 455.8
+   },
+   "to_xyz": {
+    "x": 5.38701,
+    "y": 2.47,
+    "z": 2.42,
+    "px": 579.0,
+    "py": 608.1
+   },
+   "index": 1417,
+   "job": "j168",
+   "run": "run-2eb42d",
+   "call": "sfc1414",
+   "method": "deliver",
+   "hex": "#2563eb",
+   "label": "j168 \u00b7 ronke.deliver(time)",
+   "outline": "#14a357"
   }
  ],
- "n_vertices": 790,
- "n_edges": 1435,
- "n_object_vertices": 530,
+ "n_vertices": 791,
+ "n_edges": 1437,
+ "n_object_vertices": 531,
  "n_method_vertices": 260,
  "agenda_palette": {
   "atbl-kmb-run": {
@@ -47330,5 +47394,5 @@
    "kind": "edge"
   }
  ],
- "stroke_hash": "1bbd68d2dcc4bcb6e2161b8d39ef963c2c3dd63dd43fcde68d0a2ad91b59b2f2"
+ "stroke_hash": "2cb8514c596f4d680f1576f3bdceeac25ab31cc3ad63ced32c1566e113004f52"
 }
