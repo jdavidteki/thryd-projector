@@ -983,16 +983,6 @@
 ],
 "red_white_cap": [
 {
-"id": "wf_fc9f65fd67",
-"kind": "consequence",
-"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up with the red and white cap, which is still worn.",
-"code": "divine.interactwith(red_white_cap){ red_white_cap.receives(divine.shirt); red_white_cap.remembers(bisola, 'green shirt'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j8",
-"other": "divine"
-},
-{
 "id": "wf_f79464398c",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the red and white cap, which is still worn.",
@@ -1011,6 +1001,16 @@
 "run": "run-2eb42d",
 "card": "j8",
 "other": "example"
+},
+{
+"id": "wf_bc0bfbc790",
+"kind": "consequence",
+"text": "A Laptop note with Taiwo's name and 'lamp soot' on it, turns up with the red and white cap, which is still worn.",
+"code": "laptop.interactwith(red_white_cap){ red_white_cap.receives(laptop.soot); red_white_cap.remembers(taiwo, 'lamp soot'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j7",
+"other": "laptop"
 },
 {
 "id": "wf_3fdb648208",
@@ -10164,17 +10164,6 @@
 },
 "consequences": [
 {
-"id": "wf_b29f18de72",
-"ts": "2026-11-19T13:16:09-0500",
-"a": "lie",
-"b": "icsh",
-"code": "lie.interactwith(icsh){ icsh.receives(lie.envelope); icsh.remembers(bisola, 'brown envelope'); icsh.tucks(lie, 'yaba bookshop receipt into the brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the icsh, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
 "id": "wf_f6eea685e1",
 "ts": "2026-11-19T13:17:55-0500",
 "a": "seniorgehs",
@@ -10602,6 +10591,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_bc0bfbc790",
+"ts": "2026-11-23T14:01:42-0500",
+"a": "laptop",
+"b": "red_white_cap",
+"code": "laptop.interactwith(red_white_cap){ red_white_cap.receives(laptop.soot); red_white_cap.remembers(taiwo, 'lamp soot'); }",
+"text": "A Laptop note with Taiwo's name and 'lamp soot' on it, turns up with the red and white cap, which is still worn.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j7"
 }
 ],
 "memories": [
@@ -10705,5 +10705,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-23T13:52:56-0500"
+"updated": "2026-11-23T14:02:37-0500"
 }
