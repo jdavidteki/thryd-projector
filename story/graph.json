@@ -4054,6 +4054,18 @@
    "location": null,
    "source": "sha256"
   },
+  "jooo": {
+   "id": "jooo",
+   "kind": "object",
+   "floor": "GROUND",
+   "x": 1.11425,
+   "y": 2.47,
+   "z": 2.15013,
+   "px": 378.0,
+   "py": 476.4,
+   "location": null,
+   "source": "sha256"
+  },
   "juniorbiys": {
    "id": "juniorbiys",
    "kind": "object",
@@ -7399,6 +7411,18 @@
    "z": 1.58761,
    "px": 612.2,
    "py": 579.0,
+   "location": null,
+   "source": "sha256"
+  },
+  "theyll": {
+   "id": "theyll",
+   "kind": "object",
+   "floor": "GROUND",
+   "x": 4.17359,
+   "y": 2.47,
+   "z": 1.45161,
+   "px": 566.7,
+   "py": 544.9,
    "location": null,
    "source": "sha256"
   },
@@ -43047,11 +43071,89 @@
    "hex": "#2563eb",
    "label": "j141 \u00b7 than.count(more)",
    "outline": "#887010"
+  },
+  {
+   "from": "jooo",
+   "to": "open",
+   "from_xyz": {
+    "x": 1.11425,
+    "y": 2.47,
+    "z": 2.15013,
+    "px": 378.0,
+    "py": 476.4
+   },
+   "to_xyz": {
+    "x": 2.68025,
+    "y": 2.47,
+    "z": 2.11465,
+    "px": 458.4,
+    "py": 520.8
+   },
+   "index": 1310,
+   "job": "j142",
+   "run": "run-2eb42d",
+   "call": "sfc1278",
+   "method": "open",
+   "hex": "#2563eb",
+   "label": "j142 \u00b7 jooo.open(egbaaamiii)",
+   "outline": "#8614a3"
+  },
+  {
+   "from": "ronke",
+   "to": "theyll",
+   "from_xyz": {
+    "x": 2.27364,
+    "y": 2.47,
+    "z": 0.28,
+    "px": 530.1,
+    "py": 455.8
+   },
+   "to_xyz": {
+    "x": 4.17359,
+    "y": 2.47,
+    "z": 1.45161,
+    "px": 566.7,
+    "py": 544.9
+   },
+   "index": 1311,
+   "job": "j142",
+   "run": "run-2eb42d",
+   "call": "sfc1279",
+   "method": "tune",
+   "hex": "#2563eb",
+   "label": "j142 \u00b7 ronke.tune(theyll)",
+   "outline": "#1ad9b3"
+  },
+  {
+   "from": "ronke",
+   "to": "eez",
+   "from_xyz": {
+    "x": 2.27364,
+    "y": 2.47,
+    "z": 0.28,
+    "px": 530.1,
+    "py": 455.8
+   },
+   "to_xyz": {
+    "x": 4.40427,
+    "y": 2.47,
+    "z": 0.96908,
+    "px": 602.5,
+    "py": 537.6
+   },
+   "index": 1312,
+   "job": "j142",
+   "run": "run-2eb42d",
+   "call": "sfc1280",
+   "method": "deliver",
+   "hex": "#2563eb",
+   "label": "j142 \u00b7 ronke.deliver(eez)",
+   "outline": "#14a357"
   }
  ],
- "n_vertices": 722,
- "n_edges": 1322,
- "n_object_vertices": 480,
+ "n_vertices": 724,
+ "n_edges": 1325,
+ "n_object_vertices": 482,
  "n_method_vertices": 242,
  "agenda_palette": {
   "atbl-kmb-run": {
@@ -43576,5 +43678,5 @@
    "kind": "edge"
   }
  ],
- "stroke_hash": "2e088446eb09804ed46991b5039cef8237fff92fa01397554e5bd06677d57b66"
+ "stroke_hash": "06c6b06ed34a605b6b72a35410466c2823aa770a0de5cd7ef39cb83eedf7c27e"
 }
