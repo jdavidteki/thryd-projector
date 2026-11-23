@@ -827,16 +827,6 @@
 ],
 "agbada": [
 {
-"id": "wf_fcd96d03c0",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the agbada, which is still worn by a stranger haggler.",
-"code": "seniorgehs.interactwith(agbada){ agbada.receives(seniorgehs.envelope); agbada.remembers(bisola, 'brown envelope'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "seniorgehs"
-},
-{
 "id": "wf_5b709e5424",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the agbada, which is still worn by a stranger haggler.",
@@ -875,6 +865,16 @@
 "run": "run-2eb42d",
 "card": "w4",
 "other": null
+},
+{
+"id": "wf_999041a9c2",
+"kind": "consequence",
+"text": "The Mama Ronke ends up with the agbada, still present.",
+"code": "mama_ronke.interactwith(agbada){ mama_ronke.db.copyto(agbada); agbada.keeps(mama_ronke, 'Mama Ronke, still present'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "",
+"other": "mama_ronke"
 }
 ],
 "danfo_speaker": [
@@ -10204,17 +10204,6 @@
 },
 "consequences": [
 {
-"id": "wf_1c4c35e592",
-"ts": "2026-11-23T13:11:17-0500",
-"a": "cooler",
-"b": "shyamoli_chatterjee",
-"code": "cooler.interactwith(shyamoli_chatterjee){ shyamoli_chatterjee.receives(cooler.something); }",
-"text": "The shyamoli chatterjee now remembers the cooler: The customer typed cooler.getdatemanufactured() on run-qa j1.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j1"
-},
-{
 "id": "wf_4d8147fa2f",
 "ts": "2026-11-23T13:15:38-0500",
 "a": "iae",
@@ -10642,6 +10631,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_999041a9c2",
+"ts": "2026-11-23T17:39:29-0500",
+"a": "mama_ronke",
+"b": "agbada",
+"code": "mama_ronke.interactwith(agbada){ mama_ronke.db.copyto(agbada); agbada.keeps(mama_ronke, 'Mama Ronke, still present'); }",
+"text": "The Mama Ronke ends up with the agbada, still present.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": ""
 }
 ],
 "memories": [
@@ -10745,5 +10745,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-23T17:33:34-0500"
+"updated": "2026-11-23T17:39:29-0500"
 }
