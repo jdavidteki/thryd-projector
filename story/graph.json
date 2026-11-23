@@ -718,6 +718,18 @@
    "location": "terminal",
    "source": "world_objects.location"
   },
+  "bend": {
+   "id": "bend",
+   "kind": "object",
+   "floor": "GROUND",
+   "x": 0.76824,
+   "y": 2.47,
+   "z": 2.40025,
+   "px": 348.0,
+   "py": 473.6,
+   "location": null,
+   "source": "sha256"
+  },
   "beplo": {
    "id": "beplo",
    "kind": "method",
@@ -1582,6 +1594,18 @@
    "location": null,
    "source": "sha256"
   },
+  "control": {
+   "id": "control",
+   "kind": "method",
+   "floor": "GROUND",
+   "x": 3.17746,
+   "y": 2.47,
+   "z": 1.88463,
+   "px": 494.9,
+   "py": 528.5,
+   "location": null,
+   "source": "sha256"
+  },
   "cook": {
    "id": "cook",
    "kind": "method",
@@ -1809,6 +1833,18 @@
    "py": 586.2,
    "location": "townhall",
    "source": "world_objects.location"
+  },
+  "daz": {
+   "id": "daz",
+   "kind": "object",
+   "floor": "GROUND",
+   "x": 0.36207,
+   "y": 2.47,
+   "z": 1.77351,
+   "px": 359.1,
+   "py": 443.7,
+   "location": null,
+   "source": "sha256"
   },
   "dcbh": {
    "id": "dcbh",
@@ -2193,6 +2229,18 @@
    "py": 586.1,
    "location": "busstop",
    "source": "world_objects.location"
+  },
+  "eiti": {
+   "id": "eiti",
+   "kind": "method",
+   "floor": "GROUND",
+   "x": 2.39666,
+   "y": 2.47,
+   "z": 1.80046,
+   "px": 459.9,
+   "py": 503.5,
+   "location": null,
+   "source": "sha256"
   },
   "else": {
    "id": "else",
@@ -5791,6 +5839,18 @@
    "z": 0.82562,
    "px": 414.2,
    "py": 420.5,
+   "location": null,
+   "source": "sha256"
+  },
+  "poc": {
+   "id": "poc",
+   "kind": "method",
+   "floor": "GROUND",
+   "x": 2.06921,
+   "y": 2.47,
+   "z": 1.45945,
+   "px": 460.6,
+   "py": 484.1,
    "location": null,
    "source": "sha256"
   },
@@ -33984,7 +34044,7 @@
   },
   {
    "from": "car",
-   "to": "trace",
+   "to": "daz",
    "from_xyz": {
     "x": 5.09848,
     "y": 2.47,
@@ -33993,11 +34053,11 @@
     "py": 562.2
    },
    "to_xyz": {
-    "x": 4.39726,
+    "x": 0.36207,
     "y": 2.47,
-    "z": 1.8038,
-    "px": 560.3,
-    "py": 561.6
+    "z": 1.77351,
+    "px": 359.1,
+    "py": 443.7
    },
    "index": 960,
    "job": "j86",
@@ -43393,12 +43453,298 @@
    "hex": "#2563eb",
    "label": "j144 \u00b7 hits.cook(got)",
    "outline": "#60a314"
+  },
+  {
+   "from": "thryd",
+   "to": "importtheme",
+   "from_xyz": {
+    "x": 5.35552,
+    "y": 2.47,
+    "z": 2.11477,
+    "px": 592.8,
+    "py": 598.4
+   },
+   "to_xyz": {
+    "x": 1.77751,
+    "y": 2.47,
+    "z": 2.12227,
+    "px": 412.7,
+    "py": 494.8
+   },
+   "index": 1321,
+   "job": "j145",
+   "run": "run-2eb42d",
+   "call": "fc1289",
+   "method": "importtheme",
+   "hex": "#2563eb",
+   "label": "j145 \u00b7 thryd.importtheme(importtheme)",
+   "outline": "#d9741a"
+  },
+  {
+   "from": "poc",
+   "to": "safe",
+   "from_xyz": {
+    "x": 2.06921,
+    "y": 2.47,
+    "z": 1.45945,
+    "px": 460.6,
+    "py": 484.1
+   },
+   "to_xyz": {
+    "x": 1.74311,
+    "y": 2.47,
+    "z": 1.63673,
+    "px": 435.3,
+    "py": 479.8
+   },
+   "index": 1322,
+   "job": "j145",
+   "run": "run-2eb42d",
+   "call": "fc1290",
+   "method": "poc",
+   "hex": "#2563eb",
+   "label": "j145 \u00b7 [[poc]](safe)",
+   "outline": "#60a314"
+  },
+  {
+   "from": "tsc",
+   "to": "safe",
+   "from_xyz": {
+    "x": 1.52474,
+    "y": 2.47,
+    "z": 2.05417,
+    "px": 403.4,
+    "py": 485.5
+   },
+   "to_xyz": {
+    "x": 1.74311,
+    "y": 2.47,
+    "z": 1.63673,
+    "px": 435.3,
+    "py": 479.8
+   },
+   "index": 1323,
+   "job": "j145",
+   "run": "run-2eb42d",
+   "call": "fc1291",
+   "method": "tsc",
+   "hex": "#2563eb",
+   "label": "j145 \u00b7 [[tsc]](safe)",
+   "outline": "#1430a3"
+  },
+  {
+   "from": "cli",
+   "to": "cli",
+   "from_xyz": {
+    "x": 2.71485,
+    "y": 2.47,
+    "z": 2.40047,
+    "px": 445.8,
+    "py": 530.1
+   },
+   "to_xyz": {
+    "x": 2.71485,
+    "y": 2.47,
+    "z": 2.40047,
+    "px": 445.8,
+    "py": 530.1
+   },
+   "index": 1324,
+   "job": "j145",
+   "run": "run-2eb42d",
+   "call": "fc1292",
+   "method": "cli",
+   "hex": "#2563eb",
+   "label": "j145 \u00b7 cli.d1()",
+   "outline": "#1a80d9"
+  },
+  {
+   "from": "ocsw",
+   "to": "safe",
+   "from_xyz": {
+    "x": 4.09101,
+    "y": 2.47,
+    "z": 1.61675,
+    "px": 554.3,
+    "py": 547.3
+   },
+   "to_xyz": {
+    "x": 1.74311,
+    "y": 2.47,
+    "z": 1.63673,
+    "px": 435.3,
+    "py": 479.8
+   },
+   "index": 1325,
+   "job": "j145",
+   "run": "run-2eb42d",
+   "call": "fc1293",
+   "method": "ocsw",
+   "hex": "#2563eb",
+   "label": "j145 \u00b7 [[ocsw]](safe)",
+   "outline": "#14a327"
+  },
+  {
+   "from": "eiti",
+   "to": "safe",
+   "from_xyz": {
+    "x": 2.39666,
+    "y": 2.47,
+    "z": 1.80046,
+    "px": 459.9,
+    "py": 503.5
+   },
+   "to_xyz": {
+    "x": 1.74311,
+    "y": 2.47,
+    "z": 1.63673,
+    "px": 435.3,
+    "py": 479.8
+   },
+   "index": 1326,
+   "job": "j145",
+   "run": "run-2eb42d",
+   "call": "fc1294",
+   "method": "eiti",
+   "hex": "#2563eb",
+   "label": "j145 \u00b7 [[eiti]](safe)",
+   "outline": "#d91a80"
+  },
+  {
+   "from": "cli",
+   "to": "cli",
+   "from_xyz": {
+    "x": 2.71485,
+    "y": 2.47,
+    "z": 2.40047,
+    "px": 445.8,
+    "py": 530.1
+   },
+   "to_xyz": {
+    "x": 2.71485,
+    "y": 2.47,
+    "z": 2.40047,
+    "px": 445.8,
+    "py": 530.1
+   },
+   "index": 1327,
+   "job": "j145",
+   "run": "run-2eb42d",
+   "call": "fc1295",
+   "method": "cli",
+   "hex": "#2563eb",
+   "label": "j145 \u00b7 [[uyp.]].newpawabank()",
+   "outline": "#1a80d9"
+  },
+  {
+   "from": "control",
+   "to": "safe",
+   "from_xyz": {
+    "x": 3.17746,
+    "y": 2.47,
+    "z": 1.88463,
+    "px": 494.9,
+    "py": 528.5
+   },
+   "to_xyz": {
+    "x": 1.74311,
+    "y": 2.47,
+    "z": 1.63673,
+    "px": 435.3,
+    "py": 479.8
+   },
+   "index": 1328,
+   "job": "j145",
+   "run": "run-2eb42d",
+   "call": "fc1296",
+   "method": "control",
+   "hex": "#2563eb",
+   "label": "j145 \u00b7 [[control]](safe)",
+   "outline": "#1ad9b3"
+  },
+  {
+   "from": "ronke",
+   "to": "daz",
+   "from_xyz": {
+    "x": 2.27364,
+    "y": 2.47,
+    "z": 0.28,
+    "px": 530.1,
+    "py": 455.8
+   },
+   "to_xyz": {
+    "x": 0.36207,
+    "y": 2.47,
+    "z": 1.77351,
+    "px": 359.1,
+    "py": 443.7
+   },
+   "index": 1329,
+   "job": "j145",
+   "run": "run-2eb42d",
+   "call": "sfc1297",
+   "method": "cook",
+   "hex": "#2563eb",
+   "label": "j145 \u00b7 ronke.cook(daz)",
+   "outline": "#60a314"
+  },
+  {
+   "from": "ronke",
+   "to": "everything",
+   "from_xyz": {
+    "x": 2.27364,
+    "y": 2.47,
+    "z": 0.28,
+    "px": 530.1,
+    "py": 455.8
+   },
+   "to_xyz": {
+    "x": 4.09231,
+    "y": 2.47,
+    "z": 2.32472,
+    "px": 518.8,
+    "py": 567.8
+   },
+   "index": 1330,
+   "job": "j145",
+   "run": "run-2eb42d",
+   "call": "sfc1298",
+   "method": "cook",
+   "hex": "#2563eb",
+   "label": "j145 \u00b7 ronke.cook(everything)",
+   "outline": "#60a314"
+  },
+  {
+   "from": "ronke",
+   "to": "bend",
+   "from_xyz": {
+    "x": 2.27364,
+    "y": 2.47,
+    "z": 0.28,
+    "px": 530.1,
+    "py": 455.8
+   },
+   "to_xyz": {
+    "x": 0.76824,
+    "y": 2.47,
+    "z": 2.40025,
+    "px": 348.0,
+    "py": 473.6
+   },
+   "index": 1331,
+   "job": "j145",
+   "run": "run-2eb42d",
+   "call": "sfc1299",
+   "method": "carry",
+   "hex": "#2563eb",
+   "label": "j145 \u00b7 ronke.carry(bend)",
+   "outline": "#887010"
   }
  ],
- "n_vertices": 727,
- "n_edges": 1333,
- "n_object_vertices": 485,
- "n_method_vertices": 242,
+ "n_vertices": 732,
+ "n_edges": 1344,
+ "n_object_vertices": 487,
+ "n_method_vertices": 245,
  "agenda_palette": {
   "atbl-kmb-run": {
    "dot": "\ud83c\udf40",
@@ -43922,5 +44268,5 @@
    "kind": "edge"
   }
  ],
- "stroke_hash": "46b7cc305495750e1c1a0655f376d29c6af831ab0f9a22cd9aab30a33a7485f1"
+ "stroke_hash": "eedabde9686df23919265f148aa1c7a1dbdc9df7d5fbce761669c434f34027ef"
 }
