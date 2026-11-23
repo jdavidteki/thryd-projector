@@ -2254,6 +2254,18 @@
    "location": null,
    "source": "sha256"
   },
+  "education": {
+   "id": "education",
+   "kind": "object",
+   "floor": "GROUND",
+   "x": 2.6418,
+   "y": 2.47,
+   "z": 0.80002,
+   "px": 522.5,
+   "py": 481.6,
+   "location": null,
+   "source": "sha256"
+  },
   "eez": {
    "id": "eez",
    "kind": "object",
@@ -7051,6 +7063,18 @@
    "z": 1.45765,
    "px": 435.2,
    "py": 469.3,
+   "location": null,
+   "source": "sha256"
+  },
+  "sfl": {
+   "id": "sfl",
+   "kind": "object",
+   "floor": "GROUND",
+   "x": 1.02419,
+   "y": 2.47,
+   "z": 1.53823,
+   "px": 404.2,
+   "py": 456.1,
    "location": null,
    "source": "sha256"
   },
@@ -45315,11 +45339,141 @@
    "hex": "#2563eb",
    "label": "j154 \u00b7 ronke.call(dogs)",
    "outline": "#30a314"
+  },
+  {
+   "from": "thryd",
+   "to": "importtheme",
+   "from_xyz": {
+    "x": 5.35552,
+    "y": 2.47,
+    "z": 2.11477,
+    "px": 592.8,
+    "py": 598.4
+   },
+   "to_xyz": {
+    "x": 1.77751,
+    "y": 2.47,
+    "z": 2.12227,
+    "px": 412.7,
+    "py": 494.8
+   },
+   "index": 1382,
+   "job": "j155",
+   "run": "run-2eb42d",
+   "call": "fc1350",
+   "method": "importtheme",
+   "hex": "#2563eb",
+   "label": "j155 \u00b7 thryd.importtheme(importtheme)",
+   "outline": "#d9741a"
+  },
+  {
+   "from": "cli",
+   "to": "cli",
+   "from_xyz": {
+    "x": 2.71485,
+    "y": 2.47,
+    "z": 2.40047,
+    "px": 445.8,
+    "py": 530.1
+   },
+   "to_xyz": {
+    "x": 2.71485,
+    "y": 2.47,
+    "z": 2.40047,
+    "px": 445.8,
+    "py": 530.1
+   },
+   "index": 1383,
+   "job": "j155",
+   "run": "run-2eb42d",
+   "call": "fc1351",
+   "method": "cli",
+   "hex": "#2563eb",
+   "label": "j155 \u00b7 cli.c3()",
+   "outline": "#1a80d9"
+  },
+  {
+   "from": "sfl",
+   "to": "now",
+   "from_xyz": {
+    "x": 1.02419,
+    "y": 2.47,
+    "z": 1.53823,
+    "px": 404.2,
+    "py": 456.1
+   },
+   "to_xyz": {
+    "x": 4.45533,
+    "y": 2.47,
+    "z": 2.42,
+    "px": 532.2,
+    "py": 581.1
+   },
+   "index": 1384,
+   "job": "j155",
+   "run": "run-2eb42d",
+   "call": "sfc1352",
+   "method": "count",
+   "hex": "#2563eb",
+   "label": "j155 \u00b7 sfl.count(now)",
+   "outline": "#887010"
+  },
+  {
+   "from": "ronke",
+   "to": "education",
+   "from_xyz": {
+    "x": 2.27364,
+    "y": 2.47,
+    "z": 0.28,
+    "px": 530.1,
+    "py": 455.8
+   },
+   "to_xyz": {
+    "x": 2.6418,
+    "y": 2.47,
+    "z": 0.80002,
+    "px": 522.5,
+    "py": 481.6
+   },
+   "index": 1385,
+   "job": "j155",
+   "run": "run-2eb42d",
+   "call": "sfc1353",
+   "method": "ring",
+   "hex": "#2563eb",
+   "label": "j155 \u00b7 ronke.ring(education)",
+   "outline": "#14a386"
+  },
+  {
+   "from": "wiitbaw",
+   "to": "woman",
+   "from_xyz": {
+    "x": 5.70219,
+    "y": 2.47,
+    "z": 0.94213,
+    "px": 669.1,
+    "py": 574.4
+   },
+   "to_xyz": {
+    "x": 0.55768,
+    "y": 2.47,
+    "z": 1.67668,
+    "px": 373.8,
+    "py": 446.5
+   },
+   "index": 1386,
+   "job": "j155",
+   "run": "run-2eb42d",
+   "call": "sfc1354",
+   "method": "carry",
+   "hex": "#2563eb",
+   "label": "j155 \u00b7 wiitbaw.carry(woman)",
+   "outline": "#887010"
   }
  ],
- "n_vertices": 755,
- "n_edges": 1394,
- "n_object_vertices": 506,
+ "n_vertices": 757,
+ "n_edges": 1399,
+ "n_object_vertices": 508,
  "n_method_vertices": 249,
  "agenda_palette": {
   "atbl-kmb-run": {
@@ -45844,5 +45998,5 @@
    "kind": "edge"
   }
  ],
- "stroke_hash": "39b7605c1a92feb83993da6b4cf0f97f6dbe87b63b6bad5bb661f07d0ac5413b"
+ "stroke_hash": "92fd94d471bcf3cce9c4398f9c905048e611e1d0361de79f96398c05a5818f3d"
 }
