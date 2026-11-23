@@ -1087,14 +1087,14 @@
 ],
 "kerosene_lamp": [
 {
-"id": "wf_29c8803af0",
-"kind": "memory",
-"text": "The kerosene lamp at Mama Ronke's gate: lit; the only light on the street after the blackout.",
-"code": "kerosene_lamp.state('lit');",
+"id": "wf_2259c9acb9",
+"kind": "consequence",
+"text": "A Laptop note with Taiwo's name and 'lamp soot' on it, turns up with the kerosene lamp, which is still lit.",
+"code": "tf_mom.interactwith(kerosene_lamp){ kerosene_lamp.receives(tf_mom.soot); kerosene_lamp.remembers(taiwo, 'lamp soot'); }",
 "author": "cos",
 "run": "run-2eb42d",
-"card": "w7",
-"other": null
+"card": "j7",
+"other": "tf_mom"
 },
 {
 "id": "wt_7a2b23aa13",
@@ -10154,17 +10154,6 @@
 },
 "consequences": [
 {
-"id": "wf_7171ee9545",
-"ts": "2026-11-19T13:10:53-0500",
-"a": "computer_village",
-"b": "kazeem",
-"code": "computer_village.interactwith(kazeem){ kazeem.receives(computer_village.envelope); kazeem.remembers(bisola, 'brown envelope'); }",
-"text": "The kazeem leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
 "id": "wf_94748694ad",
 "ts": "2026-11-19T13:13:31-0500",
 "a": "patagonia",
@@ -10592,6 +10581,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_2259c9acb9",
+"ts": "2026-11-23T13:51:59-0500",
+"a": "tf_mom",
+"b": "kerosene_lamp",
+"code": "tf_mom.interactwith(kerosene_lamp){ kerosene_lamp.receives(tf_mom.soot); kerosene_lamp.remembers(taiwo, 'lamp soot'); }",
+"text": "A Laptop note with Taiwo's name and 'lamp soot' on it, turns up with the kerosene lamp, which is still lit.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j7"
 }
 ],
 "memories": [
@@ -10695,5 +10695,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-23T13:40:02-0500"
+"updated": "2026-11-23T13:51:59-0500"
 }
