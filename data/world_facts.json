@@ -961,16 +961,6 @@
 "other": "teach"
 },
 {
-"id": "wf_194e588426",
-"kind": "memory",
-"text": "The plastic sheet at Oke-Ayo bus stop: wet; Ronke and Kazeem had been under it, Mama Ronke stood over it.",
-"code": "plastic_sheet.state('wet');",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "w5",
-"other": null
-},
-{
 "id": "wf_1676f05bef",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the plastic sheet, which is still wet.",
@@ -979,6 +969,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "asmathic"
+},
+{
+"id": "wf_194e588426",
+"kind": "memory",
+"text": "The plastic sheet at Oke-Ayo bus stop: wet; Ronke and Kazeem had been under it, Mama Ronke stood over it.",
+"code": "plastic_sheet.state('wet');",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w5",
+"other": null
 }
 ],
 "red_white_cap": [
@@ -3223,16 +3223,6 @@
 ],
 "wser": [
 {
-"id": "wf_13e4e9f54c",
-"kind": "consequence",
-"text": "The wser leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
-"code": "ttb.interactwith(wser){ wser.receives(ttb.code); wser.remembers(ejiro, 'juju code'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j2",
-"other": "ttb"
-},
-{
 "id": "wf_35b34e0f2f",
 "kind": "consequence",
 "text": "The wser leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
@@ -3271,6 +3261,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "namco"
+},
+{
+"id": "wf_8690520cde",
+"kind": "consequence",
+"text": "The wser leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "vex.interactwith(wser){ wser.receives(vex.envelope); wser.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "vex"
 }
 ],
 "blessings_subject": [
@@ -8237,6 +8237,16 @@
 "run": "run-2eb42d",
 "card": "j27",
 "other": null
+},
+{
+"id": "wf_6cc4bf5c80",
+"kind": "consequence",
+"text": "The cooler leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "no_palmgrove_close.interactwith(cooler){ cooler.receives(no_palmgrove_close.envelope); cooler.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "no_palmgrove_close"
 }
 ],
 "teach": [
@@ -10134,28 +10144,6 @@
 },
 "consequences": [
 {
-"id": "wf_1738c4cb8c",
-"ts": "2026-11-19T12:50:34-0500",
-"a": "patagonia",
-"b": "chair",
-"code": "patagonia.interactwith(chair){ chair.receives(patagonia.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the 11:20pm at the chair, and Taiwo reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
-"id": "wf_a134c7311e",
-"ts": "2026-11-19T12:51:27-0500",
-"a": "seniorgehs",
-"b": "bed",
-"code": "seniorgehs.interactwith(bed){ bed.receives(seniorgehs.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the bed, and Taiwo reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
 "id": "wf_bd1035aee3",
 "ts": "2026-11-19T12:57:56-0500",
 "a": "jnoel",
@@ -10572,6 +10560,28 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_8690520cde",
+"ts": "2026-11-23T13:31:02-0500",
+"a": "vex",
+"b": "wser",
+"code": "vex.interactwith(wser){ wser.receives(vex.envelope); wser.remembers(bisola, 'brown envelope'); }",
+"text": "The wser leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
+},
+{
+"id": "wf_6cc4bf5c80",
+"ts": "2026-11-23T13:31:56-0500",
+"a": "no_palmgrove_close",
+"b": "cooler",
+"code": "no_palmgrove_close.interactwith(cooler){ cooler.receives(no_palmgrove_close.envelope); cooler.remembers(bisola, 'brown envelope'); }",
+"text": "The cooler leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -10675,5 +10685,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-23T13:27:26-0500"
+"updated": "2026-11-23T13:31:56-0500"
 }
