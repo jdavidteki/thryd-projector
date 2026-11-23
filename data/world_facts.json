@@ -879,16 +879,6 @@
 ],
 "danfo_speaker": [
 {
-"id": "wf_a688d36f3b",
-"kind": "consequence",
-"text": "A Laptop note with Taiwo's name and 'lamp soot' on it, turns up with the danfo speaker, which is still playing the same love song.",
-"code": "laptop.interactwith(danfo_speaker){ danfo_speaker.receives(laptop.soot); danfo_speaker.remembers(taiwo, 'lamp soot'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j7",
-"other": "laptop"
-},
-{
 "id": "wf_9a796688dc",
 "kind": "consequence",
 "text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up with the danfo speaker, which is still playing the same love song.",
@@ -897,6 +887,16 @@
 "run": "run-2eb42d",
 "card": "j2",
 "other": "ttb"
+},
+{
+"id": "wf_4d8147fa2f",
+"kind": "consequence",
+"text": "The iae ends up with the danfo speaker, still initialized.",
+"code": "iae.interactwith(danfo_speaker){ iae.db.copyto(danfo_speaker); danfo_speaker.keeps(iae, 'iae, still initialized'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w1",
+"other": "iae"
 },
 {
 "id": "wf_bdad55d985",
@@ -10124,17 +10124,6 @@
 },
 "consequences": [
 {
-"id": "wf_89a874d513",
-"ts": "2026-11-19T12:26:02-0500",
-"a": "bus",
-"b": "iae",
-"code": "bus.interactwith(iae){ iae.receives(bus.envelope); iae.remembers(bisola, 'brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the iae, which is still initialized.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
 "id": "wf_58cdeb657a",
 "ts": "2026-11-19T12:37:26-0500",
 "a": "vex",
@@ -10562,6 +10551,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j1"
+},
+{
+"id": "wf_4d8147fa2f",
+"ts": "2026-11-23T13:15:38-0500",
+"a": "iae",
+"b": "danfo_speaker",
+"code": "iae.interactwith(danfo_speaker){ iae.db.copyto(danfo_speaker); danfo_speaker.keeps(iae, 'iae, still initialized'); }",
+"text": "The iae ends up with the danfo speaker, still initialized.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w1"
 }
 ],
 "memories": [
@@ -10665,5 +10665,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-23T13:11:17-0500"
+"updated": "2026-11-23T13:16:31-0500"
 }
