@@ -1,5 +1,5 @@
 {
-  "v": 606,
-  "at": "2026-11-22T15:55:16-05:00",
-  "note": "v606: yoki follows the story's pulse again (Jesuye: \"the story should sing its own soundtrack\"). Songs come from story/yoki_pulse.json, the africariyoki lyrics ranked against the open card and the newest seats, rebuilt after every seat; the best 8 not among the last 40 played are picked by score. Full-catalog shuffle only as a fallback. Off stays off."
+ "v": 607,
+ "at": "2026-11-23T17:40:00-05:00",
+ "note": "v607: low-heat mode (Jesuye, Galaxy Z Fold heating in multiwindow). One shared scheduler (assets/lowheat.js, loaded first): after 60 s without a touch, key or scroll, or when the window loses focus, the news ticker, the /story/ drift, painting and 1 s settle, and the mini story card spin stop; other frames drop to about 10 fps and fast UI timers to every 10 s. While in use, frames are capped at about 30 fps (full rate while a finger is down). Data polls run every 2-5 min (story drawing every 3 min), the version check every 5 min. Hidden tabs pause everything except audio and saving, then refresh once on return. Slideshow, live GIF frames, tweet embeds and saved settings are unchanged. ?lowheat=0 turns it off for a wall projector."
 }

@@ -171,7 +171,7 @@
     x.restore();
   }
   function mframe(t){mraf=0;if(document.hidden||!mm){mlast=0;return;}
-    var step=liveMesh()?40:30,dt=mlast?Math.min(80,t-mlast):33;if(mlast&&t-mlast<step){mraf=requestAnimationFrame(mframe);return;}mlast=t;
+    var step=liveMesh()?40:30,dt=mlast?Math.min(80,t-mlast):33;if(mlast&&t-mlast<step){mraf=(window.LH?LH.deco:requestAnimationFrame)(mframe);return;}mlast=t;
     if(liveMesh())tickView(dt);
     var k=MW/mm.w,L=mlay[mi];
     if(liveMesh())mrebuild();
@@ -192,8 +192,8 @@
     else if(mph==='wash'){mt+=dt;var w=Math.min(1,mt/1100);cx.clearRect(0,0,MW,MH);if(liveMesh())drawMesh(cx);else if(mbase)cx.drawImage(mbase,0,0);cx.globalAlpha=1-w;cx.drawImage(mdone,0,0);cx.globalAlpha=1;
       if(w>=1){mph=(a.classList.contains('drawing')?'mesh':'paint');mi=0;mt=0;mcyc++;mreset();}}
     if(a.classList.contains('drawing'))mpaintOutlineCount(cx);
-    a.dataset.mini=mph+':'+mcyc;mraf=requestAnimationFrame(mframe);}
-  function mkick(){if(!mraf&&!RMc)mraf=requestAnimationFrame(mframe);}
+    a.dataset.mini=mph+':'+mcyc;mraf=(window.LH?LH.deco:requestAnimationFrame)(mframe);}
+  function mkick(){if(!mraf&&!RMc)mraf=(window.LH?LH.deco:requestAnimationFrame)(mframe);}
   document.addEventListener('visibilitychange',function(){if(!document.hidden)mkick();});
   /* v588 graph mode: when story/graph.json exists (objects/characters/methods as vertices, one edge per call, subject -> argument
      object or method, numbered by call order, coloured by agenda) the mini paints those edges in index order; else the strokes above. */

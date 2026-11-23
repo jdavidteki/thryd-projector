@@ -81,8 +81,8 @@
     // shimmer rings where strokes land
     rings=rings.filter(function(r){r.t+=dt;var k=r.t/0.9;if(k>=1)return false;c.strokeStyle=hexA(r.c,(0.6*(1-k)).toFixed(3));c.lineWidth=1.4;c.beginPath();c.arc(r.x,r.y,3+k*16,0,7);c.stroke();
       c.fillStyle='rgba(255,255,255,'+(0.5*(1-k)).toFixed(3)+')';c.beginPath();c.arc(r.x,r.y,1.6*(1-k)+0.4,0,7);c.fill();return true;});
-    raf=requestAnimationFrame(frame);run=true;}
-  function kick(){if(RM)return;if(!raf&&!document.hidden){raf=requestAnimationFrame(frame);run=true;}}
+    raf=(window.LH?LH.deco:requestAnimationFrame)(frame);run=true;}
+  function kick(){if(RM)return;if(!raf&&!document.hidden){raf=(window.LH?LH.deco:requestAnimationFrame)(frame);run=true;}}
   document.addEventListener('visibilitychange',function(){if(!document.hidden){lt=0;kick();}});
   function ready(){if(!G()||!G().man()){setTimeout(ready,300);return;}geom();seedDust();kick();}
   ready();

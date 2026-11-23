@@ -84,9 +84,9 @@
     if(tipEl&&tipEl.dataset.vertex)placeVertex();
     cv.dataset.state=phase==='paint'?(active?('painting '+active.L.key):'queued'):phase;
     cv.dataset.cycle=String(cycle);
-    if(!RM)raf=requestAnimationFrame(frame);else last=0;
+    if(!RM)raf=(window.LH?LH.deco:requestAnimationFrame)(frame);else last=0;
   }
-  function kick(){if(!raf&&!RM)raf=requestAnimationFrame(frame);}
+  function kick(){if(!raf&&!RM)raf=(window.LH?LH.deco:requestAnimationFrame)(frame);}
   function reset(){dctx.clearRect(0,0,done.width,done.height);if(man&&man.drawing)drawMesh(dctx);else dctx.drawImage(base,0,0);shown={};if(typeof graphReset==='function')graphReset();}
   function playAll(){queue=[];active=null;sparks=[];reset();ph=0;
     if(RM){man.layers.forEach(function(L){if(imgs[L.key])commit(L);});ctx.clearRect(0,0,cv.width,cv.height);ctx.drawImage(done,0,0);if(man&&man.drawing)paintOutlineCount(ctx);cv.dataset.state='done';return;}
@@ -511,7 +511,7 @@
       e.style.transform='translate3d('+p[0].toFixed(1)+'px,'+p[1].toFixed(1)+'px,0)';
     });
     box.dataset.n=String(F.length);
-    if(!RM&&!fr)fr=requestAnimationFrame(drift);
+    if(!RM&&!fr)fr=(window.LH?LH.deco:requestAnimationFrame)(drift);
   }
   function drift(t){
     var dt=(lt?Math.min(0.05,(t-lt)/1000):0.016)*Math.sqrt(speed());lt=t;exRect();var W=innerWidth,H=innerHeight;
@@ -524,7 +524,7 @@
       if(inEx(f.x,f.y,f.w,f.h)||f.x<0||f.x+f.w>W||f.y<0||f.y+f.h>H){var p=spot(f.w,f.h);f.x=p[0];f.y=p[1];}
       f.e.style.transform='translate3d('+f.x.toFixed(1)+'px,'+f.y.toFixed(1)+'px,0)';
     }
-    fr=requestAnimationFrame(drift);
+    fr=(window.LH?LH.deco:requestAnimationFrame)(drift);
   }
   window.thrydFloaters={rect:function(){exRect();return ex;},items:function(){return F.map(function(f){var r=f.e.getBoundingClientRect();return {id:f.e.dataset.id,x:r.left,y:r.top,w:r.width,h:r.height,c:getComputedStyle(f.e).borderColor};});}};
   var fl0='';
@@ -533,5 +533,5 @@
   // reduced motion: floaters stay still, but if a scroll or zoom brings the building under one, it is quietly re-placed (no animation)
   function settle(){if(!RM)return;exRect();F.forEach(function(f){if(inEx(f.x,f.y,f.w,f.h)){var p=spot(f.w,f.h);f.x=p[0];f.y=p[1];f.e.style.transform='translate3d('+f.x.toFixed(1)+'px,'+f.y.toFixed(1)+'px,0)';}});}
   var sq=0;function settleSoon(){if(!sq)sq=requestAnimationFrame(function(){sq=0;settle();});}
-  if(box){loadF();setInterval(loadF,60000);addEventListener('resize',function(){exRect();settleSoon();});addEventListener('scroll',settleSoon,{passive:true});setInterval(settle,1000);}
+  if(box){loadF();setInterval(loadF,60000);addEventListener('resize',function(){exRect();settleSoon();});addEventListener('scroll',settleSoon,{passive:true});(window.LH?LH.decoEvery:setInterval)(settle,1000);}
 })();

@@ -85,14 +85,14 @@ function lines(){try{if(/phone\.html$/.test(location.pathname))return null;const
   // v2 feeds are already headlines; this page's raw drift rows (cut ids, scene file names) read like code, so they stay out
   const it=[...(NEWS?NEWS.items:[])].sort(()=>Math.random()-.5).slice(0,v2?12:10).concat(v2?[]:localDrifts());if(!it.length)return null;
   return it.map(i=>{try{return bulletin(i);}catch(e){return null;}}).filter(Boolean).slice(0,14).map(b=>({st:ST[stI++%ST.length],b}));}catch(e){return null;}}
-let span,x=0,lastT=0;const SPEED=/phone\.html$/.test(location.pathname)?66:26; // px per second (was 1.1px per animation frame ≈ 66px/s at 60Hz)
+let span,spanW=0,x=0,lastT=0;const SPEED=/phone\.html$/.test(location.pathname)?66:26; // px per second (was 1.1px per animation frame ≈ 66px/s at 60Hz)
 function crawlNext(){if(!span){const t=document.createElement('i');t.textContent='#thryd news';crawl.appendChild(t);span=document.createElement('span');crawl.appendChild(span)}
   const L=lines();span.textContent='';
   if(L){L.forEach((l,k)=>{const e=document.createElement('b');e.className='nb';e.innerHTML='';const s1=document.createElement('strong');s1.textContent=l.st+' — ';e.append(s1,document.createTextNode(l.b));span.appendChild(e);});}
   else span.textContent=(arch.length?arch:['#thryd archive']).join('   ·   ');
-  x=innerWidth;}
-function anim(now){if(span){const dt=lastT?Math.min(250,now-lastT):16;x-=SPEED*dt/1000;span.style.transform=`translateX(${x.toFixed(1)}px)`;if(x<-span.offsetWidth)crawlNext();}lastT=now;requestAnimationFrame(anim)}
-Promise.all([load(true),loadNews()]).then(()=>{crawlNext();requestAnimationFrame(anim);type()});setInterval(loadNews,300000);setInterval(tick,1000);setInterval(()=>load(false),20000);})();
+  x=innerWidth;spanW=0;}
+function anim(now){if(span){const dt=lastT?Math.min(250,now-lastT):16;x-=SPEED*dt/1000;span.style.transform=`translateX(${x.toFixed(1)}px)`;if(x<-(spanW||(spanW=span.offsetWidth)))crawlNext();}lastT=now;(window.LH?LH.deco:requestAnimationFrame)(anim)}
+Promise.all([load(true),loadNews()]).then(()=>{crawlNext();(window.LH?LH.deco:requestAnimationFrame)(anim);type()});setInterval(loadNews,300000);setInterval(tick,1000);setInterval(()=>load(false),20000);})();
 // 🧭 [[move]] major moves (data/moves.json, from RUN/run/major_moves.json via export_state) feed the #code column above as ordinary lines.
 // Synced to the jN scene on stage when it belongs to the moves' run, else a fresh state.json card, else cycling j1..jN. Not on phone.html.
 (()=>{if(/phone\.html$/.test(location.pathname))return;

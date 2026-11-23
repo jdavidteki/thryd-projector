@@ -159,7 +159,7 @@ const loadClips=()=>fetch('data/audio.json?_='+Date.now(),{cache:'no-store'}).th
 if(Q.get('audio')==='clips'){loadClips(); setInterval(()=>{if(!clips)loadClips();},300000);}
 let unlocked=false, VOICE=null;
 const pickVoice=()=>{const vs=speechSynthesis.getVoices()||[];VOICE=vs.find(v=>/^en(-|_)?(US|GB|NG)?/i.test(v.lang)&&v.localService)||vs.find(v=>/^en/i.test(v.lang))||vs[0]||null;};
-if('speechSynthesis' in window){pickVoice();speechSynthesis.addEventListener?.('voiceschanged',pickVoice);setInterval(()=>{if(speechSynthesis.speaking)speechSynthesis.resume();},5000);}
+if('speechSynthesis' in window){pickVoice();speechSynthesis.addEventListener?.('voiceschanged',pickVoice);(window.LH?LH.keep:setInterval)(()=>{if(speechSynthesis.speaking)speechSynthesis.resume();},5000);}
 const gate=document.createElement('div');gate.id='sndgate';gate.textContent='🔊 Tap anywhere to turn on sound';document.body.appendChild(gate);
 gate.classList.add('off');
 function speakText(t){if(!SPEECH||muted||!unlocked||!('speechSynthesis' in window))return;
@@ -184,12 +184,12 @@ function speakOnce(){
 const lo=+(Q.get('audiomin')||15), hi=+(Q.get('audiomax')||30);
 if(SPEECH)(function loop(){setTimeout(()=>{try{speakOnce();}catch(e){} loop();},(lo+Math.random()*(hi-lo))*1000);})();
 // duck the music while a line is spoken (only with ?audio=speech)
-if(SPEECH&&'speechSynthesis' in window)setInterval(()=>{if(au&&want&&!au.paused)au.volume=speechSynthesis.speaking?LOFI.duck:(mode==='yoki'?YOKI.vol:LOFI.vol);
+if(SPEECH&&'speechSynthesis' in window)(window.LH?LH.keep:setInterval)(()=>{if(au&&want&&!au.paused)au.volume=speechSynthesis.speaking?LOFI.duck:(mode==='yoki'?YOKI.vol:LOFI.vol);
   if(BN.on&&BN.master){ const v=brownVol(); if(BN.duckV!==v){ BN.duckV=v; brownTo(v,.5); } }},500);
 // a reload with a saved mode: try to resume; if the browser says no, wait for the next tap
 { const m0=savedMode(); if(m0!=='off'){ mode=m0; show(); want=true; waitTap=true; start(false); } }
 // watchdog: playback that stops advancing for 20 s while it should play reconnects (lofi) or moves on (yoki), with the same backoff
-let lastT=-1; setInterval(()=>{ if(mode==='brown'||!au||!want||waitTap||retryT||au.paused){lastT=-1;return;} if(au.currentTime===lastT){ if(mode==='yoki') nextSong(); else retry(); } lastT=au.currentTime; },20000);
+let lastT=-1; (window.LH?LH.keep:setInterval)(()=>{ if(mode==='brown'||!au||!want||waitTap||retryT||au.paused){lastT=-1;return;} if(au.currentTime===lastT){ if(mode==='yoki') nextSong(); else retry(); } lastT=au.currentTime; },20000);
 // level(): RMS of the brown-noise output right now (for QA; creates one analyser on first use)
 function brownLevel(){ if(!BN.ctx||!BN.master) return 0; if(!BN.an){ BN.an=BN.ctx.createAnalyser(); BN.an.fftSize=2048; BN.master.connect(BN.an); }
   const d=new Float32Array(BN.an.fftSize); BN.an.getFloatTimeDomainData(d); let s=0; for(let i=0;i<d.length;i++) s+=d[i]*d[i]; return Math.sqrt(s/d.length); }

@@ -247,7 +247,7 @@ window.thrydOutboxLeader=(function(){
   const write=()=>{try{localStorage.setItem(LOCK,JSON.stringify({id,at:Date.now()}));}catch(e){}};
   const take=()=>{const now=Date.now(),cur=read();if(cur&&cur.id!==id&&now-(cur.at||0)<2500)return false;write();const chk=read();return !!(chk&&chk.id===id);};
   const mine=()=>{const cur=read();return !!(cur&&cur.id===id&&Date.now()-(cur.at||0)<2500);};
-  setInterval(()=>{if(mine()||take())write();},1000);
+  (window.LH?LH.keep:setInterval)(()=>{if(mine()||take())write();},1000);
   addEventListener('beforeunload',()=>{try{const cur=read();if(cur&&cur.id===id)localStorage.removeItem(LOCK);}catch(e){}});
   try{const ch=new BroadcastChannel('thryd-outbox');window.__thrydOutboxCh=ch;
     ch.onmessage=ev=>{const d=ev&&ev.data;if(d&&d.type==='pump'&&(mine()||take())&&window.__thrydOutboxPump)window.__thrydOutboxPump();};}catch(e){}
@@ -285,7 +285,7 @@ window.thrydEnqueueCall=(function(){
   }finally{pumping=false;}}
   window.__thrydOutboxPump=()=>pump().catch(()=>{});
   if(window.__thrydOutboxTimer)clearInterval(window.__thrydOutboxTimer);
-  window.__thrydOutboxTimer=setInterval(()=>pump().catch(()=>{}),1000);
+  window.__thrydOutboxTimer=(window.LH?LH.keep:setInterval)(()=>pump().catch(()=>{}),1000);
   setTimeout(()=>pump().catch(()=>{}),200);
   const kickPump=()=>{if(document.visibilityState==='hidden')return;pump().catch(()=>{});};
   addEventListener('visibilitychange',kickPump);
@@ -534,7 +534,7 @@ function backdrop(set,force){ if(!libPin.allow(set))return; if(Date.now()<HOLD)r
   // advance only to a frame that has fully arrived; otherwise hold the current frame (never a half-loaded black frame)
   const tick=()=>{if(bgI>0&&!shown)return; const im=pre[bgI%set.frames]; if(bgI>0&&!(im&&im.complete&&im.naturalWidth))return; on.src=im?im.src:`${set.dir}/f${String(bgI%set.frames).padStart(3,'0')}.webp`;bgI++;};
   tick(); whenReady(on,()=>{flip();preload();});
-  bgTimer=setInterval(tick,bgMs(set));window.__thrydBgTick=tick;window.__thrydBgSet=set;
+  bgTimer=(window.LH?LH.slide:setInterval)(tick,bgMs(set));window.__thrydBgTick=tick;window.__thrydBgSet=set;
   bindScene(set);
 }
 /* story speed link (Jesuye 22 Nov 2026 1:50 PM ET, staffroom: "link them!!!"): the story page's speed slider (localStorage
@@ -542,14 +542,14 @@ function backdrop(set,force){ if(!libPin.allow(set))return; if(Date.now()<HOLD)r
    all run at that multiple, and a change in the story tab applies here at once via the storage event. */
 function storySp(){try{const v=parseFloat(localStorage.getItem('thryd_gode_speed'));if(isFinite(v)&&v>=0.25&&v<=4)return v;}catch(e){}return 1;}
 window.thrydStorySp=()=>storySp();function bgMs(set){return Math.max(40,Math.round((set&&set.ms||120)/storySp()));}
-addEventListener('storage',e=>{if(e.key!=='thryd_gode_speed')return;try{startSlide();}catch(err){}try{if(bgTimer&&window.__thrydBgTick){clearInterval(bgTimer);bgTimer=setInterval(window.__thrydBgTick,bgMs(window.__thrydBgSet));}}catch(err){}});
+addEventListener('storage',e=>{if(e.key!=='thryd_gode_speed')return;try{startSlide();}catch(err){}try{if(bgTimer&&window.__thrydBgTick){clearInterval(bgTimer);bgTimer=(window.LH?LH.slide:setInterval)(window.__thrydBgTick,bgMs(window.__thrydBgSet));}}catch(err){}});
 let POOL=[],poolI=0,slideCursor='',LXTRA=[],CUR_RUN=null,coldBooting=false; const RUNX=()=>LXTRA.filter(x=>CUR_RUN&&x.run===CUR_RUN);
 // slide speed: 8s default, 30s, 60s (?slide=30 or the bar select; remembered)
 let kept=null; try{kept=window.ThrydKeep&&ThrydKeep.settings();}catch(e){kept=null;} if(kept&&(kept.mute===0||kept.mute===1)){try{localStorage.setItem('thryd_mute',kept.mute?'1':'0');}catch(e){}} let SLIDE=+(Q.get('slide')||(kept&&kept.slide)||localStorage.getItem('thryd_slide')||8); if(![8,30,60].includes(SLIDE))SLIDE=8; let slideT=null;
 const NEWEST=()=>RUNX().length?RUNX().slice().sort((a,b)=>(b.mtime||0)-(a.mtime||0))[0]:null;
 // after ten slideshow changes, return to whatever the newest live view is then
 const slideCycle=window.ThrydLiveReturn.create(10);
-function startSlide(){clearInterval(slideT);slideT=setInterval(()=>{
+function startSlide(){clearInterval(slideT);slideT=(window.LH?LH.slide:setInterval)(()=>{
   if(coldBooting||flipPending||document.body.classList.contains('dragmode')||document.body.classList.contains('dwell'))return; /* dwell: someone is reading a tweet pop-up */
   const moved=ThrydLiveReturn.step(slideCycle,{pool:POOL,poolI,cursor:slideCursor,hold:libPin.pinned(),newest:()=>MODE==='live'?NEWEST():null});
   if(moved.action==='idle'||moved.action==='hold'){prefetchNext();return;}
@@ -600,7 +600,7 @@ async function loadTimeline(){try{const T=await J('data/timeline.json');TL={run:
   if(scKey){const card=cardOfSet(bgSet)||scKey.split('|').find(Boolean)||'';const next=eventsFor(card);const prevLen=scEv.length;scEv=next;if(prevLen===0&&next.length){scI=0;sceneStep();}syncPauseBtn();}
   else if(bgSet){bindScene(bgSet);}
 }catch(e){}}
-function ensureSceneTimer(){if(scTimer)return;scTimer=setInterval(()=>{if(!scPaused)sceneStep();},SCENE_MS);}
+function ensureSceneTimer(){if(scTimer)return;scTimer=(window.LH?LH.slide:setInterval)(()=>{if(!scPaused)sceneStep();},SCENE_MS);}
 // ---------- customer moves: loop data/drags.json (past projector-drags + live ntfy), forever; Pause stops this too
 let cmEv=[], cmI=0, cmTimer=null, cmSeen=new Set(), cmLastNtfy=0, cmPos={}, DRAGS_RUN=null;
 const CM_MS=Math.min(Math.max(1400,SPEED),2800);
@@ -739,7 +739,7 @@ function cmStep(){if(scPaused||!cmEv.length)return;const n=cmEv.length,idx=cmI%n
   cmEnqueue(async()=>{await applyCustMove(e);cmTicker(e,i,n);});}
 function ensureCmTimer(){if(cmTimer)return;
   // cadence: only enqueue when the queue is short, so moves never stutter on top of each other
-  cmTimer=setInterval(()=>{if(scPaused)return;if(cmQ.length>1||cmBusy)return;cmStep();}, CM_REDUCED?900:Math.max(CM_MS,2200));}
+  cmTimer=(window.LH?LH.slide:setInterval)(()=>{if(scPaused)return;if(cmQ.length>1||cmBusy)return;cmStep();}, CM_REDUCED?900:Math.max(CM_MS,2200));}
 function cmAppend(e){if(!e||!e.object||!e.place)return false;const s=cmSig(e);if(cmSeen.has(s))return false;cmSeen.add(s);cmEv.push(e);syncPauseBtn();return true;}
 async function loadDrags(){try{const D=await J('data/drags.json');DRAGS_RUN=D.run||null;const list=(D.events||[]).slice();
   if(!cmEv.length){cmEv=list;cmI=0;list.forEach(e=>cmSeen.add(cmSig(e)));syncPauseBtn();if(cmEv.length)cmStep();}
@@ -1112,7 +1112,7 @@ function say(L,who){ const e=ents['c:'+who]; if(!e)return;
   const base=Math.min(Math.max(SLIDE*900,4000),7000)+3000; /* +3000: tweets stay 3s longer */ if(window.ThrydTweet)ThrydTweet.mount(b,L,base); else b.classList.remove('on');
 }
 const everyS=f=>{const g=gen;const run=()=>{const t=setTimeout(()=>{if(g!==gen)return;f();run();},SLIDE*1000/storySp());timers.push(t);};run();};
-const every=(f,ms)=>{const g=gen;const t=setInterval(()=>{if(g===gen)f();},ms);timers.push(t);};
+const every=(f,ms)=>{const g=gen;const t=(window.LH?LH.slide:setInterval)(()=>{if(g===gen)f();},ms);timers.push(t);};
 function reset(){gen++;timers.forEach(t=>{clearInterval(t);clearTimeout(t);});timers=[];Object.keys(ents).forEach(k=>{ents[k].remove();delete ents[k];});regionsKey='';$('bubble').classList.remove('on'); if(window.ThrydTweet)ThrydTweet.dismiss($('bubble'));}
 // ---------- LIVE from state.json
 let localPrec=[];
