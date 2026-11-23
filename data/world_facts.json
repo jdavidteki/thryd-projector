@@ -983,16 +983,6 @@
 ],
 "red_white_cap": [
 {
-"id": "wf_2e3f75d4bf",
-"kind": "consequence",
-"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up with the red and white cap, which is still worn.",
-"code": "example.interactwith(red_white_cap){ red_white_cap.receives(example.shirt); red_white_cap.remembers(bisola, 'green shirt'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j8",
-"other": "example"
-},
-{
 "id": "wf_bc0bfbc790",
 "kind": "consequence",
 "text": "A Laptop note with Taiwo's name and 'lamp soot' on it, turns up with the red and white cap, which is still worn.",
@@ -1021,6 +1011,16 @@
 "run": "run-2eb42d",
 "card": "w6",
 "other": null
+},
+{
+"id": "wf_649dbcc13c",
+"kind": "consequence",
+"text": "A Laptop note with Taiwo's name and 'lamp soot' on it, turns up with the red and white cap, which is still worn.",
+"code": "tf_mom.interactwith(red_white_cap){ red_white_cap.receives(tf_mom.soot); red_white_cap.remembers(taiwo, 'lamp soot'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j7",
+"other": "tf_mom"
 },
 {
 "id": "wt_1115_2356_c",
@@ -10164,17 +10164,6 @@
 },
 "consequences": [
 {
-"id": "wf_b0dbf167aa",
-"ts": "2026-11-19T13:39:54-0500",
-"a": "sports_ball",
-"b": "kazeem",
-"code": "sports_ball.interactwith(kazeem){ kazeem.receives(sports_ball.envelope); kazeem.remembers(bisola, 'brown envelope'); }",
-"text": "The kazeem leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
 "id": "wf_ca0f83fe27",
 "ts": "2026-11-19T13:43:25-0500",
 "a": "bow",
@@ -10602,6 +10591,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_649dbcc13c",
+"ts": "2026-11-23T14:48:48-0500",
+"a": "tf_mom",
+"b": "red_white_cap",
+"code": "tf_mom.interactwith(red_white_cap){ red_white_cap.receives(tf_mom.soot); red_white_cap.remembers(taiwo, 'lamp soot'); }",
+"text": "A Laptop note with Taiwo's name and 'lamp soot' on it, turns up with the red and white cap, which is still worn.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j7"
 }
 ],
 "memories": [
@@ -10705,5 +10705,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-23T14:33:34-0500"
+"updated": "2026-11-23T14:48:48-0500"
 }
