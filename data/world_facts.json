@@ -775,16 +775,6 @@
 ],
 "pure_water_cooler": [
 {
-"id": "wt_300b229123",
-"kind": "consequence",
-"text": "At the end of the night Ronke counts the cooler's change tin again and it comes out full, because nobody's change was short tonight, so the tin is ready for this round's àjọ payout.",
-"code": "ronke.interactwith(pure_water_cooler){ ronke.count(pure_water_cooler, 'change tin'); … }",
-"author": "cos",
-"run": "story-4b1689",
-"card": "j158",
-"other": "ronke"
-},
-{
 "id": "wt_bd2176821c",
 "kind": "consequence",
 "text": "Because the ledger says it is her turn, the cooler's tin is paid out to Ronke after the amen, and the tin goes back on the lid empty, so the next round starts with the next sachet sold.",
@@ -813,6 +803,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "sports_ball"
+},
+{
+"id": "wf_5787f5d3e4",
+"kind": "consequence",
+"text": "A Cell phone note with Bisola's name and 'brown envelope' on it, turns up with the pure-water cooler, which is still carried home through the flood.",
+"code": "cell_phone.interactwith(pure_water_cooler){ pure_water_cooler.receives(cell_phone.envelope); pure_water_cooler.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "cell_phone"
 },
 {
 "id": "wt_61e16c7796",
@@ -10174,17 +10174,6 @@
 },
 "consequences": [
 {
-"id": "wf_c1e95a1247",
-"ts": "2026-11-19T13:50:27-0500",
-"a": "niaw",
-"b": "bird",
-"code": "niaw.interactwith(bird){ bird.receives(niaw.envelope); bird.remembers(bisola, 'brown envelope'); bird.tucks(niaw, 'yaba bookshop receipt into the envelope corner'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the envelope corner at the bird, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
 "id": "wf_7308551020",
 "ts": "2026-11-19T13:53:57-0500",
 "a": "patagonia",
@@ -10612,6 +10601,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_5787f5d3e4",
+"ts": "2026-11-23T15:10:52-0500",
+"a": "cell_phone",
+"b": "pure_water_cooler",
+"code": "cell_phone.interactwith(pure_water_cooler){ pure_water_cooler.receives(cell_phone.envelope); pure_water_cooler.remembers(bisola, 'brown envelope'); }",
+"text": "A Cell phone note with Bisola's name and 'brown envelope' on it, turns up with the pure-water cooler, which is still carried home through the flood.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -10715,5 +10715,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-23T15:02:39-0500"
+"updated": "2026-11-23T15:10:52-0500"
 }
