@@ -1139,16 +1139,6 @@
 ],
 "matches": [
 {
-"id": "wf_f1bd4f6cf0",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the matches, which is still found.",
-"code": "icsh.interactwith(matches){ matches.receives(icsh.envelope); matches.remembers(bisola, 'brown envelope'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "icsh"
-},
-{
 "id": "wf_8d828da71b",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the matches, which is still found.",
@@ -1177,6 +1167,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "computer_village"
+},
+{
+"id": "wf_d549cfb487",
+"kind": "consequence",
+"text": "A Chair note with Taiwo's name and '11:20pm' on it, turns up with the matches, which is still found.",
+"code": "chair.interactwith(matches){ matches.receives(chair.pm); matches.remembers(taiwo, '11:20pm'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w6",
+"other": "chair"
 },
 {
 "id": "wf_d40998bca5",
@@ -2051,16 +2051,6 @@
 ],
 "tie": [
 {
-"id": "wf_e12df36b59",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the tie, and Bisola reads the name twice.",
-"code": "wiitbaw.interactwith(tie){ tie.receives(wiitbaw.envelope); tie.remembers(bisola, 'brown envelope'); tie.tucks(wiitbaw, 'yaba bookshop receipt into the brown envelope'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "wiitbaw"
-},
-{
 "id": "wf_83d4902759",
 "kind": "consequence",
 "text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the brown envelope at the tie, and Bisola reads the name twice.",
@@ -2099,6 +2089,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "precision"
+},
+{
+"id": "wf_22f6b72624",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the tie, and Bisola reads the name twice.",
+"code": "bow.interactwith(tie){ tie.receives(bow.envelope); tie.remembers(bisola, 'brown envelope'); tie.tucks(bow, 'yaba bookshop receipt into the brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "bow"
 }
 ],
 "laptop": [
@@ -3223,16 +3223,6 @@
 ],
 "wser": [
 {
-"id": "wf_b0b5bd7169",
-"kind": "consequence",
-"text": "The wser leaves with an Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am.",
-"code": "computer_village.interactwith(wser){ wser.receives(computer_village.shirt); wser.remembers(bisola, 'green shirt'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j8",
-"other": "computer_village"
-},
-{
 "id": "wf_13e4e9f54c",
 "kind": "consequence",
 "text": "The wser leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
@@ -3271,6 +3261,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "ojuelegba_bus_stop"
+},
+{
+"id": "wf_0f4adf9568",
+"kind": "consequence",
+"text": "The wser leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "namco.interactwith(wser){ wser.receives(namco.envelope); wser.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "namco"
 }
 ],
 "blessings_subject": [
@@ -10124,39 +10124,6 @@
 },
 "consequences": [
 {
-"id": "wf_58cdeb657a",
-"ts": "2026-11-19T12:37:26-0500",
-"a": "vex",
-"b": "move",
-"code": "vex.interactwith(move){ move.receives(vex.envelope); move.remembers(bisola, 'brown envelope'); move.tucks(vex, 'yaba bookshop receipt into the brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the move, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
-"id": "wf_ab723a297a",
-"ts": "2026-11-19T12:40:03-0500",
-"a": "ttb",
-"b": "wiitbaw",
-"code": "ttb.interactwith(wiitbaw){ wiitbaw.receives(ttb.code); wiitbaw.remembers(ejiro, 'juju code'); }",
-"text": "The wiitbaw leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j2"
-},
-{
-"id": "wf_c2da49ff46",
-"ts": "2026-11-19T12:40:56-0500",
-"a": "ojuelegba_bus_stop",
-"b": "mama_ronke",
-"code": "ojuelegba_bus_stop.interactwith(mama_ronke){ mama_ronke.receives(ojuelegba_bus_stop.envelope); mama_ronke.remembers(bisola, 'brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the Mama Ronke, which is still present.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
 "id": "wf_8ff1e4ccd8",
 "ts": "2026-11-19T12:43:34-0500",
 "a": "iae",
@@ -10562,6 +10529,39 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "w1"
+},
+{
+"id": "wf_d549cfb487",
+"ts": "2026-11-23T13:17:22-0500",
+"a": "chair",
+"b": "matches",
+"code": "chair.interactwith(matches){ matches.receives(chair.pm); matches.remembers(taiwo, '11:20pm'); }",
+"text": "A Chair note with Taiwo's name and '11:20pm' on it, turns up with the matches, which is still found.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w6"
+},
+{
+"id": "wf_0f4adf9568",
+"ts": "2026-11-23T13:18:14-0500",
+"a": "namco",
+"b": "wser",
+"code": "namco.interactwith(wser){ wser.receives(namco.envelope); wser.remembers(bisola, 'brown envelope'); }",
+"text": "The wser leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
+},
+{
+"id": "wf_22f6b72624",
+"ts": "2026-11-23T13:19:05-0500",
+"a": "bow",
+"b": "tie",
+"code": "bow.interactwith(tie){ tie.receives(bow.envelope); tie.remembers(bisola, 'brown envelope'); tie.tucks(bow, 'yaba bookshop receipt into the brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the tie, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -10665,5 +10665,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-23T13:16:31-0500"
+"updated": "2026-11-23T13:19:05-0500"
 }
