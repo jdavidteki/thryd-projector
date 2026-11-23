@@ -3223,16 +3223,6 @@
 ],
 "wser": [
 {
-"id": "wf_35b34e0f2f",
-"kind": "consequence",
-"text": "The wser leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"code": "move.interactwith(wser){ wser.receives(move.envelope); wser.remembers(bisola, 'brown envelope'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "move"
-},
-{
 "id": "wf_38a494fe95",
 "kind": "consequence",
 "text": "The wser now remembers the ronke: Ronke writes a note. Already woven into posted w39; this row only logs the seated pick.",
@@ -3271,6 +3261,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "vex"
+},
+{
+"id": "wf_6320ac201c",
+"kind": "consequence",
+"text": "The wser leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "lie.interactwith(wser){ wser.receives(lie.envelope); wser.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "lie"
 }
 ],
 "blessings_subject": [
@@ -10174,17 +10174,6 @@
 },
 "consequences": [
 {
-"id": "wf_05bd6b0a89",
-"ts": "2026-11-19T13:49:34-0500",
-"a": "sheep",
-"b": "kazeem",
-"code": "sheep.interactwith(kazeem){ kazeem.receives(sheep.number); kazeem.remembers(kunle, 'scorched container number'); }",
-"text": "The kazeem leaves with a Sheep note with Kunle's name and 'scorched container number' on it.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "w7"
-},
-{
 "id": "wf_c1e95a1247",
 "ts": "2026-11-19T13:50:27-0500",
 "a": "niaw",
@@ -10612,6 +10601,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j8"
+},
+{
+"id": "wf_6320ac201c",
+"ts": "2026-11-23T15:02:39-0500",
+"a": "lie",
+"b": "wser",
+"code": "lie.interactwith(wser){ wser.receives(lie.envelope); wser.remembers(bisola, 'brown envelope'); }",
+"text": "The wser leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -10715,5 +10715,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-23T15:01:45-0500"
+"updated": "2026-11-23T15:02:39-0500"
 }
