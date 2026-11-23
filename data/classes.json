@@ -68,7 +68,8 @@
    "implements": [
     "Foldable",
     "Readable",
-    "Speakable"
+    "Speakable",
+    "Watchable"
    ]
   },
   "Place": {
@@ -106,8 +107,8 @@
     "ask",
     "give"
    ],
-   "instances": 397,
-   "arg_instances": 75,
+   "instances": 399,
+   "arg_instances": 78,
    "parent": null,
    "chain": [
     "Thing"
@@ -1802,6 +1803,22 @@
    ],
    "tweets": []
   },
+  "elders": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-888ea9",
+   "first_job": "j5",
+   "source": "pick",
+   "runs": [
+    "run-888ea9"
+   ],
+   "tweets": [
+    {
+     "text": "- wash your hands before you eat with elders",
+     "year": "2024"
+    }
+   ]
+  },
   "elonmusk": {
    "class": "Thing",
    "cue": "default",
@@ -3486,6 +3503,22 @@
     "run-0ae93c"
    ],
    "tweets": []
+  },
+  "mad": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-888ea9",
+   "first_job": "j5",
+   "source": "pick",
+   "runs": [
+    "run-888ea9"
+   ],
+   "tweets": [
+    {
+     "text": "— but when you see mad accuracy like this",
+     "year": "2025"
+    }
+   ]
   },
   "malaria": {
    "class": "Thing",
@@ -6433,13 +6466,19 @@
   "yuwa": {
    "class": "Thing",
    "cue": "default",
-   "first_run": "run-2eb42d",
-   "first_job": null,
-   "source": "stage",
+   "first_run": "run-888ea9",
+   "first_job": "j5",
+   "source": "pick",
    "runs": [
+    "run-888ea9",
     "run-2eb42d"
    ],
-   "tweets": []
+   "tweets": [
+    {
+     "text": "- diss thing yuwa doing, you dont think eez weird?",
+     "year": "2025"
+    }
+   ]
   },
   "yvsfdl": {
    "class": "Thing",
@@ -7698,6 +7737,24 @@
     "deconversation",
     "Thing",
     "j4",
+    "pick"
+   ],
+   [
+    "mad",
+    "Thing",
+    "j5",
+    "pick"
+   ],
+   [
+    "elders",
+    "Thing",
+    "j5",
+    "pick"
+   ],
+   [
+    "yuwa",
+    "Thing",
+    "j5",
     "pick"
    ]
   ],
@@ -10283,6 +10340,9 @@
   "pawa.full": "full(what: Thing)",
   "tunde.getlocation": "getlocation(where: Place)",
   "worry.have": "have(what: Thing)",
+  "accuracy.see": "see(what: Thing)",
+  "hands.wash": "wash(what: Thing)",
+  "thing.weird": "weird(what: Thing)",
   "cooler.getdatemanufactured": "getDateManufactured()",
   "ronke.getlikes.contains": "getlikes.contains()",
   "kazeem.goodqualities.filter": "filter()",
@@ -10440,6 +10500,7 @@
     "Thing"
    ],
    "objects": [
+    "accuracy",
     "aotl",
     "calla",
     "chairman",
@@ -10487,11 +10548,13 @@
    ],
    "classes": [
     "Action",
+    "Manner",
     "Person",
     "Place",
     "Thing"
    ],
    "objects": [
+    "accuracy",
     "calla",
     "chairman",
     "dez",
@@ -10719,7 +10782,10 @@
    "titi"
   ],
   "run-888ea9": [
+   "accuracy",
+   "hands",
    "pawa",
+   "thing",
    "tunde",
    "worry"
   ]
@@ -10796,5 +10862,5 @@
   "epilogue": "quiet",
   "coda": "quiet"
  },
- "updated": "2026-11-23T17:52:09-05:00"
+ "updated": "2026-11-23T18:07:28-05:00"
 }

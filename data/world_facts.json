@@ -931,16 +931,6 @@
 ],
 "plastic_sheet": [
 {
-"id": "wf_bbd8e2dfa8",
-"kind": "consequence",
-"text": "The plastic sheet now remembers the wiitbaw: The customer typed [[wiitbaw]] on run-qa j1.",
-"code": "wiitbaw.interactwith(plastic_sheet){ plastic_sheet.receives(wiitbaw.something); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j1",
-"other": "wiitbaw"
-},
-{
 "id": "wf_99a2b3e11d",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the plastic sheet, which is still wet.",
@@ -979,6 +969,16 @@
 "run": "run-2eb42d",
 "card": "w5",
 "other": null
+},
+{
+"id": "wf_59cc50aab5",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the plastic sheet, which is still wet.",
+"code": "mlkahb.interactwith(plastic_sheet){ plastic_sheet.receives(mlkahb.envelope); plastic_sheet.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "mlkahb"
 }
 ],
 "red_white_cap": [
@@ -10214,17 +10214,6 @@
 },
 "consequences": [
 {
-"id": "wf_ff1174c501",
-"ts": "2026-11-23T13:23:23-0500",
-"a": "lady",
-"b": "mlkahb",
-"code": "lady.interactwith(mlkahb){ mlkahb.receives(lady.shirt); mlkahb.remembers(bisola, 'green shirt'); mlkahb.tucks(lady, 'ikeja laundromat receipt into the brown envelope'); }",
-"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the brown envelope at the mlkahb, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j8"
-},
-{
 "id": "wf_1676f05bef",
 "ts": "2026-11-23T13:27:26-0500",
 "a": "asmathic",
@@ -10652,6 +10641,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j8"
+},
+{
+"id": "wf_59cc50aab5",
+"ts": "2026-11-23T18:07:25-0500",
+"a": "mlkahb",
+"b": "plastic_sheet",
+"code": "mlkahb.interactwith(plastic_sheet){ plastic_sheet.receives(mlkahb.envelope); plastic_sheet.remembers(bisola, 'brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the plastic sheet, which is still wet.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -10755,5 +10755,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-23T17:56:37-0500"
+"updated": "2026-11-23T18:07:26-0500"
 }
