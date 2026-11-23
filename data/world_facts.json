@@ -6943,16 +6943,6 @@
 ],
 "iae": [
 {
-"id": "wf_b067528817",
-"kind": "consequence",
-"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up with the iae, which is still initialized.",
-"code": "divine.interactwith(iae){ iae.receives(divine.shirt); iae.remembers(bisola, 'green shirt'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j8",
-"other": "divine"
-},
-{
 "id": "wf_a7ce4b3694",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the iae, which is still initialized.",
@@ -6991,6 +6981,16 @@
 "run": "run-2eb42d",
 "card": "j8",
 "other": "computer_village"
+},
+{
+"id": "wf_2c7906bac7",
+"kind": "consequence",
+"text": "A Bird note with Bisola's name and 'envelope corner' on it, turns up with the iae, which is still initialized.",
+"code": "bird.interactwith(iae){ iae.receives(bird.corner); iae.remembers(bisola, 'envelope corner'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j7",
+"other": "bird"
 }
 ],
 "tf_mom": [
@@ -10214,17 +10214,6 @@
 },
 "consequences": [
 {
-"id": "wf_8690520cde",
-"ts": "2026-11-23T13:31:02-0500",
-"a": "vex",
-"b": "wser",
-"code": "vex.interactwith(wser){ wser.receives(vex.envelope); wser.remembers(bisola, 'brown envelope'); }",
-"text": "The wser leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
 "id": "wf_6cc4bf5c80",
 "ts": "2026-11-23T13:31:56-0500",
 "a": "no_palmgrove_close",
@@ -10652,6 +10641,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "w7"
+},
+{
+"id": "wf_2c7906bac7",
+"ts": "2026-11-23T18:31:48-0500",
+"a": "bird",
+"b": "iae",
+"code": "bird.interactwith(iae){ iae.receives(bird.corner); iae.remembers(bisola, 'envelope corner'); }",
+"text": "A Bird note with Bisola's name and 'envelope corner' on it, turns up with the iae, which is still initialized.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j7"
 }
 ],
 "memories": [
@@ -10755,5 +10755,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-23T18:23:41-0500"
+"updated": "2026-11-23T18:31:48-0500"
 }
