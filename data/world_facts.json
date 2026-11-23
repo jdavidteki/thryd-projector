@@ -983,16 +983,6 @@
 ],
 "red_white_cap": [
 {
-"id": "wf_f79464398c",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the red and white cap, which is still worn.",
-"code": "precision.interactwith(red_white_cap){ red_white_cap.receives(precision.envelope); red_white_cap.remembers(bisola, 'brown envelope'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "precision"
-},
-{
 "id": "wf_2e3f75d4bf",
 "kind": "consequence",
 "text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up with the red and white cap, which is still worn.",
@@ -1011,6 +1001,16 @@
 "run": "run-2eb42d",
 "card": "j7",
 "other": "laptop"
+},
+{
+"id": "wf_b1079f41d3",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the red and white cap, which is still worn.",
+"code": "atp.interactwith(red_white_cap){ red_white_cap.receives(atp.envelope); red_white_cap.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "atp"
 },
 {
 "id": "wf_3fdb648208",
@@ -10164,17 +10164,6 @@
 },
 "consequences": [
 {
-"id": "wf_94b56db8c9",
-"ts": "2026-11-19T13:19:41-0500",
-"a": "bird",
-"b": "wiitbaw",
-"code": "bird.interactwith(wiitbaw){ wiitbaw.receives(bird.corner); wiitbaw.remembers(bisola, 'envelope corner'); }",
-"text": "The wiitbaw leaves with a Bird note with Bisola's name and 'envelope corner' on it.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j7"
-},
-{
 "id": "wf_55c3941222",
 "ts": "2026-11-19T13:34:38-0500",
 "a": "cup",
@@ -10602,6 +10591,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_b1079f41d3",
+"ts": "2026-11-23T14:25:55-0500",
+"a": "atp",
+"b": "red_white_cap",
+"code": "atp.interactwith(red_white_cap){ red_white_cap.receives(atp.envelope); red_white_cap.remembers(bisola, 'brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the red and white cap, which is still worn.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -10705,5 +10705,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-23T14:16:37-0500"
+"updated": "2026-11-23T14:26:49-0500"
 }
