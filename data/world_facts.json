@@ -775,16 +775,6 @@
 ],
 "pure_water_cooler": [
 {
-"id": "wt_4c5a1ac0c5",
-"kind": "consequence",
-"text": "Kazeem pays 400 naira for one of anything off the pure-water cooler, the coins go into the change tin on its lid, and because someone at the hall asked for a receipt, the amount is written on a scrap and tucked in with them.",
-"code": "kazeem.interactwith(pure_water_cooler){ kazeem.pays(pure_water_cooler, '400 naira'); … }",
-"author": "cos",
-"run": "story-4b1689",
-"card": "j87",
-"other": "kazeem"
-},
-{
 "id": "wt_300b229123",
 "kind": "consequence",
 "text": "At the end of the night Ronke counts the cooler's change tin again and it comes out full, because nobody's change was short tonight, so the tin is ready for this round's àjọ payout.",
@@ -813,6 +803,16 @@
 "run": "story-4b1689",
 "card": "j161",
 "other": "ronke"
+},
+{
+"id": "wf_696fcc3a37",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the pure-water cooler, which is still carried home through the flood.",
+"code": "sports_ball.interactwith(pure_water_cooler){ pure_water_cooler.receives(sports_ball.envelope); pure_water_cooler.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "sports_ball"
 },
 {
 "id": "wt_61e16c7796",
@@ -2587,16 +2587,6 @@
 ],
 "cup": [
 {
-"id": "wf_631ccd57a3",
-"kind": "consequence",
-"text": "A Pure water cooler note with Kunle's name and 'container number' on it, 9:20am, turns up inside the juju code at the cup, and Ejiro reads the name twice.",
-"code": "pure_water_cooler.interactwith(cup){ cup.receives(pure_water_cooler.number); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "w1",
-"other": "pure_water_cooler"
-},
-{
 "id": "wf_84bdb43681",
 "kind": "consequence",
 "text": "A Marker note with Kunle's name and 'nice day sign' on it, turns up inside the juju code at the cup, and Ejiro reads the name twice.",
@@ -2625,6 +2615,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "precision"
+},
+{
+"id": "wf_60d51d62e0",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the juju code at the cup, and Ejiro reads the name twice.",
+"code": "asmathic.interactwith(cup){ cup.receives(asmathic.envelope); cup.remembers(bisola, 'brown envelope'); cup.tucks(asmathic, 'yaba bookshop receipt into the juju code'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "asmathic"
 },
 {
 "id": "wt_9a530635c7",
@@ -8247,6 +8247,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "no_palmgrove_close"
+},
+{
+"id": "wf_4b8361fb3c",
+"kind": "consequence",
+"text": "The cooler leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "uch.interactwith(cooler){ cooler.receives(uch.envelope); cooler.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "uch"
 }
 ],
 "teach": [
@@ -10144,39 +10154,6 @@
 },
 "consequences": [
 {
-"id": "wf_bd1035aee3",
-"ts": "2026-11-19T12:57:56-0500",
-"a": "jnoel",
-"b": "bus",
-"code": "jnoel.interactwith(bus){ bus.receives(jnoel.envelope); bus.remembers(bisola, 'brown envelope'); bus.tucks(jnoel, 'yaba bookshop receipt into the brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bus, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
-"id": "wf_c61e376368",
-"ts": "2026-11-19T13:04:57-0500",
-"a": "lady",
-"b": "bird",
-"code": "lady.interactwith(bird){ bird.receives(lady.shirt); bird.remembers(bisola, 'green shirt'); bird.tucks(lady, 'ikeja laundromat receipt into the envelope corner'); }",
-"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the envelope corner at the bird, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j8"
-},
-{
-"id": "wf_929405f6b9",
-"ts": "2026-11-19T13:09:07-0500",
-"a": "teach",
-"b": "mkdwo",
-"code": "teach.interactwith(mkdwo){ mkdwo.receives(teach.envelope); mkdwo.remembers(bisola, 'brown envelope'); }",
-"text": "The mkdwo leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
 "id": "wf_de53435e3d",
 "ts": "2026-11-19T13:10:00-0500",
 "a": "ojuelegba_bus_stop",
@@ -10582,6 +10559,39 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_60d51d62e0",
+"ts": "2026-11-23T13:33:46-0500",
+"a": "asmathic",
+"b": "cup",
+"code": "asmathic.interactwith(cup){ cup.receives(asmathic.envelope); cup.remembers(bisola, 'brown envelope'); cup.tucks(asmathic, 'yaba bookshop receipt into the juju code'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the juju code at the cup, and Ejiro reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
+},
+{
+"id": "wf_4b8361fb3c",
+"ts": "2026-11-23T13:35:34-0500",
+"a": "uch",
+"b": "cooler",
+"code": "uch.interactwith(cooler){ cooler.receives(uch.envelope); cooler.remembers(bisola, 'brown envelope'); }",
+"text": "The cooler leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
+},
+{
+"id": "wf_696fcc3a37",
+"ts": "2026-11-23T13:38:14-0500",
+"a": "sports_ball",
+"b": "pure_water_cooler",
+"code": "sports_ball.interactwith(pure_water_cooler){ pure_water_cooler.receives(sports_ball.envelope); pure_water_cooler.remembers(bisola, 'brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the pure-water cooler, which is still carried home through the flood.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -10685,5 +10695,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-23T13:31:56-0500"
+"updated": "2026-11-23T13:38:14-0500"
 }
