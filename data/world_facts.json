@@ -7273,16 +7273,6 @@
 ],
 "wiitbaw": [
 {
-"id": "wf_882de53ca5",
-"kind": "consequence",
-"text": "The wiitbaw leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"code": "saturday_october.interactwith(wiitbaw){ wiitbaw.receives(saturday_october.envelope); wiitbaw.remembers(bisola, 'brown envelope'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "saturday_october"
-},
-{
 "id": "wf_35c0dca806",
 "kind": "consequence",
 "text": "The wiitbaw leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
@@ -7321,6 +7311,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "ojuelegba_bus_stop"
+},
+{
+"id": "wf_35cacc922c",
+"kind": "consequence",
+"text": "The wiitbaw leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "patagonia.interactwith(wiitbaw){ wiitbaw.receives(patagonia.envelope); wiitbaw.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "patagonia"
 }
 ],
 "listen": [
@@ -10204,17 +10204,6 @@
 },
 "consequences": [
 {
-"id": "wf_0f4adf9568",
-"ts": "2026-11-23T13:18:14-0500",
-"a": "namco",
-"b": "wser",
-"code": "namco.interactwith(wser){ wser.receives(namco.envelope); wser.remembers(bisola, 'brown envelope'); }",
-"text": "The wser leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
 "id": "wf_22f6b72624",
 "ts": "2026-11-23T13:19:05-0500",
 "a": "bow",
@@ -10642,6 +10631,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_35cacc922c",
+"ts": "2026-11-23T17:54:49-0500",
+"a": "patagonia",
+"b": "wiitbaw",
+"code": "patagonia.interactwith(wiitbaw){ wiitbaw.receives(patagonia.envelope); wiitbaw.remembers(bisola, 'brown envelope'); }",
+"text": "The wiitbaw leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -10745,5 +10745,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-23T17:49:25-0500"
+"updated": "2026-11-23T17:54:49-0500"
 }
