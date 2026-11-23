@@ -775,16 +775,6 @@
 ],
 "pure_water_cooler": [
 {
-"id": "wt_bd2176821c",
-"kind": "consequence",
-"text": "Because the ledger says it is her turn, the cooler's tin is paid out to Ronke after the amen, and the tin goes back on the lid empty, so the next round starts with the next sachet sold.",
-"code": "pure_water_cooler.interactwith(ronke){ pure_water_cooler.gives(ronke, 'change tin'); … }",
-"author": "cos",
-"run": "story-4b1689",
-"card": "j160",
-"other": "ronke"
-},
-{
 "id": "wt_bacf1b1ad6",
 "kind": "consequence",
 "text": "Back at the hall Ronke packs the ice block under the sachets, so the cooler that paid her out is cold for the next meeting and the next round of the tin.",
@@ -813,6 +803,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "cell_phone"
+},
+{
+"id": "wf_ca258e55d6",
+"kind": "consequence",
+"text": "The Mama Ronke ends up with the pure water cooler, still present.",
+"code": "mama_ronke.interactwith(pure_water_cooler){ mama_ronke.db.copyto(pure_water_cooler); pure_water_cooler.keeps(mama_ronke, 'Mama Ronke, still present'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "",
+"other": "mama_ronke"
 },
 {
 "id": "wt_61e16c7796",
@@ -10204,17 +10204,6 @@
 },
 "consequences": [
 {
-"id": "wt_11526d928e",
-"ts": "2026-11-21T10:28:37-0500",
-"a": "investor",
-"b": "mama_ronke",
-"code": "investor.interactwith(mama_ronke){ mama_ronke.receives(investor, 'trust'); … }",
-"text": "Hearing that the investor has warmed to the hall, Mama Ronke tells him his egusi pot will be the first one ready tomorrow, and sets two clean plates aside for it.",
-"author": "cos",
-"run": "story-4b1689",
-"card": "j88"
-},
-{
 "id": "wt_300b229123",
 "ts": "2026-11-23T10:27:42-0500",
 "a": "ronke",
@@ -10642,6 +10631,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_ca258e55d6",
+"ts": "2026-11-23T16:52:44-0500",
+"a": "mama_ronke",
+"b": "pure_water_cooler",
+"code": "mama_ronke.interactwith(pure_water_cooler){ mama_ronke.db.copyto(pure_water_cooler); pure_water_cooler.keeps(mama_ronke, 'Mama Ronke, still present'); }",
+"text": "The Mama Ronke ends up with the pure water cooler, still present.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": ""
 }
 ],
 "memories": [
@@ -10745,5 +10745,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-23T16:05:16-0500"
+"updated": "2026-11-23T16:52:44-0500"
 }
