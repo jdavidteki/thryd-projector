@@ -983,16 +983,6 @@
 ],
 "red_white_cap": [
 {
-"id": "wf_649dbcc13c",
-"kind": "consequence",
-"text": "A Laptop note with Taiwo's name and 'lamp soot' on it, turns up with the red and white cap, which is still worn.",
-"code": "tf_mom.interactwith(red_white_cap){ red_white_cap.receives(tf_mom.soot); red_white_cap.remembers(taiwo, 'lamp soot'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j7",
-"other": "tf_mom"
-},
-{
 "id": "wf_5fcdd5c34b",
 "kind": "consequence",
 "text": "The red white cap now remembers the thryd: A new theme carton lands on the table beside the leftover noodles, from the typed.",
@@ -1011,6 +1001,16 @@
 "run": "run-2eb42d",
 "card": "j7",
 "other": "bird"
+},
+{
+"id": "wf_f6cdeaa859",
+"kind": "consequence",
+"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up with the red and white cap, which is still worn.",
+"code": "ojuelegba_bus_stop.interactwith(red_white_cap){ red_white_cap.receives(ojuelegba_bus_stop.shirt); red_white_cap.remembers(bisola, 'green shirt'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j8",
+"other": "ojuelegba_bus_stop"
 },
 {
 "id": "wf_3fdb648208",
@@ -10354,17 +10354,6 @@
 },
 "consequences": [
 {
-"id": "wf_fb5c33bf86",
-"ts": "2026-11-23T21:34:09-0500",
-"a": "move",
-"b": "divine",
-"code": "move.interactwith(divine){ divine.receives(move.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the divine, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
 "id": "wf_7690f0c7cf",
 "ts": "2026-11-23T21:36:44-0500",
 "a": "again",
@@ -10792,6 +10781,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": ""
+},
+{
+"id": "wf_f6cdeaa859",
+"ts": "2026-11-24T01:12:54-0500",
+"a": "ojuelegba_bus_stop",
+"b": "red_white_cap",
+"code": "ojuelegba_bus_stop.interactwith(red_white_cap){ red_white_cap.receives(ojuelegba_bus_stop.shirt); red_white_cap.remembers(bisola, 'green shirt'); }",
+"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up with the red and white cap, which is still worn.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j8"
 }
 ],
 "memories": [
@@ -10895,5 +10895,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-24T01:09:29-0500"
+"updated": "2026-11-24T01:13:45-0500"
 }
