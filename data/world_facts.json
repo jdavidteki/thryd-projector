@@ -1169,16 +1169,6 @@
 "other": "sheep"
 },
 {
-"id": "wf_d40998bca5",
-"kind": "memory",
-"text": "The matches at doorway, Mama Ronke's house: found; rattled in the doorway as she came back.",
-"code": "matches.state('found');",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "w7",
-"other": null
-},
-{
 "id": "wf_ae6abb3d7a",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the matches, which is still found.",
@@ -1187,6 +1177,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "listen"
+},
+{
+"id": "wf_d40998bca5",
+"kind": "memory",
+"text": "The matches at doorway, Mama Ronke's house: found; rattled in the doorway as she came back.",
+"code": "matches.state('found');",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w7",
+"other": null
 }
 ],
 "gbagada_hospital_waiting": [
@@ -2587,16 +2587,6 @@
 ],
 "cup": [
 {
-"id": "wf_e9faa0c1e9",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the juju code at the cup, and Ejiro reads the name twice.",
-"code": "patagonia.interactwith(cup){ cup.receives(patagonia.envelope); … }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "patagonia"
-},
-{
 "id": "wf_34cbecdc03",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the juju code at the cup, and Ejiro reads the name twice.",
@@ -2625,6 +2615,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "jnoel"
+},
+{
+"id": "wf_20bc2e5c8e",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the juju code at the cup, and Ejiro reads the name twice.",
+"code": "since.interactwith(cup){ cup.receives(since.envelope); cup.remembers(bisola, 'brown envelope'); cup.tucks(since, 'yaba bookshop receipt into the juju code'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "since"
 },
 {
 "id": "wt_9a530635c7",
@@ -10274,17 +10274,6 @@
 },
 "consequences": [
 {
-"id": "wf_b69004de25",
-"ts": "2026-11-23T18:48:13-0500",
-"a": "vex",
-"b": "kerosene_lamp",
-"code": "vex.interactwith(kerosene_lamp){ kerosene_lamp.receives(vex.envelope); kerosene_lamp.remembers(bisola, 'brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the kerosene lamp, which is still lit.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
 "id": "wf_f0d7ba72b3",
 "ts": "2026-11-23T18:53:30-0500",
 "a": "mlkahb",
@@ -10712,6 +10701,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_20bc2e5c8e",
+"ts": "2026-11-23T21:46:11-0500",
+"a": "since",
+"b": "cup",
+"code": "since.interactwith(cup){ cup.receives(since.envelope); cup.remembers(bisola, 'brown envelope'); cup.tucks(since, 'yaba bookshop receipt into the juju code'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the juju code at the cup, and Ejiro reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -10815,5 +10815,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-23T21:41:54-0500"
+"updated": "2026-11-23T21:46:11-0500"
 }
