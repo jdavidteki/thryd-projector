@@ -1829,16 +1829,6 @@
 ],
 "bicycle": [
 {
-"id": "wf_73014556cd",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the green shirt at the bicycle, and Bisola reads the name twice.",
-"code": "listen.interactwith(bicycle){ bicycle.receives(listen.envelope); … }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "listen"
-},
-{
 "id": "wf_fc0d8e206b",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bicycle, and Bisola reads the name twice.",
@@ -1877,6 +1867,16 @@
 "run": "run-2eb42d",
 "card": "j2",
 "other": "ttb"
+},
+{
+"id": "wf_68f7677905",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bicycle, and Bisola reads the name twice.",
+"code": "divine.interactwith(bicycle){ bicycle.receives(divine.envelope); … }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "divine"
 }
 ],
 "ronke": [
@@ -10284,17 +10284,6 @@
 },
 "consequences": [
 {
-"id": "wf_24a87efa8a",
-"ts": "2026-11-23T19:05:54-0500",
-"a": "example",
-"b": "teach",
-"code": "example.interactwith(teach){ teach.receives(example.shirt); … }",
-"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the brown envelope at the teach, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j8"
-},
-{
 "id": "wf_fd00e44a53",
 "ts": "2026-11-23T19:07:42-0500",
 "a": "precision",
@@ -10722,6 +10711,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "w4"
+},
+{
+"id": "wf_68f7677905",
+"ts": "2026-11-23T22:42:24-0500",
+"a": "divine",
+"b": "bicycle",
+"code": "divine.interactwith(bicycle){ bicycle.receives(divine.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bicycle, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -10825,5 +10825,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-23T21:51:20-0500"
+"updated": "2026-11-23T22:42:24-0500"
 }
