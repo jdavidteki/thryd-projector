@@ -8155,16 +8155,6 @@
 ],
 "mlkahb": [
 {
-"id": "wf_8bf4c4131d",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the mlkahb, and Bisola reads the name twice.",
-"code": "icsh.interactwith(mlkahb){ mlkahb.receives(icsh.envelope); … }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "icsh"
-},
-{
 "id": "wf_ff1174c501",
 "kind": "consequence",
 "text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the brown envelope at the mlkahb, and Bisola reads the name twice.",
@@ -8203,6 +8193,16 @@
 "run": "run-2eb42d",
 "card": "w7",
 "other": "twgs"
+},
+{
+"id": "wf_6cf4ee8b49",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the mlkahb, and Bisola reads the name twice.",
+"code": "jnoel.interactwith(mlkahb){ mlkahb.receives(jnoel.envelope); … }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "jnoel"
 }
 ],
 "uncle_ebo": [
@@ -10284,17 +10284,6 @@
 },
 "consequences": [
 {
-"id": "wf_f29262a8af",
-"ts": "2026-11-23T19:25:28-0500",
-"a": "lady",
-"b": "bus",
-"code": "lady.interactwith(bus){ bus.receives(lady.shirt); bus.remembers(bisola, 'green shirt'); bus.tucks(lady, 'ikeja laundromat receipt into the brown envelope'); }",
-"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the brown envelope at the bus, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j8"
-},
-{
 "id": "wf_5fe96e5408",
 "ts": "2026-11-23T19:28:05-0500",
 "a": "lady",
@@ -10722,6 +10711,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_6cf4ee8b49",
+"ts": "2026-11-23T23:20:38-0500",
+"a": "jnoel",
+"b": "mlkahb",
+"code": "jnoel.interactwith(mlkahb){ mlkahb.receives(jnoel.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the mlkahb, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -10825,5 +10825,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-23T23:15:34-0500"
+"updated": "2026-11-23T23:20:38-0500"
 }
