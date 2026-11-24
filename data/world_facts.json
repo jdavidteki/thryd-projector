@@ -2061,16 +2061,6 @@
 ],
 "tie": [
 {
-"id": "wf_e9e1969a2a",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the tie, and Bisola reads the name twice.",
-"code": "love.interactwith(tie){ tie.receives(love.envelope); tie.remembers(bisola, 'brown envelope'); tie.tucks(love, 'yaba bookshop receipt into the brown envelope'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "love"
-},
-{
 "id": "wf_00273e36b6",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the tie, and Bisola reads the name twice.",
@@ -2109,6 +2099,16 @@
 "run": "run-5a58c4",
 "card": "j6",
 "other": "dez"
+},
+{
+"id": "wf_3ffdb37cd3",
+"kind": "consequence",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the tie, and Bisola reads the name twice.",
+"code": "mbtij.interactwith(tie){ tie.receives(mbtij.code); tie.remembers(ejiro, 'juju code'); tie.tucks(mbtij, 'ttb note into the brown envelope'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j2",
+"other": "mbtij"
 }
 ],
 "laptop": [
@@ -10478,17 +10478,6 @@
 },
 "consequences": [
 {
-"id": "wf_f283a4272a",
-"ts": "2026-11-24T01:56:07-0500",
-"a": "hose",
-"b": "miami",
-"code": "hose.interactwith(miami){ miami.receives(hose.envelope); miami.remembers(bisola, 'brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up beside the phone at the miami.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
 "id": "wf_7d04000d9e",
 "ts": "2026-11-24T01:57:49-0500",
 "a": "heat",
@@ -10916,6 +10905,17 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": "j8"
+},
+{
+"id": "wf_3ffdb37cd3",
+"ts": "2026-11-24T10:25:57-0500",
+"a": "mbtij",
+"b": "tie",
+"code": "mbtij.interactwith(tie){ tie.receives(mbtij.code); tie.remembers(ejiro, 'juju code'); tie.tucks(mbtij, 'ttb note into the brown envelope'); }",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the tie, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j2"
 }
 ],
 "memories": [
@@ -11019,5 +11019,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-24T07:04:15-0500"
+"updated": "2026-11-24T10:25:57-0500"
 }
