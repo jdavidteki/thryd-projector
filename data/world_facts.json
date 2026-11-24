@@ -4965,16 +4965,6 @@
 ],
 "teomarisollove": [
 {
-"id": "wf_5d7dc3eec8",
-"kind": "consequence",
-"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up with the teomarisollove, which is still in love, said out loud by Marisol (w14 causeway).",
-"code": "marina_biscayne_bay.interactwith(teomarisollove){ teomarisollove.receives(marina_biscayne_bay.code); teomarisollove.remembers(ejiro, 'juju code'); }",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j2",
-"other": "marina_biscayne_bay"
-},
-{
 "id": "wf_47c2532f3d",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the teomarisollove, which is still in love, said out loud by Marisol (w14 causeway).",
@@ -5013,6 +5003,16 @@
 "run": "run-5a58c4",
 "card": "j6",
 "other": "thoughts_marisol"
+},
+{
+"id": "wf_8d41bbe30c",
+"kind": "consequence",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up with the teomarisollove, which is still in love, said out loud by Marisol (w14 causeway).",
+"code": "tag_sessy.interactwith(teomarisollove){ teomarisollove.receives(tag_sessy.code); teomarisollove.remembers(ejiro, 'juju code'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j2",
+"other": "tag_sessy"
 }
 ],
 "front_gate_no": [
@@ -5343,6 +5343,16 @@
 "run": "run-5a58c4",
 "card": "j6",
 "other": "dress_marisol"
+},
+{
+"id": "wf_32b6288bd6",
+"kind": "consequence",
+"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the brown envelope at the florida, and Bisola reads the name twice.",
+"code": "prior_reality.interactwith(florida){ florida.receives(prior_reality.shirt); … }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j8",
+"other": "prior_reality"
 }
 ],
 "htpto": [
@@ -5629,26 +5639,6 @@
 ],
 "miami": [
 {
-"id": "wf_1a96188fa7",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up beside the phone at the miami.",
-"code": "bow.interactwith(miami){ miami.receives(bow.envelope); miami.remembers(bisola, 'brown envelope'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "bow"
-},
-{
-"id": "wf_778fe6bda8",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up beside the phone at the miami.",
-"code": "lie.interactwith(miami){ miami.receives(lie.envelope); miami.remembers(bisola, 'brown envelope'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "lie"
-},
-{
 "id": "wf_f283a4272a",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up beside the phone at the miami.",
@@ -5677,6 +5667,26 @@
 "run": "run-5a58c4",
 "card": "j6",
 "other": "health_marisol"
+},
+{
+"id": "wf_47e0f02ad4",
+"kind": "consequence",
+"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up beside the phone at the miami.",
+"code": "icsh.interactwith(miami){ miami.receives(icsh.shirt); miami.remembers(bisola, 'green shirt'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j8",
+"other": "icsh"
+},
+{
+"id": "wf_dd983a6121",
+"kind": "consequence",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up beside the phone at the miami.",
+"code": "heatflag.interactwith(miami){ miami.receives(heatflag.code); miami.remembers(ejiro, 'juju code'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j2",
+"other": "heatflag"
 }
 ],
 "teo": [
@@ -10540,50 +10550,6 @@
 },
 "consequences": [
 {
-"id": "wf_15d4116894",
-"ts": "2026-11-24T02:43:22-0500",
-"a": "god",
-"b": "calla",
-"code": "god.interactwith(calla){ calla.receives(god.envelope); calla.remembers(bisola, 'brown envelope'); }",
-"text": "The calla leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
-"id": "wf_5a8a47ae9f",
-"ts": "2026-11-24T02:44:13-0500",
-"a": "heat",
-"b": "teoloveletter",
-"code": "heat.interactwith(teoloveletter){ teoloveletter.receives(heat.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the juju code at the teoloveletter, and Ejiro reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
-"id": "wf_64e840c486",
-"ts": "2026-11-24T02:45:53-0500",
-"a": "plot",
-"b": "wser",
-"code": "plot.interactwith(wser){ wser.receives(plot.soot); wser.remembers(taiwo, 'lamp soot'); }",
-"text": "The wser leaves with a Bird note with Taiwo's name and 'lamp soot' on it.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j7"
-},
-{
-"id": "wf_cfbab78aee",
-"ts": "2026-11-24T02:47:35-0500",
-"a": "marker",
-"b": "bird",
-"code": "marker.interactwith(bird){ bird.receives(marker.sign); bird.remembers(kunle, 'nice day sign'); bird.tucks(marker, 'marker note into the envelope corner'); }",
-"text": "A Marker note with Kunle's name and 'nice day sign' on it, turns up inside the envelope corner at the bird, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j3"
-},
-{
 "id": "wf_8a348c3c48",
 "ts": "2026-11-24T02:50:53-0500",
 "a": "love",
@@ -10978,6 +10944,50 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": "j6"
+},
+{
+"id": "wf_32b6288bd6",
+"ts": "2026-11-24T13:17:03-0500",
+"a": "prior_reality",
+"b": "florida",
+"code": "prior_reality.interactwith(florida){ florida.receives(prior_reality.shirt); … }",
+"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the brown envelope at the florida, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j8"
+},
+{
+"id": "wf_47e0f02ad4",
+"ts": "2026-11-24T13:17:55-0500",
+"a": "icsh",
+"b": "miami",
+"code": "icsh.interactwith(miami){ miami.receives(icsh.shirt); miami.remembers(bisola, 'green shirt'); }",
+"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up beside the phone at the miami.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j8"
+},
+{
+"id": "wf_dd983a6121",
+"ts": "2026-11-24T13:18:47-0500",
+"a": "heatflag",
+"b": "miami",
+"code": "heatflag.interactwith(miami){ miami.receives(heatflag.code); miami.remembers(ejiro, 'juju code'); }",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up beside the phone at the miami.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j2"
+},
+{
+"id": "wf_8d41bbe30c",
+"ts": "2026-11-24T13:19:38-0500",
+"a": "tag_sessy",
+"b": "teomarisollove",
+"code": "tag_sessy.interactwith(teomarisollove){ teomarisollove.receives(tag_sessy.code); teomarisollove.remembers(ejiro, 'juju code'); }",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up with the teomarisollove, which is still in love, said out loud by Marisol (w14 causeway).",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j2"
 }
 ],
 "memories": [
@@ -11081,5 +11091,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-24T13:15:20-0500"
+"updated": "2026-11-24T13:19:38-0500"
 }
