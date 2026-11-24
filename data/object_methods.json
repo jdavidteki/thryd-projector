@@ -11891,6 +11891,210 @@
    "faded": false,
    "last_run": "run-888ea9"
   },
+  "boze.watch": {
+   "object": "boze",
+   "method": "watch",
+   "args": [
+    "sat"
+   ],
+   "runs": [
+    "run-888ea9"
+   ],
+   "defined": {
+    "run": "run-888ea9",
+    "job": "j10",
+    "card": "w10",
+    "title": "boze.watch(sat)",
+    "emoji": "👀",
+    "at": "2026-11-23T20:17:52-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "boze.watch(sat)",
+     "emoji": "👀",
+     "arg": "sat",
+     "run": "run-888ea9",
+     "job": "j10",
+     "tweets": [
+      {
+       "text": "- i and my boze, sat there, and watched",
+       "year": "2025"
+      }
+     ],
+     "consequence": "9:05am, Tuesday 9 April 2075, an Agege railway platform.",
+     "consequence_job": "j11",
+     "resolved": "boze.watch(what=sat:Thing) from j10",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "sat",
+       "from_run": "run-888ea9",
+       "from_job": "j10",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "sat",
+      "first_run": "run-888ea9",
+      "first_job": "j10"
+     }
+    ],
+    "text": "watch(what: Thing)"
+   },
+   "receiver_class": "Person",
+   "prior": [
+    {
+     "id": "ronke.watch",
+     "title": "ronke.watch(stories)",
+     "run": "run-2eb42d",
+     "job": "j42",
+     "at": "2026-11-19T12:49:56-05:00",
+     "why": "same method"
+    }
+   ],
+   "faded": false,
+   "last_run": null
+  },
+  "cam.stop": {
+   "object": "cam",
+   "method": "stop",
+   "args": [
+    "it"
+   ],
+   "runs": [
+    "run-888ea9"
+   ],
+   "defined": {
+    "run": "run-888ea9",
+    "job": "j10",
+    "card": "w10",
+    "title": "cam.stop(it)",
+    "emoji": "🧱",
+    "at": "2026-11-23T20:17:52-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "cam.stop(it)",
+     "emoji": "🧱",
+     "arg": "it",
+     "run": "run-888ea9",
+     "job": "j10",
+     "tweets": [
+      {
+       "text": "[[thitg]] - the only thing that can ![[cam]] it not to",
+       "year": "2025"
+      }
+     ],
+     "consequence": "9:05am, Tuesday 9 April 2075, an Agege railway platform.",
+     "consequence_job": "j11",
+     "resolved": "cam.stop(what=it:Thing) from j10",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "it",
+       "from_run": "run-888ea9",
+       "from_job": "j10",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "it",
+      "first_run": "run-888ea9",
+      "first_job": "j10"
+     }
+    ],
+    "text": "stop(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "quality.determine": {
+   "object": "quality",
+   "method": "determine",
+   "args": [
+    "tyn"
+   ],
+   "runs": [
+    "run-888ea9"
+   ],
+   "defined": {
+    "run": "run-888ea9",
+    "job": "j10",
+    "card": "w10",
+    "title": "quality.determine(tyn)",
+    "emoji": "🧪",
+    "at": "2026-11-23T20:17:52-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "quality.determine(tyn)",
+     "emoji": "🧪",
+     "arg": "tyn",
+     "run": "run-888ea9",
+     "job": "j10",
+     "tweets": [
+      {
+       "text": "- that is what determines the quality of the #tyn",
+       "year": "2024"
+      }
+     ],
+     "consequence": "9:05am, Tuesday 9 April 2075, an Agege railway platform.",
+     "consequence_job": "j11",
+     "resolved": "quality.determine(what=tyn:Thing) from j10",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "tyn",
+       "from_run": "run-888ea9",
+       "from_job": "j10",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "tyn",
+      "first_run": "run-888ea9",
+      "first_job": "j10"
+     }
+    ],
+    "text": "determine(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
   "cooler.getdatemanufactured": {
    "object": "cooler",
    "method": "getDateManufactured",
@@ -14975,6 +15179,9 @@
   "bobo": [
    "bobo.on"
   ],
+  "boze": [
+   "boze.watch"
+  ],
   "buy": [
    "buy.fold"
   ],
@@ -14989,6 +15196,9 @@
    "calla.see",
    "calla.want",
    "calla.hear"
+  ],
+  "cam": [
+   "cam.stop"
   ],
   "care": [
    "care.on"
@@ -15397,6 +15607,9 @@
   ],
   "qa568forced": [
    "qa568forced.parseboom"
+  ],
+  "quality": [
+   "quality.determine"
   ],
   "rainbow": [
    "rainbow.show"
@@ -26679,6 +26892,7 @@
     "from": "5ed6dbcf2273",
     "title": "910. order pure water",
     "funcs": [
+     "quality.determine",
      "tyn.getdetermines"
     ]
    }
@@ -30378,6 +30592,9 @@
     "from": "38688e69edf3",
     "title": "1003. usher by kiss daniel",
     "funcs": [
+     "quality.determine",
+     "cam.stop",
+     "boze.watch",
      "taraji.measure",
      "request.track",
      "order.see",
@@ -30621,6 +30838,7 @@
     "from": "db02d908b461",
     "title": "823. your wife will understand",
     "funcs": [
+     "boze.watch",
      "calla.stare",
      "dez.sit"
     ]
@@ -31409,7 +31627,10 @@
     "media.all",
     "order.see",
     "request.track",
-    "taraji.measure"
+    "taraji.measure",
+    "boze.watch",
+    "cam.stop",
+    "quality.determine"
    ]
   },
   "run-93d6ff": {
@@ -31816,6 +32037,13 @@
     "run-7c51d3"
    ]
   },
+  "3715b3563ae6": {
+   "title": "1024. how to [[push the ocean]]",
+   "funcs": [
+    "cam.stop"
+   ],
+   "runs": []
+  },
   "37496dea1aa3": {
    "title": "1128. communication",
    "funcs": [
@@ -31846,7 +32074,10 @@
     "media.all",
     "order.see",
     "request.track",
-    "taraji.measure"
+    "taraji.measure",
+    "boze.watch",
+    "cam.stop",
+    "quality.determine"
    ],
    "runs": [
     "run-888ea9"
@@ -31944,7 +32175,8 @@
   "5ed6dbcf2273": {
    "title": "910. order pure water",
    "funcs": [
-    "tyn.getdetermines"
+    "tyn.getdetermines",
+    "quality.determine"
    ],
    "runs": []
   },
@@ -32396,7 +32628,8 @@
    "title": "823. your wife will understand",
    "funcs": [
     "dez.sit",
-    "calla.stare"
+    "calla.stare",
+    "boze.watch"
    ],
    "runs": []
   },
@@ -32782,7 +33015,8 @@
    "b17708f507b6"
   ],
   "1*uHFE9Vcx4PyeUpG_aHgcvg.gif": [
-   "44583f98086d"
+   "44583f98086d",
+   "3715b3563ae6"
   ],
   "1*VDwilLCHF-PLPOY1t4Dq0w.gif": [
    "2c6971a8d401"
@@ -33803,6 +34037,9 @@
   "bobo": [
    "bobo.on"
   ],
+  "boze": [
+   "boze.watch"
+  ],
   "buy": [
    "buy.fold"
   ],
@@ -33811,6 +34048,9 @@
    "calla.see",
    "calla.want",
    "calla.hear"
+  ],
+  "cam": [
+   "cam.stop"
   ],
   "care": [
    "care.on"
@@ -34054,6 +34294,9 @@
   ],
   "qa568forced": [
    "qa568forced.parseboom"
+  ],
+  "quality": [
+   "quality.determine"
   ],
   "rainbow": [
    "rainbow.show"
@@ -34395,6 +34638,11 @@
   ],
   "request": [],
   "taraji": [],
+  "boze": [
+   "Watchable"
+  ],
+  "cam": [],
+  "quality": [],
   "cooler": [],
   "kazeem.goodqualities": [],
   "app": [],
@@ -34560,6 +34808,8 @@
   ],
   "run-888ea9": [
    "accuracy",
+   "boze",
+   "cam",
    "court",
    "dicey",
    "grammy",
@@ -34574,6 +34824,7 @@
    "order",
    "pawa",
    "phones",
+   "quality",
    "request",
    "shapes",
    "taraji",
@@ -34594,5 +34845,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-23T20:01:39-05:00"
+ "updated": "2026-11-23T20:18:04-05:00"
 }

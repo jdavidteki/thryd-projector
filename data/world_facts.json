@@ -889,16 +889,6 @@
 "other": "computer_village"
 },
 {
-"id": "wf_bdad55d985",
-"kind": "memory",
-"text": "The danfo speaker at danfo at the curb, song heard again at Mama Ronke's gate: playing the same love song.",
-"code": "danfo_speaker.state('playing the same love song');",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "w5",
-"other": null
-},
-{
 "id": "wf_3ecac8fff3",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the danfo speaker, which is still playing the same love song.",
@@ -907,6 +897,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "vex"
+},
+{
+"id": "wf_bdad55d985",
+"kind": "memory",
+"text": "The danfo speaker at danfo at the curb, song heard again at Mama Ronke's gate: playing the same love song.",
+"code": "danfo_speaker.state('playing the same love song');",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w5",
+"other": null
 },
 {
 "id": "wt_c1a9e05d21",
@@ -6943,16 +6943,6 @@
 ],
 "iae": [
 {
-"id": "wf_a7ce4b3694",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the iae, which is still initialized.",
-"code": "computer_village.interactwith(iae){ iae.receives(computer_village.envelope); iae.remembers(bisola, 'brown envelope'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "computer_village"
-},
-{
 "id": "wf_89a874d513",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the iae, which is still initialized.",
@@ -6991,6 +6981,16 @@
 "run": "run-2eb42d",
 "card": "j7",
 "other": "bird"
+},
+{
+"id": "wf_6ded10b8fa",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the iae, which is still initialized.",
+"code": "ojuelegba_bus_stop.interactwith(iae){ iae.receives(ojuelegba_bus_stop.envelope); iae.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "ojuelegba_bus_stop"
 }
 ],
 "tf_mom": [
@@ -7283,16 +7283,6 @@
 ],
 "wiitbaw": [
 {
-"id": "wf_ab723a297a",
-"kind": "consequence",
-"text": "The wiitbaw leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
-"code": "ttb.interactwith(wiitbaw){ wiitbaw.receives(ttb.code); wiitbaw.remembers(ejiro, 'juju code'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j2",
-"other": "ttb"
-},
-{
 "id": "wf_94b56db8c9",
 "kind": "consequence",
 "text": "The wiitbaw leaves with a Bird note with Bisola's name and 'envelope corner' on it.",
@@ -7331,6 +7321,16 @@
 "run": "run-2eb42d",
 "card": "w1",
 "other": "pure_water_cooler"
+},
+{
+"id": "wf_fea7593cb4",
+"kind": "consequence",
+"text": "The wiitbaw now remembers the thryd: A new theme carton lands on the table beside the leftover noodles, from the typed.",
+"code": "thryd.interactwith(wiitbaw){ wiitbaw.receives(thryd.something); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w40",
+"other": "thryd"
 }
 ],
 "listen": [
@@ -10234,39 +10234,6 @@
 },
 "consequences": [
 {
-"id": "wf_511d57109f",
-"ts": "2026-11-23T15:49:08-0500",
-"a": "divine",
-"b": "kazeem",
-"code": "divine.interactwith(kazeem){ kazeem.receives(divine.envelope); kazeem.remembers(bisola, 'brown envelope'); }",
-"text": "The kazeem leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
-"id": "wf_cbb5f2085f",
-"ts": "2026-11-23T15:53:38-0500",
-"a": "computer_village",
-"b": "mkdwo",
-"code": "computer_village.interactwith(mkdwo){ mkdwo.receives(computer_village.shirt); mkdwo.remembers(bisola, 'green shirt'); }",
-"text": "The mkdwo leaves with an Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j8"
-},
-{
-"id": "wf_94b755621e",
-"ts": "2026-11-23T16:05:16-0500",
-"a": "seniorgehs",
-"b": "wser",
-"code": "seniorgehs.interactwith(wser){ wser.receives(seniorgehs.envelope); wser.remembers(bisola, 'brown envelope'); }",
-"text": "The wser leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
 "id": "wf_ca258e55d6",
 "ts": "2026-11-23T16:52:44-0500",
 "a": "mama_ronke",
@@ -10672,6 +10639,39 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_6ded10b8fa",
+"ts": "2026-11-23T20:13:47-0500",
+"a": "ojuelegba_bus_stop",
+"b": "iae",
+"code": "ojuelegba_bus_stop.interactwith(iae){ iae.receives(ojuelegba_bus_stop.envelope); iae.remembers(bisola, 'brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the iae, which is still initialized.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
+},
+{
+"id": "wf_1ea2f58ac4",
+"ts": "2026-11-23T20:17:10-0500",
+"a": "cell_phone",
+"b": "ronke",
+"code": "cell_phone.interactwith(ronke){ ronke.receives(cell_phone.envelope); ronke.remembers(bisola, 'brown envelope'); }",
+"text": "The ronke leaves with a Cell phone note with Bisola's name and 'brown envelope' on it.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
+},
+{
+"id": "wf_fea7593cb4",
+"ts": "2026-11-23T20:18:01-0500",
+"a": "thryd",
+"b": "wiitbaw",
+"code": "thryd.interactwith(wiitbaw){ wiitbaw.receives(thryd.something); }",
+"text": "The wiitbaw now remembers the thryd: A new theme carton lands on the table beside the leftover noodles, from the typed.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w40"
 }
 ],
 "memories": [
@@ -10775,5 +10775,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-23T20:12:54-0500"
+"updated": "2026-11-23T20:18:01-0500"
 }
