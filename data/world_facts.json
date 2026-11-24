@@ -3223,16 +3223,6 @@
 ],
 "wser": [
 {
-"id": "wf_0f4adf9568",
-"kind": "consequence",
-"text": "The wser leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"code": "namco.interactwith(wser){ wser.receives(namco.envelope); wser.remembers(bisola, 'brown envelope'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "namco"
-},
-{
 "id": "wf_8690520cde",
 "kind": "consequence",
 "text": "The wser leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
@@ -3271,6 +3261,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "mlkahb"
+},
+{
+"id": "wf_bb35f6c265",
+"kind": "consequence",
+"text": "The wser leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "love.interactwith(wser){ wser.receives(love.envelope); wser.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "love"
 }
 ],
 "blessings_subject": [
@@ -10234,17 +10234,6 @@
 },
 "consequences": [
 {
-"id": "wf_0e7af33f86",
-"ts": "2026-11-23T15:01:45-0500",
-"a": "divine",
-"b": "precision",
-"code": "divine.interactwith(precision){ precision.receives(divine.shirt); … }",
-"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the brown envelope at the precision, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j8"
-},
-{
 "id": "wf_6320ac201c",
 "ts": "2026-11-23T15:02:39-0500",
 "a": "lie",
@@ -10672,6 +10661,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j8"
+},
+{
+"id": "wf_bb35f6c265",
+"ts": "2026-11-23T19:23:42-0500",
+"a": "love",
+"b": "wser",
+"code": "love.interactwith(wser){ wser.receives(love.envelope); wser.remembers(bisola, 'brown envelope'); }",
+"text": "The wser leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -10775,5 +10775,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-23T19:14:51-0500"
+"updated": "2026-11-23T19:23:42-0500"
 }
