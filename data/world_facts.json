@@ -2051,16 +2051,6 @@
 ],
 "tie": [
 {
-"id": "wf_3c4a623a5a",
-"kind": "consequence",
-"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the green shirt at the tie, and Bisola reads the name twice.",
-"code": "lady.interactwith(tie){ tie.receives(lady.shirt); tie.remembers(bisola, 'green shirt'); tie.tucks(lady, 'ikeja laundromat receipt into the green shirt'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j8",
-"other": "lady"
-},
-{
 "id": "wf_3af8908fdf",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the green shirt at the tie, and Bisola reads the name twice.",
@@ -2099,6 +2089,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "love"
+},
+{
+"id": "wf_00273e36b6",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the tie, and Bisola reads the name twice.",
+"code": "seniorgehs.interactwith(tie){ tie.receives(seniorgehs.envelope); … }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "seniorgehs"
 }
 ],
 "laptop": [
@@ -10284,17 +10284,6 @@
 },
 "consequences": [
 {
-"id": "wf_6f984f653f",
-"ts": "2026-11-23T19:28:59-0500",
-"a": "vex",
-"b": "kazeem",
-"code": "vex.interactwith(kazeem){ kazeem.receives(vex.envelope); kazeem.remembers(bisola, 'brown envelope'); }",
-"text": "The kazeem leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
 "id": "wf_53c84484bd",
 "ts": "2026-11-23T19:37:48-0500",
 "a": "divine",
@@ -10722,6 +10711,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j8"
+},
+{
+"id": "wf_00273e36b6",
+"ts": "2026-11-23T23:32:30-0500",
+"a": "seniorgehs",
+"b": "tie",
+"code": "seniorgehs.interactwith(tie){ tie.receives(seniorgehs.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the tie, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -10825,5 +10825,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-23T23:28:16-0500"
+"updated": "2026-11-23T23:32:30-0500"
 }
