@@ -3181,16 +3181,6 @@
 ],
 "love": [
 {
-"id": "wf_8de5b80a47",
-"kind": "consequence",
-"text": "The love leaves with a Kerosene lamp note with Taiwo's name and 'change' on it.",
-"code": "kerosene_lamp.interactwith(love){ love.receives(kerosene_lamp.change); love.remembers(taiwo, 'change'); }",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j9",
-"other": "kerosene_lamp"
-},
-{
 "id": "wf_f93e8b65a5",
 "kind": "consequence",
 "text": "An Isl note with Kunle's name and 'worm question' on it, 5:30pm, 13 Nov 2026, turns up inside the change at the love, and Taiwo reads the name twice.",
@@ -3229,6 +3219,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "divine"
+},
+{
+"id": "wf_7d04000d9e",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the love, and Bisola reads the name twice.",
+"code": "heat.interactwith(love){ love.receives(heat.envelope); love.remembers(bisola, 'brown envelope'); love.tucks(heat, 'yaba bookshop receipt into the brown envelope'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "heat"
 }
 ],
 "wser": [
@@ -10394,17 +10394,6 @@
 },
 "consequences": [
 {
-"id": "wf_00273e36b6",
-"ts": "2026-11-23T23:32:30-0500",
-"a": "seniorgehs",
-"b": "tie",
-"code": "seniorgehs.interactwith(tie){ tie.receives(seniorgehs.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the tie, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
 "id": "wf_85645f4337",
 "ts": "2026-11-23T23:35:02-0500",
 "a": "laptop",
@@ -10832,6 +10821,17 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": "j6"
+},
+{
+"id": "wf_7d04000d9e",
+"ts": "2026-11-24T01:57:49-0500",
+"a": "heat",
+"b": "love",
+"code": "heat.interactwith(love){ love.receives(heat.envelope); love.remembers(bisola, 'brown envelope'); love.tucks(heat, 'yaba bookshop receipt into the brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the love, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
 }
 ],
 "memories": [
@@ -10935,5 +10935,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-24T01:56:07-0500"
+"updated": "2026-11-24T01:57:49-0500"
 }
