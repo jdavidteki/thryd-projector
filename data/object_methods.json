@@ -3995,12 +3995,12 @@
      ],
      "consequence": "What Teo said about one thing leading to something is still sitting there, unpicked-up.",
      "consequence_job": "j37",
-     "resolved": "teo.say(what=dem:Thing) from j36",
+     "resolved": "teo.say(what=front:Thing) from j36",
      "injected": [
       {
        "param": "what",
        "class": "Thing",
-       "instance": "dem",
+       "instance": "front",
        "from_run": "run-5a58c4",
        "from_job": "j36",
        "source": "pick"
@@ -5008,15 +5008,15 @@
      ],
      "consequence": "Dez is still at the window table with the napkin and the pen, the drawing still not quite there, and still nobody has come over to help him.",
      "consequence_job": "j36",
-     "resolved": "dez.make(what=engine:Thing) from j35",
+     "resolved": "dez.make(what=ayrastarr:Thing) from j35",
      "injected": [
       {
        "param": "what",
        "class": "Thing",
-       "instance": "engine",
+       "instance": "ayrastarr",
        "from_run": "run-5a58c4",
        "from_job": "j35",
-       "source": "pick"
+       "source": "typed"
       }
      ]
     }
@@ -5081,15 +5081,15 @@
      ],
      "consequence": "The sharp question Teo didn't answer is still unanswered.",
      "consequence_job": "j36",
-     "resolved": "teo.figure(what=engine:Thing) from j35",
+     "resolved": "teo.figure(what=ayrastarr:Thing) from j35",
      "injected": [
       {
        "param": "what",
        "class": "Thing",
-       "instance": "engine",
+       "instance": "ayrastarr",
        "from_run": "run-5a58c4",
        "from_job": "j35",
-       "source": "pick"
+       "source": "typed"
       }
      ]
     }
@@ -12900,7 +12900,8 @@
    "object": "marisol",
    "method": "find",
    "args": [
-    "god"
+    "god",
+    "love"
    ],
    "runs": [
     "run-5a58c4"
@@ -12913,8 +12914,42 @@
     "emoji": "🕯️",
     "at": "2026-11-24T00:57:57-05:00"
    },
-   "calls": 0,
+   "calls": 1,
    "titles": [
+    {
+     "title": "marisol.find(love)",
+     "emoji": "🦋",
+     "arg": "love",
+     "run": "run-5a58c4",
+     "job": "j58",
+     "tweets": [
+      {
+       "text": "— me and you finding all these precisions",
+       "year": "2025"
+      },
+      {
+       "text": "— daz what [[love]] is",
+       "year": "2025"
+      },
+      {
+       "text": "#seniorboys — real",
+       "year": "2025"
+      }
+     ],
+     "consequence": "Everybody in the queue starts climbing over each other to get to it: \"dem dey climb am.\" Marisol doesn't climb.",
+     "consequence_job": "j59",
+     "resolved": "marisol.find(what=table:Thing) from j58",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "table",
+       "from_run": "run-5a58c4",
+       "from_job": "j58",
+       "source": "pick"
+      }
+     ]
+    },
     {
      "title": "marisol.find(god)",
      "emoji": "🕯️",
@@ -12965,7 +13000,24 @@
     "text": "find(what: Thing)"
    },
    "receiver_class": "Person",
-   "prior": [],
+   "prior": [
+    {
+     "id": "dez.find",
+     "title": "dez.find(error)",
+     "run": "run-5a58c4",
+     "job": "j51",
+     "at": "2026-11-24T14:55:34-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "marisol.find",
+     "title": "marisol.find(god)",
+     "run": "run-5a58c4",
+     "job": "j40",
+     "at": "2026-11-24T00:57:57-05:00",
+     "why": "same method"
+    }
+   ],
    "faded": true,
    "last_run": "run-5a58c4"
   },
@@ -15050,6 +15102,79 @@
    ],
    "faded": true,
    "last_run": "run-5a58c4"
+  },
+  "dez.shake": {
+   "object": "dez",
+   "method": "shake",
+   "args": [
+    "table"
+   ],
+   "runs": [
+    "run-5a58c4"
+   ],
+   "defined": {
+    "run": "run-5a58c4",
+    "job": "j58",
+    "card": "w58",
+    "title": "dez.shake(table)",
+    "emoji": "🫨",
+    "at": "2026-11-24T18:36:39-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "dez.shake(table)",
+     "emoji": "🫨",
+     "arg": "table",
+     "run": "run-5a58c4",
+     "job": "j58",
+     "tweets": [
+      {
+       "text": "-- na my [[water]] bottle o!",
+       "year": "2025"
+      },
+      {
+       "text": "#thryd - shaking the table",
+       "year": "2025"
+      },
+      {
+       "text": "[[yitcoo]] - dem dey climb am",
+       "year": "2025"
+      }
+     ],
+     "consequence": "Dez grabs the last glass before anyone else can move.",
+     "consequence_job": "j59",
+     "resolved": "dez.shake(what=table:Thing) from j58",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "table",
+       "from_run": "run-5a58c4",
+       "from_job": "j58",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "table",
+      "first_run": "run-5a58c4",
+      "first_job": "j58"
+     }
+    ],
+    "text": "shake(what: Thing)"
+   },
+   "receiver_class": "Person",
+   "prior": [],
+   "faded": false,
+   "last_run": null
   },
   "cooler.getdatemanufactured": {
    "object": "cooler",
@@ -18317,7 +18442,8 @@
    "dez.find",
    "dez.receive",
    "dez.stay",
-   "dez.bring"
+   "dez.bring",
+   "dez.shake"
   ],
   "dez_5a58c4": [
    "dez.sit",
@@ -18330,7 +18456,8 @@
    "dez.find",
    "dez.receive",
    "dez.stay",
-   "dez.bring"
+   "dez.bring",
+   "dez.shake"
   ],
   "dicey": [
    "dicey.call"
@@ -18534,7 +18661,8 @@
    "dez.find",
    "dez.receive",
    "dez.stay",
-   "dez.bring"
+   "dez.bring",
+   "dez.shake"
   ],
   "marisol": [
    "marisol.find",
@@ -19553,6 +19681,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -20374,6 +20503,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -20562,6 +20692,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -20645,6 +20776,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -20728,6 +20860,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -20811,6 +20944,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -20894,6 +21028,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -20977,6 +21112,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -21060,6 +21196,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -21143,6 +21280,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -21226,6 +21364,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -21309,6 +21448,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -21392,6 +21532,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -21475,6 +21616,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -21558,6 +21700,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -21641,6 +21784,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -21724,6 +21868,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -21807,6 +21952,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -21890,6 +22036,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -22002,6 +22149,16 @@
      "wife.kill",
      "pepe.settink",
      "kunle.teach"
+    ]
+   }
+  ],
+  "but_will_butterflies_subject": [
+   {
+    "scope": "safe",
+    "from": "c0f7f80fa091",
+    "title": "1120. but my will is butterflies",
+    "funcs": [
+     "marisol.find"
     ]
    }
   ],
@@ -22343,6 +22500,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -22426,6 +22584,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -22509,6 +22668,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -22582,6 +22742,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -22655,6 +22816,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -24503,6 +24665,7 @@
     "from": "f81f21521253",
     "title": "829. a day in the life of god",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -24876,6 +25039,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -25255,6 +25419,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -25338,6 +25503,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -25421,6 +25587,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -25504,6 +25671,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -25597,6 +25765,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -25680,6 +25849,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -25763,6 +25933,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -25846,6 +26017,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -25929,6 +26101,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -26119,6 +26292,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -26257,6 +26431,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -26350,6 +26525,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -26443,6 +26619,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -26526,6 +26703,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -26631,6 +26809,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -26714,6 +26893,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -26797,6 +26977,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -26880,6 +27061,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -26963,6 +27145,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -27254,6 +27437,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -27461,6 +27645,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -27575,6 +27760,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -27658,6 +27844,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -27741,6 +27928,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -27824,6 +28012,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -27907,6 +28096,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -27990,6 +28180,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -28407,6 +28598,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -29071,6 +29263,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -29288,6 +29481,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -29371,6 +29565,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -29454,6 +29649,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -29609,6 +29805,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -29692,6 +29889,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -29775,6 +29973,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "dez.bring",
      "nobody.cut",
      "dez.stay",
@@ -29849,6 +30048,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "dez.bring",
      "nobody.cut",
      "dez.stay",
@@ -29923,6 +30123,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -30006,6 +30207,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -30089,6 +30291,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -30172,6 +30375,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -30255,6 +30459,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -30338,6 +30543,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -30421,6 +30627,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -30504,6 +30711,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -30587,6 +30795,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -30670,6 +30879,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -30753,6 +30963,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -30836,6 +31047,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -31042,6 +31254,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -31135,6 +31348,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -31218,6 +31432,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -31301,6 +31516,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -31384,6 +31600,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -31467,6 +31684,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -31550,6 +31768,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -31633,6 +31852,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -31716,6 +31936,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -31799,6 +32020,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -31882,6 +32104,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -31965,6 +32188,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -32048,6 +32272,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -33483,6 +33708,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -33671,6 +33897,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -33881,6 +34108,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -34100,6 +34328,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -34183,6 +34412,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -34266,6 +34496,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -34349,6 +34580,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -34432,6 +34664,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -34515,6 +34748,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -34598,6 +34832,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -34681,6 +34916,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -34764,6 +35000,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -34847,6 +35084,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -35206,6 +35444,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -35289,6 +35528,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -35836,6 +36076,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -36141,6 +36382,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -36224,6 +36466,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -36423,6 +36666,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -36489,6 +36733,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -36555,6 +36800,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -36638,6 +36884,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -36721,6 +36968,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -36929,6 +37177,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -37126,6 +37375,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -37209,6 +37459,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -37292,6 +37543,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -37375,6 +37627,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -37458,6 +37711,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -37541,6 +37795,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -37624,6 +37879,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -37707,6 +37963,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -37805,6 +38062,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -38269,6 +38527,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -38352,6 +38611,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -38687,6 +38947,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -38884,6 +39145,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.shake",
      "marisol.call",
      "marisol.align",
      "dez.bring",
@@ -39302,7 +39564,8 @@
     "nobody.cut",
     "dez.bring",
     "marisol.align",
-    "marisol.call"
+    "marisol.call",
+    "dez.shake"
    ]
   },
   "run-65400f": {
@@ -39891,6 +40154,13 @@
    ],
    "runs": []
   },
+  "486483e86514": {
+   "title": "1022. climax in conflict",
+   "funcs": [
+    "dez.shake"
+   ],
+   "runs": []
+  },
   "4c8598384b72": {
    "title": "519. how to [[win an oscar]]",
    "funcs": [
@@ -40389,6 +40659,13 @@
    ],
    "runs": []
   },
+  "c0f7f80fa091": {
+   "title": "1120. but my will is butterflies",
+   "funcs": [
+    "marisol.find"
+   ],
+   "runs": []
+  },
   "c51063137413": {
    "title": "1022. original copy",
    "funcs": [
@@ -40745,7 +41022,8 @@
     "nobody.cut",
     "dez.bring",
     "marisol.align",
-    "marisol.call"
+    "marisol.call",
+    "dez.shake"
    ],
    "runs": [
     "run-5a58c4"
@@ -40825,6 +41103,9 @@
   "1*HRO7l9t1YDc6pxhyjpzlTQ.gif": [
    "3408766b5717"
   ],
+  "1*V424svc__y4gKC9x7yVJuQ.gif": [
+   "c0f7f80fa091"
+  ],
   "1*bVjUefz6XxPnOn6EdQC1BQ.gif": [
    "9780ba78cde1"
   ],
@@ -40849,6 +41130,9 @@
   ],
   "1*z6frToRs3rAs_p7nhPE0Ng.gif": [
    "2298cd34a4a6"
+  ],
+  "1*o2f19OvLJZBxQwYSLXscjg.gif": [
+   "486483e86514"
   ],
   "1*lh0ZPwqCiEmbUqQpeTBf0w.gif": [
    "fad8da2e5cf6"
@@ -41555,6 +41839,12 @@
     "1a9d986eb980"
    ]
   },
+  "1*V424svc__y4gKC9x7yVJuQ.gif": {
+   "runs": [],
+   "safes": [
+    "c0f7f80fa091"
+   ]
+  },
   "1*kKE43SfMuFfoA4J6hirK_w.gif": {
    "runs": [],
    "safes": [
@@ -42237,7 +42527,8 @@
    "dez.find",
    "dez.receive",
    "dez.stay",
-   "dez.bring"
+   "dez.bring",
+   "dez.shake"
   ],
   "dicey": [
    "dicey.call"
@@ -43040,5 +43331,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-24T18:27:21-05:00"
+ "updated": "2026-11-24T18:37:16-05:00"
 }

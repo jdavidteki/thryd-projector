@@ -108,8 +108,8 @@
     "give",
     "see"
    ],
-   "instances": 444,
-   "arg_instances": 115,
+   "instances": 445,
+   "arg_instances": 116,
    "parent": null,
    "chain": [
     "Thing"
@@ -147,11 +147,11 @@
    "param": "feeling",
    "methods": [
     "teach",
-    "mix",
-    "stare"
+    "find",
+    "mix"
    ],
    "instances": 5,
-   "arg_instances": 4,
+   "arg_instances": 5,
    "parent": "Thing",
    "chain": [
     "Feeling",
@@ -3944,15 +3944,25 @@
   "love": {
    "class": "Feeling",
    "cue": "word",
-   "first_run": "run-2eb42d",
-   "first_job": null,
-   "source": "stage",
+   "first_run": "run-5a58c4",
+   "first_job": "j58",
+   "source": "pick",
    "runs": [
+    "run-5a58c4",
     "run-2eb42d",
     "run-b9b963",
     "run-0ae93c"
    ],
-   "tweets": []
+   "tweets": [
+    {
+     "text": "— me and you finding all these precisions",
+     "year": "2025"
+    },
+    {
+     "text": "— daz what [[love]] is",
+     "year": "2025"
+    }
+   ]
   },
   "mad": {
    "class": "Thing",
@@ -6271,6 +6281,26 @@
    ],
    "tweets": []
   },
+  "table": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-5a58c4",
+   "first_job": "j58",
+   "source": "pick",
+   "runs": [
+    "run-5a58c4"
+   ],
+   "tweets": [
+    {
+     "text": "-- na my [[water]] bottle o!",
+     "year": "2025"
+    },
+    {
+     "text": "#thryd - shaking the table",
+     "year": "2025"
+    }
+   ]
+  },
   "talk": {
    "class": "Action",
    "cue": "word",
@@ -7584,18 +7614,6 @@
   ],
   "run-5a58c4": [
    [
-    "engine",
-    "Thing",
-    "j35",
-    "pick"
-   ],
-   [
-    "dem",
-    "Thing",
-    "j36",
-    "pick"
-   ],
-   [
     "front",
     "Thing",
     "j36",
@@ -7791,6 +7809,18 @@
     "heaven",
     "Thing",
     "j56",
+    "pick"
+   ],
+   [
+    "love",
+    "Feeling",
+    "j58",
+    "pick"
+   ],
+   [
+    "table",
+    "Thing",
+    "j58",
     "pick"
    ],
    [
@@ -11484,6 +11514,7 @@
   "dez.bring": "bring(what: Thing)",
   "marisol.align": "align(what: Thing)",
   "marisol.call": "call(what: Thing)",
+  "dez.shake": "shake(what: Thing)",
   "cooler.getdatemanufactured": "getDateManufactured()",
   "ronke.getlikes.contains": "getlikes.contains()",
   "kazeem.goodqualities.filter": "filter()",
@@ -12034,5 +12065,5 @@
   "epilogue": "quiet",
   "coda": "quiet"
  },
- "updated": "2026-11-24T18:26:32-05:00"
+ "updated": "2026-11-24T18:37:16-05:00"
 }
