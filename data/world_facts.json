@@ -775,16 +775,6 @@
 ],
 "pure_water_cooler": [
 {
-"id": "wt_bacf1b1ad6",
-"kind": "consequence",
-"text": "Back at the hall Ronke packs the ice block under the sachets, so the cooler that paid her out is cold for the next meeting and the next round of the tin.",
-"code": "ronke.interactwith(pure_water_cooler){ pure_water_cooler.receives(ronke, 'ice block'); … }",
-"author": "cos",
-"run": "story-4b1689",
-"card": "j161",
-"other": "ronke"
-},
-{
 "id": "wf_696fcc3a37",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the pure-water cooler, which is still carried home through the flood.",
@@ -813,6 +803,16 @@
 "run": "run-2eb42d",
 "card": "",
 "other": "mama_ronke"
+},
+{
+"id": "wf_95c8251c2b",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the pure-water cooler, which is still carried home through the flood.",
+"code": "vex.interactwith(pure_water_cooler){ pure_water_cooler.receives(vex.envelope); pure_water_cooler.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "vex"
 },
 {
 "id": "wt_61e16c7796",
@@ -7179,16 +7179,6 @@
 ],
 "mama_ronke": [
 {
-"id": "wf_2341ea8441",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the Mama Ronke, which is still present.",
-"code": "bus.interactwith(mama_ronke){ mama_ronke.receives(bus.envelope); mama_ronke.remembers(bisola, 'brown envelope'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "bus"
-},
-{
 "id": "wf_7047cf8340",
 "kind": "consequence",
 "text": "The mama ronke now remembers the thryd: A new theme carton lands on the table beside the leftover noodles, from the typed.",
@@ -7217,6 +7207,16 @@
 "run": "story-4b1689",
 "card": "j88",
 "other": "investor"
+},
+{
+"id": "wf_2c4ce36799",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the Mama Ronke, which is still present.",
+"code": "vex.interactwith(mama_ronke){ mama_ronke.receives(vex.envelope); mama_ronke.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "vex"
 },
 {
 "id": "wt_836e6dea8e",
@@ -8181,16 +8181,6 @@
 ],
 "computer_village": [
 {
-"id": "wf_c0eef3317a",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the computer village, and Bisola reads the name twice.",
-"code": "vex.interactwith(computer_village){ computer_village.receives(vex.envelope); … }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "vex"
-},
-{
 "id": "wf_6ffcca7fc6",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the computer village, and Bisola reads the name twice.",
@@ -8229,6 +8219,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "no_palmgrove_close"
+},
+{
+"id": "wf_fd00e44a53",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the computer village, and Bisola reads the name twice.",
+"code": "precision.interactwith(computer_village){ computer_village.receives(precision.envelope); … }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "precision"
 }
 ],
 "oh_pls_shaaatttaaapppp": [
@@ -10234,39 +10234,6 @@
 },
 "consequences": [
 {
-"id": "wf_b1079f41d3",
-"ts": "2026-11-23T14:25:55-0500",
-"a": "atp",
-"b": "red_white_cap",
-"code": "atp.interactwith(red_white_cap){ red_white_cap.receives(atp.envelope); red_white_cap.remembers(bisola, 'brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the red and white cap, which is still worn.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
-"id": "wf_ef76a16e5a",
-"ts": "2026-11-23T14:28:39-0500",
-"a": "computer_village",
-"b": "danfo_speaker",
-"code": "computer_village.interactwith(danfo_speaker){ danfo_speaker.receives(computer_village.envelope); danfo_speaker.remembers(bisola, 'brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the danfo speaker, which is still playing the same love song.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
-"id": "wf_6c0302473d",
-"ts": "2026-11-23T14:33:34-0500",
-"a": "lie",
-"b": "cell_phone",
-"code": "lie.interactwith(cell_phone){ cell_phone.receives(lie.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the cell phone, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
 "id": "wf_649dbcc13c",
 "ts": "2026-11-23T14:48:48-0500",
 "a": "tf_mom",
@@ -10672,6 +10639,39 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j8"
+},
+{
+"id": "wf_fd00e44a53",
+"ts": "2026-11-23T19:07:42-0500",
+"a": "precision",
+"b": "computer_village",
+"code": "precision.interactwith(computer_village){ computer_village.receives(precision.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the computer village, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
+},
+{
+"id": "wf_95c8251c2b",
+"ts": "2026-11-23T19:09:30-0500",
+"a": "vex",
+"b": "pure_water_cooler",
+"code": "vex.interactwith(pure_water_cooler){ pure_water_cooler.receives(vex.envelope); pure_water_cooler.remembers(bisola, 'brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the pure-water cooler, which is still carried home through the flood.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
+},
+{
+"id": "wf_2c4ce36799",
+"ts": "2026-11-23T19:10:25-0500",
+"a": "vex",
+"b": "mama_ronke",
+"code": "vex.interactwith(mama_ronke){ mama_ronke.receives(vex.envelope); mama_ronke.remembers(bisola, 'brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the Mama Ronke, which is still present.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -10775,5 +10775,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-23T19:05:54-0500"
+"updated": "2026-11-23T19:10:25-0500"
 }
