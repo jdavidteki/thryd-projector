@@ -4975,16 +4975,6 @@
 ],
 "teomarisollove": [
 {
-"id": "wf_47c2532f3d",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the teomarisollove, which is still in love, said out loud by Marisol (w14 causeway).",
-"code": "hose.interactwith(teomarisollove){ teomarisollove.receives(hose.envelope); teomarisollove.remembers(bisola, 'brown envelope'); }",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6",
-"other": "hose"
-},
-{
 "id": "wf_2acfbd464c",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the teomarisollove, which is still in love, said out loud by Marisol (w14 causeway).",
@@ -5023,6 +5013,16 @@
 "run": "run-5a58c4",
 "card": "j2",
 "other": "tag_sessy"
+},
+{
+"id": "wf_2ee041918d",
+"kind": "consequence",
+"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up with the teomarisollove, which is still in love, said out loud by Marisol (w14 causeway).",
+"code": "jetty_south_pointe.interactwith(teomarisollove){ teomarisollove.receives(jetty_south_pointe.shirt); teomarisollove.remembers(bisola, 'green shirt'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j8",
+"other": "jetty_south_pointe"
 }
 ],
 "front_gate_no": [
@@ -10632,17 +10632,6 @@
 },
 "consequences": [
 {
-"id": "wf_8b6111ef26",
-"ts": "2026-11-24T03:20:56-0500",
-"a": "heatflag",
-"b": "jetty_south_pointe",
-"code": "heatflag.interactwith(jetty_south_pointe){ jetty_south_pointe.receives(heatflag.code); … }",
-"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the jetty south pointe, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j2"
-},
-{
 "id": "wf_6881f0ab7a",
 "ts": "2026-11-24T03:23:26-0500",
 "a": "marisol",
@@ -11070,6 +11059,17 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": "j6"
+},
+{
+"id": "wf_2ee041918d",
+"ts": "2026-11-24T13:51:01-0500",
+"a": "jetty_south_pointe",
+"b": "teomarisollove",
+"code": "jetty_south_pointe.interactwith(teomarisollove){ teomarisollove.receives(jetty_south_pointe.shirt); teomarisollove.remembers(bisola, 'green shirt'); }",
+"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up with the teomarisollove, which is still in love, said out loud by Marisol (w14 causeway).",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j8"
 }
 ],
 "memories": [
@@ -11173,5 +11173,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-24T13:49:18-0500"
+"updated": "2026-11-24T13:51:01-0500"
 }
