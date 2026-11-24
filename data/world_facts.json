@@ -3181,16 +3181,6 @@
 ],
 "love": [
 {
-"id": "wf_f93e8b65a5",
-"kind": "consequence",
-"text": "An Isl note with Kunle's name and 'worm question' on it, 5:30pm, 13 Nov 2026, turns up inside the change at the love, and Taiwo reads the name twice.",
-"code": "isl.interactwith(love){ love.receives(isl.question); love.remembers(kunle, 'worm question'); love.tucks(isl, 'isl note into the change'); }",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j3",
-"other": "isl"
-},
-{
 "id": "wf_592bc34060",
 "kind": "consequence",
 "text": "A Danfo speaker note with Bisola's name and 'egbe note' on it, turns up inside the worm question at the love, and Kunle reads the name twice.",
@@ -3229,6 +3219,16 @@
 "run": "run-5a58c4",
 "card": "j6",
 "other": "heat"
+},
+{
+"id": "wf_cb550df98d",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the love, and Bisola reads the name twice.",
+"code": "itmoai.interactwith(love){ love.receives(itmoai.envelope); … }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "itmoai"
 }
 ],
 "wser": [
@@ -6509,16 +6509,6 @@
 ],
 "quiet_stretch_sand": [
 {
-"id": "wf_4d0ebc4ce6",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up beside the morning at the quiet stretch sand.",
-"code": "marker_c.interactwith(quiet_stretch_sand){ quiet_stretch_sand.receives(marker_c.envelope); quiet_stretch_sand.remembers(bisola, 'brown envelope'); }",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6",
-"other": "marker_c"
-},
-{
 "id": "wf_9a4ce30914",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up beside the morning at the quiet stretch sand.",
@@ -6557,6 +6547,16 @@
 "run": "run-5a58c4",
 "card": "j6",
 "other": "love"
+},
+{
+"id": "wf_c232fcafbf",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up beside the morning at the quiet stretch sand.",
+"code": "matbaotstaili.interactwith(quiet_stretch_sand){ quiet_stretch_sand.receives(matbaotstaili.envelope); quiet_stretch_sand.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "matbaotstaili"
 }
 ],
 "teoloveletter": [
@@ -10632,28 +10632,6 @@
 },
 "consequences": [
 {
-"id": "wf_cc930bd517",
-"ts": "2026-11-24T07:04:15-0500",
-"a": "marker_c",
-"b": "prior_reality",
-"code": "marker_c.interactwith(prior_reality){ prior_reality.receives(marker_c.shirt); … }",
-"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the brown envelope at the prior reality, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j8"
-},
-{
-"id": "wf_3ffdb37cd3",
-"ts": "2026-11-24T10:25:57-0500",
-"a": "mbtij",
-"b": "tie",
-"code": "mbtij.interactwith(tie){ tie.receives(mbtij.code); tie.remembers(ejiro, 'juju code'); tie.tucks(mbtij, 'ttb note into the brown envelope'); }",
-"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the tie, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j2"
-},
-{
 "id": "wf_b957030065",
 "ts": "2026-11-24T10:31:18-0500",
 "a": "marker",
@@ -11070,6 +11048,28 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": "j6"
+},
+{
+"id": "wf_cb550df98d",
+"ts": "2026-11-24T14:07:03-0500",
+"a": "itmoai",
+"b": "love",
+"code": "itmoai.interactwith(love){ love.receives(itmoai.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the love, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
+},
+{
+"id": "wf_c232fcafbf",
+"ts": "2026-11-24T14:10:26-0500",
+"a": "matbaotstaili",
+"b": "quiet_stretch_sand",
+"code": "matbaotstaili.interactwith(quiet_stretch_sand){ quiet_stretch_sand.receives(matbaotstaili.envelope); quiet_stretch_sand.remembers(bisola, 'brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up beside the morning at the quiet stretch sand.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
 }
 ],
 "memories": [
@@ -11173,5 +11173,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-24T14:05:21-0500"
+"updated": "2026-11-24T14:10:26-0500"
 }
