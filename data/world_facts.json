@@ -2113,16 +2113,6 @@
 ],
 "laptop": [
 {
-"id": "wf_b3a40dd79f",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the lamp soot at the laptop, and Taiwo reads the name twice.",
-"code": "jnoel.interactwith(laptop){ laptop.receives(jnoel.envelope); … }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "jnoel"
-},
-{
 "id": "wf_60dce850b7",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the lamp soot at the laptop, and Taiwo reads the name twice.",
@@ -2131,6 +2121,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "precision"
+},
+{
+"id": "wf_68d9435382",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the lamp soot at the laptop, and Taiwo reads the name twice.",
+"code": "thoughts_marisol.interactwith(laptop){ laptop.receives(thoughts_marisol.envelope); … }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "thoughts_marisol"
 },
 {
 "id": "wt_00586a397c",
@@ -2701,16 +2701,6 @@
 ],
 "cell_phone": [
 {
-"id": "wf_6c0302473d",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the cell phone, and Bisola reads the name twice.",
-"code": "lie.interactwith(cell_phone){ cell_phone.receives(lie.envelope); … }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "lie"
-},
-{
 "id": "wf_d20ce68d32",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the cell phone, and Bisola reads the name twice.",
@@ -2739,6 +2729,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "asmathic"
+},
+{
+"id": "wf_9af47956a4",
+"kind": "consequence",
+"text": "A Marker note with Kunle's name and 'nice day sign' on it, turns up inside the brown envelope at the cell phone, and Bisola reads the name twice.",
+"code": "marker.interactwith(cell_phone){ cell_phone.receives(marker.sign); … }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j3",
+"other": "marker"
 },
 {
 "id": "wt_775c701ecb",
@@ -5447,16 +5447,6 @@
 ],
 "marina_biscayne_bay": [
 {
-"id": "wf_0a973190a9",
-"kind": "consequence",
-"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the juju code at the marina biscayne bay, and Ejiro reads the name twice.",
-"code": "texts_marisol.interactwith(marina_biscayne_bay){ marina_biscayne_bay.receives(texts_marisol.code); … }",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j2",
-"other": "texts_marisol"
-},
-{
 "id": "wf_26c46a2147",
 "kind": "consequence",
 "text": "A Bird note with Taiwo's name and 'lamp soot' on it, turns up inside the juju code at the marina biscayne bay, and Ejiro reads the name twice.",
@@ -5495,6 +5485,16 @@
 "run": "run-5a58c4",
 "card": "j6",
 "other": "prior_reality"
+},
+{
+"id": "wf_6c86b1f3da",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the marina biscayne bay, and Bisola reads the name twice.",
+"code": "marker_d.interactwith(marina_biscayne_bay){ marina_biscayne_bay.receives(marker_d.envelope); … }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "marker_d"
 }
 ],
 "mbtij": [
@@ -10458,39 +10458,6 @@
 },
 "consequences": [
 {
-"id": "wf_f6cdeaa859",
-"ts": "2026-11-24T01:12:54-0500",
-"a": "ojuelegba_bus_stop",
-"b": "red_white_cap",
-"code": "ojuelegba_bus_stop.interactwith(red_white_cap){ red_white_cap.receives(ojuelegba_bus_stop.shirt); red_white_cap.remembers(bisola, 'green shirt'); }",
-"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up with the red and white cap, which is still worn.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j8"
-},
-{
-"id": "wf_57d0c113ef",
-"ts": "2026-11-24T01:16:18-0500",
-"a": "vex",
-"b": "mkdwo",
-"code": "vex.interactwith(mkdwo){ mkdwo.receives(vex.envelope); mkdwo.remembers(bisola, 'brown envelope'); }",
-"text": "The mkdwo leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
-"id": "wf_cda428dc6e",
-"ts": "2026-11-24T01:20:33-0500",
-"a": "atp",
-"b": "imhf",
-"code": "atp.interactwith(imhf){ imhf.receives(atp.envelope); imhf.remembers(bisola, 'brown envelope'); imhf.tucks(atp, 'yaba bookshop receipt into the green shirt'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the green shirt at the imhf, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
 "id": "wf_fdfc2c242c",
 "ts": "2026-11-24T01:21:24-0500",
 "a": "ikeja",
@@ -10896,6 +10863,39 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": "j3"
+},
+{
+"id": "wf_9af47956a4",
+"ts": "2026-11-24T02:56:44-0500",
+"a": "marker",
+"b": "cell_phone",
+"code": "marker.interactwith(cell_phone){ cell_phone.receives(marker.sign); … }",
+"text": "A Marker note with Kunle's name and 'nice day sign' on it, turns up inside the brown envelope at the cell phone, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j3"
+},
+{
+"id": "wf_68d9435382",
+"ts": "2026-11-24T02:57:37-0500",
+"a": "thoughts_marisol",
+"b": "laptop",
+"code": "thoughts_marisol.interactwith(laptop){ laptop.receives(thoughts_marisol.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the lamp soot at the laptop, and Taiwo reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
+},
+{
+"id": "wf_6c86b1f3da",
+"ts": "2026-11-24T03:00:06-0500",
+"a": "marker_d",
+"b": "marina_biscayne_bay",
+"code": "marker_d.interactwith(marina_biscayne_bay){ marina_biscayne_bay.receives(marker_d.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the marina biscayne bay, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
 }
 ],
 "memories": [
@@ -10999,5 +10999,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-24T02:55:53-0500"
+"updated": "2026-11-24T03:00:06-0500"
 }
