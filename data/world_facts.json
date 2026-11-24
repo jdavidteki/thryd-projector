@@ -6029,6 +6029,16 @@
 "run": "run-5a58c4",
 "card": "j6",
 "other": "florida"
+},
+{
+"id": "wf_b957030065",
+"kind": "consequence",
+"text": "A Marker note with Kunle's name and 'nice day sign' on it, turns up inside the brown envelope at the marisol, and Bisola reads the name twice.",
+"code": "marker.interactwith(marisol){ marisol.receives(marker.sign); marisol.remembers(kunle, 'nice day sign'); marisol.tucks(marker, 'marker note into the brown envelope'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j3",
+"other": "marker"
 }
 ],
 "god": [
@@ -10478,17 +10488,6 @@
 },
 "consequences": [
 {
-"id": "wf_7d04000d9e",
-"ts": "2026-11-24T01:57:49-0500",
-"a": "heat",
-"b": "love",
-"code": "heat.interactwith(love){ love.receives(heat.envelope); love.remembers(bisola, 'brown envelope'); love.tucks(heat, 'yaba bookshop receipt into the brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the love, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
 "id": "wf_ab00a8b670",
 "ts": "2026-11-24T02:06:05-0500",
 "a": "marker_b",
@@ -10916,6 +10915,17 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": "j2"
+},
+{
+"id": "wf_b957030065",
+"ts": "2026-11-24T10:31:18-0500",
+"a": "marker",
+"b": "marisol",
+"code": "marker.interactwith(marisol){ marisol.receives(marker.sign); marisol.remembers(kunle, 'nice day sign'); marisol.tucks(marker, 'marker note into the brown envelope'); }",
+"text": "A Marker note with Kunle's name and 'nice day sign' on it, turns up inside the brown envelope at the marisol, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j3"
 }
 ],
 "memories": [
@@ -11019,5 +11029,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-24T10:25:57-0500"
+"updated": "2026-11-24T10:31:18-0500"
 }
