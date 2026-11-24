@@ -5073,16 +5073,6 @@
 ],
 "top_deck_charter": [
 {
-"id": "wf_b3f86f7214",
-"kind": "consequence",
-"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the top deck charter, and Bisola reads the name twice.",
-"code": "dez.interactwith(top_deck_charter){ top_deck_charter.receives(dez.code); … }",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j2",
-"other": "dez"
-},
-{
 "id": "wf_dcf74ade9e",
 "kind": "consequence",
 "text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the top deck charter, and Bisola reads the name twice.",
@@ -5121,6 +5111,16 @@
 "run": "run-g1-B",
 "card": "j6",
 "other": "notnotnotnotyn_dec"
+},
+{
+"id": "wf_969e2499cb",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the top deck charter, and Bisola reads the name twice.",
+"code": "marker_b.interactwith(top_deck_charter){ top_deck_charter.receives(marker_b.envelope); … }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "marker_b"
 }
 ],
 "fire_escape_outside": [
@@ -10374,17 +10374,6 @@
 },
 "consequences": [
 {
-"id": "wf_2b279ef861",
-"ts": "2026-11-23T21:51:20-0500",
-"a": "agbada",
-"b": "kazeem",
-"code": "agbada.interactwith(kazeem){ agbada.db.copyto(kazeem); kazeem.keeps(agbada, 'agbada, still worn by a stranger haggler'); }",
-"text": "The agbada ends up with the kazeem, still worn by a stranger haggler.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "w4"
-},
-{
 "id": "wf_68f7677905",
 "ts": "2026-11-23T22:42:24-0500",
 "a": "divine",
@@ -10812,6 +10801,17 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": "j8"
+},
+{
+"id": "wf_969e2499cb",
+"ts": "2026-11-24T01:35:14-0500",
+"a": "marker_b",
+"b": "top_deck_charter",
+"code": "marker_b.interactwith(top_deck_charter){ top_deck_charter.receives(marker_b.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the top deck charter, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
 }
 ],
 "memories": [
@@ -10915,5 +10915,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-24T01:27:43-0500"
+"updated": "2026-11-24T01:35:14-0500"
 }
