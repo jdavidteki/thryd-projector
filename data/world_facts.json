@@ -1839,16 +1839,6 @@
 ],
 "bicycle": [
 {
-"id": "wf_5e78ac8390",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bicycle, and Bisola reads the name twice.",
-"code": "namco.interactwith(bicycle){ bicycle.receives(namco.envelope); … }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "namco"
-},
-{
 "id": "wf_a53078f4d2",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bicycle, and Bisola reads the name twice.",
@@ -1887,6 +1877,16 @@
 "run": "run-5a58c4",
 "card": "j2",
 "other": "tag_sessy"
+},
+{
+"id": "wf_7b468bb224",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bicycle, and Bisola reads the name twice.",
+"code": "marker_d.interactwith(bicycle){ bicycle.receives(marker_d.envelope); … }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "marker_d"
 }
 ],
 "ronke": [
@@ -10418,17 +10418,6 @@
 },
 "consequences": [
 {
-"id": "wf_958b271925",
-"ts": "2026-11-24T00:27:43-0500",
-"a": "tie",
-"b": "mkdwo",
-"code": "tie.interactwith(mkdwo){ mkdwo.receives(tie.envelope); mkdwo.remembers(bisola, 'brown envelope'); }",
-"text": "The mkdwo leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
 "id": "wf_dbe79b0b2c",
 "ts": "2026-11-24T00:31:06-0500",
 "a": "example",
@@ -10856,6 +10845,17 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": "j6"
+},
+{
+"id": "wf_7b468bb224",
+"ts": "2026-11-24T02:26:11-0500",
+"a": "marker_d",
+"b": "bicycle",
+"code": "marker_d.interactwith(bicycle){ bicycle.receives(marker_d.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bicycle, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
 }
 ],
 "memories": [
@@ -10959,5 +10959,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-24T02:17:55-0500"
+"updated": "2026-11-24T02:26:11-0500"
 }
