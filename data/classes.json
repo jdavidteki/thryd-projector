@@ -108,8 +108,8 @@
     "give",
     "watch"
    ],
-   "instances": 434,
-   "arg_instances": 107,
+   "instances": 438,
+   "arg_instances": 109,
    "parent": null,
    "chain": [
     "Thing"
@@ -620,6 +620,17 @@
    ],
    "tweets": []
   },
+  "awscloud": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-5a58c4",
+   "first_job": "j51",
+   "source": "typed",
+   "runs": [
+    "run-5a58c4"
+   ],
+   "tweets": []
+  },
   "ayrastarr": {
    "class": "Thing",
    "cue": "default",
@@ -664,6 +675,22 @@
     "run-345b3d"
    ],
    "tweets": []
+  },
+  "back": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-5a58c4",
+   "first_job": "j51",
+   "source": "pick",
+   "runs": [
+    "run-5a58c4"
+   ],
+   "tweets": [
+    {
+     "text": "#seniorboys - i love nigeria",
+     "year": "2025"
+    }
+   ]
   },
   "backend": {
    "class": "Thing",
@@ -2034,6 +2061,26 @@
     "run-bd649b"
    ],
    "tweets": []
+  },
+  "error": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-5a58c4",
+   "first_job": "j51",
+   "source": "pick",
+   "runs": [
+    "run-5a58c4"
+   ],
+   "tweets": [
+    {
+     "text": "- deezwans look like teknical jargons",
+     "year": "2025"
+    },
+    {
+     "text": "-- dyeriz an error dye you don't know!",
+     "year": "2025"
+    }
+   ]
   },
   "even": {
    "class": "Action",
@@ -5085,6 +5132,17 @@
    ],
    "tweets": []
   },
+  "realdonaldtrump": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-5a58c4",
+   "first_job": "j51",
+   "source": "typed",
+   "runs": [
+    "run-5a58c4"
+   ],
+   "tweets": []
+  },
   "realfilm": {
    "class": "Thing",
    "cue": "default",
@@ -7388,30 +7446,6 @@
   ],
   "run-5a58c4": [
    [
-    "liters",
-    "Quantity",
-    "j31",
-    "pick"
-   ],
-   [
-    "anywhere",
-    "Place",
-    "j31",
-    "pick"
-   ],
-   [
-    "else",
-    "Thing",
-    "j31",
-    "pick"
-   ],
-   [
-    "inside",
-    "Place",
-    "j32",
-    "pick"
-   ],
-   [
     "afternoon",
     "Thing",
     "j32",
@@ -7616,6 +7650,18 @@
     "pick"
    ],
    [
+    "error",
+    "Thing",
+    "j51",
+    "pick"
+   ],
+   [
+    "back",
+    "Thing",
+    "j51",
+    "pick"
+   ],
+   [
     "true",
     "Thing",
     "j28",
@@ -7697,6 +7743,18 @@
     "totalnumapps",
     "Thing",
     "j50",
+    "typed"
+   ],
+   [
+    "realdonaldtrump",
+    "Thing",
+    "j51",
+    "typed"
+   ],
+   [
+    "awscloud",
+    "Thing",
+    "j51",
     "typed"
    ],
    [
@@ -11276,6 +11334,8 @@
   "calla.lead": "lead(what: Thing)",
   "marisol.ship": "ship(what: Thing)",
   "calla.watch": "watch(what: Thing)",
+  "dez.find": "find(what: Thing)",
+  "teo.welcome": "welcome(what: Thing)",
   "cooler.getdatemanufactured": "getDateManufactured()",
   "ronke.getlikes.contains": "getlikes.contains()",
   "kazeem.goodqualities.filter": "filter()",
@@ -11826,5 +11886,5 @@
   "epilogue": "quiet",
   "coda": "quiet"
  },
- "updated": "2026-11-24T14:47:22-05:00"
+ "updated": "2026-11-24T14:55:40-05:00"
 }
