@@ -2691,16 +2691,6 @@
 ],
 "cell_phone": [
 {
-"id": "wf_68346773eb",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the cell phone, and Bisola reads the name twice.",
-"code": "bow.interactwith(cell_phone){ cell_phone.receives(bow.envelope); … }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "bow"
-},
-{
 "id": "wf_2a8336f1cc",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the cell phone, and Bisola reads the name twice.",
@@ -2729,6 +2719,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "seniorgehs"
+},
+{
+"id": "wf_5b0c1e3da4",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the cell phone, and Bisola reads the name twice.",
+"code": "yuwa.interactwith(cell_phone){ cell_phone.receives(yuwa.envelope); … }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "yuwa"
 },
 {
 "id": "wt_775c701ecb",
@@ -10244,17 +10244,6 @@
 },
 "consequences": [
 {
-"id": "wf_25d35b995e",
-"ts": "2026-11-23T17:49:25-0500",
-"a": "again",
-"b": "bird",
-"code": "again.interactwith(bird){ bird.receives(again.envelope); bird.remembers(bisola, 'brown envelope'); bird.tucks(again, 'yaba bookshop receipt into the envelope corner'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the envelope corner at the bird, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
 "id": "wf_35cacc922c",
 "ts": "2026-11-23T17:54:49-0500",
 "a": "patagonia",
@@ -10682,6 +10671,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_5b0c1e3da4",
+"ts": "2026-11-23T21:03:21-0500",
+"a": "yuwa",
+"b": "cell_phone",
+"code": "yuwa.interactwith(cell_phone){ cell_phone.receives(yuwa.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the cell phone, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -10785,5 +10785,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-23T20:56:30-0500"
+"updated": "2026-11-23T21:03:21-0500"
 }
