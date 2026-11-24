@@ -6,10 +6,11 @@
    "param": "when",
    "methods": [
     "again",
-    "know"
+    "know",
+    "transmit"
    ],
-   "instances": 5,
-   "arg_instances": 2,
+   "instances": 6,
+   "arg_instances": 3,
    "parent": "Thing",
    "chain": [
     "Frequency",
@@ -107,8 +108,8 @@
     "give",
     "ask"
    ],
-   "instances": 424,
-   "arg_instances": 101,
+   "instances": 425,
+   "arg_instances": 102,
    "parent": null,
    "chain": [
     "Thing"
@@ -4387,6 +4388,22 @@
     }
    ]
   },
+  "now": {
+   "class": "Frequency",
+   "cue": "word",
+   "first_run": "run-5a58c4",
+   "first_job": "j44",
+   "source": "pick",
+   "runs": [
+    "run-5a58c4"
+   ],
+   "tweets": [
+    {
+     "text": "- they are ready to transmit now",
+     "year": "2025"
+    }
+   ]
+  },
   "ocsw": {
    "class": "Thing",
    "cue": "default",
@@ -6527,6 +6544,22 @@
    ],
    "tweets": []
   },
+  "up": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-5a58c4",
+   "first_job": "j44",
+   "source": "pick",
+   "runs": [
+    "run-5a58c4"
+   ],
+   "tweets": [
+    {
+     "text": "#seniorboys - no sin. no fear.",
+     "year": "2025"
+    }
+   ]
+  },
   "us": {
    "class": "Person",
    "cue": "word",
@@ -7193,18 +7226,6 @@
   ],
   "run-5a58c4": [
    [
-    "tnw",
-    "Thing",
-    "j23",
-    "pick"
-   ],
-   [
-    "deya",
-    "Person",
-    "j23",
-    "pick"
-   ],
-   [
     "sometimes",
     "Frequency",
     "j24",
@@ -7442,6 +7463,18 @@
     "precisions",
     "Thing",
     "j43",
+    "pick"
+   ],
+   [
+    "up",
+    "Thing",
+    "j44",
+    "pick"
+   ],
+   [
+    "now",
+    "Frequency",
+    "j44",
     "pick"
    ],
    [
@@ -11071,6 +11104,8 @@
   "nobody.see": "see(what: Thing)",
   "calla.draw": "draw(what: Thing)",
   "teo.give": "give(what: Thing)",
+  "marisol.wise": "wise(what: Thing)",
+  "teo.transmit": "transmit(when: Frequency)",
   "cooler.getdatemanufactured": "getDateManufactured()",
   "ronke.getlikes.contains": "getlikes.contains()",
   "kazeem.goodqualities.filter": "filter()",
@@ -11621,5 +11656,5 @@
   "epilogue": "quiet",
   "coda": "quiet"
  },
- "updated": "2026-11-24T01:52:49-05:00"
+ "updated": "2026-11-24T01:53:39-05:00"
 }
