@@ -4217,15 +4217,15 @@
      ],
      "consequence": "Dez is at the window table, still a little apart, and keeps watching.",
      "consequence_job": "j33",
-     "resolved": "dez.bow(what=money:Thing) from j32",
+     "resolved": "dez.bow(what=eddiemurphy:Thing) from j31",
      "injected": [
       {
        "param": "what",
        "class": "Thing",
-       "instance": "money",
+       "instance": "eddiemurphy",
        "from_run": "run-5a58c4",
-       "from_job": "j32",
-       "source": "pick"
+       "from_job": "j31",
+       "source": "typed"
       }
      ]
     }
@@ -4290,15 +4290,15 @@
      ],
      "consequence": "8:20am, Wednesday 4 November 2026, the same small morning bakery in Wynwood, Miami, Florida, a second pot of coffee going and the street outside starting to dry, the thin fog almost gone and the first warmth still in the doorway.",
      "consequence_job": "j33",
-     "resolved": "life.give(what=money:Thing) from j32",
+     "resolved": "life.give(what=eddiemurphy:Thing) from j31",
      "injected": [
       {
        "param": "what",
        "class": "Thing",
-       "instance": "money",
+       "instance": "eddiemurphy",
        "from_run": "run-5a58c4",
-       "from_job": "j32",
-       "source": "pick"
+       "from_job": "j31",
+       "source": "typed"
       }
      ]
     }
@@ -4398,15 +4398,15 @@
      ],
      "consequence": "Teo stands at the counter with the answer still unspent; for a moment it looks as if he might say it, then he only turns the cup in his hands and almost laughs.",
      "consequence_job": "j33",
-     "resolved": "teo.come(what=wan:Thing) from j32",
+     "resolved": "teo.come(what=eddiemurphy:Thing) from j31",
      "injected": [
       {
        "param": "what",
        "class": "Thing",
-       "instance": "wan",
+       "instance": "eddiemurphy",
        "from_run": "run-5a58c4",
-       "from_job": "j32",
-       "source": "pick"
+       "from_job": "j31",
+       "source": "typed"
       }
      ]
     }
@@ -4488,7 +4488,7 @@
        "instance": "2037",
        "from_run": "run-5a58c4",
        "from_job": "j33",
-       "source": "pick"
+       "source": "original"
       }
      ]
     }
@@ -14440,6 +14440,225 @@
    "faded": true,
    "last_run": "run-5a58c4"
   },
+  "dez.receive": {
+   "object": "dez",
+   "method": "receive",
+   "args": [
+    "textyng"
+   ],
+   "runs": [
+    "run-5a58c4"
+   ],
+   "defined": {
+    "run": "run-5a58c4",
+    "job": "j53",
+    "card": "w53",
+    "title": "dez.receive(textyng)",
+    "emoji": "📩",
+    "at": "2026-11-24T15:31:13-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "dez.receive(textyng)",
+     "emoji": "📩",
+     "arg": "textyng",
+     "run": "run-5a58c4",
+     "job": "j53",
+     "tweets": [
+      {
+       "text": "#juniorboys - i received a #textyng",
+       "year": "2024"
+      },
+      {
+       "text": "[[masterpiece]] - treating a [[htwao]] lie",
+       "year": "2024"
+      },
+      {
+       "text": "-- hahahahaha!",
+       "year": "2024"
+      }
+     ],
+     "consequence": "Dez's phone buzzes.",
+     "consequence_job": "j54",
+     "resolved": "dez.receive(what=textyng:Thing) from j53",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "textyng",
+       "from_run": "run-5a58c4",
+       "from_job": "j53",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "textyng",
+      "first_run": "run-5a58c4",
+      "first_job": "j53"
+     }
+    ],
+    "text": "receive(what: Thing)"
+   },
+   "receiver_class": "Person",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "marisol.win": {
+   "object": "marisol",
+   "method": "win",
+   "args": [
+    "reasons"
+   ],
+   "runs": [
+    "run-5a58c4"
+   ],
+   "defined": {
+    "run": "run-5a58c4",
+    "job": "j53",
+    "card": "w53",
+    "title": "marisol.win(reasons)",
+    "emoji": "🏆",
+    "at": "2026-11-24T15:31:13-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "marisol.win(reasons)",
+     "emoji": "🏆",
+     "arg": "reasons",
+     "run": "run-5a58c4",
+     "job": "j53",
+     "tweets": [
+      {
+       "text": "- dey [[play]]! me [[when]]",
+       "year": "2024"
+      },
+      {
+       "text": "#seniorboys[[aam]] - reasons",
+       "year": "2024"
+      },
+      {
+       "text": "[[djw]] - if i didn't win",
+       "year": "2024"
+      }
+     ],
+     "consequence": "Teo does, before Dez can open his mouth: \"but they know that you know.\" Marisol won't let the homecomer at A2 sit there quietly.",
+     "consequence_job": "j54",
+     "resolved": "marisol.win(what=reasons:Thing) from j53",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "reasons",
+       "from_run": "run-5a58c4",
+       "from_job": "j53",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "reasons",
+      "first_run": "run-5a58c4",
+      "first_job": "j53"
+     }
+    ],
+    "text": "win(what: Thing)"
+   },
+   "receiver_class": "Person",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "teo.pray": {
+   "object": "teo",
+   "method": "pray",
+   "args": [
+    "how"
+   ],
+   "runs": [
+    "run-5a58c4"
+   ],
+   "defined": {
+    "run": "run-5a58c4",
+    "job": "j53",
+    "card": "w53",
+    "title": "teo.pray(how)",
+    "emoji": "🙏",
+    "at": "2026-11-24T15:31:13-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "teo.pray(how)",
+     "emoji": "🙏",
+     "arg": "how",
+     "run": "run-5a58c4",
+     "job": "j53",
+     "tweets": [
+      {
+       "text": "-- [[pray]] bawo?",
+       "year": "2025"
+      },
+      {
+       "text": "[[ff]] - fiyoki!",
+       "year": "2025"
+      },
+      {
+       "text": "[[ats]] - #time - [[itmbt]]",
+       "year": "2025"
+      }
+     ],
+     "consequence": "📍 Wynwood bakery, Miami 🥐 · 141 lines in Teo prays out loud, not to anyone in particular: \"pray bawo?\" How do you even pray for a seat?",
+     "consequence_job": "j54",
+     "resolved": "teo.pray(how=how:Manner) from j53",
+     "injected": [
+      {
+       "param": "how",
+       "class": "Manner",
+       "instance": "how",
+       "from_run": "run-5a58c4",
+       "from_job": "j53",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "how",
+      "class": "Manner",
+      "default": "how",
+      "first_run": "run-5a58c4",
+      "first_job": "j27"
+     }
+    ],
+    "text": "pray(how: Manner)"
+   },
+   "receiver_class": "Person",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
   "cooler.getdatemanufactured": {
    "object": "cooler",
    "method": "getDateManufactured",
@@ -17703,7 +17922,8 @@
    "dez.make",
    "dez.watch",
    "dez.take",
-   "dez.find"
+   "dez.find",
+   "dez.receive"
   ],
   "dez_5a58c4": [
    "dez.sit",
@@ -17713,7 +17933,8 @@
    "dez.make",
    "dez.watch",
    "dez.take",
-   "dez.find"
+   "dez.find",
+   "dez.receive"
   ],
   "dicey": [
    "dicey.call"
@@ -17914,7 +18135,8 @@
    "dez.make",
    "dez.watch",
    "dez.take",
-   "dez.find"
+   "dez.find",
+   "dez.receive"
   ],
   "marisol": [
    "marisol.find",
@@ -17922,7 +18144,8 @@
    "marisol.wise",
    "marisol.wake",
    "marisol.ship",
-   "marisol.connect"
+   "marisol.connect",
+   "marisol.win"
   ],
   "marisol_5a58c4": [
    "marisol.find",
@@ -17930,7 +18153,8 @@
    "marisol.wise",
    "marisol.wake",
    "marisol.ship",
-   "marisol.connect"
+   "marisol.connect",
+   "marisol.win"
   ],
   "media": [
    "media.all"
@@ -18146,7 +18370,8 @@
    "teo.give",
    "teo.transmit",
    "teo.welcome",
-   "teo.see"
+   "teo.see",
+   "teo.pray"
   ],
   "teo_5a58c4": [
    "teo.hide",
@@ -18164,7 +18389,8 @@
    "teo.give",
    "teo.transmit",
    "teo.welcome",
-   "teo.see"
+   "teo.see",
+   "teo.pray"
   ],
   "thing": [
    "thing.weird"
@@ -18924,6 +19150,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -19719,6 +19948,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -19899,6 +20131,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -19974,6 +20209,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -20049,6 +20287,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -20124,6 +20365,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -20199,6 +20443,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -20274,6 +20521,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -20349,6 +20599,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -20424,6 +20677,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -20499,6 +20755,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -20574,6 +20833,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -20649,6 +20911,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -20724,6 +20989,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -20799,6 +21067,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -20874,6 +21145,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -20949,6 +21223,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -21024,6 +21301,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -21099,6 +21379,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -21544,6 +21827,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -21619,6 +21905,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -21694,6 +21983,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -21759,6 +22051,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -21824,6 +22119,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -23656,6 +23954,9 @@
     "from": "f81f21521253",
     "title": "829. a day in the life of god",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -23723,6 +24024,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -23790,6 +24093,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -24011,6 +24316,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -24374,6 +24682,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -24449,6 +24760,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -24524,6 +24838,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -24599,6 +24916,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -24684,6 +25004,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -24759,6 +25082,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -24834,6 +25160,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -24909,6 +25238,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -24984,6 +25316,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -25166,6 +25501,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -25296,6 +25634,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -25381,6 +25722,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -25466,6 +25810,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -25541,6 +25888,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -25638,6 +25988,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -25713,6 +26066,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -25788,6 +26144,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -25863,6 +26222,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -25938,6 +26300,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -26221,6 +26586,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -26420,6 +26788,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -26526,6 +26897,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -26601,6 +26975,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -26676,6 +27053,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -26751,6 +27131,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -26826,6 +27209,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -26901,6 +27287,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -27310,6 +27699,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -27966,6 +28358,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -28175,6 +28570,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -28250,6 +28648,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -28325,6 +28726,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -28400,6 +28804,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -28467,6 +28873,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -28542,6 +28951,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -28617,6 +29029,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "dez.receive",
      "teo.see",
      "teo.welcome",
      "dez.find",
@@ -28686,6 +29100,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "dez.receive",
      "teo.see",
      "teo.welcome",
      "dez.find",
@@ -28755,6 +29171,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -28830,6 +29249,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -28905,6 +29327,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -28980,6 +29405,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -29055,6 +29483,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -29130,6 +29561,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -29205,6 +29639,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -29280,6 +29717,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -29355,6 +29795,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -29430,6 +29873,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -29505,6 +29951,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -29580,6 +30029,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -29763,6 +30215,14 @@
     "funcs": [
      "teo.hide"
     ]
+   },
+   {
+    "scope": "safe",
+    "from": "cb67d57351b7",
+    "title": "616. maturity",
+    "funcs": [
+     "teo.pray"
+    ]
    }
   ],
   "mbtij": [
@@ -29770,6 +30230,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -29855,6 +30318,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -29930,6 +30396,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -30005,6 +30474,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -30080,6 +30552,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -30155,6 +30630,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -30230,6 +30708,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -30305,6 +30786,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -30380,6 +30864,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -30455,6 +30942,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -30530,6 +31020,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -30605,6 +31098,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -30680,6 +31176,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -32107,6 +32606,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -32287,6 +32789,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -32489,6 +32994,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -32700,6 +33208,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -32775,6 +33286,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -32850,6 +33364,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -32925,6 +33442,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -33000,6 +33520,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -33075,6 +33598,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -33150,6 +33676,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -33225,6 +33754,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -33300,6 +33832,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -33375,6 +33910,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -33726,6 +34264,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -33801,6 +34342,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -34340,6 +34884,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -34637,6 +35184,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -34712,6 +35262,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -34903,6 +35456,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.win",
+     "dez.receive",
      "marisol.connect",
      "dez.find",
      "calla.watch",
@@ -34962,6 +35517,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.win",
+     "dez.receive",
      "marisol.connect",
      "dez.find",
      "calla.watch",
@@ -35021,6 +35578,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -35096,6 +35656,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -35171,6 +35734,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -35371,6 +35937,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -35560,6 +36129,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -35635,6 +36207,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -35710,6 +36285,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -35785,6 +36363,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -35860,6 +36441,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -35935,6 +36519,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -36010,6 +36597,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -36085,6 +36675,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -36175,6 +36768,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -36631,6 +37227,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -36706,6 +37305,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -37033,6 +37635,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -37222,6 +37827,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.pray",
+     "marisol.win",
+     "dez.receive",
      "teo.see",
      "marisol.connect",
      "teo.welcome",
@@ -37623,7 +38231,10 @@
     "dez.find",
     "teo.welcome",
     "marisol.connect",
-    "teo.see"
+    "teo.see",
+    "dez.receive",
+    "marisol.win",
+    "teo.pray"
    ]
   },
   "run-65400f": {
@@ -38496,7 +39107,8 @@
   "9c851ef17f45": {
    "title": "1011. who kiss my wife??!!",
    "funcs": [
-    "funke.show"
+    "funke.show",
+    "dez.receive"
    ],
    "runs": []
   },
@@ -38632,6 +39244,13 @@
    ],
    "runs": []
   },
+  "b7e8db85ddac": {
+   "title": "1214. i finally unblocked him",
+   "funcs": [
+    "marisol.win"
+   ],
+   "runs": []
+  },
   "ba4901337f02": {
    "title": "222. risk",
    "funcs": [
@@ -38700,6 +39319,13 @@
    "title": "828. yee, i think the previous generation enjoyed life properly",
    "funcs": [
     "toothbrush.on"
+   ],
+   "runs": []
+  },
+  "cb67d57351b7": {
+   "title": "616. maturity",
+   "funcs": [
+    "teo.pray"
    ],
    "runs": []
   },
@@ -39008,7 +39634,10 @@
     "dez.find",
     "teo.welcome",
     "marisol.connect",
-    "teo.see"
+    "teo.see",
+    "dez.receive",
+    "marisol.win",
+    "teo.pray"
    ],
    "runs": [
     "run-5a58c4"
@@ -39117,6 +39746,7 @@
    "e1264231d388"
   ],
   "1*89P8O1vKr4NJQJcIpNLisQ.gif": [
+   "cb67d57351b7",
    "9a3a7cd2c055"
   ],
   "1*S1oCWFn9cmXUYSNZZkml_g.gif": [
@@ -39431,7 +40061,14 @@
    "1d08b133d292"
   ],
   "1*_EjFgtPmEaDMbd0l7TYupQ.gif": [
+   "b7e8db85ddac",
    "ceb79ef77a2c"
+  ],
+  "1*_rT5W1-Sqq8S9VtKc38JJA.gif": [
+   "b7e8db85ddac"
+  ],
+  "1*BtyPcTE_Mx7LZOXxGUL_Pg.jpeg": [
+   "b7e8db85ddac"
   ],
   "1*-VkeQVfQ8_nV5UfHbV3HUg.gif": [
    "bd7fa6cf3e04"
@@ -39739,6 +40376,7 @@
   "1*89P8O1vKr4NJQJcIpNLisQ.gif": {
    "runs": [],
    "safes": [
+    "cb67d57351b7",
     "9a3a7cd2c055"
    ]
   },
@@ -40441,7 +41079,8 @@
    "dez.make",
    "dez.watch",
    "dez.take",
-   "dez.find"
+   "dez.find",
+   "dez.receive"
   ],
   "dicey": [
    "dicey.call"
@@ -40601,7 +41240,8 @@
    "marisol.wise",
    "marisol.wake",
    "marisol.ship",
-   "marisol.connect"
+   "marisol.connect",
+   "marisol.win"
   ],
   "media": [
    "media.all"
@@ -40759,7 +41399,8 @@
    "teo.give",
    "teo.transmit",
    "teo.welcome",
-   "teo.see"
+   "teo.see",
+   "teo.pray"
   ],
   "thing": [
    "thing.weird"
@@ -41239,5 +41880,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-24T15:13:09-05:00"
+ "updated": "2026-11-24T15:31:25-05:00"
 }
