@@ -8115,16 +8115,6 @@
 ],
 "mlkahb": [
 {
-"id": "wf_25fce5d467",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the streetlights, which is still all dead since 7:35pm.",
-"code": "computer_village.interactwith(mlkahb){ mlkahb.receives(computer_village.envelope); mlkahb.remembers(bisola, 'brown envelope'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "computer_village"
-},
-{
 "id": "wf_8bf4c4131d",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the mlkahb, and Bisola reads the name twice.",
@@ -8163,6 +8153,16 @@
 "run": "run-2eb42d",
 "card": "j7",
 "other": "tf_mom"
+},
+{
+"id": "wf_9d7cb09810",
+"kind": "consequence",
+"text": "A Sheep note with Kunle's name and 'scorched container number' on it, turns up inside the brown envelope at the mlkahb, and Bisola reads the name twice.",
+"code": "twgs.interactwith(mlkahb){ mlkahb.receives(twgs.number); mlkahb.remembers(kunle, 'scorched container number'); mlkahb.tucks(twgs, 'sheep note into the brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w7",
+"other": "twgs"
 }
 ],
 "uncle_ebo": [
@@ -10244,17 +10244,6 @@
 },
 "consequences": [
 {
-"id": "wf_999041a9c2",
-"ts": "2026-11-23T17:39:29-0500",
-"a": "mama_ronke",
-"b": "agbada",
-"code": "mama_ronke.interactwith(agbada){ mama_ronke.db.copyto(agbada); agbada.keeps(mama_ronke, 'Mama Ronke, still present'); }",
-"text": "The Mama Ronke ends up with the agbada, still present.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": ""
-},
-{
 "id": "wf_5a000cabf5",
 "ts": "2026-11-23T17:46:42-0500",
 "a": "computer_village",
@@ -10682,6 +10671,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_9d7cb09810",
+"ts": "2026-11-23T20:52:14-0500",
+"a": "twgs",
+"b": "mlkahb",
+"code": "twgs.interactwith(mlkahb){ mlkahb.receives(twgs.number); mlkahb.remembers(kunle, 'scorched container number'); mlkahb.tucks(twgs, 'sheep note into the brown envelope'); }",
+"text": "A Sheep note with Kunle's name and 'scorched container number' on it, turns up inside the brown envelope at the mlkahb, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w7"
 }
 ],
 "memories": [
@@ -10785,5 +10785,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-23T20:36:51-0500"
+"updated": "2026-11-23T20:52:14-0500"
 }
