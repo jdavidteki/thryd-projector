@@ -2051,16 +2051,6 @@
 ],
 "tie": [
 {
-"id": "wf_3af8908fdf",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the green shirt at the tie, and Bisola reads the name twice.",
-"code": "yuwa.interactwith(tie){ tie.receives(yuwa.envelope); tie.remembers(bisola, 'brown envelope'); tie.tucks(yuwa, 'yaba bookshop receipt into the green shirt'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "yuwa"
-},
-{
 "id": "wf_20fbec1c58",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the tie, and Bisola reads the name twice.",
@@ -2099,6 +2089,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "seniorgehs"
+},
+{
+"id": "wf_b0ee83548d",
+"kind": "consequence",
+"text": "A Laptop note with Taiwo's name and 'lamp soot' on it, turns up inside the brown envelope at the tie, and Bisola reads the name twice.",
+"code": "tf_mom.interactwith(tie){ tie.receives(tf_mom.soot); tie.remembers(taiwo, 'lamp soot'); tie.tucks(tf_mom, 'laptop note into the brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j7",
+"other": "tf_mom"
 }
 ],
 "laptop": [
@@ -10284,17 +10284,6 @@
 },
 "consequences": [
 {
-"id": "wf_7088a8f1f1",
-"ts": "2026-11-23T19:51:21-0500",
-"a": "tf_mom",
-"b": "sports_ball",
-"code": "tf_mom.interactwith(sports_ball){ sports_ball.receives(tf_mom.soot); … }",
-"text": "A Laptop note with Taiwo's name and 'lamp soot' on it, turns up inside the brown envelope at the sports ball, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j7"
-},
-{
 "id": "wf_ef996cd494",
 "ts": "2026-11-23T19:58:11-0500",
 "a": "tf_mom",
@@ -10722,6 +10711,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j7"
+},
+{
+"id": "wf_b0ee83548d",
+"ts": "2026-11-23T23:47:46-0500",
+"a": "tf_mom",
+"b": "tie",
+"code": "tf_mom.interactwith(tie){ tie.receives(tf_mom.soot); tie.remembers(taiwo, 'lamp soot'); tie.tucks(tf_mom, 'laptop note into the brown envelope'); }",
+"text": "A Laptop note with Taiwo's name and 'lamp soot' on it, turns up inside the brown envelope at the tie, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j7"
 }
 ],
 "memories": [
@@ -10825,5 +10825,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-23T23:40:59-0500"
+"updated": "2026-11-23T23:47:46-0500"
 }
