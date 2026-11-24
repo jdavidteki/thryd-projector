@@ -5569,16 +5569,6 @@
 ],
 "miami": [
 {
-"id": "wf_e3ba384c70",
-"kind": "consequence",
-"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up beside the phone at the miami.",
-"code": "ronke.interactwith(miami){ miami.receives(ronke.shirt); miami.remembers(bisola, 'green shirt'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j8",
-"other": "ronke"
-},
-{
 "id": "wf_f6015d5c1f",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up beside the phone at the miami.",
@@ -5617,6 +5607,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "lie"
+},
+{
+"id": "wf_f283a4272a",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up beside the phone at the miami.",
+"code": "hose.interactwith(miami){ miami.receives(hose.envelope); miami.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "hose"
 }
 ],
 "teo": [
@@ -10394,17 +10394,6 @@
 },
 "consequences": [
 {
-"id": "wf_b6f7b3108d",
-"ts": "2026-11-23T23:27:25-0500",
-"a": "icsh",
-"b": "streetlights",
-"code": "icsh.interactwith(streetlights){ streetlights.receives(icsh.shirt); streetlights.remembers(bisola, 'green shirt'); }",
-"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up with the streetlights, which is still all dead since 7:35pm.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j8"
-},
-{
 "id": "wf_00273e36b6",
 "ts": "2026-11-23T23:32:30-0500",
 "a": "seniorgehs",
@@ -10832,6 +10821,17 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": "j2"
+},
+{
+"id": "wf_f283a4272a",
+"ts": "2026-11-24T01:56:07-0500",
+"a": "hose",
+"b": "miami",
+"code": "hose.interactwith(miami){ miami.receives(hose.envelope); miami.remembers(bisola, 'brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up beside the phone at the miami.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
 }
 ],
 "memories": [
@@ -10935,5 +10935,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-24T01:48:39-0500"
+"updated": "2026-11-24T01:56:07-0500"
 }
