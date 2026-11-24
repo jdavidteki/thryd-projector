@@ -5641,16 +5641,6 @@
 ],
 "teo": [
 {
-"id": "wt_fb275e9842",
-"kind": "func_call",
-"text": "Someone at the projector tapped the marisol and called teo.sit(what=mistake:Thing) from j35 from its agenda run-5a58c4, first seated in run-5a58c4 j30.",
-"code": "teo.sit('mistake');",
-"author": "projector",
-"run": "run-5a58c4",
-"card": "w30",
-"other": null
-},
-{
 "id": "wf_ab00a8b670",
 "kind": "consequence",
 "text": "The teo leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
@@ -5679,6 +5669,16 @@
 "run": "run-5a58c4",
 "card": "j31",
 "other": "quiet_stretch_sand"
+},
+{
+"id": "wf_600b0b61eb",
+"kind": "consequence",
+"text": "The teo leaves with a Cup note with Ejiro's name and 'juju code' on it.",
+"code": "cup.interactwith(teo){ teo.receives(cup.code); teo.remembers(ejiro, 'juju code'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j2",
+"other": "cup"
 },
 {
 "id": "wt_183d3cde12",
@@ -10458,17 +10458,6 @@
 },
 "consequences": [
 {
-"id": "wf_2012dae794",
-"ts": "2026-11-24T01:24:41-0500",
-"a": "teoloveletter",
-"b": "icsh",
-"code": "teoloveletter.interactwith(icsh){ icsh.receives(teoloveletter.code); icsh.remembers(ejiro, 'juju code'); icsh.tucks(teoloveletter, 'ttb note into the green shirt'); }",
-"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the green shirt at the icsh, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j2"
-},
-{
 "id": "wf_3f4fa4c66f",
 "ts": "2026-11-24T01:26:22-0500",
 "a": "marisol",
@@ -10896,6 +10885,17 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": "j6"
+},
+{
+"id": "wf_600b0b61eb",
+"ts": "2026-11-24T03:10:52-0500",
+"a": "cup",
+"b": "teo",
+"code": "cup.interactwith(teo){ teo.receives(cup.code); teo.remembers(ejiro, 'juju code'); }",
+"text": "The teo leaves with a Cup note with Ejiro's name and 'juju code' on it.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j2"
 }
 ],
 "memories": [
@@ -10999,5 +10999,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-24T03:05:05-0500"
+"updated": "2026-11-24T03:10:52-0500"
 }
