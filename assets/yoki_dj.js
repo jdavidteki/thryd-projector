@@ -8,10 +8,13 @@
      proportional to score (crypto random). A new job means a new pulse, so the next song follows it; the playing song is never cut.
    - missing/broken pulse, or nothing unplayed left in it: Fisher–Yates shuffle of the full catalog (data/yoki_songs.json), which
      also skips the last 40 played.
+   - idle loosen (Jesuye 23 Nov 10:37 PM EST, staffroom "yes", after "before african queen is always for you"): when no agenda has
+     moved for 15 min (newest pulse activity/generated), the pulse pool widens to 30 and half the picks come from the full-catalog
+     shuffle, so a frozen ranking stops replaying the same walk. During a live agenda nothing changes.
    extras.js still owns the sound choice: this file never plays anything by itself, so Off stays off. */
 (function(root){
   'use strict';
-  const KEY = 'thryd_yoki_bag', RKEY = 'thryd_yoki_recent', RECENT = 40, POOL = 8, PULSE_URL = 'story/yoki_pulse.json';
+  const KEY = 'thryd_yoki_bag', RKEY = 'thryd_yoki_recent', RECENT = 40, POOL = 8, IDLE_POOL = 30, IDLE_MS = 15 * 60 * 1000, IDLE_MIX = 0.5, PULSE_URL = 'story/yoki_pulse.json';
   const DJ = root.thrydYokiDJ = {state: 'idle', mode: 'pulse', why: null, errors: [], active: false, log: []};
   let songs = null, songsP = null, bag = [], last = null, pulse = null, pulseAt = 0;
 
@@ -59,6 +62,14 @@
     return null;
   }
 
+  function pulseAge(p){
+    let t = 0;
+    try{ (p.agendas || []).forEach(a => { const x = Date.parse(a && a.activity); if(x > t) t = x; });
+      const g = Date.parse(p.generated); if(g > t) t = g; }catch(e){}
+    return t ? Date.now() - t : 0;
+  }
+  DJ.pulseAge = pulseAge;
+
   async function next(ok){
     await loadSongs();
     const accept = typeof ok === 'function' ? ok : ()=> true;
@@ -66,8 +77,10 @@
     const known = new Set(songs.map(s => s.id));
     const p = await loadPulse();
     let pick = null, why = null, mode = 'shuffle';
-    if(p){
-      const pool = p.candidates.filter(c => c && c.id && known.has(c.id) && !rec.has(c.id) && accept(c.id)).slice(0, POOL);
+    const idle = !!p && pulseAge(p) > IDLE_MS;
+    DJ.idle = idle;
+    if(p && !(idle && rnd(1) < IDLE_MIX)){
+      const pool = p.candidates.filter(c => c && c.id && known.has(c.id) && !rec.has(c.id) && accept(c.id)).slice(0, idle ? IDLE_POOL : POOL);
       const tot = pool.reduce((s, c) => s + Math.max(0.01, +c.score || 0), 0);
       let x = rnd(tot);
       for(const c of pool){ x -= Math.max(0.01, +c.score || 0); if(x <= 0){ pick = c; break; } }
@@ -80,7 +93,7 @@
     last = id; remember(id); save();
     const s = songs.find(x => x.id === id) || {id};
     DJ.state = 'ok'; DJ.mode = mode; DJ.why = why;
-    DJ.log.push({at: new Date().toISOString(), id, title: s.t, artist: s.a, mode, job: p && p.job, sig: p && p.sig,
+    DJ.log.push({at: new Date().toISOString(), id, title: s.t, artist: s.a, mode, idle, job: p && p.job, sig: p && p.sig,
       score: pick ? pick.score : null, rank: pick ? p.candidates.indexOf(pick) + 1 : null, why: why ? why.text : 'shuffle'});
     if(DJ.log.length > 300) DJ.log.shift();
     return {id: s.id, title: s.t, artist: s.a, why};
