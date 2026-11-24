@@ -5375,6 +5375,16 @@
 "run": "run-5a58c4",
 "card": "",
 "other": "teomarisollove"
+},
+{
+"id": "wf_fb28e2ccc0",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the teomarisollove, which is still in love, said out loud by Marisol (w14 causeway).",
+"code": "reality.interactwith(htpto){ htpto.receives(reality.envelope); htpto.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "reality"
 }
 ],
 "sandal": [
@@ -6625,6 +6635,16 @@
 "run": "run-5a58c4",
 "card": "j8",
 "other": "marker_c"
+},
+{
+"id": "wf_9cb132319d",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the green shirt at the prior reality, and Bisola reads the name twice.",
+"code": "marker_b.interactwith(prior_reality){ prior_reality.receives(marker_b.envelope); … }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "marker_b"
 }
 ],
 "letter": [
@@ -10612,28 +10632,6 @@
 },
 "consequences": [
 {
-"id": "wf_3553d58ec2",
-"ts": "2026-11-24T03:17:30-0500",
-"a": "hpr",
-"b": "miami",
-"code": "hpr.interactwith(miami){ miami.receives(hpr.envelope); miami.remembers(bisola, 'brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up beside the phone at the miami.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
-"id": "wf_fc85052688",
-"ts": "2026-11-24T03:18:21-0500",
-"a": "marisol",
-"b": "bird",
-"code": "marisol.interactwith(bird){ bird.receives(marisol.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the envelope corner at the bird, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
 "id": "wf_965937ed1b",
 "ts": "2026-11-24T03:19:14-0500",
 "a": "itmoai",
@@ -11050,6 +11048,28 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": "j6"
+},
+{
+"id": "wf_9cb132319d",
+"ts": "2026-11-24T13:44:11-0500",
+"a": "marker_b",
+"b": "prior_reality",
+"code": "marker_b.interactwith(prior_reality){ prior_reality.receives(marker_b.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the green shirt at the prior reality, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
+},
+{
+"id": "wf_fb28e2ccc0",
+"ts": "2026-11-24T13:45:04-0500",
+"a": "reality",
+"b": "htpto",
+"code": "reality.interactwith(htpto){ htpto.receives(reality.envelope); htpto.remembers(bisola, 'brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the teomarisollove, which is still in love, said out loud by Marisol (w14 causeway).",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
 }
 ],
 "memories": [
@@ -11153,5 +11173,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-24T13:37:31-0500"
+"updated": "2026-11-24T13:45:04-0500"
 }
