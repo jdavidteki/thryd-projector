@@ -3092,7 +3092,7 @@
        "instance": "shu",
        "from_run": "run-5a58c4",
        "from_job": "j26",
-       "source": "pick"
+       "source": "original"
       }
      ]
     }
@@ -3274,12 +3274,12 @@
      ],
      "consequence": "They stand along the rail, the off-key chorus leaking from a bar on the beach behind them, a song Teo still likes, and the question Calla asked at noon is still waiting: who was the song for.",
      "consequence_job": "j28",
-     "resolved": "omo.fold(how=like:Manner) from j27",
+     "resolved": "omo.fold(how=how:Manner) from j27",
      "injected": [
       {
        "param": "how",
        "class": "Manner",
-       "instance": "like",
+       "instance": "how",
        "from_run": "run-5a58c4",
        "from_job": "j27",
        "source": "pick"
@@ -13717,7 +13717,7 @@
     "card": "w47",
     "title": "calla.check(settings)",
     "emoji": "⚙️",
-    "at": ""
+    "at": "2026-11-24T13:57:15-05:00"
    },
    "calls": 0,
    "titles": [
@@ -13743,15 +13743,15 @@
      ],
      "consequence": "Calla checks her settings.",
      "consequence_job": "j48",
-     "resolved": "calla.check(what=bookingcom:Thing) from j47",
+     "resolved": "calla.check(what=settings:Thing) from j47",
      "injected": [
       {
        "param": "what",
        "class": "Thing",
-       "instance": "bookingcom",
+       "instance": "settings",
        "from_run": "run-5a58c4",
        "from_job": "j47",
-       "source": "typed"
+       "source": "pick"
       }
      ]
     }
@@ -13771,9 +13771,18 @@
     "text": "check(what: Thing)"
    },
    "receiver_class": "Person",
-   "prior": [],
-   "faded": false,
-   "last_run": null
+   "prior": [
+    {
+     "id": "chairman.check",
+     "title": "chairman.check(watch)",
+     "run": "run-2eb42d",
+     "job": "j39",
+     "at": "2026-11-18T18:40:45-05:00",
+     "why": "same method"
+    }
+   ],
+   "faded": true,
+   "last_run": "run-5a58c4"
   },
   "dez.take": {
    "object": "dez",
@@ -13790,7 +13799,7 @@
     "card": "w47",
     "title": "dez.take(risk)",
     "emoji": "🎲",
-    "at": ""
+    "at": "2026-11-24T13:57:15-05:00"
    },
    "calls": 0,
    "titles": [
@@ -13816,15 +13825,15 @@
      ],
      "consequence": "📍 Wynwood bakery, Miami 🥐 · 108 lines in Dez doesn't wait for Teo.",
      "consequence_job": "j48",
-     "resolved": "dez.take(what=bookingcom:Thing) from j47",
+     "resolved": "dez.take(what=risk:Thing) from j47",
      "injected": [
       {
        "param": "what",
        "class": "Thing",
-       "instance": "bookingcom",
+       "instance": "risk",
        "from_run": "run-5a58c4",
        "from_job": "j47",
-       "source": "typed"
+       "source": "pick"
       }
      ]
     }
@@ -13845,8 +13854,8 @@
    },
    "receiver_class": "Person",
    "prior": [],
-   "faded": false,
-   "last_run": null
+   "faded": true,
+   "last_run": "run-5a58c4"
   },
   "cooler.getdatemanufactured": {
    "object": "cooler",
@@ -39445,5 +39454,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-24T13:56:53-05:00"
+ "updated": "2026-11-24T13:57:45-05:00"
 }
