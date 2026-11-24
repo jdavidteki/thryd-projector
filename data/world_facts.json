@@ -7523,16 +7523,6 @@
 ],
 "mkdwo": [
 {
-"id": "wf_d75767f6f1",
-"kind": "consequence",
-"text": "The mkdwo leaves with a Laptop note with Taiwo's name and 'lamp soot' on it.",
-"code": "laptop.interactwith(mkdwo){ mkdwo.receives(laptop.soot); mkdwo.remembers(taiwo, 'lamp soot'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j7",
-"other": "laptop"
-},
-{
 "id": "wf_2d7c956046",
 "kind": "consequence",
 "text": "The mkdwo leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
@@ -7571,6 +7561,16 @@
 "run": "run-2eb42d",
 "card": "j8",
 "other": "computer_village"
+},
+{
+"id": "wf_958b271925",
+"kind": "consequence",
+"text": "The mkdwo leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "tie.interactwith(mkdwo){ mkdwo.receives(tie.envelope); mkdwo.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "tie"
 }
 ],
 "asmathic": [
@@ -10324,17 +10324,6 @@
 },
 "consequences": [
 {
-"id": "wf_8d72f24dbf",
-"ts": "2026-11-23T20:24:03-0500",
-"a": "lady",
-"b": "bow",
-"code": "lady.interactwith(bow){ bow.receives(lady.shirt); bow.remembers(bisola, 'green shirt'); bow.tucks(lady, 'ikeja laundromat receipt into the brown envelope'); }",
-"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the brown envelope at the bow, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j8"
-},
-{
 "id": "wf_52d6ae094c",
 "ts": "2026-11-23T20:27:29-0500",
 "a": "chair",
@@ -10762,6 +10751,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_958b271925",
+"ts": "2026-11-24T00:27:43-0500",
+"a": "tie",
+"b": "mkdwo",
+"code": "tie.interactwith(mkdwo){ mkdwo.receives(tie.envelope); mkdwo.remembers(bisola, 'brown envelope'); }",
+"text": "The mkdwo leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -10865,5 +10865,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-24T00:23:28-0500"
+"updated": "2026-11-24T00:27:43-0500"
 }
