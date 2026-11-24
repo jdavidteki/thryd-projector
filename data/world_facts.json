@@ -6681,6 +6681,16 @@
 "run": "run-g1-B",
 "card": "j5",
 "other": "saturday_october"
+},
+{
+"id": "wf_7625b5a238",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the blue glass bead at the ikeja, and Bisola reads the name twice.",
+"code": "lagos.interactwith(ikeja){ ikeja.receives(lagos.envelope); … }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "lagos"
 }
 ],
 "surulere": [
@@ -10234,17 +10244,6 @@
 },
 "consequences": [
 {
-"id": "wf_e0377353ba",
-"ts": "2026-11-23T17:33:34-0500",
-"a": "move",
-"b": "chair",
-"code": "move.interactwith(chair){ chair.receives(move.envelope); chair.remembers(bisola, 'brown envelope'); chair.tucks(move, 'yaba bookshop receipt into the 11:20pm'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the 11:20pm at the chair, and Taiwo reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
 "id": "wf_999041a9c2",
 "ts": "2026-11-23T17:39:29-0500",
 "a": "mama_ronke",
@@ -10672,6 +10671,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_7625b5a238",
+"ts": "2026-11-23T20:36:51-0500",
+"a": "lagos",
+"b": "ikeja",
+"code": "lagos.interactwith(ikeja){ ikeja.receives(lagos.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the blue glass bead at the ikeja, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -10775,5 +10785,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-23T20:31:45-0500"
+"updated": "2026-11-23T20:36:51-0500"
 }
