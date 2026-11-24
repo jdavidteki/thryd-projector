@@ -8075,16 +8075,6 @@
 ],
 "ojuelegba_bus_stop": [
 {
-"id": "wf_4a0846b464",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the ojuelegba bus stop, and Bisola reads the name twice.",
-"code": "patagonia.interactwith(ojuelegba_bus_stop){ ojuelegba_bus_stop.receives(patagonia.envelope); … }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "patagonia"
-},
-{
 "id": "wf_ca0f83fe27",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the ojuelegba bus stop, and Bisola reads the name twice.",
@@ -8123,6 +8113,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "mlkahb"
+},
+{
+"id": "wf_dbe79b0b2c",
+"kind": "consequence",
+"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the brown envelope at the ojuelegba bus stop, and Bisola reads the name twice.",
+"code": "example.interactwith(ojuelegba_bus_stop){ ojuelegba_bus_stop.receives(example.shirt); … }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j8",
+"other": "example"
 }
 ],
 "usher_by_kiss": [
@@ -10324,17 +10324,6 @@
 },
 "consequences": [
 {
-"id": "wf_52d6ae094c",
-"ts": "2026-11-23T20:27:29-0500",
-"a": "chair",
-"b": "ronke",
-"code": "chair.interactwith(ronke){ ronke.receives(chair.pm); ronke.remembers(taiwo, '11:20pm'); }",
-"text": "The ronke leaves with a Chair note with Taiwo's name and '11:20pm' on it.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "w6"
-},
-{
 "id": "wf_0177286395",
 "ts": "2026-11-23T20:31:45-0500",
 "a": "again",
@@ -10762,6 +10751,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_dbe79b0b2c",
+"ts": "2026-11-24T00:31:06-0500",
+"a": "example",
+"b": "ojuelegba_bus_stop",
+"code": "example.interactwith(ojuelegba_bus_stop){ ojuelegba_bus_stop.receives(example.shirt); … }",
+"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the brown envelope at the ojuelegba bus stop, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j8"
 }
 ],
 "memories": [
@@ -10865,5 +10865,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-24T00:27:43-0500"
+"updated": "2026-11-24T00:31:06-0500"
 }
