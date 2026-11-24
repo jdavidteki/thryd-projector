@@ -2701,16 +2701,6 @@
 ],
 "cell_phone": [
 {
-"id": "wf_a55fa06578",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the cell phone, and Bisola reads the name twice.",
-"code": "asmathic.interactwith(cell_phone){ cell_phone.receives(asmathic.envelope); … }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "asmathic"
-},
-{
 "id": "wf_9af47956a4",
 "kind": "consequence",
 "text": "A Marker note with Kunle's name and 'nice day sign' on it, turns up inside the brown envelope at the cell phone, and Bisola reads the name twice.",
@@ -2739,6 +2729,16 @@
 "run": "run-5a58c4",
 "card": "j3",
 "other": "house"
+},
+{
+"id": "wf_8ff018ed50",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the cell phone, and Bisola reads the name twice.",
+"code": "marker_b.interactwith(cell_phone){ cell_phone.receives(marker_b.envelope); … }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "marker_b"
 },
 {
 "id": "wt_775c701ecb",
@@ -4857,16 +4857,6 @@
 ],
 "calla": [
 {
-"id": "wt_80574c8159",
-"kind": "func_call",
-"text": "The calla hears it (because song.hit(what=mistake:Thing) from j35).",
-"code": "calla.hears(miami_subject, 'hit');",
-"author": "projector",
-"run": "run-5a58c4",
-"card": "w22",
-"other": null
-},
-{
 "id": "wt_68e03f8ed7",
 "kind": "func_call",
 "text": "The calla hears it (because teo.sit(what=mistake:Thing) from j35).",
@@ -4905,6 +4895,16 @@
 "run": "run-5a58c4",
 "card": "j6",
 "other": "god"
+},
+{
+"id": "wf_9a1f03188c",
+"kind": "consequence",
+"text": "The calla leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "health_marisol.interactwith(calla){ calla.receives(health_marisol.envelope); calla.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "health_marisol"
 }
 ],
 "as_poor_man": [
@@ -10632,28 +10632,6 @@
 },
 "consequences": [
 {
-"id": "wf_965937ed1b",
-"ts": "2026-11-24T03:19:14-0500",
-"a": "itmoai",
-"b": "laptop",
-"code": "itmoai.interactwith(laptop){ laptop.receives(itmoai.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the lamp soot at the laptop, and Taiwo reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
-"id": "wf_6ac00d4591",
-"ts": "2026-11-24T03:20:05-0500",
-"a": "god",
-"b": "bicycle",
-"code": "god.interactwith(bicycle){ bicycle.receives(god.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bicycle, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
 "id": "wf_8b6111ef26",
 "ts": "2026-11-24T03:20:56-0500",
 "a": "heatflag",
@@ -11070,6 +11048,28 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": "j6"
+},
+{
+"id": "wf_8ff018ed50",
+"ts": "2026-11-24T13:46:47-0500",
+"a": "marker_b",
+"b": "cell_phone",
+"code": "marker_b.interactwith(cell_phone){ cell_phone.receives(marker_b.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the cell phone, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
+},
+{
+"id": "wf_9a1f03188c",
+"ts": "2026-11-24T13:49:18-0500",
+"a": "health_marisol",
+"b": "calla",
+"code": "health_marisol.interactwith(calla){ calla.receives(health_marisol.envelope); calla.remembers(bisola, 'brown envelope'); }",
+"text": "The calla leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
 }
 ],
 "memories": [
@@ -11173,5 +11173,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-24T13:45:04-0500"
+"updated": "2026-11-24T13:49:18-0500"
 }
