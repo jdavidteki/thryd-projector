@@ -107,8 +107,8 @@
     "ask",
     "give"
    ],
-   "instances": 404,
-   "arg_instances": 84,
+   "instances": 407,
+   "arg_instances": 87,
    "parent": null,
    "chain": [
     "Thing"
@@ -130,8 +130,8 @@
     "leave",
     "line"
    ],
-   "instances": 6,
-   "arg_instances": 6,
+   "instances": 7,
+   "arg_instances": 7,
    "parent": "Thing",
    "chain": [
     "Quantity",
@@ -219,6 +219,22 @@
     "run-f73e23"
    ],
    "tweets": []
+  },
+  "54": {
+   "class": "Quantity",
+   "cue": "number",
+   "first_run": "run-888ea9",
+   "first_job": "j9",
+   "source": "pick",
+   "runs": [
+    "run-888ea9"
+   ],
+   "tweets": [
+    {
+     "text": "- like like if taraji henson is 5.4",
+     "year": "2025"
+    }
+   ]
   },
   "806": {
    "class": "Quantity",
@@ -1023,6 +1039,22 @@
     {
      "text": "- he just graduated sweducer school",
      "year": "2024"
+    }
+   ]
+  },
+  "chaos": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-888ea9",
+   "first_job": "j9",
+   "source": "pick",
+   "runs": [
+    "run-888ea9"
+   ],
+   "tweets": [
+    {
+     "text": "- you see order coming out of chaos in real #time",
+     "year": "2025"
     }
    ]
   },
@@ -3964,6 +3996,22 @@
    ],
    "tweets": []
   },
+  "na": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-888ea9",
+   "first_job": "j9",
+   "source": "pick",
+   "runs": [
+    "run-888ea9"
+   ],
+   "tweets": [
+    {
+     "text": "- cnn, nta, bbc, netflix naija, all na media!",
+     "year": "2025"
+    }
+   ]
+  },
   "namco": {
    "class": "Thing",
    "cue": "default",
@@ -4911,6 +4959,22 @@
     {
      "text": "#juniorboys - this is why you have to respect your parents",
      "year": "2025"
+    }
+   ]
+  },
+  "response": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-888ea9",
+   "first_job": "j9",
+   "source": "pick",
+   "runs": [
+    "run-888ea9"
+   ],
+   "tweets": [
+    {
+     "text": "#juniorboys — every request will be tracked, and we will send you the response we think you actually need.",
+     "year": "2024"
     }
    ]
   },
@@ -7956,6 +8020,30 @@
     "Thing",
     "j8",
     "pick"
+   ],
+   [
+    "na",
+    "Thing",
+    "j9",
+    "pick"
+   ],
+   [
+    "chaos",
+    "Thing",
+    "j9",
+    "pick"
+   ],
+   [
+    "response",
+    "Thing",
+    "j9",
+    "pick"
+   ],
+   [
+    "54",
+    "Quantity",
+    "j9",
+    "pick"
    ]
   ],
   "run-b70200": [
@@ -10554,6 +10642,10 @@
   "it.do": "do(what: Thing)",
   "map.which": "which(where: Place)",
   "shapes.do": "do(what: Thing)",
+  "media.all": "all(what: Thing)",
+  "order.see": "see(what: Thing)",
+  "request.track": "track(what: Thing)",
+  "taraji.measure": "measure(amount: Quantity)",
   "cooler.getdatemanufactured": "getDateManufactured()",
   "ronke.getlikes.contains": "getlikes.contains()",
   "kazeem.goodqualities.filter": "filter()",
@@ -10722,6 +10814,7 @@
     "kazeem",
     "kunle",
     "mama",
+    "order",
     "oyinboman",
     "taking",
     "teo",
@@ -10774,6 +10867,7 @@
     "folake",
     "history",
     "mamaronke",
+    "order",
     "ronke",
     "teo"
    ]
@@ -11004,10 +11098,14 @@
    "it",
    "mama",
    "map",
+   "media",
    "object",
+   "order",
    "pawa",
    "phones",
+   "request",
    "shapes",
+   "taraji",
    "thing",
    "tunde",
    "worry"
@@ -11085,5 +11183,5 @@
   "epilogue": "quiet",
   "coda": "quiet"
  },
- "updated": "2026-11-23T19:38:44-05:00"
+ "updated": "2026-11-23T20:00:46-05:00"
 }

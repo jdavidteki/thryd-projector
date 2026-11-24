@@ -11598,6 +11598,299 @@
    "faded": false,
    "last_run": "run-888ea9"
   },
+  "media.all": {
+   "object": "media",
+   "method": "all",
+   "args": [
+    "na"
+   ],
+   "runs": [
+    "run-888ea9"
+   ],
+   "defined": {
+    "run": "run-888ea9",
+    "job": "j9",
+    "card": "w9",
+    "title": "media.all(na)",
+    "emoji": "📺",
+    "at": "2026-11-23T20:00:23-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "media.all(na)",
+     "emoji": "📺",
+     "arg": "na",
+     "run": "run-888ea9",
+     "job": "j9",
+     "tweets": [
+      {
+       "text": "- cnn, nta, bbc, netflix naija, all na media!",
+       "year": "2025"
+      }
+     ],
+     "consequence": "The laptop answered for the tech rebel: \"#juniorboys — every request will be tracked, and we will send you the response we think you actually need.\" The youth leader laughed at the TV in the corner, \"- cnn, nta, bbc, netflix naija, all na m",
+     "consequence_job": "j10",
+     "resolved": "media.all(what=na:Thing) from j9",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "na",
+       "from_run": "run-888ea9",
+       "from_job": "j9",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "na",
+      "first_run": "run-888ea9",
+      "first_job": "j9"
+     }
+    ],
+    "text": "all(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "order.see": {
+   "object": "order",
+   "method": "see",
+   "args": [
+    "chaos"
+   ],
+   "runs": [
+    "run-888ea9"
+   ],
+   "defined": {
+    "run": "run-888ea9",
+    "job": "j9",
+    "card": "w9",
+    "title": "order.see(chaos)",
+    "emoji": "🌀",
+    "at": "2026-11-23T20:00:23-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "order.see(chaos)",
+     "emoji": "🌀",
+     "arg": "chaos",
+     "run": "run-888ea9",
+     "job": "j9",
+     "tweets": [
+      {
+       "text": "- you see order coming out of chaos in real #time",
+       "year": "2025"
+      }
+     ],
+     "consequence": "He held the phone to the room and said \"- you see order coming out of chaos in real #time\".",
+     "consequence_job": "j10",
+     "resolved": "order.see(what=chaos:Thing) from j9",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "chaos",
+       "from_run": "run-888ea9",
+       "from_job": "j9",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "chaos",
+      "first_run": "run-888ea9",
+      "first_job": "j9"
+     }
+    ],
+    "text": "see(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [
+    {
+     "id": "accuracy.see",
+     "title": "accuracy.see(mad)",
+     "run": "run-888ea9",
+     "job": "j5",
+     "at": "2026-11-23T18:06:50-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "folake.see",
+     "title": "folake.see(people)",
+     "run": "run-g1-B",
+     "job": "j12",
+     "at": "2026-11-17T18:33:35-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "calla.see",
+     "title": "calla.see(inside)",
+     "run": "run-5a58c4",
+     "job": "j32",
+     "at": "2026-11-17T15:42:34-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "history.see",
+     "title": "history.see(check)",
+     "run": "run-bd649b",
+     "job": "j11",
+     "at": "2026-11-16T21:35:12-05:00",
+     "why": "same method"
+    }
+   ],
+   "faded": false,
+   "last_run": null
+  },
+  "request.track": {
+   "object": "request",
+   "method": "track",
+   "args": [
+    "response"
+   ],
+   "runs": [
+    "run-888ea9"
+   ],
+   "defined": {
+    "run": "run-888ea9",
+    "job": "j9",
+    "card": "w9",
+    "title": "request.track(response)",
+    "emoji": "📡",
+    "at": "2026-11-23T20:00:23-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "request.track(response)",
+     "emoji": "📡",
+     "arg": "response",
+     "run": "run-888ea9",
+     "job": "j9",
+     "tweets": [
+      {
+       "text": "#juniorboys — every request will be tracked, and we will send you the response we think you actually need.",
+       "year": "2024"
+      }
+     ],
+     "consequence": "The laptop answered for the tech rebel: \"#juniorboys — every request will be tracked, and we will send you the response we think you actually need.\" The youth leader laughed at the TV in the corner, \"- cnn, nta, bbc, netflix naija, all na m",
+     "consequence_job": "j10",
+     "resolved": "request.track(what=response:Thing) from j9",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "response",
+       "from_run": "run-888ea9",
+       "from_job": "j9",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "response",
+      "first_run": "run-888ea9",
+      "first_job": "j9"
+     }
+    ],
+    "text": "track(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "taraji.measure": {
+   "object": "taraji",
+   "method": "measure",
+   "args": [
+    "5.4"
+   ],
+   "runs": [
+    "run-888ea9"
+   ],
+   "defined": {
+    "run": "run-888ea9",
+    "job": "j9",
+    "card": "w9",
+    "title": "taraji.measure(5.4)",
+    "emoji": "📏",
+    "at": "2026-11-23T20:00:23-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "taraji.measure(5.4)",
+     "emoji": "📏",
+     "arg": "5.4",
+     "run": "run-888ea9",
+     "job": "j9",
+     "tweets": [
+      {
+       "text": "- like like if taraji henson is 5.4",
+       "year": "2025"
+      }
+     ],
+     "consequence": "The laptop answered for the tech rebel: \"#juniorboys — every request will be tracked, and we will send you the response we think you actually need.\" The youth leader laughed at the TV in the corner, \"- cnn, nta, bbc, netflix naija, all na m",
+     "consequence_job": "j10",
+     "resolved": "taraji.measure(amount=54:Quantity) from j9",
+     "injected": [
+      {
+       "param": "amount",
+       "class": "Quantity",
+       "instance": "54",
+       "from_run": "run-888ea9",
+       "from_job": "j9",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "amount",
+      "class": "Quantity",
+      "default": "54",
+      "first_run": "run-888ea9",
+      "first_job": "j9"
+     }
+    ],
+    "text": "measure(amount: Quantity)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
   "cooler.getdatemanufactured": {
    "object": "cooler",
    "method": "getDateManufactured",
@@ -15035,6 +15328,9 @@
    "dez.use",
    "dez.make"
   ],
+  "media": [
+   "media.all"
+  ],
   "new": [
    "new.business",
    "new.portfolio",
@@ -15067,6 +15363,9 @@
   ],
   "openmedia": [
    "openmedia.isgif"
+  ],
+  "order": [
+   "order.see"
   ],
   "oyinboman": [
    "oyinboman.know"
@@ -15114,6 +15413,9 @@
   ],
   "receipt": [
    "receipt.get"
+  ],
+  "request": [
+   "request.track"
   ],
   "road": [
    "road.air"
@@ -15195,6 +15497,9 @@
   ],
   "taking": [
    "taking.isnotes"
+  ],
+  "taraji": [
+   "taraji.measure"
   ],
   "tea_bread_stall_subject": [
    "receipt.get"
@@ -21504,6 +21809,7 @@
     "from": "18bf0d97a456",
     "title": "331. prosper",
     "funcs": [
+     "order.see",
      "ronke.hail",
      "calla.hear"
     ]
@@ -22007,6 +22313,16 @@
     "title": "829. a day in the life of god",
     "funcs": [
      "[nau,god].map"
+    ]
+   }
+  ],
+  "igbo_man_talks_subject": [
+   {
+    "scope": "safe",
+    "from": "b6b3ff823f66",
+    "title": "1113. when an igbo man talks like an #oyinboman",
+    "funcs": [
+     "media.all"
     ]
    }
   ],
@@ -30062,6 +30378,10 @@
     "from": "38688e69edf3",
     "title": "1003. usher by kiss daniel",
     "funcs": [
+     "taraji.measure",
+     "request.track",
+     "order.see",
+     "media.all",
      "shapes.do",
      "map.which",
      "it.do",
@@ -31085,7 +31405,11 @@
     "object.look",
     "it.do",
     "map.which",
-    "shapes.do"
+    "shapes.do",
+    "media.all",
+    "order.see",
+    "request.track",
+    "taraji.measure"
    ]
   },
   "run-93d6ff": {
@@ -31365,7 +31689,8 @@
    "title": "331. prosper",
    "funcs": [
     "calla.hear",
-    "ronke.hail"
+    "ronke.hail",
+    "order.see"
    ],
    "runs": []
   },
@@ -31517,7 +31842,11 @@
     "object.look",
     "it.do",
     "map.which",
-    "shapes.do"
+    "shapes.do",
+    "media.all",
+    "order.see",
+    "request.track",
+    "taraji.measure"
    ],
    "runs": [
     "run-888ea9"
@@ -31558,6 +31887,13 @@
    ],
    "runs": []
   },
+  "46c2032e081f": {
+   "title": "jehovah is my tech bro",
+   "funcs": [
+    "request.track"
+   ],
+   "runs": []
+  },
   "483f5ddc9d35": {
    "title": "828. dangerous [[faith]]",
    "funcs": [
@@ -31568,7 +31904,8 @@
   "4c8598384b72": {
    "title": "519. how to [[win an oscar]]",
    "funcs": [
-    "investor.taste"
+    "investor.taste",
+    "taraji.measure"
    ],
    "runs": []
   },
@@ -31917,6 +32254,13 @@
     "calla.see",
     "use.mend",
     "buy.fold"
+   ],
+   "runs": []
+  },
+  "b6b3ff823f66": {
+   "title": "1113. when an igbo man talks like an #oyinboman",
+   "funcs": [
+    "media.all"
    ],
    "runs": []
   },
@@ -32508,6 +32852,9 @@
   "1*P4PUcv99wItvYFkS1Q0S-A.gif": [
    "bece0ebaed5b"
   ],
+  "1*UQolGv9h9_i7sWsk3lDLCA.gif": [
+   "b6b3ff823f66"
+  ],
   "1*5ro-2vFC2_gpEzZposBVHw.gif": [
    "e8a71fe19bff"
   ],
@@ -32578,6 +32925,9 @@
   ],
   "1*NIUcPPNMbOVZpzrAfqbDZA.jpeg": [
    "483f5ddc9d35"
+  ],
+  "1*cAwkTbb9R_3ZS5u4Z-sTdg.jpeg": [
+   "46c2032e081f"
   ],
   "1*fRybDa0nJYSdJgMbSrO3iw.gif": [
    "38688e69edf3"
@@ -32842,6 +33192,12 @@
    ],
    "safes": [
     "f81f21521253"
+   ]
+  },
+  "1*UQolGv9h9_i7sWsk3lDLCA.gif": {
+   "runs": [],
+   "safes": [
+    "b6b3ff823f66"
    ]
   },
   "1*RsUH6hRZMu8g1gDOm4UE_w.gif": {
@@ -33644,6 +34000,9 @@
   "map": [
    "map.which"
   ],
+  "media": [
+   "media.all"
+  ],
   "new": [
    "new.business",
    "new.portfolio",
@@ -33667,6 +34026,9 @@
   ],
   "openmedia": [
    "openmedia.isgif"
+  ],
+  "order": [
+   "order.see"
   ],
   "oyinboman": [
    "oyinboman.know"
@@ -33705,6 +34067,9 @@
   ],
   "receipt": [
    "receipt.get"
+  ],
+  "request": [
+   "request.track"
   ],
   "road": [
    "road.air"
@@ -33763,6 +34128,9 @@
   ],
   "taking": [
    "taking.isnotes"
+  ],
+  "taraji": [
+   "taraji.measure"
   ],
   "teo": [
    "teo.hide",
@@ -34020,6 +34388,13 @@
   "it": [],
   "map": [],
   "shapes": [],
+  "media": [],
+  "order": [
+   "Readable",
+   "Watchable"
+  ],
+  "request": [],
+  "taraji": [],
   "cooler": [],
   "kazeem.goodqualities": [],
   "app": [],
@@ -34194,10 +34569,14 @@
    "it",
    "mama",
    "map",
+   "media",
    "object",
+   "order",
    "pawa",
    "phones",
+   "request",
    "shapes",
+   "taraji",
    "thing",
    "tunde",
    "worry"
@@ -34215,5 +34594,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-23T19:39:39-05:00"
+ "updated": "2026-11-23T20:00:47-05:00"
 }
