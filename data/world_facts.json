@@ -983,16 +983,6 @@
 ],
 "red_white_cap": [
 {
-"id": "wf_bc0bfbc790",
-"kind": "consequence",
-"text": "A Laptop note with Taiwo's name and 'lamp soot' on it, turns up with the red and white cap, which is still worn.",
-"code": "laptop.interactwith(red_white_cap){ red_white_cap.receives(laptop.soot); red_white_cap.remembers(taiwo, 'lamp soot'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j7",
-"other": "laptop"
-},
-{
 "id": "wf_b1079f41d3",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the red and white cap, which is still worn.",
@@ -1011,6 +1001,16 @@
 "run": "run-2eb42d",
 "card": "j7",
 "other": "tf_mom"
+},
+{
+"id": "wf_5fcdd5c34b",
+"kind": "consequence",
+"text": "The red white cap now remembers the thryd: A new theme carton lands on the table beside the leftover noodles, from the typed.",
+"code": "thryd.interactwith(red_white_cap){ red_white_cap.receives(thryd.something); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w40",
+"other": "thryd"
 },
 {
 "id": "wf_3fdb648208",
@@ -2051,16 +2051,6 @@
 ],
 "tie": [
 {
-"id": "wf_20fbec1c58",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the tie, and Bisola reads the name twice.",
-"code": "precision.interactwith(tie){ tie.receives(precision.envelope); … }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "precision"
-},
-{
 "id": "wf_22f6b72624",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the tie, and Bisola reads the name twice.",
@@ -2099,6 +2089,16 @@
 "run": "run-2eb42d",
 "card": "j7",
 "other": "tf_mom"
+},
+{
+"id": "wf_52794aa481",
+"kind": "consequence",
+"text": "A Sheep note with Kunle's name and 'scorched container number' on it, turns up inside the brown envelope at the tie, and Bisola reads the name twice.",
+"code": "twgs.interactwith(tie){ tie.receives(twgs.number); tie.remembers(kunle, 'scorched container number'); tie.tucks(twgs, 'sheep note into the brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w7",
+"other": "twgs"
 }
 ],
 "laptop": [
@@ -7585,6 +7585,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "bicycle"
+},
+{
+"id": "wf_e6909e1fb8",
+"kind": "consequence",
+"text": "A Laptop note with Taiwo's name and 'lamp soot' on it, turns up inside the brown envelope at the atp, and Bisola reads the name twice.",
+"code": "tf_mom.interactwith(atp){ atp.receives(tf_mom.soot); atp.remembers(taiwo, 'lamp soot'); atp.tucks(tf_mom, 'laptop note into the brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j7",
+"other": "tf_mom"
 }
 ],
 "divine": [
@@ -10284,39 +10294,6 @@
 },
 "consequences": [
 {
-"id": "wf_df9d3130b5",
-"ts": "2026-11-23T20:01:37-0500",
-"a": "pure_water_cooler",
-"b": "wiitbaw",
-"code": "pure_water_cooler.interactwith(wiitbaw){ pure_water_cooler.db.copyto(wiitbaw); … }",
-"text": "The pure-water cooler ends up with the wiitbaw, still carried home through the flood.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "w1"
-},
-{
-"id": "wf_3ecac8fff3",
-"ts": "2026-11-23T20:12:54-0500",
-"a": "vex",
-"b": "danfo_speaker",
-"code": "vex.interactwith(danfo_speaker){ danfo_speaker.receives(vex.envelope); danfo_speaker.remembers(bisola, 'brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the danfo speaker, which is still playing the same love song.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
-"id": "wf_6ded10b8fa",
-"ts": "2026-11-23T20:13:47-0500",
-"a": "ojuelegba_bus_stop",
-"b": "iae",
-"code": "ojuelegba_bus_stop.interactwith(iae){ iae.receives(ojuelegba_bus_stop.envelope); iae.remembers(bisola, 'brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the iae, which is still initialized.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
 "id": "wf_1ea2f58ac4",
 "ts": "2026-11-23T20:17:10-0500",
 "a": "cell_phone",
@@ -10722,6 +10699,39 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j8"
+},
+{
+"id": "wf_5fcdd5c34b",
+"ts": "2026-11-24T00:03:02-0500",
+"a": "thryd",
+"b": "red_white_cap",
+"code": "thryd.interactwith(red_white_cap){ red_white_cap.receives(thryd.something); }",
+"text": "The red white cap now remembers the thryd: A new theme carton lands on the table beside the leftover noodles, from the typed.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w40"
+},
+{
+"id": "wf_52794aa481",
+"ts": "2026-11-24T00:04:43-0500",
+"a": "twgs",
+"b": "tie",
+"code": "twgs.interactwith(tie){ tie.receives(twgs.number); tie.remembers(kunle, 'scorched container number'); tie.tucks(twgs, 'sheep note into the brown envelope'); }",
+"text": "A Sheep note with Kunle's name and 'scorched container number' on it, turns up inside the brown envelope at the tie, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w7"
+},
+{
+"id": "wf_e6909e1fb8",
+"ts": "2026-11-24T00:06:28-0500",
+"a": "tf_mom",
+"b": "atp",
+"code": "tf_mom.interactwith(atp){ atp.receives(tf_mom.soot); atp.remembers(taiwo, 'lamp soot'); atp.tucks(tf_mom, 'laptop note into the brown envelope'); }",
+"text": "A Laptop note with Taiwo's name and 'lamp soot' on it, turns up inside the brown envelope at the atp, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j7"
 }
 ],
 "memories": [
@@ -10825,5 +10835,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-24T00:01:21-0500"
+"updated": "2026-11-24T00:06:28-0500"
 }
