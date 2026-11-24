@@ -6953,16 +6953,6 @@
 ],
 "iae": [
 {
-"id": "wf_89a874d513",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the iae, which is still initialized.",
-"code": "bus.interactwith(iae){ iae.receives(bus.envelope); iae.remembers(bisola, 'brown envelope'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "bus"
-},
-{
 "id": "wf_d4dc717f44",
 "kind": "consequence",
 "text": "The iae now remembers the kazeem: Kazeem passes his phone. Already woven into posted w39; this row only logs the seated pick.",
@@ -7001,6 +6991,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "ojuelegba_bus_stop"
+},
+{
+"id": "wf_7690f0c7cf",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the iae, which is still initialized.",
+"code": "again.interactwith(iae){ iae.receives(again.envelope); iae.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "again"
 }
 ],
 "tf_mom": [
@@ -7617,6 +7617,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "lie"
+},
+{
+"id": "wf_fb5c33bf86",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the divine, and Bisola reads the name twice.",
+"code": "move.interactwith(divine){ divine.receives(move.envelope); … }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "move"
 }
 ],
 "again": [
@@ -10264,28 +10274,6 @@
 },
 "consequences": [
 {
-"id": "wf_b3a40dd79f",
-"ts": "2026-11-23T18:42:56-0500",
-"a": "jnoel",
-"b": "laptop",
-"code": "jnoel.interactwith(laptop){ laptop.receives(jnoel.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the lamp soot at the laptop, and Taiwo reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
-"id": "wf_a53078f4d2",
-"ts": "2026-11-23T18:43:49-0500",
-"a": "jnoel",
-"b": "bicycle",
-"code": "jnoel.interactwith(bicycle){ bicycle.receives(jnoel.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bicycle, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
 "id": "wf_8bace09aee",
 "ts": "2026-11-23T18:45:34-0500",
 "a": "bow",
@@ -10702,6 +10690,28 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_fb5c33bf86",
+"ts": "2026-11-23T21:34:09-0500",
+"a": "move",
+"b": "divine",
+"code": "move.interactwith(divine){ divine.receives(move.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the divine, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
+},
+{
+"id": "wf_7690f0c7cf",
+"ts": "2026-11-23T21:36:44-0500",
+"a": "again",
+"b": "iae",
+"code": "again.interactwith(iae){ iae.receives(again.envelope); iae.remembers(bisola, 'brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the iae, which is still initialized.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -10805,5 +10815,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-23T21:30:44-0500"
+"updated": "2026-11-23T21:36:44-0500"
 }
