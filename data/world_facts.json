@@ -2113,16 +2113,6 @@
 ],
 "laptop": [
 {
-"id": "wf_68d9435382",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the lamp soot at the laptop, and Taiwo reads the name twice.",
-"code": "thoughts_marisol.interactwith(laptop){ laptop.receives(thoughts_marisol.envelope); … }",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6",
-"other": "thoughts_marisol"
-},
-{
 "id": "wf_965937ed1b",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the lamp soot at the laptop, and Taiwo reads the name twice.",
@@ -2131,6 +2121,16 @@
 "run": "run-5a58c4",
 "card": "j6",
 "other": "itmoai"
+},
+{
+"id": "wf_da0c45a1a8",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the lamp soot at the laptop, and Taiwo reads the name twice.",
+"code": "marker_b.interactwith(laptop){ laptop.receives(marker_b.envelope); … }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "marker_b"
 },
 {
 "id": "wt_00586a397c",
@@ -3233,16 +3233,6 @@
 ],
 "wser": [
 {
-"id": "wf_94b755621e",
-"kind": "consequence",
-"text": "The wser leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"code": "seniorgehs.interactwith(wser){ wser.receives(seniorgehs.envelope); wser.remembers(bisola, 'brown envelope'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "seniorgehs"
-},
-{
 "id": "wf_f0d7ba72b3",
 "kind": "consequence",
 "text": "The wser leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
@@ -3281,6 +3271,16 @@
 "run": "run-5a58c4",
 "card": "j7",
 "other": "plot"
+},
+{
+"id": "wf_fd9a4b64cb",
+"kind": "consequence",
+"text": "The wser leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "heat.interactwith(wser){ wser.receives(heat.envelope); wser.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "heat"
 }
 ],
 "blessings_subject": [
@@ -10602,28 +10602,6 @@
 },
 "consequences": [
 {
-"id": "wf_7f2881819a",
-"ts": "2026-11-24T03:05:05-0500",
-"a": "tsis",
-"b": "bus",
-"code": "tsis.interactwith(bus){ bus.receives(tsis.envelope); bus.remembers(bisola, 'brown envelope'); bus.tucks(tsis, 'yaba bookshop receipt into the green shirt'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the green shirt at the bus, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
-"id": "wf_600b0b61eb",
-"ts": "2026-11-24T03:10:52-0500",
-"a": "cup",
-"b": "teo",
-"code": "cup.interactwith(teo){ teo.receives(cup.code); teo.remembers(ejiro, 'juju code'); }",
-"text": "The teo leaves with a Cup note with Ejiro's name and 'juju code' on it.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j2"
-},
-{
 "id": "wf_a4e69d1909",
 "ts": "2026-11-24T03:13:22-0500",
 "a": "hose",
@@ -11040,6 +11018,28 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": "j3"
+},
+{
+"id": "wf_fd9a4b64cb",
+"ts": "2026-11-24T13:34:07-0500",
+"a": "heat",
+"b": "wser",
+"code": "heat.interactwith(wser){ wser.receives(heat.envelope); wser.remembers(bisola, 'brown envelope'); }",
+"text": "The wser leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
+},
+{
+"id": "wf_da0c45a1a8",
+"ts": "2026-11-24T13:35:48-0500",
+"a": "marker_b",
+"b": "laptop",
+"code": "marker_b.interactwith(laptop){ laptop.receives(marker_b.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the lamp soot at the laptop, and Taiwo reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
 }
 ],
 "memories": [
@@ -11143,5 +11143,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-24T13:29:50-0500"
+"updated": "2026-11-24T13:35:48-0500"
 }
