@@ -4535,6 +4535,16 @@
 "other": "love"
 },
 {
+"id": "wf_de280ef593",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the nice day sign at the marker, and Kunle reads the name twice.",
+"code": "teoloveletter.interactwith(marker){ marker.receives(teoloveletter.envelope); … }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "teoloveletter"
+},
+{
 "id": "wt_5529751886",
 "kind": "consequence",
 "text": "Kunle borrows the marker to fix the fading Nice Day sign and, without thinking, writes the date small in the corner, so the marker now remembers the sign it saved.",
@@ -6133,6 +6143,16 @@
 "run": "run-5a58c4",
 "card": "j6",
 "other": "wser"
+},
+{
+"id": "wf_5e36fc781a",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the tnw, and Bisola reads the name twice.",
+"code": "marker_b.interactwith(tnw){ tnw.receives(marker_b.envelope); … }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "marker_b"
 }
 ],
 "amnhagc": [
@@ -8215,6 +8235,16 @@
 "run": "run-2eb42d",
 "card": "j29",
 "other": "miami"
+},
+{
+"id": "wf_c09788cf4d",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up beside the phone at the yaba.",
+"code": "ikorodu_marina.interactwith(yaba){ yaba.receives(ikorodu_marina.envelope); yaba.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "ikorodu_marina"
 }
 ],
 "from_anambra": [
@@ -10546,53 +10576,21 @@
 "card": "j171",
 "other": "ronke"
 }
+],
+"ikorodu": [
+{
+"id": "wf_530bfee68a",
+"kind": "consequence",
+"text": "The ikorodu now remembers the cooler: The customer typed cooler.getdatemanufactured() on run-qa j1.",
+"code": "cooler.interactwith(ikorodu){ ikorodu.receives(cooler.something); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j1",
+"other": "cooler"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_8a348c3c48",
-"ts": "2026-11-24T02:50:53-0500",
-"a": "love",
-"b": "quiet_stretch_sand",
-"code": "love.interactwith(quiet_stretch_sand){ quiet_stretch_sand.receives(love.envelope); quiet_stretch_sand.remembers(bisola, 'brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up beside the morning at the quiet stretch sand.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
-"id": "wf_753bf501d1",
-"ts": "2026-11-24T02:54:12-0500",
-"a": "love",
-"b": "bed",
-"code": "love.interactwith(bed){ bed.receives(love.envelope); bed.remembers(bisola, 'brown envelope'); bed.tucks(love, 'yaba bookshop receipt into the egbe note'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the bed, and Taiwo reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
-"id": "wf_ba2d28ef1a",
-"ts": "2026-11-24T02:55:53-0500",
-"a": "house",
-"b": "hose",
-"code": "house.interactwith(hose){ hose.receives(house.sign); hose.remembers(kunle, 'nice day sign'); hose.tucks(house, 'marker note into the brown envelope'); }",
-"text": "A Marker note with Kunle's name and 'nice day sign' on it, turns up inside the brown envelope at the hose, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j3"
-},
-{
-"id": "wf_9af47956a4",
-"ts": "2026-11-24T02:56:44-0500",
-"a": "marker",
-"b": "cell_phone",
-"code": "marker.interactwith(cell_phone){ cell_phone.receives(marker.sign); … }",
-"text": "A Marker note with Kunle's name and 'nice day sign' on it, turns up inside the brown envelope at the cell phone, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j3"
-},
 {
 "id": "wf_68d9435382",
 "ts": "2026-11-24T02:57:37-0500",
@@ -10988,6 +10986,50 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": "j2"
+},
+{
+"id": "wf_530bfee68a",
+"ts": "2026-11-24T13:21:19-0500",
+"a": "cooler",
+"b": "ikorodu",
+"code": "cooler.interactwith(ikorodu){ ikorodu.receives(cooler.something); }",
+"text": "The ikorodu now remembers the cooler: The customer typed cooler.getdatemanufactured() on run-qa j1.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j1"
+},
+{
+"id": "wf_de280ef593",
+"ts": "2026-11-24T13:23:01-0500",
+"a": "teoloveletter",
+"b": "marker",
+"code": "teoloveletter.interactwith(marker){ marker.receives(teoloveletter.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the nice day sign at the marker, and Kunle reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
+},
+{
+"id": "wf_5e36fc781a",
+"ts": "2026-11-24T13:23:53-0500",
+"a": "marker_b",
+"b": "tnw",
+"code": "marker_b.interactwith(tnw){ tnw.receives(marker_b.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the tnw, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
+},
+{
+"id": "wf_c09788cf4d",
+"ts": "2026-11-24T13:25:36-0500",
+"a": "ikorodu_marina",
+"b": "yaba",
+"code": "ikorodu_marina.interactwith(yaba){ yaba.receives(ikorodu_marina.envelope); yaba.remembers(bisola, 'brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up beside the phone at the yaba.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
 }
 ],
 "memories": [
@@ -11091,5 +11133,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-24T13:19:38-0500"
+"updated": "2026-11-24T13:25:36-0500"
 }
