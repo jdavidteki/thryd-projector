@@ -5069,6 +5069,16 @@
 "run": "run-5a58c4",
 "card": "j6",
 "other": "thoughts_marisol"
+},
+{
+"id": "wf_47809ead2d",
+"kind": "consequence",
+"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the brown envelope at the marker c, and Bisola reads the name twice.",
+"code": "icsh.interactwith(marker_c){ marker_c.receives(icsh.shirt); … }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j8",
+"other": "icsh"
 }
 ],
 "top_deck_charter": [
@@ -10418,17 +10428,6 @@
 },
 "consequences": [
 {
-"id": "wf_dbe79b0b2c",
-"ts": "2026-11-24T00:31:06-0500",
-"a": "example",
-"b": "ojuelegba_bus_stop",
-"code": "example.interactwith(ojuelegba_bus_stop){ ojuelegba_bus_stop.receives(example.shirt); … }",
-"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the brown envelope at the ojuelegba bus stop, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j8"
-},
-{
 "id": "wf_1b348fb6a0",
 "ts": "2026-11-24T00:35:20-0500",
 "a": "atp",
@@ -10856,6 +10855,17 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": "j6"
+},
+{
+"id": "wf_47809ead2d",
+"ts": "2026-11-24T02:33:23-0500",
+"a": "icsh",
+"b": "marker_c",
+"code": "icsh.interactwith(marker_c){ marker_c.receives(icsh.shirt); … }",
+"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the brown envelope at the marker c, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j8"
 }
 ],
 "memories": [
@@ -10959,5 +10969,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-24T02:26:11-0500"
+"updated": "2026-11-24T02:33:23-0500"
 }
