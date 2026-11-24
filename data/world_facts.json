@@ -4121,16 +4121,6 @@
 ],
 "sports_ball": [
 {
-"id": "wf_4060885edf",
-"kind": "consequence",
-"text": "A Kerosene lamp note with Taiwo's name and 'change' on it, turns up inside the brown envelope at the sports ball, and Bisola reads the name twice.",
-"code": "kerosene_lamp.interactwith(sports_ball){ sports_ball.receives(kerosene_lamp.change); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "w",
-"other": "kerosene_lamp"
-},
-{
 "id": "wf_7bb5dfe935",
 "kind": "consequence",
 "text": "A Truth note with Titi's name and 'egbe note' on it, turns up inside the brown envelope at the sports ball, and Bisola reads the name twice.",
@@ -4169,6 +4159,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "bow"
+},
+{
+"id": "wf_7088a8f1f1",
+"kind": "consequence",
+"text": "A Laptop note with Taiwo's name and 'lamp soot' on it, turns up inside the brown envelope at the sports ball, and Bisola reads the name twice.",
+"code": "tf_mom.interactwith(sports_ball){ sports_ball.receives(tf_mom.soot); … }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j7",
+"other": "tf_mom"
 }
 ],
 "danfo_stuck": [
@@ -10234,17 +10234,6 @@
 },
 "consequences": [
 {
-"id": "wf_9d693aea3f",
-"ts": "2026-11-23T15:31:56-0500",
-"a": "love",
-"b": "patagonia",
-"code": "love.interactwith(patagonia){ patagonia.receives(love.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the patagonia, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
 "id": "wf_6ffcca7fc6",
 "ts": "2026-11-23T15:36:44-0500",
 "a": "jnoel",
@@ -10672,6 +10661,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_7088a8f1f1",
+"ts": "2026-11-23T19:51:21-0500",
+"a": "tf_mom",
+"b": "sports_ball",
+"code": "tf_mom.interactwith(sports_ball){ sports_ball.receives(tf_mom.soot); … }",
+"text": "A Laptop note with Taiwo's name and 'lamp soot' on it, turns up inside the brown envelope at the sports ball, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j7"
 }
 ],
 "memories": [
@@ -10775,5 +10775,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-23T19:38:41-0500"
+"updated": "2026-11-23T19:51:21-0500"
 }
