@@ -2925,16 +2925,6 @@
 ],
 "bed": [
 {
-"id": "wf_23ff4e420e",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the bed, and Taiwo reads the name twice.",
-"code": "niaw.interactwith(bed){ bed.receives(niaw.envelope); bed.remembers(bisola, 'brown envelope'); bed.tucks(niaw, 'yaba bookshop receipt into the egbe note'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "niaw"
-},
-{
 "id": "wf_fc190c81b7",
 "kind": "consequence",
 "text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the egbe note at the bed, and Taiwo reads the name twice.",
@@ -2963,6 +2953,16 @@
 "run": "run-5a58c4",
 "card": "j6",
 "other": "kmb"
+},
+{
+"id": "wf_3bbe2b5519",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the bed, and Taiwo reads the name twice.",
+"code": "marker_b.interactwith(bed){ bed.receives(marker_b.envelope); bed.remembers(bisola, 'brown envelope'); bed.tucks(marker_b, 'yaba bookshop receipt into the egbe note'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "marker_b"
 },
 {
 "id": "wt_740c0937a2",
@@ -5185,6 +5185,16 @@
 "run": "run-5a58c4",
 "card": "j6",
 "other": "top_deck_charter"
+},
+{
+"id": "wf_a51de322b7",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the heat, and Bisola reads the name twice.",
+"code": "tnw.interactwith(heat){ heat.receives(tnw.envelope); heat.remembers(bisola, 'brown envelope'); heat.tucks(tnw, 'yaba bookshop receipt into the brown envelope'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "tnw"
 }
 ],
 "youngteacher": [
@@ -5323,6 +5333,16 @@
 "run": "run-5a58c4",
 "card": "j8",
 "other": "marker_c"
+},
+{
+"id": "wf_408047b1c1",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the green shirt at the florida, and Bisola reads the name twice.",
+"code": "dress_marisol.interactwith(florida){ florida.receives(dress_marisol.envelope); … }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "dress_marisol"
 }
 ],
 "htpto": [
@@ -5609,16 +5629,6 @@
 ],
 "miami": [
 {
-"id": "wf_fde84ede18",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up beside the phone at the miami.",
-"code": "wser.interactwith(miami){ miami.receives(wser.envelope); miami.remembers(bisola, 'brown envelope'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "wser"
-},
-{
 "id": "wf_1a96188fa7",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up beside the phone at the miami.",
@@ -5657,6 +5667,16 @@
 "run": "run-5a58c4",
 "card": "j6",
 "other": "hpr"
+},
+{
+"id": "wf_b554f0965b",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up beside the phone at the miami.",
+"code": "health_marisol.interactwith(miami){ miami.receives(health_marisol.envelope); miami.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "health_marisol"
 }
 ],
 "teo": [
@@ -10520,50 +10540,6 @@
 },
 "consequences": [
 {
-"id": "wf_47809ead2d",
-"ts": "2026-11-24T02:33:23-0500",
-"a": "icsh",
-"b": "marker_c",
-"code": "icsh.interactwith(marker_c){ marker_c.receives(icsh.shirt); … }",
-"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the brown envelope at the marker c, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j8"
-},
-{
-"id": "wf_21127ac3a0",
-"ts": "2026-11-24T02:35:52-0500",
-"a": "itmoai",
-"b": "jetty_south_pointe",
-"code": "itmoai.interactwith(jetty_south_pointe){ jetty_south_pointe.receives(itmoai.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the jetty south pointe, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
-"id": "wf_7a8e923dee",
-"ts": "2026-11-24T02:36:45-0500",
-"a": "hose",
-"b": "bird",
-"code": "hose.interactwith(bird){ bird.receives(hose.envelope); bird.remembers(bisola, 'brown envelope'); bird.tucks(hose, 'yaba bookshop receipt into the envelope corner'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the envelope corner at the bird, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
-"id": "wf_967f830cdb",
-"ts": "2026-11-24T02:42:31-0500",
-"a": "marker_c",
-"b": "florida",
-"code": "marker_c.interactwith(florida){ florida.receives(marker_c.shirt); … }",
-"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the brown envelope at the florida, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j8"
-},
-{
 "id": "wf_15d4116894",
 "ts": "2026-11-24T02:43:22-0500",
 "a": "god",
@@ -10958,6 +10934,50 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": "j7"
+},
+{
+"id": "wf_b554f0965b",
+"ts": "2026-11-24T13:11:04-0500",
+"a": "health_marisol",
+"b": "miami",
+"code": "health_marisol.interactwith(miami){ miami.receives(health_marisol.envelope); miami.remembers(bisola, 'brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up beside the phone at the miami.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
+},
+{
+"id": "wf_3bbe2b5519",
+"ts": "2026-11-24T13:12:47-0500",
+"a": "marker_b",
+"b": "bed",
+"code": "marker_b.interactwith(bed){ bed.receives(marker_b.envelope); bed.remembers(bisola, 'brown envelope'); bed.tucks(marker_b, 'yaba bookshop receipt into the egbe note'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the bed, and Taiwo reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
+},
+{
+"id": "wf_a51de322b7",
+"ts": "2026-11-24T13:14:28-0500",
+"a": "tnw",
+"b": "heat",
+"code": "tnw.interactwith(heat){ heat.receives(tnw.envelope); heat.remembers(bisola, 'brown envelope'); heat.tucks(tnw, 'yaba bookshop receipt into the brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the heat, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
+},
+{
+"id": "wf_408047b1c1",
+"ts": "2026-11-24T13:15:20-0500",
+"a": "dress_marisol",
+"b": "florida",
+"code": "dress_marisol.interactwith(florida){ florida.receives(dress_marisol.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the green shirt at the florida, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
 }
 ],
 "memories": [
@@ -11061,5 +11081,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-24T13:10:12-0500"
+"updated": "2026-11-24T13:15:20-0500"
 }
