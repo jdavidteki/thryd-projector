@@ -2,7 +2,7 @@
 including after >60 s low-heat idle. Usage: python3 rescue_qa.py URL [phone|desktop] [idle_ms]"""
 import sys, json, asyncio
 from playwright.async_api import async_playwright
-BASE=sys.argv[1]; MODE=sys.argv[2] if len(sys.argv)>2 else 'phone'; IDLE=int(sys.argv[3]) if len(sys.argv)>3 else 0
+BASE=sys.argv[1]; MODE=sys.argv[2] if len(sys.argv)>2 else 'phone'; IDLE=int(sys.argv[3]) if len(sys.argv)>3 else 0; BLUR=len(sys.argv)>4 and sys.argv[4]=='blur'; PH=int(sys.argv[5]) if len(sys.argv)>5 else 4
 PICK="""(phase)=>{const S=window.__thrydStage;const v=c=>{const r=c.el.getBoundingClientRect();const x=r.left+r.width/2,y=r.top+r.height/2;return r.width>12&&x>10&&y>10&&x<innerWidth-10&&y<innerHeight-10&&document.elementFromPoint(x,y)===c.el?{x,y}:null};
  const groups=S.groups.filter(g=>!g.map&&!g.gone&&g.cuts.length>=2&&g.cuts.every(c=>!c.dragging));
  for(const g of groups){const vis=g.cuts.map(c=>[c,v(c)]).filter(a=>a[1]);if(vis.length<1)continue;
@@ -18,8 +18,9 @@ async def main():
     pg=await ctx.new_page(); cdp=await ctx.new_cdp_session(pg) if MODE=='phone' else None
     await pg.goto(BASE,wait_until='load'); await pg.wait_for_timeout(22000)
     out=[]
-    for phase in ['wait','walk','wait','walk']:
+    for phase in ['wait','walk','wait','walk'][:PH]:
       if IDLE: await pg.wait_for_timeout(IDLE)
+      if BLUR: await pg.evaluate("()=>{document.hasFocus=()=>false;window.dispatchEvent(new Event('blur'));}"); await pg.wait_for_timeout(400)
       lh=await pg.evaluate("()=>window.LH?LH.state:'-'")
       it=await pg.evaluate(PICK,phase)
       if not it: out.append({'phase':phase,'res':'no candidate'}); continue
