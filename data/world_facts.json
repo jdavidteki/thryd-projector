@@ -983,16 +983,6 @@
 ],
 "red_white_cap": [
 {
-"id": "wf_b1079f41d3",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the red and white cap, which is still worn.",
-"code": "atp.interactwith(red_white_cap){ red_white_cap.receives(atp.envelope); red_white_cap.remembers(bisola, 'brown envelope'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "atp"
-},
-{
 "id": "wf_649dbcc13c",
 "kind": "consequence",
 "text": "A Laptop note with Taiwo's name and 'lamp soot' on it, turns up with the red and white cap, which is still worn.",
@@ -1021,6 +1011,16 @@
 "run": "run-2eb42d",
 "card": "w6",
 "other": null
+},
+{
+"id": "wf_656aa137f0",
+"kind": "consequence",
+"text": "A Bird note with Bisola's name and 'envelope corner' on it, turns up with the red and white cap, which is still worn.",
+"code": "bird.interactwith(red_white_cap){ red_white_cap.receives(bird.corner); red_white_cap.remembers(bisola, 'envelope corner'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j7",
+"other": "bird"
 },
 {
 "id": "wt_1115_2356_c",
@@ -10334,17 +10334,6 @@
 },
 "consequences": [
 {
-"id": "wf_5b0c1e3da4",
-"ts": "2026-11-23T21:03:21-0500",
-"a": "yuwa",
-"b": "cell_phone",
-"code": "yuwa.interactwith(cell_phone){ cell_phone.receives(yuwa.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the cell phone, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
 "id": "wf_0183cbfa4d",
 "ts": "2026-11-23T21:16:10-0500",
 "a": "teach",
@@ -10772,6 +10761,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j2"
+},
+{
+"id": "wf_656aa137f0",
+"ts": "2026-11-24T00:54:07-0500",
+"a": "bird",
+"b": "red_white_cap",
+"code": "bird.interactwith(red_white_cap){ red_white_cap.receives(bird.corner); red_white_cap.remembers(bisola, 'envelope corner'); }",
+"text": "A Bird note with Bisola's name and 'envelope corner' on it, turns up with the red and white cap, which is still worn.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j7"
 }
 ],
 "memories": [
@@ -10875,5 +10875,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-24T00:43:01-0500"
+"updated": "2026-11-24T00:54:07-0500"
 }
