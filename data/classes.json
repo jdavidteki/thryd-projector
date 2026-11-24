@@ -107,8 +107,8 @@
     "ask",
     "give"
    ],
-   "instances": 412,
-   "arg_instances": 92,
+   "instances": 413,
+   "arg_instances": 93,
    "parent": null,
    "chain": [
     "Thing"
@@ -1534,12 +1534,17 @@
    "first_job": "j16",
    "source": "pick",
    "runs": [
-    "run-2eb42d"
+    "run-2eb42d",
+    "run-5a58c4"
    ],
    "tweets": [
     {
      "text": "#yorubbbygehinny - dem go hear word today!!!!",
      "year": "2025"
+    },
+    {
+     "text": "- but dem go tok say no be dem! say na my sickness",
+     "year": "2024"
     }
    ]
   },
@@ -2221,6 +2226,22 @@
     "run-c51768"
    ],
    "tweets": []
+  },
+  "front": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-5a58c4",
+   "first_job": "j36",
+   "source": "pick",
+   "runs": [
+    "run-5a58c4"
+   ],
+   "tweets": [
+    {
+     "text": "- what is your car doing in front of her!",
+     "year": "2026"
+    }
+   ]
   },
   "fu": {
    "class": "Thing",
@@ -7195,6 +7216,18 @@
     "pick"
    ],
    [
+    "dem",
+    "Thing",
+    "j36",
+    "pick"
+   ],
+   [
+    "front",
+    "Thing",
+    "j36",
+    "pick"
+   ],
+   [
     "true",
     "Thing",
     "j28",
@@ -10779,6 +10812,7 @@
   "art.look": "look(what: Thing)",
   "hours.could": "could(amount: Quantity)",
   "netflix.chill": "chill(what: Thing)",
+  "dez.watch": "watch(what: Thing)",
   "cooler.getdatemanufactured": "getDateManufactured()",
   "ronke.getlikes.contains": "getlikes.contains()",
   "kazeem.goodqualities.filter": "filter()",
@@ -11112,16 +11146,6 @@
    "use",
    "yorubbbygehinny"
   ],
-  "run-ab4653": [
-   "famz",
-   "kayode",
-   "kwabena",
-   "nanaakufoaddo"
-  ],
-  "run-b70200": [
-   "kunle",
-   "ngozi"
-  ],
   "run-5a58c4": [
    "blender",
    "calla",
@@ -11141,6 +11165,16 @@
    "touch",
    "tyn",
    "wanow"
+  ],
+  "run-ab4653": [
+   "famz",
+   "kayode",
+   "kwabena",
+   "nanaakufoaddo"
+  ],
+  "run-b70200": [
+   "kunle",
+   "ngozi"
   ],
   "run-9780ba": [
    "dapo",
@@ -11323,5 +11357,5 @@
   "epilogue": "quiet",
   "coda": "quiet"
  },
- "updated": "2026-11-23T22:46:41-05:00"
+ "updated": "2026-11-23T23:52:03-05:00"
 }

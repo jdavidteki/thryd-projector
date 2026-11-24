@@ -3957,7 +3957,8 @@
    "object": "teo",
    "method": "say",
    "args": [
-    "else"
+    "else",
+    "dem"
    ],
    "runs": [
     "run-5a58c4"
@@ -3970,8 +3971,42 @@
     "emoji": "🍍",
     "at": "2026-11-17T15:19:01-05:00"
    },
-   "calls": 0,
+   "calls": 1,
    "titles": [
+    {
+     "title": "teo.say(dem)",
+     "emoji": "🦘",
+     "arg": "dem",
+     "run": "run-5a58c4",
+     "job": "j36",
+     "tweets": [
+      {
+       "text": "- but dem go tok say no be dem! say na my sickness",
+       "year": "2024"
+      },
+      {
+       "text": "#thryd - location.townhall() will save the state - you go there to find vital information about any location you reach",
+       "year": "2024"
+      },
+      {
+       "text": "-- break it down foe me! eez an [[tfaa.ia]] not a cd",
+       "year": "2024"
+      }
+     ],
+     "consequence": "What Teo said about one thing leading to something is still sitting there, unpicked-up.",
+     "consequence_job": "j37",
+     "resolved": "teo.say(what=dem:Thing) from j36",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "dem",
+       "from_run": "run-5a58c4",
+       "from_job": "j36",
+       "source": "pick"
+      }
+     ]
+    },
     {
      "title": "teo.say(else)",
      "emoji": "🍍",
@@ -4024,36 +4059,36 @@
    "receiver_class": "Person",
    "prior": [
     {
-     "id": "code.say",
-     "title": "code.say(accuracy)",
-     "run": "run-5a58c4",
-     "job": "j25",
-     "at": "2026-11-17T10:35:56-05:00",
+     "id": "mamaronke.say",
+     "title": "mamaronke.say(bus)",
+     "run": "run-2eb42d",
+     "job": "j33",
+     "at": "2026-11-18T17:14:29-0500",
      "why": "same method"
     },
     {
-     "id": "road.air",
-     "title": "road.air(shu)",
-     "run": "run-5a58c4",
-     "job": "j26",
-     "at": "2026-11-17T11:07:01-05:00",
-     "why": "same verb family (say)"
+     "id": "mamaronke.say",
+     "title": "mamaronke.say(units)",
+     "run": "run-2eb42d",
+     "job": "j31",
+     "at": "2026-11-18T13:34:27-05:00",
+     "why": "same method"
     },
     {
-     "id": "laff.made",
-     "title": "laff.made(sugar)",
-     "run": "run-5a58c4",
-     "job": "j25",
-     "at": "2026-11-17T10:35:56-05:00",
-     "why": "same verb family (say)"
+     "id": "mamaronke.say",
+     "title": "mamaronke.say(pot)",
+     "run": "run-2eb42d",
+     "job": "j30",
+     "at": "2026-11-18T13:26:10-05:00",
+     "why": "same method"
     },
     {
-     "id": "pepe.settink",
-     "title": "pepe.setTink(pepe)",
-     "run": "run-bd649b",
-     "job": "j10",
-     "at": "2026-11-16T21:27:43-05:00",
-     "why": "same verb family (say)"
+     "id": "mamaronke.say",
+     "title": "mamaronke.say(walk)",
+     "run": "run-2eb42d",
+     "job": "j29",
+     "at": "2026-11-18T12:59:19-05:00",
+     "why": "same method"
     }
    ],
    "faded": true,
@@ -12294,6 +12329,96 @@
    "faded": false,
    "last_run": "run-888ea9"
   },
+  "dez.watch": {
+   "object": "dez",
+   "method": "watch",
+   "args": [
+    "front"
+   ],
+   "runs": [
+    "run-5a58c4"
+   ],
+   "defined": {
+    "run": "run-5a58c4",
+    "job": "j36",
+    "card": "w36",
+    "title": "dez.watch(front)",
+    "emoji": "⛽",
+    "at": "2026-11-23T23:51:56-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "dez.watch(front)",
+     "emoji": "⛽",
+     "arg": "front",
+     "run": "run-5a58c4",
+     "job": "j36",
+     "tweets": [
+      {
+       "text": "- what is your car doing in front of her!",
+       "year": "2026"
+      },
+      {
+       "text": "[[perspective]] - reality - reality #thryd - reality [[9.tw]] - e no mean say #bta - on the aux - they don't make music like that no mo - i neva see traffic [[light]] wey like amebo like you",
+       "year": "2024"
+      },
+      {
+       "text": "[[tb]] - then pay $50 then we tow his car",
+       "year": "2026"
+      }
+     ],
+     "consequence": "Dez is still at the window table, the napkin smudged where the pen slipped, the drawing still not quite there.",
+     "consequence_job": "j37",
+     "resolved": "dez.watch(what=front:Thing) from j36",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "front",
+       "from_run": "run-5a58c4",
+       "from_job": "j36",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "front",
+      "first_run": "run-5a58c4",
+      "first_job": "j36"
+     }
+    ],
+    "text": "watch(what: Thing)"
+   },
+   "receiver_class": "Person",
+   "prior": [
+    {
+     "id": "boze.watch",
+     "title": "boze.watch(sat)",
+     "run": "run-888ea9",
+     "job": "j10",
+     "at": "2026-11-23T20:17:52-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "ronke.watch",
+     "title": "ronke.watch(stories)",
+     "run": "run-2eb42d",
+     "job": "j42",
+     "at": "2026-11-19T12:49:56-05:00",
+     "why": "same method"
+    }
+   ],
+   "faded": false,
+   "last_run": null
+  },
   "cooler.getdatemanufactured": {
    "object": "cooler",
    "method": "getDateManufactured",
@@ -15539,14 +15664,16 @@
    "dez.follow",
    "dez.bow",
    "dez.use",
-   "dez.make"
+   "dez.make",
+   "dez.watch"
   ],
   "dez_5a58c4": [
    "dez.sit",
    "dez.follow",
    "dez.bow",
    "dez.use",
-   "dez.make"
+   "dez.make",
+   "dez.watch"
   ],
   "dicey": [
    "dicey.call"
@@ -15741,7 +15868,8 @@
    "dez.follow",
    "dez.bow",
    "dez.use",
-   "dez.make"
+   "dez.make",
+   "dez.watch"
   ],
   "media": [
    "media.all"
@@ -16488,7 +16616,8 @@
     "from": "c91864d4bbb7",
     "title": "1020. hallucination, precision, and rain",
     "funcs": [
-     "life.give"
+     "life.give",
+     "teo.say"
     ]
    }
   ],
@@ -16717,6 +16846,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -17466,6 +17596,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -17620,6 +17751,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -17669,6 +17801,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -17718,6 +17851,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -17767,6 +17901,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -17816,6 +17951,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -17865,6 +18001,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -17914,6 +18051,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -17963,6 +18101,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -18012,6 +18151,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -18061,6 +18201,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -18110,6 +18251,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -18159,6 +18301,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -18208,6 +18351,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -18257,6 +18401,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -18306,6 +18451,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -18355,6 +18501,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -18404,6 +18551,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -18823,6 +18971,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -18872,6 +19021,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -18921,6 +19071,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -18966,6 +19117,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -19011,6 +19163,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -20741,6 +20894,7 @@
     "from": "f81f21521253",
     "title": "829. a day in the life of god",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -21024,6 +21178,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -21351,6 +21506,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -21400,6 +21556,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -21449,6 +21606,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -21498,6 +21656,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -21557,6 +21716,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -21606,6 +21766,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -21655,6 +21816,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -21704,6 +21866,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -21753,6 +21916,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -21909,6 +22073,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -22003,6 +22168,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -22062,6 +22228,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -22121,6 +22288,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -22170,6 +22338,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -22241,6 +22410,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -22290,6 +22460,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -22339,6 +22510,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -22388,6 +22560,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -22437,6 +22610,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -22694,6 +22868,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -22867,6 +23042,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -22927,6 +23103,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -22976,6 +23153,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -23025,6 +23203,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -23074,6 +23253,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -23123,6 +23303,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -23172,6 +23353,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -23547,6 +23729,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -24157,6 +24340,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -24340,6 +24524,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -24389,6 +24574,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -24438,6 +24624,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -24531,6 +24718,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -24580,6 +24768,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -24629,6 +24818,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -24678,6 +24868,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -24727,6 +24918,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -24776,6 +24968,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -24825,6 +25018,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -24874,6 +25068,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -24923,6 +25118,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -24972,6 +25168,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -25021,6 +25218,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -25070,6 +25268,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -25119,6 +25318,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -25168,6 +25368,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -25217,6 +25418,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -25266,6 +25468,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -25430,6 +25633,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -25489,6 +25693,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -25538,6 +25743,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -25587,6 +25793,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -25636,6 +25843,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -25685,6 +25893,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -25734,6 +25943,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -25783,6 +25993,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -25832,6 +26043,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -25881,6 +26093,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -25930,6 +26143,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -25979,6 +26193,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -26028,6 +26243,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -27305,6 +27521,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -27459,6 +27676,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -27634,6 +27852,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -27819,6 +28038,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -27868,6 +28088,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -27917,6 +28138,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -27966,6 +28188,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -28015,6 +28238,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -28064,6 +28288,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -28113,6 +28338,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -28162,6 +28388,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -28211,6 +28438,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -28260,6 +28488,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -28575,6 +28804,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -28624,6 +28854,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -29136,6 +29367,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -29407,6 +29639,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -29456,6 +29689,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -29621,6 +29855,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "dez.make",
      "dez.use",
      "calla.hear",
@@ -29660,6 +29895,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "dez.make",
      "dez.use",
      "calla.hear",
@@ -29699,6 +29935,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -29748,6 +29985,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -29797,6 +30035,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -29971,6 +30210,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -30134,6 +30374,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -30183,6 +30424,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -30232,6 +30474,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -30281,6 +30524,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -30330,6 +30574,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -30379,6 +30624,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -30428,6 +30674,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -30477,6 +30724,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -30527,6 +30775,7 @@
     "from": "1dde946f3407",
     "title": "125. why did i get married, #thryd?",
     "funcs": [
+     "dez.watch",
      "mamaronke.tell",
      "teo.figure",
      "calla.want",
@@ -30540,6 +30789,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -30960,6 +31210,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -31009,6 +31260,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -31310,6 +31562,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -31473,6 +31726,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.watch",
      "teo.lead",
      "teo.figure",
      "dez.make",
@@ -31818,7 +32072,8 @@
     "teo.guess",
     "dez.make",
     "teo.figure",
-    "teo.lead"
+    "teo.lead",
+    "dez.watch"
    ]
   },
   "run-7c51d3": {
@@ -32175,7 +32430,8 @@
     "dez.bow",
     "calla.want",
     "teo.figure",
-    "mamaronke.tell"
+    "mamaronke.tell",
+    "dez.watch"
    ],
    "runs": []
   },
@@ -32790,6 +33046,7 @@
   "c91864d4bbb7": {
    "title": "1020. hallucination, precision, and rain",
    "funcs": [
+    "teo.say",
     "life.give"
    ],
    "runs": []
@@ -33051,7 +33308,8 @@
     "teo.guess",
     "dez.make",
     "teo.figure",
-    "teo.lead"
+    "teo.lead",
+    "dez.watch"
    ],
    "runs": [
     "run-5a58c4"
@@ -34352,7 +34610,8 @@
    "dez.follow",
    "dez.bow",
    "dez.use",
-   "dez.make"
+   "dez.make",
+   "dez.watch"
   ],
   "dicey": [
    "dicey.call"
@@ -34966,16 +35225,6 @@
    "use",
    "yorubbbygehinny"
   ],
-  "run-ab4653": [
-   "famz",
-   "kayode",
-   "kwabena",
-   "nanaakufoaddo"
-  ],
-  "run-b70200": [
-   "kunle",
-   "ngozi"
-  ],
   "run-5a58c4": [
    "blender",
    "calla",
@@ -34995,6 +35244,16 @@
    "touch",
    "tyn",
    "wanow"
+  ],
+  "run-ab4653": [
+   "famz",
+   "kayode",
+   "kwabena",
+   "nanaakufoaddo"
+  ],
+  "run-b70200": [
+   "kunle",
+   "ngozi"
   ],
   "run-9780ba": [
    "dapo",
@@ -35117,5 +35376,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-23T22:47:34-05:00"
+ "updated": "2026-11-23T23:52:03-05:00"
 }
