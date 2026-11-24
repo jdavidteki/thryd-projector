@@ -7035,6 +7035,16 @@
 "run": "run-2eb42d",
 "card": "j8",
 "other": "vex"
+},
+{
+"id": "wf_ee3ac9cae7",
+"kind": "consequence",
+"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the green shirt at the imhf, and Bisola reads the name twice.",
+"code": "bow.interactwith(imhf){ imhf.receives(bow.shirt); imhf.remembers(bisola, 'green shirt'); imhf.tucks(bow, 'ikeja laundromat receipt into the green shirt'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j8",
+"other": "bow"
 }
 ],
 "lady": [
@@ -7099,6 +7109,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "love"
+},
+{
+"id": "wf_5f9565ef95",
+"kind": "consequence",
+"text": "A Laptop note with Taiwo's name and 'lamp soot' on it, turns up inside the brown envelope at the b md, and Bisola reads the name twice.",
+"code": "tf_mom.interactwith(b_md){ b_md.receives(tf_mom.soot); b_md.remembers(taiwo, 'lamp soot'); b_md.tucks(tf_mom, 'laptop note into the brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j7",
+"other": "tf_mom"
 }
 ],
 "yuwa": [
@@ -10244,28 +10264,6 @@
 },
 "consequences": [
 {
-"id": "wf_4f6d28bcc5",
-"ts": "2026-11-23T17:56:37-0500",
-"a": "imhf",
-"b": "lady",
-"code": "imhf.interactwith(lady){ lady.receives(imhf.shirt); lady.remembers(bisola, 'green shirt'); lady.tucks(imhf, 'ikeja laundromat receipt into the green shirt'); }",
-"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the green shirt at the lady, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j8"
-},
-{
-"id": "wf_59cc50aab5",
-"ts": "2026-11-23T18:07:25-0500",
-"a": "mlkahb",
-"b": "plastic_sheet",
-"code": "mlkahb.interactwith(plastic_sheet){ plastic_sheet.receives(mlkahb.envelope); plastic_sheet.remembers(bisola, 'brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the plastic sheet, which is still wet.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
 "id": "wf_0f8b3252e7",
 "ts": "2026-11-23T18:22:46-0500",
 "a": "sheep",
@@ -10682,6 +10680,28 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j8"
+},
+{
+"id": "wf_5f9565ef95",
+"ts": "2026-11-23T21:17:52-0500",
+"a": "tf_mom",
+"b": "b_md",
+"code": "tf_mom.interactwith(b_md){ b_md.receives(tf_mom.soot); b_md.remembers(taiwo, 'lamp soot'); b_md.tucks(tf_mom, 'laptop note into the brown envelope'); }",
+"text": "A Laptop note with Taiwo's name and 'lamp soot' on it, turns up inside the brown envelope at the b md, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j7"
+},
+{
+"id": "wf_ee3ac9cae7",
+"ts": "2026-11-23T21:20:27-0500",
+"a": "bow",
+"b": "imhf",
+"code": "bow.interactwith(imhf){ imhf.receives(bow.shirt); imhf.remembers(bisola, 'green shirt'); imhf.tucks(bow, 'ikeja laundromat receipt into the green shirt'); }",
+"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the green shirt at the imhf, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j8"
 }
 ],
 "memories": [
@@ -10785,5 +10805,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-23T21:16:10-0500"
+"updated": "2026-11-23T21:20:27-0500"
 }
