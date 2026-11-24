@@ -7189,16 +7189,6 @@
 ],
 "mama_ronke": [
 {
-"id": "wf_7047cf8340",
-"kind": "consequence",
-"text": "The mama ronke now remembers the thryd: A new theme carton lands on the table beside the leftover noodles, from the typed.",
-"code": "thryd.interactwith(mama_ronke){ mama_ronke.receives(thryd.something); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "w40",
-"other": "thryd"
-},
-{
 "id": "wf_c2da49ff46",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the Mama Ronke, which is still present.",
@@ -7227,6 +7217,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "vex"
+},
+{
+"id": "wf_0daa693d97",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the Mama Ronke, which is still present.",
+"code": "yuwa.interactwith(mama_ronke){ mama_ronke.receives(yuwa.envelope); mama_ronke.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "yuwa"
 },
 {
 "id": "wt_836e6dea8e",
@@ -10244,17 +10244,6 @@
 },
 "consequences": [
 {
-"id": "wf_5a000cabf5",
-"ts": "2026-11-23T17:46:42-0500",
-"a": "computer_village",
-"b": "kerosene_lamp",
-"code": "computer_village.interactwith(kerosene_lamp){ kerosene_lamp.receives(computer_village.envelope); kerosene_lamp.remembers(bisola, 'brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the kerosene lamp, which is still lit.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
 "id": "wf_25d35b995e",
 "ts": "2026-11-23T17:49:25-0500",
 "a": "again",
@@ -10682,6 +10671,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "w7"
+},
+{
+"id": "wf_0daa693d97",
+"ts": "2026-11-23T20:56:30-0500",
+"a": "yuwa",
+"b": "mama_ronke",
+"code": "yuwa.interactwith(mama_ronke){ mama_ronke.receives(yuwa.envelope); mama_ronke.remembers(bisola, 'brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the Mama Ronke, which is still present.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -10785,5 +10785,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-23T20:52:14-0500"
+"updated": "2026-11-23T20:56:30-0500"
 }
