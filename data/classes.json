@@ -104,11 +104,11 @@
    "param": "what",
    "methods": [
     "say",
-    "ask",
-    "give"
+    "give",
+    "ask"
    ],
-   "instances": 421,
-   "arg_instances": 99,
+   "instances": 423,
+   "arg_instances": 101,
    "parent": null,
    "chain": [
     "Thing"
@@ -4811,6 +4811,22 @@
     }
    ]
   },
+  "precisions": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-5a58c4",
+   "first_job": "j43",
+   "source": "pick",
+   "runs": [
+    "run-5a58c4"
+   ],
+   "tweets": [
+    {
+     "text": "- just give us your precisions",
+     "year": "2025"
+    }
+   ]
+  },
   "presidentfitz": {
    "class": "Thing",
    "cue": "default",
@@ -6672,6 +6688,22 @@
     }
    ]
   },
+  "water": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-5a58c4",
+   "first_job": "j42",
+   "source": "pick",
+   "runs": [
+    "run-5a58c4"
+   ],
+   "tweets": [
+    {
+     "text": "#thryd — no more thirsty",
+     "year": "2024"
+    }
+   ]
+  },
   "way": {
    "class": "Thing",
    "cue": "default",
@@ -7150,12 +7182,6 @@
   ],
   "run-5a58c4": [
    [
-    "reason",
-    "Thing",
-    "j22",
-    "pick"
-   ],
-   [
     "never",
     "Frequency",
     "j22",
@@ -7399,6 +7425,18 @@
     "it",
     "Thing",
     "j41",
+    "pick"
+   ],
+   [
+    "water",
+    "Thing",
+    "j42",
+    "pick"
+   ],
+   [
+    "precisions",
+    "Thing",
+    "j43",
     "pick"
    ],
    [
@@ -11020,6 +11058,8 @@
   "marisol.find": "find(what: Thing)",
   "marisol.tell": "tell(act: Action)",
   "nobody.see": "see(what: Thing)",
+  "calla.draw": "draw(what: Thing)",
+  "teo.give": "give(what: Thing)",
   "cooler.getdatemanufactured": "getDateManufactured()",
   "ronke.getlikes.contains": "getlikes.contains()",
   "kazeem.goodqualities.filter": "filter()",
@@ -11570,5 +11610,5 @@
   "epilogue": "quiet",
   "coda": "quiet"
  },
- "updated": "2026-11-24T01:29:28-05:00"
+ "updated": "2026-11-24T01:36:55-05:00"
 }

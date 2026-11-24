@@ -2392,15 +2392,15 @@
      ],
      "consequence": "12:41am, Monday 2 November 2026, twenty-one minutes later on the top deck of Teo's charter boat at the marina on the Miami River in Miami, Florida, the speaker on the bar gone quiet and the river lapping softly at the hull.",
      "consequence_job": "j23",
-     "resolved": "song.hit(what=reason:Thing) from j22",
+     "resolved": "song.hit(what=bar:Thing) from j20",
      "injected": [
       {
        "param": "what",
        "class": "Thing",
-       "instance": "reason",
+       "instance": "bar",
        "from_run": "run-5a58c4",
-       "from_job": "j22",
-       "source": "pick"
+       "from_job": "j20",
+       "source": "typed"
       }
      ]
     }
@@ -13157,6 +13157,186 @@
    "faded": true,
    "last_run": "run-5a58c4"
   },
+  "calla.draw": {
+   "object": "calla",
+   "method": "draw",
+   "args": [
+    "water"
+   ],
+   "runs": [
+    "run-5a58c4"
+   ],
+   "defined": {
+    "run": "run-5a58c4",
+    "job": "j42",
+    "card": "w42",
+    "title": "calla.draw(water)",
+    "emoji": "💧",
+    "at": "2026-11-24T01:36:54-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "calla.draw(water)",
+     "emoji": "💧",
+     "arg": "water",
+     "run": "run-5a58c4",
+     "job": "j42",
+     "tweets": [
+      {
+       "text": "#thryd — no more thirsty",
+       "year": "2024"
+      },
+      {
+       "text": "#thryd — content that can evolve by eeself",
+       "year": "2024"
+      },
+      {
+       "text": "— when you want to bathe or turn eba,",
+       "year": "2024"
+      }
+     ],
+     "consequence": "📍 Wynwood bakery, Miami 🥐 · 84 lines in Calla doesn't wait for anyone's plan.",
+     "consequence_job": "j43",
+     "resolved": "calla.draw(what=water:Thing) from j42",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "water",
+       "from_run": "run-5a58c4",
+       "from_job": "j42",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "water",
+      "first_run": "run-5a58c4",
+      "first_job": "j42"
+     }
+    ],
+    "text": "draw(what: Thing)"
+   },
+   "receiver_class": "Person",
+   "prior": [
+    {
+     "id": "folake.draw",
+     "title": "folake.draw(lines)",
+     "run": "run-g1-B",
+     "job": "j11",
+     "at": "2026-11-17T18:25:59-05:00",
+     "why": "same method"
+    }
+   ],
+   "faded": false,
+   "last_run": null
+  },
+  "teo.give": {
+   "object": "teo",
+   "method": "give",
+   "args": [
+    "precisions"
+   ],
+   "runs": [
+    "run-5a58c4"
+   ],
+   "defined": {
+    "run": "run-5a58c4",
+    "job": "j43",
+    "card": "w43",
+    "title": "teo.give(precisions)",
+    "emoji": "🎯",
+    "at": "2026-11-24T01:36:54-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "teo.give(precisions)",
+     "emoji": "🎯",
+     "arg": "precisions",
+     "run": "run-5a58c4",
+     "job": "j43",
+     "tweets": [
+      {
+       "text": "- just give us your precisions",
+       "year": "2025"
+      },
+      {
+       "text": "- we will find the accuracy",
+       "year": "2025"
+      },
+      {
+       "text": "[[ihmw]] - my agenda is simple",
+       "year": "2025"
+      }
+     ],
+     "consequence": "📍 Wynwood bakery, Miami 🥐 · 87 lines in Teo doesn't take the water.",
+     "consequence_job": "j44",
+     "resolved": "teo.give(what=precisions:Thing) from j43",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "precisions",
+       "from_run": "run-5a58c4",
+       "from_job": "j43",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "precisions",
+      "first_run": "run-5a58c4",
+      "first_job": "j43"
+     }
+    ],
+    "text": "give(what: Thing)"
+   },
+   "receiver_class": "Person",
+   "prior": [
+    {
+     "id": "investor.give",
+     "title": "investor.give(advice)",
+     "run": "run-2eb42d",
+     "job": "j40",
+     "at": "2026-11-18T19:11:58-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "mamaronke.give",
+     "title": "mamaronke.give(money)",
+     "run": "run-2eb42d",
+     "job": "j36",
+     "at": "2026-11-18T17:52:40-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "life.give",
+     "title": "life.give(money)",
+     "run": "run-5a58c4",
+     "job": "j32",
+     "at": "2026-11-17T15:46:37-05:00",
+     "why": "same method"
+    }
+   ],
+   "faded": false,
+   "last_run": null
+  },
   "cooler.getdatemanufactured": {
    "object": "cooler",
    "method": "getDateManufactured",
@@ -16255,14 +16435,16 @@
    "calla.see",
    "calla.want",
    "calla.hear",
-   "calla.laugh"
+   "calla.laugh",
+   "calla.draw"
   ],
   "calla_5a58c4": [
    "calla.stare",
    "calla.see",
    "calla.want",
    "calla.hear",
-   "calla.laugh"
+   "calla.laugh",
+   "calla.draw"
   ],
   "cam": [
    "cam.stop"
@@ -16834,7 +17016,8 @@
    "teo.figure",
    "teo.lead",
    "teo.open",
-   "teo.ring"
+   "teo.ring",
+   "teo.give"
   ],
   "teo_5a58c4": [
    "teo.hide",
@@ -16848,7 +17031,8 @@
    "teo.figure",
    "teo.lead",
    "teo.open",
-   "teo.ring"
+   "teo.ring",
+   "teo.give"
   ],
   "thing": [
    "thing.weird"
@@ -17608,6 +17792,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -18377,6 +18563,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -18541,6 +18729,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -18600,6 +18790,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -18659,6 +18851,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -18718,6 +18912,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -18777,6 +18973,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -18836,6 +19034,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -18895,6 +19095,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -18954,6 +19156,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -19013,6 +19217,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -19072,6 +19278,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -19131,6 +19339,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -19190,6 +19400,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -19249,6 +19461,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -19308,6 +19522,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -19367,6 +19583,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -19426,6 +19644,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -19485,6 +19705,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -19914,6 +20136,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -19973,6 +20197,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -20032,6 +20258,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -20086,6 +20313,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -20140,6 +20368,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -21880,6 +22110,8 @@
     "from": "f81f21521253",
     "title": "829. a day in the life of god",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -21932,6 +22164,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -21985,6 +22219,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -22144,6 +22380,7 @@
     "from": "e1264231d388",
     "title": "906. what do i do now?",
     "funcs": [
+     "teo.give",
      "mamaronke.leave"
     ]
    }
@@ -22191,6 +22428,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -22528,6 +22767,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -22587,6 +22828,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -22646,6 +22889,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -22705,6 +22950,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -22774,6 +23021,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -22833,6 +23082,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -22892,6 +23143,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -22951,6 +23204,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -23010,6 +23265,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -23176,6 +23433,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -23280,6 +23539,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -23349,6 +23610,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -23418,6 +23681,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -23477,6 +23742,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -23558,6 +23825,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -23617,6 +23886,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -23676,6 +23947,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -23735,6 +24008,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -23794,6 +24069,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -24061,6 +24338,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -24244,6 +24523,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -24314,6 +24595,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -24373,6 +24656,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -24432,6 +24717,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -24491,6 +24778,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -24550,6 +24839,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -24609,6 +24900,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -25002,6 +25295,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -25622,6 +25917,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -25815,6 +26112,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -25874,6 +26173,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -25933,6 +26234,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -25992,6 +26295,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -26045,6 +26350,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -26104,6 +26411,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -26163,6 +26472,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "travel.close",
      "teo.ring",
@@ -26220,6 +26531,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "travel.close",
      "teo.ring",
@@ -26277,6 +26590,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -26336,6 +26651,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -26395,6 +26712,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -26454,6 +26773,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -26513,6 +26834,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -26572,6 +26895,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -26631,6 +26956,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -26690,6 +27017,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -26749,6 +27078,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -26808,6 +27139,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -26867,6 +27200,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -26926,6 +27261,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -27100,6 +27437,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -27169,6 +27508,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -27228,6 +27569,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -27287,6 +27630,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -27346,6 +27691,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -27405,6 +27752,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -27464,6 +27813,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -27523,6 +27874,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -27582,6 +27935,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -27641,6 +27996,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -27700,6 +28057,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -27759,6 +28118,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -27818,6 +28179,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -29115,6 +29478,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -29279,6 +29644,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -29464,6 +29831,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -29659,6 +30028,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -29718,6 +30089,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -29777,6 +30150,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -29836,6 +30211,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -29895,6 +30272,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -29954,6 +30333,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -30013,6 +30394,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -30072,6 +30455,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -30131,6 +30516,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -30190,6 +30577,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -30515,6 +30904,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -30574,6 +30965,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -31097,6 +31490,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -31378,6 +31773,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -31437,6 +31834,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -31612,6 +32011,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -31659,6 +32059,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -31706,6 +32107,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -31765,6 +32168,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -31824,6 +32229,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -32008,6 +32415,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -32181,6 +32590,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -32240,6 +32651,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -32299,6 +32712,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -32358,6 +32773,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -32417,6 +32834,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -32476,6 +32895,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -32535,6 +32956,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -32594,6 +33017,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -32668,6 +33093,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -33098,6 +33525,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -33157,6 +33586,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -33468,6 +33899,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -33641,6 +34074,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "teo.give",
+     "calla.draw",
      "nobody.see",
      "marisol.tell",
      "marisol.find",
@@ -34006,7 +34441,9 @@
     "travel.close",
     "marisol.find",
     "marisol.tell",
-    "nobody.see"
+    "nobody.see",
+    "calla.draw",
+    "teo.give"
    ]
   },
   "run-7c51d3": {
@@ -34189,6 +34626,13 @@
    "title": "1029. convince you",
    "funcs": [
     "titi.let"
+   ],
+   "runs": []
+  },
+  "08eb7137929c": {
+   "title": "1203. thirsty",
+   "funcs": [
+    "calla.draw"
    ],
    "runs": []
   },
@@ -35107,7 +35551,8 @@
   "e1264231d388": {
    "title": "906. what do i do now?",
    "funcs": [
-    "mamaronke.leave"
+    "mamaronke.leave",
+    "teo.give"
    ],
    "runs": []
   },
@@ -35273,7 +35718,9 @@
     "travel.close",
     "marisol.find",
     "marisol.tell",
-    "nobody.see"
+    "nobody.see",
+    "calla.draw",
+    "teo.give"
    ],
    "runs": [
     "run-5a58c4"
@@ -35346,6 +35793,9 @@
   ],
   "1*Mlzl3nV3sJw9EhZMr1VG3g.jpeg": [
    "0a802d1f9af3"
+  ],
+  "1*V7woJTj6Kifyb9FwSE3bLw.gif": [
+   "08eb7137929c"
   ],
   "1*HRO7l9t1YDc6pxhyjpzlTQ.gif": [
    "3408766b5717"
@@ -36560,7 +37010,8 @@
    "calla.see",
    "calla.want",
    "calla.hear",
-   "calla.laugh"
+   "calla.laugh",
+   "calla.draw"
   ],
   "cam": [
    "cam.stop"
@@ -36918,7 +37369,8 @@
    "teo.figure",
    "teo.lead",
    "teo.open",
-   "teo.ring"
+   "teo.ring",
+   "teo.give"
   ],
   "thing": [
    "thing.weird"
@@ -37398,5 +37850,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-24T01:19:43-05:00"
+ "updated": "2026-11-24T01:36:55-05:00"
 }
