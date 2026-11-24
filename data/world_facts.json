@@ -2925,16 +2925,6 @@
 ],
 "bed": [
 {
-"id": "wf_10874ef063",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the bed, and Taiwo reads the name twice.",
-"code": "listen.interactwith(bed){ bed.receives(listen.envelope); bed.remembers(bisola, 'brown envelope'); bed.tucks(listen, 'yaba bookshop receipt into the egbe note'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "listen"
-},
-{
 "id": "wf_a134c7311e",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the bed, and Taiwo reads the name twice.",
@@ -2963,6 +2953,16 @@
 "run": "run-5a58c4",
 "card": "j8",
 "other": "icsh"
+},
+{
+"id": "wf_753bf501d1",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the bed, and Taiwo reads the name twice.",
+"code": "love.interactwith(bed){ bed.receives(love.envelope); bed.remembers(bisola, 'brown envelope'); bed.tucks(love, 'yaba bookshop receipt into the egbe note'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "love"
 },
 {
 "id": "wt_740c0937a2",
@@ -6107,6 +6107,16 @@
 "run": "run-5a58c4",
 "card": "j6",
 "other": "marisol"
+},
+{
+"id": "wf_ba2d28ef1a",
+"kind": "consequence",
+"text": "A Marker note with Kunle's name and 'nice day sign' on it, turns up inside the brown envelope at the hose, and Bisola reads the name twice.",
+"code": "house.interactwith(hose){ hose.receives(house.sign); hose.remembers(kunle, 'nice day sign'); hose.tucks(house, 'marker note into the brown envelope'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j3",
+"other": "house"
 }
 ],
 "icsh": [
@@ -6389,16 +6399,6 @@
 ],
 "quiet_stretch_sand": [
 {
-"id": "wf_22a751fc0c",
-"kind": "consequence",
-"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up beside the morning at the quiet stretch sand.",
-"code": "water.interactwith(quiet_stretch_sand){ quiet_stretch_sand.receives(water.code); quiet_stretch_sand.remembers(ejiro, 'juju code'); }",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j2",
-"other": "water"
-},
-{
 "id": "wf_4d0ebc4ce6",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up beside the morning at the quiet stretch sand.",
@@ -6437,6 +6437,16 @@
 "run": "run-5a58c4",
 "card": "j6",
 "other": "marisol"
+},
+{
+"id": "wf_8a348c3c48",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up beside the morning at the quiet stretch sand.",
+"code": "love.interactwith(quiet_stretch_sand){ quiet_stretch_sand.receives(love.envelope); quiet_stretch_sand.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "love"
 }
 ],
 "teoloveletter": [
@@ -10448,39 +10458,6 @@
 },
 "consequences": [
 {
-"id": "wf_92c3e5738d",
-"ts": "2026-11-24T01:01:48-0500",
-"a": "yuwa",
-"b": "lie",
-"code": "yuwa.interactwith(lie){ lie.receives(yuwa.envelope); lie.remembers(bisola, 'brown envelope'); lie.tucks(yuwa, 'yaba bookshop receipt into the brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the lie, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
-"id": "wf_92b2e207db",
-"ts": "2026-11-24T01:06:02-0500",
-"a": "example",
-"b": "agbada",
-"code": "example.interactwith(agbada){ agbada.receives(example.shirt); agbada.remembers(bisola, 'green shirt'); }",
-"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up with the agbada, which is still worn by a stranger haggler.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j8"
-},
-{
-"id": "wf_fe3370ac65",
-"ts": "2026-11-24T01:09:29-0500",
-"a": "mama_ronke",
-"b": "ronke",
-"code": "mama_ronke.interactwith(ronke){ mama_ronke.db.copyto(ronke); ronke.keeps(mama_ronke, 'Mama Ronke, still present'); }",
-"text": "The Mama Ronke ends up with the ronke, still present.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": ""
-},
-{
 "id": "wf_f6cdeaa859",
 "ts": "2026-11-24T01:12:54-0500",
 "a": "ojuelegba_bus_stop",
@@ -10886,6 +10863,39 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": "j3"
+},
+{
+"id": "wf_8a348c3c48",
+"ts": "2026-11-24T02:50:53-0500",
+"a": "love",
+"b": "quiet_stretch_sand",
+"code": "love.interactwith(quiet_stretch_sand){ quiet_stretch_sand.receives(love.envelope); quiet_stretch_sand.remembers(bisola, 'brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up beside the morning at the quiet stretch sand.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
+},
+{
+"id": "wf_753bf501d1",
+"ts": "2026-11-24T02:54:12-0500",
+"a": "love",
+"b": "bed",
+"code": "love.interactwith(bed){ bed.receives(love.envelope); bed.remembers(bisola, 'brown envelope'); bed.tucks(love, 'yaba bookshop receipt into the egbe note'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the bed, and Taiwo reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
+},
+{
+"id": "wf_ba2d28ef1a",
+"ts": "2026-11-24T02:55:53-0500",
+"a": "house",
+"b": "hose",
+"code": "house.interactwith(hose){ hose.receives(house.sign); hose.remembers(kunle, 'nice day sign'); hose.tucks(house, 'marker note into the brown envelope'); }",
+"text": "A Marker note with Kunle's name and 'nice day sign' on it, turns up inside the brown envelope at the hose, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j3"
 }
 ],
 "memories": [
@@ -10989,5 +10999,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-24T02:47:35-0500"
+"updated": "2026-11-24T02:55:53-0500"
 }
