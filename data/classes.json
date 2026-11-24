@@ -106,10 +106,10 @@
    "methods": [
     "say",
     "give",
-    "ask"
+    "watch"
    ],
-   "instances": 432,
-   "arg_instances": 106,
+   "instances": 434,
+   "arg_instances": 107,
    "parent": null,
    "chain": [
     "Thing"
@@ -1509,6 +1509,22 @@
     {
      "text": "-- you look like somebody dat can epp my destiny",
      "year": "2026"
+    }
+   ]
+  },
+  "data": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-5a58c4",
+   "first_job": "j50",
+   "source": "pick",
+   "runs": [
+    "run-5a58c4"
+   ],
+   "tweets": [
+    {
+     "text": "- i go dey look the data",
+     "year": "2025"
     }
    ]
   },
@@ -6411,6 +6427,17 @@
    ],
    "tweets": []
   },
+  "totalnumapps": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-5a58c4",
+   "first_job": "j50",
+   "source": "typed",
+   "runs": [
+    "run-5a58c4"
+   ],
+   "tweets": []
+  },
   "tqid": {
    "class": "Thing",
    "cue": "default",
@@ -7361,18 +7388,6 @@
   ],
   "run-5a58c4": [
    [
-    "bad",
-    "Feeling",
-    "j30",
-    "pick"
-   ],
-   [
-    "balance",
-    "Thing",
-    "j30",
-    "pick"
-   ],
-   [
     "liters",
     "Quantity",
     "j31",
@@ -7595,6 +7610,12 @@
     "pick"
    ],
    [
+    "data",
+    "Thing",
+    "j50",
+    "pick"
+   ],
+   [
     "true",
     "Thing",
     "j28",
@@ -7670,6 +7691,12 @@
     "letter",
     "Thing",
     "j48",
+    "typed"
+   ],
+   [
+    "totalnumapps",
+    "Thing",
+    "j50",
     "typed"
    ],
    [
@@ -11248,6 +11275,7 @@
   "dez.take": "take(what: Thing)",
   "calla.lead": "lead(what: Thing)",
   "marisol.ship": "ship(what: Thing)",
+  "calla.watch": "watch(what: Thing)",
   "cooler.getdatemanufactured": "getDateManufactured()",
   "ronke.getlikes.contains": "getlikes.contains()",
   "kazeem.goodqualities.filter": "filter()",
@@ -11798,5 +11826,5 @@
   "epilogue": "quiet",
   "coda": "quiet"
  },
- "updated": "2026-11-24T14:17:07-05:00"
+ "updated": "2026-11-24T14:47:22-05:00"
 }
