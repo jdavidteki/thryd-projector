@@ -6,7 +6,7 @@ const here = new URL('..', import.meta.url);
 const js = readFileSync(new URL('assets/genie.js', here), 'utf8');
 const html = readFileSync(new URL('index.html', here), 'utf8');
 test('index.html loads genie.js last, after every existing script', ()=>{
-  assert.match(html, /'video_card\.js\?v=2','genie\.js\?v=2'\]/);
+  assert.match(html, /'video_card\.js\?v=\d+','genie\.js\?v=2'\]/);
 });
 test('off switches: ?genie=0, localStorage thryd_genie=0, data/genie.json on:false, reduced motion, phone.html', ()=>{
   assert.match(js, /genie=0/); assert.match(js, /thryd_genie/); assert.match(js, /j\.on === false/);
