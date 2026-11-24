@@ -8105,16 +8105,6 @@
 ],
 "mlkahb": [
 {
-"id": "wf_888f377565",
-"kind": "consequence",
-"text": "The streetlights ends up with the mlkahb, still all dead since 7:35pm.",
-"code": "streetlights.interactwith(mlkahb){ streetlights.db.copyto(mlkahb); mlkahb.keeps(streetlights, 'streetlights, still all dead since 7:35pm'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "w6",
-"other": "streetlights"
-},
-{
 "id": "wf_25fce5d467",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the streetlights, which is still all dead since 7:35pm.",
@@ -8153,6 +8143,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "love"
+},
+{
+"id": "wf_ef996cd494",
+"kind": "consequence",
+"text": "A Laptop note with Taiwo's name and 'lamp soot' on it, turns up inside the brown envelope at the mlkahb, and Bisola reads the name twice.",
+"code": "tf_mom.interactwith(mlkahb){ mlkahb.receives(tf_mom.soot); mlkahb.remembers(taiwo, 'lamp soot'); mlkahb.tucks(tf_mom, 'laptop note into the brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j7",
+"other": "tf_mom"
 }
 ],
 "uncle_ebo": [
@@ -10234,17 +10234,6 @@
 },
 "consequences": [
 {
-"id": "wf_6ffcca7fc6",
-"ts": "2026-11-23T15:36:44-0500",
-"a": "jnoel",
-"b": "computer_village",
-"code": "jnoel.interactwith(computer_village){ computer_village.receives(jnoel.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the computer village, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
 "id": "wf_486bcebc39",
 "ts": "2026-11-23T15:40:20-0500",
 "a": "precision",
@@ -10672,6 +10661,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j7"
+},
+{
+"id": "wf_ef996cd494",
+"ts": "2026-11-23T19:58:11-0500",
+"a": "tf_mom",
+"b": "mlkahb",
+"code": "tf_mom.interactwith(mlkahb){ mlkahb.receives(tf_mom.soot); mlkahb.remembers(taiwo, 'lamp soot'); mlkahb.tucks(tf_mom, 'laptop note into the brown envelope'); }",
+"text": "A Laptop note with Taiwo's name and 'lamp soot' on it, turns up inside the brown envelope at the mlkahb, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j7"
 }
 ],
 "memories": [
@@ -10775,5 +10775,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-23T19:51:21-0500"
+"updated": "2026-11-23T19:58:11-0500"
 }
