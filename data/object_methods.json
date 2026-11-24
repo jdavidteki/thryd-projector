@@ -12525,6 +12525,79 @@
    "faded": true,
    "last_run": "run-5a58c4"
   },
+  "calla.laugh": {
+   "object": "calla",
+   "method": "laugh",
+   "args": [
+    "crowd"
+   ],
+   "runs": [
+    "run-5a58c4"
+   ],
+   "defined": {
+    "run": "run-5a58c4",
+    "job": "j38",
+    "card": "w38",
+    "title": "calla.laugh(crowd)",
+    "emoji": "🎤",
+    "at": "2026-11-24T00:34:37-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "calla.laugh(crowd)",
+     "emoji": "🎤",
+     "arg": "crowd",
+     "run": "run-5a58c4",
+     "job": "j38",
+     "tweets": [
+      {
+       "text": "- what do you mean who",
+       "year": "2024"
+      },
+      {
+       "text": "- go con be condo?!",
+       "year": "2024"
+      },
+      {
+       "text": "#juniorboys - you, ofc!",
+       "year": "2024"
+      }
+     ],
+     "consequence": "Then the kitchen door swings open and Calla walks out laughing, phone still in her hand and still recording.",
+     "consequence_job": "j39",
+     "resolved": "calla.laugh(what=crowd:Thing) from j38",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "crowd",
+       "from_run": "run-5a58c4",
+       "from_job": "j38",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "crowd",
+      "first_run": "run-5a58c4",
+      "first_job": "j38"
+     }
+    ],
+    "text": "laugh(what: Thing)"
+   },
+   "receiver_class": "Person",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
   "cooler.getdatemanufactured": {
    "object": "cooler",
    "method": "getDateManufactured",
@@ -15622,13 +15695,15 @@
    "calla.stare",
    "calla.see",
    "calla.want",
-   "calla.hear"
+   "calla.hear",
+   "calla.laugh"
   ],
   "calla_5a58c4": [
    "calla.stare",
    "calla.see",
    "calla.want",
-   "calla.hear"
+   "calla.hear",
+   "calla.laugh"
   ],
   "cam": [
    "cam.stop"
@@ -16954,6 +17029,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -17705,6 +17781,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -17861,6 +17938,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -17912,6 +17990,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -17963,6 +18042,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -18014,6 +18094,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -18065,6 +18146,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -18116,6 +18198,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -18167,6 +18250,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -18218,6 +18302,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -18269,6 +18354,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -18320,6 +18406,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -18371,6 +18458,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -18422,6 +18510,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -18473,6 +18562,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -18524,6 +18614,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -18575,6 +18666,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -18626,6 +18718,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -18677,6 +18770,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -19098,6 +19192,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -19149,6 +19244,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -19294,6 +19390,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -21026,6 +21123,7 @@
     "from": "f81f21521253",
     "title": "829. a day in the life of god",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -21070,6 +21168,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "teo.lead",
      "teo.figure",
@@ -21115,6 +21214,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "teo.lead",
      "teo.figure",
@@ -21313,6 +21413,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -21642,6 +21743,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -21693,6 +21795,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -21744,6 +21847,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -21795,6 +21899,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -21856,6 +21961,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -21907,6 +22013,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -21958,6 +22065,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -22009,6 +22117,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -22060,6 +22169,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -22218,6 +22328,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -22314,6 +22425,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -22375,6 +22487,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -22436,6 +22549,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -22487,6 +22601,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -22560,6 +22675,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -22611,6 +22727,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -22662,6 +22779,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -22713,6 +22831,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -22764,6 +22883,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -23023,6 +23143,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -23198,6 +23319,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -23260,6 +23382,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -23311,6 +23434,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -23362,6 +23486,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -23413,6 +23538,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -23464,6 +23590,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -23515,6 +23642,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -23892,6 +24020,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -24504,6 +24633,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -24689,6 +24819,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -24740,6 +24871,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -24791,6 +24923,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -24842,6 +24975,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "teo.lead",
      "teo.figure",
@@ -24887,6 +25021,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -24938,6 +25073,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -24989,6 +25125,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -25040,6 +25177,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -25091,6 +25229,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -25142,6 +25281,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -25193,6 +25333,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -25244,6 +25385,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -25295,6 +25437,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -25346,6 +25489,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -25397,6 +25541,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -25448,6 +25593,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -25499,6 +25645,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -25550,6 +25697,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -25601,6 +25749,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -25652,6 +25801,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -25818,6 +25968,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -25879,6 +26030,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -25930,6 +26082,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -25981,6 +26134,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -26032,6 +26186,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -26083,6 +26238,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -26134,6 +26290,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -26185,6 +26342,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -26236,6 +26394,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -26287,6 +26446,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -26338,6 +26498,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -26389,6 +26550,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -26440,6 +26602,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -27719,6 +27882,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -27875,6 +28039,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -28052,6 +28217,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -28239,6 +28405,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -28290,6 +28457,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -28341,6 +28509,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -28392,6 +28561,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -28443,6 +28613,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -28494,6 +28665,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -28545,6 +28717,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -28596,6 +28769,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -28647,6 +28821,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -28698,6 +28873,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -29015,6 +29191,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -29066,6 +29243,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -29581,6 +29759,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -29854,6 +30033,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -29905,6 +30085,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -30072,6 +30253,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "dez.watch",
      "dez.make",
      "dez.use",
@@ -30112,6 +30294,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "dez.watch",
      "dez.make",
      "dez.use",
@@ -30152,6 +30335,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -30203,6 +30387,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -30254,6 +30439,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -30430,6 +30616,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -30595,6 +30782,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -30646,6 +30834,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -30697,6 +30886,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -30748,6 +30938,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -30799,6 +30990,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -30850,6 +31042,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -30901,6 +31094,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -30952,6 +31146,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -31018,6 +31213,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -31440,6 +31636,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -31491,6 +31688,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -31794,6 +31992,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -31959,6 +32158,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.laugh",
      "teo.open",
      "dez.watch",
      "teo.lead",
@@ -32308,7 +32508,8 @@
     "teo.figure",
     "teo.lead",
     "dez.watch",
-    "teo.open"
+    "teo.open",
+    "calla.laugh"
    ]
   },
   "run-7c51d3": {
@@ -33157,6 +33358,13 @@
    ],
    "runs": []
   },
+  "a574892d43f3": {
+   "title": "1104. i say laugh",
+   "funcs": [
+    "calla.laugh"
+   ],
+   "runs": []
+  },
   "a71e531bad71": {
    "title": "",
    "funcs": [
@@ -33546,7 +33754,8 @@
     "teo.figure",
     "teo.lead",
     "dez.watch",
-    "teo.open"
+    "teo.open",
+    "calla.laugh"
    ],
    "runs": [
     "run-5a58c4"
@@ -33789,6 +33998,9 @@
   ],
   "1*SKqzlBc1vQA5PWKQJUBt-g.gif": [
    "ecbaffa655c1"
+  ],
+  "1*PazOivjHaFfUH4x1xQ-GSw.gif": [
+   "a574892d43f3"
   ],
   "1*URiYsW3-nkTqkmX-GsiZTA.gif": [
    "058a1a2478c5"
@@ -34802,7 +35014,8 @@
    "calla.stare",
    "calla.see",
    "calla.want",
-   "calla.hear"
+   "calla.hear",
+   "calla.laugh"
   ],
   "cam": [
    "cam.stop"
@@ -35614,5 +35827,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-24T00:14:59-05:00"
+ "updated": "2026-11-24T00:35:23-05:00"
 }
