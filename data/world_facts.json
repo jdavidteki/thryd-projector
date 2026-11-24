@@ -6131,6 +6131,16 @@
 "run": "run-g1-B",
 "card": "j6",
 "other": "love"
+},
+{
+"id": "wf_78b991c505",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the god, and Bisola reads the name twice.",
+"code": "reality.interactwith(god){ god.receives(reality.envelope); god.remembers(bisola, 'brown envelope'); god.tucks(reality, 'yaba bookshop receipt into the brown envelope'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "reality"
 }
 ],
 "tnw": [
@@ -10602,17 +10612,6 @@
 },
 "consequences": [
 {
-"id": "wf_a4e69d1909",
-"ts": "2026-11-24T03:13:22-0500",
-"a": "hose",
-"b": "bicycle",
-"code": "hose.interactwith(bicycle){ bicycle.receives(hose.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bicycle, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
 "id": "wf_3553d58ec2",
 "ts": "2026-11-24T03:17:30-0500",
 "a": "hpr",
@@ -11040,6 +11039,17 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": "j6"
+},
+{
+"id": "wf_78b991c505",
+"ts": "2026-11-24T13:37:31-0500",
+"a": "reality",
+"b": "god",
+"code": "reality.interactwith(god){ god.receives(reality.envelope); god.remembers(bisola, 'brown envelope'); god.tucks(reality, 'yaba bookshop receipt into the brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the god, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
 }
 ],
 "memories": [
@@ -11143,5 +11153,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-24T13:35:48-0500"
+"updated": "2026-11-24T13:37:31-0500"
 }
