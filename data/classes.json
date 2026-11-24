@@ -108,8 +108,8 @@
     "give",
     "see"
    ],
-   "instances": 445,
-   "arg_instances": 116,
+   "instances": 446,
+   "arg_instances": 117,
    "parent": null,
    "chain": [
     "Thing"
@@ -176,8 +176,8 @@
     "count",
     "map"
    ],
-   "instances": 18,
-   "arg_instances": 15,
+   "instances": 20,
+   "arg_instances": 17,
    "parent": "Thing",
    "chain": [
     "Action",
@@ -773,6 +773,22 @@
    "tweets": [
     {
      "text": "— we need to sit down on it and [[balance]]",
+     "year": "2025"
+    }
+   ]
+  },
+  "bank": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-5a58c4",
+   "first_job": "j59",
+   "source": "pick",
+   "runs": [
+    "run-5a58c4"
+   ],
+   "tweets": [
+    {
+     "text": "— sign i fail?",
      "year": "2025"
     }
    ]
@@ -2134,6 +2150,10 @@
     },
     {
      "text": "[[mmbt]] - everything don align",
+     "year": "2025"
+    },
+    {
+     "text": "-- i created [[everything]]",
      "year": "2025"
     }
    ]
@@ -5730,6 +5750,26 @@
    ],
    "tweets": []
   },
+  "sender": {
+   "class": "Action",
+   "cue": "tweet: to/will ...",
+   "first_run": "run-5a58c4",
+   "first_job": "j59",
+   "source": "pick",
+   "runs": [
+    "run-5a58c4"
+   ],
+   "tweets": [
+    {
+     "text": "#juniorboys - archetypal",
+     "year": "2024"
+    },
+    {
+     "text": "[[stm]] - oluwa back to sender",
+     "year": "2024"
+    }
+   ]
+  },
   "seniorgehs": {
    "class": "Person",
    "cue": "word",
@@ -7230,6 +7270,26 @@
    ],
    "tweets": []
   },
+  "work": {
+   "class": "Action",
+   "cue": "tweet: to/will ...",
+   "first_run": "run-5a58c4",
+   "first_job": "j59",
+   "source": "pick",
+   "runs": [
+    "run-5a58c4"
+   ],
+   "tweets": [
+    {
+     "text": "- say it so it will happen",
+     "year": "2025"
+    },
+    {
+     "text": "- believe it so it can work",
+     "year": "2025"
+    }
+   ]
+  },
   "world": {
    "class": "Place",
    "cue": "word",
@@ -7614,24 +7674,6 @@
   ],
   "run-5a58c4": [
    [
-    "front",
-    "Thing",
-    "j36",
-    "pick"
-   ],
-   [
-    "precision",
-    "Quantity",
-    "j37",
-    "pick"
-   ],
-   [
-    "crowd",
-    "Thing",
-    "j38",
-    "pick"
-   ],
-   [
     "look",
     "Thing",
     "j39",
@@ -7800,12 +7842,6 @@
     "pick"
    ],
    [
-    "everything",
-    "Thing",
-    "j55",
-    "pick"
-   ],
-   [
     "heaven",
     "Thing",
     "j56",
@@ -7821,6 +7857,30 @@
     "table",
     "Thing",
     "j58",
+    "pick"
+   ],
+   [
+    "sender",
+    "Action",
+    "j59",
+    "pick"
+   ],
+   [
+    "work",
+    "Action",
+    "j59",
+    "pick"
+   ],
+   [
+    "bank",
+    "Thing",
+    "j59",
+    "pick"
+   ],
+   [
+    "everything",
+    "Thing",
+    "j59",
     "pick"
    ],
    [
@@ -11515,6 +11575,10 @@
   "marisol.align": "align(what: Thing)",
   "marisol.call": "call(what: Thing)",
   "dez.shake": "shake(what: Thing)",
+  "calla.return": "return(act: Action)",
+  "dez.believe": "believe(act: Action)",
+  "marisol.laugh": "laugh(what: Thing)",
+  "teo.create": "create(what: Thing)",
   "cooler.getdatemanufactured": "getDateManufactured()",
   "ronke.getlikes.contains": "getlikes.contains()",
   "kazeem.goodqualities.filter": "filter()",
@@ -12065,5 +12129,5 @@
   "epilogue": "quiet",
   "coda": "quiet"
  },
- "updated": "2026-11-24T18:37:16-05:00"
+ "updated": "2026-11-24T18:45:33-05:00"
 }
