@@ -8329,6 +8329,16 @@
 "run": "run-2eb42d",
 "card": "w7",
 "other": "twgs"
+},
+{
+"id": "wf_24a87efa8a",
+"kind": "consequence",
+"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the brown envelope at the teach, and Bisola reads the name twice.",
+"code": "example.interactwith(teach){ teach.receives(example.shirt); … }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j8",
+"other": "example"
 }
 ],
 "new": [
@@ -10224,17 +10234,6 @@
 },
 "consequences": [
 {
-"id": "wf_fa1ba84210",
-"ts": "2026-11-23T14:15:43-0500",
-"a": "b_md",
-"b": "plastic_sheet",
-"code": "b_md.interactwith(plastic_sheet){ plastic_sheet.receives(b_md.envelope); plastic_sheet.remembers(bisola, 'brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the plastic sheet, which is still wet.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
 "id": "wf_b1079f41d3",
 "ts": "2026-11-23T14:25:55-0500",
 "a": "atp",
@@ -10662,6 +10661,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_24a87efa8a",
+"ts": "2026-11-23T19:05:54-0500",
+"a": "example",
+"b": "teach",
+"code": "example.interactwith(teach){ teach.receives(example.shirt); … }",
+"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the brown envelope at the teach, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j8"
 }
 ],
 "memories": [
@@ -10765,5 +10775,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-23T18:57:54-0500"
+"updated": "2026-11-23T19:05:54-0500"
 }
