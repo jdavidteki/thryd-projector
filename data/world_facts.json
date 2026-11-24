@@ -2407,16 +2407,6 @@
 ],
 "bus": [
 {
-"id": "wf_bc53e48a29",
-"kind": "consequence",
-"text": "A Red white cap note with Taiwo's name and 'egbe note' on it, 11:20pm, turns up inside the brown envelope at the bus, and Bisola reads the name twice.",
-"code": "red_white_cap.interactwith(bus){ bus.receives(red_white_cap.note); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "w7",
-"other": "red_white_cap"
-},
-{
 "id": "wf_066eb7c147",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bus, and Bisola reads the name twice.",
@@ -2455,6 +2445,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "jnoel"
+},
+{
+"id": "wf_f29262a8af",
+"kind": "consequence",
+"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the brown envelope at the bus, and Bisola reads the name twice.",
+"code": "lady.interactwith(bus){ bus.receives(lady.shirt); bus.remembers(bisola, 'green shirt'); bus.tucks(lady, 'ikeja laundromat receipt into the brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j8",
+"other": "lady"
 }
 ],
 "hands": [
@@ -6071,16 +6071,6 @@
 ],
 "icsh": [
 {
-"id": "wf_c9ca44d8f3",
-"kind": "consequence",
-"text": "The icsh leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
-"code": "marina_biscayne_bay.interactwith(icsh){ icsh.receives(marina_biscayne_bay.code); icsh.remembers(ejiro, 'juju code'); }",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j2",
-"other": "marina_biscayne_bay"
-},
-{
 "id": "wf_62884f3410",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the juju code at the icsh, and Ejiro reads the name twice.",
@@ -6119,6 +6109,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "lie"
+},
+{
+"id": "wf_5fe96e5408",
+"kind": "consequence",
+"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the brown envelope at the icsh, and Bisola reads the name twice.",
+"code": "lady.interactwith(icsh){ icsh.receives(lady.shirt); icsh.remembers(bisola, 'green shirt'); icsh.tucks(lady, 'ikeja laundromat receipt into the brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j8",
+"other": "lady"
 }
 ],
 "jetty_south_pointe": [
@@ -10234,39 +10234,6 @@
 },
 "consequences": [
 {
-"id": "wf_6320ac201c",
-"ts": "2026-11-23T15:02:39-0500",
-"a": "lie",
-"b": "wser",
-"code": "lie.interactwith(wser){ wser.receives(lie.envelope); wser.remembers(bisola, 'brown envelope'); }",
-"text": "The wser leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
-"id": "wf_5787f5d3e4",
-"ts": "2026-11-23T15:10:52-0500",
-"a": "cell_phone",
-"b": "pure_water_cooler",
-"code": "cell_phone.interactwith(pure_water_cooler){ pure_water_cooler.receives(cell_phone.envelope); pure_water_cooler.remembers(bisola, 'brown envelope'); }",
-"text": "A Cell phone note with Bisola's name and 'brown envelope' on it, turns up with the pure-water cooler, which is still carried home through the flood.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
-"id": "wf_72f2ad1049",
-"ts": "2026-11-23T15:13:34-0500",
-"a": "lie",
-"b": "divine",
-"code": "lie.interactwith(divine){ divine.receives(lie.envelope); divine.remembers(bisola, 'brown envelope'); divine.tucks(lie, 'yaba bookshop receipt into the green shirt'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the green shirt at the divine, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
 "id": "wf_c27ecef253",
 "ts": "2026-11-23T15:27:25-0500",
 "a": "love",
@@ -10672,6 +10639,39 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_f29262a8af",
+"ts": "2026-11-23T19:25:28-0500",
+"a": "lady",
+"b": "bus",
+"code": "lady.interactwith(bus){ bus.receives(lady.shirt); bus.remembers(bisola, 'green shirt'); bus.tucks(lady, 'ikeja laundromat receipt into the brown envelope'); }",
+"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the brown envelope at the bus, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j8"
+},
+{
+"id": "wf_5fe96e5408",
+"ts": "2026-11-23T19:28:05-0500",
+"a": "lady",
+"b": "icsh",
+"code": "lady.interactwith(icsh){ icsh.receives(lady.shirt); icsh.remembers(bisola, 'green shirt'); icsh.tucks(lady, 'ikeja laundromat receipt into the brown envelope'); }",
+"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the brown envelope at the icsh, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j8"
+},
+{
+"id": "wf_6f984f653f",
+"ts": "2026-11-23T19:28:59-0500",
+"a": "vex",
+"b": "kazeem",
+"code": "vex.interactwith(kazeem){ kazeem.receives(vex.envelope); kazeem.remembers(bisola, 'brown envelope'); }",
+"text": "The kazeem leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -10775,5 +10775,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-23T19:23:42-0500"
+"updated": "2026-11-23T19:28:59-0500"
 }
