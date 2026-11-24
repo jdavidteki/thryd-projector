@@ -72,7 +72,7 @@
       let x = rnd(tot);
       for(const c of pool){ x -= Math.max(0.01, +c.score || 0); if(x <= 0){ pick = c; break; } }
       if(!pick && pool.length) pick = pool[pool.length - 1];
-      if(pick){ mode = 'pulse'; why = {src: 'match', text: pick.why, line: pick.line, title: pick.title, job: p.job}; }
+      if(pick){ mode = 'pulse'; why = {src: 'match', text: pick.why, line: pick.line, title: pick.title, job: p.job, trigger: pick.trigger || '', trigger_job: pick.trigger_job || '', agenda: pick.agenda_title || ''}; }
     }
     let id = pick ? pick.id : shuffle(accept, rec);
     if(!id){ id = shuffle(accept, new Set()); }
@@ -88,10 +88,23 @@
 
   // the light pill under the lyrics: why this song, in story terms; stays while the song plays
   let note = null;
-  const CSS = 'position:fixed;right:1.5vw;top:calc(7.4vh + 20px + max(10px,1.3vh)*1.5);max-width:min(46vw,560px);z-index:60;pointer-events:none;font-size:max(10px,1.15vh);line-height:1.35;color:#111;background:rgba(255,255,255,.78);border:0;border-radius:999px;padding:2px 10px;opacity:0;transition:opacity .8s ease;text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis';
-  DJ.showWhy = function(w){ w = w || DJ.why; if(!w || !w.text || !document.body) return;
+  const CSS = 'position:fixed;right:1.5vw;top:calc(7.4vh + 20px + max(10px,1.3vh)*1.5);max-width:min(52vw,620px);z-index:60;pointer-events:none;font-size:max(10px,1.15vh);line-height:1.35;color:#111;background:rgba(255,255,255,.78);border:0;border-radius:12px;padding:4px 12px;opacity:0;transition:opacity .8s ease;text-align:right;white-space:pre-line;overflow:hidden';
+  function whyText(w){
+    const song = (w.line && String(w.line).trim()) ? ('♪ “' + String(w.line).trim() + '”') : (w.text || '');
+    const trig = (w.trigger && String(w.trigger).trim()) || '';
+    if(!trig) return song;
+    const job = (w.trigger_job && String(w.trigger_job).trim()) || '';
+    const ag = (w.agenda && String(w.agenda).trim()) || '';
+    let second = trig;
+    if(job) second = job + ': ' + trig;
+    if(ag) second += '  ·  ' + ag;
+    return song + '\n' + second;
+  }
+  DJ.showWhy = function(w){ w = w || DJ.why; if(!w || !(w.text || w.line) || !document.body) return;
     if(!note){ note = document.createElement('div'); note.id = 'yoki_why'; document.body.appendChild(note); }
-    note.style.cssText = CSS; note.textContent = w.text; note.title = w.text; requestAnimationFrame(()=>{ note.style.opacity = '1'; }); };
+    const text = whyText(w);
+    if(!text) return;
+    note.style.cssText = CSS; note.textContent = text; note.title = text; requestAnimationFrame(()=>{ note.style.opacity = '1'; }); };
   DJ.hideWhy = ()=>{ if(note) note.style.opacity = '0'; };
 
   DJ.next = next;
