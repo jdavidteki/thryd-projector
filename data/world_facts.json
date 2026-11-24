@@ -2925,16 +2925,6 @@
 ],
 "bed": [
 {
-"id": "wf_8de4442dcb",
-"kind": "consequence",
-"text": "A Teo note with Bisola's name and 'folded receipt' on it, turns up inside the egbe note at the bed, and Taiwo reads the name twice.",
-"code": "teo.interactwith(bed){ bed.receives(teo.receipt); bed.remembers(bisola, 'folded receipt'); bed.tucks(teo, 'teo note into the egbe note'); }",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6",
-"other": "teo"
-},
-{
 "id": "wf_fc968e3bb3",
 "kind": "consequence",
 "text": "A Marker note with Kunle's name and 'nice day sign' on it, turns up inside the egbe note at the bed, and Taiwo reads the name twice.",
@@ -2963,6 +2953,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "seniorgehs"
+},
+{
+"id": "wf_23ff4e420e",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the bed, and Taiwo reads the name twice.",
+"code": "niaw.interactwith(bed){ bed.receives(niaw.envelope); bed.remembers(bisola, 'brown envelope'); bed.tucks(niaw, 'yaba bookshop receipt into the egbe note'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "niaw"
 },
 {
 "id": "wt_740c0937a2",
@@ -6081,16 +6081,6 @@
 ],
 "icsh": [
 {
-"id": "wf_62884f3410",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the juju code at the icsh, and Ejiro reads the name twice.",
-"code": "matbaotstaili.interactwith(icsh){ icsh.receives(matbaotstaili.envelope); … }",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6",
-"other": "matbaotstaili"
-},
-{
 "id": "wf_bf8263a9fe",
 "kind": "consequence",
 "text": "A Bird note with Taiwo's name and 'lamp soot' on it, turns up inside the brown envelope at the icsh, and Bisola reads the name twice.",
@@ -6129,6 +6119,16 @@
 "run": "run-2eb42d",
 "card": "j8",
 "other": "lady"
+},
+{
+"id": "wf_918c7dbf64",
+"kind": "consequence",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the green shirt at the icsh, and Bisola reads the name twice.",
+"code": "ttb.interactwith(icsh){ icsh.receives(ttb.code); icsh.remembers(ejiro, 'juju code'); icsh.tucks(ttb, 'ttb note into the green shirt'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j2",
+"other": "ttb"
 }
 ],
 "jetty_south_pointe": [
@@ -10334,28 +10334,6 @@
 },
 "consequences": [
 {
-"id": "wf_9d7cb09810",
-"ts": "2026-11-23T20:52:14-0500",
-"a": "twgs",
-"b": "mlkahb",
-"code": "twgs.interactwith(mlkahb){ mlkahb.receives(twgs.number); mlkahb.remembers(kunle, 'scorched container number'); mlkahb.tucks(twgs, 'sheep note into the brown envelope'); }",
-"text": "A Sheep note with Kunle's name and 'scorched container number' on it, turns up inside the brown envelope at the mlkahb, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "w7"
-},
-{
-"id": "wf_0daa693d97",
-"ts": "2026-11-23T20:56:30-0500",
-"a": "yuwa",
-"b": "mama_ronke",
-"code": "yuwa.interactwith(mama_ronke){ mama_ronke.receives(yuwa.envelope); mama_ronke.remembers(bisola, 'brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the Mama Ronke, which is still present.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
 "id": "wf_5b0c1e3da4",
 "ts": "2026-11-23T21:03:21-0500",
 "a": "yuwa",
@@ -10772,6 +10750,28 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_23ff4e420e",
+"ts": "2026-11-24T00:39:37-0500",
+"a": "niaw",
+"b": "bed",
+"code": "niaw.interactwith(bed){ bed.receives(niaw.envelope); bed.remembers(bisola, 'brown envelope'); bed.tucks(niaw, 'yaba bookshop receipt into the egbe note'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the bed, and Taiwo reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
+},
+{
+"id": "wf_918c7dbf64",
+"ts": "2026-11-24T00:43:01-0500",
+"a": "ttb",
+"b": "icsh",
+"code": "ttb.interactwith(icsh){ icsh.receives(ttb.code); icsh.remembers(ejiro, 'juju code'); icsh.tucks(ttb, 'ttb note into the green shirt'); }",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the green shirt at the icsh, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j2"
 }
 ],
 "memories": [
@@ -10875,5 +10875,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-24T00:37:04-0500"
+"updated": "2026-11-24T00:43:01-0500"
 }
