@@ -775,26 +775,6 @@
 ],
 "pure_water_cooler": [
 {
-"id": "wf_696fcc3a37",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the pure-water cooler, which is still carried home through the flood.",
-"code": "sports_ball.interactwith(pure_water_cooler){ pure_water_cooler.receives(sports_ball.envelope); pure_water_cooler.remembers(bisola, 'brown envelope'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "sports_ball"
-},
-{
-"id": "wf_5787f5d3e4",
-"kind": "consequence",
-"text": "A Cell phone note with Bisola's name and 'brown envelope' on it, turns up with the pure-water cooler, which is still carried home through the flood.",
-"code": "cell_phone.interactwith(pure_water_cooler){ pure_water_cooler.receives(cell_phone.envelope); pure_water_cooler.remembers(bisola, 'brown envelope'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "cell_phone"
-},
-{
 "id": "wf_ca258e55d6",
 "kind": "consequence",
 "text": "The Mama Ronke ends up with the pure water cooler, still present.",
@@ -813,6 +793,26 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "vex"
+},
+{
+"id": "wt_dfcda85813",
+"kind": "consequence",
+"text": "Because the tap runs again, the plastic sheet comes off the cooler and it gets rinsed and refilled from the tap.",
+"code": "pure_water_cooler.interactwith(hall_tap){ pure_water_cooler.receives(hall_tap, 'water'); … }",
+"author": "cos",
+"run": "story-4b1689",
+"card": "j171",
+"other": "hall_tap"
+},
+{
+"id": "wt_7aec0dae63",
+"kind": "consequence",
+"text": "Back at the hall Ronke drops the first coins of the new àjọ round into the cooler's empty tin, paid from her orange money.",
+"code": "ronke.interactwith(pure_water_cooler){ ronke.pays(pure_water_cooler, 'change tin'); … }",
+"author": "cos",
+"run": "story-4b1689",
+"card": "j171",
+"other": "ronke"
 },
 {
 "id": "wt_61e16c7796",
@@ -2701,16 +2701,6 @@
 ],
 "cell_phone": [
 {
-"id": "wf_5b0c1e3da4",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the cell phone, and Bisola reads the name twice.",
-"code": "yuwa.interactwith(cell_phone){ cell_phone.receives(yuwa.envelope); … }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "yuwa"
-},
-{
 "id": "wf_a55fa06578",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the cell phone, and Bisola reads the name twice.",
@@ -2739,6 +2729,16 @@
 "run": "run-5a58c4",
 "card": "j6",
 "other": "marisol"
+},
+{
+"id": "wf_3842023b0f",
+"kind": "consequence",
+"text": "A Marker note with Kunle's name and 'nice day sign' on it, turns up inside the brown envelope at the cell phone, and Bisola reads the name twice.",
+"code": "house.interactwith(cell_phone){ cell_phone.receives(house.sign); … }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j3",
+"other": "house"
 },
 {
 "id": "wt_775c701ecb",
@@ -2925,16 +2925,6 @@
 ],
 "bed": [
 {
-"id": "wf_a134c7311e",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the bed, and Taiwo reads the name twice.",
-"code": "seniorgehs.interactwith(bed){ bed.receives(seniorgehs.envelope); … }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "seniorgehs"
-},
-{
 "id": "wf_23ff4e420e",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the bed, and Taiwo reads the name twice.",
@@ -2963,6 +2953,16 @@
 "run": "run-5a58c4",
 "card": "j6",
 "other": "love"
+},
+{
+"id": "wf_411dbb6974",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the bed, and Taiwo reads the name twice.",
+"code": "kmb.interactwith(bed){ bed.receives(kmb.envelope); bed.remembers(bisola, 'brown envelope'); bed.tucks(kmb, 'yaba bookshop receipt into the egbe note'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "kmb"
 },
 {
 "id": "wt_740c0937a2",
@@ -5083,16 +5083,6 @@
 ],
 "top_deck_charter": [
 {
-"id": "wf_8851239517",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the top deck charter, and Bisola reads the name twice.",
-"code": "matbaotstaili.interactwith(top_deck_charter){ top_deck_charter.receives(matbaotstaili.envelope); … }",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6",
-"other": "matbaotstaili"
-},
-{
 "id": "wf_699bb8f10b",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the top deck charter, and Bisola reads the name twice.",
@@ -5131,6 +5121,16 @@
 "run": "run-5a58c4",
 "card": "j6",
 "other": "sandal"
+},
+{
+"id": "wf_669cd37546",
+"kind": "consequence",
+"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the brown envelope at the top deck charter, and Bisola reads the name twice.",
+"code": "icsh.interactwith(top_deck_charter){ top_deck_charter.receives(icsh.shirt); … }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j8",
+"other": "icsh"
 }
 ],
 "fire_escape_outside": [
@@ -8215,16 +8215,6 @@
 ],
 "ojuelegba_bus_stop": [
 {
-"id": "wf_ca0f83fe27",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the ojuelegba bus stop, and Bisola reads the name twice.",
-"code": "bow.interactwith(ojuelegba_bus_stop){ ojuelegba_bus_stop.receives(bow.envelope); … }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "bow"
-},
-{
 "id": "wt_f91132f1ce",
 "kind": "consequence",
 "text": "With her payout Ronke takes a danfo to the Ojuelegba bus stop and buys the last ice block of the evening there, so the hall cooler won't depend on a miracle to stay cold next meeting.",
@@ -8263,6 +8253,16 @@
 "run": "run-2eb42d",
 "card": "j8",
 "other": "example"
+},
+{
+"id": "wt_ee467ae196",
+"kind": "consequence",
+"text": "The next morning Ronke sells the washed oranges to the danfo queue at the Ojuelegba bus stop.",
+"code": "ronke.interactwith(ojuelegba_bus_stop){ ronke.sells(ojuelegba_bus_stop, 'oranges'); … }",
+"author": "cos",
+"run": "story-4b1689",
+"card": "j171",
+"other": "ronke"
 }
 ],
 "usher_by_kiss": [
@@ -10347,6 +10347,16 @@
 "run": "story-4b1689",
 "card": "j88",
 "other": "ronke"
+},
+{
+"id": "wt_2158955248",
+"kind": "consequence",
+"text": "At the bus stop the investor buys two oranges from Ronke and softens a little, though he is still waiting on the next egusi pot.",
+"code": "investor.interactwith(ronke){ investor.buys(ronke, 'oranges'); … }",
+"author": "cos",
+"run": "story-4b1689",
+"card": "j171",
+"other": "ronke"
 }
 ],
 "cooler_figure": [
@@ -10484,108 +10494,21 @@
 "card": "j6",
 "other": "kmb"
 }
+],
+"hall_tap": [
+{
+"id": "wt_8c716b9d09",
+"kind": "consequence",
+"text": "At the end of the night Ronke opens the hall tap and it runs strong again, strong enough to fill a bucket.",
+"code": "ronke.interactwith(hall_tap){ ronke.opens(hall_tap, 'water'); hall_tap.set('water', 'running again at the end of the night, strong enough to fill a bucket'); }",
+"author": "cos",
+"run": "story-4b1689",
+"card": "j171",
+"other": "ronke"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_ab00a8b670",
-"ts": "2026-11-24T02:06:05-0500",
-"a": "marker_b",
-"b": "teo",
-"code": "marker_b.interactwith(teo){ teo.receives(marker_b.envelope); teo.remembers(bisola, 'brown envelope'); }",
-"text": "The teo leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
-"id": "wf_af74c90a3b",
-"ts": "2026-11-24T02:07:46-0500",
-"a": "youngteacher",
-"b": "bird",
-"code": "youngteacher.interactwith(bird){ bird.receives(youngteacher.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the envelope corner at the bird, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
-"id": "wf_a904e75af7",
-"ts": "2026-11-24T02:08:36-0500",
-"a": "water",
-"b": "heatflag",
-"code": "water.interactwith(heatflag){ heatflag.receives(water.code); heatflag.remembers(ejiro, 'juju code'); }",
-"text": "The heatflag leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j2"
-},
-{
-"id": "wf_92887563bc",
-"ts": "2026-11-24T02:09:29-0500",
-"a": "tbp",
-"b": "sports_ball",
-"code": "tbp.interactwith(sports_ball){ sports_ball.receives(tbp.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the sports ball, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
-"id": "wf_bc21b28cff",
-"ts": "2026-11-24T02:10:20-0500",
-"a": "marker_c",
-"b": "marker_b",
-"code": "marker_c.interactwith(marker_b){ marker_b.receives(marker_c.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the marker b, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
-"id": "wf_4be54aa91f",
-"ts": "2026-11-24T02:11:11-0500",
-"a": "kmb",
-"b": "tsis",
-"code": "kmb.interactwith(tsis){ tsis.receives(kmb.envelope); tsis.remembers(bisola, 'brown envelope'); }",
-"text": "The tsis leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
-"id": "wf_fc190c81b7",
-"ts": "2026-11-24T02:13:40-0500",
-"a": "icsh",
-"b": "bed",
-"code": "icsh.interactwith(bed){ bed.receives(icsh.shirt); bed.remembers(bisola, 'green shirt'); bed.tucks(icsh, 'ikeja laundromat receipt into the egbe note'); }",
-"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the egbe note at the bed, and Taiwo reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j8"
-},
-{
-"id": "wf_f872319710",
-"ts": "2026-11-24T02:14:33-0500",
-"a": "laptop",
-"b": "teo",
-"code": "laptop.interactwith(teo){ teo.receives(laptop.soot); teo.remembers(taiwo, 'lamp soot'); }",
-"text": "The teo leaves with a Laptop note with Taiwo's name and 'lamp soot' on it.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j7"
-},
-{
-"id": "wf_f0d2475848",
-"ts": "2026-11-24T02:15:24-0500",
-"a": "quiet_stretch_sand",
-"b": "teo",
-"code": "quiet_stretch_sand.interactwith(teo){ teo.receives(quiet_stretch_sand.morning); }",
-"text": "The teo now remembers the quiet stretch sand: 5:50pm, Tuesday 3 November 2026: The morning at the ramp is behind them.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j31"
-},
 {
 "id": "wf_df442ebfda",
 "ts": "2026-11-24T02:16:15-0500",
@@ -10926,6 +10849,105 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": "j3"
+},
+{
+"id": "wf_411dbb6974",
+"ts": "2026-11-24T10:32:16-0500",
+"a": "kmb",
+"b": "bed",
+"code": "kmb.interactwith(bed){ bed.receives(kmb.envelope); bed.remembers(bisola, 'brown envelope'); bed.tucks(kmb, 'yaba bookshop receipt into the egbe note'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the bed, and Taiwo reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
+},
+{
+"id": "wt_8c716b9d09",
+"ts": "2026-11-24T10:32:49-0500",
+"a": "ronke",
+"b": "hall_tap",
+"code": "ronke.interactwith(hall_tap){ ronke.opens(hall_tap, 'water'); hall_tap.set('water', 'running again at the end of the night, strong enough to fill a bucket'); }",
+"text": "At the end of the night Ronke opens the hall tap and it runs strong again, strong enough to fill a bucket.",
+"author": "cos",
+"run": "story-4b1689",
+"card": "j171"
+},
+{
+"id": "wt_dfcda85813",
+"ts": "2026-11-24T10:32:49-0500",
+"a": "hall_tap",
+"b": "pure_water_cooler",
+"code": "pure_water_cooler.interactwith(hall_tap){ pure_water_cooler.receives(hall_tap, 'water'); … }",
+"text": "Because the tap runs again, the plastic sheet comes off the cooler and it gets rinsed and refilled from the tap.",
+"author": "cos",
+"run": "story-4b1689",
+"card": "j171"
+},
+{
+"id": "wt_ec8246d0db",
+"ts": "2026-11-24T10:32:49-0500",
+"a": "hall_tap",
+"b": "ronke",
+"code": "ronke.interactwith(hall_tap){ ronke.washes(hall_tap, 'oranges'); ronke.set('oranges', 'washed at the hall tap and packed in a basin to sell in the morning'); }",
+"text": "With water running, Ronke washes the oranges she means to sell at the hall tap and packs them in a basin for the morning.",
+"author": "cos",
+"run": "story-4b1689",
+"card": "j171"
+},
+{
+"id": "wt_ee467ae196",
+"ts": "2026-11-24T10:32:49-0500",
+"a": "ronke",
+"b": "ojuelegba_bus_stop",
+"code": "ronke.interactwith(ojuelegba_bus_stop){ ronke.sells(ojuelegba_bus_stop, 'oranges'); … }",
+"text": "The next morning Ronke sells the washed oranges to the danfo queue at the Ojuelegba bus stop.",
+"author": "cos",
+"run": "story-4b1689",
+"card": "j171"
+},
+{
+"id": "wt_2158955248",
+"ts": "2026-11-24T10:32:49-0500",
+"a": "ronke",
+"b": "investor",
+"code": "investor.interactwith(ronke){ investor.buys(ronke, 'oranges'); … }",
+"text": "At the bus stop the investor buys two oranges from Ronke and softens a little, though he is still waiting on the next egusi pot.",
+"author": "cos",
+"run": "story-4b1689",
+"card": "j171"
+},
+{
+"id": "wt_7aec0dae63",
+"ts": "2026-11-24T10:32:49-0500",
+"a": "ronke",
+"b": "pure_water_cooler",
+"code": "ronke.interactwith(pure_water_cooler){ ronke.pays(pure_water_cooler, 'change tin'); … }",
+"text": "Back at the hall Ronke drops the first coins of the new àjọ round into the cooler's empty tin, paid from her orange money.",
+"author": "cos",
+"run": "story-4b1689",
+"card": "j171"
+},
+{
+"id": "wf_3842023b0f",
+"ts": "2026-11-24T10:34:51-0500",
+"a": "house",
+"b": "cell_phone",
+"code": "house.interactwith(cell_phone){ cell_phone.receives(house.sign); … }",
+"text": "A Marker note with Kunle's name and 'nice day sign' on it, turns up inside the brown envelope at the cell phone, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j3"
+},
+{
+"id": "wf_669cd37546",
+"ts": "2026-11-24T10:35:44-0500",
+"a": "icsh",
+"b": "top_deck_charter",
+"code": "icsh.interactwith(top_deck_charter){ top_deck_charter.receives(icsh.shirt); … }",
+"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the brown envelope at the top deck charter, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j8"
 }
 ],
 "memories": [
@@ -11029,5 +11051,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-24T10:31:18-0500"
+"updated": "2026-11-24T10:35:44-0500"
 }
