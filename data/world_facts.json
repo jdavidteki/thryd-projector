@@ -1035,16 +1035,6 @@
 ],
 "streetlights": [
 {
-"id": "wf_c4492f219e",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the streetlights, which is still all dead since 7:35pm.",
-"code": "bicycle.interactwith(streetlights){ streetlights.receives(bicycle.envelope); streetlights.remembers(bisola, 'brown envelope'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "bicycle"
-},
-{
 "id": "wf_99ff1ba63c",
 "kind": "consequence",
 "text": "A Laptop note with Taiwo's name and 'lamp soot' on it, turns up with the streetlights, which is still all dead since 7:35pm.",
@@ -1073,6 +1063,16 @@
 "run": "run-2eb42d",
 "card": "j44",
 "other": "danfo_speaker"
+},
+{
+"id": "wf_b6f7b3108d",
+"kind": "consequence",
+"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up with the streetlights, which is still all dead since 7:35pm.",
+"code": "icsh.interactwith(streetlights){ streetlights.receives(icsh.shirt); streetlights.remembers(bisola, 'green shirt'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j8",
+"other": "icsh"
 },
 {
 "id": "wf_32b4be23e9",
@@ -10284,17 +10284,6 @@
 },
 "consequences": [
 {
-"id": "wf_5fe96e5408",
-"ts": "2026-11-23T19:28:05-0500",
-"a": "lady",
-"b": "icsh",
-"code": "lady.interactwith(icsh){ icsh.receives(lady.shirt); icsh.remembers(bisola, 'green shirt'); icsh.tucks(lady, 'ikeja laundromat receipt into the brown envelope'); }",
-"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the brown envelope at the icsh, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j8"
-},
-{
 "id": "wf_6f984f653f",
 "ts": "2026-11-23T19:28:59-0500",
 "a": "vex",
@@ -10722,6 +10711,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_b6f7b3108d",
+"ts": "2026-11-23T23:27:25-0500",
+"a": "icsh",
+"b": "streetlights",
+"code": "icsh.interactwith(streetlights){ streetlights.receives(icsh.shirt); streetlights.remembers(bisola, 'green shirt'); }",
+"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up with the streetlights, which is still all dead since 7:35pm.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j8"
 }
 ],
 "memories": [
@@ -10825,5 +10825,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-23T23:20:38-0500"
+"updated": "2026-11-23T23:28:16-0500"
 }
