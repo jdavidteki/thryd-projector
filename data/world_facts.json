@@ -1943,16 +1943,6 @@
 ],
 "bird": [
 {
-"id": "wf_af74c90a3b",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the envelope corner at the bird, and Bisola reads the name twice.",
-"code": "youngteacher.interactwith(bird){ bird.receives(youngteacher.envelope); … }",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6",
-"other": "youngteacher"
-},
-{
 "id": "wf_df442ebfda",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the envelope corner at the bird, and Bisola reads the name twice.",
@@ -1971,6 +1961,16 @@
 "run": "run-5a58c4",
 "card": "j6",
 "other": "hose"
+},
+{
+"id": "wf_cfbab78aee",
+"kind": "consequence",
+"text": "A Marker note with Kunle's name and 'nice day sign' on it, turns up inside the envelope corner at the bird, and Bisola reads the name twice.",
+"code": "marker.interactwith(bird){ bird.receives(marker.sign); bird.remembers(kunle, 'nice day sign'); bird.tucks(marker, 'marker note into the envelope corner'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j3",
+"other": "marker"
 },
 {
 "id": "wt_c6ff1d186b",
@@ -3233,16 +3233,6 @@
 ],
 "wser": [
 {
-"id": "wf_6320ac201c",
-"kind": "consequence",
-"text": "The wser leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"code": "lie.interactwith(wser){ wser.receives(lie.envelope); wser.remembers(bisola, 'brown envelope'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "lie"
-},
-{
 "id": "wf_94b755621e",
 "kind": "consequence",
 "text": "The wser leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
@@ -3281,6 +3271,16 @@
 "run": "run-5a58c4",
 "card": "j6",
 "other": "bicycle"
+},
+{
+"id": "wf_64e840c486",
+"kind": "consequence",
+"text": "The wser leaves with a Bird note with Taiwo's name and 'lamp soot' on it.",
+"code": "plot.interactwith(wser){ wser.receives(plot.soot); wser.remembers(taiwo, 'lamp soot'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j7",
+"other": "plot"
 }
 ],
 "blessings_subject": [
@@ -10448,28 +10448,6 @@
 },
 "consequences": [
 {
-"id": "wf_f8c6013992",
-"ts": "2026-11-24T00:54:58-0500",
-"a": "again",
-"b": "agbada",
-"code": "again.interactwith(agbada){ agbada.receives(again.envelope); agbada.remembers(bisola, 'brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the agbada, which is still worn by a stranger haggler.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
-"id": "wf_4a92c0cc96",
-"ts": "2026-11-24T00:55:50-0500",
-"a": "example",
-"b": "namco",
-"code": "example.interactwith(namco){ namco.receives(example.shirt); … }",
-"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the brown envelope at the namco, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j8"
-},
-{
 "id": "wf_92c3e5738d",
 "ts": "2026-11-24T01:01:48-0500",
 "a": "yuwa",
@@ -10886,6 +10864,28 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": "j6"
+},
+{
+"id": "wf_64e840c486",
+"ts": "2026-11-24T02:45:53-0500",
+"a": "plot",
+"b": "wser",
+"code": "plot.interactwith(wser){ wser.receives(plot.soot); wser.remembers(taiwo, 'lamp soot'); }",
+"text": "The wser leaves with a Bird note with Taiwo's name and 'lamp soot' on it.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j7"
+},
+{
+"id": "wf_cfbab78aee",
+"ts": "2026-11-24T02:47:35-0500",
+"a": "marker",
+"b": "bird",
+"code": "marker.interactwith(bird){ bird.receives(marker.sign); bird.remembers(kunle, 'nice day sign'); bird.tucks(marker, 'marker note into the envelope corner'); }",
+"text": "A Marker note with Kunle's name and 'nice day sign' on it, turns up inside the envelope corner at the bird, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j3"
 }
 ],
 "memories": [
@@ -10989,5 +10989,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-24T02:44:13-0500"
+"updated": "2026-11-24T02:47:35-0500"
 }
