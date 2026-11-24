@@ -107,8 +107,8 @@
     "ask",
     "give"
    ],
-   "instances": 402,
-   "arg_instances": 82,
+   "instances": 404,
+   "arg_instances": 84,
    "parent": null,
    "chain": [
     "Thing"
@@ -2794,7 +2794,8 @@
    "first_job": "j32",
    "source": "pick",
    "runs": [
-    "run-5a58c4"
+    "run-5a58c4",
+    "run-888ea9"
    ],
    "tweets": [
     {
@@ -2804,6 +2805,10 @@
     {
      "text": "[[home]] - ok, weya inside the paper rn!",
      "year": "2025"
+    },
+    {
+     "text": "- which map? this wan dat weya inside nownow?",
+     "year": "2024"
     }
    ]
   },
@@ -3222,6 +3227,22 @@
    ],
    "tweets": []
   },
+  "laidat": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-888ea9",
+   "first_job": "j8",
+   "source": "pick",
+   "runs": [
+    "run-888ea9"
+   ],
+   "tweets": [
+    {
+     "text": "— i dont think you can do it laidat",
+     "year": "2025"
+    }
+   ]
+  },
   "lamp": {
    "class": "Thing",
    "cue": "default",
@@ -3625,6 +3646,22 @@
     {
      "text": "-- many pepu! many many",
      "year": "2025"
+    }
+   ]
+  },
+  "mara": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-888ea9",
+   "first_job": "j8",
+   "source": "pick",
+   "runs": [
+    "run-888ea9"
+   ],
+   "tweets": [
+    {
+     "text": "[[yes]] - we do all mara of type of shapes",
+     "year": "2024"
     }
    ]
   },
@@ -7901,6 +7938,24 @@
     "Thing",
     "j7",
     "pick"
+   ],
+   [
+    "laidat",
+    "Thing",
+    "j8",
+    "pick"
+   ],
+   [
+    "inside",
+    "Place",
+    "j8",
+    "pick"
+   ],
+   [
+    "mara",
+    "Thing",
+    "j8",
+    "pick"
    ]
   ],
   "run-b70200": [
@@ -10496,6 +10551,9 @@
   "issues.out": "out(what: Thing)",
   "mama.know": "know(where: Place)",
   "object.look": "look(what: Thing)",
+  "it.do": "do(what: Thing)",
+  "map.which": "which(where: Place)",
+  "shapes.do": "do(what: Thing)",
   "cooler.getdatemanufactured": "getDateManufactured()",
   "ronke.getlikes.contains": "getlikes.contains()",
   "kazeem.goodqualities.filter": "filter()",
@@ -10943,10 +11001,13 @@
    "hand",
    "hands",
    "issues",
+   "it",
    "mama",
+   "map",
    "object",
    "pawa",
    "phones",
+   "shapes",
    "thing",
    "tunde",
    "worry"
@@ -11024,5 +11085,5 @@
   "epilogue": "quiet",
   "coda": "quiet"
  },
- "updated": "2026-11-23T18:37:41-05:00"
+ "updated": "2026-11-23T19:38:44-05:00"
 }

@@ -11403,6 +11403,201 @@
    "faded": false,
    "last_run": "run-888ea9"
   },
+  "it.do": {
+   "object": "it",
+   "method": "do",
+   "args": [
+    "laidat"
+   ],
+   "runs": [
+    "run-888ea9"
+   ],
+   "defined": {
+    "run": "run-888ea9",
+    "job": "j8",
+    "card": "w8",
+    "title": "it.do(laidat)",
+    "emoji": "🚫",
+    "at": "2026-11-23T19:38:30-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "it.do(laidat)",
+     "emoji": "🚫",
+     "arg": "laidat",
+     "run": "run-888ea9",
+     "job": "j8",
+     "tweets": [
+      {
+       "text": "— i dont think you can do it laidat",
+       "year": "2025"
+      }
+     ],
+     "consequence": "3:50pm, Wednesday 8 March 2062, a Surulere bookshop counter.",
+     "consequence_job": "j9",
+     "resolved": "it.do(what=laidat:Thing) from j8",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "laidat",
+       "from_run": "run-888ea9",
+       "from_job": "j8",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "laidat",
+      "first_run": "run-888ea9",
+      "first_job": "j8"
+     }
+    ],
+    "text": "do(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "map.which": {
+   "object": "map",
+   "method": "which",
+   "args": [
+    "inside"
+   ],
+   "runs": [
+    "run-888ea9"
+   ],
+   "defined": {
+    "run": "run-888ea9",
+    "job": "j8",
+    "card": "w8",
+    "title": "map.which(inside)",
+    "emoji": "🗺️",
+    "at": "2026-11-23T19:38:30-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "map.which(inside)",
+     "emoji": "🗺️",
+     "arg": "inside",
+     "run": "run-888ea9",
+     "job": "j8",
+     "tweets": [
+      {
+       "text": "- which map? this wan dat weya inside nownow?",
+       "year": "2024"
+      }
+     ],
+     "consequence": "3:50pm, Wednesday 8 March 2062, a Surulere bookshop counter.",
+     "consequence_job": "j9",
+     "resolved": "map.which(where=inside:Place) from j8",
+     "injected": [
+      {
+       "param": "where",
+       "class": "Place",
+       "instance": "inside",
+       "from_run": "run-888ea9",
+       "from_job": "j8",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "where",
+      "class": "Place",
+      "default": "inside",
+      "first_run": "run-5a58c4",
+      "first_job": "j32"
+     }
+    ],
+    "text": "which(where: Place)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "shapes.do": {
+   "object": "shapes",
+   "method": "do",
+   "args": [
+    "mara"
+   ],
+   "runs": [
+    "run-888ea9"
+   ],
+   "defined": {
+    "run": "run-888ea9",
+    "job": "j8",
+    "card": "w8",
+    "title": "shapes.do(mara)",
+    "emoji": "🔷",
+    "at": "2026-11-23T19:38:30-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "shapes.do(mara)",
+     "emoji": "🔷",
+     "arg": "mara",
+     "run": "run-888ea9",
+     "job": "j8",
+     "tweets": [
+      {
+       "text": "[[yes]] - we do all mara of type of shapes",
+       "year": "2024"
+      }
+     ],
+     "consequence": "3:50pm, Wednesday 8 March 2062, a Surulere bookshop counter.",
+     "consequence_job": "j9",
+     "resolved": "shapes.do(what=mara:Thing) from j8",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "mara",
+       "from_run": "run-888ea9",
+       "from_job": "j8",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "mara",
+      "first_run": "run-888ea9",
+      "first_job": "j8"
+     }
+    ],
+    "text": "do(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
   "cooler.getdatemanufactured": {
    "object": "cooler",
    "method": "getDateManufactured",
@@ -14744,6 +14939,9 @@
   "issues": [
    "issues.out"
   ],
+  "it": [
+   "it.do"
+  ],
   "json_life_subject": [
    "object.look"
   ],
@@ -14826,6 +15024,9 @@
    "mamaronke.note",
    "mamaronke.say",
    "mamaronke.buy"
+  ],
+  "map": [
+   "map.which"
   ],
   "marina_biscayne_bay_subject_second": [
    "dez.sit",
@@ -14973,6 +15174,9 @@
   ],
   "seller": [
    "seller.feel"
+  ],
+  "shapes": [
+   "shapes.do"
   ],
   "sia": [
    "sia.count"
@@ -18866,6 +19070,7 @@
     "from": "1a9d986eb980",
     "title": "1025. look at it!",
     "funcs": [
+     "it.do",
      "dez.make"
     ]
    },
@@ -20863,6 +21068,16 @@
     "title": "829. a day in the life of god",
     "funcs": [
      "[nau,god].map"
+    ]
+   }
+  ],
+  "football_match_figure": [
+   {
+    "scope": "safe",
+    "from": "746429261abe",
+    "title": "the football match",
+    "funcs": [
+     "map.which"
     ]
    }
   ],
@@ -29847,6 +30062,9 @@
     "from": "38688e69edf3",
     "title": "1003. usher by kiss daniel",
     "funcs": [
+     "shapes.do",
+     "map.which",
+     "it.do",
      "object.look",
      "mama.know",
      "issues.out",
@@ -30683,6 +30901,14 @@
    },
    {
     "scope": "safe",
+    "from": "bd7fa6cf3e04",
+    "title": "910. the angriest man in america",
+    "funcs": [
+     "shapes.do"
+    ]
+   },
+   {
+    "scope": "safe",
     "from": "c7c1fdc558f5",
     "title": "1026. why would you say that?!",
     "funcs": [
@@ -30856,7 +31082,10 @@
     "dicey.call",
     "issues.out",
     "mama.know",
-    "object.look"
+    "object.look",
+    "it.do",
+    "map.which",
+    "shapes.do"
    ]
   },
   "run-93d6ff": {
@@ -31150,7 +31379,8 @@
   "1a9d986eb980": {
    "title": "1025. look at it!",
    "funcs": [
-    "dez.make"
+    "dez.make",
+    "it.do"
    ],
    "runs": []
   },
@@ -31284,7 +31514,10 @@
     "dicey.call",
     "issues.out",
     "mama.know",
-    "object.look"
+    "object.look",
+    "it.do",
+    "map.which",
+    "shapes.do"
    ],
    "runs": [
     "run-888ea9"
@@ -31424,6 +31657,13 @@
    "title": "124. temptation",
    "funcs": [
     "kunle.walk"
+   ],
+   "runs": []
+  },
+  "746429261abe": {
+   "title": "the football match",
+   "funcs": [
+    "map.which"
    ],
    "runs": []
   },
@@ -31691,6 +31931,13 @@
    "title": "1201. psychology",
    "funcs": [
     "ronke.flag"
+   ],
+   "runs": []
+  },
+  "bd7fa6cf3e04": {
+   "title": "910. the angriest man in america",
+   "funcs": [
+    "shapes.do"
    ],
    "runs": []
   },
@@ -32184,6 +32431,9 @@
   "1*rf2yW_BvRiLry_mEM1tNfA.gif": [
    "b200fdc1a275"
   ],
+  "1*iHNgPuPsQmiETkyo9kIgGw.gif": [
+   "746429261abe"
+  ],
   "1*UmpEdNHIUE0PbFptnquSig.gif": [
    "b17708f507b6"
   ],
@@ -32344,6 +32594,9 @@
   ],
   "1*_EjFgtPmEaDMbd0l7TYupQ.gif": [
    "ceb79ef77a2c"
+  ],
+  "1*-VkeQVfQ8_nV5UfHbV3HUg.gif": [
+   "bd7fa6cf3e04"
   ],
   "1*KOfHcbZItSwnzB-Xt4fH3A.gif": [
    "1043ee742884"
@@ -33000,6 +33253,12 @@
     "290e162c303f"
    ]
   },
+  "1*iHNgPuPsQmiETkyo9kIgGw.gif": {
+   "runs": [],
+   "safes": [
+    "746429261abe"
+   ]
+  },
   "1*SKqzlBc1vQA5PWKQJUBt-g.gif": {
    "runs": [],
    "safes": [
@@ -33094,6 +33353,12 @@
    "runs": [],
    "safes": [
     "e8a71fe19bff"
+   ]
+  },
+  "1*-VkeQVfQ8_nV5UfHbV3HUg.gif": {
+   "runs": [],
+   "safes": [
+    "bd7fa6cf3e04"
    ]
   },
   "1*hVDvLB17CmKpndJbRpJ3Pw.gif": {
@@ -33303,6 +33568,9 @@
   "issues": [
    "issues.out"
   ],
+  "it": [
+   "it.do"
+  ],
   "jwvbs": [
    "jwvbs.open"
   ],
@@ -33372,6 +33640,9 @@
    "mamaronke.note",
    "mamaronke.say",
    "mamaronke.buy"
+  ],
+  "map": [
+   "map.which"
   ],
   "new": [
    "new.business",
@@ -33474,6 +33745,9 @@
   ],
   "seller": [
    "seller.feel"
+  ],
+  "shapes": [
+   "shapes.do"
   ],
   "sia": [
    "sia.count"
@@ -33743,6 +34017,9 @@
    "Readable"
   ],
   "object": [],
+  "it": [],
+  "map": [],
+  "shapes": [],
   "cooler": [],
   "kazeem.goodqualities": [],
   "app": [],
@@ -33914,10 +34191,13 @@
    "hand",
    "hands",
    "issues",
+   "it",
    "mama",
+   "map",
    "object",
    "pawa",
    "phones",
+   "shapes",
    "thing",
    "tunde",
    "worry"
@@ -33935,5 +34215,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-23T18:38:34-05:00"
+ "updated": "2026-11-23T19:38:44-05:00"
 }
