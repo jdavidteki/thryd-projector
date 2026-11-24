@@ -5207,6 +5207,16 @@
 "run": "run-5a58c4",
 "card": "j3",
 "other": "marker"
+},
+{
+"id": "wf_a9fae6f6f9",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the youngteacher, and Bisola reads the name twice.",
+"code": "dez.interactwith(youngteacher){ youngteacher.receives(dez.envelope); … }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "dez"
 }
 ],
 "dress_marisol": [
@@ -5641,16 +5651,6 @@
 ],
 "teo": [
 {
-"id": "wf_ab00a8b670",
-"kind": "consequence",
-"text": "The teo leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"code": "marker_b.interactwith(teo){ teo.receives(marker_b.envelope); teo.remembers(bisola, 'brown envelope'); }",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6",
-"other": "marker_b"
-},
-{
 "id": "wf_f872319710",
 "kind": "consequence",
 "text": "The teo leaves with a Laptop note with Taiwo's name and 'lamp soot' on it.",
@@ -5679,6 +5679,16 @@
 "run": "run-5a58c4",
 "card": "j2",
 "other": "cup"
+},
+{
+"id": "wf_b46399b8b8",
+"kind": "consequence",
+"text": "The teo leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "dez.interactwith(teo){ teo.receives(dez.envelope); teo.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "dez"
 },
 {
 "id": "wt_183d3cde12",
@@ -10458,28 +10468,6 @@
 },
 "consequences": [
 {
-"id": "wf_aba8bc53d1",
-"ts": "2026-11-24T01:44:27-0500",
-"a": "miami",
-"b": "abeokuta_parlour",
-"code": "miami.interactwith(abeokuta_parlour){ abeokuta_parlour.receives(miami.phone); }",
-"text": "The abeokuta parlour now remembers the miami: 11:45pm, Monday 2 November 2026: A phone on the counter starts the off-key chorus, then.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j29"
-},
-{
-"id": "wf_29c2624097",
-"ts": "2026-11-24T01:45:19-0500",
-"a": "tag_sessy",
-"b": "bicycle",
-"code": "tag_sessy.interactwith(bicycle){ bicycle.receives(tag_sessy.code); bicycle.remembers(ejiro, 'juju code'); bicycle.tucks(tag_sessy, 'ttb note into the brown envelope'); }",
-"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the bicycle, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j2"
-},
-{
 "id": "wf_5fa3fefbc9",
 "ts": "2026-11-24T01:48:39-0500",
 "a": "mbtij",
@@ -10896,6 +10884,28 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": "j6"
+},
+{
+"id": "wf_b46399b8b8",
+"ts": "2026-11-24T03:24:18-0500",
+"a": "dez",
+"b": "teo",
+"code": "dez.interactwith(teo){ teo.receives(dez.envelope); teo.remembers(bisola, 'brown envelope'); }",
+"text": "The teo leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
+},
+{
+"id": "wf_a9fae6f6f9",
+"ts": "2026-11-24T03:27:00-0500",
+"a": "dez",
+"b": "youngteacher",
+"code": "dez.interactwith(youngteacher){ youngteacher.receives(dez.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the youngteacher, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
 }
 ],
 "memories": [
@@ -10999,5 +11009,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-24T03:23:26-0500"
+"updated": "2026-11-24T03:27:00-0500"
 }
