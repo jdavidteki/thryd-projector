@@ -80,8 +80,8 @@
     "getlocation",
     "know"
    ],
-   "instances": 13,
-   "arg_instances": 7,
+   "instances": 14,
+   "arg_instances": 8,
    "parent": "Thing",
    "chain": [
     "Place",
@@ -108,8 +108,8 @@
     "give",
     "see"
    ],
-   "instances": 440,
-   "arg_instances": 112,
+   "instances": 441,
+   "arg_instances": 113,
    "parent": null,
    "chain": [
     "Thing"
@@ -2766,6 +2766,23 @@
    ],
    "tweets": []
   },
+  "home": {
+   "class": "Place",
+   "cue": "word",
+   "first_run": "run-5a58c4",
+   "first_job": "j54",
+   "source": "pick",
+   "runs": [
+    "run-5a58c4"
+   ],
+   "tweets": [
+    {
+     "text": "#thequeenisdead - i stay [[ni]] my [[home]]",
+     "year": "2024",
+     "id": "1785439708199178252"
+    }
+   ]
+  },
   "hose": {
    "class": "Thing",
    "cue": "default",
@@ -3758,6 +3775,22 @@
     {
      "text": "[[tnbt]] -- i kept getting a notification",
      "year": "2024"
+    }
+   ]
+  },
+  "light": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-5a58c4",
+   "first_job": "j54",
+   "source": "pick",
+   "runs": [
+    "run-5a58c4"
+   ],
+   "tweets": [
+    {
+     "text": "- no [[light]], no [[water]], notnotnotnotyn",
+     "year": "2025"
     }
    ]
   },
@@ -7496,18 +7529,6 @@
   ],
   "run-5a58c4": [
    [
-    "them",
-    "Person",
-    "j33",
-    "pick"
-   ],
-   [
-    "everything",
-    "Thing",
-    "j33",
-    "pick"
-   ],
-   [
     "second",
     "Thing",
     "j33",
@@ -7709,6 +7730,18 @@
     "how",
     "Manner",
     "j53",
+    "pick"
+   ],
+   [
+    "home",
+    "Place",
+    "j54",
+    "pick"
+   ],
+   [
+    "light",
+    "Thing",
+    "j54",
     "pick"
    ],
    [
@@ -11391,6 +11424,8 @@
   "dez.receive": "receive(what: Thing)",
   "marisol.win": "win(what: Thing)",
   "teo.pray": "pray(how: Manner)",
+  "dez.stay": "stay(where: Place)",
+  "nobody.cut": "cut(what: Thing)",
   "cooler.getdatemanufactured": "getDateManufactured()",
   "ronke.getlikes.contains": "getlikes.contains()",
   "kazeem.goodqualities.filter": "filter()",
@@ -11941,5 +11976,5 @@
   "epilogue": "quiet",
   "coda": "quiet"
  },
- "updated": "2026-11-24T15:31:25-05:00"
+ "updated": "2026-11-24T16:23:45-05:00"
 }
