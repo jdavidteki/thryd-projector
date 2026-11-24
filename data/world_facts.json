@@ -2103,16 +2103,6 @@
 ],
 "laptop": [
 {
-"id": "wf_8b1d35b071",
-"kind": "consequence",
-"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the lamp soot at the laptop, and Taiwo reads the name twice.",
-"code": "imhf.interactwith(laptop){ laptop.receives(imhf.shirt); laptop.remembers(bisola, 'green shirt'); laptop.tucks(imhf, 'ikeja laundromat receipt into the lamp soot'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j8",
-"other": "imhf"
-},
-{
 "id": "wf_b3a40dd79f",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the lamp soot at the laptop, and Taiwo reads the name twice.",
@@ -2121,6 +2111,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "jnoel"
+},
+{
+"id": "wf_60dce850b7",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the lamp soot at the laptop, and Taiwo reads the name twice.",
+"code": "precision.interactwith(laptop){ laptop.receives(precision.envelope); … }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "precision"
 },
 {
 "id": "wt_00586a397c",
@@ -10294,17 +10294,6 @@
 },
 "consequences": [
 {
-"id": "wf_1ea2f58ac4",
-"ts": "2026-11-23T20:17:10-0500",
-"a": "cell_phone",
-"b": "ronke",
-"code": "cell_phone.interactwith(ronke){ ronke.receives(cell_phone.envelope); ronke.remembers(bisola, 'brown envelope'); }",
-"text": "The ronke leaves with a Cell phone note with Bisola's name and 'brown envelope' on it.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
 "id": "wf_fea7593cb4",
 "ts": "2026-11-23T20:18:01-0500",
 "a": "thryd",
@@ -10732,6 +10721,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j7"
+},
+{
+"id": "wf_60dce850b7",
+"ts": "2026-11-24T00:18:21-0500",
+"a": "precision",
+"b": "laptop",
+"code": "precision.interactwith(laptop){ laptop.receives(precision.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the lamp soot at the laptop, and Taiwo reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -10835,5 +10835,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-24T00:06:28-0500"
+"updated": "2026-11-24T00:18:21-0500"
 }
