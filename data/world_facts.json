@@ -1139,16 +1139,6 @@
 ],
 "matches": [
 {
-"id": "wf_145593d448",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the matches, which is still found.",
-"code": "computer_village.interactwith(matches){ matches.receives(computer_village.envelope); matches.remembers(bisola, 'brown envelope'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "computer_village"
-},
-{
 "id": "wf_d549cfb487",
 "kind": "consequence",
 "text": "A Chair note with Taiwo's name and '11:20pm' on it, turns up with the matches, which is still found.",
@@ -1187,6 +1177,16 @@
 "run": "run-2eb42d",
 "card": "w7",
 "other": null
+},
+{
+"id": "wf_ae6abb3d7a",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the matches, which is still found.",
+"code": "listen.interactwith(matches){ matches.receives(listen.envelope); matches.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "listen"
 }
 ],
 "gbagada_hospital_waiting": [
@@ -8221,16 +8221,6 @@
 ],
 "computer_village": [
 {
-"id": "wf_6ffcca7fc6",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the computer village, and Bisola reads the name twice.",
-"code": "jnoel.interactwith(computer_village){ computer_village.receives(jnoel.envelope); … }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "jnoel"
-},
-{
 "id": "wf_486bcebc39",
 "kind": "consequence",
 "text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the brown envelope at the computer village, and Bisola reads the name twice.",
@@ -8269,6 +8259,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "precision"
+},
+{
+"id": "wf_c7883a1490",
+"kind": "consequence",
+"text": "A Sheep note with Kunle's name and 'scorched container number' on it, turns up inside the brown envelope at the computer village, and Bisola reads the name twice.",
+"code": "twgs.interactwith(computer_village){ computer_village.receives(twgs.number); … }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w7",
+"other": "twgs"
 }
 ],
 "oh_pls_shaaatttaaapppp": [
@@ -10274,28 +10274,6 @@
 },
 "consequences": [
 {
-"id": "wf_8bace09aee",
-"ts": "2026-11-23T18:45:34-0500",
-"a": "bow",
-"b": "precision",
-"code": "bow.interactwith(precision){ precision.receives(bow.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the green shirt at the precision, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
-"id": "wf_e7119f0d13",
-"ts": "2026-11-23T18:46:27-0500",
-"a": "no_palmgrove_close",
-"b": "computer_village",
-"code": "no_palmgrove_close.interactwith(computer_village){ computer_village.receives(no_palmgrove_close.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the computer village, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
 "id": "wf_b69004de25",
 "ts": "2026-11-23T18:48:13-0500",
 "a": "vex",
@@ -10712,6 +10690,28 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_c7883a1490",
+"ts": "2026-11-23T21:38:27-0500",
+"a": "twgs",
+"b": "computer_village",
+"code": "twgs.interactwith(computer_village){ computer_village.receives(twgs.number); … }",
+"text": "A Sheep note with Kunle's name and 'scorched container number' on it, turns up inside the brown envelope at the computer village, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w7"
+},
+{
+"id": "wf_ae6abb3d7a",
+"ts": "2026-11-23T21:41:54-0500",
+"a": "listen",
+"b": "matches",
+"code": "listen.interactwith(matches){ matches.receives(listen.envelope); matches.remembers(bisola, 'brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the matches, which is still found.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -10815,5 +10815,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-23T21:36:44-0500"
+"updated": "2026-11-23T21:41:54-0500"
 }
