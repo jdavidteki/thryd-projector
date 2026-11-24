@@ -2639,16 +2639,6 @@
 ],
 "chair": [
 {
-"id": "wf_7d9ce96099",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the 11:20pm at the chair, and Taiwo reads the name twice.",
-"code": "niaw.interactwith(chair){ chair.receives(niaw.envelope); chair.remembers(bisola, 'brown envelope'); chair.tucks(niaw, 'yaba bookshop receipt into the 11:20pm'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "niaw"
-},
-{
 "id": "wf_1738c4cb8c",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the 11:20pm at the chair, and Taiwo reads the name twice.",
@@ -2677,6 +2667,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "move"
+},
+{
+"id": "wf_6b1c88a3ca",
+"kind": "consequence",
+"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the 11:20pm at the chair, and Taiwo reads the name twice.",
+"code": "example.interactwith(chair){ chair.receives(example.shirt); chair.remembers(bisola, 'green shirt'); chair.tucks(example, 'ikeja laundromat receipt into the 11:20pm'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j8",
+"other": "example"
 },
 {
 "id": "wt_d7412f0d94",
@@ -10234,17 +10234,6 @@
 },
 "consequences": [
 {
-"id": "wf_649dbcc13c",
-"ts": "2026-11-23T14:48:48-0500",
-"a": "tf_mom",
-"b": "red_white_cap",
-"code": "tf_mom.interactwith(red_white_cap){ red_white_cap.receives(tf_mom.soot); red_white_cap.remembers(taiwo, 'lamp soot'); }",
-"text": "A Laptop note with Taiwo's name and 'lamp soot' on it, turns up with the red and white cap, which is still worn.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j7"
-},
-{
 "id": "wf_0e7af33f86",
 "ts": "2026-11-23T15:01:45-0500",
 "a": "divine",
@@ -10672,6 +10661,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_6b1c88a3ca",
+"ts": "2026-11-23T19:14:51-0500",
+"a": "example",
+"b": "chair",
+"code": "example.interactwith(chair){ chair.receives(example.shirt); chair.remembers(bisola, 'green shirt'); chair.tucks(example, 'ikeja laundromat receipt into the 11:20pm'); }",
+"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the 11:20pm at the chair, and Taiwo reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j8"
 }
 ],
 "memories": [
@@ -10775,5 +10775,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-23T19:10:25-0500"
+"updated": "2026-11-23T19:14:51-0500"
 }
