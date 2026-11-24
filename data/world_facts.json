@@ -2061,16 +2061,6 @@
 ],
 "tie": [
 {
-"id": "wf_00273e36b6",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the tie, and Bisola reads the name twice.",
-"code": "seniorgehs.interactwith(tie){ tie.receives(seniorgehs.envelope); … }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "seniorgehs"
-},
-{
 "id": "wf_b0ee83548d",
 "kind": "consequence",
 "text": "A Laptop note with Taiwo's name and 'lamp soot' on it, turns up inside the brown envelope at the tie, and Bisola reads the name twice.",
@@ -2109,6 +2099,16 @@
 "run": "run-5a58c4",
 "card": "j2",
 "other": "mbtij"
+},
+{
+"id": "wf_f35ca85778",
+"kind": "consequence",
+"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the brown envelope at the tie, and Bisola reads the name twice.",
+"code": "marker_c.interactwith(tie){ tie.receives(marker_c.shirt); tie.remembers(bisola, 'green shirt'); tie.tucks(marker_c, 'ikeja laundromat receipt into the brown envelope'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j8",
+"other": "marker_c"
 }
 ],
 "laptop": [
@@ -5621,6 +5621,16 @@
 "run": "run-5a58c4",
 "card": "j6",
 "other": "bicycle"
+},
+{
+"id": "wf_af10c4b790",
+"kind": "consequence",
+"text": "A Marker note with Kunle's name and 'nice day sign' on it, turns up inside the brown envelope at the tbp, and Bisola reads the name twice.",
+"code": "house.interactwith(tbp){ tbp.receives(house.sign); tbp.remembers(kunle, 'nice day sign'); tbp.tucks(house, 'marker note into the brown envelope'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j3",
+"other": "house"
 }
 ],
 "health_marisol": [
@@ -10592,28 +10602,6 @@
 },
 "consequences": [
 {
-"id": "wf_68d9435382",
-"ts": "2026-11-24T02:57:37-0500",
-"a": "thoughts_marisol",
-"b": "laptop",
-"code": "thoughts_marisol.interactwith(laptop){ laptop.receives(thoughts_marisol.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the lamp soot at the laptop, and Taiwo reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
-"id": "wf_6c86b1f3da",
-"ts": "2026-11-24T03:00:06-0500",
-"a": "marker_d",
-"b": "marina_biscayne_bay",
-"code": "marker_d.interactwith(marina_biscayne_bay){ marina_biscayne_bay.receives(marker_d.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the marina biscayne bay, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
 "id": "wf_7f2881819a",
 "ts": "2026-11-24T03:05:05-0500",
 "a": "tsis",
@@ -11030,6 +11018,28 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": "j6"
+},
+{
+"id": "wf_f35ca85778",
+"ts": "2026-11-24T13:28:08-0500",
+"a": "marker_c",
+"b": "tie",
+"code": "marker_c.interactwith(tie){ tie.receives(marker_c.shirt); tie.remembers(bisola, 'green shirt'); tie.tucks(marker_c, 'ikeja laundromat receipt into the brown envelope'); }",
+"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the brown envelope at the tie, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j8"
+},
+{
+"id": "wf_af10c4b790",
+"ts": "2026-11-24T13:29:50-0500",
+"a": "house",
+"b": "tbp",
+"code": "house.interactwith(tbp){ tbp.receives(house.sign); tbp.remembers(kunle, 'nice day sign'); tbp.tucks(house, 'marker note into the brown envelope'); }",
+"text": "A Marker note with Kunle's name and 'nice day sign' on it, turns up inside the brown envelope at the tbp, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j3"
 }
 ],
 "memories": [
@@ -11133,5 +11143,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-24T13:25:36-0500"
+"updated": "2026-11-24T13:29:50-0500"
 }
