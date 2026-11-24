@@ -2417,16 +2417,6 @@
 ],
 "bus": [
 {
-"id": "wf_066eb7c147",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bus, and Bisola reads the name twice.",
-"code": "plastic_sheet.interactwith(bus){ bus.receives(plastic_sheet.envelope); … }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "plastic_sheet"
-},
-{
 "id": "wf_badbc0a0f3",
 "kind": "consequence",
 "text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the bus, and Bisola reads the name twice.",
@@ -2465,6 +2455,16 @@
 "run": "run-2eb42d",
 "card": "j8",
 "other": "lady"
+},
+{
+"id": "wf_7f2881819a",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the green shirt at the bus, and Bisola reads the name twice.",
+"code": "tsis.interactwith(bus){ bus.receives(tsis.envelope); bus.remembers(bisola, 'brown envelope'); bus.tucks(tsis, 'yaba bookshop receipt into the green shirt'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "tsis"
 }
 ],
 "hands": [
@@ -10458,17 +10458,6 @@
 },
 "consequences": [
 {
-"id": "wf_fdfc2c242c",
-"ts": "2026-11-24T01:21:24-0500",
-"a": "ikeja",
-"b": "mount_mercy",
-"code": "ikeja.interactwith(mount_mercy){ mount_mercy.receives(ikeja.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the blue glass bead at the mount mercy, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
 "id": "wf_2012dae794",
 "ts": "2026-11-24T01:24:41-0500",
 "a": "teoloveletter",
@@ -10896,6 +10885,17 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": "j6"
+},
+{
+"id": "wf_7f2881819a",
+"ts": "2026-11-24T03:05:05-0500",
+"a": "tsis",
+"b": "bus",
+"code": "tsis.interactwith(bus){ bus.receives(tsis.envelope); bus.remembers(bisola, 'brown envelope'); bus.tucks(tsis, 'yaba bookshop receipt into the green shirt'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the green shirt at the bus, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
 }
 ],
 "memories": [
@@ -10999,5 +10999,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-24T03:00:06-0500"
+"updated": "2026-11-24T03:05:05-0500"
 }
