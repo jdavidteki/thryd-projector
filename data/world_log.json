@@ -7762,7 +7762,7 @@
   },
   "run-2eb42d": {
    "forked_from": "safe:9525b78aa7f3",
-   "head": "3f28119d07",
+   "head": "6c470d4778",
    "commits": [
     {
      "id": "5fbed9f6ab",
@@ -8181,7 +8181,7 @@
      }
     },
     {
-     "id": "eb2418abf7",
+     "id": "750ac49359",
      "parent": "a535005b5b",
      "branch": "run-2eb42d",
      "job": "j4",
@@ -8213,16 +8213,24 @@
         "code": "agenda_scene.interactwith(people_scene){ people_scene.receives(agenda_scene.envelope); people_scene.remembers(bisola, 'brown envelope'); peo",
         "scope": null,
         "cause_id": null
+       },
+       {
+        "id": "wf_2b279ef861",
+        "object": "kazeem",
+        "kind": "consequence",
+        "code": "agbada.interactwith(kazeem){ agbada.db.copyto(kazeem); kazeem.keeps(agbada, 'agbada, still worn by a stranger haggler'); }",
+        "scope": null,
+        "cause_id": null
        }
       ],
-      "facts_total": 3,
+      "facts_total": 4,
       "functions": [],
       "instances": []
      }
     },
     {
-     "id": "07c90036c4",
-     "parent": "eb2418abf7",
+     "id": "0af754b560",
+     "parent": "750ac49359",
      "branch": "run-2eb42d",
      "job": "j5",
      "at": "2026-11-17T23:43:44-0500",
@@ -8365,8 +8373,8 @@
      }
     },
     {
-     "id": "970e9be82f",
-     "parent": "07c90036c4",
+     "id": "324d8f2424",
+     "parent": "0af754b560",
      "branch": "run-2eb42d",
      "job": "j6",
      "at": "2026-11-17T23:40:13-0500",
@@ -8861,8 +8869,8 @@
      }
     },
     {
-     "id": "e901483044",
-     "parent": "970e9be82f",
+     "id": "9f67ebbf80",
+     "parent": "324d8f2424",
      "branch": "run-2eb42d",
      "job": "j7",
      "at": "2026-11-17T23:39:21-0500",
@@ -9221,8 +9229,8 @@
      }
     },
     {
-     "id": "81f946a41b",
-     "parent": "e901483044",
+     "id": "3d50db0e09",
+     "parent": "9f67ebbf80",
      "branch": "run-2eb42d",
      "job": "j8",
      "at": "2026-11-17T23:36:43-0500",
@@ -9677,8 +9685,8 @@
      }
     },
     {
-     "id": "3e18c6ffa1",
-     "parent": "81f946a41b",
+     "id": "bf7b582a9e",
+     "parent": "3d50db0e09",
      "branch": "run-2eb42d",
      "job": "j16",
      "at": "2026-11-17T23:36:00-05:00",
@@ -9845,8 +9853,8 @@
      }
     },
     {
-     "id": "c53d611967",
-     "parent": "3e18c6ffa1",
+     "id": "93ec2f90cf",
+     "parent": "bf7b582a9e",
      "branch": "run-2eb42d",
      "job": "j17",
      "at": "2026-11-17T23:42:23-05:00",
@@ -10357,8 +10365,8 @@
      }
     },
     {
-     "id": "3145dcd021",
-     "parent": "c53d611967",
+     "id": "4028c638be",
+     "parent": "93ec2f90cf",
      "branch": "run-2eb42d",
      "job": "j18",
      "at": "2026-11-18T09:34:38-05:00",
@@ -10869,8 +10877,8 @@
      }
     },
     {
-     "id": "a4fba37dac",
-     "parent": "3145dcd021",
+     "id": "eb36dee43b",
+     "parent": "4028c638be",
      "branch": "run-2eb42d",
      "job": "j19",
      "at": "2026-11-18T09:56:09-05:00",
@@ -10900,8 +10908,8 @@
      }
     },
     {
-     "id": "0b88502910",
-     "parent": "a4fba37dac",
+     "id": "5040c0123e",
+     "parent": "eb36dee43b",
      "branch": "run-2eb42d",
      "job": "j20",
      "at": "2026-11-18T10:08:06-05:00",
@@ -10935,8 +10943,8 @@
      }
     },
     {
-     "id": "5295a4a0e7",
-     "parent": "0b88502910",
+     "id": "fed52220e5",
+     "parent": "5040c0123e",
      "branch": "run-2eb42d",
      "job": "j21",
      "at": "2026-11-18T10:26:44-0500",
@@ -10967,8 +10975,8 @@
      }
     },
     {
-     "id": "1261da5146",
-     "parent": "5295a4a0e7",
+     "id": "bbbb7d42f5",
+     "parent": "fed52220e5",
      "branch": "run-2eb42d",
      "job": "j22",
      "at": "2026-11-18T10:54:56-05:00",
@@ -10998,8 +11006,8 @@
      }
     },
     {
-     "id": "fa01259407",
-     "parent": "1261da5146",
+     "id": "3325fc9deb",
+     "parent": "bbbb7d42f5",
      "branch": "run-2eb42d",
      "job": "j23",
      "at": "2026-11-18T11:22:00-05:00",
@@ -11019,8 +11027,8 @@
      }
     },
     {
-     "id": "33aa5124e4",
-     "parent": "fa01259407",
+     "id": "1b740185b2",
+     "parent": "3325fc9deb",
      "branch": "run-2eb42d",
      "job": "j24",
      "at": "2026-11-18T11:37:20-05:00",
@@ -11040,8 +11048,8 @@
      }
     },
     {
-     "id": "4970cfdc84",
-     "parent": "33aa5124e4",
+     "id": "e0e3a8c972",
+     "parent": "1b740185b2",
      "branch": "run-2eb42d",
      "job": "j25",
      "at": "2026-11-18T11:37:20-05:00",
@@ -11071,8 +11079,8 @@
      }
     },
     {
-     "id": "58ada8f4f1",
-     "parent": "4970cfdc84",
+     "id": "afe2c73362",
+     "parent": "e0e3a8c972",
      "branch": "run-2eb42d",
      "job": "j26",
      "at": "2026-11-18T12:05:41-0500",
@@ -11095,8 +11103,8 @@
      }
     },
     {
-     "id": "51a708da84",
-     "parent": "58ada8f4f1",
+     "id": "8dde9e5373",
+     "parent": "afe2c73362",
      "branch": "run-2eb42d",
      "job": "j27",
      "at": "2026-11-18T12:08:36-0500",
@@ -11119,8 +11127,8 @@
      }
     },
     {
-     "id": "fdf9d22cbc",
-     "parent": "51a708da84",
+     "id": "5c4c3a3629",
+     "parent": "8dde9e5373",
      "branch": "run-2eb42d",
      "job": "j29",
      "at": "2026-11-18T12:59:19-05:00",
@@ -11261,8 +11269,8 @@
      }
     },
     {
-     "id": "aa972833ac",
-     "parent": "fdf9d22cbc",
+     "id": "138dd892b9",
+     "parent": "5c4c3a3629",
      "branch": "run-2eb42d",
      "job": "j30",
      "at": "2026-11-18T13:26:10-05:00",
@@ -11339,8 +11347,8 @@
      }
     },
     {
-     "id": "308b5df4cf",
-     "parent": "aa972833ac",
+     "id": "3412823786",
+     "parent": "138dd892b9",
      "branch": "run-2eb42d",
      "job": "j31",
      "at": "2026-11-18T13:34:27-05:00",
@@ -11365,8 +11373,8 @@
      }
     },
     {
-     "id": "3ea8b5ee02",
-     "parent": "308b5df4cf",
+     "id": "1f50aa8c21",
+     "parent": "3412823786",
      "branch": "run-2eb42d",
      "job": "j32",
      "at": "2026-11-18T13:46:06-0500",
@@ -11861,8 +11869,8 @@
      }
     },
     {
-     "id": "cdae690a4c",
-     "parent": "3ea8b5ee02",
+     "id": "341e19bd81",
+     "parent": "1f50aa8c21",
      "branch": "run-2eb42d",
      "job": "j33",
      "at": "2026-11-18T17:14:29-0500",
@@ -11968,8 +11976,8 @@
      }
     },
     {
-     "id": "52895e68eb",
-     "parent": "cdae690a4c",
+     "id": "87aa183a8c",
+     "parent": "341e19bd81",
      "branch": "run-2eb42d",
      "job": "j34",
      "at": "2026-11-18T17:32:20-05:00",
@@ -12117,8 +12125,8 @@
      }
     },
     {
-     "id": "d7134a73e1",
-     "parent": "52895e68eb",
+     "id": "13c283e0fe",
+     "parent": "87aa183a8c",
      "branch": "run-2eb42d",
      "job": "j35",
      "at": "2026-11-18T17:43:39-05:00",
@@ -12273,8 +12281,8 @@
      }
     },
     {
-     "id": "481e510494",
-     "parent": "d7134a73e1",
+     "id": "d8a5013b19",
+     "parent": "13c283e0fe",
      "branch": "run-2eb42d",
      "job": "j36",
      "at": "2026-11-18T17:52:40-05:00",
@@ -12391,8 +12399,8 @@
      }
     },
     {
-     "id": "c41963bf44",
-     "parent": "481e510494",
+     "id": "eb6ed44643",
+     "parent": "d8a5013b19",
      "branch": "run-2eb42d",
      "job": "j37",
      "at": "2026-11-18T18:08:48-05:00",
@@ -12539,8 +12547,8 @@
      }
     },
     {
-     "id": "4d7da80f73",
-     "parent": "c41963bf44",
+     "id": "b13d3c613c",
+     "parent": "eb6ed44643",
      "branch": "run-2eb42d",
      "job": "j38",
      "at": "2026-11-18T18:23:42-05:00",
@@ -12712,8 +12720,8 @@
      }
     },
     {
-     "id": "2f6822b159",
-     "parent": "4d7da80f73",
+     "id": "9060ac97f1",
+     "parent": "b13d3c613c",
      "branch": "run-2eb42d",
      "job": "j39",
      "at": "2026-11-18T18:40:45-05:00",
@@ -12796,8 +12804,8 @@
      }
     },
     {
-     "id": "092a6fbd72",
-     "parent": "2f6822b159",
+     "id": "033e60cf62",
+     "parent": "9060ac97f1",
      "branch": "run-2eb42d",
      "job": "j40",
      "at": "2026-11-18T19:11:58-05:00",
@@ -12969,8 +12977,8 @@
      }
     },
     {
-     "id": "434f2f1853",
-     "parent": "092a6fbd72",
+     "id": "2b3d69d834",
+     "parent": "033e60cf62",
      "branch": "run-2eb42d",
      "job": "j41",
      "at": "2026-11-18T19:28:56-05:00",
@@ -13141,8 +13149,8 @@
      }
     },
     {
-     "id": "e95fbb3820",
-     "parent": "434f2f1853",
+     "id": "79cba3c36c",
+     "parent": "2b3d69d834",
      "branch": "run-2eb42d",
      "job": "j42",
      "at": "2026-11-19T12:49:56-05:00",
@@ -13205,8 +13213,8 @@
      }
     },
     {
-     "id": "5a3f2446b3",
-     "parent": "e95fbb3820",
+     "id": "1f7796f9cc",
+     "parent": "79cba3c36c",
      "branch": "run-2eb42d",
      "job": "j43",
      "at": "2026-11-19T13:31:30-05:00",
@@ -13265,8 +13273,8 @@
      }
     },
     {
-     "id": "3f28119d07",
-     "parent": "5a3f2446b3",
+     "id": "6c470d4778",
+     "parent": "1f7796f9cc",
      "branch": "run-2eb42d",
      "job": "j44",
      "at": "2026-11-19T16:05:01-05:00",
@@ -14687,7 +14695,7 @@
   "run-9e59ca": "59f544b8d8",
   "run-5a58c4": "c19ae2da64",
   "run-g1-B": "37972c88df",
-  "run-2eb42d": "3f28119d07",
+  "run-2eb42d": "6c470d4778",
   "run-qa": "e4b61114ec",
   "run-44583f": "ca622f23ee",
   "run-0ae93c": "a11a1eab61",
@@ -14697,5 +14705,5 @@
   "run-888ea9": "e1b3375c1f"
  },
  "commits": 130,
- "updated": "2026-11-23T21:50:30-05:00"
+ "updated": "2026-11-23T21:51:22-05:00"
 }
