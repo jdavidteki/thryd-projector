@@ -827,16 +827,6 @@
 ],
 "agbada": [
 {
-"id": "wf_f3d4afd494",
-"kind": "consequence",
-"text": "The pure-water cooler ends up with the agbada, still carried home through the flood.",
-"code": "pure_water_cooler.interactwith(agbada){ pure_water_cooler.db.copyto(agbada); agbada.keeps(pure_water_cooler, 'pure-water cooler, still carried home through the flood'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "w1",
-"other": "pure_water_cooler"
-},
-{
 "id": "wf_6f44dd0ca6",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the agbada, which is still worn by a stranger haggler.",
@@ -865,6 +855,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "again"
+},
+{
+"id": "wf_92b2e207db",
+"kind": "consequence",
+"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up with the agbada, which is still worn by a stranger haggler.",
+"code": "example.interactwith(agbada){ agbada.receives(example.shirt); agbada.remembers(bisola, 'green shirt'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j8",
+"other": "example"
 },
 {
 "id": "wf_eff49442c3",
@@ -10354,28 +10354,6 @@
 },
 "consequences": [
 {
-"id": "wf_e748b011ad",
-"ts": "2026-11-23T21:24:42-0500",
-"a": "seniorgehs",
-"b": "ronke",
-"code": "seniorgehs.interactwith(ronke){ ronke.receives(seniorgehs.envelope); ronke.remembers(bisola, 'brown envelope'); }",
-"text": "The ronke leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
-"id": "wf_68dd4c4216",
-"ts": "2026-11-23T21:30:44-0500",
-"a": "mlkahb",
-"b": "ojuelegba_bus_stop",
-"code": "mlkahb.interactwith(ojuelegba_bus_stop){ ojuelegba_bus_stop.receives(mlkahb.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the ojuelegba bus stop, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
 "id": "wf_fb5c33bf86",
 "ts": "2026-11-23T21:34:09-0500",
 "a": "move",
@@ -10792,6 +10770,28 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_92b2e207db",
+"ts": "2026-11-24T01:06:02-0500",
+"a": "example",
+"b": "agbada",
+"code": "example.interactwith(agbada){ agbada.receives(example.shirt); agbada.remembers(bisola, 'green shirt'); }",
+"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up with the agbada, which is still worn by a stranger haggler.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j8"
+},
+{
+"id": "wf_fe3370ac65",
+"ts": "2026-11-24T01:09:29-0500",
+"a": "mama_ronke",
+"b": "ronke",
+"code": "mama_ronke.interactwith(ronke){ mama_ronke.db.copyto(ronke); ronke.keeps(mama_ronke, 'Mama Ronke, still present'); }",
+"text": "The Mama Ronke ends up with the ronke, still present.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": ""
 }
 ],
 "memories": [
@@ -10895,5 +10895,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-24T01:01:48-0500"
+"updated": "2026-11-24T01:09:29-0500"
 }
