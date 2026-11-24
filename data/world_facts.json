@@ -5347,6 +5347,16 @@
 "run": "run-5a58c4",
 "card": "j6",
 "other": "bicycle"
+},
+{
+"id": "wf_b7acfd84d5",
+"kind": "consequence",
+"text": "A Bird note with Taiwo's name and 'lamp soot' on it, turns up inside the brown envelope at the sandal, and Bisola reads the name twice.",
+"code": "plot.interactwith(sandal){ sandal.receives(plot.soot); sandal.remembers(taiwo, 'lamp soot'); sandal.tucks(plot, 'bird note into the brown envelope'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j7",
+"other": "plot"
 }
 ],
 "marker_b": [
@@ -10510,17 +10520,6 @@
 },
 "consequences": [
 {
-"id": "wf_7b468bb224",
-"ts": "2026-11-24T02:26:11-0500",
-"a": "marker_d",
-"b": "bicycle",
-"code": "marker_d.interactwith(bicycle){ bicycle.receives(marker_d.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bicycle, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
 "id": "wf_47809ead2d",
 "ts": "2026-11-24T02:33:23-0500",
 "a": "icsh",
@@ -10948,6 +10947,17 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": "j8"
+},
+{
+"id": "wf_b7acfd84d5",
+"ts": "2026-11-24T13:10:12-0500",
+"a": "plot",
+"b": "sandal",
+"code": "plot.interactwith(sandal){ sandal.receives(plot.soot); sandal.remembers(taiwo, 'lamp soot'); sandal.tucks(plot, 'bird note into the brown envelope'); }",
+"text": "A Bird note with Taiwo's name and 'lamp soot' on it, turns up inside the brown envelope at the sandal, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j7"
 }
 ],
 "memories": [
@@ -11051,5 +11061,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-24T11:02:35-0500"
+"updated": "2026-11-24T13:10:12-0500"
 }
