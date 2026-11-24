@@ -2061,16 +2061,6 @@
 ],
 "tie": [
 {
-"id": "wf_b0ee83548d",
-"kind": "consequence",
-"text": "A Laptop note with Taiwo's name and 'lamp soot' on it, turns up inside the brown envelope at the tie, and Bisola reads the name twice.",
-"code": "tf_mom.interactwith(tie){ tie.receives(tf_mom.soot); tie.remembers(taiwo, 'lamp soot'); tie.tucks(tf_mom, 'laptop note into the brown envelope'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j7",
-"other": "tf_mom"
-},
-{
 "id": "wf_52794aa481",
 "kind": "consequence",
 "text": "A Sheep note with Kunle's name and 'scorched container number' on it, turns up inside the brown envelope at the tie, and Bisola reads the name twice.",
@@ -2109,6 +2099,16 @@
 "run": "run-5a58c4",
 "card": "j8",
 "other": "marker_c"
+},
+{
+"id": "wf_02c9c39e10",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the green shirt at the tie, and Bisola reads the name twice.",
+"code": "tbp.interactwith(tie){ tie.receives(tbp.envelope); tie.remembers(bisola, 'brown envelope'); tie.tucks(tbp, 'yaba bookshop receipt into the green shirt'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "tbp"
 }
 ],
 "laptop": [
@@ -5273,16 +5273,6 @@
 ],
 "matbaotstaili": [
 {
-"id": "wf_716176ca30",
-"kind": "consequence",
-"text": "The matbaotstaili leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
-"code": "dez.interactwith(matbaotstaili){ matbaotstaili.receives(dez.code); matbaotstaili.remembers(ejiro, 'juju code'); }",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j2",
-"other": "dez"
-},
-{
 "id": "wf_a841ec2a9e",
 "kind": "consequence",
 "text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the juju code at the matbaotstaili, and Ejiro reads the name twice.",
@@ -5321,6 +5311,16 @@
 "run": "run-5a58c4",
 "card": "j3",
 "other": "marker"
+},
+{
+"id": "wf_877ad0ce6b",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the matbaotstaili, and Bisola reads the name twice.",
+"code": "tbp.interactwith(matbaotstaili){ matbaotstaili.receives(tbp.envelope); … }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "tbp"
 }
 ],
 "florida": [
@@ -10632,28 +10632,6 @@
 },
 "consequences": [
 {
-"id": "wf_b46399b8b8",
-"ts": "2026-11-24T03:24:18-0500",
-"a": "dez",
-"b": "teo",
-"code": "dez.interactwith(teo){ teo.receives(dez.envelope); teo.remembers(bisola, 'brown envelope'); }",
-"text": "The teo leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
-"id": "wf_a9fae6f6f9",
-"ts": "2026-11-24T03:27:00-0500",
-"a": "dez",
-"b": "youngteacher",
-"code": "dez.interactwith(youngteacher){ youngteacher.receives(dez.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the youngteacher, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
 "id": "wf_cc930bd517",
 "ts": "2026-11-24T07:04:15-0500",
 "a": "marker_c",
@@ -11070,6 +11048,28 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": "j6"
+},
+{
+"id": "wf_02c9c39e10",
+"ts": "2026-11-24T14:04:28-0500",
+"a": "tbp",
+"b": "tie",
+"code": "tbp.interactwith(tie){ tie.receives(tbp.envelope); tie.remembers(bisola, 'brown envelope'); tie.tucks(tbp, 'yaba bookshop receipt into the green shirt'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the green shirt at the tie, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
+},
+{
+"id": "wf_877ad0ce6b",
+"ts": "2026-11-24T14:05:21-0500",
+"a": "tbp",
+"b": "matbaotstaili",
+"code": "tbp.interactwith(matbaotstaili){ matbaotstaili.receives(tbp.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the matbaotstaili, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
 }
 ],
 "memories": [
@@ -11173,5 +11173,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-24T14:01:06-0500"
+"updated": "2026-11-24T14:05:21-0500"
 }
