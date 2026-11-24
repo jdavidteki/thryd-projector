@@ -107,8 +107,8 @@
     "ask",
     "give"
    ],
-   "instances": 417,
-   "arg_instances": 98,
+   "instances": 418,
+   "arg_instances": 99,
    "parent": null,
    "chain": [
     "Thing"
@@ -2367,6 +2367,26 @@
     "run-5a58c4"
    ],
    "tweets": []
+  },
+  "god": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-5a58c4",
+   "first_job": "j40",
+   "source": "pick",
+   "runs": [
+    "run-5a58c4"
+   ],
+   "tweets": [
+    {
+     "text": "-- if eez god dat you found ooo!",
+     "year": "2025"
+    },
+    {
+     "text": "- religion is a variable and [[god]] is the value",
+     "year": "2025"
+    }
+   ]
   },
   "googlemaps": {
    "class": "Thing",
@@ -7323,6 +7343,12 @@
     "pick"
    ],
    [
+    "god",
+    "Thing",
+    "j40",
+    "pick"
+   ],
+   [
     "true",
     "Thing",
     "j28",
@@ -10914,6 +10940,7 @@
   "fine.weigh": "weigh(what: Thing)",
   "teo.ring": "ring(what: Thing)",
   "travel.close": "close(what: Thing)",
+  "marisol.find": "find(what: Thing)",
   "cooler.getdatemanufactured": "getDateManufactured()",
   "ronke.getlikes.contains": "getlikes.contains()",
   "kazeem.goodqualities.filter": "filter()",
@@ -11462,5 +11489,5 @@
   "epilogue": "quiet",
   "coda": "quiet"
  },
- "updated": "2026-11-24T00:49:52-05:00"
+ "updated": "2026-11-24T00:58:25-05:00"
 }
