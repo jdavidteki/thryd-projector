@@ -827,16 +827,6 @@
 ],
 "agbada": [
 {
-"id": "wf_5b709e5424",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the agbada, which is still worn by a stranger haggler.",
-"code": "computer_village.interactwith(agbada){ agbada.receives(computer_village.envelope); agbada.remembers(bisola, 'brown envelope'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "computer_village"
-},
-{
 "id": "wf_f3d4afd494",
 "kind": "consequence",
 "text": "The pure-water cooler ends up with the agbada, still carried home through the flood.",
@@ -865,6 +855,16 @@
 "run": "run-2eb42d",
 "card": "",
 "other": "mama_ronke"
+},
+{
+"id": "wf_f8c6013992",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the agbada, which is still worn by a stranger haggler.",
+"code": "again.interactwith(agbada){ agbada.receives(again.envelope); agbada.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "again"
 },
 {
 "id": "wf_eff49442c3",
@@ -1003,16 +1003,6 @@
 "other": "thryd"
 },
 {
-"id": "wf_3fdb648208",
-"kind": "memory",
-"text": "The red and white cap on Kazeem, Mama Ronke's house and gate: worn; boasted about while talking hacking.",
-"code": "red_white_cap.state('worn');",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "w6",
-"other": null
-},
-{
 "id": "wf_656aa137f0",
 "kind": "consequence",
 "text": "A Bird note with Bisola's name and 'envelope corner' on it, turns up with the red and white cap, which is still worn.",
@@ -1021,6 +1011,16 @@
 "run": "run-2eb42d",
 "card": "j7",
 "other": "bird"
+},
+{
+"id": "wf_3fdb648208",
+"kind": "memory",
+"text": "The red and white cap on Kazeem, Mama Ronke's house and gate: worn; boasted about while talking hacking.",
+"code": "red_white_cap.state('worn');",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w6",
+"other": null
 },
 {
 "id": "wt_1115_2356_c",
@@ -6935,6 +6935,16 @@
 "run": "run-g1-B",
 "card": "j6",
 "other": "bowl"
+},
+{
+"id": "wf_4a92c0cc96",
+"kind": "consequence",
+"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the brown envelope at the namco, and Bisola reads the name twice.",
+"code": "example.interactwith(namco){ namco.receives(example.shirt); … }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j8",
+"other": "example"
 }
 ],
 "know_place": [
@@ -10334,28 +10344,6 @@
 },
 "consequences": [
 {
-"id": "wf_0183cbfa4d",
-"ts": "2026-11-23T21:16:10-0500",
-"a": "teach",
-"b": "kazeem",
-"code": "teach.interactwith(kazeem){ kazeem.receives(teach.shirt); kazeem.remembers(bisola, 'green shirt'); }",
-"text": "The kazeem leaves with an Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j8"
-},
-{
-"id": "wf_5f9565ef95",
-"ts": "2026-11-23T21:17:52-0500",
-"a": "tf_mom",
-"b": "b_md",
-"code": "tf_mom.interactwith(b_md){ b_md.receives(tf_mom.soot); b_md.remembers(taiwo, 'lamp soot'); b_md.tucks(tf_mom, 'laptop note into the brown envelope'); }",
-"text": "A Laptop note with Taiwo's name and 'lamp soot' on it, turns up inside the brown envelope at the b md, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j7"
-},
-{
 "id": "wf_ee3ac9cae7",
 "ts": "2026-11-23T21:20:27-0500",
 "a": "bow",
@@ -10772,6 +10760,28 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j7"
+},
+{
+"id": "wf_f8c6013992",
+"ts": "2026-11-24T00:54:58-0500",
+"a": "again",
+"b": "agbada",
+"code": "again.interactwith(agbada){ agbada.receives(again.envelope); agbada.remembers(bisola, 'brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the agbada, which is still worn by a stranger haggler.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
+},
+{
+"id": "wf_4a92c0cc96",
+"ts": "2026-11-24T00:55:50-0500",
+"a": "example",
+"b": "namco",
+"code": "example.interactwith(namco){ namco.receives(example.shirt); … }",
+"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the brown envelope at the namco, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j8"
 }
 ],
 "memories": [
@@ -10875,5 +10885,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-24T00:54:07-0500"
+"updated": "2026-11-24T00:55:50-0500"
 }
