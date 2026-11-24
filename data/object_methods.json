@@ -13702,6 +13702,152 @@
    "faded": true,
    "last_run": "run-5a58c4"
   },
+  "calla.check": {
+   "object": "calla",
+   "method": "check",
+   "args": [
+    "settings"
+   ],
+   "runs": [
+    "run-5a58c4"
+   ],
+   "defined": {
+    "run": "run-5a58c4",
+    "job": "j47",
+    "card": "w47",
+    "title": "calla.check(settings)",
+    "emoji": "⚙️",
+    "at": ""
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "calla.check(settings)",
+     "emoji": "⚙️",
+     "arg": "settings",
+     "run": "run-5a58c4",
+     "job": "j47",
+     "tweets": [
+      {
+       "text": "#juniorboys - 22.7",
+       "year": "2025"
+      },
+      {
+       "text": "#thryd - na the settings",
+       "year": "2025"
+      },
+      {
+       "text": "[[sd,wip]] -- wow!",
+       "year": "2025"
+      }
+     ],
+     "consequence": "Calla checks her settings.",
+     "consequence_job": "j48",
+     "resolved": "calla.check(what=bookingcom:Thing) from j47",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "bookingcom",
+       "from_run": "run-5a58c4",
+       "from_job": "j47",
+       "source": "typed"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "settings",
+      "first_run": "run-5a58c4",
+      "first_job": "j47"
+     }
+    ],
+    "text": "check(what: Thing)"
+   },
+   "receiver_class": "Person",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "dez.take": {
+   "object": "dez",
+   "method": "take",
+   "args": [
+    "risk"
+   ],
+   "runs": [
+    "run-5a58c4"
+   ],
+   "defined": {
+    "run": "run-5a58c4",
+    "job": "j47",
+    "card": "w47",
+    "title": "dez.take(risk)",
+    "emoji": "🎲",
+    "at": ""
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "dez.take(risk)",
+     "emoji": "🎲",
+     "arg": "risk",
+     "run": "run-5a58c4",
+     "job": "j47",
+     "tweets": [
+      {
+       "text": "#obm - big risk these days o",
+       "year": "2025"
+      },
+      {
+       "text": "#thryd - new person(type=🍊)",
+       "year": "2025"
+      },
+      {
+       "text": "[[ayfa?]] -- my tomato jos! bby!",
+       "year": "2025"
+      }
+     ],
+     "consequence": "📍 Wynwood bakery, Miami 🥐 · 108 lines in Dez doesn't wait for Teo.",
+     "consequence_job": "j48",
+     "resolved": "dez.take(what=bookingcom:Thing) from j47",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "bookingcom",
+       "from_run": "run-5a58c4",
+       "from_job": "j47",
+       "source": "typed"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "risk",
+      "first_run": "run-5a58c4",
+      "first_job": "j47"
+     }
+    ],
+    "text": "take(what: Thing)"
+   },
+   "receiver_class": "Person",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
   "cooler.getdatemanufactured": {
    "object": "cooler",
    "method": "getDateManufactured",
@@ -16802,7 +16948,8 @@
    "calla.hear",
    "calla.laugh",
    "calla.draw",
-   "calla.scroll"
+   "calla.scroll",
+   "calla.check"
   ],
   "calla_5a58c4": [
    "calla.stare",
@@ -16811,7 +16958,8 @@
    "calla.hear",
    "calla.laugh",
    "calla.draw",
-   "calla.scroll"
+   "calla.scroll",
+   "calla.check"
   ],
   "cam": [
    "cam.stop"
@@ -16957,7 +17105,8 @@
    "dez.bow",
    "dez.use",
    "dez.make",
-   "dez.watch"
+   "dez.watch",
+   "dez.take"
   ],
   "dez_5a58c4": [
    "dez.sit",
@@ -16965,7 +17114,8 @@
    "dez.bow",
    "dez.use",
    "dez.make",
-   "dez.watch"
+   "dez.watch",
+   "dez.take"
   ],
   "dicey": [
    "dicey.call"
@@ -17164,7 +17314,8 @@
    "dez.bow",
    "dez.use",
    "dez.make",
-   "dez.watch"
+   "dez.watch",
+   "dez.take"
   ],
   "marisol": [
    "marisol.find",
@@ -18166,6 +18317,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -18952,6 +19105,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -19123,6 +19278,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -19189,6 +19346,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -19255,6 +19414,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -19321,6 +19482,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -19387,6 +19550,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -19453,6 +19618,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -19519,6 +19686,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -19585,6 +19754,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -19651,6 +19822,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -19717,6 +19890,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -19783,6 +19958,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -19849,6 +20026,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -19915,6 +20094,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -19981,6 +20162,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -20047,6 +20230,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -20113,6 +20298,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -20179,6 +20366,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -20615,6 +20804,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -20681,6 +20872,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -20747,6 +20940,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
      "marisol.wake",
      "nobody.try",
      "teo.transmit",
@@ -20806,6 +21000,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
      "marisol.wake",
      "nobody.try",
      "teo.transmit",
@@ -20865,6 +21060,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -21718,6 +21915,14 @@
    }
   ],
   "chair": [
+   {
+    "scope": "safe",
+    "from": "ba4901337f02",
+    "title": "222. risk",
+    "funcs": [
+     "dez.take"
+    ]
+   },
    {
     "scope": "safe",
     "from": "e164727d4c98",
@@ -22609,9 +22814,18 @@
   "day_life_god_subject": [
    {
     "scope": "safe",
+    "from": "d7818658d865",
+    "title": "116. pie",
+    "funcs": [
+     "calla.check"
+    ]
+   },
+   {
+    "scope": "safe",
     "from": "f81f21521253",
     "title": "829. a day in the life of god",
     "funcs": [
+     "dez.take",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -22671,6 +22885,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -22731,6 +22946,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -22945,6 +23161,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -23289,6 +23507,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -23355,6 +23575,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -23421,6 +23643,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -23487,6 +23711,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -23563,6 +23789,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -23629,6 +23857,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -23695,6 +23925,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -23761,6 +23993,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -23827,6 +24061,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -24000,6 +24236,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -24121,6 +24359,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -24197,6 +24437,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -24273,6 +24515,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -24339,6 +24583,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -24427,6 +24673,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -24493,6 +24741,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -24559,6 +24809,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -24625,6 +24877,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -24691,6 +24945,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -24965,6 +25221,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -25155,6 +25413,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -25232,6 +25492,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -25298,6 +25560,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -25364,6 +25628,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -25430,6 +25696,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -25496,6 +25764,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -25562,6 +25832,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -25962,6 +26234,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -26589,6 +26863,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -26789,6 +27065,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -26855,6 +27133,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -26921,6 +27201,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -26987,6 +27269,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -27047,6 +27330,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -27113,6 +27398,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -27179,6 +27466,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "nobody.try",
      "calla.scroll",
      "teo.transmit",
@@ -27241,6 +27530,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "nobody.try",
      "calla.scroll",
      "teo.transmit",
@@ -27303,6 +27594,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -27369,6 +27662,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -27435,6 +27730,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -27501,6 +27798,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -27567,6 +27866,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -27633,6 +27934,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -27699,6 +28002,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -27765,6 +28070,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -27831,6 +28138,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -27897,6 +28206,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -27963,6 +28274,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -28029,6 +28342,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -28210,6 +28525,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -28286,6 +28603,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -28352,6 +28671,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -28418,6 +28739,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -28484,6 +28807,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -28550,6 +28875,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -28616,6 +28943,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -28682,6 +29011,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -28748,6 +29079,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -28814,6 +29147,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -28880,6 +29215,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -28946,6 +29283,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -29012,6 +29351,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -30326,6 +30667,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -30497,6 +30840,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -30689,6 +31034,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -30891,6 +31238,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -30957,6 +31306,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -31023,6 +31374,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -31089,6 +31442,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -31155,6 +31510,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -31221,6 +31578,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -31287,6 +31646,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -31353,6 +31714,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -31419,6 +31782,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -31485,6 +31850,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -31725,6 +32092,16 @@
     ]
    }
   ],
+  "risk_figure": [
+   {
+    "scope": "safe",
+    "from": "ba4901337f02",
+    "title": "222. risk",
+    "funcs": [
+     "dez.take"
+    ]
+   }
+  ],
   "ronke": [
    {
     "scope": "run",
@@ -31817,6 +32194,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -31883,6 +32262,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -32413,6 +32794,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -32701,6 +33084,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -32767,6 +33152,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -32949,6 +33336,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -33001,6 +33390,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -33053,6 +33444,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -33119,6 +33512,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -33185,6 +33580,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -33376,6 +33773,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -33556,6 +33955,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -33622,6 +34023,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -33688,6 +34091,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -33754,6 +34159,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -33820,6 +34227,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -33886,6 +34295,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -33952,6 +34363,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -34018,6 +34431,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -34099,6 +34514,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -34546,6 +34963,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -34612,6 +35031,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -34930,6 +35351,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -35110,6 +35533,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.take",
+     "calla.check",
      "marisol.wake",
      "nobody.try",
      "calla.scroll",
@@ -35489,7 +35914,9 @@
     "teo.transmit",
     "calla.scroll",
     "nobody.try",
-    "marisol.wake"
+    "marisol.wake",
+    "calla.check",
+    "dez.take"
    ]
   },
   "run-7c51d3": {
@@ -36460,6 +36887,13 @@
    ],
    "runs": []
   },
+  "ba4901337f02": {
+   "title": "222. risk",
+   "funcs": [
+    "dez.take"
+   ],
+   "runs": []
+  },
   "ba87d1a4bdd9": {
    "title": "every [[sin]] + [[glee]] inch of it",
    "funcs": [
@@ -36586,6 +37020,13 @@
    "title": "1118. egusi on tissue papers",
    "funcs": [
     "oyinboman.know"
+   ],
+   "runs": []
+  },
+  "d7818658d865": {
+   "title": "116. pie",
+   "funcs": [
+    "calla.check"
    ],
    "runs": []
   },
@@ -36806,7 +37247,9 @@
     "teo.transmit",
     "calla.scroll",
     "nobody.try",
-    "marisol.wake"
+    "marisol.wake",
+    "calla.check",
+    "dez.take"
    ],
    "runs": [
     "run-5a58c4"
@@ -36939,7 +37382,8 @@
    "8e5bbd0ffb78"
   ],
   "1*GPQAaJE07cSsR2iEm5y9Aw.gif": [
-   "f81f21521253"
+   "f81f21521253",
+   "d7818658d865"
   ],
   "1*S8zTdmwx75vZlUkLwKidzg.gif": [
    "ae2c635132e6"
@@ -37222,6 +37666,18 @@
   ],
   "1*-VkeQVfQ8_nV5UfHbV3HUg.gif": [
    "bd7fa6cf3e04"
+  ],
+  "1*ydvI98r-Gi1LIhWMk0fXow.gif": [
+   "ba4901337f02"
+  ],
+  "1*y8-ipLRYSmVn1RREevpeug.jpeg": [
+   "ba4901337f02"
+  ],
+  "1*iRV6zts-2M6SPBT3nnK_7g.gif": [
+   "ba4901337f02"
+  ],
+  "1*keQF7II1XkxX2P6FlcSXQg.jpeg": [
+   "ba4901337f02"
   ],
   "1*KOfHcbZItSwnzB-Xt4fH3A.gif": [
    "1043ee742884"
@@ -37663,7 +38119,8 @@
   "1*GPQAaJE07cSsR2iEm5y9Aw.gif": {
    "runs": [],
    "safes": [
-    "f81f21521253"
+    "f81f21521253",
+    "d7818658d865"
    ]
   },
   "1*JcTkgYB5LA20HUNBaGWYZA.gif": {
@@ -37933,6 +38390,12 @@
     "ecbaffa655c1"
    ]
   },
+  "1*ydvI98r-Gi1LIhWMk0fXow.gif": {
+   "runs": [],
+   "safes": [
+    "ba4901337f02"
+   ]
+  },
   "1*bvGksBnUGY8APjvlhhkHng.gif": {
    "runs": [],
    "safes": [
@@ -38137,7 +38600,8 @@
    "calla.hear",
    "calla.laugh",
    "calla.draw",
-   "calla.scroll"
+   "calla.scroll",
+   "calla.check"
   ],
   "cam": [
    "cam.stop"
@@ -38186,7 +38650,8 @@
    "dez.bow",
    "dez.use",
    "dez.make",
-   "dez.watch"
+   "dez.watch",
+   "dez.take"
   ],
   "dicey": [
    "dicey.call"
@@ -38980,5 +39445,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-24T13:45:07-05:00"
+ "updated": "2026-11-24T13:56:53-05:00"
 }
