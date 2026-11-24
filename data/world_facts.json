@@ -7283,16 +7283,6 @@
 ],
 "wiitbaw": [
 {
-"id": "wf_35c0dca806",
-"kind": "consequence",
-"text": "The wiitbaw leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"code": "computer_village.interactwith(wiitbaw){ wiitbaw.receives(computer_village.envelope); wiitbaw.remembers(bisola, 'brown envelope'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "computer_village"
-},
-{
 "id": "wf_ab723a297a",
 "kind": "consequence",
 "text": "The wiitbaw leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
@@ -7331,6 +7321,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "patagonia"
+},
+{
+"id": "wf_df9d3130b5",
+"kind": "consequence",
+"text": "The pure-water cooler ends up with the wiitbaw, still carried home through the flood.",
+"code": "pure_water_cooler.interactwith(wiitbaw){ pure_water_cooler.db.copyto(wiitbaw); … }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w1",
+"other": "pure_water_cooler"
 }
 ],
 "listen": [
@@ -10234,17 +10234,6 @@
 },
 "consequences": [
 {
-"id": "wf_486bcebc39",
-"ts": "2026-11-23T15:40:20-0500",
-"a": "precision",
-"b": "computer_village",
-"code": "precision.interactwith(computer_village){ computer_village.receives(precision.shirt); … }",
-"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the brown envelope at the computer village, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j8"
-},
-{
 "id": "wf_8fff6ac73b",
 "ts": "2026-11-23T15:43:51-0500",
 "a": "ojuelegba_bus_stop",
@@ -10672,6 +10661,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j7"
+},
+{
+"id": "wf_df9d3130b5",
+"ts": "2026-11-23T20:01:37-0500",
+"a": "pure_water_cooler",
+"b": "wiitbaw",
+"code": "pure_water_cooler.interactwith(wiitbaw){ pure_water_cooler.db.copyto(wiitbaw); … }",
+"text": "The pure-water cooler ends up with the wiitbaw, still carried home through the flood.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w1"
 }
 ],
 "memories": [
@@ -10775,5 +10775,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-23T19:58:11-0500"
+"updated": "2026-11-23T20:01:37-0500"
 }
