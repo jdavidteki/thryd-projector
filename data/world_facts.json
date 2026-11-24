@@ -2,16 +2,6 @@
 "v": 1,
 "note": "World memory: each object's facts and the newest consequences of meetings (shared store /workspace/thryd-projector/data/world_facts.jsonl, tools/world_memory.py). The stage shows a consequence code line when the same pair meets again, and now and then on its own; #thryd memories show now and then too.",
 "alias": {
-"computer_village_subject": "computer_village",
-"ojuelegba_bus_stop_subject": "ojuelegba_bus_stop",
-"ojuelegba_bus_stop_subject_second": "ojuelegba_bus_stop",
-"ojuelegba_bus_stop_subject_third": "ojuelegba_bus_stop",
-"cooler_subject": "cooler",
-"cooler_subject_second": "cooler",
-"cooler_subject_third": "cooler",
-"saturday_october_subject": "saturday_october",
-"saturday_october_subject_second": "saturday_october",
-"saturday_october_subject_third": "saturday_october",
 "miami_subject": "miami",
 "miami_subject_second": "miami",
 "miami_subject_third": "miami",
@@ -20,6 +10,25 @@
 "florida_subject": "florida",
 "florida_subject_second": "florida",
 "florida_subject_third": "florida",
+"marina_biscayne_bay_subject": "marina_biscayne_bay",
+"marina_biscayne_bay_subject_second": "marina_biscayne_bay",
+"marina_biscayne_bay_subject_third": "marina_biscayne_bay",
+"fire_escape_outside_subject": "fire_escape_outside",
+"fire_escape_outside_subject_second": "fire_escape_outside",
+"fire_escape_outside_subject_third": "fire_escape_outside",
+"top_deck_charter_subject": "top_deck_charter",
+"top_deck_charter_subject_second": "top_deck_charter",
+"top_deck_charter_subject_third": "top_deck_charter",
+"cooler_subject": "cooler",
+"cooler_subject_second": "cooler",
+"cooler_subject_third": "cooler",
+"computer_village_subject": "computer_village",
+"ojuelegba_bus_stop_subject": "ojuelegba_bus_stop",
+"ojuelegba_bus_stop_subject_second": "ojuelegba_bus_stop",
+"ojuelegba_bus_stop_subject_third": "ojuelegba_bus_stop",
+"saturday_october_subject": "saturday_october",
+"saturday_october_subject_second": "saturday_october",
+"saturday_october_subject_third": "saturday_october",
 "family_compound_ikorodu_subject": "family_compound_ikorodu",
 "family_compound_ikorodu_subject_second": "family_compound_ikorodu",
 "family_compound_ikorodu_subject_third": "family_compound_ikorodu",
@@ -64,15 +73,6 @@
 "oshodi_bus_shelter_subject": "oshodi_bus_shelter",
 "oshodi_bus_shelter_subject_second": "oshodi_bus_shelter",
 "oshodi_bus_shelter_subject_third": "oshodi_bus_shelter",
-"marina_biscayne_bay_subject": "marina_biscayne_bay",
-"marina_biscayne_bay_subject_second": "marina_biscayne_bay",
-"marina_biscayne_bay_subject_third": "marina_biscayne_bay",
-"fire_escape_outside_subject": "fire_escape_outside",
-"fire_escape_outside_subject_second": "fire_escape_outside",
-"fire_escape_outside_subject_third": "fire_escape_outside",
-"top_deck_charter_subject": "top_deck_charter",
-"top_deck_charter_subject_second": "top_deck_charter",
-"top_deck_charter_subject_third": "top_deck_charter",
 "lekki_rooftop_subject": "lekki_rooftop",
 "lekki_rooftop_subject_second": "lekki_rooftop",
 "lekki_rooftop_subject_third": "lekki_rooftop",
@@ -827,6 +827,16 @@
 ],
 "agbada": [
 {
+"id": "wf_f3d4afd494",
+"kind": "consequence",
+"text": "The pure-water cooler ends up with the agbada, still carried home through the flood.",
+"code": "pure_water_cooler.interactwith(agbada){ pure_water_cooler.db.copyto(agbada); agbada.keeps(pure_water_cooler, 'pure-water cooler, still carried home through the flood'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w1",
+"other": "pure_water_cooler"
+},
+{
 "id": "wf_6f44dd0ca6",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the agbada, which is still worn by a stranger haggler.",
@@ -865,19 +875,19 @@
 "run": "run-2eb42d",
 "card": "j8",
 "other": "example"
-},
-{
-"id": "wf_eff49442c3",
-"kind": "memory",
-"text": "The agbada at Oke-Ayo bus stop: worn by a stranger haggler; not for fokanicer.",
-"code": "agbada.state('worn by a stranger haggler');",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "w4",
-"other": null
 }
 ],
 "danfo_speaker": [
+{
+"id": "wf_ef76a16e5a",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the danfo speaker, which is still playing the same love song.",
+"code": "computer_village.interactwith(danfo_speaker){ danfo_speaker.receives(computer_village.envelope); danfo_speaker.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "computer_village"
+},
 {
 "id": "wf_3ecac8fff3",
 "kind": "consequence",
@@ -897,16 +907,6 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "atp"
-},
-{
-"id": "wf_bdad55d985",
-"kind": "memory",
-"text": "The danfo speaker at danfo at the curb, song heard again at Mama Ronke's gate: playing the same love song.",
-"code": "danfo_speaker.state('playing the same love song');",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "w5",
-"other": null
 },
 {
 "id": "wt_c1a9e05d21",
@@ -930,6 +930,16 @@
 }
 ],
 "plastic_sheet": [
+{
+"id": "wf_bbd8e2dfa8",
+"kind": "consequence",
+"text": "The plastic sheet now remembers the wiitbaw: The customer typed [[wiitbaw]] on run-qa j1.",
+"code": "wiitbaw.interactwith(plastic_sheet){ plastic_sheet.receives(wiitbaw.something); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j1",
+"other": "wiitbaw"
+},
 {
 "id": "wf_99a2b3e11d",
 "kind": "consequence",
@@ -969,19 +979,19 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "mlkahb"
-},
-{
-"id": "wf_194e588426",
-"kind": "memory",
-"text": "The plastic sheet at Oke-Ayo bus stop: wet; Ronke and Kazeem had been under it, Mama Ronke stood over it.",
-"code": "plastic_sheet.state('wet');",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "w5",
-"other": null
 }
 ],
 "red_white_cap": [
+{
+"id": "wf_649dbcc13c",
+"kind": "consequence",
+"text": "A Laptop note with Taiwo's name and 'lamp soot' on it, turns up with the red and white cap, which is still worn.",
+"code": "tf_mom.interactwith(red_white_cap){ red_white_cap.receives(tf_mom.soot); red_white_cap.remembers(taiwo, 'lamp soot'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j7",
+"other": "tf_mom"
+},
 {
 "id": "wf_5fcdd5c34b",
 "kind": "consequence",
@@ -1013,16 +1023,6 @@
 "other": "ojuelegba_bus_stop"
 },
 {
-"id": "wf_3fdb648208",
-"kind": "memory",
-"text": "The red and white cap on Kazeem, Mama Ronke's house and gate: worn; boasted about while talking hacking.",
-"code": "red_white_cap.state('worn');",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "w6",
-"other": null
-},
-{
 "id": "wt_1115_2356_c",
 "kind": "consequence",
 "text": "Taiwo turns the kerosene lamp low and tucks the egbe note under the red white cap's brim, so whoever wears it home tomorrow carries the meeting time without knowing it.",
@@ -1034,6 +1034,16 @@
 }
 ],
 "streetlights": [
+{
+"id": "wf_c4492f219e",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the streetlights, which is still all dead since 7:35pm.",
+"code": "bicycle.interactwith(streetlights){ streetlights.receives(bicycle.envelope); streetlights.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "bicycle"
+},
 {
 "id": "wf_99ff1ba63c",
 "kind": "consequence",
@@ -1073,28 +1083,18 @@
 "run": "run-2eb42d",
 "card": "j8",
 "other": "icsh"
-},
-{
-"id": "wf_32b4be23e9",
-"kind": "memory",
-"text": "The streetlights at the street: all dead since 7:35pm.",
-"code": "streetlights.state('all dead since 7:35pm');",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "w6",
-"other": null
 }
 ],
 "kerosene_lamp": [
 {
-"id": "wf_29c8803af0",
-"kind": "memory",
-"text": "The kerosene lamp at Mama Ronke's gate: lit; the only light on the street after the blackout.",
-"code": "kerosene_lamp.state('lit');",
+"id": "wf_b69004de25",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the kerosene lamp, which is still lit.",
+"code": "vex.interactwith(kerosene_lamp){ kerosene_lamp.receives(vex.envelope); kerosene_lamp.remembers(bisola, 'brown envelope'); }",
 "author": "cos",
 "run": "run-2eb42d",
-"card": "w7",
-"other": null
+"card": "j6",
+"other": "vex"
 },
 {
 "id": "wt_7a2b23aa13",
@@ -1139,6 +1139,16 @@
 ],
 "matches": [
 {
+"id": "wf_145593d448",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the matches, which is still found.",
+"code": "computer_village.interactwith(matches){ matches.receives(computer_village.envelope); matches.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "computer_village"
+},
+{
 "id": "wf_d549cfb487",
 "kind": "consequence",
 "text": "A Chair note with Taiwo's name and '11:20pm' on it, turns up with the matches, which is still found.",
@@ -1177,16 +1187,6 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "listen"
-},
-{
-"id": "wf_d40998bca5",
-"kind": "memory",
-"text": "The matches at doorway, Mama Ronke's house: found; rattled in the doorway as she came back.",
-"code": "matches.state('found');",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "w7",
-"other": null
 }
 ],
 "gbagada_hospital_waiting": [
@@ -7543,16 +7543,6 @@
 ],
 "mkdwo": [
 {
-"id": "wf_2d7c956046",
-"kind": "consequence",
-"text": "The mkdwo leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"code": "asmathic.interactwith(mkdwo){ mkdwo.receives(asmathic.envelope); mkdwo.remembers(bisola, 'brown envelope'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "asmathic"
-},
-{
 "id": "wf_929405f6b9",
 "kind": "consequence",
 "text": "The mkdwo leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
@@ -7591,6 +7581,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "tie"
+},
+{
+"id": "wf_57d0c113ef",
+"kind": "consequence",
+"text": "The mkdwo leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "vex.interactwith(mkdwo){ mkdwo.receives(vex.envelope); mkdwo.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "vex"
 }
 ],
 "asmathic": [
@@ -10354,17 +10354,6 @@
 },
 "consequences": [
 {
-"id": "wf_7690f0c7cf",
-"ts": "2026-11-23T21:36:44-0500",
-"a": "again",
-"b": "iae",
-"code": "again.interactwith(iae){ iae.receives(again.envelope); iae.remembers(bisola, 'brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the iae, which is still initialized.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
 "id": "wf_c7883a1490",
 "ts": "2026-11-23T21:38:27-0500",
 "a": "twgs",
@@ -10792,6 +10781,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j8"
+},
+{
+"id": "wf_57d0c113ef",
+"ts": "2026-11-24T01:16:18-0500",
+"a": "vex",
+"b": "mkdwo",
+"code": "vex.interactwith(mkdwo){ mkdwo.receives(vex.envelope); mkdwo.remembers(bisola, 'brown envelope'); }",
+"text": "The mkdwo leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -10895,5 +10895,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-24T01:13:45-0500"
+"updated": "2026-11-24T01:19:42-0500"
 }
