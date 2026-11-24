@@ -107,8 +107,8 @@
     "ask",
     "give"
    ],
-   "instances": 414,
-   "arg_instances": 94,
+   "instances": 417,
+   "arg_instances": 98,
    "parent": null,
    "chain": [
     "Thing"
@@ -1883,6 +1883,17 @@
     }
    ]
   },
+  "elements": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-5a58c4",
+   "first_job": "j39",
+   "source": "pick",
+   "runs": [
+    "run-5a58c4"
+   ],
+   "tweets": []
+  },
   "ella": {
    "class": "Thing",
    "cue": "default",
@@ -2343,6 +2354,17 @@
    "source": "stage",
    "runs": [
     "run-b9b963"
+   ],
+   "tweets": []
+  },
+  "get": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-5a58c4",
+   "first_job": "j39",
+   "source": "pick",
+   "runs": [
+    "run-5a58c4"
    ],
    "tweets": []
   },
@@ -3648,10 +3670,11 @@
   "look": {
    "class": "Thing",
    "cue": "default",
-   "first_run": "run-0ae93c",
-   "first_job": null,
-   "source": "stage",
+   "first_run": "run-5a58c4",
+   "first_job": "j39",
+   "source": "pick",
    "runs": [
+    "run-5a58c4",
     "run-0ae93c"
    ],
    "tweets": []
@@ -5830,6 +5853,17 @@
    ],
    "tweets": []
   },
+  "system": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-5a58c4",
+   "first_job": "j39",
+   "source": "pick",
+   "runs": [
+    "run-5a58c4"
+   ],
+   "tweets": []
+  },
   "talk": {
    "class": "Action",
    "cue": "word",
@@ -7262,6 +7296,30 @@
     "crowd",
     "Thing",
     "j38",
+    "pick"
+   ],
+   [
+    "look",
+    "Thing",
+    "j39",
+    "pick"
+   ],
+   [
+    "get",
+    "Thing",
+    "j39",
+    "pick"
+   ],
+   [
+    "elements",
+    "Thing",
+    "j39",
+    "pick"
+   ],
+   [
+    "system",
+    "Thing",
+    "j39",
     "pick"
    ],
    [
@@ -10852,6 +10910,10 @@
   "dez.watch": "watch(what: Thing)",
   "teo.open": "open(amount: Quantity)",
   "calla.laugh": "laugh(what: Thing)",
+  "con.mend": "mend(what: Thing)",
+  "fine.weigh": "weigh(what: Thing)",
+  "teo.ring": "ring(what: Thing)",
+  "travel.close": "close(what: Thing)",
   "cooler.getdatemanufactured": "getDateManufactured()",
   "ronke.getlikes.contains": "getlikes.contains()",
   "kazeem.goodqualities.filter": "filter()",
@@ -11124,6 +11186,7 @@
     "Thing"
    ],
    "objects": [
+    "fine",
     "folake",
     "kunle",
     "lateef",
@@ -11189,8 +11252,10 @@
    "blender",
    "calla",
    "code",
+   "con",
    "crime",
    "dez",
+   "fine",
    "laff",
    "life",
    "marisol",
@@ -11202,6 +11267,7 @@
    "thrill",
    "time",
    "touch",
+   "travel",
    "tyn",
    "wanow"
   ],
@@ -11396,5 +11462,5 @@
   "epilogue": "quiet",
   "coda": "quiet"
  },
- "updated": "2026-11-24T00:35:23-05:00"
+ "updated": "2026-11-24T00:49:52-05:00"
 }
