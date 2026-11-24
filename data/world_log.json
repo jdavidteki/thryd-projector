@@ -7797,7 +7797,7 @@
   },
   "run-2eb42d": {
    "forked_from": "safe:9525b78aa7f3",
-   "head": "aa62f6eabd",
+   "head": "6e4b985acd",
    "commits": [
     {
      "id": "5fbed9f6ab",
@@ -12887,7 +12887,7 @@
      }
     },
     {
-     "id": "9d32f0907e",
+     "id": "9eec4ccc1e",
      "parent": "6d4683b142",
      "branch": "run-2eb42d",
      "job": "j40",
@@ -13023,9 +13023,17 @@
         "code": "thryd.interactwith(wiitbaw){ wiitbaw.receives(thryd.something); }",
         "scope": null,
         "cause_id": null
+       },
+       {
+        "id": "wf_5fcdd5c34b",
+        "object": "red_white_cap",
+        "kind": "consequence",
+        "code": "thryd.interactwith(red_white_cap){ red_white_cap.receives(thryd.something); }",
+        "scope": null,
+        "cause_id": null
        }
       ],
-      "facts_total": 16,
+      "facts_total": 17,
       "functions": [
        {
         "func": "chairman.read",
@@ -13060,8 +13068,8 @@
      }
     },
     {
-     "id": "d5a922a360",
-     "parent": "9d32f0907e",
+     "id": "12dd07d174",
+     "parent": "9eec4ccc1e",
      "branch": "run-2eb42d",
      "job": "j41",
      "at": "2026-11-18T19:28:56-05:00",
@@ -13232,8 +13240,8 @@
      }
     },
     {
-     "id": "0e10be506c",
-     "parent": "d5a922a360",
+     "id": "7796f3555c",
+     "parent": "12dd07d174",
      "branch": "run-2eb42d",
      "job": "j42",
      "at": "2026-11-19T12:49:56-05:00",
@@ -13296,8 +13304,8 @@
      }
     },
     {
-     "id": "68a687884f",
-     "parent": "0e10be506c",
+     "id": "65d32ce07c",
+     "parent": "7796f3555c",
      "branch": "run-2eb42d",
      "job": "j43",
      "at": "2026-11-19T13:31:30-05:00",
@@ -13356,8 +13364,8 @@
      }
     },
     {
-     "id": "aa62f6eabd",
-     "parent": "68a687884f",
+     "id": "6e4b985acd",
+     "parent": "65d32ce07c",
      "branch": "run-2eb42d",
      "job": "j44",
      "at": "2026-11-19T16:05:01-05:00",
@@ -14822,7 +14830,7 @@
   "run-9e59ca": "59f544b8d8",
   "run-5a58c4": "c543e72145",
   "run-g1-B": "37972c88df",
-  "run-2eb42d": "aa62f6eabd",
+  "run-2eb42d": "6e4b985acd",
   "run-qa": "e4b61114ec",
   "run-44583f": "ca622f23ee",
   "run-0ae93c": "a11a1eab61",
@@ -14832,5 +14840,5 @@
   "run-888ea9": "9815dfcb14"
  },
  "commits": 132,
- "updated": "2026-11-24T00:01:23-05:00"
+ "updated": "2026-11-24T00:03:04-05:00"
 }
