@@ -3901,16 +3901,6 @@
 ],
 "bow": [
 {
-"id": "wf_ad9be10ddc",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bow, and Bisola reads the name twice.",
-"code": "morir_r.interactwith(bow){ bow.receives(morir_r.envelope); bow.remembers(bisola, 'brown envelope'); bow.tucks(morir_r, 'yaba bookshop receipt into the brown envelope'); }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "morir_r"
-},
-{
 "id": "wf_61610235af",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bow, and Bisola reads the name twice.",
@@ -3949,6 +3939,16 @@
 "run": "run-2eb42d",
 "card": "j8",
 "other": "lady"
+},
+{
+"id": "wf_b0cb1ed5f1",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the green shirt at the bow, and Bisola reads the name twice.",
+"code": "again.interactwith(bow){ bow.receives(again.envelope); bow.remembers(bisola, 'brown envelope'); bow.tucks(again, 'yaba bookshop receipt into the green shirt'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "again"
 }
 ],
 "crown": [
@@ -7425,6 +7425,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "asmathic"
+},
+{
+"id": "wf_c5be6a68d0",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the jnoel, and Bisola reads the name twice.",
+"code": "divine.interactwith(jnoel){ jnoel.receives(divine.envelope); … }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "divine"
 }
 ],
 "twgs": [
@@ -10274,39 +10284,6 @@
 },
 "consequences": [
 {
-"id": "wf_f0d7ba72b3",
-"ts": "2026-11-23T18:53:30-0500",
-"a": "mlkahb",
-"b": "wser",
-"code": "mlkahb.interactwith(wser){ wser.receives(mlkahb.envelope); wser.remembers(bisola, 'brown envelope'); }",
-"text": "The wser leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
-"id": "wf_a75f321ad2",
-"ts": "2026-11-23T18:57:01-0500",
-"a": "unc_status",
-"b": "jetty_south_pointe",
-"code": "unc_status.interactwith(jetty_south_pointe){ jetty_south_pointe.receives(unc_status.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the jetty south pointe, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
-"id": "wf_d20ce68d32",
-"ts": "2026-11-23T18:57:54-0500",
-"a": "seniorgehs",
-"b": "cell_phone",
-"code": "seniorgehs.interactwith(cell_phone){ cell_phone.receives(seniorgehs.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the cell phone, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
 "id": "wf_24a87efa8a",
 "ts": "2026-11-23T19:05:54-0500",
 "a": "example",
@@ -10712,6 +10689,39 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "j6"
+},
+{
+"id": "wf_b0cb1ed5f1",
+"ts": "2026-11-23T21:47:54-0500",
+"a": "again",
+"b": "bow",
+"code": "again.interactwith(bow){ bow.receives(again.envelope); bow.remembers(bisola, 'brown envelope'); bow.tucks(again, 'yaba bookshop receipt into the green shirt'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the green shirt at the bow, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
+},
+{
+"id": "wf_c5be6a68d0",
+"ts": "2026-11-23T21:50:27-0500",
+"a": "divine",
+"b": "jnoel",
+"code": "divine.interactwith(jnoel){ jnoel.receives(divine.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the jnoel, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
+},
+{
+"id": "wf_2b279ef861",
+"ts": "2026-11-23T21:51:20-0500",
+"a": "agbada",
+"b": "kazeem",
+"code": "agbada.interactwith(kazeem){ agbada.db.copyto(kazeem); kazeem.keeps(agbada, 'agbada, still worn by a stranger haggler'); }",
+"text": "The agbada ends up with the kazeem, still worn by a stranger haggler.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "w4"
 }
 ],
 "memories": [
@@ -10815,5 +10825,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-23T21:46:11-0500"
+"updated": "2026-11-23T21:51:20-0500"
 }
