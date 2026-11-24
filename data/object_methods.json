@@ -5154,14 +5154,14 @@
      ],
      "consequence": "The sharp question Teo didn't answer is still unanswered.",
      "consequence_job": "j36",
-     "resolved": "teo.lead(act=something:Action) from j35",
+     "resolved": "teo.lead(act=visit:Action) from j34",
      "injected": [
       {
        "param": "act",
        "class": "Action",
-       "instance": "something",
+       "instance": "visit",
        "from_run": "run-5a58c4",
-       "from_job": "j35",
+       "from_job": "j34",
        "source": "pick"
       }
      ]
@@ -12969,6 +12969,194 @@
    "faded": true,
    "last_run": "run-5a58c4"
   },
+  "marisol.tell": {
+   "object": "marisol",
+   "method": "tell",
+   "args": [
+    "something"
+   ],
+   "runs": [
+    "run-5a58c4"
+   ],
+   "defined": {
+    "run": "run-5a58c4",
+    "job": "j41",
+    "card": "w41",
+    "title": "marisol.tell(something)",
+    "emoji": "📣",
+    "at": "2026-11-24T01:08:32-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "marisol.tell(something)",
+     "emoji": "📣",
+     "arg": "something",
+     "run": "run-5a58c4",
+     "job": "j41",
+     "tweets": [
+      {
+       "text": "- and if something has happened",
+       "year": "2024"
+      },
+      {
+       "text": "- we will let you know something",
+       "year": "2024"
+      },
+      {
+       "text": "[[sih]] - has happened, odawise",
+       "year": "2024"
+      }
+     ],
+     "consequence": "📍 Wynwood bakery, Miami 🥐 · 81 lines in Nobody gives Marisol a plan.",
+     "consequence_job": "j42",
+     "resolved": "marisol.tell(act=something:Action) from j41",
+     "injected": [
+      {
+       "param": "act",
+       "class": "Action",
+       "instance": "something",
+       "from_run": "run-5a58c4",
+       "from_job": "j41",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "act",
+      "class": "Action",
+      "default": "something",
+      "first_run": "run-5a58c4",
+      "first_job": "j35"
+     }
+    ],
+    "text": "tell(act: Action)"
+   },
+   "receiver_class": "Person",
+   "prior": [
+    {
+     "id": "mamaronke.tell",
+     "title": "mamaronke.tell(ice)",
+     "run": "run-2eb42d",
+     "job": "j25",
+     "at": "2026-11-18T11:37:20-05:00",
+     "why": "same method"
+    }
+   ],
+   "faded": false,
+   "last_run": null
+  },
+  "nobody.see": {
+   "object": "nobody",
+   "method": "see",
+   "args": [
+    "it"
+   ],
+   "runs": [
+    "run-5a58c4"
+   ],
+   "defined": {
+    "run": "run-5a58c4",
+    "job": "j41",
+    "card": "w41",
+    "title": "nobody.see(it)",
+    "emoji": "🔭",
+    "at": "2026-11-24T01:08:32-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "nobody.see(it)",
+     "emoji": "🔭",
+     "arg": "it",
+     "run": "run-5a58c4",
+     "job": "j41",
+     "tweets": [
+      {
+       "text": "[[twgs]] - the way i see [[it]], ba",
+       "year": "2024"
+      },
+      {
+       "text": "[[idy]] - since he went to the gym",
+       "year": "2024"
+      },
+      {
+       "text": "and then this other guy went to the club",
+       "year": "2024"
+      }
+     ],
+     "consequence": "📍 Wynwood bakery, Miami 🥐 · 81 lines in Nobody gives Marisol a plan.",
+     "consequence_job": "j42",
+     "resolved": "nobody.see(what=it:Thing) from j41",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "it",
+       "from_run": "run-5a58c4",
+       "from_job": "j41",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "it",
+      "first_run": "run-888ea9",
+      "first_job": "j10"
+     }
+    ],
+    "text": "see(what: Thing)"
+   },
+   "receiver_class": "Person",
+   "prior": [
+    {
+     "id": "order.see",
+     "title": "order.see(chaos)",
+     "run": "run-888ea9",
+     "job": "j9",
+     "at": "2026-11-23T20:00:23-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "accuracy.see",
+     "title": "accuracy.see(mad)",
+     "run": "run-888ea9",
+     "job": "j5",
+     "at": "2026-11-23T18:06:50-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "folake.see",
+     "title": "folake.see(people)",
+     "run": "run-g1-B",
+     "job": "j12",
+     "at": "2026-11-17T18:33:35-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "calla.see",
+     "title": "calla.see(inside)",
+     "run": "run-5a58c4",
+     "job": "j32",
+     "at": "2026-11-17T15:42:34-05:00",
+     "why": "same method"
+    }
+   ],
+   "faded": false,
+   "last_run": null
+  },
   "cooler.getdatemanufactured": {
    "object": "cooler",
    "method": "getDateManufactured",
@@ -16430,10 +16618,12 @@
    "dez.watch"
   ],
   "marisol": [
-   "marisol.find"
+   "marisol.find",
+   "marisol.tell"
   ],
   "marisol_5a58c4": [
-   "marisol.find"
+   "marisol.find",
+   "marisol.tell"
   ],
   "media": [
    "media.all"
@@ -16460,7 +16650,8 @@
   "nobody": [
    "nobody.weigh",
    "nobody.rename",
-   "nobody.bring"
+   "nobody.bring",
+   "nobody.see"
   ],
   "not_me_but_subject": [
    "object.look"
@@ -17417,6 +17608,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -18184,6 +18377,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -18346,6 +18541,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -18403,6 +18600,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -18460,6 +18659,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -18517,6 +18718,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -18574,6 +18777,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -18631,6 +18836,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -18688,6 +18895,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -18745,6 +18954,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -18802,6 +19013,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -18859,6 +19072,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -18916,6 +19131,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -18973,6 +19190,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -19030,6 +19249,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -19087,6 +19308,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -19144,6 +19367,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -19201,6 +19426,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -19258,6 +19485,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -19685,6 +19914,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -19742,6 +19973,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -19799,6 +20032,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -19851,6 +20086,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -19903,6 +20140,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -21641,6 +21880,8 @@
     "from": "f81f21521253",
     "title": "829. a day in the life of god",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -21691,6 +21932,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -21742,6 +21985,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -21946,6 +22191,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -22281,6 +22528,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -22338,6 +22587,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -22395,6 +22646,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -22452,6 +22705,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -22519,6 +22774,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -22576,6 +22833,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -22633,6 +22892,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -22690,6 +22951,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -22747,6 +23010,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -22911,6 +23176,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -23013,6 +23280,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -23080,6 +23349,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -23147,6 +23418,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -23204,6 +23477,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -23283,6 +23558,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -23340,6 +23617,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -23397,6 +23676,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -23454,6 +23735,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -23511,6 +23794,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -23776,6 +24061,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -23957,6 +24244,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -24025,6 +24314,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -24082,6 +24373,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -24139,6 +24432,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -24196,6 +24491,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -24253,6 +24550,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -24310,6 +24609,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -24475,6 +24776,14 @@
     "funcs": [
      "ronke.watch",
      "adaora.cap"
+    ]
+   },
+   {
+    "scope": "safe",
+    "from": "ff1f490885fd",
+    "title": "1215. keep the machine running",
+    "funcs": [
+     "nobody.see"
     ]
    }
   ],
@@ -24693,6 +25002,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -25311,6 +25622,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -25502,6 +25815,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -25559,6 +25874,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -25616,6 +25933,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -25673,6 +25992,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -25724,6 +26045,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -25781,6 +26104,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -25838,6 +26163,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
      "travel.close",
      "teo.ring",
      "fine.weigh",
@@ -25894,6 +26220,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
      "travel.close",
      "teo.ring",
      "fine.weigh",
@@ -25950,6 +26277,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -26007,6 +26336,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -26064,6 +26395,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -26121,6 +26454,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -26178,6 +26513,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -26235,6 +26572,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -26292,6 +26631,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -26349,6 +26690,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -26406,6 +26749,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -26463,6 +26808,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -26520,6 +26867,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -26577,6 +26926,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -26749,6 +27100,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -26816,6 +27169,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -26873,6 +27228,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -26930,6 +27287,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -26987,6 +27346,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -27044,6 +27405,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -27101,6 +27464,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -27158,6 +27523,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -27215,6 +27582,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -27272,6 +27641,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -27329,6 +27700,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -27386,6 +27759,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -27443,6 +27818,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -28538,6 +28915,16 @@
     ]
    }
   ],
+  "oya_dance_subject": [
+   {
+    "scope": "safe",
+    "from": "2769d6da2d55",
+    "title": "oya dance",
+    "funcs": [
+     "marisol.tell"
+    ]
+   }
+  ],
   "patagonia": [
    {
     "scope": "run",
@@ -28728,6 +29115,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -28890,6 +29279,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -29073,6 +29464,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -29266,6 +29659,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -29323,6 +29718,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -29380,6 +29777,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -29437,6 +29836,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -29494,6 +29895,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -29551,6 +29954,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -29608,6 +30013,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -29665,6 +30072,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -29722,6 +30131,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -29779,6 +30190,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -30102,6 +30515,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -30159,6 +30574,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -30680,6 +31097,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -30959,6 +31378,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -31016,6 +31437,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -31189,6 +31612,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "fine.weigh",
@@ -31234,6 +31659,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "fine.weigh",
@@ -31279,6 +31706,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -31336,6 +31765,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -31393,6 +31824,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -31575,6 +32008,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -31746,6 +32181,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -31803,6 +32240,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -31860,6 +32299,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -31917,6 +32358,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -31974,6 +32417,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -32031,6 +32476,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -32088,6 +32535,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -32145,6 +32594,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -32217,6 +32668,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -32645,6 +33098,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -32702,6 +33157,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -33011,6 +33468,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -33182,6 +33641,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.see",
+     "marisol.tell",
      "marisol.find",
      "travel.close",
      "teo.ring",
@@ -33543,7 +34004,9 @@
     "fine.weigh",
     "teo.ring",
     "travel.close",
-    "marisol.find"
+    "marisol.find",
+    "marisol.tell",
+    "nobody.see"
    ]
   },
   "run-7c51d3": {
@@ -33924,6 +34387,13 @@
    "title": "712. wishful thinking",
    "funcs": [
     "kunle.read"
+   ],
+   "runs": []
+  },
+  "2769d6da2d55": {
+   "title": "oya dance",
+   "funcs": [
+    "marisol.tell"
    ],
    "runs": []
   },
@@ -34801,7 +35271,9 @@
     "fine.weigh",
     "teo.ring",
     "travel.close",
-    "marisol.find"
+    "marisol.find",
+    "marisol.tell",
+    "nobody.see"
    ],
    "runs": [
     "run-5a58c4"
@@ -34848,6 +35320,13 @@
    "runs": [
     "run-bd649b"
    ]
+  },
+  "ff1f490885fd": {
+   "title": "1215. keep the machine running",
+   "funcs": [
+    "nobody.see"
+   ],
+   "runs": []
   },
   "ff9027478b51": {
    "title": "1227. be doing something",
@@ -34952,7 +35431,8 @@
    "1956e94e236c"
   ],
   "1*K6KD20r0VFgbTpduHwvn0Q.gif": [
-   "4e7e5fdaefbf"
+   "4e7e5fdaefbf",
+   "ff1f490885fd"
   ],
   "1*Bzh9xE_MoUeXsNFiT79hKA.gif": [
    "0a88bcb1bbe8"
@@ -35038,6 +35518,9 @@
   ],
   "1*3jdLlO20gy-sPqFRavBV-A.gif": [
    "09dc204dfd9a"
+  ],
+  "1*NM5XX7ZgufsTSYr6ylAwBA.gif": [
+   "2769d6da2d55"
   ],
   "1*xsNo3id2HoGRFLmTfucKTQ.gif": [
    "eba67812c673"
@@ -35499,7 +35982,8 @@
   "1*K6KD20r0VFgbTpduHwvn0Q.gif": {
    "runs": [],
    "safes": [
-    "4e7e5fdaefbf"
+    "4e7e5fdaefbf",
+    "ff1f490885fd"
    ]
   },
   "1*M7PP8y5XxO_g-lWVYiJqLg.gif": {
@@ -35647,6 +36131,12 @@
    "runs": [],
    "safes": [
     "8e5bbd0ffb78"
+   ]
+  },
+  "1*NM5XX7ZgufsTSYr6ylAwBA.gif": {
+   "runs": [],
+   "safes": [
+    "2769d6da2d55"
    ]
   },
   "1*NQPKmNLPgP3qAWkFrAMX5w.gif": {
@@ -36274,7 +36764,8 @@
    "map.which"
   ],
   "marisol": [
-   "marisol.find"
+   "marisol.find",
+   "marisol.tell"
   ],
   "media": [
    "media.all"
@@ -36295,7 +36786,8 @@
   "nobody": [
    "nobody.weigh",
    "nobody.rename",
-   "nobody.bring"
+   "nobody.bring",
+   "nobody.see"
   ],
   "object": [
    "object.look"
@@ -36595,6 +37087,8 @@
    "Readable"
   ],
   "nobody": [
+   "Readable",
+   "Watchable",
    "Weighable"
   ],
   "dez": [
@@ -36904,5 +37398,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-24T00:59:17-05:00"
+ "updated": "2026-11-24T01:08:39-05:00"
 }
