@@ -3465,15 +3465,15 @@
      ],
      "consequence": "Whatever Teo started to say on the rail is still sitting between them; nobody repeats it, and the question of who the song was for is left open in the booth.",
      "consequence_job": "j29",
-     "resolved": "nobody.weigh(what=weda:Thing) from j28",
+     "resolved": "nobody.weigh(what=true:Thing) from j28",
      "injected": [
       {
        "param": "what",
        "class": "Thing",
-       "instance": "weda",
+       "instance": "true",
        "from_run": "run-5a58c4",
        "from_job": "j28",
-       "source": "pick"
+       "source": "typed"
       }
      ]
     }
@@ -3579,7 +3579,7 @@
        "instance": "watch",
        "from_run": "run-5a58c4",
        "from_job": "j29",
-       "source": "pick"
+       "source": "original"
       }
      ]
     }
@@ -13857,6 +13857,161 @@
    "faded": true,
    "last_run": "run-5a58c4"
   },
+  "calla.lead": {
+   "object": "calla",
+   "method": "lead",
+   "args": [
+    "worship"
+   ],
+   "runs": [
+    "run-5a58c4"
+   ],
+   "defined": {
+    "run": "run-5a58c4",
+    "job": "j48",
+    "card": "w48",
+    "title": "calla.lead(worship)",
+    "emoji": "🕯️",
+    "at": "2026-11-24T14:16:40-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "calla.lead(worship)",
+     "emoji": "🕯️",
+     "arg": "worship",
+     "run": "run-5a58c4",
+     "job": "j48",
+     "tweets": [
+      {
+       "text": "#jbw - in a place of worship",
+       "year": "2024"
+      },
+      {
+       "text": "[[tolu]] - you see that line?",
+       "year": "2024"
+      },
+      {
+       "text": "#juniorboys - imperfection",
+       "year": "2024"
+      }
+     ],
+     "consequence": "Calla turns her screen around and points at one line in the booking.",
+     "consequence_job": "j49",
+     "resolved": "calla.lead(what=worship:Thing) from j48",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "worship",
+       "from_run": "run-5a58c4",
+       "from_job": "j48",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "worship",
+      "first_run": "run-5a58c4",
+      "first_job": "j48"
+     }
+    ],
+    "text": "lead(what: Thing)"
+   },
+   "receiver_class": "Person",
+   "prior": [
+    {
+     "id": "teo.lead",
+     "title": "teo.lead(something)",
+     "run": "run-5a58c4",
+     "job": "j35",
+     "at": "2026-11-17T16:53:36-05:00",
+     "why": "same method"
+    }
+   ],
+   "faded": false,
+   "last_run": null
+  },
+  "marisol.ship": {
+   "object": "marisol",
+   "method": "ship",
+   "args": [
+    "smile"
+   ],
+   "runs": [
+    "run-5a58c4"
+   ],
+   "defined": {
+    "run": "run-5a58c4",
+    "job": "j48",
+    "card": "w48",
+    "title": "marisol.ship(smile)",
+    "emoji": "😊",
+    "at": "2026-11-24T14:16:40-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "marisol.ship(smile)",
+     "emoji": "😊",
+     "arg": "smile",
+     "run": "run-5a58c4",
+     "job": "j48",
+     "tweets": [
+      {
+       "text": "— ship her smile tomorrow",
+       "year": "2025"
+      },
+      {
+       "text": "— they already know me",
+       "year": "2025"
+      },
+      {
+       "text": "#seniorgehs — why should i care about the world?",
+       "year": "2025"
+      }
+     ],
+     "consequence": "📍 Wynwood bakery, Miami 🥐 · 114 lines in Marisol decides the smile can wait.",
+     "consequence_job": "j49",
+     "resolved": "marisol.ship(what=smile:Thing) from j48",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "smile",
+       "from_run": "run-5a58c4",
+       "from_job": "j48",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "smile",
+      "first_run": "run-5a58c4",
+      "first_job": "j48"
+     }
+    ],
+    "text": "ship(what: Thing)"
+   },
+   "receiver_class": "Person",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
   "cooler.getdatemanufactured": {
    "object": "cooler",
    "method": "getDateManufactured",
@@ -16958,7 +17113,8 @@
    "calla.laugh",
    "calla.draw",
    "calla.scroll",
-   "calla.check"
+   "calla.check",
+   "calla.lead"
   ],
   "calla_5a58c4": [
    "calla.stare",
@@ -16968,7 +17124,8 @@
    "calla.laugh",
    "calla.draw",
    "calla.scroll",
-   "calla.check"
+   "calla.check",
+   "calla.lead"
   ],
   "cam": [
    "cam.stop"
@@ -17330,13 +17487,15 @@
    "marisol.find",
    "marisol.tell",
    "marisol.wise",
-   "marisol.wake"
+   "marisol.wake",
+   "marisol.ship"
   ],
   "marisol_5a58c4": [
    "marisol.find",
    "marisol.tell",
    "marisol.wise",
-   "marisol.wake"
+   "marisol.wake",
+   "marisol.ship"
   ],
   "media": [
    "media.all"
@@ -18326,6 +18485,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -19114,6 +19275,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -19287,6 +19450,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -19355,6 +19520,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -19423,6 +19590,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -19491,6 +19660,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -19559,6 +19730,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -19627,6 +19800,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -19695,6 +19870,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -19763,6 +19940,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -19831,6 +20010,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -19899,6 +20080,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -19967,6 +20150,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -20035,6 +20220,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -20103,6 +20290,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -20171,6 +20360,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -20239,6 +20430,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -20307,6 +20500,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -20375,6 +20570,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -20813,6 +21010,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -20881,6 +21080,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -20949,6 +21150,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
      "dez.take",
      "marisol.wake",
      "nobody.try",
@@ -21009,6 +21211,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
      "dez.take",
      "marisol.wake",
      "nobody.try",
@@ -21069,6 +21272,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -22834,6 +23039,8 @@
     "from": "f81f21521253",
     "title": "829. a day in the life of god",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "marisol.wake",
      "nobody.try",
@@ -22894,6 +23101,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "calla.check",
      "marisol.wake",
      "nobody.try",
@@ -22955,6 +23164,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "calla.check",
      "marisol.wake",
      "nobody.try",
@@ -23170,6 +23381,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -23491,6 +23704,16 @@
     ]
    }
   ],
+  "favourite_line_smile_figure": [
+   {
+    "scope": "safe",
+    "from": "65400f845eaf",
+    "title": "703. my favourite line is a smile",
+    "funcs": [
+     "marisol.ship"
+    ]
+   }
+  ],
   "fear_god_subject": [
    {
     "scope": "safe",
@@ -23516,6 +23739,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -23584,6 +23809,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -23652,6 +23879,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -23720,6 +23949,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -23798,6 +24029,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -23866,6 +24099,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -23934,6 +24169,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -24002,6 +24239,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -24070,6 +24309,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -24245,6 +24486,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -24368,6 +24611,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -24446,6 +24691,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -24524,6 +24771,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -24592,6 +24841,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -24682,6 +24933,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -24750,6 +25003,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -24818,6 +25073,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -24886,6 +25143,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -24954,6 +25213,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -25230,6 +25491,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -25422,6 +25685,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -25501,6 +25766,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -25569,6 +25836,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -25637,6 +25906,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -25705,6 +25976,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -25773,6 +26046,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -25841,6 +26116,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -26243,6 +26520,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -26551,6 +26830,16 @@
     "title": "1029. eskebetiolelele!!!!",
     "funcs": [
      "teo.respond"
+    ]
+   }
+  ],
+  "lead_us_mood_figure": [
+   {
+    "scope": "safe",
+    "from": "40cc9ba32586",
+    "title": "1106. lead us in a mood of worship",
+    "funcs": [
+     "calla.lead"
     ]
    }
   ],
@@ -26872,6 +27161,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -27074,6 +27365,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -27142,6 +27435,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -27210,6 +27505,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -27278,6 +27575,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "calla.check",
      "marisol.wake",
      "nobody.try",
@@ -27339,6 +27638,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -27407,6 +27708,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -27475,6 +27778,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.lead",
      "dez.take",
      "calla.check",
      "nobody.try",
@@ -27539,6 +27843,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "calla.lead",
      "dez.take",
      "calla.check",
      "nobody.try",
@@ -27603,6 +27908,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -27671,6 +27978,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -27739,6 +28048,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -27807,6 +28118,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -27875,6 +28188,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -27943,6 +28258,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -28011,6 +28328,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -28079,6 +28398,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -28147,6 +28468,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -28215,6 +28538,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -28283,6 +28608,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -28351,6 +28678,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -28534,6 +28863,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -28612,6 +28943,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -28680,6 +29013,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -28748,6 +29083,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -28816,6 +29153,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -28884,6 +29223,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -28952,6 +29293,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -29020,6 +29363,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -29088,6 +29433,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -29156,6 +29503,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -29224,6 +29573,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -29292,6 +29643,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -29360,6 +29713,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -30634,6 +30989,14 @@
      "people.getocsw",
      "everywhere.getdayagreeeeeennnn"
     ]
+   },
+   {
+    "scope": "safe",
+    "from": "65400f845eaf",
+    "title": "703. my favourite line is a smile",
+    "funcs": [
+     "marisol.ship"
+    ]
    }
   ],
   "person2": [
@@ -30669,6 +31032,74 @@
      "people.getocsw",
      "everywhere.getdayagreeeeeennnn"
     ]
+   },
+   {
+    "scope": "safe",
+    "from": "65400f845eaf",
+    "title": "703. my favourite line is a smile",
+    "funcs": [
+     "marisol.ship"
+    ]
+   }
+  ],
+  "person3": [
+   {
+    "scope": "safe",
+    "from": "65400f845eaf",
+    "title": "703. my favourite line is a smile",
+    "funcs": [
+     "marisol.ship"
+    ]
+   }
+  ],
+  "person4": [
+   {
+    "scope": "safe",
+    "from": "65400f845eaf",
+    "title": "703. my favourite line is a smile",
+    "funcs": [
+     "marisol.ship"
+    ]
+   }
+  ],
+  "person5": [
+   {
+    "scope": "safe",
+    "from": "65400f845eaf",
+    "title": "703. my favourite line is a smile",
+    "funcs": [
+     "marisol.ship"
+    ]
+   }
+  ],
+  "person6": [
+   {
+    "scope": "safe",
+    "from": "65400f845eaf",
+    "title": "703. my favourite line is a smile",
+    "funcs": [
+     "marisol.ship"
+    ]
+   }
+  ],
+  "person7": [
+   {
+    "scope": "safe",
+    "from": "65400f845eaf",
+    "title": "703. my favourite line is a smile",
+    "funcs": [
+     "marisol.ship"
+    ]
+   }
+  ],
+  "person8": [
+   {
+    "scope": "safe",
+    "from": "65400f845eaf",
+    "title": "703. my favourite line is a smile",
+    "funcs": [
+     "marisol.ship"
+    ]
    }
   ],
   "phone": [
@@ -30676,6 +31107,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -30849,6 +31282,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -31043,6 +31478,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -31247,6 +31684,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -31315,6 +31754,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -31383,6 +31824,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -31451,6 +31894,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -31519,6 +31964,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -31587,6 +32034,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -31655,6 +32104,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -31723,6 +32174,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -31791,6 +32244,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -31859,6 +32314,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -32203,6 +32660,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -32271,6 +32730,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -32803,6 +33264,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -33093,6 +33556,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -33161,6 +33626,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -33345,6 +33812,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -33399,6 +33868,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -33453,6 +33924,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -33521,6 +33994,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -33589,6 +34064,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -33782,6 +34259,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -33964,6 +34443,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -34032,6 +34513,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -34100,6 +34583,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -34168,6 +34653,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -34236,6 +34723,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -34304,6 +34793,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -34372,6 +34863,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -34440,6 +34933,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -34523,6 +35018,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -34972,6 +35469,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -35040,6 +35539,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -35360,6 +35861,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -35542,6 +36045,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.ship",
+     "calla.lead",
      "dez.take",
      "calla.check",
      "marisol.wake",
@@ -35925,8 +36430,14 @@
     "nobody.try",
     "marisol.wake",
     "calla.check",
-    "dez.take"
+    "dez.take",
+    "calla.lead",
+    "marisol.ship"
    ]
+  },
+  "run-65400f": {
+   "safe": "65400f845eaf",
+   "funcs": []
   },
   "run-7c51d3": {
    "safe": "35e37a321959",
@@ -36440,6 +36951,13 @@
     "run-888ea9"
    ]
   },
+  "40cc9ba32586": {
+   "title": "1106. lead us in a mood of worship",
+   "funcs": [
+    "calla.lead"
+   ],
+   "runs": []
+  },
   "44583f98086d": {
    "title": "405. how to [[discover river niger]]",
    "funcs": [
@@ -36550,6 +37068,15 @@
     "everywhere.getyanju"
    ],
    "runs": []
+  },
+  "65400f845eaf": {
+   "title": "703. my favourite line is a smile",
+   "funcs": [
+    "marisol.ship"
+   ],
+   "runs": [
+    "run-65400f"
+   ]
   },
   "69097529662b": {
    "title": "811. a psychological thriller",
@@ -37258,7 +37785,9 @@
     "nobody.try",
     "marisol.wake",
     "calla.check",
-    "dez.take"
+    "dez.take",
+    "calla.lead",
+    "marisol.ship"
    ],
    "runs": [
     "run-5a58c4"
@@ -37416,6 +37945,9 @@
   "1*0a9TzxU01LoWYaW5AgKy9A.jpeg": [
    "8fc79015dbd2"
   ],
+  "1*gGXOMiwJ_LAbL64FXLyNsg.gif": [
+   "40cc9ba32586"
+  ],
   "1*SxvMtm4EZ8xJ3nw9tl5L_w.gif": [
    "37496dea1aa3"
   ],
@@ -37543,6 +38075,9 @@
   ],
   "1*m-j_x6UQZscE2TIPBKovDg.gif": [
    "c91864d4bbb7"
+  ],
+  "1*cX-oMO9dfgwV-XbhHpgFUA.gif": [
+   "65400f845eaf"
   ],
   "1*guof_R97CRfy3EqokG8qaQ.gif": [
    "159c7b987c70"
@@ -38198,6 +38733,12 @@
     "1dde946f3407"
    ]
   },
+  "1*gGXOMiwJ_LAbL64FXLyNsg.gif": {
+   "runs": [],
+   "safes": [
+    "40cc9ba32586"
+   ]
+  },
   "1*uVaQ_WdDAX40X9uv2Cl6jQ.gif": {
    "runs": [],
    "safes": [
@@ -38526,6 +39067,12 @@
     "af47cc8c368e"
    ]
   },
+  "1*cX-oMO9dfgwV-XbhHpgFUA.gif": {
+   "runs": [],
+   "safes": [
+    "65400f845eaf"
+   ]
+  },
   "1*41Tcus9cP3e-v9zjh-PhSQ.gif": {
    "runs": [],
    "safes": [
@@ -38610,7 +39157,8 @@
    "calla.laugh",
    "calla.draw",
    "calla.scroll",
-   "calla.check"
+   "calla.check",
+   "calla.lead"
   ],
   "cam": [
    "cam.stop"
@@ -38818,7 +39366,8 @@
    "marisol.find",
    "marisol.tell",
    "marisol.wise",
-   "marisol.wake"
+   "marisol.wake",
+   "marisol.ship"
   ],
   "media": [
    "media.all"
@@ -39454,5 +40003,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-24T14:10:29-05:00"
+ "updated": "2026-11-24T14:17:07-05:00"
 }

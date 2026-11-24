@@ -108,8 +108,8 @@
     "give",
     "ask"
    ],
-   "instances": 430,
-   "arg_instances": 104,
+   "instances": 432,
+   "arg_instances": 106,
    "parent": null,
    "chain": [
     "Thing"
@@ -5717,6 +5717,22 @@
    ],
    "tweets": []
   },
+  "smile": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-5a58c4",
+   "first_job": "j48",
+   "source": "pick",
+   "runs": [
+    "run-5a58c4"
+   ],
+   "tweets": [
+    {
+     "text": "— ship her smile tomorrow",
+     "year": "2025"
+    }
+   ]
+  },
   "snake": {
    "class": "Thing",
    "cue": "default",
@@ -6978,6 +6994,22 @@
     }
    ]
   },
+  "worship": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-5a58c4",
+   "first_job": "j48",
+   "source": "pick",
+   "runs": [
+    "run-5a58c4"
+   ],
+   "tweets": [
+    {
+     "text": "#jbw - in a place of worship",
+     "year": "2024"
+    }
+   ]
+  },
   "wser": {
    "class": "Thing",
    "cue": "default",
@@ -7329,18 +7361,6 @@
   ],
   "run-5a58c4": [
    [
-    "weda",
-    "Thing",
-    "j28",
-    "pick"
-   ],
-   [
-    "watch",
-    "Action",
-    "j29",
-    "pick"
-   ],
-   [
     "bad",
     "Feeling",
     "j30",
@@ -7560,6 +7580,18 @@
     "risk",
     "Thing",
     "j47",
+    "pick"
+   ],
+   [
+    "worship",
+    "Thing",
+    "j48",
+    "pick"
+   ],
+   [
+    "smile",
+    "Thing",
+    "j48",
     "pick"
    ],
    [
@@ -11214,6 +11246,8 @@
   "marisol.wake": "wake(what: Thing)",
   "calla.check": "check(what: Thing)",
   "dez.take": "take(what: Thing)",
+  "calla.lead": "lead(what: Thing)",
+  "marisol.ship": "ship(what: Thing)",
   "cooler.getdatemanufactured": "getDateManufactured()",
   "ronke.getlikes.contains": "getlikes.contains()",
   "kazeem.goodqualities.filter": "filter()",
@@ -11764,5 +11798,5 @@
   "epilogue": "quiet",
   "coda": "quiet"
  },
- "updated": "2026-11-24T14:10:29-05:00"
+ "updated": "2026-11-24T14:17:07-05:00"
 }
