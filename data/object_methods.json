@@ -12095,6 +12095,205 @@
    "faded": false,
    "last_run": "run-888ea9"
   },
+  "art.look": {
+   "object": "art",
+   "method": "look",
+   "args": [
+    "subjective"
+   ],
+   "runs": [
+    "run-888ea9"
+   ],
+   "defined": {
+    "run": "run-888ea9",
+    "job": "j11",
+    "card": "w11",
+    "title": "art.look(subjective)",
+    "emoji": "🎨",
+    "at": "2026-11-23T22:45:57-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "art.look(subjective)",
+     "emoji": "🎨",
+     "arg": "subjective",
+     "run": "run-888ea9",
+     "job": "j11",
+     "tweets": [
+      {
+       "text": "- art is subjective; to some e look like this",
+       "year": "2025"
+      }
+     ],
+     "consequence": "7:15am, Tuesday 22 June 2077, a Yaba bukka counter.",
+     "consequence_job": "j12",
+     "resolved": "art.look(what=subjective:Thing) from j11",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "subjective",
+       "from_run": "run-888ea9",
+       "from_job": "j11",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "subjective",
+      "first_run": "run-888ea9",
+      "first_job": "j11"
+     }
+    ],
+    "text": "look(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [
+    {
+     "id": "object.look",
+     "title": "object.look(ladipoe)",
+     "run": "run-888ea9",
+     "job": "j7",
+     "at": "2026-11-23T18:37:05-05:00",
+     "why": "same method"
+    }
+   ],
+   "faded": false,
+   "last_run": null
+  },
+  "hours.could": {
+   "object": "hours",
+   "method": "could",
+   "args": [
+    "2.3"
+   ],
+   "runs": [
+    "run-888ea9"
+   ],
+   "defined": {
+    "run": "run-888ea9",
+    "job": "j11",
+    "card": "w11",
+    "title": "hours.could(2.3)",
+    "emoji": "",
+    "at": "2026-11-23T22:45:57-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "hours.could(2.3)",
+     "emoji": "",
+     "arg": "2.3",
+     "run": "run-888ea9",
+     "job": "j11",
+     "tweets": [],
+     "consequence": "7:15am, Tuesday 22 June 2077, a Yaba bukka counter.",
+     "consequence_job": "j12",
+     "resolved": "hours.could(amount=23:Quantity) from j11",
+     "injected": [
+      {
+       "param": "amount",
+       "class": "Quantity",
+       "instance": "23",
+       "from_run": "run-888ea9",
+       "from_job": "j11",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "amount",
+      "class": "Quantity",
+      "default": "23",
+      "first_run": "run-888ea9",
+      "first_job": "j11"
+     }
+    ],
+    "text": "could(amount: Quantity)"
+   },
+   "receiver_class": "Quantity",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "netflix.chill": {
+   "object": "netflix",
+   "method": "chill",
+   "args": [
+    "not"
+   ],
+   "runs": [
+    "run-888ea9"
+   ],
+   "defined": {
+    "run": "run-888ea9",
+    "job": "j11",
+    "card": "w11",
+    "title": "netflix.chill(not)",
+    "emoji": "🛋️",
+    "at": "2026-11-23T22:45:57-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "netflix.chill(not)",
+     "emoji": "🛋️",
+     "arg": "not",
+     "run": "run-888ea9",
+     "job": "j11",
+     "tweets": [
+      {
+       "text": "- netflix and chill una, na me be the not",
+       "year": "2024"
+      }
+     ],
+     "consequence": "7:15am, Tuesday 22 June 2077, a Yaba bukka counter.",
+     "consequence_job": "j12",
+     "resolved": "netflix.chill(what=not:Thing) from j11",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "not",
+       "from_run": "run-888ea9",
+       "from_job": "j11",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "not",
+      "first_run": "run-888ea9",
+      "first_job": "j11"
+     }
+    ],
+    "text": "chill(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
   "cooler.getdatemanufactured": {
    "object": "cooler",
    "method": "getDateManufactured",
@@ -15163,6 +15362,9 @@
   "arisetv": [
    "arisetv.newguest"
   ],
+  "art": [
+   "art.look"
+  ],
   "attendant": [
    "attendant.put"
   ],
@@ -15428,6 +15630,9 @@
   "history": [
    "history.see"
   ],
+  "hours": [
+   "hours.could"
+  ],
   "imagination_generation_subject": [
    "object.look"
   ],
@@ -15540,6 +15745,9 @@
   ],
   "media": [
    "media.all"
+  ],
+  "netflix": [
+   "netflix.chill"
   ],
   "new": [
    "new.business",
@@ -29738,6 +29946,16 @@
     ]
    }
   ],
+  "then_yoruba_christians_figure": [
+   {
+    "scope": "safe",
+    "from": "1d08b133d292",
+    "title": "918. and then the yoruba christians",
+    "funcs": [
+     "art.look"
+    ]
+   }
+  ],
   "there_approximately_thousand_subject": [
    {
     "scope": "safe",
@@ -30592,6 +30810,9 @@
     "from": "38688e69edf3",
     "title": "1003. usher by kiss daniel",
     "funcs": [
+     "netflix.chill",
+     "hours.could",
+     "art.look",
      "quality.determine",
      "cam.stop",
      "boze.watch",
@@ -31630,7 +31851,10 @@
     "taraji.measure",
     "boze.watch",
     "cam.stop",
-    "quality.determine"
+    "quality.determine",
+    "art.look",
+    "hours.could",
+    "netflix.chill"
    ]
   },
   "run-93d6ff": {
@@ -31937,6 +32161,13 @@
    ],
    "runs": []
   },
+  "1d08b133d292": {
+   "title": "918. and then the yoruba christians",
+   "funcs": [
+    "art.look"
+   ],
+   "runs": []
+  },
   "1dde946f3407": {
    "title": "125. why did i get married, #thryd?",
    "funcs": [
@@ -32077,7 +32308,10 @@
     "taraji.measure",
     "boze.watch",
     "cam.stop",
-    "quality.determine"
+    "quality.determine",
+    "art.look",
+    "hours.could",
+    "netflix.chill"
    ],
    "runs": [
     "run-888ea9"
@@ -32204,7 +32438,8 @@
   "6d72f12ca0c4": {
    "title": "1212. self-care",
    "funcs": [
-    "[kept,getting].map"
+    "[kept,getting].map",
+    "netflix.chill"
    ],
    "runs": []
   },
@@ -32262,6 +32497,13 @@
    "funcs": [
     "ronke.wave",
     "grammy.swear"
+   ],
+   "runs": []
+  },
+  "805643369f2f": {
+   "title": "521. daz why i hate lagos",
+   "funcs": [
+    "hours.could"
    ],
    "runs": []
   },
@@ -33166,6 +33408,12 @@
   "1*fRybDa0nJYSdJgMbSrO3iw.gif": [
    "38688e69edf3"
   ],
+  "1*aihswOSkhxhlyUNdUJVa9w.gif": [
+   "1d08b133d292"
+  ],
+  "1*6HPYlrwzjGzV8TeNHKXezQ.gif": [
+   "805643369f2f"
+  ],
   "1*-TkXCRbWmzDw7ZJy1b6TZg.jpeg": [
    "ba87d1a4bdd9"
   ],
@@ -33175,6 +33423,9 @@
   "1*hVDvLB17CmKpndJbRpJ3Pw.gif": [
    "763a14885cf0",
    "0edd03763978"
+  ],
+  "1*w4dyp3G_eaYwojHsZHopUA.jpeg": [
+   "1d08b133d292"
   ],
   "1*_EjFgtPmEaDMbd0l7TYupQ.gif": [
    "ceb79ef77a2c"
@@ -33722,6 +33973,12 @@
     "f3242b82bede"
    ]
   },
+  "1*aihswOSkhxhlyUNdUJVa9w.gif": {
+   "runs": [],
+   "safes": [
+    "1d08b133d292"
+   ]
+  },
   "1*Bzh9xE_MoUeXsNFiT79hKA.gif": {
    "runs": [],
    "safes": [
@@ -34024,6 +34281,9 @@
   "arisetv": [
    "arisetv.newguest"
   ],
+  "art": [
+   "art.look"
+  ],
   "attendant": [
    "attendant.put"
   ],
@@ -34153,6 +34413,9 @@
   "history": [
    "history.see"
   ],
+  "hours": [
+   "hours.could"
+  ],
   "investor": [
    "investor.sign",
    "investor.give",
@@ -34242,6 +34505,9 @@
   ],
   "media": [
    "media.all"
+  ],
+  "netflix": [
+   "netflix.chill"
   ],
   "new": [
    "new.business",
@@ -34643,6 +34909,9 @@
   ],
   "cam": [],
   "quality": [],
+  "art": [],
+  "hours": [],
+  "netflix": [],
   "cooler": [],
   "kazeem.goodqualities": [],
   "app": [],
@@ -34808,6 +35077,7 @@
   ],
   "run-888ea9": [
    "accuracy",
+   "art",
    "boze",
    "cam",
    "court",
@@ -34815,11 +35085,13 @@
    "grammy",
    "hand",
    "hands",
+   "hours",
    "issues",
    "it",
    "mama",
    "map",
    "media",
+   "netflix",
    "object",
    "order",
    "pawa",
@@ -34845,5 +35117,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-23T20:18:58-05:00"
+ "updated": "2026-11-23T22:46:41-05:00"
 }

@@ -107,8 +107,8 @@
     "ask",
     "give"
    ],
-   "instances": 410,
-   "arg_instances": 90,
+   "instances": 412,
+   "arg_instances": 92,
    "parent": null,
    "chain": [
     "Thing"
@@ -127,11 +127,11 @@
    "param": "amount",
    "methods": [
     "call",
-    "leave",
-    "line"
+    "could",
+    "leave"
    ],
-   "instances": 7,
-   "arg_instances": 7,
+   "instances": 8,
+   "arg_instances": 8,
    "parent": "Thing",
    "chain": [
     "Quantity",
@@ -208,6 +208,17 @@
      "year": "2025"
     }
    ]
+  },
+  "23": {
+   "class": "Quantity",
+   "cue": "number",
+   "first_run": "run-888ea9",
+   "first_job": "j11",
+   "source": "pick",
+   "runs": [
+    "run-888ea9"
+   ],
+   "tweets": []
   },
   "50000dollartonaira": {
    "class": "Thing",
@@ -4236,6 +4247,22 @@
    ],
    "tweets": []
   },
+  "not": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-888ea9",
+   "first_job": "j11",
+   "source": "pick",
+   "runs": [
+    "run-888ea9"
+   ],
+   "tweets": [
+    {
+     "text": "- netflix and chill una, na me be the not",
+     "year": "2024"
+    }
+   ]
+  },
   "note": {
    "class": "Thing",
    "cue": "default",
@@ -5653,6 +5680,22 @@
     "run-g1-B"
    ],
    "tweets": []
+  },
+  "subjective": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-888ea9",
+   "first_job": "j11",
+   "source": "pick",
+   "runs": [
+    "run-888ea9"
+   ],
+   "tweets": [
+    {
+     "text": "- art is subjective; to some e look like this",
+     "year": "2025"
+    }
+   ]
   },
   "succession": {
    "class": "Thing",
@@ -8109,6 +8152,24 @@
     "tyn",
     "Thing",
     "j10",
+    "pick"
+   ],
+   [
+    "subjective",
+    "Thing",
+    "j11",
+    "pick"
+   ],
+   [
+    "23",
+    "Quantity",
+    "j11",
+    "pick"
+   ],
+   [
+    "not",
+    "Thing",
+    "j11",
     "pick"
    ]
   ],
@@ -10715,6 +10776,9 @@
   "boze.watch": "watch(what: Thing)",
   "cam.stop": "stop(what: Thing)",
   "quality.determine": "determine(what: Thing)",
+  "art.look": "look(what: Thing)",
+  "hours.could": "could(amount: Quantity)",
+  "netflix.chill": "chill(what: Thing)",
   "cooler.getdatemanufactured": "getDateManufactured()",
   "ronke.getlikes.contains": "getlikes.contains()",
   "kazeem.goodqualities.filter": "filter()",
@@ -11159,6 +11223,7 @@
   ],
   "run-888ea9": [
    "accuracy",
+   "art",
    "boze",
    "cam",
    "court",
@@ -11166,11 +11231,13 @@
    "grammy",
    "hand",
    "hands",
+   "hours",
    "issues",
    "it",
    "mama",
    "map",
    "media",
+   "netflix",
    "object",
    "order",
    "pawa",
@@ -11256,5 +11323,5 @@
   "epilogue": "quiet",
   "coda": "quiet"
  },
- "updated": "2026-11-23T20:18:04-05:00"
+ "updated": "2026-11-23T22:46:41-05:00"
 }
