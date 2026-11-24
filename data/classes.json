@@ -59,7 +59,7 @@
     "go"
    ],
    "instances": 6,
-   "arg_instances": 5,
+   "arg_instances": 6,
    "parent": "Thing",
    "chain": [
     "Manner",
@@ -80,8 +80,8 @@
     "getlocation",
     "know"
    ],
-   "instances": 12,
-   "arg_instances": 6,
+   "instances": 13,
+   "arg_instances": 7,
    "parent": "Thing",
    "chain": [
     "Place",
@@ -2567,13 +2567,23 @@
   "hard": {
    "class": "Manner",
    "cue": "word",
-   "first_run": "run-0e8c",
-   "first_job": "j5",
-   "source": "typed",
+   "first_run": "run-5a58c4",
+   "first_job": "j45",
+   "source": "pick",
    "runs": [
+    "run-5a58c4",
     "run-0e8c"
    ],
-   "tweets": []
+   "tweets": [
+    {
+     "text": "#thryd - i give you everything",
+     "year": "2025"
+    },
+    {
+     "text": "- the tin too hard",
+     "year": "2025"
+    }
+   ]
   },
   "harukatanimoto": {
    "class": "Person",
@@ -2650,6 +2660,26 @@
     "run-5a58c4"
    ],
    "tweets": []
+  },
+  "here": {
+   "class": "Place",
+   "cue": "word",
+   "first_run": "run-5a58c4",
+   "first_job": "j45",
+   "source": "pick",
+   "runs": [
+    "run-5a58c4"
+   ],
+   "tweets": [
+    {
+     "text": "[[sih]] - dat what apun?!",
+     "year": "2024"
+    },
+    {
+     "text": "- eez like am [[here]] scrolling",
+     "year": "2024"
+    }
+   ]
   },
   "hose": {
    "class": "Thing",
@@ -7226,18 +7256,6 @@
   ],
   "run-5a58c4": [
    [
-    "sometimes",
-    "Frequency",
-    "j24",
-    "pick"
-   ],
-   [
-    "accuracy",
-    "Manner",
-    "j25",
-    "pick"
-   ],
-   [
     "sugar",
     "Thing",
     "j25",
@@ -7475,6 +7493,18 @@
     "now",
     "Frequency",
     "j44",
+    "pick"
+   ],
+   [
+    "here",
+    "Place",
+    "j45",
+    "pick"
+   ],
+   [
+    "hard",
+    "Manner",
+    "j45",
     "pick"
    ],
    [
@@ -11106,6 +11136,8 @@
   "teo.give": "give(what: Thing)",
   "marisol.wise": "wise(what: Thing)",
   "teo.transmit": "transmit(when: Frequency)",
+  "calla.scroll": "scroll(where: Place)",
+  "nobody.try": "try(how: Manner)",
   "cooler.getdatemanufactured": "getDateManufactured()",
   "ronke.getlikes.contains": "getlikes.contains()",
   "kazeem.goodqualities.filter": "filter()",
@@ -11656,5 +11688,5 @@
   "epilogue": "quiet",
   "coda": "quiet"
  },
- "updated": "2026-11-24T01:53:39-05:00"
+ "updated": "2026-11-24T02:00:19-05:00"
 }

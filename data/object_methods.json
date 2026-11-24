@@ -2733,7 +2733,7 @@
        "instance": "sometimes",
        "from_run": "run-5a58c4",
        "from_job": "j24",
-       "source": "pick"
+       "source": "original"
       }
      ]
     }
@@ -2798,12 +2798,12 @@
      ],
      "consequence": "4:50pm, Monday 2 November 2026, the Rickenbacker Causeway at golden hour in Miami, Florida, wind off Biscayne Bay and cyclists streaming past.",
      "consequence_job": "j26",
-     "resolved": "code.say(how=accuracy:Manner) from j25",
+     "resolved": "code.say(how=surgical:Manner) from j25",
      "injected": [
       {
        "param": "how",
        "class": "Manner",
-       "instance": "accuracy",
+       "instance": "surgical",
        "from_run": "run-5a58c4",
        "from_job": "j25",
        "source": "pick"
@@ -13483,6 +13483,152 @@
    "faded": true,
    "last_run": "run-5a58c4"
   },
+  "calla.scroll": {
+   "object": "calla",
+   "method": "scroll",
+   "args": [
+    "here"
+   ],
+   "runs": [
+    "run-5a58c4"
+   ],
+   "defined": {
+    "run": "run-5a58c4",
+    "job": "j45",
+    "card": "w45",
+    "title": "calla.scroll(here)",
+    "emoji": "📱",
+    "at": "2026-11-24T01:59:41-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "calla.scroll(here)",
+     "emoji": "📱",
+     "arg": "here",
+     "run": "run-5a58c4",
+     "job": "j45",
+     "tweets": [
+      {
+       "text": "[[sih]] - dat what apun?!",
+       "year": "2024"
+      },
+      {
+       "text": "- eez like am [[here]] scrolling",
+       "year": "2024"
+      },
+      {
+       "text": "- and [[god]] is by my side",
+       "year": "2024"
+      }
+     ],
+     "consequence": "📍 Wynwood bakery, Miami 🥐 · 99 lines in Calla isn't calm.",
+     "consequence_job": "j46",
+     "resolved": "calla.scroll(where=here:Place) from j45",
+     "injected": [
+      {
+       "param": "where",
+       "class": "Place",
+       "instance": "here",
+       "from_run": "run-5a58c4",
+       "from_job": "j45",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "where",
+      "class": "Place",
+      "default": "here",
+      "first_run": "run-5a58c4",
+      "first_job": "j45"
+     }
+    ],
+    "text": "scroll(where: Place)"
+   },
+   "receiver_class": "Person",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "nobody.try": {
+   "object": "nobody",
+   "method": "try",
+   "args": [
+    "hard"
+   ],
+   "runs": [
+    "run-5a58c4"
+   ],
+   "defined": {
+    "run": "run-5a58c4",
+    "job": "j45",
+    "card": "w45",
+    "title": "nobody.try(hard)",
+    "emoji": "🧱",
+    "at": "2026-11-24T01:59:41-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "nobody.try(hard)",
+     "emoji": "🧱",
+     "arg": "hard",
+     "run": "run-5a58c4",
+     "job": "j45",
+     "tweets": [
+      {
+       "text": "#thryd - i give you everything",
+       "year": "2025"
+      },
+      {
+       "text": "-- everytime",
+       "year": "2025"
+      },
+      {
+       "text": "- the tin too hard",
+       "year": "2025"
+      }
+     ],
+     "consequence": "Then a voice from nowhere in particular, the same nobody who saw it all earlier: \"i give you everything.",
+     "consequence_job": "j46",
+     "resolved": "nobody.try(how=hard:Manner) from j45",
+     "injected": [
+      {
+       "param": "how",
+       "class": "Manner",
+       "instance": "hard",
+       "from_run": "run-5a58c4",
+       "from_job": "j45",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "how",
+      "class": "Manner",
+      "default": "hard",
+      "first_run": "run-5a58c4",
+      "first_job": "j45"
+     }
+    ],
+    "text": "try(how: Manner)"
+   },
+   "receiver_class": "Person",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
   "cooler.getdatemanufactured": {
    "object": "cooler",
    "method": "getDateManufactured",
@@ -16582,7 +16728,8 @@
    "calla.want",
    "calla.hear",
    "calla.laugh",
-   "calla.draw"
+   "calla.draw",
+   "calla.scroll"
   ],
   "calla_5a58c4": [
    "calla.stare",
@@ -16590,7 +16737,8 @@
    "calla.want",
    "calla.hear",
    "calla.laugh",
-   "calla.draw"
+   "calla.draw",
+   "calla.scroll"
   ],
   "cam": [
    "cam.stop"
@@ -16981,7 +17129,8 @@
    "nobody.weigh",
    "nobody.rename",
    "nobody.bring",
-   "nobody.see"
+   "nobody.see",
+   "nobody.try"
   ],
   "not_me_but_subject": [
    "object.look"
@@ -17942,6 +18091,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -18725,6 +18876,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -18893,6 +19046,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -18956,6 +19111,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -19019,6 +19176,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -19082,6 +19241,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -19145,6 +19306,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -19208,6 +19371,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -19271,6 +19436,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -19334,6 +19501,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -19397,6 +19566,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -19460,6 +19631,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -19523,6 +19696,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -19586,6 +19761,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -19649,6 +19826,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -19712,6 +19891,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -19775,6 +19956,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -19838,6 +20021,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -19901,6 +20086,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -20334,6 +20521,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -20397,6 +20586,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -20460,6 +20651,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -20517,6 +20709,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -20574,6 +20767,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -22318,6 +22513,8 @@
     "from": "f81f21521253",
     "title": "829. a day in the life of god",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -22374,6 +22571,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -22431,6 +22630,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -22642,6 +22843,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -22983,6 +23186,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -23046,6 +23251,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -23109,6 +23316,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -23172,6 +23381,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -23245,6 +23456,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -23308,6 +23521,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -23371,6 +23586,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -23434,6 +23651,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -23497,6 +23716,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -23667,6 +23888,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -23735,6 +23958,16 @@
     ]
    }
   ],
+  "growth_subject": [
+   {
+    "scope": "safe",
+    "from": "aab705f25656",
+    "title": "1210. growth",
+    "funcs": [
+     "calla.scroll"
+    ]
+   }
+  ],
   "handbag1": [
    {
     "scope": "run",
@@ -23775,6 +24008,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -23848,6 +24083,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -23921,6 +24158,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -23984,6 +24223,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -24069,6 +24310,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -24132,6 +24375,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -24195,6 +24440,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -24258,6 +24505,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -24321,6 +24570,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -24592,6 +24843,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -24779,6 +25032,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -24853,6 +25108,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -24916,6 +25173,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -24979,6 +25238,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -25042,6 +25303,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -25105,6 +25368,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -25168,6 +25433,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -25565,6 +25832,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -26189,6 +26458,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -26386,6 +26657,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -26449,6 +26722,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -26512,6 +26787,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -26575,6 +26852,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -26632,6 +26911,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -26695,6 +26976,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -26758,6 +27041,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "teo.give",
      "calla.draw",
@@ -26818,6 +27103,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "teo.give",
      "calla.draw",
@@ -26878,6 +27165,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -26941,6 +27230,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -27004,6 +27295,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -27067,6 +27360,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -27130,6 +27425,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -27193,6 +27490,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -27256,6 +27555,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -27319,6 +27620,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -27382,6 +27685,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -27445,6 +27750,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -27508,6 +27815,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -27571,6 +27880,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -27749,6 +28060,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -27822,6 +28135,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -27885,6 +28200,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -27948,6 +28265,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -28011,6 +28330,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -28074,6 +28395,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -28137,6 +28460,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -28200,6 +28525,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -28263,6 +28590,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -28326,6 +28655,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -28389,6 +28720,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -28452,6 +28785,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -28515,6 +28850,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -29826,6 +30163,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -29994,6 +30333,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -30183,6 +30524,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -30382,6 +30725,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -30445,6 +30790,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -30508,6 +30855,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -30571,6 +30920,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -30634,6 +30985,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -30697,6 +31050,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -30760,6 +31115,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -30823,6 +31180,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -30886,6 +31245,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -30949,6 +31310,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -31278,6 +31641,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -31341,6 +31706,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -31868,6 +32235,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -32153,6 +32522,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -32216,6 +32587,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -32395,6 +32768,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "marisol.wise",
      "calla.draw",
      "nobody.see",
@@ -32444,6 +32819,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "marisol.wise",
      "calla.draw",
      "nobody.see",
@@ -32493,6 +32870,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -32556,6 +32935,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -32619,6 +33000,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -32807,6 +33190,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -32984,6 +33369,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -33047,6 +33434,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -33110,6 +33499,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -33173,6 +33564,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -33236,6 +33629,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -33299,6 +33694,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -33362,6 +33759,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -33425,6 +33824,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -33503,6 +33904,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -33937,6 +34340,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -34000,6 +34405,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -34315,6 +34722,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -34492,6 +34901,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "nobody.try",
+     "calla.scroll",
      "teo.transmit",
      "marisol.wise",
      "teo.give",
@@ -34865,7 +35276,9 @@
     "calla.draw",
     "teo.give",
     "marisol.wise",
-    "teo.transmit"
+    "teo.transmit",
+    "calla.scroll",
+    "nobody.try"
    ]
   },
   "run-7c51d3": {
@@ -35749,6 +36162,20 @@
    ],
    "runs": []
   },
+  "a753266754f3": {
+   "title": "415. hard",
+   "funcs": [
+    "nobody.try"
+   ],
+   "runs": []
+  },
+  "aab705f25656": {
+   "title": "1210. growth",
+   "funcs": [
+    "calla.scroll"
+   ],
+   "runs": []
+  },
   "acf6b4479989": {
    "title": "1020. i maintain my champion",
    "funcs": [
@@ -36158,7 +36585,9 @@
     "calla.draw",
     "teo.give",
     "marisol.wise",
-    "teo.transmit"
+    "teo.transmit",
+    "calla.scroll",
+    "nobody.try"
    ],
    "runs": [
     "run-5a58c4"
@@ -36296,6 +36725,9 @@
   "1*S8zTdmwx75vZlUkLwKidzg.gif": [
    "ae2c635132e6"
   ],
+  "1*8bxBW1s5Gs2lCN7dfzpR8Q.gif": [
+   "a753266754f3"
+  ],
   "1*8LySB4JyV5sPPa8jCkGxag.gif": [
    "448f524ec208"
   ],
@@ -36339,6 +36771,9 @@
   ],
   "1*wxMkuq5RbVAP63DOwaErXw.gif": [
    "ed4c03419faf"
+  ],
+  "1*1KZ0RuyDgxOgfLDJes6pgw.gif": [
+   "aab705f25656"
   ],
   "1*hw0VUVtSdCrsf61TizeE9A.gif": [
    "69097529662b"
@@ -36828,6 +37263,12 @@
    "runs": [],
    "safes": [
     "8e5bbd0ffb78"
+   ]
+  },
+  "1*1KZ0RuyDgxOgfLDJes6pgw.gif": {
+   "runs": [],
+   "safes": [
+    "aab705f25656"
    ]
   },
   "1*UmpEdNHIUE0PbFptnquSig.gif": {
@@ -37467,7 +37908,8 @@
    "calla.want",
    "calla.hear",
    "calla.laugh",
-   "calla.draw"
+   "calla.draw",
+   "calla.scroll"
   ],
   "cam": [
    "cam.stop"
@@ -37695,7 +38137,8 @@
    "nobody.weigh",
    "nobody.rename",
    "nobody.bring",
-   "nobody.see"
+   "nobody.see",
+   "nobody.try"
   ],
   "object": [
    "object.look"
@@ -38308,5 +38751,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-24T01:54:29-05:00"
+ "updated": "2026-11-24T02:00:19-05:00"
 }
