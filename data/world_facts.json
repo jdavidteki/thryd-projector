@@ -2649,16 +2649,6 @@
 ],
 "chair": [
 {
-"id": "wf_0c7bdf7038",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the 11:20pm at the chair, and Taiwo reads the name twice.",
-"code": "mlkahb.interactwith(chair){ chair.receives(mlkahb.envelope); chair.remembers(bisola, 'brown envelope'); chair.tucks(mlkahb, 'yaba bookshop receipt into the 11:20pm'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "mlkahb"
-},
-{
 "id": "wf_e0377353ba",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the 11:20pm at the chair, and Taiwo reads the name twice.",
@@ -2687,6 +2677,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "yuwa"
+},
+{
+"id": "wf_838266b3ff",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the 11:20pm at the chair, and Taiwo reads the name twice.",
+"code": "heat.interactwith(chair){ chair.receives(heat.envelope); chair.remembers(bisola, 'brown envelope'); chair.tucks(heat, 'yaba bookshop receipt into the 11:20pm'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "heat"
 },
 {
 "id": "wt_d7412f0d94",
@@ -10632,17 +10632,6 @@
 },
 "consequences": [
 {
-"id": "wf_6881f0ab7a",
-"ts": "2026-11-24T03:23:26-0500",
-"a": "marisol",
-"b": "cell_phone",
-"code": "marisol.interactwith(cell_phone){ cell_phone.receives(marisol.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the cell phone, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
 "id": "wf_b46399b8b8",
 "ts": "2026-11-24T03:24:18-0500",
 "a": "dez",
@@ -11070,6 +11059,17 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": "j8"
+},
+{
+"id": "wf_838266b3ff",
+"ts": "2026-11-24T14:01:06-0500",
+"a": "heat",
+"b": "chair",
+"code": "heat.interactwith(chair){ chair.receives(heat.envelope); chair.remembers(bisola, 'brown envelope'); chair.tucks(heat, 'yaba bookshop receipt into the 11:20pm'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the 11:20pm at the chair, and Taiwo reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
 }
 ],
 "memories": [
@@ -11173,5 +11173,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-24T13:51:01-0500"
+"updated": "2026-11-24T14:01:06-0500"
 }
