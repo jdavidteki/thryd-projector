@@ -1943,16 +1943,6 @@
 ],
 "bird": [
 {
-"id": "wf_42b7337b52",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the envelope corner at the bird, and Bisola reads the name twice.",
-"code": "seniorgehs.interactwith(bird){ bird.receives(seniorgehs.envelope); … }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "seniorgehs"
-},
-{
 "id": "wf_25d35b995e",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the envelope corner at the bird, and Bisola reads the name twice.",
@@ -1971,6 +1961,16 @@
 "run": "run-5a58c4",
 "card": "j8",
 "other": "icsh"
+},
+{
+"id": "wf_af74c90a3b",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the envelope corner at the bird, and Bisola reads the name twice.",
+"code": "youngteacher.interactwith(bird){ bird.receives(youngteacher.envelope); … }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "youngteacher"
 },
 {
 "id": "wt_c6ff1d186b",
@@ -5621,16 +5621,6 @@
 ],
 "teo": [
 {
-"id": "wt_6b154ea08a",
-"kind": "func_call",
-"text": "Someone at the projector tapped the florida subject fifth and called teo.know(what=tnw:Thing) from j23 from its agenda run-5a58c4, first seated in run-5a58c4 j33.",
-"code": "teo.know('tnw');",
-"author": "projector",
-"run": "run-5a58c4",
-"card": "w33",
-"other": null
-},
-{
 "id": "wt_2921df2746",
 "kind": "func_call",
 "text": "Someone at the projector tapped the marina biscayne bay subject fourth and called teo.respond(what=scandal:Thing) from j6 from its agenda run-5a58c4, first seated in run-5a58c4 j33.",
@@ -5659,6 +5649,16 @@
 "run": "run-5a58c4",
 "card": "w30",
 "other": null
+},
+{
+"id": "wf_ab00a8b670",
+"kind": "consequence",
+"text": "The teo leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "marker_b.interactwith(teo){ teo.receives(marker_b.envelope); teo.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "marker_b"
 },
 {
 "id": "wt_183d3cde12",
@@ -10390,42 +10390,21 @@
 "card": "j1",
 "other": "cooler"
 }
+],
+"heatflag": [
+{
+"id": "wf_a904e75af7",
+"kind": "consequence",
+"text": "The heatflag leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
+"code": "water.interactwith(heatflag){ heatflag.receives(water.code); heatflag.remembers(ejiro, 'juju code'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j2",
+"other": "water"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_85645f4337",
-"ts": "2026-11-23T23:35:02-0500",
-"a": "laptop",
-"b": "ronke",
-"code": "laptop.interactwith(ronke){ ronke.receives(laptop.soot); ronke.remembers(taiwo, 'lamp soot'); }",
-"text": "The ronke leaves with a Laptop note with Taiwo's name and 'lamp soot' on it.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j7"
-},
-{
-"id": "wf_9cd0ec126b",
-"ts": "2026-11-23T23:40:59-0500",
-"a": "bird",
-"b": "kazeem",
-"code": "bird.interactwith(kazeem){ kazeem.receives(bird.corner); kazeem.remembers(bisola, 'envelope corner'); }",
-"text": "The kazeem leaves with a Bird note with Bisola's name and 'envelope corner' on it.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j7"
-},
-{
-"id": "wf_b0ee83548d",
-"ts": "2026-11-23T23:47:46-0500",
-"a": "tf_mom",
-"b": "tie",
-"code": "tf_mom.interactwith(tie){ tie.receives(tf_mom.soot); tie.remembers(taiwo, 'lamp soot'); tie.tucks(tf_mom, 'laptop note into the brown envelope'); }",
-"text": "A Laptop note with Taiwo's name and 'lamp soot' on it, turns up inside the brown envelope at the tie, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j7"
-},
 {
 "id": "wf_85d0ccb216",
 "ts": "2026-11-24T00:01:21-0500",
@@ -10832,6 +10811,39 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": "j6"
+},
+{
+"id": "wf_ab00a8b670",
+"ts": "2026-11-24T02:06:05-0500",
+"a": "marker_b",
+"b": "teo",
+"code": "marker_b.interactwith(teo){ teo.receives(marker_b.envelope); teo.remembers(bisola, 'brown envelope'); }",
+"text": "The teo leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
+},
+{
+"id": "wf_af74c90a3b",
+"ts": "2026-11-24T02:07:46-0500",
+"a": "youngteacher",
+"b": "bird",
+"code": "youngteacher.interactwith(bird){ bird.receives(youngteacher.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the envelope corner at the bird, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
+},
+{
+"id": "wf_a904e75af7",
+"ts": "2026-11-24T02:08:36-0500",
+"a": "water",
+"b": "heatflag",
+"code": "water.interactwith(heatflag){ heatflag.receives(water.code); heatflag.remembers(ejiro, 'juju code'); }",
+"text": "The heatflag leaves with a Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j2"
 }
 ],
 "memories": [
@@ -10935,5 +10947,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-24T01:57:49-0500"
+"updated": "2026-11-24T02:08:36-0500"
 }
