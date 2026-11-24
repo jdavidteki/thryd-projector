@@ -879,16 +879,6 @@
 ],
 "danfo_speaker": [
 {
-"id": "wf_618410bf5b",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the danfo speaker, which is still playing the same love song.",
-"code": "move.interactwith(danfo_speaker){ danfo_speaker.receives(move.envelope); danfo_speaker.remembers(bisola, 'brown envelope'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "move"
-},
-{
 "id": "wf_ef76a16e5a",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the danfo speaker, which is still playing the same love song.",
@@ -907,6 +897,16 @@
 "run": "run-2eb42d",
 "card": "w5",
 "other": null
+},
+{
+"id": "wf_3ecac8fff3",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the danfo speaker, which is still playing the same love song.",
+"code": "vex.interactwith(danfo_speaker){ danfo_speaker.receives(vex.envelope); danfo_speaker.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6",
+"other": "vex"
 },
 {
 "id": "wt_c1a9e05d21",
@@ -10234,17 +10234,6 @@
 },
 "consequences": [
 {
-"id": "wf_8fff6ac73b",
-"ts": "2026-11-23T15:43:51-0500",
-"a": "ojuelegba_bus_stop",
-"b": "ronke",
-"code": "ojuelegba_bus_stop.interactwith(ronke){ ronke.receives(ojuelegba_bus_stop.envelope); ronke.remembers(bisola, 'brown envelope'); }",
-"text": "The ronke leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6"
-},
-{
 "id": "wf_511d57109f",
 "ts": "2026-11-23T15:49:08-0500",
 "a": "divine",
@@ -10672,6 +10661,17 @@
 "author": "cos",
 "run": "run-2eb42d",
 "card": "w1"
+},
+{
+"id": "wf_3ecac8fff3",
+"ts": "2026-11-23T20:12:54-0500",
+"a": "vex",
+"b": "danfo_speaker",
+"code": "vex.interactwith(danfo_speaker){ danfo_speaker.receives(vex.envelope); danfo_speaker.remembers(bisola, 'brown envelope'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the danfo speaker, which is still playing the same love song.",
+"author": "cos",
+"run": "run-2eb42d",
+"card": "j6"
 }
 ],
 "memories": [
@@ -10775,5 +10775,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-23T20:01:37-0500"
+"updated": "2026-11-23T20:12:54-0500"
 }
