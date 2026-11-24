@@ -591,19 +591,23 @@
     if(!cut || !cut.el) return 0;
     cut.leaving = true; try{ cut.el.classList.add('leaving'); }catch(e){}
     const fadeOnly = !!(opts.fadeOnly || RM);
+    clearTimeout(cut.goT); clearTimeout(cut.offT); clearTimeout(cut.peT); clearTimeout(cut.backT);
     if(fadeOnly){
       cut.el.style.transition = 'opacity 1.5s ease'; cut.el.style.pointerEvents = 'none';
       requestAnimationFrame(()=>{ cut.el.style.opacity = '0'; });
-      setTimeout(()=> unloadCut(cut), 1600);
+      cut.offT = setTimeout(()=> unloadCut(cut), 1600);
       return 1.6;
     }
     const v = opts.view || view(), ang = (opts.ang == null ? Math.random() * Math.PI * 2 : opts.ang);
     foldTranslate(cut);
     const [dx, dy] = offTo(cut.left - v.x, cut.top - v.y, cut.w, cut.h, v, ang + R(-.2, .2));
     const dur = R(6, 10);
-    requestAnimationFrame(()=>{ cut.el.style.transition = 'translate ' + dur.toFixed(2) + 's cubic-bezier(.5,0,.4,1), opacity 2s ease-in ' + (dur - 2).toFixed(2) + 's';
-      requestAnimationFrame(()=>{ cut.el.style.translate = dx.toFixed(0) + 'px ' + dy.toFixed(0) + 'px'; cut.el.style.opacity = '0'; cut.el.style.pointerEvents = 'none'; }); });
-    setTimeout(()=> unloadCut(cut), dur * 1000 + 200);
+    requestAnimationFrame(()=>{ if(!cut.leaving) return; cut.el.style.transition = 'translate ' + dur.toFixed(2) + 's cubic-bezier(.5,0,.4,1), opacity 2s ease-in ' + (dur - 2).toFixed(2) + 's';
+      requestAnimationFrame(()=>{ if(!cut.leaving) return; cut.el.style.translate = dx.toFixed(0) + 'px ' + dy.toFixed(0) + 'px'; cut.el.style.opacity = '0'; }); });
+    // dragfix 23 Nov 2026 (Jesuye: "many objects are refusing dragging"): a cut stays grabbable while it walks off; it only
+    // turns click-through once its 2 s fade starts. Grabbing it calls rescueCut() and keeps it on stage.
+    cut.peT = setTimeout(()=>{ if(cut.leaving) cut.el.style.pointerEvents = 'none'; }, Math.max(0, dur - 2) * 1000);
+    cut.offT = setTimeout(()=>{ if(cut.leaving) unloadCut(cut); }, dur * 1000 + 200);
     return dur;
   }
   function exitGroup(g, _quick, why){
@@ -620,10 +624,11 @@
     const v = view(), outAng = Math.random() * Math.PI * 2; if(walk) DIRS.out[oct(outAng)]++;
     g.cuts.slice().forEach((cut, j) => {
       const go = ()=>{
-        if(cut.dragging){ setTimeout(go, 1200); return; }
+        if(!cut.leaving) return; // rescued by a grab
+        if(cut.dragging){ cut.goT = setTimeout(go, 1200); return; }
         walkOffCut(cut, {fadeOnly: !walk, view: v, ang: outAng});
       };
-      setTimeout(go, walk ? j * R(500, 1500) : j * 80);
+      cut.goT = setTimeout(go, walk ? j * R(500, 1500) : j * 80);
     });
     if(g.bgEl){ g.bgEl.classList.remove('on'); try{ g.bgEl.classList.add('leaving'); }catch(e){}
       g.bgEl.style.transition = walk ? 'opacity 4s ease' : 'opacity 1.5s ease'; g.bgEl.style.opacity = '0';
@@ -648,10 +653,28 @@
     }
     return {x: +((cut.left + cut.w / 2 - g.x) / g.w * 100).toFixed(3), y: +((cut.top + cut.h / 2 - g.y) / g.h * 100).toFixed(3)};
   }
+  // dragfix 23 Nov 2026: a cut whose story is leaving (queued to walk off, or walking off) used to ignore every grab, and when a
+  // story leaves ALL its cuts are marked leaving at once, so whole groups stood still on screen and refused to move. Grabbing a
+  // still-visible leaving cut now cancels its exit where it stands; 20 s after the last release it walks off again.
+  function rescueCut(cut){
+    const el = cut.el; if(!el || !el.isConnected || !cut.frames) return false;
+    const op = +getComputedStyle(el).opacity; if(!(op > 0.15)) return false;
+    clearTimeout(cut.goT); clearTimeout(cut.offT); clearTimeout(cut.peT); clearTimeout(cut.backT);
+    const tl = getComputedStyle(el).translate; // freeze mid-walk where it stands (read before the transition is cut, or it jumps to the end)
+    el.style.transition = 'none'; el.style.translate = (tl && tl !== 'none') ? tl : '';
+    cut.leaving = false; el.classList.remove('leaving'); el.style.pointerEvents = ''; el.style.opacity = '1';
+    cut.rescued = (cut.rescued || 0) + 1; S.rescues = (S.rescues || 0) + 1; note('rescue', cut.label, cut.home && cut.home.mid);
+    return true;
+  }
+  function leaveLater(cut){ // a rescued cut whose story is gone: walk off again after 20 s untouched
+    clearTimeout(cut.backT); if(!cut.rescued || !(cut.g && cut.g.gone)) return;
+    cut.backT = setTimeout(()=>{ if(cut.dragging || cut.leaving || !cut.el || !cut.el.isConnected) return; walkOffCut(cut, {fadeOnly: !cutOnScreen(cut.el)}); }, 20000);
+  }
+  S.rescueCut = rescueCut;
   function bindDrag(cut){
     const el = cut.el; let d = null, moved = false;
     el.addEventListener('pointerdown', ev => {
-      if(cut.leaving) return;
+      if(cut.leaving && !rescueCut(cut)) return;
       if(typeof cut.canDrag === 'function' && !cut.canDrag(ev)) return;
       ev.preventDefault(); ev.stopPropagation();
       foldTranslate(cut); cut.entering = false; el.style.opacity = '1';
@@ -678,6 +701,7 @@
       el.style.left = cut.left + 'px'; el.style.top = cut.top + 'px';
       cut.dragging = false; delete el.dataset.dragging;
       try{ document.body.classList.remove('dragmode'); }catch(e){} camHold();
+      leaveLater(cut);
       if(!moved) return;
       cut.dragged = true; if(cut.g && !cut.g.gone) cut.g.life += 20000; // a story someone is playing with stays a little longer
       const g = cut.g, visitor = g !== cut.home;

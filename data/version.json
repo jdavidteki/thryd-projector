@@ -1,5 +1,5 @@
 {
- "v": 608,
- "at": "2026-11-23T17:45:00-05:00",
- "note": "v608: lower memory on phones (Jesuye: Chrome memory on the Fold). Stage bitmap budget on phones 90 MB to 60 MB and 8 stored frames per animated cut (was 10); the story drawing reload replaces its paint queue instead of adding to it; the lovemap 3D graph stops rendering while idle or hidden and resumes on touch; slide frames decode off the main thread. Builds on v607 low-heat mode."
+ "v": 609,
+ "at": "2026-11-23T20:45:00-05:00",
+ "note": "v609: dragging fix. When a story leaves the stage all its cuts were marked leaving at once and refused every grab while they waited their turn to walk off, and walking cuts were click-through; now grabbing a still-visible leaving cut keeps it on stage where it stands (it walks off again 20 s after release), and walking cuts stay grabbable until their fade. Low-heat and phone memory savings unchanged."
 }
