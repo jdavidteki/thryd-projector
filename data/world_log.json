@@ -4745,7 +4745,7 @@
   },
   "run-5a58c4": {
    "forked_from": "safe:f81f21521253",
-   "head": "7cb6da5f57",
+   "head": "bc6e8f75ed",
    "commits": [
     {
      "id": "f8dbb5df08",
@@ -4852,7 +4852,7 @@
      }
     },
     {
-     "id": "5844fed276",
+     "id": "169ad7c802",
      "parent": "3a40aabd93",
      "branch": "run-5a58c4",
      "job": "j2",
@@ -5116,16 +5116,24 @@
         "code": "water.interactwith(heatflag){ heatflag.receives(water.code); heatflag.remembers(ejiro, 'juju code'); }",
         "scope": null,
         "cause_id": null
+       },
+       {
+        "id": "wf_600b0b61eb",
+        "object": "teo",
+        "kind": "consequence",
+        "code": "cup.interactwith(teo){ teo.receives(cup.code); teo.remembers(ejiro, 'juju code'); }",
+        "scope": null,
+        "cause_id": null
        }
       ],
-      "facts_total": 32,
+      "facts_total": 33,
       "functions": [],
       "instances": []
      }
     },
     {
-     "id": "eb3e0c3ae5",
-     "parent": "5844fed276",
+     "id": "a3365dcc28",
+     "parent": "169ad7c802",
      "branch": "run-5a58c4",
      "job": "j3",
      "at": "2026-11-17T10:35:36-0500",
@@ -5268,8 +5276,8 @@
      }
     },
     {
-     "id": "33bf6a0157",
-     "parent": "eb3e0c3ae5",
+     "id": "1296adfc5e",
+     "parent": "a3365dcc28",
      "branch": "run-5a58c4",
      "job": "j5",
      "at": "2026-11-17T10:46:59-0500",
@@ -5364,8 +5372,8 @@
      }
     },
     {
-     "id": "4ad7943275",
-     "parent": "33bf6a0157",
+     "id": "50f3c323c3",
+     "parent": "1296adfc5e",
      "branch": "run-5a58c4",
      "job": "j6",
      "at": "2026-11-17T10:49:53-0500",
@@ -5860,8 +5868,8 @@
      }
     },
     {
-     "id": "015cd2c44e",
-     "parent": "4ad7943275",
+     "id": "f0e87f96ce",
+     "parent": "50f3c323c3",
      "branch": "run-5a58c4",
      "job": "j7",
      "at": "2026-11-17T11:01:50-0500",
@@ -6004,8 +6012,8 @@
      }
     },
     {
-     "id": "0877a18b4e",
-     "parent": "015cd2c44e",
+     "id": "533d57de4a",
+     "parent": "f0e87f96ce",
      "branch": "run-5a58c4",
      "job": "j8",
      "at": "2026-11-17T15:14:25-0500",
@@ -6060,8 +6068,8 @@
      }
     },
     {
-     "id": "7ce60fda5f",
-     "parent": "0877a18b4e",
+     "id": "d745c7b5f0",
+     "parent": "533d57de4a",
      "branch": "run-5a58c4",
      "job": "j22",
      "at": "2026-11-16T23:37:14-05:00",
@@ -6183,8 +6191,8 @@
      }
     },
     {
-     "id": "b6a3a9a468",
-     "parent": "7ce60fda5f",
+     "id": "63fa94656e",
+     "parent": "d745c7b5f0",
      "branch": "run-5a58c4",
      "job": "j23",
      "at": "2026-11-16T23:50:03-05:00",
@@ -6209,8 +6217,8 @@
      }
     },
     {
-     "id": "0d0fa92dd7",
-     "parent": "b6a3a9a468",
+     "id": "e6130f81d9",
+     "parent": "63fa94656e",
      "branch": "run-5a58c4",
      "job": "j24",
      "at": "2026-11-17T00:02:09-05:00",
@@ -6263,8 +6271,8 @@
      }
     },
     {
-     "id": "226decd83e",
-     "parent": "0d0fa92dd7",
+     "id": "242722d856",
+     "parent": "e6130f81d9",
      "branch": "run-5a58c4",
      "job": "j25",
      "at": "2026-11-17T10:35:56-05:00",
@@ -6396,8 +6404,8 @@
      }
     },
     {
-     "id": "9e2df99233",
-     "parent": "226decd83e",
+     "id": "1ce32a0c1a",
+     "parent": "242722d856",
      "branch": "run-5a58c4",
      "job": "j26",
      "at": "2026-11-17T11:07:01-05:00",
@@ -6427,8 +6435,8 @@
      }
     },
     {
-     "id": "dcb7e7f2cf",
-     "parent": "9e2df99233",
+     "id": "8844020838",
+     "parent": "1ce32a0c1a",
      "branch": "run-5a58c4",
      "job": "j27",
      "at": "2026-11-17T11:22:49-05:00",
@@ -6471,8 +6479,8 @@
      }
     },
     {
-     "id": "03f31fb170",
-     "parent": "dcb7e7f2cf",
+     "id": "77fa680252",
+     "parent": "8844020838",
      "branch": "run-5a58c4",
      "job": "j28",
      "at": "2026-11-17T12:06:03-05:00",
@@ -6497,8 +6505,8 @@
      }
     },
     {
-     "id": "e93cbaeb60",
-     "parent": "03f31fb170",
+     "id": "f2d098c797",
+     "parent": "77fa680252",
      "branch": "run-5a58c4",
      "job": "j29",
      "at": "2026-11-17T12:30:30-05:00",
@@ -6588,8 +6596,8 @@
      }
     },
     {
-     "id": "b25a9911b0",
-     "parent": "e93cbaeb60",
+     "id": "5d5741a613",
+     "parent": "f2d098c797",
      "branch": "run-5a58c4",
      "job": "j30",
      "at": "2026-11-17T14:49:47-05:00",
@@ -6656,8 +6664,8 @@
      }
     },
     {
-     "id": "7b22fddf48",
-     "parent": "b25a9911b0",
+     "id": "07616f4e8f",
+     "parent": "5d5741a613",
      "branch": "run-5a58c4",
      "job": "j31",
      "at": "2026-11-17T15:19:01-05:00",
@@ -6725,8 +6733,8 @@
      }
     },
     {
-     "id": "783edf2a44",
-     "parent": "7b22fddf48",
+     "id": "f9c7e2d894",
+     "parent": "07616f4e8f",
      "branch": "run-5a58c4",
      "job": "j32",
      "at": "2026-11-17T15:46:37-05:00",
@@ -6811,8 +6819,8 @@
      }
     },
     {
-     "id": "8703c56491",
-     "parent": "783edf2a44",
+     "id": "d149c4cf6e",
+     "parent": "f9c7e2d894",
      "branch": "run-5a58c4",
      "job": "j33",
      "at": "2026-11-17T16:04:47-05:00",
@@ -6969,8 +6977,8 @@
      }
     },
     {
-     "id": "84cb09c95f",
-     "parent": "8703c56491",
+     "id": "bc67f391f4",
+     "parent": "d149c4cf6e",
      "branch": "run-5a58c4",
      "job": "j34",
      "at": "2026-11-17T16:22:07-05:00",
@@ -7018,8 +7026,8 @@
      }
     },
     {
-     "id": "0e958dd0cb",
-     "parent": "84cb09c95f",
+     "id": "bf78acc767",
+     "parent": "bc67f391f4",
      "branch": "run-5a58c4",
      "job": "j35",
      "at": "2026-11-17T16:53:36-05:00",
@@ -7058,8 +7066,8 @@
      }
     },
     {
-     "id": "06d7175bed",
-     "parent": "0e958dd0cb",
+     "id": "e3d2f1147c",
+     "parent": "bf78acc767",
      "branch": "run-5a58c4",
      "job": "j36",
      "at": "2026-11-23T23:51:56-05:00",
@@ -7093,8 +7101,8 @@
      }
     },
     {
-     "id": "a3a0195ab2",
-     "parent": "06d7175bed",
+     "id": "e1496655ad",
+     "parent": "e3d2f1147c",
      "branch": "run-5a58c4",
      "job": "j37",
      "at": "2026-11-24T00:13:33-05:00",
@@ -7119,8 +7127,8 @@
      }
     },
     {
-     "id": "360a32d9d3",
-     "parent": "a3a0195ab2",
+     "id": "093f64023e",
+     "parent": "e1496655ad",
      "branch": "run-5a58c4",
      "job": "j38",
      "at": "2026-11-24T00:34:37-05:00",
@@ -7145,8 +7153,8 @@
      }
     },
     {
-     "id": "6b9d38be48",
-     "parent": "360a32d9d3",
+     "id": "2ae6347fa2",
+     "parent": "093f64023e",
      "branch": "run-5a58c4",
      "job": "j39",
      "at": "2026-11-24T00:49:15-05:00",
@@ -7198,8 +7206,8 @@
      }
     },
     {
-     "id": "29d8f80390",
-     "parent": "6b9d38be48",
+     "id": "699309d7e2",
+     "parent": "2ae6347fa2",
      "branch": "run-5a58c4",
      "job": "j40",
      "at": "2026-11-24T00:57:57-05:00",
@@ -7224,8 +7232,8 @@
      }
     },
     {
-     "id": "4a12d7b8ca",
-     "parent": "29d8f80390",
+     "id": "7d8c6f50af",
+     "parent": "699309d7e2",
      "branch": "run-5a58c4",
      "job": "j41",
      "at": "2026-11-24T01:08:32-05:00",
@@ -7259,8 +7267,8 @@
      }
     },
     {
-     "id": "b4d420e3fa",
-     "parent": "4a12d7b8ca",
+     "id": "cd6d6def02",
+     "parent": "7d8c6f50af",
      "branch": "run-5a58c4",
      "job": "j42",
      "at": "2026-11-24T01:36:54-05:00",
@@ -7285,8 +7293,8 @@
      }
     },
     {
-     "id": "d39c66ad4e",
-     "parent": "b4d420e3fa",
+     "id": "9e107552d3",
+     "parent": "cd6d6def02",
      "branch": "run-5a58c4",
      "job": "j43",
      "at": "2026-11-24T01:36:54-05:00",
@@ -7311,8 +7319,8 @@
      }
     },
     {
-     "id": "b535728091",
-     "parent": "d39c66ad4e",
+     "id": "6d8aa85fcd",
+     "parent": "9e107552d3",
      "branch": "run-5a58c4",
      "job": "j44",
      "at": "2026-11-24T01:53:26-05:00",
@@ -7342,8 +7350,8 @@
      }
     },
     {
-     "id": "5a940bd7b5",
-     "parent": "b535728091",
+     "id": "5ab4fb57ac",
+     "parent": "6d8aa85fcd",
      "branch": "run-5a58c4",
      "job": "j45",
      "at": "2026-11-24T01:59:41-05:00",
@@ -7377,8 +7385,8 @@
      }
     },
     {
-     "id": "7cb6da5f57",
-     "parent": "5a940bd7b5",
+     "id": "bc6e8f75ed",
+     "parent": "5ab4fb57ac",
      "branch": "run-5a58c4",
      "job": "j46",
      "at": "2026-11-24T02:29:16-05:00",
@@ -15295,7 +15303,7 @@
   "run-fa5946": "564dd5acda",
   "run-bd649b": "8ed6c18a56",
   "run-9e59ca": "59f544b8d8",
-  "run-5a58c4": "7cb6da5f57",
+  "run-5a58c4": "bc6e8f75ed",
   "run-g1-B": "37972c88df",
   "run-2eb42d": "6f8db160ef",
   "run-qa": "e4b61114ec",
@@ -15307,5 +15315,5 @@
   "run-888ea9": "9815dfcb14"
  },
  "commits": 142,
- "updated": "2026-11-24T03:05:08-05:00"
+ "updated": "2026-11-24T03:10:55-05:00"
 }
