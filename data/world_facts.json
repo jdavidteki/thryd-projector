@@ -2417,16 +2417,6 @@
 ],
 "bus": [
 {
-"id": "wf_badbc0a0f3",
-"kind": "consequence",
-"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the bus, and Bisola reads the name twice.",
-"code": "house.interactwith(bus){ bus.receives(house.code); bus.remembers(ejiro, 'juju code'); bus.tucks(house, 'ttb note into the brown envelope'); }",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j2",
-"other": "house"
-},
-{
 "id": "wf_862a4ca1d5",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the bus, and Bisola reads the name twice.",
@@ -2465,6 +2455,16 @@
 "run": "run-5a58c4",
 "card": "j6",
 "other": "tsis"
+},
+{
+"id": "wf_7a2f42f714",
+"kind": "consequence",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the bus, and Bisola reads the name twice.",
+"code": "water.interactwith(bus){ bus.receives(water.code); bus.remembers(ejiro, 'juju code'); bus.tucks(water, 'ttb note into the brown envelope'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j2",
+"other": "water"
 }
 ],
 "hands": [
@@ -10510,17 +10510,6 @@
 },
 "consequences": [
 {
-"id": "wf_df442ebfda",
-"ts": "2026-11-24T02:16:15-0500",
-"a": "tsis",
-"b": "bird",
-"code": "tsis.interactwith(bird){ bird.receives(tsis.envelope); bird.remembers(bisola, 'brown envelope'); bird.tucks(tsis, 'yaba bookshop receipt into the envelope corner'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the envelope corner at the bird, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
 "id": "wf_f3c82778bb",
 "ts": "2026-11-24T02:17:55-0500",
 "a": "jetty_south_pointe",
@@ -10948,6 +10937,17 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": "j8"
+},
+{
+"id": "wf_7a2f42f714",
+"ts": "2026-11-24T10:40:48-0500",
+"a": "water",
+"b": "bus",
+"code": "water.interactwith(bus){ bus.receives(water.code); bus.remembers(ejiro, 'juju code'); bus.tucks(water, 'ttb note into the brown envelope'); }",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the bus, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j2"
 }
 ],
 "memories": [
@@ -11051,5 +11051,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-24T10:35:44-0500"
+"updated": "2026-11-24T10:40:48-0500"
 }
