@@ -7651,16 +7651,6 @@
 ],
 "thryd": [
 {
-"id": "wf_55c3941222",
-"kind": "consequence",
-"text": "The thryd leaves with a Cup note with Ejiro's name and 'juju code' on it.",
-"code": "cup.interactwith(thryd){ thryd.receives(cup.code); thryd.remembers(ejiro, 'juju code'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j2",
-"other": "cup"
-},
-{
 "id": "wt_a373b92fed",
 "kind": "func_call",
 "text": "The customer typed #thryd.importtheme(funkeakindele) on run-cf203b j17. It came back: Thryd importtheme funkeakindele. Implementation: function importtheme(what){\n  // The customer typed this on this agenda.\n  THRYD_IMPORTTHEME_COUNT += 1;\n  this.lastImporttheme = \"funkeakindele\";\n  return \"Thryd importtheme funkeakindele\";\n}.",
@@ -7685,6 +7675,16 @@
 "kind": "func_call",
 "text": "The customer typed #thryd.importtheme(africanerotica) on run-cf203b j21. It came back: Thryd importtheme africanerotica. Implementation: function importtheme(what){\n  // The customer typed this on this agenda.\n  THRYD_IMPORTTHEME_COUNT += 1;\n  this.lastImporttheme = \"funkeakindele\";\n  this.lastImporttheme = \"tylerthecreator\";\n  this.lastImporttheme = \"africanerotica\";\n  return \"Thryd importtheme funkeakindele\";\n}.",
 "code": "#thryd.importtheme(africanerotica);",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j21",
+"other": null
+},
+{
+"id": "wt_0d48733d23",
+"kind": "func_call",
+"text": "The customer typed #thryd.importtheme(smut) on run-cf203b j21. It came back: Thryd importtheme smut. Implementation: function importtheme(what){\n  // The customer typed this on this agenda.\n  THRYD_IMPORTTHEME_COUNT += 1;\n  this.lastImporttheme = \"funkeakindele\";\n  this.lastImporttheme = \"tylerthecreator\";\n  this.lastImporttheme = \"africanerotica\";\n  this.lastImporttheme = \"smut\";\n  return \"Thryd importtheme funkeakindele\";\n}.",
+"code": "#thryd.importtheme(smut);",
 "author": "customer",
 "run": "run-cf203b",
 "card": "j21",
@@ -11827,5 +11827,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-25T17:33:58-0500"
+"updated": "2026-11-25T17:34:48-0500"
 }
