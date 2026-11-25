@@ -61,9 +61,9 @@
   // busy (Jesuye 11-12 11:09 PM "make it very busy"): many small story groups at once, arriving in quick overlapping waves
   // full (Jesuye 11-12 11:41 PM "too much black space ... plenty objects floating all the time"): more cuts, a decoded
   // group always waiting in the wings so a leaving story is replaced at once, and spawns aimed at the emptiest part of the screen
-  const CAP = PHONE ? 36 : 72;               // story cuts on screen at once (place pins do not count)
+  const CAP = 36;  /* v610 heat (Jesuye 24 Nov 10:03 PM ET "cut drawing down 50%"): desktop 72→36, same as phone */               // story cuts on screen at once (place pins do not count)
   const SOFT_CAP = Math.max(1, CAP - 6);    // start walking the oldest off here so a hard instant removal is never needed
-  const MAX_GROUPS = PHONE ? 18 : 36;     // story groups; pins do not count
+  const MAX_GROUPS = 18; // v610 heat: desktop 36→18, same as phone     // story groups; pins do not count
   const PER_GROUP = PHONE ? 4 : 6;
   const READY = PHONE ? 1 : 2;               // decoded groups kept in the wings
   const MAXF = PHONE ? 8 : 20;                 // stored frames per animated cut (longer GIFs keep every k-th frame, delays summed)
@@ -509,6 +509,7 @@
       Object.assign(c.style, {left: cut.left + 'px', top: cut.top + 'px', width: cut.w + 'px', height: cut.h + 'px', zIndex: String((newest ? 80 : 10) + Math.round(x.U.y + x.U.h))});
       c.style.setProperty('--fd', R(5.5, 9).toFixed(2) + 's'); c.style.setProperty('--fdl', (-R(0, 6)).toFixed(2) + 's');
       S.bytes += cut.bytes; S.cuts.push(cut); g.cuts.push(cut);
+      if(fr.length === 1){ try{ fr[0].close && fr[0].close(); }catch(e){} } // v610 memory: a still cut's canvas already holds its only frame; free the bitmap copy
       bindDrag(cut);
       if(newest){
         // newest active live view appears in place (no off-screen walk-in)

@@ -1,5 +1,5 @@
 {
- "v": 609,
- "at": "2026-11-23T20:45:00-05:00",
- "note": "v609: dragging fix. When a story leaves the stage all its cuts were marked leaving at once and refused every grab while they waited their turn to walk off, and walking cuts were click-through; now grabbing a still-visible leaving cut keeps it on stage where it stands (it walks off again 20 s after release), and walking cuts stay grabbable until their fade. Low-heat and phone memory savings unchanged."
+ "v": 610,
+ "at": "2026-11-24T22:15:00-05:00",
+ "note": "v610: cooler and lighter projector (Jesuye 24 Nov 8:05 PM 'too heavy', 8:55 PM 'stop overheating', 10:03 PM 'cut drawing down 50%'). Stage holds 36 cuts / 18 stories on desktop (was 72/36, now same as phone); the stretchy background warp redraws at most ~4 fps at half resolution and recomposes its plates every 200 ms; the in-browser AI model loads on the first tap/key or first typed call instead of at idle; still cuts free their duplicate bitmap; same-file data loads at startup share one request (fetch_dedupe.js). Measured on the box (headless Chrome, 5.5 min): tab memory ~570 to ~375 MB, all Chrome ~1.03 to ~0.79 GB, GPU process CPU ~124% to ~100%, total CPU ~181% to ~154%."
 }

@@ -7,7 +7,9 @@
   var BREATHE_MS = 8000;  // slow ghostly fade, 15% ↔ 60%
   var GRID_A = 0.08;     // very faint; the stretched image carries the feel
   var GRID_A_DARK = 0.14; // a touch stronger so the grid still reads on black
-  var COMPOSE_MS = 120;  // recache GIF/plate texture at most this often
+  var COMPOSE_MS = 200;  // recache GIF/plate texture at most this often (v610 heat: was 120)
+  var DRAW_MS = 240;     // v610 heat (Jesuye 10:03 PM ET: cut drawing 50%): the warp is redrawn at most ~4 fps. Every redraw of this full-screen layer makes the browser
+                         // recomposite every cut above it; the warp moves only a few px a second (7-23 s periods), so it looks the same.
   // Incommensurate warp periods (ms) and phase offsets (rad).
   var T1 = 7300, T2 = 11900, T3 = 17700, T4 = 23100;
   var PH1 = 0.0, PH2 = 1.7, PH3 = 3.1, PH4 = 4.9;
@@ -154,7 +156,7 @@
   }
 
   function renderSize(cw, ch){
-    var k = 0.7;
+    var k = 0.5; // v610 heat: was 0.7; the field is a soft pastel warp of already-faded plates, so half the pixels look the same
     var w = Math.max(2, Math.round(cw * k));
     var h = Math.max(2, Math.round(ch * k));
     if(w > MAX_RW || h > MAX_RH){
@@ -417,8 +419,10 @@
     }
 
     var t0 = animNow();
+    var lastDraw = 0;
     function tick(){
       if(fellBack) return;
+      var tn = performance.now(); if(lastDraw && tn - lastDraw < DRAW_MS && tn >= lastDraw) return; lastDraw = tn;
       if(gl.isContextLost && gl.isContextLost()){ fallBack2D(); return; }
       var on = matchesLiveStage();
       canvas.style.display = on ? 'block' : 'none';

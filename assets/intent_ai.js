@@ -271,8 +271,14 @@
   if(NOAI) return;
   chromeCheck();
   // lazy: only after the page has loaded and gone idle (never blocks the first paint or the first cuts)
+  // v610 memory/heat (Jesuye 24 Nov 2026 8:05 PM ET "this is too heavy"; 8:55 PM "stop overheating"): the model (~100 MB in the tab)
+  // now loads the first time it can matter: the first tap, key or touch on the page, the typed-command box, or the first typed call
+  // from the rooms that has no look yet (the "≈ did you mean" line). A wall nobody touches never pays for it; nothing else changes.
   const idle = f => (root.requestIdleCallback ? requestIdleCallback(f, {timeout: 20000}) : setTimeout(f, 2000));
-  const kick = ()=> setTimeout(()=> idle(start), 10000);
+  const NEED_EV = ['pointerdown', 'keydown', 'touchstart'];
+  const kick = ()=>{ let went = false; const go = ()=>{ if(went) return; went = true; NEED_EV.forEach(ev => removeEventListener(ev, go, true)); clearInterval(AI.needT); idle(start); };
+    AI.need = go; NEED_EV.forEach(ev => addEventListener(ev, go, {capture: true, passive: true}));
+    AI.needT = setInterval(()=>{ if(AI.state !== 'waiting'){ clearInterval(AI.needT); return; } const dl = root.__thrydDriftLines || []; if(dl.some(l => l && /^typed \(no look yet\)/.test(l.note || ''))) go(); }, 2500); };
   if(document.readyState === 'complete') kick(); else addEventListener('load', kick, {once: true});
   // new functions published later get vectors too
   setInterval(()=>{ if(AI.state === 'ready') seedCorpus(); }, 300000);
