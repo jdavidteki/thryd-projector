@@ -16966,6 +16966,71 @@
    "faded": false,
    "last_run": "run-cf203b"
   },
+  "shu.making": {
+   "object": "shu",
+   "method": "making",
+   "args": [
+    "more"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j10",
+    "card": "w10",
+    "title": "shu.making(more)",
+    "emoji": "🥁",
+    "at": "2026-11-25T12:27:20-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "shu.making(more)",
+     "emoji": "🥁",
+     "arg": "more",
+     "run": "run-cf203b",
+     "job": "j10",
+     "tweets": [
+      {
+       "text": "- i shu be making more dan!",
+       "year": "2024"
+      }
+     ],
+     "consequence": "Where things stand: The Uber is stopped at a red light, and Kemi has her phone to her ear.",
+     "consequence_job": "j10",
+     "resolved": "shu.making(amount=more:Quantity) from j10",
+     "injected": [
+      {
+       "param": "amount",
+       "class": "Quantity",
+       "instance": "more",
+       "from_run": "run-cf203b",
+       "from_job": "j10",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "amount",
+      "class": "Quantity",
+      "default": "more",
+      "first_run": "run-cf203b",
+      "first_job": "j10"
+     }
+    ],
+    "text": "making(amount: Quantity)"
+   },
+   "receiver_class": "Manner",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
   "cooler.getdatemanufactured": {
    "object": "cooler",
    "method": "getDateManufactured",
@@ -20693,6 +20758,9 @@
   ],
   "share": [
    "share.minerals"
+  ],
+  "shu": [
+   "shu.making"
   ],
   "sia": [
    "sia.count"
@@ -43586,7 +43654,8 @@
     "share.minerals",
     "slapping.engine",
     "dignity.hustle",
-    "once.understand"
+    "once.understand",
+    "shu.making"
    ]
   },
   "run-d6fc": {
@@ -44279,7 +44348,8 @@
     "share.minerals",
     "slapping.engine",
     "dignity.hustle",
-    "once.understand"
+    "once.understand",
+    "shu.making"
    ],
    "runs": [
     "run-cf203b"
@@ -44766,6 +44836,13 @@
    "title": "828. yee, i think the previous generation enjoyed life properly",
    "funcs": [
     "toothbrush.on"
+   ],
+   "runs": []
+  },
+  "ca086392dada": {
+   "title": "718. juice",
+   "funcs": [
+    "shu.making"
    ],
    "runs": []
   },
@@ -45614,6 +45691,9 @@
   ],
   "1*UbI3GVI6TU-dpN53TIUp0Q.gif": [
    "d184b52bcb49"
+  ],
+  "1*YD2bbBhlcUgHoUtcXoRC6w.gif": [
+   "ca086392dada"
   ],
   "1*ZhfFQYcoY2m3F_RilTcEJQ.gif": [
    "ae3ee411f127",
@@ -47128,6 +47208,9 @@
   "share": [
    "share.minerals"
   ],
+  "shu": [
+   "shu.making"
+  ],
   "sia": [
    "sia.count"
   ],
@@ -47455,6 +47538,7 @@
   "slapping": [],
   "dignity": [],
   "once": [],
+  "shu": [],
   "cooler": [],
   "kazeem.goodqualities": [],
   "app": [],
@@ -47659,6 +47743,7 @@
    "once",
    "ready",
    "share",
+   "shu",
    "slapping",
    "stay"
   ]
@@ -47676,5 +47761,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-25T10:22:54-05:00"
+ "updated": "2026-11-25T12:27:21-05:00"
 }
