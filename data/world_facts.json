@@ -6403,6 +6403,16 @@
 "run": "run-5a58c4",
 "card": "j2",
 "other": "water"
+},
+{
+"id": "wf_5c149a6f99",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the juju code at the plot, and Ejiro reads the name twice.",
+"code": "dez.interactwith(plot){ plot.receives(dez.envelope); plot.remembers(bisola, 'brown envelope'); plot.tucks(dez, 'yaba bookshop receipt into the juju code'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "dez"
 }
 ],
 "hpr": [
@@ -11276,17 +11286,6 @@
 },
 "consequences": [
 {
-"id": "wf_b7acfd84d5",
-"ts": "2026-11-24T13:10:12-0500",
-"a": "plot",
-"b": "sandal",
-"code": "plot.interactwith(sandal){ sandal.receives(plot.soot); sandal.remembers(taiwo, 'lamp soot'); sandal.tucks(plot, 'bird note into the brown envelope'); }",
-"text": "A Bird note with Taiwo's name and 'lamp soot' on it, turns up inside the brown envelope at the sandal, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j7"
-},
-{
 "id": "wf_b554f0965b",
 "ts": "2026-11-24T13:11:04-0500",
 "a": "health_marisol",
@@ -11714,6 +11713,17 @@
 "author": "cos",
 "run": "run-cf203b",
 "card": "j6"
+},
+{
+"id": "wf_5c149a6f99",
+"ts": "2026-11-25T16:20:33-0500",
+"a": "dez",
+"b": "plot",
+"code": "dez.interactwith(plot){ plot.receives(dez.envelope); plot.remembers(bisola, 'brown envelope'); plot.tucks(dez, 'yaba bookshop receipt into the juju code'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the juju code at the plot, and Ejiro reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
 }
 ],
 "memories": [
@@ -11817,5 +11827,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-25T16:19:40-0500"
+"updated": "2026-11-25T16:20:33-0500"
 }
