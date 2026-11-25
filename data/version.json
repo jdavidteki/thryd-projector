@@ -1,5 +1,5 @@
 {
- "v": 612,
- "at": "2026-11-25T13:50:00-05:00",
- "note": "v612: cooler projector. The idle float of every cut no longer rotates and is driven by one shared ticker (about 12 updates a second, 4 when idle, off-screen cuts skipped) instead of 50+ CSS animations; film grain is a small layer that jitters 1.7x a second and pauses when idle; active frames wait on a timer instead of every display refresh; the code panel types in 3-letter steps and shows whole lines when idle; the warp samples plates every 500 ms. Box measurement: total CPU ~172% to ~127%, GPU ~99% to ~70%."
+ "v": 613,
+ "at": "2026-11-25T14:00:00-05:00",
+ "note": "v613: the floating video card plays its muted 264p scene on a continuous loop again (it had been tap-to-play since 23 Nov, and also stopped when low-heat went idle). It now pauses only when the tab is hidden or the card is off-screen; other v612 heat savings are unchanged."
 }

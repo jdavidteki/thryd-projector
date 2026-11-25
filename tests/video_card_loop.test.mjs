@@ -1,4 +1,4 @@
-// video card plays only when touched (Jesuye 23 Nov 8:27 PM ET, phone heat)
+// video card loops continuously again (Jesuye 25 Nov 1:56 PM ET); pauses only when hidden or off-screen
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -202,6 +202,11 @@ function load(opts = {}){
     },
     addEventListener(t, fn){ (winListeners[t] = winListeners[t] || []).push(fn); },
     LH: opts.lh === false ? undefined : {on(fn){ lhListeners.push(fn); return () => {}; }},
+    IntersectionObserver: function(cb){
+      const inst = {cb, el: null, observe(el){ inst.el = el; }, unobserve(){}, disconnect(){}};
+      ctx.__io = inst;
+      return inst;
+    },
   };
   Object.defineProperty(ctx.document, 'hidden', {get(){ return hidden; }, set(v){ hidden = !!v; }});
   ctx.window = ctx;
@@ -213,59 +218,51 @@ function load(opts = {}){
     card: () => ctx.thrydVideoCard,
     vid(){ return qs(ctx.thrydVideoCard.el, 'video'); },
     go(){ return qs(ctx.thrydVideoCard.el, 'a.go'); },
-    hint(){ return qs(ctx.thrydVideoCard.el, '.ph'); },
     setHidden(v){ hidden = !!v; ctx.document.hidden = hidden; },
+    fireIO(){ if(ctx.__io && ctx.__io.cb) ctx.__io.cb([]); },
   };
 }
 const tick = async (n = 6) => { for(let i = 0; i < n; i++) await new Promise(r => setImmediate(r)); };
 
-test('index.html cache-bumps video_card.js and the script has no autoplay or loop', () => {
-  assert.match(html, /video_card\.js\?v=3/);
-  assert.doesNotMatch(html, /video_card\.js\?v=2(?:\D|$)/);
-  assert.match(src, /preload=["']metadata["']/);
-  assert.match(src, /▶/);
-  assert.doesNotMatch(src, /<video[^>]*\bautoplay\b/);
-  assert.doesNotMatch(src, /<video[^>]*\bloop\b/);
-  assert.match(src, /vid\.autoplay=false/);
-  assert.match(src, /vid\.loop=false/);
-  assert.match(src, /preload='metadata'/);
-  assert.match(src, /s==='idle'\|\|s==='hidden'/);
+test('index.html cache-bumps video_card.js and the script autoplays on a loop', () => {
+  assert.match(html, /video_card\.js\?v=4/);
+  assert.doesNotMatch(html, /video_card\.js\?v=3(?:\D|$)/);
+  assert.match(src, /preload=["']auto["']/);
+  assert.match(src, /<video[^>]*\bautoplay\b/);
+  assert.match(src, /<video[^>]*\bloop\b/);
+  assert.match(src, /vid\.autoplay=true/);
+  assert.match(src, /vid\.loop=true/);
+  assert.match(src, /preload='auto'/);
+  assert.doesNotMatch(src, /s==='idle'\|\|s==='hidden'/);
+  assert.doesNotMatch(src, /heatStop/);
   assert.match(src, /open ↗/);
   assert.match(src, /TH=6/);
+  assert.match(src, /IntersectionObserver/);
+  assert.match(html, /var VER=613,/);
 });
 
-test('no playback before a tap, playback after a tap', async () => {
+test('the card starts looping on its own, without a tap', async () => {
   const L = load();
   await tick();
   const C = L.card();
   assert.ok(C && C.el && C.el.id === 'videocard');
   const vid = L.vid();
-  assert.equal(vid.autoplay, false);
-  assert.equal(vid.loop, false);
-  assert.equal(vid.preload, 'metadata');
+  assert.equal(vid.autoplay, true);
+  assert.equal(vid.loop, true);
+  assert.equal(vid.preload, 'auto');
   assert.equal(vid.muted, true);
-  assert.equal(L.plays.length, 0);
-  assert.equal(vid.paused, true);
-  assert.equal(C.video().want, false);
-  assert.ok(!C.el.classList.contains('playing'));
-  assert.equal(L.hint().textContent, '▶');
+  assert.ok(L.plays.length >= 1);
+  assert.equal(vid.paused, false);
+  assert.equal(vid.src, SCENE.card_video);
   assert.equal(L.go().href, C.url);
   assert.equal(L.go().target, '_blank');
-
-  fire(C.el, 'pointerdown', {clientX: 40, clientY: 40, target: vid});
-  fire(C.el, 'pointerup', {clientX: 40, clientY: 40, target: vid});
+  const n = L.plays.length;
   fire(C.el, 'click', {clientX: 40, clientY: 40, target: vid});
-  assert.equal(L.plays.length, 1);
   assert.equal(vid.paused, false);
-  assert.equal(C.video().want, true);
-  assert.ok(C.el.classList.contains('playing'));
-
-  fire(C.el, 'click', {clientX: 40, clientY: 40, target: vid});
-  assert.equal(vid.paused, true);
-  assert.equal(C.video().want, false);
+  assert.equal(L.plays.length, n);
 });
 
-test('a drag does not trigger play, and the card still moves', async () => {
+test('a drag does not pause the loop, and the card still moves', async () => {
   const L = load();
   await tick();
   const C = L.card();
@@ -275,58 +272,63 @@ test('a drag does not trigger play, and the card still moves', async () => {
   const startTop = C.el.offsetTop;
   assert.equal(startLeft, 200);
   assert.equal(startTop, 200);
+  assert.equal(vid.paused, false);
   fire(C.el, 'pointerdown', {pointerId: 7, clientX: 100, clientY: 100, target: C.el});
-  fire(C.el, 'pointermove', {pointerId: 7, clientX: 104, clientY: 100, target: C.el}); // under 6px threshold
-  assert.equal(L.plays.length, 0);
+  fire(C.el, 'pointermove', {pointerId: 7, clientX: 104, clientY: 100, target: C.el});
   assert.equal(C.el.offsetLeft, startLeft);
-  fire(C.el, 'pointermove', {pointerId: 7, clientX: 120, clientY: 115, target: C.el}); // past threshold
-  assert.equal(L.plays.length, 0);
+  fire(C.el, 'pointermove', {pointerId: 7, clientX: 120, clientY: 115, target: C.el});
   assert.ok(C.el.classList.contains('drag'));
   assert.equal(C.el.offsetLeft, startLeft + 20);
   assert.equal(C.el.offsetTop, startTop + 15);
   fire(C.el, 'pointerup', {pointerId: 7, clientX: 120, clientY: 115, target: C.el});
   const ev = fire(C.el, 'click', {clientX: 120, clientY: 115, target: C.el});
   assert.equal(ev.defaultPrevented, true);
-  assert.equal(L.plays.length, 0);
-  assert.equal(vid.paused, true);
+  assert.equal(vid.paused, false);
   assert.ok(L.store.thryd_videocard_pos);
 });
 
-test('a new scene swaps the source and does not autoplay; ended returns to still', async () => {
+test('a new scene swaps the source and keeps looping', async () => {
   const L = load();
   await tick();
   const C = L.card();
   const vid = L.vid();
   assert.equal(vid.src, SCENE.card_video);
-  assert.equal(L.plays.length, 0);
-  fire(C.el, 'click', {target: vid});
-  assert.equal(L.plays.length, 1);
+  const n = L.plays.length;
   const ok = C.apply({j: 'j48', place: 'Safehouse', video: 'videos/media/next.mp4', poster: 'videos/media/next.jpg'});
   assert.equal(ok, true);
   assert.equal(vid.src, 'videos/media/next.mp4');
-  assert.equal(vid.paused, true);
-  assert.equal(C.video().want, false);
-  assert.equal(L.plays.length, 1);
-  fire(C.el, 'click', {target: vid});
-  assert.equal(L.plays.length, 2);
+  assert.equal(vid.paused, false);
+  assert.ok(L.plays.length > n);
   fire(vid, 'ended');
-  assert.equal(vid.paused, true);
-  assert.equal(C.video().want, false);
-  assert.ok(!C.el.classList.contains('playing'));
+  assert.equal(vid.loop, true);
+  assert.equal(vid.paused, false);
 });
 
-test('low-heat idle or a hidden page pauses a playing scene', async () => {
+test('a hidden tab pauses the loop; coming back starts it; idle does not pause it', async () => {
   const L = load();
   await tick();
   const C = L.card();
-  fire(C.el, 'click', {target: L.vid()});
   assert.equal(L.vid().paused, false);
-  L.lhListeners[0]('idle', 'active');
-  assert.equal(L.vid().paused, true);
-  assert.equal(C.video().want, false);
-  fire(C.el, 'click', {target: L.vid()});
-  assert.equal(L.vid().paused, false);
+  assert.equal(L.lhListeners.length, 0);
   L.setHidden(true);
   for(const fn of L.docListeners.visibilitychange || []) fn();
   assert.equal(L.vid().paused, true);
+  L.setHidden(false);
+  for(const fn of L.docListeners.visibilitychange || []) fn();
+  assert.equal(L.vid().paused, false);
+});
+
+test('an off-screen card pauses; on-screen it plays again', async () => {
+  const L = load();
+  await tick();
+  const C = L.card();
+  assert.equal(L.vid().paused, false);
+  C.el.getBoundingClientRect = () => ({left: -400, top: -400, right: -268, bottom: -300, width: 132, height: 100});
+  C.syncPlay();
+  assert.equal(L.vid().paused, true);
+  assert.equal(C.video().onScreen, false);
+  C.el.getBoundingClientRect = () => ({left: 200, top: 200, right: 332, bottom: 300, width: 132, height: 100});
+  C.syncPlay();
+  assert.equal(L.vid().paused, false);
+  assert.equal(C.video().onScreen, true);
 });
