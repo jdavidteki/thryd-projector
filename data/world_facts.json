@@ -5517,16 +5517,6 @@
 ],
 "marina_biscayne_bay": [
 {
-"id": "wf_26c46a2147",
-"kind": "consequence",
-"text": "A Bird note with Taiwo's name and 'lamp soot' on it, turns up inside the juju code at the marina biscayne bay, and Ejiro reads the name twice.",
-"code": "kmb.interactwith(marina_biscayne_bay){ marina_biscayne_bay.receives(kmb.soot); … }",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j7",
-"other": "kmb"
-},
-{
 "id": "wf_213c14d20b",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the lamp soot at the marina biscayne bay, and Taiwo reads the name twice.",
@@ -5565,6 +5555,16 @@
 "run": "run-5a58c4",
 "card": "j6",
 "other": "marker_d"
+},
+{
+"id": "wf_c1cdf7e684",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the marina biscayne bay, and Bisola reads the name twice.",
+"code": "teoloveletter.interactwith(marina_biscayne_bay){ marina_biscayne_bay.receives(teoloveletter.envelope); … }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "teoloveletter"
 }
 ],
 "mbtij": [
@@ -10652,17 +10652,6 @@
 },
 "consequences": [
 {
-"id": "wt_ee467ae196",
-"ts": "2026-11-24T10:32:49-0500",
-"a": "ronke",
-"b": "ojuelegba_bus_stop",
-"code": "ronke.interactwith(ojuelegba_bus_stop){ ronke.sells(ojuelegba_bus_stop, 'oranges'); … }",
-"text": "The next morning Ronke sells the washed oranges to the danfo queue at the Ojuelegba bus stop.",
-"author": "cos",
-"run": "story-4b1689",
-"card": "j171"
-},
-{
 "id": "wt_2158955248",
 "ts": "2026-11-24T10:32:49-0500",
 "a": "ronke",
@@ -11090,6 +11079,17 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": "j2"
+},
+{
+"id": "wf_c1cdf7e684",
+"ts": "2026-11-25T13:41:35-0500",
+"a": "teoloveletter",
+"b": "marina_biscayne_bay",
+"code": "teoloveletter.interactwith(marina_biscayne_bay){ marina_biscayne_bay.receives(teoloveletter.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the marina biscayne bay, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
 }
 ],
 "memories": [
@@ -11193,5 +11193,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-25T13:40:41-0500"
+"updated": "2026-11-25T13:41:35-0500"
 }
