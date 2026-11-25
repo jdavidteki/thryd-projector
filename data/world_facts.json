@@ -4867,16 +4867,6 @@
 ],
 "calla": [
 {
-"id": "wf_65c70df1e4",
-"kind": "consequence",
-"text": "The calla now remembers the miami: 11:45pm, Monday 2 November 2026: A phone on the counter starts the off-key chorus, then.",
-"code": "miami.interactwith(calla){ calla.receives(miami.phone); }",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j29",
-"other": "miami"
-},
-{
 "id": "wf_f3c82778bb",
 "kind": "consequence",
 "text": "The calla leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
@@ -4914,6 +4904,16 @@
 "author": "projector",
 "run": "run-cf203b",
 "card": "w12",
+"other": null
+},
+{
+"id": "wt_1eec57555d",
+"kind": "func_call",
+"text": "The calla hears it (because teo.respond(what=bank:Thing) from j59).",
+"code": "calla.hears(person, 'respond');",
+"author": "projector",
+"run": "run-cf203b",
+"card": "w10",
 "other": null
 }
 ],
@@ -5741,16 +5741,6 @@
 ],
 "teo": [
 {
-"id": "wf_f0d2475848",
-"kind": "consequence",
-"text": "The teo now remembers the quiet stretch sand: 5:50pm, Tuesday 3 November 2026: The morning at the ramp is behind them.",
-"code": "quiet_stretch_sand.interactwith(teo){ teo.receives(quiet_stretch_sand.morning); }",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j31",
-"other": "quiet_stretch_sand"
-},
-{
 "id": "wf_600b0b61eb",
 "kind": "consequence",
 "text": "The teo leaves with a Cup note with Ejiro's name and 'juju code' on it.",
@@ -5769,6 +5759,16 @@
 "run": "run-5a58c4",
 "card": "j6",
 "other": "dez"
+},
+{
+"id": "wt_65fcbb8d55",
+"kind": "func_call",
+"text": "Someone at the projector tapped the person and called teo.respond(what=bank:Thing) from j59 from its agenda run-5a58c4, first seated in run-5a58c4 j33.",
+"code": "teo.respond('bank');",
+"author": "projector",
+"run": "run-cf203b",
+"card": "w10",
+"other": null
 },
 {
 "id": "wt_4edf4df619",
@@ -6445,16 +6445,6 @@
 ],
 "blender": [
 {
-"id": "wt_c2800ac997",
-"kind": "func_call",
-"text": "The blender hears it (because song.hit(what=mistake:Thing) from j35).",
-"code": "blender.hears(miami_subject, 'hit');",
-"author": "projector",
-"run": "run-5a58c4",
-"card": "w22",
-"other": null
-},
-{
 "id": "wt_aeb77e697a",
 "kind": "func_call",
 "text": "The blender hears it (because song.hit(what=mistake:Thing) from j35).",
@@ -6493,19 +6483,19 @@
 "run": "run-cf203b",
 "card": "w12",
 "other": null
+},
+{
+"id": "wt_54a2869baf",
+"kind": "func_call",
+"text": "The blender hears it (because teo.respond(what=bank:Thing) from j59).",
+"code": "blender.hears(person, 'respond');",
+"author": "projector",
+"run": "run-cf203b",
+"card": "w10",
+"other": null
 }
 ],
 "code": [
-{
-"id": "wt_5a9fe754b5",
-"kind": "func_call",
-"text": "Someone at the projector tapped the miami subject third and called code.say(how=like:Manner) from j27 from its agenda run-5a58c4, first seated in run-5a58c4 j25.",
-"code": "code.say('like');",
-"author": "projector",
-"run": "run-5a58c4",
-"card": "w25",
-"other": null
-},
 {
 "id": "wt_bd7dc1e4ec",
 "kind": "func_call",
@@ -6544,6 +6534,16 @@
 "author": "projector",
 "run": "run-cf203b",
 "card": "w12",
+"other": null
+},
+{
+"id": "wt_1be578f3f3",
+"kind": "func_call",
+"text": "The code hears it (because teo.respond(what=bank:Thing) from j59).",
+"code": "code.hears(person, 'respond');",
+"author": "projector",
+"run": "run-cf203b",
+"card": "w10",
 "other": null
 }
 ],
@@ -8755,36 +8755,6 @@
 ],
 "cli": [
 {
-"id": "wt_c5e7741f96",
-"kind": "func_call",
-"text": "The customer typed d1() on run-2eb42d j43. It came back: d1(). Implementation: /* d1() */.",
-"code": "d1();",
-"author": "customer",
-"run": "run-2eb42d",
-"card": "j43",
-"other": null
-},
-{
-"id": "wt_01b3821893",
-"kind": "func_call",
-"text": "The customer typed #thryd.miracle.log(1) on run-2eb42d j43. It came back: #thryd.miracle.log(1). Implementation: /* #thryd.miracle.log(1) */.",
-"code": "#thryd.miracle.log(1);",
-"author": "customer",
-"run": "run-2eb42d",
-"card": "j43",
-"other": null
-},
-{
-"id": "wt_f5568971ca",
-"kind": "func_call",
-"text": "The customer typed #thryd.miracle.log(1) on run-cf203b j10. It came back: #thryd.miracle.log(1). Implementation: /* #thryd.miracle.log(1) */.",
-"code": "#thryd.miracle.log(1);",
-"author": "customer",
-"run": "run-cf203b",
-"card": "j10",
-"other": null
-},
-{
 "id": "wt_6958e6175a",
 "kind": "func_call",
 "text": "The customer typed #ttb on run-cf203b j11. It came back: #ttb. Implementation: /* #ttb */.",
@@ -8802,6 +8772,36 @@
 "author": "customer",
 "run": "run-cf203b",
 "card": "j11",
+"other": null
+},
+{
+"id": "wt_4535bcaf29",
+"kind": "func_call",
+"text": "The customer typed [[p.pxiwtdc]] on run-cf203b j12. It came back: [[p.pxiwtdc]]. Implementation: /* [[p.pxiwtdc]] */.",
+"code": "[[p.pxiwtdc]];",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j12",
+"other": null
+},
+{
+"id": "wt_ce4880ab45",
+"kind": "func_call",
+"text": "The customer typed [[@ma]] on run-cf203b j13. It came back: [[@ma]]. Implementation: /* [[@ma]] */.",
+"code": "[[@ma]];",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j13",
+"other": null
+},
+{
+"id": "wt_1c5050339e",
+"kind": "func_call",
+"text": "The customer typed #thryd.miracle.log(1) on run-cf203b j13. It came back: #thryd.miracle.log(1). Implementation: /* #thryd.miracle.log(1) */.",
+"code": "#thryd.miracle.log(1);",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j13",
 "other": null
 }
 ],
@@ -10787,18 +10787,6 @@
 "other": null
 }
 ],
-"zzprojcmdproof": [
-{
-"id": "wt_74b3e9ed8d",
-"kind": "func_call",
-"text": "The customer typed [[zzprojcmdproof]] on run-cf203b j15.",
-"code": "[[zzprojcmdproof]];",
-"author": "customer",
-"run": "run-cf203b",
-"card": "j15",
-"other": null
-}
-],
 "uwsaas": [
 {
 "id": "wt_5404156db4",
@@ -10808,6 +10796,54 @@
 "author": "customer",
 "run": "run-cf203b",
 "card": "j10",
+"other": null
+}
+],
+"contol": [
+{
+"id": "wt_d0f4264ba8",
+"kind": "func_call",
+"text": "The customer typed [[contol]] on run-cf203b j14.",
+"code": "[[contol]];",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j14",
+"other": null
+}
+],
+"kemi": [
+{
+"id": "wt_02544a10b0",
+"kind": "func_call",
+"text": "The customer typed kemi.ismarried() on run-cf203b j12. It came back: yes. Implementation: function ismarried(){\n  const value = true;\n  learned.kemi.married = value;\n  return value;\n}. kemi now has kemi.ismarried as a method on this agenda, and it can be called again.",
+"code": "kemi.ismarried();",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j12",
+"other": null
+}
+],
+"wys": [
+{
+"id": "wt_fa24edd446",
+"kind": "func_call",
+"text": "The customer typed [[wys]] on run-cf203b j13.",
+"code": "[[wys]];",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j13",
+"other": null
+}
+],
+"is": [
+{
+"id": "wt_b78d20e9c7",
+"kind": "func_call",
+"text": "The customer typed [[is]] on run-cf203b j12.",
+"code": "[[is]];",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j12",
 "other": null
 }
 ]
@@ -11355,5 +11391,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-25T13:46:45-0500"
+"updated": "2026-11-25T13:48:22-0500"
 }

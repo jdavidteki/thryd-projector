@@ -15050,7 +15050,7 @@
   },
   "run-cf203b": {
    "forked_from": "safe:731d52737690",
-   "head": "daecca688d",
+   "head": "77dc774506",
    "commits": [
     {
      "id": "069eca7a17",
@@ -15192,7 +15192,7 @@
      }
     },
     {
-     "id": "01c7bf9cbe",
+     "id": "c01317a4e1",
      "parent": "11c1e7a267",
      "branch": "run-cf203b",
      "job": "j10",
@@ -15272,9 +15272,41 @@
         "code": "[[uwsaas]];",
         "scope": null,
         "cause_id": null
+       },
+       {
+        "id": "wt_65fcbb8d55",
+        "object": "teo",
+        "kind": "func_call",
+        "code": "teo.respond('bank');",
+        "scope": "env",
+        "cause_id": null
+       },
+       {
+        "id": "wt_54a2869baf",
+        "object": "blender",
+        "kind": "func_call",
+        "code": "blender.hears(person, 'respond');",
+        "scope": "ripple",
+        "cause_id": "wt_65fcbb8d55"
+       },
+       {
+        "id": "wt_1eec57555d",
+        "object": "calla",
+        "kind": "func_call",
+        "code": "calla.hears(person, 'respond');",
+        "scope": "ripple",
+        "cause_id": "wt_65fcbb8d55"
+       },
+       {
+        "id": "wt_1be578f3f3",
+        "object": "code",
+        "kind": "func_call",
+        "code": "code.hears(person, 'respond');",
+        "scope": "ripple",
+        "cause_id": "wt_65fcbb8d55"
        }
       ],
-      "facts_total": 9,
+      "facts_total": 13,
       "functions": [
        {
         "func": "shu.making",
@@ -15291,8 +15323,8 @@
      }
     },
     {
-     "id": "b3947322c0",
-     "parent": "01c7bf9cbe",
+     "id": "e80958f385",
+     "parent": "c01317a4e1",
      "branch": "run-cf203b",
      "job": "j11",
      "at": "2026-11-25T12:47:25-05:00",
@@ -15348,8 +15380,8 @@
      }
     },
     {
-     "id": "a3fb9b88bc",
-     "parent": "b3947322c0",
+     "id": "abda4d7bd1",
+     "parent": "e80958f385",
      "branch": "run-cf203b",
      "job": "j12",
      "at": "2026-11-25T13:04:53-05:00",
@@ -15428,9 +15460,33 @@
         "code": "[[faith]];",
         "scope": null,
         "cause_id": null
+       },
+       {
+        "id": "wt_02544a10b0",
+        "object": "kemi",
+        "kind": "func_call",
+        "code": "kemi.ismarried();",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_4535bcaf29",
+        "object": "cli",
+        "kind": "func_call",
+        "code": "[[p.pxiwtdc]];",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_b78d20e9c7",
+        "object": "is",
+        "kind": "func_call",
+        "code": "[[is]];",
+        "scope": null,
+        "cause_id": null
        }
       ],
-      "facts_total": 9,
+      "facts_total": 12,
       "functions": [
        {
         "func": "believe.can",
@@ -15461,8 +15517,8 @@
      }
     },
     {
-     "id": "7edf119f05",
-     "parent": "a3fb9b88bc",
+     "id": "073a1ac897",
+     "parent": "abda4d7bd1",
      "branch": "run-cf203b",
      "job": "j13",
      "at": "2026-11-25T13:15:24-05:00",
@@ -15477,9 +15533,33 @@
         "code": "[[upandan]];",
         "scope": null,
         "cause_id": null
+       },
+       {
+        "id": "wt_fa24edd446",
+        "object": "wys",
+        "kind": "func_call",
+        "code": "[[wys]];",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_ce4880ab45",
+        "object": "cli",
+        "kind": "func_call",
+        "code": "[[@ma]];",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_1c5050339e",
+        "object": "cli",
+        "kind": "func_call",
+        "code": "#thryd.miracle.log(1);",
+        "scope": null,
+        "cause_id": null
        }
       ],
-      "facts_total": 1,
+      "facts_total": 4,
       "functions": [
        {
         "func": "even.feels",
@@ -15510,8 +15590,8 @@
      }
     },
     {
-     "id": "fbb408c36f",
-     "parent": "7edf119f05",
+     "id": "77dc774506",
+     "parent": "073a1ac897",
      "branch": "run-cf203b",
      "job": "j14",
      "at": "2026-11-25T13:28:09-05:00",
@@ -15534,9 +15614,17 @@
         "code": "[[lie]];",
         "scope": null,
         "cause_id": null
+       },
+       {
+        "id": "wt_d0f4264ba8",
+        "object": "contol",
+        "kind": "func_call",
+        "code": "[[contol]];",
+        "scope": null,
+        "cause_id": null
        }
       ],
-      "facts_total": 2,
+      "facts_total": 3,
       "functions": [
        {
         "func": "ahan.wayayou",
@@ -15555,30 +15643,6 @@
         "Thing"
        ]
       ]
-     }
-    },
-    {
-     "id": "daecca688d",
-     "parent": "fbb408c36f",
-     "branch": "run-cf203b",
-     "job": "j15",
-     "at": "2026-11-25T13:46:28-0500",
-     "genre": "rising",
-     "beat": "now",
-     "diff": {
-      "facts": [
-       {
-        "id": "wt_74b3e9ed8d",
-        "object": "zzprojcmdproof",
-        "kind": "func_call",
-        "code": "[[zzprojcmdproof]];",
-        "scope": null,
-        "cause_id": null
-       }
-      ],
-      "facts_total": 1,
-      "functions": [],
-      "instances": []
      }
     }
    ]
@@ -16388,10 +16452,10 @@
   "run-0ae93c": "a11a1eab61",
   "run-3a15d2": "fbc46c6eb7",
   "run-ab4653": "dd8e54daee",
-  "run-cf203b": "daecca688d",
+  "run-cf203b": "77dc774506",
   "run-cb805f": "8d23a93627",
   "run-888ea9": "9815dfcb14"
  },
- "commits": 168,
- "updated": "2026-11-25T13:47:33-05:00"
+ "commits": 167,
+ "updated": "2026-11-25T13:48:24-05:00"
 }

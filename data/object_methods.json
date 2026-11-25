@@ -20737,6 +20737,46 @@
    "prior": [],
    "faded": true,
    "last_run": null
+  },
+  "kemi.ismarried": {
+   "object": "kemi",
+   "method": "ismarried",
+   "args": [],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j12",
+    "card": "j12",
+    "title": "kemi.ismarried()",
+    "emoji": "",
+    "at": "2026-11-25T13:47:42-05:00",
+    "source": "cli"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "kemi.ismarried()",
+     "emoji": "",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j12",
+     "tweets": [],
+     "consequence": "The customer typed this on this agenda.",
+     "consequence_job": ""
+    }
+   ],
+   "source": "cli",
+   "cli": true,
+   "sig": {
+    "params": [],
+    "text": "ismarried()"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
   }
  },
  "objects": {
@@ -21180,7 +21220,8 @@
    "kazeem.goodqualities.filter"
   ],
   "kemi": [
-   "kemi.sometimes"
+   "kemi.sometimes",
+   "kemi.ismarried"
   ],
   "know": [
    "know.african",
@@ -44429,7 +44470,8 @@
     "woke.morning",
     "ahan.wayayou",
     "stringify.boolean",
-    "cli.cli"
+    "cli.cli",
+    "kemi.ismarried"
    ]
   },
   "run-d6fc": {
@@ -47909,7 +47951,8 @@
    "kazeem.goodqualities.filter"
   ],
   "kemi": [
-   "kemi.sometimes"
+   "kemi.sometimes",
+   "kemi.ismarried"
   ],
   "know": [
    "know.african",
@@ -48697,5 +48740,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-25T13:45:55-05:00"
+ "updated": "2026-11-25T13:48:24-05:00"
 }
