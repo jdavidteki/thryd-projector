@@ -76,9 +76,9 @@
   "Place": {
    "param": "where",
    "methods": [
+    "write",
     "follow",
-    "getlocation",
-    "know"
+    "getlocation"
    ],
    "instances": 14,
    "arg_instances": 8,
@@ -3177,7 +3177,8 @@
    "first_job": "j14",
    "source": "pick",
    "runs": [
-    "run-g1-B"
+    "run-g1-B",
+    "run-cf203b"
    ],
    "tweets": [
     {
@@ -9338,6 +9339,12 @@
     "Thing",
     "j15",
     "pick"
+   ],
+   [
+    "image",
+    "Place",
+    "j16",
+    "pick"
    ]
   ],
   "run-b70200": [
@@ -12023,6 +12030,9 @@
   "dem.go": "go(act: Action)",
   "lehgeet.ni": "ni()",
   "part.d": "d(what: Thing)",
+  "can.write": "write(where: Place)",
+  "russian.mobs": "mobs()",
+  "something.wrong": "wrong()",
   "cooler.getdatemanufactured": "getDateManufactured()",
   "ronke.getlikes.contains": "getlikes.contains()",
   "kazeem.goodqualities.filter": "filter()",
@@ -12526,9 +12536,11 @@
    "once",
    "part",
    "ready",
+   "russian",
    "share",
    "shu",
    "slapping",
+   "something",
    "stay",
    "stringify",
    "wo",
@@ -12607,5 +12619,5 @@
   "epilogue": "quiet",
   "coda": "quiet"
  },
- "updated": "2026-11-25T13:50:55-05:00"
+ "updated": "2026-11-25T15:22:18-05:00"
 }

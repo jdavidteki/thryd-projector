@@ -17906,6 +17906,184 @@
    "faded": false,
    "last_run": "run-cf203b"
   },
+  "can.write": {
+   "object": "can",
+   "method": "write",
+   "args": [
+    "image"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j16",
+    "card": "w16",
+    "title": "can.write(image)",
+    "emoji": "🏝️",
+    "at": "2026-11-25T15:21:38-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "can.write(image)",
+     "emoji": "🏝️",
+     "arg": "image",
+     "run": "run-cf203b",
+     "job": "j16",
+     "tweets": [
+      {
+       "text": "- we can write from this image",
+       "year": "2025"
+      }
+     ],
+     "consequence": "Tobi names them: \"the idibias\", \"and the russian mobs!\" Kemi points at the screen: \"we can write from this image.\" Tobi's voice cracks: \"something is wrong!!!\" 📖 Now: Get the line where Kemi answers him.",
+     "consequence_job": "j17",
+     "resolved": "can.write(where=image:Place) from j16",
+     "injected": [
+      {
+       "param": "where",
+       "class": "Place",
+       "instance": "image",
+       "from_run": "run-cf203b",
+       "from_job": "j16",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "where",
+      "class": "Place",
+      "default": "image",
+      "first_run": "run-g1-B",
+      "first_job": "j14"
+     }
+    ],
+    "text": "write(where: Place)"
+   },
+   "receiver_class": "Thing",
+   "prior": [
+    {
+     "id": "ronke.write",
+     "title": "ronke.write(note)",
+     "run": "run-2eb42d",
+     "job": "j38",
+     "at": "2026-11-18T18:23:42-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "adaora.write",
+     "title": "adaora.write(image)",
+     "run": "run-g1-B",
+     "job": "j14",
+     "at": "2026-11-17T18:55:49-05:00",
+     "why": "same method"
+    }
+   ],
+   "faded": false,
+   "last_run": null
+  },
+  "russian.mobs": {
+   "object": "russian",
+   "method": "mobs",
+   "args": [
+    ""
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j16",
+    "card": "w16",
+    "title": "russian.mobs()",
+    "emoji": "🌋",
+    "at": "2026-11-25T15:21:38-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "russian.mobs()",
+     "emoji": "🌋",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j16",
+     "tweets": [
+      {
+       "text": "#oyinboman — and the russian mobs!",
+       "year": "2025"
+      }
+     ],
+     "consequence": "Tobi names them: \"the idibias\", \"and the russian mobs!\" Kemi points at the screen: \"we can write from this image.\" Tobi's voice cracks: \"something is wrong!!!\" 📖 Now: Get the line where Kemi answers him.",
+     "consequence_job": "j17",
+     "resolved": "russian.mobs()",
+     "injected": []
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [],
+    "text": "mobs()"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "something.wrong": {
+   "object": "something",
+   "method": "wrong",
+   "args": [
+    ""
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j16",
+    "card": "w16",
+    "title": "something.wrong()",
+    "emoji": "🌾",
+    "at": "2026-11-25T15:21:38-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "something.wrong()",
+     "emoji": "🌾",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j16",
+     "tweets": [
+      {
+       "text": "— something is wrong!!!",
+       "year": "2025"
+      }
+     ],
+     "consequence": "Tobi names them: \"the idibias\", \"and the russian mobs!\" Kemi points at the screen: \"we can write from this image.\" Tobi's voice cracks: \"something is wrong!!!\" 📖 Now: Get the line where Kemi answers him.",
+     "consequence_job": "j17",
+     "resolved": "something.wrong()",
+     "injected": []
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [],
+    "text": "wrong()"
+   },
+   "receiver_class": "Action",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
   "cooler.getdatemanufactured": {
    "object": "cooler",
    "method": "getDateManufactured",
@@ -21160,7 +21338,8 @@
    "cam.stop"
   ],
   "can": [
-   "can.see"
+   "can.see",
+   "can.write"
   ],
   "care": [
    "care.on"
@@ -21761,6 +21940,9 @@
    "ronke.ischildofgod",
    "ronke.creditalert"
   ],
+  "russian": [
+   "russian.mobs"
+  ],
   "sakitout": [
    "sakitout.setname"
   ],
@@ -21804,6 +21986,9 @@
   ],
   "slapping": [
    "slapping.engine"
+  ],
+  "something": [
+   "something.wrong"
   ],
   "song": [
    "song.hit"
@@ -23509,6 +23694,14 @@
    }
   ],
   "bird": [
+   {
+    "scope": "safe",
+    "from": "40a61eb8865b",
+    "title": "324. confusion",
+    "funcs": [
+     "something.wrong"
+    ]
+   },
    {
     "scope": "safe",
     "from": "7ed7d354059d",
@@ -43500,6 +43693,16 @@
     ]
    }
   ],
+  "voice_god_figure": [
+   {
+    "scope": "safe",
+    "from": "c5f656640dae",
+    "title": "707. the voice of god",
+    "funcs": [
+     "russian.mobs"
+    ]
+   }
+  ],
   "want_touch_subject": [
    {
     "scope": "safe",
@@ -44655,6 +44858,10 @@
    "safe": "65400f845eaf",
    "funcs": []
   },
+  "run-6e6a": {
+   "safe": "40a61eb8865b",
+   "funcs": []
+  },
   "run-7c51d3": {
    "safe": "35e37a321959",
    "funcs": []
@@ -44771,6 +44978,9 @@
     "dem.go",
     "lehgeet.ni",
     "part.d",
+    "can.write",
+    "russian.mobs",
+    "something.wrong",
     "cli.cli",
     "kemi.ismarried",
     "new.condom",
@@ -45272,6 +45482,15 @@
    ],
    "runs": []
   },
+  "40a61eb8865b": {
+   "title": "324. confusion",
+   "funcs": [
+    "something.wrong"
+   ],
+   "runs": [
+    "run-6e6a"
+   ]
+  },
   "40cc9ba32586": {
    "title": "1106. lead us in a mood of worship",
    "funcs": [
@@ -45517,7 +45736,10 @@
     "stringify.boolean",
     "dem.go",
     "lehgeet.ni",
-    "part.d"
+    "part.d",
+    "can.write",
+    "russian.mobs",
+    "something.wrong"
    ],
    "runs": [
     "run-cf203b"
@@ -46015,6 +46237,13 @@
    ],
    "runs": []
   },
+  "c5f656640dae": {
+   "title": "707. the voice of god",
+   "funcs": [
+    "russian.mobs"
+   ],
+   "runs": []
+  },
   "c7c1fdc558f5": {
    "title": "1026. why would you say that?!",
    "funcs": [
@@ -46273,7 +46502,8 @@
   "eba67812c673": {
    "title": "321. none of my business",
    "funcs": [
-    "adaora.write"
+    "adaora.write",
+    "can.write"
    ],
    "runs": []
   },
@@ -46921,6 +47151,9 @@
   "1*BiRPdRqsYp7KBNTKPU6WUg.gif": [
    "a3d083db0935"
   ],
+  "1*pC3MAokwrWbYQRBnJxOTrw.gif": [
+   "40a61eb8865b"
+  ],
   "1*UbI3GVI6TU-dpN53TIUp0Q.gif": [
    "d184b52bcb49"
   ],
@@ -47044,6 +47277,9 @@
   ],
   "1*EzXx6mCPVc-4TByCgM6uFw.gif": [
    "d15604eed466"
+  ],
+  "1*IQXI1PQrQf5fqcxwKtd49Q.gif": [
+   "c5f656640dae"
   ],
   "1*11oRJiih2OeYmE4v5HAF7A.gif": [
    "290e162c303f"
@@ -47729,6 +47965,12 @@
     "ae0d5fb4a64c"
    ]
   },
+  "1*pC3MAokwrWbYQRBnJxOTrw.gif": {
+   "runs": [],
+   "safes": [
+    "40a61eb8865b"
+   ]
+  },
   "1*DTtXEqWGDRcc_OKyRxNLSA.gif": {
    "runs": [],
    "safes": [
@@ -47952,6 +48194,12 @@
     "741a80eaf54d"
    ]
   },
+  "1*IQXI1PQrQf5fqcxwKtd49Q.gif": {
+   "runs": [],
+   "safes": [
+    "c5f656640dae"
+   ]
+  },
   "1*5ro-2vFC2_gpEzZposBVHw.gif": {
    "runs": [],
    "safes": [
@@ -48103,7 +48351,8 @@
    "cam.stop"
   ],
   "can": [
-   "can.see"
+   "can.see",
+   "can.write"
   ],
   "care": [
    "care.on"
@@ -48496,6 +48745,9 @@
    "ronke.ischildofgod",
    "ronke.creditalert"
   ],
+  "russian": [
+   "russian.mobs"
+  ],
   "sakitout": [
    "sakitout.setname"
   ],
@@ -48519,6 +48771,9 @@
   ],
   "slapping": [
    "slapping.engine"
+  ],
+  "something": [
+   "something.wrong"
   ],
   "song": [
    "song.hit"
@@ -48865,6 +49120,8 @@
   "dem": [],
   "lehgeet": [],
   "part": [],
+  "russian": [],
+  "something": [],
   "cooler": [],
   "kazeem.goodqualities": [],
   "app": [],
@@ -49080,9 +49337,11 @@
    "once",
    "part",
    "ready",
+   "russian",
    "share",
    "shu",
    "slapping",
+   "something",
    "stay",
    "stringify",
    "wo",
@@ -49102,5 +49361,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-25T13:51:45-05:00"
+ "updated": "2026-11-25T15:22:18-05:00"
 }
