@@ -3233,16 +3233,6 @@
 ],
 "wser": [
 {
-"id": "wf_bb35f6c265",
-"kind": "consequence",
-"text": "The wser leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"code": "love.interactwith(wser){ wser.receives(love.envelope); wser.remembers(bisola, 'brown envelope'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "love"
-},
-{
 "id": "wf_1c16b5a054",
 "kind": "consequence",
 "text": "The wser leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
@@ -3280,6 +3270,16 @@
 "author": "customer",
 "run": "run-cf203b",
 "card": "j16",
+"other": null
+},
+{
+"id": "wt_e2155171bf",
+"kind": "func_call",
+"text": "The customer typed [[wser]] on run-cf203b j23.",
+"code": "[[wser]];",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j23",
 "other": null
 }
 ],
@@ -8841,39 +8841,19 @@
 "run": "run-cf203b",
 "card": "j10",
 "other": null
+},
+{
+"id": "wt_bd0118ea60",
+"kind": "func_call",
+"text": "The customer typed new makeup(maryk) on run-cf203b j23. It came back: New makeup maryk. Implementation: function makeup(what){\n  NEW_MAKEUP_COUNT += 1;\n  this.lastMakeup = \"maryk\";\n  return \"New makeup maryk\";\n}. new now has new.makeup as a method on this agenda, and it can be called again.",
+"code": "new makeup(maryk);",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j23",
+"other": null
 }
 ],
 "cli": [
-{
-"id": "wt_c8980ffb1f",
-"kind": "func_call",
-"text": "The customer typed #thryd.miracle.log(1) on run-cf203b j17. It came back: #thryd.miracle.log(1). Implementation: /* #thryd.miracle.log(1) */.",
-"code": "#thryd.miracle.log(1);",
-"author": "customer",
-"run": "run-cf203b",
-"card": "j17",
-"other": null
-},
-{
-"id": "wt_6414a7088a",
-"kind": "func_call",
-"text": "The customer typed #sessy on run-cf203b j18. It came back: #sessy. Implementation: /* #sessy */.",
-"code": "#sessy;",
-"author": "customer",
-"run": "run-cf203b",
-"card": "j18",
-"other": null
-},
-{
-"id": "wt_86f94e0fd0",
-"kind": "func_call",
-"text": "The customer typed [[wdim?]] on run-cf203b j18. It came back: [[wdim?]]. Implementation: /* [[wdim?]] */.",
-"code": "[[wdim?]];",
-"author": "customer",
-"run": "run-cf203b",
-"card": "j18",
-"other": null
-},
 {
 "id": "wt_31bbd16f0f",
 "kind": "func_call",
@@ -8892,6 +8872,36 @@
 "author": "customer",
 "run": "run-cf203b",
 "card": "j18",
+"other": null
+},
+{
+"id": "wt_04c8e2488c",
+"kind": "func_call",
+"text": "The customer typed #life on run-cf203b j23. It came back: #life. Implementation: /* #life */.",
+"code": "#life;",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j23",
+"other": null
+},
+{
+"id": "wt_be0bad9a9b",
+"kind": "func_call",
+"text": "The customer typed #thryd.miracle.log(1) on run-cf203b j23. It came back: #thryd.miracle.log(1). Implementation: /* #thryd.miracle.log(1) */.",
+"code": "#thryd.miracle.log(1);",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j23",
+"other": null
+},
+{
+"id": "wt_b20b078553",
+"kind": "func_call",
+"text": "The customer typed #thryd.miracle.log(1) on run-cf203b j23. It came back: #thryd.miracle.log(1). Implementation: /* #thryd.miracle.log(1) */.",
+"code": "#thryd.miracle.log(1);",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j23",
 "other": null
 }
 ],
@@ -11440,6 +11450,18 @@
 "card": "w22",
 "other": null
 }
+],
+"pp": [
+{
+"id": "wt_981541431b",
+"kind": "func_call",
+"text": "The customer typed [[pp]] on run-cf203b j23.",
+"code": "[[pp]];",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j23",
+"other": null
+}
 ]
 },
 "consequences": [
@@ -11985,5 +12007,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-25T17:37:20-0500"
+"updated": "2026-11-25T18:04:42-0500"
 }
