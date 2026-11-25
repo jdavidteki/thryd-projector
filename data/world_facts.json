@@ -827,16 +827,6 @@
 ],
 "agbada": [
 {
-"id": "wf_f3d4afd494",
-"kind": "consequence",
-"text": "The pure-water cooler ends up with the agbada, still carried home through the flood.",
-"code": "pure_water_cooler.interactwith(agbada){ pure_water_cooler.db.copyto(agbada); agbada.keeps(pure_water_cooler, 'pure-water cooler, still carried home through the flood'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "w1",
-"other": "pure_water_cooler"
-},
-{
 "id": "wf_6f44dd0ca6",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the agbada, which is still worn by a stranger haggler.",
@@ -875,6 +865,16 @@
 "run": "run-2eb42d",
 "card": "j8",
 "other": "example"
+},
+{
+"id": "wt_daca90254b",
+"kind": "func_call",
+"text": "Someone at the projector saw the agbada arrives at the cooler.",
+"code": "agbada.arrivesat(cooler);",
+"author": "projector",
+"run": "run-cf203b",
+"card": "w10",
+"other": null
 }
 ],
 "danfo_speaker": [
@@ -1943,16 +1943,6 @@
 ],
 "bird": [
 {
-"id": "wf_7a8e923dee",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the envelope corner at the bird, and Bisola reads the name twice.",
-"code": "hose.interactwith(bird){ bird.receives(hose.envelope); bird.remembers(bisola, 'brown envelope'); bird.tucks(hose, 'yaba bookshop receipt into the envelope corner'); }",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6",
-"other": "hose"
-},
-{
 "id": "wf_cfbab78aee",
 "kind": "consequence",
 "text": "A Marker note with Kunle's name and 'nice day sign' on it, turns up inside the envelope corner at the bird, and Bisola reads the name twice.",
@@ -1971,6 +1961,16 @@
 "run": "run-5a58c4",
 "card": "j6",
 "other": "marisol"
+},
+{
+"id": "wf_5626049f3f",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the envelope corner at the bird, and Bisola reads the name twice.",
+"code": "marker_b.interactwith(bird){ bird.receives(marker_b.envelope); … }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "marker_b"
 },
 {
 "id": "wt_c6ff1d186b",
@@ -7155,6 +7155,16 @@
 "run": "run-2eb42d",
 "card": "j8",
 "other": "example"
+},
+{
+"id": "wt_e6867aebbc",
+"kind": "func_call",
+"text": "Someone at the projector saw the namco arrives at the cooler.",
+"code": "namco.arrivesat(cooler);",
+"author": "projector",
+"run": "run-cf203b",
+"card": "w10",
+"other": null
 }
 ],
 "know_place": [
@@ -10261,6 +10271,16 @@
 "run": "run-2eb42d",
 "card": "w1",
 "other": null
+},
+{
+"id": "wt_b13ad732d9",
+"kind": "func_call",
+"text": "Someone at the projector saw the notnotnotnotyn jan figure meets the rokokun figure.",
+"code": "notnotnotnotyn_jan_figure.meets(rokokun_figure);",
+"author": "projector",
+"run": "run-cf203b",
+"card": "w10",
+"other": null
 }
 ],
 "titi": [
@@ -10648,20 +10668,21 @@
 "card": "j1",
 "other": "cooler"
 }
+],
+"ngozi": [
+{
+"id": "wt_cbcca3b348",
+"kind": "func_call",
+"text": "Someone at the projector saw Ngozi meets the kmb.",
+"code": "ngozi.meets(kmb);",
+"author": "projector",
+"run": "run-cf203b",
+"card": "w10",
+"other": null
+}
 ]
 },
 "consequences": [
-{
-"id": "wt_2158955248",
-"ts": "2026-11-24T10:32:49-0500",
-"a": "ronke",
-"b": "investor",
-"code": "investor.interactwith(ronke){ investor.buys(ronke, 'oranges'); … }",
-"text": "At the bus stop the investor buys two oranges from Ronke and softens a little, though he is still waiting on the next egusi pot.",
-"author": "cos",
-"run": "story-4b1689",
-"card": "j171"
-},
 {
 "id": "wt_7aec0dae63",
 "ts": "2026-11-24T10:32:49-0500",
@@ -11090,6 +11111,17 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": "j6"
+},
+{
+"id": "wf_5626049f3f",
+"ts": "2026-11-25T13:42:27-0500",
+"a": "marker_b",
+"b": "bird",
+"code": "marker_b.interactwith(bird){ bird.receives(marker_b.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the envelope corner at the bird, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
 }
 ],
 "memories": [
@@ -11193,5 +11225,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-25T13:41:35-0500"
+"updated": "2026-11-25T13:42:27-0500"
 }
