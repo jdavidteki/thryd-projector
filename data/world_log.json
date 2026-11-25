@@ -15050,7 +15050,7 @@
   },
   "run-cf203b": {
    "forked_from": "safe:731d52737690",
-   "head": "fd995d63b4",
+   "head": "b957358484",
    "commits": [
     {
      "id": "069eca7a17",
@@ -15458,12 +15458,7 @@
         "op": "define"
        }
       ],
-      "instances": [
-       [
-        "more",
-        "Quantity"
-       ]
-      ]
+      "instances": []
      }
     },
     {
@@ -16241,11 +16236,11 @@
      }
     },
     {
-     "id": "fd995d63b4",
+     "id": "b957358484",
      "parent": "c3b6915c5f",
      "branch": "run-cf203b",
      "job": "j18",
-     "at": "2026-11-25T15:44:54-0500",
+     "at": "2026-11-25T15:45:49-05:00",
      "genre": "rising",
      "beat": "now",
      "diff": {
@@ -16308,8 +16303,33 @@
        }
       ],
       "facts_total": 7,
-      "functions": [],
-      "instances": []
+      "functions": [
+       {
+        "func": "make.add",
+        "title": "make.add(more)",
+        "op": "define"
+       },
+       {
+        "func": "say.ehn",
+        "title": "say.ehn()",
+        "op": "define"
+       },
+       {
+        "func": "what.guys",
+        "title": "what.guys(think)",
+        "op": "define"
+       }
+      ],
+      "instances": [
+       [
+        "more",
+        "Quantity"
+       ],
+       [
+        "think",
+        "Thing"
+       ]
+      ]
      }
     }
    ]
@@ -17119,10 +17139,10 @@
   "run-0ae93c": "a11a1eab61",
   "run-3a15d2": "fbc46c6eb7",
   "run-ab4653": "dd8e54daee",
-  "run-cf203b": "fd995d63b4",
+  "run-cf203b": "b957358484",
   "run-cb805f": "8d23a93627",
   "run-888ea9": "9815dfcb14"
  },
  "commits": 171,
- "updated": "2026-11-25T15:45:39-05:00"
+ "updated": "2026-11-25T15:47:22-05:00"
 }
