@@ -20777,6 +20777,46 @@
    "prior": [],
    "faded": false,
    "last_run": null
+  },
+  "new.condom": {
+   "object": "new",
+   "method": "condom",
+   "args": [],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j10",
+    "card": "j10",
+    "title": "new condom()",
+    "emoji": "",
+    "at": "2026-11-25T13:48:36-05:00",
+    "source": "cli"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "new condom()",
+     "emoji": "",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j10",
+     "tweets": [],
+     "consequence": "The customer typed this on this agenda.",
+     "consequence_job": ""
+    }
+   ],
+   "source": "cli",
+   "cli": true,
+   "sig": {
+    "params": [],
+    "text": "condom()"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
   }
  },
  "objects": {
@@ -21346,7 +21386,8 @@
    "new.portfolio",
    "new.campaign",
    "new.election",
-   "new.courtcase"
+   "new.courtcase",
+   "new.condom"
   ],
   "new_yuwa_running_subject": [
    "object.look"
@@ -44471,7 +44512,8 @@
     "ahan.wayayou",
     "stringify.boolean",
     "cli.cli",
-    "kemi.ismarried"
+    "kemi.ismarried",
+    "new.condom"
    ]
   },
   "run-d6fc": {
@@ -48032,7 +48074,8 @@
    "new.portfolio",
    "new.campaign",
    "new.election",
-   "new.courtcase"
+   "new.courtcase",
+   "new.condom"
   ],
   "nigeria": [
    "nigeria.setpresident"
@@ -48740,5 +48783,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-25T13:48:24-05:00"
+ "updated": "2026-11-25T13:49:14-05:00"
 }
