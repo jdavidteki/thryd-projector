@@ -15050,7 +15050,7 @@
   },
   "run-cf203b": {
    "forked_from": "safe:731d52737690",
-   "head": "329fc78598",
+   "head": "897ecd6ca5",
    "commits": [
     {
      "id": "eda103402b",
@@ -16400,11 +16400,11 @@
      }
     },
     {
-     "id": "cf5a075988",
+     "id": "10601d556c",
      "parent": "4f214b8bb3",
      "branch": "run-cf203b",
      "job": "j21",
-     "at": "2026-11-25T17:15:28-0500",
+     "at": "2026-11-25T17:35:03-05:00",
      "genre": "rising",
      "beat": "now",
      "diff": {
@@ -16435,13 +16435,42 @@
        }
       ],
       "facts_total": 3,
-      "functions": [],
-      "instances": []
+      "functions": [
+       {
+        "func": "daz.what",
+        "title": "daz.what(ton)",
+        "op": "define"
+       },
+       {
+        "func": "poty.asin",
+        "title": "poty.asin(toilet)",
+        "op": "define"
+       },
+       {
+        "func": "skipping.consumes",
+        "title": "skipping.consumes(less)",
+        "op": "define"
+       }
+      ],
+      "instances": [
+       [
+        "ton",
+        "Thing"
+       ],
+       [
+        "toilet",
+        "Thing"
+       ],
+       [
+        "less",
+        "Quantity"
+       ]
+      ]
      }
     },
     {
-     "id": "329fc78598",
-     "parent": "cf5a075988",
+     "id": "897ecd6ca5",
+     "parent": "10601d556c",
      "branch": "run-cf203b",
      "job": "j22",
      "at": "2026-11-25T17:35:21-0500",
@@ -16512,9 +16541,73 @@
         "code": "believe.hears(person, 'finally');",
         "scope": "ripple",
         "cause_id": "wt_4ba821fd2a"
+       },
+       {
+        "id": "wt_c82b4efa2e",
+        "object": "something",
+        "kind": "func_call",
+        "code": "something.wrong();",
+        "scope": "env",
+        "cause_id": null
+       },
+       {
+        "id": "wt_21a113aa96",
+        "object": "ahan",
+        "kind": "func_call",
+        "code": "ahan.hears(person, 'wrong');",
+        "scope": "ripple",
+        "cause_id": "wt_c82b4efa2e"
+       },
+       {
+        "id": "wt_3005cc9e73",
+        "object": "alorof",
+        "kind": "func_call",
+        "code": "alorof.hears(person, 'wrong');",
+        "scope": "ripple",
+        "cause_id": "wt_c82b4efa2e"
+       },
+       {
+        "id": "wt_97c7ee8a80",
+        "object": "believe",
+        "kind": "func_call",
+        "code": "believe.hears(person, 'wrong');",
+        "scope": "ripple",
+        "cause_id": "wt_c82b4efa2e"
+       },
+       {
+        "id": "wt_2d4c98006f",
+        "object": "can",
+        "kind": "func_call",
+        "code": "can.see('how');",
+        "scope": "env",
+        "cause_id": null
+       },
+       {
+        "id": "wt_d54ebf768f",
+        "object": "ahan",
+        "kind": "func_call",
+        "code": "ahan.hears(person, 'see');",
+        "scope": "ripple",
+        "cause_id": "wt_2d4c98006f"
+       },
+       {
+        "id": "wt_8d5508082d",
+        "object": "alorof",
+        "kind": "func_call",
+        "code": "alorof.hears(person, 'see');",
+        "scope": "ripple",
+        "cause_id": "wt_2d4c98006f"
+       },
+       {
+        "id": "wt_eac17ff951",
+        "object": "believe",
+        "kind": "func_call",
+        "code": "believe.hears(person, 'see');",
+        "scope": "ripple",
+        "cause_id": "wt_2d4c98006f"
        }
       ],
-      "facts_total": 8,
+      "facts_total": 16,
       "functions": [],
       "instances": []
      }
@@ -17326,10 +17419,10 @@
   "run-0ae93c": "a11a1eab61",
   "run-3a15d2": "fbc46c6eb7",
   "run-ab4653": "dd8e54daee",
-  "run-cf203b": "329fc78598",
+  "run-cf203b": "897ecd6ca5",
   "run-cb805f": "8d23a93627",
   "run-888ea9": "9815dfcb14"
  },
  "commits": 174,
- "updated": "2026-11-25T17:35:39-05:00"
+ "updated": "2026-11-25T17:36:29-05:00"
 }
