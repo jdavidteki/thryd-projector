@@ -4867,16 +4867,6 @@
 ],
 "calla": [
 {
-"id": "wf_f3c82778bb",
-"kind": "consequence",
-"text": "The calla leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"code": "jetty_south_pointe.interactwith(calla){ calla.receives(jetty_south_pointe.envelope); calla.remembers(bisola, 'brown envelope'); }",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6",
-"other": "jetty_south_pointe"
-},
-{
 "id": "wf_15d4116894",
 "kind": "consequence",
 "text": "The calla leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
@@ -4908,6 +4898,16 @@
 },
 {
 "id": "wt_1eec57555d",
+"kind": "func_call",
+"text": "The calla hears it (because teo.respond(what=bank:Thing) from j59).",
+"code": "calla.hears(person, 'respond');",
+"author": "projector",
+"run": "run-cf203b",
+"card": "w10",
+"other": null
+},
+{
+"id": "wt_86c7979182",
 "kind": "func_call",
 "text": "The calla hears it (because teo.respond(what=bank:Thing) from j59).",
 "code": "calla.hears(person, 'respond');",
@@ -5741,16 +5741,6 @@
 ],
 "teo": [
 {
-"id": "wf_600b0b61eb",
-"kind": "consequence",
-"text": "The teo leaves with a Cup note with Ejiro's name and 'juju code' on it.",
-"code": "cup.interactwith(teo){ teo.receives(cup.code); teo.remembers(ejiro, 'juju code'); }",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j2",
-"other": "cup"
-},
-{
 "id": "wf_b46399b8b8",
 "kind": "consequence",
 "text": "The teo leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
@@ -5762,6 +5752,16 @@
 },
 {
 "id": "wt_65fcbb8d55",
+"kind": "func_call",
+"text": "Someone at the projector tapped the person and called teo.respond(what=bank:Thing) from j59 from its agenda run-5a58c4, first seated in run-5a58c4 j33.",
+"code": "teo.respond('bank');",
+"author": "projector",
+"run": "run-cf203b",
+"card": "w10",
+"other": null
+},
+{
+"id": "wt_8026cafe72",
 "kind": "func_call",
 "text": "Someone at the projector tapped the person and called teo.respond(what=bank:Thing) from j59 from its agenda run-5a58c4, first seated in run-5a58c4 j33.",
 "code": "teo.respond('bank');",
@@ -6445,16 +6445,6 @@
 ],
 "blender": [
 {
-"id": "wt_aeb77e697a",
-"kind": "func_call",
-"text": "The blender hears it (because song.hit(what=mistake:Thing) from j35).",
-"code": "blender.hears(miami_subject, 'hit');",
-"author": "projector",
-"run": "run-5a58c4",
-"card": "w22",
-"other": null
-},
-{
 "id": "wt_290578bcad",
 "kind": "func_call",
 "text": "The blender hears it (because song.hit(what=mistake:Thing) from j35).",
@@ -6493,19 +6483,19 @@
 "run": "run-cf203b",
 "card": "w10",
 "other": null
+},
+{
+"id": "wt_036c4010a5",
+"kind": "func_call",
+"text": "The blender hears it (because teo.respond(what=bank:Thing) from j59).",
+"code": "blender.hears(person, 'respond');",
+"author": "projector",
+"run": "run-cf203b",
+"card": "w10",
+"other": null
 }
 ],
 "code": [
-{
-"id": "wt_bd7dc1e4ec",
-"kind": "func_call",
-"text": "The code hears it (because song.hit(what=mistake:Thing) from j35).",
-"code": "code.hears(miami_subject, 'hit');",
-"author": "projector",
-"run": "run-5a58c4",
-"card": "w22",
-"other": null
-},
 {
 "id": "wt_3737999496",
 "kind": "func_call",
@@ -6538,6 +6528,16 @@
 },
 {
 "id": "wt_1be578f3f3",
+"kind": "func_call",
+"text": "The code hears it (because teo.respond(what=bank:Thing) from j59).",
+"code": "code.hears(person, 'respond');",
+"author": "projector",
+"run": "run-cf203b",
+"card": "w10",
+"other": null
+},
+{
+"id": "wt_3a49752251",
 "kind": "func_call",
 "text": "The code hears it (because teo.respond(what=bank:Thing) from j59).",
 "code": "code.hears(person, 'respond');",
@@ -8765,20 +8765,10 @@
 ],
 "cli": [
 {
-"id": "wt_8168038272",
+"id": "wt_9e87dd1331",
 "kind": "func_call",
-"text": "The customer typed [[aayok?]] on run-cf203b j11. It came back: [[aayok?]]. Implementation: /* [[aayok?]] */.",
-"code": "[[aayok?]];",
-"author": "customer",
-"run": "run-cf203b",
-"card": "j11",
-"other": null
-},
-{
-"id": "wt_4535bcaf29",
-"kind": "func_call",
-"text": "The customer typed [[p.pxiwtdc]] on run-cf203b j12. It came back: [[p.pxiwtdc]]. Implementation: /* [[p.pxiwtdc]] */.",
-"code": "[[p.pxiwtdc]];",
+"text": "The customer typed a9() on run-cf203b j12. It came back: a9(). Implementation: /* a9() */.",
+"code": "a9();",
 "author": "customer",
 "run": "run-cf203b",
 "card": "j12",
@@ -8809,6 +8799,16 @@
 "kind": "func_call",
 "text": "The customer typed #thryd.miracle.log(1) on run-cf203b j14. It came back: #thryd.miracle.log(1). Implementation: /* #thryd.miracle.log(1) */.",
 "code": "#thryd.miracle.log(1);",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j14",
+"other": null
+},
+{
+"id": "wt_fde43754d5",
+"kind": "func_call",
+"text": "The customer typed [[wdim?]] on run-cf203b j14. It came back: [[wdim?]]. Implementation: /* [[wdim?]] */.",
+"code": "[[wdim?]];",
 "author": "customer",
 "run": "run-cf203b",
 "card": "j14",
@@ -10129,6 +10129,16 @@
 "run": "run-2eb42d",
 "card": "j41",
 "other": null
+},
+{
+"id": "wt_ec297946be",
+"kind": "func_call",
+"text": "The customer typed [[jealous]] on run-cf203b j12.",
+"code": "[[jealous]];",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j12",
+"other": null
 }
 ],
 "drake": [
@@ -10902,6 +10912,42 @@
 "card": "j14",
 "other": null
 }
+],
+"kp": [
+{
+"id": "wt_81d806c9f0",
+"kind": "func_call",
+"text": "The customer typed [[kp]] on run-cf203b j13.",
+"code": "[[kp]];",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j13",
+"other": null
+}
+],
+"aota": [
+{
+"id": "wt_eae1c8b6b3",
+"kind": "func_call",
+"text": "The customer typed [[aota]] on run-cf203b j10.",
+"code": "[[aota]];",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j10",
+"other": null
+}
+],
+"ibhb": [
+{
+"id": "wt_c9d9707415",
+"kind": "func_call",
+"text": "The customer typed [[ibhb]] on run-cf203b j13.",
+"code": "[[ibhb]];",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j13",
+"other": null
+}
 ]
 },
 "consequences": [
@@ -11447,5 +11493,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-25T13:49:13-0500"
+"updated": "2026-11-25T13:50:04-0500"
 }

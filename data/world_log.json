@@ -15050,7 +15050,7 @@
   },
   "run-cf203b": {
    "forked_from": "safe:731d52737690",
-   "head": "b8bbce355e",
+   "head": "37ab217e6b",
    "commits": [
     {
      "id": "069eca7a17",
@@ -15192,7 +15192,7 @@
      }
     },
     {
-     "id": "120b66e393",
+     "id": "40d0765f6d",
      "parent": "11c1e7a267",
      "branch": "run-cf203b",
      "job": "j10",
@@ -15328,9 +15328,65 @@
         "code": "new condom();",
         "scope": null,
         "cause_id": null
+       },
+       {
+        "id": "wt_8026cafe72",
+        "object": "teo",
+        "kind": "func_call",
+        "code": "teo.respond('bank');",
+        "scope": "env",
+        "cause_id": null
+       },
+       {
+        "id": "wt_036c4010a5",
+        "object": "blender",
+        "kind": "func_call",
+        "code": "blender.hears(person, 'respond');",
+        "scope": "ripple",
+        "cause_id": "wt_8026cafe72"
+       },
+       {
+        "id": "wt_86c7979182",
+        "object": "calla",
+        "kind": "func_call",
+        "code": "calla.hears(person, 'respond');",
+        "scope": "ripple",
+        "cause_id": "wt_8026cafe72"
+       },
+       {
+        "id": "wt_3a49752251",
+        "object": "code",
+        "kind": "func_call",
+        "code": "code.hears(person, 'respond');",
+        "scope": "ripple",
+        "cause_id": "wt_8026cafe72"
+       },
+       {
+        "id": "wt_e71e2cbd43",
+        "object": "cli",
+        "kind": "func_call",
+        "code": "d5();",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_57cd9a0438",
+        "object": "cli",
+        "kind": "func_call",
+        "code": "[[wdys?]];",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_eae1c8b6b3",
+        "object": "aota",
+        "kind": "func_call",
+        "code": "[[aota]];",
+        "scope": null,
+        "cause_id": null
        }
       ],
-      "facts_total": 16,
+      "facts_total": 23,
       "functions": [
        {
         "func": "shu.making",
@@ -15347,8 +15403,8 @@
      }
     },
     {
-     "id": "d726849e40",
-     "parent": "120b66e393",
+     "id": "5d028d2a1d",
+     "parent": "40d0765f6d",
      "branch": "run-cf203b",
      "job": "j11",
      "at": "2026-11-25T12:47:25-05:00",
@@ -15404,8 +15460,8 @@
      }
     },
     {
-     "id": "0783dc32a7",
-     "parent": "d726849e40",
+     "id": "e0f0f5b1a8",
+     "parent": "5d028d2a1d",
      "branch": "run-cf203b",
      "job": "j12",
      "at": "2026-11-25T13:04:53-05:00",
@@ -15516,9 +15572,25 @@
         "code": "[[iob]];",
         "scope": null,
         "cause_id": null
+       },
+       {
+        "id": "wt_ec297946be",
+        "object": "jealous",
+        "kind": "func_call",
+        "code": "[[jealous]];",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_9e87dd1331",
+        "object": "cli",
+        "kind": "func_call",
+        "code": "a9();",
+        "scope": null,
+        "cause_id": null
        }
       ],
-      "facts_total": 13,
+      "facts_total": 15,
       "functions": [
        {
         "func": "believe.can",
@@ -15549,8 +15621,8 @@
      }
     },
     {
-     "id": "4c65cfb4e7",
-     "parent": "0783dc32a7",
+     "id": "f071336983",
+     "parent": "e0f0f5b1a8",
      "branch": "run-cf203b",
      "job": "j13",
      "at": "2026-11-25T13:15:24-05:00",
@@ -15589,9 +15661,25 @@
         "code": "#thryd.miracle.log(1);",
         "scope": null,
         "cause_id": null
+       },
+       {
+        "id": "wt_81d806c9f0",
+        "object": "kp",
+        "kind": "func_call",
+        "code": "[[kp]];",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_c9d9707415",
+        "object": "ibhb",
+        "kind": "func_call",
+        "code": "[[ibhb]];",
+        "scope": null,
+        "cause_id": null
        }
       ],
-      "facts_total": 4,
+      "facts_total": 6,
       "functions": [
        {
         "func": "even.feels",
@@ -15622,8 +15710,8 @@
      }
     },
     {
-     "id": "b8bbce355e",
-     "parent": "4c65cfb4e7",
+     "id": "37ab217e6b",
+     "parent": "f071336983",
      "branch": "run-cf203b",
      "job": "j14",
      "at": "2026-11-25T13:28:09-05:00",
@@ -15670,9 +15758,17 @@
         "code": "#thryd.miracle.log(1);",
         "scope": null,
         "cause_id": null
+       },
+       {
+        "id": "wt_fde43754d5",
+        "object": "cli",
+        "kind": "func_call",
+        "code": "[[wdim?]];",
+        "scope": null,
+        "cause_id": null
        }
       ],
-      "facts_total": 5,
+      "facts_total": 6,
       "functions": [
        {
         "func": "ahan.wayayou",
@@ -16500,10 +16596,10 @@
   "run-0ae93c": "a11a1eab61",
   "run-3a15d2": "fbc46c6eb7",
   "run-ab4653": "dd8e54daee",
-  "run-cf203b": "b8bbce355e",
+  "run-cf203b": "37ab217e6b",
   "run-cb805f": "8d23a93627",
   "run-888ea9": "9815dfcb14"
  },
  "commits": 167,
- "updated": "2026-11-25T13:49:14-05:00"
+ "updated": "2026-11-25T13:50:05-05:00"
 }
