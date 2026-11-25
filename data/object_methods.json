@@ -12626,12 +12626,12 @@
      "tweets": [],
      "consequence": "📍 Wynwood bakery, Miami 🥐 · 68 lines in Teo has just said the precision of a thing proves the functionality of the #tyn, and the tow talk is still going outside.",
      "consequence_job": "j39",
-     "resolved": "con.mend(what=look:Thing) from j39",
+     "resolved": "con.mend(what=system:Thing) from j39",
      "injected": [
       {
        "param": "what",
        "class": "Thing",
-       "instance": "look",
+       "instance": "system",
        "from_run": "run-5a58c4",
        "from_job": "j39",
        "source": "pick"
@@ -12711,12 +12711,12 @@
      "tweets": [],
      "consequence": "📍 Wynwood bakery, Miami 🥐 · 68 lines in Teo has just said the precision of a thing proves the functionality of the #tyn, and the tow talk is still going outside.",
      "consequence_job": "j39",
-     "resolved": "fine.weigh(what=get:Thing) from j39",
+     "resolved": "fine.weigh(what=system:Thing) from j39",
      "injected": [
       {
        "param": "what",
        "class": "Thing",
-       "instance": "get",
+       "instance": "system",
        "from_run": "run-5a58c4",
        "from_job": "j39",
        "source": "pick"
@@ -12804,12 +12804,12 @@
      "tweets": [],
      "consequence": "📍 Wynwood bakery, Miami 🥐 · 68 lines in Teo has just said the precision of a thing proves the functionality of the #tyn, and the tow talk is still going outside.",
      "consequence_job": "j39",
-     "resolved": "teo.ring(what=elements:Thing) from j39",
+     "resolved": "teo.ring(what=system:Thing) from j39",
      "injected": [
       {
        "param": "what",
        "class": "Thing",
-       "instance": "elements",
+       "instance": "system",
        "from_run": "run-5a58c4",
        "from_job": "j39",
        "source": "pick"
@@ -15476,6 +15476,225 @@
    "prior": [],
    "faded": true,
    "last_run": "run-5a58c4"
+  },
+  "calla.test": {
+   "object": "calla",
+   "method": "test",
+   "args": [
+    "bugs"
+   ],
+   "runs": [
+    "run-5a58c4"
+   ],
+   "defined": {
+    "run": "run-5a58c4",
+    "job": "j62",
+    "card": "w62",
+    "title": "calla.test(bugs)",
+    "emoji": "🐛",
+    "at": "2026-11-24T19:33:28-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "calla.test(bugs)",
+     "emoji": "🐛",
+     "arg": "bugs",
+     "run": "run-5a58c4",
+     "job": "j62",
+     "tweets": [
+      {
+       "text": "- the bugs are how we give [[pai]] for",
+       "year": "2024"
+      },
+      {
+       "text": "#thryd[[hpr]] - divine precisions 🎯",
+       "year": "2024"
+      },
+      {
+       "text": "[[uyt⅔]] -- bugs are a feature for us",
+       "year": "2024"
+      }
+     ],
+     "consequence": "Calla reads the second page by the last of the candle and laughs.",
+     "consequence_job": "j63",
+     "resolved": "calla.test(what=bugs:Thing) from j62",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "bugs",
+       "from_run": "run-5a58c4",
+       "from_job": "j62",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "bugs",
+      "first_run": "run-5a58c4",
+      "first_job": "j62"
+     }
+    ],
+    "text": "test(what: Thing)"
+   },
+   "receiver_class": "Person",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "dez.drop": {
+   "object": "dez",
+   "method": "drop",
+   "args": [
+    "bars"
+   ],
+   "runs": [
+    "run-5a58c4"
+   ],
+   "defined": {
+    "run": "run-5a58c4",
+    "job": "j62",
+    "card": "w62",
+    "title": "dez.drop(bars)",
+    "emoji": "🎤",
+    "at": "2026-11-24T19:33:28-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "dez.drop(bars)",
+     "emoji": "🎤",
+     "arg": "bars",
+     "run": "run-5a58c4",
+     "job": "j62",
+     "tweets": [
+      {
+       "text": "[[ami]] - #aoty",
+       "year": "2024"
+      },
+      {
+       "text": "- that microphone na a.i microphone",
+       "year": "2024"
+      },
+      {
+       "text": "#bta - it will follow the [[move]]",
+       "year": "2024"
+      }
+     ],
+     "consequence": "bugs are a feature for us.\" Dez grabs the empty bottle like a mic and goes off: \"aoty.",
+     "consequence_job": "j63",
+     "resolved": "dez.drop(what=bars:Thing) from j62",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "bars",
+       "from_run": "run-5a58c4",
+       "from_job": "j62",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "bars",
+      "first_run": "run-5a58c4",
+      "first_job": "j62"
+     }
+    ],
+    "text": "drop(what: Thing)"
+   },
+   "receiver_class": "Person",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "marisol.kiss": {
+   "object": "marisol",
+   "method": "kiss",
+   "args": [
+    "hand"
+   ],
+   "runs": [
+    "run-5a58c4"
+   ],
+   "defined": {
+    "run": "run-5a58c4",
+    "job": "j62",
+    "card": "w62",
+    "title": "marisol.kiss(hand)",
+    "emoji": "💋",
+    "at": "2026-11-24T19:33:28-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "marisol.kiss(hand)",
+     "emoji": "💋",
+     "arg": "hand",
+     "run": "run-5a58c4",
+     "job": "j62",
+     "tweets": [
+      {
+       "text": "#seniorboys - she wants to [[play]] - i can tell",
+       "year": "2025"
+      },
+      {
+       "text": "- but if yuwa not playing",
+       "year": "2025"
+      },
+      {
+       "text": "#sbk[[stb,aaiid]] - then who is?",
+       "year": "2025"
+      }
+     ],
+     "consequence": "Before he can answer, Calla answers for him: \"you get what i i mean!\" Marisol's hand is still out in the dark.",
+     "consequence_job": "j63",
+     "resolved": "marisol.kiss(what=hand:Thing) from j62",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "hand",
+       "from_run": "run-5a58c4",
+       "from_job": "j62",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "hand",
+      "first_run": "run-g1-B",
+      "first_job": "j14"
+     }
+    ],
+    "text": "kiss(what: Thing)"
+   },
+   "receiver_class": "Person",
+   "prior": [],
+   "faded": false,
+   "last_run": null
   },
   "cooler.getdatemanufactured": {
    "object": "cooler",
@@ -18581,7 +18800,8 @@
    "calla.check",
    "calla.lead",
    "calla.watch",
-   "calla.return"
+   "calla.return",
+   "calla.test"
   ],
   "calla_5a58c4": [
    "calla.stare",
@@ -18594,7 +18814,8 @@
    "calla.check",
    "calla.lead",
    "calla.watch",
-   "calla.return"
+   "calla.return",
+   "calla.test"
   ],
   "cam": [
    "cam.stop"
@@ -18747,7 +18968,8 @@
    "dez.stay",
    "dez.bring",
    "dez.shake",
-   "dez.believe"
+   "dez.believe",
+   "dez.drop"
   ],
   "dez_5a58c4": [
    "dez.sit",
@@ -18762,7 +18984,8 @@
    "dez.stay",
    "dez.bring",
    "dez.shake",
-   "dez.believe"
+   "dez.believe",
+   "dez.drop"
   ],
   "dicey": [
    "dicey.call"
@@ -18968,7 +19191,8 @@
    "dez.stay",
    "dez.bring",
    "dez.shake",
-   "dez.believe"
+   "dez.believe",
+   "dez.drop"
   ],
   "marisol": [
    "marisol.find",
@@ -18980,7 +19204,8 @@
    "marisol.win",
    "marisol.align",
    "marisol.call",
-   "marisol.laugh"
+   "marisol.laugh",
+   "marisol.kiss"
   ],
   "marisol_5a58c4": [
    "marisol.find",
@@ -18992,7 +19217,8 @@
    "marisol.win",
    "marisol.align",
    "marisol.call",
-   "marisol.laugh"
+   "marisol.laugh",
+   "marisol.kiss"
   ],
   "media": [
    "media.all"
@@ -19991,6 +20217,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -20760,7 +20989,25 @@
     ]
    }
   ],
+  "bars_subject": [
+   {
+    "scope": "safe",
+    "from": "935c0e919db3",
+    "title": "1206. bars",
+    "funcs": [
+     "dez.drop"
+    ]
+   }
+  ],
   "beautiful_subject": [
+   {
+    "scope": "safe",
+    "from": "59fd99e6a016",
+    "title": "806. beautiful",
+    "funcs": [
+     "calla.test"
+    ]
+   },
    {
     "scope": "safe",
     "from": "ae2c635132e6",
@@ -20825,6 +21072,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -21018,6 +21268,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -21106,6 +21359,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -21194,6 +21450,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -21282,6 +21541,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -21370,6 +21632,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -21458,6 +21723,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -21546,6 +21814,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -21634,6 +21905,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -21722,6 +21996,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -21810,6 +22087,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -21898,6 +22178,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -21986,6 +22269,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -22074,6 +22360,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -22162,6 +22451,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -22250,6 +22542,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -22338,6 +22633,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -22426,6 +22724,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -22894,6 +23195,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -22982,6 +23286,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -23070,6 +23377,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -23147,6 +23456,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -23224,6 +23535,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -25085,6 +25399,9 @@
     "from": "f81f21521253",
     "title": "829. a day in the life of god",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -25160,11 +25477,23 @@
     ]
    }
   ],
+  "department_destinies_destroyed_figure": [
+   {
+    "scope": "safe",
+    "from": "df1336b56f94",
+    "title": "206. kiss your hand",
+    "funcs": [
+     "marisol.kiss"
+    ]
+   }
+  ],
   "dez": [
    {
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "calla.return",
@@ -25240,6 +25569,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "calla.return",
@@ -25469,6 +25800,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -25853,6 +26187,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -25941,6 +26278,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -26029,6 +26369,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -26117,6 +26460,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -26215,6 +26561,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -26303,6 +26652,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -26391,6 +26743,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -26479,6 +26834,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -26567,6 +26925,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -26762,6 +27123,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -26905,6 +27269,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -27003,6 +27370,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -27101,6 +27471,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -27189,6 +27562,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -27299,6 +27675,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -27387,6 +27766,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -27475,6 +27857,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -27563,6 +27948,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -27651,6 +28039,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -27947,6 +28338,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -28159,6 +28553,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -28278,6 +28675,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -28366,6 +28766,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -28454,6 +28857,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -28542,6 +28948,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -28630,6 +29039,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -28718,6 +29130,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -29140,6 +29555,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -29817,6 +30235,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -30039,6 +30460,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -30127,6 +30551,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -30215,6 +30642,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -30303,6 +30733,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "calla.return",
@@ -30378,6 +30810,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -30466,6 +30901,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -30554,6 +30992,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "dez.believe",
      "calla.return",
@@ -30632,6 +31072,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "dez.believe",
      "calla.return",
@@ -30710,6 +31152,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -30798,6 +31243,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -30886,6 +31334,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -30974,6 +31425,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -31062,6 +31516,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -31150,6 +31607,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -31238,6 +31698,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -31326,6 +31789,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -31414,6 +31880,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -31502,6 +31971,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -31590,6 +32062,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -31688,6 +32163,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -31899,6 +32377,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -31997,6 +32478,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -32085,6 +32569,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -32173,6 +32660,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -32261,6 +32751,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -32349,6 +32842,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -32437,6 +32933,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -32525,6 +33024,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -32613,6 +33115,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -32701,6 +33206,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -32789,6 +33297,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -32877,6 +33388,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -32965,6 +33479,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -34405,6 +34922,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -34598,6 +35118,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -34813,6 +35336,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -35037,6 +35563,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -35125,6 +35654,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -35213,6 +35745,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -35301,6 +35836,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -35389,6 +35927,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -35477,6 +36018,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -35565,6 +36109,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -35653,6 +36200,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -35741,6 +36291,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -35829,6 +36382,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -36193,6 +36749,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -36281,6 +36840,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -36833,6 +37395,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -37143,6 +37708,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -37231,6 +37799,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -37435,6 +38006,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "marisol.laugh",
      "dez.believe",
      "calla.return",
@@ -37505,6 +38079,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "marisol.laugh",
      "dez.believe",
      "calla.return",
@@ -37575,6 +38152,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -37663,6 +38243,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -37751,6 +38334,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -37964,6 +38550,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -38166,6 +38755,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -38254,6 +38846,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -38342,6 +38937,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -38430,6 +39028,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -38518,6 +39119,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -38606,6 +39210,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -38694,6 +39301,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -38782,6 +39392,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -38885,6 +39498,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -39354,6 +39970,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -39442,6 +40061,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -39782,6 +40404,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -39984,6 +40609,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.kiss",
+     "dez.drop",
+     "calla.test",
      "teo.create",
      "marisol.laugh",
      "dez.believe",
@@ -40412,7 +41040,10 @@
     "calla.return",
     "dez.believe",
     "marisol.laugh",
-    "teo.create"
+    "teo.create",
+    "calla.test",
+    "dez.drop",
+    "marisol.kiss"
    ]
   },
   "run-65400f": {
@@ -41053,6 +41684,13 @@
    ],
    "runs": []
   },
+  "59fd99e6a016": {
+   "title": "806. beautiful",
+   "funcs": [
+    "calla.test"
+   ],
+   "runs": []
+  },
   "5a58c4d9b35f": {
    "title": "404. this your generation",
    "funcs": [
@@ -41215,6 +41853,13 @@
    "title": "products and services 2",
    "funcs": [
     "ronke.greet"
+   ],
+   "runs": []
+  },
+  "935c0e919db3": {
+   "title": "1206. bars",
+   "funcs": [
+    "dez.drop"
    ],
    "runs": []
   },
@@ -41686,6 +42331,13 @@
    ],
    "runs": []
   },
+  "df1336b56f94": {
+   "title": "206. kiss your hand",
+   "funcs": [
+    "marisol.kiss"
+   ],
+   "runs": []
+  },
   "df5b0a831c3c": {
    "title": "1217. modern african history",
    "funcs": [
@@ -41909,7 +42561,10 @@
     "calla.return",
     "dez.believe",
     "marisol.laugh",
-    "teo.create"
+    "teo.create",
+    "calla.test",
+    "dez.drop",
+    "marisol.kiss"
    ],
    "runs": [
     "run-5a58c4"
@@ -42023,6 +42678,9 @@
   "1*lh0ZPwqCiEmbUqQpeTBf0w.gif": [
    "fad8da2e5cf6"
   ],
+  "1*CdryEVJDnwhoFOg21DuGMw.gif": [
+   "df1336b56f94"
+  ],
   "1*zjXbwI8Z6wBwhWhB__pdoA.gif": [
    "20501e25aa0b"
   ],
@@ -42059,6 +42717,7 @@
    "d7818658d865"
   ],
   "1*S8zTdmwx75vZlUkLwKidzg.gif": [
+   "59fd99e6a016",
    "ae2c635132e6"
   ],
   "1*8bxBW1s5Gs2lCN7dfzpR8Q.gif": [
@@ -42126,6 +42785,12 @@
   "1*W53iaOHMqwt4wiUEEUhlNw.gif": [
    "ff9027478b51",
    "eb4af1c3e662"
+  ],
+  "1*ubGNThBbHFM_0OLyVAfKYw.gif": [
+   "935c0e919db3"
+  ],
+  "1*vNMkbBHdHAnJhLBQNhS7TQ.gif": [
+   "935c0e919db3"
   ],
   "1*tJgT3ZuLeOv3IbOwKKl3rg.gif": [
    "d6bef492657d"
@@ -42680,6 +43345,12 @@
     "aab705f25656"
    ]
   },
+  "1*ubGNThBbHFM_0OLyVAfKYw.gif": {
+   "runs": [],
+   "safes": [
+    "935c0e919db3"
+   ]
+  },
   "1*UmpEdNHIUE0PbFptnquSig.gif": {
    "runs": [],
    "safes": [
@@ -42833,6 +43504,7 @@
   "1*S8zTdmwx75vZlUkLwKidzg.gif": {
    "runs": [],
    "safes": [
+    "59fd99e6a016",
     "ae2c635132e6"
    ]
   },
@@ -43018,6 +43690,12 @@
    "runs": [],
    "safes": [
     "0a88bcb1bbe8"
+   ]
+  },
+  "1*CdryEVJDnwhoFOg21DuGMw.gif": {
+   "runs": [],
+   "safes": [
+    "df1336b56f94"
    ]
   },
   "1*bVjUefz6XxPnOn6EdQC1BQ.gif": {
@@ -43380,7 +44058,8 @@
    "calla.check",
    "calla.lead",
    "calla.watch",
-   "calla.return"
+   "calla.return",
+   "calla.test"
   ],
   "cam": [
    "cam.stop"
@@ -43436,7 +44115,8 @@
    "dez.stay",
    "dez.bring",
    "dez.shake",
-   "dez.believe"
+   "dez.believe",
+   "dez.drop"
   ],
   "dicey": [
    "dicey.call"
@@ -43600,7 +44280,8 @@
    "marisol.win",
    "marisol.align",
    "marisol.call",
-   "marisol.laugh"
+   "marisol.laugh",
+   "marisol.kiss"
   ],
   "media": [
    "media.all"
@@ -44241,5 +44922,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-24T18:46:24-05:00"
+ "updated": "2026-11-24T19:33:56-05:00"
 }

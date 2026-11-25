@@ -108,8 +108,8 @@
     "give",
     "see"
    ],
-   "instances": 446,
-   "arg_instances": 117,
+   "instances": 448,
+   "arg_instances": 119,
    "parent": null,
    "chain": [
     "Thing"
@@ -815,6 +815,22 @@
    ],
    "tweets": []
   },
+  "bars": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-5a58c4",
+   "first_job": "j62",
+   "source": "pick",
+   "runs": [
+    "run-5a58c4"
+   ],
+   "tweets": [
+    {
+     "text": "[[ami]] - #aoty",
+     "year": "2024"
+    }
+   ]
+  },
   "basketmouth": {
    "class": "Thing",
    "cue": "default",
@@ -969,6 +985,26 @@
     "run-345b3d"
    ],
    "tweets": []
+  },
+  "bugs": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-5a58c4",
+   "first_job": "j62",
+   "source": "pick",
+   "runs": [
+    "run-5a58c4"
+   ],
+   "tweets": [
+    {
+     "text": "- the bugs are how we give [[pai]] for",
+     "year": "2024"
+    },
+    {
+     "text": "[[uyt⅔]] -- bugs are a feature for us",
+     "year": "2024"
+    }
+   ]
   },
   "bus": {
    "class": "Thing",
@@ -2645,7 +2681,8 @@
    "first_job": "j14",
    "source": "pick",
    "runs": [
-    "run-g1-B"
+    "run-g1-B",
+    "run-5a58c4"
    ],
    "tweets": [
     {
@@ -7674,24 +7711,6 @@
   ],
   "run-5a58c4": [
    [
-    "look",
-    "Thing",
-    "j39",
-    "pick"
-   ],
-   [
-    "get",
-    "Thing",
-    "j39",
-    "pick"
-   ],
-   [
-    "elements",
-    "Thing",
-    "j39",
-    "pick"
-   ],
-   [
     "system",
     "Thing",
     "j39",
@@ -7881,6 +7900,24 @@
     "everything",
     "Thing",
     "j59",
+    "pick"
+   ],
+   [
+    "bugs",
+    "Thing",
+    "j62",
+    "pick"
+   ],
+   [
+    "bars",
+    "Thing",
+    "j62",
+    "pick"
+   ],
+   [
+    "hand",
+    "Thing",
+    "j62",
     "pick"
    ],
    [
@@ -11579,6 +11616,9 @@
   "dez.believe": "believe(act: Action)",
   "marisol.laugh": "laugh(what: Thing)",
   "teo.create": "create(what: Thing)",
+  "calla.test": "test(what: Thing)",
+  "dez.drop": "drop(what: Thing)",
+  "marisol.kiss": "kiss(what: Thing)",
   "cooler.getdatemanufactured": "getDateManufactured()",
   "ronke.getlikes.contains": "getlikes.contains()",
   "kazeem.goodqualities.filter": "filter()",
@@ -12129,5 +12169,5 @@
   "epilogue": "quiet",
   "coda": "quiet"
  },
- "updated": "2026-11-24T18:45:33-05:00"
+ "updated": "2026-11-24T19:33:56-05:00"
 }
