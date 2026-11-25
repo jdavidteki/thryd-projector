@@ -18930,6 +18930,209 @@
    "faded": false,
    "last_run": "run-cf203b"
   },
+  "even.ask": {
+   "object": "even",
+   "method": "ask",
+   "args": [
+    "say"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j22",
+    "card": "w22",
+    "title": "even.ask(say)",
+    "emoji": "🦐",
+    "at": "2026-11-25T17:53:29-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "even.ask(say)",
+     "emoji": "🦐",
+     "arg": "say",
+     "run": "run-cf203b",
+     "job": "j22",
+     "tweets": [
+      {
+       "text": "[[ttw]] - e even dey ask say",
+       "year": "2025"
+      }
+     ],
+     "consequence": "Then it slips out: \"e even dey ask say...\" and he stops.",
+     "consequence_job": "j23",
+     "resolved": "even.ask(act=say:Action) from j22",
+     "injected": [
+      {
+       "param": "act",
+       "class": "Action",
+       "instance": "say",
+       "from_run": "run-cf203b",
+       "from_job": "j22",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "act",
+      "class": "Action",
+      "default": "say",
+      "first_run": "run-cf203b",
+      "first_job": "j22"
+     }
+    ],
+    "text": "ask(act: Action)"
+   },
+   "receiver_class": "Action",
+   "prior": [
+    {
+     "id": "ronke.ask",
+     "title": "ronke.ask(river)",
+     "run": "run-2eb42d",
+     "job": "j36",
+     "at": "2026-11-18T17:52:40-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "kazeem.ask",
+     "title": "kazeem.ask(hangers)",
+     "run": "run-2eb42d",
+     "job": "j25",
+     "at": "2026-11-18T11:37:20-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "ronke.ask",
+     "title": "ronke.ask(weird)",
+     "run": "run-2eb42d",
+     "job": "j19",
+     "at": "2026-11-18T09:56:09-05:00",
+     "why": "same method"
+    }
+   ],
+   "faded": false,
+   "last_run": null
+  },
+  "global.ritual": {
+   "object": "global",
+   "method": "ritual",
+   "args": [
+    "engine"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j22",
+    "card": "w22",
+    "title": "global.ritual(engine)",
+    "emoji": "🦞",
+    "at": "2026-11-25T17:53:29-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "global.ritual(engine)",
+     "emoji": "🦞",
+     "arg": "engine",
+     "run": "run-cf203b",
+     "job": "j22",
+     "tweets": [
+      {
+       "text": "- a global ritual engine",
+       "year": "2024"
+      }
+     ],
+     "consequence": "Kemi laughs \"have fun!\" and sways her hips at him, and he mutters \"a global ritual engine,\" like it's the only way to explain what she does to him.",
+     "consequence_job": "j23",
+     "resolved": "global.ritual(what=engine:Thing) from j22",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "engine",
+       "from_run": "run-cf203b",
+       "from_job": "j22",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "engine",
+      "first_run": "run-5a58c4",
+      "first_job": "j34"
+     }
+    ],
+    "text": "ritual(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "have.fun": {
+   "object": "have",
+   "method": "fun",
+   "args": [
+    ""
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j22",
+    "card": "w22",
+    "title": "have.fun()",
+    "emoji": "🦑",
+    "at": "2026-11-25T17:53:29-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "have.fun()",
+     "emoji": "🦑",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j22",
+     "tweets": [
+      {
+       "text": "#abeokutakodes - have fun!",
+       "year": "2024"
+      }
+     ],
+     "consequence": "Kemi laughs \"have fun!\" and sways her hips at him, and he mutters \"a global ritual engine,\" like it's the only way to explain what she does to him.",
+     "consequence_job": "j23",
+     "resolved": "have.fun()",
+     "injected": []
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [],
+    "text": "fun()"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
   "cooler.getdatemanufactured": {
    "object": "cooler",
    "method": "getDateManufactured",
@@ -22398,7 +22601,8 @@
    "eez.mad"
   ],
   "even": [
-   "even.feels"
+   "even.feels",
+   "even.ask"
   ],
   "everywhere": [
    "everywhere.getdayagreeeeeennnn",
@@ -22452,6 +22656,9 @@
   "giants_world_subject": [
    "object.look"
   ],
+  "global": [
+   "global.ritual"
+  ],
   "god_subject": [
    "object.look"
   ],
@@ -22472,6 +22679,9 @@
   ],
   "hands": [
    "hands.wash"
+  ],
+  "have": [
+   "have.fun"
   ],
   "hear": [
    "hear.setword"
@@ -39005,6 +39215,7 @@
     "from": "2769d6da2d55",
     "title": "oya dance",
     "funcs": [
+     "have.fun",
      "marisol.tell"
     ]
    }
@@ -40977,6 +41188,14 @@
      "everywhere.getwatching",
      "people.getocsw",
      "everywhere.getdayagreeeeeennnn"
+    ]
+   },
+   {
+    "scope": "safe",
+    "from": "f34d29e479d5",
+    "title": "507. what really is democracy?",
+    "funcs": [
+     "even.ask"
     ]
    }
   ],
@@ -45940,6 +46159,9 @@
     "daz.what",
     "poty.asin",
     "skipping.consumes",
+    "even.ask",
+    "global.ritual",
+    "have.fun",
     "cli.cli",
     "thryd.importtheme",
     "kemi.ismarried",
@@ -46316,7 +46538,8 @@
   "2769d6da2d55": {
    "title": "oya dance",
    "funcs": [
-    "marisol.tell"
+    "marisol.tell",
+    "have.fun"
    ],
    "runs": []
   },
@@ -46538,6 +46761,13 @@
    ],
    "runs": []
   },
+  "4a2a8f3f8cd6": {
+   "title": "817. 2037",
+   "funcs": [
+    "global.ritual"
+   ],
+   "runs": []
+  },
   "4c8598384b72": {
    "title": "519. how to [[win an oscar]]",
    "funcs": [
@@ -46735,7 +46965,10 @@
     "why.thunder",
     "daz.what",
     "poty.asin",
-    "skipping.consumes"
+    "skipping.consumes",
+    "even.ask",
+    "global.ritual",
+    "have.fun"
    ],
    "runs": [
     "run-cf203b"
@@ -47615,6 +47848,13 @@
    ],
    "runs": []
   },
+  "f34d29e479d5": {
+   "title": "507. what really is democracy?",
+   "funcs": [
+    "even.ask"
+   ],
+   "runs": []
+  },
   "f4ff9cc7d7bd": {
    "title": "102. the catalyst",
    "funcs": [
@@ -47976,6 +48216,9 @@
   "1*ngEMMgnQfnlkXU_ETtFTbw.gif": [
    "775335ae67da"
   ],
+  "1*r3KZHj3PqTMtB-S6G2TjUg.gif": [
+   "4a2a8f3f8cd6"
+  ],
   "1*wLyltPPcTULRqRooVjkOOQ.gif": [
    "7ba78a2d336f"
   ],
@@ -48072,6 +48315,7 @@
    "483f5ddc9d35"
   ],
   "1*3jdLlO20gy-sPqFRavBV-A.gif": [
+   "f34d29e479d5",
    "09dc204dfd9a"
   ],
   "1*lXyaYynK9k1RiaRxau4pmw.gif": [
@@ -49373,6 +49617,7 @@
   "1*3jdLlO20gy-sPqFRavBV-A.gif": {
    "runs": [],
    "safes": [
+    "f34d29e479d5",
     "09dc204dfd9a"
    ]
   }
@@ -49556,7 +49801,8 @@
    "eez.mad"
   ],
   "even": [
-   "even.feels"
+   "even.feels",
+   "even.ask"
   ],
   "everywhere": [
    "everywhere.getdayagreeeeeennnn",
@@ -49590,6 +49836,9 @@
   "g": [
    "g.mm"
   ],
+  "global": [
+   "global.ritual"
+  ],
   "gol": [
    "gol.lo"
   ],
@@ -49607,6 +49856,9 @@
   ],
   "hands": [
    "hands.wash"
+  ],
+  "have": [
+   "have.fun"
   ],
   "hear": [
    "hear.setword"
@@ -50257,7 +50509,9 @@
    "Watchable"
   ],
   "das": [],
-  "even": [],
+  "even": [
+   "Speakable"
+  ],
   "guy": [],
   "woke": [],
   "ahan": [],
@@ -50281,6 +50535,8 @@
   "daz": [],
   "poty": [],
   "skipping": [],
+  "global": [],
+  "have": [],
   "cooler": [],
   "kazeem.goodqualities": [],
   "app": [],
@@ -50490,7 +50746,9 @@
    "eez",
    "even",
    "feel",
+   "global",
    "guy",
+   "have",
    "inside",
    "kemi",
    "know",
@@ -50533,5 +50791,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-25T17:36:29-05:00"
+ "updated": "2026-11-25T17:53:55-05:00"
 }

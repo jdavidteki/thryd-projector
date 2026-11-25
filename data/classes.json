@@ -176,8 +176,8 @@
     "count",
     "map"
    ],
-   "instances": 23,
-   "arg_instances": 20,
+   "instances": 24,
+   "arg_instances": 21,
    "parent": "Thing",
    "chain": [
     "Action",
@@ -2231,6 +2231,7 @@
    "source": "pick",
    "runs": [
     "run-5a58c4",
+    "run-cf203b",
     "run-0ae93c"
    ],
    "tweets": [
@@ -2241,6 +2242,10 @@
     {
      "text": "- we will let the engine to figure out",
      "year": "2026"
+    },
+    {
+     "text": "- a global ritual engine",
+     "year": "2024"
     }
    ]
   },
@@ -6007,6 +6012,22 @@
     }
    ]
   },
+  "say": {
+   "class": "Action",
+   "cue": "word",
+   "first_run": "run-cf203b",
+   "first_job": "j22",
+   "source": "pick",
+   "runs": [
+    "run-cf203b"
+   ],
+   "tweets": [
+    {
+     "text": "[[ttw]] - e even dey ask say",
+     "year": "2025"
+    }
+   ]
+  },
   "scandal": {
    "class": "Thing",
    "cue": "default",
@@ -9570,6 +9591,18 @@
     "Quantity",
     "j21",
     "pick"
+   ],
+   [
+    "say",
+    "Action",
+    "j22",
+    "pick"
+   ],
+   [
+    "engine",
+    "Thing",
+    "j22",
+    "pick"
    ]
   ],
   "run-b70200": [
@@ -12271,6 +12304,9 @@
   "daz.what": "what(what: Thing)",
   "poty.asin": "asin(what: Thing)",
   "skipping.consumes": "consumes(amount: Quantity)",
+  "even.ask": "ask(act: Action)",
+  "global.ritual": "ritual(what: Thing)",
+  "have.fun": "fun()",
   "cooler.getdatemanufactured": "getDateManufactured()",
   "ronke.getlikes.contains": "getlikes.contains()",
   "kazeem.goodqualities.filter": "filter()",
@@ -12581,6 +12617,7 @@
     "bobo",
     "care",
     "code",
+    "even",
     "laff",
     "lagbara",
     "mamaronke",
@@ -12769,7 +12806,9 @@
    "eez",
    "even",
    "feel",
+   "global",
    "guy",
+   "have",
    "inside",
    "kemi",
    "know",
@@ -12871,5 +12910,5 @@
   "epilogue": "quiet",
   "coda": "quiet"
  },
- "updated": "2026-11-25T17:35:39-05:00"
+ "updated": "2026-11-25T17:53:54-05:00"
 }
