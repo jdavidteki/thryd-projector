@@ -4857,16 +4857,6 @@
 ],
 "calla": [
 {
-"id": "wt_68e03f8ed7",
-"kind": "func_call",
-"text": "The calla hears it (because teo.sit(what=mistake:Thing) from j35).",
-"code": "calla.hears(marisol, 'sit');",
-"author": "projector",
-"run": "run-5a58c4",
-"card": "w30",
-"other": null
-},
-{
 "id": "wf_65c70df1e4",
 "kind": "consequence",
 "text": "The calla now remembers the miami: 11:45pm, Monday 2 November 2026: A phone on the counter starts the off-key chorus, then.",
@@ -4905,6 +4895,16 @@
 "run": "run-5a58c4",
 "card": "j6",
 "other": "health_marisol"
+},
+{
+"id": "wt_66a81b9009",
+"kind": "func_call",
+"text": "The calla hears it (because teo.respond(what=bank:Thing) from j59).",
+"code": "calla.hears(person, 'respond');",
+"author": "projector",
+"run": "run-cf203b",
+"card": "w12",
+"other": null
 }
 ],
 "as_poor_man": [
@@ -5731,16 +5731,6 @@
 ],
 "teo": [
 {
-"id": "wf_f872319710",
-"kind": "consequence",
-"text": "The teo leaves with a Laptop note with Taiwo's name and 'lamp soot' on it.",
-"code": "laptop.interactwith(teo){ teo.receives(laptop.soot); teo.remembers(taiwo, 'lamp soot'); }",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j7",
-"other": "laptop"
-},
-{
 "id": "wf_f0d2475848",
 "kind": "consequence",
 "text": "The teo now remembers the quiet stretch sand: 5:50pm, Tuesday 3 November 2026: The morning at the ramp is behind them.",
@@ -5769,6 +5759,16 @@
 "run": "run-5a58c4",
 "card": "j6",
 "other": "dez"
+},
+{
+"id": "wt_4edf4df619",
+"kind": "func_call",
+"text": "Someone at the projector tapped the person and called teo.respond(what=bank:Thing) from j59 from its agenda run-5a58c4, first seated in run-5a58c4 j33.",
+"code": "teo.respond('bank');",
+"author": "projector",
+"run": "run-cf203b",
+"card": "w12",
+"other": null
 },
 {
 "id": "wt_183d3cde12",
@@ -6237,6 +6237,16 @@
 "run": "run-5a58c4",
 "card": "j3",
 "other": "house"
+},
+{
+"id": "wf_933859dd66",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the hose, and Bisola reads the name twice.",
+"code": "health_marisol.interactwith(hose){ hose.receives(health_marisol.envelope); … }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "health_marisol"
 }
 ],
 "icsh": [
@@ -6425,16 +6435,6 @@
 ],
 "blender": [
 {
-"id": "wt_8e153cdc29",
-"kind": "func_call",
-"text": "The blender hears it (because teo.fold(how=like:Manner) from j27).",
-"code": "blender.hears(teo, 'fold');",
-"author": "projector",
-"run": "run-5a58c4",
-"card": "w25",
-"other": null
-},
-{
 "id": "wt_c2800ac997",
 "kind": "func_call",
 "text": "The blender hears it (because song.hit(what=mistake:Thing) from j35).",
@@ -6473,19 +6473,19 @@
 "run": "run-5a58c4",
 "card": "w30",
 "other": null
+},
+{
+"id": "wt_e961a9349b",
+"kind": "func_call",
+"text": "The blender hears it (because teo.respond(what=bank:Thing) from j59).",
+"code": "blender.hears(person, 'respond');",
+"author": "projector",
+"run": "run-cf203b",
+"card": "w12",
+"other": null
 }
 ],
 "code": [
-{
-"id": "wt_208c012519",
-"kind": "func_call",
-"text": "The code hears it (because song.hit(what=mistake:Thing) from j35).",
-"code": "code.hears(miami_subject, 'hit');",
-"author": "projector",
-"run": "run-5a58c4",
-"card": "w22",
-"other": null
-},
 {
 "id": "wt_5a9fe754b5",
 "kind": "func_call",
@@ -6524,6 +6524,16 @@
 "author": "projector",
 "run": "run-5a58c4",
 "card": "w30",
+"other": null
+},
+{
+"id": "wt_522c900016",
+"kind": "func_call",
+"text": "The code hears it (because teo.respond(what=bank:Thing) from j59).",
+"code": "code.hears(person, 'respond');",
+"author": "projector",
+"run": "run-cf203b",
+"card": "w12",
 "other": null
 }
 ],
@@ -8725,26 +8735,6 @@
 ],
 "cli": [
 {
-"id": "wt_e612a34a8d",
-"kind": "func_call",
-"text": "The customer typed a2() on run-2eb42d j41. It came back: a2(). Implementation: /* a2() */.",
-"code": "a2();",
-"author": "customer",
-"run": "run-2eb42d",
-"card": "j41",
-"other": null
-},
-{
-"id": "wt_9513944b87",
-"kind": "func_call",
-"text": "The customer typed c2() on run-2eb42d j42. It came back: c2(). Implementation: /* c2() */.",
-"code": "c2();",
-"author": "customer",
-"run": "run-2eb42d",
-"card": "j42",
-"other": null
-},
-{
 "id": "wt_5fa7e8f92e",
 "kind": "func_call",
 "text": "The customer typed a2() on run-2eb42d j42. It came back: a2(). Implementation: /* a2() */.",
@@ -8772,6 +8762,26 @@
 "author": "customer",
 "run": "run-2eb42d",
 "card": "j43",
+"other": null
+},
+{
+"id": "wt_6958e6175a",
+"kind": "func_call",
+"text": "The customer typed #ttb on run-cf203b j11. It came back: #ttb. Implementation: /* #ttb */.",
+"code": "#ttb;",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j11",
+"other": null
+},
+{
+"id": "wt_8168038272",
+"kind": "func_call",
+"text": "The customer typed [[aayok?]] on run-cf203b j11. It came back: [[aayok?]]. Implementation: /* [[aayok?]] */.",
+"code": "[[aayok?]];",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j11",
 "other": null
 }
 ],
@@ -10447,26 +10457,6 @@
 ],
 "cooler_subject": [
 {
-"id": "wt_2652052dbc",
-"kind": "call",
-"text": "Someone at the projector tapped the cooler subject and made it glow.",
-"code": "cooler_subject.glow();",
-"author": "projector",
-"run": null,
-"card": "j80",
-"other": null
-},
-{
-"id": "wt_d9fb5c711f",
-"kind": "call",
-"text": "Someone at the projector tapped the cooler subject and made it glow.",
-"code": "cooler_subject.glow();",
-"author": "projector",
-"run": null,
-"card": "j90",
-"other": null
-},
-{
 "id": "wt_826ed0e8b9",
 "kind": "call",
 "text": "Someone at the projector tapped the cooler subject and made it glow.",
@@ -10474,6 +10464,16 @@
 "author": "projector",
 "run": null,
 "card": "j90",
+"other": null
+},
+{
+"id": "wt_47232e648f",
+"kind": "call",
+"text": "Someone at the projector tapped the cooler subject and made it set its mood (happy).",
+"code": "cooler_subject.setmood('happy');",
+"author": "projector",
+"run": "run-cf203b",
+"card": "w10",
 "other": null
 },
 {
@@ -10494,6 +10494,16 @@
 "author": "projector",
 "run": "run-cf203b",
 "card": "w10",
+"other": null
+},
+{
+"id": "wt_544d3e6fc7",
+"kind": "call",
+"text": "Someone at the projector tapped the cooler subject and made it set its mood (happy).",
+"code": "cooler_subject.setmood('happy');",
+"author": "projector",
+"run": "run-cf203b",
+"card": "w12",
 "other": null
 }
 ],
@@ -10703,17 +10713,6 @@
 ]
 },
 "consequences": [
-{
-"id": "wf_3842023b0f",
-"ts": "2026-11-24T10:34:51-0500",
-"a": "house",
-"b": "cell_phone",
-"code": "house.interactwith(cell_phone){ cell_phone.receives(house.sign); … }",
-"text": "A Marker note with Kunle's name and 'nice day sign' on it, turns up inside the brown envelope at the cell phone, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j3"
-},
 {
 "id": "wf_669cd37546",
 "ts": "2026-11-24T10:35:44-0500",
@@ -11142,6 +11141,17 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": "j6"
+},
+{
+"id": "wf_933859dd66",
+"ts": "2026-11-25T13:44:51-0500",
+"a": "health_marisol",
+"b": "hose",
+"code": "health_marisol.interactwith(hose){ hose.receives(health_marisol.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the hose, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
 }
 ],
 "memories": [
@@ -11245,5 +11255,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-25T13:43:20-0500"
+"updated": "2026-11-25T13:44:51-0500"
 }
