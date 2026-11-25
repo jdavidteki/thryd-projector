@@ -19133,6 +19133,201 @@
    "faded": false,
    "last_run": "run-cf203b"
   },
+  "ehen.serious": {
+   "object": "ehen",
+   "method": "serious",
+   "args": [
+    "reminds"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j23",
+    "card": "w23",
+    "title": "ehen.serious(reminds)",
+    "emoji": "🦢",
+    "at": "2026-11-25T18:05:17-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "ehen.serious(reminds)",
+     "emoji": "🦢",
+     "arg": "reminds",
+     "run": "run-cf203b",
+     "job": "j23",
+     "tweets": [
+      {
+       "text": "- ehen? serious? that reminds me",
+       "year": "2024"
+      }
+     ],
+     "consequence": "Then she goes cold: \"ehen?",
+     "consequence_job": "j24",
+     "resolved": "ehen.serious(act=reminds:Action) from j23",
+     "injected": [
+      {
+       "param": "act",
+       "class": "Action",
+       "instance": "reminds",
+       "from_run": "run-cf203b",
+       "from_job": "j23",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "act",
+      "class": "Action",
+      "default": "reminds",
+      "first_run": "run-cb805f",
+      "first_job": "j12"
+     }
+    ],
+    "text": "serious(act: Action)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "weya.selling": {
+   "object": "weya",
+   "method": "selling",
+   "args": [
+    "movement"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j23",
+    "card": "w23",
+    "title": "weya.selling(movement)",
+    "emoji": "🦜",
+    "at": "2026-11-25T18:05:17-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "weya.selling(movement)",
+     "emoji": "🦜",
+     "arg": "movement",
+     "run": "run-cf203b",
+     "job": "j23",
+     "tweets": [
+      {
+       "text": "#thryd - weya selling movement",
+       "year": "2025"
+      }
+     ],
+     "consequence": "She sneers \"weya selling movement,\" like the question is a hustle he's running on her.",
+     "consequence_job": "j24",
+     "resolved": "weya.selling(what=movement:Thing) from j23",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "movement",
+       "from_run": "run-cf203b",
+       "from_job": "j23",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "movement",
+      "first_run": "run-cf203b",
+      "first_job": "j23"
+     }
+    ],
+    "text": "selling(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "what.road": {
+   "object": "what",
+   "method": "road",
+   "args": [
+    "broadway"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j23",
+    "card": "w23",
+    "title": "what.road(broadway)",
+    "emoji": "🦔",
+    "at": "2026-11-25T18:05:17-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "what.road(broadway)",
+     "emoji": "🦔",
+     "arg": "broadway",
+     "run": "run-cf203b",
+     "job": "j23",
+     "tweets": [
+      {
+       "text": "#oyinboman - what [[is]] the road to broadway?",
+       "year": "2025"
+      }
+     ],
+     "consequence": "What just happened: Kemi doesn't confess.",
+     "consequence_job": "j24",
+     "resolved": "what.road(act=broadway:Action) from j23",
+     "injected": [
+      {
+       "param": "act",
+       "class": "Action",
+       "instance": "broadway",
+       "from_run": "run-cf203b",
+       "from_job": "j23",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "act",
+      "class": "Action",
+      "default": "broadway",
+      "first_run": "run-cf203b",
+      "first_job": "j23"
+     }
+    ],
+    "text": "road(act: Action)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
   "cooler.getdatemanufactured": {
    "object": "cooler",
    "method": "getDateManufactured",
@@ -22640,6 +22835,9 @@
   "eez": [
    "eez.mad"
   ],
+  "ehen": [
+   "ehen.serious"
+  ],
   "even": [
    "even.feels",
    "even.ask"
@@ -23258,8 +23456,12 @@
   "weeks": [
    "weeks.gettoattd"
   ],
+  "weya": [
+   "weya.selling"
+  ],
   "what": [
-   "what.guys"
+   "what.guys",
+   "what.road"
   ],
   "whatever_happens_me_subject": [
    "object.look"
@@ -29373,6 +29575,14 @@
    }
   ],
   "day_life_god_subject": [
+   {
+    "scope": "safe",
+    "from": "372bf27135f7",
+    "title": "913. story of my life",
+    "funcs": [
+     "weya.selling"
+    ]
+   },
    {
     "scope": "safe",
     "from": "d7818658d865",
@@ -46203,6 +46413,9 @@
     "even.ask",
     "global.ritual",
     "have.fun",
+    "ehen.serious",
+    "weya.selling",
+    "what.road",
     "cli.cli",
     "thryd.importtheme",
     "kemi.ismarried",
@@ -46530,6 +46743,13 @@
    ],
    "runs": []
   },
+  "1d0f653cb72a": {
+   "title": "1102. lagos men",
+   "funcs": [
+    "ehen.serious"
+   ],
+   "runs": []
+  },
   "1dde946f3407": {
    "title": "125. why did i get married, #thryd?",
    "funcs": [
@@ -46664,6 +46884,13 @@
    "title": "1024. how to [[push the ocean]]",
    "funcs": [
     "cam.stop"
+   ],
+   "runs": []
+  },
+  "372bf27135f7": {
+   "title": "913. story of my life",
+   "funcs": [
+    "weya.selling"
    ],
    "runs": []
   },
@@ -47010,7 +47237,10 @@
     "skipping.consumes",
     "even.ask",
     "global.ritual",
-    "have.fun"
+    "have.fun",
+    "ehen.serious",
+    "weya.selling",
+    "what.road"
    ],
    "runs": [
     "run-cf203b"
@@ -47062,6 +47292,13 @@
    "title": "111. energy conversion",
    "funcs": [
     "skipping.consumes"
+   ],
+   "runs": []
+  },
+  "79a01af12615": {
+   "title": "122. floating",
+   "funcs": [
+    "what.road"
    ],
    "runs": []
   },
@@ -48162,6 +48399,7 @@
   ],
   "1*GPQAaJE07cSsR2iEm5y9Aw.gif": [
    "f81f21521253",
+   "372bf27135f7",
    "d7818658d865"
   ],
   "1*S8zTdmwx75vZlUkLwKidzg.gif": [
@@ -48367,7 +48605,8 @@
    "2769d6da2d55"
   ],
   "1*xsNo3id2HoGRFLmTfucKTQ.gif": [
-   "eba67812c673"
+   "eba67812c673",
+   "79a01af12615"
   ],
   "1*jAmSDHK6yaAgVhhK9xU8Rg.gif": [
    "2e8d6c6d24fa"
@@ -48568,6 +48807,9 @@
   "1*-TkXCRbWmzDw7ZJy1b6TZg.jpeg": [
    "ba87d1a4bdd9"
   ],
+  "1*NyWwzQldCcKa-21UtJxlhg.jpeg": [
+   "79a01af12615"
+  ],
   "1*WBPch7J7RewC9Z56EZ-bNw.gif": [
    "ae0d5fb4a64c"
   ],
@@ -48643,6 +48885,12 @@
   ],
   "1*11oRJiih2OeYmE4v5HAF7A.gif": [
    "290e162c303f"
+  ],
+  "1*QhCT0sbu_yYRFnH4RFUR7A.gif": [
+   "1d0f653cb72a"
+  ],
+  "1*5KVP0Osf6C0vSybECRLgFw.gif": [
+   "1d0f653cb72a"
   ],
   "1*4w7Fbj3FCEKw9zMc-r__Cw.gif": [
    "2e3f2dae964a"
@@ -49116,6 +49364,7 @@
    "runs": [],
    "safes": [
     "f81f21521253",
+    "372bf27135f7",
     "d7818658d865"
    ]
   },
@@ -49842,6 +50091,9 @@
   "eez": [
    "eez.mad"
   ],
+  "ehen": [
+   "ehen.serious"
+  ],
   "even": [
    "even.feels",
    "even.ask"
@@ -50301,8 +50553,12 @@
   "weeks": [
    "weeks.gettoattd"
   ],
+  "weya": [
+   "weya.selling"
+  ],
   "what": [
-   "what.guys"
+   "what.guys",
+   "what.road"
   ],
   "why": [
    "why.thunder"
@@ -50580,6 +50836,10 @@
   "skipping": [],
   "global": [],
   "have": [],
+  "ehen": [
+   "Readable"
+  ],
+  "weya": [],
   "cooler": [],
   "kazeem.goodqualities": [],
   "app": [],
@@ -50787,6 +51047,7 @@
    "deya",
    "dignity",
    "eez",
+   "ehen",
    "even",
    "feel",
    "global",
@@ -50814,6 +51075,7 @@
    "stay",
    "story",
    "stringify",
+   "weya",
    "what",
    "why",
    "wo",
@@ -50834,5 +51096,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-25T18:04:43-05:00"
+ "updated": "2026-11-25T18:05:34-05:00"
 }

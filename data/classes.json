@@ -108,8 +108,8 @@
     "give",
     "know"
    ],
-   "instances": 467,
-   "arg_instances": 138,
+   "instances": 468,
+   "arg_instances": 139,
    "parent": null,
    "chain": [
     "Thing"
@@ -176,8 +176,8 @@
     "count",
     "map"
    ],
-   "instances": 24,
-   "arg_instances": 21,
+   "instances": 25,
+   "arg_instances": 22,
    "parent": "Thing",
    "chain": [
     "Action",
@@ -1022,6 +1022,22 @@
     "run-2eb42d"
    ],
    "tweets": []
+  },
+  "broadway": {
+   "class": "Action",
+   "cue": "tweet: to/will ...",
+   "first_run": "run-cf203b",
+   "first_job": "j23",
+   "source": "pick",
+   "runs": [
+    "run-cf203b"
+   ],
+   "tweets": [
+    {
+     "text": "#oyinboman - what [[is]] the road to broadway?",
+     "year": "2025"
+    }
+   ]
   },
   "brunomars": {
    "class": "Thing",
@@ -4620,6 +4636,22 @@
    ],
    "tweets": []
   },
+  "movement": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-cf203b",
+   "first_job": "j23",
+   "source": "pick",
+   "runs": [
+    "run-cf203b"
+   ],
+   "tweets": [
+    {
+     "text": "#thryd - weya selling movement",
+     "year": "2025"
+    }
+   ]
+  },
   "mp4": {
    "class": "Thing",
    "cue": "default",
@@ -5754,12 +5786,17 @@
    "first_job": "j12",
    "source": "pick",
    "runs": [
-    "run-cb805f"
+    "run-cb805f",
+    "run-cf203b"
    ],
    "tweets": [
     {
      "text": "[[irteiutk]] - that reminds me!",
      "year": "2025"
+    },
+    {
+     "text": "- ehen? serious? that reminds me",
+     "year": "2024"
     }
    ]
   },
@@ -9603,6 +9640,24 @@
     "Thing",
     "j22",
     "pick"
+   ],
+   [
+    "reminds",
+    "Action",
+    "j23",
+    "pick"
+   ],
+   [
+    "movement",
+    "Thing",
+    "j23",
+    "pick"
+   ],
+   [
+    "broadway",
+    "Action",
+    "j23",
+    "pick"
    ]
   ],
   "run-b70200": [
@@ -12307,6 +12362,9 @@
   "even.ask": "ask(act: Action)",
   "global.ritual": "ritual(what: Thing)",
   "have.fun": "fun()",
+  "ehen.serious": "serious(act: Action)",
+  "weya.selling": "selling(what: Thing)",
+  "what.road": "road(act: Action)",
   "cooler.getdatemanufactured": "getDateManufactured()",
   "ronke.getlikes.contains": "getlikes.contains()",
   "kazeem.goodqualities.filter": "filter()",
@@ -12475,6 +12533,7 @@
     "chairman",
     "crime",
     "dez",
+    "ehen",
     "folake",
     "history",
     "irteiutk",
@@ -12805,6 +12864,7 @@
    "deya",
    "dignity",
    "eez",
+   "ehen",
    "even",
    "feel",
    "global",
@@ -12832,6 +12892,7 @@
    "stay",
    "story",
    "stringify",
+   "weya",
    "what",
    "why",
    "wo",
@@ -12911,5 +12972,5 @@
   "epilogue": "quiet",
   "coda": "quiet"
  },
- "updated": "2026-11-25T18:04:43-05:00"
+ "updated": "2026-11-25T18:05:34-05:00"
 }
