@@ -4515,16 +4515,6 @@
 ],
 "marker": [
 {
-"id": "wf_e64898063f",
-"kind": "consequence",
-"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the nice day sign at the marker, and Kunle reads the name twice.",
-"code": "icsh.interactwith(marker){ marker.receives(icsh.code); marker.remembers(ejiro, 'juju code'); marker.tucks(icsh, 'ttb note into the nice day sign'); }",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j2",
-"other": "icsh"
-},
-{
 "id": "wf_2f5ad8aebc",
 "kind": "consequence",
 "text": "A Danfo speaker note with Bisola's name and 'egbe note' on it, turns up inside the nice day sign at the marker, and Kunle reads the name twice.",
@@ -4553,6 +4543,16 @@
 "run": "run-5a58c4",
 "card": "j6",
 "other": "tnw"
+},
+{
+"id": "wf_da5e41d93c",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the nice day sign at the marker, and Kunle reads the name twice.",
+"code": "health_marisol.interactwith(marker){ marker.receives(health_marisol.envelope); … }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "health_marisol"
 },
 {
 "id": "wt_5529751886",
@@ -11286,17 +11286,6 @@
 },
 "consequences": [
 {
-"id": "wf_b554f0965b",
-"ts": "2026-11-24T13:11:04-0500",
-"a": "health_marisol",
-"b": "miami",
-"code": "health_marisol.interactwith(miami){ miami.receives(health_marisol.envelope); miami.remembers(bisola, 'brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up beside the phone at the miami.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
 "id": "wf_3bbe2b5519",
 "ts": "2026-11-24T13:12:47-0500",
 "a": "marker_b",
@@ -11724,6 +11713,17 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": "j6"
+},
+{
+"id": "wf_da5e41d93c",
+"ts": "2026-11-25T16:21:25-0500",
+"a": "health_marisol",
+"b": "marker",
+"code": "health_marisol.interactwith(marker){ marker.receives(health_marisol.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the nice day sign at the marker, and Kunle reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
 }
 ],
 "memories": [
@@ -11827,5 +11827,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-25T16:20:33-0500"
+"updated": "2026-11-25T16:21:25-0500"
 }
