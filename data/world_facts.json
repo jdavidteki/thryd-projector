@@ -2,23 +2,6 @@
 "v": 1,
 "note": "World memory: each object's facts and the newest consequences of meetings (shared store /workspace/thryd-projector/data/world_facts.jsonl, tools/world_memory.py). The stage shows a consequence code line when the same pair meets again, and now and then on its own; #thryd memories show now and then too.",
 "alias": {
-"miami_subject": "miami",
-"miami_subject_second": "miami",
-"miami_subject_third": "miami",
-"quiet_stretch_sand_subject": "quiet_stretch_sand",
-"jetty_south_pointe_subject": "jetty_south_pointe",
-"florida_subject": "florida",
-"florida_subject_second": "florida",
-"florida_subject_third": "florida",
-"marina_biscayne_bay_subject": "marina_biscayne_bay",
-"marina_biscayne_bay_subject_second": "marina_biscayne_bay",
-"marina_biscayne_bay_subject_third": "marina_biscayne_bay",
-"fire_escape_outside_subject": "fire_escape_outside",
-"fire_escape_outside_subject_second": "fire_escape_outside",
-"fire_escape_outside_subject_third": "fire_escape_outside",
-"top_deck_charter_subject": "top_deck_charter",
-"top_deck_charter_subject_second": "top_deck_charter",
-"top_deck_charter_subject_third": "top_deck_charter",
 "cooler_subject": "cooler",
 "cooler_subject_second": "cooler",
 "cooler_subject_third": "cooler",
@@ -29,6 +12,14 @@
 "saturday_october_subject": "saturday_october",
 "saturday_october_subject_second": "saturday_october",
 "saturday_october_subject_third": "saturday_october",
+"miami_subject": "miami",
+"miami_subject_second": "miami",
+"miami_subject_third": "miami",
+"quiet_stretch_sand_subject": "quiet_stretch_sand",
+"jetty_south_pointe_subject": "jetty_south_pointe",
+"florida_subject": "florida",
+"florida_subject_second": "florida",
+"florida_subject_third": "florida",
 "family_compound_ikorodu_subject": "family_compound_ikorodu",
 "family_compound_ikorodu_subject_second": "family_compound_ikorodu",
 "family_compound_ikorodu_subject_third": "family_compound_ikorodu",
@@ -73,6 +64,15 @@
 "oshodi_bus_shelter_subject": "oshodi_bus_shelter",
 "oshodi_bus_shelter_subject_second": "oshodi_bus_shelter",
 "oshodi_bus_shelter_subject_third": "oshodi_bus_shelter",
+"marina_biscayne_bay_subject": "marina_biscayne_bay",
+"marina_biscayne_bay_subject_second": "marina_biscayne_bay",
+"marina_biscayne_bay_subject_third": "marina_biscayne_bay",
+"fire_escape_outside_subject": "fire_escape_outside",
+"fire_escape_outside_subject_second": "fire_escape_outside",
+"fire_escape_outside_subject_third": "fire_escape_outside",
+"top_deck_charter_subject": "top_deck_charter",
+"top_deck_charter_subject_second": "top_deck_charter",
+"top_deck_charter_subject_third": "top_deck_charter",
 "lekki_rooftop_subject": "lekki_rooftop",
 "lekki_rooftop_subject_second": "lekki_rooftop",
 "lekki_rooftop_subject_third": "lekki_rooftop",
@@ -775,16 +775,6 @@
 ],
 "pure_water_cooler": [
 {
-"id": "wf_ca258e55d6",
-"kind": "consequence",
-"text": "The Mama Ronke ends up with the pure water cooler, still present.",
-"code": "mama_ronke.interactwith(pure_water_cooler){ mama_ronke.db.copyto(pure_water_cooler); pure_water_cooler.keeps(mama_ronke, 'Mama Ronke, still present'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "",
-"other": "mama_ronke"
-},
-{
 "id": "wf_95c8251c2b",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the pure-water cooler, which is still carried home through the flood.",
@@ -812,6 +802,16 @@
 "author": "cos",
 "run": "story-4b1689",
 "card": "j171",
+"other": "ronke"
+},
+{
+"id": "wt_d3f339904c",
+"kind": "consequence",
+"text": "Ronke calls out the time, 9:46 pm, over the cooler, so the last sachets go before the hall is locked.",
+"code": "ronke.interactwith(pure_water_cooler){ ronke.calls(pure_water_cooler, 'closing time'); … }",
+"author": "cos",
+"run": "story-4b1689",
+"card": "j168",
 "other": "ronke"
 },
 {
@@ -6343,6 +6343,16 @@
 "run": "run-5a58c4",
 "card": "j7",
 "other": "bird"
+},
+{
+"id": "wf_c57cd387db",
+"kind": "consequence",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the lamp soot at the plot, and Taiwo reads the name twice.",
+"code": "water.interactwith(plot){ plot.receives(water.code); plot.remembers(ejiro, 'juju code'); plot.tucks(water, 'ttb note into the lamp soot'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j2",
+"other": "water"
 }
 ],
 "hpr": [
@@ -10467,6 +10477,16 @@
 "run": "story-4b1689",
 "card": "j171",
 "other": "ronke"
+},
+{
+"id": "wt_38b1590c5a",
+"kind": "consequence",
+"text": "The next morning Ronke brings the bagged sachets to the Ojuelegba bus stop still cold, as she said she would, and the investor buys two and nods.",
+"code": "investor.interactwith(ronke){ investor.receives(ronke, 'unsold sachets'); … }",
+"author": "cos",
+"run": "story-4b1689",
+"card": "j171",
+"other": "ronke"
 }
 ],
 "cooler_figure": [
@@ -10631,61 +10651,6 @@
 ]
 },
 "consequences": [
-{
-"id": "wf_b957030065",
-"ts": "2026-11-24T10:31:18-0500",
-"a": "marker",
-"b": "marisol",
-"code": "marker.interactwith(marisol){ marisol.receives(marker.sign); marisol.remembers(kunle, 'nice day sign'); marisol.tucks(marker, 'marker note into the brown envelope'); }",
-"text": "A Marker note with Kunle's name and 'nice day sign' on it, turns up inside the brown envelope at the marisol, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j3"
-},
-{
-"id": "wf_411dbb6974",
-"ts": "2026-11-24T10:32:16-0500",
-"a": "kmb",
-"b": "bed",
-"code": "kmb.interactwith(bed){ bed.receives(kmb.envelope); bed.remembers(bisola, 'brown envelope'); bed.tucks(kmb, 'yaba bookshop receipt into the egbe note'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the bed, and Taiwo reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
-"id": "wt_8c716b9d09",
-"ts": "2026-11-24T10:32:49-0500",
-"a": "ronke",
-"b": "hall_tap",
-"code": "ronke.interactwith(hall_tap){ ronke.opens(hall_tap, 'water'); hall_tap.set('water', 'running again at the end of the night, strong enough to fill a bucket'); }",
-"text": "At the end of the night Ronke opens the hall tap and it runs strong again, strong enough to fill a bucket.",
-"author": "cos",
-"run": "story-4b1689",
-"card": "j171"
-},
-{
-"id": "wt_dfcda85813",
-"ts": "2026-11-24T10:32:49-0500",
-"a": "hall_tap",
-"b": "pure_water_cooler",
-"code": "pure_water_cooler.interactwith(hall_tap){ pure_water_cooler.receives(hall_tap, 'water'); … }",
-"text": "Because the tap runs again, the plastic sheet comes off the cooler and it gets rinsed and refilled from the tap.",
-"author": "cos",
-"run": "story-4b1689",
-"card": "j171"
-},
-{
-"id": "wt_ec8246d0db",
-"ts": "2026-11-24T10:32:49-0500",
-"a": "hall_tap",
-"b": "ronke",
-"code": "ronke.interactwith(hall_tap){ ronke.washes(hall_tap, 'oranges'); ronke.set('oranges', 'washed at the hall tap and packed in a basin to sell in the morning'); }",
-"text": "With water running, Ronke washes the oranges she means to sell at the hall tap and packs them in a basin for the morning.",
-"author": "cos",
-"run": "story-4b1689",
-"card": "j171"
-},
 {
 "id": "wt_ee467ae196",
 "ts": "2026-11-24T10:32:49-0500",
@@ -11070,6 +11035,61 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": "j6"
+},
+{
+"id": "wt_d3f339904c",
+"ts": "2026-11-25T10:25:36-0500",
+"a": "ronke",
+"b": "pure_water_cooler",
+"code": "ronke.interactwith(pure_water_cooler){ ronke.calls(pure_water_cooler, 'closing time'); … }",
+"text": "Ronke calls out the time, 9:46 pm, over the cooler, so the last sachets go before the hall is locked.",
+"author": "cos",
+"run": "story-4b1689",
+"card": "j168"
+},
+{
+"id": "wt_02f7904878",
+"ts": "2026-11-25T10:25:36-0500",
+"a": "pure_water_cooler",
+"b": "chairman",
+"code": "chairman.interactwith(pure_water_cooler){ chairman.receives(pure_water_cooler, 'closing time'); … }",
+"text": "Hearing the time called at the cooler, the chairman cuts the meeting short and signs the minutes standing up.",
+"author": "cos",
+"run": "story-4b1689",
+"card": "j168"
+},
+{
+"id": "wt_6cb676af32",
+"ts": "2026-11-25T10:25:36-0500",
+"a": "pure_water_cooler",
+"b": "ronke",
+"code": "ronke.interactwith(pure_water_cooler){ ronke.weighs(pure_water_cooler, 'unsold sachets'); … }",
+"text": "Before she leaves, Ronke weighs the unsold sachets in her hand and bags the eleven that are left for the morning bus stop.",
+"author": "cos",
+"run": "story-4b1689",
+"card": "j171"
+},
+{
+"id": "wt_38b1590c5a",
+"ts": "2026-11-25T10:25:36-0500",
+"a": "ronke",
+"b": "investor",
+"code": "investor.interactwith(ronke){ investor.receives(ronke, 'unsold sachets'); … }",
+"text": "The next morning Ronke brings the bagged sachets to the Ojuelegba bus stop still cold, as she said she would, and the investor buys two and nods.",
+"author": "cos",
+"run": "story-4b1689",
+"card": "j171"
+},
+{
+"id": "wf_c57cd387db",
+"ts": "2026-11-25T13:40:41-0500",
+"a": "water",
+"b": "plot",
+"code": "water.interactwith(plot){ plot.receives(water.code); plot.remembers(ejiro, 'juju code'); plot.tucks(water, 'ttb note into the lamp soot'); }",
+"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the lamp soot at the plot, and Taiwo reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j2"
 }
 ],
 "memories": [
@@ -11173,5 +11193,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-24T14:10:26-0500"
+"updated": "2026-11-25T13:40:41-0500"
 }
