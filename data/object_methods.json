@@ -13332,15 +13332,15 @@
      ],
      "consequence": "📍 Wynwood bakery, Miami 🥐 · 87 lines in Teo doesn't take the water.",
      "consequence_job": "j44",
-     "resolved": "teo.give(what=precisions:Thing) from j43",
+     "resolved": "teo.give(what=nigeria:Thing) from j43",
      "injected": [
       {
        "param": "what",
        "class": "Thing",
-       "instance": "precisions",
+       "instance": "nigeria",
        "from_run": "run-5a58c4",
        "from_job": "j43",
-       "source": "pick"
+       "source": "typed"
       }
      ]
     }
@@ -13430,15 +13430,15 @@
      ],
      "consequence": "Marisol doesn't flinch.",
      "consequence_job": "j45",
-     "resolved": "marisol.wise(what=precisions:Thing) from j43",
+     "resolved": "marisol.wise(what=nigeria:Thing) from j43",
      "injected": [
       {
        "param": "what",
        "class": "Thing",
-       "instance": "precisions",
+       "instance": "nigeria",
        "from_run": "run-5a58c4",
        "from_job": "j43",
-       "source": "pick"
+       "source": "typed"
       }
      ]
     }
@@ -13511,7 +13511,7 @@
        "instance": "now",
        "from_run": "run-5a58c4",
        "from_job": "j44",
-       "source": "pick"
+       "source": "original"
       }
      ]
     }
@@ -13576,15 +13576,15 @@
      ],
      "consequence": "📍 Wynwood bakery, Miami 🥐 · 99 lines in Calla isn't calm.",
      "consequence_job": "j46",
-     "resolved": "calla.scroll(where=here:Place) from j45",
+     "resolved": "calla.scroll(where=house:Place)",
      "injected": [
       {
        "param": "where",
        "class": "Place",
-       "instance": "here",
+       "instance": "house",
        "from_run": "run-5a58c4",
-       "from_job": "j45",
-       "source": "pick"
+       "from_job": null,
+       "source": "stage"
       }
      ]
     }
@@ -16110,6 +16110,861 @@
    "prior": [],
    "faded": true,
    "last_run": "run-5a58c4"
+  },
+  "dez.reach": {
+   "object": "dez",
+   "method": "reach",
+   "args": [
+    "potential"
+   ],
+   "runs": [
+    "run-5a58c4"
+   ],
+   "defined": {
+    "run": "run-5a58c4",
+    "job": "j65",
+    "card": "w65",
+    "title": "dez.reach(potential)",
+    "emoji": "🚀",
+    "at": "2026-11-24T21:42:09-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "dez.reach(potential)",
+     "emoji": "🚀",
+     "arg": "potential",
+     "run": "run-5a58c4",
+     "job": "j65",
+     "tweets": [
+      {
+       "text": "#juniorboys - fassen your seatbelts!",
+       "year": "2025"
+      },
+      {
+       "text": "-- my potential",
+       "year": "2025"
+      },
+      {
+       "text": "- we only epp pepu",
+       "year": "2025"
+      }
+     ],
+     "consequence": "Where things stand: Teo, Calla, Dez and Marisol are still in the bakery with the guest list, and the candle is almost out.",
+     "consequence_job": "j66",
+     "resolved": "dez.reach(what=potential:Thing) from j65",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "potential",
+       "from_run": "run-5a58c4",
+       "from_job": "j65",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "potential",
+      "first_run": "run-5a58c4",
+      "first_job": "j65"
+     }
+    ],
+    "text": "reach(what: Thing)"
+   },
+   "receiver_class": "Person",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "dez.run": {
+   "object": "dez",
+   "method": "run",
+   "args": [
+    "follow"
+   ],
+   "runs": [
+    "run-5a58c4"
+   ],
+   "defined": {
+    "run": "run-5a58c4",
+    "job": "j66",
+    "card": "w66",
+    "title": "dez.run(follow)",
+    "emoji": "🏃🏿",
+    "at": "2026-11-24T21:47:08-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "dez.run(follow)",
+     "emoji": "🏃🏿",
+     "arg": "follow",
+     "run": "run-5a58c4",
+     "job": "j66",
+     "tweets": [
+      {
+       "text": "#thryd - so you said follow",
+       "year": "2024"
+      },
+      {
+       "text": "- and then [[so]] much",
+       "year": "2024"
+      },
+      {
+       "text": "- and then you landed",
+       "year": "2024"
+      }
+     ],
+     "consequence": "Where things stand: Teo, Calla, Dez and Marisol are still in the bakery with the guest list, and the candle is almost out.",
+     "consequence_job": "j66",
+     "resolved": "dez.run(act=follow:Action) from j66",
+     "injected": [
+      {
+       "param": "act",
+       "class": "Action",
+       "instance": "follow",
+       "from_run": "run-5a58c4",
+       "from_job": "j66",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "act",
+      "class": "Action",
+      "default": "follow",
+      "first_run": "run-cb805f",
+      "first_job": "j10"
+     }
+    ],
+    "text": "run(act: Action)"
+   },
+   "receiver_class": "Person",
+   "prior": [
+    {
+     "id": "kazeem.run",
+     "title": "kazeem.run(code)",
+     "run": "run-2eb42d",
+     "job": "j40",
+     "at": "2026-11-18T19:11:58-05:00",
+     "why": "same method"
+    }
+   ],
+   "faded": false,
+   "last_run": null
+  },
+  "marisol.need": {
+   "object": "marisol",
+   "method": "need",
+   "args": [
+    "variety"
+   ],
+   "runs": [
+    "run-5a58c4"
+   ],
+   "defined": {
+    "run": "run-5a58c4",
+    "job": "j66",
+    "card": "w66",
+    "title": "marisol.need(variety)",
+    "emoji": "🍬",
+    "at": "2026-11-24T21:47:08-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "marisol.need(variety)",
+     "emoji": "🍬",
+     "arg": "variety",
+     "run": "run-5a58c4",
+     "job": "j66",
+     "tweets": [
+      {
+       "text": "#obm - variety [[is]] a [[sugar]] [[cap]]",
+       "year": "2025"
+      },
+      {
+       "text": "#thryd[[rb]] -- content as code",
+       "year": "2025"
+      },
+      {
+       "text": "[[ubkd]] - issa nesesssaarrii",
+       "year": "2025"
+      }
+     ],
+     "consequence": "Where things stand: Teo, Calla, Dez and Marisol are still in the bakery with the guest list, and the candle is almost out.",
+     "consequence_job": "j66",
+     "resolved": "marisol.need(what=variety:Thing) from j66",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "variety",
+       "from_run": "run-5a58c4",
+       "from_job": "j66",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "variety",
+      "first_run": "run-5a58c4",
+      "first_job": "j66"
+     }
+    ],
+    "text": "need(what: Thing)"
+   },
+   "receiver_class": "Person",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "kemi.sometimes": {
+   "object": "kemi",
+   "method": "sometimes",
+   "args": [
+    ""
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j6",
+    "card": "w6",
+    "title": "kemi.sometimes()",
+    "emoji": "🦋",
+    "at": "2026-11-24T23:26:32-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "kemi.sometimes()",
+     "emoji": "🦋",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j6",
+     "tweets": [
+      {
+       "text": "#thryd - sometimes i",
+       "year": "2024"
+      }
+     ],
+     "consequence": "Where things stand: Kemi stands up in the middle of the restaurant, with Tobi still holding the phone.",
+     "consequence_job": "j7",
+     "resolved": "kemi.sometimes()",
+     "injected": []
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [],
+    "text": "sometimes()"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "ready.finally": {
+   "object": "ready",
+   "method": "finally",
+   "args": [
+    ""
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j6",
+    "card": "w6",
+    "title": "ready.finally()",
+    "emoji": "🔦",
+    "at": "2026-11-24T23:26:32-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "ready.finally()",
+     "emoji": "🔦",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j6",
+     "tweets": [
+      {
+       "text": "#seniorgehs — we’re ready — finally",
+       "year": "2025"
+      }
+     ],
+     "consequence": "The girls at the next table answer for her: \"we're ready, finally.\" Kemi picks up her bag and says she will \"stay above it all.\" 📖 Now: Tobi tries to stop her at the door.",
+     "consequence_job": "j7",
+     "resolved": "ready.finally()",
+     "injected": []
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [],
+    "text": "finally()"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "stay.above": {
+   "object": "stay",
+   "method": "above",
+   "args": [
+    "all"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j6",
+    "card": "w6",
+    "title": "stay.above(all)",
+    "emoji": "🧭",
+    "at": "2026-11-24T23:26:32-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "stay.above(all)",
+     "emoji": "🧭",
+     "arg": "all",
+     "run": "run-cf203b",
+     "job": "j6",
+     "tweets": [
+      {
+       "text": "#oyinboman[[rwp]] - and stay above it all",
+       "year": "2025"
+      }
+     ],
+     "consequence": "The girls at the next table answer for her: \"we're ready, finally.\" Kemi picks up her bag and says she will \"stay above it all.\" 📖 Now: Tobi tries to stop her at the door.",
+     "consequence_job": "j7",
+     "resolved": "stay.above(amount=all:Quantity) from j6",
+     "injected": [
+      {
+       "param": "amount",
+       "class": "Quantity",
+       "instance": "all",
+       "from_run": "run-cf203b",
+       "from_job": "j6",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "amount",
+      "class": "Quantity",
+      "default": "all",
+      "first_run": "run-cf203b",
+      "first_job": "j6"
+     }
+    ],
+    "text": "above(amount: Quantity)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "come.back": {
+   "object": "come",
+   "method": "back",
+   "args": [
+    "defenses"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j7",
+    "card": "w7",
+    "title": "come.back(defenses)",
+    "emoji": "🪣",
+    "at": "2026-11-24T23:40:56-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "come.back(defenses)",
+     "emoji": "🪣",
+     "arg": "defenses",
+     "run": "run-cf203b",
+     "job": "j7",
+     "tweets": [
+      {
+       "text": "#thryd - or come back to defenses",
+       "year": "2024"
+      }
+     ],
+     "consequence": "What just happened: Tobi begs her to \"come back to defenses,\" then says \"you know am african,\" as if that explains everything.",
+     "consequence_job": "j8",
+     "resolved": "come.back(act=defenses:Action) from j7",
+     "injected": [
+      {
+       "param": "act",
+       "class": "Action",
+       "instance": "defenses",
+       "from_run": "run-cf203b",
+       "from_job": "j7",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "act",
+      "class": "Action",
+      "default": "defenses",
+      "first_run": "run-cf203b",
+      "first_job": "j7"
+     }
+    ],
+    "text": "back(act: Action)"
+   },
+   "receiver_class": "Action",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "deya.fighting": {
+   "object": "deya",
+   "method": "fighting",
+   "args": [
+    ""
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j7",
+    "card": "w7",
+    "title": "deya.fighting()",
+    "emoji": "🫧",
+    "at": "2026-11-24T23:40:56-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "deya.fighting()",
+     "emoji": "🫧",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j7",
+     "tweets": [
+      {
+       "text": "- deya fighting you",
+       "year": "2025"
+      }
+     ],
+     "consequence": "The Uber driver leans out and says \"you know uber know everything.\" Tobi turns to the crowd and shouts \"deya fighting you,\" meaning the woman on the phone.",
+     "consequence_job": "j8",
+     "resolved": "deya.fighting()",
+     "injected": []
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [],
+    "text": "fighting()"
+   },
+   "receiver_class": "Person",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "know.african": {
+   "object": "know",
+   "method": "african",
+   "args": [
+    ""
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j7",
+    "card": "w7",
+    "title": "know.african()",
+    "emoji": "🧯",
+    "at": "2026-11-24T23:40:56-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "know.african()",
+     "emoji": "🧯",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j7",
+     "tweets": [
+      {
+       "text": "#oyinboman — you know am african",
+       "year": "2025"
+      }
+     ],
+     "consequence": "What just happened: Tobi begs her to \"come back to defenses,\" then says \"you know am african,\" as if that explains everything.",
+     "consequence_job": "j8",
+     "resolved": "know.african()",
+     "injected": []
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [],
+    "text": "african()"
+   },
+   "receiver_class": "Action",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "know.uber": {
+   "object": "know",
+   "method": "uber",
+   "args": [
+    ""
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j7",
+    "card": "w7",
+    "title": "know.uber()",
+    "emoji": "🪩",
+    "at": "2026-11-24T23:40:56-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "know.uber()",
+     "emoji": "🪩",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j7",
+     "tweets": [
+      {
+       "text": "- you know uber know [[everything]]",
+       "year": "2024"
+      }
+     ],
+     "consequence": "What just happened: Tobi begs her to \"come back to defenses,\" then says \"you know am african,\" as if that explains everything.",
+     "consequence_job": "j8",
+     "resolved": "know.uber()",
+     "injected": []
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [],
+    "text": "uber()"
+   },
+   "receiver_class": "Action",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "inside.teeth": {
+   "object": "inside",
+   "method": "teeth",
+   "args": [
+    ""
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j8",
+    "card": "w8",
+    "title": "inside.teeth()",
+    "emoji": "🪸",
+    "at": "2026-11-24T23:52:49-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "inside.teeth()",
+     "emoji": "🪸",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j8",
+     "tweets": [
+      {
+       "text": "[[tsas]] — #seniorboys — inside his teeth!",
+       "year": "2025"
+      }
+     ],
+     "consequence": "What just happened: Through the window she sees Tobi grinning, the lie still \"inside his teeth!\" The driver glances back and calls her \"customer,\" like she is just another fare.",
+     "consequence_job": "j9",
+     "resolved": "inside.teeth()",
+     "injected": []
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [],
+    "text": "teeth()"
+   },
+   "receiver_class": "Place",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "share.minerals": {
+   "object": "share",
+   "method": "minerals",
+   "args": [
+    ""
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j8",
+    "card": "w8",
+    "title": "share.minerals()",
+    "emoji": "🐌",
+    "at": "2026-11-24T23:52:49-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "share.minerals()",
+     "emoji": "🐌",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j8",
+     "tweets": [
+      {
+       "text": "- share minerals and [[omaylt]]",
+       "year": "2024"
+      }
+     ],
+     "consequence": "He offers to \"share minerals\" from the cooler, and then there is \"the slapping in the engine,\" the car coughing at every gear.",
+     "consequence_job": "j9",
+     "resolved": "share.minerals()",
+     "injected": []
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [],
+    "text": "minerals()"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "slapping.engine": {
+   "object": "slapping",
+   "method": "engine",
+   "args": [
+    ""
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j8",
+    "card": "w8",
+    "title": "slapping.engine()",
+    "emoji": "🦀",
+    "at": "2026-11-24T23:52:49-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "slapping.engine()",
+     "emoji": "🦀",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j8",
+     "tweets": [
+      {
+       "text": "- oh, the slapping in the engine",
+       "year": "2024"
+      }
+     ],
+     "consequence": "He offers to \"share minerals\" from the cooler, and then there is \"the slapping in the engine,\" the car coughing at every gear.",
+     "consequence_job": "j9",
+     "resolved": "slapping.engine()",
+     "injected": []
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [],
+    "text": "engine()"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "dignity.hustle": {
+   "object": "dignity",
+   "method": "hustle",
+   "args": [
+    "dies"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j9",
+    "card": "w9",
+    "title": "dignity.hustle(dies)",
+    "emoji": "🧂",
+    "at": "2026-11-24T23:59:38-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "dignity.hustle(dies)",
+     "emoji": "🧂",
+     "arg": "dies",
+     "run": "run-cf203b",
+     "job": "j9",
+     "tweets": [
+      {
+       "text": "[[biyuiu]] - dignity-as-hustle dies ⚓️",
+       "year": "2025"
+      }
+     ],
+     "consequence": "The woman goes quiet, and Kemi finishes it: \"dignity-as-hustle dies.\" 📖 Now: The woman answers Kemi.",
+     "consequence_job": "j10",
+     "resolved": "dignity.hustle(what=dies:Thing) from j9",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "dies",
+       "from_run": "run-cf203b",
+       "from_job": "j9",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "dies",
+      "first_run": "run-cf203b",
+      "first_job": "j9"
+     }
+    ],
+    "text": "hustle(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "once.understand": {
+   "object": "once",
+   "method": "understand",
+   "args": [
+    ""
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j9",
+    "card": "w9",
+    "title": "once.understand()",
+    "emoji": "🥥",
+    "at": "2026-11-24T23:59:38-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "once.understand()",
+     "emoji": "🥥",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j9",
+     "tweets": [
+      {
+       "text": "- once you understand that",
+       "year": "2024"
+      }
+     ],
+     "consequence": "Kemi tells her, \"once you understand that,\" then stops to breathe.",
+     "consequence_job": "j10",
+     "resolved": "once.understand()",
+     "injected": []
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [],
+    "text": "understand()"
+   },
+   "receiver_class": "Frequency",
+   "prior": [],
+   "faded": false,
+   "last_run": null
   },
   "cooler.getdatemanufactured": {
    "object": "cooler",
@@ -19257,6 +20112,9 @@
   "column": [
    "column.stand"
   ],
+  "come": [
+   "come.back"
+  ],
   "con": [
    "con.mend"
   ],
@@ -19372,6 +20230,9 @@
    "titi.let",
    "titi.keep"
   ],
+  "deya": [
+   "deya.fighting"
+  ],
   "dez": [
    "dez.sit",
    "dez.follow",
@@ -19387,7 +20248,9 @@
    "dez.shake",
    "dez.believe",
    "dez.drop",
-   "dez.check"
+   "dez.check",
+   "dez.reach",
+   "dez.run"
   ],
   "dez_5a58c4": [
    "dez.sit",
@@ -19404,10 +20267,15 @@
    "dez.shake",
    "dez.believe",
    "dez.drop",
-   "dez.check"
+   "dez.check",
+   "dez.reach",
+   "dez.run"
   ],
   "dicey": [
    "dicey.call"
+  ],
+  "dignity": [
+   "dignity.hustle"
   ],
   "disstrack": [
    "disstrack.getowner"
@@ -19497,6 +20365,9 @@
   "imagination_generation_subject": [
    "object.look"
   ],
+  "inside": [
+   "inside.teeth"
+  ],
   "investor": [
    "investor.sign",
    "investor.give",
@@ -19538,7 +20409,12 @@
   "kazeem.goodqualities": [
    "kazeem.goodqualities.filter"
   ],
+  "kemi": [
+   "kemi.sometimes"
+  ],
   "know": [
+   "know.african",
+   "know.uber",
    "know.getWant"
   ],
   "kunle": [
@@ -19612,7 +20488,9 @@
    "dez.shake",
    "dez.believe",
    "dez.drop",
-   "dez.check"
+   "dez.check",
+   "dez.reach",
+   "dez.run"
   ],
   "marisol": [
    "marisol.find",
@@ -19627,7 +20505,8 @@
    "marisol.laugh",
    "marisol.kiss",
    "marisol.wait",
-   "marisol.send"
+   "marisol.send",
+   "marisol.need"
   ],
   "marisol_5a58c4": [
    "marisol.find",
@@ -19642,7 +20521,8 @@
    "marisol.laugh",
    "marisol.kiss",
    "marisol.wait",
-   "marisol.send"
+   "marisol.send",
+   "marisol.need"
   ],
   "media": [
    "media.all"
@@ -19682,6 +20562,9 @@
   ],
   "omo": [
    "omo.fold"
+  ],
+  "once": [
+   "once.understand"
   ],
   "openmedia": [
    "openmedia.isgif"
@@ -19729,6 +20612,9 @@
   "randomrestaurant": [
    "randomrestaurant.put",
    "randomrestaurant.addguest"
+  ],
+  "ready": [
+   "ready.finally"
   ],
   "real": [
    "real.tune"
@@ -19805,17 +20691,26 @@
   "shapes": [
    "shapes.do"
   ],
+  "share": [
+   "share.minerals"
+  ],
   "sia": [
    "sia.count"
   ],
   "sky": [
    "sky.show"
   ],
+  "slapping": [
+   "slapping.engine"
+  ],
   "song": [
    "song.hit"
   ],
   "speaker": [
    "speaker.play"
+  ],
+  "stay": [
+   "stay.above"
   ],
   "structure_hit_subject": [
    "object.look"
@@ -20643,6 +21538,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -20786,6 +21684,7 @@
     "from": "ec307b47b819",
     "title": "1102. the code",
     "funcs": [
+     "share.minerals",
      "calla.return"
     ]
    }
@@ -21491,6 +22390,14 @@
   "bird": [
    {
     "scope": "safe",
+    "from": "7ed7d354059d",
+    "title": "826. not.tyn",
+    "funcs": [
+     "come.back"
+    ]
+   },
+   {
+    "scope": "safe",
     "from": "e8a71fe19bff",
     "title": "727. pray",
     "funcs": [
@@ -21503,6 +22410,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -21704,6 +22614,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -21800,6 +22713,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -21896,6 +22812,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -21992,6 +22911,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -22088,6 +23010,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -22184,6 +23109,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -22280,6 +23208,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -22376,6 +23307,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -22472,6 +23406,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -22568,6 +23505,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -22664,6 +23604,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -22760,6 +23703,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -22856,6 +23802,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -22952,6 +23901,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -23048,6 +24000,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -23144,6 +24099,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -23240,6 +24198,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -23716,6 +24677,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -23812,6 +24776,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -23908,6 +24875,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -23991,6 +24961,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -24074,6 +25047,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -25004,6 +25980,7 @@
     "from": "ec307b47b819",
     "title": "1102. the code",
     "funcs": [
+     "share.minerals",
      "calla.return"
     ]
    }
@@ -25943,6 +26920,9 @@
     "from": "f81f21521253",
     "title": "829. a day in the life of god",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -26041,6 +27021,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
      "marisol.send",
      "teo.decode",
      "marisol.wait",
@@ -26122,6 +27103,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
      "marisol.send",
      "teo.decode",
      "marisol.wait",
@@ -26357,6 +27339,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -26749,6 +27734,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -26845,6 +27833,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -26941,6 +27932,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -27037,6 +28031,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -27143,6 +28140,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -27239,6 +28239,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -27335,6 +28338,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -27431,6 +28437,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -27527,6 +28536,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -27625,6 +28637,16 @@
     "title": "the football match",
     "funcs": [
      "map.which"
+    ]
+   }
+  ],
+  "freaky_freaky_subject": [
+   {
+    "scope": "safe",
+    "from": "9161d2a931e6",
+    "title": "223. freaky freaky",
+    "funcs": [
+     "dignity.hustle"
     ]
    }
   ],
@@ -27730,6 +28752,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -27881,6 +28906,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -27972,6 +29000,16 @@
     ]
    }
   ],
+  "have_death_porsche_figure": [
+   {
+    "scope": "safe",
+    "from": "4e42e2aec04b",
+    "title": "731. i have death in my porsche",
+    "funcs": [
+     "know.uber"
+    ]
+   }
+  ],
   "have_idea_figure": [
    {
     "scope": "safe",
@@ -27987,6 +29025,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -28093,6 +29134,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -28189,6 +29233,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -28300,6 +29347,22 @@
      "ronke.hail",
      "calla.hear"
     ]
+   },
+   {
+    "scope": "safe",
+    "from": "24d3f1fa5ad1",
+    "title": "901. his head is not correct",
+    "funcs": [
+     "know.african"
+    ]
+   },
+   {
+    "scope": "safe",
+    "from": "76e4b260debb",
+    "title": "1106. eez not your fault",
+    "funcs": [
+     "deya.fighting"
+    ]
    }
   ],
   "hose": [
@@ -28307,6 +29370,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -28403,6 +29469,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -28499,6 +29568,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -28595,6 +29667,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -28691,6 +29766,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -28995,6 +30073,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -29215,6 +30296,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -29342,6 +30426,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -29438,6 +30525,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -29534,6 +30624,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -29630,6 +30723,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -29726,6 +30822,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -29822,6 +30921,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -30252,6 +31354,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -30585,6 +31690,7 @@
     "from": "ec307b47b819",
     "title": "1102. the code",
     "funcs": [
+     "share.minerals",
      "calla.return"
     ]
    }
@@ -30937,6 +32043,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -31167,6 +32276,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -31263,6 +32375,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -31359,6 +32474,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -31455,6 +32573,7 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
      "marisol.send",
      "teo.decode",
      "marisol.wait",
@@ -31536,6 +32655,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -31632,6 +32754,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -31728,6 +32853,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.run",
+     "dez.reach",
      "dez.check",
      "teo.decode",
      "calla.know",
@@ -31811,6 +32938,8 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "dez.run",
+     "dez.reach",
      "dez.check",
      "teo.decode",
      "calla.know",
@@ -31894,6 +33023,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -31990,6 +33122,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -32086,6 +33221,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -32182,6 +33320,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -32278,6 +33419,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -32374,6 +33518,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -32470,6 +33617,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -32566,6 +33716,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -32662,6 +33815,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -32758,6 +33914,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -32854,6 +34013,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -32960,6 +34122,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -33179,6 +34344,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -33285,6 +34453,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -33381,6 +34552,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -33477,6 +34651,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -33573,6 +34750,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -33669,6 +34849,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -33765,6 +34948,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -33861,6 +35047,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -33957,6 +35146,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -34053,6 +35245,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -34149,6 +35344,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -34245,6 +35443,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -34341,6 +35542,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -35484,6 +36688,16 @@
     ]
    }
   ],
+  "or_something_figure": [
+   {
+    "scope": "safe",
+    "from": "0794a7d2abc3",
+    "title": "429. real women don’t want husbands",
+    "funcs": [
+     "ready.finally"
+    ]
+   }
+  ],
   "order_pure_water_figure": [
    {
     "scope": "safe",
@@ -35789,6 +37003,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -35985,11 +37202,24 @@
     ]
    }
   ],
+  "play_figure": [
+   {
+    "scope": "safe",
+    "from": "d766125c67d7",
+    "title": "803. play",
+    "funcs": [
+     "dez.run"
+    ]
+   }
+  ],
   "plot": [
    {
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -36213,6 +37443,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -36445,6 +37678,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -36541,6 +37777,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -36637,6 +37876,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -36733,6 +37975,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -36829,6 +38074,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -36925,6 +38173,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -37021,6 +38272,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -37117,6 +38371,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -37213,6 +38470,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -37309,6 +38569,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -37681,6 +38944,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -37777,6 +39043,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -38332,11 +39601,24 @@
     ]
    }
   ],
+  "stories_strong_subject": [
+   {
+    "scope": "safe",
+    "from": "db0976343b1a",
+    "title": "1203. the stories are strong",
+    "funcs": [
+     "inside.teeth"
+    ]
+   }
+  ],
   "street_lamp": [
    {
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -38656,6 +39938,7 @@
     "from": "b4186d5597d1",
     "title": "1212. 6 months in africa",
     "funcs": [
+     "kemi.sometimes",
      "calla.know"
     ]
    }
@@ -38665,6 +39948,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -38761,6 +40047,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -38973,6 +40262,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "marisol.wait",
@@ -39050,6 +40342,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "marisol.wait",
@@ -39127,6 +40422,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -39223,6 +40521,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -39319,6 +40620,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -39540,6 +40844,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -39741,6 +41048,7 @@
     "from": "b4186d5597d1",
     "title": "1212. 6 months in africa",
     "funcs": [
+     "kemi.sometimes",
      "calla.know"
     ]
    }
@@ -39760,6 +41068,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -39856,6 +41167,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -39952,6 +41266,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -40048,6 +41365,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -40144,6 +41464,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -40240,6 +41563,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -40336,6 +41662,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -40432,6 +41761,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -40543,6 +41875,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -40844,6 +42179,16 @@
     ]
    }
   ],
+  "umbrella": [
+   {
+    "scope": "safe",
+    "from": "741a80eaf54d",
+    "title": "726. mobolaji johnson",
+    "funcs": [
+     "slapping.engine"
+    ]
+   }
+  ],
   "used_subject": [
    {
     "scope": "safe",
@@ -41020,6 +42365,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -41116,6 +42464,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -41464,6 +42815,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -41674,6 +43028,9 @@
     "scope": "run",
     "from": "run-5a58c4",
     "funcs": [
+     "marisol.need",
+     "dez.run",
+     "dez.reach",
      "marisol.send",
      "dez.check",
      "teo.decode",
@@ -42119,7 +43476,10 @@
     "marisol.wait",
     "teo.decode",
     "dez.check",
-    "marisol.send"
+    "marisol.send",
+    "dez.reach",
+    "dez.run",
+    "marisol.need"
    ]
   },
   "run-65400f": {
@@ -42210,6 +43570,23 @@
     "jwvbs.open",
     "lateef.hide",
     "make.setany"
+   ]
+  },
+  "run-cf203b": {
+   "safe": "731d52737690",
+   "funcs": [
+    "kemi.sometimes",
+    "ready.finally",
+    "stay.above",
+    "come.back",
+    "deya.fighting",
+    "know.african",
+    "know.uber",
+    "inside.teeth",
+    "share.minerals",
+    "slapping.engine",
+    "dignity.hustle",
+    "once.understand"
    ]
   },
   "run-d6fc": {
@@ -42303,6 +43680,13 @@
    "title": "503. combination",
    "funcs": [
     "nobody.bring"
+   ],
+   "runs": []
+  },
+  "0794a7d2abc3": {
+   "title": "429. real women don’t want husbands",
+   "funcs": [
+    "ready.finally"
    ],
    "runs": []
   },
@@ -42541,6 +43925,13 @@
    ],
    "runs": []
   },
+  "24d3f1fa5ad1": {
+   "title": "901. his head is not correct",
+   "funcs": [
+    "know.african"
+   ],
+   "runs": []
+  },
   "2769d6da2d55": {
    "title": "oya dance",
    "funcs": [
@@ -42665,6 +44056,13 @@
     "run-888ea9"
    ]
   },
+  "38d9cb2b3f3e": {
+   "title": "215. will soon reach",
+   "funcs": [
+    "dez.reach"
+   ],
+   "runs": []
+  },
   "3a15d22b1fae": {
    "title": "128. the way god sees",
    "funcs": [
@@ -42715,6 +44113,13 @@
    ],
    "runs": []
   },
+  "46985e3af2ae": {
+   "title": "401. necessary",
+   "funcs": [
+    "marisol.need"
+   ],
+   "runs": []
+  },
   "46c2032e081f": {
    "title": "jehovah is my tech bro",
    "funcs": [
@@ -42741,6 +44146,13 @@
    "funcs": [
     "investor.taste",
     "taraji.measure"
+   ],
+   "runs": []
+  },
+  "4e42e2aec04b": {
+   "title": "731. i have death in my porsche",
+   "funcs": [
+    "know.uber"
    ],
    "runs": []
   },
@@ -42855,7 +44267,28 @@
   "731d52737690": {
    "title": "124. temptation",
    "funcs": [
-    "kunle.walk"
+    "kunle.walk",
+    "kemi.sometimes",
+    "ready.finally",
+    "stay.above",
+    "come.back",
+    "deya.fighting",
+    "know.african",
+    "know.uber",
+    "inside.teeth",
+    "share.minerals",
+    "slapping.engine",
+    "dignity.hustle",
+    "once.understand"
+   ],
+   "runs": [
+    "run-cf203b"
+   ]
+  },
+  "741a80eaf54d": {
+   "title": "726. mobolaji johnson",
+   "funcs": [
+    "slapping.engine"
    ],
    "runs": []
   },
@@ -42870,6 +44303,13 @@
    "title": "921. chinua achebe and the blockchain",
    "funcs": [
     "investor.sign"
+   ],
+   "runs": []
+  },
+  "76e4b260debb": {
+   "title": "1106. eez not your fault",
+   "funcs": [
+    "deya.fighting"
    ],
    "runs": []
   },
@@ -42895,6 +44335,13 @@
    ],
    "runs": []
   },
+  "7ed7d354059d": {
+   "title": "826. not.tyn",
+   "funcs": [
+    "come.back"
+   ],
+   "runs": []
+  },
   "805643369f2f": {
    "title": "521. daz why i hate lagos",
    "funcs": [
@@ -42912,7 +44359,8 @@
   "85872d186ddf": {
    "title": "1119. a balanced diet",
    "funcs": [
-    "teo.decode"
+    "teo.decode",
+    "once.understand"
    ],
    "runs": []
   },
@@ -42936,6 +44384,13 @@
    "title": "627. how to [[find the premiere]]",
    "funcs": [
     "kazeem.ask"
+   ],
+   "runs": []
+  },
+  "9161d2a931e6": {
+   "title": "223. freaky freaky",
+   "funcs": [
+    "dignity.hustle"
    ],
    "runs": []
   },
@@ -43201,7 +44656,8 @@
   "b4186d5597d1": {
    "title": "1212. 6 months in africa",
    "funcs": [
-    "calla.know"
+    "calla.know",
+    "kemi.sometimes"
    ],
    "runs": []
   },
@@ -43399,6 +44855,13 @@
    ],
    "runs": []
   },
+  "d766125c67d7": {
+   "title": "803. play",
+   "funcs": [
+    "dez.run"
+   ],
+   "runs": []
+  },
   "d7818658d865": {
    "title": "116. pie",
    "funcs": [
@@ -43426,6 +44889,13 @@
     "dez.sit",
     "calla.stare",
     "boze.watch"
+   ],
+   "runs": []
+  },
+  "db0976343b1a": {
+   "title": "1203. the stories are strong",
+   "funcs": [
+    "inside.teeth"
    ],
    "runs": []
   },
@@ -43503,6 +44973,13 @@
    ],
    "runs": []
   },
+  "ea4f0d9823e8": {
+   "title": "206. social equals",
+   "funcs": [
+    "stay.above"
+   ],
+   "runs": []
+  },
   "eb4af1c3e662": {
    "title": "312. yes",
    "funcs": [
@@ -43520,7 +44997,8 @@
   "ec307b47b819": {
    "title": "1102. the code",
    "funcs": [
-    "calla.return"
+    "calla.return",
+    "share.minerals"
    ],
    "runs": []
   },
@@ -43674,7 +45152,10 @@
     "marisol.wait",
     "teo.decode",
     "dez.check",
-    "marisol.send"
+    "marisol.send",
+    "dez.reach",
+    "dez.run",
+    "marisol.need"
    ],
    "runs": [
     "run-5a58c4"
@@ -43806,10 +45287,18 @@
    "c7c1fdc558f5"
   ],
   "1*TboWtv3mCjG0__y8McqEAw.gif": [
+   "76e4b260debb",
+   "24d3f1fa5ad1",
    "18bf0d97a456"
   ],
   "1*_3FqfK7xbEWVsrP8jZeMGw.gif": [
    "57fcace44faf"
+  ],
+  "1*ZL-MNFl9shk29NHzvZiFLw.gif": [
+   "38d9cb2b3f3e"
+  ],
+  "1*CW7SN0Eob04sMnSh7s0GXg.gif": [
+   "38d9cb2b3f3e"
   ],
   "1*pmgi5jXH1w3Cq_TFIC23HA.gif": [
    "2926a1e178ed"
@@ -43897,6 +45386,9 @@
    "ff9027478b51",
    "eb4af1c3e662"
   ],
+  "1*qJUuYpZI_yQTd-nzb8SYRA.gif": [
+   "ea4f0d9823e8"
+  ],
   "1*ubGNThBbHFM_0OLyVAfKYw.gif": [
    "935c0e919db3"
   ],
@@ -43942,6 +45434,9 @@
   "1*B4Qxrti1luSOdS5kdFJWcA.gif": [
    "35e37a321959"
   ],
+  "1*7_tJmvly2Fh5nQh7LBY5WQ.gif": [
+   "db0976343b1a"
+  ],
   "1*rf2yW_BvRiLry_mEM1tNfA.gif": [
    "b200fdc1a275"
   ],
@@ -43976,6 +45471,9 @@
   ],
   "1*vrdSVOVDHfy9357tNF510A.gif": [
    "9957a326a6aa"
+  ],
+  "1*ylKWE_WiHSa90yY31evN_w.gif": [
+   "9161d2a931e6"
   ],
   "1*Hl86N3U4KF18YYolRnot9g.gif": [
    "0cbfdbb450c9"
@@ -44027,8 +45525,14 @@
   "1*DTtXEqWGDRcc_OKyRxNLSA.gif": [
    "72e60399844f"
   ],
+  "1*oEPKkFjXdTx-0U3be0nxNg.gif": [
+   "7ed7d354059d"
+  ],
   "1*OVBtqO058VwUmRW1Ch6x1A.gif": [
    "65c8a08fe242"
+  ],
+  "1*6P6actu28LykPqd3qVBp9g.gif": [
+   "0794a7d2abc3"
   ],
   "1*HIfj-krVIExjXU9EacJ5og.gif": [
    "0977d3f9e44f"
@@ -44096,6 +45600,9 @@
   "1*WHi5bGe1yByrJpchMb-ggw.gif": [
    "f3242b82bede"
   ],
+  "1*yGiZLqk4a8lrxbZRYoRMiA.gif": [
+   "4e42e2aec04b"
+  ],
   "1*Pk8Lr8EFN6Audtb8lRp_pA.gif": [
    "b02906d784b9"
   ],
@@ -44147,6 +45654,9 @@
   "1*aihswOSkhxhlyUNdUJVa9w.gif": [
    "1d08b133d292"
   ],
+  "1*2DxU2eq5fvXFIDGpIwBZxQ.gif": [
+   "d766125c67d7"
+  ],
   "1*6HPYlrwzjGzV8TeNHKXezQ.gif": [
    "805643369f2f"
   ],
@@ -44162,6 +45672,9 @@
   ],
   "1*w4dyp3G_eaYwojHsZHopUA.jpeg": [
    "1d08b133d292"
+  ],
+  "1*cxPiorOEixTS9BMkPYr8LA.gif": [
+   "741a80eaf54d"
   ],
   "1*_EjFgtPmEaDMbd0l7TYupQ.gif": [
    "b7e8db85ddac",
@@ -44190,6 +45703,9 @@
   ],
   "1*KOfHcbZItSwnzB-Xt4fH3A.gif": [
    "1043ee742884"
+  ],
+  "1*r4OBHfBzrtH9iHqYaA8Zwg.gif": [
+   "46985e3af2ae"
   ],
   "1*3RBno1MIDLv6YeAAeDHq8Q.gif": [
    "9525b78aa7f3",
@@ -44462,6 +45978,12 @@
     "8e5bbd0ffb78"
    ]
   },
+  "1*7_tJmvly2Fh5nQh7LBY5WQ.gif": {
+   "runs": [],
+   "safes": [
+    "db0976343b1a"
+   ]
+  },
   "1*1KZ0RuyDgxOgfLDJes6pgw.gif": {
    "runs": [],
    "safes": [
@@ -44510,6 +46032,12 @@
    "safes": [
     "968a0e3f1bca",
     "b0662e4cd34a"
+   ]
+  },
+  "1*ylKWE_WiHSa90yY31evN_w.gif": {
+   "runs": [],
+   "safes": [
+    "9161d2a931e6"
    ]
   },
   "1*HRO7l9t1YDc6pxhyjpzlTQ.gif": {
@@ -44671,6 +46199,8 @@
   "1*TboWtv3mCjG0__y8McqEAw.gif": {
    "runs": [],
    "safes": [
+    "76e4b260debb",
+    "24d3f1fa5ad1",
     "18bf0d97a456"
    ]
   },
@@ -44708,6 +46238,12 @@
    "runs": [],
    "safes": [
     "90d1c21dc449"
+   ]
+  },
+  "1*6P6actu28LykPqd3qVBp9g.gif": {
+   "runs": [],
+   "safes": [
+    "0794a7d2abc3"
    ]
   },
   "1*jAmSDHK6yaAgVhhK9xU8Rg.gif": {
@@ -44857,6 +46393,12 @@
     "10bcabf545b2"
    ]
   },
+  "1*2DxU2eq5fvXFIDGpIwBZxQ.gif": {
+   "runs": [],
+   "safes": [
+    "d766125c67d7"
+   ]
+  },
   "1*WBPch7J7RewC9Z56EZ-bNw.gif": {
    "runs": [],
    "safes": [
@@ -44885,6 +46427,12 @@
    "runs": [],
    "safes": [
     "7dda41b0801a"
+   ]
+  },
+  "1*yGiZLqk4a8lrxbZRYoRMiA.gif": {
+   "runs": [],
+   "safes": [
+    "4e42e2aec04b"
    ]
   },
   "1*guof_R97CRfy3EqokG8qaQ.gif": {
@@ -45062,10 +46610,22 @@
     "d184b52bcb49"
    ]
   },
+  "1*cxPiorOEixTS9BMkPYr8LA.gif": {
+   "runs": [],
+   "safes": [
+    "741a80eaf54d"
+   ]
+  },
   "1*5ro-2vFC2_gpEzZposBVHw.gif": {
    "runs": [],
    "safes": [
     "e8a71fe19bff"
+   ]
+  },
+  "1*oEPKkFjXdTx-0U3be0nxNg.gif": {
+   "runs": [],
+   "safes": [
+    "7ed7d354059d"
    ]
   },
   "1*-VkeQVfQ8_nV5UfHbV3HUg.gif": {
@@ -45214,6 +46774,9 @@
   "column": [
    "column.stand"
   ],
+  "come": [
+   "come.back"
+  ],
   "con": [
    "con.mend"
   ],
@@ -45232,6 +46795,9 @@
   "crime": [
    "crime.know"
   ],
+  "deya": [
+   "deya.fighting"
+  ],
   "dez": [
    "dez.sit",
    "dez.follow",
@@ -45247,10 +46813,15 @@
    "dez.shake",
    "dez.believe",
    "dez.drop",
-   "dez.check"
+   "dez.check",
+   "dez.reach",
+   "dez.run"
   ],
   "dicey": [
    "dicey.call"
+  ],
+  "dignity": [
+   "dignity.hustle"
   ],
   "disstrack": [
    "disstrack.getowner"
@@ -45314,6 +46885,9 @@
   "hours": [
    "hours.could"
   ],
+  "inside": [
+   "inside.teeth"
+  ],
   "investor": [
    "investor.sign",
    "investor.give",
@@ -45352,7 +46926,12 @@
   "kazeem.goodqualities": [
    "kazeem.goodqualities.filter"
   ],
+  "kemi": [
+   "kemi.sometimes"
+  ],
   "know": [
+   "know.african",
+   "know.uber",
    "know.getWant"
   ],
   "kunle": [
@@ -45414,7 +46993,8 @@
    "marisol.laugh",
    "marisol.kiss",
    "marisol.wait",
-   "marisol.send"
+   "marisol.send",
+   "marisol.need"
   ],
   "media": [
    "media.all"
@@ -45445,6 +47025,9 @@
   ],
   "omo": [
    "omo.fold"
+  ],
+  "once": [
+   "once.understand"
   ],
   "openmedia": [
    "openmedia.isgif"
@@ -45486,6 +47069,9 @@
   "randomrestaurant": [
    "randomrestaurant.put",
    "randomrestaurant.addguest"
+  ],
+  "ready": [
+   "ready.finally"
   ],
   "real": [
    "real.tune"
@@ -45539,17 +47125,26 @@
   "shapes": [
    "shapes.do"
   ],
+  "share": [
+   "share.minerals"
+  ],
   "sia": [
    "sia.count"
   ],
   "sky": [
    "sky.show"
   ],
+  "slapping": [
+   "slapping.engine"
+  ],
   "song": [
    "song.hit"
   ],
   "speaker": [
    "speaker.play"
+  ],
+  "stay": [
+   "stay.above"
   ],
   "taking": [
    "taking.isnotes"
@@ -45849,11 +47444,21 @@
   ],
   "travel": [],
   "marisol": [],
+  "kemi": [],
+  "ready": [],
+  "stay": [],
+  "come": [],
+  "deya": [],
+  "know": [],
+  "inside": [],
+  "share": [],
+  "slapping": [],
+  "dignity": [],
+  "once": [],
   "cooler": [],
   "kazeem.goodqualities": [],
   "app": [],
   "#sbk": [],
-  "know": [],
   "lb": [],
   "ticketattendant": [],
   "cleaner": [],
@@ -46043,6 +47648,19 @@
    "thing",
    "tunde",
    "worry"
+  ],
+  "run-cf203b": [
+   "come",
+   "deya",
+   "dignity",
+   "inside",
+   "kemi",
+   "know",
+   "once",
+   "ready",
+   "share",
+   "slapping",
+   "stay"
   ]
  },
  "gc": {
@@ -46057,5 +47675,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-24T20:15:20-05:00"
+ "updated": "2026-11-25T10:22:00-05:00"
 }

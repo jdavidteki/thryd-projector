@@ -108,8 +108,8 @@
     "give",
     "know"
    ],
-   "instances": 453,
-   "arg_instances": 124,
+   "instances": 456,
+   "arg_instances": 127,
    "parent": null,
    "chain": [
     "Thing"
@@ -127,12 +127,12 @@
   "Quantity": {
    "param": "amount",
    "methods": [
+    "above",
     "call",
-    "could",
-    "leave"
+    "could"
    ],
-   "instances": 8,
-   "arg_instances": 8,
+   "instances": 9,
+   "arg_instances": 9,
    "parent": "Thing",
    "chain": [
     "Quantity",
@@ -176,8 +176,8 @@
     "count",
     "map"
    ],
-   "instances": 20,
-   "arg_instances": 17,
+   "instances": 21,
+   "arg_instances": 18,
    "parent": "Thing",
    "chain": [
     "Action",
@@ -512,6 +512,22 @@
     "run-bd649b"
    ],
    "tweets": []
+  },
+  "all": {
+   "class": "Quantity",
+   "cue": "word",
+   "first_run": "run-cf203b",
+   "first_job": "j6",
+   "source": "pick",
+   "runs": [
+    "run-cf203b"
+   ],
+   "tweets": [
+    {
+     "text": "#oyinboman[[rwp]] - and stay above it all",
+     "year": "2025"
+    }
+   ]
   },
   "allnextweek": {
    "class": "Thing",
@@ -1690,6 +1706,22 @@
    ],
    "tweets": []
   },
+  "defenses": {
+   "class": "Action",
+   "cue": "tweet: to/will ...",
+   "first_run": "run-cf203b",
+   "first_job": "j7",
+   "source": "pick",
+   "runs": [
+    "run-cf203b"
+   ],
+   "tweets": [
+    {
+     "text": "#thryd - or come back to defenses",
+     "year": "2024"
+    }
+   ]
+  },
   "delay": {
    "class": "Thing",
    "cue": "default",
@@ -1781,6 +1813,22 @@
     "run-5a58c4"
    ],
    "tweets": []
+  },
+  "dies": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-cf203b",
+   "first_job": "j9",
+   "source": "pick",
+   "runs": [
+    "run-cf203b"
+   ],
+   "tweets": [
+    {
+     "text": "[[biyuiu]] - dignity-as-hustle dies ⚓️",
+     "year": "2025"
+    }
+   ]
   },
   "direction": {
    "class": "Thing",
@@ -2387,11 +2435,16 @@
    "first_job": "j10",
    "source": "pick",
    "runs": [
-    "run-cb805f"
+    "run-cb805f",
+    "run-5a58c4"
    ],
    "tweets": [
     {
      "text": "#juniorboys - but bobo is bigger than m.i.t nau!",
+     "year": "2024"
+    },
+    {
+     "text": "#thryd - so you said follow",
      "year": "2024"
     }
    ]
@@ -5153,6 +5206,26 @@
     }
    ]
   },
+  "potential": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-5a58c4",
+   "first_job": "j65",
+   "source": "pick",
+   "runs": [
+    "run-5a58c4"
+   ],
+   "tweets": [
+    {
+     "text": "#juniorboys - fassen your seatbelts!",
+     "year": "2025"
+    },
+    {
+     "text": "-- my potential",
+     "year": "2025"
+    }
+   ]
+  },
   "precision": {
    "class": "Quantity",
    "cue": "tweet: a number before it",
@@ -7124,6 +7197,22 @@
    ],
    "tweets": []
   },
+  "variety": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-5a58c4",
+   "first_job": "j66",
+   "source": "pick",
+   "runs": [
+    "run-5a58c4"
+   ],
+   "tweets": [
+    {
+     "text": "#obm - variety [[is]] a [[sugar]] [[cap]]",
+     "year": "2025"
+    }
+   ]
+  },
   "veryhot": {
    "class": "Thing",
    "cue": "default",
@@ -7803,24 +7892,6 @@
   ],
   "run-5a58c4": [
    [
-    "precisions",
-    "Thing",
-    "j43",
-    "pick"
-   ],
-   [
-    "now",
-    "Frequency",
-    "j44",
-    "pick"
-   ],
-   [
-    "here",
-    "Place",
-    "j45",
-    "pick"
-   ],
-   [
     "hard",
     "Manner",
     "j45",
@@ -8010,6 +8081,24 @@
     "congratulations",
     "Thing",
     "j64",
+    "pick"
+   ],
+   [
+    "potential",
+    "Thing",
+    "j65",
+    "pick"
+   ],
+   [
+    "follow",
+    "Action",
+    "j66",
+    "pick"
+   ],
+   [
+    "variety",
+    "Thing",
+    "j66",
     "pick"
    ],
    [
@@ -9060,6 +9149,26 @@
     "not",
     "Thing",
     "j11",
+    "pick"
+   ]
+  ],
+  "run-cf203b": [
+   [
+    "all",
+    "Quantity",
+    "j6",
+    "pick"
+   ],
+   [
+    "defenses",
+    "Action",
+    "j7",
+    "pick"
+   ],
+   [
+    "dies",
+    "Thing",
+    "j9",
     "pick"
    ]
   ],
@@ -11716,6 +11825,21 @@
   "teo.decode": "decode(what: Thing)",
   "dez.check": "check(what: Thing)",
   "marisol.send": "send(what: Thing)",
+  "dez.reach": "reach(what: Thing)",
+  "dez.run": "run(act: Action)",
+  "marisol.need": "need(what: Thing)",
+  "kemi.sometimes": "sometimes()",
+  "ready.finally": "finally()",
+  "stay.above": "above(amount: Quantity)",
+  "come.back": "back(act: Action)",
+  "deya.fighting": "fighting()",
+  "know.african": "african()",
+  "know.uber": "uber()",
+  "inside.teeth": "teeth()",
+  "share.minerals": "minerals()",
+  "slapping.engine": "engine()",
+  "dignity.hustle": "hustle(what: Thing)",
+  "once.understand": "understand()",
   "cooler.getdatemanufactured": "getDateManufactured()",
   "ronke.getlikes.contains": "getlikes.contains()",
   "kazeem.goodqualities.filter": "filter()",
@@ -12193,6 +12317,19 @@
    "thing",
    "tunde",
    "worry"
+  ],
+  "run-cf203b": [
+   "come",
+   "deya",
+   "dignity",
+   "inside",
+   "kemi",
+   "know",
+   "once",
+   "ready",
+   "share",
+   "slapping",
+   "stay"
   ]
  },
  "genre_types": {
@@ -12267,5 +12404,5 @@
   "epilogue": "quiet",
   "coda": "quiet"
  },
- "updated": "2026-11-24T20:14:28-05:00"
+ "updated": "2026-11-25T10:22:00-05:00"
 }
