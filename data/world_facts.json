@@ -7061,6 +7061,16 @@
 "run": "run-cf203b",
 "card": "w19",
 "other": null
+},
+{
+"id": "wf_2a147ce2fd",
+"kind": "consequence",
+"text": "The abeokuta parlour leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "surulere_party_hall.interactwith(abeokuta_parlour){ abeokuta_parlour.receives(surulere_party_hall.envelope); abeokuta_parlour.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-cf203b",
+"card": "j6",
+"other": "surulere_party_hall"
 }
 ],
 "uch": [
@@ -11266,17 +11276,6 @@
 },
 "consequences": [
 {
-"id": "wf_778fdcaaa4",
-"ts": "2026-11-24T11:02:35-0500",
-"a": "prior_reality",
-"b": "jetty_south_pointe",
-"code": "prior_reality.interactwith(jetty_south_pointe){ jetty_south_pointe.receives(prior_reality.shirt); … }",
-"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the brown envelope at the jetty south pointe, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j8"
-},
-{
 "id": "wf_b7acfd84d5",
 "ts": "2026-11-24T13:10:12-0500",
 "a": "plot",
@@ -11704,6 +11703,17 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": "j6"
+},
+{
+"id": "wf_2a147ce2fd",
+"ts": "2026-11-25T16:19:40-0500",
+"a": "surulere_party_hall",
+"b": "abeokuta_parlour",
+"code": "surulere_party_hall.interactwith(abeokuta_parlour){ abeokuta_parlour.receives(surulere_party_hall.envelope); abeokuta_parlour.remembers(bisola, 'brown envelope'); }",
+"text": "The abeokuta parlour leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-cf203b",
+"card": "j6"
 }
 ],
 "memories": [
@@ -11807,5 +11817,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-25T16:17:46-0500"
+"updated": "2026-11-25T16:19:40-0500"
 }
