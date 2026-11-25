@@ -2250,6 +2250,37 @@
     }
     syncFreeCmds();
   }
+  // ---------- thunder (v615, Jesuye 25 Nov 2026 "make the thunder api"): a typed <who>.thunder() / jN.thunder() / why.thunder(una) is a code verb on the box
+  // (thunder.py). When the box's REPLY says a strike landed (reply text starts with the lightning emoji; refusals are plain words and play nothing) this page
+  // flashes the stage white and rumbles it, once, under 1 s, CSS only (alive.css #gthunder / .gth-rumble). It costs nothing until the first strike: the flash
+  // layer is created then and removed afterwards. Cool mode (LH.cool), reduced motion and a hidden tab get no animation (cool / reduced: one static dim frame,
+  // 0.35 s; hidden: nothing). A struck character or object's cut also shakes once (gth-hit: the existing gfxshake keyframes at 0.8 s). One play per event id.
+  const THDONE = new Set();
+  function thunderFx(rec, m){
+    rec = rec || {}; m = m || {};
+    const res = String(m.result == null ? '' : m.result), raw = String(rec.resolved || rec.raw || m.resolved || m.raw || '');
+    if(!res || res.charCodeAt(0) !== 0x26A1 || !/thunder\s*\(/i.test(raw || res)) return false;     // only a landed strike
+    const key = String(m.event_id || rec.event_id || rec.id || raw + res);
+    if(THDONE.has(key)) return false; THDONE.add(key); if(THDONE.size > 60) THDONE.delete(THDONE.values().next().value);
+    if(document.hidden || (root.LH && root.LH.state === 'hidden')) return false;                  // nobody is watching: nothing is played
+    let calm = !!(root.LH && root.LH.cool);
+    try{ if(root.matchMedia && root.matchMedia('(prefers-reduced-motion: reduce)').matches) calm = true; }catch(e){}
+    let el = document.getElementById('gthunder');
+    if(!el){ el = document.createElement('div'); el.id = 'gthunder'; el.setAttribute('aria-hidden', 'true'); document.body.appendChild(el); }
+    clearTimeout(el._t); el.className = ''; void el.offsetWidth; el.className = calm ? 'calm' : 'on';
+    const gs = document.getElementById('gstage');
+    if(!calm && gs){ gs.classList.remove('gth-rumble'); void gs.offsetWidth; gs.classList.add('gth-rumble'); setTimeout(() => { try{ gs.classList.remove('gth-rumble'); }catch(e){} }, 850); }
+    el._t = setTimeout(() => { try{ el.className = ''; el.remove(); }catch(e){} }, calm ? 350 : 920);
+    if(!calm){
+      try{
+        const P = parseFree(raw), names = (P && P.args && P.args.length ? P.args : [P && P.obj]).map(ckey).filter(Boolean), run = rec.run || currentRun();
+        names.forEach(nm => matchFreeCuts(nm, run).forEach(c => { if(!c.el) return; c.el.classList.remove('gth-hit'); void c.el.offsetWidth; c.el.classList.add('gth-hit'); setTimeout(() => { try{ c.el.classList.remove('gth-hit'); }catch(e){} }, 850); }));
+      }catch(e){}
+    }
+    try{ codeLine((rec.code || raw).replace(/;?$/, ';'), res); }catch(e){}
+    return true;
+  }
+  root.thrydThunder = thunderFx;                                       // QA / #thryd: thrydThunder({raw:'tobi.thunder()'}, {result:'\u26a1 ...', event_id:'qa1'})
   S.markQueued = function(code, note){ try{ codeLine(String(code==null?'':code).replace(/;?$/, ';'), note||'queued\u2026'); }catch(e){} };
   S.applyFreeCmd = applyFreeCmd; S.applyCliLine = applyCliLine; S.enqueueRawCli = enqueueRawCli; S.sendCliCall = sendCliCall; S.ensureCliSent = ensureCliSent; S.splitCli = splitCli; S.cleanCliPiece = cleanCliPiece; S.fleshCli = fleshCli; S.parseCliPiece = parseCliPiece; S.everydayImpl = everydayImpl; S.displayNameFor = displayNameFor; S.resolveSafeToken = resolveSafeToken; S.syncFreeCmds = syncFreeCmds; S.currentRun = currentRun; S.parseFree = parseFree; S.registerCliMethod = registerCliMethod;
   pollFreeCmds(); setInterval(pollFreeCmds, 20000); setInterval(syncFreeCmds, 1000);
@@ -2753,7 +2784,7 @@
         try{ const getter = root.thrydNtfyGet || net; const tx = await (await getter(replyBase + '/json?poll=1&since=' + t0, 8000)).text();
           for(const l of tx.split('\n')){ if(!l) continue; let m; try{ m = JSON.parse(l); m = JSON.parse(m.message || '{}'); }catch(e){ continue; }
             if(m.rid === body.rid || m.event_id === eid){ rec.status = m.status || (m.ok ? 'accepted' : 'rejected'); rec.reply = m;
-              if(m.ok){ toast((m.code || code) + ' ✓ in the db'); codeLine(m.resolved || m.code || code, 'tapped · in the world db' + (m.run ? ' · ' + m.run + (m.card ? '/' + m.card : '') : ''));
+              if(m.ok){ try{ thunderFx(rec, m); }catch(e){} toast((m.code || code) + ' ✓ in the db'); codeLine(m.resolved || m.code || code, 'tapped · in the world db' + (m.run ? ' · ' + m.run + (m.card ? '/' + m.card : '') : ''));
                 if(m.resolved && TW){ const rv = TW.querySelector('.gtr'); if(rv) rv.textContent = m.resolved; }
                 if(m.ripples && m.ripples.length) rec.loggedRipples = m.ripples;
                 if(m.lock && m.lock.queued) toast((m.code || code) + ' \u2713 queued ' + (m.lock.waited_ms / 1000).toFixed(1) + 's behind ' + m.lock.held_by); }

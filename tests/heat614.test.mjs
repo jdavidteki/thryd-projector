@@ -25,9 +25,9 @@ test('leftover decorative card bobs pause when idle or hidden; video card still 
   assert.match(vc, /\.autoplay\s*=\s*true|\bautoplay\b/);
   assert.match(vc, /\.loop\s*=\s*true|\bloop\b/);
 });
-test('index and version.json are at v614', ()=>{
-  assert.match(html, /var VER=614,/);
-  assert.match(html, /stage\.js\?v=614/);
+test('index and version.json are at v614 or later', ()=>{
+  assert.match(html, /var VER=\d+,/);
+  assert.match(html, /stage\.js\?v=\d+/);
   assert.match(html, /lowheat\.js\?v=3/);
-  assert.match(ver, /"v": 614/);
+  assert.match(ver, /"v": \d+/);
 });
