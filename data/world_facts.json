@@ -4545,6 +4545,16 @@
 "other": "teoloveletter"
 },
 {
+"id": "wf_dabf0dda4e",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the nice day sign at the marker, and Kunle reads the name twice.",
+"code": "tnw.interactwith(marker){ marker.receives(tnw.envelope); marker.remembers(bisola, 'brown envelope'); marker.tucks(tnw, 'yaba bookshop receipt into the nice day sign'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "tnw"
+},
+{
 "id": "wt_5529751886",
 "kind": "consequence",
 "text": "Kunle borrows the marker to fix the fading Nice Day sign and, without thinking, writes the date small in the corner, so the marker now remembers the sign it saved.",
@@ -7443,6 +7453,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "yuwa"
+},
+{
+"id": "wt_c956eb39a7",
+"kind": "func_call",
+"text": "The customer typed [[lie]] on run-cf203b j14.",
+"code": "[[lie]];",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j14",
+"other": null
 }
 ],
 "kazeem": [
@@ -8735,16 +8755,6 @@
 ],
 "cli": [
 {
-"id": "wt_5fa7e8f92e",
-"kind": "func_call",
-"text": "The customer typed a2() on run-2eb42d j42. It came back: a2(). Implementation: /* a2() */.",
-"code": "a2();",
-"author": "customer",
-"run": "run-2eb42d",
-"card": "j42",
-"other": null
-},
-{
 "id": "wt_c5e7741f96",
 "kind": "func_call",
 "text": "The customer typed d1() on run-2eb42d j43. It came back: d1(). Implementation: /* d1() */.",
@@ -8762,6 +8772,16 @@
 "author": "customer",
 "run": "run-2eb42d",
 "card": "j43",
+"other": null
+},
+{
+"id": "wt_f5568971ca",
+"kind": "func_call",
+"text": "The customer typed #thryd.miracle.log(1) on run-cf203b j10. It came back: #thryd.miracle.log(1). Implementation: /* #thryd.miracle.log(1) */.",
+"code": "#thryd.miracle.log(1);",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j10",
 "other": null
 },
 {
@@ -9076,6 +9096,26 @@
 "author": "projector",
 "run": "run-2eb42d",
 "card": "w1",
+"other": null
+},
+{
+"id": "wt_73e2bb319e",
+"kind": "call",
+"text": "Someone at the projector tapped the people scene figure and made it grow.",
+"code": "people_scene_figure.grow();",
+"author": "projector",
+"run": "run-cf203b",
+"card": "w12",
+"other": null
+},
+{
+"id": "wt_214510b834",
+"kind": "call",
+"text": "Someone at the projector tapped the people scene figure and made it grow.",
+"code": "people_scene_figure.grow();",
+"author": "projector",
+"run": "run-cf203b",
+"card": "w12",
 "other": null
 },
 {
@@ -10710,20 +10750,69 @@
 "card": "w10",
 "other": null
 }
+],
+"ktmr": [
+{
+"id": "wt_e48fcf751b",
+"kind": "func_call",
+"text": "The customer typed [[ktmr]] on run-cf203b j14.",
+"code": "[[ktmr]];",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j14",
+"other": null
+}
+],
+"upandan": [
+{
+"id": "wt_a237256f4f",
+"kind": "func_call",
+"text": "The customer typed [[upandan]] on run-cf203b j13.",
+"code": "[[upandan]];",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j13",
+"other": null
+}
+],
+"faith": [
+{
+"id": "wt_3daf8ec55b",
+"kind": "func_call",
+"text": "The customer typed [[faith]] on run-cf203b j12.",
+"code": "[[faith]];",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j12",
+"other": null
+}
+],
+"zzprojcmdproof": [
+{
+"id": "wt_74b3e9ed8d",
+"kind": "func_call",
+"text": "The customer typed [[zzprojcmdproof]] on run-cf203b j15.",
+"code": "[[zzprojcmdproof]];",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j15",
+"other": null
+}
+],
+"uwsaas": [
+{
+"id": "wt_5404156db4",
+"kind": "func_call",
+"text": "The customer typed [[uwsaas]] on run-cf203b j10.",
+"code": "[[uwsaas]];",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j10",
+"other": null
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_669cd37546",
-"ts": "2026-11-24T10:35:44-0500",
-"a": "icsh",
-"b": "top_deck_charter",
-"code": "icsh.interactwith(top_deck_charter){ top_deck_charter.receives(icsh.shirt); … }",
-"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the brown envelope at the top deck charter, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j8"
-},
 {
 "id": "wf_7a2f42f714",
 "ts": "2026-11-24T10:40:48-0500",
@@ -11152,6 +11241,17 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": "j6"
+},
+{
+"id": "wf_dabf0dda4e",
+"ts": "2026-11-25T13:46:45-0500",
+"a": "tnw",
+"b": "marker",
+"code": "tnw.interactwith(marker){ marker.receives(tnw.envelope); marker.remembers(bisola, 'brown envelope'); marker.tucks(tnw, 'yaba bookshop receipt into the nice day sign'); }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the nice day sign at the marker, and Kunle reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
 }
 ],
 "memories": [
@@ -11255,5 +11355,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-25T13:44:51-0500"
+"updated": "2026-11-25T13:46:45-0500"
 }
