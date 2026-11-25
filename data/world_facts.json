@@ -5373,6 +5373,16 @@
 "run": "run-5a58c4",
 "card": "j8",
 "other": "prior_reality"
+},
+{
+"id": "wf_cad5bb7ce3",
+"kind": "consequence",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the green shirt at the florida, and Bisola reads the name twice.",
+"code": "love.interactwith(florida){ florida.receives(love.envelope); … }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6",
+"other": "love"
 }
 ],
 "htpto": [
@@ -7041,6 +7051,16 @@
 "run": "run-5a58c4",
 "card": "j29",
 "other": "miami"
+},
+{
+"id": "wt_95d4645c01",
+"kind": "func_call",
+"text": "Someone at the projector saw the abeokuta parlour meets the surulere party hall.",
+"code": "abeokuta_parlour.meets(surulere_party_hall);",
+"author": "projector",
+"run": "run-cf203b",
+"card": "w19",
+"other": null
 }
 ],
 "uch": [
@@ -11246,17 +11266,6 @@
 },
 "consequences": [
 {
-"id": "wf_7a2f42f714",
-"ts": "2026-11-24T10:40:48-0500",
-"a": "water",
-"b": "bus",
-"code": "water.interactwith(bus){ bus.receives(water.code); bus.remembers(ejiro, 'juju code'); bus.tucks(water, 'ttb note into the brown envelope'); }",
-"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the bus, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j2"
-},
-{
 "id": "wf_778fdcaaa4",
 "ts": "2026-11-24T11:02:35-0500",
 "a": "prior_reality",
@@ -11684,6 +11693,17 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": "j6"
+},
+{
+"id": "wf_cad5bb7ce3",
+"ts": "2026-11-25T16:17:46-0500",
+"a": "love",
+"b": "florida",
+"code": "love.interactwith(florida){ florida.receives(love.envelope); … }",
+"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the green shirt at the florida, and Bisola reads the name twice.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "j6"
 }
 ],
 "memories": [
@@ -11787,5 +11807,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-25T15:45:38-0500"
+"updated": "2026-11-25T16:17:46-0500"
 }
