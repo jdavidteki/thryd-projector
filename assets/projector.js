@@ -1087,12 +1087,14 @@ function place(m){
 (function drift(){setTimeout(()=>{try{if(lastM){const ids=Object.keys(ents);if(ids.length>1){
   const a=ids[Math.floor(Math.random()*ids.length)],b=ids[Math.floor(Math.random()*ids.length)];
   order[a]=Math.random()*10;order[b]=Math.random()*10; place(lastM); Object.values(ents).forEach(x=>x.style.setProperty('--j',((Math.random()-.5)*1.2).toFixed(2)+'vw')); const e=ents[a]; if(e)pulse(e.title);}}}catch(e){} drift();},4000+Math.random()*2000);})();
+// v616: money in the ticker text gets the viewer's-currency note ("$36 (≈₦49,206)"); display only, the data is untouched (assets/localize.js)
+const fxA=t=>{try{const L=window.ThrydLocalize;return L&&t?L.annotate(String(t)):t;}catch(e){return t;}};
 function ticker(world,upd,meta){
-  if(!viewUp||flipPending){ heldTicker=[world,upd,meta]; if(!viewUp){ const u=$('upd'); if(u){u.textContent='loading';u.style.opacity=1;} $('world').textContent=world||'—'; $('meta').textContent=meta||''; } return; }
-  $('world').textContent=world||'';const u=$('upd');
-  if(cutsHintOn){ u.textContent='loading cuts'; u.style.opacity=1; $('meta').textContent=meta||''; return; }
+  if(!viewUp||flipPending){ heldTicker=[world,upd,meta]; if(!viewUp){ const u=$('upd'); if(u){u.textContent='loading';u.style.opacity=1;} $('world').textContent=fxA(world)||'—'; $('meta').textContent=fxA(meta)||''; } return; }
+  $('world').textContent=fxA(world)||'';const u=$('upd');
+  if(cutsHintOn){ u.textContent='loading cuts'; u.style.opacity=1; $('meta').textContent=fxA(meta)||''; return; }
   u.style.opacity=0;
-  setTimeout(()=>{ if(cutsHintOn) return; u.textContent=upd||'';u.style.opacity=1;},400);$('meta').textContent=meta||'';}
+  setTimeout(()=>{ if(cutsHintOn) return; u.textContent=fxA(upd)||'';u.style.opacity=1;},400);$('meta').textContent=fxA(meta)||'';}
 function pulse(name){const e=ents['o:'+name]||ents['c:'+name];if(e){e.classList.remove('pulse');void e.offsetWidth;e.classList.add('pulse');}}
 let sinceBubble=0, nextBubble=4; window.CUR={lines:[],speakers:[]};
 function maybeBubble(lines,speakers){ CUR.lines=lines; CUR.speakers=speakers; sinceBubble++; if(sinceBubble<nextBubble)return; sinceBubble=0; nextBubble=3+Math.floor(Math.random()*3);

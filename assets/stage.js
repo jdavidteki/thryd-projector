@@ -2507,13 +2507,15 @@
       + (it.scope === 'env' ? ' · inherited from ' + (it.env_scope === 'run' ? it.env_from : 'the safe') : ''); b.appendChild(h);
     if(it.resolved){ const rv = document.createElement('div'); rv.className = 'gtr'; rv.textContent = it.resolved; b.appendChild(rv); }
     const q = document.createElement('div');
-    if(tw){ q.appendChild(document.createTextNode('\u00ab' + tw.text + '\u00bb ')); const y = document.createElement('span'); y.className = 'gty'; y.textContent = tw.year; q.appendChild(y); }
+    // v616: money in a tweet line gets the viewer's-currency note as its OWN span after the line (the line stays a verbatim text node, never inside the \u00ab \u00bb)
+    const fxNote = (host, text) => { try{ const L = root.ThrydLocalize, n = L && L.notes(text); if(n && n.length){ const e = document.createElement('span'); e.className = 'gfx'; e.style.cssText = 'color:#b6f0a0;font-size:.85em;margin-left:.5em'; e.textContent = '(' + n.join('; ') + ')'; host.appendChild(e); } }catch(err){} };
+    if(tw){ q.appendChild(document.createTextNode('\u00ab' + tw.text + '\u00bb ')); const y = document.createElement('span'); y.className = 'gty'; y.textContent = tw.year; q.appendChild(y); fxNote(q, tw.text); }
     else q.textContent = '(no archive tweet with a year for this title)';
     b.appendChild(q);
     let host = b; priorOf(it).forEach((p, n) => { const L = document.createElement('div'); L.className = 'grec'; L.style.setProperty('--d', String(n ? 1 : 0));
       const t = (p.f && (p.f.titles || []).find(x => x.title === p.title)) || null, tw0 = t && (t.tweets || [])[0];
       const hd = document.createElement('b'); hd.textContent = '\u21b3 ' + p.title; L.appendChild(hd); L.appendChild(document.createTextNode(' \u00b7 ' + p.run + ' ' + p.job + ' \u00b7 ' + p.why));
-      if(tw0){ const q2 = document.createElement('div'); q2.appendChild(document.createTextNode('\u00ab' + tw0.text + '\u00bb ')); const y2 = document.createElement('span'); y2.className = 'gty'; y2.textContent = tw0.year; q2.appendChild(y2); L.appendChild(q2); }
+      if(tw0){ const q2 = document.createElement('div'); q2.appendChild(document.createTextNode('\u00ab' + tw0.text + '\u00bb ')); const y2 = document.createElement('span'); y2.className = 'gty'; y2.textContent = tw0.year; q2.appendChild(y2); fxNote(q2, tw0.text); L.appendChild(q2); }
       host.appendChild(L); host = L; });
     (it.catches || []).forEach(x => { const e = document.createElement('div'), soft = isSoft(x); e.className = 'gtx' + (soft ? ' soft' : '');
       e.textContent = (soft ? '\u21af bends the scene: ' : '\u26a0 caught: ') + x.text + (x.job ? ' (' + x.job + ')' : ''); b.appendChild(e); });

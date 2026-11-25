@@ -57,6 +57,7 @@ test('the reply handler calls it only for an accepted reply; CSS is one-shot, un
   assert.doesNotMatch(css.slice(css.indexOf('v615 thunder')), /infinite/);
   assert.doesNotMatch(src, /requestAnimationFrame|setInterval/);                         // no JS frame loop: nothing runs between strikes
 });
-test('index and version.json are at v615', () => {
-  assert.match(html, /var VER=615,/); assert.match(html, /stage\.js\?v=615/); assert.match(html, /alive\.css\?v=8/); assert.match(ver, /"v": 615/);
+test('index and version.json are at v615 or later', () => {
+  const v = +(ver.match(/"v": (\d+)/) || [])[1]; assert.ok(v >= 615);
+  assert.match(html, new RegExp('var VER=' + v + ',')); assert.match(html, /stage\.js\?v=\d+/); assert.match(html, /alive\.css\?v=8/);
 });
