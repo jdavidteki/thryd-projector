@@ -28,8 +28,8 @@
     "on",
     "make"
    ],
-   "instances": 54,
-   "arg_instances": 11,
+   "instances": 55,
+   "arg_instances": 12,
    "parent": "Thing",
    "chain": [
     "Person",
@@ -108,8 +108,8 @@
     "give",
     "know"
    ],
-   "instances": 463,
-   "arg_instances": 134,
+   "instances": 465,
+   "arg_instances": 136,
    "parent": null,
    "chain": [
     "Thing"
@@ -2904,6 +2904,22 @@
    ],
    "tweets": []
   },
+  "have": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-cf203b",
+   "first_job": "j19",
+   "source": "pick",
+   "runs": [
+    "run-cf203b"
+   ],
+   "tweets": [
+    {
+     "text": "#oyinboman -- alorof things have apuned in your absence o",
+     "year": "2025"
+    }
+   ]
+  },
   "hawker": {
    "class": "Thing",
    "cue": "default",
@@ -3402,6 +3418,22 @@
     "run-merge-m1"
    ],
    "tweets": []
+  },
+  "ishoda": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-cf203b",
+   "first_job": "j19",
+   "source": "pick",
+   "runs": [
+    "run-cf203b"
+   ],
+   "tweets": [
+    {
+     "text": "- we should we be [[iae]] fighting ishoda oluwa lon shola",
+     "year": "2024"
+    }
+   ]
   },
   "isl": {
    "class": "Thing",
@@ -7271,6 +7303,23 @@
     }
    ]
   },
+  "una": {
+   "class": "Person",
+   "cue": "word",
+   "first_run": "run-cf203b",
+   "first_job": "j19",
+   "source": "pick",
+   "runs": [
+    "run-cf203b"
+   ],
+   "tweets": [
+    {
+     "text": "#thequeenisdead - why? thunder una fayago!",
+     "year": "2024",
+     "id": "1785439708199178252"
+    }
+   ]
+  },
   "uncleebo": {
    "class": "Person",
    "cue": "on stage: character",
@@ -9436,6 +9485,24 @@
     "think",
     "Thing",
     "j18",
+    "pick"
+   ],
+   [
+    "have",
+    "Thing",
+    "j19",
+    "pick"
+   ],
+   [
+    "ishoda",
+    "Thing",
+    "j19",
+    "pick"
+   ],
+   [
+    "una",
+    "Person",
+    "j19",
     "pick"
    ]
   ],
@@ -12131,6 +12198,10 @@
   "make.add": "add(amount: Quantity)",
   "say.ehn": "ehn()",
   "what.guys": "guys(what: Thing)",
+  "alorof.things": "things(what: Thing)",
+  "should.fighting": "fighting(what: Thing)",
+  "story.go": "go()",
+  "why.thunder": "thunder(who: Person)",
   "cooler.getdatemanufactured": "getDateManufactured()",
   "ronke.getlikes.contains": "getlikes.contains()",
   "kazeem.goodqualities.filter": "filter()",
@@ -12617,6 +12688,7 @@
   ],
   "run-cf203b": [
    "ahan",
+   "alorof",
    "believe",
    "can",
    "come",
@@ -12641,12 +12713,15 @@
    "say",
    "share",
    "shi",
+   "should",
    "shu",
    "slapping",
    "something",
    "stay",
+   "story",
    "stringify",
    "what",
+   "why",
    "wo",
    "woke",
    "wym"
@@ -12724,5 +12799,5 @@
   "epilogue": "quiet",
   "coda": "quiet"
  },
- "updated": "2026-11-25T15:46:32-05:00"
+ "updated": "2026-11-25T16:50:37-05:00"
 }

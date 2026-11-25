@@ -18457,6 +18457,284 @@
    "faded": false,
    "last_run": "run-cf203b"
   },
+  "alorof.things": {
+   "object": "alorof",
+   "method": "things",
+   "args": [
+    "have"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j19",
+    "card": "w19",
+    "title": "alorof.things(have)",
+    "emoji": "🐞",
+    "at": "2026-11-25T16:50:16-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "alorof.things(have)",
+     "emoji": "🐞",
+     "arg": "have",
+     "run": "run-cf203b",
+     "job": "j19",
+     "tweets": [
+      {
+       "text": "#oyinboman -- alorof things have apuned in your absence o",
+       "year": "2025"
+      }
+     ],
+     "consequence": "thunder una fayago!\" She tells him \"we should be fighting ishoda oluwa lon shola,\" not each other, and sighs, \"story so we go again.\" Then she says it: \"alorof things have apuned in your absence o.\" 📖 Now: Tobi heard her.",
+     "consequence_job": "j20",
+     "resolved": "alorof.things(what=have:Thing) from j19",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "have",
+       "from_run": "run-cf203b",
+       "from_job": "j19",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "have",
+      "first_run": "run-cf203b",
+      "first_job": "j19"
+     }
+    ],
+    "text": "things(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "should.fighting": {
+   "object": "should",
+   "method": "fighting",
+   "args": [
+    "ishoda"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j19",
+    "card": "w19",
+    "title": "should.fighting(ishoda)",
+    "emoji": "🐊",
+    "at": "2026-11-25T16:50:16-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "should.fighting(ishoda)",
+     "emoji": "🐊",
+     "arg": "ishoda",
+     "run": "run-cf203b",
+     "job": "j19",
+     "tweets": [
+      {
+       "text": "- we should we be [[iae]] fighting ishoda oluwa lon shola",
+       "year": "2024"
+      }
+     ],
+     "consequence": "thunder una fayago!\" She tells him \"we should be fighting ishoda oluwa lon shola,\" not each other, and sighs, \"story so we go again.\" Then she says it: \"alorof things have apuned in your absence o.\" 📖 Now: Tobi heard her.",
+     "consequence_job": "j20",
+     "resolved": "should.fighting(what=ishoda:Thing) from j19",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "ishoda",
+       "from_run": "run-cf203b",
+       "from_job": "j19",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "ishoda",
+      "first_run": "run-cf203b",
+      "first_job": "j19"
+     }
+    ],
+    "text": "fighting(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [
+    {
+     "id": "deya.fighting",
+     "title": "deya.fighting()",
+     "run": "run-cf203b",
+     "job": "j7",
+     "at": "2026-11-24T23:40:56-05:00",
+     "why": "same method"
+    }
+   ],
+   "faded": false,
+   "last_run": null
+  },
+  "story.go": {
+   "object": "story",
+   "method": "go",
+   "args": [
+    ""
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j19",
+    "card": "w19",
+    "title": "story.go()",
+    "emoji": "🦎",
+    "at": "2026-11-25T16:50:16-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "story.go()",
+     "emoji": "🦎",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j19",
+     "tweets": [
+      {
+       "text": "- story so we go [[again]]",
+       "year": "2025"
+      }
+     ],
+     "consequence": "thunder una fayago!\" She tells him \"we should be fighting ishoda oluwa lon shola,\" not each other, and sighs, \"story so we go again.\" Then she says it: \"alorof things have apuned in your absence o.\" 📖 Now: Tobi heard her.",
+     "consequence_job": "j20",
+     "resolved": "story.go()",
+     "injected": []
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [],
+    "text": "go()"
+   },
+   "receiver_class": "Thing",
+   "prior": [
+    {
+     "id": "dem.go",
+     "title": "dem.go(run)",
+     "run": "run-cf203b",
+     "job": "j15",
+     "at": "2026-11-25T13:50:25-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "hand.go",
+     "title": "hand.go(like)",
+     "run": "run-888ea9",
+     "job": "j6",
+     "at": "2026-11-23T18:21:50-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "titi.go",
+     "title": "titi.go(juss)",
+     "run": "run-g1-B",
+     "job": "j10",
+     "at": "2026-11-17T17:20:54-05:00",
+     "why": "same method"
+    }
+   ],
+   "faded": false,
+   "last_run": null
+  },
+  "why.thunder": {
+   "object": "why",
+   "method": "thunder",
+   "args": [
+    "una"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j19",
+    "card": "w19",
+    "title": "why.thunder(una)",
+    "emoji": "🦩",
+    "at": "2026-11-25T16:50:16-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "why.thunder(una)",
+     "emoji": "🦩",
+     "arg": "una",
+     "run": "run-cf203b",
+     "job": "j19",
+     "tweets": [
+      {
+       "text": "#thequeenisdead - why? thunder una fayago!",
+       "year": "2024",
+       "id": "1785439708199178252"
+      }
+     ],
+     "consequence": "What just happened: Kemi finally snaps: \"why?",
+     "consequence_job": "j20",
+     "resolved": "why.thunder(who=una:Person) from j19",
+     "injected": [
+      {
+       "param": "who",
+       "class": "Person",
+       "instance": "una",
+       "from_run": "run-cf203b",
+       "from_job": "j19",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "who",
+      "class": "Person",
+      "default": "una",
+      "first_run": "run-cf203b",
+      "first_job": "j19"
+     }
+    ],
+    "text": "thunder(who: Person)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
   "cooler.getdatemanufactured": {
    "object": "cooler",
    "method": "getDateManufactured",
@@ -21638,6 +21916,9 @@
   "ahan": [
    "ahan.wayayou"
   ],
+  "alorof": [
+   "alorof.things"
+  ],
   "american_olamide_subject": [
    "object.look"
   ],
@@ -22359,6 +22640,9 @@
   "shi": [
    "shi.gbogbo"
   ],
+  "should": [
+   "should.fighting"
+  ],
   "shu": [
    "shu.making"
   ],
@@ -22382,6 +22666,9 @@
   ],
   "stay": [
    "stay.above"
+  ],
+  "story": [
+   "story.go"
   ],
   "stringify": [
    "stringify.boolean"
@@ -22521,6 +22808,9 @@
   ],
   "whatever_happens_me_subject": [
    "object.look"
+  ],
+  "why": [
+   "why.thunder"
   ],
   "wife": [
    "wife.kill"
@@ -24310,6 +24600,16 @@
      "nobody.bring",
      "hear.setword",
      "nobody.weigh"
+    ]
+   }
+  ],
+  "bowl": [
+   {
+    "scope": "safe",
+    "from": "b6a5d6fd4ece",
+    "title": "320. upandan",
+    "funcs": [
+     "why.thunder"
     ]
    }
   ],
@@ -27713,6 +28013,7 @@
     "from": "ae3ee411f127",
     "title": "304. i can break bread anytime",
     "funcs": [
+     "alorof.things",
      "teo.welcome"
     ]
    }
@@ -27723,6 +28024,7 @@
     "from": "ae3ee411f127",
     "title": "304. i can break bread anytime",
     "funcs": [
+     "alorof.things",
      "teo.welcome"
     ]
    }
@@ -27733,6 +28035,7 @@
     "from": "ae3ee411f127",
     "title": "304. i can break bread anytime",
     "funcs": [
+     "alorof.things",
      "teo.welcome"
     ]
    }
@@ -27743,6 +28046,7 @@
     "from": "ae3ee411f127",
     "title": "304. i can break bread anytime",
     "funcs": [
+     "alorof.things",
      "teo.welcome"
     ]
    }
@@ -28586,6 +28890,7 @@
     "from": "ae3ee411f127",
     "title": "304. i can break bread anytime",
     "funcs": [
+     "alorof.things",
      "teo.welcome"
     ]
    }
@@ -28596,6 +28901,7 @@
     "from": "ae3ee411f127",
     "title": "304. i can break bread anytime",
     "funcs": [
+     "alorof.things",
      "teo.welcome"
     ]
    }
@@ -28606,6 +28912,7 @@
     "from": "0cbfdbb450c9",
     "title": "721. dapo just won",
     "funcs": [
+     "story.go",
      "wanow.knew"
     ]
    }
@@ -32121,6 +32428,7 @@
     "from": "ae3ee411f127",
     "title": "304. i can break bread anytime",
     "funcs": [
+     "alorof.things",
      "teo.welcome"
     ]
    }
@@ -32131,6 +32439,7 @@
     "from": "ae3ee411f127",
     "title": "304. i can break bread anytime",
     "funcs": [
+     "alorof.things",
      "teo.welcome"
     ]
    }
@@ -33436,6 +33745,7 @@
     "from": "ae3ee411f127",
     "title": "304. i can break bread anytime",
     "funcs": [
+     "alorof.things",
      "teo.welcome"
     ]
    }
@@ -37835,6 +38145,7 @@
     "from": "ae3ee411f127",
     "title": "304. i can break bread anytime",
     "funcs": [
+     "alorof.things",
      "teo.welcome"
     ]
    }
@@ -37845,6 +38156,7 @@
     "from": "ae3ee411f127",
     "title": "304. i can break bread anytime",
     "funcs": [
+     "alorof.things",
      "teo.welcome"
     ]
    }
@@ -38637,6 +38949,7 @@
     "from": "ae3ee411f127",
     "title": "304. i can break bread anytime",
     "funcs": [
+     "alorof.things",
      "teo.welcome"
     ]
    },
@@ -45398,6 +45711,10 @@
     "make.add",
     "say.ehn",
     "what.guys",
+    "alorof.things",
+    "should.fighting",
+    "story.go",
+    "why.thunder",
     "cli.cli",
     "thryd.importtheme",
     "kemi.ismarried",
@@ -45599,7 +45916,8 @@
   "0cbfdbb450c9": {
    "title": "721. dapo just won",
    "funcs": [
-    "wanow.knew"
+    "wanow.knew",
+    "story.go"
    ],
    "runs": []
   },
@@ -46178,7 +46496,11 @@
     "wym.dont",
     "make.add",
     "say.ehn",
-    "what.guys"
+    "what.guys",
+    "alorof.things",
+    "should.fighting",
+    "story.go",
+    "why.thunder"
    ],
    "runs": [
     "run-cf203b"
@@ -46546,7 +46868,8 @@
   "ae3ee411f127": {
    "title": "304. i can break bread anytime",
    "funcs": [
-    "teo.welcome"
+    "teo.welcome",
+    "alorof.things"
    ],
    "runs": [
     "run-44583f"
@@ -46603,6 +46926,13 @@
    ],
    "runs": []
   },
+  "b30081d18c6b": {
+   "title": "402. so we must",
+   "funcs": [
+    "should.fighting"
+   ],
+   "runs": []
+  },
   "b4186d5597d1": {
    "title": "1212. 6 months in africa",
    "funcs": [
@@ -46617,6 +46947,13 @@
     "calla.see",
     "use.mend",
     "buy.fold"
+   ],
+   "runs": []
+  },
+  "b6a5d6fd4ece": {
+   "title": "320. upandan",
+   "funcs": [
+    "why.thunder"
    ],
    "runs": []
   },
@@ -47623,6 +47960,9 @@
   "1*IZCnNs0fS0ukLcJuFqJEJg.gif": [
    "5f65feeb3316"
   ],
+  "1*POLpJ1B-CHzQpZu8yG70OQ.gif": [
+   "b6a5d6fd4ece"
+  ],
   "1*BiRPdRqsYp7KBNTKPU6WUg.gif": [
    "a3d083db0935"
   ],
@@ -47664,6 +48004,9 @@
   ],
   "1*NIUcPPNMbOVZpzrAfqbDZA.jpeg": [
    "483f5ddc9d35"
+  ],
+  "1*9VJWGdPDd-K9xE6NF4v1JQ.jpeg": [
+   "b30081d18c6b"
   ],
   "1*cAwkTbb9R_3ZS5u4Z-sTdg.jpeg": [
    "46c2032e081f"
@@ -48488,6 +48831,12 @@
     "7dda41b0801a"
    ]
   },
+  "1*POLpJ1B-CHzQpZu8yG70OQ.gif": {
+   "runs": [],
+   "safes": [
+    "b6a5d6fd4ece"
+   ]
+  },
   "1*yGiZLqk4a8lrxbZRYoRMiA.gif": {
    "runs": [],
    "safes": [
@@ -48790,6 +49139,9 @@
   ],
   "ahan": [
    "ahan.wayayou"
+  ],
+  "alorof": [
+   "alorof.things"
   ],
   "aotl": [
    "aotl.isline"
@@ -49263,6 +49615,9 @@
   "shi": [
    "shi.gbogbo"
   ],
+  "should": [
+   "should.fighting"
+  ],
   "shu": [
    "shu.making"
   ],
@@ -49286,6 +49641,9 @@
   ],
   "stay": [
    "stay.above"
+  ],
+  "story": [
+   "story.go"
   ],
   "stringify": [
    "stringify.boolean"
@@ -49375,6 +49733,9 @@
   ],
   "what": [
    "what.guys"
+  ],
+  "why": [
+   "why.thunder"
   ],
   "wife": [
    "wife.kill"
@@ -49638,6 +49999,10 @@
   ],
   "say": [],
   "what": [],
+  "alorof": [],
+  "should": [],
+  "story": [],
+  "why": [],
   "cooler": [],
   "kazeem.goodqualities": [],
   "app": [],
@@ -49835,6 +50200,7 @@
   ],
   "run-cf203b": [
    "ahan",
+   "alorof",
    "believe",
    "can",
    "come",
@@ -49859,12 +50225,15 @@
    "say",
    "share",
    "shi",
+   "should",
    "shu",
    "slapping",
    "something",
    "stay",
+   "story",
    "stringify",
    "what",
+   "why",
    "wo",
    "woke",
    "wym"
@@ -49883,5 +50252,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-25T15:47:22-05:00"
+ "updated": "2026-11-25T16:50:37-05:00"
 }
