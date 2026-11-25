@@ -108,8 +108,8 @@
     "give",
     "know"
    ],
-   "instances": 465,
-   "arg_instances": 136,
+   "instances": 467,
+   "arg_instances": 138,
    "parent": null,
    "chain": [
     "Thing"
@@ -131,8 +131,8 @@
     "add",
     "call"
    ],
-   "instances": 10,
-   "arg_instances": 10,
+   "instances": 11,
+   "arg_instances": 11,
    "parent": "Thing",
    "chain": [
     "Quantity",
@@ -4028,6 +4028,22 @@
    ],
    "tweets": []
   },
+  "less": {
+   "class": "Quantity",
+   "cue": "word",
+   "first_run": "run-cf203b",
+   "first_job": "j21",
+   "source": "pick",
+   "runs": [
+    "run-cf203b"
+   ],
+   "tweets": [
+    {
+     "text": "-- skipping consumes less energy",
+     "year": "2025"
+    }
+   ]
+  },
   "let": {
    "class": "Thing",
    "cue": "default",
@@ -7066,6 +7082,22 @@
     }
    ]
   },
+  "toilet": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-cf203b",
+   "first_job": "j21",
+   "source": "pick",
+   "runs": [
+    "run-cf203b"
+   ],
+   "tweets": [
+    {
+     "text": "- a poty asin toilet or apoty eri?",
+     "year": "2024"
+    }
+   ]
+  },
   "tok": {
    "class": "Thing",
    "cue": "default",
@@ -7098,6 +7130,22 @@
     "run-merge-1017-145411"
    ],
    "tweets": []
+  },
+  "ton": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-cf203b",
+   "first_job": "j21",
+   "source": "pick",
+   "runs": [
+    "run-cf203b"
+   ],
+   "tweets": [
+    {
+     "text": "— daz what ton me on",
+     "year": "2025"
+    }
+   ]
   },
   "totalnumapps": {
    "class": "Thing",
@@ -9503,6 +9551,24 @@
     "una",
     "Person",
     "j19",
+    "pick"
+   ],
+   [
+    "ton",
+    "Thing",
+    "j21",
+    "pick"
+   ],
+   [
+    "toilet",
+    "Thing",
+    "j21",
+    "pick"
+   ],
+   [
+    "less",
+    "Quantity",
+    "j21",
     "pick"
    ]
   ],
@@ -12202,6 +12268,9 @@
   "should.fighting": "fighting(what: Thing)",
   "story.go": "go()",
   "why.thunder": "thunder(who: Person)",
+  "daz.what": "what(what: Thing)",
+  "poty.asin": "asin(what: Thing)",
+  "skipping.consumes": "consumes(amount: Quantity)",
   "cooler.getdatemanufactured": "getDateManufactured()",
   "ronke.getlikes.contains": "getlikes.contains()",
   "kazeem.goodqualities.filter": "filter()",
@@ -12693,6 +12762,7 @@
    "can",
    "come",
    "das",
+   "daz",
    "dem",
    "deya",
    "dignity",
@@ -12708,6 +12778,7 @@
    "nigerian",
    "once",
    "part",
+   "poty",
    "ready",
    "russian",
    "say",
@@ -12715,6 +12786,7 @@
    "shi",
    "should",
    "shu",
+   "skipping",
    "slapping",
    "something",
    "stay",
@@ -12799,5 +12871,5 @@
   "epilogue": "quiet",
   "coda": "quiet"
  },
- "updated": "2026-11-25T16:50:37-05:00"
+ "updated": "2026-11-25T17:35:39-05:00"
 }

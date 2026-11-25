@@ -18735,6 +18735,201 @@
    "faded": false,
    "last_run": "run-cf203b"
   },
+  "daz.what": {
+   "object": "daz",
+   "method": "what",
+   "args": [
+    "ton"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j21",
+    "card": "w21",
+    "title": "daz.what(ton)",
+    "emoji": "🪰",
+    "at": "2026-11-25T17:35:03-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "daz.what(ton)",
+     "emoji": "🪰",
+     "arg": "ton",
+     "run": "run-cf203b",
+     "job": "j21",
+     "tweets": [
+      {
+       "text": "— daz what ton me on",
+       "year": "2025"
+      }
+     ],
+     "consequence": "She smiles and says \"daz what ton me on.\" When he starts on the receipt she cuts him off: \"skipping consumes less energy.\" She laughs, \"a poty asin toilet or apoty eri?\", then reaches up for his head: \"remove your cap.\" 📖 Now: The phone is ",
+     "consequence_job": "j22",
+     "resolved": "daz.what(what=ton:Thing) from j21",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "ton",
+       "from_run": "run-cf203b",
+       "from_job": "j21",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "ton",
+      "first_run": "run-cf203b",
+      "first_job": "j21"
+     }
+    ],
+    "text": "what(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "poty.asin": {
+   "object": "poty",
+   "method": "asin",
+   "args": [
+    "toilet"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j21",
+    "card": "w21",
+    "title": "poty.asin(toilet)",
+    "emoji": "🦈",
+    "at": "2026-11-25T17:35:03-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "poty.asin(toilet)",
+     "emoji": "🦈",
+     "arg": "toilet",
+     "run": "run-cf203b",
+     "job": "j21",
+     "tweets": [
+      {
+       "text": "- a poty asin toilet or apoty eri?",
+       "year": "2024"
+      }
+     ],
+     "consequence": "She smiles and says \"daz what ton me on.\" When he starts on the receipt she cuts him off: \"skipping consumes less energy.\" She laughs, \"a poty asin toilet or apoty eri?\", then reaches up for his head: \"remove your cap.\" 📖 Now: The phone is ",
+     "consequence_job": "j22",
+     "resolved": "poty.asin(what=toilet:Thing) from j21",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "toilet",
+       "from_run": "run-cf203b",
+       "from_job": "j21",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "toilet",
+      "first_run": "run-cf203b",
+      "first_job": "j21"
+     }
+    ],
+    "text": "asin(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "skipping.consumes": {
+   "object": "skipping",
+   "method": "consumes",
+   "args": [
+    "less"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j21",
+    "card": "w21",
+    "title": "skipping.consumes(less)",
+    "emoji": "🐳",
+    "at": "2026-11-25T17:35:03-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "skipping.consumes(less)",
+     "emoji": "🐳",
+     "arg": "less",
+     "run": "run-cf203b",
+     "job": "j21",
+     "tweets": [
+      {
+       "text": "-- skipping consumes less energy",
+       "year": "2025"
+      }
+     ],
+     "consequence": "She smiles and says \"daz what ton me on.\" When he starts on the receipt she cuts him off: \"skipping consumes less energy.\" She laughs, \"a poty asin toilet or apoty eri?\", then reaches up for his head: \"remove your cap.\" 📖 Now: The phone is ",
+     "consequence_job": "j22",
+     "resolved": "skipping.consumes(amount=less:Quantity) from j21",
+     "injected": [
+      {
+       "param": "amount",
+       "class": "Quantity",
+       "instance": "less",
+       "from_run": "run-cf203b",
+       "from_job": "j21",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "amount",
+      "class": "Quantity",
+      "default": "less",
+      "first_run": "run-cf203b",
+      "first_job": "j21"
+     }
+    ],
+    "text": "consumes(amount: Quantity)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
   "cooler.getdatemanufactured": {
    "object": "cooler",
    "method": "getDateManufactured",
@@ -22137,6 +22332,9 @@
   "das": [
    "das.right"
   ],
+  "daz": [
+   "daz.what"
+  ],
   "dem": [
    "dem.go"
   ],
@@ -22533,6 +22731,9 @@
   "portable_subject": [
    "object.look"
   ],
+  "poty": [
+   "poty.asin"
+  ],
   "qa568cli": [
    "qa568cli.nullfallback",
    "qa568cli.dragfallback"
@@ -22648,6 +22849,9 @@
   ],
   "sia": [
    "sia.count"
+  ],
+  "skipping": [
+   "skipping.consumes"
   ],
   "sky": [
    "sky.show"
@@ -29481,6 +29685,16 @@
     "title": "111. how to [[end world poverty]]",
     "funcs": [
      "dez.use"
+    ]
+   }
+  ],
+  "energy_conversion_figure": [
+   {
+    "scope": "safe",
+    "from": "775335ae67da",
+    "title": "111. energy conversion",
+    "funcs": [
+     "skipping.consumes"
     ]
    }
   ],
@@ -44801,6 +45015,14 @@
      "kazeem.bet",
      "teo.sit"
     ]
+   },
+   {
+    "scope": "safe",
+    "from": "08999f5fb666",
+    "title": "1019. a little oppression never hurt anybody",
+    "funcs": [
+     "daz.what"
+    ]
    }
   ],
   "wser": [
@@ -45715,6 +45937,9 @@
     "should.fighting",
     "story.go",
     "why.thunder",
+    "daz.what",
+    "poty.asin",
+    "skipping.consumes",
     "cli.cli",
     "thryd.importtheme",
     "kemi.ismarried",
@@ -45836,6 +46061,13 @@
    "funcs": [
     "teo.sit",
     "kazeem.bet"
+   ],
+   "runs": []
+  },
+  "08999f5fb666": {
+   "title": "1019. a little oppression never hurt anybody",
+   "funcs": [
+    "daz.what"
    ],
    "runs": []
   },
@@ -46500,7 +46732,10 @@
     "alorof.things",
     "should.fighting",
     "story.go",
-    "why.thunder"
+    "why.thunder",
+    "daz.what",
+    "poty.asin",
+    "skipping.consumes"
    ],
    "runs": [
     "run-cf203b"
@@ -46517,6 +46752,13 @@
    "title": "the football match",
    "funcs": [
     "map.which"
+   ],
+   "runs": []
+  },
+  "75c8a354a7c7": {
+   "title": "1217. project of the year",
+   "funcs": [
+    "poty.asin"
    ],
    "runs": []
   },
@@ -46538,6 +46780,13 @@
    "title": "621. identity theft",
    "funcs": [
     "wo.imu"
+   ],
+   "runs": []
+  },
+  "775335ae67da": {
+   "title": "111. energy conversion",
+   "funcs": [
+    "skipping.consumes"
    ],
    "runs": []
   },
@@ -47724,6 +47973,9 @@
   "1*i3myLXP42aKin6hUO3sYzQ.gif": [
    "0d1e8045251b"
   ],
+  "1*ngEMMgnQfnlkXU_ETtFTbw.gif": [
+   "775335ae67da"
+  ],
   "1*wLyltPPcTULRqRooVjkOOQ.gif": [
    "7ba78a2d336f"
   ],
@@ -47749,7 +48001,8 @@
    "c02614739196"
   ],
   "1*3zuO1ZlDfJGwZKpSM2mc5g.gif": [
-   "07a0ed55bc3c"
+   "07a0ed55bc3c",
+   "08999f5fb666"
   ],
   "1*B4Qxrti1luSOdS5kdFJWcA.gif": [
    "35e37a321959"
@@ -47866,6 +48119,9 @@
   ],
   "1*OVBtqO058VwUmRW1Ch6x1A.gif": [
    "65c8a08fe242"
+  ],
+  "1*FbcxXhpha7lQDMzkl0LG_Q.gif": [
+   "75c8a354a7c7"
   ],
   "1*6P6actu28LykPqd3qVBp9g.gif": [
    "0794a7d2abc3"
@@ -48113,6 +48369,9 @@
   ],
   "1*D3gWdg9Dn-e54KKlmX8oXg.gif": [
    "132d9f3e6cde"
+  ],
+  "1*caHcC60SRLE7nr8l-mXc1w.jpeg": [
+   "75c8a354a7c7"
   ],
   "1*bvGksBnUGY8APjvlhhkHng.gif": [
    "9aa1737aecfa"
@@ -48526,7 +48785,8 @@
   "1*3zuO1ZlDfJGwZKpSM2mc5g.gif": {
    "runs": [],
    "safes": [
-    "07a0ed55bc3c"
+    "07a0ed55bc3c",
+    "08999f5fb666"
    ]
   },
   "1*Mrb8Mx5xo1TI_U1opDQ6nw.gif": {
@@ -49086,6 +49346,12 @@
     "d3ca5101ef55"
    ]
   },
+  "1*ngEMMgnQfnlkXU_ETtFTbw.gif": {
+   "runs": [],
+   "safes": [
+    "775335ae67da"
+   ]
+  },
   "1*41Tcus9cP3e-v9zjh-PhSQ.gif": {
    "runs": [],
    "safes": [
@@ -49242,6 +49508,9 @@
   ],
   "das": [
    "das.right"
+  ],
+  "daz": [
+   "daz.what"
   ],
   "dem": [
    "dem.go"
@@ -49531,6 +49800,9 @@
   "phones": [
    "phones.make"
   ],
+  "poty": [
+   "poty.asin"
+  ],
   "qa568cli": [
    "qa568cli.nullfallback",
    "qa568cli.dragfallback"
@@ -49623,6 +49895,9 @@
   ],
   "sia": [
    "sia.count"
+  ],
+  "skipping": [
+   "skipping.consumes"
   ],
   "sky": [
    "sky.show"
@@ -50003,6 +50278,9 @@
   "should": [],
   "story": [],
   "why": [],
+  "daz": [],
+  "poty": [],
+  "skipping": [],
   "cooler": [],
   "kazeem.goodqualities": [],
   "app": [],
@@ -50205,6 +50483,7 @@
    "can",
    "come",
    "das",
+   "daz",
    "dem",
    "deya",
    "dignity",
@@ -50220,6 +50499,7 @@
    "nigerian",
    "once",
    "part",
+   "poty",
    "ready",
    "russian",
    "say",
@@ -50227,6 +50507,7 @@
    "shi",
    "should",
    "shu",
+   "skipping",
    "slapping",
    "something",
    "stay",
@@ -50252,5 +50533,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-25T16:51:28-05:00"
+ "updated": "2026-11-25T17:35:39-05:00"
 }
