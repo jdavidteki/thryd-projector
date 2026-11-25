@@ -1,5 +1,5 @@
 {
- "v": 613,
- "at": "2026-11-25T14:00:00-05:00",
- "note": "v613: the floating video card plays its muted 264p scene on a continuous loop again (it had been tap-to-play since 23 Nov, and also stopped when low-heat went idle). It now pauses only when the tab is hidden or the card is off-screen; other v612 heat savings are unchanged."
+ "v": 614,
+ "at": "2026-11-25T16:30:00-05:00",
+ "note": "v614: cooler projector (heat, second pass). The film-grain overlay is off unless ?grain=1 (it was costing about 15-19 CPU points and 14-16 GPU points on the box, composited over the whole stage). A cool mode turns on by itself if the device cannot hold about 30 fps while in use: frames drop to about 20 fps, the cut float runs at half rate, and shadows and the small card bobs go (lifted after a minute of good frames, twice at most). Decorative card bobs also pause when idle or the tab is hidden; the video card still loops, and pauses only when hidden or off-screen. Other v612/v613 savings are unchanged."
 }

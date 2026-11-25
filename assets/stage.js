@@ -270,6 +270,7 @@
     if(RM || document.hidden) return; const cl = document.body.classList;
     if(cl.contains('stage-replay') || cl.contains('cerebro') || cl.contains('lovemap')) return;
     if(root.LH && LH.state === 'idle' && (FLOAT.n++ % 3)) return;
+    if(root.LH && LH.cool && LH.state !== 'idle' && (FLOAT.n++ % 2)) return; // v614 cool mode: half rate
     const pn = performance.now(), t = pn / 1000, TAU = 6.2831853; markVis(pn);
     for(let i = 0; i < S.cuts.length; i++){ const c = S.cuts[i], el = c.el;
       if(!el || c._vis === false || !el.classList.contains('fl') || el.dataset.dragging === '1') continue;

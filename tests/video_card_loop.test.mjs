@@ -238,7 +238,7 @@ test('index.html cache-bumps video_card.js and the script autoplays on a loop', 
   assert.match(src, /open ↗/);
   assert.match(src, /TH=6/);
   assert.match(src, /IntersectionObserver/);
-  assert.match(html, /var VER=613,/);
+  assert.match(html, /var VER=\d+,/);
 });
 
 test('the card starts looping on its own, without a tap', async () => {

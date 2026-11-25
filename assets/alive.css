@@ -18,3 +18,13 @@ body.idle #live{opacity:.55}body.idle #code{opacity:.6}
 #live .dot.fl{animation:fl .6s 3,blink 1.4s steps(1) 1.8s infinite}@keyframes fl{50%{transform:scale(1.8);background:#fff}}
 #live .seat.pulse{animation:sp 1s 3}@keyframes sp{50%{color:#fff;text-shadow:0 0 1.2vh #fb4}}#live #clk,#live #sclk{pointer-events:auto;cursor:help}#live #sclk{color:#9cf;font-size:.88em;letter-spacing:.04em;max-width:42vw;overflow:hidden;text-overflow:ellipsis;vertical-align:bottom}
 #crawl .nb{font-weight:normal;margin-right:6vw}#crawl .nb strong{color:#fff;font-weight:bold;letter-spacing:.04em}
+
+/* v614 heat: the grain overlay is not created unless ?grain=1 (alive.js); this is the belt for any page that still has one */
+html:not(.grain-on) #grain{display:none}
+/* v614 cool mode (lowheat.js adds html.lh-cool when the device cannot hold the frame rate, or with ?cool=1): drop shadows and the small ambient bobs */
+html.lh-cool *,html.lh-cool *::before,html.lh-cool *::after{text-shadow:none!important;box-shadow:none!important;backdrop-filter:none!important}
+html.lh-cool .videocard,html.lh-cool .storycard,html.lh-cool .genie-ember{animation:none!important}
+
+/* v614 heat: when idle or hidden, pause leftover decorative CSS bobs (video card playback is unchanged) */
+html.lh-idle .videocard,html.lh-idle .storycard,html.lh-idle .genie-ember,
+html.lh-hidden .videocard,html.lh-hidden .storycard,html.lh-hidden .genie-ember{animation-play-state:paused!important}

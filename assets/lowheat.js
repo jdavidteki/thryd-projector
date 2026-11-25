@@ -74,10 +74,26 @@ function pump(){if(rnative||rtimer||!rq.size)return;var s=LH.state;if(s==='hidde
   rnative=nRAF(flush);}
 function flush(ts){rnative=0;var s=LH.state;if(s==='hidden')return;
   if(s==='active'&&!ptrDown&&lastFlush&&ts-lastFlush<ACTIVE_FRAME&&ts>=lastFlush){rnative=nRAF(flush);return;}
+  if(s==='active'&&!ptrDown&&lastFlush&&ts>lastFlush)govern(ts-lastFlush);
   lastFlush=ts;var batch=[];rq.forEach(function(r,id){if(s==='idle'&&r.deco)return;batch.push(r);rq.delete(id);});
   LH.stats.frames++;for(var i=0;i<batch.length;i++){try{batch[i].cb(ts);}catch(err){rethrow(err);}}
   pump();}
 LH.pending=function(){var d=0,o=0;rq.forEach(function(r){if(r.deco)d++;else o++;});return {deco:d,other:o};};
+
+/* ---------- cool mode (v614) ----------
+   A device that cannot hold ~30 fps while in use (slow gap between active frames on more than half of the frames in 3 windows of ~1.5 s) gets html.lh-cool:
+   active frames drop to ~20 fps, the stage float ticker runs at half rate, and shadows / bob and ember animations go (alive.css). It is lifted after ~1 min of good
+   frames, twice at most; a third trip stays on until reload. ?cool=1 forces it on (QA), ?cool=0 turns the governor off. LH.cool / LH.coolWhy / LH.coolTrips show it. */
+var COOL_Q=Q.get('cool'),G={n:0,slow:0,bad:0,good:0};LH.cool=false;LH.coolTrips=0;LH.coolWhy='';
+function setCool(on,why){if(LH.cool===on)return;LH.cool=on;LH.coolWhy=on?why:'';if(on)LH.coolTrips++;G.n=G.slow=G.bad=G.good=0;
+  ACTIVE_FRAME=on?1000/20-3:1000/30-3;var h=document.documentElement;if(h&&h.classList)h.classList.toggle('lh-cool',on);}
+LH.setCool=setCool;
+function govern(gap){if(COOL_Q==='0'||COOL_Q==='1'||gap>500)return;
+  G.n++;if(gap>(LH.cool?85:70))G.slow++;if(G.n<45)return;
+  var bad=G.slow>G.n*0.5;G.n=0;G.slow=0;
+  if(bad){G.good=0;if(++G.bad>=3&&!LH.cool)setCool(true,'slow frames');}
+  else{G.bad=0;if(LH.cool&&LH.coolTrips<3&&++G.good>=45)setCool(false);}}
+if(COOL_Q==='1')setCool(true,'forced (?cool=1)');
 
 /* ---------- state ---------- */
 var blurred=false,listeners=[],pausedMedia=[];

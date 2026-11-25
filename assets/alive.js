@@ -1,5 +1,5 @@
 (()=>{const $=(t,id)=>{const e=document.createElement(t);e.id=id;document.body.appendChild(e);return e};
-const code=$('div','code'),live=$('div','live'),crawl=$('div','crawl');$('div','grain');
+const code=$('div','code'),live=$('div','live'),crawl=$('div','crawl');/(?:^|[?&])grain=1(?:&|$)/.test(location.search)&&($('div','grain'),document.documentElement.classList.add('grain-on')); /* v614 heat: the film-grain overlay (7% opacity, full screen, composited over every cut) cost ~18 GPU points on the box; off unless ?grain=1 */
 const bad=/explicit|never explicit/i,clean=s=>String(s||'').replace(/\s+/g,' ').trim();
 const get=u=>fetch(u+'?t='+Date.now(),{cache:'no-store'}).then(r=>r.ok?r.json():null).catch(()=>null);
 const validTz=tz=>{if(!tz||typeof tz!=='string')return null;try{Intl.DateTimeFormat('en-US',{timeZone:tz}).format(new Date());return tz;}catch(e){return null;}};
