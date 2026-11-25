@@ -108,8 +108,8 @@
     "give",
     "know"
    ],
-   "instances": 460,
-   "arg_instances": 131,
+   "instances": 462,
+   "arg_instances": 133,
    "parent": null,
    "chain": [
     "Thing"
@@ -176,8 +176,8 @@
     "count",
     "map"
    ],
-   "instances": 22,
-   "arg_instances": 19,
+   "instances": 23,
+   "arg_instances": 20,
    "parent": "Thing",
    "chain": [
     "Action",
@@ -961,6 +961,22 @@
     "run-2716"
    ],
    "tweets": []
+  },
+  "bomb": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-cf203b",
+   "first_job": "j17",
+   "source": "pick",
+   "runs": [
+    "run-cf203b"
+   ],
+   "tweets": [
+    {
+     "text": "#nnb — nigerian nuclear bomb",
+     "year": "2025"
+    }
+   ]
   },
   "bookingcom": {
    "class": "Thing",
@@ -3360,6 +3376,22 @@
     }
    ]
   },
+  "iron": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-cf203b",
+   "first_job": "j17",
+   "source": "pick",
+   "runs": [
+    "run-cf203b"
+   ],
+   "tweets": [
+    {
+     "text": "[[fip]] - shi gbogbo iron ore le",
+     "year": "2024"
+    }
+   ]
+  },
   "isamuhayashida": {
    "class": "Person",
    "cue": "on stage: character",
@@ -3672,6 +3704,22 @@
     "run-345b3d"
    ],
    "tweets": []
+  },
+  "know": {
+   "class": "Action",
+   "cue": "word",
+   "first_run": "run-cf203b",
+   "first_job": "j17",
+   "source": "pick",
+   "runs": [
+    "run-cf203b"
+   ],
+   "tweets": [
+    {
+     "text": "- wym they dont know?",
+     "year": "2025"
+    }
+   ]
   },
   "koko": {
    "class": "Person",
@@ -9345,6 +9393,24 @@
     "Place",
     "j16",
     "pick"
+   ],
+   [
+    "bomb",
+    "Thing",
+    "j17",
+    "pick"
+   ],
+   [
+    "iron",
+    "Thing",
+    "j17",
+    "pick"
+   ],
+   [
+    "know",
+    "Action",
+    "j17",
+    "pick"
    ]
   ],
   "run-b70200": [
@@ -12033,6 +12099,9 @@
   "can.write": "write(where: Place)",
   "russian.mobs": "mobs()",
   "something.wrong": "wrong()",
+  "nigerian.nuclear": "nuclear(what: Thing)",
+  "shi.gbogbo": "gbogbo(what: Thing)",
+  "wym.dont": "dont(act: Action)",
   "cooler.getdatemanufactured": "getDateManufactured()",
   "ronke.getlikes.contains": "getlikes.contains()",
   "kazeem.goodqualities.filter": "filter()",
@@ -12213,7 +12282,8 @@
     "teo",
     "thrill",
     "tyn",
-    "wanow"
+    "wanow",
+    "wym"
    ]
   },
   "Foldable": {
@@ -12533,18 +12603,21 @@
    "kemi",
    "know",
    "lehgeet",
+   "nigerian",
    "once",
    "part",
    "ready",
    "russian",
    "share",
+   "shi",
    "shu",
    "slapping",
    "something",
    "stay",
    "stringify",
    "wo",
-   "woke"
+   "woke",
+   "wym"
   ]
  },
  "genre_types": {
@@ -12619,5 +12692,5 @@
   "epilogue": "quiet",
   "coda": "quiet"
  },
- "updated": "2026-11-25T15:22:18-05:00"
+ "updated": "2026-11-25T15:35:41-05:00"
 }

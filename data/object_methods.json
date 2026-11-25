@@ -18084,6 +18084,201 @@
    "faded": false,
    "last_run": "run-cf203b"
   },
+  "nigerian.nuclear": {
+   "object": "nigerian",
+   "method": "nuclear",
+   "args": [
+    "bomb"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j17",
+    "card": "w17",
+    "title": "nigerian.nuclear(bomb)",
+    "emoji": "🌙",
+    "at": "2026-11-25T15:35:00-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "nigerian.nuclear(bomb)",
+     "emoji": "🌙",
+     "arg": "bomb",
+     "run": "run-cf203b",
+     "job": "j17",
+     "tweets": [
+      {
+       "text": "#nnb — nigerian nuclear bomb",
+       "year": "2025"
+      }
+     ],
+     "consequence": "What just happened: Kemi answers him flat: \"i don't know how else to say it.\" She says the mess is all his: \"shi gbogbo iron ore le.\" To her, last night is a \"nigerian nuclear bomb.\" Tobi blinks at her: \"wym they dont know?\" 📖 Now: Get the ",
+     "consequence_job": "j18",
+     "resolved": "nigerian.nuclear(what=bomb:Thing) from j17",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "bomb",
+       "from_run": "run-cf203b",
+       "from_job": "j17",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "bomb",
+      "first_run": "run-cf203b",
+      "first_job": "j17"
+     }
+    ],
+    "text": "nuclear(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "shi.gbogbo": {
+   "object": "shi",
+   "method": "gbogbo",
+   "args": [
+    "iron"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j17",
+    "card": "w17",
+    "title": "shi.gbogbo(iron)",
+    "emoji": "🍁",
+    "at": "2026-11-25T15:35:00-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "shi.gbogbo(iron)",
+     "emoji": "🍁",
+     "arg": "iron",
+     "run": "run-cf203b",
+     "job": "j17",
+     "tweets": [
+      {
+       "text": "[[fip]] - shi gbogbo iron ore le",
+       "year": "2024"
+      }
+     ],
+     "consequence": "What just happened: Kemi answers him flat: \"i don't know how else to say it.\" She says the mess is all his: \"shi gbogbo iron ore le.\" To her, last night is a \"nigerian nuclear bomb.\" Tobi blinks at her: \"wym they dont know?\" 📖 Now: Get the ",
+     "consequence_job": "j18",
+     "resolved": "shi.gbogbo(what=iron:Thing) from j17",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "iron",
+       "from_run": "run-cf203b",
+       "from_job": "j17",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "iron",
+      "first_run": "run-cf203b",
+      "first_job": "j17"
+     }
+    ],
+    "text": "gbogbo(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "wym.dont": {
+   "object": "wym",
+   "method": "dont",
+   "args": [
+    "know"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j17",
+    "card": "w17",
+    "title": "wym.dont(know)",
+    "emoji": "⭐",
+    "at": "2026-11-25T15:35:00-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "wym.dont(know)",
+     "emoji": "⭐",
+     "arg": "know",
+     "run": "run-cf203b",
+     "job": "j17",
+     "tweets": [
+      {
+       "text": "- wym they dont know?",
+       "year": "2025"
+      }
+     ],
+     "consequence": "What just happened: Kemi answers him flat: \"i don't know how else to say it.\" She says the mess is all his: \"shi gbogbo iron ore le.\" To her, last night is a \"nigerian nuclear bomb.\" Tobi blinks at her: \"wym they dont know?\" 📖 Now: Get the ",
+     "consequence_job": "j18",
+     "resolved": "wym.dont(act=know:Action) from j17",
+     "injected": [
+      {
+       "param": "act",
+       "class": "Action",
+       "instance": "know",
+       "from_run": "run-cf203b",
+       "from_job": "j17",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "act",
+      "class": "Action",
+      "default": "know",
+      "first_run": "run-cf203b",
+      "first_job": "j17"
+     }
+    ],
+    "text": "dont(act: Action)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
   "cooler.getdatemanufactured": {
    "object": "cooler",
    "method": "getDateManufactured",
@@ -21819,6 +22014,9 @@
   "nigeria": [
    "nigeria.setpresident"
   ],
+  "nigerian": [
+   "nigerian.nuclear"
+  ],
   "nnb_subject": [
    "object.look"
   ],
@@ -21975,6 +22173,9 @@
   ],
   "share": [
    "share.minerals"
+  ],
+  "shi": [
+   "shi.gbogbo"
   ],
   "shu": [
    "shu.making"
@@ -22150,6 +22351,9 @@
   ],
   "worry": [
    "worry.have"
+  ],
+  "wym": [
+   "wym.dont"
   ],
   "y": [
    "y.np"
@@ -28646,6 +28850,16 @@
     "title": "1227. be doing something",
     "funcs": [
      "kazeem.lift"
+    ]
+   }
+  ],
+  "dont_read_book_subject": [
+   {
+    "scope": "safe",
+    "from": "807051048c8e",
+    "title": "1202. the nigerian dream",
+    "funcs": [
+     "nigerian.nuclear"
     ]
    }
   ],
@@ -44982,6 +45196,9 @@
     "can.write",
     "russian.mobs",
     "something.wrong",
+    "nigerian.nuclear",
+    "shi.gbogbo",
+    "wym.dont",
     "cli.cli",
     "thryd.importtheme",
     "kemi.ismarried",
@@ -45633,6 +45850,13 @@
    ],
    "runs": []
   },
+  "5f65feeb3316": {
+   "title": "105. hero",
+   "funcs": [
+    "wym.dont"
+   ],
+   "runs": []
+  },
   "61ae7008a5f0": {
    "title": "903. rip ×= 4",
    "funcs": [
@@ -45741,7 +45965,10 @@
     "part.d",
     "can.write",
     "russian.mobs",
-    "something.wrong"
+    "something.wrong",
+    "nigerian.nuclear",
+    "shi.gbogbo",
+    "wym.dont"
    ],
    "runs": [
     "run-cf203b"
@@ -45818,6 +46045,13 @@
    ],
    "runs": []
   },
+  "807051048c8e": {
+   "title": "1202. the nigerian dream",
+   "funcs": [
+    "nigerian.nuclear"
+   ],
+   "runs": []
+  },
   "83dda907155a": {
    "title": "1012. before eez too late",
    "funcs": [
@@ -45830,6 +46064,13 @@
    "funcs": [
     "teo.decode",
     "once.understand"
+   ],
+   "runs": []
+  },
+  "8d3908fee6a5": {
+   "title": "819. call paul",
+   "funcs": [
+    "shi.gbogbo"
    ],
    "runs": []
   },
@@ -46845,6 +47086,9 @@
   "1*8bxBW1s5Gs2lCN7dfzpR8Q.gif": [
    "a753266754f3"
   ],
+  "1*vjatDTlK0K8Ohk7nMg3RaQ.gif": [
+   "807051048c8e"
+  ],
   "1*8LySB4JyV5sPPa8jCkGxag.gif": [
    "448f524ec208"
   ],
@@ -47149,6 +47393,12 @@
   ],
   "1*SNbsW-hujgunkFpKN9thvA.gif": [
    "039e6d09b0d6"
+  ],
+  "1*d-h0kPm6LLgbziNf5bvNbw.gif": [
+   "8d3908fee6a5"
+  ],
+  "1*IZCnNs0fS0ukLcJuFqJEJg.gif": [
+   "5f65feeb3316"
   ],
   "1*BiRPdRqsYp7KBNTKPU6WUg.gif": [
    "a3d083db0935"
@@ -47643,6 +47893,12 @@
    "runs": [],
    "safes": [
     "d6bef492657d"
+   ]
+  },
+  "1*vjatDTlK0K8Ohk7nMg3RaQ.gif": {
+   "runs": [],
+   "safes": [
+    "807051048c8e"
    ]
   },
   "1*SxvMtm4EZ8xJ3nw9tl5L_w.gif": {
@@ -48640,6 +48896,9 @@
   "nigeria": [
    "nigeria.setpresident"
   ],
+  "nigerian": [
+   "nigerian.nuclear"
+  ],
   "nobody": [
    "nobody.weigh",
    "nobody.rename",
@@ -48762,6 +49021,9 @@
   "share": [
    "share.minerals"
   ],
+  "shi": [
+   "shi.gbogbo"
+  ],
   "shu": [
    "shu.making"
   ],
@@ -48883,6 +49145,9 @@
   ],
   "worry": [
    "worry.have"
+  ],
+  "wym": [
+   "wym.dont"
   ],
   "y": [
    "y.np"
@@ -49124,6 +49389,11 @@
   "part": [],
   "russian": [],
   "something": [],
+  "nigerian": [],
+  "shi": [],
+  "wym": [
+   "Readable"
+  ],
   "cooler": [],
   "kazeem.goodqualities": [],
   "app": [],
@@ -49336,18 +49606,21 @@
    "kemi",
    "know",
    "lehgeet",
+   "nigerian",
    "once",
    "part",
    "ready",
    "russian",
    "share",
+   "shi",
    "shu",
    "slapping",
    "something",
    "stay",
    "stringify",
    "wo",
-   "woke"
+   "woke",
+   "wym"
   ]
  },
  "gc": {
@@ -49363,5 +49636,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-25T15:34:50-05:00"
+ "updated": "2026-11-25T15:35:41-05:00"
 }
