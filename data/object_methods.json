@@ -17420,6 +17420,184 @@
    "faded": false,
    "last_run": "run-cf203b"
   },
+  "even.feels": {
+   "object": "even",
+   "method": "feels",
+   "args": [
+    "like"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j13",
+    "card": "w13",
+    "title": "even.feels(like)",
+    "emoji": "🧩",
+    "at": "2026-11-25T13:15:24-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "even.feels(like)",
+     "emoji": "🧩",
+     "arg": "like",
+     "run": "run-cf203b",
+     "job": "j13",
+     "tweets": [
+      {
+       "text": "- it even feels like a movie",
+       "year": "2025"
+      }
+     ],
+     "consequence": "What just happened: Kemi laughs at him: \"this guy na wan big nerd.\" She says the whole night \"even feels like a movie.\" Then she gets serious: \"you nohow hard that is?\" She tells him she \"woke up that morning\" already knowing.",
+     "consequence_job": "j14",
+     "resolved": "even.feels(how=like:Manner) from j13",
+     "injected": [
+      {
+       "param": "how",
+       "class": "Manner",
+       "instance": "like",
+       "from_run": "run-cf203b",
+       "from_job": "j13",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "how",
+      "class": "Manner",
+      "default": "like",
+      "first_run": "run-5a58c4",
+      "first_job": "j27"
+     }
+    ],
+    "text": "feels(how: Manner)"
+   },
+   "receiver_class": "Action",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "guy.wan": {
+   "object": "guy",
+   "method": "wan",
+   "args": [
+    "big"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j13",
+    "card": "w13",
+    "title": "guy.wan(big)",
+    "emoji": "🪆",
+    "at": "2026-11-25T13:15:24-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "guy.wan(big)",
+     "emoji": "🪆",
+     "arg": "big",
+     "run": "run-cf203b",
+     "job": "j13",
+     "tweets": [
+      {
+       "text": "#ttb - this guy na wan big nerd",
+       "year": "2024"
+      }
+     ],
+     "consequence": "What just happened: Kemi laughs at him: \"this guy na wan big nerd.\" She says the whole night \"even feels like a movie.\" Then she gets serious: \"you nohow hard that is?\" She tells him she \"woke up that morning\" already knowing.",
+     "consequence_job": "j14",
+     "resolved": "guy.wan(what=big:Thing) from j13",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "big",
+       "from_run": "run-cf203b",
+       "from_job": "j13",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "big",
+      "first_run": "run-cf203b",
+      "first_job": "j13"
+     }
+    ],
+    "text": "wan(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "woke.morning": {
+   "object": "woke",
+   "method": "morning",
+   "args": [
+    ""
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j13",
+    "card": "w13",
+    "title": "woke.morning()",
+    "emoji": "🎳",
+    "at": "2026-11-25T13:15:24-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "woke.morning()",
+     "emoji": "🎳",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j13",
+     "tweets": [
+      {
+       "text": "- woke [[up]] that morning",
+       "year": "2024"
+      }
+     ],
+     "consequence": "What just happened: Kemi laughs at him: \"this guy na wan big nerd.\" She says the whole night \"even feels like a movie.\" Then she gets serious: \"you nohow hard that is?\" She tells him she \"woke up that morning\" already knowing.",
+     "consequence_job": "j14",
+     "resolved": "woke.morning()",
+     "injected": []
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [],
+    "text": "morning()"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
   "cooler.getdatemanufactured": {
    "object": "cooler",
    "method": "getDateManufactured",
@@ -20752,6 +20930,9 @@
   "eez": [
    "eez.mad"
   ],
+  "even": [
+   "even.feels"
+  ],
   "everywhere": [
    "everywhere.getdayagreeeeeennnn",
    "everywhere.getwatching",
@@ -20812,6 +20993,9 @@
   ],
   "grammy": [
    "grammy.swear"
+  ],
+  "guy": [
+   "guy.wan"
   ],
   "h": [
    "h.ki"
@@ -21325,6 +21509,9 @@
   ],
   "wo": [
    "wo.imu"
+  ],
+  "woke": [
+   "woke.morning"
   ],
   "worry": [
    "worry.have"
@@ -31930,6 +32117,16 @@
     "title": "829. a day in the life of god",
     "funcs": [
      "[nau,god].map"
+    ]
+   }
+  ],
+  "know_youre_trying_figure": [
+   {
+    "scope": "safe",
+    "from": "b294af183233",
+    "title": "i know you're trying to glance my way again",
+    "funcs": [
+     "woke.morning"
     ]
    }
   ],
@@ -42843,6 +43040,14 @@
     "funcs": [
      "make.setany"
     ]
+   },
+   {
+    "scope": "safe",
+    "from": "55add5a8d2ed",
+    "title": "819. i want you to touch it",
+    "funcs": [
+     "even.feels"
+    ]
    }
   ],
   "was_her_idea_figure": [
@@ -44089,7 +44294,10 @@
     "wo.imu",
     "believe.can",
     "can.see",
-    "das.right"
+    "das.right",
+    "even.feels",
+    "guy.wan",
+    "woke.morning"
    ]
   },
   "run-d6fc": {
@@ -44667,6 +44875,13 @@
    ],
    "runs": []
   },
+  "55add5a8d2ed": {
+   "title": "819. i want you to touch it",
+   "funcs": [
+    "even.feels"
+   ],
+   "runs": []
+  },
   "55db20ef3a0b": {
    "title": "518. nigeria2.0",
    "funcs": [
@@ -44796,7 +45011,10 @@
     "wo.imu",
     "believe.can",
     "can.see",
-    "das.right"
+    "das.right",
+    "even.feels",
+    "guy.wan",
+    "woke.morning"
    ],
    "runs": [
     "run-cf203b"
@@ -44896,6 +45114,13 @@
    "runs": [
     "run-2716"
    ]
+  },
+  "8e7666062767": {
+   "title": "puzzles and riddles",
+   "funcs": [
+    "guy.wan"
+   ],
+   "runs": []
   },
   "8fc79015dbd2": {
    "title": "122. why women hate men",
@@ -45182,6 +45407,13 @@
    "title": "815. house of cards: north africa",
    "funcs": [
     "ronke.write"
+   ],
+   "runs": []
+  },
+  "b294af183233": {
+   "title": "i know you're trying to glance my way again",
+   "funcs": [
+    "woke.morning"
    ],
    "runs": []
   },
@@ -45830,6 +46062,9 @@
   "1*S1oCWFn9cmXUYSNZZkml_g.gif": [
    "c7c1fdc558f5"
   ],
+  "1*o8i8-Ujd4nxWbqPmAaMrEw.gif": [
+   "8e7666062767"
+  ],
   "1*TboWtv3mCjG0__y8McqEAw.gif": [
    "76e4b260debb",
    "24d3f1fa5ad1",
@@ -45995,6 +46230,7 @@
    "3715b3563ae6"
   ],
   "1*VDwilLCHF-PLPOY1t4Dq0w.gif": [
+   "55add5a8d2ed",
    "2c6971a8d401"
   ],
   "1*COPqQY5I6LpiIxDtcds6UQ.gif": [
@@ -46320,6 +46556,9 @@
   ],
   "1*NvIP47QeHIdnCpslvGl3kg.jpeg": [
    "6d72f12ca0c4"
+  ],
+  "1*A8VcdJRdAnAsX2tFDP9GbQ.gif": [
+   "b294af183233"
   ],
   "1*6mQWTrIfykhOKaN1kOzyTg.jpeg": [
    "1636974407c7"
@@ -46656,6 +46895,7 @@
   "1*VDwilLCHF-PLPOY1t4Dq0w.gif": {
    "runs": [],
    "safes": [
+    "55add5a8d2ed",
     "2c6971a8d401"
    ]
   },
@@ -47234,6 +47474,12 @@
     "c02614739196"
    ]
   },
+  "1*A8VcdJRdAnAsX2tFDP9GbQ.gif": {
+   "runs": [],
+   "safes": [
+    "b294af183233"
+   ]
+  },
   "1*EzXx6mCPVc-4TByCgM6uFw.gif": {
    "runs": [],
    "safes": [
@@ -47412,6 +47658,9 @@
   "eez": [
    "eez.mad"
   ],
+  "even": [
+   "even.feels"
+  ],
   "everywhere": [
    "everywhere.getdayagreeeeeennnn",
    "everywhere.getwatching",
@@ -47449,6 +47698,9 @@
   ],
   "grammy": [
    "grammy.swear"
+  ],
+  "guy": [
+   "guy.wan"
   ],
   "h": [
    "h.ki"
@@ -47821,6 +48073,9 @@
   "wo": [
    "wo.imu"
   ],
+  "woke": [
+   "woke.morning"
+  ],
   "worry": [
    "worry.have"
   ],
@@ -48054,6 +48309,9 @@
    "Watchable"
   ],
   "das": [],
+  "even": [],
+  "guy": [],
+  "woke": [],
   "cooler": [],
   "kazeem.goodqualities": [],
   "app": [],
@@ -48256,7 +48514,9 @@
    "deya",
    "dignity",
    "eez",
+   "even",
    "feel",
+   "guy",
    "inside",
    "kemi",
    "know",
@@ -48266,7 +48526,8 @@
    "shu",
    "slapping",
    "stay",
-   "wo"
+   "wo",
+   "woke"
   ]
  },
  "gc": {
@@ -48282,5 +48543,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-25T13:05:57-05:00"
+ "updated": "2026-11-25T13:15:57-05:00"
 }
