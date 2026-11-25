@@ -17209,6 +17209,217 @@
    "faded": false,
    "last_run": "run-cf203b"
   },
+  "believe.can": {
+   "object": "believe",
+   "method": "can",
+   "args": [
+    "work"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j12",
+    "card": "w12",
+    "title": "believe.can(work)",
+    "emoji": "🧸",
+    "at": "2026-11-25T13:04:53-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "believe.can(work)",
+     "emoji": "🧸",
+     "arg": "work",
+     "run": "run-cf203b",
+     "job": "j12",
+     "tweets": [
+      {
+       "text": "- believe it so it can work",
+       "year": "2025"
+      }
+     ],
+     "consequence": "He finishes with \"believe it so it can work.\" 📖 Now: Kemi answers him from the table.",
+     "consequence_job": "j13",
+     "resolved": "believe.can(act=work:Action) from j12",
+     "injected": [
+      {
+       "param": "act",
+       "class": "Action",
+       "instance": "work",
+       "from_run": "run-cf203b",
+       "from_job": "j12",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "act",
+      "class": "Action",
+      "default": "work",
+      "first_run": "run-5a58c4",
+      "first_job": "j59"
+     }
+    ],
+    "text": "can(act: Action)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "can.see": {
+   "object": "can",
+   "method": "see",
+   "args": [
+    "how"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j12",
+    "card": "w12",
+    "title": "can.see(how)",
+    "emoji": "🪅",
+    "at": "2026-11-25T13:04:53-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "can.see(how)",
+     "emoji": "🪅",
+     "arg": "how",
+     "run": "run-cf203b",
+     "job": "j12",
+     "tweets": [
+      {
+       "text": "#ttb - you can see how many",
+       "year": "2024"
+      }
+     ],
+     "consequence": "Then he points at her phone: \"you can see how many\" times he called.",
+     "consequence_job": "j13",
+     "resolved": "can.see(how=how:Manner) from j12",
+     "injected": [
+      {
+       "param": "how",
+       "class": "Manner",
+       "instance": "how",
+       "from_run": "run-cf203b",
+       "from_job": "j12",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "how",
+      "class": "Manner",
+      "default": "how",
+      "first_run": "run-5a58c4",
+      "first_job": "j27"
+     }
+    ],
+    "text": "see(how: Manner)"
+   },
+   "receiver_class": "Thing",
+   "prior": [
+    {
+     "id": "teo.see",
+     "title": "teo.see(way)",
+     "run": "run-5a58c4",
+     "job": "j52",
+     "at": "2026-11-24T15:12:14-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "nobody.see",
+     "title": "nobody.see(it)",
+     "run": "run-5a58c4",
+     "job": "j41",
+     "at": "2026-11-24T01:08:32-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "order.see",
+     "title": "order.see(chaos)",
+     "run": "run-888ea9",
+     "job": "j9",
+     "at": "2026-11-23T20:00:23-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "accuracy.see",
+     "title": "accuracy.see(mad)",
+     "run": "run-888ea9",
+     "job": "j5",
+     "at": "2026-11-23T18:06:50-05:00",
+     "why": "same method"
+    }
+   ],
+   "faded": false,
+   "last_run": null
+  },
+  "das.right": {
+   "object": "das",
+   "method": "right",
+   "args": [
+    ""
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j12",
+    "card": "w12",
+    "title": "das.right()",
+    "emoji": "🏮",
+    "at": "2026-11-25T13:04:53-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "das.right()",
+     "emoji": "🏮",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j12",
+     "tweets": [
+      {
+       "text": "#oyinboman - das right",
+       "year": "2025"
+      }
+     ],
+     "consequence": "He says \"das right,\" like he's agreeing with something she hasn't said yet.",
+     "consequence_job": "j13",
+     "resolved": "das.right()",
+     "injected": []
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [],
+    "text": "right()"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
   "cooler.getdatemanufactured": {
    "object": "cooler",
    "method": "getDateManufactured",
@@ -20283,6 +20494,9 @@
   "attendant": [
    "attendant.put"
   ],
+  "believe": [
+   "believe.can"
+  ],
   "blender": [
    "blender.line"
   ],
@@ -20334,6 +20548,9 @@
   ],
   "cam": [
    "cam.stop"
+  ],
+  "can": [
+   "can.see"
   ],
   "care": [
    "care.on"
@@ -20472,6 +20689,9 @@
    "titi.listen",
    "titi.let",
    "titi.keep"
+  ],
+  "das": [
+   "das.right"
   ],
   "deya": [
    "deya.fighting"
@@ -42967,6 +43187,7 @@
     "from": "af47cc8c368e",
     "title": "1219. promiscuity",
     "funcs": [
+     "can.see",
      "kazeem.run"
     ]
    }
@@ -43865,7 +44086,10 @@
     "shu.making",
     "eez.mad",
     "feel.divine",
-    "wo.imu"
+    "wo.imu",
+    "believe.can",
+    "can.see",
+    "das.right"
    ]
   },
   "run-d6fc": {
@@ -44569,7 +44793,10 @@
     "shu.making",
     "eez.mad",
     "feel.divine",
-    "wo.imu"
+    "wo.imu",
+    "believe.can",
+    "can.see",
+    "das.right"
    ],
    "runs": [
     "run-cf203b"
@@ -44924,7 +45151,8 @@
   "af47cc8c368e": {
    "title": "1219. promiscuity",
    "funcs": [
-    "kazeem.run"
+    "kazeem.run",
+    "can.see"
    ],
    "runs": []
   },
@@ -45141,7 +45369,8 @@
   "d462fdcc782a": {
    "title": "1003. and black is the new green",
    "funcs": [
-    "dez.find"
+    "dez.find",
+    "das.right"
    ],
    "runs": []
   },
@@ -45347,7 +45576,8 @@
   "f14835b0db83": {
    "title": "708. body of work",
    "funcs": [
-    "dez.believe"
+    "dez.believe",
+    "believe.can"
    ],
    "runs": []
   },
@@ -47058,6 +47288,9 @@
   "attendant": [
    "attendant.put"
   ],
+  "believe": [
+   "believe.can"
+  ],
   "blender": [
    "blender.line"
   ],
@@ -47091,6 +47324,9 @@
   ],
   "cam": [
    "cam.stop"
+  ],
+  "can": [
+   "can.see"
   ],
   "care": [
    "care.on"
@@ -47132,6 +47368,9 @@
   ],
   "crime": [
    "crime.know"
+  ],
+  "das": [
+   "das.right"
   ],
   "deya": [
    "deya.fighting"
@@ -47809,6 +48048,12 @@
   "eez": [],
   "feel": [],
   "wo": [],
+  "believe": [],
+  "can": [
+   "Readable",
+   "Watchable"
+  ],
+  "das": [],
   "cooler": [],
   "kazeem.goodqualities": [],
   "app": [],
@@ -48004,7 +48249,10 @@
    "worry"
   ],
   "run-cf203b": [
+   "believe",
+   "can",
    "come",
+   "das",
    "deya",
    "dignity",
    "eez",
@@ -48034,5 +48282,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-25T12:54:11-05:00"
+ "updated": "2026-11-25T13:05:07-05:00"
 }
