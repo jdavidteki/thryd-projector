@@ -17031,6 +17031,184 @@
    "faded": false,
    "last_run": "run-cf203b"
   },
+  "eez.mad": {
+   "object": "eez",
+   "method": "mad",
+   "args": [
+    "deh"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j11",
+    "card": "w11",
+    "title": "eez.mad(deh)",
+    "emoji": "🧿",
+    "at": "2026-11-25T12:47:25-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "eez.mad(deh)",
+     "emoji": "🧿",
+     "arg": "deh",
+     "run": "run-cf203b",
+     "job": "j11",
+     "tweets": [
+      {
+       "text": "- eez mad that deh took me serious",
+       "year": "2024"
+      }
+     ],
+     "consequence": "Where things stand: The light is still red.",
+     "consequence_job": "j11",
+     "resolved": "eez.mad(what=deh:Thing) from j11",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "deh",
+       "from_run": "run-cf203b",
+       "from_job": "j11",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "deh",
+      "first_run": "run-cf203b",
+      "first_job": "j11"
+     }
+    ],
+    "text": "mad(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "feel.divine": {
+   "object": "feel",
+   "method": "divine",
+   "args": [
+    ""
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j11",
+    "card": "w11",
+    "title": "feel.divine()",
+    "emoji": "📯",
+    "at": "2026-11-25T12:47:25-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "feel.divine()",
+     "emoji": "📯",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j11",
+     "tweets": [
+      {
+       "text": "- does it not feel divine?",
+       "year": "2026"
+      }
+     ],
+     "consequence": "Where things stand: The light is still red.",
+     "consequence_job": "j11",
+     "resolved": "feel.divine()",
+     "injected": []
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [],
+    "text": "divine()"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "wo.imu": {
+   "object": "wo",
+   "method": "imu",
+   "args": [
+    "ese"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j11",
+    "card": "w11",
+    "title": "wo.imu(ese)",
+    "emoji": "🔮",
+    "at": "2026-11-25T12:47:25-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "wo.imu(ese)",
+     "emoji": "🔮",
+     "arg": "ese",
+     "run": "run-cf203b",
+     "job": "j11",
+     "tweets": [
+      {
+       "text": "- i wo imu ese",
+       "year": "2025"
+      }
+     ],
+     "consequence": "Where things stand: The light is still red.",
+     "consequence_job": "j11",
+     "resolved": "wo.imu(what=ese:Thing) from j11",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "ese",
+       "from_run": "run-cf203b",
+       "from_job": "j11",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "ese",
+      "first_run": "run-cf203b",
+      "first_job": "j11"
+     }
+    ],
+    "text": "imu(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
   "cooler.getdatemanufactured": {
    "object": "cooler",
    "method": "getDateManufactured",
@@ -20351,6 +20529,9 @@
   "dragon": [
    "dragon.show"
   ],
+  "eez": [
+   "eez.mad"
+  ],
   "everywhere": [
    "everywhere.getdayagreeeeeennnn",
    "everywhere.getwatching",
@@ -20371,6 +20552,9 @@
    "titi.listen",
    "titi.let",
    "titi.keep"
+  ],
+  "feel": [
+   "feel.divine"
   ],
   "fine": [
    "fine.weigh"
@@ -20918,6 +21102,9 @@
   ],
   "wifey_subject": [
    "object.look"
+  ],
+  "wo": [
+   "wo.imu"
   ],
   "worry": [
    "worry.have"
@@ -21598,6 +21785,16 @@
     "title": "506. infact and even",
     "funcs": [
      "openmedia.isgif"
+    ]
+   }
+  ],
+  "american_olamide_subject": [
+   {
+    "scope": "safe",
+    "from": "773b1e7d097b",
+    "title": "621. identity theft",
+    "funcs": [
+     "wo.imu"
     ]
    }
   ],
@@ -41006,6 +41203,16 @@
     ]
    }
   ],
+  "throne_grace_subject": [
+   {
+    "scope": "safe",
+    "from": "674a28249f9f",
+    "title": "828. the throne of grace",
+    "funcs": [
+     "eez.mad"
+    ]
+   }
+  ],
   "thryd": [
    {
     "scope": "run",
@@ -43655,7 +43862,10 @@
     "slapping.engine",
     "dignity.hustle",
     "once.understand",
-    "shu.making"
+    "shu.making",
+    "eez.mad",
+    "feel.divine",
+    "wo.imu"
    ]
   },
   "run-d6fc": {
@@ -44304,6 +44514,13 @@
     "run-86b1"
    ]
   },
+  "674a28249f9f": {
+   "title": "828. the throne of grace",
+   "funcs": [
+    "eez.mad"
+   ],
+   "runs": []
+  },
   "69097529662b": {
    "title": "811. a psychological thriller",
    "funcs": [
@@ -44349,7 +44566,10 @@
     "slapping.engine",
     "dignity.hustle",
     "once.understand",
-    "shu.making"
+    "shu.making",
+    "eez.mad",
+    "feel.divine",
+    "wo.imu"
    ],
    "runs": [
     "run-cf203b"
@@ -44380,6 +44600,13 @@
    "title": "1106. eez not your fault",
    "funcs": [
     "deya.fighting"
+   ],
+   "runs": []
+  },
+  "773b1e7d097b": {
+   "title": "621. identity theft",
+   "funcs": [
+    "wo.imu"
    ],
    "runs": []
   },
@@ -44653,6 +44880,13 @@
    "title": "1210. growth",
    "funcs": [
     "calla.scroll"
+   ],
+   "runs": []
+  },
+  "ab50ea626b8b": {
+   "title": "101. heaven state of mind",
+   "funcs": [
+    "feel.divine"
    ],
    "runs": []
   },
@@ -45329,6 +45563,9 @@
   "1*Guv7Vl0p75ZSzCnV1qI0Cg.gif": [
    "fbdf81dd337a"
   ],
+  "1*0487rTe04Givv_7PEn3rtQ.gif": [
+   "773b1e7d097b"
+  ],
   "1*3BS70020HTurGMp_-zEJjg.gif": [
    "bb6f268be2b0"
   ],
@@ -45552,6 +45789,12 @@
   "1*ylKWE_WiHSa90yY31evN_w.gif": [
    "9161d2a931e6"
   ],
+  "1*h01OT-F1_-bixDd99vWdCQ.gif": [
+   "674a28249f9f"
+  ],
+  "1*yHZeiM6wPOoFaS2_hPgsCQ.gif": [
+   "674a28249f9f"
+  ],
   "1*Hl86N3U4KF18YYolRnot9g.gif": [
    "0cbfdbb450c9"
   ],
@@ -45625,6 +45868,9 @@
   ],
   "1*YZUNo5EzykCIS5g6pXH5mg.gif": [
    "9876ef803050"
+  ],
+  "1*zrB4_o17RWv4gL-UWlmLjw.gif": [
+   "ab50ea626b8b"
   ],
   "1*ztiRH-kK8W6tboXeD7JINg.gif": [
    "4c8598384b72"
@@ -46290,6 +46536,12 @@
     "13bbdaa651ee"
    ]
   },
+  "1*h01OT-F1_-bixDd99vWdCQ.gif": {
+   "runs": [],
+   "safes": [
+    "674a28249f9f"
+   ]
+  },
   "1*FyjCsCY3EadwWYmCWe9_xA.gif": {
    "runs": [],
    "safes": [
@@ -46678,6 +46930,12 @@
     "1956e94e236c"
    ]
   },
+  "1*0487rTe04Givv_7PEn3rtQ.gif": {
+   "runs": [],
+   "safes": [
+    "773b1e7d097b"
+   ]
+  },
   "1*WrFSJNCz11JO3t2O2D_Y-w.gif": {
    "runs": [],
    "safes": [
@@ -46912,12 +47170,18 @@
   "dragon": [
    "dragon.show"
   ],
+  "eez": [
+   "eez.mad"
+  ],
   "everywhere": [
    "everywhere.getdayagreeeeeennnn",
    "everywhere.getwatching",
    "everywhere.getdidnt",
    "everywhere.getcome",
    "everywhere.getyanju"
+  ],
+  "feel": [
+   "feel.divine"
   ],
   "fine": [
    "fine.weigh"
@@ -47315,6 +47579,9 @@
   "wife": [
    "wife.kill"
   ],
+  "wo": [
+   "wo.imu"
+  ],
   "worry": [
    "worry.have"
   ],
@@ -47539,6 +47806,9 @@
   "dignity": [],
   "once": [],
   "shu": [],
+  "eez": [],
+  "feel": [],
+  "wo": [],
   "cooler": [],
   "kazeem.goodqualities": [],
   "app": [],
@@ -47737,6 +48007,8 @@
    "come",
    "deya",
    "dignity",
+   "eez",
+   "feel",
    "inside",
    "kemi",
    "know",
@@ -47745,7 +48017,8 @@
    "share",
    "shu",
    "slapping",
-   "stay"
+   "stay",
+   "wo"
   ]
  },
  "gc": {
@@ -47761,5 +48034,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-25T12:28:12-05:00"
+ "updated": "2026-11-25T12:47:27-05:00"
 }
