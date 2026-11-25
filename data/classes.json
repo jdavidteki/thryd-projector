@@ -108,8 +108,8 @@
     "give",
     "know"
    ],
-   "instances": 451,
-   "arg_instances": 122,
+   "instances": 453,
+   "arg_instances": 124,
    "parent": null,
    "chain": [
     "Thing"
@@ -1413,6 +1413,26 @@
     "run-6fb0c0"
    ],
    "tweets": []
+  },
+  "congratulations": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-5a58c4",
+   "first_job": "j64",
+   "source": "pick",
+   "runs": [
+    "run-5a58c4"
+   ],
+   "tweets": [
+    {
+     "text": "- when [[is]] mr president going to",
+     "year": "2024"
+    },
+    {
+     "text": "#sbk -- send my congratulations?",
+     "year": "2024"
+    }
+   ]
   },
   "content": {
    "class": "Place",
@@ -4420,6 +4440,26 @@
     "run-5a58c4"
    ],
    "tweets": []
+  },
+  "myself": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-5a58c4",
+   "first_job": "j64",
+   "source": "pick",
+   "runs": [
+    "run-5a58c4"
+   ],
+   "tweets": [
+    {
+     "text": "- so i went to check by",
+     "year": "2024"
+    },
+    {
+     "text": "#ttb[[aih]] - myself!",
+     "year": "2024"
+    }
+   ]
   },
   "na": {
    "class": "Thing",
@@ -7763,18 +7803,6 @@
   ],
   "run-5a58c4": [
    [
-    "it",
-    "Thing",
-    "j41",
-    "pick"
-   ],
-   [
-    "water",
-    "Thing",
-    "j42",
-    "pick"
-   ],
-   [
     "precisions",
     "Thing",
     "j43",
@@ -7970,6 +7998,18 @@
     "juju",
     "Thing",
     "j63",
+    "pick"
+   ],
+   [
+    "myself",
+    "Thing",
+    "j64",
+    "pick"
+   ],
+   [
+    "congratulations",
+    "Thing",
+    "j64",
     "pick"
    ],
    [
@@ -11674,6 +11714,8 @@
   "calla.know": "know(what: Thing)",
   "marisol.wait": "wait(what: Thing)",
   "teo.decode": "decode(what: Thing)",
+  "dez.check": "check(what: Thing)",
+  "marisol.send": "send(what: Thing)",
   "cooler.getdatemanufactured": "getDateManufactured()",
   "ronke.getlikes.contains": "getlikes.contains()",
   "kazeem.goodqualities.filter": "filter()",
@@ -11836,6 +11878,7 @@
     "calla",
     "chairman",
     "crime",
+    "dez",
     "folake",
     "history",
     "irteiutk",
@@ -12224,5 +12267,5 @@
   "epilogue": "quiet",
   "coda": "quiet"
  },
- "updated": "2026-11-24T20:01:10-05:00"
+ "updated": "2026-11-24T20:14:28-05:00"
 }
