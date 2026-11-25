@@ -17598,6 +17598,119 @@
    "faded": false,
    "last_run": "run-cf203b"
   },
+  "ahan.wayayou": {
+   "object": "ahan",
+   "method": "wayayou",
+   "args": [
+    "standing"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j14",
+    "card": "w14",
+    "title": "ahan.wayayou(standing)",
+    "emoji": "🔭",
+    "at": "2026-11-25T13:28:09-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "ahan.wayayou(standing)",
+     "emoji": "🔭",
+     "arg": "standing",
+     "run": "run-cf203b",
+     "job": "j14",
+     "tweets": [
+      {
+       "text": "— ahan, wayayou standing and looking?",
+       "year": "2025"
+      }
+     ],
+     "consequence": "What just happened: Tobi goes stiff, and Kemi says \"i think he's having a stroke.\" Then she pushes him: \"ahan, wayayou standing and looking?\" Tobi finally speaks, but only in nerd talk.",
+     "consequence_job": "j15",
+     "resolved": "ahan.wayayou(what=standing:Thing) from j14",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "standing",
+       "from_run": "run-cf203b",
+       "from_job": "j14",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "standing",
+      "first_run": "run-cf203b",
+      "first_job": "j14"
+     }
+    ],
+    "text": "wayayou(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "stringify.boolean": {
+   "object": "stringify",
+   "method": "boolean",
+   "args": [
+    ""
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j14",
+    "card": "w14",
+    "title": "stringify.boolean()",
+    "emoji": "🗝️",
+    "at": "2026-11-25T13:28:09-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "stringify.boolean()",
+     "emoji": "🗝️",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j14",
+     "tweets": [
+      {
+       "text": "- stringify the boolean",
+       "year": "2024"
+      }
+     ],
+     "consequence": "He mumbles \"change the\" and then \"stringify the boolean,\" as if he could fix last night like a bug.",
+     "consequence_job": "j15",
+     "resolved": "stringify.boolean()",
+     "injected": []
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [],
+    "text": "boolean()"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
   "cooler.getdatemanufactured": {
    "object": "cooler",
    "method": "getDateManufactured",
@@ -20654,6 +20767,9 @@
    "adaora.note",
    "adaora.cap"
   ],
+  "ahan": [
+   "ahan.wayayou"
+  ],
   "american_olamide_subject": [
    "object.look"
   ],
@@ -21367,6 +21483,9 @@
   ],
   "stay": [
    "stay.above"
+  ],
+  "stringify": [
+   "stringify.boolean"
   ],
   "structure_hit_subject": [
    "object.look"
@@ -37338,6 +37457,7 @@
     "from": "9876ef803050",
     "title": "317. what old men see",
     "funcs": [
+     "ahan.wayayou",
      "marisol.wise"
     ]
    }
@@ -37392,6 +37512,14 @@
    }
   ],
   "otilor_thing_mind_figure": [
+   {
+    "scope": "safe",
+    "from": "2aaa5393729c",
+    "title": "1129. otilor is a thing of the mind",
+    "funcs": [
+     "stringify.boolean"
+    ]
+   },
    {
     "scope": "safe",
     "from": "31538bbffdb5",
@@ -44297,7 +44425,9 @@
     "das.right",
     "even.feels",
     "guy.wan",
-    "woke.morning"
+    "woke.morning",
+    "ahan.wayayou",
+    "stringify.boolean"
    ]
   },
   "run-d6fc": {
@@ -44665,6 +44795,13 @@
    ],
    "runs": []
   },
+  "2aaa5393729c": {
+   "title": "1129. otilor is a thing of the mind",
+   "funcs": [
+    "stringify.boolean"
+   ],
+   "runs": []
+  },
   "2c6971a8d401": {
    "title": "927. this is what we need",
    "funcs": [
@@ -45014,7 +45151,9 @@
     "das.right",
     "even.feels",
     "guy.wan",
-    "woke.morning"
+    "woke.morning",
+    "ahan.wayayou",
+    "stringify.boolean"
    ],
    "runs": [
     "run-cf203b"
@@ -45236,7 +45375,8 @@
   "9876ef803050": {
    "title": "317. what old men see",
    "funcs": [
-    "marisol.wise"
+    "marisol.wise",
+    "ahan.wayayou"
    ],
    "runs": []
   },
@@ -46519,6 +46659,7 @@
    "9338aadfde6e"
   ],
   "1*_Q9iSYmWXqNIrNI6eidNYQ.gif": [
+   "2aaa5393729c",
    "31538bbffdb5"
   ],
   "1*EzXx6mCPVc-4TByCgM6uFw.gif": [
@@ -47113,6 +47254,7 @@
   "1*_Q9iSYmWXqNIrNI6eidNYQ.gif": {
    "runs": [],
    "safes": [
+    "2aaa5393729c",
     "31538bbffdb5"
    ]
   },
@@ -47518,6 +47660,9 @@
    "adaora.write",
    "adaora.note",
    "adaora.cap"
+  ],
+  "ahan": [
+   "ahan.wayayou"
   ],
   "aotl": [
    "aotl.isline"
@@ -47984,6 +48129,9 @@
   "stay": [
    "stay.above"
   ],
+  "stringify": [
+   "stringify.boolean"
+  ],
   "taking": [
    "taking.isnotes"
   ],
@@ -48312,6 +48460,8 @@
   "even": [],
   "guy": [],
   "woke": [],
+  "ahan": [],
+  "stringify": [],
   "cooler": [],
   "kazeem.goodqualities": [],
   "app": [],
@@ -48507,6 +48657,7 @@
    "worry"
   ],
   "run-cf203b": [
+   "ahan",
    "believe",
    "can",
    "come",
@@ -48526,6 +48677,7 @@
    "shu",
    "slapping",
    "stay",
+   "stringify",
    "wo",
    "woke"
   ]
@@ -48543,5 +48695,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-25T13:16:49-05:00"
+ "updated": "2026-11-25T13:28:30-05:00"
 }

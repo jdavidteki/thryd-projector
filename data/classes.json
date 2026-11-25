@@ -108,8 +108,8 @@
     "give",
     "know"
    ],
-   "instances": 459,
-   "arg_instances": 130,
+   "instances": 460,
+   "arg_instances": 131,
    "parent": null,
    "chain": [
     "Thing"
@@ -6354,6 +6354,22 @@
    ],
    "tweets": []
   },
+  "standing": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-cf203b",
+   "first_job": "j14",
+   "source": "pick",
+   "runs": [
+    "run-cf203b"
+   ],
+   "tweets": [
+    {
+     "text": "— ahan, wayayou standing and looking?",
+     "year": "2025"
+    }
+   ]
+  },
   "starwars": {
    "class": "Thing",
    "cue": "default",
@@ -9283,6 +9299,12 @@
     "Thing",
     "j13",
     "pick"
+   ],
+   [
+    "standing",
+    "Thing",
+    "j14",
+    "pick"
    ]
   ],
   "run-b70200": [
@@ -11963,6 +11985,8 @@
   "even.feels": "feels(how: Manner)",
   "guy.wan": "wan(what: Thing)",
   "woke.morning": "morning()",
+  "ahan.wayayou": "wayayou(what: Thing)",
+  "stringify.boolean": "boolean()",
   "cooler.getdatemanufactured": "getDateManufactured()",
   "ronke.getlikes.contains": "getlikes.contains()",
   "kazeem.goodqualities.filter": "filter()",
@@ -12444,6 +12468,7 @@
    "worry"
   ],
   "run-cf203b": [
+   "ahan",
    "believe",
    "can",
    "come",
@@ -12463,6 +12488,7 @@
    "shu",
    "slapping",
    "stay",
+   "stringify",
    "wo",
    "woke"
   ]
@@ -12539,5 +12565,5 @@
   "epilogue": "quiet",
   "coda": "quiet"
  },
- "updated": "2026-11-25T13:15:57-05:00"
+ "updated": "2026-11-25T13:28:29-05:00"
 }
