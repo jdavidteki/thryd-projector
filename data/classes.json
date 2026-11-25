@@ -106,10 +106,10 @@
    "methods": [
     "say",
     "give",
-    "see"
+    "know"
    ],
-   "instances": 448,
-   "arg_instances": 119,
+   "instances": 451,
+   "arg_instances": 122,
    "parent": null,
    "chain": [
     "Thing"
@@ -3349,6 +3349,26 @@
    ],
    "tweets": []
   },
+  "juju": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-5a58c4",
+   "first_job": "j63",
+   "source": "pick",
+   "runs": [
+    "run-5a58c4"
+   ],
+   "tweets": [
+    {
+     "text": "- once you understand that",
+     "year": "2024"
+    },
+    {
+     "text": "- na juju [[when]] get code",
+     "year": "2024"
+    }
+   ]
+  },
   "juniorbiys": {
    "class": "Person",
    "cue": "word",
@@ -6205,6 +6225,22 @@
     }
    ]
   },
+  "story": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-5a58c4",
+   "first_job": "j63",
+   "source": "pick",
+   "runs": [
+    "run-5a58c4"
+   ],
+   "tweets": [
+    {
+     "text": "[[stb,aaiid]] -- i was waiting for the story",
+     "year": "2025"
+    }
+   ]
+  },
   "storybypsquare": {
    "class": "Thing",
    "cue": "default",
@@ -6582,6 +6618,22 @@
     {
      "text": "[[htmyb]] - it depends, if you want them",
      "year": "2026"
+    }
+   ]
+  },
+  "things": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-5a58c4",
+   "first_job": "j63",
+   "source": "pick",
+   "runs": [
+    "run-5a58c4"
+   ],
+   "tweets": [
+    {
+     "text": "#juniorboys - so many things you don’t knnnoooooowwwwwww!",
+     "year": "2024"
     }
    ]
   },
@@ -7711,24 +7763,6 @@
   ],
   "run-5a58c4": [
    [
-    "system",
-    "Thing",
-    "j39",
-    "pick"
-   ],
-   [
-    "god",
-    "Thing",
-    "j40",
-    "pick"
-   ],
-   [
-    "something",
-    "Action",
-    "j41",
-    "pick"
-   ],
-   [
     "it",
     "Thing",
     "j41",
@@ -7918,6 +7952,24 @@
     "hand",
     "Thing",
     "j62",
+    "pick"
+   ],
+   [
+    "things",
+    "Thing",
+    "j63",
+    "pick"
+   ],
+   [
+    "story",
+    "Thing",
+    "j63",
+    "pick"
+   ],
+   [
+    "juju",
+    "Thing",
+    "j63",
     "pick"
    ],
    [
@@ -11619,6 +11671,9 @@
   "calla.test": "test(what: Thing)",
   "dez.drop": "drop(what: Thing)",
   "marisol.kiss": "kiss(what: Thing)",
+  "calla.know": "know(what: Thing)",
+  "marisol.wait": "wait(what: Thing)",
+  "teo.decode": "decode(what: Thing)",
   "cooler.getdatemanufactured": "getDateManufactured()",
   "ronke.getlikes.contains": "getlikes.contains()",
   "kazeem.goodqualities.filter": "filter()",
@@ -12169,5 +12224,5 @@
   "epilogue": "quiet",
   "coda": "quiet"
  },
- "updated": "2026-11-24T19:33:56-05:00"
+ "updated": "2026-11-24T20:01:10-05:00"
 }
