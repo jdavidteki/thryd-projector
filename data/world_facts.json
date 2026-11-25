@@ -7601,16 +7601,6 @@
 ],
 "thryd": [
 {
-"id": "wf_34f21acb53",
-"kind": "consequence",
-"text": "The thryd leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"code": "computer_village.interactwith(thryd){ thryd.receives(computer_village.envelope); thryd.remembers(bisola, 'brown envelope'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "computer_village"
-},
-{
 "id": "wf_94748694ad",
 "kind": "consequence",
 "text": "The thryd leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
@@ -7639,6 +7629,16 @@
 "run": "run-2eb42d",
 "card": "j2",
 "other": "cup"
+},
+{
+"id": "wt_a373b92fed",
+"kind": "func_call",
+"text": "The customer typed #thryd.importtheme(funkeakindele) on run-cf203b j17. It came back: Thryd importtheme funkeakindele. Implementation: function importtheme(what){\n  // The customer typed this on this agenda.\n  THRYD_IMPORTTHEME_COUNT += 1;\n  this.lastImporttheme = \"funkeakindele\";\n  return \"Thryd importtheme funkeakindele\";\n}.",
+"code": "#thryd.importtheme(funkeakindele);",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j17",
+"other": null
 },
 {
 "id": "wt_705361bf07",
@@ -8795,16 +8795,6 @@
 ],
 "cli": [
 {
-"id": "wt_1a472a9c4a",
-"kind": "func_call",
-"text": "The customer typed #jbc on run-cf203b j16. It came back: #jbc. Implementation: /* #jbc */.",
-"code": "#jbc;",
-"author": "customer",
-"run": "run-cf203b",
-"card": "j16",
-"other": null
-},
-{
 "id": "wt_6ebe34fa0f",
 "kind": "func_call",
 "text": "The customer typed #thryd.miracle.log(1) on run-cf203b j16. It came back: #thryd.miracle.log(1). Implementation: /* #thryd.miracle.log(1) */.",
@@ -8842,6 +8832,16 @@
 "author": "customer",
 "run": "run-cf203b",
 "card": "j16",
+"other": null
+},
+{
+"id": "wt_c8980ffb1f",
+"kind": "func_call",
+"text": "The customer typed #thryd.miracle.log(1) on run-cf203b j17. It came back: #thryd.miracle.log(1). Implementation: /* #thryd.miracle.log(1) */.",
+"code": "#thryd.miracle.log(1);",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j17",
 "other": null
 }
 ],
@@ -11198,6 +11198,30 @@
 "card": "j16",
 "other": null
 }
+],
+"growth": [
+{
+"id": "wt_a2ec94a835",
+"kind": "func_call",
+"text": "The customer typed [[growth]] on run-cf203b j17.",
+"code": "[[growth]];",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j17",
+"other": null
+}
+],
+"mhicomaikw": [
+{
+"id": "wt_72d59b17d9",
+"kind": "func_call",
+"text": "The customer typed [[mhicomaikw]] on run-cf203b j17.",
+"code": "[[mhicomaikw]];",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j17",
+"other": null
+}
 ]
 },
 "consequences": [
@@ -11743,5 +11767,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-25T15:21:27-0500"
+"updated": "2026-11-25T15:34:49-0500"
 }
