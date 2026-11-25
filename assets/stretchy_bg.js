@@ -5,8 +5,9 @@
   'use strict';
   var LIVE_OK = 'body.stage1:not(.stage-replay):not(.cerebro):not(.lovemap)';
   var BREATHE_MS = 8000;  // slow ghostly fade, 15% ↔ 60%
-  var GRID_A = 0.08;     // very faint; the stretched image carries the feel
-  var GRID_A_DARK = 0.14; // a touch stronger so the grid still reads on black
+  // v611 (Jesuye 24 Nov 10:18 PM ET "make the net like thing in the back very faint"): the warped 32 px grid (the net) is now 20% of its old strength
+  var GRID_A = 0.016;    // was 0.08
+  var GRID_A_DARK = 0.028; // was 0.14
   var COMPOSE_MS = 200;  // recache GIF/plate texture at most this often (v610 heat: was 120)
   var DRAW_MS = 240;     // v610 heat (Jesuye 10:03 PM ET: cut drawing 50%): the warp is redrawn at most ~4 fps. Every redraw of this full-screen layer makes the browser
                          // recomposite every cut above it; the warp moves only a few px a second (7-23 s periods), so it looks the same.
