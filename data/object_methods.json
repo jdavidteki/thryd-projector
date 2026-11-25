@@ -16999,14 +16999,14 @@
      ],
      "consequence": "What just happened: The woman laughs and answers, \"i shu be making more dan!\" She thinks she's owed more.",
      "consequence_job": "j11",
-     "resolved": "shu.making(amount=more:Quantity) from j10",
+     "resolved": "shu.making(amount=all:Quantity) from j6",
      "injected": [
       {
        "param": "amount",
        "class": "Quantity",
-       "instance": "more",
+       "instance": "all",
        "from_run": "run-cf203b",
-       "from_job": "j10",
+       "from_job": "j6",
        "source": "pick"
       }
      ]
@@ -18278,6 +18278,184 @@
    "prior": [],
    "faded": false,
    "last_run": "run-cf203b"
+  },
+  "make.add": {
+   "object": "make",
+   "method": "add",
+   "args": [
+    "more"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j18",
+    "card": "w18",
+    "title": "make.add(more)",
+    "emoji": "☔",
+    "at": "2026-11-25T15:45:49-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "make.add(more)",
+     "emoji": "☔",
+     "arg": "more",
+     "run": "run-cf203b",
+     "job": "j18",
+     "tweets": [
+      {
+       "text": "-- make i add more stuff [[here]] so daditin",
+       "year": "2025"
+      }
+     ],
+     "consequence": "What just happened: Tobi keeps digging: \"make i add more stuff here so daditin.\" Then he turns it on everyone: \"what do you guys think?\" When Kemi doesn't answer, he points at himself: \"say me, ehn?\" 📖 Now: Get the line where Kemi tells Tob",
+     "consequence_job": "j19",
+     "resolved": "make.add(amount=more:Quantity) from j18",
+     "injected": [
+      {
+       "param": "amount",
+       "class": "Quantity",
+       "instance": "more",
+       "from_run": "run-cf203b",
+       "from_job": "j18",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "amount",
+      "class": "Quantity",
+      "default": "more",
+      "first_run": "run-cf203b",
+      "first_job": "j10"
+     }
+    ],
+    "text": "add(amount: Quantity)"
+   },
+   "receiver_class": "Action",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "say.ehn": {
+   "object": "say",
+   "method": "ehn",
+   "args": [
+    ""
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j18",
+    "card": "w18",
+    "title": "say.ehn()",
+    "emoji": "🐢",
+    "at": "2026-11-25T15:45:49-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "say.ehn()",
+     "emoji": "🐢",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j18",
+     "tweets": [
+      {
+       "text": "#juniorboys - say me, ehn?",
+       "year": "2025"
+      }
+     ],
+     "consequence": "What just happened: Tobi keeps digging: \"make i add more stuff here so daditin.\" Then he turns it on everyone: \"what do you guys think?\" When Kemi doesn't answer, he points at himself: \"say me, ehn?\" 📖 Now: Get the line where Kemi tells Tob",
+     "consequence_job": "j19",
+     "resolved": "say.ehn()",
+     "injected": []
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [],
+    "text": "ehn()"
+   },
+   "receiver_class": "Action",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "what.guys": {
+   "object": "what",
+   "method": "guys",
+   "args": [
+    "think"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j18",
+    "card": "w18",
+    "title": "what.guys(think)",
+    "emoji": "🦚",
+    "at": "2026-11-25T15:45:49-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "what.guys(think)",
+     "emoji": "🦚",
+     "arg": "think",
+     "run": "run-cf203b",
+     "job": "j18",
+     "tweets": [
+      {
+       "text": "#jbj - what do you guys think?",
+       "year": "2025"
+      }
+     ],
+     "consequence": "What just happened: Tobi keeps digging: \"make i add more stuff here so daditin.\" Then he turns it on everyone: \"what do you guys think?\" When Kemi doesn't answer, he points at himself: \"say me, ehn?\" 📖 Now: Get the line where Kemi tells Tob",
+     "consequence_job": "j19",
+     "resolved": "what.guys(what=think:Thing) from j18",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "think",
+       "from_run": "run-cf203b",
+       "from_job": "j18",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "think",
+      "first_run": "run-cf203b",
+      "first_job": "j18"
+     }
+    ],
+    "text": "guys(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
   },
   "cooler.getdatemanufactured": {
    "object": "cooler",
@@ -21921,7 +22099,8 @@
    "object.look"
   ],
   "make": [
-   "make.setany"
+   "make.setany",
+   "make.add"
   ],
   "mama": [
    "mama.know"
@@ -22165,6 +22344,9 @@
    "kunle.read",
    "kunle.walk"
   ],
+  "say": [
+   "say.ehn"
+  ],
   "seller": [
    "seller.feel"
   ],
@@ -22333,6 +22515,9 @@
   ],
   "weeks": [
    "weeks.gettoattd"
+  ],
+  "what": [
+   "what.guys"
   ],
   "whatever_happens_me_subject": [
    "object.look"
@@ -28962,6 +29147,16 @@
     ]
    }
   ],
+  "eez_boring_subject": [
+   {
+    "scope": "safe",
+    "from": "b2968502999e",
+    "title": "812. eez boring",
+    "funcs": [
+     "say.ehn"
+    ]
+   }
+  ],
   "egusi_tissue_papers_subject": [
    {
     "scope": "safe",
@@ -30381,6 +30576,7 @@
     "from": "058a1a2478c5",
     "title": "503. combination",
     "funcs": [
+     "what.guys",
      "nobody.bring"
     ]
    }
@@ -45199,6 +45395,9 @@
     "nigerian.nuclear",
     "shi.gbogbo",
     "wym.dont",
+    "make.add",
+    "say.ehn",
+    "what.guys",
     "cli.cli",
     "thryd.importtheme",
     "kemi.ismarried",
@@ -45293,10 +45492,18 @@
    ],
    "runs": []
   },
+  "04264fd54edb": {
+   "title": "724. when",
+   "funcs": [
+    "make.add"
+   ],
+   "runs": []
+  },
   "058a1a2478c5": {
    "title": "503. combination",
    "funcs": [
-    "nobody.bring"
+    "nobody.bring",
+    "what.guys"
    ],
    "runs": []
   },
@@ -45968,7 +46175,10 @@
     "something.wrong",
     "nigerian.nuclear",
     "shi.gbogbo",
-    "wym.dont"
+    "wym.dont",
+    "make.add",
+    "say.ehn",
+    "what.guys"
    ],
    "runs": [
     "run-cf203b"
@@ -46383,6 +46593,13 @@
    "title": "i know you're trying to glance my way again",
    "funcs": [
     "woke.morning"
+   ],
+   "runs": []
+  },
+  "b2968502999e": {
+   "title": "812. eez boring",
+   "funcs": [
+    "say.ehn"
    ],
    "runs": []
   },
@@ -47200,6 +47417,9 @@
   "1*B4Qxrti1luSOdS5kdFJWcA.gif": [
    "35e37a321959"
   ],
+  "1*u3S2J-ivnMgJ7O47y14ayQ.gif": [
+   "04264fd54edb"
+  ],
   "1*7_tJmvly2Fh5nQh7LBY5WQ.gif": [
    "db0976343b1a"
   ],
@@ -47387,6 +47607,9 @@
   ],
   "1*yGiZLqk4a8lrxbZRYoRMiA.gif": [
    "4e42e2aec04b"
+  ],
+  "1*APufEsa8jVHv6I22L9vMWw.gif": [
+   "b2968502999e"
   ],
   "1*Pk8Lr8EFN6Audtb8lRp_pA.gif": [
    "b02906d784b9"
@@ -47782,6 +48005,12 @@
     "8e5bbd0ffb78"
    ]
   },
+  "1*u3S2J-ivnMgJ7O47y14ayQ.gif": {
+   "runs": [],
+   "safes": [
+    "04264fd54edb"
+   ]
+  },
   "1*7_tJmvly2Fh5nQh7LBY5WQ.gif": {
    "runs": [],
    "safes": [
@@ -48019,6 +48248,12 @@
    "runs": [],
    "safes": [
     "13bbdaa651ee"
+   ]
+  },
+  "1*APufEsa8jVHv6I22L9vMWw.gif": {
+   "runs": [],
+   "safes": [
+    "b2968502999e"
    ]
   },
   "1*h01OT-F1_-bixDd99vWdCQ.gif": {
@@ -48841,7 +49076,8 @@
    "life.give"
   ],
   "make": [
-   "make.setany"
+   "make.setany",
+   "make.add"
   ],
   "mama": [
    "mama.know"
@@ -49012,6 +49248,9 @@
   "sakitout": [
    "sakitout.setname"
   ],
+  "say": [
+   "say.ehn"
+  ],
   "seller": [
    "seller.feel"
   ],
@@ -49133,6 +49372,9 @@
   ],
   "weeks": [
    "weeks.gettoattd"
+  ],
+  "what": [
+   "what.guys"
   ],
   "wife": [
    "wife.kill"
@@ -49394,6 +49636,8 @@
   "wym": [
    "Readable"
   ],
+  "say": [],
+  "what": [],
   "cooler": [],
   "kazeem.goodqualities": [],
   "app": [],
@@ -49606,11 +49850,13 @@
    "kemi",
    "know",
    "lehgeet",
+   "make",
    "nigerian",
    "once",
    "part",
    "ready",
    "russian",
+   "say",
    "share",
    "shi",
    "shu",
@@ -49618,6 +49864,7 @@
    "something",
    "stay",
    "stringify",
+   "what",
    "wo",
    "woke",
    "wym"
@@ -49636,5 +49883,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-25T15:36:31-05:00"
+ "updated": "2026-11-25T15:46:32-05:00"
 }

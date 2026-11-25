@@ -108,8 +108,8 @@
     "give",
     "know"
    ],
-   "instances": 462,
-   "arg_instances": 133,
+   "instances": 463,
+   "arg_instances": 134,
    "parent": null,
    "chain": [
     "Thing"
@@ -128,8 +128,8 @@
    "param": "amount",
    "methods": [
     "above",
-    "call",
-    "could"
+    "add",
+    "call"
    ],
    "instances": 10,
    "arg_instances": 10,
@@ -4516,6 +4516,10 @@
     {
      "text": "- i shu be making more dan!",
      "year": "2024"
+    },
+    {
+     "text": "-- make i add more stuff [[here]] so daditin",
+     "year": "2025"
     }
    ]
   },
@@ -6903,6 +6907,22 @@
     {
      "text": "#juniorboys - so many things you don’t knnnoooooowwwwwww!",
      "year": "2024"
+    }
+   ]
+  },
+  "think": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-cf203b",
+   "first_job": "j18",
+   "source": "pick",
+   "runs": [
+    "run-cf203b"
+   ],
+   "tweets": [
+    {
+     "text": "#jbj - what do you guys think?",
+     "year": "2025"
     }
    ]
   },
@@ -9329,12 +9349,6 @@
     "pick"
    ],
    [
-    "more",
-    "Quantity",
-    "j10",
-    "pick"
-   ],
-   [
     "deh",
     "Thing",
     "j11",
@@ -9410,6 +9424,18 @@
     "know",
     "Action",
     "j17",
+    "pick"
+   ],
+   [
+    "more",
+    "Quantity",
+    "j18",
+    "pick"
+   ],
+   [
+    "think",
+    "Thing",
+    "j18",
     "pick"
    ]
   ],
@@ -12102,6 +12128,9 @@
   "nigerian.nuclear": "nuclear(what: Thing)",
   "shi.gbogbo": "gbogbo(what: Thing)",
   "wym.dont": "dont(act: Action)",
+  "make.add": "add(amount: Quantity)",
+  "say.ehn": "ehn()",
+  "what.guys": "guys(what: Thing)",
   "cooler.getdatemanufactured": "getDateManufactured()",
   "ronke.getlikes.contains": "getlikes.contains()",
   "kazeem.goodqualities.filter": "filter()",
@@ -12603,11 +12632,13 @@
    "kemi",
    "know",
    "lehgeet",
+   "make",
    "nigerian",
    "once",
    "part",
    "ready",
    "russian",
+   "say",
    "share",
    "shi",
    "shu",
@@ -12615,6 +12646,7 @@
    "something",
    "stay",
    "stringify",
+   "what",
    "wo",
    "woke",
    "wym"
@@ -12692,5 +12724,5 @@
   "epilogue": "quiet",
   "coda": "quiet"
  },
- "updated": "2026-11-25T15:35:41-05:00"
+ "updated": "2026-11-25T15:46:32-05:00"
 }
