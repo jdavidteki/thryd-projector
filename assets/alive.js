@@ -52,8 +52,10 @@ function type(){if(typing)return;typing=true;lastTick=Date.now();
   const d=document.createElement('div');d.className=(n.a?'a ':'')+'cur';code.appendChild(d);
   while(code.children.length>60){const el=code.firstElementChild;if(!el||el===d)break;el.remove();}
   let i=0;
-  const step=()=>{lastTick=Date.now();try{d.textContent=s.slice(0,++i);if(i<s.length)setTimeout(step,14+Math.random()*40);
-    else{d.classList.remove('cur');if(n.note){const e=document.createElement('span');e.className='d';e.textContent='  // '+n.note;d.appendChild(e);}typing=false;setTimeout(type,250+Math.random()*900);}}
+  /* v612 heat: 3 letters per ~100 ms (was 1 per ~34 ms, ~30 text repaints a second of a masked panel); idle: the whole line at once, a new line every ~2-4 s */
+  const step=()=>{lastTick=Date.now();try{const st=window.LH&&LH.state;if(st==='hidden'){setTimeout(step,1500);return;}
+    i=st==='idle'?s.length:Math.min(s.length,i+3);d.textContent=s.slice(0,i);if(i<s.length)setTimeout(step,70+Math.random()*60);
+    else{d.classList.remove('cur');if(n.note){const e=document.createElement('span');e.className='d';e.textContent='  // '+n.note;d.appendChild(e);}typing=false;setTimeout(type,st==='idle'?1800+Math.random()*1800:250+Math.random()*900);}}
     catch(err){try{d.classList.remove('cur');}catch(e2){}typing=false;setTimeout(type,400);}};
   step();
  }catch(err){typing=false;setTimeout(type,400);}}

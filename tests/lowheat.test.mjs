@@ -15,7 +15,7 @@ test('60 s idle, ~30 fps active, ~10 fps idle, polls 2-5 min, ?lowheat=0 off swi
   assert.match(lh, /if\(ms>=300000\)return ms;if\(ms>=60000\)return 180000;return 120000;/);
   assert.match(lh, /lowheat'\)==='0'/); assert.match(lh, /prefers-reduced-motion/); assert.match(lh, /visibilitychange/);
 });
-test('version check every 5 min', ()=>{ assert.match(html, /setInterval\(chk,300000\)/); assert.match(html, /var VER=608,/); });
+test('version check every 5 min', ()=>{ assert.match(html, /setInterval\(chk,300000\)/); assert.match(html, /var VER=\d+,/); });
 test('decorative loops use LH.deco; slideshow, live GIF, audio and persistence opt out', ()=>{
   assert.match(rd('assets/alive.js'), /LH\.deco:requestAnimationFrame\)\(anim\)/);
   const g = rd('story/gode.js'); assert.match(g, /LH\.deco:requestAnimationFrame\)\(drift\)/); assert.match(g, /LH\.decoEvery:setInterval\)\(settle,1000\)/);

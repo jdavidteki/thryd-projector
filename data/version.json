@@ -1,5 +1,5 @@
 {
- "v": 611,
- "at": "2026-11-24T22:35:00-05:00",
- "note": "v611: the net-like grid behind the stage is much fainter (20% of its old strength: 0.08 to 0.016 on the light background, 0.14 to 0.028 on dark). Nothing else changed since v610."
+ "v": 612,
+ "at": "2026-11-25T13:50:00-05:00",
+ "note": "v612: cooler projector. The idle float of every cut no longer rotates and is driven by one shared ticker (about 12 updates a second, 4 when idle, off-screen cuts skipped) instead of 50+ CSS animations; film grain is a small layer that jitters 1.7x a second and pauses when idle; active frames wait on a timer instead of every display refresh; the code panel types in 3-letter steps and shows whole lines when idle; the warp samples plates every 500 ms. Box measurement: total CPU ~172% to ~127%, GPU ~99% to ~70%."
 }

@@ -127,8 +127,11 @@
     '#gstage .gbg.gm.gfresh.on,#gstage .gbg.glive.gfresh.on{opacity:.8;filter:none}',
     '#gstage img.gcut,#gstage img.gbg{display:block;max-width:none;-webkit-user-drag:none}',
     '#gstage .gcut{position:absolute;pointer-events:auto;touch-action:none;cursor:grab;transform-origin:50% 85%;user-select:none;will-change:transform,translate,opacity;backface-visibility:hidden}',
-    '#gstage .gcut.fl{animation:mcfloat var(--fd,7s) ease-in-out var(--fdl,0s) infinite}',
-    '#gstage .gcut[data-dragging="1"]{animation:none;cursor:grabbing;z-index:9999!important}',
+    // v612 heat: the idle float is no longer one CSS animation per cut (50+ compositor animations redrawing every layer at the display's rate, 120 Hz on a Fold).
+    // One shared ticker (floatTick) writes --s (0..1, the same ease-in-out sway as mcfloat) on each on-screen cut ~12x a second (4x when idle).
+    // The +-1.8 degree rotation of mcfloat is dropped: a rotated composited layer is drawn with anti-aliased edges, which measured ~30 GPU points of the stage on the box (translate + scale: 70, with rotation: 101).
+    '#gstage .gcut.fl{transform:translate(calc(-1.4% + 2.8% * var(--s,.5)),calc(.9% - 2.7% * var(--s,.5))) scale(calc(1.045 + .015 * var(--s,.5)))}',
+    '#gstage .gcut[data-dragging="1"]{animation:none;transform:none;cursor:grabbing;z-index:9999!important}',
     '#gstage .gcut.gnotice{animation:mcnotice 1.1s ease-out 1 both}',
     '#gstage .gtag{position:absolute;transform:translateX(-50%);font:1.15vh ui-monospace,Menlo,monospace;color:#fff;background:#000a;padding:.15vh .5vw;border-radius:.6vh;white-space:nowrap;pointer-events:none;opacity:0;transition:opacity 1.6s;max-width:40vw;overflow:hidden;text-overflow:ellipsis}',
     '#gstage .gtag.on{opacity:.85}',
@@ -202,11 +205,11 @@
     g.btx = Math.cos(a) * sp; g.bty = Math.sin(a) * sp;
     g.bTurn = now + R(BG_TURN[0], BG_TURN[1]);
   }
-  function tickBgs(now){
+  function tickBgs(now, cap){
     const prev = tickBgs.t; tickBgs.t = now;
     if(RM || !prev) return;
     if(paused()) return;
-    const dt = Math.min(0.05, (now - prev) / 1000);
+    const dt = Math.min(cap || 0.05, (now - prev) / 1000);
     const rad = BG_TRAVEL * Math.min(vw(), vh());
     const k = 1 - Math.exp(-dt / BG_EASE);
     const E = PHONE ? 0.22 : 0.28;
@@ -231,23 +234,49 @@
 
   // one rAF loop: GIF frames of every group advance here, on the display's own clock (no per-group timers)
   const anims = new Set(); S.loop = {n:0, slow:0, max:0};
+  // v612 heat: which cuts are on screen, checked ~3x a second (not per frame). Off-screen cuts skip their GIF redraw and their float pose.
+  let visAt = 0;
+  function markVis(now){
+    if(now - visAt < 350 && now >= visAt) return; visAt = now;
+    const w = vw(), h = vh(), m = 160;
+    for(let i = 0; i < S.cuts.length; i++){ const c = S.cuts[i], el = c.el;
+      if(!el || !el.isConnected){ c._vis = false; continue; }
+      const r = el.getBoundingClientRect(); c._vis = r.right > -m && r.left < w + m && r.bottom > -m && r.top < h + m; }
+  }
+  S.markVis = markVis;
   function frame(now){
     const t0 = performance.now();
     if(!document.hidden && !document.body.classList.contains('cerebro')){
+      markVis(now);
       anims.forEach(A => {
         const g = A.g; if(g.gone && !S.cuts.some(c => c.home === g)){ anims.delete(A); return; }
         if(now < A.due) return;
         let n = 0; while(now >= A.due && n++ < 4){ A.f = (A.f + 1) % A.delays.length; A.due += Math.max(40, A.delays[A.f] || 100); }
         if(now - A.due > 1000) A.due = now + 60; // after a pause, pick up again instead of racing
-        for(let i = 0; i < S.cuts.length; i++){ const cut = S.cuts[i]; if(cut.home !== g || !cut.frames[A.f] || !cut.ctx) continue;
+        for(let i = 0; i < S.cuts.length; i++){ const cut = S.cuts[i]; if(cut.home !== g || !cut.frames[A.f] || !cut.ctx || cut._vis === false) continue;
           cut.ctx.clearRect(0, 0, cut.el.width, cut.el.height); cut.ctx.drawImage(cut.frames[A.f], 0, 0); }
       });
-      tickBgs(now);
+      // v612 heat: under the stretchy warp the plates are opacity 0 and are only sampled ~5x a second, so they drift at ~11 Hz (same speed: dt cap raised to match)
+      if(document.body.classList.contains('stretchy-bg')){ if(!(now - (frame.bgAt || 0) < 90)){ frame.bgAt = now; tickBgs(now, 0.16); } }
+      else tickBgs(now);
     } else { tickBgs.t = 0; }
     const dt = performance.now() - t0; S.loop.n++; if(dt > 8) S.loop.slow++; if(dt > S.loop.max) S.loop.max = +dt.toFixed(1);
     requestAnimationFrame(frame);
   }
   requestAnimationFrame(frame);
+  // v612 heat: the shared float ticker (see the .gcut.fl rule)
+  const FLOAT = {n: 0};
+  function floatTick(){
+    if(RM || document.hidden) return; const cl = document.body.classList;
+    if(cl.contains('stage-replay') || cl.contains('cerebro') || cl.contains('lovemap')) return;
+    if(root.LH && LH.state === 'idle' && (FLOAT.n++ % 3)) return;
+    const pn = performance.now(), t = pn / 1000, TAU = 6.2831853; markVis(pn);
+    for(let i = 0; i < S.cuts.length; i++){ const c = S.cuts[i], el = c.el;
+      if(!el || c._vis === false || !el.classList.contains('fl') || el.dataset.dragging === '1') continue;
+      if(c._fd == null){ c._fd = parseFloat(el.style.getPropertyValue('--fd')) || 7; c._fdl = parseFloat(el.style.getPropertyValue('--fdl')) || 0; }
+      el.style.setProperty('--s', (0.5 - 0.5 * Math.cos(TAU * (t - c._fdl) / c._fd)).toFixed(3)); }
+  }
+  S.floatTick = floatTick; (root.LH && LH.slide ? LH.slide : setInterval)(floatTick, 83);
   const view = ()=>{ camNow(); return {x:cam.x, y:cam.y, w:vw(), h:vh()}; };
 
   // ---------- decoding: exact source frames, cut by each object's own mask, scaled to on-screen size

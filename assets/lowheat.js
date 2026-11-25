@@ -68,6 +68,9 @@ LH.deco=function(cb){return rafReq(cb,true);};
 function pump(){if(rnative||rtimer||!rq.size)return;var s=LH.state;if(s==='hidden')return;
   if(s==='idle'){var any=false;rq.forEach(function(r){if(!r.deco)any=true;});if(!any)return;
     rtimer=nST(function(){rtimer=0;rnative=nRAF(flush);},Math.max(0,lastFlush+IDLE_FRAME-performance.now()));return;}
+  /* v612: active frames wait on a timer until just before the next ~30 fps slot instead of asking the display for every vsync (60-120 wakeups a second) */
+  if(s==='active'&&!ptrDown&&lastFlush){var w=lastFlush+ACTIVE_FRAME-performance.now()-5;
+    if(w>3){rtimer=nST(function(){rtimer=0;if(LH.state!=='hidden')rnative=nRAF(flush);},w);return;}}
   rnative=nRAF(flush);}
 function flush(ts){rnative=0;var s=LH.state;if(s==='hidden')return;
   if(s==='active'&&!ptrDown&&lastFlush&&ts-lastFlush<ACTIVE_FRAME&&ts>=lastFlush){rnative=nRAF(flush);return;}
