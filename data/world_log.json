@@ -15050,7 +15050,7 @@
   },
   "run-cf203b": {
    "forked_from": "safe:731d52737690",
-   "head": "37ab217e6b",
+   "head": "c5c4220298",
    "commits": [
     {
      "id": "069eca7a17",
@@ -15192,7 +15192,7 @@
      }
     },
     {
-     "id": "40d0765f6d",
+     "id": "be9e7dda5b",
      "parent": "11c1e7a267",
      "branch": "run-cf203b",
      "job": "j10",
@@ -15384,9 +15384,73 @@
         "code": "[[aota]];",
         "scope": null,
         "cause_id": null
+       },
+       {
+        "id": "wt_db21cb334b",
+        "object": "teo",
+        "kind": "func_call",
+        "code": "teo.guess('bank');",
+        "scope": "env",
+        "cause_id": null
+       },
+       {
+        "id": "wt_3867be0826",
+        "object": "blender",
+        "kind": "func_call",
+        "code": "blender.hears(person, 'guess');",
+        "scope": "ripple",
+        "cause_id": "wt_db21cb334b"
+       },
+       {
+        "id": "wt_2176c94c7e",
+        "object": "calla",
+        "kind": "func_call",
+        "code": "calla.hears(person, 'guess');",
+        "scope": "ripple",
+        "cause_id": "wt_db21cb334b"
+       },
+       {
+        "id": "wt_0fb487e663",
+        "object": "code",
+        "kind": "func_call",
+        "code": "code.hears(person, 'guess');",
+        "scope": "ripple",
+        "cause_id": "wt_db21cb334b"
+       },
+       {
+        "id": "wt_5c0a0f6890",
+        "object": "teo",
+        "kind": "func_call",
+        "code": "teo.respond('bank');",
+        "scope": "env",
+        "cause_id": null
+       },
+       {
+        "id": "wt_215aaeb552",
+        "object": "blender",
+        "kind": "func_call",
+        "code": "blender.hears(person, 'respond');",
+        "scope": "ripple",
+        "cause_id": "wt_5c0a0f6890"
+       },
+       {
+        "id": "wt_930265cdd8",
+        "object": "calla",
+        "kind": "func_call",
+        "code": "calla.hears(person, 'respond');",
+        "scope": "ripple",
+        "cause_id": "wt_5c0a0f6890"
+       },
+       {
+        "id": "wt_03c3046b5e",
+        "object": "code",
+        "kind": "func_call",
+        "code": "code.hears(person, 'respond');",
+        "scope": "ripple",
+        "cause_id": "wt_5c0a0f6890"
        }
       ],
-      "facts_total": 23,
+      "facts_total": 31,
       "functions": [
        {
         "func": "shu.making",
@@ -15403,8 +15467,8 @@
      }
     },
     {
-     "id": "5d028d2a1d",
-     "parent": "40d0765f6d",
+     "id": "d1cab70950",
+     "parent": "be9e7dda5b",
      "branch": "run-cf203b",
      "job": "j11",
      "at": "2026-11-25T12:47:25-05:00",
@@ -15460,8 +15524,8 @@
      }
     },
     {
-     "id": "e0f0f5b1a8",
-     "parent": "5d028d2a1d",
+     "id": "19870958ed",
+     "parent": "d1cab70950",
      "branch": "run-cf203b",
      "job": "j12",
      "at": "2026-11-25T13:04:53-05:00",
@@ -15621,8 +15685,8 @@
      }
     },
     {
-     "id": "f071336983",
-     "parent": "e0f0f5b1a8",
+     "id": "a203170d4f",
+     "parent": "19870958ed",
      "branch": "run-cf203b",
      "job": "j13",
      "at": "2026-11-25T13:15:24-05:00",
@@ -15710,8 +15774,8 @@
      }
     },
     {
-     "id": "37ab217e6b",
-     "parent": "f071336983",
+     "id": "2febd64dce",
+     "parent": "a203170d4f",
      "branch": "run-cf203b",
      "job": "j14",
      "at": "2026-11-25T13:28:09-05:00",
@@ -15787,6 +15851,86 @@
         "Thing"
        ]
       ]
+     }
+    },
+    {
+     "id": "7989a2ec30",
+     "parent": "2febd64dce",
+     "branch": "run-cf203b",
+     "job": "j15",
+     "at": "2026-11-25T13:50:14-0500",
+     "genre": "rising",
+     "beat": "now",
+     "diff": {
+      "facts": [
+       {
+        "id": "wt_da4e1e12a2",
+        "object": "j15",
+        "kind": "func_call",
+        "code": "j15.getweather();",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_80b0bb0760",
+        "object": "cbm",
+        "kind": "func_call",
+        "code": "[[cbm]];",
+        "scope": null,
+        "cause_id": null
+       }
+      ],
+      "facts_total": 2,
+      "functions": [],
+      "instances": []
+     }
+    },
+    {
+     "id": "c5c4220298",
+     "parent": "7989a2ec30",
+     "branch": "run-cf203b",
+     "job": "j16",
+     "at": "2026-11-25T13:50:28-0500",
+     "genre": "rising",
+     "beat": "now",
+     "diff": {
+      "facts": [
+       {
+        "id": "wt_87707df3c7",
+        "object": "promiscuity",
+        "kind": "func_call",
+        "code": "[[promiscuity]];",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_1a472a9c4a",
+        "object": "cli",
+        "kind": "func_call",
+        "code": "#jbc;",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_93d291c3c9",
+        "object": "wser",
+        "kind": "func_call",
+        "code": "[[wser]];",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_6161dfa508",
+        "object": "drake",
+        "kind": "func_call",
+        "code": "[[drake]];",
+        "scope": null,
+        "cause_id": null
+       }
+      ],
+      "facts_total": 4,
+      "functions": [],
+      "instances": []
      }
     }
    ]
@@ -16596,10 +16740,10 @@
   "run-0ae93c": "a11a1eab61",
   "run-3a15d2": "fbc46c6eb7",
   "run-ab4653": "dd8e54daee",
-  "run-cf203b": "37ab217e6b",
+  "run-cf203b": "c5c4220298",
   "run-cb805f": "8d23a93627",
   "run-888ea9": "9815dfcb14"
  },
- "commits": 167,
- "updated": "2026-11-25T13:50:05-05:00"
+ "commits": 169,
+ "updated": "2026-11-25T13:50:55-05:00"
 }

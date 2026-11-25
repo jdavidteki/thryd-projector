@@ -3233,16 +3233,6 @@
 ],
 "wser": [
 {
-"id": "wf_f0d7ba72b3",
-"kind": "consequence",
-"text": "The wser leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"code": "mlkahb.interactwith(wser){ wser.receives(mlkahb.envelope); wser.remembers(bisola, 'brown envelope'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "mlkahb"
-},
-{
 "id": "wf_bb35f6c265",
 "kind": "consequence",
 "text": "The wser leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
@@ -3281,6 +3271,16 @@
 "run": "run-5a58c4",
 "card": "j6",
 "other": "heat"
+},
+{
+"id": "wt_93d291c3c9",
+"kind": "func_call",
+"text": "The customer typed [[wser]] on run-cf203b j16.",
+"code": "[[wser]];",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j16",
+"other": null
 }
 ],
 "blessings_subject": [
@@ -4867,26 +4867,6 @@
 ],
 "calla": [
 {
-"id": "wf_15d4116894",
-"kind": "consequence",
-"text": "The calla leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"code": "god.interactwith(calla){ calla.receives(god.envelope); calla.remembers(bisola, 'brown envelope'); }",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6",
-"other": "god"
-},
-{
-"id": "wf_9a1f03188c",
-"kind": "consequence",
-"text": "The calla leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"code": "health_marisol.interactwith(calla){ calla.receives(health_marisol.envelope); calla.remembers(bisola, 'brown envelope'); }",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6",
-"other": "health_marisol"
-},
-{
 "id": "wt_66a81b9009",
 "kind": "func_call",
 "text": "The calla hears it (because teo.respond(what=bank:Thing) from j59).",
@@ -4908,6 +4888,26 @@
 },
 {
 "id": "wt_86c7979182",
+"kind": "func_call",
+"text": "The calla hears it (because teo.respond(what=bank:Thing) from j59).",
+"code": "calla.hears(person, 'respond');",
+"author": "projector",
+"run": "run-cf203b",
+"card": "w10",
+"other": null
+},
+{
+"id": "wt_2176c94c7e",
+"kind": "func_call",
+"text": "The calla hears it (because teo.guess(what=bank:Thing) from j59).",
+"code": "calla.hears(person, 'guess');",
+"author": "projector",
+"run": "run-cf203b",
+"card": "w10",
+"other": null
+},
+{
+"id": "wt_930265cdd8",
 "kind": "func_call",
 "text": "The calla hears it (because teo.respond(what=bank:Thing) from j59).",
 "code": "calla.hears(person, 'respond');",
@@ -5741,17 +5741,7 @@
 ],
 "teo": [
 {
-"id": "wf_b46399b8b8",
-"kind": "consequence",
-"text": "The teo leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"code": "dez.interactwith(teo){ teo.receives(dez.envelope); teo.remembers(bisola, 'brown envelope'); }",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6",
-"other": "dez"
-},
-{
-"id": "wt_65fcbb8d55",
+"id": "wt_5c0a0f6890",
 "kind": "func_call",
 "text": "Someone at the projector tapped the person and called teo.respond(what=bank:Thing) from j59 from its agenda run-5a58c4, first seated in run-5a58c4 j33.",
 "code": "teo.respond('bank');",
@@ -5765,6 +5755,16 @@
 "kind": "func_call",
 "text": "Someone at the projector tapped the person and called teo.respond(what=bank:Thing) from j59 from its agenda run-5a58c4, first seated in run-5a58c4 j33.",
 "code": "teo.respond('bank');",
+"author": "projector",
+"run": "run-cf203b",
+"card": "w10",
+"other": null
+},
+{
+"id": "wt_db21cb334b",
+"kind": "func_call",
+"text": "Someone at the projector tapped the person and called teo.guess(what=bank:Thing) from j59 from its agenda run-5a58c4, first seated in run-5a58c4 j34.",
+"code": "teo.guess('bank');",
 "author": "projector",
 "run": "run-cf203b",
 "card": "w10",
@@ -6445,26 +6445,6 @@
 ],
 "blender": [
 {
-"id": "wt_290578bcad",
-"kind": "func_call",
-"text": "The blender hears it (because song.hit(what=mistake:Thing) from j35).",
-"code": "blender.hears(miami_subject, 'hit');",
-"author": "projector",
-"run": "run-5a58c4",
-"card": "w22",
-"other": null
-},
-{
-"id": "wt_5ab91eb5c3",
-"kind": "func_call",
-"text": "The blender hears it (because teo.sit(what=mistake:Thing) from j35).",
-"code": "blender.hears(marisol, 'sit');",
-"author": "projector",
-"run": "run-5a58c4",
-"card": "w30",
-"other": null
-},
-{
 "id": "wt_e961a9349b",
 "kind": "func_call",
 "text": "The blender hears it (because teo.respond(what=bank:Thing) from j59).",
@@ -6493,29 +6473,29 @@
 "run": "run-cf203b",
 "card": "w10",
 "other": null
+},
+{
+"id": "wt_3867be0826",
+"kind": "func_call",
+"text": "The blender hears it (because teo.guess(what=bank:Thing) from j59).",
+"code": "blender.hears(person, 'guess');",
+"author": "projector",
+"run": "run-cf203b",
+"card": "w10",
+"other": null
+},
+{
+"id": "wt_215aaeb552",
+"kind": "func_call",
+"text": "The blender hears it (because teo.respond(what=bank:Thing) from j59).",
+"code": "blender.hears(person, 'respond');",
+"author": "projector",
+"run": "run-cf203b",
+"card": "w10",
+"other": null
 }
 ],
 "code": [
-{
-"id": "wt_3737999496",
-"kind": "func_call",
-"text": "The code hears it (because song.hit(what=mistake:Thing) from j35).",
-"code": "code.hears(miami_subject, 'hit');",
-"author": "projector",
-"run": "run-5a58c4",
-"card": "w22",
-"other": null
-},
-{
-"id": "wt_ce91b4d90c",
-"kind": "func_call",
-"text": "The code hears it (because teo.sit(what=mistake:Thing) from j35).",
-"code": "code.hears(marisol, 'sit');",
-"author": "projector",
-"run": "run-5a58c4",
-"card": "w30",
-"other": null
-},
 {
 "id": "wt_522c900016",
 "kind": "func_call",
@@ -6538,6 +6518,26 @@
 },
 {
 "id": "wt_3a49752251",
+"kind": "func_call",
+"text": "The code hears it (because teo.respond(what=bank:Thing) from j59).",
+"code": "code.hears(person, 'respond');",
+"author": "projector",
+"run": "run-cf203b",
+"card": "w10",
+"other": null
+},
+{
+"id": "wt_0fb487e663",
+"kind": "func_call",
+"text": "The code hears it (because teo.guess(what=bank:Thing) from j59).",
+"code": "code.hears(person, 'guess');",
+"author": "projector",
+"run": "run-cf203b",
+"card": "w10",
+"other": null
+},
+{
+"id": "wt_03c3046b5e",
 "kind": "func_call",
 "text": "The code hears it (because teo.respond(what=bank:Thing) from j59).",
 "code": "code.hears(person, 'respond');",
@@ -8765,16 +8765,6 @@
 ],
 "cli": [
 {
-"id": "wt_9e87dd1331",
-"kind": "func_call",
-"text": "The customer typed a9() on run-cf203b j12. It came back: a9(). Implementation: /* a9() */.",
-"code": "a9();",
-"author": "customer",
-"run": "run-cf203b",
-"card": "j12",
-"other": null
-},
-{
 "id": "wt_ce4880ab45",
 "kind": "func_call",
 "text": "The customer typed [[@ma]] on run-cf203b j13. It came back: [[@ma]]. Implementation: /* [[@ma]] */.",
@@ -8812,6 +8802,16 @@
 "author": "customer",
 "run": "run-cf203b",
 "card": "j14",
+"other": null
+},
+{
+"id": "wt_1a472a9c4a",
+"kind": "func_call",
+"text": "The customer typed #jbc on run-cf203b j16. It came back: #jbc. Implementation: /* #jbc */.",
+"code": "#jbc;",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j16",
 "other": null
 }
 ],
@@ -10151,6 +10151,16 @@
 "run": "run-2eb42d",
 "card": "j41",
 "other": null
+},
+{
+"id": "wt_6161dfa508",
+"kind": "func_call",
+"text": "The customer typed [[drake]] on run-cf203b j16.",
+"code": "[[drake]];",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j16",
+"other": null
 }
 ],
 "tob": [
@@ -10948,6 +10958,42 @@
 "card": "j13",
 "other": null
 }
+],
+"j": [
+{
+"id": "wt_da4e1e12a2",
+"kind": "func_call",
+"text": "The customer typed j15.getweather() on run-cf203b j15. It came back: weather. Implementation: function getweather(){\n  const value = \"weather\";\n  learned.j15.weather = value;\n  return value;\n}. j15 now has j15.getweather as a method on this agenda, and it can be called again.",
+"code": "j15.getweather();",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j15",
+"other": null
+}
+],
+"cbm": [
+{
+"id": "wt_80b0bb0760",
+"kind": "func_call",
+"text": "The customer typed [[cbm]] on run-cf203b j15.",
+"code": "[[cbm]];",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j15",
+"other": null
+}
+],
+"promiscuity": [
+{
+"id": "wt_87707df3c7",
+"kind": "func_call",
+"text": "The customer typed [[promiscuity]] on run-cf203b j16.",
+"code": "[[promiscuity]];",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j16",
+"other": null
+}
 ]
 },
 "consequences": [
@@ -11493,5 +11539,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-25T13:50:04-0500"
+"updated": "2026-11-25T13:50:54-0500"
 }

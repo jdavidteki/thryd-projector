@@ -176,8 +176,8 @@
     "count",
     "map"
    ],
-   "instances": 21,
-   "arg_instances": 18,
+   "instances": 22,
+   "arg_instances": 19,
    "parent": "Thing",
    "chain": [
     "Action",
@@ -1371,7 +1371,8 @@
    "first_job": "j40",
    "source": "pick",
    "runs": [
-    "run-2eb42d"
+    "run-2eb42d",
+    "run-cf203b"
    ],
    "tweets": [
     {
@@ -1380,6 +1381,10 @@
     },
     {
      "text": "[[tnbt]] - na my code dey run rn",
+     "year": "2024"
+    },
+    {
+     "text": "- na the part of d code [[sbk]] surprise me",
      "year": "2024"
     }
    ]
@@ -5825,6 +5830,22 @@
    ],
    "tweets": []
   },
+  "run": {
+   "class": "Action",
+   "cue": "word",
+   "first_run": "run-cf203b",
+   "first_job": "j15",
+   "source": "pick",
+   "runs": [
+    "run-cf203b"
+   ],
+   "tweets": [
+    {
+     "text": "[[tg]] - dem go run [[it]] down!",
+     "year": "2024"
+    }
+   ]
+  },
   "russia": {
    "class": "Thing",
    "cue": "default",
@@ -9305,6 +9326,18 @@
     "Thing",
     "j14",
     "pick"
+   ],
+   [
+    "run",
+    "Action",
+    "j15",
+    "pick"
+   ],
+   [
+    "code",
+    "Thing",
+    "j15",
+    "pick"
    ]
   ],
   "run-b70200": [
@@ -11987,6 +12020,9 @@
   "woke.morning": "morning()",
   "ahan.wayayou": "wayayou(what: Thing)",
   "stringify.boolean": "boolean()",
+  "dem.go": "go(act: Action)",
+  "lehgeet.ni": "ni()",
+  "part.d": "d(what: Thing)",
   "cooler.getdatemanufactured": "getDateManufactured()",
   "ronke.getlikes.contains": "getlikes.contains()",
   "kazeem.goodqualities.filter": "filter()",
@@ -12059,7 +12095,8 @@
   "new.election": "election()",
   "new.courtcase": "courtcase()",
   "kemi.ismarried": "ismarried()",
-  "new.condom": "condom()"
+  "new.condom": "condom()",
+  "j15.getweather": "getweather()"
  },
  "parent": {
   "Person": "Thing",
@@ -12475,6 +12512,7 @@
    "can",
    "come",
    "das",
+   "dem",
    "deya",
    "dignity",
    "eez",
@@ -12484,7 +12522,9 @@
    "inside",
    "kemi",
    "know",
+   "lehgeet",
    "once",
+   "part",
    "ready",
    "share",
    "shu",
@@ -12567,5 +12607,5 @@
   "epilogue": "quiet",
   "coda": "quiet"
  },
- "updated": "2026-11-25T13:49:14-05:00"
+ "updated": "2026-11-25T13:50:55-05:00"
 }

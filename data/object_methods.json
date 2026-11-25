@@ -4964,7 +4964,7 @@
    },
    "receiver_class": "Person",
    "prior": [],
-   "faded": true,
+   "faded": false,
    "last_run": "run-5a58c4"
   },
   "dez.make": {
@@ -17711,6 +17711,201 @@
    "faded": false,
    "last_run": "run-cf203b"
   },
+  "dem.go": {
+   "object": "dem",
+   "method": "go",
+   "args": [
+    "run"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j15",
+    "card": "w15",
+    "title": "dem.go(run)",
+    "emoji": "🪐",
+    "at": "2026-11-25T13:50:25-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "dem.go(run)",
+     "emoji": "🪐",
+     "arg": "run",
+     "run": "run-cf203b",
+     "job": "j15",
+     "tweets": [
+      {
+       "text": "[[tg]] - dem go run [[it]] down!",
+       "year": "2024"
+      }
+     ],
+     "consequence": "Kemi stares: \"na the part of d code surprise me.\" He swears it's real, \"lehgeet ni!\", then drops a warning: \"dem go run it down!\" Someone, he says, is coming to dig through the whole night.",
+     "consequence_job": "j16",
+     "resolved": "dem.go(act=run:Action) from j15",
+     "injected": [
+      {
+       "param": "act",
+       "class": "Action",
+       "instance": "run",
+       "from_run": "run-cf203b",
+       "from_job": "j15",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "act",
+      "class": "Action",
+      "default": "run",
+      "first_run": "run-cf203b",
+      "first_job": "j15"
+     }
+    ],
+    "text": "go(act: Action)"
+   },
+   "receiver_class": "Thing",
+   "prior": [
+    {
+     "id": "hand.go",
+     "title": "hand.go(like)",
+     "run": "run-888ea9",
+     "job": "j6",
+     "at": "2026-11-23T18:21:50-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "titi.go",
+     "title": "titi.go(juss)",
+     "run": "run-g1-B",
+     "job": "j10",
+     "at": "2026-11-17T17:20:54-05:00",
+     "why": "same method"
+    }
+   ],
+   "faded": false,
+   "last_run": null
+  },
+  "lehgeet.ni": {
+   "object": "lehgeet",
+   "method": "ni",
+   "args": [
+    ""
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j15",
+    "card": "w15",
+    "title": "lehgeet.ni()",
+    "emoji": "🧪",
+    "at": "2026-11-25T13:50:25-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "lehgeet.ni()",
+     "emoji": "🧪",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j15",
+     "tweets": [
+      {
+       "text": "#yorubbbygehinny - lehgeet ni!",
+       "year": "2025"
+      }
+     ],
+     "consequence": "Kemi stares: \"na the part of d code surprise me.\" He swears it's real, \"lehgeet ni!\", then drops a warning: \"dem go run it down!\" Someone, he says, is coming to dig through the whole night.",
+     "consequence_job": "j16",
+     "resolved": "lehgeet.ni()",
+     "injected": []
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [],
+    "text": "ni()"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "part.d": {
+   "object": "part",
+   "method": "d",
+   "args": [
+    "code"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j15",
+    "card": "w15",
+    "title": "part.d(code)",
+    "emoji": "💡",
+    "at": "2026-11-25T13:50:25-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "part.d(code)",
+     "emoji": "💡",
+     "arg": "code",
+     "run": "run-cf203b",
+     "job": "j15",
+     "tweets": [
+      {
+       "text": "- na the part of d code [[sbk]] surprise me",
+       "year": "2024"
+      }
+     ],
+     "consequence": "Kemi stares: \"na the part of d code surprise me.\" He swears it's real, \"lehgeet ni!\", then drops a warning: \"dem go run it down!\" Someone, he says, is coming to dig through the whole night.",
+     "consequence_job": "j16",
+     "resolved": "part.d(what=code:Thing) from j15",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "code",
+       "from_run": "run-cf203b",
+       "from_job": "j15",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "code",
+      "first_run": "run-2eb42d",
+      "first_job": "j40"
+     }
+    ],
+    "text": "d(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
   "cooler.getdatemanufactured": {
    "object": "cooler",
    "method": "getDateManufactured",
@@ -20817,6 +21012,46 @@
    "prior": [],
    "faded": false,
    "last_run": null
+  },
+  "j15.getweather": {
+   "object": "j15",
+   "method": "getweather",
+   "args": [],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j15",
+    "card": "j15",
+    "title": "j15.getweather()",
+    "emoji": "",
+    "at": "2026-11-25T13:50:14-05:00",
+    "source": "cli"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "j15.getweather()",
+     "emoji": "",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j15",
+     "tweets": [],
+     "consequence": "The customer typed this on this agenda.",
+     "consequence_job": ""
+    }
+   ],
+   "source": "cli",
+   "cli": true,
+   "sig": {
+    "params": [],
+    "text": "getweather()"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
   }
  },
  "objects": {
@@ -21068,6 +21303,9 @@
   "das": [
    "das.right"
   ],
+  "dem": [
+   "dem.go"
+  ],
   "deya": [
    "deya.fighting"
   ],
@@ -21232,6 +21470,9 @@
   "it": [
    "it.do"
   ],
+  "j15": [
+   "j15.getweather"
+  ],
   "json_life_subject": [
    "object.look"
   ],
@@ -21294,6 +21535,9 @@
   ],
   "lb": [
    "lb.includes"
+  ],
+  "lehgeet": [
+   "lehgeet.ni"
   ],
   "life": [
    "life.give"
@@ -21426,6 +21670,9 @@
   ],
   "oyinboman": [
    "oyinboman.know"
+  ],
+  "part": [
+   "part.d"
   ],
   "pawa": [
    "pawa.full"
@@ -37534,6 +37781,16 @@
     ]
    }
   ],
+  "ok_next_quincy_figure": [
+   {
+    "scope": "safe",
+    "from": "17521dea6ba7",
+    "title": "315. set for life",
+    "funcs": [
+     "lehgeet.ni"
+    ]
+   }
+  ],
   "old_men_see_figure": [
    {
     "scope": "safe",
@@ -44511,9 +44768,13 @@
     "woke.morning",
     "ahan.wayayou",
     "stringify.boolean",
+    "dem.go",
+    "lehgeet.ni",
+    "part.d",
     "cli.cli",
     "kemi.ismarried",
-    "new.condom"
+    "new.condom",
+    "j15.getweather"
    ]
   },
   "run-d6fc": {
@@ -44771,6 +45032,13 @@
    "title": "411. can i brag?",
    "funcs": [
     "marisol.laugh"
+   ],
+   "runs": []
+  },
+  "17521dea6ba7": {
+   "title": "315. set for life",
+   "funcs": [
+    "lehgeet.ni"
    ],
    "runs": []
   },
@@ -45190,6 +45458,13 @@
    ],
    "runs": []
   },
+  "6ab7c4931c8d": {
+   "title": "the birthing of a star",
+   "funcs": [
+    "part.d"
+   ],
+   "runs": []
+  },
   "6d72f12ca0c4": {
    "title": "1212. self-care",
    "funcs": [
@@ -45239,7 +45514,10 @@
     "guy.wan",
     "woke.morning",
     "ahan.wayayou",
-    "stringify.boolean"
+    "stringify.boolean",
+    "dem.go",
+    "lehgeet.ni",
+    "part.d"
    ],
    "runs": [
     "run-cf203b"
@@ -45904,6 +46182,13 @@
    ],
    "runs": []
   },
+  "dc8451b5c869": {
+   "title": "fashionably late",
+   "funcs": [
+    "dem.go"
+   ],
+   "runs": []
+  },
   "df1336b56f94": {
    "title": "206. kiss your hand",
    "funcs": [
@@ -46455,6 +46740,12 @@
    "44583f98086d",
    "3715b3563ae6"
   ],
+  "1*JQOZZk0Ge-U0wXYZPFvm-Q.gif": [
+   "17521dea6ba7"
+  ],
+  "1*58J6bnUkr8lf28bkZgBxvQ.gif": [
+   "dc8451b5c869"
+  ],
   "1*VDwilLCHF-PLPOY1t4Dq0w.gif": [
    "55add5a8d2ed",
    "2c6971a8d401"
@@ -46545,6 +46836,9 @@
   ],
   "1*6P6actu28LykPqd3qVBp9g.gif": [
    "0794a7d2abc3"
+  ],
+  "1*KqXaRJPv0K7PWVAAtWRE_g.gif": [
+   "6ab7c4931c8d"
   ],
   "1*HIfj-krVIExjXU9EacJ5og.gif": [
    "0977d3f9e44f"
@@ -47550,6 +47844,12 @@
     "9aa1737aecfa"
    ]
   },
+  "1*JQOZZk0Ge-U0wXYZPFvm-Q.gif": {
+   "runs": [],
+   "safes": [
+    "17521dea6ba7"
+   ]
+  },
   "1*wLyltPPcTULRqRooVjkOOQ.gif": {
    "runs": [],
    "safes": [
@@ -47849,6 +48149,9 @@
   "das": [
    "das.right"
   ],
+  "dem": [
+   "dem.go"
+  ],
   "deya": [
    "deya.fighting"
   ],
@@ -47968,6 +48271,9 @@
   "it": [
    "it.do"
   ],
+  "j15": [
+   "j15.getweather"
+  ],
   "jwvbs": [
    "jwvbs.open"
   ],
@@ -48020,6 +48326,9 @@
   ],
   "lb": [
    "lb.includes"
+  ],
+  "lehgeet": [
+   "lehgeet.ni"
   ],
   "life": [
    "life.give"
@@ -48105,6 +48414,9 @@
   ],
   "oyinboman": [
    "oyinboman.know"
+  ],
+  "part": [
+   "part.d"
   ],
   "pawa": [
    "pawa.full"
@@ -48550,6 +48862,9 @@
   "woke": [],
   "ahan": [],
   "stringify": [],
+  "dem": [],
+  "lehgeet": [],
+  "part": [],
   "cooler": [],
   "kazeem.goodqualities": [],
   "app": [],
@@ -48581,7 +48896,8 @@
   "sakitout": [],
   "receipt": [],
   "arisetv": [],
-  "disstrack": []
+  "disstrack": [],
+  "j15": []
  },
  "casts": {
   "run-5a58c4": [
@@ -48750,6 +49066,7 @@
    "can",
    "come",
    "das",
+   "dem",
    "deya",
    "dignity",
    "eez",
@@ -48759,7 +49076,9 @@
    "inside",
    "kemi",
    "know",
+   "lehgeet",
    "once",
+   "part",
    "ready",
    "share",
    "shu",
@@ -48783,5 +49102,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-25T13:49:14-05:00"
+ "updated": "2026-11-25T13:50:55-05:00"
 }
