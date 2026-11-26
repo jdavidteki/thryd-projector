@@ -15050,7 +15050,7 @@
   },
   "run-cf203b": {
    "forked_from": "safe:731d52737690",
-   "head": "a756e2fd0a",
+   "head": "444b90e052",
    "commits": [
     {
      "id": "eda103402b",
@@ -16739,7 +16739,7 @@
      }
     },
     {
-     "id": "a756e2fd0a",
+     "id": "444b90e052",
      "parent": "ab97d1021a",
      "branch": "run-cf203b",
      "job": "j24",
@@ -16899,9 +16899,17 @@
         "code": "cup.passes(point_kill_figure);",
         "scope": null,
         "cause_id": null
+       },
+       {
+        "id": "wf_650dbbf9d2",
+        "object": "point_kill",
+        "kind": "consequence",
+        "code": "cup.interactwith(point_kill){ point_kill.receives(cup.something); }",
+        "scope": null,
+        "cause_id": null
        }
       ],
-      "facts_total": 19,
+      "facts_total": 20,
       "functions": [],
       "instances": []
      }
@@ -17713,10 +17721,10 @@
   "run-0ae93c": "a11a1eab61",
   "run-3a15d2": "fbc46c6eb7",
   "run-ab4653": "dd8e54daee",
-  "run-cf203b": "a756e2fd0a",
+  "run-cf203b": "444b90e052",
   "run-cb805f": "8d23a93627",
   "run-888ea9": "9815dfcb14"
  },
  "commits": 176,
- "updated": "2026-11-25T23:21:43-05:00"
+ "updated": "2026-11-25T23:23:26-05:00"
 }

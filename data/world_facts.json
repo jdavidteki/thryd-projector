@@ -11572,20 +11572,21 @@
 "card": "w24",
 "other": null
 }
+],
+"point_kill": [
+{
+"id": "wf_650dbbf9d2",
+"kind": "consequence",
+"text": "The point kill now remembers the cup: Someone at the projector saw the cup passes over the point kill figure.",
+"code": "cup.interactwith(point_kill){ point_kill.receives(cup.something); }",
+"author": "cos",
+"run": "run-cf203b",
+"card": "w24",
+"other": "cup"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_3bbe2b5519",
-"ts": "2026-11-24T13:12:47-0500",
-"a": "marker_b",
-"b": "bed",
-"code": "marker_b.interactwith(bed){ bed.receives(marker_b.envelope); bed.remembers(bisola, 'brown envelope'); bed.tucks(marker_b, 'yaba bookshop receipt into the egbe note'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the bed, and Taiwo reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
 {
 "id": "wf_a51de322b7",
 "ts": "2026-11-24T13:14:28-0500",
@@ -12014,6 +12015,17 @@
 "author": "cos",
 "run": "run-5a58c4",
 "card": "j6"
+},
+{
+"id": "wf_650dbbf9d2",
+"ts": "2026-11-25T23:23:23-0500",
+"a": "cup",
+"b": "point_kill",
+"code": "cup.interactwith(point_kill){ point_kill.receives(cup.something); }",
+"text": "The point kill now remembers the cup: Someone at the projector saw the cup passes over the point kill figure.",
+"author": "cos",
+"run": "run-cf203b",
+"card": "w24"
 }
 ],
 "memories": [
@@ -12117,5 +12129,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-25T23:21:42-0500"
+"updated": "2026-11-25T23:23:23-0500"
 }
