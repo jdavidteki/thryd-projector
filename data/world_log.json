@@ -15050,7 +15050,7 @@
   },
   "run-cf203b": {
    "forked_from": "safe:731d52737690",
-   "head": "5d3af0b617",
+   "head": "946dd37267",
    "commits": [
     {
      "id": "eda103402b",
@@ -16625,12 +16625,7 @@
         "op": "define"
        }
       ],
-      "instances": [
-       [
-        "engine",
-        "Thing"
-       ]
-      ]
+      "instances": []
      }
     },
     {
@@ -18736,11 +18731,11 @@
      }
     },
     {
-     "id": "5d3af0b617",
+     "id": "946dd37267",
      "parent": "59e640dc89",
      "branch": "run-cf203b",
      "job": "j45",
-     "at": "2026-11-26T15:06:56-0500",
+     "at": "2026-11-26T15:07:04-05:00",
      "genre": "rising",
      "beat": "now",
      "diff": {
@@ -18763,8 +18758,33 @@
        }
       ],
       "facts_total": 2,
-      "functions": [],
-      "instances": []
+      "functions": [
+       {
+        "func": "like.about",
+        "title": "like.about(engine)",
+        "op": "define"
+       },
+       {
+        "func": "then.much",
+        "title": "then.much()",
+        "op": "define"
+       },
+       {
+        "func": "will.sit",
+        "title": "will.sit(down)",
+        "op": "define"
+       }
+      ],
+      "instances": [
+       [
+        "engine",
+        "Thing"
+       ],
+       [
+        "down",
+        "Thing"
+       ]
+      ]
      }
     }
    ]
@@ -19607,10 +19627,10 @@
   "run-0ae93c": "a11a1eab61",
   "run-3a15d2": "fbc46c6eb7",
   "run-ab4653": "dd8e54daee",
-  "run-cf203b": "5d3af0b617",
+  "run-cf203b": "946dd37267",
   "run-888ea9": "af55e82f0a",
   "run-cb805f": "8d23a93627"
  },
  "commits": 197,
- "updated": "2026-11-26T15:07:34-05:00"
+ "updated": "2026-11-26T15:08:25-05:00"
 }
