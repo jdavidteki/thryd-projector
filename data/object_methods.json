@@ -18425,14 +18425,14 @@
      ],
      "consequence": "What just happened: Tobi keeps digging: \"make i add more stuff here so daditin.\" Then he turns it on everyone: \"what do you guys think?\" When Kemi doesn't answer, he points at himself: \"say me, ehn?\" 📖 Now: Get the line where Kemi tells Tob",
      "consequence_job": "j19",
-     "resolved": "what.guys(what=think:Thing) from j18",
+     "resolved": "what.guys(what=bomb:Thing) from j17",
      "injected": [
       {
        "param": "what",
        "class": "Thing",
-       "instance": "think",
+       "instance": "bomb",
        "from_run": "run-cf203b",
-       "from_job": "j18",
+       "from_job": "j17",
        "source": "pick"
       }
      ]
@@ -20473,6 +20473,266 @@
    "prior": [],
    "faded": false,
    "last_run": "run-cf203b"
+  },
+  "can.find": {
+   "object": "can",
+   "method": "find",
+   "args": [
+    "wan"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j30",
+    "card": "w30",
+    "title": "can.find(wan)",
+    "emoji": "🦅",
+    "at": "2026-11-26T01:41:43-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "can.find(wan)",
+     "emoji": "🦅",
+     "arg": "wan",
+     "run": "run-cf203b",
+     "job": "j30",
+     "tweets": [
+      {
+       "text": "— the #thryd is if you can find wan line",
+       "year": "2025"
+      }
+     ],
+     "consequence": "What just happened: The woman dares them: \"the #thryd is if you can find wan line\" in those photos.",
+     "consequence_job": "j31",
+     "resolved": "can.find(what=wan:Thing) from j30",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "wan",
+       "from_run": "run-cf203b",
+       "from_job": "j30",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "wan",
+      "first_run": "run-5a58c4",
+      "first_job": "j26"
+     }
+    ],
+    "text": "find(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [
+    {
+     "id": "marisol.find",
+     "title": "marisol.find(love)",
+     "run": "run-5a58c4",
+     "job": "j58",
+     "at": "2026-11-24T18:36:39-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "dez.find",
+     "title": "dez.find(error)",
+     "run": "run-5a58c4",
+     "job": "j51",
+     "at": "2026-11-24T14:55:34-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "marisol.find",
+     "title": "marisol.find(god)",
+     "run": "run-5a58c4",
+     "job": "j40",
+     "at": "2026-11-24T00:57:57-05:00",
+     "why": "same method"
+    }
+   ],
+   "faded": false,
+   "last_run": null
+  },
+  "could.accuracy": {
+   "object": "could",
+   "method": "accuracy",
+   "args": [
+    "think"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j30",
+    "card": "w30",
+    "title": "could.accuracy(think)",
+    "emoji": "🐤",
+    "at": "2026-11-26T01:41:43-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "could.accuracy(think)",
+     "emoji": "🐤",
+     "arg": "think",
+     "run": "run-cf203b",
+     "job": "j30",
+     "tweets": [
+      {
+       "text": "#thryd — this could be accuracy if you think about it",
+       "year": "2025"
+      }
+     ],
+     "consequence": "Tobi is frozen beside her, arguing the photos could mean something else.",
+     "consequence_job": "j31",
+     "resolved": "could.accuracy(what=think:Thing) from j30",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "think",
+       "from_run": "run-cf203b",
+       "from_job": "j30",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "think",
+      "first_run": "run-cf203b",
+      "first_job": "j18"
+     }
+    ],
+    "text": "accuracy(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "guy.can": {
+   "object": "guy",
+   "method": "can",
+   "args": [
+    ""
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j30",
+    "card": "w30",
+    "title": "guy.can()",
+    "emoji": "🐉",
+    "at": "2026-11-26T01:41:43-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "guy.can()",
+     "emoji": "🐉",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j30",
+     "tweets": [
+      {
+       "text": "-- that this guy can do that #tyn",
+       "year": "2024"
+      }
+     ],
+     "consequence": "Tobi grabs at his last defence: \"this could be accuracy if you think about it.\" Kemi answers with the old saying, \"in love and war,\" and the woman laughs in disbelief \"that this guy can do that.\" 📖 Now: Kemi lowers the phone and looks Tobi ",
+     "consequence_job": "j31",
+     "resolved": "guy.can()",
+     "injected": []
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [],
+    "text": "can()"
+   },
+   "receiver_class": "Thing",
+   "prior": [
+    {
+     "id": "believe.can",
+     "title": "believe.can(work)",
+     "run": "run-cf203b",
+     "job": "j12",
+     "at": "2026-11-25T13:04:53-05:00",
+     "why": "same method"
+    }
+   ],
+   "faded": false,
+   "last_run": null
+  },
+  "love.war": {
+   "object": "love",
+   "method": "war",
+   "args": [
+    ""
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j30",
+    "card": "w30",
+    "title": "love.war()",
+    "emoji": "🐸",
+    "at": "2026-11-26T01:41:43-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "love.war()",
+     "emoji": "🐸",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j30",
+     "tweets": [
+      {
+       "text": "#seniorboys — in love and war",
+       "year": "2024"
+      }
+     ],
+     "consequence": "Tobi grabs at his last defence: \"this could be accuracy if you think about it.\" Kemi answers with the old saying, \"in love and war,\" and the woman laughs in disbelief \"that this guy can do that.\" 📖 Now: Kemi lowers the phone and looks Tobi ",
+     "consequence_job": "j31",
+     "resolved": "love.war()",
+     "injected": []
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [],
+    "text": "war()"
+   },
+   "receiver_class": "Feeling",
+   "prior": [],
+   "faded": false,
+   "last_run": null
   },
   "cooler.getdatemanufactured": {
    "object": "cooler",
@@ -23857,7 +24117,8 @@
   "can": [
    "can.see",
    "can.write",
-   "can.put"
+   "can.put",
+   "can.find"
   ],
   "care": [
    "care.on"
@@ -23973,6 +24234,9 @@
    "kazeem.run",
    "kazeem.score",
    "kazeem.use"
+  ],
+  "could": [
+   "could.accuracy"
   ],
   "could_never_make_subject": [
    "object.look"
@@ -24144,7 +24408,8 @@
    "grammy.swear"
   ],
   "guy": [
-   "guy.wan"
+   "guy.wan",
+   "guy.can"
   ],
   "h": [
    "h.ki"
@@ -24272,6 +24537,9 @@
   ],
   "location": [
    "location.setnumberchairs"
+  ],
+  "love": [
+   "love.war"
   ],
   "lowaleechelons_subject": [
    "object.look"
@@ -26283,6 +26551,14 @@
    }
   ],
   "beef_figure": [
+   {
+    "scope": "safe",
+    "from": "43e6e657bcca",
+    "title": "1001. the fall off",
+    "funcs": [
+     "could.accuracy"
+    ]
+   },
    {
     "scope": "safe",
     "from": "f3242b82bede",
@@ -47801,6 +48077,10 @@
     "know.what",
     "stomach.infrastructure",
     "will.deal",
+    "can.find",
+    "could.accuracy",
+    "guy.can",
+    "love.war",
     "cli.cli",
     "thryd.importtheme",
     "kemi.ismarried",
@@ -48250,6 +48530,13 @@
    ],
    "runs": []
   },
+  "2c18b8c22c87": {
+   "title": "1225. the other side",
+   "funcs": [
+    "guy.can"
+   ],
+   "runs": []
+  },
   "2c6971a8d401": {
    "title": "927. this is what we need",
    "funcs": [
@@ -48331,6 +48618,13 @@
    ],
    "runs": []
   },
+  "37d8015be83c": {
+   "title": "1107. big mind",
+   "funcs": [
+    "can.find"
+   ],
+   "runs": []
+  },
   "38688e69edf3": {
    "title": "1003. usher by kiss daniel",
    "funcs": [
@@ -48395,6 +48689,13 @@
    "funcs": [
     "calla.lead",
     "hope.notyn"
+   ],
+   "runs": []
+  },
+  "43e6e657bcca": {
+   "title": "1001. the fall off",
+   "funcs": [
+    "could.accuracy"
    ],
    "runs": []
   },
@@ -48697,7 +48998,11 @@
     "go.back",
     "know.what",
     "stomach.infrastructure",
-    "will.deal"
+    "will.deal",
+    "can.find",
+    "could.accuracy",
+    "guy.can",
+    "love.war"
    ],
    "runs": [
     "run-cf203b"
@@ -48872,6 +49177,13 @@
    "title": "627. how to [[find the premiere]]",
    "funcs": [
     "kazeem.ask"
+   ],
+   "runs": []
+  },
+  "91015ab851a4": {
+   "title": "423. giggling in bed",
+   "funcs": [
+    "love.war"
    ],
    "runs": []
   },
@@ -49981,6 +50293,9 @@
   "1*1KZ0RuyDgxOgfLDJes6pgw.gif": [
    "aab705f25656"
   ],
+  "1*Ppdj4KEMZPHxX_B-5LCC4w.gif": [
+   "37d8015be83c"
+  ],
   "1*hw0VUVtSdCrsf61TizeE9A.gif": [
    "69097529662b"
   ],
@@ -50247,7 +50562,8 @@
    "dbef6608be65"
   ],
   "1*WHi5bGe1yByrJpchMb-ggw.gif": [
-   "f3242b82bede"
+   "f3242b82bede",
+   "43e6e657bcca"
   ],
   "1*yGiZLqk4a8lrxbZRYoRMiA.gif": [
    "4e42e2aec04b"
@@ -50399,6 +50715,9 @@
   "1*_BZ_4dYEZGMebJgk4seauA.gif": [
    "ca0834ea259c"
   ],
+  "1*lwtQOQoVCw3PnrAuauFs3A.gif": [
+   "2c18b8c22c87"
+  ],
   "1*LUItbUDjNe6hslNA1DwUHA.gif": [
    "10bcabf545b2"
   ],
@@ -50453,6 +50772,9 @@
   ],
   "1*NQPKmNLPgP3qAWkFrAMX5w.gif": [
    "90d1c21dc449"
+  ],
+  "1*wEt-yP7UcMEW5nDXvsquJg.jpeg": [
+   "91015ab851a4"
   ],
   "1*mIzZLAH9ua7G2waBjqQtHw.gif": [
    "c51063137413",
@@ -51095,7 +51417,8 @@
   "1*WHi5bGe1yByrJpchMb-ggw.gif": {
    "runs": [],
    "safes": [
-    "f3242b82bede"
+    "f3242b82bede",
+    "43e6e657bcca"
    ]
   },
   "1*aihswOSkhxhlyUNdUJVa9w.gif": {
@@ -51590,7 +51913,8 @@
   "can": [
    "can.see",
    "can.write",
-   "can.put"
+   "can.put",
+   "can.find"
   ],
   "care": [
    "care.on"
@@ -51626,6 +51950,9 @@
    "cooler.clilive565mc19vx",
    "cooler.clilive567mdh8en",
    "cooler.clilive567mdkxvp"
+  ],
+  "could": [
+   "could.accuracy"
   ],
   "court": [
    "court.order"
@@ -51738,7 +52065,8 @@
    "grammy.swear"
   ],
   "guy": [
-   "guy.wan"
+   "guy.wan",
+   "guy.can"
   ],
   "h": [
    "h.ki"
@@ -51853,6 +52181,9 @@
   ],
   "location": [
    "location.setnumberchairs"
+  ],
+  "love": [
+   "love.war"
   ],
   "make": [
    "make.setany",
@@ -52484,6 +52815,8 @@
   "go": [],
   "stomach": [],
   "will": [],
+  "could": [],
+  "love": [],
   "cooler": [],
   "kazeem.goodqualities": [],
   "app": [],
@@ -52688,6 +53021,7 @@
    "believe",
    "can",
    "come",
+   "could",
    "das",
    "daz",
    "dem",
@@ -52708,6 +53042,7 @@
    "know",
    "ladies",
    "lehgeet",
+   "love",
    "make",
    "mean",
    "nigerian",
@@ -52753,5 +53088,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-26T01:34:16-05:00"
+ "updated": "2026-11-26T01:41:46-05:00"
 }
