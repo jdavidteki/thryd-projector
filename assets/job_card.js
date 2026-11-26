@@ -1,12 +1,12 @@
-/* Command-panel job card + menu buttons (?cards=1 only, 2026-11-26).
+/* Command-panel job card + menu buttons (on by default, 2026-11-26).
    When the customer opens ›_ / the typed-command box, the open job card sits
    above the existing input and the menu options sit below it as plain buttons.
-   Does nothing on a normal viewer URL: no fetch, no timer, no DOM.
+   Loaded on the bare URL, ?mode=live and any ?v=. Hide with ?cards=0 (no fetch, no timer, no DOM).
    One slow poll (>=30s) only while the panel is open; paused when the tab is hidden.
    Posts go through window.thrydNtfyPost (existing intake). Never seats or runs a menu action. */
 (function(root){
   'use strict';
-  if(!/(?:^|[?&])cards=1(?:&|$)/.test(String(location.search||''))) return;
+  if(/(?:^|[?&])cards=0(?:&|$)/.test(String(location.search||''))) return;
 
   // v621 look (Jesuye 26 Nov 12:13 PM "make it look nice"): dark glass panel, compact drag header,
   // Literata (self-hosted 18 KB Latin subset) for the story text, full archive safe under each option,

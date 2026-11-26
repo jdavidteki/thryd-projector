@@ -1,4 +1,4 @@
-// v619 command-panel job card + menu buttons (?cards=1)
+// v619 command-panel job card + menu buttons (on by default; ?cards=0 hides)
 import test from 'node:test';
 import assert from 'node:assert';
 import {readFileSync} from 'node:fs';
@@ -6,13 +6,16 @@ const here = new URL('..', import.meta.url);
 const rd = p => readFileSync(new URL(p, here), 'utf8');
 const js = rd('assets/job_card.js'), html = rd('index.html'), st = rd('assets/stage.js'), ver = rd('data/version.json'), ai = rd('assets/intent_ai.js');
 
-test('job_card.js loads only with ?cards=1 and no-ops otherwise', ()=>{
-  assert.match(html, /cards=1/);
+test('job_card.js loads by default; ?cards=0 hides the panel', ()=>{
+  assert.match(html, /cards=0/);
   assert.match(html, /job_card\.js\?v=10/);
-  assert.match(js, /cards=1/);
-  assert.match(html, /var VER=630,/);
+  assert.match(js, /cards=0/);
+  assert.match(html, /if\(!\/\(\?:\^\|\[\?&\]\)cards=0/);
+  assert.match(js, /if\(\/\(\?:\^\|\[\?&\]\)cards=0/);
+  assert.doesNotMatch(html, /if\(\/\(\?:\^\|\[\?&\]\)cards=1/);
+  assert.match(html, /var VER=631,/);
   const v = JSON.parse(ver);
-  assert.equal(v.v, 630);
+  assert.equal(v.v, 631);
 });
 
 test('layout is job card, then typeline, then plain always-visible buttons', ()=>{
