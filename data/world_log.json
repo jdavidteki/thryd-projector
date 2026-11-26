@@ -15050,7 +15050,7 @@
   },
   "run-cf203b": {
    "forked_from": "safe:731d52737690",
-   "head": "14f5c1ffdd",
+   "head": "47c40123bd",
    "commits": [
     {
      "id": "eda103402b",
@@ -16630,10 +16630,6 @@
        }
       ],
       "instances": [
-       [
-        "say",
-        "Action"
-       ],
        [
         "engine",
         "Thing"
@@ -18384,11 +18380,11 @@
      }
     },
     {
-     "id": "14f5c1ffdd",
+     "id": "47c40123bd",
      "parent": "c87b31208e",
      "branch": "run-cf203b",
      "job": "j41",
-     "at": "2026-11-26T13:34:54-0500",
+     "at": "2026-11-26T13:38:05-05:00",
      "genre": "rising",
      "beat": "now",
      "diff": {
@@ -18403,8 +18399,33 @@
        }
       ],
       "facts_total": 1,
-      "functions": [],
-      "instances": []
+      "functions": [
+       {
+        "func": "honey.pot",
+        "title": "honey.pot()",
+        "op": "define"
+       },
+       {
+        "func": "ok.lemme",
+        "title": "ok.lemme(say)",
+        "op": "define"
+       },
+       {
+        "func": "textbook.ulterior",
+        "title": "textbook.ulterior(motive)",
+        "op": "define"
+       }
+      ],
+      "instances": [
+       [
+        "say",
+        "Action"
+       ],
+       [
+        "motive",
+        "Thing"
+       ]
+      ]
      }
     }
    ]
@@ -19214,10 +19235,10 @@
   "run-0ae93c": "a11a1eab61",
   "run-3a15d2": "fbc46c6eb7",
   "run-ab4653": "dd8e54daee",
-  "run-cf203b": "14f5c1ffdd",
+  "run-cf203b": "47c40123bd",
   "run-cb805f": "8d23a93627",
   "run-888ea9": "9815dfcb14"
  },
  "commits": 193,
- "updated": "2026-11-26T13:35:41-05:00"
+ "updated": "2026-11-26T13:39:06-05:00"
 }
