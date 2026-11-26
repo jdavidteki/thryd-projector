@@ -15050,7 +15050,7 @@
   },
   "run-cf203b": {
    "forked_from": "safe:731d52737690",
-   "head": "159fc198e3",
+   "head": "675de4e8ee",
    "commits": [
     {
      "id": "eda103402b",
@@ -17085,6 +17085,70 @@
        ]
       ]
      }
+    },
+    {
+     "id": "675de4e8ee",
+     "parent": "159fc198e3",
+     "branch": "run-cf203b",
+     "job": "j28",
+     "at": "2026-11-26T01:02:35-0500",
+     "genre": "rising",
+     "beat": "now",
+     "diff": {
+      "facts": [
+       {
+        "id": "wt_c19b22ebba",
+        "object": "ready",
+        "kind": "func_call",
+        "code": "ready.finally();",
+        "scope": "env",
+        "cause_id": null
+       },
+       {
+        "id": "wt_87e887d418",
+        "object": "agboro",
+        "kind": "func_call",
+        "code": "agboro.hears(person, 'finally');",
+        "scope": "ripple",
+        "cause_id": "wt_c19b22ebba"
+       },
+       {
+        "id": "wt_44aa433498",
+        "object": "ahan",
+        "kind": "func_call",
+        "code": "ahan.hears(person, 'finally');",
+        "scope": "ripple",
+        "cause_id": "wt_c19b22ebba"
+       },
+       {
+        "id": "wt_6d42aebad8",
+        "object": "alorof",
+        "kind": "func_call",
+        "code": "alorof.hears(person, 'finally');",
+        "scope": "ripple",
+        "cause_id": "wt_c19b22ebba"
+       },
+       {
+        "id": "wt_421d692137",
+        "object": "cooler_subject",
+        "kind": "call",
+        "code": "cooler_subject.setmood('happy');",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_50b70935df",
+        "object": "cooler_subject_second",
+        "kind": "call",
+        "code": "cooler_subject_second.glow();",
+        "scope": null,
+        "cause_id": null
+       }
+      ],
+      "facts_total": 6,
+      "functions": [],
+      "instances": []
+     }
     }
    ]
   },
@@ -17893,10 +17957,10 @@
   "run-0ae93c": "a11a1eab61",
   "run-3a15d2": "fbc46c6eb7",
   "run-ab4653": "dd8e54daee",
-  "run-cf203b": "159fc198e3",
+  "run-cf203b": "675de4e8ee",
   "run-cb805f": "8d23a93627",
   "run-888ea9": "9815dfcb14"
  },
- "commits": 179,
- "updated": "2026-11-26T00:57:36-05:00"
+ "commits": 180,
+ "updated": "2026-11-26T01:03:24-05:00"
 }
