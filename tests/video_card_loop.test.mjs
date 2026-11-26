@@ -225,8 +225,8 @@ function load(opts = {}){
 const tick = async (n = 6) => { for(let i = 0; i < n; i++) await new Promise(r => setImmediate(r)); };
 
 test('index.html cache-bumps video_card.js and the script autoplays on a loop', () => {
-  assert.match(html, /video_card\.js\?v=4/);
-  assert.doesNotMatch(html, /video_card\.js\?v=3(?:\D|$)/);
+  assert.match(html, /video_card\.js\?v=5/);
+  assert.doesNotMatch(html, /video_card\.js\?v=4(?:\D|$)/);
   assert.match(src, /preload=["']auto["']/);
   assert.match(src, /<video[^>]*\bautoplay\b/);
   assert.match(src, /<video[^>]*\bloop\b/);
@@ -331,4 +331,26 @@ test('an off-screen card pauses; on-screen it plays again', async () => {
   C.syncPlay();
   assert.equal(L.vid().paused, false);
   assert.equal(C.video().onScreen, true);
+});
+
+test('the card features the newest video from any run, not a hardcoded story-draw-120 row', async () => {
+  const older = Object.assign({}, SCENE, { added: '2026-11-20T17:02:00-05:00' });
+  const newer = {
+    id: 'run-cf203b-j25-20261126t0030',
+    run: 'run-cf203b',
+    j: 'j25',
+    place: 'the doorway',
+    video: 'videos/media/newer.mp4',
+    card_video: 'videos/media/newer.card.mp4',
+    poster: 'videos/media/newer.jpg',
+    added: '2026-11-26T00:30:00-05:00',
+  };
+  const L = load({ videos: [older, newer] });
+  await tick();
+  const vid = L.vid();
+  assert.equal(vid.src, newer.card_video);
+  assert.equal(L.card().video().job, 'j25 · the doorway');
+  const L2 = load({ videos: [newer, older] });
+  await tick();
+  assert.equal(L2.vid().src, newer.card_video);
 });

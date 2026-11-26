@@ -1,5 +1,5 @@
 /* v613: looping video card again (Jesuye 25 Nov 2026 1:56 PM ET: "now we can make the video card keep playing on its loop like before. shouldn't cause much heating").
-   Newest Draw a story scene from data/videos.json (muted, autoplay, looping, playsinline; 264p card_video when present, from v601).
+   Newest scene from data/videos.json (any run, newest added/ts first; no hardcoded run) (muted, autoplay, looping, playsinline; 264p card_video when present, from v601).
    Plays on a continuous loop like v600/v601. Pauses only when the tab is hidden or the card is off-screen; stays looping while idle (the 23 Nov tap-to-play heat stop is removed; other v612 savings are unchanged).
    Drag only moves it (a moved pointer is not a click). "open ↗" opens /videos/ in a new tab.
    It lives outside the zoom canvas (body-level fixed, z-index 12), so it works the same at 1x and zoomed.
@@ -111,9 +111,13 @@
     try{ io=new IntersectionObserver(function(){syncPlay();},{root:null,threshold:0}); io.observe(a); }catch(e){ io=null; }
   }
   function mount(){if(!a.parentNode)document.body.appendChild(a);restore();watch();tryPlay();}
+  function newest(vs){
+    return (vs||[]).filter(function(x){return x&&x.video;}).slice().sort(function(a,b){
+      return String(b.added||b.ts||'').localeCompare(String(a.added||a.ts||''));
+    })[0];
+  }
   fetch('data/videos.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).then(function(doc){
-    var vs=(doc&&doc.videos)||[];
-    var row=vs.filter(function(x){return x&&x.run==='story-draw-120';})[0]||vs[0];
+    var row=newest((doc&&doc.videos)||[]);
     if(!apply(row))return;
     if(document.body)mount();else addEventListener('DOMContentLoaded',mount);
   }).catch(function(){});
