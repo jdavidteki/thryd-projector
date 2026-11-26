@@ -86,6 +86,8 @@
   const BG_P = PHONE ? 0.8 : 0.9;             // share of groups that get the faded source-frame backdrop (covers the gaps)
   // live views (Jesuye 14 Nov 2026 8:52 AM ET): newest final jN GIFs jump the queue and stay ~2.5× as long as a normal cut
   const LIVE_DWELL_K = 2.5;                    // vs a normal group life of 30–50s (phone) or 35–70s (desktop)
+  const ANIM_DWELL_K = 2;                      // v636: a still with a manifest anim GIF stays in the sky 2x as long as a plain still
+  S.ANIM_DWELL_K = ANIM_DWELL_K;
   const LIVE_POLL_MS = 45000;                  // at most as often as the data loop; do not poll faster
   const LIVE_KEEP = 3;                         // most recent 1–3 of the current agenda recur more often than ordinary cuts
   // a live view that has left stays off for a while before it recurs (fix 14 Nov 9:45 AM ET: they came straight back, so they
@@ -262,10 +264,23 @@
         let n = 0; while(now >= A.due && n++ < 4){ A.f = (A.f + 1) % A.delays.length; A.due += Math.max(40, A.delays[A.f] || 100); }
         if(now - A.due > 1000) A.due = now + 60; // after a pause, pick up again instead of racing
         for(let i = 0; i < S.cuts.length; i++){ const cut = S.cuts[i]; if(cut.home !== g || !cut.frames[A.f] || !cut.ctx || cut._vis === false) continue;
-          cut.ctx.clearRect(0, 0, cut.el.width, cut.el.height); cut.ctx.drawImage(cut.frames[A.f], 0, 0); }
+          cut._animFr = cut.frames[A.f]; cut.ctx.clearRect(0, 0, cut.el.width, cut.el.height); cut.ctx.drawImage(cut.frames[A.f], 0, 0); }
       });
       // v635 funback: plates drift on every display frame again (v612 had throttled them to ~11 Hz under the warp)
       tickBgs(now);
+      // v636: ambient in-cut motion (and any command script) on visible cuts; skipped off-screen and when reduced-motion
+      if(!RM && root.ThrydCutAnimate){
+        const A = root.ThrydCutAnimate;
+        for(let i = 0; i < S.cuts.length; i++){
+          const cut = S.cuts[i];
+          if(!cut || !cut.ctx || !cut.el || cut._vis === false || cut.dragging) continue;
+          try{
+            const src = (cut.frames && cut.frames.length > 1) ? (cut._animFr || null) : null;
+            A.paintAmbient(cut, now, src);
+          }catch(e){}
+          if(cut.motion){ try{ if(A.applyScript(cut, cut.motion, now)) cut.motion = null; }catch(e){} }
+        }
+      }
     } else { tickBgs.t = 0; }
     const dt = performance.now() - t0; S.loop.n++; if(dt > 8) S.loop.slow++; if(dt > S.loop.max) S.loop.max = +dt.toFixed(1);
     scheduleFrame();
@@ -492,6 +507,77 @@
     return {plan, fw, fh, k, Dw, Dh, s, objs, frames, delays, bg, bgMask: true, animated, kind: plan.kind, fresh: !!lo.fresh};
   }
 
+  // v636: a cut may name an animated GIF in data/anim_cuts.json (or object.anim). Missing/failed files fall back to the still.
+  const ANIM = S.animCuts = {v: 0, dwell_k: 2, by: new Map(), at: 0};
+  function animKey(mid, label){ return String(mid || '') + '\t' + String(label || ''); }
+  function loadAnimCatalog(){
+    fetch('data/anim_cuts.json?t=' + Date.now(), {cache: 'no-store'}).then(r => r.ok ? r.json() : null).then(d => {
+      if(!d) return;
+      ANIM.v = d.v || 1; ANIM.dwell_k = +d.dwell_k || 2; ANIM.at = Date.now(); ANIM.by.clear();
+      (d.cuts || []).forEach(c => { if(c && c.medium_image_id && (c.anim || c.webp)) ANIM.by.set(animKey(c.medium_image_id, c.cut || c.label), c); });
+    }).catch(()=>{});
+  }
+  loadAnimCatalog();
+  function animRec(mid, label, obj){
+    return ANIM.by.get(animKey(mid, label)) || (obj && (obj.anim || obj.anim_url) ? {anim: obj.anim || obj.anim_url} : null);
+  }
+  async function decodeAnimUrl(url, proto){
+    const dw = proto && proto.width || 0, dh = proto && proto.height || 0;
+    const res = await fetch(url, {cache: 'no-store'});
+    if(!res.ok) throw new Error('anim_http_' + res.status);
+    const buf = new Uint8Array(await res.arrayBuffer());
+    if(!MC || !MC.createGifDecoder) throw new Error('no_gif_decoder');
+    const dec = MC.createGifDecoder(buf);
+    const collected = [];
+    let fr;
+    while((fr = dec.next())){
+      const ms = (MC.playMs && fr.delayCs != null) ? MC.playMs(fr.delayCs) : Math.max(40, (fr.delayCs || 10) * 10);
+      collected.push({rgba: fr.rgba, w: dec.width, h: dec.height, ms});
+    }
+    if(!collected.length) throw new Error('anim_empty');
+    const step = Math.max(1, Math.ceil(collected.length / MAXF));
+    const frames = [], delays = [];
+    for(let i = 0; i < collected.length; i += step){
+      const x = collected[i];
+      const img = new ImageData(x.rgba instanceof Uint8ClampedArray ? x.rgba : new Uint8ClampedArray(x.rgba), x.w, x.h);
+      frames.push(await bitmapOf(img, dw || x.w, dh || x.h));
+      let acc = 0; for(let k = i; k < i + step && k < collected.length; k++) acc += collected[k].ms;
+      delays.push(Math.max(40, acc));
+    }
+    return {frames, delays};
+  }
+  async function applyAnim(row, L){
+    if(!L || !L.objs || !L.frames) return L;
+    const mid = row && row.medium_image_id;
+    let any = false, delays = null;
+    for(let j = 0; j < L.objs.length; j++){
+      const rec = animRec(mid, (L.objs[j].o && (L.objs[j].o.label || L.objs[j].o.cut)) || ('cut' + (j + 1)), L.objs[j].o);
+      const url = rec && (rec.anim || rec.webp);
+      if(!url) continue;
+      try{
+        const frs = await decodeAnimUrl(url, L.frames[j] && L.frames[j][0]);
+        if(frs && frs.frames && frs.frames.length){
+          L.frames[j] = frs.frames; delays = frs.delays; any = true;
+        }
+      }catch(e){ note('anim fallback still', mid, String(e && e.message || e)); }
+    }
+    if(any){
+      L.hasAnim = true; L.animated = true;
+      if(delays && delays.length) L.delays = delays;
+      else {
+        const n = (L.frames.find(f => f && f.length > 1) || []).length || 8;
+        L.delays = new Array(n).fill(120);
+      }
+    }
+    return L;
+  }
+  const _loadGroup = loadGroup;
+  loadGroup = async function(row0, man, lo){
+    const L = await _loadGroup(row0, man, lo);
+    try{ await applyAnim(row0, L); }catch(e){ try{ note('anim fallback', String(e && e.message || e)); }catch(e2){} }
+    return L;
+  };
+
   // the shift that takes a box at screen (sx, sy, w, h) fully off the screen along heading a (radians, 0 = right, y down)
   function offTo(sx, sy, w, h, v, a){
     const ux = Math.cos(a), uy = Math.sin(a), M = 50; let d = 1e9;
@@ -516,7 +602,7 @@
     const pos = placeGroup(L.Dw, L.Dh, newest ? {center: true} : null); const v = view();
     if(newest) clearRect(pos.gx, pos.gy, L.Dw, L.Dh, row.medium_image_id);
     const g = {mid: row.medium_image_id, row, kind: L.kind, x: pos.gx, y: pos.gy, w: L.Dw, h: L.Dh, k: L.k, fw: L.fw, fh: L.fh,
-      title: row.title || titleOf(row.medium_image_id), agenda: !!row.agenda, live: !!row.live_view, run: row.run || null, card: row.card || null, born: Date.now(), life: (PHONE ? R(30, 50) : R(35, 70)) * 1000 * (row.live_view ? LIVE_DWELL_K : 1), cuts: [], gone: false, offSince: 0, sha: row.source_sha256 || '', ver: row.pack_version || '1', place: row.place || null, colour: row.colour || row.color || null, fresh: !!(L.fresh || row.fresh), newest};
+      title: row.title || titleOf(row.medium_image_id), agenda: !!row.agenda, live: !!row.live_view, run: row.run || null, card: row.card || null, born: Date.now(), life: (PHONE ? R(30, 50) : R(35, 70)) * 1000 * (row.live_view ? LIVE_DWELL_K : (L.hasAnim ? ANIM_DWELL_K : 1)), cuts: [], gone: false, offSince: 0, sha: row.source_sha256 || '', ver: row.pack_version || '1', place: row.place || null, colour: row.colour || row.color || null, fresh: !!(L.fresh || row.fresh), newest};
     if(L.bg && !row.live_view){
       const c = document.createElement('canvas'); c.className = 'gbg' + (L.bgMask ? ' gm' : '') + (L.bgMask && g.fresh ? ' gfresh' : ''); c.width = L.bg.width; c.height = L.bg.height;
       c.getContext('2d').drawImage(L.bg, 0, 0); L.bg.close && L.bg.close();
@@ -542,7 +628,8 @@
       Object.assign(c.style, {left: cut.left + 'px', top: cut.top + 'px', width: cut.w + 'px', height: cut.h + 'px', zIndex: String((newest ? 80 : 10) + Math.round(x.U.y + x.U.h))});
       c.style.setProperty('--fd', R(5.5, 9).toFixed(2) + 's'); c.style.setProperty('--fdl', (-R(0, 6)).toFixed(2) + 's');
       S.bytes += cut.bytes; S.cuts.push(cut); g.cuts.push(cut);
-      if(fr.length === 1){ try{ fr[0].close && fr[0].close(); }catch(e){} } // v610 memory: a still cut's canvas already holds its only frame; free the bitmap copy
+      if(root.ThrydCutAnimate && ThrydCutAnimate.keepSrc) try{ ThrydCutAnimate.keepSrc(cut); }catch(e){}
+      if(fr.length === 1){ try{ fr[0].close && fr[0].close(); }catch(e){} } // v610 memory: a still cut's canvas already holds its only frame; free the bitmap copy (v636 keeps a srcCanvas for in-cut motion)
       bindDrag(cut);
       if(newest){
         // newest active live view appears in place (no off-screen walk-in)
@@ -2148,6 +2235,11 @@
     const cuts = [];
     names.forEach(n => matchFreeCuts(ckey(n), run).forEach(c => { if(!cuts.includes(c)) cuts.push(c); }));
     cuts.forEach((c, n) => setTimeout(()=>{ if(!c.el || !c.el.isConnected) return; pulse(c); playGfx(c, gfxOf(piece.fn || 'know')); c.el.classList.add('gcmdlit'); if(n === 0) tagAt(c, (piece.resolved || piece.raw).slice(0, 80)); }, n * 180));
+    if(root.ThrydCutAnimate && ThrydCutAnimate.verbOf(piece.fn)){
+      const tgtName = (piece.args && piece.args[0]) || null;
+      const tgt = tgtName ? (matchFreeCuts(ckey(tgtName), run)[0] || null) : null;
+      cuts.forEach(c => { c.motion = ThrydCutAnimate.makeScript(piece.fn, 0, tgt); });
+    }
     if(cuts[0]) try{ rec.ripples = ripple(cuts[0], piece.fn || 'know', piece.resolved || piece.raw); }catch(e){}
     rec.executed = true; rec.castCuts = cuts.length;
     return cuts;
@@ -2577,12 +2669,15 @@
     // shown locally first, whatever the relay does
     if(it.f.faded){ it.f.faded = false; if(c.el) c.el.classList.remove('gfaded'); rec.revived = true; }
     const myCls = classOf(c), eff = effectOf(f.method, myCls); rec.effect = eff.fx; rec.effect_class = eff.by;
-    it.catches = exceptionsFor(c).slice(0, 2); playGfx(c, eff.fx); popTweet(c, it, tw); rec.ripples = ripple(c, f.method, it.resolved || it.t.title); rec.resolved = it.resolved; rec.injected = inj; if(c.el && c.el.isConnected) tagAt(c, code);
+    it.catches = exceptionsFor(c).slice(0, 2); playGfx(c, eff.fx);
+    if(root.ThrydCutAnimate && ThrydCutAnimate.verbOf(f.method)){ const tgt = (it.injected && it.injected[0] && matchFreeCuts(ckey(it.injected[0].instance || it.injected[0]), (c.home||{}).run || AG.active))[0] || null; c.motion = ThrydCutAnimate.makeScript(f.method, 0, tgt); }
+    popTweet(c, it, tw); rec.ripples = ripple(c, f.method, it.resolved || it.t.title); rec.resolved = it.resolved; rec.injected = inj; if(c.el && c.el.isConnected) tagAt(c, code);
     rec.sendPrefix = 'tapped · ' + (it.scope === 'env' ? name + ' called it from ' + (it.env_scope === 'run' ? it.env_from : 'the safe') + ' · ' : '') + it.id + ' (first seated ' + ((f.defined || {}).run || '?') + ' ' + ((f.defined || {}).job || '') + ')';
     codeLine(it.resolved || code, rec.sendPrefix + ' · sending…'); note('func', code, eid);
     return sendCall(rec, code, eid);
   }
   S.fireFunc = fireFunc;
+  S.playMotion = function(c, verb, target, dur){ const A = root.ThrydCutAnimate; if(!A) return null; const script = A.makeScript(verb, dur, target || null); if(script && c){ c.motion = script; script.t0 = 0; } return script; };
   // ---------- smart taps (Jesuye 17 Nov 2026 2:54 PM ET "they tap a button but the a.i knew they mean to click that button so it doesnt pop
   // up. it knows what the user wants and moves the way"). On this device only, no external model: a tap with one obvious choice runs it
   // and shows a 3 s undo instead of the menu. Obvious = one own function; or the same choice 2 of the last 3 times on this object or its

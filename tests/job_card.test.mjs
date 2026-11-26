@@ -13,9 +13,9 @@ test('job_card.js loads by default; ?cards=0 hides the panel', ()=>{
   assert.match(html, /if\(!\/\(\?:\^\|\[\?&\]\)cards=0/);
   assert.match(js, /if\(\/\(\?:\^\|\[\?&\]\)cards=0/);
   assert.doesNotMatch(html, /if\(\/\(\?:\^\|\[\?&\]\)cards=1/);
-  assert.match(html, /var VER=635,/);
+  assert.match(html, /var VER=636,/);
   const v = JSON.parse(ver);
-  assert.ok(v.v >= 635);
+  assert.ok(v.v >= 636);
 });
 
 test('layout is job card, then typeline, then plain always-visible buttons', ()=>{
@@ -247,10 +247,10 @@ test('v633: archive safe lines flow inline at a smaller font; title stays its ow
 });
 
 test('v634: open async jobs render as persistent waiting-on-real-life pills; empty list shows nothing', ()=>{
-  assert.match(html, /var VER=635,/);
+  assert.match(html, /var VER=636,/);
   assert.match(html, /job_card\.js\?v=13/);
   const v = JSON.parse(ver);
-  assert.ok(v.v >= 635);
+  assert.ok(v.v >= 636);
   assert.match(js, /function asyncPills\(/);
   assert.match(js, /function jobText\(/);
   assert.match(js, /function ago\(/);

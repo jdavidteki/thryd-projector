@@ -62,13 +62,13 @@ test('one CAP_DEFAULT (36) sets how many story objects are on stage; ?cap=N over
   assert.match(st, /evictOldest\('cap'\)/);
 });
 
-test('index and version.json are at v635', ()=>{
+test('index and version.json are at v636', ()=>{
   assert.match(html, /var VER=\d+,/);
   assert.match(html, /stage\.js\?v=\d+/);
   const v = JSON.parse(ver);
-  assert.ok(v.v >= 635);
-  assert.match(html, /var VER=635,/);
-  assert.match(html, /stage\.js\?v=635/);
+  assert.ok(v.v >= 636);
+  assert.match(html, /var VER=636,/);
+  assert.match(html, /stage\.js\?v=636/);
   assert.match(html, /stretchy_bg\.js\?v=9/);
   assert.match(html, /alive\.css\?v=10/);
   assert.match(html, /alive\.js\?v=59/);

@@ -14,7 +14,8 @@ test('stage.js keeps a 2.5× live-view dwell and a 45s poll', () => {
   assert.match(src, /const LIVE_KEEP = 3/);
   assert.match(src, /data\/live_views\.json/);
   assert.match(src, /setInterval\(pollLiveViews, LIVE_POLL_MS\)/);
-  assert.match(src, /row\.live_view \? LIVE_DWELL_K : 1/);
+  assert.match(src, /row\.live_view \? LIVE_DWELL_K : \(L\.hasAnim \? ANIM_DWELL_K : 1\)/);
+  assert.match(src, /const ANIM_DWELL_K = 2/);
 });
 
 test('live views jump the pending queue and do not write the no-repeat deck key', () => {
