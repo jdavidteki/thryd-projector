@@ -16,3 +16,23 @@ test('the AI bonus feeds the existing scoring rule and can never auto-fire by it
 test('typed commands: nearest real function, auto-apply only when confident; Chrome AI only when available', () => {
   assert.match(ai, /top\[0\]\.s >= \.82 && conf >= \.08 && top\[0\]\.live/); assert.match(ai, /LanguageModel/); assert.match(ai, /\^\(available\|readily\)\$/);
 });
+
+test('[[god]] panel drags from its header, stays in view, and keeps position after the logo toggle closes it', () => {
+  assert.match(ai, /head\.id = 'aihead'/);
+  assert.match(ai, /#aibox #aihead\{cursor:grab/);
+  assert.match(ai, /head\.addEventListener\('pointerdown'/);
+  assert.match(ai, /setPointerCapture/);
+  assert.match(ai, /POS_KEY = 'thryd_aibox_pos'/);
+  assert.match(ai, /localStorage\.setItem\(POS_KEY/);
+  assert.match(ai, /fromControl\(ev\.target\)/);
+  assert.match(ai, /input,textarea,button,select,option/);
+  assert.match(ai, /function clampPos/);
+  assert.match(ai, /addEventListener\('resize', \(\)=>\{ applyPos\(\); \}\)/);
+  assert.match(ai, /if\(!p \|\| !onscreen\(p\.left, p\.top\)\)\{ resetPos\(\)/);
+  assert.match(ai, /box\.classList\.add\('on'\); applyPos\(\)/);
+  // tapping the [[god]] logo still opens, tapping it again closes the whole box
+  assert.match(ai, /box && box\.classList\.contains\('on'\) \? close\(\) : open\(\)/);
+  // close() must not clear the saved position (kept for the next open)
+  assert.match(ai, /function close\(\)\{ if\(box\)\{ box\.classList\.remove\('on'\); inp\.blur\(\); \} \}/);
+  assert.doesNotMatch(ai, /function close\(\)\{[^}]*clearPos/);
+});

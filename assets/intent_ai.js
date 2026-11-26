@@ -121,8 +121,42 @@
     '#aibox input:focus,#aibox textarea:focus{border-color:#ffd76a}', '#aibox .aim{color:#bbb;font-weight:400;font-size:.85em;min-height:1em}', '#aibox .aic{display:flex;flex-wrap:wrap;gap:.5vh}',
     '#aibox .aic button{font:inherit;color:#fff;background:#2a2a2a;border:1px solid #8a6d2b;border-radius:.8vh;padding:.6vh .9vh;cursor:pointer;min-height:34px}',
     '#aibox .aic button.ch{border-color:#9f7aea}', '#aibox .aic button.off{opacity:.6}', '#aibox .aiu{color:#9fd3ff;cursor:pointer;text-decoration:underline;margin-left:.6em}',
+    '#aibox #aihead{cursor:grab;user-select:none;-webkit-user-select:none;touch-action:none;padding:.15vh .35vh .35vh;color:#fff;font:inherit;line-height:1.2}',
+    '#aibox #aihead:active{cursor:grabbing}',
     '#aicmd{min-width:auto;white-space:nowrap}'].join('\n'); document.head.appendChild(css);
   let box = null, inp = null, msg = null, chips = null, sendBtn = null, lastSub = 0;
+  const POS_KEY = 'thryd_aibox_pos';
+  function readPos(){ try{ const p = JSON.parse(localStorage.getItem(POS_KEY) || 'null'); if(p && isFinite(+p.left) && isFinite(+p.top)) return {left: +p.left, top: +p.top}; }catch(e){} return null; }
+  function writePos(left, top){ try{ localStorage.setItem(POS_KEY, JSON.stringify({left, top})); }catch(e){} }
+  function clearPos(){ try{ localStorage.removeItem(POS_KEY); }catch(e){} }
+  function boxSize(){ const r = box.getBoundingClientRect(); return {w: r.width, h: r.height}; }
+  function onscreen(left, top){ const {w, h} = boxSize(); if(!w || !h) return false; return left >= 0 && top >= 0 && left + w <= window.innerWidth && top + h <= window.innerHeight; }
+  function clampPos(left, top){ const {w, h} = boxSize(); const maxL = Math.max(0, window.innerWidth - w), maxT = Math.max(0, window.innerHeight - h); return {left: Math.min(maxL, Math.max(0, left)), top: Math.min(maxT, Math.max(0, top))}; }
+  function setPos(left, top){ const p = clampPos(left, top); box.style.left = p.left + 'px'; box.style.top = p.top + 'px'; box.style.bottom = 'auto'; box.style.transform = 'none'; writePos(p.left, p.top); return p; }
+  function resetPos(){ clearPos(); if(!box) return; box.style.left = ''; box.style.top = ''; box.style.bottom = ''; box.style.transform = ''; }
+  function applyPos(){ if(!box || !box.classList.contains('on')) return; const p = readPos(); if(!p || !onscreen(p.left, p.top)){ resetPos(); return; } box.style.left = p.left + 'px'; box.style.top = p.top + 'px'; box.style.bottom = 'auto'; box.style.transform = 'none'; }
+  function fromControl(t){ return !!(t && t.closest && t.closest('input,textarea,button,select,option,[role="option"],a,label,[contenteditable="true"]')); }
+  function bindDrag(head){
+    head.addEventListener('pointerdown', ev => {
+      if(ev.button != null && ev.button !== 0) return;
+      if(fromControl(ev.target)) return;
+      ev.preventDefault();
+      const r = box.getBoundingClientRect();
+      const sx = ev.clientX, sy = ev.clientY, sl = r.left, st = r.top;
+      try{ head.setPointerCapture(ev.pointerId); }catch(e){}
+      const move = ev2 => { setPos(sl + ev2.clientX - sx, st + ev2.clientY - sy); };
+      const up = ev2 => {
+        try{ head.releasePointerCapture(ev2.pointerId); }catch(e){}
+        head.removeEventListener('pointermove', move);
+        head.removeEventListener('pointerup', up);
+        head.removeEventListener('pointercancel', up);
+      };
+      head.addEventListener('pointermove', move);
+      head.addEventListener('pointerup', up);
+      head.addEventListener('pointercancel', up);
+    }, {passive: false});
+  }
+
   function markQueued(text){
     const line = String(text || '').replace(/;?$/, ';');
     try{ const S = ST(); if(S && S.markQueued) S.markQueued(line, 'queued\u2026'); }catch(e){}
@@ -150,7 +184,9 @@
     sendBtn.title = 'Send'; sendBtn.textContent = '\u27a4';
     form.append(inp, sendBtn);
     msg = document.createElement('div'); msg.className = 'aim'; chips = document.createElement('div'); chips.className = 'aic';
-    box.append(form, msg, chips); document.body.appendChild(box);
+    const head = document.createElement('div'); head.id = 'aihead'; head.textContent = '[[god]]';
+    box.append(head, form, msg, chips); document.body.appendChild(box);
+    bindDrag(head);
     ['pointerdown', 'click'].forEach(k => box.addEventListener(k, e => { if(e.target !== sendBtn) e.stopPropagation(); }));
     form.addEventListener('submit', e => { e.preventDefault(); e.stopPropagation(); submitNow(e, 'form_submit'); });
     // pointerdown + preventDefault keeps the Android keyboard open (input does not blur before send)
@@ -162,7 +198,7 @@
     // Android Chrome IME Go often fires beforeinput insertLineBreak instead of (or before) keydown Enter
     inp.addEventListener('beforeinput', e => { if(e.inputType === 'insertLineBreak' || e.inputType === 'insertParagraph'){ e.preventDefault(); e.stopPropagation(); submitNow(e, 'beforeinput_' + e.inputType); } });
     inp.addEventListener('input', e => { if(inp && /\n/.test(String(inp.value || ''))){ if(e.preventDefault) e.preventDefault(); submitNow(e, 'input_newline'); } }); }
-  function open(){ ui(); box.classList.add('on'); msg.textContent = AI.state === 'ready' ? 'AI matching on' + (chromeOk() ? ' · ✨ Chrome AI' : '') : (AI.state === 'loading' ? 'AI model loading… letter matching for now' : 'letter matching'); chips.textContent = ''; inp.value = ''; setTimeout(()=> inp.focus(), 0); }
+  function open(){ ui(); box.classList.add('on'); applyPos(); msg.textContent = AI.state === 'ready' ? 'AI matching on' + (chromeOk() ? ' · ✨ Chrome AI' : '') : (AI.state === 'loading' ? 'AI model loading… letter matching for now' : 'letter matching'); chips.textContent = ''; inp.value = ''; setTimeout(()=> inp.focus(), 0); }
   function close(){ if(box){ box.classList.remove('on'); inp.blur(); } }
   AI.open = open; AI.close = close;
   function label(r){ return r.id.split('.')[0] + '.' + ((r.f && r.f.method) || r.id.split('.').slice(1).join('.')) + '()'; }
@@ -255,6 +291,7 @@
     const b = document.createElement('button'); b.id = 'aicmd'; b.type = 'button'; b.textContent = '[[god]]'; b.title = '[[god]]'; b.setAttribute('aria-label', '[[god]]');
     b.addEventListener('click', e => { e.stopPropagation(); box && box.classList.contains('on') ? close() : open(); });
     const st = document.getElementById('smarttap'); if(st && st.parentNode === bar) bar.insertBefore(b, st.nextSibling); else bar.appendChild(b); }
+  addEventListener('resize', ()=>{ applyPos(); });
   addEventListener('keydown', e => { const t = e.target; if(e.ctrlKey || e.metaKey || e.altKey || (t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName)))) return;
     if(e.key === '/'){ e.preventDefault(); open(); } });
   // stage only (index.html loads this after stage.js; ?slides=1 has no stage)

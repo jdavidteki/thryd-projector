@@ -10,9 +10,9 @@ test('job_card.js loads only with ?cards=1 and no-ops otherwise', ()=>{
   assert.match(html, /cards=1/);
   assert.match(html, /job_card\.js\?v=1/);
   assert.match(js, /cards=1/);
-  assert.match(html, /var VER=619,/);
+  assert.match(html, /var VER=620,/);
   const v = JSON.parse(ver);
-  assert.equal(v.v, 619);
+  assert.equal(v.v, 620);
 });
 
 test('layout is job card, then typeline, then plain always-visible buttons', ()=>{
@@ -66,5 +66,8 @@ test('command button visible text and aria-label are [[god]], click still toggle
   assert.match(ai, /setAttribute\('aria-label', '\[\[god\]\]'\)/);
   assert.doesNotMatch(ai, /textContent = '\\u203a_'/);
   assert.match(ai, /box && box\.classList\.contains\('on'\) \? close\(\) : open\(\)/);
-  assert.match(html, /intent_ai\.js\?v=611/);
+  assert.match(html, /intent_ai\.js\?v=612/);
+  // close keeps the dragged position for the next open
+  assert.match(ai, /function close\(\)\{ if\(box\)\{ box\.classList\.remove\('on'\); inp\.blur\(\); \} \}/);
+  assert.match(ai, /POS_KEY = 'thryd_aibox_pos'/);
 });
