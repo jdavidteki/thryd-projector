@@ -15050,7 +15050,7 @@
   },
   "run-cf203b": {
    "forked_from": "safe:731d52737690",
-   "head": "0ef4d7f618",
+   "head": "7def112cd5",
    "commits": [
     {
      "id": "eda103402b",
@@ -17491,7 +17491,7 @@
      }
     },
     {
-     "id": "5393ab5f4d",
+     "id": "f15925dce9",
      "parent": "358db20535",
      "branch": "run-cf203b",
      "job": "j32",
@@ -17779,9 +17779,41 @@
         "code": "believe.hears(person, 'wayayou');",
         "scope": "ripple",
         "cause_id": "wt_5e8e2e197a"
+       },
+       {
+        "id": "wt_7be00476bd",
+        "object": "kemi",
+        "kind": "consequence",
+        "code": "kemi.interactwith(tobi){ kemi.hears(tobi, 'half step'); kemi.set('heard', 'it sounded like give me a hug, in his half step'); }",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_febe07a86e",
+        "object": "woman",
+        "kind": "consequence",
+        "code": "woman.interactwith(kemi){ woman.interrupts(kemi, 'evidence'); woman.set('evidence', 'playing on speaker while kemi is still deciding what sh",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_76c8589fe7",
+        "object": "tobi",
+        "kind": "consequence",
+        "code": "tobi.interactwith(woman){ tobi.receives(woman, 'evidence'); tobi.set('arms', 'open, waiting while the evidence plays on speaker'); }",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_1c8e45880e",
+        "object": "amusementpark",
+        "kind": "consequence",
+        "code": "amusementpark.interactwith(kemi){ amusementpark.receives(kemi, 'heard'); amusementpark.set('gate', 'people slowing down to watch: tobi with",
+        "scope": null,
+        "cause_id": null
        }
       ],
-      "facts_total": 35,
+      "facts_total": 39,
       "functions": [
        {
         "func": "dem.get",
@@ -17812,8 +17844,8 @@
      }
     },
     {
-     "id": "0ef4d7f618",
-     "parent": "5393ab5f4d",
+     "id": "7def112cd5",
+     "parent": "f15925dce9",
      "branch": "run-cf203b",
      "job": "j33",
      "at": "2026-11-26T02:08:48-0500",
@@ -18666,10 +18698,10 @@
   "run-0ae93c": "a11a1eab61",
   "run-3a15d2": "fbc46c6eb7",
   "run-ab4653": "dd8e54daee",
-  "run-cf203b": "0ef4d7f618",
+  "run-cf203b": "7def112cd5",
   "run-cb805f": "8d23a93627",
   "run-888ea9": "9815dfcb14"
  },
  "commits": 185,
- "updated": "2026-11-26T10:24:20-05:00"
+ "updated": "2026-11-26T10:25:13-05:00"
 }

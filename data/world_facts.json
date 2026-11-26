@@ -10991,6 +10991,16 @@
 "run": "run-cf203b",
 "card": "j32",
 "other": null
+},
+{
+"id": "wt_7be00476bd",
+"kind": "consequence",
+"text": "Kemi tells what she heard in Tobi's half step: it sounded like give me a hug.",
+"code": "kemi.interactwith(tobi){ kemi.hears(tobi, 'half step'); kemi.set('heard', 'it sounded like give me a hug, in his half step'); }",
+"author": "cos",
+"run": "run-cf203b",
+"card": "j32",
+"other": "tobi"
 }
 ],
 "wys": [
@@ -11948,53 +11958,45 @@
 "card": "w32",
 "other": null
 }
+],
+"woman": [
+{
+"id": "wt_febe07a86e",
+"kind": "consequence",
+"text": "The woman breaks in and plays her evidence on speaker, so Kemi has to answer with it in the air.",
+"code": "woman.interactwith(kemi){ woman.interrupts(kemi, 'evidence'); woman.set('evidence', 'playing on speaker while kemi is still deciding what she heard'); }",
+"author": "cos",
+"run": "run-cf203b",
+"card": "j32",
+"other": "kemi"
+}
+],
+"tobi": [
+{
+"id": "wt_76c8589fe7",
+"kind": "consequence",
+"text": "With the evidence playing, Tobi keeps his arms open and waits, because stepping back would look like an answer.",
+"code": "tobi.interactwith(woman){ tobi.receives(woman, 'evidence'); tobi.set('arms', 'open, waiting while the evidence plays on speaker'); }",
+"author": "cos",
+"run": "run-cf203b",
+"card": "j32",
+"other": "woman"
+}
+],
+"amusementpark": [
+{
+"id": "wt_1c8e45880e",
+"kind": "consequence",
+"text": "People at the gate slow down to watch, so the choice Kemi makes is now public and stays hers to make.",
+"code": "amusementpark.interactwith(kemi){ amusementpark.receives(kemi, 'heard'); … }",
+"author": "cos",
+"run": "run-cf203b",
+"card": "j32",
+"other": "kemi"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_a51de322b7",
-"ts": "2026-11-24T13:14:28-0500",
-"a": "tnw",
-"b": "heat",
-"code": "tnw.interactwith(heat){ heat.receives(tnw.envelope); heat.remembers(bisola, 'brown envelope'); heat.tucks(tnw, 'yaba bookshop receipt into the brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the heat, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
-"id": "wf_408047b1c1",
-"ts": "2026-11-24T13:15:20-0500",
-"a": "dress_marisol",
-"b": "florida",
-"code": "dress_marisol.interactwith(florida){ florida.receives(dress_marisol.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the green shirt at the florida, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
-"id": "wf_32b6288bd6",
-"ts": "2026-11-24T13:17:03-0500",
-"a": "prior_reality",
-"b": "florida",
-"code": "prior_reality.interactwith(florida){ florida.receives(prior_reality.shirt); … }",
-"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the brown envelope at the florida, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j8"
-},
-{
-"id": "wf_47e0f02ad4",
-"ts": "2026-11-24T13:17:55-0500",
-"a": "icsh",
-"b": "miami",
-"code": "icsh.interactwith(miami){ miami.receives(icsh.shirt); miami.remembers(bisola, 'green shirt'); }",
-"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up beside the phone at the miami.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j8"
-},
 {
 "id": "wf_dd983a6121",
 "ts": "2026-11-24T13:18:47-0500",
@@ -12390,6 +12392,50 @@
 "author": "cos",
 "run": "run-cf203b",
 "card": "w24"
+},
+{
+"id": "wt_7be00476bd",
+"ts": "2026-11-26T10:25:00-0500",
+"a": "tobi",
+"b": "kemi",
+"code": "kemi.interactwith(tobi){ kemi.hears(tobi, 'half step'); kemi.set('heard', 'it sounded like give me a hug, in his half step'); }",
+"text": "Kemi tells what she heard in Tobi's half step: it sounded like give me a hug.",
+"author": "cos",
+"run": "run-cf203b",
+"card": "j32"
+},
+{
+"id": "wt_febe07a86e",
+"ts": "2026-11-26T10:25:00-0500",
+"a": "kemi",
+"b": "woman",
+"code": "woman.interactwith(kemi){ woman.interrupts(kemi, 'evidence'); woman.set('evidence', 'playing on speaker while kemi is still deciding what she heard'); }",
+"text": "The woman breaks in and plays her evidence on speaker, so Kemi has to answer with it in the air.",
+"author": "cos",
+"run": "run-cf203b",
+"card": "j32"
+},
+{
+"id": "wt_76c8589fe7",
+"ts": "2026-11-26T10:25:00-0500",
+"a": "woman",
+"b": "tobi",
+"code": "tobi.interactwith(woman){ tobi.receives(woman, 'evidence'); tobi.set('arms', 'open, waiting while the evidence plays on speaker'); }",
+"text": "With the evidence playing, Tobi keeps his arms open and waits, because stepping back would look like an answer.",
+"author": "cos",
+"run": "run-cf203b",
+"card": "j32"
+},
+{
+"id": "wt_1c8e45880e",
+"ts": "2026-11-26T10:25:00-0500",
+"a": "kemi",
+"b": "amusementpark",
+"code": "amusementpark.interactwith(kemi){ amusementpark.receives(kemi, 'heard'); … }",
+"text": "People at the gate slow down to watch, so the choice Kemi makes is now public and stays hers to make.",
+"author": "cos",
+"run": "run-cf203b",
+"card": "j32"
 }
 ],
 "memories": [
@@ -12493,5 +12539,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-26T02:09:14-0500"
+"updated": "2026-11-26T10:25:12-0500"
 }
