@@ -20469,14 +20469,14 @@
      ],
      "consequence": "Kemi finishes her threat: \"and i will deal with them!\" 📖 Now: \"Them\" hangs in the doorway: the woman, and whoever else was there at 4pm.",
      "consequence_job": "j30",
-     "resolved": "will.deal(who=them:Person) from j29",
+     "resolved": "will.deal(who=una:Person) from j19",
      "injected": [
       {
        "param": "who",
        "class": "Person",
-       "instance": "them",
+       "instance": "una",
        "from_run": "run-cf203b",
-       "from_job": "j29",
+       "from_job": "j19",
        "source": "pick"
       }
      ]
@@ -21398,14 +21398,14 @@
      ],
      "consequence": "Locked at 127 lines.",
      "consequence_job": "j35",
-     "resolved": "can.slap(who=them:Person) from j29",
+     "resolved": "can.slap(who=una:Person) from j19",
      "injected": [
       {
        "param": "who",
        "class": "Person",
-       "instance": "them",
+       "instance": "una",
        "from_run": "run-cf203b",
-       "from_job": "j29",
+       "from_job": "j19",
        "source": "pick"
       }
      ]
@@ -23699,6 +23699,232 @@
    ],
    "faded": false,
    "last_run": "run-cf203b"
+  },
+  "con.tok": {
+   "object": "con",
+   "method": "tok",
+   "args": [
+    "go"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j46",
+    "card": "w46",
+    "title": "con.tok(go)",
+    "emoji": "🌽",
+    "at": "2026-11-26T15:21:47-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "con.tok(go)",
+     "emoji": "🌽",
+     "arg": "go",
+     "run": "run-cf203b",
+     "job": "j46",
+     "tweets": [
+      {
+       "text": "- we con dey tok dey go nau",
+       "year": "2025"
+      }
+     ],
+     "consequence": "The lines that landed: \"but i no even [[gitf]] you sef\", \"#oyinboman - raised by wolves\", \"[[so]] - you feel the shame for them\" and \"we con dey tok dey go nau\".",
+     "consequence_job": "j47",
+     "resolved": "con.tok(act=go:Action) from j46",
+     "injected": [
+      {
+       "param": "act",
+       "class": "Action",
+       "instance": "go",
+       "from_run": "run-cf203b",
+       "from_job": "j46",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "act",
+      "class": "Action",
+      "default": "go",
+      "first_run": "run-cf203b",
+      "first_job": "j46"
+     }
+    ],
+    "text": "tok(act: Action)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "even.sef": {
+   "object": "even",
+   "method": "sef",
+   "args": [
+    ""
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j46",
+    "card": "w46",
+    "title": "even.sef()",
+    "emoji": "🥭",
+    "at": "2026-11-26T15:21:47-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "even.sef()",
+     "emoji": "🥭",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j46",
+     "tweets": [
+      {
+       "text": "-- but i no even [[gitf]] you sef",
+       "year": "2024"
+      }
+     ],
+     "consequence": "The lines that landed: \"but i no even [[gitf]] you sef\", \"#oyinboman - raised by wolves\", \"[[so]] - you feel the shame for them\" and \"we con dey tok dey go nau\".",
+     "consequence_job": "j47",
+     "resolved": "even.sef()",
+     "injected": []
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [],
+    "text": "sef()"
+   },
+   "receiver_class": "Action",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "feel.shame": {
+   "object": "feel",
+   "method": "shame",
+   "args": [
+    "them"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j46",
+    "card": "w46",
+    "title": "feel.shame(them)",
+    "emoji": "🥑",
+    "at": "2026-11-26T15:21:47-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "feel.shame(them)",
+     "emoji": "🥑",
+     "arg": "them",
+     "run": "run-cf203b",
+     "job": "j46",
+     "tweets": [
+      {
+       "text": "[[so]] - you feel the shame for them",
+       "year": "2024"
+      }
+     ],
+     "consequence": "The lines that landed: \"but i no even [[gitf]] you sef\", \"#oyinboman - raised by wolves\", \"[[so]] - you feel the shame for them\" and \"we con dey tok dey go nau\".",
+     "consequence_job": "j47",
+     "resolved": "feel.shame(who=them:Person) from j46",
+     "injected": [
+      {
+       "param": "who",
+       "class": "Person",
+       "instance": "them",
+       "from_run": "run-cf203b",
+       "from_job": "j46",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "who",
+      "class": "Person",
+      "default": "them",
+      "first_run": "run-5a58c4",
+      "first_job": "j33"
+     }
+    ],
+    "text": "shame(who: Person)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "raised.wolves": {
+   "object": "raised",
+   "method": "wolves",
+   "args": [
+    ""
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j46",
+    "card": "w46",
+    "title": "raised.wolves()",
+    "emoji": "🍍",
+    "at": "2026-11-26T15:21:47-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "raised.wolves()",
+     "emoji": "🍍",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j46",
+     "tweets": [
+      {
+       "text": "#oyinboman - raised by wolves",
+       "year": "2024"
+      }
+     ],
+     "consequence": "The lines that landed: \"but i no even [[gitf]] you sef\", \"#oyinboman - raised by wolves\", \"[[so]] - you feel the shame for them\" and \"we con dey tok dey go nau\".",
+     "consequence_job": "j47",
+     "resolved": "raised.wolves()",
+     "injected": []
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [],
+    "text": "wolves()"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
   },
   "cooler.getdatemanufactured": {
    "object": "cooler",
@@ -27289,7 +27515,8 @@
    "come.back"
   ],
   "con": [
-   "con.mend"
+   "con.mend",
+   "con.tok"
   ],
   "cooler": [
    "cooler.getdatemanufactured",
@@ -27495,7 +27722,8 @@
   ],
   "even": [
    "even.feels",
-   "even.ask"
+   "even.ask",
+   "even.sef"
   ],
   "everywhere": [
    "everywhere.getdayagreeeeeennnn",
@@ -27519,7 +27747,8 @@
    "titi.keep"
   ],
   "feel": [
-   "feel.divine"
+   "feel.divine",
+   "feel.shame"
   ],
   "finding": [
    "finding.precisions"
@@ -27938,6 +28167,9 @@
   ],
   "rainbow": [
    "rainbow.show"
+  ],
+  "raised": [
+   "raised.wolves"
   ],
   "randomrestaurant": [
    "randomrestaurant.put",
@@ -28776,6 +29008,16 @@
     "title": "811. abraham",
     "funcs": [
      "nobody.weigh"
+    ]
+   }
+  ],
+  "african_genzs_better_subject": [
+   {
+    "scope": "safe",
+    "from": "fd477083df3c",
+    "title": "african genzs are better at social issues",
+    "funcs": [
+     "even.sef"
     ]
    }
   ],
@@ -29924,6 +30166,46 @@
     ]
    }
   ],
+  "back_row_chemistry_subject": [
+   {
+    "scope": "safe",
+    "from": "80e79c072224",
+    "title": "1101. literally",
+    "funcs": [
+     "raised.wolves"
+    ]
+   }
+  ],
+  "back_row_chemistry_subject_fourth": [
+   {
+    "scope": "safe",
+    "from": "80e79c072224",
+    "title": "1101. literally",
+    "funcs": [
+     "raised.wolves"
+    ]
+   }
+  ],
+  "back_row_chemistry_subject_second": [
+   {
+    "scope": "safe",
+    "from": "80e79c072224",
+    "title": "1101. literally",
+    "funcs": [
+     "raised.wolves"
+    ]
+   }
+  ],
+  "back_row_chemistry_subject_third": [
+   {
+    "scope": "safe",
+    "from": "80e79c072224",
+    "title": "1101. literally",
+    "funcs": [
+     "raised.wolves"
+    ]
+   }
+  ],
   "backend": [
    {
     "scope": "safe",
@@ -29971,6 +30253,14 @@
      "phones.make",
      "teo.lead",
      "teo.come"
+    ]
+   },
+   {
+    "scope": "safe",
+    "from": "80e79c072224",
+    "title": "1101. literally",
+    "funcs": [
+     "raised.wolves"
     ]
    },
    {
@@ -34836,6 +35126,86 @@
     ]
    }
   ],
+  "danfo_stuck_halfway_subject": [
+   {
+    "scope": "safe",
+    "from": "80e79c072224",
+    "title": "1101. literally",
+    "funcs": [
+     "raised.wolves"
+    ]
+   }
+  ],
+  "danfo_stuck_halfway_subject_eighth": [
+   {
+    "scope": "safe",
+    "from": "80e79c072224",
+    "title": "1101. literally",
+    "funcs": [
+     "raised.wolves"
+    ]
+   }
+  ],
+  "danfo_stuck_halfway_subject_fifth": [
+   {
+    "scope": "safe",
+    "from": "80e79c072224",
+    "title": "1101. literally",
+    "funcs": [
+     "raised.wolves"
+    ]
+   }
+  ],
+  "danfo_stuck_halfway_subject_fourth": [
+   {
+    "scope": "safe",
+    "from": "80e79c072224",
+    "title": "1101. literally",
+    "funcs": [
+     "raised.wolves"
+    ]
+   }
+  ],
+  "danfo_stuck_halfway_subject_second": [
+   {
+    "scope": "safe",
+    "from": "80e79c072224",
+    "title": "1101. literally",
+    "funcs": [
+     "raised.wolves"
+    ]
+   }
+  ],
+  "danfo_stuck_halfway_subject_seventh": [
+   {
+    "scope": "safe",
+    "from": "80e79c072224",
+    "title": "1101. literally",
+    "funcs": [
+     "raised.wolves"
+    ]
+   }
+  ],
+  "danfo_stuck_halfway_subject_sixth": [
+   {
+    "scope": "safe",
+    "from": "80e79c072224",
+    "title": "1101. literally",
+    "funcs": [
+     "raised.wolves"
+    ]
+   }
+  ],
+  "danfo_stuck_halfway_subject_third": [
+   {
+    "scope": "safe",
+    "from": "80e79c072224",
+    "title": "1101. literally",
+    "funcs": [
+     "raised.wolves"
+    ]
+   }
+  ],
   "dapo": [
    {
     "scope": "safe",
@@ -35481,6 +35851,14 @@
    }
   ],
   "energy_conversion_figure": [
+   {
+    "scope": "safe",
+    "from": "477ea392aa6c",
+    "title": "226. diamond",
+    "funcs": [
+     "con.tok"
+    ]
+   },
    {
     "scope": "safe",
     "from": "775335ae67da",
@@ -52698,6 +53076,10 @@
    "safe": "ceb79ef77a2c",
    "funcs": []
   },
+  "run-9e59ca": {
+   "safe": "80e79c072224",
+   "funcs": []
+  },
   "run-bd649b": {
    "safe": "feb29a74094b",
    "funcs": [
@@ -52861,6 +53243,10 @@
     "like.about",
     "then.much",
     "will.sit",
+    "con.tok",
+    "even.sef",
+    "feel.shame",
+    "raised.wolves",
     "cli.cli",
     "thryd.importtheme",
     "kemi.ismarried",
@@ -53495,6 +53881,13 @@
    ],
    "runs": []
   },
+  "3d6ea3e74df3": {
+   "title": "804. magic",
+   "funcs": [
+    "feel.shame"
+   ],
+   "runs": []
+  },
   "40a61eb8865b": {
    "title": "324. confusion",
    "funcs": [
@@ -53573,6 +53966,13 @@
    "title": "1209. you can use placement to climb up",
    "funcs": [
     "yeah.something"
+   ],
+   "runs": []
+  },
+  "477ea392aa6c": {
+   "title": "226. diamond",
+   "funcs": [
+    "con.tok"
    ],
    "runs": []
   },
@@ -53926,7 +54326,11 @@
     "till.check",
     "like.about",
     "then.much",
-    "will.sit"
+    "will.sit",
+    "con.tok",
+    "even.sef",
+    "feel.shame",
+    "raised.wolves"
    ],
    "runs": [
     "run-cf203b"
@@ -54058,6 +54462,15 @@
     "nigerian.nuclear"
    ],
    "runs": []
+  },
+  "80e79c072224": {
+   "title": "1101. literally",
+   "funcs": [
+    "raised.wolves"
+   ],
+   "runs": [
+    "run-9e59ca"
+   ]
   },
   "81b03ceb7bf1": {
    "title": "902. the onomatopeia people",
@@ -55198,6 +55611,13 @@
    ],
    "runs": []
   },
+  "fd477083df3c": {
+   "title": "african genzs are better at social issues",
+   "funcs": [
+    "even.sef"
+   ],
+   "runs": []
+  },
   "feb29a74094b": {
    "title": "1126. equity and stake",
    "funcs": [
@@ -55458,6 +55878,9 @@
    "f45a346119e9",
    "d6bef492657d"
   ],
+  "1*HZf0f7jEessCUn2xuzyXLg.gif": [
+   "fd477083df3c"
+  ],
   "1*o_JaVjuJOL-ANJbDcYRUWw.gif": [
    "9ef335096225",
    "6f2356944065"
@@ -55469,7 +55892,8 @@
    "0d1e8045251b"
   ],
   "1*ngEMMgnQfnlkXU_ETtFTbw.gif": [
-   "775335ae67da"
+   "775335ae67da",
+   "477ea392aa6c"
   ],
   "1*r3KZHj3PqTMtB-S6G2TjUg.gif": [
    "4a2a8f3f8cd6"
@@ -55630,6 +56054,9 @@
   "1*guof_R97CRfy3EqokG8qaQ.gif": [
    "159c7b987c70"
   ],
+  "1*kJJfrXhR145atsj976-UIg.gif": [
+   "3d6ea3e74df3"
+  ],
   "1*DTtXEqWGDRcc_OKyRxNLSA.gif": [
    "72e60399844f"
   ],
@@ -55650,7 +56077,8 @@
    "6ab7c4931c8d"
   ],
   "1*HIfj-krVIExjXU9EacJ5og.gif": [
-   "0977d3f9e44f"
+   "0977d3f9e44f",
+   "80e79c072224"
   ],
   "1*jkOJ3-zVLwoLv7NL2iPkDQ.gif": [
    "85872d186ddf"
@@ -56174,6 +56602,22 @@
     "feb29a74094b"
    ]
   },
+  "live:run-9e59ca:j1": {
+   "runs": [
+    "run-9e59ca"
+   ],
+   "safes": [
+    "80e79c072224"
+   ]
+  },
+  "live:run-9e59ca:j4": {
+   "runs": [
+    "run-9e59ca"
+   ],
+   "safes": [
+    "80e79c072224"
+   ]
+  },
   "live:run-5a58c4:j6": {
    "runs": [
     "run-5a58c4"
@@ -56494,6 +56938,12 @@
    "safes": [
     "13bbdaa651ee",
     "c07bae0a368e"
+   ]
+  },
+  "1*HZf0f7jEessCUn2xuzyXLg.gif": {
+   "runs": [],
+   "safes": [
+    "fd477083df3c"
    ]
   },
   "1*APufEsa8jVHv6I22L9vMWw.gif": {
@@ -56947,7 +57397,8 @@
   "1*HIfj-krVIExjXU9EacJ5og.gif": {
    "runs": [],
    "safes": [
-    "0977d3f9e44f"
+    "0977d3f9e44f",
+    "80e79c072224"
    ]
   },
   "1*D3gWdg9Dn-e54KKlmX8oXg.gif": {
@@ -57109,7 +57560,8 @@
   "1*ngEMMgnQfnlkXU_ETtFTbw.gif": {
    "runs": [],
    "safes": [
-    "775335ae67da"
+    "775335ae67da",
+    "477ea392aa6c"
    ]
   },
   "1*SIdWrGU42TZey1d1Mxw7kA.gif": {
@@ -57289,7 +57741,8 @@
    "come.back"
   ],
   "con": [
-   "con.mend"
+   "con.mend",
+   "con.tok"
   ],
   "cooler": [
    "cooler.getdatemanufactured",
@@ -57379,7 +57832,8 @@
   ],
   "even": [
    "even.feels",
-   "even.ask"
+   "even.ask",
+   "even.sef"
   ],
   "everywhere": [
    "everywhere.getdayagreeeeeennnn",
@@ -57389,7 +57843,8 @@
    "everywhere.getyanju"
   ],
   "feel": [
-   "feel.divine"
+   "feel.divine",
+   "feel.shame"
   ],
   "finding": [
    "finding.precisions"
@@ -57733,6 +58188,9 @@
   ],
   "rainbow": [
    "rainbow.show"
+  ],
+  "raised": [
+   "raised.wolves"
   ],
   "randomrestaurant": [
    "randomrestaurant.put",
@@ -58320,6 +58778,7 @@
    "Readable"
   ],
   "like": [],
+  "raised": [],
   "cooler": [],
   "kazeem.goodqualities": [],
   "app": [],
@@ -58531,6 +58990,7 @@
    "cant",
    "chasing",
    "come",
+   "con",
    "could",
    "daddy",
    "das",
@@ -58581,6 +59041,7 @@
    "put",
    "queen",
    "quickly",
+   "raised",
    "ready",
    "rebuke",
    "russian",
@@ -58630,5 +59091,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-26T15:10:58-05:00"
+ "updated": "2026-11-26T15:21:52-05:00"
 }
