@@ -22515,6 +22515,86 @@
    "prior": [],
    "faded": false,
    "last_run": null
+  },
+  "location.setnumberchairs": {
+   "object": "location",
+   "method": "setnumberchairs",
+   "args": [],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j24",
+    "card": "j24",
+    "title": "location.setnumberchairs(40)",
+    "emoji": "",
+    "at": "2026-11-26T00:14:21-05:00",
+    "source": "cli"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "location.setnumberchairs(40)",
+     "emoji": "",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j24",
+     "tweets": [],
+     "consequence": "The customer typed this on this agenda.",
+     "consequence_job": ""
+    }
+   ],
+   "source": "cli",
+   "cli": true,
+   "sig": {
+    "params": [],
+    "text": "setnumberchairs()"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "j24.tomorrow": {
+   "object": "j24",
+   "method": "tomorrow",
+   "args": [],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j24",
+    "card": "j24",
+    "title": "j24.tomorrow(amusementpark)",
+    "emoji": "",
+    "at": "2026-11-26T00:14:24-05:00",
+    "source": "cli"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "j24.tomorrow(amusementpark)",
+     "emoji": "",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j24",
+     "tweets": [],
+     "consequence": "The customer typed this on this agenda.",
+     "consequence_job": ""
+    }
+   ],
+   "source": "cli",
+   "cli": true,
+   "sig": {
+    "params": [],
+    "text": "tomorrow()"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
   }
  },
  "objects": {
@@ -22953,6 +23033,9 @@
   "j15": [
    "j15.getweather"
   ],
+  "j24": [
+   "j24.tomorrow"
+  ],
   "json_life_subject": [
    "object.look"
   ],
@@ -23021,6 +23104,9 @@
   ],
   "life": [
    "life.give"
+  ],
+  "location": [
+   "location.setnumberchairs"
   ],
   "lowaleechelons_subject": [
    "object.look"
@@ -46421,7 +46507,9 @@
     "kemi.ismarried",
     "new.condom",
     "j15.getweather",
-    "new.makeup"
+    "new.makeup",
+    "location.setnumberchairs",
+    "j24.tomorrow"
    ]
   },
   "run-d6fc": {
@@ -50183,6 +50271,9 @@
   "j15": [
    "j15.getweather"
   ],
+  "j24": [
+   "j24.tomorrow"
+  ],
   "jwvbs": [
    "jwvbs.open"
   ],
@@ -50241,6 +50332,9 @@
   ],
   "life": [
    "life.give"
+  ],
+  "location": [
+   "location.setnumberchairs"
   ],
   "make": [
    "make.setany",
@@ -50872,7 +50966,9 @@
   "receipt": [],
   "arisetv": [],
   "disstrack": [],
-  "j15": []
+  "j15": [],
+  "location": [],
+  "j24": []
  },
  "casts": {
   "run-5a58c4": [
@@ -51096,5 +51192,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-25T18:06:24-05:00"
+ "updated": "2026-11-26T00:15:06-05:00"
 }

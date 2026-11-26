@@ -8855,16 +8855,6 @@
 ],
 "cli": [
 {
-"id": "wt_31bbd16f0f",
-"kind": "func_call",
-"text": "The customer typed #thryd.miracle.log(1) on run-cf203b j18. It came back: #thryd.miracle.log(1). Implementation: /* #thryd.miracle.log(1) */.",
-"code": "#thryd.miracle.log(1);",
-"author": "customer",
-"run": "run-cf203b",
-"card": "j18",
-"other": null
-},
-{
 "id": "wt_ab2a5f8c3a",
 "kind": "func_call",
 "text": "The customer typed b7() on run-cf203b j18. It came back: b7(). Implementation: /* b7() */.",
@@ -8902,6 +8892,16 @@
 "author": "customer",
 "run": "run-cf203b",
 "card": "j23",
+"other": null
+},
+{
+"id": "wt_312ad2b838",
+"kind": "func_call",
+"text": "The customer typed #thryd.miracle.log(1) on run-cf203b j24. It came back: #thryd.miracle.log(1). Implementation: /* #thryd.miracle.log(1) */.",
+"code": "#thryd.miracle.log(1);",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j24",
 "other": null
 }
 ],
@@ -11099,6 +11099,16 @@
 "run": "run-cf203b",
 "card": "j15",
 "other": null
+},
+{
+"id": "wt_d350f156d2",
+"kind": "func_call",
+"text": "The customer typed j24.tomorrow(amusementpark) on run-cf203b j24. It came back: J24 tomorrow amusementpark. Implementation: function tomorrow(what){\n  J24_TOMORROW_COUNT += 1;\n  this.lastTomorrow = \"amusementpark\";\n  return \"J24 tomorrow amusementpark\";\n}. j24 now has j24.tomorrow as a method on this agenda, and it can be called again.",
+"code": "j24.tomorrow(amusementpark);",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j24",
+"other": null
 }
 ],
 "cbm": [
@@ -11583,6 +11593,30 @@
 "run": "run-cf203b",
 "card": "w24",
 "other": "cup"
+}
+],
+"location": [
+{
+"id": "wt_f34a1c4da3",
+"kind": "func_call",
+"text": "The customer typed location.setnumberchairs(40) on run-cf203b j24. It came back: Location's numberchairs is now 40. Implementation: function setnumberchairs(numberchairs){\n  this.numberchairs = \"40\";\n  this.caption = numberchairs;\n  return this.numberchairs;\n}. location now has location.setnumberchairs as a method on this agenda, and it can be called again.",
+"code": "location.setnumberchairs(40);",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j24",
+"other": null
+}
+],
+"un": [
+{
+"id": "wt_9785b13029",
+"kind": "func_call",
+"text": "The customer typed [[un]] on run-cf203b j24.",
+"code": "[[un]];",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j24",
+"other": null
 }
 ]
 },
@@ -12129,5 +12163,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-25T23:23:23-0500"
+"updated": "2026-11-26T00:15:05-0500"
 }
