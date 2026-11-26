@@ -1,5 +1,5 @@
 {
- "v": 621,
- "at": "2026-11-26T12:30:00-05:00",
- "note": "v621: [[god]] command panel (?cards=1) redesign and Send fix. Send never fails silently: it checks the card is still open (stale card says so and swaps to the open job), shows sending/sent/received or a red error with the reason, and waits for the intake receipt. Picks survive the 30 s poll (selection kept in JS; unchanged card is not re-rendered); taps use pointerup+click deduped. Each option shows the real tweet line under its code label. Story text in self-hosted Literata (18 KB subset). Panel height capped with the card body scrolling inside so the drag header stays grabbable; dragged position re-clamped on resize/growth. CAP_DEFAULT stays 10."
+ "v": 622,
+ "at": "2026-11-26T12:40:00-05:00",
+ "note": "v622: 36 story objects on stage again (CAP_DEFAULT 10 -> 36, Jesuye approved 26 Nov 12:35 PM ET); stage.js cache-busted to ?v=622 (?cap=N still overrides). [[god]] panel: card picks and menu/lock taps now post through the typeline lane (own ntfy topic + backup host ntfy.envs.net) instead of the busy drag/drift topic, back off on HTTP 429 using Retry-After and retry up to 3 times, show friendly messages (no raw HTTP codes), and wait for the intake receipt on menu taps too. Only one Jump ahead button (LOCK row). Long tweet lines scroll inside their option (max 4 lines, fade + 'scroll for the whole line' hint)."
 }

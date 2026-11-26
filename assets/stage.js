@@ -64,7 +64,7 @@
   // v617 heat (Jesuye 26 Nov 2026 1:16 AM ET "or even 10"): one config for how many story objects (cuts) may be on the
   // stage at once; older groups walk off and new ones rotate in. Pins do not count. Change CAP_DEFAULT to retune;
   // ?cap=N overrides for QA (e.g. ?cap=20 or ?cap=36). v610 had set this at 36 (desktop 72→36, same as phone).
-  const CAP_DEFAULT = 10; // Follow-up (after Jesuye approves command-panel job cards): restore CAP_DEFAULT to 36.
+  const CAP_DEFAULT = 36;
   const CAP = (function(){ try{ const n = +(new URLSearchParams(location.search).get('cap')); if(n >= 1 && n <= 200) return Math.floor(n); }catch(e){} return CAP_DEFAULT; })();
   // v618 (Jesuye 26 Nov 2026 1:46 AM ET): hold 10 picture objects most of the time. SOFT_CAP equals CAP, so
   // the oldest is evicted only to make room for an incoming group (not early at 8). MAX_GROUPS is large enough

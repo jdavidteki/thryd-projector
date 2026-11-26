@@ -10,9 +10,9 @@ test('job_card.js loads only with ?cards=1 and no-ops otherwise', ()=>{
   assert.match(html, /cards=1/);
   assert.match(html, /job_card\.js\?v=2/);
   assert.match(js, /cards=1/);
-  assert.match(html, /var VER=621,/);
+  assert.match(html, /var VER=622,/);
   const v = JSON.parse(ver);
-  assert.equal(v.v, 621);
+  assert.equal(v.v, 622);
 });
 
 test('layout is job card, then typeline, then plain always-visible buttons', ()=>{
@@ -56,8 +56,9 @@ test('one slow poll (>=30s) only while the panel is open; no work when hidden', 
   assert.match(js, /function stopPoll/);
 });
 
-test('CAP_DEFAULT stays 10, with a follow-up to restore 36; video_card.js is not the hook', ()=>{
-  assert.match(st, /const CAP_DEFAULT = 10; \/\/ Follow-up \(after Jesuye approves command-panel job cards\): restore CAP_DEFAULT to 36\./);
+test('CAP_DEFAULT is back to 36 (Jesuye approved 26 Nov 12:35 PM); video_card.js is not the hook', ()=>{
+  assert.match(st, /const CAP_DEFAULT = 36;/);
+  assert.doesNotMatch(st, /Follow-up \(after Jesuye approves command-panel job cards\)/);
   assert.doesNotMatch(html, /video_card\.js\?v=6/);
 });
 
@@ -85,4 +86,14 @@ test('v621: Send is never silent; stale card says so; tweet lines; Literata; cap
   assert.match(js, /function reclamp/);
   const card = JSON.parse(rd('data/open_card.json'));
   if(card.open){ assert.ok(card.options.some(o => typeof o.line === 'string' && o.line.length > 0)); }
+});
+
+test('v622: card/menu posts use the typeline lane with 429 backoff+retry, friendly errors, one Jump ahead, long tweet lines scroll', ()=>{
+  assert.match(js, /root\.thrydTypelinePost/);
+  assert.match(js, /lastR\.retryAfter/);
+  assert.match(js, /the network is busy right now/);
+  assert.doesNotMatch(js, /'HTTP ' \+ r\.status \+ \(r\.status === 429/);
+  assert.match(js, /lockHasJump/);
+  assert.match(js, /max-height:5\.8em;overflow-y:auto/);
+  assert.match(js, /awaitReply\(body, t0, r\)/);
 });

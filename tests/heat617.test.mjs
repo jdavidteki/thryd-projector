@@ -40,8 +40,8 @@ test('map-pin pulse and LIVE badge blink pause when idle or hidden; video card s
   assert.match(css, /html\.lh-idle \.videocard[\s\S]*animation-play-state:paused/);
 });
 
-test('one CAP_DEFAULT (10) sets how many story objects are on stage; ?cap=N overrides; groups and soft cap follow', ()=>{
-  assert.match(st, /const CAP_DEFAULT = 10;/);
+test('one CAP_DEFAULT (36) sets how many story objects are on stage; ?cap=N overrides; groups and soft cap follow', ()=>{
+  assert.match(st, /const CAP_DEFAULT = 36;/);
   assert.match(st, /URLSearchParams\(location\.search\)\.get\('cap'\)/);
   assert.match(st, /const CAP = \(function\(\)\{/);
   assert.match(st, /const SOFT_CAP = CAP;/);
@@ -63,8 +63,8 @@ test('index and version.json are at v618 or later', ()=>{
   assert.match(html, /stage\.js\?v=\d+/);
   const v = JSON.parse(ver);
   assert.ok(v.v >= 618);
-  assert.match(html, /var VER=618,/);
-  assert.match(html, /stage\.js\?v=618/);
+  assert.match(html, /var VER=622,/);
+  assert.match(html, /stage\.js\?v=622/);
   assert.match(html, /stretchy_bg\.js\?v=8/);
   assert.match(html, /alive\.css\?v=9/);
 });

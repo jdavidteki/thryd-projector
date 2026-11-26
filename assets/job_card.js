@@ -35,7 +35,12 @@
     '#aicard .aicopt{display:flex;flex-direction:column;align-items:flex-start;gap:3px;width:100%;box-sizing:border-box;text-align:left;color:#fff;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.13);border-radius:10px;padding:8px 11px 8px 34px;cursor:pointer;min-height:40px;position:relative;transition:background .12s,border-color .12s;-webkit-tap-highlight-color:transparent}',
     "#aicard .aicopt::before{content:'';position:absolute;left:11px;top:11px;width:13px;height:13px;border-radius:4px;border:1.5px solid rgba(255,255,255,.35);box-sizing:border-box}",
     '#aicard .aicopt .ol{font:600 13px/1.3 ui-monospace,Menlo,Consolas,monospace;color:#f3efe6}',
-    '#aicard .aicopt .ot{font:italic 400 14px/1.45 ThrydRead,Georgia,serif;color:#b9b2a2}',
+    // long tweet lines (Jesuye 12:37 PM): each line is its own small scroll area, max 4 lines tall
+    '#aicard .aicopt .ot{font:italic 400 14px/1.45 ThrydRead,Georgia,serif;color:#b9b2a2;display:block;width:100%;box-sizing:border-box;max-height:5.8em;overflow-y:auto;overscroll-behavior:contain;padding-right:6px;scrollbar-width:thin;scrollbar-color:rgba(255,215,106,.45) transparent}',
+    '#aicard .aicopt .ot::-webkit-scrollbar{width:4px}#aicard .aicopt .ot::-webkit-scrollbar-thumb{background:rgba(255,215,106,.45);border-radius:2px}',
+    '#aicard .aicopt .ot.long{-webkit-mask-image:linear-gradient(#000 70%,rgba(0,0,0,.25));mask-image:linear-gradient(#000 70%,rgba(0,0,0,.25))}',
+    '#aicard .aicopt .ot.long.end{-webkit-mask-image:none;mask-image:none}',
+    '#aicard .aicopt .more{font:600 10px/1 ui-sans-serif,system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#c9a95a;opacity:.85}',
     '#aicard .aicopt.on{border-color:#ffd76a;background:rgba(255,215,106,.13)}',
     "#aicard .aicopt.on::before{background:#ffd76a;border-color:#ffd76a;box-shadow:inset 0 0 0 2.5px #2a2416}",
     '#aicard .aicopt.on .ot{color:#f2e3b8}',
@@ -58,7 +63,7 @@
     '#aimenu .aimlab{color:#8f897c;font:600 10px/1 ui-sans-serif,system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;font-variant:small-caps;min-width:40px}',
     '#aimenu .aimnote:empty{display:none}',
     '#aimenu .aimnote{font:500 11.5px/1.3 ui-sans-serif,system-ui,sans-serif;color:#b8b2a4;min-height:0}',
-    '#aimenu .aimnote.ok{color:#7fe0a0}#aimenu .aimnote.err{color:#ff8f86}',
+    '#aimenu .aimnote.ok{color:#7fe0a0}#aimenu .aimnote.err{color:#ff8f86}#aimenu .aimnote.busy{color:#ffd76a}',
     '@media (max-width:520px){#aibox.cards-on{width:96vw;bottom:6vh}#aicard .aicprompt{font-size:14.5px}}',
     '@media (max-height:600px){#aibox.cards-on{max-height:84vh;max-height:84dvh;bottom:6vh}#aibox.cards-on > .aim{display:none}#aibox.cards-on > form.airow{padding-top:7px}#aibox.cards-on textarea{min-height:32px}#aicard{gap:7px;padding:9px 12px 8px}#aicard .aicprompt{font-size:14px;line-height:1.55}}'
   ].join('\n');
@@ -99,16 +104,46 @@
     try{ if(root.crypto && crypto.randomUUID) return prefix + crypto.randomUUID(); }catch(e){}
     return prefix + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 12);
   }
-  function post(body, kind){
-    const fn = root.thrydNtfyPost;
-    if(!fn) return Promise.reject(new Error('intake not loaded \u00b7 reload the page'));
-    return fn(body, kind || 'call');
-  }
   const sleep = ms => new Promise(z => setTimeout(z, ms));
+  // v622 (Jesuye 12:39 PM "there is a http error", HTTP 429): card picks and menu taps no longer share the
+  // busy drag/drift lane. They go through the typeline lane (own ntfy.sh topic, plus the independent backup
+  // host ntfy.envs.net in parallel after 8 s), and a 429 / network failure backs off (Retry-After) and retries
+  // on its own, up to 3 tries, before anything is shown as an error.
+  function friendly(x){
+    const t = String((x && (x.message || x.status)) || x || '');
+    if(/429/.test(t)) return 'the network is busy right now';
+    if(/timed? ?out|timeout/i.test(t)) return 'the network timed out';
+    if(/no_endpoint|intake not loaded/i.test(t)) return 'the page is still loading \u00b7 reload it';
+    if(/failed to fetch|network/i.test(t)) return 'no connection';
+    return t || 'no response';
+  }
+  async function post(body, onRetry){
+    const tl = root.thrydTypelinePost, np = root.thrydNtfyPost;
+    if(!tl && !np) throw new Error('intake not loaded \u00b7 reload the page');
+    let lastR = null, lastE = null;
+    for(let i = 0; i < 3; i++){
+      lastR = null; lastE = null;
+      try{
+        const r = tl ? await tl(body, 'card') : await np(body, 'call');
+        if(r && r.ok) return r;
+        lastR = r;
+      }catch(e){ lastE = e; }
+      if(i === 2) break;
+      let wait = i ? 8000 : 3000;
+      const ra = lastR && lastR.retryAfter; const n = parseInt(ra, 10);
+      if(isFinite(n)) wait = Math.min(30000, Math.max(1000, n * 1000));
+      log({event: 'post_retry', type: body.type, try: i + 1, wait, why: lastR ? ('HTTP ' + lastR.status) : String(lastE && lastE.message || lastE)});
+      try{ onRetry && onRetry(i + 1, wait, lastR ? ('HTTP ' + lastR.status) : lastE); }catch(e){}
+      await sleep(wait);
+    }
+    if(lastR) return lastR;
+    throw lastE || new Error('no response');
+  }
   // Wait for the validator's answer on the reply topic (same pattern as stage.js taps).
-  async function awaitReply(body, t0){
+  async function awaitReply(body, t0, r){
     const DG = (root.thrydDrag && root.thrydDrag()) || root.DRAG || {};
-    const base = DG.reply || (DG.endpoint ? String(DG.endpoint).replace(/\/?$/, '') + '-r' : null);
+    // the reply comes back on <the topic it was posted to>-r (relay.py); backup posts carry r.reply
+    const base = (r && r.reply) || (r && r.endpoint ? String(r.endpoint).replace(/\/?$/, '') + '-r' : null) || DG.reply || (DG.endpoint ? String(DG.endpoint).replace(/\/?$/, '') + '-r' : null);
     if(!base) return null;
     for(const w of [1500, 2500, 4000, 6000, 8000, 12000]){
       await sleep(w);
@@ -212,7 +247,9 @@
         b.dataset.value = o.value; b.setAttribute('aria-pressed', sel.values.has(o.value) ? 'true' : 'false');
         const l = document.createElement('span'); l.className = 'ol'; l.textContent = o.label; b.appendChild(l);
         const tl = tweetLine(o);
-        if(tl){ const t = document.createElement('span'); t.className = 'ot'; t.textContent = '\u201c' + tl + '\u201d'; b.appendChild(t); }
+        if(tl){ const t = document.createElement('span'); t.className = 'ot' + (tl.length > 180 ? ' long' : ''); t.textContent = '\u201c' + tl + '\u201d'; if(tl.length > 180){ t.title = 'scroll for the whole line'; t.addEventListener('scroll', () => { const end = t.scrollTop + t.clientHeight >= t.scrollHeight - 2; t.classList.toggle('end', end); if(mo) mo.style.visibility = end ? 'hidden' : ''; }, {passive: true}); }
+          b.appendChild(t);
+          var mo = null; if(tl.length > 180){ mo = document.createElement('span'); mo.className = 'more'; mo.textContent = 'scroll \u2193 for the whole line'; b.appendChild(mo); } }
         if(locked) b.disabled = true;
         tapOnce(b, () => {
           if(locked) return;
@@ -248,7 +285,9 @@
     if(main.length){
       const row = document.createElement('div'); row.className = 'aimrow'; row.dataset.row = 'main';
       const lab = document.createElement('span'); lab.className = 'aimlab'; lab.textContent = 'menu'; row.appendChild(lab);
-      main.forEach(o => row.appendChild(menuBtn(o)));
+      // one Jump ahead only (Jesuye 12:39 PM): the LOCK row keeps it
+      const lockHasJump = ((c && c.menus && c.menus.lock) || []).some(x => /jump ahead/i.test(String(x.value || x.label || '')));
+      main.filter(o => !(lockHasJump && /jump ahead/i.test(String(o.value || o.label || '')))).forEach(o => row.appendChild(menuBtn(o)));
       menuEl.appendChild(row);
     }
     const lock = (c && c.menus && c.menus.lock) || [];
@@ -320,23 +359,23 @@
     setStatus('Sending\u2026', 'busy');
     const t0 = Math.floor(Date.now() / 1000) - 5;
     let r = null;
-    try{ r = await post(body, 'call'); }
+    const onRetry = (n, wait) => setStatus('The network is busy \u2014 retrying in ' + Math.round(wait / 1000) + ' s (' + (n + 1) + '/3)\u2026', 'busy');
+    try{ r = await post(body, onRetry); }
     catch(e){
       sending = false; log({event: 'send_throw', job, error: String(e && e.message || e)});
       if(btn){ btn.disabled = false; btn.classList.remove('busy'); btn.textContent = 'Send'; }
-      setStatus('Not sent \u00b7 ' + String(e && e.message || e) + ' \u00b7 tap Send to try again.', 'err'); return;
+      setStatus('Not sent \u2014 ' + friendly(e) + '. Your pick is kept; tap Send again in a moment.', 'err'); return;
     }
     if(!(r && r.ok)){
       sending = false; log({event: 'send_http', job, status: r && r.status});
       if(btn){ btn.disabled = false; btn.classList.remove('busy'); btn.textContent = 'Send'; }
-      const st = r ? ('HTTP ' + r.status + (r.status === 429 ? ' (busy, wait a minute)' : '')) : 'no response';
-      setStatus('Not sent \u00b7 ' + st + ' \u00b7 tap Send to try again.', 'err'); return;
+      setStatus('Not sent \u2014 ' + friendly(r ? 'HTTP ' + r.status : '') + '. Your pick is kept; tap Send again in a moment.', 'err'); return;
     }
     markSent(job);
     if(btn){ btn.classList.remove('busy'); btn.classList.add('sent'); btn.textContent = 'sent \u2713'; }
     setStatus('Sent \u2713 waiting for the receipt\u2026', 'busy');
     log({event: 'send_ok', job, id: r.ntfyId, event_id: eid});
-    const m = await awaitReply(body, t0);
+    const m = await awaitReply(body, t0, r);
     sending = false;
     if(card && card.job !== job) return;
     if(!m){ setStatus('Sent \u2713 (no receipt yet \u2014 it will still be picked up)', 'ok'); return; }
@@ -360,11 +399,18 @@
     const eid = uid('menu-');
     const body = {v:1, type:'menu_action', event_id:eid, rid:eid+'-r', run:card && card.run, job:card && card.job, card:card && card.card,
       action:o.value, label:o.label, source:'projector', client_ts:new Date().toISOString()};
-    post(body, 'call').then(r => {
-      btn.disabled = false;
-      if(r && r.ok){ markMenu(run, o.value); btn.classList.add('sent'); btn.title = 'sent'; menuNote(o.label + ' sent \u2713', 'ok'); }
-      else { btn.classList.add('err'); setTimeout(() => btn.classList.remove('err'), 1400); menuNote(o.label + ' not sent \u00b7 ' + (r ? 'HTTP ' + r.status : 'no response') + ' \u00b7 try again', 'err'); }
-    }).catch(e => { btn.disabled = false; menuNote(o.label + ' not sent \u00b7 ' + String(e && e.message || e) + ' \u00b7 try again', 'err'); });
+    const t0 = Math.floor(Date.now() / 1000) - 5;
+    const onRetry = (n, wait) => menuNote(o.label + ': the network is busy \u2014 retrying in ' + Math.round(wait / 1000) + ' s (' + (n + 1) + '/3)\u2026', 'busy');
+    const fail = why => { btn.disabled = false; btn.classList.add('err'); setTimeout(() => btn.classList.remove('err'), 1400); menuNote(o.label + ' not sent \u2014 ' + friendly(why) + '. Tap it again in a moment.', 'err'); };
+    post(body, onRetry).then(async r => {
+      if(!(r && r.ok)) return fail(r ? 'HTTP ' + r.status : '');
+      btn.disabled = false; markMenu(run, o.value); btn.classList.add('sent'); btn.title = 'sent'; menuNote(o.label + ' sent \u2713 waiting for the receipt\u2026', 'busy');
+      const m = await awaitReply(body, t0, r);
+      if(!m) return menuNote(o.label + ' sent \u2713', 'ok');
+      if(m.ok) return menuNote(o.label + ' received \u2713', 'ok');
+      if(m.code === 'duplicate' || m.status === 'duplicate') return menuNote(o.label + ' already received \u2713', 'ok');
+      btn.classList.remove('sent'); menuNote(o.label + ' not accepted \u2014 ' + (m.detail || m.code || 'rejected'), 'err');
+    }).catch(fail);
   }
 
   function fetchCard(){
