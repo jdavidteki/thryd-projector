@@ -64,6 +64,23 @@
     '#aimenu .aimlab{color:#8f897c;font:600 10px/1 ui-sans-serif,system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;font-variant:small-caps;min-width:40px}',
     '#aimenu .aimnote{font:500 11.5px/1.3 ui-sans-serif,system-ui,sans-serif;color:#b8b2a4;min-height:1.3em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}',
     '#aimenu .aimnote.ok{color:#7fe0a0}#aimenu .aimnote.err{color:#ff8f86}#aimenu .aimnote.busy{color:#ffd76a}',
+    // v629 seat line + lock progress + waiting state + lock banner (Jesuye 2:05 PM "make it happen")
+    '#aicard .aicseat{display:flex;flex-direction:column;gap:5px;padding:7px 9px 8px;border-radius:10px;background:rgba(127,224,160,.06);border:1px solid rgba(127,224,160,.18)}',
+    '#aicard .aicseat .sh{display:flex;align-items:center;flex-wrap:wrap;gap:6px 10px;font:600 11.5px/1.3 ui-sans-serif,system-ui,sans-serif;color:#a8e8bf;letter-spacing:.02em}',
+    '#aicard .aicseat .sh b{color:#d8ffe5;font-weight:700}',
+    '#aicard .aicseat .sl{font:400 12px/1.45 ui-monospace,Menlo,Consolas,monospace;color:#e8e0d0;white-space:pre-wrap;word-break:break-word;padding:4px 7px;background:rgba(0,0,0,.28);border-radius:6px;max-height:6.6em;overflow-y:auto;overscroll-behavior:contain}',
+    '#aicard .aicseat .sl div{display:block}',
+    '#aicard .aicprog{display:flex;align-items:center;gap:8px;font:600 11px/1.2 ui-monospace,Menlo,Consolas,monospace;color:#d9cfb6}',
+    '#aicard .aicprog .bar{flex:1 1 auto;min-width:60px;height:5px;border-radius:3px;background:rgba(255,255,255,.1);overflow:hidden}',
+    '#aicard .aicprog .bar i{display:block;height:100%;background:linear-gradient(90deg,#c9a95a,#ffd76a);border-radius:3px}',
+    '#aicard .aicprog .nx{color:#8f897c;font-weight:500}',
+    '#aicard .aicwait{display:flex;align-items:center;gap:7px;font:600 11.5px/1.3 ui-sans-serif,system-ui,sans-serif;color:#ffd76a;padding:5px 9px;border-radius:999px;background:rgba(255,215,106,.08);border:1px dashed rgba(255,215,106,.4);align-self:flex-start}',
+    '#aicard .aicwait .dot{width:7px;height:7px;border-radius:50%;background:#ffd76a;opacity:.85}',
+    '#aicard .aiclock{padding:10px 12px;border-radius:10px;border:1px solid #ffd76a;background:rgba(255,215,106,.12);color:#fff3cf;font:400 14px/1.5 ThrydRead,Georgia,serif}',
+    '#aicard .aiclock b{display:block;font:700 13px/1.3 ui-sans-serif,system-ui,sans-serif;color:#ffd76a;letter-spacing:.03em;margin-bottom:3px}',
+    '#aimenu .aimrow.hot{padding:5px 6px;margin:0 -6px;border-radius:10px;background:rgba(255,215,106,.1);box-shadow:inset 0 0 0 1px rgba(255,215,106,.55)}',
+    '#aimenu .aimrow.hot .aimlab{color:#ffd76a}',
+    '#aimenu .aimrow.hot button{border-color:#ffd76a;color:#fff3cf}',
     '@media (max-width:520px){#aibox.cards-on{width:96vw;bottom:6vh}#aicard .aicprompt{font-size:14.5px}}',
     '@media (max-height:600px){#aibox.cards-on{max-height:84vh;max-height:84dvh;bottom:6vh}#aibox.cards-on > .aim{display:none}#aibox.cards-on > form.airow{padding-top:7px}#aibox.cards-on textarea{min-height:32px}#aicard{gap:7px;padding:9px 12px 8px}#aicard .aicprompt{font-size:14px;line-height:1.55}}'
   ].join('\n');
@@ -72,6 +89,7 @@
   const STORE = 'thryd_card_sent';
   const POLL_MS = 30000;
   let card = null, cardSig = '', pollId = 0, userClose = false, sending = false;
+  let meta = null; // v629: newest fetched payload (seat line / pending / lock), even while a sent card is kept
   // Selection lives in JS, not only in the DOM, so a poll / re-render never wipes a pick (v621).
   let sel = {job: null, values: new Set(), text: ''};
   let status = {job: null, text: '', kind: ''};
@@ -264,6 +282,79 @@
     return pick;
   }
 
+  // v629: seat line, lock progress, waiting-to-be-seated, lock state. Data: open_card.json last_seat / pending / lines.
+  function hhmm(iso){
+    try{ const d = new Date(iso); if(isNaN(d)) return ''; return d.toLocaleTimeString([], {hour: 'numeric', minute: '2-digit'}); }catch(e){ return ''; }
+  }
+  function isLocked(m){ return !!(m && (m.lock_open || (m.next_lock_at_lines && m.lines >= m.next_lock_at_lines))); }
+  function progressEl(m){
+    if(!m || !m.next_lock_at_lines) return null;
+    const at = +m.next_lock_at_lines, n = Math.max(0, +m.lines || 0);
+    const p = document.createElement('div'); p.className = 'aicprog';
+    const t = document.createElement('span'); t.className = 'n'; t.textContent = Math.min(n, 99999) + '/' + at; p.appendChild(t);
+    const bar = document.createElement('span'); bar.className = 'bar'; const fill = document.createElement('i');
+    fill.style.width = Math.max(2, Math.min(100, Math.round(100 * n / at))) + '%'; bar.appendChild(fill); p.appendChild(bar);
+    const nx = document.createElement('span'); nx.className = 'nx';
+    nx.textContent = isLocked(m) ? 'locked' : ('next lock at ' + at + (at - n > 0 ? ' \u00b7 ' + (at - n) + ' to go' : ''));
+    p.appendChild(nx);
+    return p;
+  }
+  function pendingFor(m, c){
+    const pk = m && m.pending && m.pending.pick;
+    if(pk && pk.job && (!c || !c.job || pk.job === c.job || !c.open)) return pk;
+    // just sent from this screen, export not caught up yet
+    if(c && c.open && wasSent(c.job) && !(m && m.last_seat && m.last_seat.job === c.job)) return {job: c.job, local: true};
+    return null;
+  }
+  function seatStrip(){
+    const m = meta || card, c = card;
+    const wrap = document.createElement('div'); wrap.id = 'aicfb';
+    if(!m || !m.run) return wrap;
+    if(isLocked(m)){
+      const lk = document.createElement('div'); lk.className = 'aiclock'; lk.setAttribute('role', 'status');
+      const b = document.createElement('b'); b.textContent = '\ud83d\udd12 This agenda is locked \u00b7 ' + (m.lines || 0) + '/' + (m.next_lock_at_lines || m.lines || 0); lk.appendChild(b);
+      lk.appendChild(document.createTextNode('No more jobs on this agenda. Pick \ud83c\udf81 Souvenir, \ud83d\udc26 Tweets, \ud83d\udce3 Publish or \u23e9 Jump ahead on the lock row below.'));
+      wrap.appendChild(lk);
+    }
+    const ls = m.last_seat;
+    if(ls && ls.job && (ls.lines || []).length){
+      const box = document.createElement('div'); box.className = 'aicseat';
+      const h = document.createElement('div'); h.className = 'sh';
+      const t = document.createElement('span'); t.textContent = '\u2713 '; const b = document.createElement('b'); b.textContent = ls.job + ' seated'; t.appendChild(b);
+      t.appendChild(document.createTextNode(' \u00b7 ' + ls.lines.length + ' line' + (ls.lines.length === 1 ? '' : 's') + (hhmm(ls.at) ? ' \u00b7 ' + hhmm(ls.at) : '')));
+      h.appendChild(t); box.appendChild(h);
+      const sl = document.createElement('div'); sl.className = 'sl';
+      ls.lines.forEach(x => { const r = document.createElement('div'); r.textContent = x; sl.appendChild(r); });
+      box.appendChild(sl);
+      const pr = progressEl(m); if(pr) box.appendChild(pr);
+      wrap.appendChild(box);
+    } else {
+      const pr = progressEl(m); if(pr) wrap.appendChild(pr);
+    }
+    const pk = pendingFor(m, c);
+    if(pk && !isLocked(m)){
+      const w = document.createElement('div'); w.className = 'aicwait'; w.setAttribute('role', 'status');
+      const d = document.createElement('span'); d.className = 'dot'; w.appendChild(d);
+      w.appendChild(document.createTextNode(pk.job + ' pick waiting to be seated' + (hhmm(pk.at) ? ' \u00b7 sent ' + hhmm(pk.at) : '')));
+      wrap.appendChild(w);
+    }
+    const menus = m.pending && m.pending.menu;
+    if(menus && menus.length){
+      const w = document.createElement('div'); w.className = 'aicwait';
+      const d = document.createElement('span'); d.className = 'dot'; w.appendChild(d);
+      w.appendChild(document.createTextNode(menus.map(x => x.label).join(', ') + ' waiting'));
+      wrap.appendChild(w);
+    }
+    wrap.style.display = wrap.childNodes.length ? 'flex' : 'none';
+    wrap.style.flexDirection = 'column'; wrap.style.gap = '6px';
+    return wrap;
+  }
+  function updateStrip(){
+    const old = document.getElementById('aicfb'); if(!old) return;
+    old.replaceWith(seatStrip());
+    const lr = document.querySelector('#aimenu .aimrow[data-row="lock"]'); if(lr) lr.classList.toggle('hot', isLocked(meta || card));
+  }
+
   function render(){
     const els = mount(); if(!els) return;
     const {jobEl, menuEl} = els;
@@ -272,11 +363,15 @@
     const keepScroll = jobEl.scrollTop;
     // --- job card (above the typeline) ---
     jobEl.textContent = '';
+    jobEl.appendChild(seatStrip());
     if(!c || !c.open || !(c.options || []).length){
+      if(c && isLocked(meta || c)){ /* the lock banner above says it */ }
+      else {
       const empty = document.createElement('div'); empty.className = 'aicempty';
       // v627: a pinned [[god]] run between a seat and its next card says so instead of showing another agenda
       empty.textContent = c && !c.open ? (c.waiting && c.seated_job ? c.seated_job + ' is seated \u2014 the next job appears here when it is posted.' : 'No open job card right now. The next one appears here when it is posted.') : 'loading card\u2026';
       jobEl.appendChild(empty);
+      }
     } else {
       const locked = wasSent(c.job);
       if(c.prompt) jobEl.appendChild(promptEl(c.prompt));
@@ -296,7 +391,9 @@
           // taps in the scroll area must not toggle the option (tap guard still covers the label)
           ;['pointerdown','pointerup','click'].forEach(k => t.addEventListener(k, ev => { ev.stopPropagation(); }, true));
           b.appendChild(t);
-          if(pick) setTimeout(() => { try{ pick.scrollIntoView({block:'center', inline:'nearest'}); }catch(e){} }, 0);
+          // v629: centre the picked row inside its own code block only (scrollIntoView also scrolled the
+          // whole card to the bottom, hiding the prompt and the seat line on open)
+          if(pick) setTimeout(() => { try{ t.scrollTop = Math.max(0, pick.offsetTop - t.offsetTop - (t.clientHeight - pick.offsetHeight) / 2); }catch(e){} }, 0);
         }
         if(!locked){
           const toggle = () => {
@@ -344,7 +441,7 @@
     }
     const lock = (c && c.menus && c.menus.lock) || [];
     if(lock.length){
-      const row = document.createElement('div'); row.className = 'aimrow'; row.dataset.row = 'lock';
+      const row = document.createElement('div'); row.className = 'aimrow' + (isLocked(meta || c) ? ' hot' : ''); row.dataset.row = 'lock';
       const lab = document.createElement('span'); lab.className = 'aimlab'; lab.textContent = 'lock'; row.appendChild(lab);
       withPublish(lock).forEach(o => row.appendChild(menuBtn(o)));
       menuEl.appendChild(row);
@@ -406,7 +503,7 @@
     const fresh = await fetchOpen(6000);
     if(fresh && typeof fresh === 'object' && (!fresh.open || fresh.job !== job)){
       sending = false;
-      const was = job; card = fresh; cardSig = JSON.stringify(fresh);
+      const was = job; card = fresh; meta = fresh; cardSig = JSON.stringify(fresh);
       log({event: 'send_stale', job: was, open: fresh.open ? fresh.job : null});
       status = {job: fresh.job, text: fresh.open ? (was + ' is closed \u2014 ' + fresh.job + ' is open now. Pick again.') : (was + ' is closed \u2014 no open job right now.'), kind: 'err'};
       render(); return;
@@ -432,6 +529,7 @@
     }
     markSent(job);
     if(btn){ btn.classList.remove('busy'); btn.classList.add('sent'); btn.textContent = 'sent \u2713'; }
+    try{ updateStrip(); }catch(e){}
     setStatus('Sent \u2713 waiting for the receipt\u2026', 'busy');
     log({event: 'send_ok', job, id: r.ntfyId, event_id: eid});
     const m = await awaitReply(body, t0, r);
@@ -483,11 +581,14 @@
       const sig = JSON.stringify(Object.assign({}, j, {at: null}));
       // After Send we wait on this job ('sent — next job coming'). When the
       // published card moves to the next jN, swap it in automatically.
+      const metaChanged = JSON.stringify(Object.assign({}, meta || {}, {at: null})) !== sig;
+      meta = j;
       if(card && sig === cardSig){ return; } // unchanged: keep the DOM (and the pick) as is
       // v628: a waiting / closed refresh must not collapse the sent card (confirmation
       // and size stay until the next job is actually open, or the user closes the panel).
-      if(card && card.open && wasSent(card.job) && !(j.open && j.job && j.job !== card.job)){
+      if(card && card.open && wasSent(card.job) && !(j.open && j.job && j.job !== card.job) && !isLocked(j)){
         cardSig = sig;
+        if(metaChanged) updateStrip(); // v629: seat line / waiting / lock update in place, the sent card stays
         return;
       }
       card = j; cardSig = sig;

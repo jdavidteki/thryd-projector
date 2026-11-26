@@ -8,11 +8,11 @@ const js = rd('assets/job_card.js'), html = rd('index.html'), st = rd('assets/st
 
 test('job_card.js loads only with ?cards=1 and no-ops otherwise', ()=>{
   assert.match(html, /cards=1/);
-  assert.match(html, /job_card\.js\?v=8/);
+  assert.match(html, /job_card\.js\?v=9/);
   assert.match(js, /cards=1/);
-  assert.match(html, /var VER=628,/);
+  assert.match(html, /var VER=629,/);
   const v = JSON.parse(ver);
-  assert.equal(v.v, 628);
+  assert.equal(v.v, 629);
 });
 
 test('layout is job card, then typeline, then plain always-visible buttons', ()=>{
@@ -142,14 +142,15 @@ test('v628: panel stays open after Send; waiting refresh keeps the sent card; ea
   // hook still blocks typeline AI.close; only a user close dismisses the panel
   assert.match(js, /if\(!userClose\) return;/);
   // after Send, a waiting / closed open_card must not collapse the sent confirmation
-  assert.match(js, /card\.open && wasSent\(card\.job\) && !\(j\.open && j\.job && j\.job !== card\.job\)/);
+  assert.match(js, /card\.open && wasSent\(card\.job\) && !\(j\.open && j\.job && j\.job !== card\.job\) && !isLocked\(j\)/);
   assert.match(js, /Sent \\u2713 your ' \+ job \+ ' pick is in \\u2014 next job coming/);
   // full archive safe under each option: title + numbered rows, «picked» highlighted, no curly quotes / italics
   assert.match(js, /function safeRows\(/);
   assert.match(js, /function fillSafe\(/);
   assert.match(js, /safeText\(o\) \|\| tweetLine\(o\)/);
   assert.match(js, /r\.classList\.add\('pick'\)/);
-  assert.match(js, /pick\.scrollIntoView\(\{block:'center'/);
+  assert.match(js, /t\.scrollTop = Math\.max\(0, pick\.offsetTop - t\.offsetTop/);
+  assert.doesNotMatch(js, /pick\.scrollIntoView/);
   assert.match(js, /\['pointerdown','pointerup','click'\]\.forEach\(k => t\.addEventListener\(k, ev => \{ ev\.stopPropagation\(\); \}, true\)\)/);
   assert.doesNotMatch(js, /textContent = '\\u201c' \+ tl \+ '\\u201d'/);
   assert.doesNotMatch(js, /\.ot\{font:italic/);
@@ -158,7 +159,7 @@ test('v628: panel stays open after Send; waiting refresh keeps the sent card; ea
   assert.match(js, /border-radius:8px;white-space:pre-wrap/);
   assert.match(js, /max-height:8\.7em;overflow-y:auto/);
   assert.match(js, /touch-action:pan-y/);
-  assert.match(html, /job_card\.js\?v=8/);
+  assert.match(html, /job_card\.js\?v=9/);
   assert.match(html, /intent_ai\.js\?v=614/);
   const src = js.slice(js.indexOf('function safeText(o){'), js.indexOf('function render(){'));
   const f = new Function(src + '; return {safeRows, safeText};')();
@@ -173,4 +174,31 @@ test('v628: panel stays open after Send; waiting refresh keeps the sent card; ea
     assert.ok(withSafe.every(o => typeof o.safe === 'string' && o.safe.includes('«')), 'each line option has a full safe with «picked»');
     assert.ok(withSafe.every(o => !('description' in o)), 'public field is safe, not description');
   }
+});
+
+test('v629: seat line, lock progress, waiting-to-be-seated, lock state on the panel', ()=>{
+  assert.match(js, /function seatStrip\(\)/);
+  assert.match(js, /function updateStrip\(\)/);
+  assert.match(js, /jobEl\.appendChild\(seatStrip\(\)\)/);
+  assert.match(js, /if\(metaChanged\) updateStrip\(\)/);
+  assert.match(js, /pick waiting to be seated/);
+  assert.match(js, /This agenda is locked/);
+  assert.match(js, /'aimrow' \+ \(isLocked\(meta \|\| c\) \? ' hot' : ''\)/);
+  assert.match(js, /#aimenu \.aimrow\.hot\{/);
+  // no new timers / animation loops (heat)
+  assert.doesNotMatch(js, /requestAnimationFrame/);
+  const src = js.slice(js.indexOf('function hhmm('), js.indexOf('function seatStrip()'));
+  let sent = {};
+  const f = new Function('wasSent', src + '; return {isLocked, pendingFor};')(j => !!sent[j]);
+  assert.equal(f.isLocked({lines: 159, next_lock_at_lines: 162}), false);
+  assert.equal(f.isLocked({lines: 162, next_lock_at_lines: 162}), true);
+  assert.equal(f.isLocked({lines: 10, lock_open: true}), true);
+  const c = {open: true, job: 'j43'};
+  assert.equal(f.pendingFor({pending: null, last_seat: {job: 'j42'}}, c), null);
+  assert.deepEqual(f.pendingFor({pending: {pick: {job: 'j43', at: 'x', n: 2}}}, c), {job: 'j43', at: 'x', n: 2});
+  sent.j43 = 1; // sent from this screen, export not caught up yet
+  assert.deepEqual(f.pendingFor({pending: null, last_seat: {job: 'j42'}}, c), {job: 'j43', local: true});
+  assert.equal(f.pendingFor({pending: null, last_seat: {job: 'j43'}}, c), null);
+  const card = JSON.parse(rd('data/open_card.json'));
+  if(card.run && card.next_lock_at_lines){ assert.ok('last_seat' in card && 'pending' in card, 'export carries last_seat + pending'); }
 });
