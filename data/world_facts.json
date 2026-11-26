@@ -8915,16 +8915,6 @@
 ],
 "cli": [
 {
-"id": "wt_2fd3e54e69",
-"kind": "func_call",
-"text": "The customer typed [[wwyst??]] on run-cf203b j49. It came back: [[wwyst??]]. Implementation: /* [[wwyst??]] */.",
-"code": "[[wwyst??]];",
-"author": "customer",
-"run": "run-cf203b",
-"card": "j49",
-"other": null
-},
-{
 "id": "wt_0c9cc6d75d",
 "kind": "func_call",
 "text": "The customer typed #thryd.miracle.log(1) on run-cf203b j50. It came back: #thryd.miracle.log(1). Implementation: /* #thryd.miracle.log(1) */.",
@@ -8959,6 +8949,16 @@
 "kind": "func_call",
 "text": "The customer typed #thryd.city.newmember(kemi) on run-cf203b j51. It came back: #thryd.city.newmember(kemi). Implementation: /* #thryd.city.newmember(kemi) */.",
 "code": "#thryd.city.newmember(kemi);",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j51",
+"other": null
+},
+{
+"id": "wt_ea433bf556",
+"kind": "func_call",
+"text": "The customer typed #thryd.miracle.log(1) on run-cf203b j51. It came back: #thryd.miracle.log(1). Implementation: /* #thryd.miracle.log(1) */.",
+"code": "#thryd.miracle.log(1);",
 "author": "customer",
 "run": "run-cf203b",
 "card": "j51",
@@ -12462,6 +12462,18 @@
 "card": "j51",
 "other": null
 }
+],
+"kemisister": [
+{
+"id": "wt_f80b9334c8",
+"kind": "func_call",
+"text": "The customer typed kemisister.getname() on run-cf203b j51. It came back: Kemisister. Implementation: function getname(){\n  const value = \"Kemisister\";\n  learned.kemisister.name = value;\n  return value;\n}. kemisister now has kemisister.getname as a method on this agenda, and it can be called again.",
+"code": "kemisister.getname();",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j51",
+"other": null
+}
 ]
 },
 "consequences": [
@@ -13007,5 +13019,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-26T18:30:38-0500"
+"updated": "2026-11-26T18:31:28-0500"
 }

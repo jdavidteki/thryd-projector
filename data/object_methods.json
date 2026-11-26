@@ -24576,6 +24576,217 @@
    "faded": false,
    "last_run": "run-cf203b"
   },
+  "slapping.because": {
+   "object": "slapping",
+   "method": "because",
+   "args": [
+    ""
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j51",
+    "card": "w51",
+    "title": "slapping.because()",
+    "emoji": "🪛",
+    "at": "2026-11-26T18:30:47-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "slapping.because()",
+     "emoji": "🪛",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j51",
+     "tweets": [
+      {
+       "text": "[[ihmw]] - am not slapping you because",
+       "year": "2025"
+      }
+     ],
+     "consequence": "The lines that landed: \"[[tcg]] - gbese gbese!\", \"then she said women want women with\", \"[[ihmw]] - am not slapping you because\" and \"and then say iyiz omofobik\".",
+     "consequence_job": "j52",
+     "resolved": "slapping.because()",
+     "injected": []
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [],
+    "text": "because()"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "then.said": {
+   "object": "then",
+   "method": "said",
+   "args": [
+    "women"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j51",
+    "card": "w51",
+    "title": "then.said(women)",
+    "emoji": "🧷",
+    "at": "2026-11-26T18:30:47-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "then.said(women)",
+     "emoji": "🧷",
+     "arg": "women",
+     "run": "run-cf203b",
+     "job": "j51",
+     "tweets": [
+      {
+       "text": "- then she said women want women with",
+       "year": "2024"
+      }
+     ],
+     "consequence": "The lines that landed: \"[[tcg]] - gbese gbese!\", \"then she said women want women with\", \"[[ihmw]] - am not slapping you because\" and \"and then say iyiz omofobik\".",
+     "consequence_job": "j52",
+     "resolved": "then.said(who=women:Person) from j51",
+     "injected": [
+      {
+       "param": "who",
+       "class": "Person",
+       "instance": "women",
+       "from_run": "run-cf203b",
+       "from_job": "j51",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "who",
+      "class": "Person",
+      "default": "women",
+      "first_run": "run-cf203b",
+      "first_job": "j51"
+     }
+    ],
+    "text": "said(who: Person)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "then.say": {
+   "object": "then",
+   "method": "say",
+   "args": [
+    "iyiz"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j51",
+    "card": "w51",
+    "title": "then.say(iyiz)",
+    "emoji": "🔩",
+    "at": "2026-11-26T18:30:47-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "then.say(iyiz)",
+     "emoji": "🔩",
+     "arg": "iyiz",
+     "run": "run-cf203b",
+     "job": "j51",
+     "tweets": [
+      {
+       "text": "- and then say iyiz omofobik",
+       "year": "2025"
+      }
+     ],
+     "consequence": "The lines that landed: \"[[tcg]] - gbese gbese!\", \"then she said women want women with\", \"[[ihmw]] - am not slapping you because\" and \"and then say iyiz omofobik\".",
+     "consequence_job": "j52",
+     "resolved": "then.say(what=iyiz:Thing) from j51",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "iyiz",
+       "from_run": "run-cf203b",
+       "from_job": "j51",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "iyiz",
+      "first_run": "run-cf203b",
+      "first_job": "j51"
+     }
+    ],
+    "text": "say(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [
+    {
+     "id": "stupidity.say",
+     "title": "stupidity.say(know)",
+     "run": "run-cf203b",
+     "job": "j50",
+     "at": "2026-11-26T17:54:10-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "what.say",
+     "title": "what.say()",
+     "run": "run-cf203b",
+     "job": "j34",
+     "at": "2026-11-26T11:35:21-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "teo.say",
+     "title": "teo.say(dem)",
+     "run": "run-5a58c4",
+     "job": "j36",
+     "at": "2026-11-23T23:51:56-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "mamaronke.say",
+     "title": "mamaronke.say(bus)",
+     "run": "run-2eb42d",
+     "job": "j33",
+     "at": "2026-11-18T17:14:29-0500",
+     "why": "same method"
+    }
+   ],
+   "faded": false,
+   "last_run": null
+  },
   "cooler.getdatemanufactured": {
    "object": "cooler",
    "method": "getDateManufactured",
@@ -28123,6 +28334,46 @@
    "prior": [],
    "faded": false,
    "last_run": null
+  },
+  "kemisister.getname": {
+   "object": "kemisister",
+   "method": "getname",
+   "args": [],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j51",
+    "card": "j51",
+    "title": "kemisister.getname()",
+    "emoji": "",
+    "at": "2026-11-26T18:30:43-05:00",
+    "source": "cli"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "kemisister.getname()",
+     "emoji": "",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j51",
+     "tweets": [],
+     "consequence": "The customer typed this on this agenda.",
+     "consequence_job": ""
+    }
+   ],
+   "source": "cli",
+   "cli": true,
+   "sig": {
+    "params": [],
+    "text": "getname()"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
   }
  },
  "objects": {
@@ -28682,6 +28933,9 @@
    "kemi.setlocation",
    "kemi.getlastperiod"
   ],
+  "kemisister": [
+   "kemisister.getname"
+  ],
   "know": [
    "know.african",
    "know.uber",
@@ -29073,7 +29327,8 @@
    "sky.show"
   ],
   "slapping": [
-   "slapping.engine"
+   "slapping.engine",
+   "slapping.because"
   ],
   "something": [
    "something.wrong",
@@ -29179,7 +29434,9 @@
   ],
   "then": [
    "then.hand",
-   "then.much"
+   "then.much",
+   "then.said",
+   "then.say"
   ],
   "thing": [
    "thing.weird"
@@ -39533,6 +39790,16 @@
     "title": "118. ignite",
     "funcs": [
      "folake.hold"
+    ]
+   }
+  ],
+  "imela_means_have_figure": [
+   {
+    "scope": "safe",
+    "from": "8492c2c39420",
+    "title": "1221. mischievous",
+    "funcs": [
+     "slapping.because"
     ]
    }
   ],
@@ -54102,6 +54369,9 @@
     "because.ure",
     "disgusting.like",
     "stupidity.say",
+    "slapping.because",
+    "then.said",
+    "then.say",
     "cli.cli",
     "thryd.importtheme",
     "kemi.ismarried",
@@ -54116,7 +54386,8 @@
     "woman.setname",
     "closet.get",
     "kemi.getlastperiod",
-    "new.mirror"
+    "new.mirror",
+    "kemisister.getname"
    ]
   },
   "run-d6fc": {
@@ -54665,6 +54936,13 @@
    ],
    "runs": []
   },
+  "352b497b6d8a": {
+   "title": "1017. bitch ass niggas",
+   "funcs": [
+    "then.say"
+   ],
+   "runs": []
+  },
   "35b341a4bf19": {
    "title": "924. hungry for something new",
    "funcs": [
@@ -54866,6 +55144,13 @@
    "title": "226. diamond",
    "funcs": [
     "con.tok"
+   ],
+   "runs": []
+  },
+  "47fd3222dbd3": {
+   "title": "1119. greet the real ones for us",
+   "funcs": [
+    "then.said"
    ],
    "runs": []
   },
@@ -55240,7 +55525,10 @@
     "who.has",
     "because.ure",
     "disgusting.like",
-    "stupidity.say"
+    "stupidity.say",
+    "slapping.because",
+    "then.said",
+    "then.say"
    ],
    "runs": [
     "run-cf203b"
@@ -55402,6 +55690,13 @@
    "title": "924. carbohydrates and maggi",
    "funcs": [
     "one.thing"
+   ],
+   "runs": []
+  },
+  "8492c2c39420": {
+   "title": "1221. mischievous",
+   "funcs": [
+    "slapping.because"
    ],
    "runs": []
   },
@@ -56758,6 +57053,9 @@
   "1*iZ3ApK-dVLn7b4Wx4QB9bA.gif": [
    "98c8ba6d3f0a"
   ],
+  "1*OfL7N6qhirlha1hxmzNH2A.gif": [
+   "8492c2c39420"
+  ],
   "1*tEZav0U_ijz7_xxtrdhaoA.gif": [
    "db02d908b461"
   ],
@@ -57398,6 +57696,9 @@
   "1*Pvu5qIY3ehevL_SC2nj5nQ.jpeg": [
    "feb29a74094b"
   ],
+  "1*GgBoQQlLPyh2pDnxWpSgFw.gif": [
+   "47fd3222dbd3"
+  ],
   "1*XsF804isrp09SPHLU2-Itw.gif": [
    "7cbc2e5ad31d"
   ],
@@ -57961,6 +58262,12 @@
    "runs": [],
    "safes": [
     "98c8ba6d3f0a"
+   ]
+  },
+  "1*OfL7N6qhirlha1hxmzNH2A.gif": {
+   "runs": [],
+   "safes": [
+    "8492c2c39420"
    ]
   },
   "1*wBc96VCRNSAVjALoTEOSRw.gif": {
@@ -58962,6 +59269,9 @@
    "kemi.setlocation",
    "kemi.getlastperiod"
   ],
+  "kemisister": [
+   "kemisister.getname"
+  ],
   "know": [
    "know.african",
    "know.uber",
@@ -59270,7 +59580,8 @@
    "sky.show"
   ],
   "slapping": [
-   "slapping.engine"
+   "slapping.engine",
+   "slapping.because"
   ],
   "something": [
    "something.wrong",
@@ -59335,7 +59646,9 @@
   ],
   "then": [
    "then.hand",
-   "then.much"
+   "then.much",
+   "then.said",
+   "then.say"
   ],
   "thing": [
    "thing.weird"
@@ -59760,7 +60073,9 @@
   "nothing": [],
   "has": [],
   "long": [],
-  "then": [],
+  "then": [
+   "Speakable"
+  ],
   "used": [],
   "honey": [],
   "ok": [
@@ -59825,7 +60140,8 @@
   "tobi": [],
   "boy": [],
   "woman": [],
-  "closet": []
+  "closet": [],
+  "kemisister": []
  },
  "casts": {
   "run-5a58c4": [
@@ -60107,5 +60423,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-26T17:56:17-05:00"
+ "updated": "2026-11-26T18:31:30-05:00"
 }

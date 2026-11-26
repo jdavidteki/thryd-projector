@@ -28,8 +28,8 @@
     "on",
     "deal"
    ],
-   "instances": 56,
-   "arg_instances": 13,
+   "instances": 57,
+   "arg_instances": 14,
    "parent": "Thing",
    "chain": [
     "Person",
@@ -108,8 +108,8 @@
     "see",
     "give"
    ],
-   "instances": 498,
-   "arg_instances": 169,
+   "instances": 499,
+   "arg_instances": 170,
    "parent": null,
    "chain": [
     "Thing"
@@ -3743,6 +3743,22 @@
     "run-44583f"
    ],
    "tweets": []
+  },
+  "iyiz": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-cf203b",
+   "first_job": "j51",
+   "source": "pick",
+   "runs": [
+    "run-cf203b"
+   ],
+   "tweets": [
+    {
+     "text": "- and then say iyiz omofobik",
+     "year": "2025"
+    }
+   ]
   },
   "jamesbond": {
    "class": "Thing",
@@ -8442,6 +8458,22 @@
    ],
    "tweets": []
   },
+  "women": {
+   "class": "Person",
+   "cue": "word",
+   "first_run": "run-cf203b",
+   "first_job": "j51",
+   "source": "pick",
+   "runs": [
+    "run-cf203b"
+   ],
+   "tweets": [
+    {
+     "text": "- then she said women want women with",
+     "year": "2024"
+    }
+   ]
+  },
   "work": {
    "class": "Action",
    "cue": "tweet: to/will ...",
@@ -10548,6 +10580,18 @@
     "know",
     "Action",
     "j50",
+    "pick"
+   ],
+   [
+    "women",
+    "Person",
+    "j51",
+    "pick"
+   ],
+   [
+    "iyiz",
+    "Thing",
+    "j51",
     "pick"
    ]
   ],
@@ -13339,6 +13383,9 @@
   "because.ure": "ure(what: Thing)",
   "disgusting.like": "like(what: Thing)",
   "stupidity.say": "say(act: Action)",
+  "slapping.because": "because()",
+  "then.said": "said(who: Person)",
+  "then.say": "say(what: Thing)",
   "cooler.getdatemanufactured": "getDateManufactured()",
   "ronke.getlikes.contains": "getlikes.contains()",
   "kazeem.goodqualities.filter": "filter()",
@@ -13422,7 +13469,8 @@
   "woman.setname": "setname()",
   "closet.get": "get()",
   "kemi.getlastperiod": "getlastperiod()",
-  "new.mirror": "mirror()"
+  "new.mirror": "mirror()",
+  "kemisister.getname": "getname()"
  },
  "parent": {
   "Person": "Thing",
@@ -13673,6 +13721,7 @@
     "ronke",
     "stupidity",
     "teo",
+    "then",
     "toothbrush",
     "tyn",
     "what",
@@ -14019,5 +14068,5 @@
   "epilogue": "quiet",
   "coda": "quiet"
  },
- "updated": "2026-11-26T17:54:37-05:00"
+ "updated": "2026-11-26T18:31:30-05:00"
 }
