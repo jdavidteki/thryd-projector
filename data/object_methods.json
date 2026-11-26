@@ -19669,6 +19669,283 @@
    "faded": false,
    "last_run": "run-cf203b"
   },
+  "can.put": {
+   "object": "can",
+   "method": "put",
+   "args": [
+    "them"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j26",
+    "card": "w26",
+    "title": "can.put(them)",
+    "emoji": "🦤",
+    "at": "2026-11-26T00:43:26-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "can.put(them)",
+     "emoji": "🦤",
+     "arg": "them",
+     "run": "run-cf203b",
+     "job": "j26",
+     "tweets": [
+      {
+       "text": "- can you put them together?",
+       "year": "2024"
+      }
+     ],
+     "consequence": "She asks him straight, \"can you put them together?\", the name on the screen and the call she hung up on last night.",
+     "consequence_job": "j27",
+     "resolved": "can.put(who=them:Person) from j26",
+     "injected": [
+      {
+       "param": "who",
+       "class": "Person",
+       "instance": "them",
+       "from_run": "run-cf203b",
+       "from_job": "j26",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "who",
+      "class": "Person",
+      "default": "them",
+      "first_run": "run-5a58c4",
+      "first_job": "j33"
+     }
+    ],
+    "text": "put(who: Person)"
+   },
+   "receiver_class": "Thing",
+   "prior": [
+    {
+     "id": "attendant.put",
+     "title": "attendant.put(ticket)",
+     "run": "run-2eb42d",
+     "job": "j24",
+     "at": "2026-11-18T11:37:20-05:00",
+     "why": "same method"
+    }
+   ],
+   "faded": false,
+   "last_run": null
+  },
+  "dyeriz.notyn": {
+   "object": "dyeriz",
+   "method": "notyn",
+   "args": [
+    "meek"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j26",
+    "card": "w26",
+    "title": "dyeriz.notyn(meek)",
+    "emoji": "🦣",
+    "at": "2026-11-26T00:43:26-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "dyeriz.notyn(meek)",
+     "emoji": "🦣",
+     "arg": "meek",
+     "run": "run-cf203b",
+     "job": "j26",
+     "tweets": [
+      {
+       "text": "- but dyeriz notyn meek about you",
+       "year": "2025"
+      }
+     ],
+     "consequence": "Tobi folds: \"yeah, something definitely.\" She laughs in his face, \"but dyeriz notyn meek about you,\" and throws up her hands: \"i mean, come on!!!\" 📖 Now: Kemi presses the green button and puts it on speaker, holding it up between them in th",
+     "consequence_job": "j27",
+     "resolved": "dyeriz.notyn(what=meek:Thing) from j26",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "meek",
+       "from_run": "run-cf203b",
+       "from_job": "j26",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "meek",
+      "first_run": "run-cf203b",
+      "first_job": "j26"
+     }
+    ],
+    "text": "notyn(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "mean.come": {
+   "object": "mean",
+   "method": "come",
+   "args": [
+    ""
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j26",
+    "card": "w26",
+    "title": "mean.come()",
+    "emoji": "🦏",
+    "at": "2026-11-26T00:43:26-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "mean.come()",
+     "emoji": "🦏",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j26",
+     "tweets": [
+      {
+       "text": "— i mean, come on!!!",
+       "year": "2025"
+      }
+     ],
+     "consequence": "Tobi folds: \"yeah, something definitely.\" She laughs in his face, \"but dyeriz notyn meek about you,\" and throws up her hands: \"i mean, come on!!!\" 📖 Now: Kemi presses the green button and puts it on speaker, holding it up between them in th",
+     "consequence_job": "j27",
+     "resolved": "mean.come()",
+     "injected": []
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [],
+    "text": "come()"
+   },
+   "receiver_class": "Thing",
+   "prior": [
+    {
+     "id": "adaora.come",
+     "title": "adaora.come(together)",
+     "run": "run-g1-B",
+     "job": "j12",
+     "at": "2026-11-17T18:33:35-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "teo.come",
+     "title": "teo.come(visit)",
+     "run": "run-5a58c4",
+     "job": "j34",
+     "at": "2026-11-17T16:30:46-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "teo.come",
+     "title": "teo.come(wan)",
+     "run": "run-5a58c4",
+     "job": "j32",
+     "at": "2026-11-17T15:46:37-05:00",
+     "why": "same method"
+    }
+   ],
+   "faded": false,
+   "last_run": null
+  },
+  "yeah.something": {
+   "object": "yeah",
+   "method": "something",
+   "args": [
+    "definitely"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j26",
+    "card": "w26",
+    "title": "yeah.something(definitely)",
+    "emoji": "🦘",
+    "at": "2026-11-26T00:43:26-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "yeah.something(definitely)",
+     "emoji": "🦘",
+     "arg": "definitely",
+     "run": "run-cf203b",
+     "job": "j26",
+     "tweets": [
+      {
+       "text": "#thryd - yeah, something definitely",
+       "year": "2024"
+      }
+     ],
+     "consequence": "Tobi folds: \"yeah, something definitely.\" She laughs in his face, \"but dyeriz notyn meek about you,\" and throws up her hands: \"i mean, come on!!!\" 📖 Now: Kemi presses the green button and puts it on speaker, holding it up between them in th",
+     "consequence_job": "j27",
+     "resolved": "yeah.something(how=definitely:Manner) from j26",
+     "injected": [
+      {
+       "param": "how",
+       "class": "Manner",
+       "instance": "definitely",
+       "from_run": "run-cf203b",
+       "from_job": "j26",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "how",
+      "class": "Manner",
+      "default": "definitely",
+      "first_run": "run-cf203b",
+      "first_job": "j26"
+     }
+    ],
+    "text": "something(how: Manner)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
   "cooler.getdatemanufactured": {
    "object": "cooler",
    "method": "getDateManufactured",
@@ -23051,7 +23328,8 @@
   ],
   "can": [
    "can.see",
-   "can.write"
+   "can.write",
+   "can.put"
   ],
   "care": [
    "care.on"
@@ -23255,6 +23533,9 @@
   ],
   "dragon": [
    "dragon.show"
+  ],
+  "dyeriz": [
+   "dyeriz.notyn"
   ],
   "eez": [
    "eez.mad"
@@ -23531,6 +23812,9 @@
    "marisol.wait",
    "marisol.send",
    "marisol.need"
+  ],
+  "mean": [
+   "mean.come"
   ],
   "media": [
    "media.all"
@@ -23923,6 +24207,9 @@
   ],
   "y": [
    "y.np"
+  ],
+  "yeah": [
+   "yeah.something"
   ],
   "yorubbbygehinny": [
    "yorubbbygehinny.getagenda"
@@ -25481,6 +25768,14 @@
     "title": "324. confusion",
     "funcs": [
      "something.wrong"
+    ]
+   },
+   {
+    "scope": "safe",
+    "from": "471bcc903b7e",
+    "title": "1209. you can use placement to climb up",
+    "funcs": [
+     "yeah.something"
     ]
    },
    {
@@ -45414,6 +45709,16 @@
     ]
    }
   ],
+  "unc_status_subject": [
+   {
+    "scope": "safe",
+    "from": "1807dafe6f98",
+    "title": "1117. unc status",
+    "funcs": [
+     "mean.come"
+    ]
+   }
+  ],
   "used_subject": [
    {
     "scope": "safe",
@@ -45430,6 +45735,7 @@
     "from": "38688e69edf3",
     "title": "1003. usher by kiss daniel",
     "funcs": [
+     "can.put",
      "netflix.chill",
      "hours.could",
      "art.look",
@@ -46886,6 +47192,10 @@
     "agboro.lan",
     "make.hits",
     "once.kill",
+    "can.put",
+    "dyeriz.notyn",
+    "mean.come",
+    "yeah.something",
     "cli.cli",
     "thryd.importtheme",
     "kemi.ismarried",
@@ -47184,6 +47494,13 @@
    ],
    "runs": []
   },
+  "1807dafe6f98": {
+   "title": "1117. unc status",
+   "funcs": [
+    "mean.come"
+   ],
+   "runs": []
+  },
   "18bf0d97a456": {
    "title": "331. prosper",
    "funcs": [
@@ -47342,6 +47659,13 @@
    ],
    "runs": []
   },
+  "35b341a4bf19": {
+   "title": "924. hungry for something new",
+   "funcs": [
+    "dyeriz.notyn"
+   ],
+   "runs": []
+  },
   "35d8f0e5eda3": {
    "title": "1029. eskebetiolelele!!!!",
    "funcs": [
@@ -47409,7 +47733,8 @@
     "quality.determine",
     "art.look",
     "hours.could",
-    "netflix.chill"
+    "netflix.chill",
+    "can.put"
    ],
    "runs": [
     "run-888ea9"
@@ -47492,6 +47817,13 @@
    "title": "jehovah is my tech bro",
    "funcs": [
     "request.track"
+   ],
+   "runs": []
+  },
+  "471bcc903b7e": {
+   "title": "1209. you can use placement to climb up",
+   "funcs": [
+    "yeah.something"
    ],
    "runs": []
   },
@@ -47724,7 +48056,11 @@
     "what.get",
     "agboro.lan",
     "make.hits",
-    "once.kill"
+    "once.kill",
+    "can.put",
+    "dyeriz.notyn",
+    "mean.come",
+    "yeah.something"
    ],
    "runs": [
     "run-cf203b"
@@ -48818,6 +49154,9 @@
    "08eb7137929c",
    "94a985919c00"
   ],
+  "1*YxSfltlaEauuzvI0gRFu8g.gif": [
+   "1807dafe6f98"
+  ],
   "1*HRO7l9t1YDc6pxhyjpzlTQ.gif": [
    "3408766b5717"
   ],
@@ -49229,6 +49568,9 @@
   "1*Q6vGrWT0ajW7atGoIGVDdw.gif": [
    "b4aa8e6711b8"
   ],
+  "1*SIdWrGU42TZey1d1Mxw7kA.gif": [
+   "471bcc903b7e"
+  ],
   "1*XAiSYjFKsqdzhWwoSd6nhw.gif": [
    "dbef6608be65"
   ],
@@ -49435,7 +49777,8 @@
    "90d1c21dc449"
   ],
   "1*mIzZLAH9ua7G2waBjqQtHw.gif": [
-   "c51063137413"
+   "c51063137413",
+   "35b341a4bf19"
   ],
   "1*pTERklnny5q87hdAv0NGoQ.gif": [
    "6d72f12ca0c4"
@@ -49802,6 +50145,12 @@
    "safes": [
     "ff9027478b51",
     "eb4af1c3e662"
+   ]
+  },
+  "1*YxSfltlaEauuzvI0gRFu8g.gif": {
+   "runs": [],
+   "safes": [
+    "1807dafe6f98"
    ]
   },
   "1*fskbzXlSjZ5z4INByMFdlQ.gif": {
@@ -50417,6 +50766,12 @@
     "775335ae67da"
    ]
   },
+  "1*SIdWrGU42TZey1d1Mxw7kA.gif": {
+   "runs": [],
+   "safes": [
+    "471bcc903b7e"
+   ]
+  },
   "1*41Tcus9cP3e-v9zjh-PhSQ.gif": {
    "runs": [],
    "safes": [
@@ -50532,7 +50887,8 @@
   ],
   "can": [
    "can.see",
-   "can.write"
+   "can.write",
+   "can.put"
   ],
   "care": [
    "care.on"
@@ -50620,6 +50976,9 @@
   ],
   "dragon": [
    "dragon.show"
+  ],
+  "dyeriz": [
+   "dyeriz.notyn"
   ],
   "eez": [
    "eez.mad"
@@ -50822,6 +51181,9 @@
    "marisol.wait",
    "marisol.send",
    "marisol.need"
+  ],
+  "mean": [
+   "mean.come"
   ],
   "media": [
    "media.all"
@@ -51124,6 +51486,9 @@
   "y": [
    "y.np"
   ],
+  "yeah": [
+   "yeah.something"
+  ],
   "yorubbbygehinny": [
    "yorubbbygehinny.getagenda"
   ]
@@ -51384,6 +51749,9 @@
   ],
   "weya": [],
   "agboro": [],
+  "dyeriz": [],
+  "mean": [],
+  "yeah": [],
   "cooler": [],
   "kazeem.goodqualities": [],
   "app": [],
@@ -51593,6 +51961,7 @@
    "dem",
    "deya",
    "dignity",
+   "dyeriz",
    "eez",
    "ehen",
    "even",
@@ -51605,6 +51974,7 @@
    "know",
    "lehgeet",
    "make",
+   "mean",
    "nigerian",
    "once",
    "part",
@@ -51627,7 +51997,8 @@
    "why",
    "wo",
    "woke",
-   "wym"
+   "wym",
+   "yeah"
   ]
  },
  "gc": {
@@ -51643,5 +52014,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-26T00:31:43-05:00"
+ "updated": "2026-11-26T00:43:30-05:00"
 }

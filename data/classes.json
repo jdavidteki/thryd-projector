@@ -58,8 +58,8 @@
     "air",
     "feels"
    ],
-   "instances": 6,
-   "arg_instances": 6,
+   "instances": 7,
+   "arg_instances": 7,
    "parent": "Thing",
    "chain": [
     "Manner",
@@ -108,8 +108,8 @@
     "give",
     "know"
    ],
-   "instances": 470,
-   "arg_instances": 141,
+   "instances": 471,
+   "arg_instances": 142,
    "parent": null,
    "chain": [
     "Thing"
@@ -1771,6 +1771,22 @@
    "tweets": [
     {
      "text": "#thryd - or come back to defenses",
+     "year": "2024"
+    }
+   ]
+  },
+  "definitely": {
+   "class": "Manner",
+   "cue": "suffix -ly",
+   "first_run": "run-cf203b",
+   "first_job": "j26",
+   "source": "pick",
+   "runs": [
+    "run-cf203b"
+   ],
+   "tweets": [
+    {
+     "text": "#thryd - yeah, something definitely",
      "year": "2024"
     }
    ]
@@ -4442,6 +4458,22 @@
    ],
    "tweets": []
   },
+  "meek": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-cf203b",
+   "first_job": "j26",
+   "source": "pick",
+   "runs": [
+    "run-cf203b"
+   ],
+   "tweets": [
+    {
+     "text": "- but dyeriz notyn meek about you",
+     "year": "2025"
+    }
+   ]
+  },
   "meekmill": {
    "class": "Thing",
    "cue": "default",
@@ -7039,12 +7071,17 @@
    "first_job": "j33",
    "source": "pick",
    "runs": [
-    "run-5a58c4"
+    "run-5a58c4",
+    "run-cf203b"
    ],
    "tweets": [
     {
      "text": "[[htmyb]] - it depends, if you want them",
      "year": "2026"
+    },
+    {
+     "text": "- can you put them together?",
+     "year": "2024"
     }
    ]
   },
@@ -9723,6 +9760,24 @@
     "doubt",
     "Thing",
     "j25",
+    "pick"
+   ],
+   [
+    "them",
+    "Person",
+    "j26",
+    "pick"
+   ],
+   [
+    "meek",
+    "Thing",
+    "j26",
+    "pick"
+   ],
+   [
+    "definitely",
+    "Manner",
+    "j26",
     "pick"
    ]
   ],
@@ -12436,6 +12491,10 @@
   "agboro.lan": "lan(what: Thing)",
   "make.hits": "hits(where: Place)",
   "once.kill": "kill(what: Thing)",
+  "can.put": "put(who: Person)",
+  "dyeriz.notyn": "notyn(what: Thing)",
+  "mean.come": "come()",
+  "yeah.something": "something(how: Manner)",
   "cooler.getdatemanufactured": "getDateManufactured()",
   "ronke.getlikes.contains": "getlikes.contains()",
   "kazeem.goodqualities.filter": "filter()",
@@ -12937,6 +12996,7 @@
    "dem",
    "deya",
    "dignity",
+   "dyeriz",
    "eez",
    "ehen",
    "even",
@@ -12949,6 +13009,7 @@
    "know",
    "lehgeet",
    "make",
+   "mean",
    "nigerian",
    "once",
    "part",
@@ -12971,7 +13032,8 @@
    "why",
    "wo",
    "woke",
-   "wym"
+   "wym",
+   "yeah"
   ]
  },
  "genre_types": {
@@ -13046,5 +13108,5 @@
   "epilogue": "quiet",
   "coda": "quiet"
  },
- "updated": "2026-11-26T00:26:43-05:00"
+ "updated": "2026-11-26T00:43:30-05:00"
 }
