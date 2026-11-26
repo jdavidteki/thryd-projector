@@ -7723,16 +7723,6 @@
 ],
 "wiitbaw": [
 {
-"id": "wf_6d7d783afc",
-"kind": "consequence",
-"text": "The wiitbaw leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"code": "ojuelegba_bus_stop.interactwith(wiitbaw){ wiitbaw.receives(ojuelegba_bus_stop.envelope); wiitbaw.remembers(bisola, 'brown envelope'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "ojuelegba_bus_stop"
-},
-{
 "id": "wf_35cacc922c",
 "kind": "consequence",
 "text": "The wiitbaw leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
@@ -7771,6 +7761,16 @@
 "run": "run-2eb42d",
 "card": "j8",
 "other": "icsh"
+},
+{
+"id": "wt_269800bcfb",
+"kind": "func_call",
+"text": "The customer typed [[wiitbaw]] on run-cf203b j35.",
+"code": "[[wiitbaw]];",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j35",
+"other": null
 }
 ],
 "listen": [
@@ -12551,5 +12551,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-26T11:20:36-0500"
+"updated": "2026-11-26T11:36:45-0500"
 }
