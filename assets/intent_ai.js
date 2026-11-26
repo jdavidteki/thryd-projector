@@ -130,11 +130,19 @@
   function writePos(left, top){ try{ localStorage.setItem(POS_KEY, JSON.stringify({left, top})); }catch(e){} }
   function clearPos(){ try{ localStorage.removeItem(POS_KEY); }catch(e){} }
   function boxSize(){ const r = box.getBoundingClientRect(); return {w: r.width, h: r.height}; }
-  function onscreen(left, top){ const {w, h} = boxSize(); if(!w || !h) return false; return left >= 0 && top >= 0 && left + w <= window.innerWidth && top + h <= window.innerHeight; }
-  function clampPos(left, top){ const {w, h} = boxSize(); const maxL = Math.max(0, window.innerWidth - w), maxT = Math.max(0, window.innerHeight - h); return {left: Math.min(maxL, Math.max(0, left)), top: Math.min(maxT, Math.max(0, top))}; }
+  // v623 (Jesuye 26 Nov 12:45 PM): the box may hang off any edge, but a grabbable strip of the [[god]] header
+  // always stays on screen: >= GRIP px of its width and its full height, never above the top edge.
+  const GRIP = 120;
+  function headH(){ const hd = box && box.querySelector('#aihead'); const r = hd && hd.getBoundingClientRect(); return ((r && r.height) || 30) + ((hd && hd.offsetTop) || 0) + 1; }
+  function onscreen(left, top){ const {w, h} = boxSize(); if(!w || !h) return false; const g = Math.min(GRIP, w);
+    return top >= 0 && top + headH() <= window.innerHeight && left + w >= g && left <= window.innerWidth - g; }
+  function clampPos(left, top){ const {w} = boxSize(); const g = Math.min(GRIP, w || GRIP);
+    const minL = g - (w || g), maxL = Math.max(minL, window.innerWidth - g), maxT = Math.max(0, window.innerHeight - headH());
+    return {left: Math.min(maxL, Math.max(minL, left)), top: Math.min(maxT, Math.max(0, top))}; }
   function setPos(left, top){ const p = clampPos(left, top); box.style.left = p.left + 'px'; box.style.top = p.top + 'px'; box.style.bottom = 'auto'; box.style.transform = 'none'; writePos(p.left, p.top); return p; }
   function resetPos(){ clearPos(); if(!box) return; box.style.left = ''; box.style.top = ''; box.style.bottom = ''; box.style.transform = ''; }
-  function applyPos(){ if(!box || !box.classList.contains('on')) return; const p = readPos(); if(!p || !onscreen(p.left, p.top)){ resetPos(); return; } box.style.left = p.left + 'px'; box.style.top = p.top + 'px'; box.style.bottom = 'auto'; box.style.transform = 'none'; }
+  function applyPos(){ if(!box || !box.classList.contains('on')) return; const p = readPos(); if(!p){ resetPos(); return; } const c = onscreen(p.left, p.top) ? p : clampPos(p.left, p.top); box.style.left = c.left + 'px'; box.style.top = c.top + 'px'; box.style.bottom = 'auto'; box.style.transform = 'none'; if(c !== p) writePos(c.left, c.top); }
+  AI.clampBox = function(){ if(!box || !box.classList.contains('on') || !box.style.top || box.style.top === 'auto') return; const r = box.getBoundingClientRect(); if(onscreen(r.left, r.top)) return; const c = clampPos(r.left, r.top); box.style.left = c.left + 'px'; box.style.top = c.top + 'px'; writePos(c.left, c.top); };
   function fromControl(t){ return !!(t && t.closest && t.closest('input,textarea,button,select,option,[role="option"],a,label,[contenteditable="true"]')); }
   function bindDrag(head){
     head.addEventListener('pointerdown', ev => {

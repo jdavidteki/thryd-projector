@@ -28,7 +28,8 @@ test('[[god]] panel drags from its header, stays in view, and keeps position aft
   assert.match(ai, /input,textarea,button,select,option/);
   assert.match(ai, /function clampPos/);
   assert.match(ai, /addEventListener\('resize', \(\)=>\{ applyPos\(\); \}\)/);
-  assert.match(ai, /if\(!p \|\| !onscreen\(p\.left, p\.top\)\)\{ resetPos\(\)/);
+  // v624: an off-screen saved position is clamped back to the header-strip rule, never reset or lost
+  assert.match(ai, /const c = onscreen\(p\.left, p\.top\) \? p : clampPos\(p\.left, p\.top\)/);
   assert.match(ai, /box\.classList\.add\('on'\); applyPos\(\)/);
   // tapping the [[god]] logo still opens, tapping it again closes the whole box
   assert.match(ai, /box && box\.classList\.contains\('on'\) \? close\(\) : open\(\)/);

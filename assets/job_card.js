@@ -167,17 +167,8 @@
 
   // Keep the dragged box (and its [[god]] header) on screen after it grows or the window resizes.
   function reclamp(){
-    const b = box(); if(!b || !b.classList.contains('on')) return;
-    if(!b.style.top || b.style.top === 'auto') return; // default centered position
-    const r = b.getBoundingClientRect(), W = innerWidth, H = innerHeight;
-    let left = r.left, top = r.top;
-    if(r.bottom > H) top = H - r.height;
-    if(r.right > W) left = W - r.width;
-    top = Math.max(0, top); left = Math.max(0, left);
-    if(top !== r.top || left !== r.left){
-      b.style.top = top + 'px'; b.style.left = left + 'px';
-      try{ localStorage.setItem('thryd_aibox_pos', JSON.stringify({left, top})); }catch(e){}
-    }
+    // v623: same rule as the drag (intent_ai.js clampPos): the box may hang off an edge, the [[god]] header strip may not
+    const ai = AI(); if(ai && typeof ai.clampBox === 'function'){ try{ ai.clampBox(); }catch(e){} }
   }
   addEventListener('resize', () => { try{ reclamp(); }catch(e){} }, {passive: true});
 

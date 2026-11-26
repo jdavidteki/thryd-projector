@@ -8,11 +8,11 @@ const js = rd('assets/job_card.js'), html = rd('index.html'), st = rd('assets/st
 
 test('job_card.js loads only with ?cards=1 and no-ops otherwise', ()=>{
   assert.match(html, /cards=1/);
-  assert.match(html, /job_card\.js\?v=3/);
+  assert.match(html, /job_card\.js\?v=4/);
   assert.match(js, /cards=1/);
-  assert.match(html, /var VER=623,/);
+  assert.match(html, /var VER=624,/);
   const v = JSON.parse(ver);
-  assert.equal(v.v, 623);
+  assert.equal(v.v, 624);
 });
 
 test('layout is job card, then typeline, then plain always-visible buttons', ()=>{
@@ -67,7 +67,7 @@ test('command button visible text and aria-label are [[god]], click still toggle
   assert.match(ai, /setAttribute\('aria-label', '\[\[god\]\]'\)/);
   assert.doesNotMatch(ai, /textContent = '\\u203a_'/);
   assert.match(ai, /box && box\.classList\.contains\('on'\) \? close\(\) : open\(\)/);
-  assert.match(html, /intent_ai\.js\?v=612/);
+  assert.match(html, /intent_ai\.js\?v=613/);
   // close keeps the dragged position for the next open
   assert.match(ai, /function close\(\)\{ if\(box\)\{ box\.classList\.remove\('on'\); inp\.blur\(\); \} \}/);
   assert.match(ai, /POS_KEY = 'thryd_aibox_pos'/);
@@ -104,4 +104,11 @@ test('v623: 🎥 is a Live view pill (own menu_action per job), not a line optio
   assert.match(js, /c\.menus\.live/);
   const card = JSON.parse(rd('data/open_card.json'));
   if(card.open){ assert.deepEqual(card.menus.live, [{label: '\u{1f3a5} Live view', value: 'live_view: ' + card.job}]); }
+});
+
+test('v624: the panel may hang off any edge; a 120px strip of the [[god]] header always stays on screen', ()=>{
+  assert.match(ai, /const GRIP = 120;/);
+  assert.match(ai, /minL = g - \(w \|\| g\)/);
+  assert.match(ai, /AI\.clampBox = function/);
+  assert.match(js, /ai\.clampBox\(\)/);
 });
