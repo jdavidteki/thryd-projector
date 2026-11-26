@@ -58,8 +58,8 @@
     "air",
     "feels"
    ],
-   "instances": 7,
-   "arg_instances": 7,
+   "instances": 8,
+   "arg_instances": 8,
    "parent": "Thing",
    "chain": [
     "Manner",
@@ -108,8 +108,8 @@
     "give",
     "know"
    ],
-   "instances": 475,
-   "arg_instances": 146,
+   "instances": 476,
+   "arg_instances": 147,
    "parent": null,
    "chain": [
     "Thing"
@@ -2787,6 +2787,22 @@
     "run-5a58c4"
    ],
    "tweets": []
+  },
+  "give": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-cf203b",
+   "first_job": "j32",
+   "source": "pick",
+   "runs": [
+    "run-cf203b"
+   ],
+   "tweets": [
+    {
+     "text": "— it sounded like give me a hug",
+     "year": "2024"
+    }
+   ]
   },
   "god": {
    "class": "Thing",
@@ -7373,6 +7389,22 @@
     }
    ]
   },
+  "totally": {
+   "class": "Manner",
+   "cue": "suffix -ly",
+   "first_run": "run-cf203b",
+   "first_job": "j32",
+   "source": "pick",
+   "runs": [
+    "run-cf203b"
+   ],
+   "tweets": [
+    {
+     "text": "- dem get [[us]] totally! acura and [[hpr]]",
+     "year": "2024"
+    }
+   ]
+  },
   "totalnumapps": {
    "class": "Thing",
    "cue": "default",
@@ -9898,6 +9930,18 @@
     "skills",
     "Thing",
     "j31",
+    "pick"
+   ],
+   [
+    "totally",
+    "Manner",
+    "j32",
+    "pick"
+   ],
+   [
+    "give",
+    "Thing",
+    "j32",
     "pick"
    ]
   ],
@@ -12631,6 +12675,9 @@
   "one.thing": "thing(what: Thing)",
   "pen.imagination": "imagination(what: Thing)",
   "precision.accuracy": "accuracy()",
+  "dem.get": "get(how: Manner)",
+  "sounded.like": "like(what: Thing)",
+  "state.update": "update()",
   "cooler.getdatemanufactured": "getDateManufactured()",
   "ronke.getlikes.contains": "getlikes.contains()",
   "kazeem.goodqualities.filter": "filter()",
@@ -13171,6 +13218,8 @@
    "skipping",
    "slapping",
    "something",
+   "sounded",
+   "state",
    "stay",
    "stomach",
    "story",
@@ -13257,5 +13306,5 @@
   "epilogue": "quiet",
   "coda": "quiet"
  },
- "updated": "2026-11-26T02:07:34-05:00"
+ "updated": "2026-11-26T02:09:15-05:00"
 }

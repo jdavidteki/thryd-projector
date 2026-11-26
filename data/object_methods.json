@@ -20916,6 +20916,193 @@
    "faded": false,
    "last_run": "run-cf203b"
   },
+  "dem.get": {
+   "object": "dem",
+   "method": "get",
+   "args": [
+    "totally"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j32",
+    "card": "w32",
+    "title": "dem.get(totally)",
+    "emoji": "🪵",
+    "at": "2026-11-26T02:08:31-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "dem.get(totally)",
+     "emoji": "🪵",
+     "arg": "totally",
+     "run": "run-cf203b",
+     "job": "j32",
+     "tweets": [
+      {
+       "text": "- dem get [[us]] totally! acura and [[hpr]]",
+       "year": "2024"
+      }
+     ],
+     "consequence": "What just happened: Kemi says what she heard in his half step: \"it sounded like give me a hug.\" Before she can answer, the woman breaks in: \"dem get us totally!",
+     "consequence_job": "j33",
+     "resolved": "dem.get(how=totally:Manner) from j32",
+     "injected": [
+      {
+       "param": "how",
+       "class": "Manner",
+       "instance": "totally",
+       "from_run": "run-cf203b",
+       "from_job": "j32",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "how",
+      "class": "Manner",
+      "default": "totally",
+      "first_run": "run-cf203b",
+      "first_job": "j32"
+     }
+    ],
+    "text": "get(how: Manner)"
+   },
+   "receiver_class": "Thing",
+   "prior": [
+    {
+     "id": "what.get",
+     "title": "what.get()",
+     "run": "run-cf203b",
+     "job": "j24",
+     "at": "2026-11-26T00:15:50-05:00",
+     "why": "same method"
+    }
+   ],
+   "faded": false,
+   "last_run": null
+  },
+  "sounded.like": {
+   "object": "sounded",
+   "method": "like",
+   "args": [
+    "give"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j32",
+    "card": "w32",
+    "title": "sounded.like(give)",
+    "emoji": "🪨",
+    "at": "2026-11-26T02:08:31-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "sounded.like(give)",
+     "emoji": "🪨",
+     "arg": "give",
+     "run": "run-cf203b",
+     "job": "j32",
+     "tweets": [
+      {
+       "text": "— it sounded like give me a hug",
+       "year": "2024"
+      }
+     ],
+     "consequence": "What just happened: Kemi says what she heard in his half step: \"it sounded like give me a hug.\" Before she can answer, the woman breaks in: \"dem get us totally!",
+     "consequence_job": "j33",
+     "resolved": "sounded.like(what=give:Thing) from j32",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "give",
+       "from_run": "run-cf203b",
+       "from_job": "j32",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "give",
+      "first_run": "run-cf203b",
+      "first_job": "j32"
+     }
+    ],
+    "text": "like(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "state.update": {
+   "object": "state",
+   "method": "update",
+   "args": [
+    ""
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j32",
+    "card": "w32",
+    "title": "state.update()",
+    "emoji": "🪺",
+    "at": "2026-11-26T02:08:31-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "state.update()",
+     "emoji": "🪺",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j32",
+     "tweets": [
+      {
+       "text": "#sbk[[ias]] -- state update [[ashc]]",
+       "year": "2024"
+      }
+     ],
+     "consequence": "Then she reads off the rest like a news flash: \"state update.\" 📖 Now: Tobi's arms are open, the woman's evidence is on speaker, and Kemi has to choose one.",
+     "consequence_job": "j33",
+     "resolved": "state.update()",
+     "injected": []
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [],
+    "text": "update()"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
   "cooler.getdatemanufactured": {
    "object": "cooler",
    "method": "getDateManufactured",
@@ -24490,7 +24677,8 @@
    "daz.what"
   ],
   "dem": [
-   "dem.go"
+   "dem.go",
+   "dem.get"
   ],
   "deya": [
    "deya.fighting"
@@ -25076,8 +25264,14 @@
   "song": [
    "song.hit"
   ],
+  "sounded": [
+   "sounded.like"
+  ],
   "speaker": [
    "speaker.play"
+  ],
+  "state": [
+   "state.update"
   ],
   "stay": [
    "stay.above"
@@ -30518,6 +30712,16 @@
     ]
    }
   ],
+  "clock": [
+   {
+    "scope": "safe",
+    "from": "ddeca0a1b3fa",
+    "title": "505. pidgin for heaven",
+    "funcs": [
+     "state.update"
+    ]
+   }
+  ],
   "clock1": [
    {
     "scope": "safe",
@@ -31968,6 +32172,16 @@
     "title": "1118. egusi on tissue papers",
     "funcs": [
      "oyinboman.know"
+    ]
+   }
+  ],
+  "ejiro": [
+   {
+    "scope": "safe",
+    "from": "9e60097b53d0",
+    "title": "725. tea and bread everyday",
+    "funcs": [
+     "dem.get"
     ]
    }
   ],
@@ -36017,6 +36231,16 @@
     ]
    }
   ],
+  "koko": [
+   {
+    "scope": "safe",
+    "from": "9e60097b53d0",
+    "title": "725. tea and bread everyday",
+    "funcs": [
+     "dem.get"
+    ]
+   }
+  ],
   "lady": [
    {
     "scope": "run",
@@ -36829,6 +37053,16 @@
      "nobody.bring",
      "hear.setword",
      "nobody.weigh"
+    ]
+   }
+  ],
+  "mamito": [
+   {
+    "scope": "safe",
+    "from": "9e60097b53d0",
+    "title": "725. tea and bread everyday",
+    "funcs": [
+     "dem.get"
     ]
    }
   ],
@@ -41473,6 +41707,14 @@
    },
    {
     "scope": "safe",
+    "from": "9e60097b53d0",
+    "title": "725. tea and bread everyday",
+    "funcs": [
+     "dem.get"
+    ]
+   },
+   {
+    "scope": "safe",
     "from": "ae3ee411f127",
     "title": "304. i can break bread anytime",
     "funcs": [
@@ -41525,6 +41767,14 @@
    },
    {
     "scope": "safe",
+    "from": "9e60097b53d0",
+    "title": "725. tea and bread everyday",
+    "funcs": [
+     "dem.get"
+    ]
+   },
+   {
+    "scope": "safe",
     "from": "65400f845eaf",
     "title": "703. my favourite line is a smile",
     "funcs": [
@@ -41533,6 +41783,14 @@
    }
   ],
   "person3": [
+   {
+    "scope": "safe",
+    "from": "9e60097b53d0",
+    "title": "725. tea and bread everyday",
+    "funcs": [
+     "dem.get"
+    ]
+   },
    {
     "scope": "safe",
     "from": "65400f845eaf",
@@ -41545,6 +41803,14 @@
   "person4": [
    {
     "scope": "safe",
+    "from": "9e60097b53d0",
+    "title": "725. tea and bread everyday",
+    "funcs": [
+     "dem.get"
+    ]
+   },
+   {
+    "scope": "safe",
     "from": "65400f845eaf",
     "title": "703. my favourite line is a smile",
     "funcs": [
@@ -41553,6 +41819,14 @@
    }
   ],
   "person5": [
+   {
+    "scope": "safe",
+    "from": "9e60097b53d0",
+    "title": "725. tea and bread everyday",
+    "funcs": [
+     "dem.get"
+    ]
+   },
    {
     "scope": "safe",
     "from": "65400f845eaf",
@@ -43168,6 +43442,36 @@
     ]
    }
   ],
+  "r345_afropop_singer": [
+   {
+    "scope": "safe",
+    "from": "9e60097b53d0",
+    "title": "725. tea and bread everyday",
+    "funcs": [
+     "dem.get"
+    ]
+   }
+  ],
+  "r345_ejiro": [
+   {
+    "scope": "safe",
+    "from": "9e60097b53d0",
+    "title": "725. tea and bread everyday",
+    "funcs": [
+     "dem.get"
+    ]
+   }
+  ],
+  "r345_koko": [
+   {
+    "scope": "safe",
+    "from": "9e60097b53d0",
+    "title": "725. tea and bread everyday",
+    "funcs": [
+     "dem.get"
+    ]
+   }
+  ],
   "reality": [
    {
     "scope": "run",
@@ -44763,6 +45067,16 @@
     ]
    }
   ],
+  "tea_bread_everyday_figure": [
+   {
+    "scope": "safe",
+    "from": "9e60097b53d0",
+    "title": "725. tea and bread everyday",
+    "funcs": [
+     "dem.get"
+    ]
+   }
+  ],
   "teach": [
    {
     "scope": "run",
@@ -45691,6 +46005,7 @@
     "from": "2298cd34a4a6",
     "title": "1213. time and reason",
     "funcs": [
+     "sounded.like",
      "mamaronke.sit"
     ]
    }
@@ -48071,6 +48386,10 @@
     "thryd.importtheme"
    ]
   },
+  "run-345b3d": {
+   "safe": "9e60097b53d0",
+   "funcs": []
+  },
   "run-44583f": {
    "safe": "ae3ee411f127",
    "funcs": []
@@ -48334,6 +48653,9 @@
     "one.thing",
     "pen.imagination",
     "precision.accuracy",
+    "dem.get",
+    "sounded.like",
+    "state.update",
     "cli.cli",
     "thryd.importtheme",
     "kemi.ismarried",
@@ -48736,7 +49058,8 @@
   "2298cd34a4a6": {
    "title": "1213. time and reason",
    "funcs": [
-    "mamaronke.sit"
+    "mamaronke.sit",
+    "sounded.like"
    ],
    "runs": []
   },
@@ -49259,7 +49582,10 @@
     "love.war",
     "one.thing",
     "pen.imagination",
-    "precision.accuracy"
+    "precision.accuracy",
+    "dem.get",
+    "sounded.like",
+    "state.update"
    ],
    "runs": [
     "run-cf203b"
@@ -49615,6 +49941,15 @@
     "thing.weird"
    ],
    "runs": []
+  },
+  "9e60097b53d0": {
+   "title": "725. tea and bread everyday",
+   "funcs": [
+    "dem.get"
+   ],
+   "runs": [
+    "run-345b3d"
+   ]
   },
   "9ef335096225": {
    "title": "109. masterpiece",
@@ -50056,6 +50391,13 @@
    "title": "fashionably late",
    "funcs": [
     "dem.go"
+   ],
+   "runs": []
+  },
+  "ddeca0a1b3fa": {
+   "title": "505. pidgin for heaven",
+   "funcs": [
+    "state.update"
    ],
    "runs": []
   },
@@ -51101,9 +51443,15 @@
   "1*AJB8SrMTgaCpdzYc75Srqg.jpeg": [
    "7cbc2e5ad31d"
   ],
+  "1*8uKFVu2-2H0t2BjIjiBl7g.gif": [
+   "9e60097b53d0"
+  ],
   "1*6HL5YNv8ctvM4bl6rHfSlA.gif": [
    "e164727d4c98",
    "ec307b47b819"
+  ],
+  "1*fLpUn94y8lK_dAdStwYooA.gif": [
+   "ddeca0a1b3fa"
   ],
   "1*dG43u53YvDE9PsOeA0ElGQ.jpeg": [
    "edabb8db520c"
@@ -51626,6 +51974,12 @@
     "236b487cf22b"
    ]
   },
+  "1*8uKFVu2-2H0t2BjIjiBl7g.gif": {
+   "runs": [],
+   "safes": [
+    "9e60097b53d0"
+   ]
+  },
   "1*BZpgiAgl2Isc_HVn8hvSaQ.gif": {
    "runs": [],
    "safes": [
@@ -52015,6 +52369,12 @@
     "741a80eaf54d"
    ]
   },
+  "1*fLpUn94y8lK_dAdStwYooA.gif": {
+   "runs": [],
+   "safes": [
+    "ddeca0a1b3fa"
+   ]
+  },
   "1*IQXI1PQrQf5fqcxwKtd49Q.gif": {
    "runs": [],
    "safes": [
@@ -52248,7 +52608,8 @@
    "daz.what"
   ],
   "dem": [
-   "dem.go"
+   "dem.go",
+   "dem.get"
   ],
   "deya": [
    "deya.fighting"
@@ -52703,8 +53064,14 @@
   "song": [
    "song.hit"
   ],
+  "sounded": [
+   "sounded.like"
+  ],
   "speaker": [
    "speaker.play"
+  ],
+  "state": [
+   "state.update"
   ],
   "stay": [
    "stay.above"
@@ -53111,6 +53478,8 @@
   "one": [],
   "pen": [],
   "precision": [],
+  "sounded": [],
+  "state": [],
   "cooler": [],
   "kazeem.goodqualities": [],
   "app": [],
@@ -53358,6 +53727,8 @@
    "skipping",
    "slapping",
    "something",
+   "sounded",
+   "state",
    "stay",
    "stomach",
    "story",
@@ -53385,5 +53756,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-26T02:07:34-05:00"
+ "updated": "2026-11-26T02:09:15-05:00"
 }
