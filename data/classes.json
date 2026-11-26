@@ -108,8 +108,8 @@
     "see",
     "give"
    ],
-   "instances": 499,
-   "arg_instances": 170,
+   "instances": 500,
+   "arg_instances": 171,
    "parent": null,
    "chain": [
     "Thing"
@@ -174,10 +174,10 @@
    "methods": [
     "on",
     "back",
-    "count"
+    "can"
    ],
-   "instances": 27,
-   "arg_instances": 24,
+   "instances": 28,
+   "arg_instances": 25,
    "parent": "Thing",
    "chain": [
     "Action",
@@ -426,6 +426,22 @@
    "tweets": [
     {
      "text": "#sbk - my advice?",
+     "year": "2025"
+    }
+   ]
+  },
+  "afford": {
+   "class": "Action",
+   "cue": "tweet: to/will ...",
+   "first_run": "run-cf203b",
+   "first_job": "j52",
+   "source": "pick",
+   "runs": [
+    "run-cf203b"
+   ],
+   "tweets": [
+    {
+     "text": "- idt you can afford this new new",
      "year": "2025"
     }
    ]
@@ -2424,6 +2440,22 @@
     }
    ]
   },
+  "errors": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-cf203b",
+   "first_job": "j52",
+   "source": "pick",
+   "runs": [
+    "run-cf203b"
+   ],
+   "tweets": [
+    {
+     "text": "[[wser]] - he got zero errors! sweden!",
+     "year": "2024"
+    }
+   ]
+  },
   "ese": {
    "class": "Thing",
    "cue": "default",
@@ -3145,6 +3177,10 @@
    "tweets": [
     {
      "text": "#oyinboman -- alorof things have apuned in your absence o",
+     "year": "2025"
+    },
+    {
+     "text": "- until the artists have filled",
      "year": "2025"
     }
    ]
@@ -10247,12 +10283,6 @@
     "pick"
    ],
    [
-    "have",
-    "Thing",
-    "j19",
-    "pick"
-   ],
-   [
     "ishoda",
     "Thing",
     "j19",
@@ -10592,6 +10622,24 @@
     "iyiz",
     "Thing",
     "j51",
+    "pick"
+   ],
+   [
+    "errors",
+    "Thing",
+    "j52",
+    "pick"
+   ],
+   [
+    "afford",
+    "Action",
+    "j52",
+    "pick"
+   ],
+   [
+    "have",
+    "Thing",
+    "j52",
     "pick"
    ]
   ],
@@ -13386,6 +13434,10 @@
   "slapping.because": "because()",
   "then.said": "said(who: Person)",
   "then.say": "say(what: Thing)",
+  "got.zero": "zero(what: Thing)",
+  "idt.can": "can(act: Action)",
+  "la.pooohhhh": "pooohhhh()",
+  "until.artists": "artists(what: Thing)",
   "cooler.getdatemanufactured": "getDateManufactured()",
   "ronke.getlikes.contains": "getlikes.contains()",
   "kazeem.goodqualities.filter": "filter()",
@@ -13471,7 +13523,8 @@
   "kemi.getlastperiod": "getlastperiod()",
   "new.mirror": "mirror()",
   "kemisister.getname": "getname()",
-  "new.miniskirt": "miniskirt()"
+  "new.miniskirt": "miniskirt()",
+  "kemi.getshoesize": "getshoesize()"
  },
  "parent": {
   "Person": "Thing",
@@ -13924,15 +13977,18 @@
    "forgive",
    "global",
    "go",
+   "got",
    "guy",
    "has",
    "have",
    "honey",
    "hope",
+   "idt",
    "inside",
    "jesse",
    "kemi",
    "know",
+   "la",
    "ladies",
    "lehgeet",
    "lie",
@@ -13981,6 +14037,7 @@
    "till",
    "touch",
    "understand",
+   "until",
    "used",
    "waga",
    "well",
@@ -14069,5 +14126,5 @@
   "epilogue": "quiet",
   "coda": "quiet"
  },
- "updated": "2026-11-26T18:51:35-05:00"
+ "updated": "2026-11-26T18:52:25-05:00"
 }

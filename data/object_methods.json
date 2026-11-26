@@ -18517,12 +18517,12 @@
      ],
      "consequence": "thunder una fayago!\" She tells him \"we should be fighting ishoda oluwa lon shola,\" not each other, and sighs, \"story so we go again.\" Then she says it: \"alorof things have apuned in your absence o.\" 📖 Now: Tobi heard her.",
      "consequence_job": "j20",
-     "resolved": "alorof.things(what=have:Thing) from j19",
+     "resolved": "alorof.things(what=ishoda:Thing) from j19",
      "injected": [
       {
        "param": "what",
        "class": "Thing",
-       "instance": "have",
+       "instance": "ishoda",
        "from_run": "run-cf203b",
        "from_job": "j19",
        "source": "pick"
@@ -24787,6 +24787,266 @@
    "faded": false,
    "last_run": "run-cf203b"
   },
+  "got.zero": {
+   "object": "got",
+   "method": "zero",
+   "args": [
+    "errors"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j52",
+    "card": "w52",
+    "title": "got.zero(errors)",
+    "emoji": "⚙️",
+    "at": "2026-11-26T18:52:01-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "got.zero(errors)",
+     "emoji": "⚙️",
+     "arg": "errors",
+     "run": "run-cf203b",
+     "job": "j52",
+     "tweets": [
+      {
+       "text": "[[wser]] - he got zero errors! sweden!",
+       "year": "2024"
+      }
+     ],
+     "consequence": "Where things stand: The ring is still on Kemi's hand.",
+     "consequence_job": "j52",
+     "resolved": "got.zero(what=errors:Thing) from j52",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "errors",
+       "from_run": "run-cf203b",
+       "from_job": "j52",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "errors",
+      "first_run": "run-cf203b",
+      "first_job": "j52"
+     }
+    ],
+    "text": "zero(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "idt.can": {
+   "object": "idt",
+   "method": "can",
+   "args": [
+    "afford"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j52",
+    "card": "w52",
+    "title": "idt.can(afford)",
+    "emoji": "🗜️",
+    "at": "2026-11-26T18:52:01-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "idt.can(afford)",
+     "emoji": "🗜️",
+     "arg": "afford",
+     "run": "run-cf203b",
+     "job": "j52",
+     "tweets": [
+      {
+       "text": "- idt you can afford this new new",
+       "year": "2025"
+      }
+     ],
+     "consequence": "Where things stand: The ring is still on Kemi's hand.",
+     "consequence_job": "j52",
+     "resolved": "idt.can(act=afford:Action) from j52",
+     "injected": [
+      {
+       "param": "act",
+       "class": "Action",
+       "instance": "afford",
+       "from_run": "run-cf203b",
+       "from_job": "j52",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "act",
+      "class": "Action",
+      "default": "afford",
+      "first_run": "run-cf203b",
+      "first_job": "j52"
+     }
+    ],
+    "text": "can(act: Action)"
+   },
+   "receiver_class": "Thing",
+   "prior": [
+    {
+     "id": "guy.can",
+     "title": "guy.can()",
+     "run": "run-cf203b",
+     "job": "j30",
+     "at": "2026-11-26T01:41:43-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "believe.can",
+     "title": "believe.can(work)",
+     "run": "run-cf203b",
+     "job": "j12",
+     "at": "2026-11-25T13:04:53-05:00",
+     "why": "same method"
+    }
+   ],
+   "faded": false,
+   "last_run": null
+  },
+  "la.pooohhhh": {
+   "object": "la",
+   "method": "pooohhhh",
+   "args": [
+    ""
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j52",
+    "card": "w52",
+    "title": "la.pooohhhh()",
+    "emoji": "🪝",
+    "at": "2026-11-26T18:52:01-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "la.pooohhhh()",
+     "emoji": "🪝",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j52",
+     "tweets": [
+      {
+       "text": "la la pooohhhh",
+       "year": "2024"
+      }
+     ],
+     "consequence": "Where things stand: The ring is still on Kemi's hand.",
+     "consequence_job": "j52",
+     "resolved": "la.pooohhhh()",
+     "injected": []
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [],
+    "text": "pooohhhh()"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "until.artists": {
+   "object": "until",
+   "method": "artists",
+   "args": [
+    "have"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j52",
+    "card": "w52",
+    "title": "until.artists(have)",
+    "emoji": "⚖️",
+    "at": "2026-11-26T18:52:01-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "until.artists(have)",
+     "emoji": "⚖️",
+     "arg": "have",
+     "run": "run-cf203b",
+     "job": "j52",
+     "tweets": [
+      {
+       "text": "- until the artists have filled",
+       "year": "2025"
+      }
+     ],
+     "consequence": "Where things stand: The ring is still on Kemi's hand.",
+     "consequence_job": "j52",
+     "resolved": "until.artists(what=have:Thing) from j52",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "have",
+       "from_run": "run-cf203b",
+       "from_job": "j52",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "have",
+      "first_run": "run-cf203b",
+      "first_job": "j19"
+     }
+    ],
+    "text": "artists(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
   "cooler.getdatemanufactured": {
    "object": "cooler",
    "method": "getDateManufactured",
@@ -28414,6 +28674,46 @@
    "prior": [],
    "faded": false,
    "last_run": null
+  },
+  "kemi.getshoesize": {
+   "object": "kemi",
+   "method": "getshoesize",
+   "args": [],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j52",
+    "card": "j52",
+    "title": "kemi.getshoesize(uk)",
+    "emoji": "",
+    "at": "2026-11-26T18:51:48-05:00",
+    "source": "cli"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "kemi.getshoesize(uk)",
+     "emoji": "",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j52",
+     "tweets": [],
+     "consequence": "The customer typed this on this agenda.",
+     "consequence_job": ""
+    }
+   ],
+   "source": "cli",
+   "cli": true,
+   "sig": {
+    "params": [],
+    "text": "getshoesize()"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
   }
  },
  "objects": {
@@ -28872,6 +29172,9 @@
   "gol": [
    "gol.lo"
   ],
+  "got": [
+   "got.zero"
+  ],
   "grammy": [
    "grammy.swear"
   ],
@@ -28910,6 +29213,9 @@
   ],
   "hours": [
    "hours.could"
+  ],
+  "idt": [
+   "idt.can"
   ],
   "imagination_generation_subject": [
    "object.look"
@@ -28971,7 +29277,8 @@
    "kemi.sometimes",
    "kemi.ismarried",
    "kemi.setlocation",
-   "kemi.getlastperiod"
+   "kemi.getlastperiod",
+   "kemi.getshoesize"
   ],
   "kemisister": [
    "kemisister.getname"
@@ -28995,6 +29302,9 @@
    "kunle.have",
    "kunle.read",
    "kunle.walk"
+  ],
+  "la": [
+   "la.pooohhhh"
   ],
   "ladies": [
    "ladies.taking"
@@ -29541,6 +29851,9 @@
   ],
   "understand": [
    "understand.now"
+  ],
+  "until": [
+   "until.artists"
   ],
   "use": [
    "use.mend"
@@ -38336,6 +38649,7 @@
     "from": "10bcabf545b2",
     "title": "1223. genius",
     "funcs": [
+     "got.zero",
      "folake.hold"
     ]
    }
@@ -49831,6 +50145,7 @@
     "from": "4558fb3e9d83",
     "title": "624. delete your drafts",
     "funcs": [
+     "idt.can",
      "doing.getawaselves"
     ]
    },
@@ -53307,6 +53622,16 @@
     ]
    }
   ],
+  "wisdom_needs_her_figure": [
+   {
+    "scope": "safe",
+    "from": "37281d5712d6",
+    "title": "314. probability",
+    "funcs": [
+     "until.artists"
+    ]
+   }
+  ],
   "wizkid_sarkodie_ami_figure": [
    {
     "scope": "safe",
@@ -54413,6 +54738,10 @@
     "slapping.because",
     "then.said",
     "then.say",
+    "got.zero",
+    "idt.can",
+    "la.pooohhhh",
+    "until.artists",
     "cli.cli",
     "thryd.importtheme",
     "kemi.ismarried",
@@ -54429,7 +54758,8 @@
     "kemi.getlastperiod",
     "new.mirror",
     "kemisister.getname",
-    "new.miniskirt"
+    "new.miniskirt",
+    "kemi.getshoesize"
    ]
   },
   "run-d6fc": {
@@ -54684,7 +55014,8 @@
   "10bcabf545b2": {
    "title": "1223. genius",
    "funcs": [
-    "folake.hold"
+    "folake.hold",
+    "got.zero"
    ],
    "runs": []
   },
@@ -55016,6 +55347,13 @@
    ],
    "runs": []
   },
+  "37281d5712d6": {
+   "title": "314. probability",
+   "funcs": [
+    "until.artists"
+   ],
+   "runs": []
+  },
   "372bf27135f7": {
    "title": "913. story of my life",
    "funcs": [
@@ -55157,7 +55495,8 @@
   "4558fb3e9d83": {
    "title": "624. delete your drafts",
    "funcs": [
-    "doing.getawaselves"
+    "doing.getawaselves",
+    "idt.can"
    ],
    "runs": []
   },
@@ -55570,7 +55909,11 @@
     "stupidity.say",
     "slapping.because",
     "then.said",
-    "then.say"
+    "then.say",
+    "got.zero",
+    "idt.can",
+    "la.pooohhhh",
+    "until.artists"
    ],
    "runs": [
     "run-cf203b"
@@ -55650,6 +55993,13 @@
    "title": "1226. reverse poverty capital",
    "funcs": [
     "dicey.call"
+   ],
+   "runs": []
+  },
+  "7bf8718a938a": {
+   "title": "-thenile.tsx",
+   "funcs": [
+    "la.pooohhhh"
    ],
    "runs": []
   },
@@ -57405,6 +57755,9 @@
   "1*EGfa3VQWdL61AGY_DW56zA.gif": [
    "fbb6af08827a"
   ],
+  "1*nFKXPzvDdQdQ5rbSb4OQOg.gif": [
+   "37281d5712d6"
+  ],
   "1*vWfOrYwjOdzyBflH8Mz0xg.jpeg": [
    "9b4b423fcdb7"
   ],
@@ -57600,6 +57953,9 @@
   ],
   "1*KOfHcbZItSwnzB-Xt4fH3A.gif": [
    "1043ee742884"
+  ],
+  "1*oWZELdqCLXq5Nt_lhK91OA.jpeg": [
+   "7bf8718a938a"
   ],
   "1*XLmQr9y-oUaanTmPvrKASA.jpeg": [
    "01edf0335ce1"
@@ -58849,6 +59205,12 @@
     "0edd03763978"
    ]
   },
+  "1*nFKXPzvDdQdQ5rbSb4OQOg.gif": {
+   "runs": [],
+   "safes": [
+    "37281d5712d6"
+   ]
+  },
   "1*1fdKsQwU-UmrPpxbzW1YWA.gif": {
    "runs": [],
    "safes": [
@@ -59216,6 +59578,9 @@
   "gol": [
    "gol.lo"
   ],
+  "got": [
+   "got.zero"
+  ],
   "grammy": [
    "grammy.swear"
   ],
@@ -59254,6 +59619,9 @@
   ],
   "hours": [
    "hours.could"
+  ],
+  "idt": [
+   "idt.can"
   ],
   "inside": [
    "inside.teeth"
@@ -59309,7 +59677,8 @@
    "kemi.sometimes",
    "kemi.ismarried",
    "kemi.setlocation",
-   "kemi.getlastperiod"
+   "kemi.getlastperiod",
+   "kemi.getshoesize"
   ],
   "kemisister": [
    "kemisister.getname"
@@ -59326,6 +59695,9 @@
    "kunle.have",
    "kunle.read",
    "kunle.walk"
+  ],
+  "la": [
+   "la.pooohhhh"
   ],
   "ladies": [
    "ladies.taking"
@@ -59750,6 +60122,9 @@
   "understand": [
    "understand.now"
   ],
+  "until": [
+   "until.artists"
+  ],
   "use": [
    "use.mend"
   ],
@@ -60145,6 +60520,10 @@
    "Readable",
    "Speakable"
   ],
+  "got": [],
+  "idt": [],
+  "la": [],
+  "until": [],
   "cooler": [],
   "kazeem.goodqualities": [],
   "app": [],
@@ -60380,15 +60759,18 @@
    "forgive",
    "global",
    "go",
+   "got",
    "guy",
    "has",
    "have",
    "honey",
    "hope",
+   "idt",
    "inside",
    "jesse",
    "kemi",
    "know",
+   "la",
    "ladies",
    "lehgeet",
    "lie",
@@ -60437,6 +60819,7 @@
    "till",
    "touch",
    "understand",
+   "until",
    "used",
    "waga",
    "well",
@@ -60466,5 +60849,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-26T18:51:36-05:00"
+ "updated": "2026-11-26T18:52:26-05:00"
 }
