@@ -21338,6 +21338,257 @@
    "faded": false,
    "last_run": "run-cf203b"
   },
+  "can.slap": {
+   "object": "can",
+   "method": "slap",
+   "args": [
+    "him"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j34",
+    "card": "w34",
+    "title": "can.slap(him)",
+    "emoji": "🫎",
+    "at": "2026-11-26T11:35:21-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "can.slap(him)",
+     "emoji": "🫎",
+     "arg": "him",
+     "run": "run-cf203b",
+     "job": "j34",
+     "tweets": [
+      {
+       "text": "[[jol]] - but can we slap him? 👋🏿👋🏿👋🏿",
+       "year": "2024"
+      }
+     ],
+     "consequence": "Locked at 127 lines.",
+     "consequence_job": "j35",
+     "resolved": "can.slap(who=him:Person) from j34",
+     "injected": [
+      {
+       "param": "who",
+       "class": "Person",
+       "instance": "him",
+       "from_run": "run-cf203b",
+       "from_job": "j34",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "who",
+      "class": "Person",
+      "default": "him",
+      "first_run": "run-cf203b",
+      "first_job": "j34"
+     }
+    ],
+    "text": "slap(who: Person)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "chasing.precisions": {
+   "object": "chasing",
+   "method": "precisions",
+   "args": [
+    ""
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j34",
+    "card": "w34",
+    "title": "chasing.precisions()",
+    "emoji": "🐆",
+    "at": "2026-11-26T11:35:21-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "chasing.precisions()",
+     "emoji": "🐆",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j34",
+     "tweets": [
+      {
+       "text": "[[omaylt]] - chasing precisions",
+       "year": "2024"
+      }
+     ],
+     "consequence": "Locked at 127 lines.",
+     "consequence_job": "j35",
+     "resolved": "chasing.precisions()",
+     "injected": []
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [],
+    "text": "precisions()"
+   },
+   "receiver_class": "Thing",
+   "prior": [
+    {
+     "id": "finding.precisions",
+     "title": "finding.precisions()",
+     "run": "run-cf203b",
+     "job": "j33",
+     "at": "2026-11-26T11:20:44-05:00",
+     "why": "same method"
+    }
+   ],
+   "faded": false,
+   "last_run": null
+  },
+  "understand.now": {
+   "object": "understand",
+   "method": "now",
+   "args": [
+    ""
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j34",
+    "card": "w34",
+    "title": "understand.now()",
+    "emoji": "🪿",
+    "at": "2026-11-26T11:35:21-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "understand.now()",
+     "emoji": "🪿",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j34",
+     "tweets": [
+      {
+       "text": "#thryd -- do you understand now?",
+       "year": "2024"
+      }
+     ],
+     "consequence": "Kemi stands with the phone between her and Tobi, and on speaker the woman asks if she understands now.",
+     "consequence_job": "j35",
+     "resolved": "understand.now()",
+     "injected": []
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [],
+    "text": "now()"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "what.say": {
+   "object": "what",
+   "method": "say",
+   "args": [
+    ""
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j34",
+    "card": "w34",
+    "title": "what.say()",
+    "emoji": "🫏",
+    "at": "2026-11-26T11:35:21-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "what.say()",
+     "emoji": "🫏",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j34",
+     "tweets": [
+      {
+       "text": "[[tos]] -- what did he say?",
+       "year": "2025"
+      }
+     ],
+     "consequence": "Locked at 127 lines.",
+     "consequence_job": "j35",
+     "resolved": "what.say()",
+     "injected": []
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [],
+    "text": "say()"
+   },
+   "receiver_class": "Thing",
+   "prior": [
+    {
+     "id": "teo.say",
+     "title": "teo.say(dem)",
+     "run": "run-5a58c4",
+     "job": "j36",
+     "at": "2026-11-23T23:51:56-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "mamaronke.say",
+     "title": "mamaronke.say(bus)",
+     "run": "run-2eb42d",
+     "job": "j33",
+     "at": "2026-11-18T17:14:29-0500",
+     "why": "same method"
+    },
+    {
+     "id": "mamaronke.say",
+     "title": "mamaronke.say(units)",
+     "run": "run-2eb42d",
+     "job": "j31",
+     "at": "2026-11-18T13:34:27-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "mamaronke.say",
+     "title": "mamaronke.say(pot)",
+     "run": "run-2eb42d",
+     "job": "j30",
+     "at": "2026-11-18T13:26:10-05:00",
+     "why": "same method"
+    }
+   ],
+   "faded": false,
+   "last_run": null
+  },
   "cooler.getdatemanufactured": {
    "object": "cooler",
    "method": "getDateManufactured",
@@ -24762,7 +25013,8 @@
    "can.see",
    "can.write",
    "can.put",
-   "can.find"
+   "can.find",
+   "can.slap"
   ],
   "care": [
    "care.on"
@@ -24771,6 +25023,9 @@
    "chairman.check",
    "chairman.read",
    "chairman.introduce"
+  ],
+  "chasing": [
+   "chasing.precisions"
   ],
   "cleaner": [
    "cleaner.lift"
@@ -25651,6 +25906,9 @@
   "uncle_will_smith_subject": [
    "object.look"
   ],
+  "understand": [
+   "understand.now"
+  ],
   "use": [
    "use.mend"
   ],
@@ -25666,7 +25924,8 @@
   "what": [
    "what.guys",
    "what.road",
-   "what.get"
+   "what.get",
+   "what.say"
   ],
   "whatever_happens_me_subject": [
    "object.look"
@@ -41770,6 +42029,14 @@
     "funcs": [
      "ready.finally"
     ]
+   },
+   {
+    "scope": "safe",
+    "from": "78fa7a5387e6",
+    "title": "1226. faith can go fly herself!",
+    "funcs": [
+     "understand.now"
+    ]
    }
   ],
   "order_pure_water_figure": [
@@ -44014,6 +44281,16 @@
     ]
    }
   ],
+  "revolutionize_pop_figure": [
+   {
+    "scope": "safe",
+    "from": "23340e6f4d92",
+    "title": "806. revolutionize pop",
+    "funcs": [
+     "what.say"
+    ]
+   }
+  ],
   "risk_figure": [
    {
     "scope": "safe",
@@ -46255,6 +46532,14 @@
    }
   ],
   "tie": [
+   {
+    "scope": "safe",
+    "from": "9a3cb52f3992",
+    "title": "freedom time",
+    "funcs": [
+     "chasing.precisions"
+    ]
+   },
    {
     "scope": "safe",
     "from": "b4186d5597d1",
@@ -48926,6 +49211,10 @@
     "forgive.oloriburuku",
     "lie.truth",
     "touch.feel",
+    "can.slap",
+    "chasing.precisions",
+    "understand.now",
+    "what.say",
     "cli.cli",
     "thryd.importtheme",
     "kemi.ismarried",
@@ -49330,6 +49619,13 @@
    "funcs": [
     "mamaronke.sit",
     "sounded.like"
+   ],
+   "runs": []
+  },
+  "23340e6f4d92": {
+   "title": "806. revolutionize pop",
+   "funcs": [
+    "what.say"
    ],
    "runs": []
   },
@@ -49774,6 +50070,13 @@
    ],
    "runs": []
   },
+  "6cbdcff64cc7": {
+   "title": "1115. imagination wan kee me",
+   "funcs": [
+    "can.slap"
+   ],
+   "runs": []
+  },
   "6d72f12ca0c4": {
    "title": "1212. self-care",
    "funcs": [
@@ -49880,7 +50183,11 @@
     "finding.precisions",
     "forgive.oloriburuku",
     "lie.truth",
-    "touch.feel"
+    "touch.feel",
+    "can.slap",
+    "chasing.precisions",
+    "understand.now",
+    "what.say"
    ],
    "runs": [
     "run-cf203b"
@@ -49932,6 +50239,13 @@
    "title": "111. energy conversion",
    "funcs": [
     "skipping.consumes"
+   ],
+   "runs": []
+  },
+  "78fa7a5387e6": {
+   "title": "1226. faith can go fly herself!",
+   "funcs": [
+    "understand.now"
    ],
    "runs": []
   },
@@ -50203,6 +50517,13 @@
    "title": "1211. the new wave",
    "funcs": [
     "teo.hide"
+   ],
+   "runs": []
+  },
+  "9a3cb52f3992": {
+   "title": "freedom time",
+   "funcs": [
+    "chasing.precisions"
    ],
    "runs": []
   },
@@ -51108,6 +51429,9 @@
   "1*o8i8-Ujd4nxWbqPmAaMrEw.gif": [
    "8e7666062767"
   ],
+  "1*1fdKsQwU-UmrPpxbzW1YWA.gif": [
+   "9a3cb52f3992"
+  ],
   "1*TboWtv3mCjG0__y8McqEAw.gif": [
    "76e4b260debb",
    "24d3f1fa5ad1",
@@ -51364,6 +51688,9 @@
   "1*jAmSDHK6yaAgVhhK9xU8Rg.gif": [
    "2e8d6c6d24fa"
   ],
+  "1*YzZ3pAXXDBKLwuYSppC9IA.gif": [
+   "6cbdcff64cc7"
+  ],
   "1*SKqzlBc1vQA5PWKQJUBt-g.gif": [
    "ecbaffa655c1"
   ],
@@ -51403,7 +51730,8 @@
    "75c8a354a7c7"
   ],
   "1*6P6actu28LykPqd3qVBp9g.gif": [
-   "0794a7d2abc3"
+   "0794a7d2abc3",
+   "78fa7a5387e6"
   ],
   "1*KqXaRJPv0K7PWVAAtWRE_g.gif": [
    "6ab7c4931c8d"
@@ -51483,6 +51811,9 @@
   "1*WHi5bGe1yByrJpchMb-ggw.gif": [
    "f3242b82bede",
    "43e6e657bcca"
+  ],
+  "1*9L8yANUm-2EnYal4M3kKWQ.gif": [
+   "23340e6f4d92"
   ],
   "1*yGiZLqk4a8lrxbZRYoRMiA.gif": [
    "4e42e2aec04b"
@@ -52244,7 +52575,8 @@
   "1*6P6actu28LykPqd3qVBp9g.gif": {
    "runs": [],
    "safes": [
-    "0794a7d2abc3"
+    "0794a7d2abc3",
+    "78fa7a5387e6"
    ]
   },
   "1*jAmSDHK6yaAgVhhK9xU8Rg.gif": {
@@ -52723,6 +53055,12 @@
     "0edd03763978"
    ]
   },
+  "1*1fdKsQwU-UmrPpxbzW1YWA.gif": {
+   "runs": [],
+   "safes": [
+    "9a3cb52f3992"
+   ]
+  },
   "1*XAiSYjFKsqdzhWwoSd6nhw.gif": {
    "runs": [],
    "safes": [
@@ -52765,6 +53103,12 @@
    "runs": [],
    "safes": [
     "b294af183233"
+   ]
+  },
+  "1*9L8yANUm-2EnYal4M3kKWQ.gif": {
+   "runs": [],
+   "safes": [
+    "23340e6f4d92"
    ]
   },
   "1*EzXx6mCPVc-4TByCgM6uFw.gif": {
@@ -52872,7 +53216,8 @@
    "can.see",
    "can.write",
    "can.put",
-   "can.find"
+   "can.find",
+   "can.slap"
   ],
   "care": [
    "care.on"
@@ -52881,6 +53226,9 @@
    "chairman.check",
    "chairman.read",
    "chairman.introduce"
+  ],
+  "chasing": [
+   "chasing.precisions"
   ],
   "cleaner": [
    "cleaner.lift"
@@ -53486,6 +53834,9 @@
    "tyn.on",
    "tyn.getdetermines"
   ],
+  "understand": [
+   "understand.now"
+  ],
   "use": [
    "use.mend"
   ],
@@ -53501,7 +53852,8 @@
   "what": [
    "what.guys",
    "what.road",
-   "what.get"
+   "what.get",
+   "what.say"
   ],
   "why": [
    "why.thunder"
@@ -53775,7 +54127,9 @@
    "Readable"
   ],
   "say": [],
-  "what": [],
+  "what": [
+   "Speakable"
+  ],
   "alorof": [],
   "should": [],
   "story": [],
@@ -53810,6 +54164,8 @@
   "finding": [],
   "forgive": [],
   "lie": [],
+  "chasing": [],
+  "understand": [],
   "cooler": [],
   "kazeem.goodqualities": [],
   "app": [],
@@ -54013,6 +54369,7 @@
    "alorof",
    "believe",
    "can",
+   "chasing",
    "come",
    "could",
    "das",
@@ -54067,6 +54424,7 @@
    "story",
    "stringify",
    "touch",
+   "understand",
    "weya",
    "what",
    "why",
@@ -54090,5 +54448,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-26T11:22:19-05:00"
+ "updated": "2026-11-26T11:35:56-05:00"
 }
