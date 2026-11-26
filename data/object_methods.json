@@ -21371,14 +21371,14 @@
      ],
      "consequence": "Locked at 127 lines.",
      "consequence_job": "j35",
-     "resolved": "can.slap(who=him:Person) from j34",
+     "resolved": "can.slap(who=them:Person) from j29",
      "injected": [
       {
        "param": "who",
        "class": "Person",
-       "instance": "him",
+       "instance": "them",
        "from_run": "run-cf203b",
-       "from_job": "j34",
+       "from_job": "j29",
        "source": "pick"
       }
      ]
@@ -22902,6 +22902,232 @@
    "prior": [],
    "faded": false,
    "last_run": "run-cf203b"
+  },
+  "go.fit": {
+   "object": "go",
+   "method": "fit",
+   "args": [
+    "him"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j42",
+    "card": "w42",
+    "title": "go.fit(him)",
+    "emoji": "🍉",
+    "at": "2026-11-26T14:01:51-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "go.fit(him)",
+     "emoji": "🍉",
+     "arg": "him",
+     "run": "run-cf203b",
+     "job": "j42",
+     "tweets": [
+      {
+       "text": "- i no go fit do him precision",
+       "year": "2024"
+      }
+     ],
+     "consequence": "He said she only wanted one thing: \"dat my own is going to be rich.\" And he said he was done covering for her: \"i no go fit do him precision.\" 📖 Now: The woman laughs, low and slow, and says she has the receipts, every transfer he ever sent",
+     "consequence_job": "j43",
+     "resolved": "go.fit(who=him:Person) from j42",
+     "injected": [
+      {
+       "param": "who",
+       "class": "Person",
+       "instance": "him",
+       "from_run": "run-cf203b",
+       "from_job": "j42",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "who",
+      "class": "Person",
+      "default": "him",
+      "first_run": "run-cf203b",
+      "first_job": "j34"
+     }
+    ],
+    "text": "fit(who: Person)"
+   },
+   "receiver_class": "Action",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "jesse.jaayne": {
+   "object": "jesse",
+   "method": "jaayne",
+   "args": [
+    ""
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j42",
+    "card": "w42",
+    "title": "jesse.jaayne()",
+    "emoji": "🫚",
+    "at": "2026-11-26T14:01:51-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "jesse.jaayne()",
+     "emoji": "🫚",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j42",
+     "tweets": [
+      {
+       "text": "-jesse jaayne.",
+       "year": "2022"
+      }
+     ],
+     "consequence": "What just happened: Tobi let out \"jesse jaayne,\" like a man who'd been holding his breath all night.",
+     "consequence_job": "j43",
+     "resolved": "jesse.jaayne()",
+     "injected": []
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [],
+    "text": "jaayne()"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "own.going": {
+   "object": "own",
+   "method": "going",
+   "args": [
+    "rich"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j42",
+    "card": "w42",
+    "title": "own.going(rich)",
+    "emoji": "🍇",
+    "at": "2026-11-26T14:01:51-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "own.going(rich)",
+     "emoji": "🍇",
+     "arg": "rich",
+     "run": "run-cf203b",
+     "job": "j42",
+     "tweets": [
+      {
+       "text": "#thryd - dat my own is going to be rich",
+       "year": "2025"
+      }
+     ],
+     "consequence": "Then he went at the woman: \"where is your boisie,\" meaning she has a man of her own.",
+     "consequence_job": "j43",
+     "resolved": "own.going(what=rich:Thing) from j42",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "rich",
+       "from_run": "run-cf203b",
+       "from_job": "j42",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "rich",
+      "first_run": "run-cf203b",
+      "first_job": "j42"
+     }
+    ],
+    "text": "going(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "where.boisie": {
+   "object": "where",
+   "method": "boisie",
+   "args": [
+    ""
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j42",
+    "card": "w42",
+    "title": "where.boisie()",
+    "emoji": "🫛",
+    "at": "2026-11-26T14:01:51-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "where.boisie()",
+     "emoji": "🫛",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j42",
+     "tweets": [
+      {
+       "text": "- where [[is]] your boisie",
+       "year": "2024"
+      }
+     ],
+     "consequence": "Where things stand: Tobi has finally spoken, but he didn't answer the question.",
+     "consequence_job": "j43",
+     "resolved": "where.boisie()",
+     "injected": []
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [],
+    "text": "boisie()"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
   },
   "cooler.getdatemanufactured": {
    "object": "cooler",
@@ -26712,7 +26938,8 @@
    "global.radio"
   ],
   "go": [
-   "go.back"
+   "go.back",
+   "go.fit"
   ],
   "god_subject": [
    "object.look"
@@ -26784,6 +27011,9 @@
   ],
   "j24": [
    "j24.tomorrow"
+  ],
+  "jesse": [
+   "jesse.jaayne"
   ],
   "json_life_subject": [
    "object.look"
@@ -27022,6 +27252,9 @@
   ],
   "order": [
    "order.see"
+  ],
+  "own": [
+   "own.going"
   ],
   "oyinboman": [
    "oyinboman.know"
@@ -27383,6 +27616,9 @@
   ],
   "whatever_happens_me_subject": [
    "object.look"
+  ],
+  "where": [
+   "where.boisie"
   ],
   "which": [
    "which.one"
@@ -34730,6 +34966,14 @@
   "fail_subject": [
    {
     "scope": "safe",
+    "from": "3baf3b372a02",
+    "title": "826. julius berger and akara",
+    "funcs": [
+     "go.fit"
+    ]
+   },
+   {
+    "scope": "safe",
     "from": "fad8da2e5cf6",
     "title": "1129. how to [[fail]]",
     "funcs": [
@@ -35834,6 +36078,14 @@
     "title": "615. from suleja to texas",
     "funcs": [
      "sia.count"
+    ]
+   },
+   {
+    "scope": "safe",
+    "from": "c07bae0a368e",
+    "title": "1203. waga waga lifestyle",
+    "funcs": [
+     "where.boisie"
     ]
    }
   ],
@@ -47376,6 +47628,14 @@
     "funcs": [
      "doing.getawaselves"
     ]
+   },
+   {
+    "scope": "safe",
+    "from": "7fd0517fc036",
+    "title": "810. spending!!!!",
+    "funcs": [
+     "own.going"
+    ]
    }
   ],
   "speaker": [
@@ -51915,6 +52175,10 @@
     "honey.pot",
     "ok.lemme",
     "textbook.ulterior",
+    "go.fit",
+    "jesse.jaayne",
+    "own.going",
+    "where.boisie",
     "cli.cli",
     "thryd.importtheme",
     "kemi.ismarried",
@@ -52534,6 +52798,13 @@
    ],
    "runs": []
   },
+  "3baf3b372a02": {
+   "title": "826. julius berger and akara",
+   "funcs": [
+    "go.fit"
+   ],
+   "runs": []
+  },
   "40a61eb8865b": {
    "title": "324. confusion",
    "funcs": [
@@ -52945,7 +53216,11 @@
     "used.awa",
     "honey.pot",
     "ok.lemme",
-    "textbook.ulterior"
+    "textbook.ulterior",
+    "go.fit",
+    "jesse.jaayne",
+    "own.going",
+    "where.boisie"
    ],
    "runs": [
     "run-cf203b"
@@ -53047,6 +53322,13 @@
    "title": "826. not.tyn",
    "funcs": [
     "come.back"
+   ],
+   "runs": []
+  },
+  "7fd0517fc036": {
+   "title": "810. spending!!!!",
+   "funcs": [
+    "own.going"
    ],
    "runs": []
   },
@@ -53618,6 +53900,13 @@
    ],
    "runs": []
   },
+  "c07bae0a368e": {
+   "title": "1203. waga waga lifestyle",
+   "funcs": [
+    "where.boisie"
+   ],
+   "runs": []
+  },
   "c0f7f80fa091": {
    "title": "1120. but my will is butterflies",
    "funcs": [
@@ -53637,6 +53926,13 @@
    "title": "707. the voice of god",
    "funcs": [
     "russian.mobs"
+   ],
+   "runs": []
+  },
+  "c7bca6239b82": {
+   "title": "higherups: african superstar",
+   "funcs": [
+    "jesse.jaayne"
    ],
    "runs": []
   },
@@ -54258,7 +54554,8 @@
    "486483e86514"
   ],
   "1*lh0ZPwqCiEmbUqQpeTBf0w.gif": [
-   "fad8da2e5cf6"
+   "fad8da2e5cf6",
+   "3baf3b372a02"
   ],
   "1*CdryEVJDnwhoFOg21DuGMw.gif": [
    "df1336b56f94"
@@ -54402,7 +54699,8 @@
    "69097529662b"
   ],
   "1*z9MXnhgL8GmrvnzW6b5oBQ.gif": [
-   "13bbdaa651ee"
+   "13bbdaa651ee",
+   "c07bae0a368e"
   ],
   "1*W53iaOHMqwt4wiUEEUhlNw.gif": [
    "ff9027478b51",
@@ -54918,7 +55216,8 @@
    "9aa1737aecfa"
   ],
   "1*r60JaNtgDqXR6PpIsMmeLQ.gif": [
-   "4558fb3e9d83"
+   "4558fb3e9d83",
+   "7fd0517fc036"
   ],
   "1*NQPKmNLPgP3qAWkFrAMX5w.gif": [
    "90d1c21dc449"
@@ -54966,6 +55265,9 @@
   ],
   "1*WrFSJNCz11JO3t2O2D_Y-w.gif": [
    "f7873beb34b8"
+  ],
+  "1*P0EaCb-xVsqEG2B7phogZg.png": [
+   "c7bca6239b82"
   ],
   "1*Pvu5qIY3ehevL_SC2nj5nQ.jpeg": [
    "feb29a74094b"
@@ -55265,7 +55567,8 @@
   "1*lh0ZPwqCiEmbUqQpeTBf0w.gif": {
    "runs": [],
    "safes": [
-    "fad8da2e5cf6"
+    "fad8da2e5cf6",
+    "3baf3b372a02"
    ]
   },
   "1*pWMtXcVBU3GTwBdb-cFPxA.gif": {
@@ -55424,7 +55727,8 @@
   "1*z9MXnhgL8GmrvnzW6b5oBQ.gif": {
    "runs": [],
    "safes": [
-    "13bbdaa651ee"
+    "13bbdaa651ee",
+    "c07bae0a368e"
    ]
   },
   "1*APufEsa8jVHv6I22L9vMWw.gif": {
@@ -55780,7 +56084,8 @@
   "1*r60JaNtgDqXR6PpIsMmeLQ.gif": {
    "runs": [],
    "safes": [
-    "4558fb3e9d83"
+    "4558fb3e9d83",
+    "7fd0517fc036"
    ]
   },
   "1*P4PUcv99wItvYFkS1Q0S-A.gif": {
@@ -56340,7 +56645,8 @@
    "global.radio"
   ],
   "go": [
-   "go.back"
+   "go.back",
+   "go.fit"
   ],
   "gol": [
    "gol.lo"
@@ -56406,6 +56712,9 @@
   ],
   "j24": [
    "j24.tomorrow"
+  ],
+  "jesse": [
+   "jesse.jaayne"
   ],
   "jwvbs": [
    "jwvbs.open"
@@ -56587,6 +56896,9 @@
   ],
   "order": [
    "order.see"
+  ],
+  "own": [
+   "own.going"
   ],
   "oyinboman": [
    "oyinboman.know"
@@ -56869,6 +57181,9 @@
    "what.road",
    "what.get",
    "what.say"
+  ],
+  "where": [
+   "where.boisie"
   ],
   "which": [
    "which.one"
@@ -57204,6 +57519,9 @@
    "Speakable"
   ],
   "textbook": [],
+  "jesse": [],
+  "own": [],
+  "where": [],
   "cooler": [],
   "kazeem.goodqualities": [],
   "app": [],
@@ -57436,6 +57754,7 @@
    "honey",
    "hope",
    "inside",
+   "jesse",
    "kemi",
    "know",
    "ladies",
@@ -57452,6 +57771,7 @@
    "ok",
    "once",
    "one",
+   "own",
    "part",
    "pen",
    "poty",
@@ -57484,6 +57804,7 @@
    "well",
    "weya",
    "what",
+   "where",
    "which",
    "why",
    "will",
@@ -57506,5 +57827,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-26T13:39:06-05:00"
+ "updated": "2026-11-26T14:01:53-05:00"
 }
