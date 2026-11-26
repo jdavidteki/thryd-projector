@@ -5283,16 +5283,6 @@
 ],
 "matbaotstaili": [
 {
-"id": "wf_a841ec2a9e",
-"kind": "consequence",
-"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the juju code at the matbaotstaili, and Ejiro reads the name twice.",
-"code": "marker_c.interactwith(matbaotstaili){ matbaotstaili.receives(marker_c.code); … }",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j2",
-"other": "marker_c"
-},
-{
 "id": "wf_bf36571959",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the juju code at the matbaotstaili, and Ejiro reads the name twice.",
@@ -5331,6 +5321,16 @@
 "run": "run-5a58c4",
 "card": "j6",
 "other": "tbp"
+},
+{
+"id": "wt_8809d9a35f",
+"kind": "func_call",
+"text": "The customer typed [[matbaotstaili]] on run-cf203b j29.",
+"code": "[[matbaotstaili]];",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j29",
+"other": null
 }
 ],
 "florida": [
@@ -8865,26 +8865,6 @@
 ],
 "cli": [
 {
-"id": "wt_04c8e2488c",
-"kind": "func_call",
-"text": "The customer typed #life on run-cf203b j23. It came back: #life. Implementation: /* #life */.",
-"code": "#life;",
-"author": "customer",
-"run": "run-cf203b",
-"card": "j23",
-"other": null
-},
-{
-"id": "wt_be0bad9a9b",
-"kind": "func_call",
-"text": "The customer typed #thryd.miracle.log(1) on run-cf203b j23. It came back: #thryd.miracle.log(1). Implementation: /* #thryd.miracle.log(1) */.",
-"code": "#thryd.miracle.log(1);",
-"author": "customer",
-"run": "run-cf203b",
-"card": "j23",
-"other": null
-},
-{
 "id": "wt_b20b078553",
 "kind": "func_call",
 "text": "The customer typed #thryd.miracle.log(1) on run-cf203b j23. It came back: #thryd.miracle.log(1). Implementation: /* #thryd.miracle.log(1) */.",
@@ -8912,6 +8892,26 @@
 "author": "customer",
 "run": "run-cf203b",
 "card": "j28",
+"other": null
+},
+{
+"id": "wt_6983c72147",
+"kind": "func_call",
+"text": "The customer typed #sbk on run-cf203b j29. It came back: #sbk. Implementation: /* #sbk */.",
+"code": "#sbk;",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j29",
+"other": null
+},
+{
+"id": "wt_a64aeb4c3f",
+"kind": "func_call",
+"text": "The customer typed [[wdigm,#t]] on run-cf203b j29. It came back: [[wdigm,#t]]. Implementation: /* [[wdigm,#t]] */.",
+"code": "[[wdigm,#t]];",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j29",
 "other": null
 }
 ],
@@ -11728,6 +11728,30 @@
 "card": "j28",
 "other": null
 }
+],
+"bawie": [
+{
+"id": "wt_62298bc8ae",
+"kind": "func_call",
+"text": "The customer typed [[bawie]] on run-cf203b j29.",
+"code": "[[bawie]];",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j29",
+"other": null
+}
+],
+"tabe": [
+{
+"id": "wt_f02b22daa3",
+"kind": "func_call",
+"text": "The customer typed [[tabe]] on run-cf203b j29.",
+"code": "[[tabe]];",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j29",
+"other": null
+}
 ]
 },
 "consequences": [
@@ -12273,5 +12297,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-26T01:20:53-0500"
+"updated": "2026-11-26T01:32:36-0500"
 }
