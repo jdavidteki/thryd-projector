@@ -20108,6 +20108,111 @@
    "faded": false,
    "last_run": "run-cf203b"
   },
+  "have.feelings": {
+   "object": "have",
+   "method": "feelings",
+   "args": [
+    ""
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j28",
+    "card": "w28",
+    "title": "have.feelings()",
+    "emoji": "🦆",
+    "at": "2026-11-26T01:21:04-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "have.feelings()",
+     "emoji": "🦆",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j28",
+     "tweets": [
+      {
+       "text": "[[oiatotm]] - i have feelings!",
+       "year": "2024"
+      }
+     ],
+     "consequence": "Kemi can only laugh, \"wooooowwww!\" On the line, the woman is stung at being called fake: \"i have feelings!\" 📖 Now: Denied twice in front of the wife, the woman is hurt enough to tell everything, and Kemi asks her one question: when?",
+     "consequence_job": "j29",
+     "resolved": "have.feelings()",
+     "injected": []
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [],
+    "text": "feelings()"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "hope.notyn": {
+   "object": "hope",
+   "method": "notyn",
+   "args": [
+    ""
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j28",
+    "card": "w28",
+    "title": "hope.notyn()",
+    "emoji": "🐪",
+    "at": "2026-11-26T01:21:04-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "hope.notyn()",
+     "emoji": "🐪",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j28",
+     "tweets": [
+      {
+       "text": "[[hope]] - notyn! 👀👀",
+       "year": "2024"
+      }
+     ],
+     "consequence": "Where things stand: Nobody is pretending anymore in the open doorway.",
+     "consequence_job": "j29",
+     "resolved": "hope.notyn()",
+     "injected": []
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [],
+    "text": "notyn()"
+   },
+   "receiver_class": "Feeling",
+   "prior": [
+    {
+     "id": "dyeriz.notyn",
+     "title": "dyeriz.notyn(meek)",
+     "run": "run-cf203b",
+     "job": "j26",
+     "at": "2026-11-26T00:43:26-05:00",
+     "why": "same method"
+    }
+   ],
+   "faded": false,
+   "last_run": null
+  },
   "cooler.getdatemanufactured": {
    "object": "cooler",
    "method": "getDateManufactured",
@@ -23787,13 +23892,17 @@
    "hands.wash"
   ],
   "have": [
-   "have.fun"
+   "have.fun",
+   "have.feelings"
   ],
   "hear": [
    "hear.setword"
   ],
   "history": [
    "history.see"
+  ],
+  "hope": [
+   "hope.notyn"
   ],
   "hours": [
    "hours.could"
@@ -35377,6 +35486,7 @@
     "from": "40cc9ba32586",
     "title": "1106. lead us in a mood of worship",
     "funcs": [
+     "hope.notyn",
      "calla.lead"
     ]
    }
@@ -47386,6 +47496,8 @@
     "ladies.taking",
     "queen.everything",
     "rebuke.tin",
+    "have.feelings",
+    "hope.notyn",
     "cli.cli",
     "thryd.importtheme",
     "kemi.ismarried",
@@ -47963,7 +48075,8 @@
   "40cc9ba32586": {
    "title": "1106. lead us in a mood of worship",
    "funcs": [
-    "calla.lead"
+    "calla.lead",
+    "hope.notyn"
    ],
    "runs": []
   },
@@ -48260,7 +48373,9 @@
     "yeah.something",
     "ladies.taking",
     "queen.everything",
-    "rebuke.tin"
+    "rebuke.tin",
+    "have.feelings",
+    "hope.notyn"
    ],
    "runs": [
     "run-cf203b"
@@ -48414,6 +48529,13 @@
    "title": "122. why women hate men",
    "funcs": [
     "ronke.mend"
+   ],
+   "runs": []
+  },
+  "905da6fa5518": {
+   "title": "723. do nothing",
+   "funcs": [
+    "have.feelings"
    ],
    "runs": []
   },
@@ -49873,6 +49995,9 @@
   "1*aihswOSkhxhlyUNdUJVa9w.gif": [
    "1d08b133d292"
   ],
+  "1*llLp4_emX0Va6lYNd_xL1A.gif": [
+   "905da6fa5518"
+  ],
   "1*2DxU2eq5fvXFIDGpIwBZxQ.gif": [
    "d766125c67d7"
   ],
@@ -51273,13 +51398,17 @@
    "hands.wash"
   ],
   "have": [
-   "have.fun"
+   "have.fun",
+   "have.feelings"
   ],
   "hear": [
    "hear.setword"
   ],
   "history": [
    "history.see"
+  ],
+  "hope": [
+   "hope.notyn"
   ],
   "hours": [
    "hours.could"
@@ -51992,6 +52121,7 @@
   "ladies": [],
   "queen": [],
   "rebuke": [],
+  "hope": [],
   "cooler": [],
   "kazeem.goodqualities": [],
   "app": [],
@@ -52209,6 +52339,7 @@
    "global",
    "guy",
    "have",
+   "hope",
    "inside",
    "kemi",
    "know",
@@ -52257,5 +52388,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-26T01:08:23-05:00"
+ "updated": "2026-11-26T01:21:44-05:00"
 }
