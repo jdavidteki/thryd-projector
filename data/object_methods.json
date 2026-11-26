@@ -18963,14 +18963,14 @@
      ],
      "consequence": "Then it slips out: \"e even dey ask say...\" and he stops.",
      "consequence_job": "j23",
-     "resolved": "even.ask(act=say:Action) from j22",
+     "resolved": "even.ask(act=know:Action) from j17",
      "injected": [
       {
        "param": "act",
        "class": "Action",
-       "instance": "say",
+       "instance": "know",
        "from_run": "run-cf203b",
-       "from_job": "j22",
+       "from_job": "j17",
        "source": "pick"
       }
      ]
@@ -22724,6 +22724,184 @@
    "prior": [],
    "faded": false,
    "last_run": "run-cf203b"
+  },
+  "honey.pot": {
+   "object": "honey",
+   "method": "pot",
+   "args": [
+    ""
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j41",
+    "card": "w41",
+    "title": "honey.pot()",
+    "emoji": "🎍",
+    "at": "2026-11-26T13:38:05-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "honey.pot()",
+     "emoji": "🎍",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j41",
+     "tweets": [
+      {
+       "text": "honey pot",
+       "year": "2022"
+      }
+     ],
+     "consequence": "What just happened: Kemi said, \"ok, lemme say the truth.\" She called the woman a \"honey pot\" and told her, \"am sbk waiting,\" as in, still waiting for an answer that will never come.",
+     "consequence_job": "j42",
+     "resolved": "honey.pot()",
+     "injected": []
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [],
+    "text": "pot()"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "ok.lemme": {
+   "object": "ok",
+   "method": "lemme",
+   "args": [
+    "say"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j41",
+    "card": "w41",
+    "title": "ok.lemme(say)",
+    "emoji": "🎋",
+    "at": "2026-11-26T13:38:05-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "ok.lemme(say)",
+     "emoji": "🎋",
+     "arg": "say",
+     "run": "run-cf203b",
+     "job": "j41",
+     "tweets": [
+      {
+       "text": "- ok, lemme say the truth",
+       "year": "2025"
+      }
+     ],
+     "consequence": "What just happened: Kemi said, \"ok, lemme say the truth.\" She called the woman a \"honey pot\" and told her, \"am sbk waiting,\" as in, still waiting for an answer that will never come.",
+     "consequence_job": "j42",
+     "resolved": "ok.lemme(act=say:Action) from j41",
+     "injected": [
+      {
+       "param": "act",
+       "class": "Action",
+       "instance": "say",
+       "from_run": "run-cf203b",
+       "from_job": "j41",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "act",
+      "class": "Action",
+      "default": "say",
+      "first_run": "run-cf203b",
+      "first_job": "j22"
+     }
+    ],
+    "text": "lemme(act: Action)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "textbook.ulterior": {
+   "object": "textbook",
+   "method": "ulterior",
+   "args": [
+    "motive"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j41",
+    "card": "w41",
+    "title": "textbook.ulterior(motive)",
+    "emoji": "🌰",
+    "at": "2026-11-26T13:38:05-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "textbook.ulterior(motive)",
+     "emoji": "🌰",
+     "arg": "motive",
+     "run": "run-cf203b",
+     "job": "j41",
+     "tweets": [
+      {
+       "text": "-- textbook na ulterior motive",
+       "year": "2024"
+      }
+     ],
+     "consequence": "Then she said what she had worked out: \"textbook na ulterior motive.\" This call was never an accident.",
+     "consequence_job": "j42",
+     "resolved": "textbook.ulterior(what=motive:Thing) from j41",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "motive",
+       "from_run": "run-cf203b",
+       "from_job": "j41",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "motive",
+      "first_run": "run-cf203b",
+      "first_job": "j41"
+     }
+    ],
+    "text": "ulterior(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
   },
   "cooler.getdatemanufactured": {
    "object": "cooler",
@@ -26572,6 +26750,9 @@
   "history": [
    "history.see"
   ],
+  "honey": [
+   "honey.pot"
+  ],
   "hope": [
    "hope.notyn"
   ],
@@ -26822,6 +27003,9 @@
   ],
   "object": [
    "object.look"
+  ],
+  "ok": [
+   "ok.lemme"
   ],
   "omo": [
    "omo.fold"
@@ -27106,6 +27290,9 @@
    "teo.pray",
    "teo.create",
    "teo.decode"
+  ],
+  "textbook": [
+   "textbook.ulterior"
   ],
   "then": [
    "then.hand"
@@ -37351,6 +37538,16 @@
     "title": "902. the onomatopeia people",
     "funcs": [
      "quickly.realize"
+    ]
+   }
+  ],
+  "intense_flirting_subject": [
+   {
+    "scope": "safe",
+    "from": "98c8ba6d3f0a",
+    "title": "330. intense flirting",
+    "funcs": [
+     "ok.lemme"
     ]
    }
   ],
@@ -50084,6 +50281,16 @@
     ]
    }
   ],
+  "uncle_azeez_subject": [
+   {
+    "scope": "safe",
+    "from": "e654ba2df27a",
+    "title": "901. uncle azeez",
+    "funcs": [
+     "textbook.ulterior"
+    ]
+   }
+  ],
   "undead": [
    {
     "scope": "safe",
@@ -51705,6 +51912,9 @@
     "long.looooong",
     "then.hand",
     "used.awa",
+    "honey.pot",
+    "ok.lemme",
+    "textbook.ulterior",
     "cli.cli",
     "thryd.importtheme",
     "kemi.ismarried",
@@ -52732,7 +52942,10 @@
     "has.bark",
     "long.looooong",
     "then.hand",
-    "used.awa"
+    "used.awa",
+    "honey.pot",
+    "ok.lemme",
+    "textbook.ulterior"
    ],
    "runs": [
     "run-cf203b"
@@ -53053,6 +53266,13 @@
    ],
    "runs": []
   },
+  "98c8ba6d3f0a": {
+   "title": "330. intense flirting",
+   "funcs": [
+    "ok.lemme"
+   ],
+   "runs": []
+  },
   "99382b159447": {
    "title": "1218. new problems",
    "funcs": [
@@ -53183,6 +53403,13 @@
    "title": "1031. trees must grow in heaven",
    "funcs": [
     "make.eff"
+   ],
+   "runs": []
+  },
+  "a8fb56033895": {
+   "title": "this sweet thing",
+   "funcs": [
+    "honey.pot"
    ],
    "runs": []
   },
@@ -53678,6 +53905,13 @@
    ],
    "runs": []
   },
+  "e654ba2df27a": {
+   "title": "901. uncle azeez",
+   "funcs": [
+    "textbook.ulterior"
+   ],
+   "runs": []
+  },
   "e8a71fe19bff": {
    "title": "727. pray",
    "funcs": [
@@ -54140,6 +54374,9 @@
   "1*Bzh9xE_MoUeXsNFiT79hKA.gif": [
    "0a88bcb1bbe8"
   ],
+  "1*iZ3ApK-dVLn7b4Wx4QB9bA.gif": [
+   "98c8ba6d3f0a"
+  ],
   "1*tEZav0U_ijz7_xxtrdhaoA.gif": [
    "db02d908b461"
   ],
@@ -54274,6 +54511,9 @@
   ],
   "1*DUBqUOO0slEd39P9RiD30Q.gif": [
    "ef623c79ddb7"
+  ],
+  "1*MMxIXU2wvk9kjvRzMy31qA.gif": [
+   "e654ba2df27a"
   ],
   "1*0F3xb5IsCQCivNp-iiX06g.gif": [
    "21efbcb0b2c1"
@@ -54571,6 +54811,9 @@
   ],
   "1*w4dyp3G_eaYwojHsZHopUA.jpeg": [
    "1d08b133d292"
+  ],
+  "1*o1lcHKhMd0Wc8vapnySo7w.png": [
+   "a8fb56033895"
   ],
   "1*cxPiorOEixTS9BMkPYr8LA.gif": [
    "741a80eaf54d"
@@ -55044,6 +55287,12 @@
     "807051048c8e"
    ]
   },
+  "1*MMxIXU2wvk9kjvRzMy31qA.gif": {
+   "runs": [],
+   "safes": [
+    "e654ba2df27a"
+   ]
+  },
   "1*SxvMtm4EZ8xJ3nw9tl5L_w.gif": {
    "runs": [],
    "safes": [
@@ -55218,6 +55467,12 @@
    "runs": [],
    "safes": [
     "90d1c21dc449"
+   ]
+  },
+  "1*iZ3ApK-dVLn7b4Wx4QB9bA.gif": {
+   "runs": [],
+   "safes": [
+    "98c8ba6d3f0a"
    ]
   },
   "1*wBc96VCRNSAVjALoTEOSRw.gif": {
@@ -56120,6 +56375,9 @@
   "history": [
    "history.see"
   ],
+  "honey": [
+   "honey.pot"
+  ],
   "hope": [
    "hope.notyn"
   ],
@@ -56310,6 +56568,9 @@
   ],
   "object": [
    "object.look"
+  ],
+  "ok": [
+   "ok.lemme"
   ],
   "omo": [
    "omo.fold"
@@ -56524,6 +56785,9 @@
    "teo.pray",
    "teo.create",
    "teo.decode"
+  ],
+  "textbook": [
+   "textbook.ulterior"
   ],
   "then": [
    "then.hand"
@@ -56935,6 +57199,11 @@
   "long": [],
   "then": [],
   "used": [],
+  "honey": [],
+  "ok": [
+   "Speakable"
+  ],
+  "textbook": [],
   "cooler": [],
   "kazeem.goodqualities": [],
   "app": [],
@@ -57164,6 +57433,7 @@
    "guy",
    "has",
    "have",
+   "honey",
    "hope",
    "inside",
    "kemi",
@@ -57179,6 +57449,7 @@
    "nd",
    "nigerian",
    "nothing",
+   "ok",
    "once",
    "one",
    "part",
@@ -57205,6 +57476,7 @@
    "stomach",
    "story",
    "stringify",
+   "textbook",
    "then",
    "touch",
    "understand",
@@ -57234,5 +57506,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-26T13:26:24-05:00"
+ "updated": "2026-11-26T13:38:15-05:00"
 }
