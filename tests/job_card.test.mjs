@@ -8,14 +8,14 @@ const js = rd('assets/job_card.js'), html = rd('index.html'), st = rd('assets/st
 
 test('job_card.js loads by default; ?cards=0 hides the panel', ()=>{
   assert.match(html, /cards=0/);
-  assert.match(html, /job_card\.js\?v=12/);
+  assert.match(html, /job_card\.js\?v=13/);
   assert.match(js, /cards=0/);
   assert.match(html, /if\(!\/\(\?:\^\|\[\?&\]\)cards=0/);
   assert.match(js, /if\(\/\(\?:\^\|\[\?&\]\)cards=0/);
   assert.doesNotMatch(html, /if\(\/\(\?:\^\|\[\?&\]\)cards=1/);
-  assert.match(html, /var VER=633,/);
+  assert.match(html, /var VER=634,/);
   const v = JSON.parse(ver);
-  assert.equal(v.v, 633);
+  assert.equal(v.v, 634);
 });
 
 test('layout is job card, then typeline, then plain always-visible buttons', ()=>{
@@ -162,7 +162,7 @@ test('v628: panel stays open after Send; waiting refresh keeps the sent card; ea
   assert.match(js, /border-radius:8px;white-space:normal/);
   assert.match(js, /max-height:15em;overflow-y:auto/);
   assert.match(js, /touch-action:pan-y/);
-  assert.match(html, /job_card\.js\?v=12/);
+  assert.match(html, /job_card\.js\?v=13/);
   assert.match(html, /intent_ai\.js\?v=614/);
   const src = js.slice(js.indexOf('function safeText(o){'), js.indexOf('function render(){'));
   const f = new Function(src + '; return {safeRows, safeText};')();
@@ -244,4 +244,41 @@ test('v633: archive safe lines flow inline at a smaller font; title stays its ow
   const s = f.safeRows('330. intense flirting: 1. #juniorboys - like me? / 2. - instead of fighting [[stronga]] / 3. «- the picked line» 2024');
   assert.equal(s.title, '330. intense flirting \u00b7 2024');
   assert.deepEqual(s.rows, ['1. #juniorboys - like me?', '2. - instead of fighting [[stronga]]', '3. \u00ab- the picked line\u00bb']);
+});
+
+test('v634: open async jobs render as persistent waiting-on-real-life pills; empty list shows nothing', ()=>{
+  assert.match(html, /var VER=634,/);
+  assert.match(html, /job_card\.js\?v=13/);
+  const v = JSON.parse(ver);
+  assert.equal(v.v, 634);
+  assert.match(js, /function asyncPills\(/);
+  assert.match(js, /function jobText\(/);
+  assert.match(js, /function ago\(/);
+  assert.match(js, /waiting on real life/);
+  assert.match(js, /aicwait aicasync/);
+  assert.match(js, /asyncPills\(m\)\.forEach/);
+  assert.match(js, /m\.async_jobs/);
+  // no new timers / polling / animation loops for the pill (render on existing SSE/open_card update)
+  assert.doesNotMatch(js, /setInterval\([^)]*async/i);
+  assert.doesNotMatch(js, /requestAnimationFrame/);
+  // no result-entry form wired on the pill
+  const pillSrc = js.slice(js.indexOf('function asyncPills('), js.indexOf('function seatStrip(){'));
+  assert.doesNotMatch(pillSrc, /setscore|setresult|textarea|input/i);
+  const src = js.slice(js.indexOf('function prettyKind('), js.indexOf('function asyncPills('));
+  const f = new Function(src + '; return {prettyKind, jobText, ago};')();
+  assert.equal(f.prettyKind('playps5'), 'play PS5');
+  assert.equal(f.prettyKind('fifa.match'), 'FIFA');
+  assert.equal(f.jobText({text: 'kunle vs dapo play PS5'}), 'kunle vs dapo play PS5');
+  assert.equal(f.jobText({characters: 'kunle,dapo', kind: 'playps5'}), 'kunle vs dapo play PS5');
+  const now = Date.parse('2026-11-26T17:00:00-05:00');
+  assert.equal(f.ago('2026-11-26T16:59:20-05:00', now), 'just opened');
+  assert.equal(f.ago('2026-11-26T16:10:00-05:00', now), 'open 50 minutes');
+  assert.equal(f.ago('2026-11-26T05:00:00-05:00', now), 'open 12 hours');
+  assert.equal(f.ago('2026-11-25T17:00:00-05:00', now), 'open 1 day');
+  assert.equal(f.ago('2026-10-27T17:00:00-05:00', now), 'open 30 days');
+  assert.equal(f.ago('', now), '');
+  const card = JSON.parse(rd('data/open_card.json'));
+  assert.ok(Array.isArray(card.async_jobs), 'export carries async_jobs (possibly empty)');
+  // never invent: every listed job has a real id
+  assert.ok(card.async_jobs.every(j => j && typeof j.id === 'string' && j.id && typeof j.text === 'string'));
 });

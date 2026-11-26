@@ -81,6 +81,9 @@
     '#aicard .aicwait .dot{width:7px;height:7px;border-radius:50%;background:#ffd76a;opacity:.85}',
     '#aicard .aicwait.aicsent.done{color:#8fe3a1;background:rgba(143,227,161,.08);border:1px solid rgba(143,227,161,.45)}',
     '#aicard .aicwait.aicsent.done .dot{background:#8fe3a1}',
+    '#aicard .aicwait.aicasync{cursor:pointer;flex-wrap:wrap;max-width:100%;white-space:normal;border-radius:12px}',
+    '#aicard .aicwait.aicasync .ax{display:none;width:100%;font:400 11.5px/1.4 ui-sans-serif,system-ui,sans-serif;color:#e8e0d0;padding:4px 0 1px 0;font-weight:500}',
+    '#aicard .aicwait.aicasync.open .ax{display:block}',
     '#aicard .aiclock{padding:10px 12px;border-radius:10px;border:1px solid #ffd76a;background:rgba(255,215,106,.12);color:#fff3cf;font:400 14px/1.5 ThrydRead,Georgia,serif}',
     '#aicard .aiclock b{display:block;font:700 13px/1.3 ui-sans-serif,system-ui,sans-serif;color:#ffd76a;letter-spacing:.03em;margin-bottom:3px}',
     '#aimenu .aimrow.hot{padding:5px 6px;margin:0 -6px;border-radius:10px;background:rgba(255,215,106,.1);box-shadow:inset 0 0 0 1px rgba(255,215,106,.55)}',
@@ -98,6 +101,7 @@
   // Selection lives in JS, not only in the DOM, so a poll / re-render never wipes a pick (v621).
   let sel = {job: null, values: new Set(), text: ''};
   let status = {job: null, text: '', kind: ''};
+  let asyncOpen = new Set(); // v634: which async-job pills are expanded
 
   const box = () => document.getElementById('aibox');
   const AI = () => root.thrydIntentAI;
@@ -437,18 +441,78 @@
     if(c && c.open && wasSent(c.job) && !(m && m.last_seat && m.last_seat.job === c.job)) return {job: c.job, local: true};
     return null;
   }
+  // v634: open async jobs from open_card.json (no new timers; age is computed on each render/SSE update).
+  function prettyKind(kind){
+    const k = String(kind || '').split('.')[0];
+    const s = k.replace(/(ps5|ps4|fifa|nba|nfl|ufc|xbox)/ig, ' $1').replace(/([a-z])([A-Z])/g, '$1 $2').replace(/_/g, ' ');
+    return s.split(/\s+/).filter(Boolean).map(w => {
+      const l = w.toLowerCase();
+      if(l === 'ps5' || l === 'ps4' || l === 'fifa' || l === 'nba' || l === 'nfl' || l === 'ufc' || l === 'ea') return l.toUpperCase();
+      return l;
+    }).join(' ');
+  }
+  function jobText(j){
+    if(j && typeof j.text === 'string' && j.text.trim()) return j.text.trim();
+    const who = String((j && j.characters) || '').split(',').map(s => s.trim()).filter(Boolean).join(' vs ');
+    const game = prettyKind(j && j.kind);
+    return (who && game) ? (who + ' ' + game) : (who || game || ((j && j.id) || ''));
+  }
+  function ago(iso, now){
+    const t = Date.parse(iso || '');
+    if(isNaN(t)) return '';
+    const s = Math.max(0, Math.floor(((now != null ? now : Date.now()) - t) / 1000));
+    if(s < 60) return 'just opened';
+    if(s < 3600){ const n = Math.floor(s / 60); return n === 1 ? 'open 1 minute' : ('open ' + n + ' minutes'); }
+    if(s < 86400){ const n = Math.floor(s / 3600); return n === 1 ? 'open 1 hour' : ('open ' + n + ' hours'); }
+    const n = Math.floor(s / 86400); return n === 1 ? 'open 1 day' : ('open ' + n + ' days');
+  }
+  function asyncPills(m){
+    const jobs = (m && Array.isArray(m.async_jobs)) ? m.async_jobs : [];
+    return jobs.filter(j => j && (j.text || j.kind || j.characters || j.id)).map(j => {
+      const open = !!(j.id && asyncOpen.has(j.id));
+      const w = document.createElement('div');
+      w.className = 'aicwait aicasync' + (open ? ' open' : '');
+      w.setAttribute('role', 'button');
+      w.setAttribute('aria-expanded', open ? 'true' : 'false');
+      w.setAttribute('tabindex', '0');
+      if(j.id) w.dataset.jid = j.id;
+      const age = ago(j.opened_at);
+      w.appendChild(document.createTextNode('\u23f3 ' + jobText(j) + ' \u00b7 waiting on real life' + (age ? ' \u00b7 ' + age : '')));
+      const ax = document.createElement('div'); ax.className = 'ax';
+      const bits = [];
+      if(j.id) bits.push(j.id);
+      if(j.run) bits.push(j.run + (j.card ? ' ' + j.card : ''));
+      if(j.stake) bits.push(j.stake);
+      if(j.world_time) bits.push(j.world_time);
+      ax.textContent = bits.join(' \u00b7 ');
+      w.appendChild(ax);
+      const tog = ev => {
+        ev.preventDefault(); ev.stopPropagation();
+        if(!j.id) return;
+        if(asyncOpen.has(j.id)) asyncOpen.delete(j.id); else asyncOpen.add(j.id);
+        const on = asyncOpen.has(j.id);
+        w.classList.toggle('open', on);
+        w.setAttribute('aria-expanded', on ? 'true' : 'false');
+      };
+      w.addEventListener('click', tog);
+      w.addEventListener('keydown', ev => { if(ev.key === 'Enter' || ev.key === ' ') tog(ev); });
+      return w;
+    });
+  }
   function seatStrip(){
+
     const m = meta || card, c = card;
     const wrap = document.createElement('div'); wrap.id = 'aicfb';
-    if(!m || !m.run) return wrap;
-    if(isLocked(m)){
+    const jobs = (m && Array.isArray(m.async_jobs)) ? m.async_jobs : [];
+    if((!m || !m.run) && !jobs.length) return wrap;
+    if(m && m.run && isLocked(m)){
       const lk = document.createElement('div'); lk.className = 'aiclock'; lk.setAttribute('role', 'status');
       const b = document.createElement('b'); b.textContent = '\ud83d\udd12 This agenda is locked \u00b7 ' + (m.lines || 0) + '/' + (m.next_lock_at_lines || m.lines || 0); lk.appendChild(b);
       lk.appendChild(document.createTextNode('No more jobs on this agenda. Pick \ud83c\udf81 Souvenir, \ud83d\udc26 Tweets, \ud83d\udce3 Publish or \u23e9 Jump ahead on the lock row below.'));
       wrap.appendChild(lk);
     }
-    const ls = m.last_seat;
-    if(ls && ls.job && (ls.lines || []).length){
+    const ls = m && m.last_seat;
+    if(m && m.run && ls && ls.job && (ls.lines || []).length){
       const box = document.createElement('div'); box.className = 'aicseat';
       const h = document.createElement('div'); h.className = 'sh';
       const t = document.createElement('span'); t.textContent = '\u2713 '; const b = document.createElement('b'); b.textContent = ls.job + ' seated'; t.appendChild(b);
@@ -459,10 +523,10 @@
       box.appendChild(sl);
       const pr = progressEl(m); if(pr) box.appendChild(pr);
       wrap.appendChild(box);
-    } else {
+    } else if(m && m.run) {
       const pr = progressEl(m); if(pr) wrap.appendChild(pr);
     }
-    const pills = sentPills(m.run);
+    const pills = sentPills(m && m.run);
     const pillJobs = new Set(sentLog().filter(e => e.kind === 'pick').map(e => e.job));
     const pillLabels = new Set(sentLog().filter(e => e.kind !== 'pick').map(e => e.label));
     const pk = pendingFor(m, c);
@@ -472,7 +536,7 @@
       w.appendChild(document.createTextNode(pk.job + ' pick waiting to be seated' + (hhmm(pk.at) ? ' \u00b7 sent ' + hhmm(pk.at) : '')));
       wrap.appendChild(w);
     }
-    const menus = ((m.pending && m.pending.menu) || []).filter(x => !pillLabels.has(x.label));
+    const menus = ((m && m.pending && m.pending.menu) || []).filter(x => !pillLabels.has(x.label));
     pills.forEach(x => wrap.appendChild(x));
     if(menus && menus.length){
       const w = document.createElement('div'); w.className = 'aicwait';
@@ -480,6 +544,7 @@
       w.appendChild(document.createTextNode(menus.map(x => x.label).join(', ') + ' waiting'));
       wrap.appendChild(w);
     }
+    asyncPills(m).forEach(x => wrap.appendChild(x));
     wrap.style.display = wrap.childNodes.length ? 'flex' : 'none';
     wrap.style.flexDirection = 'column'; wrap.style.gap = '6px';
     return wrap;
