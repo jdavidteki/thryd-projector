@@ -7525,16 +7525,6 @@
 ],
 "lie": [
 {
-"id": "wf_a9c56311aa",
-"kind": "consequence",
-"text": "The lie leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"code": "saturday_october.interactwith(lie){ lie.receives(saturday_october.envelope); lie.remembers(bisola, 'brown envelope'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "saturday_october"
-},
-{
 "id": "wf_02d293a333",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the lie, and Bisola reads the name twice.",
@@ -7572,6 +7562,16 @@
 "author": "customer",
 "run": "run-cf203b",
 "card": "j36",
+"other": null
+},
+{
+"id": "wt_e7da906ef1",
+"kind": "func_call",
+"text": "The customer typed [[lie]] on run-cf203b j49.",
+"code": "[[lie]];",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j49",
 "other": null
 }
 ],
@@ -8885,26 +8885,6 @@
 ],
 "cli": [
 {
-"id": "wt_a64aeb4c3f",
-"kind": "func_call",
-"text": "The customer typed [[wdigm,#t]] on run-cf203b j29. It came back: [[wdigm,#t]]. Implementation: /* [[wdigm,#t]] */.",
-"code": "[[wdigm,#t]];",
-"author": "customer",
-"run": "run-cf203b",
-"card": "j29",
-"other": null
-},
-{
-"id": "wt_b2464f5dbe",
-"kind": "func_call",
-"text": "The customer typed ([[iwytti]] on run-cf203b j33. It came back: ([[iwytti]]. Implementation: /* ([[iwytti]] */.",
-"code": "([[iwytti]];",
-"author": "customer",
-"run": "run-cf203b",
-"card": "j33",
-"other": null
-},
-{
 "id": "wt_0ad28902d8",
 "kind": "func_call",
 "text": "The customer typed #thryd.miracle.log(1) on run-cf203b j37. It came back: #thryd.miracle.log(1). Implementation: /* #thryd.miracle.log(1) */.",
@@ -8932,6 +8912,26 @@
 "author": "customer",
 "run": "run-cf203b",
 "card": "j44",
+"other": null
+},
+{
+"id": "wt_7546d519b5",
+"kind": "func_call",
+"text": "The customer typed #thryd.miracle.log(1) on run-cf203b j49. It came back: #thryd.miracle.log(1). Implementation: /* #thryd.miracle.log(1) */.",
+"code": "#thryd.miracle.log(1);",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j49",
+"other": null
+},
+{
+"id": "wt_2fd3e54e69",
+"kind": "func_call",
+"text": "The customer typed [[wwyst??]] on run-cf203b j49. It came back: [[wwyst??]]. Implementation: /* [[wwyst??]] */.",
+"code": "[[wwyst??]];",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j49",
 "other": null
 }
 ],
@@ -11021,6 +11021,16 @@
 "run": "run-cf203b",
 "card": "j32",
 "other": "tobi"
+},
+{
+"id": "wt_f3cd4bc161",
+"kind": "func_call",
+"text": "The customer typed kemi.getlastperiod() on run-cf203b j49. It came back: lastperiod. Implementation: function getlastperiod(){\n  const value = \"lastperiod\";\n  learned.kemi.lastperiod = value;\n  return value;\n}. kemi now has kemi.getlastperiod as a method on this agenda, and it can be called again.",
+"code": "kemi.getlastperiod();",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j49",
+"other": null
 }
 ],
 "wys": [
@@ -12268,6 +12278,30 @@
 "card": "j48",
 "other": null
 }
+],
+"happy": [
+{
+"id": "wt_adc648c91f",
+"kind": "func_call",
+"text": "The customer typed [[happy]] on run-cf203b j49.",
+"code": "[[happy]];",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j49",
+"other": null
+}
+],
+"closet": [
+{
+"id": "wt_27a1f1ec0f",
+"kind": "func_call",
+"text": "The customer typed closet.get(totalminiskirt) on run-cf203b j49. It came back: get. Implementation: function get(){\n  const value = \"get\";\n  learned.closet.get = value;\n  return value;\n}. closet now has closet.get as a method on this agenda, and it can be called again.",
+"code": "closet.get(totalminiskirt);",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j49",
+"other": null
+}
 ]
 },
 "consequences": [
@@ -12813,5 +12847,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-26T17:16:02-0500"
+"updated": "2026-11-26T17:31:08-0500"
 }

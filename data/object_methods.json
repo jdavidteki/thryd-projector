@@ -24170,6 +24170,167 @@
    "faded": false,
    "last_run": "run-cf203b"
   },
+  "cant.cough": {
+   "object": "cant",
+   "method": "cough",
+   "args": [
+    ""
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j49",
+    "card": "w49",
+    "title": "cant.cough()",
+    "emoji": "🧈",
+    "at": "2026-11-26T17:30:54-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "cant.cough()",
+     "emoji": "🧈",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j49",
+     "tweets": [
+      {
+       "text": "- and she cant cough",
+       "year": "2025"
+      }
+     ],
+     "consequence": "The lines that landed: \"am not the next of kin, am the next of [[sin]]\", \"and she cant cough\", \"[[again]] - who has this toto!!!!!!\" and \"#thequeenisdead -- e no mean\".",
+     "consequence_job": "j50",
+     "resolved": "cant.cough()",
+     "injected": []
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [],
+    "text": "cough()"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "next.kin": {
+   "object": "next",
+   "method": "kin",
+   "args": [
+    ""
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j49",
+    "card": "w49",
+    "title": "next.kin()",
+    "emoji": "🥞",
+    "at": "2026-11-26T17:30:54-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "next.kin()",
+     "emoji": "🥞",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j49",
+     "tweets": [
+      {
+       "text": "- am not the next of kin, am the next of [[sin]]",
+       "year": "2024"
+      }
+     ],
+     "consequence": "What just happened: The last card asked for the next line, the one that answers \"put a [[mrs]] for [[tos]]\".",
+     "consequence_job": "j50",
+     "resolved": "next.kin()",
+     "injected": []
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [],
+    "text": "kin()"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "who.has": {
+   "object": "who",
+   "method": "has",
+   "args": [
+    "toto"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j49",
+    "card": "w49",
+    "title": "who.has(toto)",
+    "emoji": "🍿",
+    "at": "2026-11-26T17:30:54-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "who.has(toto)",
+     "emoji": "🍿",
+     "arg": "toto",
+     "run": "run-cf203b",
+     "job": "j49",
+     "tweets": [
+      {
+       "text": "[[again]] - who has this toto!!!!!!",
+       "year": "2024"
+      }
+     ],
+     "consequence": "The lines that landed: \"am not the next of kin, am the next of [[sin]]\", \"and she cant cough\", \"[[again]] - who has this toto!!!!!!\" and \"#thequeenisdead -- e no mean\".",
+     "consequence_job": "j50",
+     "resolved": "who.has(what=toto:Thing) from j49",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "toto",
+       "from_run": "run-cf203b",
+       "from_job": "j49",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "toto",
+      "first_run": "run-cf203b",
+      "first_job": "j49"
+     }
+    ],
+    "text": "has(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
   "cooler.getdatemanufactured": {
    "object": "cooler",
    "method": "getDateManufactured",
@@ -27597,6 +27758,86 @@
    "prior": [],
    "faded": false,
    "last_run": null
+  },
+  "closet.get": {
+   "object": "closet",
+   "method": "get",
+   "args": [],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j49",
+    "card": "j49",
+    "title": "closet.get(totalminiskirt)",
+    "emoji": "",
+    "at": "2026-11-26T17:30:42-05:00",
+    "source": "cli"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "closet.get(totalminiskirt)",
+     "emoji": "",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j49",
+     "tweets": [],
+     "consequence": "The customer typed this on this agenda.",
+     "consequence_job": ""
+    }
+   ],
+   "source": "cli",
+   "cli": true,
+   "sig": {
+    "params": [],
+    "text": "get()"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "kemi.getlastperiod": {
+   "object": "kemi",
+   "method": "getlastperiod",
+   "args": [],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j49",
+    "card": "j49",
+    "title": "kemi.getlastperiod()",
+    "emoji": "",
+    "at": "2026-11-26T17:30:49-05:00",
+    "source": "cli"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "kemi.getlastperiod()",
+     "emoji": "",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j49",
+     "tweets": [],
+     "consequence": "The customer typed this on this agenda.",
+     "consequence_job": ""
+    }
+   ],
+   "source": "cli",
+   "cli": true,
+   "sig": {
+    "params": [],
+    "text": "getlastperiod()"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
   }
  },
  "objects": {
@@ -27733,7 +27974,8 @@
    "can.slap"
   ],
   "cant": [
-   "cant.release"
+   "cant.release",
+   "cant.cough"
   ],
   "care": [
    "care.on"
@@ -27751,6 +27993,9 @@
   ],
   "cli": [
    "cli.cli"
+  ],
+  "closet": [
+   "closet.get"
   ],
   "code": [
    "code.say"
@@ -28143,7 +28388,8 @@
   "kemi": [
    "kemi.sometimes",
    "kemi.ismarried",
-   "kemi.setlocation"
+   "kemi.setlocation",
+   "kemi.getlastperiod"
   ],
   "know": [
    "know.african",
@@ -28308,6 +28554,9 @@
   ],
   "new_yuwa_running_subject": [
    "object.look"
+  ],
+  "next": [
+   "next.kin"
   ],
   "nigeria": [
    "nigeria.setpresident"
@@ -28735,6 +28984,9 @@
   ],
   "which": [
    "which.one"
+  ],
+  "who": [
+   "who.has"
   ],
   "why": [
    "why.thunder"
@@ -29534,6 +29786,7 @@
     "from": "ecbaffa655c1",
     "title": "506. infact and even",
     "funcs": [
+     "cant.cough",
      "openmedia.isgif"
     ]
    }
@@ -35788,6 +36041,16 @@
     "title": "902. the onomatopeia people",
     "funcs": [
      "quickly.realize"
+    ]
+   }
+  ],
+  "dirt_subject": [
+   {
+    "scope": "safe",
+    "from": "d04593ea6899",
+    "title": "819. expensive shit",
+    "funcs": [
+     "who.has"
     ]
    }
   ],
@@ -46684,6 +46947,16 @@
     ]
    }
   ],
+  "president_nigeria_subject": [
+   {
+    "scope": "safe",
+    "from": "2dc47878adf9",
+    "title": "924. the president$ of nigeria",
+    "funcs": [
+     "next.kin"
+    ]
+   }
+  ],
   "price_list": [
    {
     "scope": "safe",
@@ -53512,6 +53785,9 @@
     "something.fill",
     "waga.lifestyle",
     "beat.out",
+    "cant.cough",
+    "next.kin",
+    "who.has",
     "cli.cli",
     "thryd.importtheme",
     "kemi.ismarried",
@@ -53523,7 +53799,9 @@
     "kemi.setlocation",
     "tobi.setbloodpressure",
     "boy.alone",
-    "woman.setname"
+    "woman.setname",
+    "closet.get",
+    "kemi.getlastperiod"
    ]
   },
   "run-d6fc": {
@@ -54019,6 +54297,13 @@
    "title": "927. this is what we need",
    "funcs": [
     "make.setany"
+   ],
+   "runs": []
+  },
+  "2dc47878adf9": {
+   "title": "924. the president$ of nigeria",
+   "funcs": [
+    "next.kin"
    ],
    "runs": []
   },
@@ -54613,7 +54898,10 @@
     "part.smell",
     "something.fill",
     "waga.lifestyle",
-    "beat.out"
+    "beat.out",
+    "cant.cough",
+    "next.kin",
+    "who.has"
    ],
    "runs": [
     "run-cf203b"
@@ -55405,6 +55693,13 @@
    ],
    "runs": []
   },
+  "d04593ea6899": {
+   "title": "819. expensive shit",
+   "funcs": [
+    "who.has"
+   ],
+   "runs": []
+  },
   "d109fb70734b": {
    "title": "1220. *speaks in tongues",
    "funcs": [
@@ -55679,7 +55974,8 @@
   "ecbaffa655c1": {
    "title": "506. infact and even",
    "funcs": [
-    "openmedia.isgif"
+    "openmedia.isgif",
+    "cant.cough"
    ],
    "runs": []
   },
@@ -56459,6 +56755,9 @@
    "f3242b82bede",
    "43e6e657bcca"
   ],
+  "1*lfQzBnBazStbGHtbQ_AGSg.gif": [
+   "d04593ea6899"
+  ],
   "1*9L8yANUm-2EnYal4M3kKWQ.gif": [
    "23340e6f4d92"
   ],
@@ -56652,6 +56951,9 @@
   ],
   "1*EzXx6mCPVc-4TByCgM6uFw.gif": [
    "d15604eed466"
+  ],
+  "1*OxKnomuHjOiACr_RO6u1fw.gif": [
+   "2dc47878adf9"
   ],
   "1*IQXI1PQrQf5fqcxwKtd49Q.gif": [
    "c5f656640dae"
@@ -57259,6 +57561,18 @@
    "runs": [],
    "safes": [
     "5a58c4d9b35f"
+   ]
+  },
+  "1*OxKnomuHjOiACr_RO6u1fw.gif": {
+   "runs": [],
+   "safes": [
+    "2dc47878adf9"
+   ]
+  },
+  "1*lfQzBnBazStbGHtbQ_AGSg.gif": {
+   "runs": [],
+   "safes": [
+    "d04593ea6899"
    ]
   },
   "1*cDMASRfUSVriSqxLYOKHjA.gif": {
@@ -58018,7 +58332,8 @@
    "can.slap"
   ],
   "cant": [
-   "cant.release"
+   "cant.release",
+   "cant.cough"
   ],
   "care": [
    "care.on"
@@ -58036,6 +58351,9 @@
   ],
   "cli": [
    "cli.cli"
+  ],
+  "closet": [
+   "closet.get"
   ],
   "code": [
    "code.say"
@@ -58283,7 +58601,8 @@
   "kemi": [
    "kemi.sometimes",
    "kemi.ismarried",
-   "kemi.setlocation"
+   "kemi.setlocation",
+   "kemi.getlastperiod"
   ],
   "know": [
    "know.african",
@@ -58400,6 +58719,9 @@
    "new.courtcase",
    "new.condom",
    "new.makeup"
+  ],
+  "next": [
+   "next.kin"
   ],
   "nigeria": [
    "nigeria.setpresident"
@@ -58742,6 +59064,9 @@
   ],
   "which": [
    "which.one"
+  ],
+  "who": [
+   "who.has"
   ],
   "why": [
    "why.thunder"
@@ -59092,6 +59417,8 @@
   "raised": [],
   "waga": [],
   "beat": [],
+  "next": [],
+  "who": [],
   "cooler": [],
   "kazeem.goodqualities": [],
   "app": [],
@@ -59129,7 +59456,8 @@
   "j24": [],
   "tobi": [],
   "boy": [],
-  "woman": []
+  "woman": [],
+  "closet": []
  },
  "casts": {
   "run-5a58c4": [
@@ -59342,6 +59670,7 @@
    "make",
    "mean",
    "nd",
+   "next",
    "nigerian",
    "nothing",
    "ok",
@@ -59385,6 +59714,7 @@
    "what",
    "where",
    "which",
+   "who",
    "why",
    "will",
    "wo",
@@ -59406,5 +59736,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-26T17:18:34-05:00"
+ "updated": "2026-11-26T17:31:09-05:00"
 }
