@@ -158,7 +158,16 @@ Optional but expected, so the new code is not an island:
 - `methods`: extra methods on the same object. The first method / `title`
   is the one the menu leads with.
 
-`links[].kind` is one of: `function`, `object`, `seated`, `run`, `safe`.
+`links[].kind` is one of: `function`, `object`, `seated`, `run`, `safe`, `cut`.
+
+A cut-to-cut hop can be recorded either as:
+
+- a `links[]` item `{ "kind": "cut", "id": "<medium_image_id>#cutN" }`
+  (or `{ "kind": "cut", "medium_image_id": "...", "cut": "cutN" }`), or
+- `related_cuts`: an array of `"<medium_image_id>#cutN"` strings (or
+  `{medium_image_id, cut}` objects). Both forms are valid and both are
+  tappable in the projector after a tap; they are unioned, not exclusive.
+
 Unknown keys on an entry are ignored.
 
 ## Batch files (for #thryd)
@@ -203,17 +212,19 @@ window.thrydCutCode = {
   shardName(medium_image_id),     // 's03.json'
   forCut(medium_image_id, cut), // entries from memory, or [] if not cached
   load(medium_image_id),          // Promise of entries for that image; fetches at most manifest + one shard
+  hops(medium_image_id, cut),     // related_cuts + kind:"cut" links already in memory, or []
   manifest()                      // cached manifest or null
 };
 ```
 
-Cards should call `load()` / `forCut()` only when they need the lines,
-never on page start.
+Cards should call `load()` / `forCut()` / `hops()` only when they need the lines,
+never on page start. A hop tap may `showOnStage` the destination image; the
+destination shard is fetched only if that cut's menu then opens (`mccEnsure`).
 
 ## Heat rules (do not regress)
 
 - No `fetch` of these files except from `thrydCutCode.load` / a first
-  Medium-cut tap.
+  Medium-cut tap (or a later hop tap that opens another cut's menu).
 - No `setInterval` / `requestAnimationFrame` / per-frame work for this data.
 - Opening or filling the tap menu must not re-render the stage scene.
 - A 404 on the manifest or a shard is a silent fallback, not an error banner.

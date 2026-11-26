@@ -66,8 +66,11 @@
   // ?cap=N overrides for QA (e.g. ?cap=20 or ?cap=36). v610 had set this at 36 (desktop 72→36, same as phone).
   const CAP_DEFAULT = 10;
   const CAP = (function(){ try{ const n = +(new URLSearchParams(location.search).get('cap')); if(n >= 1 && n <= 200) return Math.floor(n); }catch(e){} return CAP_DEFAULT; })();
-  const SOFT_CAP = Math.max(1, CAP - Math.max(2, Math.round(CAP / 6))); // walk the oldest off before the hard cap (36→30, 20→17, 10→8)
-  const MAX_GROUPS = Math.max(1, Math.round(CAP / 2)); // story groups; pins do not count (was 18 when CAP was 36)
+  // v618 (Jesuye 26 Nov 2026 1:46 AM ET): hold 10 picture objects most of the time. SOFT_CAP equals CAP, so
+  // the oldest is evicted only to make room for an incoming group (not early at 8). MAX_GROUPS is large enough
+  // that the cut cap is the limit. A group that will not fit evicts the oldest instead of being skipped.
+  const SOFT_CAP = CAP; // evict only to make room for an incoming group, never walk off early
+  const MAX_GROUPS = Math.max(CAP * 4, 16); // plenty of groups; the cut cap is the limit
   const PER_GROUP = PHONE ? 4 : 6;
   const READY = PHONE ? 1 : 2;               // decoded groups kept in the wings
   const MAXF = PHONE ? 8 : 20;                 // stored frames per animated cut (longer GIFs keep every k-th frame, delays summed)
@@ -438,10 +441,9 @@
     if(!plan.ok) throw new Error(plan.reason || 'plan');
     const fw = plan.width, fh = plan.height;
     if(lo.live) roomForLive(PER_GROUP);
-    const room = CAP - activeStoryCuts().length; if(room < 1) throw new Error('cap');
     let objs = plan.objects.map((o, k) => ({o, k, U: unionBox(plan.kind === 'gif' ? o.masks : [o.masks[0]])})).filter(x => x.U && x.U.w > 2 && x.U.h > 2);
     objs.sort((a, b) => b.U.w * b.U.h - a.U.w * a.U.h);
-    objs = objs.slice(0, Math.min(room, PER_GROUP));
+    objs = objs.slice(0, Math.min(PER_GROUP, CAP));
     if(!objs.length) throw new Error('no_object');
     // on-screen size of the whole source frame for this group
     let Dh = lo.live ? vh() * (lo.newest ? (PHONE ? 0.44 : 0.52) : (PHONE ? R(0.28, 0.42) : R(0.32, 0.50))) : vh() * (PHONE ? R(0.18, 0.30) : R(0.22, 0.40)), k = Dh / fh;
@@ -881,7 +883,7 @@
     const e = AG.map[key], fs = e.frame_size || [480, 270], fw = fs[0], fh = fs[1];
     let objs = (e.objects || []).filter(o => o && o.sprite && Array.isArray(o.bbox)).map((o, k) => ({o: {label: o.label, model_class: o.label, state_id: o.state_id || null}, k,
       U: {x: Math.round(o.bbox[0] * fw), y: Math.round(o.bbox[1] * fh), w: Math.max(3, Math.round(o.bbox[2] * fw)), h: Math.max(3, Math.round(o.bbox[3] * fh))}, src: o.sprite}));
-    objs.sort((a, b) => b.U.w * b.U.h - a.U.w * a.U.h); objs = objs.slice(0, Math.min(PER_GROUP, CAP - activeStoryCuts().length)); if(!objs.length) throw new Error('cap');
+    objs.sort((a, b) => b.U.w * b.U.h - a.U.w * a.U.h); objs = objs.slice(0, Math.min(PER_GROUP, CAP)); if(!objs.length) throw new Error('cap');
     let Dh = vh() * (PHONE ? R(0.2, 0.32) : R(0.24, 0.40)), k = Dh / fh; if(fw * k > vw() * (PHONE ? 0.62 : 0.44)) k = vw() * (PHONE ? 0.62 : 0.44) / fw;
     Dh = fh * k; const Dw = fw * k, s = Math.min(2.5, k * DPR);
     const frames = await Promise.all(objs.map(async x => { const r = await fetch(x.src, {cache: 'force-cache'}); if(!r.ok) throw new Error('sprite'); const b = await r.blob();
@@ -919,7 +921,7 @@
       items = [].concat((st.characters || []).map(c => ({label: c.name || c.id, id: c.id || null, kind: 'character'})), (st.objects || []).map(o => ({label: o.label, id: o.db_id || null, kind: 'object'})));
     }
     if(!items.length) throw new Error('no_items');
-    const pick = items.slice(0, Math.min(PER_GROUP, CAP - activeStoryCuts().length)); if(!pick.length) throw new Error('cap');
+    const pick = items.slice(0, Math.min(PER_GROUP, CAP)); if(!pick.length) throw new Error('cap');
     // a real sprite crop of the same object in the same run is used when there is one; otherwise a plain text chip
     const bms = await Promise.all(pick.map(async i => { const sp = run && AG.sprite.get(run + '|' + ckey(i.label));
       if(sp){ try{ const r = await fetch(sp, {cache: 'force-cache'}); if(r.ok){ const b = await createImageBitmap(await r.blob()); const sc = Math.min(1, (vh() * .16 * DPR) / Math.max(b.width, b.height));
@@ -936,8 +938,15 @@
 
   // decoding fills a small queue of ready groups; a group goes on stage the moment there is room (cap, budget, an empty patch)
   S.ready = []; S.pend = [];
+  function makeRoom(needCuts){
+    needCuts = needCuts || 1;
+    while((activeStoryCuts().length + needCuts > CAP || storyGroups().length >= MAX_GROUPS) && evictOldest('room')){}
+    return activeStoryCuts().length + needCuts <= CAP && storyGroups().length < MAX_GROUPS;
+  }
   function place(item){
-    if(activeStoryCuts().length + item.L.objs.length > CAP || storyGroups().length >= MAX_GROUPS) return false;
+    const need = (item.L && item.L.objs && item.L.objs.length) || 1;
+    if(activeStoryCuts().length + need > CAP || storyGroups().length >= MAX_GROUPS) makeRoom(need);
+    if(activeStoryCuts().length + need > CAP || storyGroups().length >= MAX_GROUPS) return false;
     S.ready.splice(S.ready.indexOf(item), 1); S.bytes -= item.held;
     try{ spawn(item.row, item.L); }catch(e){ note('spawn fail', item.row.medium_image_id, String(e && e.message || e)); item.L.frames.forEach(f => f.forEach(b => b.close && b.close())); }
     return true;
@@ -1131,8 +1140,9 @@
       return;
     }
     if(!manifest) return;
-    if(S.ready.length >= READY || activeStoryCuts().length >= CAP || S.bytes > BUDGET * .9) return;
-    if(storyGroups().length + S.ready.length >= MAX_GROUPS && activeStoryCuts().length >= CAP - 2) return;
+    if(S.ready.length >= READY || S.bytes > BUDGET * .9) return;
+    // at the cut cap: keep wing items if any, but do not decode more; place() evicts when a ready group needs room
+    if(activeStoryCuts().length >= CAP) return;
     const prefer = netHeld() ? null : wantLive();
     if(prefer){
       await spawnLive(prefer);
@@ -1179,9 +1189,9 @@
       else if(g.offSince && now - g.offSince > 12000) exitGroup(g, false, 'offscreen');
       else if(!netHeld() && now - g.born > g.life && !g.cuts.some(c => c.dragging)) exitGroup(g, false, 'life');
     });
-    // soft cap: when a new story is about to arrive and we are within 6 of CAP, walk the oldest off first
+    // soft cap equals CAP: evict only to make room for an incoming group (place/makeRoom), never early
     const incoming = !!(S.ready.length || S.loading || (S.liveViews && S.liveViews.pending && S.liveViews.pending.length));
-    if(incoming && activeStoryCuts().length >= SOFT_CAP) evictOldest('soft-cap');
+    if(incoming && activeStoryCuts().length > SOFT_CAP) evictOldest('soft-cap');
     // never more than CAP: walk off (never unload in 10ms)
     if(activeStoryCuts().length > CAP) evictOldest('cap');
     // memory: walk groups off instead of deleting them when the decoded-byte budget is tight
@@ -2330,7 +2340,7 @@
     '#gmeth .gmh{width:100%;color:#ffe7a8;font-weight:600;padding:0 .3vh .2vh;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}',
     '#gmeth button{font:inherit;color:#fff;background:#2a2a2a;border:1px solid #555;border-radius:.8vh;padding:.7vh 1vh;cursor:pointer;min-height:36px;touch-action:manipulation}',
     '#gmeth button:hover,#gmeth button:focus-visible{background:#3c3c3c;border-color:#ffd76a;outline:none}',
-    '#gmeth button.gfn{border-color:#8a6d2b;text-align:left}', '#gmeth button.genv{border-color:#3d6b8a;text-align:left}', '#gmeth button.gmcc{border-color:#6a8a3d;text-align:left}', '#gmeth .gmcl{width:100%;color:#9c9;font-weight:400;font-size:.8em;padding:0 .3vh .3vh}', '#gmeth{max-height:min(70vh,560px);overflow:auto}', '#gmeth .gms{width:100%;color:#bbb;font-weight:400;font-size:.85em;padding:0 .3vh}',
+    '#gmeth button.gfn{border-color:#8a6d2b;text-align:left}', '#gmeth button.genv{border-color:#3d6b8a;text-align:left}', '#gmeth button.gmcc{border-color:#6a8a3d;text-align:left}', '#gmeth button.gmhop{border-color:#8a6d9c;text-align:left}', '#gmeth .gmcl{width:100%;color:#9c9;font-weight:400;font-size:.8em;padding:0 .3vh .3vh}', '#gmeth{max-height:min(70vh,560px);overflow:auto}', '#gmeth .gms{width:100%;color:#bbb;font-weight:400;font-size:.85em;padding:0 .3vh}',
     '#gtweet{position:fixed;z-index:10040;max-width:min(80vw,460px);padding:1vh 1.2vh;border-radius:1vh;background:rgba(14,14,14,.94);color:#fff;box-shadow:0 3px 16px #0009;font:500 max(13px,1.6vh)/1.35 system-ui,sans-serif;transform:translateX(-50%);opacity:0;transition:opacity .5s;pointer-events:none}',
     '#gtweet.on{opacity:1;pointer-events:auto}', '#gtweet:focus-visible{outline:2px solid #ffd76a;outline-offset:2px}', '#gtweet .gtc{font:600 .82em ui-monospace,Menlo,Consolas,monospace;color:#ffd76a;margin-bottom:.4vh}',
     '#gtweet .gty{color:#9fd3ff;font-weight:700;white-space:nowrap}', '#gtweet .gtr{font:600 .8em ui-monospace,Menlo,Consolas,monospace;color:#b6f0a0;margin-bottom:.4vh}', '#gtweet .gtn{color:#bbb;font-size:.8em;margin-top:.5vh}',
@@ -2742,6 +2752,61 @@
       return {kind: 'mcc', entry: e, m: {fn: method, args, title}, show: title};
     });
   }
+  const CUT_HOP_RE = /^(.*)#(cut[1-4])$/;
+  function parseCutHop(s){
+    const m = String(s || '').match(CUT_HOP_RE);
+    return m ? {mid: m[1], cut: m[2]} : null;
+  }
+  function hopsOf(e){
+    const out = [], seen = Object.create(null);
+    const add = (mid, cut, title) => {
+      if(!mid || !/^cut[1-4]$/.test(cut || '')) return;
+      const id = mid + '#' + cut;
+      if(seen[id]) return;
+      seen[id] = 1;
+      out.push({mid, cut, id, title: title || ''});
+    };
+    (e && e.related_cuts || []).forEach(x => {
+      if(typeof x === 'string'){ const p = parseCutHop(x); if(p) add(p.mid, p.cut); }
+      else if(x && typeof x === 'object'){
+        if(x.medium_image_id && x.cut) add(x.medium_image_id, x.cut, x.title);
+        else { const p = parseCutHop(x.id || x.href || ''); if(p) add(p.mid, p.cut, x.title); }
+      }
+    });
+    (e && e.links || []).forEach(l => {
+      if(!l || l.kind !== 'cut') return;
+      if(l.medium_image_id && l.cut) add(l.medium_image_id, l.cut, l.title);
+      else { const p = parseCutHop(l.id || ''); if(p) add(p.mid, p.cut, l.title); }
+    });
+    return out;
+  }
+  function hopLabel(h){
+    const mid = h && h.mid, cut = h && h.cut, man = MCC.manifest;
+    if(mid && cut && man){
+      const sh = MCC.shards[mccShardName(mid, man)];
+      const ents = sh && sh.by && sh.by[mid] && sh.by[mid][cut];
+      if(ents && ents[0] && ents[0].title) return ents[0].title;
+    }
+    if(h && h.title) return h.title;
+    return (h && h.cut ? h.cut : 'cut') + ' · ' + String((h && h.mid) || '').slice(0, 18);
+  }
+  function findHopCut(mid, cut){
+    return S.cuts.find(c => c && !c.map && !isLeaving(c) && c.home && c.home.mid === mid && (!cut || c.label === cut));
+  }
+  function hopToCut(h){
+    if(!h || !h.mid) return;
+    closeMethods();
+    const go = () => {
+      const c = findHopCut(h.mid, h.cut) || findHopCut(h.mid, null);
+      if(!c) return;
+      const g = c.home || c.g;
+      if(g && !RM) camGo(g.x + g.w / 2 - vw() / 2, g.y + g.h / 2 - vh() / 2, 6000);
+      openMethods(c);
+    };
+    if(findHopCut(h.mid, h.cut) || findHopCut(h.mid, null)){ go(); return; }
+    // dest shard is fetched only if this hop opens that cut's menu (mccEnsure). no prefetch.
+    Promise.resolve(showOnStage(h.mid)).then(go).catch(() => {});
+  }
   function mccLinkNote(e){
     const bits = [];
     (e.links || []).forEach(l => {
@@ -2773,6 +2838,18 @@
       const note = mccLinkNote(e);
       if(note){ const n = document.createElement('div'); n.className = 'gmcl'; n.dataset.mcc = '1'; n.textContent = note; box.appendChild(n); }
     });
+    const hops = [], hs = Object.create(null);
+    items.forEach(x => hopsOf(x.entry).forEach(h => { if(!hs[h.id]){ hs[h.id] = 1; hops.push(h); } }));
+    if(hops.length){
+      const lb2 = document.createElement('div'); lb2.className = 'gms'; lb2.dataset.mcc = '1'; lb2.textContent = 'related cuts'; box.appendChild(lb2);
+      hops.forEach(h => {
+        const b = document.createElement('button'); b.type = 'button'; b.setAttribute('role', 'menuitem'); b.className = 'gmhop'; b.dataset.mcc = '1'; b.dataset.hop = h.id;
+        b.textContent = hopLabel(h); b.title = h.id;
+        b.addEventListener('pointerdown', ev => ev.stopPropagation());
+        b.addEventListener('click', ev => { ev.stopPropagation(); ev.preventDefault(); hopToCut(h); });
+        box.appendChild(b);
+      });
+    }
   }
   function mccEnsure(c, done){
     if(!isMediumCut(c)) return;
@@ -2795,6 +2872,11 @@
       const out = []; Object.keys(by).forEach(k => { out.push(...by[k]); });
       return out;
     }),
+    hops: (mid, cut) => {
+      const out = [], seen = Object.create(null);
+      ((cutCodeApi.forCut(mid, cut)) || []).forEach(e => hopsOf(e).forEach(h => { if(!seen[h.id]){ seen[h.id] = 1; out.push(h); } }));
+      return out;
+    },
     manifest: () => MCC.manifest || null
   };
   S.cutCode = cutCodeApi; root.thrydCutCode = cutCodeApi;

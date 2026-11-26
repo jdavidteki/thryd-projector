@@ -1,5 +1,5 @@
 {
- "v": 617,
- "at": "2026-11-26T01:00:00-05:00",
- "note": "v617: cooler projector (heat). At most 10 story objects on the stage at once (was 36); older ones walk off and new ones rotate in. The cap is one value (CAP_DEFAULT in stage.js; ?cap=N to try another). Pins do not count. The stretchy warp and the stage GIF/plate loop wake only when a frame is due (~4 fps warp, ~2 fps when idle or in cool mode) instead of on every display frame; name tags follow a cut only while a tag is showing, and that loop sleeps otherwise; off-screen cuts drop will-change so they are not compositor layers; map-pin pulse and the LIVE badge blink pause when idle or the tab is hidden. The video card still loops, and pauses only when hidden or off-screen."
+ "v": 618,
+ "at": "2026-11-26T01:53:00-05:00",
+ "note": "v618: the stage holds 10 picture objects (story cuts) most of the time. SOFT_CAP equals CAP, so the oldest walks off only to make room for an incoming group; MAX_GROUPS is large enough that the cut cap is the limit; a group that will not fit evicts the oldest instead of being skipped. Pins and the video card still do not count. Medium-cut code batches b00\u2013b03 are packed into shards s00\u2013s07; related_cuts and kind \"cut\" links are tappable hops after a tap (lazy, no extra fetch until that hop opens the next cut)."
 }

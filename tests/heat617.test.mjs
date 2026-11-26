@@ -44,23 +44,27 @@ test('one CAP_DEFAULT (10) sets how many story objects are on stage; ?cap=N over
   assert.match(st, /const CAP_DEFAULT = 10;/);
   assert.match(st, /URLSearchParams\(location\.search\)\.get\('cap'\)/);
   assert.match(st, /const CAP = \(function\(\)\{/);
-  assert.match(st, /SOFT_CAP = Math\.max\(1, CAP - Math\.max\(2, Math\.round\(CAP \/ 6\)\)\)/);
-  assert.match(st, /MAX_GROUPS = Math\.max\(1, Math\.round\(CAP \/ 2\)\)/);
+  assert.match(st, /const SOFT_CAP = CAP;/);
+  assert.match(st, /MAX_GROUPS = Math\.max\(CAP \* 4, 16\)/);
+  assert.doesNotMatch(st, /SOFT_CAP = Math\.max\(1, CAP - Math\.max\(2, Math\.round\(CAP \/ 6\)\)\)/);
+  assert.doesNotMatch(st, /MAX_GROUPS = Math\.max\(1, Math\.round\(CAP \/ 2\)\)/);
   assert.doesNotMatch(st, /const CAP = 36;/);
   assert.doesNotMatch(st, /const MAX_GROUPS = 18;/);
   assert.match(st, /S\.CAP_DEFAULT = CAP_DEFAULT/);
-  assert.match(st, /activeStoryCuts\(\)\.length >= SOFT_CAP/);
+  assert.match(st, /function makeRoom\(needCuts\)/);
+  assert.match(st, /evictOldest\('room'\)/);
+  assert.match(st, /activeStoryCuts\(\)\.length > SOFT_CAP/);
   assert.match(st, /evictOldest\('soft-cap'\)/);
   assert.match(st, /evictOldest\('cap'\)/);
 });
 
-test('index and version.json are at v617 or later', ()=>{
+test('index and version.json are at v618 or later', ()=>{
   assert.match(html, /var VER=\d+,/);
   assert.match(html, /stage\.js\?v=\d+/);
   const v = JSON.parse(ver);
-  assert.ok(v.v >= 617);
-  assert.match(html, /var VER=617,/);
-  assert.match(html, /stage\.js\?v=617/);
+  assert.ok(v.v >= 618);
+  assert.match(html, /var VER=618,/);
+  assert.match(html, /stage\.js\?v=618/);
   assert.match(html, /stretchy_bg\.js\?v=8/);
   assert.match(html, /alive\.css\?v=9/);
 });

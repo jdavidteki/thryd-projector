@@ -304,6 +304,7 @@
   // cut object code is lazy: cards call these only when they need a line, never on load (data/medium_cuts_code.json).
   function cardCutCode(mid,cut){var A=window.thrydCutCode;return A&&A.forCut?A.forCut(mid,cut):[];}
   function cardLoadCutCode(mid){var A=window.thrydCutCode;return A&&A.load?A.load(mid):Promise.resolve([]);}  
-  window.thrydStoryCard={el:a,url:URL_,home:function(){try{localStorage.removeItem(KEY);}catch(e){}home();},poll:mpoll,cutCode:cardCutCode,loadCutCode:cardLoadCutCode,
+  function cardCutHops(mid,cut){var A=window.thrydCutCode;return A&&A.hops?A.hops(mid,cut):[];}
+  window.thrydStoryCard={el:a,url:URL_,home:function(){try{localStorage.removeItem(KEY);}catch(e){}home();},poll:mpoll,cutCode:cardCutCode,loadCutCode:cardLoadCutCode,hops:cardCutHops,
     mini:function(){return {state:a.dataset.mini||'',job:a.dataset.job||'',label:jb.textContent,layersV:a.dataset.layersV||'',live:a.classList.contains('mini'),outline:a.dataset.outline||'',coloured:a.dataset.coloured||'',oc:(a.querySelector('.oc')||{}).textContent||'',yaw:view.yaw,pitch:view.pitch,spin:view.spin,rate:view.rate};},view:function(){return {yaw:view.yaw,pitch:view.pitch,spin:view.spin,rate:view.rate,ox:view.ox,oy:view.oy,S:view.S,cx:view.cx,cy:view.cy,cz:view.cz};},setView:function(o){if(!o)return;if(o.yaw!=null)view.yaw=+o.yaw;if(o.pitch!=null)view.pitch=+o.pitch;if(o.spin!=null)view.spin=!!o.spin;if(o.rate!=null&&isFinite(+o.rate))view.rate=+o.rate;}};
 })();
