@@ -15050,7 +15050,7 @@
   },
   "run-cf203b": {
    "forked_from": "safe:731d52737690",
-   "head": "88bb57f185",
+   "head": "0a3900248b",
    "commits": [
     {
      "id": "eda103402b",
@@ -18021,6 +18021,54 @@
        ]
       ]
      }
+    },
+    {
+     "id": "0a3900248b",
+     "parent": "88bb57f185",
+     "branch": "run-cf203b",
+     "job": "j36",
+     "at": "2026-11-26T11:51:05-0500",
+     "genre": "rising",
+     "beat": "now",
+     "diff": {
+      "facts": [
+       {
+        "id": "wt_2a4dec229e",
+        "object": "shi",
+        "kind": "func_call",
+        "code": "shi.gbogbo('dies');",
+        "scope": "env",
+        "cause_id": null
+       },
+       {
+        "id": "wt_3ce2750264",
+        "object": "agboro",
+        "kind": "func_call",
+        "code": "agboro.hears(person, 'gbogbo');",
+        "scope": "ripple",
+        "cause_id": "wt_2a4dec229e"
+       },
+       {
+        "id": "wt_971b2d8ebb",
+        "object": "ahan",
+        "kind": "func_call",
+        "code": "ahan.hears(person, 'gbogbo');",
+        "scope": "ripple",
+        "cause_id": "wt_2a4dec229e"
+       },
+       {
+        "id": "wt_4d28de65a1",
+        "object": "alorof",
+        "kind": "func_call",
+        "code": "alorof.hears(person, 'gbogbo');",
+        "scope": "ripple",
+        "cause_id": "wt_2a4dec229e"
+       }
+      ],
+      "facts_total": 4,
+      "functions": [],
+      "instances": []
+     }
     }
    ]
   },
@@ -18829,10 +18877,10 @@
   "run-0ae93c": "a11a1eab61",
   "run-3a15d2": "fbc46c6eb7",
   "run-ab4653": "dd8e54daee",
-  "run-cf203b": "88bb57f185",
+  "run-cf203b": "0a3900248b",
   "run-cb805f": "8d23a93627",
   "run-888ea9": "9815dfcb14"
  },
- "commits": 187,
- "updated": "2026-11-26T11:48:38-05:00"
+ "commits": 188,
+ "updated": "2026-11-26T11:51:10-05:00"
 }
