@@ -9,7 +9,7 @@
   if(!/(?:^|[?&])cards=1(?:&|$)/.test(String(location.search||''))) return;
 
   // v621 look (Jesuye 26 Nov 12:13 PM "make it look nice"): dark glass panel, compact drag header,
-  // Literata (self-hosted 18 KB Latin subset) for the story text, tweet line under each option,
+  // Literata (self-hosted 18 KB Latin subset) for the story text, full archive safe under each option,
   // capped height with the card body scrolling inside so the [[god]] header always stays grabbable.
   const CSS = [
     "@font-face{font-family:'ThrydRead';src:url('assets/fonts/literata-420.woff2') format('woff2');font-weight:300 700;font-style:normal;font-display:swap}",
@@ -35,16 +35,16 @@
     '#aicard .aicopt{display:flex;flex-direction:column;align-items:flex-start;gap:3px;width:100%;box-sizing:border-box;text-align:left;color:#fff;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.13);border-radius:10px;padding:8px 11px 8px 34px;cursor:pointer;min-height:40px;position:relative;transition:background .12s,border-color .12s;-webkit-tap-highlight-color:transparent}',
     "#aicard .aicopt::before{content:'';position:absolute;left:11px;top:11px;width:13px;height:13px;border-radius:4px;border:1.5px solid rgba(255,255,255,.35);box-sizing:border-box}",
     '#aicard .aicopt .ol{font:600 13px/1.3 ui-monospace,Menlo,Consolas,monospace;color:#f3efe6}',
-    // long tweet lines (Jesuye 12:37 PM): each line is its own small scroll area, max 4 lines tall
-    '#aicard .aicopt .ot{font:italic 400 14px/1.45 ThrydRead,Georgia,serif;color:#b9b2a2;display:block;width:100%;box-sizing:border-box;max-height:5.8em;overflow-y:auto;overscroll-behavior:contain;padding-right:6px;scrollbar-width:thin;scrollbar-color:rgba(255,215,106,.45) transparent}',
+    // v628: full archive safe under each option (title + numbered lines, verbatim, «picked» gold);
+    // code-block box; max ~6 rows, long rows wrap; scroll area does not toggle the option
+    '#aicard .aicopt .ot{font:400 12.5px/1.45 ui-monospace,Menlo,Consolas,monospace;font-style:normal;color:#e8e0d0;display:block;width:100%;box-sizing:border-box;max-height:8.7em;overflow-y:auto;overscroll-behavior:contain;touch-action:pan-y;cursor:text;padding:6px 8px;margin-top:2px;background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.08);border-radius:8px;white-space:pre-wrap;word-break:break-word;scrollbar-width:thin;scrollbar-color:rgba(255,215,106,.45) transparent}',
     '#aicard .aicopt .ot::-webkit-scrollbar{width:4px}#aicard .aicopt .ot::-webkit-scrollbar-thumb{background:rgba(255,215,106,.45);border-radius:2px}',
-    '#aicard .aicopt .ot.long{-webkit-mask-image:linear-gradient(#000 70%,rgba(0,0,0,.25));mask-image:linear-gradient(#000 70%,rgba(0,0,0,.25))}',
-    '#aicard .aicopt .ot.long.end{-webkit-mask-image:none;mask-image:none}',
-    '#aicard .aicopt .more{font:600 10px/1 ui-sans-serif,system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#c9a95a;opacity:.85}',
+    '#aicard .aicopt .ot .ott{color:#c9a95a;font:600 11.5px/1.4 ui-monospace,Menlo,Consolas,monospace;margin:0 0 3px}',
+    '#aicard .aicopt .ot .otl{display:block}',
+    '#aicard .aicopt .ot .otl.pick{color:#ffd76a;font-weight:600}',
     '#aicard .aicopt.on{border-color:#ffd76a;background:rgba(255,215,106,.13)}',
     "#aicard .aicopt.on::before{background:#ffd76a;border-color:#ffd76a;box-shadow:inset 0 0 0 2.5px #2a2416}",
-    '#aicard .aicopt.on .ot{color:#f2e3b8}',
-    '#aicard .aicopt:disabled,#aimenu button:disabled{opacity:.5;cursor:default}',
+    '#aicard .aicopt:disabled,#aicard .aicopt[aria-disabled="true"],#aimenu button:disabled{opacity:.5;cursor:default}',
     '#aicard .aicfree{width:100%;box-sizing:border-box;font:400 14px/1.4 ThrydRead,Georgia,serif;color:#fff;background:rgba(0,0,0,.28);border:1px solid rgba(255,255,255,.16);border-radius:10px;padding:8px 11px;min-height:38px;outline:none}',
     '#aicard .aicfree:focus{border-color:#ffd76a}',
     '#aicard .aicsend{display:flex;align-items:center;gap:10px;justify-content:flex-end}',
@@ -228,6 +228,42 @@
     return out;
   }
 
+  // v628: full archive safe (chat option description) under each option.
+  function safeText(o){
+    if(o && typeof o.safe === 'string' && o.safe.trim()) return o.safe;
+    if(o && typeof o.description === 'string' && o.description.trim()) return o.description;
+    return '';
+  }
+  function safeRows(text){
+    let s = String(text || '').replace(/\s+$/, '');
+    let year = '';
+    const ym = s.match(/\s+(\d{4})$/);
+    if(ym){ year = ym[1]; s = s.slice(0, ym.index); }
+    const m = s.match(/:\s+(?=\d+\.\s)/);
+    let title = '', rows = [];
+    if(m){
+      title = s.slice(0, m.index).trim();
+      rows = s.slice(m.index + m[0].length).split(' / ').map(x => x.trim()).filter(Boolean);
+    } else if(s){
+      rows = [s];
+    }
+    if(year) title = title ? (title + ' \u00b7 ' + year) : year;
+    return {title, rows};
+  }
+  function fillSafe(el, text){
+    const {title, rows} = safeRows(text);
+    el.textContent = '';
+    if(title){ const h = document.createElement('div'); h.className = 'ott'; h.textContent = title; el.appendChild(h); }
+    let pick = null;
+    rows.forEach(line => {
+      const r = document.createElement('div'); r.className = 'otl';
+      if(/\u00ab[\s\S]*\u00bb/.test(line)){ r.classList.add('pick'); pick = r; }
+      r.textContent = line;
+      el.appendChild(r);
+    });
+    return pick;
+  }
+
   function render(){
     const els = mount(); if(!els) return;
     const {jobEl, menuEl} = els;
@@ -248,21 +284,30 @@
       const opts = document.createElement('div'); opts.className = 'aicopts';
       // 🎥 is not a line any more: it is the '🎥 Live view' pill in the menu row (Jesuye 12:42 PM)
       (c.options || []).filter(o => !isLiveOpt(o)).forEach(o => {
-        const b = document.createElement('button'); b.type = 'button'; b.className = 'aicopt' + (sel.values.has(o.value) ? ' on' : '');
-        b.dataset.value = o.value; b.setAttribute('aria-pressed', sel.values.has(o.value) ? 'true' : 'false');
+        const b = document.createElement('div'); b.className = 'aicopt' + (sel.values.has(o.value) ? ' on' : '');
+        b.dataset.value = o.value; b.setAttribute('role', 'button'); b.tabIndex = locked ? -1 : 0;
+        b.setAttribute('aria-pressed', sel.values.has(o.value) ? 'true' : 'false');
+        if(locked) b.setAttribute('aria-disabled', 'true');
         const l = document.createElement('span'); l.className = 'ol'; l.textContent = o.label; b.appendChild(l);
-        const tl = tweetLine(o);
-        if(tl){ const t = document.createElement('span'); t.className = 'ot' + (tl.length > 180 ? ' long' : ''); t.textContent = '\u201c' + tl + '\u201d'; if(tl.length > 180){ t.title = 'scroll for the whole line'; t.addEventListener('scroll', () => { const end = t.scrollTop + t.clientHeight >= t.scrollHeight - 2; t.classList.toggle('end', end); if(mo) mo.style.visibility = end ? 'hidden' : ''; }, {passive: true}); }
+        const raw = safeText(o) || tweetLine(o);
+        if(raw){
+          const t = document.createElement('div'); t.className = 'ot';
+          const pick = fillSafe(t, raw);
+          // taps in the scroll area must not toggle the option (tap guard still covers the label)
+          ;['pointerdown','pointerup','click'].forEach(k => t.addEventListener(k, ev => { ev.stopPropagation(); }, true));
           b.appendChild(t);
-          var mo = null; if(tl.length > 180){ mo = document.createElement('span'); mo.className = 'more'; mo.textContent = 'scroll \u2193 for the whole line'; b.appendChild(mo); } }
-        if(locked) b.disabled = true;
-        tapOnce(b, () => {
-          if(locked) return;
-          if(sel.values.has(o.value)) sel.values.delete(o.value); else sel.values.add(o.value);
-          const on = sel.values.has(o.value);
-          b.classList.toggle('on', on); b.setAttribute('aria-pressed', on ? 'true' : 'false');
-          if(status.kind === 'err') setStatus('', '');
-        });
+          if(pick) setTimeout(() => { try{ pick.scrollIntoView({block:'center', inline:'nearest'}); }catch(e){} }, 0);
+        }
+        if(!locked){
+          const toggle = () => {
+            if(sel.values.has(o.value)) sel.values.delete(o.value); else sel.values.add(o.value);
+            const on = sel.values.has(o.value);
+            b.classList.toggle('on', on); b.setAttribute('aria-pressed', on ? 'true' : 'false');
+            if(status.kind === 'err') setStatus('', '');
+          };
+          tapOnce(b, toggle);
+          b.addEventListener('keydown', ev => { if(ev.key !== 'Enter' && ev.key !== ' ') return; ev.preventDefault(); ev.stopPropagation(); toggle(); });
+        }
         opts.appendChild(b);
       });
       jobEl.appendChild(opts);
@@ -395,12 +440,14 @@
     if(!m){ setStatus('Sent \u2713 (no receipt yet \u2014 it will still be picked up)', 'ok'); return; }
     if(m.ok){ setStatus('Received \u2713 your ' + job + ' pick is in \u2014 next job coming.', 'ok'); return; }
     if(m.code === 'already_sent'){ setStatus('Already sent for ' + job + ' \u2713 next job coming.', 'ok'); return; }
-    unmarkSent(job);
+    // v628: the pick already posted; a seat can make the open job disappear before the
+    // receipt. Keep this card, its size, and the sent confirmation — don't collapse to
+    // the waiting empty state.
     if(m.code === 'job_mismatch' || m.code === 'no_open_job'){
-      const f2 = await fetchOpen(6000); if(f2){ card = f2; cardSig = JSON.stringify(f2); }
-      status = {job: card && card.job, text: job + ' is closed' + (card && card.open && card.job !== job ? ' \u2014 ' + card.job + ' is open now. Pick again.' : '.'), kind: 'err'};
-      render(); return;
+      setStatus('Sent \u2713 your ' + job + ' pick is in \u2014 next job coming.', 'ok');
+      return;
     }
+    unmarkSent(job);
     status = {job, text: 'Not accepted \u00b7 ' + (m.detail || m.code || 'rejected') + ' \u00b7 tap Send to try again.', kind: 'err'};
     render();
   }
@@ -437,6 +484,12 @@
       // After Send we wait on this job ('sent — next job coming'). When the
       // published card moves to the next jN, swap it in automatically.
       if(card && sig === cardSig){ return; } // unchanged: keep the DOM (and the pick) as is
+      // v628: a waiting / closed refresh must not collapse the sent card (confirmation
+      // and size stay until the next job is actually open, or the user closes the panel).
+      if(card && card.open && wasSent(card.job) && !(j.open && j.job && j.job !== card.job)){
+        cardSig = sig;
+        return;
+      }
       card = j; cardSig = sig;
       render();
     }).catch(()=>{});

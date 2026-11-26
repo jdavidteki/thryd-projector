@@ -8,11 +8,11 @@ const js = rd('assets/job_card.js'), html = rd('index.html'), st = rd('assets/st
 
 test('job_card.js loads only with ?cards=1 and no-ops otherwise', ()=>{
   assert.match(html, /cards=1/);
-  assert.match(html, /job_card\.js\?v=7/);
+  assert.match(html, /job_card\.js\?v=8/);
   assert.match(js, /cards=1/);
-  assert.match(html, /var VER=627,/);
+  assert.match(html, /var VER=628,/);
   const v = JSON.parse(ver);
-  assert.equal(v.v, 627);
+  assert.equal(v.v, 628);
 });
 
 test('layout is job card, then typeline, then plain always-visible buttons', ()=>{
@@ -69,7 +69,7 @@ test('command button visible text and aria-label are [[god]], click still toggle
   assert.match(ai, /setAttribute\('aria-label', '\[\[god\]\]'\)/);
   assert.doesNotMatch(ai, /textContent = '\\u203a_'/);
   assert.match(ai, /box && box\.classList\.contains\('on'\) \? close\(\) : open\(\)/);
-  assert.match(html, /intent_ai\.js\?v=613/);
+  assert.match(html, /intent_ai\.js\?v=614/);
   // close keeps the dragged position for the next open
   assert.match(ai, /function close\(\)\{ if\(box\)\{ box\.classList\.remove\('on'\); inp\.blur\(\); \} \}/);
   assert.match(ai, /POS_KEY = 'thryd_aibox_pos'/);
@@ -96,7 +96,7 @@ test('v622: card/menu posts use the typeline lane with 429 backoff+retry, friend
   assert.match(js, /the network is busy right now/);
   assert.doesNotMatch(js, /'HTTP ' \+ r\.status \+ \(r\.status === 429/);
   assert.match(js, /lockHasJump/);
-  assert.match(js, /max-height:5\.8em;overflow-y:auto/);
+  assert.match(js, /max-height:8\.7em;overflow-y:auto/);
   assert.match(js, /awaitReply\(body, t0, r\)/);
 });
 
@@ -132,4 +132,45 @@ test('v627: menu row Seed/Prayer/🎥 Live view, lock row gets 📣 Publish befo
   assert.deepEqual(f.withPublish([{value:'souvenir'},{value:'tweets'},{value:'jump ahead'}]).map(o => o.value), ['souvenir','tweets','publish!','jump ahead']);
   assert.deepEqual(f.withPublish([{value:'souvenir'},{value:'publish!'},{value:'jump ahead'}]).map(o => o.value), ['souvenir','publish!','jump ahead']);
   assert.ok(f.MAIN_DROP.test('menu: Hold') && f.MAIN_DROP.test('menu: Tweets') && !f.MAIN_DROP.test('menu: Prayer jobs'));
+});
+
+test('v628: panel stays open after Send; waiting refresh keeps the sent card; each option shows the full archive safe', ()=>{
+  // typeline auto-close must not dismiss a cards-on panel (the old close() call bypassed the hook)
+  assert.match(ai, /function autoDismiss\(\)\{ if\(box && box\.classList\.contains\('cards-on'\)\) return;/);
+  assert.match(ai, /setTimeout\(autoDismiss, 3500\)/);
+  assert.doesNotMatch(ai, /setTimeout\(\(\)=>\{ if\(box && box\.classList\.contains\('on'\) && document\.activeElement !== inp\) close\(\); \}, 3500\)/);
+  // hook still blocks typeline AI.close; only a user close dismisses the panel
+  assert.match(js, /if\(!userClose\) return;/);
+  // after Send, a waiting / closed open_card must not collapse the sent confirmation
+  assert.match(js, /card\.open && wasSent\(card\.job\) && !\(j\.open && j\.job && j\.job !== card\.job\)/);
+  assert.match(js, /Sent \\u2713 your ' \+ job \+ ' pick is in \\u2014 next job coming/);
+  // full archive safe under each option: title + numbered rows, «picked» highlighted, no curly quotes / italics
+  assert.match(js, /function safeRows\(/);
+  assert.match(js, /function fillSafe\(/);
+  assert.match(js, /safeText\(o\) \|\| tweetLine\(o\)/);
+  assert.match(js, /r\.classList\.add\('pick'\)/);
+  assert.match(js, /pick\.scrollIntoView\(\{block:'center'/);
+  assert.match(js, /\['pointerdown','pointerup','click'\]\.forEach\(k => t\.addEventListener\(k, ev => \{ ev\.stopPropagation\(\); \}, true\)\)/);
+  assert.doesNotMatch(js, /textContent = '\\u201c' \+ tl \+ '\\u201d'/);
+  assert.doesNotMatch(js, /\.ot\{font:italic/);
+  assert.match(js, /ui-monospace,Menlo,Consolas,monospace/);
+  assert.match(js, /background:rgba\(0,0,0,\.35\)/);
+  assert.match(js, /border-radius:8px;white-space:pre-wrap/);
+  assert.match(js, /max-height:8\.7em;overflow-y:auto/);
+  assert.match(js, /touch-action:pan-y/);
+  assert.match(html, /job_card\.js\?v=8/);
+  assert.match(html, /intent_ai\.js\?v=614/);
+  const src = js.slice(js.indexOf('function safeText(o){'), js.indexOf('function render(){'));
+  const f = new Function(src + '; return {safeRows, safeText};')();
+  const s = f.safeRows('330. intense flirting: 1. #juniorboys - him. his name is kiyo. / 2. other [[code]] line / 3. «- the picked line» 2024');
+  assert.equal(s.title, '330. intense flirting \u00b7 2024');
+  assert.deepEqual(s.rows, ['1. #juniorboys - him. his name is kiyo.', '2. other [[code]] line', '3. \u00ab- the picked line\u00bb']);
+  assert.ok(s.rows[2].includes('\u00ab') && s.rows[2].includes('\u00bb'));
+  const card = JSON.parse(rd('data/open_card.json'));
+  if(card.open){
+    const withSafe = card.options.filter(o => o.line && o.line !== '\u{1f3a5}');
+    assert.ok(withSafe.length >= 1, 'job options should carry a safe');
+    assert.ok(withSafe.every(o => typeof o.safe === 'string' && o.safe.includes('«')), 'each line option has a full safe with «picked»');
+    assert.ok(withSafe.every(o => !('description' in o)), 'public field is safe, not description');
+  }
 });

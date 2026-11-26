@@ -209,6 +209,12 @@
   function open(){ ui(); box.classList.add('on'); applyPos(); msg.textContent = AI.state === 'ready' ? 'AI matching on' + (chromeOk() ? ' · ✨ Chrome AI' : '') : (AI.state === 'loading' ? 'AI model loading… letter matching for now' : 'letter matching'); chips.textContent = ''; inp.value = ''; setTimeout(()=> inp.focus(), 0); }
   function close(){ if(box){ box.classList.remove('on'); inp.blur(); } }
   AI.open = open; AI.close = close;
+  // v628 (Jesuye 1:36 PM "the panel closes by itself after i make my selections"):
+  // typeline go() used to call close() 3.5s later. That local close() bypasses the
+  // job_card hook on AI.close, so the [[god]] panel vanished after a typeline
+  // submit (and after Send, if focus had left the typeline). With cards-on the
+  // panel stays until the user closes it ([[god]] or Escape).
+  function autoDismiss(){ if(box && box.classList.contains('cards-on')) return; if(box && box.classList.contains('on') && document.activeElement !== inp) close(); }
   function label(r){ return r.id.split('.')[0] + '.' + ((r.f && r.f.method) || r.id.split('.').slice(1).join('.')) + '()'; }
   function fire(r, how){ const S = ST(); if(!r.live || !S.fireFunc){ msg.textContent = label(r) + ' · ' + r.id.split('.')[0] + ' isn\'t on stage right now'; return null; }
     const {c, x} = r.live, name = (S.objName ? S.objName(c) : null) || r.id.split('.')[0];
@@ -258,7 +264,7 @@
               + (evd && evd.ranAs ? ' \u00b7 ran as: ' + evd.ranAs : '')
               + (evd && evd.result ? ' \u2192 ' + evd.result : '');
               if(!exact && ST().undoIntent){ const u = document.createElement('span'); u.className = 'aiu'; u.textContent = 'undo'; u.onclick = ()=>{ ST().undoIntent(done.c, done.rec, done.id); msg.textContent = 'undone'; }; msg.appendChild(u); }
-              setTimeout(()=>{ if(box && box.classList.contains('on') && document.activeElement !== inp) close(); }, 3500); }
+              setTimeout(autoDismiss, 3500); }
             if(done) return; // fire() already started sendCall; otherwise fall through and send as a new typeline
           }
         }catch(e){ /* fall through and still accept / enqueue the raw typeline */ }
@@ -291,7 +297,7 @@
           + (got ? ' \u2192 ' + got.result : '');
       }
       chips.textContent = ''; inp.value = '';
-      setTimeout(()=>{ if(box && box.classList.contains('on') && document.activeElement !== inp) close(); }, 3500);
+      setTimeout(autoDismiss, 3500);
     }catch(e){ showErr(e); }
   }
   AI.go = go; AI.submit = submitNow;
