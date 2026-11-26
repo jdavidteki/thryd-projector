@@ -19328,6 +19328,102 @@
    "faded": false,
    "last_run": "run-cf203b"
   },
+  "global.radio": {
+   "object": "global",
+   "method": "radio",
+   "args": [
+    ""
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j24",
+    "card": "w24",
+    "title": "global.radio()",
+    "emoji": "🦫",
+    "at": "2026-11-26T00:15:50-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "global.radio()",
+     "emoji": "🦫",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j24",
+     "tweets": [
+      {
+       "text": "[[trl]] - na the global radio",
+       "year": "2024"
+      }
+     ],
+     "consequence": "What just happened: Tobi tries to wave it off: \"na the global radio,\" like the name on the screen is just noise everybody is tuned to.",
+     "consequence_job": "j25",
+     "resolved": "global.radio()",
+     "injected": []
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [],
+    "text": "radio()"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "what.get": {
+   "object": "what",
+   "method": "get",
+   "args": [
+    ""
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j24",
+    "card": "w24",
+    "title": "what.get()",
+    "emoji": "🪲",
+    "at": "2026-11-26T00:15:50-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "what.get()",
+     "emoji": "🪲",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j24",
+     "tweets": [
+      {
+       "text": "- you, what do you get?",
+       "year": "2024"
+      }
+     ],
+     "consequence": "What just happened: Tobi tries to wave it off: \"na the global radio,\" like the name on the screen is just noise everybody is tuned to.",
+     "consequence_job": "j25",
+     "resolved": "what.get()",
+     "injected": []
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [],
+    "text": "get()"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
   "cooler.getdatemanufactured": {
    "object": "cooler",
    "method": "getDateManufactured",
@@ -22975,7 +23071,8 @@
    "object.look"
   ],
   "global": [
-   "global.ritual"
+   "global.ritual",
+   "global.radio"
   ],
   "god_subject": [
    "object.look"
@@ -23547,7 +23644,8 @@
   ],
   "what": [
    "what.guys",
-   "what.road"
+   "what.road",
+   "what.get"
   ],
   "whatever_happens_me_subject": [
    "object.look"
@@ -25103,6 +25201,16 @@
     "title": "113. beef",
     "funcs": [
      "kunle.mix"
+    ]
+   }
+  ],
+  "better_dragging_figure": [
+   {
+    "scope": "safe",
+    "from": "ada8859f6603",
+    "title": "1205. better dragging",
+    "funcs": [
+     "what.get"
     ]
    }
   ],
@@ -46502,6 +46610,8 @@
     "ehen.serious",
     "weya.selling",
     "what.road",
+    "global.radio",
+    "what.get",
     "cli.cli",
     "thryd.importtheme",
     "kemi.ismarried",
@@ -46584,6 +46694,13 @@
   }
  },
  "safes": {
+  "01edf0335ce1": {
+   "title": "1215. something greater than myself",
+   "funcs": [
+    "global.radio"
+   ],
+   "runs": []
+  },
   "02c312614f2c": {
    "title": "419. nigeria wey be freak",
    "funcs": [
@@ -47328,7 +47445,9 @@
     "have.fun",
     "ehen.serious",
     "weya.selling",
-    "what.road"
+    "what.road",
+    "global.radio",
+    "what.get"
    ],
    "runs": [
     "run-cf203b"
@@ -47696,6 +47815,13 @@
    "title": "1020. i maintain my champion",
    "funcs": [
     "kunle.teach"
+   ],
+   "runs": []
+  },
+  "ada8859f6603": {
+   "title": "1205. better dragging",
+   "funcs": [
+    "what.get"
    ],
    "runs": []
   },
@@ -48814,6 +48940,9 @@
   "1*yGiZLqk4a8lrxbZRYoRMiA.gif": [
    "4e42e2aec04b"
   ],
+  "1*xqRjbriaCPRFaEZehfo84Q.gif": [
+   "ada8859f6603"
+  ],
   "1*APufEsa8jVHv6I22L9vMWw.gif": [
    "b2968502999e"
   ],
@@ -48938,6 +49067,9 @@
   ],
   "1*KOfHcbZItSwnzB-Xt4fH3A.gif": [
    "1043ee742884"
+  ],
+  "1*XLmQr9y-oUaanTmPvrKASA.jpeg": [
+   "01edf0335ce1"
   ],
   "1*r4OBHfBzrtH9iHqYaA8Zwg.gif": [
    "46985e3af2ae"
@@ -49768,6 +49900,12 @@
     "bece0ebaed5b"
    ]
   },
+  "1*xqRjbriaCPRFaEZehfo84Q.gif": {
+   "runs": [],
+   "safes": [
+    "ada8859f6603"
+   ]
+  },
   "1*_BZ_4dYEZGMebJgk4seauA.gif": {
    "runs": [],
    "safes": [
@@ -50219,7 +50357,8 @@
    "g.mm"
   ],
   "global": [
-   "global.ritual"
+   "global.ritual",
+   "global.radio"
   ],
   "gol": [
    "gol.lo"
@@ -50652,7 +50791,8 @@
   ],
   "what": [
    "what.guys",
-   "what.road"
+   "what.road",
+   "what.get"
   ],
   "why": [
    "why.thunder"
@@ -51192,5 +51332,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-26T00:15:06-05:00"
+ "updated": "2026-11-26T00:15:56-05:00"
 }
