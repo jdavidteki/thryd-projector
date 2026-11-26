@@ -15050,7 +15050,7 @@
   },
   "run-cf203b": {
    "forked_from": "safe:731d52737690",
-   "head": "fe8ac6927c",
+   "head": "07c8f3e169",
    "commits": [
     {
      "id": "eda103402b",
@@ -18625,6 +18625,54 @@
        ]
       ]
      }
+    },
+    {
+     "id": "07c8f3e169",
+     "parent": "fe8ac6927c",
+     "branch": "run-cf203b",
+     "job": "j44",
+     "at": "2026-11-26T14:52:13-0500",
+     "genre": "rising",
+     "beat": "now",
+     "diff": {
+      "facts": [
+       {
+        "id": "wt_8642563948",
+        "object": "kazeem",
+        "kind": "func_call",
+        "code": "kazeem.lift('only');",
+        "scope": "own",
+        "cause_id": null
+       },
+       {
+        "id": "wt_215ad76cb7",
+        "object": "cooler_subject_fifth",
+        "kind": "func_call",
+        "code": "cooler_subject_fifth.hears(cooler_subject_sixth, 'lift');",
+        "scope": "ripple",
+        "cause_id": "wt_8642563948"
+       },
+       {
+        "id": "wt_4906337ccf",
+        "object": "cooler_subject_fourth",
+        "kind": "func_call",
+        "code": "cooler_subject_fourth.hears(cooler_subject_sixth, 'lift');",
+        "scope": "ripple",
+        "cause_id": "wt_8642563948"
+       },
+       {
+        "id": "wt_0f7d10a805",
+        "object": "cooler_subject_second",
+        "kind": "func_call",
+        "code": "cooler_subject_second.hears(cooler_subject_sixth, 'lift');",
+        "scope": "ripple",
+        "cause_id": "wt_8642563948"
+       }
+      ],
+      "facts_total": 4,
+      "functions": [],
+      "instances": []
+     }
     }
    ]
   },
@@ -19466,10 +19514,10 @@
   "run-0ae93c": "a11a1eab61",
   "run-3a15d2": "fbc46c6eb7",
   "run-ab4653": "dd8e54daee",
-  "run-cf203b": "fe8ac6927c",
+  "run-cf203b": "07c8f3e169",
   "run-888ea9": "af55e82f0a",
   "run-cb805f": "8d23a93627"
  },
- "commits": 195,
- "updated": "2026-11-26T14:35:41-05:00"
+ "commits": 196,
+ "updated": "2026-11-26T14:52:29-05:00"
 }
