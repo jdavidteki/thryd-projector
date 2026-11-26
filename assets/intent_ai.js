@@ -4,7 +4,7 @@
      Xenova/all-MiniLM-L6-v2 sentence-embedding model (q8, ~23 MB, cached by the browser). No server, no keys.
    - Menus: each choice gets a bonus (0..0.2) from its similarity to this viewer's recent picks and typed commands; stage.js's
      scoreOf() adds it (thrydIntentAI.bonus). It can reorder a menu but can never make a tap skip the menu on its own (max .4 < .75).
-   - Typed commands: "/" (or the ›_ button) opens a box. teo.folds(surgical) or "teo fold" maps to the nearest real function name;
+   - Typed commands: "/" (or the [[god]] button) opens a box. teo.folds(surgical) or "teo fold" maps to the nearest real function name;
      high confidence auto-applies with a brief "did you mean" and an undo; otherwise up to three suggestions to tap.
    - Chrome's Prompt API (LanguageModel), only where it is already downloaded and available: free-text commands get a ✨ suggestion.
    - Falls back silently to the plain scoring rule (and letter-level matching in the box) if anything fails, on weak devices, Save-Data
@@ -121,7 +121,7 @@
     '#aibox input:focus,#aibox textarea:focus{border-color:#ffd76a}', '#aibox .aim{color:#bbb;font-weight:400;font-size:.85em;min-height:1em}', '#aibox .aic{display:flex;flex-wrap:wrap;gap:.5vh}',
     '#aibox .aic button{font:inherit;color:#fff;background:#2a2a2a;border:1px solid #8a6d2b;border-radius:.8vh;padding:.6vh .9vh;cursor:pointer;min-height:34px}',
     '#aibox .aic button.ch{border-color:#9f7aea}', '#aibox .aic button.off{opacity:.6}', '#aibox .aiu{color:#9fd3ff;cursor:pointer;text-decoration:underline;margin-left:.6em}',
-    '#aicmd{min-width:2.6em}'].join('\n'); document.head.appendChild(css);
+    '#aicmd{min-width:auto;white-space:nowrap}'].join('\n'); document.head.appendChild(css);
   let box = null, inp = null, msg = null, chips = null, sendBtn = null, lastSub = 0;
   function markQueued(text){
     const line = String(text || '').replace(/;?$/, ';');
@@ -252,7 +252,7 @@
   }
   AI.go = go; AI.submit = submitNow;
   function button(){ const bar = document.getElementById('modes'); if(!bar){ setTimeout(button, 1000); return; } if(document.getElementById('aicmd')) return;
-    const b = document.createElement('button'); b.id = 'aicmd'; b.type = 'button'; b.textContent = '\u203a_'; b.title = 'Type a call (/)'; b.setAttribute('aria-label', 'Type a call');
+    const b = document.createElement('button'); b.id = 'aicmd'; b.type = 'button'; b.textContent = '[[god]]'; b.title = '[[god]]'; b.setAttribute('aria-label', '[[god]]');
     b.addEventListener('click', e => { e.stopPropagation(); box && box.classList.contains('on') ? close() : open(); });
     const st = document.getElementById('smarttap'); if(st && st.parentNode === bar) bar.insertBefore(b, st.nextSibling); else bar.appendChild(b); }
   addEventListener('keydown', e => { const t = e.target; if(e.ctrlKey || e.metaKey || e.altKey || (t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName)))) return;
