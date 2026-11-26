@@ -8,11 +8,11 @@ const js = rd('assets/job_card.js'), html = rd('index.html'), st = rd('assets/st
 
 test('job_card.js loads only with ?cards=1 and no-ops otherwise', ()=>{
   assert.match(html, /cards=1/);
-  assert.match(html, /job_card\.js\?v=5/);
+  assert.match(html, /job_card\.js\?v=6/);
   assert.match(js, /cards=1/);
-  assert.match(html, /var VER=625,/);
+  assert.match(html, /var VER=626,/);
   const v = JSON.parse(ver);
-  assert.equal(v.v, 625);
+  assert.equal(v.v, 626);
 });
 
 test('layout is job card, then typeline, then plain always-visible buttons', ()=>{
@@ -114,6 +114,6 @@ test('v624: the panel may hang off any edge; a 120px strip of the [[god]] header
 });
 
 test('v625: one activation per tap across the whole panel (no ghost tap on a neighbouring button)', ()=>{
-  assert.match(js, /now - lastPanelTap < 500/);
+  assert.match(js, /lastUp\.el !== el && now - lastUp\.at < 600/);
   assert.doesNotMatch(js, /aimnote:empty\{display:none\}/);
 });

@@ -299,10 +299,14 @@
   // sometimes drop or double the synthetic click inside the panel).
   // v624: one activation per tap across the WHOLE panel, so the trailing click of a tap can never land on a
   // neighbouring button if the layout shifts (QA 12:54 PM: a Seed tap also fired Souvenir).
-  let lastPanelTap = 0;
+  // A real new tap (pointerup) is always honored; only a trailing synthetic click on a DIFFERENT button
+  // within 600 ms of a pointerup activation is ignored.
+  let lastUp = {el: null, at: 0};
   function tapOnce(el, fn){
     let last = 0;
-    const run = ev => { ev.preventDefault(); ev.stopPropagation(); if(el.disabled) return; const now = Date.now(); if(now - last < 450) return; if(now - lastPanelTap < 500) return; last = now; lastPanelTap = now; fn(ev); };
+    const run = ev => { ev.preventDefault(); ev.stopPropagation(); if(el.disabled) return; const now = Date.now();
+      if(ev.type === 'click' && lastUp.el && lastUp.el !== el && now - lastUp.at < 600) return;
+      if(now - last < 450) return; last = now; if(ev.type === 'pointerup') lastUp = {el, at: now}; fn(ev); };
     el.addEventListener('pointerup', ev => { if(ev.pointerType === 'mouse' && ev.button !== 0) return; run(ev); });
     el.addEventListener('click', run);
   }
