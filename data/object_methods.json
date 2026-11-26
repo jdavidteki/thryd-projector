@@ -25829,6 +25829,46 @@
    "prior": [],
    "faded": false,
    "last_run": null
+  },
+  "boy.alone": {
+   "object": "boy",
+   "method": "alone",
+   "args": [],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j40",
+    "card": "j40",
+    "title": "boy.alone()",
+    "emoji": "",
+    "at": "2026-11-26T13:22:29-05:00",
+    "source": "cli"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "boy.alone()",
+     "emoji": "",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j40",
+     "tweets": [],
+     "consequence": "The customer typed this on this agenda.",
+     "consequence_job": ""
+    }
+   ],
+   "source": "cli",
+   "cli": true,
+   "sig": {
+    "params": [],
+    "text": "alone()"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
   }
  },
  "objects": {
@@ -25902,6 +25942,9 @@
   ],
   "bobo": [
    "bobo.on"
+  ],
+  "boy": [
+   "boy.alone"
   ],
   "boze": [
    "boze.watch"
@@ -51388,7 +51431,8 @@
     "location.setnumberchairs",
     "j24.tomorrow",
     "kemi.setlocation",
-    "tobi.setbloodpressure"
+    "tobi.setbloodpressure",
+    "boy.alone"
    ]
   },
   "run-d6fc": {
@@ -55519,6 +55563,9 @@
   "bobo": [
    "bobo.on"
   ],
+  "boy": [
+   "boy.alone"
+  ],
   "boze": [
    "boze.watch"
   ],
@@ -56582,7 +56629,8 @@
   "j15": [],
   "location": [],
   "j24": [],
-  "tobi": []
+  "tobi": [],
+  "boy": []
  },
  "casts": {
   "run-5a58c4": [
@@ -56841,5 +56889,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-26T13:16:59-05:00"
+ "updated": "2026-11-26T13:22:30-05:00"
 }
