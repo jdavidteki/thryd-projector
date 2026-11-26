@@ -217,6 +217,17 @@
   }
   const note = setStatus;
 
+  // v627 (Jesuye 1:26 PM "add publish to the lock menu and remove hold and tweets from the menu")
+  const MAIN_DROP = /^menu:\s*(hold|tweets)$/i;
+  const PUBLISH = {label: '\ud83d\udce3 Publish', value: 'publish!'};
+  function withPublish(lock){
+    const out = (lock || []).slice();
+    if(!out.length || out.some(o => /^(lock:\s*)?publish!?$/i.test(String(o.value || '').trim()))) return out;
+    const i = out.findIndex(o => /jump ahead/i.test(String(o.value || '')));
+    if(i < 0) out.push(PUBLISH); else out.splice(i, 0, PUBLISH);
+    return out;
+  }
+
   function render(){
     const els = mount(); if(!els) return;
     const {jobEl, menuEl} = els;
@@ -227,7 +238,8 @@
     jobEl.textContent = '';
     if(!c || !c.open || !(c.options || []).length){
       const empty = document.createElement('div'); empty.className = 'aicempty';
-      empty.textContent = c && !c.open ? 'No open job card right now. The next one appears here when it is posted.' : 'loading card\u2026';
+      // v627: a pinned [[god]] run between a seat and its next card says so instead of showing another agenda
+      empty.textContent = c && !c.open ? (c.waiting && c.seated_job ? c.seated_job + ' is seated \u2014 the next job appears here when it is posted.' : 'No open job card right now. The next one appears here when it is posted.') : 'loading card\u2026';
       jobEl.appendChild(empty);
     } else {
       const locked = wasSent(c.job);
@@ -280,7 +292,8 @@
       const lab = document.createElement('span'); lab.className = 'aimlab'; lab.textContent = 'menu'; row.appendChild(lab);
       // one Jump ahead only (Jesuye 12:39 PM): the LOCK row keeps it
       const lockHasJump = ((c && c.menus && c.menus.lock) || []).some(x => /jump ahead/i.test(String(x.value || x.label || '')));
-      main.filter(o => !(lockHasJump && /jump ahead/i.test(String(o.value || o.label || '')))).forEach(o => row.appendChild(menuBtn(o)));
+      // v627 (Jesuye 1:26 PM): menu row is Seed an agenda, Prayer jobs, 🎥 Live view; Hold / Tweets never here
+      main.filter(o => !(lockHasJump && /jump ahead/i.test(String(o.value || o.label || '')))).filter(o => !MAIN_DROP.test(String(o.value || ''))).forEach(o => row.appendChild(menuBtn(o)));
       ((c && c.open && c.menus && c.menus.live) || []).forEach(o => { const lb = menuBtn(o); lb.classList.add('live'); row.appendChild(lb); });
       menuEl.appendChild(row);
     }
@@ -288,7 +301,7 @@
     if(lock.length){
       const row = document.createElement('div'); row.className = 'aimrow'; row.dataset.row = 'lock';
       const lab = document.createElement('span'); lab.className = 'aimlab'; lab.textContent = 'lock'; row.appendChild(lab);
-      lock.forEach(o => row.appendChild(menuBtn(o)));
+      withPublish(lock).forEach(o => row.appendChild(menuBtn(o)));
       menuEl.appendChild(row);
     }
     const mn = document.createElement('div'); mn.className = 'aimnote'; mn.id = 'aimnote'; mn.setAttribute('role', 'status'); menuEl.appendChild(mn);

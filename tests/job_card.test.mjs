@@ -8,11 +8,11 @@ const js = rd('assets/job_card.js'), html = rd('index.html'), st = rd('assets/st
 
 test('job_card.js loads only with ?cards=1 and no-ops otherwise', ()=>{
   assert.match(html, /cards=1/);
-  assert.match(html, /job_card\.js\?v=6/);
+  assert.match(html, /job_card\.js\?v=7/);
   assert.match(js, /cards=1/);
-  assert.match(html, /var VER=626,/);
+  assert.match(html, /var VER=627,/);
   const v = JSON.parse(ver);
-  assert.equal(v.v, 626);
+  assert.equal(v.v, 627);
 });
 
 test('layout is job card, then typeline, then plain always-visible buttons', ()=>{
@@ -26,9 +26,11 @@ test('layout is job card, then typeline, then plain always-visible buttons', ()=
   assert.match(js, /menus\.lock/);
   assert.doesNotMatch(js, /lock_open && c\.menus/);
   const card = JSON.parse(rd('data/open_card.json'));
-  assert.deepEqual(card.menus.main.map(o => o.label), ['🌱 Seed an agenda','🙏 Prayer jobs','🎁 Hold','🐦 Tweets','⏩ Jump ahead']);
-  assert.ok(card.menus.lock.length >= 3);
-  assert.deepEqual(card.menus.lock.map(o => o.value), ['souvenir','tweets','jump ahead']);
+  // v627 (Jesuye 1:26 PM): Hold and Tweets off the menu row; Publish on the lock row only
+  assert.deepEqual(card.menus.main.map(o => o.label), ['🌱 Seed an agenda','🙏 Prayer jobs']);
+  assert.ok(card.menus.lock.length >= 4);
+  assert.deepEqual(card.menus.lock.map(o => o.value), ['souvenir','tweets','publish!','jump ahead']);
+  assert.equal(card.menus.lock.find(o => o.value === 'publish!').label, '📣 Publish');
 });
 
 test('after Send the panel waits for the next job, then swaps on the slow poll', ()=>{
@@ -116,4 +118,18 @@ test('v624: the panel may hang off any edge; a 120px strip of the [[god]] header
 test('v625: one activation per tap across the whole panel (no ghost tap on a neighbouring button)', ()=>{
   assert.match(js, /lastUp\.el !== el && now - lastUp\.at < 600/);
   assert.doesNotMatch(js, /aimnote:empty\{display:none\}/);
+});
+
+test('v627: menu row Seed/Prayer/🎥 Live view, lock row gets 📣 Publish before Jump ahead, pinned run waiting note', ()=>{
+  assert.match(js, /MAIN_DROP = \/\^menu:\\s\*\(hold\|tweets\)\$\/i/);
+  assert.match(js, /value: 'publish!'/);
+  assert.match(js, /withPublish\(lock\)\.forEach/);
+  assert.match(js, /out\.splice\(i, 0, PUBLISH\)/);
+  assert.match(js, /c\.waiting && c\.seated_job/);
+  // run the helper on a stale lock row (no Publish) and a fresh one (Publish already there)
+  const src = js.slice(js.indexOf('const MAIN_DROP'), js.indexOf('function render(){'));
+  const f = new Function(src + '; return {withPublish, MAIN_DROP};')();
+  assert.deepEqual(f.withPublish([{value:'souvenir'},{value:'tweets'},{value:'jump ahead'}]).map(o => o.value), ['souvenir','tweets','publish!','jump ahead']);
+  assert.deepEqual(f.withPublish([{value:'souvenir'},{value:'publish!'},{value:'jump ahead'}]).map(o => o.value), ['souvenir','publish!','jump ahead']);
+  assert.ok(f.MAIN_DROP.test('menu: Hold') && f.MAIN_DROP.test('menu: Tweets') && !f.MAIN_DROP.test('menu: Prayer jobs'));
 });
