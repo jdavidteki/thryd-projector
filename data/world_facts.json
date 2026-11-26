@@ -3233,16 +3233,6 @@
 ],
 "wser": [
 {
-"id": "wf_1c16b5a054",
-"kind": "consequence",
-"text": "The wser leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"code": "bicycle.interactwith(wser){ wser.receives(bicycle.envelope); wser.remembers(bisola, 'brown envelope'); }",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6",
-"other": "bicycle"
-},
-{
 "id": "wf_64e840c486",
 "kind": "consequence",
 "text": "The wser leaves with a Bird note with Taiwo's name and 'lamp soot' on it.",
@@ -3280,6 +3270,16 @@
 "author": "customer",
 "run": "run-cf203b",
 "card": "j23",
+"other": null
+},
+{
+"id": "wt_d1d06b8449",
+"kind": "func_call",
+"text": "The customer typed [[wser]] on run-cf203b j30.",
+"code": "[[wser]];",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j30",
 "other": null
 }
 ],
@@ -11776,6 +11776,30 @@
 "card": "w29",
 "other": null
 }
+],
+"gratitude": [
+{
+"id": "wt_a9a17f7657",
+"kind": "func_call",
+"text": "The customer typed [[gratitude]] on run-cf203b j30.",
+"code": "[[gratitude]];",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j30",
+"other": null
+}
+],
+"cd": [
+{
+"id": "wt_e5b5b23879",
+"kind": "func_call",
+"text": "The customer typed [[cd]] on run-cf203b j30.",
+"code": "[[cd]];",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j30",
+"other": null
+}
 ]
 },
 "consequences": [
@@ -12321,5 +12345,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-26T01:33:25-0500"
+"updated": "2026-11-26T01:40:55-0500"
 }
