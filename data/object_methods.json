@@ -19946,6 +19946,168 @@
    "faded": false,
    "last_run": "run-cf203b"
   },
+  "ladies.taking": {
+   "object": "ladies",
+   "method": "taking",
+   "args": [
+    "photo"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j27",
+    "card": "w27",
+    "title": "ladies.taking(photo)",
+    "emoji": "🦛",
+    "at": "2026-11-26T00:56:40-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "ladies.taking(photo)",
+     "emoji": "🦛",
+     "arg": "photo",
+     "run": "run-cf203b",
+     "job": "j27",
+     "tweets": [
+      {
+       "text": "#seniorgehs - ladies taking me photo - [[paparazzi]]",
+       "year": "2025"
+      }
+     ],
+     "consequence": "She gushes that \"he is my inspiration when am testy,\" and laughs about \"ladies taking me photo,\" like she's out somewhere being snapped.",
+     "consequence_job": "j28",
+     "resolved": "ladies.taking(what=photo:Thing) from j27",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "photo",
+       "from_run": "run-cf203b",
+       "from_job": "j27",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "photo",
+      "first_run": "run-cf203b",
+      "first_job": "j27"
+     }
+    ],
+    "text": "taking(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "queen.everything": {
+   "object": "queen",
+   "method": "everything",
+   "args": [
+    ""
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j27",
+    "card": "w27",
+    "title": "queen.everything()",
+    "emoji": "🦒",
+    "at": "2026-11-26T00:56:40-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "queen.everything()",
+     "emoji": "🦒",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j27",
+     "tweets": [
+      {
+       "text": "#thequeenisdead — the queen of everything!",
+       "year": "2024",
+       "id": "1785439708199178252"
+      }
+     ],
+     "consequence": "What just happened: The woman picks up thinking it's Tobi and sings out \"the queen of everything!\", her name for herself.",
+     "consequence_job": "j28",
+     "resolved": "queen.everything()",
+     "injected": []
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [],
+    "text": "everything()"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "rebuke.tin": {
+   "object": "rebuke",
+   "method": "tin",
+   "args": [
+    ""
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j27",
+    "card": "w27",
+    "title": "rebuke.tin()",
+    "emoji": "🦙",
+    "at": "2026-11-26T00:56:40-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "rebuke.tin()",
+     "emoji": "🦙",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j27",
+     "tweets": [
+      {
+       "text": "#juniorgirls - i rebuke dat tin!",
+       "year": "2024"
+      }
+     ],
+     "consequence": "Kemi cuts her off cold: \"i rebuke dat tin!\" 📖 Now: The line goes dead quiet.",
+     "consequence_job": "j28",
+     "resolved": "rebuke.tin()",
+     "injected": []
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [],
+    "text": "tin()"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
   "cooler.getdatemanufactured": {
    "object": "cooler",
    "method": "getDateManufactured",
@@ -23712,6 +23874,9 @@
    "kunle.read",
    "kunle.walk"
   ],
+  "ladies": [
+   "ladies.taking"
+  ],
   "laff": [
    "laff.made"
   ],
@@ -23910,6 +24075,9 @@
   "quality": [
    "quality.determine"
   ],
+  "queen": [
+   "queen.everything"
+  ],
   "rainbow": [
    "rainbow.show"
   ],
@@ -23925,6 +24093,9 @@
   ],
   "really_democracy_subject": [
    "object.look"
+  ],
+  "rebuke": [
+   "rebuke.tin"
   ],
   "receipt": [
    "receipt.get"
@@ -29314,6 +29485,14 @@
    },
    {
     "scope": "safe",
+    "from": "95c536f4481b",
+    "title": "615. when you know you should drink water but coca-cola is life",
+    "funcs": [
+     "rebuke.tin"
+    ]
+   },
+   {
+    "scope": "safe",
     "from": "9dec7ea80046",
     "title": "1108. am in love with you",
     "funcs": [
@@ -31143,6 +31322,14 @@
     "title": "703. my favourite line is a smile",
     "funcs": [
      "marisol.ship"
+    ]
+   },
+   {
+    "scope": "safe",
+    "from": "86b134cf492d",
+    "title": "613. in my mouth",
+    "funcs": [
+     "queen.everything"
     ]
    },
    {
@@ -47196,6 +47383,9 @@
     "dyeriz.notyn",
     "mean.come",
     "yeah.something",
+    "ladies.taking",
+    "queen.everything",
+    "rebuke.tin",
     "cli.cli",
     "thryd.importtheme",
     "kemi.ismarried",
@@ -47470,6 +47660,13 @@
     "ronke.count",
     "chairman.read",
     "object.look"
+   ],
+   "runs": []
+  },
+  "14f807b2bcaa": {
+   "title": "530. deja watching me",
+   "funcs": [
+    "ladies.taking"
    ],
    "runs": []
   },
@@ -48060,7 +48257,10 @@
     "can.put",
     "dyeriz.notyn",
     "mean.come",
-    "yeah.something"
+    "yeah.something",
+    "ladies.taking",
+    "queen.everything",
+    "rebuke.tin"
    ],
    "runs": [
     "run-cf203b"
@@ -48177,6 +48377,13 @@
    "funcs": [
     "teo.decode",
     "once.understand"
+   ],
+   "runs": []
+  },
+  "86b134cf492d": {
+   "title": "613. in my mouth",
+   "funcs": [
+    "queen.everything"
    ],
    "runs": []
   },
@@ -48299,6 +48506,13 @@
    "runs": [
     "run-2eb42d"
    ]
+  },
+  "95c536f4481b": {
+   "title": "615. when you know you should drink water but coca-cola is life",
+   "funcs": [
+    "rebuke.tin"
+   ],
+   "runs": []
   },
   "968a0e3f1bca": {
    "title": "1213. buy the world",
@@ -49482,7 +49696,8 @@
   ],
   "1*cX-oMO9dfgwV-XbhHpgFUA.gif": [
    "65400f845eaf",
-   "d3ca5101ef55"
+   "d3ca5101ef55",
+   "86b134cf492d"
   ],
   "1*guof_R97CRfy3EqokG8qaQ.gif": [
    "159c7b987c70"
@@ -49528,6 +49743,9 @@
   ],
   "1*lDKS3MnQQ0QbWboPIBFuYA.gif": [
    "da2bd5e3c2d7"
+  ],
+  "1*ft_vQIL64b_sqlDV-XhDBw.gif": [
+   "14f807b2bcaa"
   ],
   "1*P4PUcv99wItvYFkS1Q0S-A.gif": [
    "bece0ebaed5b"
@@ -49779,6 +49997,9 @@
   "1*mIzZLAH9ua7G2waBjqQtHw.gif": [
    "c51063137413",
    "35b341a4bf19"
+  ],
+  "1*1M6PFkkIVPLKbAV4f7Fq0w.gif": [
+   "95c536f4481b"
   ],
   "1*pTERklnny5q87hdAv0NGoQ.gif": [
    "6d72f12ca0c4"
@@ -50704,6 +50925,12 @@
     "d184b52bcb49"
    ]
   },
+  "1*1M6PFkkIVPLKbAV4f7Fq0w.gif": {
+   "runs": [],
+   "safes": [
+    "95c536f4481b"
+   ]
+  },
   "1*cxPiorOEixTS9BMkPYr8LA.gif": {
    "runs": [],
    "safes": [
@@ -50757,7 +50984,8 @@
    "runs": [],
    "safes": [
     "65400f845eaf",
-    "d3ca5101ef55"
+    "d3ca5101ef55",
+    "86b134cf492d"
    ]
   },
   "1*ngEMMgnQfnlkXU_ETtFTbw.gif": {
@@ -51119,6 +51347,9 @@
    "kunle.read",
    "kunle.walk"
   ],
+  "ladies": [
+   "ladies.taking"
+  ],
   "laff": [
    "laff.made"
   ],
@@ -51264,6 +51495,9 @@
   "quality": [
    "quality.determine"
   ],
+  "queen": [
+   "queen.everything"
+  ],
   "rainbow": [
    "rainbow.show"
   ],
@@ -51276,6 +51510,9 @@
   ],
   "real": [
    "real.tune"
+  ],
+  "rebuke": [
+   "rebuke.tin"
   ],
   "receipt": [
    "receipt.get"
@@ -51752,6 +51989,9 @@
   "dyeriz": [],
   "mean": [],
   "yeah": [],
+  "ladies": [],
+  "queen": [],
+  "rebuke": [],
   "cooler": [],
   "kazeem.goodqualities": [],
   "app": [],
@@ -51972,6 +52212,7 @@
    "inside",
    "kemi",
    "know",
+   "ladies",
    "lehgeet",
    "make",
    "mean",
@@ -51979,7 +52220,9 @@
    "once",
    "part",
    "poty",
+   "queen",
    "ready",
+   "rebuke",
    "russian",
    "say",
    "share",
@@ -52014,5 +52257,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-26T00:44:20-05:00"
+ "updated": "2026-11-26T00:56:46-05:00"
 }
