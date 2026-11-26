@@ -11211,16 +11211,6 @@
 ],
 "ahan": [
 {
-"id": "wt_2366555d64",
-"kind": "func_call",
-"text": "The ahan hears it (because woke.morning()).",
-"code": "ahan.hears(person, 'morning');",
-"author": "projector",
-"run": "run-cf203b",
-"card": "w32",
-"other": null
-},
-{
 "id": "wt_b190fcd49a",
 "kind": "func_call",
 "text": "Someone at the projector tapped the person and called ahan.wayayou(what=dies:Thing) from j9 from its agenda run-cf203b, first seated in run-cf203b j14.",
@@ -11259,19 +11249,19 @@
 "run": "run-cf203b",
 "card": "w32",
 "other": null
+},
+{
+"id": "wt_5e8e2e197a",
+"kind": "func_call",
+"text": "Someone at the projector tapped the person and called ahan.wayayou(what=dies:Thing) from j9 from its agenda run-cf203b, first seated in run-cf203b j14.",
+"code": "ahan.wayayou('dies');",
+"author": "projector",
+"run": "run-cf203b",
+"card": "w32",
+"other": null
 }
 ],
 "believe": [
-{
-"id": "wt_97c7ee8a80",
-"kind": "func_call",
-"text": "The believe hears it (because something.wrong()).",
-"code": "believe.hears(person, 'wrong');",
-"author": "projector",
-"run": "run-cf203b",
-"card": "w22",
-"other": null
-},
 {
 "id": "wt_eac17ff951",
 "kind": "func_call",
@@ -11304,6 +11294,16 @@
 },
 {
 "id": "wt_80754f13ea",
+"kind": "func_call",
+"text": "The believe hears it (because ahan.wayayou(what=dies:Thing) from j9).",
+"code": "believe.hears(person, 'wayayou');",
+"author": "projector",
+"run": "run-cf203b",
+"card": "w32",
+"other": null
+},
+{
+"id": "wt_98c732a6a2",
 "kind": "func_call",
 "text": "The believe hears it (because ahan.wayayou(what=dies:Thing) from j9).",
 "code": "believe.hears(person, 'wayayou');",
@@ -11517,16 +11517,6 @@
 ],
 "alorof": [
 {
-"id": "wt_4550573cce",
-"kind": "func_call",
-"text": "The alorof hears it (because woke.morning()).",
-"code": "alorof.hears(person, 'morning');",
-"author": "projector",
-"run": "run-cf203b",
-"card": "w32",
-"other": null
-},
-{
 "id": "wt_33192cbacc",
 "kind": "func_call",
 "text": "The alorof hears it (because ahan.wayayou(what=dies:Thing) from j9).",
@@ -11561,6 +11551,16 @@
 "kind": "func_call",
 "text": "The alorof hears it (because shu.making(amount=all:Quantity) from j6).",
 "code": "alorof.hears(person, 'making');",
+"author": "projector",
+"run": "run-cf203b",
+"card": "w32",
+"other": null
+},
+{
+"id": "wt_df2b2a4ab4",
+"kind": "func_call",
+"text": "The alorof hears it (because ahan.wayayou(what=dies:Thing) from j9).",
+"code": "alorof.hears(person, 'wayayou');",
 "author": "projector",
 "run": "run-cf203b",
 "card": "w32",
@@ -11721,16 +11721,6 @@
 ],
 "agboro": [
 {
-"id": "wt_5a9d6dd3ed",
-"kind": "func_call",
-"text": "The agboro hears it (because woke.morning()).",
-"code": "agboro.hears(person, 'morning');",
-"author": "projector",
-"run": "run-cf203b",
-"card": "w32",
-"other": null
-},
-{
 "id": "wt_a3c91b54ff",
 "kind": "func_call",
 "text": "The agboro hears it (because ahan.wayayou(what=dies:Thing) from j9).",
@@ -11765,6 +11755,16 @@
 "kind": "func_call",
 "text": "The agboro hears it (because shu.making(amount=all:Quantity) from j6).",
 "code": "agboro.hears(person, 'making');",
+"author": "projector",
+"run": "run-cf203b",
+"card": "w32",
+"other": null
+},
+{
+"id": "wt_a82845941a",
+"kind": "func_call",
+"text": "The agboro hears it (because ahan.wayayou(what=dies:Thing) from j9).",
+"code": "agboro.hears(person, 'wayayou');",
 "author": "projector",
 "run": "run-cf203b",
 "card": "w32",
@@ -12483,5 +12483,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-26T02:07:33-0500"
+"updated": "2026-11-26T02:08:24-0500"
 }
