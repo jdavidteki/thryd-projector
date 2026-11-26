@@ -2597,16 +2597,6 @@
 ],
 "cup": [
 {
-"id": "wf_34cbecdc03",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the juju code at the cup, and Ejiro reads the name twice.",
-"code": "precision.interactwith(cup){ cup.receives(precision.envelope); … }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "precision"
-},
-{
 "id": "wf_60d51d62e0",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the juju code at the cup, and Ejiro reads the name twice.",
@@ -2635,6 +2625,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "since"
+},
+{
+"id": "wt_18e1e8ee42",
+"kind": "func_call",
+"text": "Someone at the projector saw the cup passes over the point kill figure.",
+"code": "cup.passes(point_kill_figure);",
+"author": "projector",
+"run": "run-cf203b",
+"card": "w24",
+"other": null
 },
 {
 "id": "wt_9a530635c7",
@@ -12117,5 +12117,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-25T22:45:56-0500"
+"updated": "2026-11-25T23:21:42-0500"
 }
