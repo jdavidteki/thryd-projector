@@ -8,13 +8,7 @@
   // v611 (Jesuye 24 Nov 10:18 PM ET "make the net like thing in the back very faint"): the warped 32 px grid (the net) is now 20% of its old strength
   var GRID_A = 0.016;    // was 0.08
   var GRID_A_DARK = 0.028; // was 0.14
-  var COMPOSE_MS = 500;  // recache GIF/plate texture at most this often (v610 heat: was 120; v612: 500, plates drift only a few px a second)
-  var DRAW_MS = 240;     // v610 heat (Jesuye 10:03 PM ET: cut drawing 50%): the warp is redrawn at most ~4 fps. Every redraw of this full-screen layer makes the browser
-                         // recomposite every cut above it; the warp moves only a few px a second (7-23 s periods), so it looks the same.
-  // v617 heat: when the tab is idle or in cool mode, draw ~2 fps (500 ms) and recache plates a little less often (800 ms).
-  // The warp periods are 7-23 s, so the slower step is not visible; active stays at 4 fps.
-  function drawMs(){ try{ if(window.LH && (LH.state==='idle' || LH.cool)) return 500; }catch(e){} return DRAW_MS; }
-  function composeMs(){ try{ if(window.LH && (LH.state==='idle' || LH.cool)) return 800; }catch(e){} return COMPOSE_MS; }
+  var COMPOSE_MS = 120;  // v635 funback: recache GIF/plate texture at the pre-v610 pace (v610/v612 had slowed this to 200 then 500 ms)
   // Incommensurate warp periods (ms) and phase offsets (rad).
   var T1 = 7300, T2 = 11900, T3 = 17700, T4 = 23100;
   var PH1 = 0.0, PH2 = 1.7, PH3 = 3.1, PH4 = 4.9;
@@ -54,24 +48,14 @@
     return performance.now() - _clock.t0Shift;
   }
 
-  var _timer = 0;
   function cancelLoop(){
-    if(_timer){ try{ clearTimeout(_timer); }catch(e){} _timer = 0; }
     if(_loop.raf){ try{ cancelAnimationFrame(_loop.raf); }catch(e){} _loop.raf = 0; }
   }
-  // v617 heat: wake only when a warp frame is due (~4 fps, ~2 fps idle/cool), not on every display frame
-  function scheduleLoop(){
-    if(_clock.paused || !_loop.tick || _loop.raf || _timer) return;
-    var wait = Math.max(0, drawMs() - 8);
-    _timer = setTimeout(function(){
-      _timer = 0;
-      if(_clock.paused || !_loop.tick) return;
-      _loop.raf = requestAnimationFrame(_wrapped);
-    }, wait);
-  }
+  // v635 funback: the warp draws on every display frame again (v610/v617 had capped it at ~4 fps / slept between frames).
+  // The loop still pauses when the tab is hidden.
   function _wrapped(now){
-    _loop.raf = 0;
-    if(_loop.busy){ scheduleLoop(); return; }
+    _loop.raf = requestAnimationFrame(_wrapped);
+    if(_loop.busy) return;
     if(_clock.paused){ _loop.last = performance.now(); return; }
     _loop.busy = true;
     _loop.last = performance.now();
@@ -82,7 +66,6 @@
     }
     _loop.busy = false;
     _loop.last = performance.now();
-    scheduleLoop();
   }
 
   function arm(tickFn){
@@ -117,7 +100,7 @@
           }
           _clock.paused = false;
           _loop.last = performance.now();
-          if(_loop.tick && !_loop.raf && !_timer) _loop.raf = requestAnimationFrame(_wrapped);
+          if(_loop.tick && !_loop.raf) _loop.raf = requestAnimationFrame(_wrapped);
         }
       });
     }
@@ -176,7 +159,7 @@
   }
 
   function renderSize(cw, ch){
-    var k = 0.5; // v610 heat: was 0.7; the field is a soft pastel warp of already-faded plates, so half the pixels look the same
+    var k = 0.7; // v635 funback: render scale restored (v610 had dropped this to 0.5x)
     var w = Math.max(2, Math.round(cw * k));
     var h = Math.max(2, Math.round(ch * k));
     if(w > MAX_RW || h > MAX_RH){
@@ -422,7 +405,7 @@
 
     function maybeCompose(ts){
       var sig = platesSig();
-      var due = (lastComp === 0) || ((ts - lastComp) >= composeMs()) || (sig !== lastSig);
+      var due = (lastComp === 0) || ((ts - lastComp) >= COMPOSE_MS) || (sig !== lastSig);
       if(!due) return;
       lastSig = sig;
       lastComp = ts;
@@ -439,10 +422,8 @@
     }
 
     var t0 = animNow();
-    var lastDraw = 0;
     function tick(){
       if(fellBack) return;
-      var tn = performance.now(); if(lastDraw && tn - lastDraw < drawMs() && tn >= lastDraw) return; lastDraw = tn;
       if(gl.isContextLost && gl.isContextLost()){ fallBack2D(); return; }
       var on = matchesLiveStage();
       canvas.style.display = on ? 'block' : 'none';
@@ -497,7 +478,7 @@
       var br = breatheAmt(ms);
       var sx = W / css.w, sy = H / css.h;
       var sig = platesSig();
-      var due = (lastComp === 0) || ((ts - lastComp) >= composeMs()) || (sig !== lastSig);
+      var due = (lastComp === 0) || ((ts - lastComp) >= COMPOSE_MS) || (sig !== lastSig);
       if(due){
         lastSig = sig;
         lastComp = ts;

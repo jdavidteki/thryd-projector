@@ -1,14 +1,14 @@
-/* lowheat.js v1 (23 Nov 2026 5:30 PM ET, Jesuye: "is there anything you can do in the code to reduce heat"; Galaxy Z Fold,
-   Chrome + Grok Bot in multiwindow got hot and crashed). Loaded FIRST on the projector, /story/ and the lovemap so every later
-   script's setInterval / requestAnimationFrame goes through one shared scheduler.
+/* lowheat.js v4 (26 Nov 2026 6:00 PM ET, Jesuye: put the fun back — heat cuts that changed what viewers see are lifted).
+   Loaded FIRST on the projector, /story/ and the lovemap so every later script's setInterval / requestAnimationFrame goes
+   through one shared scheduler.
    States
-     active  input (pointer, touch, key, wheel, scroll) within the last 60 s: animation frames capped at ~30 fps (full rate while a
-             finger or mouse button is down, so drags stay smooth); data polls slowed to 2-5 min.
-     idle    60 s with no input, the window lost focus (multiwindow), or prefers-reduced-motion at load: decorative loops stop
-             (news ticker crawl, /story/ drift + painting + 1 s settle, mini story card spin); other frames ~10 fps; fast UI timers
-             every 10 s. Slideshow, live GIF frames, audio and local persistence keep their own pace. Any input resumes at once.
+     active / idle  the picture keeps running at the display's own frame rate while the tab is visible, even after 60 s with
+                    no input (ticker, /story/ drift + painting, card spin, grain, bobs, pin pulse, LIVE blink, cut float).
+                    Data polls stay slowed to 2-5 min (not on screen). ?cool=1 is a manual opt-in that drops frames and
+                    shadows; the automatic cool governor is off.
      hidden  tab/app hidden: everything paused except audio and persistence; on return one refresh of every poll, then resume.
-   ?lowheat=0 turns all of this off (wall projector). ?lhidle=<ms> changes the idle wait (QA). window.LH has the state + stats. */
+   ?lowheat=0 turns the scheduler off. ?lhidle=<ms> still changes the idle stamp (QA, no longer freezes the picture).
+   prefers-reduced-motion still disables the cut-float CSS (stage.js). window.LH has the state + stats. */
 (function(){
 'use strict';
 var W=window;if(W.LH)return;
@@ -16,7 +16,7 @@ var Q;try{Q=new URLSearchParams(location.search);}catch(e){Q={get:function(){ret
 var nSI=W.setInterval.bind(W),nCI=W.clearInterval.bind(W),nST=W.setTimeout.bind(W),nCT=W.clearTimeout.bind(W);
 var nRAF=W.requestAnimationFrame?W.requestAnimationFrame.bind(W):function(cb){return nST(function(){cb(performance.now());},16);};
 var OFF=Q.get('lowheat')==='0';
-var LH={v:1,off:OFF,state:'active',stats:{frames:0,runs:0}};
+var LH={v:4,off:OFF,state:'active',stats:{frames:0,runs:0}};
 W.LH=LH;
 if(OFF){LH.deco=nRAF;LH.keep=nSI;LH.slide=nSI;LH.decoEvery=nSI;LH.poll=nSI;LH.on=function(){};LH.poke=function(){};return;}
 var IDLE_MS=Math.max(1000,+Q.get('lhidle')||60000),ACTIVE_FRAME=1000/30-3,IDLE_FRAME=100,IDLE_FAST=10000,MAXT=2147483000;
@@ -32,10 +32,9 @@ var recs=new Map(),seq=0,BASE=0x40000000,tmr=0,tmrAt=Infinity;
 function pollMs(ms){if(ms>=300000)return ms;if(ms>=60000)return 180000;return 120000;}
 function effMs(r,s){s=s||LH.state;
   if(s==='hidden')return r.kind==='keep'?r.ms:Infinity;
-  if(r.kind==='keep'||r.kind==='slide')return r.ms;
+  if(r.kind==='keep'||r.kind==='slide'||r.kind==='deco')return r.ms;
   if(r.kind==='poll')return r.pms;
-  if(r.kind==='deco')return s==='idle'?Infinity:r.ms;
-  return s==='idle'?Math.max(r.ms,IDLE_FAST):r.ms;}
+  return r.ms;} /* v635 funback: idle no longer freezes decorative loops or stretches fast timers */
 function arm(){var m=Infinity;recs.forEach(function(r){if(r.due<m)m=r.due;});
   if(tmr&&m===tmrAt)return;if(tmr){nCT(tmr);tmr=0;}tmrAt=m;if(m===Infinity)return;
   tmr=nST(fire,Math.min(MAXT,Math.max(0,m-now())));}
@@ -55,7 +54,7 @@ W.clearInterval=function(id){if(recs.delete(+id)){arm();return;}nCI(id);};
 W.clearTimeout=function(id){if(recs.delete(+id)){arm();return;}nCT(id);};
 LH.keep=function(fn,ms){return add(fn,ms,rest(arguments,2),'keep');};     // audio, persistence: never touched
 LH.slide=function(fn,ms){return add(fn,ms,rest(arguments,2),'slide');};   // slideshow / live GIF frames: own pace, paused only when hidden
-LH.decoEvery=function(fn,ms){return add(fn,ms,rest(arguments,2),'deco');};// decorative: stops when idle
+LH.decoEvery=function(fn,ms){return add(fn,ms,rest(arguments,2),'deco');};// decorative: runs while visible, paused only when hidden
 LH.poll=function(fn,ms,slowMs){return add(fn,ms,rest(arguments,3),'poll',slowMs);};
 LH.intervals=function(){var o=[];recs.forEach(function(r){o.push({id:r.id,kind:r.kind,ms:r.ms,eff:effMs(r),runs:r.n,name:r.fn.name||''});});return o;};
 
@@ -66,33 +65,25 @@ W.requestAnimationFrame=function(cb){return rafReq(cb,false);};
 W.cancelAnimationFrame=function(id){rq.delete(id);};
 LH.deco=function(cb){return rafReq(cb,true);};
 function pump(){if(rnative||rtimer||!rq.size)return;var s=LH.state;if(s==='hidden')return;
-  if(s==='idle'){var any=false;rq.forEach(function(r){if(!r.deco)any=true;});if(!any)return;
-    rtimer=nST(function(){rtimer=0;rnative=nRAF(flush);},Math.max(0,lastFlush+IDLE_FRAME-performance.now()));return;}
-  /* v612: active frames wait on a timer until just before the next ~30 fps slot instead of asking the display for every vsync (60-120 wakeups a second) */
-  if(s==='active'&&!ptrDown&&lastFlush){var w=lastFlush+ACTIVE_FRAME-performance.now()-5;
+  /* v635 funback: display-rate frames while visible. ?cool=1 may still pace frames; the automatic governor is off. */
+  if(LH.cool&&!ptrDown&&lastFlush){var w=lastFlush+ACTIVE_FRAME-performance.now()-5;
     if(w>3){rtimer=nST(function(){rtimer=0;if(LH.state!=='hidden')rnative=nRAF(flush);},w);return;}}
   rnative=nRAF(flush);}
 function flush(ts){rnative=0;var s=LH.state;if(s==='hidden')return;
-  if(s==='active'&&!ptrDown&&lastFlush&&ts-lastFlush<ACTIVE_FRAME&&ts>=lastFlush){rnative=nRAF(flush);return;}
-  if(s==='active'&&!ptrDown&&lastFlush&&ts>lastFlush)govern(ts-lastFlush);
-  lastFlush=ts;var batch=[];rq.forEach(function(r,id){if(s==='idle'&&r.deco)return;batch.push(r);rq.delete(id);});
+  if(LH.cool&&!ptrDown&&lastFlush&&ts-lastFlush<ACTIVE_FRAME&&ts>=lastFlush){rnative=nRAF(flush);return;}
+  lastFlush=ts;var batch=[];rq.forEach(function(r,id){batch.push(r);rq.delete(id);});
   LH.stats.frames++;for(var i=0;i<batch.length;i++){try{batch[i].cb(ts);}catch(err){rethrow(err);}}
   pump();}
 LH.pending=function(){var d=0,o=0;rq.forEach(function(r){if(r.deco)d++;else o++;});return {deco:d,other:o};};
 
-/* ---------- cool mode (v614) ----------
-   A device that cannot hold ~30 fps while in use (slow gap between active frames on more than half of the frames in 3 windows of ~1.5 s) gets html.lh-cool:
-   active frames drop to ~20 fps, the stage float ticker runs at half rate, and shadows / bob and ember animations go (alive.css). It is lifted after ~1 min of good
-   frames, twice at most; a third trip stays on until reload. ?cool=1 forces it on (QA), ?cool=0 turns the governor off. LH.cool / LH.coolWhy / LH.coolTrips show it. */
+/* ---------- cool mode (v614, v635 funback) ----------
+   Automatic cool-mode (dropping to ~20 fps, killing shadows and bobs when frames were slow) is off: it changed what viewers saw.
+   ?cool=1 still forces it on (QA / a hot phone), ?cool=0 is a no-op now that the governor does not run. LH.cool / LH.coolWhy show it. */
 var COOL_Q=Q.get('cool'),G={n:0,slow:0,bad:0,good:0};LH.cool=false;LH.coolTrips=0;LH.coolWhy='';
 function setCool(on,why){if(LH.cool===on)return;LH.cool=on;LH.coolWhy=on?why:'';if(on)LH.coolTrips++;G.n=G.slow=G.bad=G.good=0;
-  ACTIVE_FRAME=on?1000/20-3:1000/30-3;var h=document.documentElement;if(h&&h.classList)h.classList.toggle('lh-cool',on);}
+  ACTIVE_FRAME=on?1000/20-3:1000/60-3;var h=document.documentElement;if(h&&h.classList)h.classList.toggle('lh-cool',on);}
 LH.setCool=setCool;
-function govern(gap){if(COOL_Q==='0'||COOL_Q==='1'||gap>500)return;
-  G.n++;if(gap>(LH.cool?85:70))G.slow++;if(G.n<45)return;
-  var bad=G.slow>G.n*0.5;G.n=0;G.slow=0;
-  if(bad){G.good=0;if(++G.bad>=3&&!LH.cool)setCool(true,'slow frames');}
-  else{G.bad=0;if(LH.cool&&LH.coolTrips<3&&++G.good>=45)setCool(false);}}
+function govern(gap){return;} /* v635: no automatic visual degradation */
 if(COOL_Q==='1')setCool(true,'forced (?cool=1)');
 
 /* ---------- state ---------- */

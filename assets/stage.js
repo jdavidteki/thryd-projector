@@ -73,8 +73,8 @@
   const MAX_GROUPS = Math.max(CAP * 4, 16); // plenty of groups; the cut cap is the limit
   const PER_GROUP = PHONE ? 4 : 6;
   const READY = PHONE ? 1 : 2;               // decoded groups kept in the wings
-  const MAXF = PHONE ? 8 : 20;                 // stored frames per animated cut (longer GIFs keep every k-th frame, delays summed)
-  const BUDGET = (PHONE ? 60 : 260) * 1048576; // phone 90→60 MB (23 Nov 2026, Jesuye: Chrome memory on the Fold) // decoded bitmap bytes held by the stage
+  const MAXF = PHONE ? 10 : 20;                // stored frames per animated cut (v635 funback: phone 8→10, undoing v608)
+  const BUDGET = (PHONE ? 90 : 260) * 1048576; // v635 funback: phone 60→90 MB (v608 had cut this for Fold memory/heat)
   // pins float on the stage but never count toward CAP, MAX_GROUPS, or the byte budget (Jesuye 17 Nov 9:57 PM ET)
   const isLeaving = c => !!(c && (c.leaving || (c.g && c.g.gone)));
   const storyCuts = ()=> S.cuts.filter(c => !c.map);
@@ -134,10 +134,8 @@
     '#gstage .gbg.gm.gfresh.on,#gstage .gbg.glive.gfresh.on{opacity:.8;filter:none}',
     '#gstage img.gcut,#gstage img.gbg{display:block;max-width:none;-webkit-user-drag:none}',
     '#gstage .gcut{position:absolute;pointer-events:auto;touch-action:none;cursor:grab;transform-origin:50% 85%;user-select:none;will-change:transform,translate,opacity;backface-visibility:hidden}',
-    // v612 heat: the idle float is no longer one CSS animation per cut (50+ compositor animations redrawing every layer at the display's rate, 120 Hz on a Fold).
-    // One shared ticker (floatTick) writes --s (0..1, the same ease-in-out sway as mcfloat) on each on-screen cut ~12x a second (4x when idle).
-    // The +-1.8 degree rotation of mcfloat is dropped: a rotated composited layer is drawn with anti-aliased edges, which measured ~30 GPU points of the stage on the box (translate + scale: 70, with rotation: 101).
-    '#gstage .gcut.fl{transform:translate(calc(-1.4% + 2.8% * var(--s,.5)),calc(.9% - 2.7% * var(--s,.5))) scale(calc(1.045 + .015 * var(--s,.5)))}',
+    // v635 funback: CSS mcfloat with the +-1.8deg rotation is back (v612 had replaced it with a JS ticker and no rotate).
+    '#gstage .gcut.fl{animation:mcfloat var(--fd,7s) ease-in-out var(--fdl,0s) infinite}',
     '#gstage .gcut[data-dragging="1"]{animation:none;transform:none;cursor:grabbing;z-index:9999!important}',
     '#gstage .gcut.gnotice{animation:mcnotice 1.1s ease-out 1 both}',
     '#gstage .gtag{position:absolute;transform:translateX(-50%);font:1.15vh ui-monospace,Menlo,monospace;color:#fff;background:#000a;padding:.15vh .5vw;border-radius:.6vh;white-space:nowrap;pointer-events:none;opacity:0;transition:opacity 1.6s;max-width:40vw;overflow:hidden;text-overflow:ellipsis}',
@@ -266,42 +264,24 @@
         for(let i = 0; i < S.cuts.length; i++){ const cut = S.cuts[i]; if(cut.home !== g || !cut.frames[A.f] || !cut.ctx || cut._vis === false) continue;
           cut.ctx.clearRect(0, 0, cut.el.width, cut.el.height); cut.ctx.drawImage(cut.frames[A.f], 0, 0); }
       });
-      // v612 heat: under the stretchy warp the plates are opacity 0 and are only sampled ~5x a second, so they drift at ~11 Hz (same speed: dt cap raised to match)
-      if(document.body.classList.contains('stretchy-bg')){ if(!(now - (frame.bgAt || 0) < 90)){ frame.bgAt = now; tickBgs(now, 0.16); } }
-      else tickBgs(now);
+      // v635 funback: plates drift on every display frame again (v612 had throttled them to ~11 Hz under the warp)
+      tickBgs(now);
     } else { tickBgs.t = 0; }
     const dt = performance.now() - t0; S.loop.n++; if(dt > 8) S.loop.slow++; if(dt > S.loop.max) S.loop.max = +dt.toFixed(1);
-    scheduleFrame(now);
+    scheduleFrame();
   }
-  // v617 heat: wake the GIF/plate loop when a frame is actually due (or the next plate drift / vis check), not on every display frame
-  let frameWait = 0;
+  // v635 funback: the GIF/plate loop runs on every display frame while visible (v617 had slept until a GIF frame was due).
+  // Off-screen cuts still skip their GIF redraw and drop will-change (invisible when off-screen).
+  let frameArmed = 0;
   function frameHidden(){ return document.hidden || !!(root.LH && LH.state === 'hidden'); }
-  function scheduleFrame(now){
-    if(frameHidden()) return;
-    let wait = document.body.classList.contains('stretchy-bg') ? 90 : 50;
-    const t = now || performance.now();
-    anims.forEach(A => { const d = A.due - t; if(d < wait) wait = d; });
-    wait = Math.max(16, Math.min(350, wait));
-    if(frameWait) clearTimeout(frameWait);
-    frameWait = setTimeout(function(){ frameWait = 0; if(frameHidden()) return; requestAnimationFrame(frame); }, wait);
+  function scheduleFrame(){
+    if(frameHidden() || frameArmed) return;
+    frameArmed = 1;
+    requestAnimationFrame(function(now){ frameArmed = 0; if(frameHidden()) return; frame(now); });
   }
-  requestAnimationFrame(frame);
+  scheduleFrame();
   document.addEventListener('visibilitychange', function(){ if(!document.hidden) scheduleFrame(); });
   if(root.LH && LH.on) LH.on(function(s){ if(s !== 'hidden') scheduleFrame(); });
-  // v612 heat: the shared float ticker (see the .gcut.fl rule)
-  const FLOAT = {n: 0};
-  function floatTick(){
-    if(RM || document.hidden) return; const cl = document.body.classList;
-    if(cl.contains('stage-replay') || cl.contains('cerebro') || cl.contains('lovemap')) return;
-    if(root.LH && LH.state === 'idle' && (FLOAT.n++ % 3)) return;
-    if(root.LH && LH.cool && LH.state !== 'idle' && (FLOAT.n++ % 2)) return; // v614 cool mode: half rate
-    const pn = performance.now(), t = pn / 1000, TAU = 6.2831853; markVis(pn);
-    for(let i = 0; i < S.cuts.length; i++){ const c = S.cuts[i], el = c.el;
-      if(!el || c._vis === false || !el.classList.contains('fl') || el.dataset.dragging === '1') continue;
-      if(c._fd == null){ c._fd = parseFloat(el.style.getPropertyValue('--fd')) || 7; c._fdl = parseFloat(el.style.getPropertyValue('--fdl')) || 0; }
-      el.style.setProperty('--s', (0.5 - 0.5 * Math.cos(TAU * (t - c._fdl) / c._fd)).toFixed(3)); }
-  }
-  S.floatTick = floatTick; (root.LH && LH.slide ? LH.slide : setInterval)(floatTick, 83);
   const view = ()=>{ camNow(); return {x:cam.x, y:cam.y, w:vw(), h:vh()}; };
 
   // ---------- decoding: exact source frames, cut by each object's own mask, scaled to on-screen size

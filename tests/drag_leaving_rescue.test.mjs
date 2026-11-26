@@ -64,8 +64,10 @@ test('rescueCut freezes a walking cut where it stands and clears its exit timers
   assert.equal(cut2.leaving, true);
 });
 
-test('low-heat is untouched: pointerdown still wakes it and keeps full-rate frames while held', () => {
+test('low-heat: pointerdown still wakes it; frames stay at the display rate while held (and while visible)', () => {
   const lh = readFileSync(new URL('../assets/lowheat.js', import.meta.url), 'utf8');
   assert.match(lh, /addEventListener\('pointerdown',function\(\)\{ptrDown=true;input\(\);\}/);
-  assert.match(lh, /s==='active'&&!ptrDown&&lastFlush/);
+  // v635 funback: default frames are display-rate; only ?cool=1 paces them, and a held pointer still stays full-rate
+  assert.match(lh, /LH\.cool&&!ptrDown&&lastFlush/);
+  assert.doesNotMatch(lh, /if\(s==='active'&&!ptrDown&&lastFlush\)/);
 });

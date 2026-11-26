@@ -1,4 +1,5 @@
-// v617 heat: warp and GIF/plate loops wake when a frame is due; off-screen cuts drop will-change; pin pulse pauses when idle/hidden
+// v635 funback: warp and GIF/plate loops run on every display frame while visible;
+// off-screen cuts still skip redraw and drop will-change; pin pulse pauses only when hidden.
 import test from 'node:test';
 import assert from 'node:assert';
 import {readFileSync} from 'node:fs';
@@ -6,38 +7,41 @@ const here = new URL('..', import.meta.url);
 const rd = p => readFileSync(new URL(p, here), 'utf8');
 const st = rd('assets/stage.js'), sb = rd('assets/stretchy_bg.js'), css = rd('assets/alive.css'), html = rd('index.html'), ver = rd('data/version.json');
 
-test('stretchy warp is scheduled at DRAW_MS (~4 fps), slower when idle or cool, not on every display frame', ()=>{
-  assert.match(sb, /var DRAW_MS = 240;/);
-  assert.match(sb, /var COMPOSE_MS = 500;/);
-  assert.match(sb, /function drawMs\(\)\{ try\{ if\(window\.LH && \(LH\.state==='idle' \|\| LH\.cool\)\) return 500;/);
-  assert.match(sb, /function composeMs\(\)\{ try\{ if\(window\.LH && \(LH\.state==='idle' \|\| LH\.cool\)\) return 800;/);
-  assert.match(sb, /wake only when a warp frame is due/);
-  assert.match(sb, /_timer = setTimeout\(function\(\)\{/);
-  assert.doesNotMatch(sb, /_loop\.raf = requestAnimationFrame\(_wrapped\);\s*\n\s*if\(_loop\.busy\) return;/);
-  assert.match(sb, />= composeMs\(\)/);
-  assert.match(sb, /tn - lastDraw < drawMs\(\)/);
+test('stretchy warp is scheduled on every display frame, compose 120 ms, render 0.7x; paused when hidden', ()=>{
+  assert.match(sb, /var COMPOSE_MS = 120;/);
+  assert.doesNotMatch(sb, /var DRAW_MS = /);
+  assert.doesNotMatch(sb, /function drawMs\(/);
+  assert.doesNotMatch(sb, /function composeMs\(/);
+  assert.match(sb, /var k = 0\.7;/);
+  assert.match(sb, /_loop\.raf = requestAnimationFrame\(_wrapped\);/);
+  assert.doesNotMatch(sb, /wake only when a warp frame is due/);
+  assert.doesNotMatch(sb, /_timer = setTimeout\(function\(\)\{/);
+  assert.match(sb, /if\(document\.hidden\)\{/);
+  assert.match(sb, /_clock\.paused = true/);
+  assert.match(sb, />= COMPOSE_MS/);
 });
 
-test('stage GIF/plate loop wakes when a frame is due; off-screen cuts still skip redraw and drop will-change', ()=>{
+test('stage GIF/plate loop runs on every display frame while visible; off-screen cuts still skip redraw and drop will-change', ()=>{
   assert.match(st, /cut\._vis === false\) continue;/);
-  assert.match(st, /c\._vis === false \|\| !el\.classList\.contains\('fl'\)/);
-  assert.match(st, /function scheduleFrame\(now\)\{/);
-  assert.match(st, /anims\.forEach\(A => \{ const d = A\.due - t; if\(d < wait\) wait = d; \}\);/);
   assert.match(st, /el\.style\.willChange = 'transform'/);
   assert.match(st, /el\.style\.willChange = 'auto'/);
-  assert.match(st, /LH\.slide : setInterval\)\(floatTick, 83\)/);
-  assert.match(st, /tickBgs\(now, 0\.16\)/);
-  assert.match(st, /function scheduleTags\(\)\{/);
-  assert.doesNotMatch(st, /requestAnimationFrame\(tagLoop\); \}\)\(\);/);
+  assert.match(st, /function scheduleFrame\(\)\{/);
+  assert.match(st, /requestAnimationFrame\(function\(now\)\{ frameArmed = 0;/);
+  assert.doesNotMatch(st, /anims\.forEach\(A => \{ const d = A\.due - t; if\(d < wait\) wait = d; \}\);/);
+  assert.doesNotMatch(st, /LH\.slide : setInterval\)\(floatTick, 83\)/);
+  assert.doesNotMatch(st, /tickBgs\(now, 0\.16\)/);
+  assert.match(st, /tickBgs\(now\);/);
 });
 
-test('map-pin pulse and LIVE badge blink pause when idle or hidden; video card still autoplays and loops', ()=>{
-  assert.match(css, /html\.lh-idle #gstage \.gcut\.gpin \.gmappin\.live[\s\S]*animation-play-state:paused/);
-  assert.match(css, /html\.lh-idle #live \.dot,html\.lh-hidden #live \.dot\{animation-play-state:paused/);
+test('map-pin pulse and LIVE badge blink pause only when hidden; video card still autoplays and loops', ()=>{
+  assert.match(css, /html\.lh-hidden #gstage \.gcut\.gpin \.gmappin\.live/);
+  assert.match(css, /html\.lh-hidden #live \.dot\{animation-play-state:paused/);
+  assert.doesNotMatch(css, /html\.lh-idle #gstage \.gcut\.gpin/);
+  assert.doesNotMatch(css, /html\.lh-idle #live \.dot/);
   const vc = rd('assets/video_card.js');
   assert.match(vc, /\.autoplay\s*=\s*true|\bautoplay\b/);
   assert.match(vc, /\.loop\s*=\s*true|\bloop\b/);
-  assert.match(css, /html\.lh-idle \.videocard[\s\S]*animation-play-state:paused/);
+  assert.match(css, /html\.lh-hidden \.videocard[\s\S]*animation-play-state:paused/);
 });
 
 test('one CAP_DEFAULT (36) sets how many story objects are on stage; ?cap=N overrides; groups and soft cap follow', ()=>{
@@ -58,13 +62,15 @@ test('one CAP_DEFAULT (36) sets how many story objects are on stage; ?cap=N over
   assert.match(st, /evictOldest\('cap'\)/);
 });
 
-test('index and version.json are at v618 or later', ()=>{
+test('index and version.json are at v635', ()=>{
   assert.match(html, /var VER=\d+,/);
   assert.match(html, /stage\.js\?v=\d+/);
   const v = JSON.parse(ver);
-  assert.ok(v.v >= 618);
-  assert.match(html, /var VER=634,/);
-  assert.match(html, /stage\.js\?v=622/);
-  assert.match(html, /stretchy_bg\.js\?v=8/);
-  assert.match(html, /alive\.css\?v=9/);
+  assert.ok(v.v >= 635);
+  assert.match(html, /var VER=635,/);
+  assert.match(html, /stage\.js\?v=635/);
+  assert.match(html, /stretchy_bg\.js\?v=9/);
+  assert.match(html, /alive\.css\?v=10/);
+  assert.match(html, /alive\.js\?v=59/);
+  assert.match(html, /lowheat\.js\?v=4/);
 });

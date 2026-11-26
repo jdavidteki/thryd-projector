@@ -1,8 +1,8 @@
 #code{contain:paint;position:fixed;top:6vh;right:0;bottom:4vh;width:22vw;padding:1vh 1vw;z-index:3;pointer-events:none;overflow:hidden;background:linear-gradient(90deg,#0000,#000a 12%);font:1.45vh/1.45 ui-monospace,Menlo,Consolas,monospace;color:#5f5;opacity:.78;
  -webkit-mask-image:linear-gradient(#0000,#000 22%);mask-image:linear-gradient(#0000,#000 22%);display:flex;flex-direction:column;justify-content:flex-end}
 #code div{white-space:pre-wrap;word-break:break-all}#code .a{color:#fb4}#code .d{color:#5f58}#code .cur::after{content:'▋';animation:blink 1s steps(1) infinite}
-#grain{position:fixed;inset:-5%;will-change:transform;z-index:20;pointer-events:none;opacity:.07;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");animation:grain 3.6s steps(6) infinite}
-html.lh-idle #grain,html.lh-hidden #grain{animation-play-state:paused} /* v612 heat: grain jitters ~1.7x a second (was 6.7), not at all when idle/hidden */
+#grain{position:fixed;inset:-50%;z-index:20;pointer-events:none;opacity:.07;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");animation:grain .9s steps(6) infinite}
+html.lh-hidden #grain{animation-play-state:paused} /* v635 funback: 4x grain, ~6.7 jitters/s; pause only when the tab is hidden */
 @keyframes grain{0%{transform:translate(0,0)}20%{transform:translate(-3%,2%)}40%{transform:translate(2%,-3%)}60%{transform:translate(-2%,-1%)}80%{transform:translate(3%,3%)}}
 #vignette{animation:breathe 9s ease-in-out infinite}@keyframes breathe{50%{opacity:.75}}
 #live{position:fixed;top:5.6vh;left:0;right:0;width:100%;display:flex;justify-content:center;z-index:11;font:1.7vh ui-monospace,Menlo,monospace;color:#eee;text-shadow:0 0 .6vh #000;letter-spacing:.08em;pointer-events:none}
@@ -19,18 +19,16 @@ body.idle #live{opacity:.55}body.idle #code{opacity:.6}
 #live .seat.pulse{animation:sp 1s 3}@keyframes sp{50%{color:#fff;text-shadow:0 0 1.2vh #fb4}}#live #clk,#live #sclk{pointer-events:auto;cursor:help}#live #sclk{color:#9cf;font-size:.88em;letter-spacing:.04em;max-width:42vw;overflow:hidden;text-overflow:ellipsis;vertical-align:bottom}
 #crawl .nb{font-weight:normal;margin-right:6vw}#crawl .nb strong{color:#fff;font-weight:bold;letter-spacing:.04em}
 
-/* v614 heat: the grain overlay is not created unless ?grain=1 (alive.js); this is the belt for any page that still has one */
+/* v635 funback: grain is on by default; this hides it only when ?grain=0 skipped creating .grain-on */
 html:not(.grain-on) #grain{display:none}
-/* v614 cool mode (lowheat.js adds html.lh-cool when the device cannot hold the frame rate, or with ?cool=1): drop shadows and the small ambient bobs */
+/* ?cool=1 still drops shadows and ambient bobs; the automatic governor no longer turns this on */
 html.lh-cool *,html.lh-cool *::before,html.lh-cool *::after{text-shadow:none!important;box-shadow:none!important;backdrop-filter:none!important}
 html.lh-cool .videocard,html.lh-cool .storycard,html.lh-cool .genie-ember{animation:none!important}
 
-/* v614 heat: when idle or hidden, pause leftover decorative CSS bobs (video card playback is unchanged) */
-html.lh-idle .videocard,html.lh-idle .storycard,html.lh-idle .genie-ember,
+/* pause leftover decorative CSS bobs, pin pulse and the LIVE badge only when the tab is hidden (not when idle) */
 html.lh-hidden .videocard,html.lh-hidden .storycard,html.lh-hidden .genie-ember{animation-play-state:paused!important}
-/* v617 heat: same for map-pin pulse and the LIVE badge blink (filters on many pins were still running while idle) */
-html.lh-idle #gstage .gcut.gpin .gmappin.live,html.lh-hidden #gstage .gcut.gpin .gmappin.live,
-html.lh-idle #live .dot,html.lh-hidden #live .dot{animation-play-state:paused!important}
+html.lh-hidden #gstage .gcut.gpin .gmappin.live,
+html.lh-hidden #live .dot{animation-play-state:paused!important}
 
 /* v615 thunder: the `.thunder()` flash + rumble (stage.js thunderFx). CSS only, one-shot, under 1 s; the layer exists only during a strike. Cool mode / reduced motion: one static dim frame (class calm). */
 #gthunder{position:fixed;inset:0;z-index:10060;pointer-events:none;background:#fff;opacity:0}

@@ -1,5 +1,5 @@
 (()=>{const $=(t,id)=>{const e=document.createElement(t);e.id=id;document.body.appendChild(e);return e};
-const code=$('div','code'),live=$('div','live'),crawl=$('div','crawl');/(?:^|[?&])grain=1(?:&|$)/.test(location.search)&&($('div','grain'),document.documentElement.classList.add('grain-on')); /* v614 heat: the film-grain overlay (7% opacity, full screen, composited over every cut) cost ~18 GPU points on the box; off unless ?grain=1 */
+const code=$('div','code'),live=$('div','live'),crawl=$('div','crawl'),grain=/(?:^|[?&])grain=0(?:&|$)/.test(location.search)?null:($('div','grain'),document.documentElement.classList.add('grain-on'),1); /* v635 funback: film grain on by default (v614 had turned it off unless ?grain=1); ?grain=0 opts out */
 const bad=/explicit|never explicit/i,clean=s=>String(s||'').replace(/\s+/g,' ').trim();
 const get=u=>fetch(u+'?t='+Date.now(),{cache:'no-store'}).then(r=>r.ok?r.json():null).catch(()=>null);
 const validTz=tz=>{if(!tz||typeof tz!=='string')return null;try{Intl.DateTimeFormat('en-US',{timeZone:tz}).format(new Date());return tz;}catch(e){return null;}};
@@ -52,10 +52,10 @@ function type(){if(typing)return;typing=true;lastTick=Date.now();
   const d=document.createElement('div');d.className=(n.a?'a ':'')+'cur';code.appendChild(d);
   while(code.children.length>60){const el=code.firstElementChild;if(!el||el===d)break;el.remove();}
   let i=0;
-  /* v612 heat: 3 letters per ~100 ms (was 1 per ~34 ms, ~30 text repaints a second of a masked panel); idle: the whole line at once, a new line every ~2-4 s */
+  /* v635 funback: letter-by-letter typing again (v612 had jumped 3 letters, or the whole line when idle) */
   const step=()=>{lastTick=Date.now();try{const st=window.LH&&LH.state;if(st==='hidden'){setTimeout(step,1500);return;}
-    i=st==='idle'?s.length:Math.min(s.length,i+3);d.textContent=s.slice(0,i);if(i<s.length)setTimeout(step,70+Math.random()*60);
-    else{d.classList.remove('cur');if(n.note){const e=document.createElement('span');e.className='d';e.textContent='  // '+n.note;d.appendChild(e);}typing=false;setTimeout(type,st==='idle'?1800+Math.random()*1800:250+Math.random()*900);}}
+    d.textContent=s.slice(0,++i);if(i<s.length)setTimeout(step,14+Math.random()*40);
+    else{d.classList.remove('cur');if(n.note){const e=document.createElement('span');e.className='d';e.textContent='  // '+n.note;d.appendChild(e);}typing=false;setTimeout(type,250+Math.random()*900);}}
     catch(err){try{d.classList.remove('cur');}catch(e2){}typing=false;setTimeout(type,400);}};
   step();
  }catch(err){typing=false;setTimeout(type,400);}}
