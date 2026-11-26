@@ -62,8 +62,7 @@
     '#aimenu button.sent{border-color:#2f8a50;background:rgba(47,138,80,.22);color:#d8ffe5}',
     '#aimenu button.err{border-color:#a04040;background:rgba(160,64,64,.25)}',
     '#aimenu .aimlab{color:#8f897c;font:600 10px/1 ui-sans-serif,system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;font-variant:small-caps;min-width:40px}',
-    '#aimenu .aimnote:empty{display:none}',
-    '#aimenu .aimnote{font:500 11.5px/1.3 ui-sans-serif,system-ui,sans-serif;color:#b8b2a4;min-height:0}',
+    '#aimenu .aimnote{font:500 11.5px/1.3 ui-sans-serif,system-ui,sans-serif;color:#b8b2a4;min-height:1.3em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}',
     '#aimenu .aimnote.ok{color:#7fe0a0}#aimenu .aimnote.err{color:#ff8f86}#aimenu .aimnote.busy{color:#ffd76a}',
     '@media (max-width:520px){#aibox.cards-on{width:96vw;bottom:6vh}#aicard .aicprompt{font-size:14.5px}}',
     '@media (max-height:600px){#aibox.cards-on{max-height:84vh;max-height:84dvh;bottom:6vh}#aibox.cards-on > .aim{display:none}#aibox.cards-on > form.airow{padding-top:7px}#aibox.cards-on textarea{min-height:32px}#aicard{gap:7px;padding:9px 12px 8px}#aicard .aicprompt{font-size:14px;line-height:1.55}}'
@@ -298,9 +297,12 @@
 
   // One activation per physical tap: pointerup and click both route here, deduped (Android tablets
   // sometimes drop or double the synthetic click inside the panel).
+  // v624: one activation per tap across the WHOLE panel, so the trailing click of a tap can never land on a
+  // neighbouring button if the layout shifts (QA 12:54 PM: a Seed tap also fired Souvenir).
+  let lastPanelTap = 0;
   function tapOnce(el, fn){
     let last = 0;
-    const run = ev => { ev.preventDefault(); ev.stopPropagation(); if(el.disabled) return; const now = Date.now(); if(now - last < 450) return; last = now; fn(ev); };
+    const run = ev => { ev.preventDefault(); ev.stopPropagation(); if(el.disabled) return; const now = Date.now(); if(now - last < 450) return; if(now - lastPanelTap < 500) return; last = now; lastPanelTap = now; fn(ev); };
     el.addEventListener('pointerup', ev => { if(ev.pointerType === 'mouse' && ev.button !== 0) return; run(ev); });
     el.addEventListener('click', run);
   }
