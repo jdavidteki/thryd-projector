@@ -175,7 +175,7 @@
   }
   // v630 card lane: the box publishes each changed open card to ntfy <drag topic>-c (chunked) the moment it is
   // seated, so the panel need not wait for a Pages build. Polled every 5 s only while a Send is waiting (max 6 min).
-  let laneTimer = 0, laneUntil = 0;
+  let laneTimer = 0;
   function laneBase(){
     const DG = (root.thrydDrag && root.thrydDrag()) || root.DRAG || {};
     return DG.endpoint ? String(DG.endpoint).replace(/\/?$/, '') + '-c' : null;
@@ -197,15 +197,55 @@
     if(!best) return null;
     try{ let raw = ''; for(let i = 0; i < best.n; i++) raw += best.parts[i]; return JSON.parse(raw); }catch(e){ return null; }
   }
+  // v632 (Jesuye 3:00 PM "pls implement!"): the lane is read ALWAYS, not only while a Send waits: one ntfy SSE
+  // stream (EventSource, idle = no CPU, no polling) with since=10m, reopened when the tab comes back; if the stream
+  // cannot open, a 10 s JSON poll. Whichever of lane or Pages has the newest `at` wins; chunks dedupe by card id.
+  let es = null, esFails = 0, laneBuf = {}, laneSeen = '';
+  function laneTake(x, t){
+    if(!x || x.k !== 'open_card' || !x.id || x.id === laneSeen) return;
+    const g = laneBuf[x.id] = laneBuf[x.id] || {n: x.n, parts: {}, t: 0};
+    g.parts[x.i] = x.part; g.t = Math.max(g.t, +t || 0);
+    if(Object.keys(g.parts).length !== g.n) return;
+    let j = null; try{ let raw = ''; for(let i = 0; i < g.n; i++) raw += g.parts[i]; j = JSON.parse(raw); }catch(e){ return; }
+    delete laneBuf[x.id];
+    laneOffer(j, x.id);
+  }
+  function laneOffer(j, id){
+    if(!j || typeof j !== 'object') return;
+    if(id) laneSeen = id;
+    if(meta && atMs(j.at) <= atMs(meta.at)) return;           // not newer than what we show
+    applyCard(j, 'lane');
+  }
   function laneTick(){
     laneTimer = 0;
-    if(document.hidden || Date.now() > laneUntil){ return; }
-    const waiting = sentLog().some(e => !e.done_at);
-    if(!waiting){ return; }
-    laneFetch().then(j => { if(j && typeof j === 'object' && atMs(j.at) > atMs((meta || {}).at)) applyCard(j, 'lane'); })
-      .catch(() => {}).finally(() => { if(!laneTimer) laneTimer = setTimeout(laneTick, 5000); });
+    if(document.hidden || (es && es.readyState !== 2)) return;
+    laneFetch().then(j => laneOffer(j)).catch(() => {})
+      .finally(() => { if(!laneTimer && !(es && es.readyState !== 2)) laneTimer = setTimeout(laneTick, 10000); });
   }
-  function kickLane(){ laneUntil = Date.now() + 6 * 60 * 1000; if(!laneTimer) laneTimer = setTimeout(laneTick, 1500); }
+  let laneBaseP = null;
+  function laneBaseAsync(){
+    const b = laneBase(); if(b) return Promise.resolve(b);
+    if(!laneBaseP) laneBaseP = fetch('data/drag.json?t=' + Date.now(), {cache: 'no-store'}).then(r => r.ok ? r.json() : null)
+      .then(d => (d && d.endpoint) ? String(d.endpoint).replace(/\/?$/, '') + '-c' : null).catch(() => null)
+      .finally(() => { setTimeout(() => { laneBaseP = null; }, 30000); });
+    return laneBaseP;
+  }
+  function laneOpen(){
+    if(document.hidden || (es && es.readyState !== 2)) return;
+    laneBaseAsync().then(base => {
+      if(!base || document.hidden || (es && es.readyState !== 2)) return;
+      if(typeof root.EventSource !== 'function' || esFails >= 3){ if(!laneTimer) laneTimer = setTimeout(laneTick, 500); return; }
+      try{
+        es = new EventSource(base + '/sse?since=10m');
+        es.onopen = () => { esFails = 0; };
+        es.onmessage = ev => { try{ const m = JSON.parse(ev.data); if(m && m.message) laneTake(JSON.parse(m.message), m.time); }catch(e){} };
+        es.onerror = () => { if(es && es.readyState === 2){ esFails++; es = null; setTimeout(laneOpen, 5000 * esFails); } };
+      }catch(e){ esFails++; es = null; if(!laneTimer) laneTimer = setTimeout(laneTick, 500); }
+    });
+  }
+  function laneClose(){ try{ es && es.close(); }catch(e){} es = null; if(laneTimer){ clearTimeout(laneTimer); laneTimer = 0; } }
+  document.addEventListener('visibilitychange', () => { if(document.hidden) laneClose(); else laneOpen(); });
+  function kickLane(){ laneOpen(); if(!laneTimer) laneTimer = setTimeout(laneTick, 1500); }
   // v622 (Jesuye 12:39 PM "there is a http error", HTTP 429): card picks and menu taps no longer share the
   // busy drag/drift lane. They go through the typeline lane (own ntfy.sh topic, plus the independent backup
   // host ntfy.envs.net in parallel after 8 s), and a 429 / network failure backs off (Retry-After) and retries
@@ -688,7 +728,7 @@
         return;
       }
       card = j; cardSig = sig;
-      render();
+      if(box() && box().classList.contains('on')) render();   // v632: a lane card before the panel opens is kept for open()
     }
   }
 
@@ -712,7 +752,7 @@
     const ai = AI(); if(!ai || ai._cardsHook) return !!ai;
     ai._cardsHook = true;
     const _open = ai.open, _close = ai.close;
-    ai.open = function(){ const r = _open.apply(this, arguments); mount(); fetchCard(); startPoll(); if(sentLog().some(e => !e.done_at)) kickLane(); return r; };
+    ai.open = function(){ const r = _open.apply(this, arguments); mount(); if(card) render(); fetchCard(); startPoll(); laneOpen(); return r; };
     ai.close = function(){
       if(!userClose) return; // typeline auto-close must not dismiss the card panel
       stopPoll();
@@ -739,6 +779,7 @@
   }
 
   function ready(){
+    laneOpen();                                   // v632: lane from load, panel open or not
     if(hookClose()) return;
     setTimeout(ready, 100);
   }

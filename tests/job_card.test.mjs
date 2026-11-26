@@ -8,14 +8,14 @@ const js = rd('assets/job_card.js'), html = rd('index.html'), st = rd('assets/st
 
 test('job_card.js loads by default; ?cards=0 hides the panel', ()=>{
   assert.match(html, /cards=0/);
-  assert.match(html, /job_card\.js\?v=10/);
+  assert.match(html, /job_card\.js\?v=11/);
   assert.match(js, /cards=0/);
   assert.match(html, /if\(!\/\(\?:\^\|\[\?&\]\)cards=0/);
   assert.match(js, /if\(\/\(\?:\^\|\[\?&\]\)cards=0/);
   assert.doesNotMatch(html, /if\(\/\(\?:\^\|\[\?&\]\)cards=1/);
-  assert.match(html, /var VER=631,/);
+  assert.match(html, /var VER=632,/);
   const v = JSON.parse(ver);
-  assert.equal(v.v, 631);
+  assert.equal(v.v, 632);
 });
 
 test('layout is job card, then typeline, then plain always-visible buttons', ()=>{
@@ -162,7 +162,7 @@ test('v628: panel stays open after Send; waiting refresh keeps the sent card; ea
   assert.match(js, /border-radius:8px;white-space:pre-wrap/);
   assert.match(js, /max-height:8\.7em;overflow-y:auto/);
   assert.match(js, /touch-action:pan-y/);
-  assert.match(html, /job_card\.js\?v=10/);
+  assert.match(html, /job_card\.js\?v=11/);
   assert.match(html, /intent_ai\.js\?v=614/);
   const src = js.slice(js.indexOf('function safeText(o){'), js.indexOf('function render(){'));
   const f = new Function(src + '; return {safeRows, safeText};')();
@@ -214,6 +214,15 @@ test('v630: sent taps survive a refresh as pills, cleared by resolved/seated, ca
   assert.match(js, /'\\u2713 ' \+ what \+ ' done'/);
   assert.match(js, /j\.resolved/);
   assert.match(js, /'-c'/);
-  assert.match(js, /setTimeout\(laneTick, 5000\)/);
+  assert.match(js, /setTimeout\(laneTick, 10000\)/);   // v632: lane always on (SSE; 10 s poll fallback)
   assert.match(js, /POLL_MS = 30000/);   // Pages poll unchanged
+});
+
+test('v632: lane always on (SSE since 10m, poll fallback), newest at wins, closed when hidden', ()=>{
+  assert.match(js, /new EventSource\(base \+ '\/sse\?since=10m'\)/);
+  assert.match(js, /laneOpen\(\);\s+\/\/ v632: lane from load/);
+  assert.match(js, /if\(document\.hidden\) laneClose\(\); else laneOpen\(\)/);
+  assert.match(js, /setTimeout\(laneTick, 10000\)/);
+  assert.match(js, /atMs\(j\.at\) <= atMs\(meta\.at\)/);
+  assert.doesNotMatch(js, /laneUntil/);
 });
