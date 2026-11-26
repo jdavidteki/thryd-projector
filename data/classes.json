@@ -105,11 +105,11 @@
    "param": "what",
    "methods": [
     "say",
-    "give",
-    "know"
+    "see",
+    "give"
    ],
-   "instances": 491,
-   "arg_instances": 162,
+   "instances": 492,
+   "arg_instances": 163,
    "parent": null,
    "chain": [
     "Thing"
@@ -495,6 +495,22 @@
     "run-0ae93c"
    ],
    "tweets": []
+  },
+  "agenda": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-cf203b",
+   "first_job": "j44",
+   "source": "pick",
+   "runs": [
+    "run-cf203b"
+   ],
+   "tweets": [
+    {
+     "text": "#thryd - na till i check the agenda",
+     "year": "2024"
+    }
+   ]
   },
   "aimicrophone": {
    "class": "Thing",
@@ -10059,12 +10075,6 @@
     "pick"
    ],
    [
-    "code",
-    "Thing",
-    "j15",
-    "pick"
-   ],
-   [
     "image",
     "Place",
     "j16",
@@ -10368,6 +10378,18 @@
     "ridiculously",
     "Manner",
     "j43",
+    "pick"
+   ],
+   [
+    "code",
+    "Thing",
+    "j44",
+    "pick"
+   ],
+   [
+    "agenda",
+    "Thing",
+    "j44",
     "pick"
    ]
   ],
@@ -13140,6 +13162,8 @@
   "call.court": "court(what: Thing)",
   "dem.really": "really(what: Thing)",
   "eez.getting": "getting(how: Manner)",
+  "daddy.freeze": "freeze()",
+  "till.check": "check(what: Thing)",
   "cooler.getdatemanufactured": "getDateManufactured()",
   "ronke.getlikes.contains": "getlikes.contains()",
   "kazeem.goodqualities.filter": "filter()",
@@ -13326,6 +13350,7 @@
     "taking",
     "teo",
     "thrill",
+    "till",
     "tyn",
     "wanow",
     "wym"
@@ -13646,6 +13671,7 @@
    "chasing",
    "come",
    "could",
+   "daddy",
    "das",
    "daz",
    "dehwyeh",
@@ -13712,6 +13738,7 @@
    "stringify",
    "textbook",
    "then",
+   "till",
    "touch",
    "understand",
    "used",
@@ -13800,5 +13827,5 @@
   "epilogue": "quiet",
   "coda": "quiet"
  },
- "updated": "2026-11-26T14:30:37-05:00"
+ "updated": "2026-11-26T14:58:22-05:00"
 }

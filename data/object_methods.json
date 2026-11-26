@@ -17278,7 +17278,8 @@
    "object": "can",
    "method": "see",
    "args": [
-    "how"
+    "how",
+    "code"
    ],
    "runs": [
     "run-cf203b"
@@ -17291,8 +17292,34 @@
     "emoji": "🪅",
     "at": "2026-11-25T13:04:53-05:00"
    },
-   "calls": 0,
+   "calls": 1,
    "titles": [
+    {
+     "title": "can.see(code)",
+     "emoji": "🫑",
+     "arg": "code",
+     "run": "run-cf203b",
+     "job": "j44",
+     "tweets": [
+      {
+       "text": "- you can see [[tnbt]] code yes?",
+       "year": "2024"
+      }
+     ],
+     "consequence": "The lines that landed: \"#thryd - na till i check the agenda\", \"daddy freeze #time\", \"#thryd — realignment\" and \"you can see [[tnbt]] code yes?\".",
+     "consequence_job": "j45",
+     "resolved": "can.see(how=ridiculously:Manner) from j43",
+     "injected": [
+      {
+       "param": "how",
+       "class": "Manner",
+       "instance": "ridiculously",
+       "from_run": "run-cf203b",
+       "from_job": "j43",
+       "source": "pick"
+      }
+     ]
+    },
     {
      "title": "can.see(how)",
      "emoji": "🪅",
@@ -17337,6 +17364,14 @@
    "receiver_class": "Thing",
    "prior": [
     {
+     "id": "can.see",
+     "title": "can.see(how)",
+     "run": "run-cf203b",
+     "job": "j12",
+     "at": "2026-11-25T13:04:53-05:00",
+     "why": "same method"
+    },
+    {
      "id": "teo.see",
      "title": "teo.see(way)",
      "run": "run-5a58c4",
@@ -17358,14 +17393,6 @@
      "run": "run-888ea9",
      "job": "j9",
      "at": "2026-11-23T20:00:23-05:00",
-     "why": "same method"
-    },
-    {
-     "id": "accuracy.see",
-     "title": "accuracy.see(mad)",
-     "run": "run-888ea9",
-     "job": "j5",
-     "at": "2026-11-23T18:06:50-05:00",
      "why": "same method"
     }
    ],
@@ -17874,14 +17901,14 @@
      ],
      "consequence": "Kemi stares: \"na the part of d code surprise me.\" He swears it's real, \"lehgeet ni!\", then drops a warning: \"dem go run it down!\" Someone, he says, is coming to dig through the whole night.",
      "consequence_job": "j16",
-     "resolved": "part.d(what=code:Thing) from j15",
+     "resolved": "part.d(what=standing:Thing) from j14",
      "injected": [
       {
        "param": "what",
        "class": "Thing",
-       "instance": "code",
+       "instance": "standing",
        "from_run": "run-cf203b",
-       "from_job": "j15",
+       "from_job": "j14",
        "source": "pick"
       }
      ]
@@ -23324,6 +23351,144 @@
    "faded": false,
    "last_run": "run-cf203b"
   },
+  "daddy.freeze": {
+   "object": "daddy",
+   "method": "freeze",
+   "args": [
+    ""
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j44",
+    "card": "w44",
+    "title": "daddy.freeze()",
+    "emoji": "🥬",
+    "at": "2026-11-26T14:57:55-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "daddy.freeze()",
+     "emoji": "🥬",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j44",
+     "tweets": [
+      {
+       "text": "- daddy freeze #time",
+       "year": "2025"
+      }
+     ],
+     "consequence": "The lines that landed: \"#thryd - na till i check the agenda\", \"daddy freeze #time\", \"#thryd — realignment\" and \"you can see [[tnbt]] code yes?\".",
+     "consequence_job": "j45",
+     "resolved": "daddy.freeze()",
+     "injected": []
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [],
+    "text": "freeze()"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "till.check": {
+   "object": "till",
+   "method": "check",
+   "args": [
+    "agenda"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j44",
+    "card": "w44",
+    "title": "till.check(agenda)",
+    "emoji": "🥒",
+    "at": "2026-11-26T14:57:55-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "till.check(agenda)",
+     "emoji": "🥒",
+     "arg": "agenda",
+     "run": "run-cf203b",
+     "job": "j44",
+     "tweets": [
+      {
+       "text": "#thryd - na till i check the agenda",
+       "year": "2024"
+      }
+     ],
+     "consequence": "The lines that landed: \"#thryd - na till i check the agenda\", \"daddy freeze #time\", \"#thryd — realignment\" and \"you can see [[tnbt]] code yes?\".",
+     "consequence_job": "j45",
+     "resolved": "till.check(what=agenda:Thing) from j44",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "agenda",
+       "from_run": "run-cf203b",
+       "from_job": "j44",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "agenda",
+      "first_run": "run-cf203b",
+      "first_job": "j44"
+     }
+    ],
+    "text": "check(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [
+    {
+     "id": "dez.check",
+     "title": "dez.check(myself)",
+     "run": "run-5a58c4",
+     "job": "j64",
+     "at": "2026-11-24T20:14:19-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "calla.check",
+     "title": "calla.check(settings)",
+     "run": "run-5a58c4",
+     "job": "j47",
+     "at": "2026-11-24T13:57:15-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "chairman.check",
+     "title": "chairman.check(watch)",
+     "run": "run-2eb42d",
+     "job": "j39",
+     "at": "2026-11-18T18:40:45-05:00",
+     "why": "same method"
+    }
+   ],
+   "faded": false,
+   "last_run": null
+  },
   "cooler.getdatemanufactured": {
    "object": "cooler",
    "method": "getDateManufactured",
@@ -26973,6 +27138,9 @@
   "crime": [
    "crime.know"
   ],
+  "daddy": [
+   "daddy.freeze"
+  ],
   "danfo_stuck_halfway_subject_eighth": [
    "kunle.teach",
    "kunle.mix",
@@ -27741,6 +27909,9 @@
   ],
   "ticketattendant": [
    "ticketattendant.gettotal"
+  ],
+  "till": [
+   "till.check"
   ],
   "time": [
    "time.till"
@@ -33450,6 +33621,16 @@
     ]
    }
   ],
+  "comeback_subject": [
+   {
+    "scope": "safe",
+    "from": "7a9686172e72",
+    "title": "where is adan?",
+    "funcs": [
+     "can.see"
+    ]
+   }
+  ],
   "computer_village_subject": [
    {
     "scope": "run",
@@ -34996,6 +35177,14 @@
     "title": "1118. egusi on tissue papers",
     "funcs": [
      "oyinboman.know"
+    ]
+   },
+   {
+    "scope": "safe",
+    "from": "f45a346119e9",
+    "title": "521. taylor swift’s nyash",
+    "funcs": [
+     "daddy.freeze"
     ]
    }
   ],
@@ -38001,6 +38190,16 @@
     "title": "330. intense flirting",
     "funcs": [
      "ok.lemme"
+    ]
+   }
+  ],
+  "internet_friends_subject": [
+   {
+    "scope": "safe",
+    "from": "b4c8e3172a53",
+    "title": "525. internet friends",
+    "funcs": [
+     "till.check"
     ]
    }
   ],
@@ -52384,6 +52583,8 @@
     "call.court",
     "dem.really",
     "eez.getting",
+    "daddy.freeze",
+    "till.check",
     "cli.cli",
     "thryd.importtheme",
     "kemi.ismarried",
@@ -53436,7 +53637,9 @@
     "where.boisie",
     "call.court",
     "dem.really",
-    "eez.getting"
+    "eez.getting",
+    "daddy.freeze",
+    "till.check"
    ],
    "runs": [
     "run-cf203b"
@@ -53502,6 +53705,13 @@
    "title": "122. floating",
    "funcs": [
     "what.road"
+   ],
+   "runs": []
+  },
+  "7a9686172e72": {
+   "title": "where is adan?",
+   "funcs": [
+    "can.see"
    ],
    "runs": []
   },
@@ -54039,6 +54249,13 @@
    ],
    "runs": []
   },
+  "b4c8e3172a53": {
+   "title": "525. internet friends",
+   "funcs": [
+    "till.check"
+   ],
+   "runs": []
+  },
   "b6a5d6fd4ece": {
    "title": "320. upandan",
    "funcs": [
@@ -54537,6 +54754,13 @@
    ],
    "runs": []
   },
+  "f45a346119e9": {
+   "title": "521. taylor swift’s nyash",
+   "funcs": [
+    "daddy.freeze"
+   ],
+   "runs": []
+  },
   "f4ff9cc7d7bd": {
    "title": "102. the catalyst",
    "funcs": [
@@ -54933,11 +55157,15 @@
    "935c0e919db3"
   ],
   "1*tJgT3ZuLeOv3IbOwKKl3rg.gif": [
+   "f45a346119e9",
    "d6bef492657d"
   ],
   "1*o_JaVjuJOL-ANJbDcYRUWw.gif": [
    "9ef335096225",
    "6f2356944065"
+  ],
+  "1*u2biyOtr9ZlPhQXs9lBHlw.gif": [
+   "b4c8e3172a53"
   ],
   "1*i3myLXP42aKin6hUO3sYzQ.gif": [
    "0d1e8045251b"
@@ -55203,6 +55431,9 @@
   ],
   "1*2JQgo8v8pIB7JpB-ukfepA.gif": [
    "49319632985b"
+  ],
+  "1*KXwbkTufRr9n_NRssBfDvA.gif": [
+   "7a9686172e72"
   ],
   "1*WHi5bGe1yByrJpchMb-ggw.gif": [
    "f3242b82bede",
@@ -55696,6 +55927,12 @@
     "db0976343b1a"
    ]
   },
+  "1*u2biyOtr9ZlPhQXs9lBHlw.gif": {
+   "runs": [],
+   "safes": [
+    "b4c8e3172a53"
+   ]
+  },
   "1*1KZ0RuyDgxOgfLDJes6pgw.gif": {
    "runs": [],
    "safes": [
@@ -55801,6 +56038,7 @@
   "1*tJgT3ZuLeOv3IbOwKKl3rg.gif": {
    "runs": [],
    "safes": [
+    "f45a346119e9",
     "d6bef492657d"
    ]
   },
@@ -55979,6 +56217,12 @@
    "runs": [],
    "safes": [
     "8e5bbd0ffb78"
+   ]
+  },
+  "1*KXwbkTufRr9n_NRssBfDvA.gif": {
+   "runs": [],
+   "safes": [
+    "7a9686172e72"
    ]
   },
   "1*NM5XX7ZgufsTSYr6ylAwBA.gif": {
@@ -56758,6 +57002,9 @@
   "crime": [
    "crime.know"
   ],
+  "daddy": [
+   "daddy.freeze"
+  ],
   "das": [
    "das.right"
   ],
@@ -57341,6 +57588,9 @@
   "ticketattendant": [
    "ticketattendant.gettotal"
   ],
+  "till": [
+   "till.check"
+  ],
   "time": [
    "time.till"
   ],
@@ -57748,6 +57998,10 @@
   "own": [],
   "where": [],
   "call": [],
+  "daddy": [],
+  "till": [
+   "Readable"
+  ],
   "cooler": [],
   "kazeem.goodqualities": [],
   "app": [],
@@ -57959,6 +58213,7 @@
    "chasing",
    "come",
    "could",
+   "daddy",
    "das",
    "daz",
    "dehwyeh",
@@ -58025,6 +58280,7 @@
    "stringify",
    "textbook",
    "then",
+   "till",
    "touch",
    "understand",
    "used",
@@ -58054,5 +58310,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-26T14:39:02-05:00"
+ "updated": "2026-11-26T14:58:22-05:00"
 }
