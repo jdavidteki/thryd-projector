@@ -80,8 +80,8 @@
     "follow",
     "getlocation"
    ],
-   "instances": 14,
-   "arg_instances": 8,
+   "instances": 15,
+   "arg_instances": 9,
    "parent": "Thing",
    "chain": [
     "Place",
@@ -108,8 +108,8 @@
     "give",
     "know"
    ],
-   "instances": 468,
-   "arg_instances": 139,
+   "instances": 470,
+   "arg_instances": 141,
    "parent": null,
    "chain": [
     "Thing"
@@ -2040,6 +2040,22 @@
     }
    ]
   },
+  "doubt": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-cf203b",
+   "first_job": "j25",
+   "source": "pick",
+   "runs": [
+    "run-cf203b"
+   ],
+   "tweets": [
+    {
+     "text": "— once you kill all doubt",
+     "year": "2025"
+    }
+   ]
+  },
   "dya": {
    "class": "Thing",
    "cue": "default",
@@ -2647,6 +2663,22 @@
     "run-merge-m1"
    ],
    "tweets": []
+  },
+  "fun": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-cf203b",
+   "first_job": "j25",
+   "source": "pick",
+   "runs": [
+    "run-cf203b"
+   ],
+   "tweets": [
+    {
+     "text": "- agboro lan so fun omo oluwabi",
+     "year": "2024"
+    }
+   ]
   },
   "funkeakindele": {
    "class": "Thing",
@@ -6379,6 +6411,22 @@
    ],
    "tweets": []
   },
+  "slip": {
+   "class": "Place",
+   "cue": "tweet: in/at the ...",
+   "first_run": "run-cf203b",
+   "first_job": "j25",
+   "source": "pick",
+   "runs": [
+    "run-cf203b"
+   ],
+   "tweets": [
+    {
+     "text": "- i make hits in my slip!",
+     "year": "2024"
+    }
+   ]
+  },
   "smile": {
    "class": "Thing",
    "cue": "default",
@@ -9658,6 +9706,24 @@
     "Action",
     "j23",
     "pick"
+   ],
+   [
+    "fun",
+    "Thing",
+    "j25",
+    "pick"
+   ],
+   [
+    "slip",
+    "Place",
+    "j25",
+    "pick"
+   ],
+   [
+    "doubt",
+    "Thing",
+    "j25",
+    "pick"
    ]
   ],
   "run-b70200": [
@@ -12367,6 +12433,9 @@
   "what.road": "road(act: Action)",
   "global.radio": "radio()",
   "what.get": "get()",
+  "agboro.lan": "lan(what: Thing)",
+  "make.hits": "hits(where: Place)",
+  "once.kill": "kill(what: Thing)",
   "cooler.getdatemanufactured": "getDateManufactured()",
   "ronke.getlikes.contains": "getlikes.contains()",
   "kazeem.goodqualities.filter": "filter()",
@@ -12857,6 +12926,7 @@
    "worry"
   ],
   "run-cf203b": [
+   "agboro",
    "ahan",
    "alorof",
    "believe",
@@ -12976,5 +13046,5 @@
   "epilogue": "quiet",
   "coda": "quiet"
  },
- "updated": "2026-11-26T00:15:56-05:00"
+ "updated": "2026-11-26T00:26:43-05:00"
 }
