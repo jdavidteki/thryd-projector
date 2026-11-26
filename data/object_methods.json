@@ -23129,6 +23129,201 @@
    "faded": false,
    "last_run": "run-cf203b"
   },
+  "call.court": {
+   "object": "call",
+   "method": "court",
+   "args": [
+    "session"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j43",
+    "card": "w43",
+    "title": "call.court(session)",
+    "emoji": "🥝",
+    "at": "2026-11-26T14:29:56-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "call.court(session)",
+     "emoji": "🥝",
+     "arg": "session",
+     "run": "run-cf203b",
+     "job": "j43",
+     "tweets": [
+      {
+       "text": "- call the court session to",
+       "year": "2024"
+      }
+     ],
+     "consequence": "Where things stand: Tobi has finally spoken, but he didn't answer the question.",
+     "consequence_job": "j43",
+     "resolved": "call.court(what=session:Thing) from j43",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "session",
+       "from_run": "run-cf203b",
+       "from_job": "j43",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "session",
+      "first_run": "run-cf203b",
+      "first_job": "j43"
+     }
+    ],
+    "text": "court(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "dem.really": {
+   "object": "dem",
+   "method": "really",
+   "args": [
+    "suffer"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j43",
+    "card": "w43",
+    "title": "dem.really(suffer)",
+    "emoji": "🍑",
+    "at": "2026-11-26T14:29:56-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "dem.really(suffer)",
+     "emoji": "🍑",
+     "arg": "suffer",
+     "run": "run-cf203b",
+     "job": "j43",
+     "tweets": [
+      {
+       "text": "- dem really really suffer",
+       "year": "2025"
+      }
+     ],
+     "consequence": "Where things stand: Tobi has finally spoken, but he didn't answer the question.",
+     "consequence_job": "j43",
+     "resolved": "dem.really(what=suffer:Thing) from j43",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "suffer",
+       "from_run": "run-cf203b",
+       "from_job": "j43",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "suffer",
+      "first_run": "run-cf203b",
+      "first_job": "j43"
+     }
+    ],
+    "text": "really(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "eez.getting": {
+   "object": "eez",
+   "method": "getting",
+   "args": [
+    "ridiculously"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j43",
+    "card": "w43",
+    "title": "eez.getting(ridiculously)",
+    "emoji": "🍅",
+    "at": "2026-11-26T14:29:56-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "eez.getting(ridiculously)",
+     "emoji": "🍅",
+     "arg": "ridiculously",
+     "run": "run-cf203b",
+     "job": "j43",
+     "tweets": [
+      {
+       "text": "- eez getting ridiculously! we cant keep up",
+       "year": "2024"
+      }
+     ],
+     "consequence": "Where things stand: Tobi has finally spoken, but he didn't answer the question.",
+     "consequence_job": "j43",
+     "resolved": "eez.getting(how=ridiculously:Manner) from j43",
+     "injected": [
+      {
+       "param": "how",
+       "class": "Manner",
+       "instance": "ridiculously",
+       "from_run": "run-cf203b",
+       "from_job": "j43",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "how",
+      "class": "Manner",
+      "default": "ridiculously",
+      "first_run": "run-cf203b",
+      "first_job": "j43"
+     }
+    ],
+    "text": "getting(how: Manner)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
   "cooler.getdatemanufactured": {
    "object": "cooler",
    "method": "getDateManufactured",
@@ -26602,6 +26797,9 @@
   "buy": [
    "buy.fold"
   ],
+  "call": [
+   "call.court"
+  ],
   "calla": [
    "calla.stare",
    "calla.see",
@@ -26801,7 +26999,8 @@
   "dem": [
    "dem.go",
    "dem.get",
-   "dem.teh"
+   "dem.teh",
+   "dem.really"
   ],
   "deya": [
    "deya.fighting"
@@ -26866,7 +27065,8 @@
    "dyeriz.notyn"
   ],
   "eez": [
-   "eez.mad"
+   "eez.mad",
+   "eez.getting"
   ],
   "ehen": [
    "ehen.serious"
@@ -36160,6 +36360,7 @@
     "from": "5a58c4d9b35f",
     "title": "404. this your generation",
     "funcs": [
+     "dem.really",
      "speaker.play",
      "ronke.write",
      "kazeem.pass"
@@ -38667,6 +38868,7 @@
     "from": "ef623c79ddb7",
     "title": "1106. kamala didn’t won o",
     "funcs": [
+     "eez.getting",
      "yorubbbygehinny.getagenda"
     ]
    }
@@ -52179,6 +52381,9 @@
     "jesse.jaayne",
     "own.going",
     "where.boisie",
+    "call.court",
+    "dem.really",
+    "eez.getting",
     "cli.cli",
     "thryd.importtheme",
     "kemi.ismarried",
@@ -52951,6 +53156,13 @@
    ],
    "runs": []
   },
+  "501211f2bf6a": {
+   "title": "628. king",
+   "funcs": [
+    "call.court"
+   ],
+   "runs": []
+  },
   "52d74516fc78": {
    "title": "530. the most intelligent woman in lagos",
    "funcs": [
@@ -52999,7 +53211,8 @@
    "funcs": [
     "kazeem.pass",
     "ronke.write",
-    "speaker.play"
+    "speaker.play",
+    "dem.really"
    ],
    "runs": []
   },
@@ -53220,7 +53433,10 @@
     "go.fit",
     "jesse.jaayne",
     "own.going",
-    "where.boisie"
+    "where.boisie",
+    "call.court",
+    "dem.really",
+    "eez.getting"
    ],
    "runs": [
     "run-cf203b"
@@ -54276,7 +54492,8 @@
   "ef623c79ddb7": {
    "title": "1106. kamala didn’t won o",
    "funcs": [
-    "yorubbbygehinny.getagenda"
+    "yorubbbygehinny.getagenda",
+    "eez.getting"
    ],
    "runs": [
     "run-db09",
@@ -55280,6 +55497,9 @@
   ],
   "1*8uKFVu2-2H0t2BjIjiBl7g.gif": [
    "9e60097b53d0"
+  ],
+  "1*M7-3my5LCp5EIzsIgw4Qvg.png": [
+   "501211f2bf6a"
   ],
   "1*6HL5YNv8ctvM4bl6rHfSlA.gif": [
    "e164727d4c98",
@@ -56460,6 +56680,9 @@
   "buy": [
    "buy.fold"
   ],
+  "call": [
+   "call.court"
+  ],
   "calla": [
    "calla.stare",
    "calla.see",
@@ -56547,7 +56770,8 @@
   "dem": [
    "dem.go",
    "dem.get",
-   "dem.teh"
+   "dem.teh",
+   "dem.really"
   ],
   "deya": [
    "deya.fighting"
@@ -56593,7 +56817,8 @@
    "dyeriz.notyn"
   ],
   "eez": [
-   "eez.mad"
+   "eez.mad",
+   "eez.getting"
   ],
   "ehen": [
    "ehen.serious"
@@ -57522,6 +57747,7 @@
   "jesse": [],
   "own": [],
   "where": [],
+  "call": [],
   "cooler": [],
   "kazeem.goodqualities": [],
   "app": [],
@@ -57727,6 +57953,7 @@
    "alorof",
    "believe",
    "bumbum",
+   "call",
    "can",
    "cant",
    "chasing",
@@ -57827,5 +58054,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-26T14:29:47-05:00"
+ "updated": "2026-11-26T14:30:37-05:00"
 }
