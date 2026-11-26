@@ -22343,6 +22343,145 @@
    "faded": false,
    "last_run": "run-cf203b"
   },
+  "guy.need": {
+   "object": "guy",
+   "method": "need",
+   "args": [
+    "therapy"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j39",
+    "card": "w39",
+    "title": "guy.need(therapy)",
+    "emoji": "🪱",
+    "at": "2026-11-26T13:15:20-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "guy.need(therapy)",
+     "emoji": "🪱",
+     "arg": "therapy",
+     "run": "run-cf203b",
+     "job": "j39",
+     "tweets": [
+      {
+       "text": "- this guy you need therapy",
+       "year": "2024"
+      }
+     ],
+     "consequence": "What just happened: Kemi laughed once, without any joy: \"this guy you need therapy.\" Then, quieter: \"nothing is funny anymore…\" She said it three times like a verdict: \"my man.",
+     "consequence_job": "j40",
+     "resolved": "guy.need(what=therapy:Thing) from j39",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "therapy",
+       "from_run": "run-cf203b",
+       "from_job": "j39",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "therapy",
+      "first_run": "run-cf203b",
+      "first_job": "j39"
+     }
+    ],
+    "text": "need(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [
+    {
+     "id": "marisol.need",
+     "title": "marisol.need(variety)",
+     "run": "run-5a58c4",
+     "job": "j66",
+     "at": "2026-11-24T21:47:08-05:00",
+     "why": "same method"
+    }
+   ],
+   "faded": false,
+   "last_run": null
+  },
+  "nothing.funny": {
+   "object": "nothing",
+   "method": "funny",
+   "args": [
+    "anymore"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j39",
+    "card": "w39",
+    "title": "nothing.funny(anymore)",
+    "emoji": "🐛",
+    "at": "2026-11-26T13:15:20-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "nothing.funny(anymore)",
+     "emoji": "🐛",
+     "arg": "anymore",
+     "run": "run-cf203b",
+     "job": "j39",
+     "tweets": [
+      {
+       "text": "nothing is funny anymore…",
+       "year": "2021"
+      }
+     ],
+     "consequence": "What just happened: Kemi laughed once, without any joy: \"this guy you need therapy.\" Then, quieter: \"nothing is funny anymore…\" She said it three times like a verdict: \"my man.",
+     "consequence_job": "j40",
+     "resolved": "nothing.funny(what=anymore:Thing) from j39",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "anymore",
+       "from_run": "run-cf203b",
+       "from_job": "j39",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "anymore",
+      "first_run": "run-cf203b",
+      "first_job": "j39"
+     }
+    ],
+    "text": "funny(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
   "cooler.getdatemanufactured": {
    "object": "cooler",
    "method": "getDateManufactured",
@@ -26122,7 +26261,8 @@
   ],
   "guy": [
    "guy.wan",
-   "guy.can"
+   "guy.can",
+   "guy.need"
   ],
   "h": [
    "h.ki"
@@ -26384,6 +26524,9 @@
   ],
   "not_me_but_subject": [
    "object.look"
+  ],
+  "nothing": [
+   "nothing.funny"
   ],
   "object": [
    "object.look"
@@ -35777,6 +35920,16 @@
     "title": "829. a day in the life of god",
     "funcs": [
      "[nau,god].map"
+    ]
+   }
+  ],
+  "heat_figure": [
+   {
+    "scope": "safe",
+    "from": "9c302576045c",
+    "title": "1105. heat",
+    "funcs": [
+     "guy.need"
     ]
    }
   ],
@@ -51224,6 +51377,8 @@
     "dem.teh",
     "well.loosely",
     "which.one",
+    "guy.need",
+    "nothing.funny",
     "cli.cli",
     "thryd.importtheme",
     "kemi.ismarried",
@@ -51958,6 +52113,13 @@
    ],
    "runs": []
   },
+  "4bd98d6f0139": {
+   "title": "but it keeps pouring lols",
+   "funcs": [
+    "nothing.funny"
+   ],
+   "runs": []
+  },
   "4c8598384b72": {
    "title": "519. how to [[win an oscar]]",
    "funcs": [
@@ -52237,7 +52399,9 @@
     "dehwyeh.wans",
     "dem.teh",
     "well.loosely",
-    "which.one"
+    "which.one",
+    "guy.need",
+    "nothing.funny"
    ],
    "runs": [
     "run-cf203b"
@@ -52600,6 +52764,13 @@
    "funcs": [
     "attendant.put",
     "tunde.getlocation"
+   ],
+   "runs": []
+  },
+  "9c302576045c": {
+   "title": "1105. heat",
+   "funcs": [
+    "guy.need"
    ],
    "runs": []
   },
@@ -53514,6 +53685,9 @@
    "cb67d57351b7",
    "9a3a7cd2c055"
   ],
+  "1*2gSOirXUCL9GHmDm2TH7PQ.png": [
+   "4bd98d6f0139"
+  ],
   "1*S1oCWFn9cmXUYSNZZkml_g.gif": [
    "c7c1fdc558f5"
   ],
@@ -54077,6 +54251,9 @@
   "1*3RBno1MIDLv6YeAAeDHq8Q.gif": [
    "9525b78aa7f3",
    "08ae9d49aa5e"
+  ],
+  "1*IgR3gyTF6KivLRlzlbTRQw.gif": [
+   "9c302576045c"
   ],
   "1*_BZ_4dYEZGMebJgk4seauA.gif": [
    "ca0834ea259c"
@@ -54839,6 +55016,12 @@
     "df1336b56f94"
    ]
   },
+  "1*IgR3gyTF6KivLRlzlbTRQw.gif": {
+   "runs": [],
+   "safes": [
+    "9c302576045c"
+   ]
+  },
   "1*bVjUefz6XxPnOn6EdQC1BQ.gif": {
    "runs": [],
    "safes": [
@@ -55540,7 +55723,8 @@
   ],
   "guy": [
    "guy.wan",
-   "guy.can"
+   "guy.can",
+   "guy.need"
   ],
   "h": [
    "h.ki"
@@ -55742,6 +55926,9 @@
    "nobody.see",
    "nobody.try",
    "nobody.cut"
+  ],
+  "nothing": [
+   "nothing.funny"
   ],
   "object": [
    "object.look"
@@ -56359,6 +56546,7 @@
   "dehwyeh": [],
   "well": [],
   "which": [],
+  "nothing": [],
   "cooler": [],
   "kazeem.goodqualities": [],
   "app": [],
@@ -56599,6 +56787,7 @@
    "mean",
    "nd",
    "nigerian",
+   "nothing",
    "once",
    "one",
    "part",
@@ -56652,5 +56841,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-26T13:02:36-05:00"
+ "updated": "2026-11-26T13:16:09-05:00"
 }

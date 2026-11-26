@@ -108,8 +108,8 @@
     "give",
     "know"
    ],
-   "instances": 482,
-   "arg_instances": 153,
+   "instances": 484,
+   "arg_instances": 155,
    "parent": null,
    "chain": [
     "Thing"
@@ -615,6 +615,22 @@
     "run-0ae93c"
    ],
    "tweets": []
+  },
+  "anymore": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-cf203b",
+   "first_job": "j39",
+   "source": "pick",
+   "runs": [
+    "run-cf203b"
+   ],
+   "tweets": [
+    {
+     "text": "nothing is funny anymore…",
+     "year": "2021"
+    }
+   ]
   },
   "anywhere": {
    "class": "Place",
@@ -7270,6 +7286,22 @@
     }
    ]
   },
+  "therapy": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-cf203b",
+   "first_job": "j39",
+   "source": "pick",
+   "runs": [
+    "run-cf203b"
+   ],
+   "tweets": [
+    {
+     "text": "- this guy you need therapy",
+     "year": "2024"
+    }
+   ]
+  },
   "things": {
    "class": "Thing",
    "cue": "default",
@@ -10141,6 +10173,18 @@
     "Thing",
     "j38",
     "pick"
+   ],
+   [
+    "therapy",
+    "Thing",
+    "j39",
+    "pick"
+   ],
+   [
+    "anymore",
+    "Thing",
+    "j39",
+    "pick"
    ]
   ],
   "run-b70200": [
@@ -12896,6 +12940,8 @@
   "dem.teh": "teh()",
   "well.loosely": "loosely(what: Thing)",
   "which.one": "one(what: Thing)",
+  "guy.need": "need(what: Thing)",
+  "nothing.funny": "funny(what: Thing)",
   "cooler.getdatemanufactured": "getDateManufactured()",
   "ronke.getlikes.contains": "getlikes.contains()",
   "kazeem.goodqualities.filter": "filter()",
@@ -13430,6 +13476,7 @@
    "mean",
    "nd",
    "nigerian",
+   "nothing",
    "once",
    "one",
    "part",
@@ -13542,5 +13589,5 @@
   "epilogue": "quiet",
   "coda": "quiet"
  },
- "updated": "2026-11-26T13:01:44-05:00"
+ "updated": "2026-11-26T13:16:09-05:00"
 }
