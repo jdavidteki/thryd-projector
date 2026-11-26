@@ -24096,6 +24096,80 @@
    "faded": false,
    "last_run": "run-cf203b"
   },
+  "beat.out": {
+   "object": "beat",
+   "method": "out",
+   "args": [
+    "phony"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j48",
+    "card": "w48",
+    "title": "beat.out(phony)",
+    "emoji": "🫘",
+    "at": "2026-11-26T17:17:17-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "beat.out(phony)",
+     "emoji": "🫘",
+     "arg": "phony",
+     "run": "run-cf203b",
+     "job": "j48",
+     "tweets": [
+      {
+       "text": "- beat the [[ats]] out of you! phony pepu",
+       "year": "2024"
+      }
+     ],
+     "consequence": "The lines that landed: \"beat the [[ats]] out of you!",
+     "consequence_job": "j49",
+     "resolved": "beat.out(what=phony:Thing) from j48",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "phony",
+       "from_run": "run-cf203b",
+       "from_job": "j48",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "phony",
+      "first_run": "run-cf203b",
+      "first_job": "j48"
+     }
+    ],
+    "text": "out(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [
+    {
+     "id": "issues.out",
+     "title": "issues.out(life)",
+     "run": "run-888ea9",
+     "job": "j7",
+     "at": "2026-11-23T18:37:05-05:00",
+     "why": "same method"
+    }
+   ],
+   "faded": false,
+   "last_run": null
+  },
   "cooler.getdatemanufactured": {
    "object": "cooler",
    "method": "getDateManufactured",
@@ -27583,6 +27657,9 @@
   ],
   "ayok_focus_figure_second": [
    "woman.setname"
+  ],
+  "beat": [
+   "beat.out"
   ],
   "believe": [
    "believe.can"
@@ -53434,6 +53511,7 @@
     "part.smell",
     "something.fill",
     "waga.lifestyle",
+    "beat.out",
     "cli.cli",
     "thryd.importtheme",
     "kemi.ismarried",
@@ -53694,6 +53772,13 @@
    "title": "1223. genius",
    "funcs": [
     "folake.hold"
+   ],
+   "runs": []
+  },
+  "12dbaf6c1c62": {
+   "title": "908. distraction",
+   "funcs": [
+    "beat.out"
    ],
    "runs": []
   },
@@ -54527,7 +54612,8 @@
     "raised.wolves",
     "part.smell",
     "something.fill",
-    "waga.lifestyle"
+    "waga.lifestyle",
+    "beat.out"
    ],
    "runs": [
     "run-cf203b"
@@ -57875,6 +57961,9 @@
   "attendant": [
    "attendant.put"
   ],
+  "beat": [
+   "beat.out"
+  ],
   "believe": [
    "believe.can"
   ],
@@ -59002,6 +59091,7 @@
   "like": [],
   "raised": [],
   "waga": [],
+  "beat": [],
   "cooler": [],
   "kazeem.goodqualities": [],
   "app": [],
@@ -59206,6 +59296,7 @@
    "agboro",
    "ahan",
    "alorof",
+   "beat",
    "believe",
    "bumbum",
    "call",
@@ -59315,5 +59406,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-26T17:15:14-05:00"
+ "updated": "2026-11-26T17:17:44-05:00"
 }
