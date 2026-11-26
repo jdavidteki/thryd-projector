@@ -25244,6 +25244,46 @@
    "prior": [],
    "faded": false,
    "last_run": null
+  },
+  "tobi.setbloodpressure": {
+   "object": "tobi",
+   "method": "setbloodpressure",
+   "args": [],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j37",
+    "card": "j37",
+    "title": "tobi.setbloodpressure(high())",
+    "emoji": "",
+    "at": "2026-11-26T12:31:42-05:00",
+    "source": "cli"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "tobi.setbloodpressure(high())",
+     "emoji": "",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j37",
+     "tweets": [],
+     "consequence": "The customer typed this on this agenda.",
+     "consequence_job": ""
+    }
+   ],
+   "source": "cli",
+   "cli": true,
+   "sig": {
+    "params": [],
+    "text": "setbloodpressure()"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
   }
  },
  "objects": {
@@ -26240,6 +26280,9 @@
    "titi.listen",
    "titi.let",
    "titi.keep"
+  ],
+  "tobi": [
+   "tobi.setbloodpressure"
   ],
   "tola": [
    "tola.why"
@@ -50724,7 +50767,8 @@
     "new.makeup",
     "location.setnumberchairs",
     "j24.tomorrow",
-    "kemi.setlocation"
+    "kemi.setlocation",
+    "tobi.setbloodpressure"
    ]
   },
   "run-d6fc": {
@@ -55389,6 +55433,9 @@
    "titi.let",
    "titi.keep"
   ],
+  "tobi": [
+   "tobi.setbloodpressure"
+  ],
   "tola": [
    "tola.why"
   ],
@@ -55786,7 +55833,8 @@
   "disstrack": [],
   "j15": [],
   "location": [],
-  "j24": []
+  "j24": [],
+  "tobi": []
  },
  "casts": {
   "run-5a58c4": [
@@ -56039,5 +56087,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-26T12:01:16-05:00"
+ "updated": "2026-11-26T12:32:17-05:00"
 }
