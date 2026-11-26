@@ -35,13 +35,16 @@
     '#aicard .aicopt{display:flex;flex-direction:column;align-items:flex-start;gap:3px;width:100%;box-sizing:border-box;text-align:left;color:#fff;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.13);border-radius:10px;padding:8px 11px 8px 34px;cursor:pointer;min-height:40px;position:relative;transition:background .12s,border-color .12s;-webkit-tap-highlight-color:transparent}',
     "#aicard .aicopt::before{content:'';position:absolute;left:11px;top:11px;width:13px;height:13px;border-radius:4px;border:1.5px solid rgba(255,255,255,.35);box-sizing:border-box}",
     '#aicard .aicopt .ol{font:600 13px/1.3 ui-monospace,Menlo,Consolas,monospace;color:#f3efe6}',
-    // v628: full archive safe under each option (title + numbered lines, verbatim, «picked» gold);
-    // code-block box; max ~6 rows, long rows wrap; scroll area does not toggle the option
-    '#aicard .aicopt .ot{font:400 12.5px/1.45 ui-monospace,Menlo,Consolas,monospace;font-style:normal;color:#e8e0d0;display:block;width:100%;box-sizing:border-box;max-height:8.7em;overflow-y:auto;overscroll-behavior:contain;touch-action:pan-y;cursor:text;padding:6px 8px;margin-top:2px;background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.08);border-radius:8px;white-space:pre-wrap;word-break:break-word;scrollbar-width:thin;scrollbar-color:rgba(255,215,106,.45) transparent}',
+    // v633: title on its own line; numbered tweet lines flow as one wrapped paragraph
+    // (verbatim, middot between them, «picked» gold); ~68% type, tight leading, so most of a safe
+    // shows without scrolling; the box still scrolls a very long safe, picked line only inside it
+    '#aicard .aicopt .ot{font:400 8.5px/1.25 ui-monospace,Menlo,Consolas,monospace;font-style:normal;color:#e8e0d0;display:block;width:100%;box-sizing:border-box;max-height:15em;overflow-y:auto;overscroll-behavior:contain;touch-action:pan-y;cursor:text;padding:4px 6px;margin-top:2px;background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.08);border-radius:8px;white-space:normal;word-break:break-word;scrollbar-width:thin;scrollbar-color:rgba(255,215,106,.45) transparent}',
     '#aicard .aicopt .ot::-webkit-scrollbar{width:4px}#aicard .aicopt .ot::-webkit-scrollbar-thumb{background:rgba(255,215,106,.45);border-radius:2px}',
-    '#aicard .aicopt .ot .ott{color:#c9a95a;font:600 11.5px/1.4 ui-monospace,Menlo,Consolas,monospace;margin:0 0 3px}',
-    '#aicard .aicopt .ot .otl{display:block}',
-    '#aicard .aicopt .ot .otl.pick{color:#ffd76a;font-weight:600}',
+    '#aicard .aicopt .ot .ott{color:#c9a95a;font:600 8.5px/1.3 ui-monospace,Menlo,Consolas,monospace;margin:0 0 2px;display:block}',
+    '#aicard .aicopt .ot .otb{display:block}',
+    '#aicard .aicopt .ot .otl{display:inline;white-space:pre-wrap}',
+    '#aicard .aicopt .ot .ots{color:rgba(232,224,208,.4);font-weight:400}',
+    '#aicard .aicopt .ot .otl.pick{color:#ffd76a;font-weight:600;background:rgba(255,215,106,.16);border-radius:2px}',
     '#aicard .aicopt.on{border-color:#ffd76a;background:rgba(255,215,106,.13)}',
     "#aicard .aicopt.on::before{background:#ffd76a;border-color:#ffd76a;box-shadow:inset 0 0 0 2.5px #2a2416}",
     '#aicard .aicopt:disabled,#aicard .aicopt[aria-disabled="true"],#aimenu button:disabled{opacity:.5;cursor:default}',
@@ -396,12 +399,17 @@
     el.textContent = '';
     if(title){ const h = document.createElement('div'); h.className = 'ott'; h.textContent = title; el.appendChild(h); }
     let pick = null;
-    rows.forEach(line => {
-      const r = document.createElement('div'); r.className = 'otl';
-      if(/\u00ab[\s\S]*\u00bb/.test(line)){ r.classList.add('pick'); pick = r; }
-      r.textContent = line;
-      el.appendChild(r);
-    });
+    if(rows.length){
+      const body = document.createElement('div'); body.className = 'otb';
+      rows.forEach((line, i) => {
+        if(i){ const sep = document.createElement('span'); sep.className = 'ots'; sep.textContent = ' \u00b7 '; body.appendChild(sep); }
+        const r = document.createElement('span'); r.className = 'otl';
+        if(/\u00ab[\s\S]*\u00bb/.test(line)){ r.classList.add('pick'); pick = r; }
+        r.textContent = line;
+        body.appendChild(r);
+      });
+      el.appendChild(body);
+    }
     return pick;
   }
 

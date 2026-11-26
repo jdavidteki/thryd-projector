@@ -8,14 +8,14 @@ const js = rd('assets/job_card.js'), html = rd('index.html'), st = rd('assets/st
 
 test('job_card.js loads by default; ?cards=0 hides the panel', ()=>{
   assert.match(html, /cards=0/);
-  assert.match(html, /job_card\.js\?v=11/);
+  assert.match(html, /job_card\.js\?v=12/);
   assert.match(js, /cards=0/);
   assert.match(html, /if\(!\/\(\?:\^\|\[\?&\]\)cards=0/);
   assert.match(js, /if\(\/\(\?:\^\|\[\?&\]\)cards=0/);
   assert.doesNotMatch(html, /if\(\/\(\?:\^\|\[\?&\]\)cards=1/);
-  assert.match(html, /var VER=632,/);
+  assert.match(html, /var VER=633,/);
   const v = JSON.parse(ver);
-  assert.equal(v.v, 632);
+  assert.equal(v.v, 633);
 });
 
 test('layout is job card, then typeline, then plain always-visible buttons', ()=>{
@@ -99,7 +99,7 @@ test('v622: card/menu posts use the typeline lane with 429 backoff+retry, friend
   assert.match(js, /the network is busy right now/);
   assert.doesNotMatch(js, /'HTTP ' \+ r\.status \+ \(r\.status === 429/);
   assert.match(js, /lockHasJump/);
-  assert.match(js, /max-height:8\.7em;overflow-y:auto/);
+  assert.match(js, /max-height:15em;overflow-y:auto/);
   assert.match(js, /awaitReply\(body, t0, r\)/);
 });
 
@@ -147,7 +147,7 @@ test('v628: panel stays open after Send; waiting refresh keeps the sent card; ea
   // after Send, a waiting / closed open_card must not collapse the sent confirmation
   assert.match(js, /card\.open && wasSent\(card\.job\) && !\(j\.open && j\.job && j\.job !== card\.job\) && !isLocked\(j\)/);
   assert.match(js, /Sent \\u2713 your ' \+ job \+ ' pick is in \\u2014 next job coming/);
-  // full archive safe under each option: title + numbered rows, «picked» highlighted, no curly quotes / italics
+  // full archive safe under each option: title + numbered lines (verbatim), «picked» highlighted, no curly quotes / italics
   assert.match(js, /function safeRows\(/);
   assert.match(js, /function fillSafe\(/);
   assert.match(js, /safeText\(o\) \|\| tweetLine\(o\)/);
@@ -159,10 +159,10 @@ test('v628: panel stays open after Send; waiting refresh keeps the sent card; ea
   assert.doesNotMatch(js, /\.ot\{font:italic/);
   assert.match(js, /ui-monospace,Menlo,Consolas,monospace/);
   assert.match(js, /background:rgba\(0,0,0,\.35\)/);
-  assert.match(js, /border-radius:8px;white-space:pre-wrap/);
-  assert.match(js, /max-height:8\.7em;overflow-y:auto/);
+  assert.match(js, /border-radius:8px;white-space:normal/);
+  assert.match(js, /max-height:15em;overflow-y:auto/);
   assert.match(js, /touch-action:pan-y/);
-  assert.match(html, /job_card\.js\?v=11/);
+  assert.match(html, /job_card\.js\?v=12/);
   assert.match(html, /intent_ai\.js\?v=614/);
   const src = js.slice(js.indexOf('function safeText(o){'), js.indexOf('function render(){'));
   const f = new Function(src + '; return {safeRows, safeText};')();
@@ -225,4 +225,23 @@ test('v632: lane always on (SSE since 10m, poll fallback), newest at wins, close
   assert.match(js, /setTimeout\(laneTick, 10000\)/);
   assert.match(js, /atMs\(j\.at\) <= atMs\(meta\.at\)/);
   assert.doesNotMatch(js, /laneUntil/);
+});
+
+test('v633: archive safe lines flow inline at a smaller font; title stays its own line', ()=>{
+  assert.match(js, /createElement\('span'\); r\.className = 'otl'/);
+  assert.match(js, /sep\.className = 'ots'/);
+  assert.match(js, /sep\.textContent = ' \\u00b7 '/);
+  assert.match(js, /body\.className = 'otb'/);
+  assert.match(js, /#aicard \.aicopt \.ot \.otl\{display:inline/);
+  assert.match(js, /#aicard \.aicopt \.ot\{font:400 8\.5px\/1\.25/);
+  assert.match(js, /max-height:15em;overflow-y:auto/);
+  assert.doesNotMatch(js, /#aicard \.aicopt \.ot \.otl\{display:block\}/);
+  assert.doesNotMatch(js, /max-height:8\.7em/);
+  assert.match(js, /t\.scrollTop = Math\.max\(0, pick\.offsetTop - t\.offsetTop/);
+  assert.doesNotMatch(js, /pick\.scrollIntoView/);
+  const src = js.slice(js.indexOf('function safeText(o){'), js.indexOf('function render(){'));
+  const f = new Function(src + '; return {safeRows};')();
+  const s = f.safeRows('330. intense flirting: 1. #juniorboys - like me? / 2. - instead of fighting [[stronga]] / 3. «- the picked line» 2024');
+  assert.equal(s.title, '330. intense flirting \u00b7 2024');
+  assert.deepEqual(s.rows, ['1. #juniorboys - like me?', '2. - instead of fighting [[stronga]]', '3. \u00ab- the picked line\u00bb']);
 });
