@@ -10647,16 +10647,6 @@
 ],
 "cooler_subject": [
 {
-"id": "wt_c8ee41893c",
-"kind": "call",
-"text": "Someone at the projector tapped the cooler subject and made it set its mood (happy).",
-"code": "cooler_subject.setmood('happy');",
-"author": "projector",
-"run": "run-cf203b",
-"card": "w21",
-"other": null
-},
-{
 "id": "wt_c651863e6d",
 "kind": "call",
 "text": "Someone at the projector tapped the cooler subject and made it set its mood (happy).",
@@ -10694,6 +10684,16 @@
 "author": "projector",
 "run": "run-cf203b",
 "card": "w28",
+"other": null
+},
+{
+"id": "wt_40e9a95209",
+"kind": "call",
+"text": "Someone at the projector tapped the cooler subject and made it set its mood (happy).",
+"code": "cooler_subject.setmood('happy');",
+"author": "projector",
+"run": "run-cf203b",
+"card": "w32",
 "other": null
 }
 ],
@@ -10981,6 +10981,16 @@
 "run": "run-cf203b",
 "card": "j12",
 "other": null
+},
+{
+"id": "wt_3cbedd1bd6",
+"kind": "func_call",
+"text": "The customer typed kemi.setlocation(amusementpark) on run-cf203b j32. It came back: Kemi's location is now amusementpark. Implementation: function setlocation(location){\n  this.location = \"amusementpark\";\n  this.caption = location;\n  return this.location;\n}. kemi now has kemi.setlocation as a method on this agenda, and it can be called again.",
+"code": "kemi.setlocation(amusementpark);",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j32",
+"other": null
 }
 ],
 "wys": [
@@ -11201,16 +11211,6 @@
 ],
 "ahan": [
 {
-"id": "wt_127d46866c",
-"kind": "func_call",
-"text": "The ahan hears it (because lehgeet.ni()).",
-"code": "ahan.hears(person, 'ni');",
-"author": "projector",
-"run": "run-cf203b",
-"card": "w32",
-"other": null
-},
-{
 "id": "wt_2366555d64",
 "kind": "func_call",
 "text": "The ahan hears it (because woke.morning()).",
@@ -11245,6 +11245,16 @@
 "kind": "func_call",
 "text": "The ahan hears it (because ready.finally()).",
 "code": "ahan.hears(person, 'finally');",
+"author": "projector",
+"run": "run-cf203b",
+"card": "w32",
+"other": null
+},
+{
+"id": "wt_cf4207cf03",
+"kind": "func_call",
+"text": "The ahan hears it (because shu.making(amount=all:Quantity) from j6).",
+"code": "ahan.hears(person, 'making');",
 "author": "projector",
 "run": "run-cf203b",
 "card": "w32",
@@ -11507,16 +11517,6 @@
 ],
 "alorof": [
 {
-"id": "wt_0731d471fd",
-"kind": "func_call",
-"text": "The alorof hears it (because lehgeet.ni()).",
-"code": "alorof.hears(person, 'ni');",
-"author": "projector",
-"run": "run-cf203b",
-"card": "w32",
-"other": null
-},
-{
 "id": "wt_4550573cce",
 "kind": "func_call",
 "text": "The alorof hears it (because woke.morning()).",
@@ -11551,6 +11551,16 @@
 "kind": "func_call",
 "text": "The alorof hears it (because ready.finally()).",
 "code": "alorof.hears(person, 'finally');",
+"author": "projector",
+"run": "run-cf203b",
+"card": "w32",
+"other": null
+},
+{
+"id": "wt_179fb76053",
+"kind": "func_call",
+"text": "The alorof hears it (because shu.making(amount=all:Quantity) from j6).",
+"code": "alorof.hears(person, 'making');",
 "author": "projector",
 "run": "run-cf203b",
 "card": "w32",
@@ -11711,16 +11721,6 @@
 ],
 "agboro": [
 {
-"id": "wt_ce0184a44a",
-"kind": "func_call",
-"text": "The agboro hears it (because lehgeet.ni()).",
-"code": "agboro.hears(person, 'ni');",
-"author": "projector",
-"run": "run-cf203b",
-"card": "w32",
-"other": null
-},
-{
 "id": "wt_5a9d6dd3ed",
 "kind": "func_call",
 "text": "The agboro hears it (because woke.morning()).",
@@ -11755,6 +11755,16 @@
 "kind": "func_call",
 "text": "The agboro hears it (because ready.finally()).",
 "code": "agboro.hears(person, 'finally');",
+"author": "projector",
+"run": "run-cf203b",
+"card": "w32",
+"other": null
+},
+{
+"id": "wt_235600f17f",
+"kind": "func_call",
+"text": "The agboro hears it (because shu.making(amount=all:Quantity) from j6).",
+"code": "agboro.hears(person, 'making');",
 "author": "projector",
 "run": "run-cf203b",
 "card": "w32",
@@ -11899,6 +11909,30 @@
 "kind": "func_call",
 "text": "Someone at the projector tapped the person and called eez.mad(what=dies:Thing) from j9 from its agenda run-cf203b, first seated in run-cf203b j11.",
 "code": "eez.mad('dies');",
+"author": "projector",
+"run": "run-cf203b",
+"card": "w32",
+"other": null
+}
+],
+"pray": [
+{
+"id": "wt_70b1a025c4",
+"kind": "func_call",
+"text": "The customer typed [[pray]] on run-cf203b j32.",
+"code": "[[pray]];",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j32",
+"other": null
+}
+],
+"shu": [
+{
+"id": "wt_5b6b22b89e",
+"kind": "func_call",
+"text": "Someone at the projector tapped the person and called shu.making(amount=all:Quantity) from j6 from its agenda run-cf203b, first seated in run-cf203b j10.",
+"code": "shu.making('all');",
 "author": "projector",
 "run": "run-cf203b",
 "card": "w32",
@@ -12449,5 +12483,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-26T02:00:53-0500"
+"updated": "2026-11-26T02:07:33-0500"
 }

@@ -24183,6 +24183,46 @@
    "prior": [],
    "faded": false,
    "last_run": null
+  },
+  "kemi.setlocation": {
+   "object": "kemi",
+   "method": "setlocation",
+   "args": [],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j32",
+    "card": "j32",
+    "title": "kemi.setlocation(amusementpark)",
+    "emoji": "",
+    "at": "2026-11-26T02:06:47-05:00",
+    "source": "cli"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "kemi.setlocation(amusementpark)",
+     "emoji": "",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j32",
+     "tweets": [],
+     "consequence": "The customer typed this on this agenda.",
+     "consequence_job": ""
+    }
+   ],
+   "source": "cli",
+   "cli": true,
+   "sig": {
+    "params": [],
+    "text": "setlocation()"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
   }
  },
  "objects": {
@@ -24673,7 +24713,8 @@
   ],
   "kemi": [
    "kemi.sometimes",
-   "kemi.ismarried"
+   "kemi.ismarried",
+   "kemi.setlocation"
   ],
   "know": [
    "know.african",
@@ -48300,7 +48341,8 @@
     "j15.getweather",
     "new.makeup",
     "location.setnumberchairs",
-    "j24.tomorrow"
+    "j24.tomorrow",
+    "kemi.setlocation"
    ]
   },
   "run-d6fc": {
@@ -52381,7 +52423,8 @@
   ],
   "kemi": [
    "kemi.sometimes",
-   "kemi.ismarried"
+   "kemi.ismarried",
+   "kemi.setlocation"
   ],
   "know": [
    "know.african",
@@ -53342,5 +53385,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-26T01:58:24-05:00"
+ "updated": "2026-11-26T02:07:34-05:00"
 }
