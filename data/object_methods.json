@@ -21589,6 +21589,145 @@
    "faded": false,
    "last_run": "run-cf203b"
   },
+  "dont.like": {
+   "object": "dont",
+   "method": "like",
+   "args": [
+    "senrenre"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j35",
+    "card": "w35",
+    "title": "dont.like(senrenre)",
+    "emoji": "🦧",
+    "at": "2026-11-26T11:47:28-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "dont.like(senrenre)",
+     "emoji": "🦧",
+     "arg": "senrenre",
+     "run": "run-cf203b",
+     "job": "j35",
+     "tweets": [
+      {
+       "text": "- i dont like all the senrenre dat he put on it",
+       "year": "2025"
+      }
+     ],
+     "consequence": "One of the ladies laughed, \"you make my eff quake,\" and Kemi cut them all off: \"i dont like all the senrenre dat he put on it.\" The teo has been tapped 5 times since this agenda began.",
+     "consequence_job": "j36",
+     "resolved": "dont.like(what=senrenre:Thing) from j35",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "senrenre",
+       "from_run": "run-cf203b",
+       "from_job": "j35",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "senrenre",
+      "first_run": "run-cf203b",
+      "first_job": "j35"
+     }
+    ],
+    "text": "like(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [
+    {
+     "id": "sounded.like",
+     "title": "sounded.like(give)",
+     "run": "run-cf203b",
+     "job": "j32",
+     "at": "2026-11-26T02:08:31-05:00",
+     "why": "same method"
+    }
+   ],
+   "faded": false,
+   "last_run": null
+  },
+  "make.eff": {
+   "object": "make",
+   "method": "eff",
+   "args": [
+    "quake"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j35",
+    "card": "w35",
+    "title": "make.eff(quake)",
+    "emoji": "🦍",
+    "at": "2026-11-26T11:47:28-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "make.eff(quake)",
+     "emoji": "🦍",
+     "arg": "quake",
+     "run": "run-cf203b",
+     "job": "j35",
+     "tweets": [
+      {
+       "text": "#juniorgirls - you make my eff quake",
+       "year": "2024"
+      }
+     ],
+     "consequence": "One of the ladies laughed, \"you make my eff quake,\" and Kemi cut them all off: \"i dont like all the senrenre dat he put on it.\" The teo has been tapped 5 times since this agenda began.",
+     "consequence_job": "j36",
+     "resolved": "make.eff(what=quake:Thing) from j35",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "quake",
+       "from_run": "run-cf203b",
+       "from_job": "j35",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "quake",
+      "first_run": "run-cf203b",
+      "first_job": "j35"
+     }
+    ],
+    "text": "eff(what: Thing)"
+   },
+   "receiver_class": "Action",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
   "cooler.getdatemanufactured": {
    "object": "cooler",
    "method": "getDateManufactured",
@@ -25223,6 +25362,9 @@
   "doing": [
    "doing.getawaselves"
   ],
+  "dont": [
+   "dont.like"
+  ],
   "dragon": [
    "dragon.show"
   ],
@@ -25457,7 +25599,8 @@
   "make": [
    "make.setany",
    "make.add",
-   "make.hits"
+   "make.hits",
+   "make.eff"
   ],
   "mama": [
    "mama.know"
@@ -41414,6 +41557,16 @@
     ]
    }
   ],
+  "news_figure": [
+   {
+    "scope": "safe",
+    "from": "25a7e34c3b61",
+    "title": "1007. it sells itself",
+    "funcs": [
+     "dont.like"
+    ]
+   }
+  ],
   "ngozi": [
    {
     "scope": "safe",
@@ -49215,6 +49368,8 @@
     "chasing.precisions",
     "understand.now",
     "what.say",
+    "dont.like",
+    "make.eff",
     "cli.cli",
     "thryd.importtheme",
     "kemi.ismarried",
@@ -49640,6 +49795,13 @@
    "title": "901. his head is not correct",
    "funcs": [
     "know.african"
+   ],
+   "runs": []
+  },
+  "25a7e34c3b61": {
+   "title": "1007. it sells itself",
+   "funcs": [
+    "dont.like"
    ],
    "runs": []
   },
@@ -50187,7 +50349,9 @@
     "can.slap",
     "chasing.precisions",
     "understand.now",
-    "what.say"
+    "what.say",
+    "dont.like",
+    "make.eff"
    ],
    "runs": [
     "run-cf203b"
@@ -50613,6 +50777,13 @@
    "title": "415. hard",
    "funcs": [
     "nobody.try"
+   ],
+   "runs": []
+  },
+  "a81bb2664da8": {
+   "title": "1031. trees must grow in heaven",
+   "funcs": [
+    "make.eff"
    ],
    "runs": []
   },
@@ -51598,6 +51769,9 @@
    "07a0ed55bc3c",
    "08999f5fb666"
   ],
+  "1*V399eBOypEhxN1u4Ul9Nvw.gif": [
+   "25a7e34c3b61"
+  ],
   "1*B4Qxrti1luSOdS5kdFJWcA.gif": [
    "35e37a321959"
   ],
@@ -51756,6 +51930,12 @@
   ],
   "1*ztiRH-kK8W6tboXeD7JINg.gif": [
    "4c8598384b72"
+  ],
+  "1*miUFRJcn29-lfqOd2zmVjg.gif": [
+   "a81bb2664da8"
+  ],
+  "1*7yNmLh5pfyB9DeVwCBisQA.jpeg": [
+   "a81bb2664da8"
   ],
   "1*lDKS3MnQQ0QbWboPIBFuYA.gif": [
    "da2bd5e3c2d7"
@@ -52819,6 +52999,12 @@
     "656b5f5464c5"
    ]
   },
+  "1*V399eBOypEhxN1u4Ul9Nvw.gif": {
+   "runs": [],
+   "safes": [
+    "25a7e34c3b61"
+   ]
+  },
   "1*HIA3HIxjRujmed1CwRF4YQ.gif": {
    "runs": [],
    "safes": [
@@ -53310,6 +53496,9 @@
   "doing": [
    "doing.getawaselves"
   ],
+  "dont": [
+   "dont.like"
+  ],
   "dragon": [
    "dragon.show"
   ],
@@ -53505,7 +53694,8 @@
   "make": [
    "make.setany",
    "make.add",
-   "make.hits"
+   "make.hits",
+   "make.eff"
   ],
   "mama": [
    "mama.know"
@@ -54166,6 +54356,7 @@
   "lie": [],
   "chasing": [],
   "understand": [],
+  "dont": [],
   "cooler": [],
   "kazeem.goodqualities": [],
   "app": [],
@@ -54377,6 +54568,7 @@
    "dem",
    "deya",
    "dignity",
+   "dont",
    "dyeriz",
    "eez",
    "ehen",
@@ -54448,5 +54640,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-26T11:36:47-05:00"
+ "updated": "2026-11-26T11:47:46-05:00"
 }
