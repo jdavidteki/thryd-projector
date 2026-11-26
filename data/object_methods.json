@@ -19080,14 +19080,14 @@
      ],
      "consequence": "Kemi laughs \"have fun!\" and sways her hips at him, and he mutters \"a global ritual engine,\" like it's the only way to explain what she does to him.",
      "consequence_job": "j23",
-     "resolved": "global.ritual(what=engine:Thing) from j22",
+     "resolved": "global.ritual(what=ton:Thing) from j21",
      "injected": [
       {
        "param": "what",
        "class": "Thing",
-       "instance": "engine",
+       "instance": "ton",
        "from_run": "run-cf203b",
-       "from_job": "j22",
+       "from_job": "j21",
        "source": "pick"
       }
      ]
@@ -23489,6 +23489,217 @@
    "faded": false,
    "last_run": "run-cf203b"
   },
+  "like.about": {
+   "object": "like",
+   "method": "about",
+   "args": [
+    "engine"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j45",
+    "card": "w45",
+    "title": "like.about(engine)",
+    "emoji": "🌻",
+    "at": "2026-11-26T15:07:04-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "like.about(engine)",
+     "emoji": "🌻",
+     "arg": "engine",
+     "run": "run-cf203b",
+     "job": "j45",
+     "tweets": [
+      {
+       "text": "- the #tyn i like about the engine is that",
+       "year": "2025"
+      }
+     ],
+     "consequence": "The lines that landed: \"#juniorgirls - fefenefe!\", \"the #tyn i like about the engine is that\", \"and then [[so]] much\" and \"it will sit down dye\".",
+     "consequence_job": "j46",
+     "resolved": "like.about(what=engine:Thing) from j45",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "engine",
+       "from_run": "run-cf203b",
+       "from_job": "j45",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "engine",
+      "first_run": "run-5a58c4",
+      "first_job": "j34"
+     }
+    ],
+    "text": "about(what: Thing)"
+   },
+   "receiver_class": "Manner",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "then.much": {
+   "object": "then",
+   "method": "much",
+   "args": [
+    ""
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j45",
+    "card": "w45",
+    "title": "then.much()",
+    "emoji": "🌺",
+    "at": "2026-11-26T15:07:04-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "then.much()",
+     "emoji": "🌺",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j45",
+     "tweets": [
+      {
+       "text": "- and then [[so]] much",
+       "year": "2024"
+      }
+     ],
+     "consequence": "The lines that landed: \"#juniorgirls - fefenefe!\", \"the #tyn i like about the engine is that\", \"and then [[so]] much\" and \"it will sit down dye\".",
+     "consequence_job": "j46",
+     "resolved": "then.much()",
+     "injected": []
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [],
+    "text": "much()"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "will.sit": {
+   "object": "will",
+   "method": "sit",
+   "args": [
+    "down"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j45",
+    "card": "w45",
+    "title": "will.sit(down)",
+    "emoji": "🌷",
+    "at": "2026-11-26T15:07:04-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "will.sit(down)",
+     "emoji": "🌷",
+     "arg": "down",
+     "run": "run-cf203b",
+     "job": "j45",
+     "tweets": [
+      {
+       "text": "- it will sit down dye",
+       "year": "2025"
+      }
+     ],
+     "consequence": "Where things stand: Kemi is at her sister's place a week later, the phone face down on the table.",
+     "consequence_job": "j46",
+     "resolved": "will.sit(what=down:Thing) from j45",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "down",
+       "from_run": "run-cf203b",
+       "from_job": "j45",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "down",
+      "first_run": "run-cf203b",
+      "first_job": "j45"
+     }
+    ],
+    "text": "sit(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [
+    {
+     "id": "mamaronke.sit",
+     "title": "mamaronke.sit(bench)",
+     "run": "run-2eb42d",
+     "job": "j34",
+     "at": "2026-11-18T17:32:20-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "teo.sit",
+     "title": "teo.sit(balance)",
+     "run": "run-5a58c4",
+     "job": "j30",
+     "at": "2026-11-17T14:49:47-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "dez.sit",
+     "title": "dez.sit(watch)",
+     "run": "run-5a58c4",
+     "job": "j29",
+     "at": "2026-11-17T12:30:30-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "fine.weigh",
+     "title": "fine.weigh(get)",
+     "run": "run-5a58c4",
+     "job": "j39",
+     "at": "2026-11-24T00:49:15-05:00",
+     "why": "same verb family (weigh)"
+    }
+   ],
+   "faded": false,
+   "last_run": null
+  },
   "cooler.getdatemanufactured": {
    "object": "cooler",
    "method": "getDateManufactured",
@@ -26876,6 +27087,46 @@
    "prior": [],
    "faded": false,
    "last_run": null
+  },
+  "woman.setname": {
+   "object": "woman",
+   "method": "setname",
+   "args": [],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j45",
+    "card": "j45",
+    "title": "woman.setname(sandra)",
+    "emoji": "",
+    "at": "2026-11-26T15:06:56-05:00",
+    "source": "cli"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "woman.setname(sandra)",
+     "emoji": "",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j45",
+     "tweets": [],
+     "consequence": "The customer typed this on this agenda.",
+     "consequence_job": ""
+    }
+   ],
+   "source": "cli",
+   "cli": true,
+   "sig": {
+    "params": [],
+    "text": "setname()"
+   },
+   "receiver_class": "Person",
+   "prior": [],
+   "faded": false,
+   "last_run": null
   }
  },
  "objects": {
@@ -26933,6 +27184,9 @@
   ],
   "attendant": [
    "attendant.put"
+  ],
+  "ayok_focus_figure_second": [
+   "woman.setname"
   ],
   "believe": [
    "believe.can"
@@ -27460,6 +27714,9 @@
   "life": [
    "life.give"
   ],
+  "like": [
+   "like.about"
+  ],
   "location": [
    "location.setnumberchairs"
   ],
@@ -27896,7 +28153,8 @@
    "textbook.ulterior"
   ],
   "then": [
-   "then.hand"
+   "then.hand",
+   "then.much"
   ],
   "thing": [
    "thing.weird"
@@ -28004,13 +28262,17 @@
    "object.look"
   ],
   "will": [
-   "will.deal"
+   "will.deal",
+   "will.sit"
   ],
   "wo": [
    "wo.imu"
   ],
   "woke": [
    "woke.morning"
+  ],
+  "woman": [
+   "woman.setname"
   ],
   "worry": [
    "worry.have"
@@ -33544,6 +33806,16 @@
     "title": "921. chinua achebe and the blockchain",
     "funcs": [
      "investor.sign"
+    ]
+   }
+  ],
+  "church_people_dont_subject": [
+   {
+    "scope": "safe",
+    "from": "d109fb70734b",
+    "title": "1220. *speaks in tongues",
+    "funcs": [
+     "will.sit"
     ]
    }
   ],
@@ -45524,6 +45796,7 @@
     "from": "d766125c67d7",
     "title": "803. play",
     "funcs": [
+     "then.much",
      "dez.run"
     ]
    }
@@ -52585,6 +52858,9 @@
     "eez.getting",
     "daddy.freeze",
     "till.check",
+    "like.about",
+    "then.much",
+    "will.sit",
     "cli.cli",
     "thryd.importtheme",
     "kemi.ismarried",
@@ -52595,7 +52871,8 @@
     "j24.tomorrow",
     "kemi.setlocation",
     "tobi.setbloodpressure",
-    "boy.alone"
+    "boy.alone",
+    "woman.setname"
    ]
   },
   "run-d6fc": {
@@ -52998,6 +53275,13 @@
    "funcs": [
     "mamaronke.sit",
     "sounded.like"
+   ],
+   "runs": []
+  },
+  "22dfde78da97": {
+   "title": "1030. wealthy lines",
+   "funcs": [
+    "like.about"
    ],
    "runs": []
   },
@@ -53639,7 +53923,10 @@
     "dem.really",
     "eez.getting",
     "daddy.freeze",
-    "till.check"
+    "till.check",
+    "like.about",
+    "then.much",
+    "will.sit"
    ],
    "runs": [
     "run-cf203b"
@@ -54422,6 +54709,13 @@
    ],
    "runs": []
   },
+  "d109fb70734b": {
+   "title": "1220. *speaks in tongues",
+   "funcs": [
+    "will.sit"
+   ],
+   "runs": []
+  },
   "d15604eed466": {
    "title": "803. excuse me",
    "funcs": [
@@ -54504,7 +54798,8 @@
   "d766125c67d7": {
    "title": "803. play",
    "funcs": [
-    "dez.run"
+    "dez.run",
+    "then.much"
    ],
    "runs": []
   },
@@ -55150,6 +55445,9 @@
   "1*qJUuYpZI_yQTd-nzb8SYRA.gif": [
    "ea4f0d9823e8"
   ],
+  "1*aXJwYXzcaCqvfa1uQYjjUA.gif": [
+   "d109fb70734b"
+  ],
   "1*ubGNThBbHFM_0OLyVAfKYw.gif": [
    "935c0e919db3"
   ],
@@ -55491,6 +55789,9 @@
   ],
   "1*N6DdH_v53PSeHRo3jYYVGw.jpeg": [
    "02c312614f2c"
+  ],
+  "1*tYmqFDalbxw3Eto3-z4fvA.gif": [
+   "22dfde78da97"
   ],
   "1*TiL0IvDDPzStKiggW0yuww.gif": [
    "35d8f0e5eda3"
@@ -56078,6 +56379,12 @@
    "runs": [],
    "safes": [
     "1807dafe6f98"
+   ]
+  },
+  "1*aXJwYXzcaCqvfa1uQYjjUA.gif": {
+   "runs": [],
+   "safes": [
+    "d109fb70734b"
    ]
   },
   "1*fskbzXlSjZ5z4INByMFdlQ.gif": {
@@ -57255,6 +57562,9 @@
   "life": [
    "life.give"
   ],
+  "like": [
+   "like.about"
+  ],
   "location": [
    "location.setnumberchairs"
   ],
@@ -57574,7 +57884,8 @@
    "textbook.ulterior"
   ],
   "then": [
-   "then.hand"
+   "then.hand",
+   "then.much"
   ],
   "thing": [
    "thing.weird"
@@ -57670,13 +57981,17 @@
    "wife.kill"
   ],
   "will": [
-   "will.deal"
+   "will.deal",
+   "will.sit"
   ],
   "wo": [
    "wo.imu"
   ],
   "woke": [
    "woke.morning"
+  ],
+  "woman": [
+   "woman.setname"
   ],
   "worry": [
    "worry.have"
@@ -57961,7 +58276,9 @@
   "hope": [],
   "go": [],
   "stomach": [],
-  "will": [],
+  "will": [
+   "Watchable"
+  ],
   "could": [],
   "love": [],
   "one": [],
@@ -58002,6 +58319,7 @@
   "till": [
    "Readable"
   ],
+  "like": [],
   "cooler": [],
   "kazeem.goodqualities": [],
   "app": [],
@@ -58038,7 +58356,8 @@
   "location": [],
   "j24": [],
   "tobi": [],
-  "boy": []
+  "boy": [],
+  "woman": []
  },
  "casts": {
   "run-5a58c4": [
@@ -58242,6 +58561,7 @@
    "ladies",
    "lehgeet",
    "lie",
+   "like",
    "long",
    "longer",
    "love",
@@ -58310,5 +58630,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-26T14:59:13-05:00"
+ "updated": "2026-11-26T15:07:35-05:00"
 }

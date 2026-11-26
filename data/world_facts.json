@@ -2861,16 +2861,6 @@
 ],
 "laakl": [
 {
-"id": "wf_5cb5038129",
-"kind": "consequence",
-"text": "The laakl leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"code": "yaba_bukka_counter.interactwith(laakl){ laakl.receives(yaba_bukka_counter.envelope); laakl.remembers(bisola, 'brown envelope'); }",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j6",
-"other": "yaba_bukka_counter"
-},
-{
 "id": "wf_4faa693e56",
 "kind": "consequence",
 "text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the brown envelope at the laakl, and Bisola reads the name twice.",
@@ -2908,6 +2898,16 @@
 "author": "customer",
 "run": "run-cf203b",
 "card": "j31",
+"other": null
+},
+{
+"id": "wt_f5c9f90772",
+"kind": "func_call",
+"text": "The customer typed [[laakl]] on run-cf203b j45.",
+"code": "[[laakl]];",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j45",
 "other": null
 }
 ],
@@ -12029,6 +12029,16 @@
 "run": "run-cf203b",
 "card": "j32",
 "other": "kemi"
+},
+{
+"id": "wt_1310e14742",
+"kind": "func_call",
+"text": "The customer typed woman.setname(sandra) on run-cf203b j45. It came back: Woman's name is now sandra. Implementation: function setname(name){\n  this.name = \"sandra\";\n  this.caption = name;\n  return this.name;\n}. woman now has woman.setname as a method on this agenda, and it can be called again.",
+"code": "woman.setname(sandra);",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j45",
+"other": null
 }
 ],
 "tobi": [
@@ -12781,5 +12791,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-26T14:58:21-0500"
+"updated": "2026-11-26T15:07:33-0500"
 }
