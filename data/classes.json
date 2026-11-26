@@ -108,8 +108,8 @@
     "give",
     "know"
    ],
-   "instances": 473,
-   "arg_instances": 144,
+   "instances": 475,
+   "arg_instances": 146,
    "parent": null,
    "chain": [
     "Thing"
@@ -321,6 +321,22 @@
     "run-c51768"
    ],
    "tweets": []
+  },
+  "about": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-cf203b",
+   "first_job": "j31",
+   "source": "pick",
+   "runs": [
+    "run-cf203b"
+   ],
+   "tweets": [
+    {
+     "text": "-- one thing about love is that love conquers all",
+     "year": "2024"
+    }
+   ]
   },
   "accessbank": {
    "class": "Thing",
@@ -6491,6 +6507,17 @@
    ],
    "tweets": []
   },
+  "skills": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-cf203b",
+   "first_job": "j31",
+   "source": "pick",
+   "runs": [
+    "run-cf203b"
+   ],
+   "tweets": []
+  },
   "slip": {
    "class": "Place",
    "cue": "tweet: in/at the ...",
@@ -9860,6 +9887,18 @@
     "Thing",
     "j30",
     "pick"
+   ],
+   [
+    "about",
+    "Thing",
+    "j31",
+    "pick"
+   ],
+   [
+    "skills",
+    "Thing",
+    "j31",
+    "pick"
    ]
   ],
   "run-b70200": [
@@ -12589,6 +12628,9 @@
   "could.accuracy": "accuracy(what: Thing)",
   "guy.can": "can()",
   "love.war": "war()",
+  "one.thing": "thing(what: Thing)",
+  "pen.imagination": "imagination(what: Thing)",
+  "precision.accuracy": "accuracy()",
   "cooler.getdatemanufactured": "getDateManufactured()",
   "ronke.getlikes.contains": "getlikes.contains()",
   "kazeem.goodqualities.filter": "filter()",
@@ -13111,8 +13153,11 @@
    "mean",
    "nigerian",
    "once",
+   "one",
    "part",
+   "pen",
    "poty",
+   "precision",
    "queen",
    "ready",
    "rebuke",
@@ -13211,5 +13256,5 @@
   "epilogue": "quiet",
   "coda": "quiet"
  },
- "updated": "2026-11-26T01:41:46-05:00"
+ "updated": "2026-11-26T01:57:33-05:00"
 }

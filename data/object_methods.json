@@ -20734,6 +20734,188 @@
    "faded": false,
    "last_run": "run-cf203b"
   },
+  "one.thing": {
+   "object": "one",
+   "method": "thing",
+   "args": [
+    "about"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j31",
+    "card": "w31",
+    "title": "one.thing(about)",
+    "emoji": "🐚",
+    "at": "2026-11-26T01:57:30-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "one.thing(about)",
+     "emoji": "🐚",
+     "arg": "about",
+     "run": "run-cf203b",
+     "job": "j31",
+     "tweets": [
+      {
+       "text": "-- one thing about love is that love conquers all",
+       "year": "2024"
+      }
+     ],
+     "consequence": "Kemi has thrown out his \"accuracy\" story, but she hasn't walked away, and she is talking about love now instead of dealing with anyone.",
+     "consequence_job": "j32",
+     "resolved": "one.thing(what=about:Thing) from j31",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "about",
+       "from_run": "run-cf203b",
+       "from_job": "j31",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "about",
+      "first_run": "run-cf203b",
+      "first_job": "j31"
+     }
+    ],
+    "text": "thing(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "pen.imagination": {
+   "object": "pen",
+   "method": "imagination",
+   "args": [
+    "skills"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j31",
+    "card": "w31",
+    "title": "pen.imagination(skills)",
+    "emoji": "🦕",
+    "at": "2026-11-26T01:57:30-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "pen.imagination(skills)",
+     "emoji": "🦕",
+     "arg": "skills",
+     "run": "run-cf203b",
+     "job": "j31",
+     "tweets": [],
+     "consequence": "What just happened: Kemi calls his excuse \"pen + imagination skills\", a made-up story, and rules it \"precision but no accuracy\": neat on detail and wrong on the facts.",
+     "consequence_job": "j32",
+     "resolved": "pen.imagination(what=skills:Thing) from j31",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "skills",
+       "from_run": "run-cf203b",
+       "from_job": "j31",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "skills",
+      "first_run": "run-cf203b",
+      "first_job": "j31"
+     }
+    ],
+    "text": "imagination(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "precision.accuracy": {
+   "object": "precision",
+   "method": "accuracy",
+   "args": [
+    ""
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j31",
+    "card": "w31",
+    "title": "precision.accuracy()",
+    "emoji": "🦖",
+    "at": "2026-11-26T01:57:30-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "precision.accuracy()",
+     "emoji": "🦖",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j31",
+     "tweets": [
+      {
+       "text": "- precision but no accuracy",
+       "year": "2025"
+      }
+     ],
+     "consequence": "What just happened: Kemi calls his excuse \"pen + imagination skills\", a made-up story, and rules it \"precision but no accuracy\": neat on detail and wrong on the facts.",
+     "consequence_job": "j32",
+     "resolved": "precision.accuracy()",
+     "injected": []
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [],
+    "text": "accuracy()"
+   },
+   "receiver_class": "Quantity",
+   "prior": [
+    {
+     "id": "could.accuracy",
+     "title": "could.accuracy(think)",
+     "run": "run-cf203b",
+     "job": "j30",
+     "at": "2026-11-26T01:41:43-05:00",
+     "why": "same method"
+    }
+   ],
+   "faded": false,
+   "last_run": null
+  },
   "cooler.getdatemanufactured": {
    "object": "cooler",
    "method": "getDateManufactured",
@@ -24671,6 +24853,9 @@
    "once.understand",
    "once.kill"
   ],
+  "one": [
+   "one.thing"
+  ],
   "openmedia": [
    "openmedia.isgif"
   ],
@@ -24685,6 +24870,9 @@
   ],
   "pawa": [
    "pawa.full"
+  ],
+  "pen": [
+   "pen.imagination"
   ],
   "people": [
    "people.getocsw"
@@ -24706,6 +24894,9 @@
   ],
   "poty": [
    "poty.asin"
+  ],
+  "precision": [
+   "precision.accuracy"
   ],
   "qa568cli": [
    "qa568cli.nullfallback",
@@ -26827,6 +27018,14 @@
    }
   ],
   "bowl": [
+   {
+    "scope": "safe",
+    "from": "848a4737f33b",
+    "title": "924. carbohydrates and maggi",
+    "funcs": [
+     "one.thing"
+    ]
+   },
    {
     "scope": "safe",
     "from": "b6a5d6fd4ece",
@@ -29470,6 +29669,16 @@
      "nobody.bring",
      "hear.setword",
      "nobody.weigh"
+    ]
+   }
+  ],
+  "carbohydrates_maggi_figure": [
+   {
+    "scope": "safe",
+    "from": "848a4737f33b",
+    "title": "924. carbohydrates and maggi",
+    "funcs": [
+     "one.thing"
     ]
    }
   ],
@@ -48081,6 +48290,9 @@
     "could.accuracy",
     "guy.can",
     "love.war",
+    "one.thing",
+    "pen.imagination",
+    "precision.accuracy",
     "cli.cli",
     "thryd.importtheme",
     "kemi.ismarried",
@@ -49002,7 +49214,10 @@
     "can.find",
     "could.accuracy",
     "guy.can",
-    "love.war"
+    "love.war",
+    "one.thing",
+    "pen.imagination",
+    "precision.accuracy"
    ],
    "runs": [
     "run-cf203b"
@@ -49118,6 +49333,13 @@
    "title": "1012. before eez too late",
    "funcs": [
     "nobody.weigh"
+   ],
+   "runs": []
+  },
+  "848a4737f33b": {
+   "title": "924. carbohydrates and maggi",
+   "funcs": [
+    "one.thing"
    ],
    "runs": []
   },
@@ -49349,6 +49571,13 @@
    "funcs": [
     "ronke.ask",
     "thing.weird"
+   ],
+   "runs": []
+  },
+  "9ef335096225": {
+   "title": "109. masterpiece",
+   "funcs": [
+    "precision.accuracy"
    ],
    "runs": []
   },
@@ -50319,6 +50548,7 @@
    "d6bef492657d"
   ],
   "1*o_JaVjuJOL-ANJbDcYRUWw.gif": [
+   "9ef335096225",
    "6f2356944065"
   ],
   "1*i3myLXP42aKin6hUO3sYzQ.gif": [
@@ -50630,6 +50860,9 @@
   ],
   "1*NIUcPPNMbOVZpzrAfqbDZA.jpeg": [
    "483f5ddc9d35"
+  ],
+  "1*wBc96VCRNSAVjALoTEOSRw.gif": [
+   "848a4737f33b"
   ],
   "1*9VJWGdPDd-K9xE6NF4v1JQ.jpeg": [
    "b30081d18c6b"
@@ -51299,6 +51532,12 @@
    "runs": [],
    "safes": [
     "90d1c21dc449"
+   ]
+  },
+  "1*wBc96VCRNSAVjALoTEOSRw.gif": {
+   "runs": [],
+   "safes": [
+    "848a4737f33b"
    ]
   },
   "1*6P6actu28LykPqd3qVBp9g.gif": {
@@ -52268,6 +52507,9 @@
    "once.understand",
    "once.kill"
   ],
+  "one": [
+   "one.thing"
+  ],
   "openmedia": [
    "openmedia.isgif"
   ],
@@ -52283,6 +52525,9 @@
   "pawa": [
    "pawa.full"
   ],
+  "pen": [
+   "pen.imagination"
+  ],
   "people": [
    "people.getocsw"
   ],
@@ -52297,6 +52542,9 @@
   ],
   "poty": [
    "poty.asin"
+  ],
+  "precision": [
+   "precision.accuracy"
   ],
   "qa568cli": [
    "qa568cli.nullfallback",
@@ -52817,6 +53065,9 @@
   "will": [],
   "could": [],
   "love": [],
+  "one": [],
+  "pen": [],
+  "precision": [],
   "cooler": [],
   "kazeem.goodqualities": [],
   "app": [],
@@ -53047,8 +53298,11 @@
    "mean",
    "nigerian",
    "once",
+   "one",
    "part",
+   "pen",
    "poty",
+   "precision",
    "queen",
    "ready",
    "rebuke",
@@ -53088,5 +53342,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-26T01:42:37-05:00"
+ "updated": "2026-11-26T01:57:33-05:00"
 }
