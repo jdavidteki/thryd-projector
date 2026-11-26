@@ -23926,6 +23926,176 @@
    "faded": false,
    "last_run": "run-cf203b"
   },
+  "part.smell": {
+   "object": "part",
+   "method": "smell",
+   "args": [
+    ""
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j47",
+    "card": "w47",
+    "title": "part.smell()",
+    "emoji": "🧅",
+    "at": "2026-11-26T17:05:55-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "part.smell()",
+     "emoji": "🧅",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j47",
+     "tweets": [
+      {
+       "text": "- [[everything]] is part of the smell",
+       "year": "2024"
+      }
+     ],
+     "consequence": "The lines that landed: \"#thryd - something to fill this void\", \"they’ve brought more cake!\", \"[[everything]] is part of the smell\" and \"#oyinboman += [[waga waga lifestyle]]\".",
+     "consequence_job": "j48",
+     "resolved": "part.smell()",
+     "injected": []
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [],
+    "text": "smell()"
+   },
+   "receiver_class": "Thing",
+   "prior": [
+    {
+     "id": "kazeem.smell",
+     "title": "kazeem.smell(pot)",
+     "run": "run-2eb42d",
+     "job": "j36",
+     "at": "2026-11-18T17:52:40-05:00",
+     "why": "same method"
+    }
+   ],
+   "faded": false,
+   "last_run": null
+  },
+  "something.fill": {
+   "object": "something",
+   "method": "fill",
+   "args": [
+    "void"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j47",
+    "card": "w47",
+    "title": "something.fill(void)",
+    "emoji": "🥕",
+    "at": "2026-11-26T17:05:55-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "something.fill(void)",
+     "emoji": "🥕",
+     "arg": "void",
+     "run": "run-cf203b",
+     "job": "j47",
+     "tweets": [
+      {
+       "text": "#thryd - something to fill this void",
+       "year": "2025"
+      }
+     ],
+     "consequence": "The lines that landed: \"#thryd - something to fill this void\", \"they’ve brought more cake!\", \"[[everything]] is part of the smell\" and \"#oyinboman += [[waga waga lifestyle]]\".",
+     "consequence_job": "j48",
+     "resolved": "something.fill(what=void:Thing) from j47",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "void",
+       "from_run": "run-cf203b",
+       "from_job": "j47",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "void",
+      "first_run": "run-cf203b",
+      "first_job": "j47"
+     }
+    ],
+    "text": "fill(what: Thing)"
+   },
+   "receiver_class": "Action",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "waga.lifestyle": {
+   "object": "waga",
+   "method": "lifestyle",
+   "args": [
+    ""
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j47",
+    "card": "w47",
+    "title": "waga.lifestyle()",
+    "emoji": "🥜",
+    "at": "2026-11-26T17:05:55-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "waga.lifestyle()",
+     "emoji": "🥜",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j47",
+     "tweets": [
+      {
+       "text": "#oyinboman += [[waga waga lifestyle]]",
+       "year": "2025"
+      }
+     ],
+     "consequence": "The lines that landed: \"#thryd - something to fill this void\", \"they’ve brought more cake!\", \"[[everything]] is part of the smell\" and \"#oyinboman += [[waga waga lifestyle]]\".",
+     "consequence_job": "j48",
+     "resolved": "waga.lifestyle()",
+     "injected": []
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [],
+    "text": "lifestyle()"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
   "cooler.getdatemanufactured": {
    "object": "cooler",
    "method": "getDateManufactured",
@@ -28114,7 +28284,8 @@
    "oyinboman.know"
   ],
   "part": [
-   "part.d"
+   "part.d",
+   "part.smell"
   ],
   "pawa": [
    "pawa.full"
@@ -28287,7 +28458,8 @@
    "slapping.engine"
   ],
   "something": [
-   "something.wrong"
+   "something.wrong",
+   "something.fill"
   ],
   "song": [
    "song.hit"
@@ -28456,6 +28628,9 @@
   ],
   "used": [
    "used.awa"
+  ],
+  "waga": [
+   "waga.lifestyle"
   ],
   "wanow": [
    "wanow.knew"
@@ -30557,6 +30732,14 @@
    }
   ],
   "bowl": [
+   {
+    "scope": "safe",
+    "from": "0e8549cb1f04",
+    "title": "426. 360⁰",
+    "funcs": [
+     "something.fill"
+    ]
+   },
    {
     "scope": "safe",
     "from": "848a4737f33b",
@@ -44381,6 +44564,7 @@
     "from": "fbb6af08827a",
     "title": "1010. i might be rich, but i'm still igbo",
     "funcs": [
+     "part.smell",
      "kazeem.smell"
     ]
    }
@@ -53247,6 +53431,9 @@
     "even.sef",
     "feel.shame",
     "raised.wolves",
+    "part.smell",
+    "something.fill",
+    "waga.lifestyle",
     "cli.cli",
     "thryd.importtheme",
     "kemi.ismarried",
@@ -53479,6 +53666,13 @@
    "title": "918. the magician",
    "funcs": [
     "road.air"
+   ],
+   "runs": []
+  },
+  "0e8549cb1f04": {
+   "title": "426. 360⁰",
+   "funcs": [
+    "something.fill"
    ],
    "runs": []
   },
@@ -54330,7 +54524,10 @@
     "con.tok",
     "even.sef",
     "feel.shame",
-    "raised.wolves"
+    "raised.wolves",
+    "part.smell",
+    "something.fill",
+    "waga.lifestyle"
    ],
    "runs": [
     "run-cf203b"
@@ -55335,6 +55532,13 @@
     "run-d6fc"
    ]
   },
+  "e503ddd64a7d": {
+   "title": "return [[friends]]",
+   "funcs": [
+    "waga.lifestyle"
+   ],
+   "runs": []
+  },
   "e57ec6baedd5": {
    "title": "",
    "funcs": [
@@ -55593,7 +55797,8 @@
   "fbb6af08827a": {
    "title": "1010. i might be rich, but i'm still igbo",
    "funcs": [
-    "kazeem.smell"
+    "kazeem.smell",
+    "part.smell"
    ],
    "runs": []
   },
@@ -56086,6 +56291,9 @@
   "1*nC4xjokQNta7cOcuY15NrA.gif": [
    "61ae7008a5f0"
   ],
+  "1*Xcl0wMA3Pz5BqENoXtc1DA.gif": [
+   "0e8549cb1f04"
+  ],
   "1*BZpgiAgl2Isc_HVn8hvSaQ.gif": [
    "f213f25df069"
   ],
@@ -56405,6 +56613,9 @@
   "1*mIzZLAH9ua7G2waBjqQtHw.gif": [
    "c51063137413",
    "35b341a4bf19"
+  ],
+  "1*ZYSX_XybJkgPdVOqMuSEAw.jpeg": [
+   "e503ddd64a7d"
   ],
   "1*1M6PFkkIVPLKbAV4f7Fq0w.gif": [
    "95c536f4481b"
@@ -57048,6 +57259,12 @@
    "runs": [],
    "safes": [
     "81b03ceb7bf1"
+   ]
+  },
+  "1*Xcl0wMA3Pz5BqENoXtc1DA.gif": {
+   "runs": [],
+   "safes": [
+    "0e8549cb1f04"
    ]
   },
   "1*uVaQ_WdDAX40X9uv2Cl6jQ.gif": {
@@ -58141,7 +58358,8 @@
    "oyinboman.know"
   ],
   "part": [
-   "part.d"
+   "part.d",
+   "part.smell"
   ],
   "pawa": [
    "pawa.full"
@@ -58285,7 +58503,8 @@
    "slapping.engine"
   ],
   "something": [
-   "something.wrong"
+   "something.wrong",
+   "something.fill"
   ],
   "song": [
    "song.hit"
@@ -58407,6 +58626,9 @@
   ],
   "used": [
    "used.awa"
+  ],
+  "waga": [
+   "waga.lifestyle"
   ],
   "wanow": [
    "wanow.knew"
@@ -58779,6 +59001,7 @@
   ],
   "like": [],
   "raised": [],
+  "waga": [],
   "cooler": [],
   "kazeem.goodqualities": [],
   "app": [],
@@ -59065,6 +59288,7 @@
    "touch",
    "understand",
    "used",
+   "waga",
    "well",
    "weya",
    "what",
@@ -59091,5 +59315,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-26T15:28:37-05:00"
+ "updated": "2026-11-26T17:05:59-05:00"
 }
