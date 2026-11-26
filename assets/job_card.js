@@ -76,6 +76,8 @@
     '#aicard .aicprog .nx{color:#8f897c;font-weight:500}',
     '#aicard .aicwait{display:flex;align-items:center;gap:7px;font:600 11.5px/1.3 ui-sans-serif,system-ui,sans-serif;color:#ffd76a;padding:5px 9px;border-radius:999px;background:rgba(255,215,106,.08);border:1px dashed rgba(255,215,106,.4);align-self:flex-start}',
     '#aicard .aicwait .dot{width:7px;height:7px;border-radius:50%;background:#ffd76a;opacity:.85}',
+    '#aicard .aicwait.aicsent.done{color:#8fe3a1;background:rgba(143,227,161,.08);border:1px solid rgba(143,227,161,.45)}',
+    '#aicard .aicwait.aicsent.done .dot{background:#8fe3a1}',
     '#aicard .aiclock{padding:10px 12px;border-radius:10px;border:1px solid #ffd76a;background:rgba(255,215,106,.12);color:#fff3cf;font:400 14px/1.5 ThrydRead,Georgia,serif}',
     '#aicard .aiclock b{display:block;font:700 13px/1.3 ui-sans-serif,system-ui,sans-serif;color:#ffd76a;letter-spacing:.03em;margin-bottom:3px}',
     '#aimenu .aimrow.hot{padding:5px 6px;margin:0 -6px;border-radius:10px;background:rgba(255,215,106,.1);box-shadow:inset 0 0 0 1px rgba(255,215,106,.55)}',
@@ -123,6 +125,87 @@
     return prefix + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 12);
   }
   const sleep = ms => new Promise(z => setTimeout(z, ms));
+  // v630 (Jesuye 2:39 PM "on page refresh, i should still know jump ahead has been sent"): every Send (card pick,
+  // menu or lock tap) is kept in localStorage {run, job|action, label, event_id, sent_at} and shown as a
+  // 'sent · time · waiting' pill until open_card.json shows that event as seated/done (resolved[] / no longer
+  // pending) or the job has moved on; then '✓ done' for a few seconds and the entry is cleared.
+  const SENT_LOG = 'thryd_sent_log_v630';
+  const SENT_TTL = 6 * 3600 * 1000, DONE_MS = 5000;
+  function sentLog(){ try{ const a = JSON.parse(localStorage.getItem(SENT_LOG) || '[]'); return Array.isArray(a) ? a.filter(e => e && e.event_id && Date.now() - (+e.sent_at || 0) < SENT_TTL) : []; }catch(e){ return []; } }
+  function saveSentLog(a){ try{ localStorage.setItem(SENT_LOG, JSON.stringify(a.slice(-12))); }catch(e){} }
+  function logSent(e){ const a = sentLog().filter(x => x.event_id !== e.event_id); a.push(Object.assign({sent_at: Date.now()}, e)); saveSentLog(a); kickLane(); }
+  function jn(j){ const m = /^j(\d+)$/i.exec(String(j || '')); return m ? +m[1] : 0; }
+  function atMs(iso){ const t = Date.parse(iso || ''); return isNaN(t) ? 0 : t; }
+  // is a sent entry finished, judged from an open_card payload?
+  function sentResolved(e, j){
+    if(!e || !j) return false;
+    if((j.resolved || []).some(x => x && x.event_id === e.event_id)) return true;
+    const p = j.pending || {};
+    const stillPending = (p.pick && p.pick.event_id === e.event_id) || (p.menu || []).some(x => x && x.event_id === e.event_id);
+    if(stillPending) return false;
+    if(j.run && e.run && j.run !== e.run) return true;
+    if(e.kind === 'pick'){
+      if(j.last_seat && j.last_seat.job === e.job) return true;
+      if(j.open && jn(j.job) > jn(e.job)) return true;
+      return false;
+    }
+    // menu / lock tap: the job moved on since it was sent
+    if(e.job && j.job && jn(j.job) > jn(e.job)) return true;
+    if(!e.job && j.open && j.job && atMs(j.at) > (+e.sent_at || 0) + 15000) return true;
+    return false;
+  }
+  function settleSent(j){
+    const a = sentLog(); let changed = false;
+    a.forEach(e => { if(!e.done_at && sentResolved(e, j)){ e.done_at = Date.now(); changed = true; } });
+    const keep = a.filter(e => !(e.done_at && Date.now() - e.done_at > DONE_MS));
+    if(changed || keep.length !== a.length) saveSentLog(keep);
+    if(changed) setTimeout(() => { try{ settleSent(meta || card); updateStrip(); }catch(e){} }, DONE_MS + 200);
+    return changed;
+  }
+  function sentPills(run){
+    return sentLog().filter(e => !run || !e.run || e.run === run).map(e => {
+      const w = document.createElement('div'); w.className = 'aicwait aicsent' + (e.done_at ? ' done' : ''); w.setAttribute('role', 'status');
+      w.dataset.eid = e.event_id;
+      const d = document.createElement('span'); d.className = 'dot'; w.appendChild(d);
+      const what = e.kind === 'pick' ? (e.job + ' pick') : (e.label || e.action || 'tap');
+      const tm = hhmm(new Date(+e.sent_at).toISOString());
+      w.appendChild(document.createTextNode(e.done_at ? ('\u2713 ' + what + ' done') : (what + ' sent' + (tm ? ' \u00b7 ' + tm : '') + ' \u00b7 waiting')));
+      return w;
+    });
+  }
+  // v630 card lane: the box publishes each changed open card to ntfy <drag topic>-c (chunked) the moment it is
+  // seated, so the panel need not wait for a Pages build. Polled every 5 s only while a Send is waiting (max 6 min).
+  let laneTimer = 0, laneUntil = 0;
+  function laneBase(){
+    const DG = (root.thrydDrag && root.thrydDrag()) || root.DRAG || {};
+    return DG.endpoint ? String(DG.endpoint).replace(/\/?$/, '') + '-c' : null;
+  }
+  async function laneFetch(){
+    const base = laneBase(); if(!base) return null;
+    const getter = root.thrydNtfyGet || ((u, ms) => fetch(u, {cache: 'no-store'}));
+    const tx = await (await getter(base + '/json?poll=1&since=15m', 8000)).text();
+    const by = {};
+    for(const l of String(tx).split('\n')){
+      if(!l) continue; let m, x;
+      try{ m = JSON.parse(l); x = JSON.parse(m.message || '{}'); }catch(e){ continue; }
+      if(!x || x.k !== 'open_card' || !x.id) continue;
+      const g = by[x.id] = by[x.id] || {n: x.n, parts: {}, t: 0};
+      g.parts[x.i] = x.part; g.t = Math.max(g.t, +m.time || 0);
+    }
+    let best = null;
+    Object.keys(by).forEach(id => { const g = by[id]; if(Object.keys(g.parts).length === g.n && (!best || g.t > best.t)) best = g; });
+    if(!best) return null;
+    try{ let raw = ''; for(let i = 0; i < best.n; i++) raw += best.parts[i]; return JSON.parse(raw); }catch(e){ return null; }
+  }
+  function laneTick(){
+    laneTimer = 0;
+    if(document.hidden || Date.now() > laneUntil){ return; }
+    const waiting = sentLog().some(e => !e.done_at);
+    if(!waiting){ return; }
+    laneFetch().then(j => { if(j && typeof j === 'object' && atMs(j.at) > atMs((meta || {}).at)) applyCard(j, 'lane'); })
+      .catch(() => {}).finally(() => { if(!laneTimer) laneTimer = setTimeout(laneTick, 5000); });
+  }
+  function kickLane(){ laneUntil = Date.now() + 6 * 60 * 1000; if(!laneTimer) laneTimer = setTimeout(laneTick, 1500); }
   // v622 (Jesuye 12:39 PM "there is a http error", HTTP 429): card picks and menu taps no longer share the
   // busy drag/drift lane. They go through the typeline lane (own ntfy.sh topic, plus the independent backup
   // host ntfy.envs.net in parallel after 8 s), and a 429 / network failure backs off (Retry-After) and retries
@@ -331,14 +414,18 @@
     } else {
       const pr = progressEl(m); if(pr) wrap.appendChild(pr);
     }
+    const pills = sentPills(m.run);
+    const pillJobs = new Set(sentLog().filter(e => e.kind === 'pick').map(e => e.job));
+    const pillLabels = new Set(sentLog().filter(e => e.kind !== 'pick').map(e => e.label));
     const pk = pendingFor(m, c);
-    if(pk && !isLocked(m)){
+    if(pk && !isLocked(m) && !pillJobs.has(pk.job)){
       const w = document.createElement('div'); w.className = 'aicwait'; w.setAttribute('role', 'status');
       const d = document.createElement('span'); d.className = 'dot'; w.appendChild(d);
       w.appendChild(document.createTextNode(pk.job + ' pick waiting to be seated' + (hhmm(pk.at) ? ' \u00b7 sent ' + hhmm(pk.at) : '')));
       wrap.appendChild(w);
     }
-    const menus = m.pending && m.pending.menu;
+    const menus = ((m.pending && m.pending.menu) || []).filter(x => !pillLabels.has(x.label));
+    pills.forEach(x => wrap.appendChild(x));
     if(menus && menus.length){
       const w = document.createElement('div'); w.className = 'aicwait';
       const d = document.createElement('span'); d.className = 'dot'; w.appendChild(d);
@@ -528,6 +615,7 @@
       setStatus('Not sent \u2014 ' + friendly(r ? 'HTTP ' + r.status : '') + '. Your pick is kept; tap Send again in a moment.', 'err'); return;
     }
     markSent(job);
+    logSent({kind: 'pick', run: body.run, job, label: labels.join(', ').slice(0, 80), event_id: eid});
     if(btn){ btn.classList.remove('busy'); btn.classList.add('sent'); btn.textContent = 'sent \u2713'; }
     try{ updateStrip(); }catch(e){}
     setStatus('Sent \u2713 waiting for the receipt\u2026', 'busy');
@@ -563,7 +651,8 @@
     const fail = why => { btn.disabled = false; btn.classList.add('err'); setTimeout(() => btn.classList.remove('err'), 1400); menuNote(o.label + ' not sent \u2014 ' + friendly(why) + '. Tap it again in a moment.', 'err'); };
     post(body, onRetry).then(async r => {
       if(!(r && r.ok)) return fail(r ? 'HTTP ' + r.status : '');
-      btn.disabled = false; markMenu(run, o.value); btn.classList.add('sent'); btn.title = 'sent'; menuNote(o.label + ' sent \u2713 waiting for the receipt\u2026', 'busy');
+      btn.disabled = false; markMenu(run, o.value); logSent({kind: 'menu', run, job: body.job || null, action: o.value, label: o.label, event_id: eid}); try{ updateStrip(); }catch(e){}
+      btn.classList.add('sent'); btn.title = 'sent'; menuNote(o.label + ' sent \u2713 waiting for the receipt\u2026', 'busy');
       const m = await awaitReply(body, t0, r);
       if(!m) return menuNote(o.label + ' sent \u2713', 'ok');
       if(m.ok) return menuNote(o.label + ' received \u2713', 'ok');
@@ -578,12 +667,19 @@
     if(!panelOn) return Promise.resolve();
     return fetchOpen(10000).then(j => {
       if(!j || typeof j !== 'object') return;
+      if(meta && atMs(j.at) && atMs(meta.at) > atMs(j.at)) return;   // v630: the lane already brought a newer card
+      applyCard(j, 'pages');
+    }).catch(()=>{});
+  }
+  function applyCard(j, src){
+    {
+      const settled = settleSent(j);
       const sig = JSON.stringify(Object.assign({}, j, {at: null}));
       // After Send we wait on this job ('sent — next job coming'). When the
       // published card moves to the next jN, swap it in automatically.
       const metaChanged = JSON.stringify(Object.assign({}, meta || {}, {at: null})) !== sig;
       meta = j;
-      if(card && sig === cardSig){ return; } // unchanged: keep the DOM (and the pick) as is
+      if(card && sig === cardSig){ if(settled) updateStrip(); return; } // unchanged: keep the DOM (and the pick) as is
       // v628: a waiting / closed refresh must not collapse the sent card (confirmation
       // and size stay until the next job is actually open, or the user closes the panel).
       if(card && card.open && wasSent(card.job) && !(j.open && j.job && j.job !== card.job) && !isLocked(j)){
@@ -593,7 +689,7 @@
       }
       card = j; cardSig = sig;
       render();
-    }).catch(()=>{});
+    }
   }
 
   function startPoll(){
@@ -616,7 +712,7 @@
     const ai = AI(); if(!ai || ai._cardsHook) return !!ai;
     ai._cardsHook = true;
     const _open = ai.open, _close = ai.close;
-    ai.open = function(){ const r = _open.apply(this, arguments); mount(); fetchCard(); startPoll(); return r; };
+    ai.open = function(){ const r = _open.apply(this, arguments); mount(); fetchCard(); startPoll(); if(sentLog().some(e => !e.done_at)) kickLane(); return r; };
     ai.close = function(){
       if(!userClose) return; // typeline auto-close must not dismiss the card panel
       stopPoll();

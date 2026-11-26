@@ -8,11 +8,11 @@ const js = rd('assets/job_card.js'), html = rd('index.html'), st = rd('assets/st
 
 test('job_card.js loads only with ?cards=1 and no-ops otherwise', ()=>{
   assert.match(html, /cards=1/);
-  assert.match(html, /job_card\.js\?v=9/);
+  assert.match(html, /job_card\.js\?v=10/);
   assert.match(js, /cards=1/);
-  assert.match(html, /var VER=629,/);
+  assert.match(html, /var VER=630,/);
   const v = JSON.parse(ver);
-  assert.equal(v.v, 629);
+  assert.equal(v.v, 630);
 });
 
 test('layout is job card, then typeline, then plain always-visible buttons', ()=>{
@@ -159,7 +159,7 @@ test('v628: panel stays open after Send; waiting refresh keeps the sent card; ea
   assert.match(js, /border-radius:8px;white-space:pre-wrap/);
   assert.match(js, /max-height:8\.7em;overflow-y:auto/);
   assert.match(js, /touch-action:pan-y/);
-  assert.match(html, /job_card\.js\?v=9/);
+  assert.match(html, /job_card\.js\?v=10/);
   assert.match(html, /intent_ai\.js\?v=614/);
   const src = js.slice(js.indexOf('function safeText(o){'), js.indexOf('function render(){'));
   const f = new Function(src + '; return {safeRows, safeText};')();
@@ -201,4 +201,16 @@ test('v629: seat line, lock progress, waiting-to-be-seated, lock state on the pa
   assert.equal(f.pendingFor({pending: null, last_seat: {job: 'j43'}}, c), null);
   const card = JSON.parse(rd('data/open_card.json'));
   if(card.run && card.next_lock_at_lines){ assert.ok('last_seat' in card && 'pending' in card, 'export carries last_seat + pending'); }
+});
+
+test('v630: sent taps survive a refresh as pills, cleared by resolved/seated, card lane while waiting', ()=>{
+  assert.match(js, /SENT_LOG = 'thryd_sent_log_v630'/);
+  assert.match(js, /logSent\(\{kind: 'pick'/);
+  assert.match(js, /logSent\(\{kind: 'menu'/);
+  assert.match(js, /' sent' \+ \(tm \? ' \\u00b7 ' \+ tm : ''\) \+ ' \\u00b7 waiting'/);
+  assert.match(js, /'\\u2713 ' \+ what \+ ' done'/);
+  assert.match(js, /j\.resolved/);
+  assert.match(js, /'-c'/);
+  assert.match(js, /setTimeout\(laneTick, 5000\)/);
+  assert.match(js, /POLL_MS = 30000/);   // Pages poll unchanged
 });
