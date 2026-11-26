@@ -58,6 +58,7 @@
     '#aimenu{flex:0 0 auto;display:flex;flex-direction:column;gap:6px;padding:8px 12px 10px;margin:0}',
     '#aimenu .aimrow{display:flex;flex-wrap:wrap;align-items:center;gap:6px}',
     '#aimenu button{font:600 12px/1.2 ui-sans-serif,system-ui,sans-serif;color:#efe9dc;background:rgba(255,255,255,.06);border:1px solid rgba(201,169,90,.45);border-radius:999px;padding:5px 11px;cursor:pointer;min-height:30px}',
+    '#aimenu button.live{border-color:rgba(255,120,120,.55);background:rgba(255,90,90,.1)}',
     '#aimenu button.sent{border-color:#2f8a50;background:rgba(47,138,80,.22);color:#d8ffe5}',
     '#aimenu button.err{border-color:#a04040;background:rgba(160,64,64,.25)}',
     '#aimenu .aimlab{color:#8f897c;font:600 10px/1 ui-sans-serif,system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;font-variant:small-caps;min-width:40px}',
@@ -156,6 +157,7 @@
     }
     return null;
   }
+  function isLiveOpt(o){ return /^\s*\ud83c\udfa5\s*$/.test(String((o && o.label) || '')) || (/^j\d+:\s*\ud83c\udfa5\s*$/i.test(String((o && o.value) || ''))); }
   // Pull the tweet line out of an option: explicit `line`, else the value without its "jN: " prefix.
   function tweetLine(o){
     if(o && typeof o.line === 'string') return o.line;
@@ -242,7 +244,8 @@
       if(c.prompt) jobEl.appendChild(promptEl(c.prompt));
       if(c.helpText){ const h = document.createElement('div'); h.className = 'aichelt'; h.textContent = c.helpText; jobEl.appendChild(h); }
       const opts = document.createElement('div'); opts.className = 'aicopts';
-      (c.options || []).forEach(o => {
+      // 🎥 is not a line any more: it is the '🎥 Live view' pill in the menu row (Jesuye 12:42 PM)
+      (c.options || []).filter(o => !isLiveOpt(o)).forEach(o => {
         const b = document.createElement('button'); b.type = 'button'; b.className = 'aicopt' + (sel.values.has(o.value) ? ' on' : '');
         b.dataset.value = o.value; b.setAttribute('aria-pressed', sel.values.has(o.value) ? 'true' : 'false');
         const l = document.createElement('span'); l.className = 'ol'; l.textContent = o.label; b.appendChild(l);
@@ -288,6 +291,7 @@
       // one Jump ahead only (Jesuye 12:39 PM): the LOCK row keeps it
       const lockHasJump = ((c && c.menus && c.menus.lock) || []).some(x => /jump ahead/i.test(String(x.value || x.label || '')));
       main.filter(o => !(lockHasJump && /jump ahead/i.test(String(o.value || o.label || '')))).forEach(o => row.appendChild(menuBtn(o)));
+      ((c && c.open && c.menus && c.menus.live) || []).forEach(o => { const lb = menuBtn(o); lb.classList.add('live'); row.appendChild(lb); });
       menuEl.appendChild(row);
     }
     const lock = (c && c.menus && c.menus.lock) || [];

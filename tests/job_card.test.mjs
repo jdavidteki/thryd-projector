@@ -8,11 +8,11 @@ const js = rd('assets/job_card.js'), html = rd('index.html'), st = rd('assets/st
 
 test('job_card.js loads only with ?cards=1 and no-ops otherwise', ()=>{
   assert.match(html, /cards=1/);
-  assert.match(html, /job_card\.js\?v=2/);
+  assert.match(html, /job_card\.js\?v=3/);
   assert.match(js, /cards=1/);
-  assert.match(html, /var VER=622,/);
+  assert.match(html, /var VER=623,/);
   const v = JSON.parse(ver);
-  assert.equal(v.v, 622);
+  assert.equal(v.v, 623);
 });
 
 test('layout is job card, then typeline, then plain always-visible buttons', ()=>{
@@ -96,4 +96,12 @@ test('v622: card/menu posts use the typeline lane with 429 backoff+retry, friend
   assert.match(js, /lockHasJump/);
   assert.match(js, /max-height:5\.8em;overflow-y:auto/);
   assert.match(js, /awaitReply\(body, t0, r\)/);
+});
+
+test('v623: 🎥 is a Live view pill (own menu_action per job), not a line option', ()=>{
+  assert.match(js, /function isLiveOpt/);
+  assert.match(js, /filter\(o => !isLiveOpt\(o\)\)/);
+  assert.match(js, /c\.menus\.live/);
+  const card = JSON.parse(rd('data/open_card.json'));
+  if(card.open){ assert.deepEqual(card.menus.live, [{label: '\u{1f3a5} Live view', value: 'live_view: ' + card.job}]); }
 });

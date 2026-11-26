@@ -1,5 +1,5 @@
 {
- "v": 622,
- "at": "2026-11-26T12:40:00-05:00",
- "note": "v622: 36 story objects on stage again (CAP_DEFAULT 10 -> 36, Jesuye approved 26 Nov 12:35 PM ET); stage.js cache-busted to ?v=622 (?cap=N still overrides). [[god]] panel: card picks and menu/lock taps now post through the typeline lane (own ntfy topic + backup host ntfy.envs.net) instead of the busy drag/drift topic, back off on HTTP 429 using Retry-After and retry up to 3 times, show friendly messages (no raw HTTP codes), and wait for the intake receipt on menu taps too. Only one Jump ahead button (LOCK row). Long tweet lines scroll inside their option (max 4 lines, fade + 'scroll for the whole line' hint)."
+ "v": 623,
+ "at": "2026-11-26T12:50:00-05:00",
+ "note": "v623 (follow-up to v622 so devices auto-reload): 🎥 is no longer a line option; it is a '🎥 Live view' pill in the MENU row that sends its own menu_action 'live_view: jN' for the open job, so it never uses up the job's one line pick. v622: 36 story objects (CAP_DEFAULT 36, stage.js?v=622); card/menu posts via the typeline lane (own ntfy topic + backup host) with 429 backoff/retry and friendly errors; one Jump ahead; long tweet lines scroll (max 4 lines)."
 }
