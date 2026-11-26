@@ -5,14 +5,14 @@ test('tap opens methods, click sends a whitelisted call', () => {
   const blk = src.slice(src.indexOf('// ---------- tap methods'), src.indexOf('S.fireMethod = fireMethod;'));
   assert.ok(blk.length > 1000);
   for(const f of ["fn: 'glow'", "fn: 'grow'", "fn: 'shrink'", "fn: 'setmood'", "fn: 'dim'", "fn: 'brighten'"]) assert.ok(blk.includes(f), f);
-  assert.match(blk, /type: 'call'/); assert.match(blk, /DG\.endpoint/); assert.match(blk, /closeMethods\(\); \}, \{capture: true, passive: true\}\)/);
+  assert.match(blk, /type: 'call'/); assert.match(blk, /DG\.endpoint/); assert.match(blk, /closeMethods\(\);[\s\S]*\{capture: true, passive: true\}\)/);
   assert.ok(src.includes('try{ tapIntent(d.c); }')); // smart taps (17 Nov 2026 2:54 PM ET): the menu opens through tapIntent
 });
 // registry functions (17 Nov 2026): objects with their own seated code titles list only those; others keep the old methods
 test('tap lists registry functions from data/object_methods.json, old methods only when none', () => {
   assert.ok(src.includes("fetch('data/object_methods.json"));
   const blk = src.slice(src.indexOf('// ---------- registry functions'), src.indexOf('S.fireMethod = fireMethod;'));
-  assert.match(blk, /const fns = orderByPref\(c, funcsFor\(c\)/); assert.match(blk, /if\(!fns\.length && !env\.some/);
+  assert.match(blk, /const fns = orderByPref\(c, funcsFor\(c\)/); assert.match(blk, /if\(!fns\.length && !mccNow\.length && !env\.some/);
   assert.match(blk, /func: it\.id, title: it\.t\.title/); assert.match(blk, /popTweet\(c, it, tw\)/); assert.match(blk, /playGfx\(c, eff\.fx\)/);
   for(const v of ['fold', 'hide', 'tune', 'know', 'weigh']) assert.ok(new RegExp(v + ": '").test(blk), v);
   const om = JSON.parse(fs.readFileSync(new URL('../data/object_methods.json', import.meta.url), 'utf8'));
@@ -23,7 +23,7 @@ test('tap lists registry functions from data/object_methods.json, old methods on
 test('tap lists inherited functions from the run and the safe, logged with scope env', () => {
   const blk = src.slice(src.indexOf('// ---------- registry functions'), src.indexOf('S.fireMethod = fireMethod;'));
   assert.match(blk, /function envFor\(c, own\)/); assert.match(blk, /'from ' \+ r\.from : 'from the safe'/);
-  assert.match(blk, /if\(!fns\.length && !env\.some\(r => r\.items\.length\)\) orderByPref\(c, methodsFor\(c\)/);
+  assert.match(blk, /if\(!fns\.length && !mccNow\.length && !env\.some\(r => r\.items\.length\)\) orderByPref\(c, methodsFor\(c\)/);
   assert.match(blk, /scope: it\.scope === 'env' \? 'env' : 'own'/); assert.match(blk, /env_scope: it\.env_scope, env_from: it\.env_from/);
   const om = JSON.parse(fs.readFileSync(new URL('../data/object_methods.json', import.meta.url), 'utf8'));
   for(const n of ['calla', 'marisol', 'dez']){ const rows = om.inherit[n] || []; assert.ok(rows.some(r => r.scope === 'run' && r.from === 'run-5a58c4' && r.funcs.includes('teo.fold')), n); }

@@ -61,9 +61,13 @@
   // busy (Jesuye 11-12 11:09 PM "make it very busy"): many small story groups at once, arriving in quick overlapping waves
   // full (Jesuye 11-12 11:41 PM "too much black space ... plenty objects floating all the time"): more cuts, a decoded
   // group always waiting in the wings so a leaving story is replaced at once, and spawns aimed at the emptiest part of the screen
-  const CAP = 36;  /* v610 heat (Jesuye 24 Nov 10:03 PM ET "cut drawing down 50%"): desktop 72→36, same as phone */               // story cuts on screen at once (place pins do not count)
-  const SOFT_CAP = Math.max(1, CAP - 6);    // start walking the oldest off here so a hard instant removal is never needed
-  const MAX_GROUPS = 18; // v610 heat: desktop 36→18, same as phone     // story groups; pins do not count
+  // v617 heat (Jesuye 26 Nov 2026 1:16 AM ET "or even 10"): one config for how many story objects (cuts) may be on the
+  // stage at once; older groups walk off and new ones rotate in. Pins do not count. Change CAP_DEFAULT to retune;
+  // ?cap=N overrides for QA (e.g. ?cap=20 or ?cap=36). v610 had set this at 36 (desktop 72→36, same as phone).
+  const CAP_DEFAULT = 10;
+  const CAP = (function(){ try{ const n = +(new URLSearchParams(location.search).get('cap')); if(n >= 1 && n <= 200) return Math.floor(n); }catch(e){} return CAP_DEFAULT; })();
+  const SOFT_CAP = Math.max(1, CAP - Math.max(2, Math.round(CAP / 6))); // walk the oldest off before the hard cap (36→30, 20→17, 10→8)
+  const MAX_GROUPS = Math.max(1, Math.round(CAP / 2)); // story groups; pins do not count (was 18 when CAP was 36)
   const PER_GROUP = PHONE ? 4 : 6;
   const READY = PHONE ? 1 : 2;               // decoded groups kept in the wings
   const MAXF = PHONE ? 8 : 20;                 // stored frames per animated cut (longer GIFs keep every k-th frame, delays summed)
@@ -73,7 +77,7 @@
   const storyCuts = ()=> S.cuts.filter(c => !c.map);
   const activeStoryCuts = ()=> S.cuts.filter(c => !c.map && !isLeaving(c));
   const storyGroups = ()=> S.groups.filter(g => !g.map && !g.gone);
-  S.storyCuts = storyCuts; S.activeStoryCuts = activeStoryCuts; S.storyGroups = storyGroups; S.CAP = CAP; S.SOFT_CAP = SOFT_CAP; S.MAX_GROUPS = MAX_GROUPS;
+  S.storyCuts = storyCuts; S.activeStoryCuts = activeStoryCuts; S.storyGroups = storyGroups; S.CAP = CAP; S.CAP_DEFAULT = CAP_DEFAULT; S.SOFT_CAP = SOFT_CAP; S.MAX_GROUPS = MAX_GROUPS;
   const PG_MAX = (PHONE ? 6 : 16) * 1048576;  // one group's sprite frames; bigger ones are drawn at a lower resolution
   const INFLIGHT = PHONE ? 1 : 2;             // groups decoding at the same time (in the decode worker, off the main thread)
   const BG_P = PHONE ? 0.8 : 0.9;             // share of groups that get the faded source-frame backdrop (covers the gaps)
@@ -241,7 +245,10 @@
     const w = vw(), h = vh(), m = 160;
     for(let i = 0; i < S.cuts.length; i++){ const c = S.cuts[i], el = c.el;
       if(!el || !el.isConnected){ c._vis = false; continue; }
-      const r = el.getBoundingClientRect(); c._vis = r.right > -m && r.left < w + m && r.bottom > -m && r.top < h + m; }
+      const r = el.getBoundingClientRect(); c._vis = r.right > -m && r.left < w + m && r.bottom > -m && r.top < h + m;
+      // v617 heat: only promote on-screen cuts (off-screen will-change layers still cost compositor memory/GPU)
+      if(c._vis){ if(c._wc !== 1){ el.style.willChange = 'transform'; c._wc = 1; } }
+      else if(c._wc !== 0){ el.style.willChange = 'auto'; c._wc = 0; } }
   }
   S.markVis = markVis;
   function frame(now){
@@ -261,9 +268,23 @@
       else tickBgs(now);
     } else { tickBgs.t = 0; }
     const dt = performance.now() - t0; S.loop.n++; if(dt > 8) S.loop.slow++; if(dt > S.loop.max) S.loop.max = +dt.toFixed(1);
-    requestAnimationFrame(frame);
+    scheduleFrame(now);
+  }
+  // v617 heat: wake the GIF/plate loop when a frame is actually due (or the next plate drift / vis check), not on every display frame
+  let frameWait = 0;
+  function frameHidden(){ return document.hidden || !!(root.LH && LH.state === 'hidden'); }
+  function scheduleFrame(now){
+    if(frameHidden()) return;
+    let wait = document.body.classList.contains('stretchy-bg') ? 90 : 50;
+    const t = now || performance.now();
+    anims.forEach(A => { const d = A.due - t; if(d < wait) wait = d; });
+    wait = Math.max(16, Math.min(350, wait));
+    if(frameWait) clearTimeout(frameWait);
+    frameWait = setTimeout(function(){ frameWait = 0; if(frameHidden()) return; requestAnimationFrame(frame); }, wait);
   }
   requestAnimationFrame(frame);
+  document.addEventListener('visibilitychange', function(){ if(!document.hidden) scheduleFrame(); });
+  if(root.LH && LH.on) LH.on(function(s){ if(s !== 'hidden') scheduleFrame(); });
   // v612 heat: the shared float ticker (see the .gcut.fl rule)
   const FLOAT = {n: 0};
   function floatTick(){
@@ -1432,7 +1453,7 @@
     if(dur >= 300) return;
     if(d.snap) note('snap', objName(d.c));
     if(tagName(d.c)) toggleTag(d.c); try{ tapIntent(d.c); }catch(err){ note('methods', String(err && err.message || err)); } }, {capture: true, passive: true});
-  function toggleTag(c){ SHOWN.set(c, Date.now()); tagT = 0; } // show (or restart the ~3 s timer); never hides
+  function toggleTag(c){ SHOWN.set(c, Date.now()); tagT = 0; scheduleTags(); } // show (or restart the ~3 s timer); never hides
   S.toggleTag = toggleTag;
   let tagT = 0;
   function tickTags(now){
@@ -1462,7 +1483,20 @@
     tagEls.forEach((el, k) => { if(!live.has(k)){ el.remove(); tagEls.delete(k); } });
   }
   S.tickTags = tickTags;
-  (function tagLoop(now){ try{ if(!paused()) tickTags(now || performance.now()); }catch(e){} requestAnimationFrame(tagLoop); })();
+  // v617 heat: the name-tag follow used to request a display frame forever (even with no tag on screen, that kept the
+  // shared 30/10 fps pump running). It now wakes only while a tapped tag is showing (~20 fps), and sleeps otherwise.
+  let tagRaf = 0, tagWait = 0;
+  function scheduleTags(){
+    if(tagRaf || tagWait || !SHOWN.size) return;
+    if(document.hidden || (root.LH && LH.state === 'hidden')) return;
+    tagWait = setTimeout(function(){ tagWait = 0; if(!SHOWN.size || document.hidden || (root.LH && LH.state === 'hidden')) return; tagRaf = requestAnimationFrame(tagLoop); }, paused() ? 200 : 50);
+  }
+  function tagLoop(now){
+    tagRaf = 0;
+    try{ if(!paused()) tickTags(now || performance.now()); }catch(e){}
+    scheduleTags();
+  }
+  document.addEventListener('visibilitychange', function(){ if(!document.hidden) scheduleTags(); });
 
   // ---------- tweets: frame_feed.js reads the story group in focus (rotates about every 14 s among settled groups)
   let focus = null, focusAt = 0, focusI = 0;
@@ -2296,7 +2330,7 @@
     '#gmeth .gmh{width:100%;color:#ffe7a8;font-weight:600;padding:0 .3vh .2vh;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}',
     '#gmeth button{font:inherit;color:#fff;background:#2a2a2a;border:1px solid #555;border-radius:.8vh;padding:.7vh 1vh;cursor:pointer;min-height:36px;touch-action:manipulation}',
     '#gmeth button:hover,#gmeth button:focus-visible{background:#3c3c3c;border-color:#ffd76a;outline:none}',
-    '#gmeth button.gfn{border-color:#8a6d2b;text-align:left}', '#gmeth button.genv{border-color:#3d6b8a;text-align:left}', '#gmeth{max-height:min(70vh,560px);overflow:auto}', '#gmeth .gms{width:100%;color:#bbb;font-weight:400;font-size:.85em;padding:0 .3vh}',
+    '#gmeth button.gfn{border-color:#8a6d2b;text-align:left}', '#gmeth button.genv{border-color:#3d6b8a;text-align:left}', '#gmeth button.gmcc{border-color:#6a8a3d;text-align:left}', '#gmeth .gmcl{width:100%;color:#9c9;font-weight:400;font-size:.8em;padding:0 .3vh .3vh}', '#gmeth{max-height:min(70vh,560px);overflow:auto}', '#gmeth .gms{width:100%;color:#bbb;font-weight:400;font-size:.85em;padding:0 .3vh}',
     '#gtweet{position:fixed;z-index:10040;max-width:min(80vw,460px);padding:1vh 1.2vh;border-radius:1vh;background:rgba(14,14,14,.94);color:#fff;box-shadow:0 3px 16px #0009;font:500 max(13px,1.6vh)/1.35 system-ui,sans-serif;transform:translateX(-50%);opacity:0;transition:opacity .5s;pointer-events:none}',
     '#gtweet.on{opacity:1;pointer-events:auto}', '#gtweet:focus-visible{outline:2px solid #ffd76a;outline-offset:2px}', '#gtweet .gtc{font:600 .82em ui-monospace,Menlo,Consolas,monospace;color:#ffd76a;margin-bottom:.4vh}',
     '#gtweet .gty{color:#9fd3ff;font-weight:700;white-space:nowrap}', '#gtweet .gtr{font:600 .8em ui-monospace,Menlo,Consolas,monospace;color:#b6f0a0;margin-bottom:.4vh}', '#gtweet .gtn{color:#bbb;font-size:.8em;margin-top:.5vh}',
@@ -2583,8 +2617,9 @@
   // in-browser AI bonus 0..0.2 (assets/intent_ai.js, v538): similarity to this viewer's recent picks and typed calls; 0 when off or not loaded
   const aiB = (c, x)=>{ try{ const A = root.thrydIntentAI; return A && A.bonus ? +A.bonus(c, x) || 0 : 0; }catch(e){ return 0; } };
   function choicesFor(c){ const own = funcsFor(c).map(it => ({it, kind: 'own'})), env = envFor(c, own.map(o => o.it));
-    const out = own.concat(...env.map(r => r.items.map(it => ({it, kind: 'env', row: r}))));
-    if(!own.length && !env.some(r => r.items.length)) methodsFor(c).forEach(m => out.push({m, kind: 'old'}));
+    const mcc = (typeof mccItems === 'function') ? mccItems(c) : [];
+    const out = own.concat(mcc, ...env.map(r => r.items.map(it => ({it, kind: 'env', row: r}))));
+    if(!own.length && !mcc.length && !env.some(r => r.items.length)) methodsFor(c).forEach(m => out.push({m, kind: 'old'}));
     return out; }
   function intentFor(c){ if(!smartOn()) return null; const xs = choicesFor(c); if(!xs.length) return null;
     const own = xs.filter(x => x.kind === 'own'); if(own.length === 1) return {x: own[0], why: 'its only function', conf: 1};
@@ -2635,7 +2670,136 @@
     if(isFigure(c)) out.push(v('mood') === 'happy' ? {fn: 'setmood', args: ['sad']} : {fn: 'setmood', args: ['happy']});
     else out.push(v('brightness') === 'dim' ? {fn: 'brighten', args: []} : {fn: 'dim', args: []});
     return out; }
-  function closeMethods(){ if(M.el){ M.el.remove(); M.el = null; } M.cut = null; clearTimeout(M.timer); }
+  // ---------- medium cut code (26 Nov 2026): data/medium_cuts_code.json is a tiny
+  // manifest; shards live in data/medium_cuts_code/sNN.json. Nothing is fetched at
+  // page start. The first tap on a Medium-safe cut loads the manifest and one shard
+  // (fnv1a32(medium_image_id) % mod), then both stay in memory. No timers, polling,
+  // animations, or scene re-renders. Cuts with no entry keep today's menu.
+  const MCC = S.cutCodeCache = {manifest: null, shards: Object.create(null), pending: Object.create(null), manP: null};
+  function isMediumCut(c){
+    const g = (c && c.home) || {}, mid = String(g.mid || '');
+    if(g.live || g.agenda || g.map || /^(live:|chips:|pin:)/.test(mid)) return false;
+    const pack = g.row && g.row.pack;
+    return /^1\*/.test(mid) || /^x_/.test(mid) || (typeof pack === 'string' && /medium_cuts\//.test(pack));
+  }
+  function mccShardName(mid, man){
+    const mod = (man && man.mod) || 8, pat = (man && man.shard_pattern) || 's{NN}.json';
+    return pat.replace('{NN}', String(fnv1a(String(mid)) % mod).padStart(2, '0'));
+  }
+  function mccUrl(file, man){
+    let dir = (man && man.shard_dir) || 'data/medium_cuts_code/';
+    if(dir.charAt(dir.length - 1) !== '/') dir += '/';
+    return dir + file;
+  }
+  function loadMccManifest(){
+    if(MCC.manifest || MCC.manifest === false) return Promise.resolve(MCC.manifest);
+    if(MCC.manP) return MCC.manP;
+    MCC.manP = fetch('data/medium_cuts_code.json?t=' + Date.now(), {cache: 'no-store'}).then(r => r.ok ? r.json() : null).then(d => {
+      MCC.manifest = (d && d.v === 1 && d.hash === 'fnv1a32' && d.mod) ? d : false;
+      return MCC.manifest;
+    }).catch(() => { MCC.manifest = false; return false; });
+    return MCC.manP;
+  }
+  function indexMccShard(name, d){
+    const by = Object.create(null);
+    ((d && d.entries) || []).forEach(e => {
+      if(!e || !e.medium_image_id || !e.cut) return;
+      const mid = e.medium_image_id, cut = e.cut;
+      (by[mid] || (by[mid] = Object.create(null)));
+      (by[mid][cut] || (by[mid][cut] = [])).push(e);
+    });
+    MCC.shards[name] = {raw: d || {entries: []}, by, name};
+    return MCC.shards[name];
+  }
+  function loadMccShard(mid){
+    return loadMccManifest().then(man => {
+      if(!man) return null;
+      const name = mccShardName(mid, man);
+      if(MCC.shards[name]) return MCC.shards[name];
+      if(MCC.pending[name]) return MCC.pending[name];
+      const p = fetch(mccUrl(name, man) + '?t=' + Date.now(), {cache: 'no-store'}).then(r => r.ok ? r.json() : {v: 1, shard: name.replace(/\.json$/, ''), entries: []}).then(d => indexMccShard(name, d)).catch(() => indexMccShard(name, {v: 1, entries: []}));
+      MCC.pending[name] = p; p.then(() => { delete MCC.pending[name]; }, () => { delete MCC.pending[name]; });
+      return p;
+    });
+  }
+  function mccEntries(c){
+    const g = (c && c.home) || {}, mid = g.mid, cut = c && c.label, man = MCC.manifest;
+    if(!mid || !cut || !man) return [];
+    const sh = MCC.shards[mccShardName(mid, man)];
+    return (sh && sh.by && sh.by[mid] && sh.by[mid][cut]) || [];
+  }
+  function mccItems(c){
+    return mccEntries(c).map(e => {
+      const links = e.links || [];
+      const lf = links.find(l => l && l.kind === 'function' && l.id && OM.functions[l.id]);
+      const title = e.title || ((e.methods && e.methods[0] && e.methods[0].title) || (e.object + '.' + (e.method || 'go') + '()'));
+      const method = e.method || (e.methods && e.methods[0] && e.methods[0].method) || 'go';
+      const args = Array.isArray(e.args) ? e.args : ((e.methods && e.methods[0] && e.methods[0].args) || []);
+      if(lf){
+        const f = OM.functions[lf.id], t = (f.titles || [])[0] || {title: lf.title || title, run: '', job: ''};
+        return {kind: 'mcc', entry: e, it: {id: lf.id, f, t, scope: 'mcc'}, show: title};
+      }
+      return {kind: 'mcc', entry: e, m: {fn: method, args, title}, show: title};
+    });
+  }
+  function mccLinkNote(e){
+    const bits = [];
+    (e.links || []).forEach(l => {
+      if(!l) return;
+      if(l.kind === 'function' && (l.title || l.id)) bits.push(l.title || l.id);
+      else if(l.kind === 'seated' && l.title) bits.push(l.title + (l.run ? ' in ' + l.run + (l.job ? '/' + l.job : '') : ''));
+      else if(l.kind === 'object' && l.name) bits.push(l.name);
+      else if(l.kind === 'run' && l.id) bits.push(l.id);
+    });
+    const safe = e.safe && (e.safe.title || e.safe.id);
+    if(safe) bits.push('from the safe · ' + safe);
+    return bits.filter(Boolean).slice(0, 4).join(' · ');
+  }
+  function paintMcc(box, c, name, items){
+    if(!box || !items || !items.length) return;
+    if(box.querySelector('[data-mcc]')) return; // already filled; never rebuild the scene
+    const lb = document.createElement('div'); lb.className = 'gms'; lb.dataset.mcc = '1'; lb.textContent = 'from the cut'; box.appendChild(lb);
+    items.forEach(x => {
+      const e = x.entry, b = document.createElement('button'); b.type = 'button'; b.setAttribute('role', 'menuitem'); b.className = 'gmcc'; b.dataset.mcc = '1';
+      b.textContent = x.show; b.title = mccLinkNote(e) || x.show;
+      b.addEventListener('pointerdown', ev => ev.stopPropagation());
+      b.addEventListener('click', ev => {
+        ev.stopPropagation(); ev.preventDefault();
+        if(x.it){ remember(c, 'f:' + x.it.t.title); fireFunc(c, name, x.it); }
+        else { remember(c, 'mcc:' + x.show); fireMethod(c, e.object || name, x.m.fn, x.m.args || []); }
+        closeMethods();
+      });
+      box.appendChild(b);
+      const note = mccLinkNote(e);
+      if(note){ const n = document.createElement('div'); n.className = 'gmcl'; n.dataset.mcc = '1'; n.textContent = note; box.appendChild(n); }
+    });
+  }
+  function mccEnsure(c, done){
+    if(!isMediumCut(c)) return;
+    const mid = c.home && c.home.mid;
+    if(!mid) return;
+    const man = MCC.manifest;
+    if(man && MCC.shards[mccShardName(mid, man)]){ if(done) done(mccItems(c)); return; }
+    loadMccShard(mid).then(() => { if(done) done(mccItems(c)); }).catch(() => { if(done) done([]); });
+  }
+  const cutCodeApi = {
+    shardName: mid => mccShardName(mid, MCC.manifest || {mod: 8, shard_pattern: 's{NN}.json'}),
+    forCut: (mid, cut) => {
+      const man = MCC.manifest; if(!man || !mid) return [];
+      const sh = MCC.shards[mccShardName(mid, man)];
+      return (sh && sh.by && sh.by[mid] && sh.by[mid][cut]) || [];
+    },
+    load: mid => loadMccShard(mid).then(sh => {
+      const by = sh && sh.by && sh.by[mid];
+      if(!by) return [];
+      const out = []; Object.keys(by).forEach(k => { out.push(...by[k]); });
+      return out;
+    }),
+    manifest: () => MCC.manifest || null
+  };
+  S.cutCode = cutCodeApi; root.thrydCutCode = cutCodeApi;
+
+    function closeMethods(){ if(M.el){ M.el.remove(); M.el = null; } M.cut = null; clearTimeout(M.timer); }
   S.closeMethods = closeMethods;
   function openMethods(c, opts){
     if(!c || !c.el || !c.el.isConnected || c.leaving) return;
@@ -2671,11 +2835,19 @@
         b.addEventListener('pointerdown', ev => ev.stopPropagation());
         b.addEventListener('click', ev => { ev.stopPropagation(); ev.preventDefault(); remember(c, 'f:' + it.t.title); fireFunc(c, name, it); closeMethods(); });
         box.appendChild(b); }); });
-    if(!fns.length && !env.some(r => r.items.length)) orderByPref(c, methodsFor(c).map(m => ({m, kind: 'old'}))).map(x => x.m).forEach(m => { const b = document.createElement('button'); b.type = 'button'; b.setAttribute('role', 'menuitem');
+    const mccNow = mccItems(c);
+    if(!fns.length && !mccNow.length && !env.some(r => r.items.length)) orderByPref(c, methodsFor(c).map(m => ({m, kind: 'old'}))).map(x => x.m).forEach(m => { const b = document.createElement('button'); b.type = 'button'; b.setAttribute('role', 'menuitem'); b.dataset.oldmeth = '1';
       b.textContent = name + '.' + m.fn + '(' + qstr(m.args) + ')'; b.dataset.fn = m.fn; b.dataset.args = JSON.stringify(m.args);
       b.addEventListener('pointerdown', ev => ev.stopPropagation());
       b.addEventListener('click', ev => { ev.stopPropagation(); ev.preventDefault(); remember(c, 'm:' + m.fn + '(' + (m.args || []).join(',') + ')'); fireMethod(c, name, m.fn, m.args); closeMethods(); });
       box.appendChild(b); });
+    paintMcc(box, c, name, mccNow);
+    // first tap of a Medium cut: fetch one shard; if this menu is still open, append buttons to #gmeth only (no scene re-render)
+    mccEnsure(c, items => {
+      if(M.cut !== c || M.el !== box || !items.length) return;
+      box.querySelectorAll('[data-oldmeth]').forEach(el => el.remove());
+      paintMcc(box, c, name, items);
+    });
     overlayHost().appendChild(box); M.el = box;
     const r = c.el.getBoundingClientRect(), bw = box.offsetWidth, bh = box.offsetHeight, mid = toLocal(r.left + r.width / 2, r.bottom), top = toLocal(r.left + r.width / 2, r.top), vb = visBox();
     let x = Math.max(vb.l + bw / 2 + 6, Math.min(vb.l + vb.w - bw / 2 - 6, mid.x)), y = mid.y + 34;

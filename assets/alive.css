@@ -28,6 +28,9 @@ html.lh-cool .videocard,html.lh-cool .storycard,html.lh-cool .genie-ember{animat
 /* v614 heat: when idle or hidden, pause leftover decorative CSS bobs (video card playback is unchanged) */
 html.lh-idle .videocard,html.lh-idle .storycard,html.lh-idle .genie-ember,
 html.lh-hidden .videocard,html.lh-hidden .storycard,html.lh-hidden .genie-ember{animation-play-state:paused!important}
+/* v617 heat: same for map-pin pulse and the LIVE badge blink (filters on many pins were still running while idle) */
+html.lh-idle #gstage .gcut.gpin .gmappin.live,html.lh-hidden #gstage .gcut.gpin .gmappin.live,
+html.lh-idle #live .dot,html.lh-hidden #live .dot{animation-play-state:paused!important}
 
 /* v615 thunder: the `.thunder()` flash + rumble (stage.js thunderFx). CSS only, one-shot, under 1 s; the layer exists only during a strike. Cool mode / reduced motion: one static dim frame (class calm). */
 #gthunder{position:fixed;inset:0;z-index:10060;pointer-events:none;background:#fff;opacity:0}

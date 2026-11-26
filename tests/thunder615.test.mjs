@@ -59,5 +59,5 @@ test('the reply handler calls it only for an accepted reply; CSS is one-shot, un
 });
 test('index and version.json are at v615 or later', () => {
   const v = +(ver.match(/"v": (\d+)/) || [])[1]; assert.ok(v >= 615);
-  assert.match(html, new RegExp('var VER=' + v + ',')); assert.match(html, /stage\.js\?v=\d+/); assert.match(html, /alive\.css\?v=8/);
+  assert.match(html, new RegExp('var VER=' + v + ',')); assert.match(html, /stage\.js\?v=\d+/); assert.match(html, /alive\.css\?v=\d+/);
 });
