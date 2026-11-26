@@ -15050,7 +15050,7 @@
   },
   "run-cf203b": {
    "forked_from": "safe:731d52737690",
-   "head": "474a6b93b5",
+   "head": "317aeb8e33",
    "commits": [
     {
      "id": "eda103402b",
@@ -18429,7 +18429,7 @@
      }
     },
     {
-     "id": "474a6b93b5",
+     "id": "317aeb8e33",
      "parent": "47c40123bd",
      "branch": "run-cf203b",
      "job": "j42",
@@ -18453,9 +18453,49 @@
         "code": "cooler_subject.setmood('happy');",
         "scope": null,
         "cause_id": null
+       },
+       {
+        "id": "wt_cc626378bc",
+        "object": "yorubbbygehinny",
+        "kind": "func_call",
+        "code": "yorubbbygehinny.getAgenda();",
+        "scope": "env",
+        "cause_id": null
+       },
+       {
+        "id": "wt_27e5ff54ba",
+        "object": "attendant",
+        "kind": "func_call",
+        "code": "attendant.hears(mama_ronke, 'getAgenda');",
+        "scope": "ripple",
+        "cause_id": "wt_cc626378bc"
+       },
+       {
+        "id": "wt_896c177990",
+        "object": "boat",
+        "kind": "func_call",
+        "code": "boat.hears(mama_ronke, 'getAgenda');",
+        "scope": "ripple",
+        "cause_id": "wt_cc626378bc"
+       },
+       {
+        "id": "wt_11b78b255d",
+        "object": "buy",
+        "kind": "func_call",
+        "code": "buy.hears(mama_ronke, 'getAgenda');",
+        "scope": "ripple",
+        "cause_id": "wt_cc626378bc"
+       },
+       {
+        "id": "wt_22da1a81f0",
+        "object": "cooler_subject_third",
+        "kind": "call",
+        "code": "cooler_subject_third.glow();",
+        "scope": null,
+        "cause_id": null
        }
       ],
-      "facts_total": 2,
+      "facts_total": 7,
       "functions": [],
       "instances": []
      }
@@ -19267,10 +19307,10 @@
   "run-0ae93c": "a11a1eab61",
   "run-3a15d2": "fbc46c6eb7",
   "run-ab4653": "dd8e54daee",
-  "run-cf203b": "474a6b93b5",
+  "run-cf203b": "317aeb8e33",
   "run-cb805f": "8d23a93627",
   "run-888ea9": "9815dfcb14"
  },
  "commits": 194,
- "updated": "2026-11-26T13:41:39-05:00"
+ "updated": "2026-11-26T13:42:29-05:00"
 }

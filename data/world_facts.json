@@ -8245,16 +8245,6 @@
 ],
 "yorubbbygehinny": [
 {
-"id": "wt_8ccca8ac01",
-"kind": "func_call",
-"text": "Someone at the projector tapped the computer village subject and called yorubbbygehinny.getAgenda() from its agenda run-2eb42d, first seated in run-2eb42d j17.",
-"code": "yorubbbygehinny.getAgenda();",
-"author": "projector",
-"run": "run-2eb42d",
-"card": "w17",
-"other": null
-},
-{
 "id": "wt_6ee9b39c50",
 "kind": "func_call",
 "text": "Someone at the projector tapped the computer village subject and called yorubbbygehinny.getAgenda() from its agenda run-2eb42d, first seated in run-2eb42d j17.",
@@ -8292,6 +8282,16 @@
 "author": "projector",
 "run": "run-2eb42d",
 "card": "w17",
+"other": null
+},
+{
+"id": "wt_cc626378bc",
+"kind": "func_call",
+"text": "Someone at the projector tapped the mama ronke and called yorubbbygehinny.getAgenda() from its agenda run-2eb42d, first seated in run-2eb42d j17.",
+"code": "yorubbbygehinny.getAgenda();",
+"author": "projector",
+"run": "run-cf203b",
+"card": "w42",
 "other": null
 }
 ],
@@ -9407,13 +9407,13 @@
 ],
 "boat": [
 {
-"id": "wt_f3f154ac2f",
+"id": "wt_896c177990",
 "kind": "func_call",
-"text": "The boat hears it (because kazeem.ask(what=only:Thing) from j44).",
-"code": "boat.hears(cooler_subject, 'ask');",
+"text": "The boat hears it (because yorubbbygehinny.getAgenda()).",
+"code": "boat.hears(mama_ronke, 'getAgenda');",
 "author": "projector",
 "run": "run-cf203b",
-"card": "w29",
+"card": "w42",
 "other": null
 },
 {
@@ -11893,6 +11893,16 @@
 "run": "run-cf203b",
 "card": "w29",
 "other": null
+},
+{
+"id": "wt_27e5ff54ba",
+"kind": "func_call",
+"text": "The attendant hears it (because yorubbbygehinny.getAgenda()).",
+"code": "attendant.hears(mama_ronke, 'getAgenda');",
+"author": "projector",
+"run": "run-cf203b",
+"card": "w42",
+"other": null
 }
 ],
 "buy": [
@@ -11904,6 +11914,16 @@
 "author": "projector",
 "run": "run-cf203b",
 "card": "w29",
+"other": null
+},
+{
+"id": "wt_11b78b255d",
+"kind": "func_call",
+"text": "The buy hears it (because yorubbbygehinny.getAgenda()).",
+"code": "buy.hears(mama_ronke, 'getAgenda');",
+"author": "projector",
+"run": "run-cf203b",
+"card": "w42",
 "other": null
 }
 ],
@@ -12114,6 +12134,18 @@
 "author": "customer",
 "run": "run-cf203b",
 "card": "j41",
+"other": null
+}
+],
+"cooler_subject_third": [
+{
+"id": "wt_22da1a81f0",
+"kind": "call",
+"text": "Someone at the projector tapped the cooler subject third and made it glow.",
+"code": "cooler_subject_third.glow();",
+"author": "projector",
+"run": "run-cf203b",
+"card": "w42",
 "other": null
 }
 ]
@@ -12661,5 +12693,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-26T13:41:37-0500"
+"updated": "2026-11-26T13:42:28-0500"
 }
