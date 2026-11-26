@@ -15050,7 +15050,7 @@
   },
   "run-cf203b": {
    "forked_from": "safe:731d52737690",
-   "head": "495b5c6939",
+   "head": "f60320ac08",
    "commits": [
     {
      "id": "eda103402b",
@@ -17250,7 +17250,7 @@
      }
     },
     {
-     "id": "495b5c6939",
+     "id": "f60320ac08",
      "parent": "3cb58f4012",
      "branch": "run-cf203b",
      "job": "j29",
@@ -17298,9 +17298,41 @@
         "code": "[[matbaotstaili]];",
         "scope": null,
         "cause_id": null
+       },
+       {
+        "id": "wt_dc49681246",
+        "object": "kazeem",
+        "kind": "func_call",
+        "code": "kazeem.ask('only');",
+        "scope": "own",
+        "cause_id": null
+       },
+       {
+        "id": "wt_7e1213d7ae",
+        "object": "attendant",
+        "kind": "func_call",
+        "code": "attendant.hears(cooler_subject, 'ask');",
+        "scope": "ripple",
+        "cause_id": "wt_dc49681246"
+       },
+       {
+        "id": "wt_f3f154ac2f",
+        "object": "boat",
+        "kind": "func_call",
+        "code": "boat.hears(cooler_subject, 'ask');",
+        "scope": "ripple",
+        "cause_id": "wt_dc49681246"
+       },
+       {
+        "id": "wt_56847067d0",
+        "object": "buy",
+        "kind": "func_call",
+        "code": "buy.hears(cooler_subject, 'ask');",
+        "scope": "ripple",
+        "cause_id": "wt_dc49681246"
        }
       ],
-      "facts_total": 5,
+      "facts_total": 9,
       "functions": [],
       "instances": []
      }
@@ -18112,10 +18144,10 @@
   "run-0ae93c": "a11a1eab61",
   "run-3a15d2": "fbc46c6eb7",
   "run-ab4653": "dd8e54daee",
-  "run-cf203b": "495b5c6939",
+  "run-cf203b": "f60320ac08",
   "run-cb805f": "8d23a93627",
   "run-888ea9": "9815dfcb14"
  },
  "commits": 181,
- "updated": "2026-11-26T01:32:37-05:00"
+ "updated": "2026-11-26T01:33:26-05:00"
 }

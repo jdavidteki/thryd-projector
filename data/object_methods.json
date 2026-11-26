@@ -8349,7 +8349,7 @@
      "why": "same method"
     }
    ],
-   "faded": true,
+   "faded": false,
    "last_run": "run-2eb42d"
   },
   "mamaronke.tell": {
@@ -19702,14 +19702,14 @@
      ],
      "consequence": "She asks him straight, \"can you put them together?\", the name on the screen and the call she hung up on last night.",
      "consequence_job": "j27",
-     "resolved": "can.put(who=them:Person) from j26",
+     "resolved": "can.put(who=una:Person) from j19",
      "injected": [
       {
        "param": "who",
        "class": "Person",
-       "instance": "them",
+       "instance": "una",
        "from_run": "run-cf203b",
-       "from_job": "j26",
+       "from_job": "j19",
        "source": "pick"
       }
      ]
@@ -20212,6 +20212,267 @@
    ],
    "faded": false,
    "last_run": "run-cf203b"
+  },
+  "go.back": {
+   "object": "go",
+   "method": "back",
+   "args": [
+    "4pm"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j29",
+    "card": "w29",
+    "title": "go.back(4pm)",
+    "emoji": "🦃",
+    "at": "2026-11-26T01:33:12-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "go.back(4pm)",
+     "emoji": "🦃",
+     "arg": "4pm",
+     "run": "run-cf203b",
+     "job": "j29",
+     "tweets": [
+      {
+       "text": "#time -- go back to 4pm and [[ashc]]",
+       "year": "2025"
+      }
+     ],
+     "consequence": "The woman is still on the line from wherever the ladies are taking her photo, and she has told the wife everything up to 4pm yesterday.",
+     "consequence_job": "j30",
+     "resolved": "go.back(act=4pm:Action) from j29",
+     "injected": [
+      {
+       "param": "act",
+       "class": "Action",
+       "instance": "4pm",
+       "from_run": "run-cf203b",
+       "from_job": "j29",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "act",
+      "class": "Action",
+      "default": "4pm",
+      "first_run": "run-cf203b",
+      "first_job": "j29"
+     }
+    ],
+    "text": "back(act: Action)"
+   },
+   "receiver_class": "Action",
+   "prior": [
+    {
+     "id": "come.back",
+     "title": "come.back(defenses)",
+     "run": "run-cf203b",
+     "job": "j7",
+     "at": "2026-11-24T23:40:56-05:00",
+     "why": "same method"
+    }
+   ],
+   "faded": false,
+   "last_run": null
+  },
+  "know.what": {
+   "object": "know",
+   "method": "what",
+   "args": [
+    "gonna"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j29",
+    "card": "w29",
+    "title": "know.what(gonna)",
+    "emoji": "🐓",
+    "at": "2026-11-26T01:33:12-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "know.what(gonna)",
+     "emoji": "🐓",
+     "arg": "gonna",
+     "run": "run-cf203b",
+     "job": "j29",
+     "tweets": [
+      {
+       "text": "- i know what am gonna do for",
+       "year": "2024"
+      }
+     ],
+     "consequence": "Kemi starts, \"i know what am gonna do for\", and stops.",
+     "consequence_job": "j30",
+     "resolved": "know.what(what=gonna:Thing) from j29",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "gonna",
+       "from_run": "run-cf203b",
+       "from_job": "j29",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "gonna",
+      "first_run": "run-cf203b",
+      "first_job": "j29"
+     }
+    ],
+    "text": "what(what: Thing)"
+   },
+   "receiver_class": "Action",
+   "prior": [
+    {
+     "id": "daz.what",
+     "title": "daz.what(ton)",
+     "run": "run-cf203b",
+     "job": "j21",
+     "at": "2026-11-25T17:35:03-05:00",
+     "why": "same method"
+    }
+   ],
+   "faded": false,
+   "last_run": null
+  },
+  "stomach.infrastructure": {
+   "object": "stomach",
+   "method": "infrastructure",
+   "args": [
+    ""
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j29",
+    "card": "w29",
+    "title": "stomach.infrastructure()",
+    "emoji": "🐑",
+    "at": "2026-11-26T01:33:12-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "stomach.infrastructure()",
+     "emoji": "🐑",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j29",
+     "tweets": [
+      {
+       "text": "#ttb - stomach infrastructure, stomach",
+       "year": "2024"
+      }
+     ],
+     "consequence": "What just happened: The woman explains it was \"stomach infrastructure, stomach\": he fed her and paid her way.",
+     "consequence_job": "j30",
+     "resolved": "stomach.infrastructure()",
+     "injected": []
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [],
+    "text": "infrastructure()"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "will.deal": {
+   "object": "will",
+   "method": "deal",
+   "args": [
+    "them"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j29",
+    "card": "w29",
+    "title": "will.deal(them)",
+    "emoji": "🐧",
+    "at": "2026-11-26T01:33:12-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "will.deal(them)",
+     "emoji": "🐧",
+     "arg": "them",
+     "run": "run-cf203b",
+     "job": "j29",
+     "tweets": [
+      {
+       "text": "— and i will deal with them!",
+       "year": "2025"
+      }
+     ],
+     "consequence": "Kemi finishes her threat: \"and i will deal with them!\" 📖 Now: \"Them\" hangs in the doorway: the woman, and whoever else was there at 4pm.",
+     "consequence_job": "j30",
+     "resolved": "will.deal(who=them:Person) from j29",
+     "injected": [
+      {
+       "param": "who",
+       "class": "Person",
+       "instance": "them",
+       "from_run": "run-cf203b",
+       "from_job": "j29",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "who",
+      "class": "Person",
+      "default": "them",
+      "first_run": "run-5a58c4",
+      "first_job": "j33"
+     }
+    ],
+    "text": "deal(who: Person)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
   },
   "cooler.getdatemanufactured": {
    "object": "cooler",
@@ -23870,6 +24131,9 @@
    "global.ritual",
    "global.radio"
   ],
+  "go": [
+   "go.back"
+  ],
   "god_subject": [
    "object.look"
   ],
@@ -23967,6 +24231,7 @@
   "know": [
    "know.african",
    "know.uber",
+   "know.what",
    "know.getWant"
   ],
   "kunle": [
@@ -24317,6 +24582,9 @@
   "stay": [
    "stay.above"
   ],
+  "stomach": [
+   "stomach.infrastructure"
+  ],
   "story": [
    "story.go"
   ],
@@ -24472,6 +24740,9 @@
   ],
   "wifey_subject": [
    "object.look"
+  ],
+  "will": [
+   "will.deal"
   ],
   "wo": [
    "wo.imu"
@@ -29576,6 +29847,14 @@
    }
   ],
   "cell_phone": [
+   {
+    "scope": "safe",
+    "from": "18e7e8824901",
+    "title": "102. nature of a broken heart",
+    "funcs": [
+     "go.back"
+    ]
+   },
    {
     "scope": "safe",
     "from": "1956e94e236c",
@@ -41227,6 +41506,16 @@
     ]
    }
   ],
+  "president_general_among_figure": [
+   {
+    "scope": "safe",
+    "from": "7cc3dcbddb18",
+    "title": "802. president general among the nations",
+    "funcs": [
+     "stomach.infrastructure"
+    ]
+   }
+  ],
   "prior_reality": [
    {
     "scope": "run",
@@ -44979,6 +45268,16 @@
     ]
    }
   ],
+  "toast_figure": [
+   {
+    "scope": "safe",
+    "from": "1eb61f9a5956",
+    "title": "827. europe is my own motherland",
+    "funcs": [
+     "will.deal"
+    ]
+   }
+  ],
   "top_deck_charter_subject": [
    {
     "scope": "run",
@@ -47498,6 +47797,10 @@
     "rebuke.tin",
     "have.feelings",
     "hope.notyn",
+    "go.back",
+    "know.what",
+    "stomach.infrastructure",
+    "will.deal",
     "cli.cli",
     "thryd.importtheme",
     "kemi.ismarried",
@@ -47598,7 +47901,8 @@
   "039e6d09b0d6": {
    "title": "1123. the first a.i afrobeats album",
    "funcs": [
-    "marisol.send"
+    "marisol.send",
+    "know.what"
    ],
    "runs": []
   },
@@ -47819,6 +48123,13 @@
    ],
    "runs": []
   },
+  "18e7e8824901": {
+   "title": "102. nature of a broken heart",
+   "funcs": [
+    "go.back"
+   ],
+   "runs": []
+  },
   "1956e94e236c": {
    "title": "shazam is the sound of love",
    "funcs": [
@@ -47864,6 +48175,13 @@
     "teo.figure",
     "mamaronke.tell",
     "dez.watch"
+   ],
+   "runs": []
+  },
+  "1eb61f9a5956": {
+   "title": "827. europe is my own motherland",
+   "funcs": [
+    "will.deal"
    ],
    "runs": []
   },
@@ -48375,7 +48693,11 @@
     "queen.everything",
     "rebuke.tin",
     "have.feelings",
-    "hope.notyn"
+    "hope.notyn",
+    "go.back",
+    "know.what",
+    "stomach.infrastructure",
+    "will.deal"
    ],
    "runs": [
     "run-cf203b"
@@ -48448,6 +48770,13 @@
    "title": "618. i have an idea",
    "funcs": [
     "wife.kill"
+   ],
+   "runs": []
+  },
+  "7cc3dcbddb18": {
+   "title": "802. president general among the nations",
+   "funcs": [
+    "stomach.infrastructure"
    ],
    "runs": []
   },
@@ -49572,6 +49901,9 @@
   "1*pmgi5jXH1w3Cq_TFIC23HA.gif": [
    "2926a1e178ed"
   ],
+  "1*HIA3HIxjRujmed1CwRF4YQ.gif": [
+   "7cc3dcbddb18"
+  ],
   "1*o1i7GwsY0GysFRDNM5TZng.gif": [
    "8e5bbd0ffb78"
   ],
@@ -50007,6 +50339,9 @@
   "1*-TkXCRbWmzDw7ZJy1b6TZg.jpeg": [
    "ba87d1a4bdd9"
   ],
+  "1*sWCpMztfLG_hphViMfsiZQ.gif": [
+   "1eb61f9a5956"
+  ],
   "1*NyWwzQldCcKa-21UtJxlhg.jpeg": [
    "79a01af12615"
   ],
@@ -50154,7 +50489,8 @@
    "eb4af1c3e662"
   ],
   "1*6aKiM29-1_KKVxtLtMSI-A.gif": [
-   "9dec7ea80046"
+   "9dec7ea80046",
+   "18e7e8824901"
   ],
   "1*WrFSJNCz11JO3t2O2D_Y-w.gif": [
    "f7873beb34b8"
@@ -50702,7 +51038,8 @@
   "1*6aKiM29-1_KKVxtLtMSI-A.gif": {
    "runs": [],
    "safes": [
-    "9dec7ea80046"
+    "9dec7ea80046",
+    "18e7e8824901"
    ]
   },
   "1*KOfHcbZItSwnzB-Xt4fH3A.gif": {
@@ -50728,6 +51065,12 @@
    "runs": [],
    "safes": [
     "ef1514a17e31"
+   ]
+  },
+  "1*sWCpMztfLG_hphViMfsiZQ.gif": {
+   "runs": [],
+   "safes": [
+    "1eb61f9a5956"
    ]
   },
   "1*6k7whUBxQhiJ2ApXAVlnqg.gif": {
@@ -50867,6 +51210,12 @@
    "runs": [],
    "safes": [
     "a3d083db0935"
+   ]
+  },
+  "1*HIA3HIxjRujmed1CwRF4YQ.gif": {
+   "runs": [],
+   "safes": [
+    "7cc3dcbddb18"
    ]
   },
   "1*lswoY_MumGtBibYjg9n9NQ.gif": {
@@ -51379,6 +51728,9 @@
    "global.ritual",
    "global.radio"
   ],
+  "go": [
+   "go.back"
+  ],
   "gol": [
    "gol.lo"
   ],
@@ -51467,6 +51819,7 @@
   "know": [
    "know.african",
    "know.uber",
+   "know.what",
    "know.getWant"
   ],
   "kunle": [
@@ -51734,6 +52087,9 @@
   "stay": [
    "stay.above"
   ],
+  "stomach": [
+   "stomach.infrastructure"
+  ],
   "story": [
    "story.go"
   ],
@@ -51836,6 +52192,9 @@
   ],
   "wife": [
    "wife.kill"
+  ],
+  "will": [
+   "will.deal"
   ],
   "wo": [
    "wo.imu"
@@ -52122,6 +52481,9 @@
   "queen": [],
   "rebuke": [],
   "hope": [],
+  "go": [],
+  "stomach": [],
+  "will": [],
   "cooler": [],
   "kazeem.goodqualities": [],
   "app": [],
@@ -52337,6 +52699,7 @@
    "even",
    "feel",
    "global",
+   "go",
    "guy",
    "have",
    "hope",
@@ -52364,11 +52727,13 @@
    "slapping",
    "something",
    "stay",
+   "stomach",
    "story",
    "stringify",
    "weya",
    "what",
    "why",
+   "will",
    "wo",
    "woke",
    "wym",
@@ -52388,5 +52753,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-26T01:22:35-05:00"
+ "updated": "2026-11-26T01:33:27-05:00"
 }

@@ -26,7 +26,7 @@
    "methods": [
     "hide",
     "on",
-    "make"
+    "deal"
    ],
    "instances": 55,
    "arg_instances": 12,
@@ -108,8 +108,8 @@
     "give",
     "know"
    ],
-   "instances": 472,
-   "arg_instances": 143,
+   "instances": 473,
+   "arg_instances": 144,
    "parent": null,
    "chain": [
     "Thing"
@@ -173,11 +173,11 @@
    "param": "act",
    "methods": [
     "on",
-    "count",
-    "map"
+    "back",
+    "count"
    ],
-   "instances": 25,
-   "arg_instances": 22,
+   "instances": 26,
+   "arg_instances": 23,
    "parent": "Thing",
    "chain": [
     "Action",
@@ -240,6 +240,22 @@
     "run-888ea9"
    ],
    "tweets": []
+  },
+  "4pm": {
+   "class": "Action",
+   "cue": "tweet: to/will ...",
+   "first_run": "run-cf203b",
+   "first_job": "j29",
+   "source": "pick",
+   "runs": [
+    "run-cf203b"
+   ],
+   "tweets": [
+    {
+     "text": "#time -- go back to 4pm and [[ashc]]",
+     "year": "2025"
+    }
+   ]
   },
   "50000dollartonaira": {
    "class": "Thing",
@@ -2773,6 +2789,22 @@
     {
      "text": "- religion is a variable and [[god]] is the value",
      "year": "2025"
+    }
+   ]
+  },
+  "gonna": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-cf203b",
+   "first_job": "j29",
+   "source": "pick",
+   "runs": [
+    "run-cf203b"
+   ],
+   "tweets": [
+    {
+     "text": "- i know what am gonna do for",
+     "year": "2024"
     }
    ]
   },
@@ -7098,6 +7130,10 @@
     {
      "text": "- can you put them together?",
      "year": "2024"
+    },
+    {
+     "text": "— and i will deal with them!",
+     "year": "2025"
     }
    ]
   },
@@ -9779,12 +9815,6 @@
     "pick"
    ],
    [
-    "them",
-    "Person",
-    "j26",
-    "pick"
-   ],
-   [
     "meek",
     "Thing",
     "j26",
@@ -9800,6 +9830,24 @@
     "photo",
     "Thing",
     "j27",
+    "pick"
+   ],
+   [
+    "4pm",
+    "Action",
+    "j29",
+    "pick"
+   ],
+   [
+    "gonna",
+    "Thing",
+    "j29",
+    "pick"
+   ],
+   [
+    "them",
+    "Person",
+    "j29",
     "pick"
    ]
   ],
@@ -12522,6 +12570,10 @@
   "rebuke.tin": "tin()",
   "have.feelings": "feelings()",
   "hope.notyn": "notyn()",
+  "go.back": "back(act: Action)",
+  "know.what": "what(what: Thing)",
+  "stomach.infrastructure": "infrastructure()",
+  "will.deal": "deal(who: Person)",
   "cooler.getdatemanufactured": "getDateManufactured()",
   "ronke.getlikes.contains": "getlikes.contains()",
   "kazeem.goodqualities.filter": "filter()",
@@ -13029,6 +13081,7 @@
    "even",
    "feel",
    "global",
+   "go",
    "guy",
    "have",
    "hope",
@@ -13056,11 +13109,13 @@
    "slapping",
    "something",
    "stay",
+   "stomach",
    "story",
    "stringify",
    "weya",
    "what",
    "why",
+   "will",
    "wo",
    "woke",
    "wym",
@@ -13139,5 +13194,5 @@
   "epilogue": "quiet",
   "coda": "quiet"
  },
- "updated": "2026-11-26T01:21:44-05:00"
+ "updated": "2026-11-26T01:33:26-05:00"
 }
