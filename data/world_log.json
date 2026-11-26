@@ -19566,7 +19566,7 @@
   },
   "run-888ea9": {
    "forked_from": "safe:38688e69edf3",
-   "head": "af55e82f0a",
+   "head": "8efef7c44c",
    "commits": [
     {
      "id": "b0726dfc67",
@@ -19904,7 +19904,7 @@
      }
     },
     {
-     "id": "af55e82f0a",
+     "id": "8efef7c44c",
      "parent": "e1b3375c1f",
      "branch": "run-888ea9",
      "job": "j11",
@@ -19944,9 +19944,41 @@
         "code": "alorof.hears(person, 'gbogbo');",
         "scope": "ripple",
         "cause_id": "wt_39927d7f2c"
+       },
+       {
+        "id": "wt_a8b6f85e54",
+        "object": "shi",
+        "kind": "func_call",
+        "code": "shi.gbogbo('ezaley');",
+        "scope": "env",
+        "cause_id": null
+       },
+       {
+        "id": "wt_e61cb0699c",
+        "object": "agboro",
+        "kind": "func_call",
+        "code": "agboro.hears(person, 'gbogbo');",
+        "scope": "ripple",
+        "cause_id": "wt_a8b6f85e54"
+       },
+       {
+        "id": "wt_b31207b007",
+        "object": "ahan",
+        "kind": "func_call",
+        "code": "ahan.hears(person, 'gbogbo');",
+        "scope": "ripple",
+        "cause_id": "wt_a8b6f85e54"
+       },
+       {
+        "id": "wt_d0d3b64e11",
+        "object": "alorof",
+        "kind": "func_call",
+        "code": "alorof.hears(person, 'gbogbo');",
+        "scope": "ripple",
+        "cause_id": "wt_a8b6f85e54"
        }
       ],
-      "facts_total": 4,
+      "facts_total": 8,
       "functions": [
        {
         "func": "art.look",
@@ -20403,9 +20435,9 @@
   "run-3a15d2": "fbc46c6eb7",
   "run-ab4653": "dd8e54daee",
   "run-cf203b": "6b2a230f74",
-  "run-888ea9": "af55e82f0a",
+  "run-888ea9": "8efef7c44c",
   "run-cb805f": "8d23a93627"
  },
  "commits": 204,
- "updated": "2026-11-26T18:53:16-05:00"
+ "updated": "2026-11-26T18:54:06-05:00"
 }
