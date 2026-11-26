@@ -147,11 +147,11 @@
    "param": "feeling",
    "methods": [
     "teach",
-    "find",
-    "mix"
+    "feel",
+    "find"
    ],
-   "instances": 5,
-   "arg_instances": 5,
+   "instances": 6,
+   "arg_instances": 6,
    "parent": "Thing",
    "chain": [
     "Feeling",
@@ -1114,6 +1114,22 @@
    "tweets": [
     {
      "text": "— it’s like the phd i was toking about in [[the sky]]",
+     "year": "2025"
+    }
+   ]
+  },
+  "butterflies": {
+   "class": "Feeling",
+   "cue": "tweet: feel ...",
+   "first_run": "run-cf203b",
+   "first_job": "j33",
+   "source": "pick",
+   "runs": [
+    "run-cf203b"
+   ],
+   "tweets": [
+    {
+     "text": "-- when you touch me yea i feel butterflies",
      "year": "2025"
     }
    ]
@@ -4923,11 +4939,16 @@
    "first_job": "j22",
    "source": "pick",
    "runs": [
-    "run-5a58c4"
+    "run-5a58c4",
+    "run-cf203b"
    ],
    "tweets": [
     {
      "text": "#seniorboys — he told him not to touch him again!",
+     "year": "2025"
+    },
+    {
+     "text": "- but the [[lie]] can never [[ever]] truth",
      "year": "2025"
     }
    ]
@@ -9943,6 +9964,18 @@
     "Thing",
     "j32",
     "pick"
+   ],
+   [
+    "never",
+    "Frequency",
+    "j33",
+    "pick"
+   ],
+   [
+    "butterflies",
+    "Feeling",
+    "j33",
+    "pick"
    ]
   ],
   "run-b70200": [
@@ -12678,6 +12711,10 @@
   "dem.get": "get(how: Manner)",
   "sounded.like": "like(what: Thing)",
   "state.update": "update()",
+  "finding.precisions": "precisions()",
+  "forgive.oloriburuku": "oloriburuku()",
+  "lie.truth": "truth(when: Frequency)",
+  "touch.feel": "feel(feeling: Feeling)",
   "cooler.getdatemanufactured": "getDateManufactured()",
   "ronke.getlikes.contains": "getlikes.contains()",
   "kazeem.goodqualities.filter": "filter()",
@@ -13186,6 +13223,8 @@
    "ehen",
    "even",
    "feel",
+   "finding",
+   "forgive",
    "global",
    "go",
    "guy",
@@ -13196,6 +13235,7 @@
    "know",
    "ladies",
    "lehgeet",
+   "lie",
    "love",
    "make",
    "mean",
@@ -13224,6 +13264,7 @@
    "stomach",
    "story",
    "stringify",
+   "touch",
    "weya",
    "what",
    "why",
@@ -13306,5 +13347,5 @@
   "epilogue": "quiet",
   "coda": "quiet"
  },
- "updated": "2026-11-26T10:24:20-05:00"
+ "updated": "2026-11-26T11:21:28-05:00"
 }

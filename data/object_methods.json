@@ -21103,6 +21103,241 @@
    "faded": false,
    "last_run": "run-cf203b"
   },
+  "finding.precisions": {
+   "object": "finding",
+   "method": "precisions",
+   "args": [
+    ""
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j33",
+    "card": "w33",
+    "title": "finding.precisions()",
+    "emoji": "🪹",
+    "at": "2026-11-26T11:20:44-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "finding.precisions()",
+     "emoji": "🪹",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j33",
+     "tweets": [
+      {
+       "text": "— me and you finding all these precisions",
+       "year": "2025"
+      }
+     ],
+     "consequence": "What just happened: Kemi looks at Tobi and says, \"me and you finding all these precisions,\" as if checking every detail of their marriage.",
+     "consequence_job": "j34",
+     "resolved": "finding.precisions()",
+     "injected": []
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [],
+    "text": "precisions()"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "forgive.oloriburuku": {
+   "object": "forgive",
+   "method": "oloriburuku",
+   "args": [
+    ""
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j33",
+    "card": "w33",
+    "title": "forgive.oloriburuku()",
+    "emoji": "🐌",
+    "at": "2026-11-26T11:20:44-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "forgive.oloriburuku()",
+     "emoji": "🐌",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j33",
+     "tweets": [
+      {
+       "text": "- i can ![[ever]] forgive dat [[oloriburuku]]",
+       "year": "2025"
+      }
+     ],
+     "consequence": "Then she hardens: \"i can never forgive dat oloriburuku,\" and \"the lie can never truth.\" But when Tobi touches her arm she breaks: \"when you touch me yea i feel butterflies.\" The cooler subject has been tapped 11 times since this agenda bega",
+     "consequence_job": "j34",
+     "resolved": "forgive.oloriburuku()",
+     "injected": []
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [],
+    "text": "oloriburuku()"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "lie.truth": {
+   "object": "lie",
+   "method": "truth",
+   "args": [
+    "never"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j33",
+    "card": "w33",
+    "title": "lie.truth(never)",
+    "emoji": "🦋",
+    "at": "2026-11-26T11:20:44-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "lie.truth(never)",
+     "emoji": "🦋",
+     "arg": "never",
+     "run": "run-cf203b",
+     "job": "j33",
+     "tweets": [
+      {
+       "text": "- but the [[lie]] can never [[ever]] truth",
+       "year": "2025"
+      }
+     ],
+     "consequence": "Then she hardens: \"i can never forgive dat oloriburuku,\" and \"the lie can never truth.\" But when Tobi touches her arm she breaks: \"when you touch me yea i feel butterflies.\" The cooler subject has been tapped 11 times since this agenda bega",
+     "consequence_job": "j34",
+     "resolved": "lie.truth(when=never:Frequency) from j33",
+     "injected": [
+      {
+       "param": "when",
+       "class": "Frequency",
+       "instance": "never",
+       "from_run": "run-cf203b",
+       "from_job": "j33",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "when",
+      "class": "Frequency",
+      "default": "never",
+      "first_run": "run-5a58c4",
+      "first_job": "j22"
+     }
+    ],
+    "text": "truth(when: Frequency)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "touch.feel": {
+   "object": "touch",
+   "method": "feel",
+   "args": [
+    "butterflies"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j33",
+    "card": "w33",
+    "title": "touch.feel(butterflies)",
+    "emoji": "🐞",
+    "at": "2026-11-26T11:20:44-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "touch.feel(butterflies)",
+     "emoji": "🐞",
+     "arg": "butterflies",
+     "run": "run-cf203b",
+     "job": "j33",
+     "tweets": [
+      {
+       "text": "-- when you touch me yea i feel butterflies",
+       "year": "2025"
+      }
+     ],
+     "consequence": "Then she hardens: \"i can never forgive dat oloriburuku,\" and \"the lie can never truth.\" But when Tobi touches her arm she breaks: \"when you touch me yea i feel butterflies.\" The cooler subject has been tapped 11 times since this agenda bega",
+     "consequence_job": "j34",
+     "resolved": "touch.feel(feeling=butterflies:Feeling) from j33",
+     "injected": [
+      {
+       "param": "feeling",
+       "class": "Feeling",
+       "instance": "butterflies",
+       "from_run": "run-cf203b",
+       "from_job": "j33",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "feeling",
+      "class": "Feeling",
+      "default": "butterflies",
+      "first_run": "run-cf203b",
+      "first_job": "j33"
+     }
+    ],
+    "text": "feel(feeling: Feeling)"
+   },
+   "receiver_class": "Action",
+   "prior": [
+    {
+     "id": "seller.feel",
+     "title": "seller.feel(wan)",
+     "run": "run-2eb42d",
+     "job": "j22",
+     "at": "2026-11-18T10:54:56-05:00",
+     "why": "same method"
+    }
+   ],
+   "faded": false,
+   "last_run": null
+  },
   "cooler.getdatemanufactured": {
    "object": "cooler",
    "method": "getDateManufactured",
@@ -24773,6 +25008,9 @@
   "feel": [
    "feel.divine"
   ],
+  "finding": [
+   "finding.precisions"
+  ],
   "fine": [
    "fine.weigh"
   ],
@@ -24787,6 +25025,9 @@
    "folake.see",
    "folake.hold",
    "folake.keep"
+  ],
+  "forgive": [
+   "forgive.oloriburuku"
   ],
   "fuel": [
    "fuel.buy"
@@ -24942,6 +25183,9 @@
   ],
   "lehgeet": [
    "lehgeet.ni"
+  ],
+  "lie": [
+   "lie.truth"
   ],
   "life": [
    "life.give"
@@ -25385,7 +25629,8 @@
    "toothbrush.on"
   ],
   "touch": [
-   "touch.again"
+   "touch.again",
+   "touch.feel"
   ],
   "townhallmeeting": [
    "townhallmeeting.newguest"
@@ -28996,6 +29241,7 @@
     "from": "c0f7f80fa091",
     "title": "1120. but my will is butterflies",
     "funcs": [
+     "finding.precisions",
      "marisol.find"
     ]
    }
@@ -36730,6 +36976,16 @@
     ]
    }
   ],
+  "little_tenderness_subject": [
+   {
+    "scope": "safe",
+    "from": "49c1bead33de",
+    "title": "107. a little tenderness",
+    "funcs": [
+     "touch.feel"
+    ]
+   }
+  ],
   "love": [
    {
     "scope": "run",
@@ -44379,6 +44635,16 @@
     ]
    }
   ],
+  "sister_oprah_figure": [
+   {
+    "scope": "safe",
+    "from": "656b5f5464c5",
+    "title": "416. forget",
+    "funcs": [
+     "forgive.oloriburuku"
+    ]
+   }
+  ],
   "skating_skating_skating_figure": [
    {
     "scope": "safe",
@@ -48656,6 +48922,10 @@
     "dem.get",
     "sounded.like",
     "state.update",
+    "finding.precisions",
+    "forgive.oloriburuku",
+    "lie.truth",
+    "touch.feel",
     "cli.cli",
     "thryd.importtheme",
     "kemi.ismarried",
@@ -49347,6 +49617,13 @@
    ],
    "runs": []
   },
+  "49c1bead33de": {
+   "title": "107. a little tenderness",
+   "funcs": [
+    "touch.feel"
+   ],
+   "runs": []
+  },
   "4a2a8f3f8cd6": {
    "title": "817. 2037",
    "funcs": [
@@ -49374,6 +49651,13 @@
    "funcs": [
     "adaora.cap",
     "ronke.watch"
+   ],
+   "runs": []
+  },
+  "52d74516fc78": {
+   "title": "530. the most intelligent woman in lagos",
+   "funcs": [
+    "lie.truth"
    ],
    "runs": []
   },
@@ -49452,6 +49736,13 @@
    "runs": [
     "run-65400f"
    ]
+  },
+  "656b5f5464c5": {
+   "title": "416. forget",
+   "funcs": [
+    "forgive.oloriburuku"
+   ],
+   "runs": []
   },
   "65c8a08fe242": {
    "title": "329. ew",
@@ -49585,7 +49876,11 @@
     "precision.accuracy",
     "dem.get",
     "sounded.like",
-    "state.update"
+    "state.update",
+    "finding.precisions",
+    "forgive.oloriburuku",
+    "lie.truth",
+    "touch.feel"
    ],
    "runs": [
     "run-cf203b"
@@ -50201,7 +50496,8 @@
   "c0f7f80fa091": {
    "title": "1120. but my will is butterflies",
    "funcs": [
-    "marisol.find"
+    "marisol.find",
+    "finding.precisions"
    ],
    "runs": []
   },
@@ -50740,9 +51036,15 @@
   "1*Mlzl3nV3sJw9EhZMr1VG3g.jpeg": [
    "0a802d1f9af3"
   ],
+  "1*0yEaVegle2sm_7jU4as3IA.gif": [
+   "52d74516fc78"
+  ],
   "1*V7woJTj6Kifyb9FwSE3bLw.gif": [
    "08eb7137929c",
    "94a985919c00"
+  ],
+  "1*LhCtrYlvzkGdnJIUpSxnRw.gif": [
+   "49c1bead33de"
   ],
   "1*YxSfltlaEauuzvI0gRFu8g.gif": [
    "1807dafe6f98"
@@ -51045,6 +51347,9 @@
   "1*3jdLlO20gy-sPqFRavBV-A.gif": [
    "f34d29e479d5",
    "09dc204dfd9a"
+  ],
+  "1*o8lxjUSwBzm7LdguTKUlbA.gif": [
+   "656b5f5464c5"
   ],
   "1*lXyaYynK9k1RiaRxau4pmw.gif": [
    "d66009c8696d"
@@ -51817,6 +52122,12 @@
     "08999f5fb666"
    ]
   },
+  "1*LhCtrYlvzkGdnJIUpSxnRw.gif": {
+   "runs": [],
+   "safes": [
+    "49c1bead33de"
+   ]
+  },
   "1*Mrb8Mx5xo1TI_U1opDQ6nw.gif": {
    "runs": [],
    "safes": [
@@ -52168,6 +52479,12 @@
    "runs": [],
    "safes": [
     "a3d083db0935"
+   ]
+  },
+  "1*o8lxjUSwBzm7LdguTKUlbA.gif": {
+   "runs": [],
+   "safes": [
+    "656b5f5464c5"
    ]
   },
   "1*HIA3HIxjRujmed1CwRF4YQ.gif": {
@@ -52671,6 +52988,9 @@
   "feel": [
    "feel.divine"
   ],
+  "finding": [
+   "finding.precisions"
+  ],
   "fine": [
    "fine.weigh"
   ],
@@ -52682,6 +53002,9 @@
    "folake.see",
    "folake.hold",
    "folake.keep"
+  ],
+  "forgive": [
+   "forgive.oloriburuku"
   ],
   "fuel": [
    "fuel.buy"
@@ -52818,6 +53141,9 @@
   ],
   "lehgeet": [
    "lehgeet.ni"
+  ],
+  "lie": [
+   "lie.truth"
   ],
   "life": [
    "life.give"
@@ -53141,7 +53467,8 @@
    "toothbrush.on"
   ],
   "touch": [
-   "touch.again"
+   "touch.again",
+   "touch.feel"
   ],
   "townhallmeeting": [
    "townhallmeeting.newguest"
@@ -53480,6 +53807,9 @@
   "precision": [],
   "sounded": [],
   "state": [],
+  "finding": [],
+  "forgive": [],
+  "lie": [],
   "cooler": [],
   "kazeem.goodqualities": [],
   "app": [],
@@ -53695,6 +54025,8 @@
    "ehen",
    "even",
    "feel",
+   "finding",
+   "forgive",
    "global",
    "go",
    "guy",
@@ -53705,6 +54037,7 @@
    "know",
    "ladies",
    "lehgeet",
+   "lie",
    "love",
    "make",
    "mean",
@@ -53733,6 +54066,7 @@
    "stomach",
    "story",
    "stringify",
+   "touch",
    "weya",
    "what",
    "why",
@@ -53756,5 +54090,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-26T10:24:21-05:00"
+ "updated": "2026-11-26T11:21:29-05:00"
 }
