@@ -8,11 +8,11 @@ const js = rd('assets/job_card.js'), html = rd('index.html'), st = rd('assets/st
 
 test('job_card.js loads only with ?cards=1 and no-ops otherwise', ()=>{
   assert.match(html, /cards=1/);
-  assert.match(html, /job_card\.js\?v=1/);
+  assert.match(html, /job_card\.js\?v=2/);
   assert.match(js, /cards=1/);
-  assert.match(html, /var VER=620,/);
+  assert.match(html, /var VER=621,/);
   const v = JSON.parse(ver);
-  assert.equal(v.v, 620);
+  assert.equal(v.v, 621);
 });
 
 test('layout is job card, then typeline, then plain always-visible buttons', ()=>{
@@ -40,7 +40,7 @@ test('after Send the panel waits for the next job, then swaps on the slow poll',
 
 test('one Send per job client-side; menu taps deduped for 2 minutes before POST', ()=>{
   assert.match(js, /wasSent\(card\.job\)/);
-  assert.match(js, /'sent' : 'Send'/);
+  assert.match(js, /'sent \\u2713' : 'Send'/);
   assert.match(js, /MENU_DEDUPE_MS = 120000/);
   assert.match(js, /drop before POST/);
   assert.match(js, /type:'card_pick'/);
@@ -70,4 +70,19 @@ test('command button visible text and aria-label are [[god]], click still toggle
   // close keeps the dragged position for the next open
   assert.match(ai, /function close\(\)\{ if\(box\)\{ box\.classList\.remove\('on'\); inp\.blur\(\); \} \}/);
   assert.match(ai, /POS_KEY = 'thryd_aibox_pos'/);
+});
+
+test('v621: Send is never silent; stale card says so; tweet lines; Literata; capped height', ()=>{
+  assert.match(js, /Pick a line \(or type one\) first\./);
+  assert.match(js, /is closed \\u2014 /);
+  assert.match(js, /function awaitReply/);
+  assert.match(js, /setStatus\('Not sent/);
+  assert.match(js, /sel\.values/);
+  assert.match(js, /sig === cardSig/);
+  assert.match(js, /className = 'ot'/);
+  assert.match(js, /literata-420\.woff2/);
+  assert.match(js, /overflow:hidden/);
+  assert.match(js, /function reclamp/);
+  const card = JSON.parse(rd('data/open_card.json'));
+  if(card.open){ assert.ok(card.options.some(o => typeof o.line === 'string' && o.line.length > 0)); }
 });

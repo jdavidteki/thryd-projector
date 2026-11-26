@@ -1,5 +1,5 @@
 {
- "v": 620,
- "at": "2026-11-26T11:40:00-05:00",
- "note": "v620: the [[god]] command panel is draggable by its [[god]] header (pointer events, clamped to the viewport, position saved in localStorage and restored on open; reset if offscreen after resize). Tapping the [[god]] logo still opens the panel and tapping it again closes the whole box, keeping the dragged position. Behind ?cards=1 the panel still shows the open job card and menu/lock buttons. CAP_DEFAULT stays 10."
+ "v": 621,
+ "at": "2026-11-26T12:30:00-05:00",
+ "note": "v621: [[god]] command panel (?cards=1) redesign and Send fix. Send never fails silently: it checks the card is still open (stale card says so and swaps to the open job), shows sending/sent/received or a red error with the reason, and waits for the intake receipt. Picks survive the 30 s poll (selection kept in JS; unchanged card is not re-rendered); taps use pointerup+click deduped. Each option shows the real tweet line under its code label. Story text in self-hosted Literata (18 KB subset). Panel height capped with the card body scrolling inside so the drag header stays grabbable; dragged position re-clamped on resize/growth. CAP_DEFAULT stays 10."
 }
