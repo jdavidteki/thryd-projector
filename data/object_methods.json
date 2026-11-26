@@ -21937,6 +21937,136 @@
    "faded": false,
    "last_run": "run-cf203b"
   },
+  "bumbum.what": {
+   "object": "bumbum",
+   "method": "what",
+   "args": [
+    ""
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j37",
+    "card": "w37",
+    "title": "bumbum.what()",
+    "emoji": "🦝",
+    "at": "2026-11-26T12:33:21-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "bumbum.what()",
+     "emoji": "🦝",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j37",
+     "tweets": [
+      {
+       "text": "[[digtj]] - is that [[uwsaas]] bumbum? what!",
+       "year": "2024"
+      }
+     ],
+     "consequence": "come and do!\" Then the next lyric played and she stopped the song herself: \"is that bumbum?",
+     "consequence_job": "j38",
+     "resolved": "bumbum.what()",
+     "injected": []
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [],
+    "text": "what()"
+   },
+   "receiver_class": "Thing",
+   "prior": [
+    {
+     "id": "know.what",
+     "title": "know.what(gonna)",
+     "run": "run-cf203b",
+     "job": "j29",
+     "at": "2026-11-26T01:33:12-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "daz.what",
+     "title": "daz.what(ton)",
+     "run": "run-cf203b",
+     "job": "j21",
+     "at": "2026-11-25T17:35:03-05:00",
+     "why": "same method"
+    }
+   ],
+   "faded": false,
+   "last_run": null
+  },
+  "nd.ireland": {
+   "object": "nd",
+   "method": "ireland",
+   "args": [
+    "wrong"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j37",
+    "card": "w37",
+    "title": "nd.ireland(wrong)",
+    "emoji": "🦡",
+    "at": "2026-11-26T12:33:21-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "nd.ireland(wrong)",
+     "emoji": "🦡",
+     "arg": "wrong",
+     "run": "run-cf203b",
+     "job": "j37",
+     "tweets": [
+      {
+       "text": "- nd ireland you did no wrong",
+       "year": "2024"
+      }
+     ],
+     "consequence": "\"i'm bigger than that!\" she said, then turned to Tobi with a cold little smile: \"nd ireland you did no wrong.\" She shoved the phone at him: \"do and come!",
+     "consequence_job": "j38",
+     "resolved": "nd.ireland(what=wrong:Thing) from j37",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "wrong",
+       "from_run": "run-cf203b",
+       "from_job": "j37",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "wrong",
+      "first_run": "run-cf203b",
+      "first_job": "j37"
+     }
+    ],
+    "text": "ireland(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
   "cooler.getdatemanufactured": {
    "object": "cooler",
    "method": "getDateManufactured",
@@ -25361,6 +25491,9 @@
   "boze": [
    "boze.watch"
   ],
+  "bumbum": [
+   "bumbum.what"
+  ],
   "buy": [
    "buy.fold"
   ],
@@ -25933,6 +26066,9 @@
   ],
   "media": [
    "media.all"
+  ],
+  "nd": [
+   "nd.ireland"
   ],
   "netflix": [
    "netflix.chill"
@@ -33656,6 +33792,7 @@
     "from": "d15604eed466",
     "title": "803. excuse me",
     "funcs": [
+     "bumbum.what",
      "history.see"
     ]
    }
@@ -46401,6 +46538,16 @@
     ]
    }
   ],
+  "spirit_figure": [
+   {
+    "scope": "safe",
+    "from": "49319632985b",
+    "title": "413. like spirit",
+    "funcs": [
+     "nd.ireland"
+    ]
+   }
+  ],
   "stories_strong_subject": [
    {
     "scope": "safe",
@@ -50759,6 +50906,8 @@
     "longer.deeper",
     "put.down",
     "quickly.realize",
+    "bumbum.what",
+    "nd.ireland",
     "cli.cli",
     "thryd.importtheme",
     "kemi.ismarried",
@@ -51465,6 +51614,13 @@
    ],
    "runs": []
   },
+  "49319632985b": {
+   "title": "413. like spirit",
+   "funcs": [
+    "nd.ireland"
+   ],
+   "runs": []
+  },
   "49c1bead33de": {
    "title": "107. a little tenderness",
    "funcs": [
@@ -51745,7 +51901,9 @@
     "cant.release",
     "longer.deeper",
     "put.down",
-    "quickly.realize"
+    "quickly.realize",
+    "bumbum.what",
+    "nd.ireland"
    ],
    "runs": [
     "run-cf203b"
@@ -52461,7 +52619,8 @@
   "d15604eed466": {
    "title": "803. excuse me",
    "funcs": [
-    "history.see"
+    "history.see",
+    "bumbum.what"
    ],
    "runs": []
   },
@@ -53400,6 +53559,9 @@
   ],
   "1*XAiSYjFKsqdzhWwoSd6nhw.gif": [
    "dbef6608be65"
+  ],
+  "1*2JQgo8v8pIB7JpB-ukfepA.gif": [
+   "49319632985b"
   ],
   "1*WHi5bGe1yByrJpchMb-ggw.gif": [
    "f3242b82bede",
@@ -54439,6 +54601,12 @@
     "9338aadfde6e"
    ]
   },
+  "1*2JQgo8v8pIB7JpB-ukfepA.gif": {
+   "runs": [],
+   "safes": [
+    "49319632985b"
+   ]
+  },
   "1*a2_sukQxwT2zHNPHUCGl_Q.gif": {
    "runs": [],
    "safes": [
@@ -54799,6 +54967,9 @@
   ],
   "boze": [
    "boze.watch"
+  ],
+  "bumbum": [
+   "bumbum.what"
   ],
   "buy": [
    "buy.fold"
@@ -55167,6 +55338,9 @@
   ],
   "media": [
    "media.all"
+  ],
+  "nd": [
+   "nd.ireland"
   ],
   "netflix": [
    "netflix.chill"
@@ -55799,6 +55973,8 @@
   "longer": [],
   "put": [],
   "quickly": [],
+  "bumbum": [],
+  "nd": [],
   "cooler": [],
   "kazeem.goodqualities": [],
   "app": [],
@@ -56002,6 +56178,7 @@
    "ahan",
    "alorof",
    "believe",
+   "bumbum",
    "can",
    "cant",
    "chasing",
@@ -56035,6 +56212,7 @@
    "love",
    "make",
    "mean",
+   "nd",
    "nigerian",
    "once",
    "one",
@@ -56087,5 +56265,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-26T12:32:17-05:00"
+ "updated": "2026-11-26T12:33:57-05:00"
 }
