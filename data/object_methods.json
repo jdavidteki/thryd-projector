@@ -19838,7 +19838,7 @@
        "instance": "meek",
        "from_run": "run-cf203b",
        "from_job": "j26",
-       "source": "pick"
+       "source": "original"
       }
      ]
     }
@@ -19976,7 +19976,7 @@
        "instance": "definitely",
        "from_run": "run-cf203b",
        "from_job": "j26",
-       "source": "pick"
+       "source": "original"
       }
      ]
     }
@@ -20041,7 +20041,7 @@
        "instance": "photo",
        "from_run": "run-cf203b",
        "from_job": "j27",
-       "source": "pick"
+       "source": "original"
       }
      ]
     }
@@ -20374,15 +20374,15 @@
      ],
      "consequence": "Kemi starts, \"i know what am gonna do for\", and stops.",
      "consequence_job": "j30",
-     "resolved": "know.what(what=photo:Thing) from j27",
+     "resolved": "know.what(what=gonna:Thing) from j29",
      "injected": [
       {
        "param": "what",
        "class": "Thing",
-       "instance": "photo",
+       "instance": "gonna",
        "from_run": "run-cf203b",
-       "from_job": "j27",
-       "source": "pick"
+       "from_job": "j29",
+       "source": "original"
       }
      ]
     }
@@ -21591,8 +21591,25 @@
     "emoji": "🪿",
     "at": "2026-11-26T11:35:21-05:00"
    },
-   "calls": 0,
+   "calls": 1,
    "titles": [
+    {
+     "title": "understand.now()",
+     "emoji": "🎱",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j71",
+     "tweets": [
+      {
+       "text": "#thryd -- do you understand now?",
+       "year": "2024"
+      }
+     ],
+     "consequence": "What just happened: The last run ended on \"[[when]] - that yuwa your best friend\", \"[[ljsimbf]] - the most prolific from this generation\", \"#thryd -- do you understand now?\" and \"if you draw line from cincinnati to #juniorboys - where are t",
+     "consequence_job": "j72",
+     "resolved": "understand.now()",
+     "injected": []
+    },
     {
      "title": "understand.now()",
      "emoji": "🪿",
@@ -28280,6 +28297,206 @@
    "faded": false,
    "last_run": "run-cf203b"
   },
+  "draw.line": {
+   "object": "draw",
+   "method": "line",
+   "args": [
+    "cincinnati"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j71",
+    "card": "w71",
+    "title": "draw.line(cincinnati)",
+    "emoji": "🥮",
+    "at": "2026-11-27T16:57:46-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "draw.line(cincinnati)",
+     "emoji": "🥮",
+     "arg": "cincinnati",
+     "run": "run-cf203b",
+     "job": "j71",
+     "tweets": [],
+     "consequence": "What just happened: The last run ended on \"[[when]] - that yuwa your best friend\", \"[[ljsimbf]] - the most prolific from this generation\", \"#thryd -- do you understand now?\" and \"if you draw line from cincinnati to #juniorboys - where are t",
+     "consequence_job": "j72",
+     "resolved": "draw.line(what=cincinnati:Thing) from j71",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "cincinnati",
+       "from_run": "run-cf203b",
+       "from_job": "j71",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "cincinnati",
+      "first_run": "run-cf203b",
+      "first_job": "j71"
+     }
+    ],
+    "text": "line(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [
+    {
+     "id": "blender.line",
+     "title": "blender.line(liters)",
+     "run": "run-5a58c4",
+     "job": "j31",
+     "at": "2026-11-17T15:11:45-05:00",
+     "why": "same method"
+    }
+   ],
+   "faded": false,
+   "last_run": null
+  },
+  "most.prolific": {
+   "object": "most",
+   "method": "prolific",
+   "args": [
+    "generation"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j71",
+    "card": "w71",
+    "title": "most.prolific(generation)",
+    "emoji": "🍬",
+    "at": "2026-11-27T16:57:46-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "most.prolific(generation)",
+     "emoji": "🍬",
+     "arg": "generation",
+     "run": "run-cf203b",
+     "job": "j71",
+     "tweets": [
+      {
+       "text": "[[ljsimbf]] - the most prolific from this generation",
+       "year": "2026",
+       "id": "2025330988134383687"
+      }
+     ],
+     "consequence": "What just happened: The last run ended on \"[[when]] - that yuwa your best friend\", \"[[ljsimbf]] - the most prolific from this generation\", \"#thryd -- do you understand now?\" and \"if you draw line from cincinnati to #juniorboys - where are t",
+     "consequence_job": "j72",
+     "resolved": "most.prolific(where=generation:Place) from j71",
+     "injected": [
+      {
+       "param": "where",
+       "class": "Place",
+       "instance": "generation",
+       "from_run": "run-cf203b",
+       "from_job": "j71",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "where",
+      "class": "Place",
+      "default": "generation",
+      "first_run": "run-cf203b",
+      "first_job": "j71"
+     }
+    ],
+    "text": "prolific(where: Place)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "yuwa.best": {
+   "object": "yuwa",
+   "method": "best",
+   "args": [
+    "friend"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j71",
+    "card": "w71",
+    "title": "yuwa.best(friend)",
+    "emoji": "✉️",
+    "at": "2026-11-27T16:57:46-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "yuwa.best(friend)",
+     "emoji": "✉️",
+     "arg": "friend",
+     "run": "run-cf203b",
+     "job": "j71",
+     "tweets": [
+      {
+       "text": "[[when]] - that yuwa your best friend",
+       "year": "2025"
+      }
+     ],
+     "consequence": "What just happened: The last run ended on \"[[when]] - that yuwa your best friend\", \"[[ljsimbf]] - the most prolific from this generation\", \"#thryd -- do you understand now?\" and \"if you draw line from cincinnati to #juniorboys - where are t",
+     "consequence_job": "j72",
+     "resolved": "yuwa.best(who=friend:Person) from j71",
+     "injected": [
+      {
+       "param": "who",
+       "class": "Person",
+       "instance": "friend",
+       "from_run": "run-cf203b",
+       "from_job": "j71",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "who",
+      "class": "Person",
+      "default": "friend",
+      "first_run": "run-cf203b",
+      "first_job": "j71"
+     }
+    ],
+    "text": "best(who: Person)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
   "cooler.getdatemanufactured": {
    "object": "cooler",
    "method": "getDateManufactured",
@@ -32577,6 +32794,9 @@
   "dragon": [
    "dragon.show"
   ],
+  "draw": [
+   "draw.line"
+  ],
   "dyeriz": [
    "dyeriz.notyn"
   ],
@@ -32972,6 +33192,9 @@
   ],
   "model": [
    "model.con"
+  ],
+  "most": [
+   "most.prolific"
   ],
   "namco": [
    "namco.nawa"
@@ -33534,6 +33757,9 @@
   ],
   "yorubbbygehinny": [
    "yorubbbygehinny.getagenda"
+  ],
+  "yuwa": [
+   "yuwa.best"
   ]
  },
  "inherit": {
@@ -57275,6 +57501,7 @@
     "from": "db02d908b461",
     "title": "823. your wife will understand",
     "funcs": [
+     "yuwa.best",
      "boze.watch",
      "calla.stare",
      "dez.sit"
@@ -58586,6 +58813,9 @@
     "ami.genius",
     "now.una",
     "will.read",
+    "draw.line",
+    "most.prolific",
+    "yuwa.best",
     "cli.cli",
     "thryd.importtheme",
     "kemi.ismarried",
@@ -59932,7 +60162,10 @@
     "now.got",
     "ami.genius",
     "now.una",
-    "will.read"
+    "will.read",
+    "draw.line",
+    "most.prolific",
+    "yuwa.best"
    ],
    "runs": [
     "run-cf203b"
@@ -60996,7 +61229,8 @@
    "funcs": [
     "dez.sit",
     "calla.stare",
-    "boze.watch"
+    "boze.watch",
+    "yuwa.best"
    ],
    "runs": []
   },
@@ -63888,6 +64122,9 @@
   "dragon": [
    "dragon.show"
   ],
+  "draw": [
+   "draw.line"
+  ],
   "dyeriz": [
    "dyeriz.notyn"
   ],
@@ -64209,6 +64446,9 @@
   ],
   "model": [
    "model.con"
+  ],
+  "most": [
+   "most.prolific"
   ],
   "namco": [
    "namco.nawa"
@@ -64680,6 +64920,9 @@
   ],
   "yorubbbygehinny": [
    "yorubbbygehinny.getagenda"
+  ],
+  "yuwa": [
+   "yuwa.best"
   ]
  },
  "implements": {
@@ -65048,6 +65291,9 @@
   "sinzling": [],
   "lez": [],
   "ami": [],
+  "draw": [],
+  "most": [],
+  "yuwa": [],
   "cooler": [],
   "kazeem.goodqualities": [],
   "app": [],
@@ -65281,6 +65527,7 @@
    "dignity",
    "disgusting",
    "dont",
+   "draw",
    "dyeriz",
    "eez",
    "ehen",
@@ -65326,6 +65573,7 @@
    "make",
    "mean",
    "model",
+   "most",
    "namco",
    "nd",
    "next",
@@ -65395,7 +65643,8 @@
    "woke",
    "would",
    "wym",
-   "yeah"
+   "yeah",
+   "yuwa"
   ]
  },
  "gc": {
@@ -65411,5 +65660,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-27T16:52:34-05:00"
+ "updated": "2026-11-27T16:58:30-05:00"
 }

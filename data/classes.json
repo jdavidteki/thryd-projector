@@ -26,10 +26,10 @@
    "methods": [
     "hide",
     "on",
-    "deal"
+    "best"
    ],
    "instances": 59,
-   "arg_instances": 16,
+   "arg_instances": 17,
    "parent": "Thing",
    "chain": [
     "Person",
@@ -80,8 +80,8 @@
     "follow",
     "getlocation"
    ],
-   "instances": 15,
-   "arg_instances": 10,
+   "instances": 16,
+   "arg_instances": 11,
    "parent": "Thing",
    "chain": [
     "Place",
@@ -108,8 +108,8 @@
     "find",
     "see"
    ],
-   "instances": 517,
-   "arg_instances": 190,
+   "instances": 518,
+   "arg_instances": 191,
    "parent": null,
    "chain": [
     "Thing"
@@ -1472,6 +1472,17 @@
    "source": "typed",
    "runs": [
     "run-f73e23"
+   ],
+   "tweets": []
+  },
+  "cincinnati": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-cf203b",
+   "first_job": "j71",
+   "source": "pick",
+   "runs": [
+    "run-cf203b"
    ],
    "tweets": []
   },
@@ -2908,13 +2919,19 @@
   "friend": {
    "class": "Person",
    "cue": "word",
-   "first_run": "run-b9b963",
-   "first_job": null,
-   "source": "stage",
+   "first_run": "run-cf203b",
+   "first_job": "j71",
+   "source": "pick",
    "runs": [
+    "run-cf203b",
     "run-b9b963"
    ],
-   "tweets": []
+   "tweets": [
+    {
+     "text": "[[when]] - that yuwa your best friend",
+     "year": "2025"
+    }
+   ]
   },
   "friends": {
    "class": "Person",
@@ -3073,6 +3090,23 @@
     "run-b9b963"
    ],
    "tweets": []
+  },
+  "generation": {
+   "class": "Place",
+   "cue": "tweet: in/at the ...",
+   "first_run": "run-cf203b",
+   "first_job": "j71",
+   "source": "pick",
+   "runs": [
+    "run-cf203b"
+   ],
+   "tweets": [
+    {
+     "text": "[[ljsimbf]] - the most prolific from this generation",
+     "year": "2026",
+     "id": "2025330988134383687"
+    }
+   ]
   },
   "get": {
    "class": "Thing",
@@ -10573,24 +10607,6 @@
   ],
   "run-cf203b": [
    [
-    "meek",
-    "Thing",
-    "j26",
-    "pick"
-   ],
-   [
-    "definitely",
-    "Manner",
-    "j26",
-    "pick"
-   ],
-   [
-    "photo",
-    "Thing",
-    "j27",
-    "pick"
-   ],
-   [
     "4pm",
     "Action",
     "j29",
@@ -11050,6 +11066,24 @@
     "frame",
     "Thing",
     "j70",
+    "pick"
+   ],
+   [
+    "cincinnati",
+    "Thing",
+    "j71",
+    "pick"
+   ],
+   [
+    "generation",
+    "Place",
+    "j71",
+    "pick"
+   ],
+   [
+    "friend",
+    "Person",
+    "j71",
     "pick"
    ]
   ],
@@ -13899,6 +13933,9 @@
   "ami.genius": "genius()",
   "now.una": "una(what: Thing)",
   "will.read": "read(what: Thing)",
+  "draw.line": "line(what: Thing)",
+  "most.prolific": "prolific(where: Place)",
+  "yuwa.best": "best(who: Person)",
   "cooler.getdatemanufactured": "getDateManufactured()",
   "ronke.getlikes.contains": "getlikes.contains()",
   "kazeem.goodqualities.filter": "filter()",
@@ -14442,6 +14479,7 @@
    "dignity",
    "disgusting",
    "dont",
+   "draw",
    "dyeriz",
    "eez",
    "ehen",
@@ -14487,6 +14525,7 @@
    "make",
    "mean",
    "model",
+   "most",
    "namco",
    "nd",
    "next",
@@ -14556,7 +14595,8 @@
    "woke",
    "would",
    "wym",
-   "yeah"
+   "yeah",
+   "yuwa"
   ]
  },
  "genre_types": {
@@ -14631,5 +14671,5 @@
   "epilogue": "quiet",
   "coda": "quiet"
  },
- "updated": "2026-11-27T16:51:43-05:00"
+ "updated": "2026-11-27T16:58:29-05:00"
 }
