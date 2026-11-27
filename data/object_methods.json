@@ -17064,15 +17064,15 @@
      ],
      "consequence": "What just happened: Last night the woman answered Kemi with \"does it not feel divine?\" and \"i wo imu ese.\" Then she admitted, \"eez mad that deh took me serious.\" Kemi said \"you good!\" and hung up as the light turned green.",
      "consequence_job": "j12",
-     "resolved": "eez.mad(what=ese:Thing) from j11",
+     "resolved": "eez.mad(what=deh:Thing) from j11",
      "injected": [
       {
        "param": "what",
        "class": "Thing",
-       "instance": "ese",
+       "instance": "deh",
        "from_run": "run-cf203b",
        "from_job": "j11",
-       "source": "pick"
+       "source": "original"
       }
      ]
     }
@@ -17185,7 +17185,7 @@
        "instance": "ese",
        "from_run": "run-cf203b",
        "from_job": "j11",
-       "source": "pick"
+       "source": "original"
       }
      ]
     }
@@ -17242,15 +17242,15 @@
      ],
      "consequence": "He finishes with \"believe it so it can work.\" 📖 Now: Kemi answers him from the table.",
      "consequence_job": "j13",
-     "resolved": "believe.can(act=work:Action) from j12",
+     "resolved": "believe.can(act=work:Action) from j59",
      "injected": [
       {
        "param": "act",
        "class": "Action",
        "instance": "work",
-       "from_run": "run-cf203b",
-       "from_job": "j12",
-       "source": "pick"
+       "from_run": "run-5a58c4",
+       "from_job": "j59",
+       "source": "original"
       }
      ]
     }
@@ -17507,15 +17507,15 @@
      ],
      "consequence": "What just happened: Kemi laughs at him: \"this guy na wan big nerd.\" She says the whole night \"even feels like a movie.\" Then she gets serious: \"you nohow hard that is?\" She tells him she \"woke up that morning\" already knowing.",
      "consequence_job": "j14",
-     "resolved": "even.feels(how=like:Manner) from j13",
+     "resolved": "even.feels(how=like:Manner) from j27",
      "injected": [
       {
        "param": "how",
        "class": "Manner",
        "instance": "like",
-       "from_run": "run-cf203b",
-       "from_job": "j13",
-       "source": "pick"
+       "from_run": "run-5a58c4",
+       "from_job": "j27",
+       "source": "original"
       }
      ]
     }
@@ -20374,14 +20374,14 @@
      ],
      "consequence": "Kemi starts, \"i know what am gonna do for\", and stops.",
      "consequence_job": "j30",
-     "resolved": "know.what(what=gonna:Thing) from j29",
+     "resolved": "know.what(what=photo:Thing) from j27",
      "injected": [
       {
        "param": "what",
        "class": "Thing",
-       "instance": "gonna",
+       "instance": "photo",
        "from_run": "run-cf203b",
-       "from_job": "j29",
+       "from_job": "j27",
        "source": "pick"
       }
      ]
@@ -26103,6 +26103,266 @@
    "faded": false,
    "last_run": "run-cf203b"
   },
+  "also.vlogs": {
+   "object": "also",
+   "method": "vlogs",
+   "args": [
+    "ywa"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j59",
+    "card": "w59",
+    "title": "also.vlogs(ywa)",
+    "emoji": "🧳",
+    "at": "2026-11-26T21:59:31-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "also.vlogs(ywa)",
+     "emoji": "🧳",
+     "arg": "ywa",
+     "run": "run-cf203b",
+     "job": "j59",
+     "tweets": [
+      {
+       "text": "- i also do vlogs if ywa interested",
+       "year": "2024"
+      }
+     ],
+     "consequence": "The lines that landed: \"— i know change is gonna commeeee!\", \"na the truth without the false be this\", \"i also do vlogs if ywa interested\" and \"but then i wanted to ask her\".",
+     "consequence_job": "j60",
+     "resolved": "also.vlogs(what=ywa:Thing) from j59",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "ywa",
+       "from_run": "run-cf203b",
+       "from_job": "j59",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "ywa",
+      "first_run": "run-cf203b",
+      "first_job": "j59"
+     }
+    ],
+    "text": "vlogs(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "know.change": {
+   "object": "know",
+   "method": "change",
+   "args": [
+    "gonna"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j59",
+    "card": "w59",
+    "title": "know.change(gonna)",
+    "emoji": "🍚",
+    "at": "2026-11-26T21:59:31-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "know.change(gonna)",
+     "emoji": "🍚",
+     "arg": "gonna",
+     "run": "run-cf203b",
+     "job": "j59",
+     "tweets": [
+      {
+       "text": "— i know change is gonna commeeee!",
+       "year": "2025"
+      }
+     ],
+     "consequence": "The lines that landed: \"— i know change is gonna commeeee!\", \"na the truth without the false be this\", \"i also do vlogs if ywa interested\" and \"but then i wanted to ask her\".",
+     "consequence_job": "j60",
+     "resolved": "know.change(what=gonna:Thing) from j59",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "gonna",
+       "from_run": "run-cf203b",
+       "from_job": "j59",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "gonna",
+      "first_run": "run-cf203b",
+      "first_job": "j29"
+     }
+    ],
+    "text": "change(what: Thing)"
+   },
+   "receiver_class": "Action",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "then.wanted": {
+   "object": "then",
+   "method": "wanted",
+   "args": [
+    "ask"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j59",
+    "card": "w59",
+    "title": "then.wanted(ask)",
+    "emoji": "📩",
+    "at": "2026-11-26T21:59:31-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "then.wanted(ask)",
+     "emoji": "📩",
+     "arg": "ask",
+     "run": "run-cf203b",
+     "job": "j59",
+     "tweets": [
+      {
+       "text": "- but then i wanted to ask her",
+       "year": "2024"
+      }
+     ],
+     "consequence": "What just happened: The last card asked for the next line, the one that answers \"#sessy - saliva\".",
+     "consequence_job": "j60",
+     "resolved": "then.wanted(act=ask:Action) from j59",
+     "injected": [
+      {
+       "param": "act",
+       "class": "Action",
+       "instance": "ask",
+       "from_run": "run-cf203b",
+       "from_job": "j59",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "act",
+      "class": "Action",
+      "default": "ask",
+      "first_run": "run-cf203b",
+      "first_job": "j59"
+     }
+    ],
+    "text": "wanted(act: Action)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "truth.without": {
+   "object": "truth",
+   "method": "without",
+   "args": [
+    "false"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j59",
+    "card": "w59",
+    "title": "truth.without(false)",
+    "emoji": "🏆",
+    "at": "2026-11-26T21:59:31-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "truth.without(false)",
+     "emoji": "🏆",
+     "arg": "false",
+     "run": "run-cf203b",
+     "job": "j59",
+     "tweets": [
+      {
+       "text": "- na the truth without the false be this",
+       "year": "2025"
+      }
+     ],
+     "consequence": "The lines that landed: \"— i know change is gonna commeeee!\", \"na the truth without the false be this\", \"i also do vlogs if ywa interested\" and \"but then i wanted to ask her\".",
+     "consequence_job": "j60",
+     "resolved": "truth.without(what=false:Thing) from j59",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "false",
+       "from_run": "run-cf203b",
+       "from_job": "j59",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "false",
+      "first_run": "run-cf203b",
+      "first_job": "j59"
+     }
+    ],
+    "text": "without(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
   "cooler.getdatemanufactured": {
    "object": "cooler",
    "method": "getDateManufactured",
@@ -29890,6 +30150,9 @@
   "alorof": [
    "alorof.things"
   ],
+  "also": [
+   "also.vlogs"
+  ],
   "american_olamide_subject": [
    "object.look"
   ],
@@ -30442,6 +30705,7 @@
    "know.african",
    "know.uber",
    "know.what",
+   "know.change",
    "know.getWant"
   ],
   "kunle": [
@@ -30957,7 +31221,8 @@
    "then.hand",
    "then.much",
    "then.said",
-   "then.say"
+   "then.say",
+   "then.wanted"
   ],
   "thing": [
    "thing.weird"
@@ -31008,6 +31273,9 @@
   ],
   "travel": [
    "travel.close"
+  ],
+  "truth": [
+   "truth.without"
   ],
   "tunde": [
    "tunde.getlocation"
@@ -32027,6 +32295,14 @@
     "title": "518. nigeria2.0",
     "funcs": [
      "teo.say"
+    ]
+   },
+   {
+    "scope": "safe",
+    "from": "c5a2b107dc8b",
+    "title": "525. faster",
+    "funcs": [
+     "truth.without"
     ]
    }
   ],
@@ -47437,6 +47713,16 @@
     ]
    }
   ],
+  "mr_jollof_nollywood_subject": [
+   {
+    "scope": "safe",
+    "from": "0b65b4bd69d4",
+    "title": "1226. the mr. jollof of nollywood",
+    "funcs": [
+     "also.vlogs"
+    ]
+   }
+  ],
   "namco": [
    {
     "scope": "run",
@@ -47557,6 +47843,16 @@
     "title": "902. the onomatopeia people",
     "funcs": [
      "quickly.realize"
+    ]
+   }
+  ],
+  "new_culture_figure": [
+   {
+    "scope": "safe",
+    "from": "9f3dc89806c5",
+    "title": "808. awa story have change",
+    "funcs": [
+     "know.change"
     ]
    }
   ],
@@ -47702,6 +47998,16 @@
     "title": "214. paradigm shift",
     "funcs": [
      "longer.deeper"
+    ]
+   }
+  ],
+  "nigeria_woman_subject": [
+   {
+    "scope": "safe",
+    "from": "3e7c776d4be9",
+    "title": "men that don't talk when they are angry",
+    "funcs": [
+     "then.wanted"
     ]
    }
   ],
@@ -56001,6 +56307,10 @@
     "j.b",
     "pink.face",
     "rikwaya.any",
+    "also.vlogs",
+    "know.change",
+    "then.wanted",
+    "truth.without",
     "cli.cli",
     "thryd.importtheme",
     "kemi.ismarried",
@@ -56233,6 +56543,13 @@
     "titi.keep",
     "worry.have",
     "calla.watch"
+   ],
+   "runs": []
+  },
+  "0b65b4bd69d4": {
+   "title": "1226. the mr. jollof of nollywood",
+   "funcs": [
+    "also.vlogs"
    ],
    "runs": []
   },
@@ -56718,6 +57035,13 @@
    "title": "804. magic",
    "funcs": [
     "feel.shame"
+   ],
+   "runs": []
+  },
+  "3e7c776d4be9": {
+   "title": "men that don't talk when they are angry",
+   "funcs": [
+    "then.wanted"
    ],
    "runs": []
   },
@@ -57233,7 +57557,11 @@
     "daz.y",
     "j.b",
     "pink.face",
-    "rikwaya.any"
+    "rikwaya.any",
+    "also.vlogs",
+    "know.change",
+    "then.wanted",
+    "truth.without"
    ],
    "runs": [
     "run-cf203b"
@@ -57717,6 +58045,13 @@
    ],
    "runs": []
   },
+  "9f3dc89806c5": {
+   "title": "808. awa story have change",
+   "funcs": [
+    "know.change"
+   ],
+   "runs": []
+  },
   "a3c7cfa0eefe": {
    "title": "1118. the sowore complex",
    "funcs": [
@@ -58012,6 +58347,13 @@
    "title": "1022. original copy",
    "funcs": [
     "taking.isnotes"
+   ],
+   "runs": []
+  },
+  "c5a2b107dc8b": {
+   "title": "525. faster",
+   "funcs": [
+    "truth.without"
    ],
    "runs": []
   },
@@ -58943,6 +59285,9 @@
   "1*V399eBOypEhxN1u4Ul9Nvw.gif": [
    "25a7e34c3b61"
   ],
+  "1*m_aGMAxM1v_MQ0X8slDqAw.gif": [
+   "0b65b4bd69d4"
+  ],
   "1*B4Qxrti1luSOdS5kdFJWcA.gif": [
    "35e37a321959"
   ],
@@ -58991,6 +59336,9 @@
   "1*M7PP8y5XxO_g-lWVYiJqLg.gif": [
    "f4ff9cc7d7bd",
    "1a9d986eb980"
+  ],
+  "1*l21ZORlcwPNcUgIJD3BEMw.gif": [
+   "3e7c776d4be9"
   ],
   "1*DUBqUOO0slEd39P9RiD30Q.gif": [
    "ef623c79ddb7"
@@ -59150,7 +59498,8 @@
    "1dde946f3407"
   ],
   "1*nO_c5Fhrmc182GE_F0zVwQ.gif": [
-   "55db20ef3a0b"
+   "55db20ef3a0b",
+   "c5a2b107dc8b"
   ],
   "1*EGfa3VQWdL61AGY_DW56zA.gif": [
    "fbb6af08827a"
@@ -59206,6 +59555,9 @@
   ],
   "1*Pk8Lr8EFN6Audtb8lRp_pA.gif": [
    "b02906d784b9"
+  ],
+  "1*oQ4TekiFK5_Po9GKLDmDKw.gif": [
+   "9f3dc89806c5"
   ],
   "1*Nz3m53BcKFjuypjVwrANdg.gif": [
    "f73e23ee778d"
@@ -59913,6 +60265,12 @@
     "0d1e8045251b"
    ]
   },
+  "1*l21ZORlcwPNcUgIJD3BEMw.gif": {
+   "runs": [],
+   "safes": [
+    "3e7c776d4be9"
+   ]
+  },
   "1*q0hfDA8xcra7qX-9n4EuNw.gif": {
    "runs": [],
    "safes": [
@@ -60004,6 +60362,12 @@
     "76e4b260debb",
     "24d3f1fa5ad1",
     "18bf0d97a456"
+   ]
+  },
+  "1*m_aGMAxM1v_MQ0X8slDqAw.gif": {
+   "runs": [],
+   "safes": [
+    "0b65b4bd69d4"
    ]
   },
   "1*z9MXnhgL8GmrvnzW6b5oBQ.gif": {
@@ -60195,7 +60559,8 @@
   "1*nO_c5Fhrmc182GE_F0zVwQ.gif": {
    "runs": [],
    "safes": [
-    "55db20ef3a0b"
+    "55db20ef3a0b",
+    "c5a2b107dc8b"
    ]
   },
   "1*JhxXD4no0o7Mafn57Wtf-Q.gif": {
@@ -60235,6 +60600,12 @@
    "safes": [
     "f3242b82bede",
     "43e6e657bcca"
+   ]
+  },
+  "1*oQ4TekiFK5_Po9GKLDmDKw.gif": {
+   "runs": [],
+   "safes": [
+    "9f3dc89806c5"
    ]
   },
   "1*aihswOSkhxhlyUNdUJVa9w.gif": {
@@ -60771,6 +61142,9 @@
   "alorof": [
    "alorof.things"
   ],
+  "also": [
+   "also.vlogs"
+  ],
   "and": [
    "and.not"
   ],
@@ -61154,6 +61528,7 @@
    "know.african",
    "know.uber",
    "know.what",
+   "know.change",
    "know.getWant"
   ],
   "kunle": [
@@ -61545,7 +61920,8 @@
    "then.hand",
    "then.much",
    "then.said",
-   "then.say"
+   "then.say",
+   "then.wanted"
   ],
   "thing": [
    "thing.weird"
@@ -61593,6 +61969,9 @@
   ],
   "travel": [
    "travel.close"
+  ],
+  "truth": [
+   "truth.without"
   ],
   "tunde": [
    "tunde.getlocation"
@@ -62027,6 +62406,8 @@
   "j": [],
   "pink": [],
   "rikwaya": [],
+  "also": [],
+  "truth": [],
   "cooler": [],
   "kazeem.goodqualities": [],
   "app": [],
@@ -62234,6 +62615,7 @@
    "agboro",
    "ahan",
    "alorof",
+   "also",
    "and",
    "beat",
    "because",
@@ -62333,6 +62715,7 @@
    "till",
    "total",
    "touch",
+   "truth",
    "understand",
    "until",
    "used",
@@ -62365,5 +62748,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-26T21:59:30-05:00"
+ "updated": "2026-11-26T22:00:20-05:00"
 }

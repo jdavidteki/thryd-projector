@@ -108,8 +108,8 @@
     "see",
     "give"
    ],
-   "instances": 504,
-   "arg_instances": 176,
+   "instances": 505,
+   "arg_instances": 178,
    "parent": null,
    "chain": [
     "Thing"
@@ -176,8 +176,8 @@
     "back",
     "can"
    ],
-   "instances": 28,
-   "arg_instances": 25,
+   "instances": 29,
+   "arg_instances": 26,
    "parent": "Thing",
    "chain": [
     "Action",
@@ -696,6 +696,22 @@
     "run-g1-B"
    ],
    "tweets": []
+  },
+  "ask": {
+   "class": "Action",
+   "cue": "tweet: to/will ...",
+   "first_run": "run-cf203b",
+   "first_job": "j59",
+   "source": "pick",
+   "runs": [
+    "run-cf203b"
+   ],
+   "tweets": [
+    {
+     "text": "- but then i wanted to ask her",
+     "year": "2024"
+    }
+   ]
   },
   "asmathic": {
    "class": "Thing",
@@ -2612,10 +2628,11 @@
   "false": {
    "class": "Thing",
    "cue": "default",
-   "first_run": "run-345b3d",
-   "first_job": "j28",
-   "source": "typed",
+   "first_run": "run-cf203b",
+   "first_job": "j59",
+   "source": "pick",
    "runs": [
+    "run-cf203b",
     "run-345b3d",
     "run-bd649b",
     "run-merge-1017-145411",
@@ -2623,7 +2640,12 @@
     "run-a19af0",
     "run-c51768"
    ],
-   "tweets": []
+   "tweets": [
+    {
+     "text": "- na the truth without the false be this",
+     "year": "2025"
+    }
+   ]
   },
   "falseprophetsbyjcole": {
    "class": "Thing",
@@ -3024,6 +3046,10 @@
     {
      "text": "- i know what am gonna do for",
      "year": "2024"
+    },
+    {
+     "text": "— i know change is gonna commeeee!",
+     "year": "2025"
     }
    ]
   },
@@ -8813,6 +8839,22 @@
    ],
    "tweets": []
   },
+  "ywa": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-cf203b",
+   "first_job": "j59",
+   "source": "pick",
+   "runs": [
+    "run-cf203b"
+   ],
+   "tweets": [
+    {
+     "text": "- i also do vlogs if ywa interested",
+     "year": "2024"
+    }
+   ]
+  },
   "zobo": {
    "class": "Thing",
    "cue": "default",
@@ -10298,24 +10340,6 @@
   ],
   "run-cf203b": [
    [
-    "ese",
-    "Thing",
-    "j11",
-    "pick"
-   ],
-   [
-    "work",
-    "Action",
-    "j12",
-    "pick"
-   ],
-   [
-    "like",
-    "Manner",
-    "j13",
-    "pick"
-   ],
-   [
     "big",
     "Thing",
     "j13",
@@ -10444,12 +10468,6 @@
    [
     "4pm",
     "Action",
-    "j29",
-    "pick"
-   ],
-   [
-    "gonna",
-    "Thing",
     "j29",
     "pick"
    ],
@@ -10775,6 +10793,30 @@
     "accuracy",
     "Manner",
     "j58",
+    "pick"
+   ],
+   [
+    "ywa",
+    "Thing",
+    "j59",
+    "pick"
+   ],
+   [
+    "gonna",
+    "Thing",
+    "j59",
+    "pick"
+   ],
+   [
+    "ask",
+    "Action",
+    "j59",
+    "pick"
+   ],
+   [
+    "false",
+    "Thing",
+    "j59",
     "pick"
    ]
   ],
@@ -13589,6 +13631,10 @@
   "j.b": "b(what: Thing)",
   "pink.face": "face()",
   "rikwaya.any": "any(how: Manner)",
+  "also.vlogs": "vlogs(what: Thing)",
+  "know.change": "change(what: Thing)",
+  "then.wanted": "wanted(act: Action)",
+  "truth.without": "without(what: Thing)",
   "cooler.getdatemanufactured": "getDateManufactured()",
   "ronke.getlikes.contains": "getlikes.contains()",
   "kazeem.goodqualities.filter": "filter()",
@@ -14102,6 +14148,7 @@
    "agboro",
    "ahan",
    "alorof",
+   "also",
    "and",
    "beat",
    "because",
@@ -14201,6 +14248,7 @@
    "till",
    "total",
    "touch",
+   "truth",
    "understand",
    "until",
    "used",
@@ -14292,5 +14340,5 @@
   "epilogue": "quiet",
   "coda": "quiet"
  },
- "updated": "2026-11-26T21:59:29-05:00"
+ "updated": "2026-11-26T22:00:20-05:00"
 }
