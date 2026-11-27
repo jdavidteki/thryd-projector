@@ -108,8 +108,8 @@
     "find",
     "see"
    ],
-   "instances": 518,
-   "arg_instances": 191,
+   "instances": 519,
+   "arg_instances": 192,
    "parent": null,
    "chain": [
     "Thing"
@@ -3405,6 +3405,10 @@
     {
      "text": "- until the artists have filled",
      "year": "2025"
+    },
+    {
+     "text": "- some people, everybody have their own #thryd",
+     "year": "2024"
     }
    ]
   },
@@ -5895,7 +5899,8 @@
    "first_job": "j12",
    "source": "pick",
    "runs": [
-    "run-g1-B"
+    "run-g1-B",
+    "run-cf203b"
    ],
    "tweets": [
     {
@@ -8868,6 +8873,23 @@
    ],
    "tweets": []
   },
+  "will": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-cf203b",
+   "first_job": "j72",
+   "source": "pick",
+   "runs": [
+    "run-cf203b"
+   ],
+   "tweets": [
+    {
+     "text": "and that green passport will mean something.",
+     "year": "2022",
+     "id": "1558066082841346048"
+    }
+   ]
+  },
   "willsmith": {
    "class": "Thing",
    "cue": "default",
@@ -10607,18 +10629,6 @@
   ],
   "run-cf203b": [
    [
-    "4pm",
-    "Action",
-    "j29",
-    "pick"
-   ],
-   [
-    "think",
-    "Thing",
-    "j30",
-    "pick"
-   ],
-   [
     "skills",
     "Thing",
     "j31",
@@ -10859,12 +10869,6 @@
     "pick"
    ],
    [
-    "have",
-    "Thing",
-    "j52",
-    "pick"
-   ],
-   [
     "only",
     "Thing",
     "j53",
@@ -11084,6 +11088,24 @@
     "friend",
     "Person",
     "j71",
+    "pick"
+   ],
+   [
+    "will",
+    "Thing",
+    "j72",
+    "pick"
+   ],
+   [
+    "have",
+    "Thing",
+    "j72",
+    "pick"
+   ],
+   [
+    "people",
+    "Person",
+    "j72",
     "pick"
    ]
   ],
@@ -13936,6 +13958,9 @@
   "draw.line": "line(what: Thing)",
   "most.prolific": "prolific(where: Place)",
   "yuwa.best": "best(who: Person)",
+  "green.passport": "passport(what: Thing)",
+  "people.everybody": "everybody(what: Thing)",
+  "when.two": "two(who: Person)",
   "cooler.getdatemanufactured": "getDateManufactured()",
   "ronke.getlikes.contains": "getlikes.contains()",
   "kazeem.goodqualities.filter": "filter()",
@@ -14495,6 +14520,7 @@
    "global",
    "go",
    "got",
+   "green",
    "guy",
    "has",
    "have",
@@ -14540,6 +14566,7 @@
    "parents",
    "part",
    "pen",
+   "people",
    "pink",
    "poty",
    "precision",
@@ -14671,5 +14698,5 @@
   "epilogue": "quiet",
   "coda": "quiet"
  },
- "updated": "2026-11-27T16:58:29-05:00"
+ "updated": "2026-11-27T17:07:05-05:00"
 }

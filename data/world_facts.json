@@ -8765,16 +8765,6 @@
 ],
 "mlkahb": [
 {
-"id": "wf_ff1174c501",
-"kind": "consequence",
-"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the brown envelope at the mlkahb, and Bisola reads the name twice.",
-"code": "lady.interactwith(mlkahb){ mlkahb.receives(lady.shirt); mlkahb.remembers(bisola, 'green shirt'); mlkahb.tucks(lady, 'ikeja laundromat receipt into the brown envelope'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j8",
-"other": "lady"
-},
-{
 "id": "wf_c27ecef253",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the green shirt at the mlkahb, and Bisola reads the name twice.",
@@ -8813,6 +8803,16 @@
 "run": "run-2eb42d",
 "card": "j6",
 "other": "jnoel"
+},
+{
+"id": "wt_3b4238ddf6",
+"kind": "func_call",
+"text": "The customer typed [[mlkahb]] on run-cf203b j73.",
+"code": "[[mlkahb]];",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j73",
+"other": null
 }
 ],
 "uncle_ebo": [
@@ -9055,26 +9055,6 @@
 ],
 "cli": [
 {
-"id": "wt_1980817fdd",
-"kind": "func_call",
-"text": "The customer typed #jbg on run-cf203b j63. It came back: #jbg. Implementation: /* #jbg */.",
-"code": "#jbg;",
-"author": "customer",
-"run": "run-cf203b",
-"card": "j63",
-"other": null
-},
-{
-"id": "wt_63f903cc42",
-"kind": "func_call",
-"text": "The customer typed [[foc.me]] on run-cf203b j63. It came back: [[foc.me]]. Implementation: /* [[foc.me]] */.",
-"code": "[[foc.me]];",
-"author": "customer",
-"run": "run-cf203b",
-"card": "j63",
-"other": null
-},
-{
 "id": "wt_bf88691bb7",
 "kind": "func_call",
 "text": "The customer typed #thryd.miracle.log(1) on run-cf203b j63. It came back: #thryd.miracle.log(1). Implementation: /* #thryd.miracle.log(1) */.",
@@ -9102,6 +9082,26 @@
 "author": "customer",
 "run": "run-cf203b",
 "card": "j70",
+"other": null
+},
+{
+"id": "wt_c06fc7d01b",
+"kind": "func_call",
+"text": "The customer typed where things stand should be updated now. on run-cf203b j73. It came back: where things stand should be updated now.. Implementation: /* where things stand should be updated now. */.",
+"code": "where things stand should be updated now.;",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j73",
+"other": null
+},
+{
+"id": "wt_a29a85cc8d",
+"kind": "func_call",
+"text": "The customer typed [[ayfa?]] on run-cf203b j73. It came back: [[ayfa?]]. Implementation: /* [[ayfa?]] */.",
+"code": "[[ayfa?]];",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j73",
 "other": null
 }
 ],
@@ -14509,5 +14509,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-27T17:01:55-0500"
+"updated": "2026-11-27T17:07:03-0500"
 }

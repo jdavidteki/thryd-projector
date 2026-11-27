@@ -20131,8 +20131,25 @@
     "emoji": "🦙",
     "at": "2026-11-26T00:56:40-05:00"
    },
-   "calls": 0,
+   "calls": 1,
    "titles": [
+    {
+     "title": "rebuke.tin()",
+     "emoji": "👞",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j72",
+     "tweets": [
+      {
+       "text": "#juniorgirls - i rebuke dat tin!",
+       "year": "2024"
+      }
+     ],
+     "consequence": "The lines that landed: \"some people, everybody have their own #thryd\", \"and that green passport will mean something.\", \"#juniorgirls - i rebuke dat tin!\" and \"when two people are talking, bobo yen worstt!!!\".",
+     "consequence_job": "j73",
+     "resolved": "rebuke.tin()",
+     "injected": []
+    },
     {
      "title": "rebuke.tin()",
      "emoji": "🦙",
@@ -20308,7 +20325,7 @@
        "instance": "4pm",
        "from_run": "run-cf203b",
        "from_job": "j29",
-       "source": "pick"
+       "source": "original"
       }
      ]
     }
@@ -20587,15 +20604,15 @@
      ],
      "consequence": "What just happened: The woman dares them: \"the #thryd is if you can find wan line\" in those photos.",
      "consequence_job": "j31",
-     "resolved": "can.find(what=think:Thing) from j30",
+     "resolved": "can.find(what=wan:Thing) from j26",
      "injected": [
       {
        "param": "what",
        "class": "Thing",
-       "instance": "think",
-       "from_run": "run-cf203b",
-       "from_job": "j30",
-       "source": "pick"
+       "instance": "wan",
+       "from_run": "run-5a58c4",
+       "from_job": "j26",
+       "source": "original"
       }
      ]
     }
@@ -20685,15 +20702,15 @@
      ],
      "consequence": "Tobi is frozen beside her, arguing the photos could mean something else.",
      "consequence_job": "j31",
-     "resolved": "could.accuracy(what=think:Thing) from j30",
+     "resolved": "could.accuracy(what=think:Thing) from j18",
      "injected": [
       {
        "param": "what",
        "class": "Thing",
        "instance": "think",
        "from_run": "run-cf203b",
-       "from_job": "j30",
-       "source": "pick"
+       "from_job": "j18",
+       "source": "original"
       }
      ]
     }
@@ -25119,12 +25136,12 @@
      ],
      "consequence": "Where things stand: A week has gone by.",
      "consequence_job": "j53",
-     "resolved": "until.artists(what=have:Thing) from j52",
+     "resolved": "until.artists(what=errors:Thing) from j52",
      "injected": [
       {
        "param": "what",
        "class": "Thing",
-       "instance": "have",
+       "instance": "errors",
        "from_run": "run-cf203b",
        "from_job": "j52",
        "source": "pick"
@@ -28496,6 +28513,197 @@
    "prior": [],
    "faded": false,
    "last_run": "run-cf203b"
+  },
+  "green.passport": {
+   "object": "green",
+   "method": "passport",
+   "args": [
+    "will"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j72",
+    "card": "w72",
+    "title": "green.passport(will)",
+    "emoji": "🛁",
+    "at": "2026-11-27T17:06:25-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "green.passport(will)",
+     "emoji": "🛁",
+     "arg": "will",
+     "run": "run-cf203b",
+     "job": "j72",
+     "tweets": [
+      {
+       "text": "and that green passport will mean something.",
+       "year": "2022",
+       "id": "1558066082841346048"
+      }
+     ],
+     "consequence": "The lines that landed: \"some people, everybody have their own #thryd\", \"and that green passport will mean something.\", \"#juniorgirls - i rebuke dat tin!\" and \"when two people are talking, bobo yen worstt!!!\".",
+     "consequence_job": "j73",
+     "resolved": "green.passport(what=will:Thing) from j72",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "will",
+       "from_run": "run-cf203b",
+       "from_job": "j72",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "will",
+      "first_run": "run-cf203b",
+      "first_job": "j72"
+     }
+    ],
+    "text": "passport(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "people.everybody": {
+   "object": "people",
+   "method": "everybody",
+   "args": [
+    "have"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j72",
+    "card": "w72",
+    "title": "people.everybody(have)",
+    "emoji": "🍙",
+    "at": "2026-11-27T17:06:25-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "people.everybody(have)",
+     "emoji": "🍙",
+     "arg": "have",
+     "run": "run-cf203b",
+     "job": "j72",
+     "tweets": [
+      {
+       "text": "- some people, everybody have their own #thryd",
+       "year": "2024"
+      }
+     ],
+     "consequence": "The lines that landed: \"some people, everybody have their own #thryd\", \"and that green passport will mean something.\", \"#juniorgirls - i rebuke dat tin!\" and \"when two people are talking, bobo yen worstt!!!\".",
+     "consequence_job": "j73",
+     "resolved": "people.everybody(what=have:Thing) from j72",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "have",
+       "from_run": "run-cf203b",
+       "from_job": "j72",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "have",
+      "first_run": "run-cf203b",
+      "first_job": "j19"
+     }
+    ],
+    "text": "everybody(what: Thing)"
+   },
+   "receiver_class": "Person",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "when.two": {
+   "object": "when",
+   "method": "two",
+   "args": [
+    "people"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j72",
+    "card": "w72",
+    "title": "when.two(people)",
+    "emoji": "✂️",
+    "at": "2026-11-27T17:06:25-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "when.two(people)",
+     "emoji": "✂️",
+     "arg": "people",
+     "run": "run-cf203b",
+     "job": "j72",
+     "tweets": [],
+     "consequence": "The lines that landed: \"some people, everybody have their own #thryd\", \"and that green passport will mean something.\", \"#juniorgirls - i rebuke dat tin!\" and \"when two people are talking, bobo yen worstt!!!\".",
+     "consequence_job": "j73",
+     "resolved": "when.two(who=people:Person) from j72",
+     "injected": [
+      {
+       "param": "who",
+       "class": "Person",
+       "instance": "people",
+       "from_run": "run-cf203b",
+       "from_job": "j72",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "who",
+      "class": "Person",
+      "default": "people",
+      "first_run": "run-g1-B",
+      "first_job": "j12"
+     }
+    ],
+    "text": "two(who: Person)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
   },
   "cooler.getdatemanufactured": {
    "object": "cooler",
@@ -32908,6 +33116,9 @@
   "grammy": [
    "grammy.swear"
   ],
+  "green": [
+   "green.passport"
+  ],
   "guy": [
    "guy.wan",
    "guy.can",
@@ -33297,7 +33508,8 @@
    "pen.imagination"
   ],
   "people": [
-   "people.getocsw"
+   "people.getocsw",
+   "people.everybody"
   ],
   "people_scene_subject": [
    "object.look"
@@ -33703,7 +33915,8 @@
    "object.look"
   ],
   "when": [
-   "when.find"
+   "when.find",
+   "when.two"
   ],
   "where": [
    "where.boisie"
@@ -54629,6 +54842,16 @@
     ]
    }
   ],
+  "streets_protocol_figure": [
+   {
+    "scope": "safe",
+    "from": "fdcd9522e0c9",
+    "title": "1111. streets protocol",
+    "funcs": [
+     "people.everybody"
+    ]
+   }
+  ],
   "suitcase": [
    {
     "scope": "safe",
@@ -58816,6 +59039,9 @@
     "draw.line",
     "most.prolific",
     "yuwa.best",
+    "green.passport",
+    "people.everybody",
+    "when.two",
     "cli.cli",
     "thryd.importtheme",
     "kemi.ismarried",
@@ -60165,7 +60391,10 @@
     "will.read",
     "draw.line",
     "most.prolific",
-    "yuwa.best"
+    "yuwa.best",
+    "green.passport",
+    "people.everybody",
+    "when.two"
    ],
    "runs": [
     "run-cf203b"
@@ -61628,6 +61857,13 @@
    ],
    "runs": []
   },
+  "fdcd9522e0c9": {
+   "title": "1111. streets protocol",
+   "funcs": [
+    "people.everybody"
+   ],
+   "runs": []
+  },
   "feb29a74094b": {
    "title": "1126. equity and stake",
    "funcs": [
@@ -62075,6 +62311,9 @@
   ],
   "1*lXyaYynK9k1RiaRxau4pmw.gif": [
    "d66009c8696d"
+  ],
+  "1*J9JSib7oWwTd8_FSBj3Djg.gif": [
+   "fdcd9522e0c9"
   ],
   "1*NM5XX7ZgufsTSYr6ylAwBA.gif": [
    "2769d6da2d55"
@@ -63221,6 +63460,12 @@
     "ec307b47b819"
    ]
   },
+  "1*J9JSib7oWwTd8_FSBj3Djg.gif": {
+   "runs": [],
+   "safes": [
+    "fdcd9522e0c9"
+   ]
+  },
   "1*MPbkmimVouS6PjL30EIDOA.gif": {
    "runs": [],
    "safes": [
@@ -64213,6 +64458,9 @@
   "grammy": [
    "grammy.swear"
   ],
+  "green": [
+   "green.passport"
+  ],
   "guy": [
    "guy.wan",
    "guy.can",
@@ -64542,7 +64790,8 @@
    "pen.imagination"
   ],
   "people": [
-   "people.getocsw"
+   "people.getocsw",
+   "people.everybody"
   ],
   "pepe": [
    "pepe.settink"
@@ -64869,7 +65118,8 @@
    "what.happens"
   ],
   "when": [
-   "when.find"
+   "when.find",
+   "when.two"
   ],
   "where": [
    "where.boisie"
@@ -65294,6 +65544,7 @@
   "draw": [],
   "most": [],
   "yuwa": [],
+  "green": [],
   "cooler": [],
   "kazeem.goodqualities": [],
   "app": [],
@@ -65543,6 +65794,7 @@
    "global",
    "go",
    "got",
+   "green",
    "guy",
    "has",
    "have",
@@ -65588,6 +65840,7 @@
    "parents",
    "part",
    "pen",
+   "people",
    "pink",
    "poty",
    "precision",
@@ -65660,5 +65913,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-27T16:59:21-05:00"
+ "updated": "2026-11-27T17:07:05-05:00"
 }
