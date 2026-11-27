@@ -20898,15 +20898,15 @@
      ],
      "consequence": "Kemi has thrown out his \"accuracy\" story, but she hasn't walked away, and she is talking about love now instead of dealing with anyone.",
      "consequence_job": "j32",
-     "resolved": "one.thing(what=skills:Thing) from j31",
+     "resolved": "one.thing(what=about:Thing) from j31",
      "injected": [
       {
        "param": "what",
        "class": "Thing",
-       "instance": "skills",
+       "instance": "about",
        "from_run": "run-cf203b",
        "from_job": "j31",
-       "source": "pick"
+       "source": "original"
       }
      ]
     }
@@ -20966,7 +20966,7 @@
        "instance": "skills",
        "from_run": "run-cf203b",
        "from_job": "j31",
-       "source": "pick"
+       "source": "original"
       }
      ]
     }
@@ -21088,7 +21088,7 @@
        "instance": "totally",
        "from_run": "run-cf203b",
        "from_job": "j32",
-       "source": "pick"
+       "source": "original"
       }
      ]
     }
@@ -27892,14 +27892,14 @@
      ],
      "consequence": "The lines that landed: \"Sinzling juniorboys, love way you lie.\", \"friend husband wedding we wey go last week.",
      "consequence_job": "j69",
-     "resolved": "sinzling.juniorboys(feeling=love:Feeling) from j68",
+     "resolved": "sinzling.juniorboys(feeling=butterflies:Feeling) from j33",
      "injected": [
       {
        "param": "feeling",
        "class": "Feeling",
-       "instance": "love",
+       "instance": "butterflies",
        "from_run": "run-cf203b",
-       "from_job": "j68",
+       "from_job": "j33",
        "source": "pick"
       }
      ]
@@ -28704,6 +28704,254 @@
    "prior": [],
    "faded": false,
    "last_run": "run-cf203b"
+  },
+  "because.people": {
+   "object": "because",
+   "method": "people",
+   "args": [
+    "love"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j73",
+    "card": "w73",
+    "title": "because.people(love)",
+    "emoji": "📔",
+    "at": "2026-11-27T17:15:43-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "because.people(love)",
+     "emoji": "📔",
+     "arg": "love",
+     "run": "run-cf203b",
+     "job": "j73",
+     "tweets": [],
+     "consequence": "The lines that landed: \"#oyinboman — money becomes the last thing on your mind\", \"humility really should mean submitting to superior argument\", \"[[from suleja to texas]] - #oyinboman\" and \"because people love to take freedoms - naira.",
+     "consequence_job": "j74",
+     "resolved": "because.people(feeling=love:Feeling) from j73",
+     "injected": [
+      {
+       "param": "feeling",
+       "class": "Feeling",
+       "instance": "love",
+       "from_run": "run-cf203b",
+       "from_job": "j73",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "feeling",
+      "class": "Feeling",
+      "default": "love",
+      "first_run": "run-5a58c4",
+      "first_job": "j58"
+     }
+    ],
+    "text": "people(feeling: Feeling)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "humility.really": {
+   "object": "humility",
+   "method": "really",
+   "args": [
+    "should"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j73",
+    "card": "w73",
+    "title": "humility.really(should)",
+    "emoji": "🔪",
+    "at": "2026-11-27T17:15:43-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "humility.really(should)",
+     "emoji": "🔪",
+     "arg": "should",
+     "run": "run-cf203b",
+     "job": "j73",
+     "tweets": [
+      {
+       "text": "humility really should mean submitting to superior argument",
+       "year": "2022",
+       "id": "1602773474010963971"
+      }
+     ],
+     "consequence": "The lines that landed: \"#oyinboman — money becomes the last thing on your mind\", \"humility really should mean submitting to superior argument\", \"[[from suleja to texas]] - #oyinboman\" and \"because people love to take freedoms - naira.",
+     "consequence_job": "j74",
+     "resolved": "humility.really(what=should:Thing) from j73",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "should",
+       "from_run": "run-cf203b",
+       "from_job": "j73",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "should",
+      "first_run": "run-cf203b",
+      "first_job": "j73"
+     }
+    ],
+    "text": "really(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [
+    {
+     "id": "dem.really",
+     "title": "dem.really(suffer)",
+     "run": "run-cf203b",
+     "job": "j43",
+     "at": "2026-11-26T14:29:56-05:00",
+     "why": "same method"
+    }
+   ],
+   "faded": false,
+   "last_run": null
+  },
+  "money.becomes": {
+   "object": "money",
+   "method": "becomes",
+   "args": [
+    "last"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j73",
+    "card": "w73",
+    "title": "money.becomes(last)",
+    "emoji": "🧁",
+    "at": "2026-11-27T17:15:43-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "money.becomes(last)",
+     "emoji": "🧁",
+     "arg": "last",
+     "run": "run-cf203b",
+     "job": "j73",
+     "tweets": [
+      {
+       "text": "#oyinboman — money becomes the last thing on your mind",
+       "year": "2025"
+      }
+     ],
+     "consequence": "What just happened: The last card asked for the next line, the one that answers \"when two people are talking, bobo yen worstt!!!\".",
+     "consequence_job": "j74",
+     "resolved": "money.becomes(what=last:Thing) from j73",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "last",
+       "from_run": "run-cf203b",
+       "from_job": "j73",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "last",
+      "first_run": "run-cf203b",
+      "first_job": "j73"
+     }
+    ],
+    "text": "becomes(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "suleja.texas": {
+   "object": "suleja",
+   "method": "texas",
+   "args": [
+    ""
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j73",
+    "card": "w73",
+    "title": "suleja.texas()",
+    "emoji": "👘",
+    "at": "2026-11-27T17:15:43-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "suleja.texas()",
+     "emoji": "👘",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j73",
+     "tweets": [
+      {
+       "text": "[[from suleja to texas]] - #oyinboman",
+       "year": "2025"
+      }
+     ],
+     "consequence": "The lines that landed: \"#oyinboman — money becomes the last thing on your mind\", \"humility really should mean submitting to superior argument\", \"[[from suleja to texas]] - #oyinboman\" and \"because people love to take freedoms - naira.",
+     "consequence_job": "j74",
+     "resolved": "suleja.texas()",
+     "injected": []
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [],
+    "text": "texas()"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
   },
   "cooler.getdatemanufactured": {
    "object": "cooler",
@@ -32692,7 +32940,8 @@
    "beat.out"
   ],
   "because": [
-   "because.ure"
+   "because.ure",
+   "because.people"
   ],
   "believe": [
    "believe.can"
@@ -33166,6 +33415,9 @@
   "however": [
    "however.go"
   ],
+  "humility": [
+   "humility.really"
+  ],
   "ideal": [
    "ideal.young"
   ],
@@ -33403,6 +33655,9 @@
   ],
   "model": [
    "model.con"
+  ],
+  "money": [
+   "money.becomes"
   ],
   "most": [
    "most.prolific"
@@ -33726,6 +33981,9 @@
   ],
   "stupidity": [
    "stupidity.say"
+  ],
+  "suleja": [
+   "suleja.texas"
   ],
   "sure": [
    "sure.idts"
@@ -34900,6 +35158,14 @@
     "title": "525. faster",
     "funcs": [
      "truth.without"
+    ]
+   },
+   {
+    "scope": "safe",
+    "from": "d63228ef5cbc",
+    "title": "1101. content is love",
+    "funcs": [
+     "money.becomes"
     ]
    }
   ],
@@ -51928,6 +52194,14 @@
   "point_kill_figure": [
    {
     "scope": "safe",
+    "from": "23b40a853b41",
+    "title": "804. who dey zuzu?!",
+    "funcs": [
+     "suleja.texas"
+    ]
+   },
+   {
+    "scope": "safe",
     "from": "9aa1737aecfa",
     "title": "830. everybody in the industry",
     "funcs": [
@@ -59042,6 +59316,10 @@
     "green.passport",
     "people.everybody",
     "when.two",
+    "because.people",
+    "humility.really",
+    "money.becomes",
+    "suleja.texas",
     "cli.cli",
     "thryd.importtheme",
     "kemi.ismarried",
@@ -59548,6 +59826,13 @@
    "title": "712. wishful thinking",
    "funcs": [
     "kunle.read"
+   ],
+   "runs": []
+  },
+  "23b40a853b41": {
+   "title": "804. who dey zuzu?!",
+   "funcs": [
+    "suleja.texas"
    ],
    "runs": []
   },
@@ -60394,7 +60679,11 @@
     "yuwa.best",
     "green.passport",
     "people.everybody",
-    "when.two"
+    "when.two",
+    "because.people",
+    "humility.really",
+    "money.becomes",
+    "suleja.texas"
    ],
    "runs": [
     "run-cf203b"
@@ -61391,6 +61680,13 @@
    "title": "905. classic material",
    "funcs": [
     "lateef.teach"
+   ],
+   "runs": []
+  },
+  "d63228ef5cbc": {
+   "title": "1101. content is love",
+   "funcs": [
+    "money.becomes"
    ],
    "runs": []
   },
@@ -62448,6 +62744,7 @@
   ],
   "1*nO_c5Fhrmc182GE_F0zVwQ.gif": [
    "55db20ef3a0b",
+   "d63228ef5cbc",
    "c5a2b107dc8b"
   ],
   "1*EGfa3VQWdL61AGY_DW56zA.gif": [
@@ -62751,7 +63048,8 @@
    "75c8a354a7c7"
   ],
   "1*bvGksBnUGY8APjvlhhkHng.gif": [
-   "9aa1737aecfa"
+   "9aa1737aecfa",
+   "23b40a853b41"
   ],
   "1*r60JaNtgDqXR6PpIsMmeLQ.gif": [
    "4558fb3e9d83",
@@ -63551,6 +63849,7 @@
    "runs": [],
    "safes": [
     "55db20ef3a0b",
+    "d63228ef5cbc",
     "c5a2b107dc8b"
    ]
   },
@@ -63838,7 +64137,8 @@
   "1*bvGksBnUGY8APjvlhhkHng.gif": {
    "runs": [],
    "safes": [
-    "9aa1737aecfa"
+    "9aa1737aecfa",
+    "23b40a853b41"
    ]
   },
   "1*JQOZZk0Ge-U0wXYZPFvm-Q.gif": {
@@ -64191,7 +64491,8 @@
    "beat.out"
   ],
   "because": [
-   "because.ure"
+   "because.ure",
+   "because.people"
   ],
   "believe": [
    "believe.can"
@@ -64508,6 +64809,9 @@
   "however": [
    "however.go"
   ],
+  "humility": [
+   "humility.really"
+  ],
   "ideal": [
    "ideal.young"
   ],
@@ -64694,6 +64998,9 @@
   ],
   "model": [
    "model.con"
+  ],
+  "money": [
+   "money.becomes"
   ],
   "most": [
    "most.prolific"
@@ -64976,6 +65283,9 @@
   ],
   "stupidity": [
    "stupidity.say"
+  ],
+  "suleja": [
+   "suleja.texas"
   ],
   "sure": [
    "sure.idts"
@@ -65545,6 +65855,9 @@
   "most": [],
   "yuwa": [],
   "green": [],
+  "humility": [],
+  "money": [],
+  "suleja": [],
   "cooler": [],
   "kazeem.goodqualities": [],
   "app": [],
@@ -65804,6 +66117,7 @@
    "honey",
    "hope",
    "however",
+   "humility",
    "ideal",
    "idt",
    "if",
@@ -65825,6 +66139,7 @@
    "make",
    "mean",
    "model",
+   "money",
    "most",
    "namco",
    "nd",
@@ -65870,6 +66185,7 @@
    "story",
    "stringify",
    "stupidity",
+   "suleja",
    "sure",
    "textbook",
    "then",
@@ -65913,5 +66229,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-27T17:07:56-05:00"
+ "updated": "2026-11-27T17:16:25-05:00"
 }
