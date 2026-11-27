@@ -15050,7 +15050,7 @@
   },
   "run-cf203b": {
    "forked_from": "safe:731d52737690",
-   "head": "df6418ac43",
+   "head": "e3ea9f8719",
    "commits": [
     {
      "id": "eda103402b",
@@ -15732,12 +15732,7 @@
         "op": "define"
        }
       ],
-      "instances": [
-       [
-        "big",
-        "Thing"
-       ]
-      ]
+      "instances": []
      }
     },
     {
@@ -20448,11 +20443,11 @@
      }
     },
     {
-     "id": "df6418ac43",
+     "id": "6d94d0dd90",
      "parent": "4ab283998f",
      "branch": "run-cf203b",
      "job": "j60",
-     "at": "2026-11-26T22:00:30-0500",
+     "at": "2026-11-26T23:52:37-05:00",
      "genre": "rising",
      "beat": "now",
      "diff": {
@@ -20619,6 +20614,51 @@
        }
       ],
       "facts_total": 20,
+      "functions": [
+       {
+        "func": "always.believed",
+        "title": "always.believed()",
+        "op": "define"
+       },
+       {
+        "func": "sure.idts",
+        "title": "sure.idts()",
+        "op": "define"
+       },
+       {
+        "func": "what.happens",
+        "title": "what.happens(now)",
+        "op": "define"
+       }
+      ],
+      "instances": [
+       [
+        "now",
+        "Frequency"
+       ]
+      ]
+     }
+    },
+    {
+     "id": "e3ea9f8719",
+     "parent": "6d94d0dd90",
+     "branch": "run-cf203b",
+     "job": "j61",
+     "at": "2026-11-26T23:52:45-0500",
+     "genre": "rising",
+     "beat": "now",
+     "diff": {
+      "facts": [
+       {
+        "id": "wt_96271c4d58",
+        "object": "oshodi_bus_shelter_subject_second",
+        "kind": "call",
+        "code": "oshodi_bus_shelter_subject_second.glow();",
+        "scope": null,
+        "cause_id": null
+       }
+      ],
+      "facts_total": 1,
       "functions": [],
       "instances": []
      }
@@ -21567,10 +21607,10 @@
   "run-0ae93c": "a11a1eab61",
   "run-3a15d2": "fbc46c6eb7",
   "run-ab4653": "dd8e54daee",
-  "run-cf203b": "df6418ac43",
+  "run-cf203b": "e3ea9f8719",
   "run-888ea9": "7aa0131911",
   "run-cb805f": "8d23a93627"
  },
- "commits": 212,
- "updated": "2026-11-26T23:52:43-05:00"
+ "commits": 213,
+ "updated": "2026-11-26T23:53:35-05:00"
 }
