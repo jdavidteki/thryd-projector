@@ -117,7 +117,7 @@
   const css = document.createElement('style'); css.textContent = [
     '#aibox{position:fixed;left:50%;bottom:12vh;transform:translateX(-50%);z-index:10060;display:none;flex-direction:column;gap:.6vh;width:min(92vw,520px);padding:.8vh;border-radius:1vh;background:rgba(12,12,12,.92);box-shadow:0 3px 16px #0009;font:600 max(13px,1.6vh) ui-monospace,Menlo,Consolas,monospace;color:#fff}',
     '#aibox.on{display:flex}', '#aibox .airow{display:flex;align-items:stretch;gap:.5vh;width:100%}', '#aibox input,#aibox textarea{flex:1 1 auto;min-width:0;font:inherit;color:#fff;background:#222;border:1px solid #666;border-radius:.7vh;padding:.8vh 1vh;outline:none;min-height:36px;resize:none;overflow:hidden;line-height:1.3}',
-    '#aibox #aisend{flex:0 0 auto;min-width:44px;min-height:36px;padding:0 .85vh;font:inherit;color:#111;background:#ffd76a;border:1px solid #c9a227;border-radius:.7vh;cursor:pointer;line-height:1}',
+    '#aibox #aisend{flex:0 0 auto;min-width:44px;white-space:nowrap;font-weight:700;min-height:36px;padding:0 .85vh;font:inherit;color:#111;background:#ffd76a;border:1px solid #c9a227;border-radius:.7vh;cursor:pointer;line-height:1}',
     '#aibox input:focus,#aibox textarea:focus{border-color:#ffd76a}', '#aibox .aim{color:#bbb;font-weight:400;font-size:.85em;min-height:1em}', '#aibox .aic{display:flex;flex-wrap:wrap;gap:.5vh}',
     '#aibox .aic button{font:inherit;color:#fff;background:#2a2a2a;border:1px solid #8a6d2b;border-radius:.8vh;padding:.6vh .9vh;cursor:pointer;min-height:34px}',
     '#aibox .aic button.ch{border-color:#9f7aea}', '#aibox .aic button.off{opacity:.6}', '#aibox .aiu{color:#9fd3ff;cursor:pointer;text-decoration:underline;margin-left:.6em}',
@@ -188,8 +188,8 @@
     inp = document.createElement('textarea'); inp.rows = 1; inp.name = 'call'; inp.autocomplete = 'off'; inp.spellcheck = false;
     inp.setAttribute('enterkeyhint', 'go'); inp.setAttribute('inputmode', 'text'); inp.setAttribute('aria-label', 'Type a call');
     inp.placeholder = 'type a call · teo.fold() · or say what you want';
-    sendBtn = document.createElement('button'); sendBtn.id = 'aisend'; sendBtn.type = 'button'; sendBtn.setAttribute('aria-label', 'Submit');
-    sendBtn.title = 'Send'; sendBtn.textContent = '\u27a4';
+    sendBtn = document.createElement('button'); sendBtn.id = 'aisend'; sendBtn.type = 'button'; sendBtn.setAttribute('aria-label', '#thryd \u2014 send this call');
+    sendBtn.title = '#thryd \u2014 send this call (Enter)'; sendBtn.textContent = '#thryd';   // v649 (Jesuye 5:28 PM): was \u27a4 / "Send"
     form.append(inp, sendBtn);
     msg = document.createElement('div'); msg.className = 'aim'; chips = document.createElement('div'); chips.className = 'aic';
     const head = document.createElement('div'); head.id = 'aihead'; head.textContent = '[[god]]';
