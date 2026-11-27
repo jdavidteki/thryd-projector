@@ -46,6 +46,10 @@
     '#aicard .aicopt .ot .ots{color:rgba(232,224,208,.4);font-weight:400}',
     '#aicard .aicopt .ot .otl.pick{color:#ffd76a;font-weight:600;background:rgba(255,215,106,.16);border-radius:2px}',
     '#aicard .aicopt.on{border-color:#ffd76a;background:rgba(255,215,106,.13)}',
+    /* v647 (Jesuye 5:09 PM "it should have its own color"): the returning (hook) line, colour from data/role_colors.json via o.color */
+    '#aicard .aicopt.hook{border-left:3px solid var(--hook,#ff2bd6)}#aicard .aicopt.hook .ol{color:var(--hook,#ff2bd6)}',
+    '#aicard .aicopt.hook .ot .otl.pick{color:var(--hook,#ff2bd6);background:rgba(255,43,214,.14)}',
+    '#aicard .aicseat .sl .hook{color:var(--hook,#ff2bd6);font-weight:600}',
     "#aicard .aicopt.on::before{background:#ffd76a;border-color:#ffd76a;box-shadow:inset 0 0 0 2.5px #2a2416}",
     '#aicard .aicopt:disabled,#aicard .aicopt[aria-disabled="true"],#aimenu button:disabled{opacity:.5;cursor:default}',
     '#aicard .aicfree{width:100%;box-sizing:border-box;font:400 14px/1.4 ThrydRead,Georgia,serif;color:#fff;background:rgba(0,0,0,.28);border:1px solid rgba(255,255,255,.16);border-radius:10px;padding:8px 11px;min-height:38px;outline:none}',
@@ -702,7 +706,10 @@
       t.appendChild(document.createTextNode(' \u00b7 ' + ls.lines.length + ' line' + (ls.lines.length === 1 ? '' : 's') + (hhmm(ls.at) ? ' \u00b7 ' + hhmm(ls.at) : '')));
       h.appendChild(t); box.appendChild(h);
       const sl = document.createElement('div'); sl.className = 'sl';
-      ls.lines.forEach(x => { const r = document.createElement('div'); r.textContent = x; sl.appendChild(r); });
+      const hk = new Set(Array.isArray(ls.hook_lines) ? ls.hook_lines : []);
+      ls.lines.forEach(x => { const r = document.createElement('div'); r.textContent = x;
+        if(hk.has(x)){ r.className = 'hook'; if(/^#[0-9a-f]{6}$/i.test(ls.hook_color || '')) r.style.setProperty('--hook', ls.hook_color); }
+        sl.appendChild(r); });
       box.appendChild(sl);
       const pr = progressEl(m); if(pr) box.appendChild(pr);
       wrap.appendChild(box);
@@ -803,7 +810,8 @@
       const opts = document.createElement('div'); opts.className = 'aicopts';
       // 🎥 is not a line any more: it is the '🎥 Live view' pill in the menu row (Jesuye 12:42 PM)
       (c.options || []).filter(o => !isLiveOpt(o)).forEach(o => {
-        const b = document.createElement('div'); b.className = 'aicopt' + (sel.values.has(o.value) ? ' on' : '');
+        const b = document.createElement('div'); b.className = 'aicopt' + (sel.values.has(o.value) ? ' on' : '') + (o.role === 'hook' ? ' hook' : '');
+        if(o.role === 'hook' && /^#[0-9a-f]{6}$/i.test(o.color || '')){ b.style.setProperty('--hook', o.color); b.dataset.role = 'hook'; }
         b.dataset.value = o.value; b.setAttribute('role', 'button'); b.tabIndex = locked ? -1 : 0;
         b.setAttribute('aria-pressed', sel.values.has(o.value) ? 'true' : 'false');
         if(locked) b.setAttribute('aria-disabled', 'true');

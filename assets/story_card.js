@@ -262,7 +262,8 @@
       });
       src.forEach(function(s,j){
         if(!(s.a&&s.b)&&(!s.pa||!s.pb))return;
-        var hex=s.hex||'#2563eb',conn=s.kind==='connection',story=s.edge_k!=null&&s.edge_k!=='',srcA=!story&&hex.toLowerCase()!=='#2563eb';
+        /* v647: a seated returning (hook) line keeps its own colour (data/role_colors.json, carried as s.color) */
+        var hex=(s.role==='hook'&&/^#[0-9a-f]{6}$/i.test(s.color||''))?s.color:(s.hex||'#2563eb'),conn=s.kind==='connection',story=(s.edge_k!=null&&s.edge_k!=='')||s.role==='hook',srcA=!story&&hex.toLowerCase()!=='#2563eb';
         out.push({T:story?700:(srcA?320:120),key:'s'+j,hash:[s.index,s.call,hex,s.kind].join(':'),kind:s.kind,edge:s.edge,gd:function(x,sv){
           var pq=inkPts(s);if(!pq)return;var a=pq[0],b=pq[1];
           x.save();x.lineCap='round';x.strokeStyle=hex;
