@@ -15050,7 +15050,7 @@
   },
   "run-cf203b": {
    "forked_from": "safe:731d52737690",
-   "head": "0515f5c011",
+   "head": "bef259bfa8",
    "commits": [
     {
      "id": "eda103402b",
@@ -15500,12 +15500,7 @@
         "op": "define"
        }
       ],
-      "instances": [
-       [
-        "ese",
-        "Thing"
-       ]
-      ]
+      "instances": []
      }
     },
     {
@@ -15657,12 +15652,7 @@
         "op": "define"
        }
       ],
-      "instances": [
-       [
-        "work",
-        "Action"
-       ]
-      ]
+      "instances": []
      }
     },
     {
@@ -15743,10 +15733,6 @@
        }
       ],
       "instances": [
-       [
-        "like",
-        "Manner"
-       ],
        [
         "big",
         "Thing"
@@ -17307,10 +17293,6 @@
        [
         "4pm",
         "Action"
-       ],
-       [
-        "gonna",
-        "Thing"
        ]
       ]
      }
@@ -20348,11 +20330,11 @@
      }
     },
     {
-     "id": "0515f5c011",
+     "id": "4ab283998f",
      "parent": "fdfd54cbb1",
      "branch": "run-cf203b",
      "job": "j59",
-     "at": "2026-11-26T21:59:10-0500",
+     "at": "2026-11-26T21:59:31-05:00",
      "genre": "rising",
      "beat": "now",
      "diff": {
@@ -20423,6 +20405,132 @@
        }
       ],
       "facts_total": 8,
+      "functions": [
+       {
+        "func": "also.vlogs",
+        "title": "also.vlogs(ywa)",
+        "op": "define"
+       },
+       {
+        "func": "know.change",
+        "title": "know.change(gonna)",
+        "op": "define"
+       },
+       {
+        "func": "then.wanted",
+        "title": "then.wanted(ask)",
+        "op": "define"
+       },
+       {
+        "func": "truth.without",
+        "title": "truth.without(false)",
+        "op": "define"
+       }
+      ],
+      "instances": [
+       [
+        "ywa",
+        "Thing"
+       ],
+       [
+        "gonna",
+        "Thing"
+       ],
+       [
+        "ask",
+        "Action"
+       ],
+       [
+        "false",
+        "Thing"
+       ]
+      ]
+     }
+    },
+    {
+     "id": "bef259bfa8",
+     "parent": "4ab283998f",
+     "branch": "run-cf203b",
+     "job": "j60",
+     "at": "2026-11-26T22:00:30-0500",
+     "genre": "rising",
+     "beat": "now",
+     "diff": {
+      "facts": [
+       {
+        "id": "wt_e410b639f7",
+        "object": "shi",
+        "kind": "func_call",
+        "code": "shi.gbogbo('errors');",
+        "scope": "env",
+        "cause_id": null
+       },
+       {
+        "id": "wt_3d26e098d3",
+        "object": "agboro",
+        "kind": "func_call",
+        "code": "agboro.hears(person, 'gbogbo');",
+        "scope": "ripple",
+        "cause_id": "wt_e410b639f7"
+       },
+       {
+        "id": "wt_4633a99608",
+        "object": "ahan",
+        "kind": "func_call",
+        "code": "ahan.hears(person, 'gbogbo');",
+        "scope": "ripple",
+        "cause_id": "wt_e410b639f7"
+       },
+       {
+        "id": "wt_688307f3e6",
+        "object": "alorof",
+        "kind": "func_call",
+        "code": "alorof.hears(person, 'gbogbo');",
+        "scope": "ripple",
+        "cause_id": "wt_e410b639f7"
+       },
+       {
+        "id": "wt_39a1313100",
+        "object": "cooler_subject",
+        "kind": "call",
+        "code": "cooler_subject.glow();",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_4c7c83ee8c",
+        "object": "shi",
+        "kind": "func_call",
+        "code": "shi.gbogbo('errors');",
+        "scope": "env",
+        "cause_id": null
+       },
+       {
+        "id": "wt_4329cd2a9c",
+        "object": "agboro",
+        "kind": "func_call",
+        "code": "agboro.hears(person, 'gbogbo');",
+        "scope": "ripple",
+        "cause_id": "wt_4c7c83ee8c"
+       },
+       {
+        "id": "wt_0bd17b2c4e",
+        "object": "ahan",
+        "kind": "func_call",
+        "code": "ahan.hears(person, 'gbogbo');",
+        "scope": "ripple",
+        "cause_id": "wt_4c7c83ee8c"
+       },
+       {
+        "id": "wt_b5ccc7b7b7",
+        "object": "alorof",
+        "kind": "func_call",
+        "code": "alorof.hears(person, 'gbogbo');",
+        "scope": "ripple",
+        "cause_id": "wt_4c7c83ee8c"
+       }
+      ],
+      "facts_total": 9,
       "functions": [],
       "instances": []
      }
@@ -21363,10 +21471,10 @@
   "run-0ae93c": "a11a1eab61",
   "run-3a15d2": "fbc46c6eb7",
   "run-ab4653": "dd8e54daee",
-  "run-cf203b": "0515f5c011",
+  "run-cf203b": "bef259bfa8",
   "run-888ea9": "56b3618131",
   "run-cb805f": "8d23a93627"
  },
- "commits": 211,
- "updated": "2026-11-26T21:59:29-05:00"
+ "commits": 212,
+ "updated": "2026-11-26T22:01:10-05:00"
 }
