@@ -8,14 +8,14 @@ const js = rd('assets/job_card.js'), html = rd('index.html'), st = rd('assets/st
 
 test('job_card.js loads by default; ?cards=0 hides the panel', ()=>{
   assert.match(html, /cards=0/);
-  assert.match(html, /job_card\.js\?v=13/);
+  assert.match(html, /job_card\.js\?v=14/);
   assert.match(js, /cards=0/);
   assert.match(html, /if\(!\/\(\?:\^\|\[\?&\]\)cards=0/);
   assert.match(js, /if\(\/\(\?:\^\|\[\?&\]\)cards=0/);
   assert.doesNotMatch(html, /if\(\/\(\?:\^\|\[\?&\]\)cards=1/);
-  assert.match(html, /var VER=636,/);
+  assert.match(html, /var VER=637,/);
   const v = JSON.parse(ver);
-  assert.ok(v.v >= 636);
+  assert.ok(v.v >= 637);
 });
 
 test('layout is job card, then typeline, then plain always-visible buttons', ()=>{
@@ -29,8 +29,12 @@ test('layout is job card, then typeline, then plain always-visible buttons', ()=
   assert.match(js, /menus\.lock/);
   assert.doesNotMatch(js, /lock_open && c\.menus/);
   const card = JSON.parse(rd('data/open_card.json'));
-  // v627 (Jesuye 1:26 PM): Hold and Tweets off the menu row; Publish on the lock row only
-  assert.deepEqual(card.menus.main.map(o => o.label), ['🌱 Seed an agenda','🙏 Prayer jobs']);
+  // v637: full [[god]] navigator on the menu row; Publish still lock-row only; Live view is menus.live
+  assert.deepEqual(card.menus.main.map(o => o.label), [
+    '🌱 Seed an agenda','📐 Draw a story','🧭 Move','🙏 Prayer jobs','⏳ Async jobs',
+    '🤲 Hold','🐦 Tweets','📋 Show all agendas','🖼️ view story diagram',
+    '🕊️ [[poetry]]','🐦 [[hpr]]','🗺️ Lovemap','🎙️ Podcasts'
+  ]);
   assert.ok(card.menus.lock.length >= 4);
   assert.deepEqual(card.menus.lock.map(o => o.value), ['souvenir','tweets','publish!','jump ahead']);
   assert.equal(card.menus.lock.find(o => o.value === 'publish!').label, '📣 Publish');
@@ -123,18 +127,18 @@ test('v625: one activation per tap across the whole panel (no ghost tap on a nei
   assert.doesNotMatch(js, /aimnote:empty\{display:none\}/);
 });
 
-test('v627: menu row Seed/Prayer/🎥 Live view, lock row gets 📣 Publish before Jump ahead, pinned run waiting note', ()=>{
-  assert.match(js, /MAIN_DROP = \/\^menu:\\s\*\(hold\|tweets\)\$\/i/);
+test('v637: full [[god]] menu on the panel, Live view while waiting, lock row still gets Publish', ()=>{
   assert.match(js, /value: 'publish!'/);
   assert.match(js, /withPublish\(lock\)\.forEach/);
   assert.match(js, /out\.splice\(i, 0, PUBLISH\)/);
   assert.match(js, /c\.waiting && c\.seated_job/);
-  // run the helper on a stale lock row (no Publish) and a fresh one (Publish already there)
-  const src = js.slice(js.indexOf('const MAIN_DROP'), js.indexOf('function render(){'));
-  const f = new Function(src + '; return {withPublish, MAIN_DROP};')();
+  assert.match(js, /\(\(c && c\.menus && c\.menus\.live\) \|\| \[\]\)\.forEach/);
+  assert.match(js, /function sheetEl\(/);
+  assert.doesNotMatch(js, /MAIN_DROP = \/\^menu:\\s\*\(hold\|tweets\)\$\/i/);
+  const src = js.slice(js.indexOf('const PUBLISH'), js.indexOf('function render(){'));
+  const f = new Function(src + '; return {withPublish};')();
   assert.deepEqual(f.withPublish([{value:'souvenir'},{value:'tweets'},{value:'jump ahead'}]).map(o => o.value), ['souvenir','tweets','publish!','jump ahead']);
   assert.deepEqual(f.withPublish([{value:'souvenir'},{value:'publish!'},{value:'jump ahead'}]).map(o => o.value), ['souvenir','publish!','jump ahead']);
-  assert.ok(f.MAIN_DROP.test('menu: Hold') && f.MAIN_DROP.test('menu: Tweets') && !f.MAIN_DROP.test('menu: Prayer jobs'));
 });
 
 test('v628: panel stays open after Send; waiting refresh keeps the sent card; each option shows the full archive safe', ()=>{
@@ -162,7 +166,7 @@ test('v628: panel stays open after Send; waiting refresh keeps the sent card; ea
   assert.match(js, /border-radius:8px;white-space:normal/);
   assert.match(js, /max-height:15em;overflow-y:auto/);
   assert.match(js, /touch-action:pan-y/);
-  assert.match(html, /job_card\.js\?v=13/);
+  assert.match(html, /job_card\.js\?v=14/);
   assert.match(html, /intent_ai\.js\?v=614/);
   const src = js.slice(js.indexOf('function safeText(o){'), js.indexOf('function render(){'));
   const f = new Function(src + '; return {safeRows, safeText};')();
@@ -247,10 +251,10 @@ test('v633: archive safe lines flow inline at a smaller font; title stays its ow
 });
 
 test('v634: open async jobs render as persistent waiting-on-real-life pills; empty list shows nothing', ()=>{
-  assert.match(html, /var VER=636,/);
-  assert.match(html, /job_card\.js\?v=13/);
+  assert.match(html, /var VER=637,/);
+  assert.match(html, /job_card\.js\?v=14/);
   const v = JSON.parse(ver);
-  assert.ok(v.v >= 636);
+  assert.ok(v.v >= 637);
   assert.match(js, /function asyncPills\(/);
   assert.match(js, /function jobText\(/);
   assert.match(js, /function ago\(/);

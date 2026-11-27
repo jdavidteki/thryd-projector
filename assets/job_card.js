@@ -89,6 +89,13 @@
     '#aimenu .aimrow.hot{padding:5px 6px;margin:0 -6px;border-radius:10px;background:rgba(255,215,106,.1);box-shadow:inset 0 0 0 1px rgba(255,215,106,.55)}',
     '#aimenu .aimrow.hot .aimlab{color:#ffd76a}',
     '#aimenu .aimrow.hot button{border-color:#ffd76a;color:#fff3cf}',
+    '#aisheet{margin:6px 0 0;padding:8px 10px;border:1px solid rgba(201,169,90,.35);border-radius:12px;background:rgba(0,0,0,.28)}',
+    '#aisheet .sh{font:650 13px/1.3 ui-sans-serif,system-ui,sans-serif;color:#efe9dc;margin:0 0 4px}',
+    '#aisheet .ht{font:500 11.5px/1.35 ui-sans-serif,system-ui,sans-serif;color:#b8b2a4;margin:0 0 8px;white-space:pre-wrap}',
+    '#aisheet .bd{font:500 12px/1.4 ui-sans-serif,system-ui,sans-serif;color:#efe9dc;white-space:pre-wrap;max-height:12em;overflow:auto;margin:0 0 8px}',
+    '#aisheet .opts{display:flex;flex-direction:column;gap:4px;max-height:16em;overflow:auto}',
+    '#aisheet button{font:600 12px/1.3 ui-sans-serif,system-ui,sans-serif;text-align:left;color:#efe9dc;background:rgba(255,255,255,.06);border:1px solid rgba(201,169,90,.4);border-radius:10px;padding:6px 10px;cursor:pointer}',
+    '#aisheet button.sent{border-color:#2f8a50;background:rgba(47,138,80,.22)}',
     '@media (max-width:520px){#aibox.cards-on{width:96vw;bottom:6vh}#aicard .aicprompt{font-size:14.5px}}',
     '@media (max-height:600px){#aibox.cards-on{max-height:84vh;max-height:84dvh;bottom:6vh}#aibox.cards-on > .aim{display:none}#aibox.cards-on > form.airow{padding-top:7px}#aibox.cards-on textarea{min-height:32px}#aicard{gap:7px;padding:9px 12px 8px}#aicard .aicprompt{font-size:14px;line-height:1.55}}'
   ].join('\n');
@@ -366,7 +373,7 @@
   const note = setStatus;
 
   // v627 (Jesuye 1:26 PM "add publish to the lock menu and remove hold and tweets from the menu")
-  const MAIN_DROP = /^menu:\s*(hold|tweets)$/i;
+  // v637: Hold and Tweets are back on the main row (full [[god]] navigator). Jump ahead stays lock-only.
   const PUBLISH = {label: '\ud83d\udce3 Publish', value: 'publish!'};
   function withPublish(lock){
     const out = (lock || []).slice();
@@ -555,6 +562,21 @@
     const lr = document.querySelector('#aimenu .aimrow[data-row="lock"]'); if(lr) lr.classList.toggle('hot', isLocked(meta || card));
   }
 
+
+  function sheetEl(s){
+    const box = document.createElement('div'); box.id = 'aisheet';
+    if(s.prompt){ const h = document.createElement('div'); h.className = 'sh'; h.textContent = s.prompt; box.appendChild(h); }
+    if(s.helpText){ const h = document.createElement('div'); h.className = 'ht'; h.textContent = s.helpText; box.appendChild(h); }
+    if(s.body){ const b = document.createElement('div'); b.className = 'bd'; b.textContent = s.body; box.appendChild(b); }
+    const opts = s.options || [];
+    if(opts.length){
+      const wrap = document.createElement('div'); wrap.className = 'opts';
+      opts.forEach(o => wrap.appendChild(menuBtn(o)));
+      box.appendChild(wrap);
+    }
+    return box;
+  }
+
   function render(){
     const els = mount(); if(!els) return;
     const {jobEl, menuEl} = els;
@@ -564,6 +586,10 @@
     // --- job card (above the typeline) ---
     jobEl.textContent = '';
     jobEl.appendChild(seatStrip());
+    const sheet = (meta && meta.sheet) || (c && c.sheet);
+    if(sheet && (sheet.prompt || (sheet.options || []).length || sheet.body)){
+      jobEl.appendChild(sheetEl(sheet));
+    }
     if(!c || !c.open || !(c.options || []).length){
       if(c && isLocked(meta || c)){ /* the lock banner above says it */ }
       else {
@@ -634,9 +660,9 @@
       const lab = document.createElement('span'); lab.className = 'aimlab'; lab.textContent = 'menu'; row.appendChild(lab);
       // one Jump ahead only (Jesuye 12:39 PM): the LOCK row keeps it
       const lockHasJump = ((c && c.menus && c.menus.lock) || []).some(x => /jump ahead/i.test(String(x.value || x.label || '')));
-      // v627 (Jesuye 1:26 PM): menu row is Seed an agenda, Prayer jobs, 🎥 Live view; Hold / Tweets never here
-      main.filter(o => !(lockHasJump && /jump ahead/i.test(String(o.value || o.label || '')))).filter(o => !MAIN_DROP.test(String(o.value || ''))).forEach(o => row.appendChild(menuBtn(o)));
-      ((c && c.open && c.menus && c.menus.live) || []).forEach(o => { const lb = menuBtn(o); lb.classList.add('live'); row.appendChild(lb); });
+      // v637: full [[god]] navigator on the menu row; Jump ahead stays on LOCK only; Live view shows while waiting too
+      main.filter(o => !(lockHasJump && /jump ahead/i.test(String(o.value || o.label || '')))).forEach(o => row.appendChild(menuBtn(o)));
+      ((c && c.menus && c.menus.live) || []).forEach(o => { const lb = menuBtn(o); lb.classList.add('live'); row.appendChild(lb); });
       menuEl.appendChild(row);
     }
     const lock = (c && c.menus && c.menus.lock) || [];
@@ -755,6 +781,7 @@
     if(!o || !o.value || btn.disabled) return;
     const run = card && card.run;
     if(menuRecent(run, o.value)){ btn.classList.add('sent'); btn.title = 'sent'; menuNote(o.label + ' already sent \u2713', 'ok'); return; } // drop before POST
+    if(o.href){ try{ window.open(o.href, '_blank', 'noopener'); }catch(e){} }
     btn.disabled = true; menuNote('sending ' + o.label + '\u2026', '');
     const eid = uid('menu-');
     const body = {v:1, type:'menu_action', event_id:eid, rid:eid+'-r', run:card && card.run, job:card && card.job, card:card && card.card,
