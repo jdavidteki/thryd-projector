@@ -1,6 +1,370 @@
 {
   "v": 1,
   "dwell_k": 2,
-  "note": "Per-cut animated GIF/webp for projector stills. Keyed by medium_image_id + cut label. The stage plays anim when the file is present and falls back to the still (plus ambient in-cut motion) when it is missing or fails to load. dwell_k is the on-screen life multiplier vs a plain still (2x). Pilot stills and prompts: /workspace/animcuts/pilot. Converter: /workspace/animcuts/to_cut_gif.py.",
+  "space": "Lightricks/ltx-video-distilled",
+  "endpoint": "/image_to_video",
+  "note": "Per-cut animated GIF/webp for projector stills. Keyed by medium_image_id + cut label. The stage plays anim when the file is present and falls back to the still (plus ambient in-cut motion) when it is missing or fails to load. dwell_k is the on-screen life multiplier vs a plain still (2x). candidates: 20 pilot stills (assets/anim_pilot) generated in the viewer browser via the free public LTX-Video Space, then saved once through the intake /anim_cut endpoint.",
+  "candidates": [
+    {
+      "cut_id": "1_C6RSmLT-3nmZU3eh1HmX9Q.gif__cut1",
+      "medium_image_id": "1*C6RSmLT-3nmZU3eh1HmX9Q.gif",
+      "cut": "cut1",
+      "klass": "fork",
+      "object": "cloth_gold",
+      "person": false,
+      "prompt": "the gold cloth catches the light as the surface shimmers, subtle, seamless loop, static camera",
+      "png": "assets/anim_pilot/1_C6RSmLT-3nmZU3eh1HmX9Q.gif__cut1.png",
+      "i2v_size": [
+        480,
+        704
+      ],
+      "display_size": [
+        188,
+        292
+      ]
+    },
+    {
+      "cut_id": "1_QXhC37JhfoIHxI_6C7jlUA.gif__cut1",
+      "medium_image_id": "1*QXhC37JhfoIHxI_6C7jlUA.gif",
+      "cut": "cut1",
+      "klass": "clock",
+      "object": "sphere_wire",
+      "person": false,
+      "prompt": "the wire sphere turns slowly in place, subtle, seamless loop, static camera",
+      "png": "assets/anim_pilot/1_QXhC37JhfoIHxI_6C7jlUA.gif__cut1.png",
+      "i2v_size": [
+        704,
+        704
+      ],
+      "display_size": [
+        1009,
+        1008
+      ]
+    },
+    {
+      "cut_id": "1_1M6PFkkIVPLKbAV4f7Fq0w.gif__cut1",
+      "medium_image_id": "1*1M6PFkkIVPLKbAV4f7Fq0w.gif",
+      "cut": "cut1",
+      "klass": "cell phone",
+      "object": "vessel",
+      "person": false,
+      "prompt": "the vessel stands with a slight weight shift and a breath, subtle, seamless loop, static camera",
+      "png": "assets/anim_pilot/1_1M6PFkkIVPLKbAV4f7Fq0w.gif__cut1.png",
+      "i2v_size": [
+        512,
+        704
+      ],
+      "display_size": [
+        86,
+        133
+      ]
+    },
+    {
+      "cut_id": "1_S1oCWFn9cmXUYSNZZkml_g.gif__cut1",
+      "medium_image_id": "1*S1oCWFn9cmXUYSNZZkml_g.gif",
+      "cut": "cut1",
+      "klass": "zebra",
+      "object": "woman_stripe",
+      "person": true,
+      "prompt": "the woman in stripes takes a small running step in place, subtle, seamless loop, static camera",
+      "png": "assets/anim_pilot/1_S1oCWFn9cmXUYSNZZkml_g.gif__cut1.png",
+      "i2v_size": [
+        288,
+        704
+      ],
+      "display_size": [
+        100,
+        301
+      ]
+    },
+    {
+      "cut_id": "1_ANqZ08x0BseigSchXUT3hg.gif__cut1",
+      "medium_image_id": "1*ANqZ08x0BseigSchXUT3hg.gif",
+      "cut": "cut1",
+      "klass": "tie",
+      "object": "fly",
+      "person": false,
+      "prompt": "the fly settles with a tiny twitch, subtle, seamless loop, static camera",
+      "png": "assets/anim_pilot/1_ANqZ08x0BseigSchXUT3hg.gif__cut1.png",
+      "i2v_size": [
+        576,
+        704
+      ],
+      "display_size": [
+        339,
+        430
+      ]
+    },
+    {
+      "cut_id": "x_notnotnotnotyn_3_1720129603153342464.jpg__cut2",
+      "medium_image_id": "x_notnotnotnotyn_3_1720129603153342464.jpg",
+      "cut": "cut2",
+      "klass": "person",
+      "object": "student",
+      "person": true,
+      "prompt": "the student glances down, a small shift of the gaze, subtle, seamless loop, static camera",
+      "png": "assets/anim_pilot/x_notnotnotnotyn_3_1720129603153342464.jpg__cut2.png",
+      "i2v_size": [
+        544,
+        704
+      ],
+      "display_size": [
+        1731,
+        2279
+      ]
+    },
+    {
+      "cut_id": "x_notnotnotnotyn_3_1720496077550288896.jpg__cut1",
+      "medium_image_id": "x_notnotnotnotyn_3_1720496077550288896.jpg",
+      "cut": "cut1",
+      "klass": "person",
+      "object": "dancer",
+      "person": true,
+      "prompt": "the dancer takes a small step in place, subtle, seamless loop, static camera",
+      "png": "assets/anim_pilot/x_notnotnotnotyn_3_1720496077550288896.jpg__cut1.png",
+      "i2v_size": [
+        256,
+        704
+      ],
+      "display_size": [
+        851,
+        2835
+      ]
+    },
+    {
+      "cut_id": "x_notnotnotnotyn_3_1720184582803279872.jpg__cut1",
+      "medium_image_id": "x_notnotnotnotyn_3_1720184582803279872.jpg",
+      "cut": "cut1",
+      "klass": "person",
+      "object": "woman_wrap",
+      "person": true,
+      "prompt": "the woman in wrap breathes and shifts slightly while seated, subtle, seamless loop, static camera",
+      "png": "assets/anim_pilot/x_notnotnotnotyn_3_1720184582803279872.jpg__cut1.png",
+      "i2v_size": [
+        704,
+        704
+      ],
+      "display_size": [
+        1347,
+        1365
+      ]
+    },
+    {
+      "cut_id": "x_notnotnotnotyn_3_1779384191991324672.jpg__cut1",
+      "medium_image_id": "x_notnotnotnotyn_3_1779384191991324672.jpg",
+      "cut": "cut1",
+      "klass": "person",
+      "object": "man_robe",
+      "person": true,
+      "prompt": "the man in robe smiles, a slight shift of the face, subtle, seamless loop, static camera",
+      "png": "assets/anim_pilot/x_notnotnotnotyn_3_1779384191991324672.jpg__cut1.png",
+      "i2v_size": [
+        384,
+        704
+      ],
+      "display_size": [
+        985,
+        1803
+      ]
+    },
+    {
+      "cut_id": "x_notnotnotnotyn_3_1765826196367970304.jpg__cut1",
+      "medium_image_id": "x_notnotnotnotyn_3_1765826196367970304.jpg",
+      "cut": "cut1",
+      "klass": "person",
+      "object": "speaker",
+      "person": true,
+      "prompt": "the speaker stands with a slight weight shift and a breath, subtle, seamless loop, static camera",
+      "png": "assets/anim_pilot/x_notnotnotnotyn_3_1765826196367970304.jpg__cut1.png",
+      "i2v_size": [
+        320,
+        704
+      ],
+      "display_size": [
+        890,
+        1919
+      ]
+    },
+    {
+      "cut_id": "x_notnotnotnotyn_3_1720541401757175808.jpg__cut1",
+      "medium_image_id": "x_notnotnotnotyn_3_1720541401757175808.jpg",
+      "cut": "cut1",
+      "klass": "person",
+      "object": "graduate",
+      "person": true,
+      "prompt": "the graduate stands with a slight weight shift and a breath, subtle, seamless loop, static camera",
+      "png": "assets/anim_pilot/x_notnotnotnotyn_3_1720541401757175808.jpg__cut1.png",
+      "i2v_size": [
+        256,
+        704
+      ],
+      "display_size": [
+        689,
+        2130
+      ]
+    },
+    {
+      "cut_id": "x_notnotnotnotyn_3_1718824928693153792.jpg__cut1",
+      "medium_image_id": "x_notnotnotnotyn_3_1718824928693153792.jpg",
+      "cut": "cut1",
+      "klass": "person",
+      "object": "hand",
+      "person": true,
+      "prompt": "the hand lifts a little, then settles, subtle, seamless loop, static camera",
+      "png": "assets/anim_pilot/x_notnotnotnotyn_3_1718824928693153792.jpg__cut1.png",
+      "i2v_size": [
+        352,
+        704
+      ],
+      "display_size": [
+        830,
+        1732
+      ]
+    },
+    {
+      "cut_id": "x_notnotnotnotyn_3_1765649333771239424.jpg__cut1",
+      "medium_image_id": "x_notnotnotnotyn_3_1765649333771239424.jpg",
+      "cut": "cut1",
+      "klass": "person",
+      "object": "teacher",
+      "person": true,
+      "prompt": "the teacher points, a slight arm motion, subtle, seamless loop, static camera",
+      "png": "assets/anim_pilot/x_notnotnotnotyn_3_1765649333771239424.jpg__cut1.png",
+      "i2v_size": [
+        512,
+        704
+      ],
+      "display_size": [
+        900,
+        1243
+      ]
+    },
+    {
+      "cut_id": "x_notnotnotnotyn_3_1765445894961299457.jpg__cut2",
+      "medium_image_id": "x_notnotnotnotyn_3_1765445894961299457.jpg",
+      "cut": "cut2",
+      "klass": "person",
+      "object": "figure_crown",
+      "person": true,
+      "prompt": "the figure in crown breathes and shifts slightly while seated, subtle, seamless loop, static camera",
+      "png": "assets/anim_pilot/x_notnotnotnotyn_3_1765445894961299457.jpg__cut2.png",
+      "i2v_size": [
+        704,
+        672
+      ],
+      "display_size": [
+        1033,
+        1005
+      ]
+    },
+    {
+      "cut_id": "x_notnotnotnotyn_3_1765590480622907392.jpg__cut2",
+      "medium_image_id": "x_notnotnotnotyn_3_1765590480622907392.jpg",
+      "cut": "cut2",
+      "klass": "bird",
+      "object": "pair_dance",
+      "person": false,
+      "prompt": "the dancing pair turns slightly, subtle, seamless loop, static camera",
+      "png": "assets/anim_pilot/x_notnotnotnotyn_3_1765590480622907392.jpg__cut2.png",
+      "i2v_size": [
+        608,
+        704
+      ],
+      "display_size": [
+        807,
+        963
+      ]
+    },
+    {
+      "cut_id": "1_JMlZ20YiZkcIazzmXbNJnQ.gif__cut1",
+      "medium_image_id": "1*JMlZ20YiZkcIazzmXbNJnQ.gif",
+      "cut": "cut1",
+      "klass": "elephant",
+      "object": "tree",
+      "person": false,
+      "prompt": "the tree's branches sway slightly, subtle, seamless loop, static camera",
+      "png": "assets/anim_pilot/1_JMlZ20YiZkcIazzmXbNJnQ.gif__cut1.png",
+      "i2v_size": [
+        544,
+        704
+      ],
+      "display_size": [
+        734,
+        943
+      ]
+    },
+    {
+      "cut_id": "1_SIdWrGU42TZey1d1Mxw7kA.gif__cut1",
+      "medium_image_id": "1*SIdWrGU42TZey1d1Mxw7kA.gif",
+      "cut": "cut1",
+      "klass": "bird",
+      "object": "flag",
+      "person": false,
+      "prompt": "the flag waves in a light breeze, subtle, seamless loop, static camera",
+      "png": "assets/anim_pilot/1_SIdWrGU42TZey1d1Mxw7kA.gif__cut1.png",
+      "i2v_size": [
+        480,
+        704
+      ],
+      "display_size": [
+        595,
+        862
+      ]
+    },
+    {
+      "cut_id": "1_wBc96VCRNSAVjALoTEOSRw.gif__cut4",
+      "medium_image_id": "1*wBc96VCRNSAVjALoTEOSRw.gif",
+      "cut": "cut4",
+      "klass": "bowl",
+      "object": "bowl",
+      "person": false,
+      "prompt": "the bowl holds the stew, a faint steam shimmer at the rim, subtle, seamless loop, static camera",
+      "png": "assets/anim_pilot/1_wBc96VCRNSAVjALoTEOSRw.gif__cut4.png",
+      "i2v_size": [
+        704,
+        416
+      ],
+      "display_size": [
+        289,
+        160
+      ]
+    },
+    {
+      "cut_id": "1_nuUvCKxRhuryxEQv0Krxrg.gif__cut1",
+      "medium_image_id": "1*nuUvCKxRhuryxEQv0Krxrg.gif",
+      "cut": "cut1",
+      "klass": "chair",
+      "object": "lantern",
+      "person": false,
+      "prompt": "the lantern glows, the light flickering gently, subtle, seamless loop, static camera",
+      "png": "assets/anim_pilot/1_nuUvCKxRhuryxEQv0Krxrg.gif__cut1.png",
+      "i2v_size": [
+        544,
+        704
+      ],
+      "display_size": [
+        274,
+        366
+      ]
+    },
+    {
+      "cut_id": "1_6aKiM29-1_KKVxtLtMSI-A.gif__cut1",
+      "medium_image_id": "1*6aKiM29-1_KKVxtLtMSI-A.gif",
+      "cut": "cut1",
+      "klass": "cell phone",
+      "object": "phone",
+      "person": false,
+      "prompt": "the phone rests in the hand, a faint shift, subtle, seamless loop, static camera",
+      "png": "assets/anim_pilot/1_6aKiM29-1_KKVxtLtMSI-A.gif__cut1.png",
+      "i2v_size": [
+        608,
+        704
+      ],
+      "display_size": [
+        101,
+        125
+      ]
+    }
+  ],
   "cuts": []
 }

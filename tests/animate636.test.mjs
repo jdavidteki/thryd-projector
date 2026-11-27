@@ -97,3 +97,15 @@ test('fun was not cut: display-rate loop, grain default, and v635 float stay', (
   assert.match(st, /#gstage \.gcut\.fl\{animation:mcfloat/);
   assert.match(rd('index.html'), /alive\.css\?v=10/);
 });
+
+test('v639: fe_anim.js loads after stage.js; applyLiveAnim is on the stage; 20 pilot candidates are published', ()=>{
+  assert.match(html, /stage\.js\?v=639','fe_anim\.js\?v=1/);
+  assert.match(st, /function applyLiveAnim\(/);
+  assert.match(st, /S\.applyLiveAnim = applyLiveAnim/);
+  assert.match(st, /root\.ThrydStage = S/);
+  assert.equal(anim.space, 'Lightricks/ltx-video-distilled');
+  assert.equal(anim.endpoint, '/image_to_video');
+  assert.ok(Array.isArray(anim.candidates));
+  assert.equal(anim.candidates.length, 20);
+  assert.ok(anim.candidates.every(c => c.cut_id && c.png && c.prompt && c.i2v_size));
+});

@@ -515,6 +515,7 @@
       if(!d) return;
       ANIM.v = d.v || 1; ANIM.dwell_k = +d.dwell_k || 2; ANIM.at = Date.now(); ANIM.by.clear();
       (d.cuts || []).forEach(c => { if(c && c.medium_image_id && (c.anim || c.webp)) ANIM.by.set(animKey(c.medium_image_id, c.cut || c.label), c); });
+      try{ if(S.applyLiveAnim) applyCatalogToStage(); }catch(e){}
     }).catch(()=>{});
   }
   loadAnimCatalog();
@@ -683,6 +684,44 @@
     return r;
   }
   function animate(g, delays){ anims.add({g, delays, f: 0, due: performance.now() + Math.max(40, delays[0] || 100)}); }
+  // v639: swap a still already on stage for a newly arrived (or just-generated) anim
+  function applyLiveAnim(mid, label, frames, delays){
+    if(!frames || frames.length < 2) return 0;
+    const hits = S.cuts.filter(c => c && c.g && !c.g.gone && c.g.mid === mid && String(c.label || '') === String(label || ''));
+    let n = 0;
+    hits.forEach(cut => {
+      try{
+        const w = cut.el.width, h = cut.el.height;
+        const fitted = frames.map(fr => fr);
+        if(w && h && frames[0] && (frames[0].width !== w || frames[0].height !== h)){
+          // draw into bitmaps the size of the cut canvas
+          // (kept as-is if drawImage can scale each tick; we still set the first frame now)
+        }
+        S.bytes -= (cut.bytes || 0);
+        cut.frames = fitted; cut.bytes = bytesOf(fitted); S.bytes += cut.bytes;
+        if(cut.ctx){ cut.ctx.clearRect(0, 0, cut.el.width, cut.el.height); cut.ctx.drawImage(fitted[0], 0, 0, cut.el.width, cut.el.height); }
+        n++;
+      }catch(e){}
+    });
+    const g = hits[0] && hits[0].g;
+    if(g){ g.hasAnim = true; g.life = Math.max(g.life || 0, (PHONE ? 40 : 55) * 1000 * ANIM_DWELL_K); animate(g, delays && delays.length ? delays : new Array(frames.length).fill(120)); }
+    return n;
+  }
+  S.applyLiveAnim = applyLiveAnim;
+  S.loadAnimCatalog = loadAnimCatalog;
+  function applyCatalogToStage(){
+    const jobs = [];
+    S.cuts.forEach(cut => {
+      if(!cut || !cut.g || cut.g.gone || (cut.frames && cut.frames.length > 1)) return;
+      const rec = animRec(cut.g.mid, cut.label, null);
+      const url = rec && (rec.anim || rec.webp);
+      if(!url) return;
+      jobs.push(decodeAnimUrl(url, {width: cut.el.width, height: cut.el.height}).then(frs => {
+        if(frs && frs.frames && frs.frames.length > 1) applyLiveAnim(cut.g.mid, cut.label, frs.frames, frs.delays);
+      }).catch(()=>{}));
+    });
+    return Promise.all(jobs);
+  }
   function unloadCut(cut){
     const at = S.cuts.indexOf(cut); if(at >= 0) S.cuts.splice(at, 1);
     if(cut.g){ const j = cut.g.cuts.indexOf(cut); if(j >= 0) cut.g.cuts.splice(j, 1); }
@@ -3421,4 +3460,5 @@
     .catch(()=>{ manifest = {assets: []}; note('manifest failed, retrying'); spawner(); // (was: the spawner never started)
       const again = ()=> MC.loadManifest().then(m => { if(m && (m.assets || []).length){ manifest = m; note('manifest', m.assets.length + ' assets'); } else setTimeout(again, 60000); }).catch(()=> setTimeout(again, 60000));
       setTimeout(again, 30000); });
+  root.ThrydStage = S;
 })(typeof window !== 'undefined' ? window : globalThis);
