@@ -15050,7 +15050,7 @@
   },
   "run-cf203b": {
    "forked_from": "safe:731d52737690",
-   "head": "7c38fdb2dc",
+   "head": "60f6c1742a",
    "commits": [
     {
      "id": "eda103402b",
@@ -15855,12 +15855,7 @@
         "op": "define"
        }
       ],
-      "instances": [
-       [
-        "run",
-        "Action"
-       ]
-      ]
+      "instances": []
      }
     },
     {
@@ -16108,12 +16103,7 @@
         "op": "define"
        }
       ],
-      "instances": [
-       [
-        "image",
-        "Place"
-       ]
-      ]
+      "instances": []
      }
     },
     {
@@ -20762,11 +20752,11 @@
      }
     },
     {
-     "id": "ba42466892",
+     "id": "d6c85263ed",
      "parent": "2f1842c294",
      "branch": "run-cf203b",
      "job": "j63",
-     "at": "2026-11-27T00:36:58-0500",
+     "at": "2026-11-27T00:53:06-05:00",
      "genre": "rising",
      "beat": "now",
      "diff": {
@@ -20957,13 +20947,33 @@
        }
       ],
       "facts_total": 23,
-      "functions": [],
-      "instances": []
+      "functions": [
+       {
+        "func": "amono.tete",
+        "title": "amono.tete(wa)",
+        "op": "define"
+       },
+       {
+        "func": "say.nigerian",
+        "title": "say.nigerian(house)",
+        "op": "define"
+       }
+      ],
+      "instances": [
+       [
+        "wa",
+        "Thing"
+       ],
+       [
+        "house",
+        "Place"
+       ]
+      ]
      }
     },
     {
-     "id": "7c38fdb2dc",
-     "parent": "ba42466892",
+     "id": "60f6c1742a",
+     "parent": "d6c85263ed",
      "branch": "run-cf203b",
      "job": "j64",
      "at": "2026-11-27T00:53:10-0500",
@@ -21066,9 +21076,73 @@
         "code": "alorof.hears(person, 'what');",
         "scope": "ripple",
         "cause_id": "wt_c26ec2d1b3"
+       },
+       {
+        "id": "wt_3991e95fe1",
+        "object": "shi",
+        "kind": "func_call",
+        "code": "shi.gbogbo('errors');",
+        "scope": "env",
+        "cause_id": null
+       },
+       {
+        "id": "wt_d8781e2b0e",
+        "object": "agboro",
+        "kind": "func_call",
+        "code": "agboro.hears(person, 'gbogbo');",
+        "scope": "ripple",
+        "cause_id": "wt_3991e95fe1"
+       },
+       {
+        "id": "wt_53e13f3c19",
+        "object": "ahan",
+        "kind": "func_call",
+        "code": "ahan.hears(person, 'gbogbo');",
+        "scope": "ripple",
+        "cause_id": "wt_3991e95fe1"
+       },
+       {
+        "id": "wt_63069ab5e2",
+        "object": "alorof",
+        "kind": "func_call",
+        "code": "alorof.hears(person, 'gbogbo');",
+        "scope": "ripple",
+        "cause_id": "wt_3991e95fe1"
+       },
+       {
+        "id": "wt_e2f1eff5a3",
+        "object": "shi",
+        "kind": "func_call",
+        "code": "shi.gbogbo('errors');",
+        "scope": "env",
+        "cause_id": null
+       },
+       {
+        "id": "wt_658edcec5a",
+        "object": "agboro",
+        "kind": "func_call",
+        "code": "agboro.hears(person, 'gbogbo');",
+        "scope": "ripple",
+        "cause_id": "wt_e2f1eff5a3"
+       },
+       {
+        "id": "wt_76a6417868",
+        "object": "ahan",
+        "kind": "func_call",
+        "code": "ahan.hears(person, 'gbogbo');",
+        "scope": "ripple",
+        "cause_id": "wt_e2f1eff5a3"
+       },
+       {
+        "id": "wt_2456d17c2a",
+        "object": "alorof",
+        "kind": "func_call",
+        "code": "alorof.hears(person, 'gbogbo');",
+        "scope": "ripple",
+        "cause_id": "wt_e2f1eff5a3"
        }
       ],
-      "facts_total": 12,
+      "facts_total": 20,
       "functions": [],
       "instances": []
      }
@@ -22017,10 +22091,10 @@
   "run-0ae93c": "a11a1eab61",
   "run-3a15d2": "fbc46c6eb7",
   "run-ab4653": "dd8e54daee",
-  "run-cf203b": "7c38fdb2dc",
+  "run-cf203b": "60f6c1742a",
   "run-888ea9": "7aa0131911",
   "run-cb805f": "8d23a93627"
  },
  "commits": 216,
- "updated": "2026-11-27T00:53:42-05:00"
+ "updated": "2026-11-27T00:54:32-05:00"
 }
