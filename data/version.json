@@ -1,5 +1,5 @@
 {
- "v": 650,
- "at": "2026-11-27T18:20:00-05:00",
- "note": "v650: the floor of 10 live objects now reserves a seat for every image-to-video cut in data/anim_cuts.json (the ones that clearly move: a breath, a smile, a hand). Live views of the agenda still come on, and the newest stays in the centre, but they no longer fill the stage and count as 10 live before those cuts appear. The reserved cuts also stay through off-screen and life expiry."
+ "v": 651,
+ "at": "2026-11-27T18:26:00-05:00",
+ "note": "v651: a still sibling in an image-to-video group (the other people in the same photo) no longer closes its bitmap and then throws in the animation loop. That throw had frozen every moving cut on the stage after the reserved cuts sat down."
 }

@@ -80,3 +80,9 @@ test('v650: catalog image-to-video cuts have a reserved lane so live views canno
   assert.match(st, /evictOldest\('anim-floor'\)/);
   assert.match(st, /exitGroup\(g, false, 'anim-retry'\)/);
 });
+
+test('v651: still siblings in an animated group do not close their bitmap or break the frame loop', ()=>{
+  assert.match(st, /if\(fr\.length === 1 && !L\.hasAnim && !L\.animated\)/);
+  assert.match(st, /cut\.frames\.length < 2/);
+  assert.match(st, /try\{ frame\(now\); \}catch\(e\)\{ try\{ scheduleFrame\(\); \}catch\(e2\)\{\} \}/);
+});

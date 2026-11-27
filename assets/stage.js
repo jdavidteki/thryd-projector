@@ -269,12 +269,18 @@
     if(!document.hidden && !document.body.classList.contains('cerebro')){
       markVis(now);
       anims.forEach(A => {
+        try{
         const g = A.g; if(g.gone && !S.cuts.some(c => c.home === g)){ anims.delete(A); return; }
         if(now < A.due) return;
         let n = 0; while(now >= A.due && n++ < 4){ A.f = (A.f + 1) % A.delays.length; A.due += Math.max(40, A.delays[A.f] || 100); }
         if(now - A.due > 1000) A.due = now + 60; // after a pause, pick up again instead of racing
-        for(let i = 0; i < S.cuts.length; i++){ const cut = S.cuts[i]; if(cut.home !== g || !cut.frames[A.f] || !cut.ctx || cut._vis === false) continue;
-          cut._animFr = cut.frames[A.f]; cut.ctx.clearRect(0, 0, cut.el.width, cut.el.height); cut.ctx.drawImage(cut.frames[A.f], 0, 0); }
+        for(let i = 0; i < S.cuts.length; i++){
+          const cut = S.cuts[i];
+          // v651: a still sibling in an animated group (cut2/cut3 of a 1-cut anim) must not be redrawn; its bitmap may have been closed
+          if(cut.home !== g || !cut.ctx || cut._vis === false || !cut.frames || cut.frames.length < 2 || !cut.frames[A.f]) continue;
+          try{ cut._animFr = cut.frames[A.f]; cut.ctx.clearRect(0, 0, cut.el.width, cut.el.height); cut.ctx.drawImage(cut.frames[A.f], 0, 0); }catch(e){}
+        }
+        }catch(e){}
       });
       // v635 funback: plates drift on every display frame again (v612 had throttled them to ~11 Hz under the warp)
       tickBgs(now);
@@ -302,7 +308,7 @@
   function scheduleFrame(){
     if(frameHidden() || frameArmed) return;
     frameArmed = 1;
-    requestAnimationFrame(function(now){ frameArmed = 0; if(frameHidden()) return; frame(now); });
+    requestAnimationFrame(function(now){ frameArmed = 0; if(frameHidden()) return; try{ frame(now); }catch(e){ try{ scheduleFrame(); }catch(e2){} } });
   }
   scheduleFrame();
   document.addEventListener('visibilitychange', function(){ if(!document.hidden) scheduleFrame(); });
@@ -666,7 +672,9 @@
       c.style.setProperty('--fd', R(5.5, 9).toFixed(2) + 's'); c.style.setProperty('--fdl', (-R(0, 6)).toFixed(2) + 's');
       S.bytes += cut.bytes; S.cuts.push(cut); g.cuts.push(cut);
       if(root.ThrydCutAnimate && ThrydCutAnimate.keepSrc) try{ ThrydCutAnimate.keepSrc(cut); }catch(e){}
-      if(fr.length === 1){ try{ fr[0].close && fr[0].close(); }catch(e){} } // v610 memory: a still cut's canvas already holds its only frame; free the bitmap copy (v636 keeps a srcCanvas for in-cut motion)
+      // v610 memory: a still cut's canvas already holds its only frame; free the bitmap copy (v636 keeps a srcCanvas for in-cut motion).
+      // v651: do not close it when the group is animated — the rAF loop used to redraw frames[0] of still siblings and throw "image source is detached", which stopped every GIF on the stage.
+      if(fr.length === 1 && !L.hasAnim && !L.animated){ try{ fr[0].close && fr[0].close(); }catch(e){} }
       bindDrag(cut);
       if(newest){
         // newest active live view appears in place (no off-screen walk-in)
