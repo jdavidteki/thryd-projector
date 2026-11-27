@@ -17334,15 +17334,15 @@
      ],
      "consequence": "Then he points at her phone: \"you can see how many\" times he called.",
      "consequence_job": "j13",
-     "resolved": "can.see(how=how:Manner) from j12",
+     "resolved": "can.see(how=how:Manner) from j27",
      "injected": [
       {
        "param": "how",
        "class": "Manner",
        "instance": "how",
-       "from_run": "run-cf203b",
-       "from_job": "j12",
-       "source": "pick"
+       "from_run": "run-5a58c4",
+       "from_job": "j27",
+       "source": "original"
       }
      ]
     }
@@ -25591,6 +25591,248 @@
    "faded": false,
    "last_run": "run-cf203b"
   },
+  "hear.shaking": {
+   "object": "hear",
+   "method": "shaking",
+   "args": [
+    ""
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j56",
+    "card": "w56",
+    "title": "hear.shaking()",
+    "emoji": "🪭",
+    "at": "2026-11-26T20:24:26-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "hear.shaking()",
+     "emoji": "🪭",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j56",
+     "tweets": [
+      {
+       "text": "#nnb - i hear your shaking",
+       "year": "2024"
+      }
+     ],
+     "consequence": "The lines that landed: \"[[namco]] - nawa o!\", \"the way e dey throw\", \"#seniorboys — now you know how i feel\" and \"#nnb - i hear your shaking\".",
+     "consequence_job": "j57",
+     "resolved": "hear.shaking()",
+     "injected": []
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [],
+    "text": "shaking()"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "namco.nawa": {
+   "object": "namco",
+   "method": "nawa",
+   "args": [
+    ""
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j56",
+    "card": "w56",
+    "title": "namco.nawa()",
+    "emoji": "🧨",
+    "at": "2026-11-26T20:24:26-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "namco.nawa()",
+     "emoji": "🧨",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j56",
+     "tweets": [
+      {
+       "text": "[[namco]] - nawa o!",
+       "year": "2025"
+      }
+     ],
+     "consequence": "The lines that landed: \"[[namco]] - nawa o!\", \"the way e dey throw\", \"#seniorboys — now you know how i feel\" and \"#nnb - i hear your shaking\".",
+     "consequence_job": "j57",
+     "resolved": "namco.nawa()",
+     "injected": []
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [],
+    "text": "nawa()"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "now.know": {
+   "object": "now",
+   "method": "know",
+   "args": [
+    "how"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j56",
+    "card": "w56",
+    "title": "now.know(how)",
+    "emoji": "🎎",
+    "at": "2026-11-26T20:24:26-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "now.know(how)",
+     "emoji": "🎎",
+     "arg": "how",
+     "run": "run-cf203b",
+     "job": "j56",
+     "tweets": [
+      {
+       "text": "#seniorboys — now you know how i feel",
+       "year": "2025"
+      }
+     ],
+     "consequence": "The lines that landed: \"[[namco]] - nawa o!\", \"the way e dey throw\", \"#seniorboys — now you know how i feel\" and \"#nnb - i hear your shaking\".",
+     "consequence_job": "j57",
+     "resolved": "now.know(how=how:Manner) from j56",
+     "injected": [
+      {
+       "param": "how",
+       "class": "Manner",
+       "instance": "how",
+       "from_run": "run-cf203b",
+       "from_job": "j56",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "how",
+      "class": "Manner",
+      "default": "how",
+      "first_run": "run-5a58c4",
+      "first_job": "j27"
+     }
+    ],
+    "text": "know(how: Manner)"
+   },
+   "receiver_class": "Frequency",
+   "prior": [
+    {
+     "id": "calla.know",
+     "title": "calla.know(things)",
+     "run": "run-5a58c4",
+     "job": "j63",
+     "at": "2026-11-24T20:00:45-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "mama.know",
+     "title": "mama.know(world)",
+     "run": "run-888ea9",
+     "job": "j7",
+     "at": "2026-11-23T18:37:05-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "oyinboman.know",
+     "title": "oyinboman.know(when)",
+     "run": "run-2eb42d",
+     "job": "j16",
+     "at": "2026-11-17T23:36:00-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "teo.know",
+     "title": "teo.know(everything)",
+     "run": "run-5a58c4",
+     "job": "j33",
+     "at": "2026-11-17T16:04:47-05:00",
+     "why": "same method"
+    }
+   ],
+   "faded": false,
+   "last_run": null
+  },
+  "way.throw": {
+   "object": "way",
+   "method": "throw",
+   "args": [
+    ""
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j56",
+    "card": "w56",
+    "title": "way.throw()",
+    "emoji": "🎏",
+    "at": "2026-11-26T20:24:26-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "way.throw()",
+     "emoji": "🎏",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j56",
+     "tweets": [
+      {
+       "text": "-- the way e dey throw",
+       "year": "2025"
+      }
+     ],
+     "consequence": "The lines that landed: \"[[namco]] - nawa o!\", \"the way e dey throw\", \"#seniorboys — now you know how i feel\" and \"#nnb - i hear your shaking\".",
+     "consequence_job": "j57",
+     "resolved": "way.throw()",
+     "injected": []
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [],
+    "text": "throw()"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
   "cooler.getdatemanufactured": {
    "object": "cooler",
    "method": "getDateManufactured",
@@ -29751,7 +29993,8 @@
    "have.feelings"
   ],
   "hear": [
-   "hear.setword"
+   "hear.setword",
+   "hear.shaking"
   ],
   "history": [
    "history.see"
@@ -29989,6 +30232,9 @@
   "media": [
    "media.all"
   ],
+  "namco": [
+   "namco.nawa"
+  ],
   "nd": [
    "nd.ireland"
   ],
@@ -30034,6 +30280,9 @@
   ],
   "nothing": [
    "nothing.funny"
+  ],
+  "now": [
+   "now.know"
   ],
   "object": [
    "object.look"
@@ -30426,6 +30675,9 @@
   ],
   "wanow": [
    "wanow.knew"
+  ],
+  "way": [
+   "way.throw"
   ],
   "weeks": [
    "weeks.gettoattd"
@@ -49970,6 +50222,14 @@
   "reverse_poverty_capital_figure": [
    {
     "scope": "safe",
+    "from": "11fea09eb292",
+    "title": "1112. everybody can eat",
+    "funcs": [
+     "hear.shaking"
+    ]
+   },
+   {
+    "scope": "safe",
     "from": "7ba78a2d336f",
     "title": "1226. reverse poverty capital",
     "funcs": [
@@ -54083,6 +54343,14 @@
   "wife_will_understand_subject": [
    {
     "scope": "safe",
+    "from": "ab641482e433",
+    "title": "729. desire",
+    "funcs": [
+     "way.throw"
+    ]
+   },
+   {
+    "scope": "safe",
     "from": "db02d908b461",
     "title": "823. your wife will understand",
     "funcs": [
@@ -55343,6 +55611,10 @@
     "and.not",
     "eez.heddie",
     "if.it",
+    "hear.shaking",
+    "namco.nawa",
+    "now.know",
+    "way.throw",
     "cli.cli",
     "thryd.importtheme",
     "kemi.ismarried",
@@ -55620,6 +55892,13 @@
    ],
    "runs": []
   },
+  "11fea09eb292": {
+   "title": "1112. everybody can eat",
+   "funcs": [
+    "hear.shaking"
+   ],
+   "runs": []
+  },
   "12dbaf6c1c62": {
    "title": "908. distraction",
    "funcs": [
@@ -55678,6 +55957,13 @@
    "title": "315. set for life",
    "funcs": [
     "lehgeet.ni"
+   ],
+   "runs": []
+  },
+  "17efb0cca83d": {
+   "title": "417. scam likey",
+   "funcs": [
+    "now.know"
    ],
    "runs": []
   },
@@ -56075,7 +56361,8 @@
    "title": "405. how to [[discover river niger]]",
    "funcs": [
     "ronke.ask",
-    "marisol.connect"
+    "marisol.connect",
+    "namco.nawa"
    ],
    "runs": []
   },
@@ -56543,7 +56830,11 @@
     "what.slam",
     "and.not",
     "eez.heddie",
-    "if.it"
+    "if.it",
+    "hear.shaking",
+    "namco.nawa",
+    "now.know",
+    "way.throw"
    ],
    "runs": [
     "run-cf203b"
@@ -57080,6 +57371,13 @@
    "title": "101. heaven state of mind",
    "funcs": [
     "feel.divine"
+   ],
+   "runs": []
+  },
+  "ab641482e433": {
+   "title": "729. desire",
+   "funcs": [
+    "way.throw"
    ],
    "runs": []
   },
@@ -58111,7 +58409,8 @@
    "8492c2c39420"
   ],
   "1*tEZav0U_ijz7_xxtrdhaoA.gif": [
-   "db02d908b461"
+   "db02d908b461",
+   "ab641482e433"
   ],
   "1*R96Tw8edEDMt2fTHbscIzw.jpeg": [
    "db02d908b461"
@@ -58179,7 +58478,8 @@
    "4a2a8f3f8cd6"
   ],
   "1*wLyltPPcTULRqRooVjkOOQ.gif": [
-   "7ba78a2d336f"
+   "7ba78a2d336f",
+   "11fea09eb292"
   ],
   "1*29OwJ409Xe0OYDRmqrzNCQ.jpeg": [
    "9780ba78cde1"
@@ -58248,6 +58548,7 @@
    "2c6971a8d401"
   ],
   "1*COPqQY5I6LpiIxDtcds6UQ.gif": [
+   "17efb0cca83d",
    "85872d186ddf"
   ],
   "1*lTZvzp39NwAPjchTuA1FEg.gif": [
@@ -58590,6 +58891,9 @@
   ],
   "1*w4dyp3G_eaYwojHsZHopUA.jpeg": [
    "1d08b133d292"
+  ],
+  "1*VuX-L0bq4DLY0ON-uArgOw.gif": [
+   "11fea09eb292"
   ],
   "1*o1lcHKhMd0Wc8vapnySo7w.png": [
    "a8fb56033895"
@@ -59232,7 +59536,8 @@
   "1*tEZav0U_ijz7_xxtrdhaoA.gif": {
    "runs": [],
    "safes": [
-    "db02d908b461"
+    "db02d908b461",
+    "ab641482e433"
    ]
   },
   "1*8LySB4JyV5sPPa8jCkGxag.gif": {
@@ -59739,7 +60044,8 @@
   "1*wLyltPPcTULRqRooVjkOOQ.gif": {
    "runs": [],
    "safes": [
-    "7ba78a2d336f"
+    "7ba78a2d336f",
+    "11fea09eb292"
    ]
   },
   "1*fRybDa0nJYSdJgMbSrO3iw.gif": {
@@ -60311,7 +60617,8 @@
    "have.feelings"
   ],
   "hear": [
-   "hear.setword"
+   "hear.setword",
+   "hear.shaking"
   ],
   "history": [
    "history.see"
@@ -60498,6 +60805,9 @@
   "media": [
    "media.all"
   ],
+  "namco": [
+   "namco.nawa"
+  ],
   "nd": [
    "nd.ireland"
   ],
@@ -60534,6 +60844,9 @@
   ],
   "nothing": [
    "nothing.funny"
+  ],
+  "now": [
+   "now.know"
   ],
   "object": [
    "object.look"
@@ -60850,6 +61163,9 @@
   ],
   "wanow": [
    "wanow.knew"
+  ],
+  "way": [
+   "way.throw"
   ],
   "weeks": [
    "weeks.gettoattd"
@@ -61245,6 +61561,11 @@
   "however": [],
   "and": [],
   "if": [],
+  "namco": [],
+  "now": [
+   "Readable"
+  ],
+  "way": [],
   "cooler": [],
   "kazeem.goodqualities": [],
   "app": [],
@@ -61486,6 +61807,7 @@
    "guy",
    "has",
    "have",
+   "hear",
    "honey",
    "hope",
    "however",
@@ -61505,10 +61827,12 @@
    "love",
    "make",
    "mean",
+   "namco",
    "nd",
    "next",
    "nigerian",
    "nothing",
+   "now",
    "ok",
    "once",
    "one",
@@ -61548,6 +61872,7 @@
    "until",
    "used",
    "waga",
+   "way",
    "well",
    "weya",
    "what",
@@ -61575,5 +61900,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-26T20:07:19-05:00"
+ "updated": "2026-11-26T20:24:49-05:00"
 }
