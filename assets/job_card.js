@@ -782,7 +782,8 @@
     if(card && card.job !== job) return;
     if(!m){ setStatus('Sent \u2713 (no receipt yet \u2014 it will still be picked up)', 'ok'); return; }
     if(m.ok){ setStatus('Received \u2713 your ' + job + ' pick is in \u2014 next job coming.', 'ok'); return; }
-    if(m.code === 'already_sent'){ setStatus('Already sent for ' + job + ' \u2713 next job coming.', 'ok'); return; }
+    // v643: 'already_sent' means this Send was NOT stored, so never show it as a success or keep the lock.
+    if(m.code === 'already_sent'){ unmarkSent(job); status = {job, text: 'Not stored \u2014 the box already had a send for ' + job + '. Tap Send again.', kind: 'err'}; render(); return; }
     // v628: the pick already posted; a seat can make the open job disappear before the
     // receipt. Keep this card, its size, and the sent confirmation — don't collapse to
     // the waiting empty state.
@@ -844,6 +845,12 @@
         cardSig = sig;
         if(metaChanged) updateStrip(); // v629: seat line / waiting / lock update in place, the sent card stays
         return;
+      }
+      // v643: same jN rebuilt with new lines: drop the old card's note, ticks and send lock so it reads fresh.
+      if(card && j && card.job === j.job && optSig(card) !== optSig(j)){
+        if(status.job === j.job) status = {job: null, text: '', kind: ''};
+        if(sel.job === j.job){ const keep = new Set((j.options || []).map(o => o.value)); sel.values = new Set([...sel.values].filter(v => keep.has(v))); }
+        if(sentMap()[j.job] && sentMap()[j.job] !== optSig(j)) unmarkSent(j.job);
       }
       card = j; cardSig = sig;
       if(box() && box().classList.contains('on')) render();   // v632: a lane card before the panel opens is kept for open()

@@ -8,12 +8,12 @@ const js = rd('assets/job_card.js'), html = rd('index.html'), st = rd('assets/st
 
 test('job_card.js loads by default; ?cards=0 hides the panel', ()=>{
   assert.match(html, /cards=0/);
-  assert.match(html, /job_card\.js\?v=15/);
+  assert.match(html, /job_card\.js\?v=17/);
   assert.match(js, /cards=0/);
   assert.match(html, /if\(!\/\(\?:\^\|\[\?&\]\)cards=0/);
   assert.match(js, /if\(\/\(\?:\^\|\[\?&\]\)cards=0/);
   assert.doesNotMatch(html, /if\(\/\(\?:\^\|\[\?&\]\)cards=1/);
-  assert.match(html, /var VER=641,/);
+  assert.match(html, /var VER=643,/);
   const v = JSON.parse(ver);
   assert.ok(v.v >= 641);
 });
@@ -166,7 +166,7 @@ test('v628: panel stays open after Send; waiting refresh keeps the sent card; ea
   assert.match(js, /border-radius:8px;white-space:normal/);
   assert.match(js, /max-height:15em;overflow-y:auto/);
   assert.match(js, /touch-action:pan-y/);
-  assert.match(html, /job_card\.js\?v=15/);
+  assert.match(html, /job_card\.js\?v=17/);
   assert.match(html, /intent_ai\.js\?v=614/);
   const src = js.slice(js.indexOf('function safeText(o){'), js.indexOf('function render(){'));
   const f = new Function(src + '; return {safeRows, safeText};')();
@@ -251,8 +251,8 @@ test('v633: archive safe lines flow inline at a smaller font; title stays its ow
 });
 
 test('v634: open async jobs render as persistent waiting-on-real-life pills; empty list shows nothing', ()=>{
-  assert.match(html, /var VER=641,/);
-  assert.match(html, /job_card\.js\?v=15/);
+  assert.match(html, /var VER=643,/);
+  assert.match(html, /job_card\.js\?v=17/);
   const v = JSON.parse(ver);
   assert.ok(v.v >= 641);
   assert.match(js, /function asyncPills\(/);
@@ -298,8 +298,8 @@ test('v638: MENU and LOCK buttons sit in one sideways-sliding row; a swipe is no
   assert.match(js, /sc\.appendChild\(menuBtn\(o\)\)/);
   assert.doesNotMatch(js, /#aimenu \.aimrow\{display:flex;flex-wrap:wrap/);
   assert.match(js, /Math\.abs\(\(ev\.clientX \|\| sx\) - sx\) > 14/);
-  assert.match(html, /var VER=641,/);
-  assert.match(html, /job_card\.js\?v=15/);
+  assert.match(html, /var VER=643,/);
+  assert.match(html, /job_card\.js\?v=17/);
   const v = JSON.parse(ver);
   assert.ok(v.v >= 641);
 });
@@ -312,4 +312,9 @@ __t('v642: sent lock is tied to the card version (rebuilt jN reopens)', () => {
   __a.match(src, /function optSig\(c\)/);
   __a.match(src, /return v === optSig\(ref\)/);
   __a.match(src, /markSent\(job, card\)/);
+});
+__t('v643: rebuilt jN clears old note/lock; already_sent is not a success', () => {
+  const src = __fs.readFileSync(new URL('../assets/job_card.js', import.meta.url), 'utf8');
+  __a.match(src, /card\.job === j\.job && optSig\(card\) !== optSig\(j\)/);
+  __a.match(src, /m\.code === 'already_sent'\)\{ unmarkSent\(job\)/);
 });
