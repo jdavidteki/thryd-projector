@@ -17806,7 +17806,7 @@
        "instance": "run",
        "from_run": "run-cf203b",
        "from_job": "j15",
-       "source": "pick"
+       "source": "original"
       }
      ]
     }
@@ -17993,15 +17993,15 @@
      ],
      "consequence": "Tobi names them: \"the idibias\", \"and the russian mobs!\" Kemi points at the screen: \"we can write from this image.\" Tobi's voice cracks: \"something is wrong!!!\" 📖 Now: Get the line where Kemi answers him.",
      "consequence_job": "j17",
-     "resolved": "can.write(where=image:Place) from j16",
+     "resolved": "can.write(where=image:Place) from j14",
      "injected": [
       {
        "param": "where",
        "class": "Place",
        "instance": "image",
-       "from_run": "run-cf203b",
-       "from_job": "j16",
-       "source": "pick"
+       "from_run": "run-g1-B",
+       "from_job": "j14",
+       "source": "original"
       }
      ]
     }
@@ -18301,15 +18301,15 @@
      ],
      "consequence": "What just happened: Kemi answers him flat: \"i don't know how else to say it.\" She says the mess is all his: \"shi gbogbo iron ore le.\" To her, last night is a \"nigerian nuclear bomb.\" Tobi blinks at her: \"wym they dont know?\" 📖 Now: Get the ",
      "consequence_job": "j18",
-     "resolved": "wym.dont(act=run:Action) from j15",
+     "resolved": "wym.dont(act=know:Action) from j17",
      "injected": [
       {
        "param": "act",
        "class": "Action",
-       "instance": "run",
+       "instance": "know",
        "from_run": "run-cf203b",
-       "from_job": "j15",
-       "source": "pick"
+       "from_job": "j17",
+       "source": "original"
       }
      ]
     }
@@ -19017,15 +19017,15 @@
      ],
      "consequence": "Then it slips out: \"e even dey ask say...\" and he stops.",
      "consequence_job": "j23",
-     "resolved": "even.ask(act=run:Action) from j15",
+     "resolved": "even.ask(act=say:Action) from j22",
      "injected": [
       {
        "param": "act",
        "class": "Action",
-       "instance": "run",
+       "instance": "say",
        "from_run": "run-cf203b",
-       "from_job": "j15",
-       "source": "pick"
+       "from_job": "j22",
+       "source": "original"
       }
      ]
     }
@@ -26781,6 +26781,136 @@
    "faded": false,
    "last_run": "run-cf203b"
   },
+  "amono.tete": {
+   "object": "amono",
+   "method": "tete",
+   "args": [
+    "wa"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j63",
+    "card": "w63",
+    "title": "amono.tete(wa)",
+    "emoji": "🎩",
+    "at": "2026-11-27T00:53:06-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "amono.tete(wa)",
+     "emoji": "🎩",
+     "arg": "wa",
+     "run": "run-cf203b",
+     "job": "j63",
+     "tweets": [
+      {
+       "text": "- amono tete wa o",
+       "year": "2025"
+      }
+     ],
+     "consequence": "The lines that landed: \"amono tete wa o\" and \"i say [[yes]], am in a nigerian house\".",
+     "consequence_job": "j64",
+     "resolved": "amono.tete(what=wa:Thing) from j63",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "wa",
+       "from_run": "run-cf203b",
+       "from_job": "j63",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "wa",
+      "first_run": "run-cf203b",
+      "first_job": "j63"
+     }
+    ],
+    "text": "tete(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "say.nigerian": {
+   "object": "say",
+   "method": "nigerian",
+   "args": [
+    "house"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j63",
+    "card": "w63",
+    "title": "say.nigerian(house)",
+    "emoji": "🥠",
+    "at": "2026-11-27T00:53:06-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "say.nigerian(house)",
+     "emoji": "🥠",
+     "arg": "house",
+     "run": "run-cf203b",
+     "job": "j63",
+     "tweets": [
+      {
+       "text": "- i say [[yes]], am in a nigerian house",
+       "year": "2025"
+      }
+     ],
+     "consequence": "Where things stand: Kemi: a week later, last seen still at her sister's table a week on, ring still on, saying \"that's why I am your wife\" and about to ask Tobi what it all means.",
+     "consequence_job": "j64",
+     "resolved": "say.nigerian(where=house:Place) from j63",
+     "injected": [
+      {
+       "param": "where",
+       "class": "Place",
+       "instance": "house",
+       "from_run": "run-cf203b",
+       "from_job": "j63",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "where",
+      "class": "Place",
+      "default": "house",
+      "first_run": "run-cf203b",
+      "first_job": "j63"
+     }
+    ],
+    "text": "nigerian(where: Place)"
+   },
+   "receiver_class": "Action",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
   "cooler.getdatemanufactured": {
    "object": "cooler",
    "method": "getDateManufactured",
@@ -30657,6 +30787,9 @@
   "american_olamide_subject": [
    "object.look"
   ],
+  "amono": [
+   "amono.tete"
+  ],
   "and": [
    "and.not"
   ],
@@ -31599,7 +31732,8 @@
    "kunle.walk"
   ],
   "say": [
-   "say.ehn"
+   "say.ehn",
+   "say.nigerian"
   ],
   "seller": [
    "seller.feel"
@@ -44343,6 +44477,16 @@
     ]
    }
   ],
+  "lowaleechelons_subject": [
+   {
+    "scope": "safe",
+    "from": "33f17b1cf2d4",
+    "title": "705. lowaleechelons",
+    "funcs": [
+     "amono.tete"
+    ]
+   }
+  ],
   "magician_subject": [
    {
     "scope": "safe",
@@ -56888,6 +57032,8 @@
     "model.con",
     "dont.him",
     "ori.la",
+    "amono.tete",
+    "say.nigerian",
     "cli.cli",
     "thryd.importtheme",
     "kemi.ismarried",
@@ -57482,6 +57628,13 @@
    ],
    "runs": []
   },
+  "33f17b1cf2d4": {
+   "title": "705. lowaleechelons",
+   "funcs": [
+    "amono.tete"
+   ],
+   "runs": []
+  },
   "3408766b5717": {
    "title": "1206. mamito say be right!!!!",
    "funcs": [
@@ -57594,7 +57747,8 @@
   "38d9cb2b3f3e": {
    "title": "215. will soon reach",
    "funcs": [
-    "dez.reach"
+    "dez.reach",
+    "say.nigerian"
    ],
    "runs": []
   },
@@ -58157,7 +58311,9 @@
     "iwo.iwono",
     "model.con",
     "dont.him",
-    "ori.la"
+    "ori.la",
+    "amono.tete",
+    "say.nigerian"
    ],
    "runs": [
     "run-cf203b"
@@ -60065,6 +60221,9 @@
   "1*FbcxXhpha7lQDMzkl0LG_Q.gif": [
    "75c8a354a7c7"
   ],
+  "1*A4BH3PL0RHPgB53LhNEFBg.gif": [
+   "33f17b1cf2d4"
+  ],
   "1*Dxhoy-Gyc0XRTWr06GNTUQ.gif": [
    "a0a9ef150ce6"
   ],
@@ -61535,6 +61694,12 @@
     "5ed6dbcf2273"
    ]
   },
+  "1*A4BH3PL0RHPgB53LhNEFBg.gif": {
+   "runs": [],
+   "safes": [
+    "33f17b1cf2d4"
+   ]
+  },
   "1*YZUNo5EzykCIS5g6pXH5mg.gif": {
    "runs": [],
    "safes": [
@@ -61806,6 +61971,9 @@
   ],
   "always": [
    "always.believed"
+  ],
+  "amono": [
+   "amono.tete"
   ],
   "and": [
    "and.not"
@@ -62500,7 +62668,8 @@
    "sakitout.setname"
   ],
   "say": [
-   "say.ehn"
+   "say.ehn",
+   "say.nigerian"
   ],
   "seller": [
    "seller.feel"
@@ -63097,6 +63266,7 @@
   "iwo": [],
   "model": [],
   "ori": [],
+  "amono": [],
   "cooler": [],
   "kazeem.goodqualities": [],
   "app": [],
@@ -63307,6 +63477,7 @@
    "alorof",
    "also",
    "always",
+   "amono",
    "and",
    "beat",
    "because",
@@ -63444,5 +63615,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-27T00:38:20-05:00"
+ "updated": "2026-11-27T00:53:42-05:00"
 }

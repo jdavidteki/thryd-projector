@@ -81,7 +81,7 @@
     "getlocation"
    ],
    "instances": 15,
-   "arg_instances": 9,
+   "arg_instances": 10,
    "parent": "Thing",
    "chain": [
     "Place",
@@ -108,8 +108,8 @@
     "see",
     "give"
    ],
-   "instances": 505,
-   "arg_instances": 178,
+   "instances": 506,
+   "arg_instances": 179,
    "parent": null,
    "chain": [
     "Thing"
@@ -3426,14 +3426,20 @@
   "house": {
    "class": "Place",
    "cue": "word",
-   "first_run": "run-5a58c4",
-   "first_job": null,
-   "source": "stage",
+   "first_run": "run-cf203b",
+   "first_job": "j63",
+   "source": "pick",
    "runs": [
+    "run-cf203b",
     "run-5a58c4",
     "run-9780ba"
    ],
-   "tweets": []
+   "tweets": [
+    {
+     "text": "- i say [[yes]], am in a nigerian house",
+     "year": "2025"
+    }
+   ]
   },
   "houseincanada": {
    "class": "Thing",
@@ -8387,6 +8393,22 @@
     }
    ]
   },
+  "wa": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-cf203b",
+   "first_job": "j63",
+   "source": "pick",
+   "runs": [
+    "run-cf203b"
+   ],
+   "tweets": [
+    {
+     "text": "- amono tete wa o",
+     "year": "2025"
+    }
+   ]
+  },
   "wait": {
    "class": "Action",
    "cue": "word",
@@ -10361,18 +10383,6 @@
   ],
   "run-cf203b": [
    [
-    "run",
-    "Action",
-    "j15",
-    "pick"
-   ],
-   [
-    "image",
-    "Place",
-    "j16",
-    "pick"
-   ],
-   [
     "bomb",
     "Thing",
     "j17",
@@ -10838,6 +10848,18 @@
     "man",
     "Person",
     "j61",
+    "pick"
+   ],
+   [
+    "wa",
+    "Thing",
+    "j63",
+    "pick"
+   ],
+   [
+    "house",
+    "Place",
+    "j63",
     "pick"
    ]
   ],
@@ -13664,6 +13686,8 @@
   "model.con": "con()",
   "dont.him": "him()",
   "ori.la": "la()",
+  "amono.tete": "tete(what: Thing)",
+  "say.nigerian": "nigerian(where: Place)",
   "cooler.getdatemanufactured": "getDateManufactured()",
   "ronke.getlikes.contains": "getlikes.contains()",
   "kazeem.goodqualities.filter": "filter()",
@@ -14181,6 +14205,7 @@
    "alorof",
    "also",
    "always",
+   "amono",
    "and",
    "beat",
    "because",
@@ -14377,5 +14402,5 @@
   "epilogue": "quiet",
   "coda": "quiet"
  },
- "updated": "2026-11-27T00:37:29-05:00"
+ "updated": "2026-11-27T00:53:42-05:00"
 }
