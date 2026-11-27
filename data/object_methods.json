@@ -17580,7 +17580,7 @@
        "instance": "big",
        "from_run": "run-cf203b",
        "from_job": "j13",
-       "source": "pick"
+       "source": "original"
       }
      ]
     }
@@ -26363,6 +26363,167 @@
    "faded": false,
    "last_run": "run-cf203b"
   },
+  "always.believed": {
+   "object": "always",
+   "method": "believed",
+   "args": [
+    ""
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j60",
+    "card": "w60",
+    "title": "always.believed()",
+    "emoji": "🍛",
+    "at": "2026-11-26T23:52:37-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "always.believed()",
+     "emoji": "🍛",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j60",
+     "tweets": [
+      {
+       "text": "[[mmbt]] - i always believed in you",
+       "year": "2024"
+      }
+     ],
+     "consequence": "The lines that landed: \"[[mmbt]] - i always believed in you\", \"[[wdidn?]] - what happens now?\", \"[[st]] - am not sure idts\" and \"#seniorgehs - and the melody\".",
+     "consequence_job": "j61",
+     "resolved": "always.believed()",
+     "injected": []
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [],
+    "text": "believed()"
+   },
+   "receiver_class": "Frequency",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "sure.idts": {
+   "object": "sure",
+   "method": "idts",
+   "args": [
+    ""
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j60",
+    "card": "w60",
+    "title": "sure.idts()",
+    "emoji": "📰",
+    "at": "2026-11-26T23:52:37-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "sure.idts()",
+     "emoji": "📰",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j60",
+     "tweets": [
+      {
+       "text": "[[st]] - am not sure idts",
+       "year": "2025"
+      }
+     ],
+     "consequence": "The lines that landed: \"[[mmbt]] - i always believed in you\", \"[[wdidn?]] - what happens now?\", \"[[st]] - am not sure idts\" and \"#seniorgehs - and the melody\".",
+     "consequence_job": "j61",
+     "resolved": "sure.idts()",
+     "injected": []
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [],
+    "text": "idts()"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "what.happens": {
+   "object": "what",
+   "method": "happens",
+   "args": [
+    "now"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j60",
+    "card": "w60",
+    "title": "what.happens(now)",
+    "emoji": "📜",
+    "at": "2026-11-26T23:52:37-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "what.happens(now)",
+     "emoji": "📜",
+     "arg": "now",
+     "run": "run-cf203b",
+     "job": "j60",
+     "tweets": [
+      {
+       "text": "[[wdidn?]] - what happens now?",
+       "year": "2024"
+      }
+     ],
+     "consequence": "What just happened: The last card asked for the next line, the one that answers \"but then i wanted to ask her\".",
+     "consequence_job": "j61",
+     "resolved": "what.happens(when=now:Frequency) from j60",
+     "injected": [
+      {
+       "param": "when",
+       "class": "Frequency",
+       "instance": "now",
+       "from_run": "run-cf203b",
+       "from_job": "j60",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "when",
+      "class": "Frequency",
+      "default": "now",
+      "first_run": "run-5a58c4",
+      "first_job": "j44"
+     }
+    ],
+    "text": "happens(when: Frequency)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
   "cooler.getdatemanufactured": {
    "object": "cooler",
    "method": "getDateManufactured",
@@ -30153,6 +30314,9 @@
   "also": [
    "also.vlogs"
   ],
+  "always": [
+   "always.believed"
+  ],
   "american_olamide_subject": [
    "object.look"
   ],
@@ -31149,6 +31313,9 @@
   "stupidity": [
    "stupidity.say"
   ],
+  "sure": [
+   "sure.idts"
+  ],
   "taking": [
    "taking.isnotes"
   ],
@@ -31326,7 +31493,8 @@
    "what.road",
    "what.get",
    "what.say",
-   "what.slam"
+   "what.slam",
+   "what.happens"
   ],
   "whatever_happens_me_subject": [
    "object.look"
@@ -33206,6 +33374,16 @@
     "title": "727. pray",
     "funcs": [
      "boat.lift"
+    ]
+   }
+  ],
+  "blessings_subject": [
+   {
+    "scope": "safe",
+    "from": "f1b3962ddaf6",
+    "title": "811. blessings",
+    "funcs": [
+     "what.happens"
     ]
    }
   ],
@@ -54222,6 +54400,16 @@
     ]
    }
   ],
+  "tracking_number_figure": [
+   {
+    "scope": "safe",
+    "from": "a0a9ef150ce6",
+    "title": "914. tracking number",
+    "funcs": [
+     "always.believed"
+    ]
+   }
+  ],
   "tray": [
    {
     "scope": "safe",
@@ -56311,6 +56499,9 @@
     "know.change",
     "then.wanted",
     "truth.without",
+    "always.believed",
+    "sure.idts",
+    "what.happens",
     "cli.cli",
     "thryd.importtheme",
     "kemi.ismarried",
@@ -56847,7 +57038,8 @@
   "2926a1e178ed": {
    "title": "1225. only happy endings",
    "funcs": [
-    "hear.setword"
+    "hear.setword",
+    "sure.idts"
    ],
    "runs": []
   },
@@ -57561,7 +57753,10 @@
     "also.vlogs",
     "know.change",
     "then.wanted",
-    "truth.without"
+    "truth.without",
+    "always.believed",
+    "sure.idts",
+    "what.happens"
    ],
    "runs": [
     "run-cf203b"
@@ -58049,6 +58244,13 @@
    "title": "808. awa story have change",
    "funcs": [
     "know.change"
+   ],
+   "runs": []
+  },
+  "a0a9ef150ce6": {
+   "title": "914. tracking number",
+   "funcs": [
+    "always.believed"
    ],
    "runs": []
   },
@@ -58758,6 +58960,13 @@
    ],
    "runs": []
   },
+  "f1b3962ddaf6": {
+   "title": "811. blessings",
+   "funcs": [
+    "what.happens"
+   ],
+   "runs": []
+  },
   "f213f25df069": {
    "title": "601. jesus was very business smart",
    "funcs": [
@@ -59435,6 +59644,9 @@
   "1*FbcxXhpha7lQDMzkl0LG_Q.gif": [
    "75c8a354a7c7"
   ],
+  "1*Dxhoy-Gyc0XRTWr06GNTUQ.gif": [
+   "a0a9ef150ce6"
+  ],
   "1*6P6actu28LykPqd3qVBp9g.gif": [
    "0794a7d2abc3",
    "78fa7a5387e6"
@@ -59475,6 +59687,9 @@
   ],
   "1*lDKS3MnQQ0QbWboPIBFuYA.gif": [
    "da2bd5e3c2d7"
+  ],
+  "1*nm6YAew9EpjYUYW1K831ew.gif": [
+   "f1b3962ddaf6"
   ],
   "1*ft_vQIL64b_sqlDV-XhDBw.gif": [
    "14f807b2bcaa"
@@ -60556,6 +60771,12 @@
     "31538bbffdb5"
    ]
   },
+  "1*Dxhoy-Gyc0XRTWr06GNTUQ.gif": {
+   "runs": [],
+   "safes": [
+    "a0a9ef150ce6"
+   ]
+  },
   "1*nO_c5Fhrmc182GE_F0zVwQ.gif": {
    "runs": [],
    "safes": [
@@ -60894,6 +61115,12 @@
     "9876ef803050"
    ]
   },
+  "1*nm6YAew9EpjYUYW1K831ew.gif": {
+   "runs": [],
+   "safes": [
+    "f1b3962ddaf6"
+   ]
+  },
   "1*nC4xjokQNta7cOcuY15NrA.gif": {
    "runs": [],
    "safes": [
@@ -61144,6 +61371,9 @@
   ],
   "also": [
    "also.vlogs"
+  ],
+  "always": [
+   "always.believed"
   ],
   "and": [
    "and.not"
@@ -61886,6 +62116,9 @@
   "stupidity": [
    "stupidity.say"
   ],
+  "sure": [
+   "sure.idts"
+  ],
   "taking": [
    "taking.isnotes"
   ],
@@ -62019,7 +62252,8 @@
    "what.road",
    "what.get",
    "what.say",
-   "what.slam"
+   "what.slam",
+   "what.happens"
   ],
   "where": [
    "where.boisie"
@@ -62408,6 +62642,8 @@
   "rikwaya": [],
   "also": [],
   "truth": [],
+  "always": [],
+  "sure": [],
   "cooler": [],
   "kazeem.goodqualities": [],
   "app": [],
@@ -62616,6 +62852,7 @@
    "ahan",
    "alorof",
    "also",
+   "always",
    "and",
    "beat",
    "because",
@@ -62710,6 +62947,7 @@
    "story",
    "stringify",
    "stupidity",
+   "sure",
    "textbook",
    "then",
    "till",
@@ -62748,5 +62986,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-26T22:01:10-05:00"
+ "updated": "2026-11-26T23:52:44-05:00"
 }
