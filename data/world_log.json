@@ -15050,7 +15050,7 @@
   },
   "run-cf203b": {
    "forked_from": "safe:731d52737690",
-   "head": "bcfe6be177",
+   "head": "2cc5b3cf88",
    "commits": [
     {
      "id": "eda103402b",
@@ -19563,11 +19563,11 @@
      }
     },
     {
-     "id": "42fa39b3a2",
+     "id": "0e5ca9d2a4",
      "parent": "6b2a230f74",
      "branch": "run-cf203b",
      "job": "j53",
-     "at": "2026-11-26T19:10:50-0500",
+     "at": "2026-11-26T19:10:53-05:00",
      "genre": "rising",
      "beat": "now",
      "diff": {
@@ -19582,13 +19582,33 @@
        }
       ],
       "facts_total": 1,
-      "functions": [],
-      "instances": []
+      "functions": [
+       {
+        "func": "feeling.like",
+        "title": "feeling.like(only)",
+        "op": "define"
+       },
+       {
+        "func": "total.awards",
+        "title": "total.awards(domination)",
+        "op": "define"
+       }
+      ],
+      "instances": [
+       [
+        "only",
+        "Thing"
+       ],
+       [
+        "domination",
+        "Thing"
+       ]
+      ]
      }
     },
     {
-     "id": "bcfe6be177",
-     "parent": "42fa39b3a2",
+     "id": "2cc5b3cf88",
+     "parent": "0e5ca9d2a4",
      "branch": "run-cf203b",
      "job": "j54",
      "at": "2026-11-26T19:10:54-0500",
@@ -20570,10 +20590,10 @@
   "run-0ae93c": "a11a1eab61",
   "run-3a15d2": "fbc46c6eb7",
   "run-ab4653": "dd8e54daee",
-  "run-cf203b": "bcfe6be177",
+  "run-cf203b": "2cc5b3cf88",
   "run-888ea9": "be875fb326",
   "run-cb805f": "8d23a93627"
  },
  "commits": 206,
- "updated": "2026-11-26T19:11:08-05:00"
+ "updated": "2026-11-26T19:11:58-05:00"
 }
