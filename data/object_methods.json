@@ -16476,7 +16476,7 @@
        "instance": "all",
        "from_run": "run-cf203b",
        "from_job": "j6",
-       "source": "pick"
+       "source": "original"
       }
      ]
     }
@@ -16999,15 +16999,15 @@
      ],
      "consequence": "What just happened: The woman laughs and answers, \"i shu be making more dan!\" She thinks she's owed more.",
      "consequence_job": "j11",
-     "resolved": "shu.making(amount=all:Quantity) from j6",
+     "resolved": "shu.making(amount=more:Quantity) from j10",
      "injected": [
       {
        "param": "amount",
        "class": "Quantity",
-       "instance": "all",
+       "instance": "more",
        "from_run": "run-cf203b",
-       "from_job": "j6",
-       "source": "pick"
+       "from_job": "j10",
+       "source": "original"
       }
      ]
     }
@@ -25396,6 +25396,201 @@
    "faded": false,
    "last_run": "run-cf203b"
   },
+  "and.not": {
+   "object": "and",
+   "method": "not",
+   "args": [
+    "be"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j55",
+    "card": "w55",
+    "title": "and.not(be)",
+    "emoji": "",
+    "at": "2026-11-26T20:06:17-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "and.not(be)",
+     "emoji": "",
+     "arg": "be",
+     "run": "run-cf203b",
+     "job": "j55",
+     "tweets": [
+      {
+       "text": "-- and not be in [[love]]",
+       "year": "2024"
+      }
+     ],
+     "consequence": "What just happened: The last card asked for the next line, the one that answers \"#thryd - and weya on earth!\".",
+     "consequence_job": "j56",
+     "resolved": "and.not(what=be:Thing) from j55",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "be",
+       "from_run": "run-cf203b",
+       "from_job": "j55",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "be",
+      "first_run": "run-cf203b",
+      "first_job": "j55"
+     }
+    ],
+    "text": "not(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "eez.heddie": {
+   "object": "eez",
+   "method": "heddie",
+   "args": [
+    "mofti"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j55",
+    "card": "w55",
+    "title": "eez.heddie(mofti)",
+    "emoji": "🕰️",
+    "at": "2026-11-26T20:06:17-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "eez.heddie(mofti)",
+     "emoji": "🕰️",
+     "arg": "mofti",
+     "run": "run-cf203b",
+     "job": "j55",
+     "tweets": [
+      {
+       "text": "#yorubbbygehinny - eez heddie mofti",
+       "year": "2025"
+      }
+     ],
+     "consequence": "The lines that landed: \"#yokithoughts\", \"if it [[shock]] [[mi]], na [[hpr]]\", \"#yorubbbygehinny - eez heddie mofti\" and \"and not be in [[love]]\".",
+     "consequence_job": "j56",
+     "resolved": "eez.heddie(what=mofti:Thing) from j55",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "mofti",
+       "from_run": "run-cf203b",
+       "from_job": "j55",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "mofti",
+      "first_run": "run-cf203b",
+      "first_job": "j55"
+     }
+    ],
+    "text": "heddie(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "if.it": {
+   "object": "if",
+   "method": "it",
+   "args": [
+    "na"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j55",
+    "card": "w55",
+    "title": "if.it(na)",
+    "emoji": "📸",
+    "at": "2026-11-26T20:06:17-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "if.it(na)",
+     "emoji": "📸",
+     "arg": "na",
+     "run": "run-cf203b",
+     "job": "j55",
+     "tweets": [
+      {
+       "text": "- if it [[shock]] [[mi]], na [[hpr]]",
+       "year": "2025"
+      }
+     ],
+     "consequence": "The lines that landed: \"#yokithoughts\", \"if it [[shock]] [[mi]], na [[hpr]]\", \"#yorubbbygehinny - eez heddie mofti\" and \"and not be in [[love]]\".",
+     "consequence_job": "j56",
+     "resolved": "if.it(what=na:Thing) from j55",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "na",
+       "from_run": "run-cf203b",
+       "from_job": "j55",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "na",
+      "first_run": "run-888ea9",
+      "first_job": "j9"
+     }
+    ],
+    "text": "it(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
   "cooler.getdatemanufactured": {
    "object": "cooler",
    "method": "getDateManufactured",
@@ -29106,6 +29301,9 @@
   "american_olamide_subject": [
    "object.look"
   ],
+  "and": [
+   "and.not"
+  ],
   "aotl": [
    "aotl.isline"
   ],
@@ -29438,7 +29636,8 @@
   ],
   "eez": [
    "eez.mad",
-   "eez.getting"
+   "eez.getting",
+   "eez.heddie"
   ],
   "ehen": [
    "ehen.serious"
@@ -29571,6 +29770,9 @@
   ],
   "idt": [
    "idt.can"
+  ],
+  "if": [
+   "if.it"
   ],
   "imagination_generation_subject": [
    "object.look"
@@ -38904,6 +39106,16 @@
     "title": "223. freaky freaky",
     "funcs": [
      "dignity.hustle"
+    ]
+   }
+  ],
+  "friends_bad_people_figure": [
+   {
+    "scope": "safe",
+    "from": "86488bc8babd",
+    "title": "121. abomination!!!",
+    "funcs": [
+     "eez.heddie"
     ]
    }
   ],
@@ -49740,6 +49952,7 @@
     "from": "dadeead0b4a2",
     "title": "315. heeeeeeelp!",
     "funcs": [
+     "if.it",
      "laff.made"
     ]
    }
@@ -55127,6 +55340,9 @@
     "however.go",
     "weya.earth",
     "what.slam",
+    "and.not",
+    "eez.heddie",
+    "if.it",
     "cli.cli",
     "thryd.importtheme",
     "kemi.ismarried",
@@ -55547,6 +55763,13 @@
    "title": "827. europe is my own motherland",
    "funcs": [
     "will.deal"
+   ],
+   "runs": []
+  },
+  "1ed862096914": {
+   "title": "613. the war",
+   "funcs": [
+    "and.not"
    ],
    "runs": []
   },
@@ -56317,7 +56540,10 @@
     "total.awards",
     "however.go",
     "weya.earth",
-    "what.slam"
+    "what.slam",
+    "and.not",
+    "eez.heddie",
+    "if.it"
    ],
    "runs": [
     "run-cf203b"
@@ -56508,6 +56734,13 @@
    "funcs": [
     "teo.decode",
     "once.understand"
+   ],
+   "runs": []
+  },
+  "86488bc8babd": {
+   "title": "121. abomination!!!",
+   "funcs": [
+    "eez.heddie"
    ],
    "runs": []
   },
@@ -57256,7 +57489,8 @@
   "dadeead0b4a2": {
    "title": "315. heeeeeeelp!",
    "funcs": [
-    "laff.made"
+    "laff.made",
+    "if.it"
    ],
    "runs": []
   },
@@ -57992,6 +58226,9 @@
   ],
   "1*UmpEdNHIUE0PbFptnquSig.gif": [
    "b17708f507b6"
+  ],
+  "1*Ve_mMlM4Vrq4fXAY9gpfzg.gif": [
+   "86488bc8babd"
   ],
   "1*uHFE9Vcx4PyeUpG_aHgcvg.gif": [
    "44583f98086d",
@@ -59587,6 +59824,12 @@
     "773b1e7d097b"
    ]
   },
+  "1*Ve_mMlM4Vrq4fXAY9gpfzg.gif": {
+   "runs": [],
+   "safes": [
+    "86488bc8babd"
+   ]
+  },
   "1*WrFSJNCz11JO3t2O2D_Y-w.gif": {
    "runs": [],
    "safes": [
@@ -59777,6 +60020,9 @@
   ],
   "alorof": [
    "alorof.things"
+  ],
+  "and": [
+   "and.not"
   ],
   "aotl": [
    "aotl.isline"
@@ -59973,7 +60219,8 @@
   ],
   "eez": [
    "eez.mad",
-   "eez.getting"
+   "eez.getting",
+   "eez.heddie"
   ],
   "ehen": [
    "ehen.serious"
@@ -60083,6 +60330,9 @@
   ],
   "idt": [
    "idt.can"
+  ],
+  "if": [
+   "if.it"
   ],
   "inside": [
    "inside.teeth"
@@ -60993,6 +61243,8 @@
   "feeling": [],
   "total": [],
   "however": [],
+  "and": [],
+  "if": [],
   "cooler": [],
   "kazeem.goodqualities": [],
   "app": [],
@@ -61199,6 +61451,7 @@
    "agboro",
    "ahan",
    "alorof",
+   "and",
    "beat",
    "because",
    "believe",
@@ -61237,6 +61490,7 @@
    "hope",
    "however",
    "idt",
+   "if",
    "inside",
    "jesse",
    "kemi",
@@ -61321,5 +61575,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-26T19:37:12-05:00"
+ "updated": "2026-11-26T20:06:28-05:00"
 }
