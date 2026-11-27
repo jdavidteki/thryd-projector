@@ -15050,7 +15050,7 @@
   },
   "run-cf203b": {
    "forked_from": "safe:731d52737690",
-   "head": "8d41860853",
+   "head": "b1b449a1fc",
    "commits": [
     {
      "id": "eda103402b",
@@ -15125,12 +15125,7 @@
         "op": "define"
        }
       ],
-      "instances": [
-       [
-        "defenses",
-        "Action"
-       ]
-      ]
+      "instances": []
      }
     },
     {
@@ -15187,12 +15182,7 @@
         "op": "define"
        }
       ],
-      "instances": [
-       [
-        "dies",
-        "Thing"
-       ]
-      ]
+      "instances": []
      }
     },
     {
@@ -19985,11 +19975,11 @@
      }
     },
     {
-     "id": "da9284f96a",
+     "id": "1faa136c0b",
      "parent": "5c5064badb",
      "branch": "run-cf203b",
      "job": "j57",
-     "at": "2026-11-26T20:50:54-0500",
+     "at": "2026-11-26T21:15:02-05:00",
      "genre": "rising",
      "beat": "now",
      "diff": {
@@ -20172,13 +20162,38 @@
        }
       ],
       "facts_total": 22,
-      "functions": [],
-      "instances": []
+      "functions": [
+       {
+        "func": "can.see",
+        "title": "can.see()",
+        "op": "call"
+       },
+       {
+        "func": "daz.y",
+        "title": "daz.y(wife)",
+        "op": "define"
+       },
+       {
+        "func": "j.b",
+        "title": "j.b(can)",
+        "op": "define"
+       }
+      ],
+      "instances": [
+       [
+        "wife",
+        "Person"
+       ],
+       [
+        "can",
+        "Thing"
+       ]
+      ]
      }
     },
     {
-     "id": "8d41860853",
-     "parent": "da9284f96a",
+     "id": "b1b449a1fc",
+     "parent": "1faa136c0b",
      "branch": "run-cf203b",
      "job": "j58",
      "at": "2026-11-26T21:15:05-0500",
@@ -21168,10 +21183,10 @@
   "run-0ae93c": "a11a1eab61",
   "run-3a15d2": "fbc46c6eb7",
   "run-ab4653": "dd8e54daee",
-  "run-cf203b": "8d41860853",
+  "run-cf203b": "b1b449a1fc",
   "run-888ea9": "56b3618131",
   "run-cb805f": "8d23a93627"
  },
  "commits": 210,
- "updated": "2026-11-26T21:15:47-05:00"
+ "updated": "2026-11-26T21:16:37-05:00"
 }
