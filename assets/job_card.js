@@ -57,7 +57,7 @@
     '#aicard .aicsend{display:flex;align-items:center;gap:10px;justify-content:flex-end}',
     '#aicard .aicnote{flex:1 1 auto;min-height:1em;font:500 12.5px/1.35 ui-sans-serif,system-ui,sans-serif;color:#b8b2a4}',
     '#aicard .aicnote.busy{color:#ffd76a}#aicard .aicnote.ok{color:#7fe0a0}#aicard .aicnote.err{color:#ff8f86;font-weight:600}',
-    '#aicard .aicgo{flex:0 0 auto;min-width:104px;white-space:nowrap;min-height:38px;padding:0 16px;font:700 14px/1 ui-sans-serif,system-ui,sans-serif;letter-spacing:.02em;color:#1a1608;background:linear-gradient(#ffe08a,#f5c84c);border:1px solid #c9a227;border-radius:10px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.35)}',
+    '#aicard .aicgo{flex:0 0 auto;min-width:96px;min-height:38px;padding:0 16px;font:700 14px/1 ui-sans-serif,system-ui,sans-serif;letter-spacing:.02em;color:#1a1608;background:linear-gradient(#ffe08a,#f5c84c);border:1px solid #c9a227;border-radius:10px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.35)}',
     '#aicard .aicgo.sent{background:#1f5a34;border-color:#2f8a50;color:#e6ffee}',
     '#aicard .aicgo.err{background:#5a1f1f;border-color:#a04040;color:#ffe3e0}',
     '#aicard .aicgo.busy{opacity:.75}',
@@ -853,9 +853,7 @@
       else if(locked){ n.textContent = 'sent \u2014 next job coming'; n.classList.add('ok'); }
       const waitingReceipt = !!(locked && pendingSend && pendingSend.state === 'waiting' && pendingSend.job === c.job);   // v644: no tick before the receipt
       const go = document.createElement('button'); go.type = 'button'; go.className = 'aicgo' + (waitingReceipt ? ' busy' : (locked ? ' sent' : ''));
-      go.textContent = waitingReceipt ? 'sending\u2026' : (locked ? 'sent \u2713' : (resendFor(c) ? '#thryd again' : '#thryd')); go.disabled = locked;
-      // v649 (Jesuye 5:28 PM "instead of 'send', that button on god should be '#thryd'"): same send, new name
-      go.setAttribute('aria-label', '#thryd \u2014 send your pick'); go.title = '#thryd \u2014 send your pick (Enter)';
+      go.textContent = waitingReceipt ? 'sending\u2026' : (locked ? 'sent \u2713' : (resendFor(c) ? 'Resend' : 'Send')); go.disabled = locked;
       tapOnce(go, () => sendCard(go));
       row.append(n, go);
       jobEl.appendChild(row);
@@ -964,13 +962,13 @@
     try{ r = await post(body, onRetry); }
     catch(e){
       sending = false; ps.state = 'not_received'; log({event: 'send_throw', job, error: String(e && e.message || e), event_id: eid});
-      if(btn){ btn.disabled = false; btn.classList.remove('busy'); btn.textContent = '#thryd again'; }
-      setStatus('Not sent \u2014 ' + friendly(e) + '. Your pick is kept; tap #thryd again in a moment (same send, no double pick).', 'err'); return;
+      if(btn){ btn.disabled = false; btn.classList.remove('busy'); btn.textContent = 'Resend'; }
+      setStatus('Not sent \u2014 ' + friendly(e) + '. Your pick is kept; tap Resend in a moment (same send, no double pick).', 'err'); return;
     }
     if(!(r && r.ok)){
       sending = false; ps.state = 'not_received'; log({event: 'send_http', job, status: r && r.status, event_id: eid});
-      if(btn){ btn.disabled = false; btn.classList.remove('busy'); btn.textContent = '#thryd again'; }
-      setStatus('Not sent \u2014 ' + friendly(r ? 'HTTP ' + r.status : '') + '. Your pick is kept; tap #thryd again in a moment (same send, no double pick).', 'err'); return;
+      if(btn){ btn.disabled = false; btn.classList.remove('busy'); btn.textContent = 'Resend'; }
+      setStatus('Not sent \u2014 ' + friendly(r ? 'HTTP ' + r.status : '') + '. Your pick is kept; tap Resend in a moment (same send, no double pick).', 'err'); return;
     }
     ps.r = r;
     markSent(job, card);   // holds the card while the receipt is pending (no second pick)
@@ -986,7 +984,7 @@
       ps.state = 'not_received'; unmarkSent(job);
       patchSent(eid, {unconfirmed: true});
       log({event: 'receipt_timeout', job, event_id: eid});
-      status = {job, text: '\u2717 the box hasn\u2019t confirmed this send after 20 s. Tap #thryd again \u2014 it\u2019s the same send, so it can\u2019t pick twice.', kind: 'err'};
+      status = {job, text: '\u2717 the box hasn\u2019t confirmed this send after 20 s. Tap Resend \u2014 it\u2019s the same send, so it can\u2019t pick twice.', kind: 'err'};
       render();
       lateReceipt(ps);
       return;
@@ -1011,7 +1009,7 @@
       setStatus(status.text, 'ok'); return;
     }
     // v643: 'already_sent' means this Send was NOT stored, so never show it as a success or keep the lock.
-    if(m.code === 'already_sent'){ unmarkSent(job); status = {job, text: 'Not stored \u2014 the box already had a send for ' + job + '. Tap #thryd again.', kind: 'err'}; render(); return; }
+    if(m.code === 'already_sent'){ unmarkSent(job); status = {job, text: 'Not stored \u2014 the box already had a send for ' + job + '. Tap Send again.', kind: 'err'}; render(); return; }
     // v628: a seat can make the open job disappear before the receipt. v644: only call it in when the seat shows this event.
     if(m.code === 'job_mismatch' || m.code === 'no_open_job'){
       if(seenResolved(ps.body.event_id)){ setStatus('Sent \u2713 your ' + job + ' pick is in \u2014 next job coming.', 'ok'); return; }
@@ -1020,7 +1018,7 @@
       render(); return;
     }
     unmarkSent(job);
-    status = {job, text: '\u2717 Not accepted \u00b7 ' + (m.detail || m.code || 'rejected') + ' \u00b7 tap #thryd to try again.', kind: 'err'};
+    status = {job, text: '\u2717 Not accepted \u00b7 ' + (m.detail || m.code || 'rejected') + ' \u00b7 tap Send to try again.', kind: 'err'};
     render();
   }
 

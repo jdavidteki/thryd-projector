@@ -49,7 +49,7 @@ test('after Send the panel waits for the next job, then swaps on the slow poll',
 
 test('one Send per job client-side; menu taps deduped for 2 minutes before POST', ()=>{
   assert.match(js, /wasSent\(card\.job\)/);
-  assert.match(js, /'sent \\u2713' : \(resendFor\(c\) \? '#thryd again' : '#thryd'\)/);   // v649: the Send button is #thryd   // v644: Resend after a receipt timeout
+  assert.match(js, /'sent \\u2713' : \(resendFor\(c\) \? 'Resend' : 'Send'\)/);   // v644: Resend after a receipt timeout
   assert.match(js, /MENU_DEDUPE_MS = 120000/);
   assert.match(js, /drop before POST/);
   assert.match(js, /type:'card_pick'/);
@@ -329,7 +329,7 @@ __t('v644: send_receipt: tick only on the box receipt; 20 s timeout offers Resen
   __a.match(src, /const RECEIPT_MS = 20000;/);
   __a.match(src, /const eid = again \? again\.body\.event_id : uid\('pick-'\)/);          // resend reuses the event_id
   __a.match(src, /const body = again \? again\.body :/);
-  __a.match(src, /hasn\\u2019t confirmed this send after 20 s\. Tap #thryd again/);
+  __a.match(src, /hasn\\u2019t confirmed this send after 20 s\. Tap Resend/);
   __a.match(src, /waitingReceipt \? 'sending\\u2026'/);                                   // no tick while waiting
   __a.doesNotMatch(src, /Sent \\u2713 waiting for the receipt/);
   __a.doesNotMatch(src, /no receipt yet \\u2014 it will still be picked up/);
