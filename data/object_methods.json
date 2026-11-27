@@ -18171,12 +18171,12 @@
      ],
      "consequence": "What just happened: Kemi answers him flat: \"i don't know how else to say it.\" She says the mess is all his: \"shi gbogbo iron ore le.\" To her, last night is a \"nigerian nuclear bomb.\" Tobi blinks at her: \"wym they dont know?\" 📖 Now: Get the ",
      "consequence_job": "j18",
-     "resolved": "nigerian.nuclear(what=bomb:Thing) from j17",
+     "resolved": "nigerian.nuclear(what=iron:Thing) from j17",
      "injected": [
       {
        "param": "what",
        "class": "Thing",
-       "instance": "bomb",
+       "instance": "iron",
        "from_run": "run-cf203b",
        "from_job": "j17",
        "source": "pick"
@@ -18479,12 +18479,12 @@
      ],
      "consequence": "What just happened: Tobi keeps digging: \"make i add more stuff here so daditin.\" Then he turns it on everyone: \"what do you guys think?\" When Kemi doesn't answer, he points at himself: \"say me, ehn?\" 📖 Now: Get the line where Kemi tells Tob",
      "consequence_job": "j19",
-     "resolved": "what.guys(what=bomb:Thing) from j17",
+     "resolved": "what.guys(what=iron:Thing) from j17",
      "injected": [
       {
        "param": "what",
        "class": "Thing",
-       "instance": "bomb",
+       "instance": "iron",
        "from_run": "run-cf203b",
        "from_job": "j17",
        "source": "pick"
@@ -26911,6 +26911,232 @@
    "faded": false,
    "last_run": "run-cf203b"
   },
+  "got.msg": {
+   "object": "got",
+   "method": "msg",
+   "args": [
+    ""
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j64",
+    "card": "w64",
+    "title": "got.msg()",
+    "emoji": "🍢",
+    "at": "2026-11-27T02:30:20-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "got.msg()",
+     "emoji": "🍢",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j64",
+     "tweets": [
+      {
+       "text": "#juniorgirls - you got [[mi]] msg? 🤪🤪",
+       "year": "2024"
+      }
+     ],
+     "consequence": "The lines that landed: \"it should get to you in 5 business\", \"[[b$20md]] - hold jare!!!\", \"#oyinboman[[wiitbaw]] - woman?!!\" and \"#juniorgirls - you got [[mi]] msg?",
+     "consequence_job": "j65",
+     "resolved": "got.msg()",
+     "injected": []
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [],
+    "text": "msg()"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "hold.jare": {
+   "object": "hold",
+   "method": "jare",
+   "args": [
+    ""
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j64",
+    "card": "w64",
+    "title": "hold.jare()",
+    "emoji": "🖼️",
+    "at": "2026-11-27T02:30:20-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "hold.jare()",
+     "emoji": "🖼️",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j64",
+     "tweets": [
+      {
+       "text": "[[b$20md]] - hold jare!!!",
+       "year": "2025"
+      }
+     ],
+     "consequence": "The lines that landed: \"it should get to you in 5 business\", \"[[b$20md]] - hold jare!!!\", \"#oyinboman[[wiitbaw]] - woman?!!\" and \"#juniorgirls - you got [[mi]] msg?",
+     "consequence_job": "j65",
+     "resolved": "hold.jare()",
+     "injected": []
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [],
+    "text": "jare()"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "should.get": {
+   "object": "should",
+   "method": "get",
+   "args": [
+    "5"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j64",
+    "card": "w64",
+    "title": "should.get(5)",
+    "emoji": "🎧",
+    "at": "2026-11-27T02:30:20-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "should.get(5)",
+     "emoji": "🎧",
+     "arg": "5",
+     "run": "run-cf203b",
+     "job": "j64",
+     "tweets": [
+      {
+       "text": "-- it should get to you in 5 business",
+       "year": "2024"
+      }
+     ],
+     "consequence": "The lines that landed: \"it should get to you in 5 business\", \"[[b$20md]] - hold jare!!!\", \"#oyinboman[[wiitbaw]] - woman?!!\" and \"#juniorgirls - you got [[mi]] msg?",
+     "consequence_job": "j65",
+     "resolved": "should.get(amount=5:Quantity) from j64",
+     "injected": [
+      {
+       "param": "amount",
+       "class": "Quantity",
+       "instance": "5",
+       "from_run": "run-cf203b",
+       "from_job": "j64",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "amount",
+      "class": "Quantity",
+      "default": "5",
+      "first_run": "run-cf203b",
+      "first_job": "j64"
+     }
+    ],
+    "text": "get(amount: Quantity)"
+   },
+   "receiver_class": "Thing",
+   "prior": [
+    {
+     "id": "dem.get",
+     "title": "dem.get(totally)",
+     "run": "run-cf203b",
+     "job": "j32",
+     "at": "2026-11-26T02:08:31-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "what.get",
+     "title": "what.get()",
+     "run": "run-cf203b",
+     "job": "j24",
+     "at": "2026-11-26T00:15:50-05:00",
+     "why": "same method"
+    }
+   ],
+   "faded": false,
+   "last_run": null
+  },
+  "wiitbaw.woman": {
+   "object": "wiitbaw",
+   "method": "woman",
+   "args": [
+    ""
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j64",
+    "card": "w64",
+    "title": "wiitbaw.woman()",
+    "emoji": "📃",
+    "at": "2026-11-27T02:30:20-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "wiitbaw.woman()",
+     "emoji": "📃",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j64",
+     "tweets": [
+      {
+       "text": "#oyinboman[[wiitbaw]] - woman?!!",
+       "year": "2025"
+      }
+     ],
+     "consequence": "The lines that landed: \"it should get to you in 5 business\", \"[[b$20md]] - hold jare!!!\", \"#oyinboman[[wiitbaw]] - woman?!!\" and \"#juniorgirls - you got [[mi]] msg?",
+     "consequence_job": "j65",
+     "resolved": "wiitbaw.woman()",
+     "injected": []
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [],
+    "text": "woman()"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
   "cooler.getdatemanufactured": {
    "object": "cooler",
    "method": "getDateManufactured",
@@ -31218,7 +31444,8 @@
    "gol.lo"
   ],
   "got": [
-   "got.zero"
+   "got.zero",
+   "got.msg"
   ],
   "grammy": [
    "grammy.swear"
@@ -31250,6 +31477,9 @@
   ],
   "history": [
    "history.see"
+  ],
+  "hold": [
+   "hold.jare"
   ],
   "honey": [
    "honey.pot"
@@ -31748,7 +31978,8 @@
    "shi.gbogbo"
   ],
   "should": [
-   "should.fighting"
+   "should.fighting",
+   "should.get"
   ],
   "shu": [
    "shu.making"
@@ -32004,6 +32235,9 @@
   ],
   "wifey_subject": [
    "object.look"
+  ],
+  "wiitbaw": [
+   "wiitbaw.woman"
   ],
   "will": [
    "will.deal",
@@ -35802,6 +36036,7 @@
     "from": "57fcace44faf",
     "title": "1218. bring your guys too",
     "funcs": [
+     "hold.jare",
      "ronke.whisper",
      "kazeem.play"
     ]
@@ -48703,6 +48938,14 @@
     "funcs": [
      "then.wanted"
     ]
+   },
+   {
+    "scope": "safe",
+    "from": "4c9665fe8f79",
+    "title": "727. nigeria is a woman",
+    "funcs": [
+     "wiitbaw.woman"
+    ]
    }
   ],
   "no_go_fold_figure": [
@@ -55925,6 +56168,16 @@
     ]
    }
   ],
+  "world_has_finished_figure": [
+   {
+    "scope": "safe",
+    "from": "7031937aab0a",
+    "title": "1103. the world has finished dancing",
+    "funcs": [
+     "should.get"
+    ]
+   }
+  ],
   "world_stage_subject": [
    {
     "scope": "safe",
@@ -57034,6 +57287,10 @@
     "ori.la",
     "amono.tete",
     "say.nigerian",
+    "got.msg",
+    "hold.jare",
+    "should.get",
+    "wiitbaw.woman",
     "cli.cli",
     "thryd.importtheme",
     "kemi.ismarried",
@@ -57934,6 +58191,13 @@
    ],
    "runs": []
   },
+  "4c9665fe8f79": {
+   "title": "727. nigeria is a woman",
+   "funcs": [
+    "wiitbaw.woman"
+   ],
+   "runs": []
+  },
   "4e0767672981": {
    "title": "225. i can see the future",
    "funcs": [
@@ -57995,7 +58259,8 @@
    "title": "1218. bring your guys too",
    "funcs": [
     "kazeem.play",
-    "ronke.whisper"
+    "ronke.whisper",
+    "hold.jare"
    ],
    "runs": []
   },
@@ -58131,6 +58396,13 @@
    "title": "919. bending",
    "funcs": [
     "folake.hold"
+   ],
+   "runs": []
+  },
+  "7031937aab0a": {
+   "title": "1103. the world has finished dancing",
+   "funcs": [
+    "should.get"
    ],
    "runs": []
   },
@@ -58313,7 +58585,11 @@
     "dont.him",
     "ori.la",
     "amono.tete",
-    "say.nigerian"
+    "say.nigerian",
+    "got.msg",
+    "hold.jare",
+    "should.get",
+    "wiitbaw.woman"
    ],
    "runs": [
     "run-cf203b"
@@ -59034,7 +59310,8 @@
   "b7e8db85ddac": {
    "title": "1214. i finally unblocked him",
    "funcs": [
-    "marisol.win"
+    "marisol.win",
+    "got.msg"
    ],
    "runs": []
   },
@@ -60124,7 +60401,8 @@
    "1a9d986eb980"
   ],
   "1*l21ZORlcwPNcUgIJD3BEMw.gif": [
-   "3e7c776d4be9"
+   "3e7c776d4be9",
+   "4c9665fe8f79"
   ],
   "1*DUBqUOO0slEd39P9RiD30Q.gif": [
    "ef623c79ddb7"
@@ -60610,6 +60888,12 @@
    "c51063137413",
    "35b341a4bf19"
   ],
+  "1*-FKqAzpmRAkOsi3AMI1u7g.gif": [
+   "7031937aab0a"
+  ],
+  "1*axIycIRqY_q3ZkUjtAa5oA.jpeg": [
+   "7031937aab0a"
+  ],
   "1*ZYSX_XybJkgPdVOqMuSEAw.jpeg": [
    "e503ddd64a7d"
   ],
@@ -61067,7 +61351,8 @@
   "1*l21ZORlcwPNcUgIJD3BEMw.gif": {
    "runs": [],
    "safes": [
-    "3e7c776d4be9"
+    "3e7c776d4be9",
+    "4c9665fe8f79"
    ]
   },
   "1*q0hfDA8xcra7qX-9n4EuNw.gif": {
@@ -61642,6 +61927,12 @@
    "runs": [],
    "safes": [
     "ba4901337f02"
+   ]
+  },
+  "1*-FKqAzpmRAkOsi3AMI1u7g.gif": {
+   "runs": [],
+   "safes": [
+    "7031937aab0a"
    ]
   },
   "1*bvGksBnUGY8APjvlhhkHng.gif": {
@@ -62243,7 +62534,8 @@
    "gol.lo"
   ],
   "got": [
-   "got.zero"
+   "got.zero",
+   "got.msg"
   ],
   "grammy": [
    "grammy.swear"
@@ -62275,6 +62567,9 @@
   ],
   "history": [
    "history.see"
+  ],
+  "hold": [
+   "hold.jare"
   ],
   "honey": [
    "honey.pot"
@@ -62684,7 +62979,8 @@
    "shi.gbogbo"
   ],
   "should": [
-   "should.fighting"
+   "should.fighting",
+   "should.get"
   ],
   "shu": [
    "shu.making"
@@ -62887,6 +63183,9 @@
   ],
   "wife": [
    "wife.kill"
+  ],
+  "wiitbaw": [
+   "wiitbaw.woman"
   ],
   "will": [
    "will.deal",
@@ -63267,6 +63566,8 @@
   "model": [],
   "ori": [],
   "amono": [],
+  "hold": [],
+  "wiitbaw": [],
   "cooler": [],
   "kazeem.goodqualities": [],
   "app": [],
@@ -63514,6 +63815,7 @@
    "has",
    "have",
    "hear",
+   "hold",
    "honey",
    "hope",
    "however",
@@ -63595,6 +63897,7 @@
    "which",
    "who",
    "why",
+   "wiitbaw",
    "will",
    "wo",
    "woke",
@@ -63615,5 +63918,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-27T01:14:02-05:00"
+ "updated": "2026-11-27T02:31:09-05:00"
 }

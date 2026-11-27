@@ -131,8 +131,8 @@
     "add",
     "call"
    ],
-   "instances": 11,
-   "arg_instances": 11,
+   "instances": 12,
+   "arg_instances": 12,
    "parent": "Thing",
    "chain": [
     "Quantity",
@@ -254,6 +254,22 @@
     {
      "text": "#time -- go back to 4pm and [[ashc]]",
      "year": "2025"
+    }
+   ]
+  },
+  "5": {
+   "class": "Quantity",
+   "cue": "number",
+   "first_run": "run-cf203b",
+   "first_job": "j64",
+   "source": "pick",
+   "runs": [
+    "run-cf203b"
+   ],
+   "tweets": [
+    {
+     "text": "-- it should get to you in 5 business",
+     "year": "2024"
     }
    ]
   },
@@ -10383,12 +10399,6 @@
   ],
   "run-cf203b": [
    [
-    "bomb",
-    "Thing",
-    "j17",
-    "pick"
-   ],
-   [
     "iron",
     "Thing",
     "j17",
@@ -10860,6 +10870,12 @@
     "house",
     "Place",
     "j63",
+    "pick"
+   ],
+   [
+    "5",
+    "Quantity",
+    "j64",
     "pick"
    ]
   ],
@@ -13688,6 +13704,10 @@
   "ori.la": "la()",
   "amono.tete": "tete(what: Thing)",
   "say.nigerian": "nigerian(where: Place)",
+  "got.msg": "msg()",
+  "hold.jare": "jare()",
+  "should.get": "get(amount: Quantity)",
+  "wiitbaw.woman": "woman()",
   "cooler.getdatemanufactured": "getDateManufactured()",
   "ronke.getlikes.contains": "getlikes.contains()",
   "kazeem.goodqualities.filter": "filter()",
@@ -14242,6 +14262,7 @@
    "has",
    "have",
    "hear",
+   "hold",
    "honey",
    "hope",
    "however",
@@ -14323,6 +14344,7 @@
    "which",
    "who",
    "why",
+   "wiitbaw",
    "will",
    "wo",
    "woke",
@@ -14402,5 +14424,5 @@
   "epilogue": "quiet",
   "coda": "quiet"
  },
- "updated": "2026-11-27T00:53:42-05:00"
+ "updated": "2026-11-27T02:31:09-05:00"
 }
