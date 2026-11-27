@@ -15050,7 +15050,7 @@
   },
   "run-cf203b": {
    "forked_from": "safe:731d52737690",
-   "head": "21587a5d1e",
+   "head": "7ec6f3280c",
    "commits": [
     {
      "id": "387e402c1d",
@@ -17217,12 +17217,7 @@
         "op": "define"
        }
       ],
-      "instances": [
-       [
-        "4pm",
-        "Action"
-       ]
-      ]
+      "instances": []
      }
     },
     {
@@ -17283,12 +17278,7 @@
         "op": "define"
        }
       ],
-      "instances": [
-       [
-        "think",
-        "Thing"
-       ]
-      ]
+      "instances": []
      }
     },
     {
@@ -19433,10 +19423,6 @@
        [
         "afford",
         "Action"
-       ],
-       [
-        "have",
-        "Thing"
        ]
       ]
      }
@@ -22129,11 +22115,11 @@
      }
     },
     {
-     "id": "b5c8892bac",
+     "id": "038402e158",
      "parent": "1bff45ab70",
      "branch": "run-cf203b",
      "job": "j72",
-     "at": "2026-11-27T16:59:36-0500",
+     "at": "2026-11-27T17:06:25-05:00",
      "genre": "rising",
      "beat": "now",
      "diff": {
@@ -22148,13 +22134,47 @@
        }
       ],
       "facts_total": 1,
-      "functions": [],
-      "instances": []
+      "functions": [
+       {
+        "func": "rebuke.tin",
+        "title": "rebuke.tin()",
+        "op": "call"
+       },
+       {
+        "func": "green.passport",
+        "title": "green.passport(will)",
+        "op": "define"
+       },
+       {
+        "func": "people.everybody",
+        "title": "people.everybody(have)",
+        "op": "define"
+       },
+       {
+        "func": "when.two",
+        "title": "when.two(people)",
+        "op": "define"
+       }
+      ],
+      "instances": [
+       [
+        "will",
+        "Thing"
+       ],
+       [
+        "have",
+        "Thing"
+       ],
+       [
+        "people",
+        "Person"
+       ]
+      ]
      }
     },
     {
-     "id": "21587a5d1e",
-     "parent": "b5c8892bac",
+     "id": "7ec6f3280c",
+     "parent": "038402e158",
      "branch": "run-cf203b",
      "job": "j73",
      "at": "2026-11-27T17:06:27-0500",
@@ -23152,10 +23172,10 @@
   "run-0ae93c": "a11a1eab61",
   "run-3a15d2": "fbc46c6eb7",
   "run-ab4653": "dd8e54daee",
-  "run-cf203b": "21587a5d1e",
+  "run-cf203b": "7ec6f3280c",
   "run-888ea9": "73f36161c8",
   "run-cb805f": "8d23a93627"
  },
  "commits": 226,
- "updated": "2026-11-27T17:07:05-05:00"
+ "updated": "2026-11-27T17:07:56-05:00"
 }
