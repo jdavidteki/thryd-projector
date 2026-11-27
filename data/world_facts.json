@@ -8973,16 +8973,6 @@
 ],
 "new": [
 {
-"id": "wt_02f05f26cd",
-"kind": "func_call",
-"text": "The customer typed new business() on run-2eb42d j29. It came back: New business. Implementation: function business(){\n  NEW_BUSINESS_COUNT += 1;\n  this.lastBusiness = \"New business\";\n  return \"New business\";\n}.",
-"code": "new business();",
-"author": "customer",
-"run": "run-2eb42d",
-"card": "j29",
-"other": null
-},
-{
 "id": "wt_b7fd48b439",
 "kind": "func_call",
 "text": "The customer typed new condom() on run-cf203b j10. It came back: New condom. Implementation: function condom(){\n  NEW_CONDOM_COUNT += 1;\n  this.lastCondom = \"New condom\";\n  return \"New condom\";\n}. new now has new.condom as a method on this agenda, and it can be called again.",
@@ -9020,6 +9010,16 @@
 "author": "customer",
 "run": "run-cf203b",
 "card": "j52",
+"other": null
+},
+{
+"id": "wt_5af933b1f2",
+"kind": "func_call",
+"text": "The customer typed new powercouple(kemi, tobi) on run-cf203b j65. It came back: New powercouple kemi. Implementation: function powercouple(what){\n  NEW_POWERCOUPLE_COUNT += 1;\n  this.lastPowercouple = \"kemi\";\n  return \"New powercouple kemi\";\n}. new now has new.powercouple as a method on this agenda, and it can be called again.",
+"code": "new powercouple(kemi, tobi);",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j65",
 "other": null
 }
 ],
@@ -14173,5 +14173,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-27T12:08:15-0500"
+"updated": "2026-11-27T12:40:20-0500"
 }

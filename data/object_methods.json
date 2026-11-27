@@ -18171,15 +18171,15 @@
      ],
      "consequence": "What just happened: Kemi answers him flat: \"i don't know how else to say it.\" She says the mess is all his: \"shi gbogbo iron ore le.\" To her, last night is a \"nigerian nuclear bomb.\" Tobi blinks at her: \"wym they dont know?\" 📖 Now: Get the ",
      "consequence_job": "j18",
-     "resolved": "nigerian.nuclear(what=iron:Thing) from j17",
+     "resolved": "nigerian.nuclear(what=bomb:Thing) from j17",
      "injected": [
       {
        "param": "what",
        "class": "Thing",
-       "instance": "iron",
+       "instance": "bomb",
        "from_run": "run-cf203b",
        "from_job": "j17",
-       "source": "pick"
+       "source": "original"
       }
      ]
     }
@@ -18244,7 +18244,7 @@
        "instance": "iron",
        "from_run": "run-cf203b",
        "from_job": "j17",
-       "source": "pick"
+       "source": "original"
       }
      ]
     }
@@ -18479,15 +18479,15 @@
      ],
      "consequence": "What just happened: Tobi keeps digging: \"make i add more stuff here so daditin.\" Then he turns it on everyone: \"what do you guys think?\" When Kemi doesn't answer, he points at himself: \"say me, ehn?\" 📖 Now: Get the line where Kemi tells Tob",
      "consequence_job": "j19",
-     "resolved": "what.guys(what=iron:Thing) from j17",
+     "resolved": "what.guys(what=think:Thing) from j18",
      "injected": [
       {
        "param": "what",
        "class": "Thing",
-       "instance": "iron",
+       "instance": "think",
        "from_run": "run-cf203b",
-       "from_job": "j17",
-       "source": "pick"
+       "from_job": "j18",
+       "source": "original"
       }
      ]
     }
@@ -27137,6 +27137,119 @@
    "faded": false,
    "last_run": "run-cf203b"
   },
+  "feminist.coalition": {
+   "object": "feminist",
+   "method": "coalition",
+   "args": [
+    ""
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j65",
+    "card": "w65",
+    "title": "feminist.coalition()",
+    "emoji": "🪑",
+    "at": "2026-11-27T12:39:48-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "feminist.coalition()",
+     "emoji": "🪑",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j65",
+     "tweets": [
+      {
+       "text": "-the feminist coalition",
+       "year": "2021"
+      }
+     ],
+     "consequence": "The lines that landed: \"don’t look away after you wink, my lover\", \"the feminist coalition\", \"clack!\" and \"get off that darn twitter and read some mediums!\".",
+     "consequence_job": "j66",
+     "resolved": "feminist.coalition()",
+     "injected": []
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [],
+    "text": "coalition()"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "get.off": {
+   "object": "get",
+   "method": "off",
+   "args": [
+    "darn"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j65",
+    "card": "w65",
+    "title": "get.off(darn)",
+    "emoji": "🍘",
+    "at": "2026-11-27T12:39:48-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "get.off(darn)",
+     "emoji": "🍘",
+     "arg": "darn",
+     "run": "run-cf203b",
+     "job": "j65",
+     "tweets": [
+      {
+       "text": "get off that darn twitter and read some mediums!",
+       "year": "2022"
+      }
+     ],
+     "consequence": "The lines that landed: \"don’t look away after you wink, my lover\", \"the feminist coalition\", \"clack!\" and \"get off that darn twitter and read some mediums!\".",
+     "consequence_job": "j66",
+     "resolved": "get.off(what=darn:Thing) from j65",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "darn",
+       "from_run": "run-cf203b",
+       "from_job": "j65",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "darn",
+      "first_run": "run-cf203b",
+      "first_job": "j65"
+     }
+    ],
+    "text": "off(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
   "cooler.getdatemanufactured": {
    "object": "cooler",
    "method": "getDateManufactured",
@@ -30964,6 +31077,46 @@
    "prior": [],
    "faded": false,
    "last_run": null
+  },
+  "new.powercouple": {
+   "object": "new",
+   "method": "powercouple",
+   "args": [],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j65",
+    "card": "j65",
+    "title": "new powercouple(kemi, tobi)",
+    "emoji": "",
+    "at": "2026-11-27T12:39:42-05:00",
+    "source": "cli"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "new powercouple(kemi, tobi)",
+     "emoji": "",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j65",
+     "tweets": [],
+     "consequence": "The customer typed this on this agenda.",
+     "consequence_job": ""
+    }
+   ],
+   "source": "cli",
+   "cli": true,
+   "sig": {
+    "params": [],
+    "text": "powercouple()"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
   }
  },
  "objects": {
@@ -31395,6 +31548,9 @@
   "feeling": [
    "feeling.like"
   ],
+  "feminist": [
+   "feminist.coalition"
+  ],
   "finding": [
    "finding.precisions"
   ],
@@ -31425,6 +31581,9 @@
   ],
   "g": [
    "g.mm"
+  ],
+  "get": [
+   "get.off"
   ],
   "giants_world_subject": [
    "object.look"
@@ -31746,7 +31905,8 @@
    "new.condom",
    "new.makeup",
    "new.mirror",
-   "new.miniskirt"
+   "new.miniskirt",
+   "new.powercouple"
   ],
   "new_yuwa_running_subject": [
    "object.look"
@@ -57291,6 +57451,8 @@
     "hold.jare",
     "should.get",
     "wiitbaw.woman",
+    "feminist.coalition",
+    "get.off",
     "cli.cli",
     "thryd.importtheme",
     "kemi.ismarried",
@@ -57312,7 +57474,8 @@
     "ronkesister.setname",
     "kemi.setbodytemperature",
     "destiny.get",
-    "thryd.jumpahead"
+    "thryd.jumpahead",
+    "new.powercouple"
    ]
   },
   "run-d6fc": {
@@ -57929,6 +58092,13 @@
    "runs": [
     "run-7c51d3"
    ]
+  },
+  "35ff37818929": {
+   "title": "sanitation4: refer as needed",
+   "funcs": [
+    "get.off"
+   ],
+   "runs": []
   },
   "3715b3563ae6": {
    "title": "1024. how to [[push the ocean]]",
@@ -58589,7 +58759,9 @@
     "got.msg",
     "hold.jare",
     "should.get",
-    "wiitbaw.woman"
+    "wiitbaw.woman",
+    "feminist.coalition",
+    "get.off"
    ],
    "runs": [
     "run-cf203b"
@@ -58995,6 +59167,13 @@
    "title": "1231. the hottest in the game",
    "funcs": [
     "teo.create"
+   ],
+   "runs": []
+  },
+  "9961df213f2c": {
+   "title": "spiritual grievances: the song of an african girl",
+   "funcs": [
+    "feminist.coalition"
    ],
    "runs": []
   },
@@ -60133,6 +60312,9 @@
   "1*1fdKsQwU-UmrPpxbzW1YWA.gif": [
    "9a3cb52f3992"
   ],
+  "1*Ipj4Z_2IXThHTtUePnLYSw.png": [
+   "35ff37818929"
+  ],
   "1*TboWtv3mCjG0__y8McqEAw.gif": [
    "76e4b260debb",
    "24d3f1fa5ad1",
@@ -60685,6 +60867,9 @@
   "1*uVaQ_WdDAX40X9uv2Cl6jQ.gif": [
    "df5b0a831c3c",
    "236b487cf22b"
+  ],
+  "1*S4ZRk-jwIP-ivzWkC4YK9A.png": [
+   "9961df213f2c"
   ],
   "1*pcE1FopqBPk7EwN1ZTYKiQ.jpeg": [
    "18bf0d97a456"
@@ -62494,6 +62679,9 @@
   "feeling": [
    "feeling.like"
   ],
+  "feminist": [
+   "feminist.coalition"
+  ],
   "finding": [
    "finding.precisions"
   ],
@@ -62521,6 +62709,9 @@
   ],
   "g": [
    "g.mm"
+  ],
+  "get": [
+   "get.off"
   ],
   "global": [
    "global.ritual",
@@ -62785,7 +62976,8 @@
    "new.condom",
    "new.makeup",
    "new.mirror",
-   "new.miniskirt"
+   "new.miniskirt",
+   "new.powercouple"
   ],
   "next": [
    "next.kin"
@@ -63568,6 +63760,8 @@
   "amono": [],
   "hold": [],
   "wiitbaw": [],
+  "feminist": [],
+  "get": [],
   "cooler": [],
   "kazeem.goodqualities": [],
   "app": [],
@@ -63806,8 +64000,10 @@
    "even",
    "feel",
    "feeling",
+   "feminist",
    "finding",
    "forgive",
+   "get",
    "global",
    "go",
    "got",
@@ -63918,5 +64114,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-27T02:32:00-05:00"
+ "updated": "2026-11-27T12:40:22-05:00"
 }
