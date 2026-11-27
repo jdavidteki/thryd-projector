@@ -1401,16 +1401,6 @@
 ],
 "isl": [
 {
-"id": "wf_575d8b24a7",
-"kind": "consequence",
-"text": "When the seen meets the isl, Bisola's receipt and Kunle's worm question trade places, and Kunle's question ends up scrawled on the back of her receipt.",
-"code": "seen.interactwith(isl){ isl.receives(seen.receipt); seen.receives(isl.worm_question); seen.remembers(kunle, 'worm question written on the back of the receipt'); }",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j6",
-"other": "seen"
-},
-{
 "id": "wf_084fc5b9ac",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the worm question at the isl, and Kunle reads the name twice.",
@@ -1438,6 +1428,16 @@
 "author": "customer",
 "run": "run-cf203b",
 "card": "j54",
+"other": null
+},
+{
+"id": "wt_a6bb6bfd94",
+"kind": "func_call",
+"text": "The customer typed [[isl]] on run-cf203b j57.",
+"code": "[[isl]];",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j57",
 "other": null
 },
 {
@@ -3201,16 +3201,6 @@
 ],
 "love": [
 {
-"id": "wf_592bc34060",
-"kind": "consequence",
-"text": "A Danfo speaker note with Bisola's name and 'egbe note' on it, turns up inside the worm question at the love, and Kunle reads the name twice.",
-"code": "danfo_speaker.interactwith(love){ love.receives(danfo_speaker.note); … }",
-"author": "cos",
-"run": "run-b9b963",
-"card": "w",
-"other": "danfo_speaker"
-},
-{
 "id": "wf_7c66d35b95",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the egbe note at the love, and Bisola reads the name twice.",
@@ -3249,6 +3239,16 @@
 "run": "run-5a58c4",
 "card": "j6",
 "other": "itmoai"
+},
+{
+"id": "wt_d0345e1bfd",
+"kind": "func_call",
+"text": "The customer typed [[love]] on run-cf203b j57.",
+"code": "[[love]];",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j57",
+"other": null
 }
 ],
 "wser": [
@@ -7793,16 +7793,6 @@
 ],
 "wiitbaw": [
 {
-"id": "wf_35cacc922c",
-"kind": "consequence",
-"text": "The wiitbaw leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"code": "patagonia.interactwith(wiitbaw){ wiitbaw.receives(patagonia.envelope); wiitbaw.remembers(bisola, 'brown envelope'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "patagonia"
-},
-{
 "id": "wf_df9d3130b5",
 "kind": "consequence",
 "text": "The pure-water cooler ends up with the wiitbaw, still carried home through the flood.",
@@ -7840,6 +7830,16 @@
 "author": "customer",
 "run": "run-cf203b",
 "card": "j35",
+"other": null
+},
+{
+"id": "wt_3a1afca249",
+"kind": "func_call",
+"text": "The customer typed [[wiitbaw]] on run-cf203b j57.",
+"code": "[[wiitbaw]];",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j57",
 "other": null
 }
 ],
@@ -8965,26 +8965,6 @@
 ],
 "cli": [
 {
-"id": "wt_c79a610466",
-"kind": "func_call",
-"text": "The customer typed #thryd.miracle.log(1) on run-cf203b j54. It came back: #thryd.miracle.log(1). Implementation: /* #thryd.miracle.log(1) */.",
-"code": "#thryd.miracle.log(1);",
-"author": "customer",
-"run": "run-cf203b",
-"card": "j54",
-"other": null
-},
-{
-"id": "wt_5a52aec321",
-"kind": "func_call",
-"text": "The customer typed [[ayfa?]] on run-cf203b j54. It came back: [[ayfa?]]. Implementation: /* [[ayfa?]] */.",
-"code": "[[ayfa?]];",
-"author": "customer",
-"run": "run-cf203b",
-"card": "j54",
-"other": null
-},
-{
 "id": "wt_b2cb7d0726",
 "kind": "func_call",
 "text": "The customer typed #thryd.miracle.log(1) on run-cf203b j54. It came back: #thryd.miracle.log(1). Implementation: /* #thryd.miracle.log(1) */.",
@@ -9012,6 +8992,26 @@
 "author": "customer",
 "run": "run-cf203b",
 "card": "j56",
+"other": null
+},
+{
+"id": "wt_d2b751255a",
+"kind": "func_call",
+"text": "The customer typed [[hi,jtmt]] on run-cf203b j57. It came back: [[hi,jtmt]]. Implementation: /* [[hi,jtmt]] */.",
+"code": "[[hi,jtmt]];",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j57",
+"other": null
+},
+{
+"id": "wt_1101508ac9",
+"kind": "func_call",
+"text": "The customer typed #thryd.miracle.log(1) on run-cf203b j57. It came back: #thryd.miracle.log(1). Implementation: /* #thryd.miracle.log(1) */.",
+"code": "#thryd.miracle.log(1);",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j57",
 "other": null
 }
 ],
@@ -11639,6 +11639,16 @@
 "run": "run-cf203b",
 "card": "j17",
 "other": null
+},
+{
+"id": "wt_d4fb87222f",
+"kind": "func_call",
+"text": "The customer typed [[growth]] on run-cf203b j57.",
+"code": "[[growth]];",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j57",
+"other": null
 }
 ],
 "mhicomaikw": [
@@ -12754,6 +12764,138 @@
 "card": "w57",
 "other": null
 }
+],
+"tbu": [
+{
+"id": "wt_814b6e19ea",
+"kind": "func_call",
+"text": "The customer typed [[tbu]] on run-cf203b j57.",
+"code": "[[tbu]];",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j57",
+"other": null
+}
+],
+"esnve": [
+{
+"id": "wt_9c3f21999c",
+"kind": "func_call",
+"text": "The customer typed [[esnve]] on run-cf203b j57.",
+"code": "[[esnve]];",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j57",
+"other": null
+}
+],
+"bs": [
+{
+"id": "wt_24ffba4efe",
+"kind": "func_call",
+"text": "The customer typed [[bs]] on run-cf203b j57.",
+"code": "[[bs]];",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j57",
+"other": null
+}
+],
+"wmm": [
+{
+"id": "wt_4b96abe9b4",
+"kind": "func_call",
+"text": "The customer typed [[wmm]] on run-cf203b j57.",
+"code": "[[wmm]];",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j57",
+"other": null
+}
+],
+"tnbe": [
+{
+"id": "wt_edb19e4e84",
+"kind": "func_call",
+"text": "The customer typed [[tnbe]] on run-cf203b j57.",
+"code": "[[tnbe]];",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j57",
+"other": null
+}
+],
+"ocsw": [
+{
+"id": "wt_cc04ca510f",
+"kind": "func_call",
+"text": "The customer typed [[ocsw]] on run-cf203b j57.",
+"code": "[[ocsw]];",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j57",
+"other": null
+}
+],
+"luiamow": [
+{
+"id": "wt_135ae881b2",
+"kind": "func_call",
+"text": "The customer typed [[luiamow]] on run-cf203b j57.",
+"code": "[[luiamow]];",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j57",
+"other": null
+}
+],
+"mamn": [
+{
+"id": "wt_5d8fc93115",
+"kind": "func_call",
+"text": "The customer typed [[mamn]] on run-cf203b j57.",
+"code": "[[mamn]];",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j57",
+"other": null
+}
+],
+"king": [
+{
+"id": "wt_63ed98471f",
+"kind": "func_call",
+"text": "The customer typed [[king]] on run-cf203b j57.",
+"code": "[[king]];",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j57",
+"other": null
+}
+],
+"hfsn": [
+{
+"id": "wt_34d03545e2",
+"kind": "func_call",
+"text": "The customer typed [[hfsn]] on run-cf203b j57.",
+"code": "[[hfsn]];",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j57",
+"other": null
+}
+],
+"psychology": [
+{
+"id": "wt_6b9e626387",
+"kind": "func_call",
+"text": "The customer typed [[psychology]] on run-cf203b j57.",
+"code": "[[psychology]];",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j57",
+"other": null
+}
 ]
 },
 "consequences": [
@@ -13299,5 +13441,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-26T20:51:24-0500"
+"updated": "2026-11-26T21:14:55-0500"
 }
