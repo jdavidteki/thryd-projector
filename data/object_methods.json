@@ -19220,15 +19220,15 @@
      ],
      "consequence": "Then she goes cold: \"ehen?",
      "consequence_job": "j24",
-     "resolved": "ehen.serious(act=broadway:Action) from j23",
+     "resolved": "ehen.serious(act=reminds:Action) from j12",
      "injected": [
       {
        "param": "act",
        "class": "Action",
-       "instance": "broadway",
-       "from_run": "run-cf203b",
-       "from_job": "j23",
-       "source": "pick"
+       "instance": "reminds",
+       "from_run": "run-cb805f",
+       "from_job": "j12",
+       "source": "original"
       }
      ]
     }
@@ -19293,7 +19293,7 @@
        "instance": "movement",
        "from_run": "run-cf203b",
        "from_job": "j23",
-       "source": "pick"
+       "source": "original"
       }
      ]
     }
@@ -19358,7 +19358,7 @@
        "instance": "broadway",
        "from_run": "run-cf203b",
        "from_job": "j23",
-       "source": "pick"
+       "source": "original"
       }
      ]
     }
@@ -19511,12 +19511,12 @@
      ],
      "consequence": "He begs her to trust him, \"once you kill all doubt,\" and drifts off about how \"agboro lan so fun omo oluwabi,\" the street life he misses.",
      "consequence_job": "j26",
-     "resolved": "agboro.lan(what=fun:Thing) from j25",
+     "resolved": "agboro.lan(what=doubt:Thing) from j25",
      "injected": [
       {
        "param": "what",
        "class": "Thing",
-       "instance": "fun",
+       "instance": "doubt",
        "from_run": "run-cf203b",
        "from_job": "j25",
        "source": "pick"
@@ -20839,8 +20839,34 @@
     "emoji": "🐚",
     "at": "2026-11-26T01:57:30-05:00"
    },
-   "calls": 0,
+   "calls": 1,
    "titles": [
+    {
+     "title": "one.thing(about)",
+     "emoji": "🧗",
+     "arg": "about",
+     "run": "run-cf203b",
+     "job": "j69",
+     "tweets": [
+      {
+       "text": "-- one thing about love is that love conquers all",
+       "year": "2024"
+      }
+     ],
+     "consequence": "What just happened: The last card asked for the next line, the one that answers \"and send some money to a black person today.",
+     "consequence_job": "j70",
+     "resolved": "one.thing(what=about:Thing) from j69",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "about",
+       "from_run": "run-cf203b",
+       "from_job": "j69",
+       "source": "pick"
+      }
+     ]
+    },
     {
      "title": "one.thing(about)",
      "emoji": "🐚",
@@ -20855,12 +20881,12 @@
      ],
      "consequence": "Kemi has thrown out his \"accuracy\" story, but she hasn't walked away, and she is talking about love now instead of dealing with anyone.",
      "consequence_job": "j32",
-     "resolved": "one.thing(what=about:Thing) from j31",
+     "resolved": "one.thing(what=skills:Thing) from j31",
      "injected": [
       {
        "param": "what",
        "class": "Thing",
-       "instance": "about",
+       "instance": "skills",
        "from_run": "run-cf203b",
        "from_job": "j31",
        "source": "pick"
@@ -27864,6 +27890,197 @@
    "faded": false,
    "last_run": "run-cf203b"
   },
+  "have.lines": {
+   "object": "have",
+   "method": "lines",
+   "args": [
+    "rn"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j69",
+    "card": "w69",
+    "title": "have.lines(rn)",
+    "emoji": "🩴",
+    "at": "2026-11-27T16:43:59-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "have.lines(rn)",
+     "emoji": "🩴",
+     "arg": "rn",
+     "run": "run-cf203b",
+     "job": "j69",
+     "tweets": [
+      {
+       "text": "#juniorboys - we have [[the best]] lines rn",
+       "year": "2025"
+      }
+     ],
+     "consequence": "The lines that landed: \"#juniorboys - we have [[the best]] lines rn\", \"#juniorgirls - but now i got funke, elenu, and chidera\", \"one thing about love is that love conquers all\" and \"lez #thryd anada strategy!",
+     "consequence_job": "j70",
+     "resolved": "have.lines(what=rn:Thing) from j69",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "rn",
+       "from_run": "run-cf203b",
+       "from_job": "j69",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "rn",
+      "first_run": "run-cf203b",
+      "first_job": "j69"
+     }
+    ],
+    "text": "lines(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "lez.anada": {
+   "object": "lez",
+   "method": "anada",
+   "args": [
+    "strategy"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j69",
+    "card": "w69",
+    "title": "lez.anada(strategy)",
+    "emoji": "🖊️",
+    "at": "2026-11-27T16:43:59-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "lez.anada(strategy)",
+     "emoji": "🖊️",
+     "arg": "strategy",
+     "run": "run-cf203b",
+     "job": "j69",
+     "tweets": [],
+     "consequence": "The lines that landed: \"#juniorboys - we have [[the best]] lines rn\", \"#juniorgirls - but now i got funke, elenu, and chidera\", \"one thing about love is that love conquers all\" and \"lez #thryd anada strategy!",
+     "consequence_job": "j70",
+     "resolved": "lez.anada(what=strategy:Thing) from j69",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "strategy",
+       "from_run": "run-cf203b",
+       "from_job": "j69",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "strategy",
+      "first_run": "run-cf203b",
+      "first_job": "j69"
+     }
+    ],
+    "text": "anada(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "now.got": {
+   "object": "now",
+   "method": "got",
+   "args": [
+    "funke"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j69",
+    "card": "w69",
+    "title": "now.got(funke)",
+    "emoji": "🍜",
+    "at": "2026-11-27T16:43:59-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "now.got(funke)",
+     "emoji": "🍜",
+     "arg": "funke",
+     "run": "run-cf203b",
+     "job": "j69",
+     "tweets": [
+      {
+       "text": "#juniorgirls - but now i got funke, elenu, and chidera",
+       "year": "2024",
+       "id": "1794473726844526678"
+      }
+     ],
+     "consequence": "The lines that landed: \"#juniorboys - we have [[the best]] lines rn\", \"#juniorgirls - but now i got funke, elenu, and chidera\", \"one thing about love is that love conquers all\" and \"lez #thryd anada strategy!",
+     "consequence_job": "j70",
+     "resolved": "now.got(what=funke:Thing) from j69",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "funke",
+       "from_run": "run-cf203b",
+       "from_job": "j69",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "funke",
+      "first_run": "run-cf203b",
+      "first_job": "j69"
+     }
+    ],
+    "text": "got(what: Thing)"
+   },
+   "receiver_class": "Frequency",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
   "cooler.getdatemanufactured": {
    "object": "cooler",
    "method": "getDateManufactured",
@@ -32288,7 +32505,8 @@
   ],
   "have": [
    "have.fun",
-   "have.feelings"
+   "have.feelings",
+   "have.lines"
   ],
   "hear": [
    "hear.setword",
@@ -32439,6 +32657,9 @@
   ],
   "lehgeet": [
    "lehgeet.ni"
+  ],
+  "lez": [
+   "lez.anada"
   ],
   "lie": [
    "lie.truth"
@@ -32602,7 +32823,8 @@
    "nothing.funny"
   ],
   "now": [
-   "now.know"
+   "now.know",
+   "now.got"
   ],
   "object": [
    "object.look"
@@ -58144,6 +58366,9 @@
     "friend.husband",
     "send.money",
     "sinzling.juniorboys",
+    "have.lines",
+    "lez.anada",
+    "now.got",
     "cli.cli",
     "thryd.importtheme",
     "kemi.ismarried",
@@ -58477,7 +58702,8 @@
   "14f807b2bcaa": {
    "title": "530. deja watching me",
    "funcs": [
-    "ladies.taking"
+    "ladies.taking",
+    "have.lines"
    ],
    "runs": []
   },
@@ -59483,7 +59709,10 @@
     "higherups.powerhouses",
     "friend.husband",
     "send.money",
-    "sinzling.juniorboys"
+    "sinzling.juniorboys",
+    "have.lines",
+    "lez.anada",
+    "now.got"
    ],
    "runs": [
     "run-cf203b"
@@ -63527,7 +63756,8 @@
   ],
   "have": [
    "have.fun",
-   "have.feelings"
+   "have.feelings",
+   "have.lines"
   ],
   "hear": [
    "hear.setword",
@@ -63666,6 +63896,9 @@
   "lehgeet": [
    "lehgeet.ni"
   ],
+  "lez": [
+   "lez.anada"
+  ],
   "lie": [
    "lie.truth"
   ],
@@ -63781,7 +64014,8 @@
    "nothing.funny"
   ],
   "now": [
-   "now.know"
+   "now.know",
+   "now.got"
   ],
   "object": [
    "object.look"
@@ -64570,6 +64804,7 @@
   "friend": [],
   "send": [],
   "sinzling": [],
+  "lez": [],
   "cooler": [],
   "kazeem.goodqualities": [],
   "app": [],
@@ -64838,6 +65073,7 @@
    "la",
    "ladies",
    "lehgeet",
+   "lez",
    "lie",
    "like",
    "long",
@@ -64931,5 +65167,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-27T14:11:42-05:00"
+ "updated": "2026-11-27T16:44:04-05:00"
 }
