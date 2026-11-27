@@ -49,10 +49,10 @@ function load(search=''){
   return {root, doc, store, pills};
 }
 
-test('v639: fe_anim.js is loaded after stage.js and version is 639', ()=>{
-  assert.equal(ver.v, 639);
-  assert.match(html, /var VER=639,/);
-  assert.match(html, /stage\.js\?v=639','fe_anim\.js\?v=1/);
+test('v641: fe_anim.js is loaded after stage.js and version is 641', ()=>{
+  assert.equal(ver.v, 641);
+  assert.match(html, /var VER=641,/);
+  assert.match(html, /stage\.js\?v=641','fe_anim\.js\?v=2/);
 });
 
 test('uses the public Lightricks LTX space over a CDN @gradio/client, never a paid or Grok API', ()=>{
@@ -75,17 +75,18 @@ test('twenty pilot candidates are published with png + prompt + sizes; cuts star
   }
 });
 
-test('?feanim=0 disables the queue; the default load exposes thrydFeAnim', ()=>{
-  const off = load('?feanim=0');
-  assert.equal(off.root.thrydFeAnim, undefined);
-  const on = load('');
+test('queue is off by default and with ?feanim=0; only ?feanim=1 exposes thrydFeAnim', ()=>{
+  assert.equal(load('').root.thrydFeAnim, undefined);
+  assert.equal(load('?mode=live').root.thrydFeAnim, undefined);
+  assert.equal(load('?feanim=0').root.thrydFeAnim, undefined);
+  const on = load('?feanim=1');
   assert.ok(on.root.thrydFeAnim);
   assert.equal(on.root.thrydFeAnim.space, 'Lightricks/ltx-video-distilled');
   assert.equal(on.root.thrydFeAnim.endpoint, '/image_to_video');
 });
 
 test('nextCandidate skips cuts that already have a saved anim and respects per-cut backoff', ()=>{
-  const {root} = load('');
+  const {root} = load('?feanim=1');
   const A = root.thrydFeAnim;
   const recs = anim.candidates.slice(0, 3);
   const cat = {candidates: recs, cuts: [{medium_image_id: recs[0].medium_image_id, cut: recs[0].cut, anim: 'assets/anim_cuts/x.gif'}]};
@@ -96,22 +97,24 @@ test('nextCandidate skips cuts that already have a saved anim and respects per-c
   assert.equal(A.nextCandidate(cat).cut_id, recs[2].cut_id);
 });
 
-test('quota / ZeroGPU errors back off the whole queue silently; the pill is a status only', ()=>{
-  const {root, pills} = load('');
+test('any failure (not only quota) holds the whole queue in localStorage; the pill is a status only', ()=>{
+  const {root, pills} = load('?feanim=1');
   const A = root.thrydFeAnim;
-  A.markFail('q', 'ZeroGPU quota exceeded');
+  A.markFail('q', 'Failed to fetch');
   const st = A.loadState();
-  assert.ok(st.holdUntil > Date.now() + 4 * 60 * 1000);
+  assert.ok(st.holdUntil > Date.now() + 60 * 1000, 'generic errors must persist a queue-wide backoff');
+  A.markFail('q2', 'ZeroGPU quota exceeded');
+  const st2 = A.loadState();
+  assert.ok(st2.holdUntil > Date.now() + 4 * 60 * 1000);
   A.pill('🎞️ animating cut 3/20', true);
   assert.ok(pills.includes('🎞️ animating cut 3/20') || pills.some(t => /animating cut 3\/20/.test(String(t||''))));
-  assert.equal(A.pillText.length > 0 || typeof A.pillText === 'function', true);
-  // source: no chat / typeline post on failure
+  assert.equal(typeof A.pillText, 'function');
   assert.doesNotMatch(src, /thrydSimplePost\([^)]*fail/);
-  assert.match(src, /pill only|tiny panel pill|nothing is posted to chat/i);
+  assert.match(src, /pill shows only while one real request is in flight|never retriggers/i);
 });
 
 test('chromaKey punches mid-grey letterbox and leaves other pixels', ()=>{
-  const {root} = load('');
+  const {root} = load('?feanim=1');
   const A = root.thrydFeAnim;
   const w = 4, h = 1;
   const data = new Uint8ClampedArray([128,128,128,255, 200,10,10,255, 130,128,127,255, 0,0,0,255]);

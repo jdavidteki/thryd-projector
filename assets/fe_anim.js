@@ -1,23 +1,24 @@
-/* fe_anim.js — v639
+/* fe_anim.js — v641
    Free, in-browser image-to-video for the 20 pilot stills in data/anim_cuts.json.
-   When the page is idle and a candidate has no saved anim yet, one cut at a time is
+   OFF by default (no real animation had arrived from phones). Opt in with ?feanim=1.
+   When opted in, idle, and a candidate has no saved anim yet, one cut at a time is
    sent to the public Lightricks/ltx-video-distilled Space via @gradio/client (CDN).
-   Never uses Grok / paid APIs. Quota and network errors back off silently.
-   A tiny panel pill reports progress; nothing is posted to chat.
-   On success the clip is shown in place of the still and POSTed to intake /anim_cut
-   (via the existing ntfy drag topic as a file attachment + a small JSON caption)
-   so it can be saved once for every viewer.
+   Never uses Grok / paid APIs. Any failure backs off the whole queue in localStorage;
+   the pill shows only while one real request is in flight, and never retriggers inside
+   that window. The queue does not touch on-stage cut images until a real anim exists.
+   Nothing is posted to chat. On success the clip is shown and POSTed to intake /anim_cut.
 */
 (function(root){
   'use strict';
-  if(/(?:^|[?&])feanim=0(?:&|$)/.test(String(location.search||''))) return;
+  // v641: default off — only ?feanim=1 starts the queue (not merely the absence of ?feanim=0)
+  if(!/(?:^|[?&])feanim=1(?:&|$)/.test(String(location.search||''))) return;
   if(/(?:^|[?&])slides=1(?:&|$)/.test(String(location.search||''))) return;
 
   const SPACE = 'Lightricks/ltx-video-distilled';
   const ENDPOINT = '/image_to_video';
   const CLIENT_URL = 'https://cdn.jsdelivr.net/npm/@gradio/client@1.19.0/+esm';
   const NEG = 'worst quality, inconsistent motion, blurry, jittery, distorted, camera move, zoom, pan, cut, morphing, extra limbs';
-  const STATE_KEY = 'thryd_feanim_v639';
+  const STATE_KEY = 'thryd_feanim_v641';
   const GREY = 128, TOL = 28;
   const MAXF = 10;
   const IDLE_MS = 8000;
@@ -54,10 +55,13 @@
     }
     el.textContent = text;
   }
-  function pillText(){
-    if(!Q.current) return '';
-    const i = Q.nDone + 1;
-    return '\u{1F39E}\uFE0F animating cut ' + i + '/' + Q.nTotal;
+  function pillText(rec){
+    const rec0 = rec || Q.current;
+    if(!rec0) return '';
+    const list = (Q.catalog && Q.catalog.candidates) || [];
+    let i = list.findIndex(r => r && r.cut_id === rec0.cut_id);
+    i = i >= 0 ? i + 1 : (Q.nDone + 1);
+    return '\u{1F39E}\uFE0F animating cut ' + i + '/' + (Q.nTotal || list.length || 20);
   }
 
   function fetchCatalog(force){
@@ -90,10 +94,10 @@
     const st = loadState(); st.fails = st.fails || {};
     const n = ((st.fails[id] && st.fails[id].n) || 0) + 1;
     const quota = /quota|ZeroGPU|runs limit|429|rate/i.test(String(err || ''));
-    const ms = quota ? Math.min(30 * 60 * 1000, 5 * 60 * 1000 * n) : Math.min(15 * 60 * 1000, 30 * 1000 * Math.pow(2, Math.min(n - 1, 6)));
+    // any failure holds the whole queue (persisted) so the pill cannot flash every few seconds
+    const ms = quota ? Math.min(30 * 60 * 1000, 5 * 60 * 1000 * n) : Math.min(15 * 60 * 1000, 2 * 60 * 1000 * Math.pow(2, Math.min(n - 1, 3)));
     st.fails[id] = {n, until: Date.now() + ms, at: Date.now()};
-    // a quota error backs off the whole queue, not just this cut
-    if(quota) st.holdUntil = Date.now() + Math.min(30 * 60 * 1000, 5 * 60 * 1000 * n);
+    st.holdUntil = Date.now() + ms;
     saveState(st);
   }
   function markOk(id){
@@ -263,43 +267,58 @@
     return Promise.resolve({ok: false, status: 'no_endpoint'});
   }
 
+  function inBackoff(){
+    const st = loadState();
+    return !!(st.holdUntil && st.holdUntil > Date.now());
+  }
   function schedule(ms){
-    if(Q.timer) clearTimeout(Q.timer);
-    const wait = Math.max(1500, ms || 4000);
-    const kick = () => { Q.timer = 0; tick(); };
-    Q.timer = (root.LH && root.LH.keep) ? 0 : setTimeout(kick, wait);
-    if(root.LH && root.LH.keep && !Q._keep){ Q._keep = true; root.LH.keep(() => { if(!Q.timer && !Q.busy) tick(); }, 4000); }
-    else if(!(root.LH && root.LH.keep)) Q.timer = setTimeout(kick, wait);
+    if(Q.timer){ clearTimeout(Q.timer); Q.timer = 0; }
+    const st = loadState();
+    let wait = Math.max(1500, ms || 4000);
+    if(st.holdUntil && st.holdUntil > Date.now()) wait = Math.max(wait, st.holdUntil - Date.now());
+    // Honor the wait with a real timer. Do not use LH.keep: that path zeroed Q.timer
+    // and retried every 4s, which made the pill flash on phones.
+    Q.timer = setTimeout(() => { Q.timer = 0; tick(); }, wait);
   }
 
   function tick(){
     if(Q.busy) return;
-    const st = loadState();
-    if(st.holdUntil && st.holdUntil > Date.now()){ pill('', false); return; }
+    if(inBackoff()){ pill('', false); return; }
     if(!idle()) return;
     Q.busy = true;
     fetchCatalog(true).then(cat => {
-      if(!cat){ Q.busy = false; return; }
+      if(!cat || inBackoff()) return;
       const rec = nextCandidate(cat);
-      if(!rec){ Q.busy = false; pill('', false); return; }
+      if(!rec){ pill('', false); return; }
       Q.current = rec;
-      pill(pillText(), true);
-      return loadClient().then(client => fileFromPng(rec).then(file => predict(client, rec, file)))
+      return loadClient().then(client => fileFromPng(rec).then(file => {
+        // pill only while a real image-to-video request is in flight
+        pill(pillText(rec), true);
+        return predict(client, rec, file);
+      }))
         .then(blob => sampleVideo(blob, MAXF, (rec.display_size||[])[0], (rec.display_size||[])[1])
-          .then(sampled => showOnStage(rec, sampled).then(() => blob)))
+          .then(sampled => {
+            if(!sampled || !sampled.frames || sampled.frames.length < 2) throw new Error('no_frames');
+            return showOnStage(rec, sampled).then(() => blob);
+          }))
         .then(blob => upload(rec, blob).then(r => {
-          markOk(rec.cut_id);
-          Q.nDone = Math.min(Q.nTotal, Q.nDone + 1);
-          Q.current = null;
-          pill(Q.nDone >= Q.nTotal ? '' : pillText(), Q.nDone < Q.nTotal && false);
-          const st = Stage(); if(st && st.loadAnimCatalog) try{ st.loadAnimCatalog(); }catch(e){}
+          if(r && r.ok){
+            markOk(rec.cut_id);
+            Q.nDone = Math.min(Q.nTotal, Q.nDone + 1);
+            const stg = Stage(); if(stg && stg.loadAnimCatalog) try{ stg.loadAnimCatalog(); }catch(e){}
+          } else {
+            markFail(rec.cut_id, (r && (r.status || r.code)) || 'upload');
+          }
           return r;
         }));
     }).catch(err => {
       try{ markFail(Q.current && Q.current.cut_id || 'queue', err && (err.message || err)); }catch(e){}
+    }).then(() => {
       Q.current = null;
+      Q.busy = false;
       pill('', false);
-    }).then(() => { Q.busy = false; schedule(6000); });
+      schedule(inBackoff() ? 0 : 60000);
+    });
   }
 
   // Public hook used by tests and the stage.
@@ -308,7 +327,7 @@
     start: () => schedule(IDLE_MS), tick
   };
 
-  document.addEventListener('visibilitychange', () => { if(!document.hidden) schedule(IDLE_MS); });
+  document.addEventListener('visibilitychange', () => { if(!document.hidden && !inBackoff()) schedule(IDLE_MS); });
   if(document.readyState === 'complete') schedule(IDLE_MS);
   else addEventListener('load', () => schedule(IDLE_MS), {once: true});
   // refresh the catalog occasionally so other viewers pick up a saved GIF (data-only, no page reload)

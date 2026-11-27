@@ -515,7 +515,8 @@
       if(!d) return;
       ANIM.v = d.v || 1; ANIM.dwell_k = +d.dwell_k || 2; ANIM.at = Date.now(); ANIM.by.clear();
       (d.cuts || []).forEach(c => { if(c && c.medium_image_id && (c.anim || c.webp)) ANIM.by.set(animKey(c.medium_image_id, c.cut || c.label), c); });
-      try{ if(S.applyLiveAnim) applyCatalogToStage(); }catch(e){}
+      // v641: only swap a still when a *new* anim url actually exists; never redraw stills on an empty or unchanged catalog (that flicker was visible on phones)
+      try{ if(S.applyLiveAnim && ANIM.by.size) applyCatalogToStage(); }catch(e){}
     }).catch(()=>{});
   }
   loadAnimCatalog();
@@ -710,15 +711,22 @@
   S.applyLiveAnim = applyLiveAnim;
   S.loadAnimCatalog = loadAnimCatalog;
   function applyCatalogToStage(){
+    if(!ANIM.by.size) return Promise.resolve();
     const jobs = [];
     S.cuts.forEach(cut => {
-      if(!cut || !cut.g || cut.g.gone || (cut.frames && cut.frames.length > 1)) return;
+      if(!cut || !cut.g || cut.g.gone) return;
       const rec = animRec(cut.g.mid, cut.label, null);
       const url = rec && (rec.anim || rec.webp);
       if(!url) return;
-      jobs.push(decodeAnimUrl(url, {width: cut.el.width, height: cut.el.height}).then(frs => {
-        if(frs && frs.frames && frs.frames.length > 1) applyLiveAnim(cut.g.mid, cut.label, frs.frames, frs.delays);
-      }).catch(()=>{}));
+      if(cut._animUrl === url && cut.frames && cut.frames.length > 1) return; // already showing this anim
+      if(!cut.frames || cut.frames.length < 2){
+        jobs.push(decodeAnimUrl(url, {width: cut.el.width, height: cut.el.height}).then(frs => {
+          if(frs && frs.frames && frs.frames.length > 1){
+            const n = applyLiveAnim(cut.g.mid, cut.label, frs.frames, frs.delays);
+            if(n) cut._animUrl = url;
+          }
+        }).catch(()=>{}));
+      }
     });
     return Promise.all(jobs);
   }

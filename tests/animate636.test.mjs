@@ -98,11 +98,13 @@ test('fun was not cut: display-rate loop, grain default, and v635 float stay', (
   assert.match(rd('index.html'), /alive\.css\?v=10/);
 });
 
-test('v639: fe_anim.js loads after stage.js; applyLiveAnim is on the stage; 20 pilot candidates are published', ()=>{
-  assert.match(html, /stage\.js\?v=639','fe_anim\.js\?v=1/);
+test('v641: fe_anim.js loads after stage.js (opt-in ?feanim=1); applyLiveAnim is on the stage; 20 pilot candidates are published', ()=>{
+  assert.match(html, /stage\.js\?v=641','fe_anim\.js\?v=2/);
   assert.match(st, /function applyLiveAnim\(/);
   assert.match(st, /S\.applyLiveAnim = applyLiveAnim/);
   assert.match(st, /root\.ThrydStage = S/);
+  assert.match(st, /ANIM\.by\.size/);
+  assert.match(st, /only swap a still when a \*new\* anim url actually exists|never redraw stills/);
   assert.equal(anim.space, 'Lightricks/ltx-video-distilled');
   assert.equal(anim.endpoint, '/image_to_video');
   assert.ok(Array.isArray(anim.candidates));
