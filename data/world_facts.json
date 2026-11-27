@@ -1401,16 +1401,6 @@
 ],
 "isl": [
 {
-"id": "wt_4696c97574",
-"kind": "func_call",
-"text": "The customer typed [[isl]] on run-cf203b j54.",
-"code": "[[isl]];",
-"author": "customer",
-"run": "run-cf203b",
-"card": "j54",
-"other": null
-},
-{
 "id": "wt_a6bb6bfd94",
 "kind": "func_call",
 "text": "The customer typed [[isl]] on run-cf203b j57.",
@@ -1438,6 +1428,16 @@
 "author": "customer",
 "run": "run-cf203b",
 "card": "j70",
+"other": null
+},
+{
+"id": "wt_1c3b8e260d",
+"kind": "func_call",
+"text": "The customer typed [[isl]] on run-cf203b j75.",
+"code": "[[isl]];",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j75",
 "other": null
 },
 {
@@ -8017,6 +8017,16 @@
 "run": "run-2eb42d",
 "card": "w7",
 "other": "sheep"
+},
+{
+"id": "wt_3d7f26279c",
+"kind": "func_call",
+"text": "The customer typed [[twgs]] on run-cf203b j75.",
+"code": "[[twgs]];",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j75",
+"other": null
 }
 ],
 "niaw": [
@@ -11213,16 +11223,6 @@
 ],
 "kemi": [
 {
-"id": "wt_f3cd4bc161",
-"kind": "func_call",
-"text": "The customer typed kemi.getlastperiod() on run-cf203b j49. It came back: lastperiod. Implementation: function getlastperiod(){\n  const value = \"lastperiod\";\n  learned.kemi.lastperiod = value;\n  return value;\n}. kemi now has kemi.getlastperiod as a method on this agenda, and it can be called again.",
-"code": "kemi.getlastperiod();",
-"author": "customer",
-"run": "run-cf203b",
-"card": "j49",
-"other": null
-},
-{
 "id": "wt_869977f30c",
 "kind": "func_call",
 "text": "The customer typed kemi.getshoesize(uk) on run-cf203b j52. It came back: shoesize. Implementation: function getshoesize(){\n  const value = \"shoesize\";\n  learned.kemi.shoesize = value;\n  return value;\n}. kemi now has kemi.getshoesize as a method on this agenda, and it can be called again.",
@@ -11261,6 +11261,16 @@
 "run": "run-cf203b",
 "card": "j64",
 "other": "kemisister"
+},
+{
+"id": "wt_54aa93f995",
+"kind": "func_call",
+"text": "The customer typed kemi.setlocation(texas) on run-cf203b j75. It came back: Kemi's location is now texas. Implementation: function setlocation(location){\n  this.location = \"amusementpark\";\n  this.caption = location;\n  mentions.replace(this.location, location);\n  return this.location;\n}.",
+"code": "kemi.setlocation(texas);",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j75",
+"other": null
 }
 ],
 "wys": [
@@ -13287,6 +13297,16 @@
 "run": "run-cf203b",
 "card": "j58",
 "other": null
+},
+{
+"id": "wt_bde5ad9b46",
+"kind": "func_call",
+"text": "The customer typed [[maturity]] on run-cf203b j75.",
+"code": "[[maturity]];",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j75",
+"other": null
 }
 ],
 "cic": [
@@ -13986,6 +14006,54 @@
 "card": "j74",
 "other": null
 }
+],
+"sdffgmama": [
+{
+"id": "wt_c8faaaa3a7",
+"kind": "func_call",
+"text": "The customer typed [[sdffgmama]] on run-cf203b j75.",
+"code": "[[sdffgmama]];",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j75",
+"other": null
+}
+],
+"mw": [
+{
+"id": "wt_7307d84ff9",
+"kind": "func_call",
+"text": "The customer typed [[mw]] on run-cf203b j75.",
+"code": "[[mw]];",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j75",
+"other": null
+}
+],
+"thitg": [
+{
+"id": "wt_e5b97bc564",
+"kind": "func_call",
+"text": "The customer typed [[thitg]] on run-cf203b j75.",
+"code": "[[thitg]];",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j75",
+"other": null
+}
+],
+"kasai": [
+{
+"id": "wt_6a9d9fae5f",
+"kind": "func_call",
+"text": "The customer typed kasai.settemperature(kemi.getlocation(), warmbreeze) on run-cf203b j75. It came back: Kasai's temperature is now kemi.getlocation(). Implementation: function settemperature(temperature){\n  this.temperature = \"kemi.getlocation()\";\n  this.caption = temperature;\n  return this.temperature;\n}. kasai now has kasai.settemperature as a method on this agenda, and it can be called again.",
+"code": "kasai.settemperature(kemi.getlocation(), warmbreeze);",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j75",
+"other": null
+}
 ]
 },
 "consequences": [
@@ -14531,5 +14599,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-27T17:16:23-0500"
+"updated": "2026-11-27T17:28:17-0500"
 }

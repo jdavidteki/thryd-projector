@@ -29106,7 +29106,7 @@
     }
    ],
    "faded": false,
-   "last_run": null
+   "last_run": "run-cf203b"
   },
   "cooler.getdatemanufactured": {
    "object": "cooler",
@@ -33015,6 +33015,46 @@
    "prior": [],
    "faded": false,
    "last_run": null
+  },
+  "kasai.settemperature": {
+   "object": "kasai",
+   "method": "settemperature",
+   "args": [],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j75",
+    "card": "j75",
+    "title": "kasai.settemperature(kemi.getlocation(), warmbreeze)",
+    "emoji": "",
+    "at": "2026-11-27T17:27:35-05:00",
+    "source": "cli"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "kasai.settemperature(kemi.getlocation(), warmbreeze)",
+     "emoji": "",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j75",
+     "tweets": [],
+     "consequence": "The customer typed this on this agenda.",
+     "consequence_job": ""
+    }
+   ],
+   "source": "cli",
+   "cli": true,
+   "sig": {
+    "params": [],
+    "text": "settemperature()"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
   }
  },
  "objects": {
@@ -33628,6 +33668,9 @@
    "k.g570",
    "k.qa573",
    "k.qa572"
+  ],
+  "kasai": [
+   "kasai.settemperature"
   ],
   "kazeem": [
    "kazeem.lift",
@@ -59500,7 +59543,8 @@
     "destiny.get",
     "thryd.jumpahead",
     "new.powercouple",
-    "new.nonprofitorganization"
+    "new.nonprofitorganization",
+    "kasai.settemperature"
    ]
   },
   "run-d6fc": {
@@ -65021,6 +65065,9 @@
    "k.qa573",
    "k.qa572"
   ],
+  "kasai": [
+   "kasai.settemperature"
+  ],
   "kazeem": [
    "kazeem.lift",
    "kazeem.play",
@@ -66062,7 +66109,8 @@
   "closet": [],
   "kemisister": [],
   "ronkesister": [],
-  "destiny": []
+  "destiny": [],
+  "kasai": []
  },
  "casts": {
   "run-5a58c4": [
@@ -66392,5 +66440,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-27T17:27:28-05:00"
+ "updated": "2026-11-27T17:28:19-05:00"
 }

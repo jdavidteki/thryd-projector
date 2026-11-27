@@ -15050,7 +15050,7 @@
   },
   "run-cf203b": {
    "forked_from": "safe:731d52737690",
-   "head": "213300cf30",
+   "head": "adda8244bf",
    "commits": [
     {
      "id": "387e402c1d",
@@ -17670,12 +17670,7 @@
         "op": "define"
        }
       ],
-      "instances": [
-       [
-        "give",
-        "Thing"
-       ]
-      ]
+      "instances": []
      }
     },
     {
@@ -17760,16 +17755,7 @@
         "op": "define"
        }
       ],
-      "instances": [
-       [
-        "never",
-        "Frequency"
-       ],
-       [
-        "butterflies",
-        "Feeling"
-       ]
-      ]
+      "instances": []
      }
     },
     {
@@ -22234,11 +22220,11 @@
      }
     },
     {
-     "id": "e651f3807d",
+     "id": "b6fa4563e3",
      "parent": "106272a8b8",
      "branch": "run-cf203b",
      "job": "j74",
-     "at": "2026-11-27T17:15:50-0500",
+     "at": "2026-11-27T17:27:20-05:00",
      "genre": "rising",
      "beat": "now",
      "diff": {
@@ -22269,13 +22255,42 @@
        }
       ],
       "facts_total": 3,
-      "functions": [],
-      "instances": []
+      "functions": [
+       {
+        "func": "come.back",
+        "title": "come.back(defenses)",
+        "op": "call"
+       },
+       {
+        "func": "understand.now",
+        "title": "understand.now(car)",
+        "op": "call"
+       },
+       {
+        "func": "lez.see",
+        "title": "lez.see(who)",
+        "op": "define"
+       }
+      ],
+      "instances": [
+       [
+        "defenses",
+        "Action"
+       ],
+       [
+        "car",
+        "Thing"
+       ],
+       [
+        "who",
+        "Thing"
+       ]
+      ]
      }
     },
     {
-     "id": "213300cf30",
-     "parent": "e651f3807d",
+     "id": "adda8244bf",
+     "parent": "b6fa4563e3",
      "branch": "run-cf203b",
      "job": "j75",
      "at": "2026-11-27T17:27:27-0500",
@@ -22290,9 +22305,65 @@
         "code": "[[sdffgmama]];",
         "scope": null,
         "cause_id": null
+       },
+       {
+        "id": "wt_54aa93f995",
+        "object": "kemi",
+        "kind": "func_call",
+        "code": "kemi.setlocation(texas);",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_7307d84ff9",
+        "object": "mw",
+        "kind": "func_call",
+        "code": "[[mw]];",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_1c3b8e260d",
+        "object": "isl",
+        "kind": "func_call",
+        "code": "[[isl]];",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_3d7f26279c",
+        "object": "twgs",
+        "kind": "func_call",
+        "code": "[[twgs]];",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_e5b97bc564",
+        "object": "thitg",
+        "kind": "func_call",
+        "code": "[[thitg]];",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_bde5ad9b46",
+        "object": "maturity",
+        "kind": "func_call",
+        "code": "[[maturity]];",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_6a9d9fae5f",
+        "object": "kasai",
+        "kind": "func_call",
+        "code": "kasai.settemperature(kemi.getlocation(), warmbreeze);",
+        "scope": null,
+        "cause_id": null
        }
       ],
-      "facts_total": 1,
+      "facts_total": 8,
       "functions": [],
       "instances": []
      }
@@ -23257,10 +23328,10 @@
   "run-0ae93c": "a11a1eab61",
   "run-3a15d2": "fbc46c6eb7",
   "run-ab4653": "dd8e54daee",
-  "run-cf203b": "213300cf30",
+  "run-cf203b": "adda8244bf",
   "run-888ea9": "73f36161c8",
   "run-cb805f": "8d23a93627"
  },
  "commits": 228,
- "updated": "2026-11-27T17:27:28-05:00"
+ "updated": "2026-11-27T17:28:19-05:00"
 }
