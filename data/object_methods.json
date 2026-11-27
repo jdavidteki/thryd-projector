@@ -18366,15 +18366,15 @@
      ],
      "consequence": "What just happened: Tobi keeps digging: \"make i add more stuff here so daditin.\" Then he turns it on everyone: \"what do you guys think?\" When Kemi doesn't answer, he points at himself: \"say me, ehn?\" 📖 Now: Get the line where Kemi tells Tob",
      "consequence_job": "j19",
-     "resolved": "make.add(amount=more:Quantity) from j18",
+     "resolved": "make.add(amount=more:Quantity) from j10",
      "injected": [
       {
        "param": "amount",
        "class": "Quantity",
        "instance": "more",
        "from_run": "run-cf203b",
-       "from_job": "j18",
-       "source": "pick"
+       "from_job": "j10",
+       "source": "original"
       }
      ]
     }
@@ -18544,15 +18544,15 @@
      ],
      "consequence": "thunder una fayago!\" She tells him \"we should be fighting ishoda oluwa lon shola,\" not each other, and sighs, \"story so we go again.\" Then she says it: \"alorof things have apuned in your absence o.\" 📖 Now: Tobi heard her.",
      "consequence_job": "j20",
-     "resolved": "alorof.things(what=ishoda:Thing) from j19",
+     "resolved": "alorof.things(what=have:Thing) from j19",
      "injected": [
       {
        "param": "what",
        "class": "Thing",
-       "instance": "ishoda",
+       "instance": "have",
        "from_run": "run-cf203b",
        "from_job": "j19",
-       "source": "pick"
+       "source": "original"
       }
      ]
     }
@@ -18617,7 +18617,7 @@
        "instance": "ishoda",
        "from_run": "run-cf203b",
        "from_job": "j19",
-       "source": "pick"
+       "source": "original"
       }
      ]
     }
@@ -18765,7 +18765,7 @@
        "instance": "una",
        "from_run": "run-cf203b",
        "from_job": "j19",
-       "source": "pick"
+       "source": "original"
       }
      ]
     }
@@ -18822,12 +18822,12 @@
      ],
      "consequence": "She smiles and says \"daz what ton me on.\" When he starts on the receipt she cuts him off: \"skipping consumes less energy.\" She laughs, \"a poty asin toilet or apoty eri?\", then reaches up for his head: \"remove your cap.\" 📖 Now: The phone is ",
      "consequence_job": "j22",
-     "resolved": "daz.what(what=ton:Thing) from j21",
+     "resolved": "daz.what(what=toilet:Thing) from j21",
      "injected": [
       {
        "param": "what",
        "class": "Thing",
-       "instance": "ton",
+       "instance": "toilet",
        "from_run": "run-cf203b",
        "from_job": "j21",
        "source": "pick"
@@ -19107,12 +19107,12 @@
      ],
      "consequence": "Kemi laughs \"have fun!\" and sways her hips at him, and he mutters \"a global ritual engine,\" like it's the only way to explain what she does to him.",
      "consequence_job": "j23",
-     "resolved": "global.ritual(what=ton:Thing) from j21",
+     "resolved": "global.ritual(what=toilet:Thing) from j21",
      "injected": [
       {
        "param": "what",
        "class": "Thing",
-       "instance": "ton",
+       "instance": "toilet",
        "from_run": "run-cf203b",
        "from_job": "j21",
        "source": "pick"
@@ -19756,15 +19756,15 @@
      ],
      "consequence": "She asks him straight, \"can you put them together?\", the name on the screen and the call she hung up on last night.",
      "consequence_job": "j27",
-     "resolved": "can.put(who=una:Person) from j19",
+     "resolved": "can.put(who=them:Person) from j33",
      "injected": [
       {
        "param": "who",
        "class": "Person",
-       "instance": "una",
-       "from_run": "run-cf203b",
-       "from_job": "j19",
-       "source": "pick"
+       "instance": "them",
+       "from_run": "run-5a58c4",
+       "from_job": "j33",
+       "source": "original"
       }
      ]
     }
@@ -20496,15 +20496,15 @@
      ],
      "consequence": "Kemi finishes her threat: \"and i will deal with them!\" 📖 Now: \"Them\" hangs in the doorway: the woman, and whoever else was there at 4pm.",
      "consequence_job": "j30",
-     "resolved": "will.deal(who=una:Person) from j19",
+     "resolved": "will.deal(who=them:Person) from j33",
      "injected": [
       {
        "param": "who",
        "class": "Person",
-       "instance": "una",
-       "from_run": "run-cf203b",
-       "from_job": "j19",
-       "source": "pick"
+       "instance": "them",
+       "from_run": "run-5a58c4",
+       "from_job": "j33",
+       "source": "original"
       }
      ]
     }
@@ -21425,15 +21425,15 @@
      ],
      "consequence": "Locked at 127 lines.",
      "consequence_job": "j35",
-     "resolved": "can.slap(who=una:Person) from j19",
+     "resolved": "can.slap(who=him:Person) from j34",
      "injected": [
       {
        "param": "who",
        "class": "Person",
-       "instance": "una",
+       "instance": "him",
        "from_run": "run-cf203b",
-       "from_job": "j19",
-       "source": "pick"
+       "from_job": "j34",
+       "source": "original"
       }
      ]
     }
@@ -27250,6 +27250,299 @@
    "faded": false,
    "last_run": "run-cf203b"
   },
+  "parents.taught": {
+   "object": "parents",
+   "method": "taught",
+   "args": [
+    "us"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j66",
+    "card": "w66",
+    "title": "parents.taught(us)",
+    "emoji": "🎟️",
+    "at": "2026-11-27T13:26:27-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "parents.taught(us)",
+     "emoji": "🎟️",
+     "arg": "us",
+     "run": "run-cf203b",
+     "job": "j66",
+     "tweets": [
+      {
+       "text": "our parents taught us how to lie…",
+       "year": "2021"
+      }
+     ],
+     "consequence": "The lines that landed: \"self-love juice\", \"and when you find that person, know you have truly found love.\", \"you would be sadly familiar with the sentence — “i’m doing my best.”\" and \"our parents taught us how to lie…\".",
+     "consequence_job": "j67",
+     "resolved": "parents.taught(who=us:Person) from j66",
+     "injected": [
+      {
+       "param": "who",
+       "class": "Person",
+       "instance": "us",
+       "from_run": "run-cf203b",
+       "from_job": "j66",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "who",
+      "class": "Person",
+      "default": "us",
+      "first_run": "run-888ea9",
+      "first_job": "j6"
+     }
+    ],
+    "text": "taught(who: Person)"
+   },
+   "receiver_class": "Person",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "self.love": {
+   "object": "self",
+   "method": "love",
+   "args": [
+    "juice"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j66",
+    "card": "w66",
+    "title": "self.love(juice)",
+    "emoji": "👡",
+    "at": "2026-11-27T13:26:27-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "self.love(juice)",
+     "emoji": "👡",
+     "arg": "juice",
+     "run": "run-cf203b",
+     "job": "j66",
+     "tweets": [
+      {
+       "text": "self-love juice",
+       "year": "2021"
+      }
+     ],
+     "consequence": "The lines that landed: \"self-love juice\", \"and when you find that person, know you have truly found love.\", \"you would be sadly familiar with the sentence — “i’m doing my best.”\" and \"our parents taught us how to lie…\".",
+     "consequence_job": "j67",
+     "resolved": "self.love(what=juice:Thing) from j66",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "juice",
+       "from_run": "run-cf203b",
+       "from_job": "j66",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "juice",
+      "first_run": "run-cf203b",
+      "first_job": "j66"
+     }
+    ],
+    "text": "love(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "when.find": {
+   "object": "when",
+   "method": "find",
+   "args": [
+    "person"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j66",
+    "card": "w66",
+    "title": "when.find(person)",
+    "emoji": "🍪",
+    "at": "2026-11-27T13:26:27-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "when.find(person)",
+     "emoji": "🍪",
+     "arg": "person",
+     "run": "run-cf203b",
+     "job": "j66",
+     "tweets": [
+      {
+       "text": "and when you find that person, know you have truly found love.",
+       "year": "2021"
+      }
+     ],
+     "consequence": "The lines that landed: \"self-love juice\", \"and when you find that person, know you have truly found love.\", \"you would be sadly familiar with the sentence — “i’m doing my best.”\" and \"our parents taught us how to lie…\".",
+     "consequence_job": "j67",
+     "resolved": "when.find(what=person:Thing) from j66",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "person",
+       "from_run": "run-cf203b",
+       "from_job": "j66",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "person",
+      "first_run": "run-cf203b",
+      "first_job": "j66"
+     }
+    ],
+    "text": "find(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [
+    {
+     "id": "can.find",
+     "title": "can.find(wan)",
+     "run": "run-cf203b",
+     "job": "j30",
+     "at": "2026-11-26T01:41:43-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "marisol.find",
+     "title": "marisol.find(love)",
+     "run": "run-5a58c4",
+     "job": "j58",
+     "at": "2026-11-24T18:36:39-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "dez.find",
+     "title": "dez.find(error)",
+     "run": "run-5a58c4",
+     "job": "j51",
+     "at": "2026-11-24T14:55:34-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "marisol.find",
+     "title": "marisol.find(god)",
+     "run": "run-5a58c4",
+     "job": "j40",
+     "at": "2026-11-24T00:57:57-05:00",
+     "why": "same method"
+    }
+   ],
+   "faded": false,
+   "last_run": null
+  },
+  "would.sadly": {
+   "object": "would",
+   "method": "sadly",
+   "args": [
+    "familiar"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j66",
+    "card": "w66",
+    "title": "would.sadly(familiar)",
+    "emoji": "🍡",
+    "at": "2026-11-27T13:26:27-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "would.sadly(familiar)",
+     "emoji": "🍡",
+     "arg": "familiar",
+     "run": "run-cf203b",
+     "job": "j66",
+     "tweets": [
+      {
+       "text": "you would be sadly familiar with the sentence — “i’m doing my best.”",
+       "year": "2021"
+      }
+     ],
+     "consequence": "The lines that landed: \"self-love juice\", \"and when you find that person, know you have truly found love.\", \"you would be sadly familiar with the sentence — “i’m doing my best.”\" and \"our parents taught us how to lie…\".",
+     "consequence_job": "j67",
+     "resolved": "would.sadly(what=familiar:Thing) from j66",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "familiar",
+       "from_run": "run-cf203b",
+       "from_job": "j66",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "familiar",
+      "first_run": "run-cf203b",
+      "first_job": "j66"
+     }
+    ],
+    "text": "sadly(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
   "cooler.getdatemanufactured": {
    "object": "cooler",
    "method": "getDateManufactured",
@@ -31117,6 +31410,46 @@
    "prior": [],
    "faded": false,
    "last_run": null
+  },
+  "new.nonprofitorganization": {
+   "object": "new",
+   "method": "nonprofitorganization",
+   "args": [],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j67",
+    "card": "j67",
+    "title": "new nonprofitorganization()",
+    "emoji": "",
+    "at": "2026-11-27T13:26:35-05:00",
+    "source": "cli"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "new nonprofitorganization()",
+     "emoji": "",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j67",
+     "tweets": [],
+     "consequence": "The customer typed this on this agenda.",
+     "consequence_job": ""
+    }
+   ],
+   "source": "cli",
+   "cli": true,
+   "sig": {
+    "params": [],
+    "text": "nonprofitorganization()"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
   }
  },
  "objects": {
@@ -31906,7 +32239,8 @@
    "new.makeup",
    "new.mirror",
    "new.miniskirt",
-   "new.powercouple"
+   "new.powercouple",
+   "new.nonprofitorganization"
   ],
   "new_yuwa_running_subject": [
    "object.look"
@@ -31970,6 +32304,9 @@
   ],
   "oyinboman": [
    "oyinboman.know"
+  ],
+  "parents": [
+   "parents.taught"
   ],
   "part": [
    "part.d",
@@ -32124,6 +32461,9 @@
   "say": [
    "say.ehn",
    "say.nigerian"
+  ],
+  "self": [
+   "self.love"
   ],
   "seller": [
    "seller.feel"
@@ -32378,6 +32718,9 @@
   "whatever_happens_me_subject": [
    "object.look"
   ],
+  "when": [
+   "when.find"
+  ],
   "where": [
    "where.boisie"
   ],
@@ -32414,6 +32757,9 @@
   ],
   "worry": [
    "worry.have"
+  ],
+  "would": [
+   "would.sadly"
   ],
   "wym": [
    "wym.dont"
@@ -57453,6 +57799,10 @@
     "wiitbaw.woman",
     "feminist.coalition",
     "get.off",
+    "parents.taught",
+    "self.love",
+    "when.find",
+    "would.sadly",
     "cli.cli",
     "thryd.importtheme",
     "kemi.ismarried",
@@ -57475,7 +57825,8 @@
     "kemi.setbodytemperature",
     "destiny.get",
     "thryd.jumpahead",
-    "new.powercouple"
+    "new.powercouple",
+    "new.nonprofitorganization"
    ]
   },
   "run-d6fc": {
@@ -57964,6 +58315,13 @@
    "title": "1007. it sells itself",
    "funcs": [
     "dont.like"
+   ],
+   "runs": []
+  },
+  "25df3a86ef3e": {
+   "title": "our parents taught us how to lie",
+   "funcs": [
+    "parents.taught"
    ],
    "runs": []
   },
@@ -58473,6 +58831,13 @@
    ],
    "runs": []
   },
+  "5f9e06448b71": {
+   "title": "i love mine",
+   "funcs": [
+    "self.love"
+   ],
+   "runs": []
+  },
   "61ae7008a5f0": {
    "title": "903. rip ×= 4",
    "funcs": [
@@ -58761,7 +59126,11 @@
     "should.get",
     "wiitbaw.woman",
     "feminist.coalition",
-    "get.off"
+    "get.off",
+    "parents.taught",
+    "self.love",
+    "when.find",
+    "would.sadly"
    ],
    "runs": [
     "run-cf203b"
@@ -59397,6 +59766,13 @@
    ],
    "runs": []
   },
+  "b00e62bee9f8": {
+   "title": "i want to be seen by only you",
+   "funcs": [
+    "when.find"
+   ],
+   "runs": []
+  },
   "b02906d784b9": {
    "title": "719. the technicalities of a time traveling device",
    "funcs": [
@@ -59576,6 +59952,13 @@
    "title": "525. faster",
    "funcs": [
     "truth.without"
+   ],
+   "runs": []
+  },
+  "c5bf8584077e": {
+   "title": "be kind: we are all doing our best",
+   "funcs": [
+    "would.sadly"
    ],
    "runs": []
   },
@@ -60267,6 +60650,9 @@
    "1ca0e78d0827",
    "773b1e7d097b"
   ],
+  "1*vrNEoUOTyg358oh5eYQsgw.png": [
+   "b00e62bee9f8"
+  ],
   "1*3BS70020HTurGMp_-zEJjg.gif": [
    "bb6f268be2b0"
   ],
@@ -60425,6 +60811,9 @@
   ],
   "1*R96Tw8edEDMt2fTHbscIzw.jpeg": [
    "db02d908b461"
+  ],
+  "1*3dMbHuXVT0GEH42aMRYRLQ.png": [
+   "5f9e06448b71"
   ],
   "1*JcTkgYB5LA20HUNBaGWYZA.gif": [
    "d2fbfa8b882b"
@@ -60733,6 +61122,9 @@
   ],
   "1*ft_vQIL64b_sqlDV-XhDBw.gif": [
    "14f807b2bcaa"
+  ],
+  "1*XIlHyEVaeA0HtwV7ZCwQSg.png": [
+   "25df3a86ef3e"
   ],
   "1*P4PUcv99wItvYFkS1Q0S-A.gif": [
    "bece0ebaed5b"
@@ -61148,6 +61540,9 @@
   ],
   "1*M7-3my5LCp5EIzsIgw4Qvg.png": [
    "501211f2bf6a"
+  ],
+  "1*WWSkafHXKBpRpaNBpTkkfg.png": [
+   "c5bf8584077e"
   ],
   "1*6HL5YNv8ctvM4bl6rHfSlA.gif": [
    "e164727d4c98",
@@ -62977,7 +63372,8 @@
    "new.makeup",
    "new.mirror",
    "new.miniskirt",
-   "new.powercouple"
+   "new.powercouple",
+   "new.nonprofitorganization"
   ],
   "next": [
    "next.kin"
@@ -63032,6 +63428,9 @@
   ],
   "oyinboman": [
    "oyinboman.know"
+  ],
+  "parents": [
+   "parents.taught"
   ],
   "part": [
    "part.d",
@@ -63157,6 +63556,9 @@
   "say": [
    "say.ehn",
    "say.nigerian"
+  ],
+  "self": [
+   "self.love"
   ],
   "seller": [
    "seller.feel"
@@ -63361,6 +63763,9 @@
    "what.slam",
    "what.happens"
   ],
+  "when": [
+   "when.find"
+  ],
   "where": [
    "where.boisie"
   ],
@@ -63394,6 +63799,9 @@
   ],
   "worry": [
    "worry.have"
+  ],
+  "would": [
+   "would.sadly"
   ],
   "wym": [
    "wym.dont"
@@ -63762,6 +64170,10 @@
   "wiitbaw": [],
   "feminist": [],
   "get": [],
+  "parents": [],
+  "self": [],
+  "when": [],
+  "would": [],
   "cooler": [],
   "kazeem.goodqualities": [],
   "app": [],
@@ -64046,6 +64458,7 @@
    "one",
    "ori",
    "own",
+   "parents",
    "part",
    "pen",
    "pink",
@@ -64060,6 +64473,7 @@
    "rikwaya",
    "russian",
    "say",
+   "self",
    "share",
    "shi",
    "should",
@@ -64089,6 +64503,7 @@
    "well",
    "weya",
    "what",
+   "when",
    "where",
    "which",
    "who",
@@ -64097,6 +64512,7 @@
    "will",
    "wo",
    "woke",
+   "would",
    "wym",
    "yeah"
   ]
@@ -64114,5 +64530,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-27T12:41:12-05:00"
+ "updated": "2026-11-27T13:26:54-05:00"
 }

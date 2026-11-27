@@ -4629,16 +4629,6 @@
 ],
 "move": [
 {
-"id": "wf_8f3ea495db",
-"kind": "consequence",
-"text": "The move leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"code": "red_white.interactwith(move){ move.receives(red_white.envelope); move.remembers(bisola, 'brown envelope'); }",
-"author": "cos",
-"run": "run-0bd7c0",
-"card": "j6",
-"other": "red_white"
-},
-{
 "id": "wf_83a0173277",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the move, and Bisola reads the name twice.",
@@ -4676,6 +4666,16 @@
 "author": "customer",
 "run": "run-cf203b",
 "card": "j63",
+"other": null
+},
+{
+"id": "wt_de0ac027d0",
+"kind": "func_call",
+"text": "The customer typed [[move]] on run-cf203b j66.",
+"code": "[[move]];",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j66",
 "other": null
 }
 ],
@@ -7347,16 +7347,6 @@
 ],
 "namco": [
 {
-"id": "wf_a8ad2241c4",
-"kind": "consequence",
-"text": "The namco leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"code": "bowl.interactwith(namco){ namco.receives(bowl.envelope); namco.remembers(bisola, 'brown envelope'); }",
-"author": "cos",
-"run": "run-g1-B",
-"card": "j6",
-"other": "bowl"
-},
-{
 "id": "wf_4a92c0cc96",
 "kind": "consequence",
 "text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the brown envelope at the namco, and Bisola reads the name twice.",
@@ -7394,6 +7384,16 @@
 "author": "customer",
 "run": "run-cf203b",
 "card": "j50",
+"other": null
+},
+{
+"id": "wt_bb3a604943",
+"kind": "func_call",
+"text": "The customer typed [[namco]] on run-cf203b j67.",
+"code": "[[namco]];",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j67",
 "other": null
 }
 ],
@@ -8973,16 +8973,6 @@
 ],
 "new": [
 {
-"id": "wt_b7fd48b439",
-"kind": "func_call",
-"text": "The customer typed new condom() on run-cf203b j10. It came back: New condom. Implementation: function condom(){\n  NEW_CONDOM_COUNT += 1;\n  this.lastCondom = \"New condom\";\n  return \"New condom\";\n}. new now has new.condom as a method on this agenda, and it can be called again.",
-"code": "new condom();",
-"author": "customer",
-"run": "run-cf203b",
-"card": "j10",
-"other": null
-},
-{
 "id": "wt_bd0118ea60",
 "kind": "func_call",
 "text": "The customer typed new makeup(maryk) on run-cf203b j23. It came back: New makeup maryk. Implementation: function makeup(what){\n  NEW_MAKEUP_COUNT += 1;\n  this.lastMakeup = \"maryk\";\n  return \"New makeup maryk\";\n}. new now has new.makeup as a method on this agenda, and it can be called again.",
@@ -9020,6 +9010,16 @@
 "author": "customer",
 "run": "run-cf203b",
 "card": "j65",
+"other": null
+},
+{
+"id": "wt_dd20f44099",
+"kind": "func_call",
+"text": "The customer typed new nonprofitorganization() on run-cf203b j67. It came back: New nonprofitorganization. Implementation: function nonprofitorganization(){\n  NEW_NONPROFITORGANIZATION_COUNT += 1;\n  this.lastNonprofitorganization = \"New nonprofitorganization\";\n  return \"New nonprofitorganization\";\n}. new now has new.nonprofitorganization as a method on this agenda, and it can be called again.",
+"code": "new nonprofitorganization();",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j67",
 "other": null
 }
 ],
@@ -11791,6 +11791,16 @@
 "run": "run-cf203b",
 "card": "j17",
 "other": null
+},
+{
+"id": "wt_15ac0ca534",
+"kind": "func_call",
+"text": "The customer typed [[mhicomaikw]] on run-cf203b j66.",
+"code": "[[mhicomaikw]];",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j66",
+"other": null
 }
 ],
 "lehgeet": [
@@ -12771,6 +12781,16 @@
 "run": "run-cf203b",
 "card": "j64",
 "other": null
+},
+{
+"id": "wt_62c9ae85d1",
+"kind": "func_call",
+"text": "The customer typed [[biyuiu]] on run-cf203b j67.",
+"code": "[[biyuiu]];",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j67",
+"other": null
 }
 ],
 "kemisister": [
@@ -13706,6 +13726,78 @@
 "card": "j66",
 "other": null
 }
+],
+"eiti": [
+{
+"id": "wt_d96cdd534a",
+"kind": "func_call",
+"text": "The customer typed [[eiti]] on run-cf203b j66.",
+"code": "[[eiti]];",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j66",
+"other": null
+}
+],
+"tbmon": [
+{
+"id": "wt_5bba5054e4",
+"kind": "func_call",
+"text": "The customer typed [[tbmon]] on run-cf203b j66.",
+"code": "[[tbmon]];",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j66",
+"other": null
+}
+],
+"tl": [
+{
+"id": "wt_f768656e9b",
+"kind": "func_call",
+"text": "The customer typed [[tl]] on run-cf203b j66.",
+"code": "[[tl]];",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j66",
+"other": null
+}
+],
+"desire": [
+{
+"id": "wt_8d38c23673",
+"kind": "func_call",
+"text": "The customer typed [[desire]] on run-cf203b j66.",
+"code": "[[desire]];",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j66",
+"other": null
+}
+],
+"home": [
+{
+"id": "wt_1ee9a2ae6d",
+"kind": "func_call",
+"text": "The customer typed [[home]] on run-cf203b j66.",
+"code": "[[home]];",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j66",
+"other": null
+}
+],
+"currency": [
+{
+"id": "wt_9bd16eac7a",
+"kind": "func_call",
+"text": "The customer typed [[currency]] on run-cf203b j67.",
+"code": "[[currency]];",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j67",
+"other": null
+}
 ]
 },
 "consequences": [
@@ -14251,5 +14343,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-27T13:26:01-0500"
+"updated": "2026-11-27T13:26:52-0500"
 }

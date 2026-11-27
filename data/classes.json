@@ -106,10 +106,10 @@
    "methods": [
     "say",
     "see",
-    "give"
+    "find"
    ],
-   "instances": 507,
-   "arg_instances": 180,
+   "instances": 510,
+   "arg_instances": 183,
    "parent": null,
    "chain": [
     "Thing"
@@ -2690,6 +2690,22 @@
    ],
    "tweets": []
   },
+  "familiar": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-cf203b",
+   "first_job": "j66",
+   "source": "pick",
+   "runs": [
+    "run-cf203b"
+   ],
+   "tweets": [
+    {
+     "text": "you would be sadly familiar with the sentence — “i’m doing my best.”",
+     "year": "2021"
+    }
+   ]
+  },
   "familyguy": {
    "class": "Thing",
    "cue": "default",
@@ -3988,6 +4004,22 @@
     "run-a19af0"
    ],
    "tweets": []
+  },
+  "juice": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-cf203b",
+   "first_job": "j66",
+   "source": "pick",
+   "runs": [
+    "run-cf203b"
+   ],
+   "tweets": [
+    {
+     "text": "self-love juice",
+     "year": "2021"
+    }
+   ]
   },
   "juju": {
    "class": "Thing",
@@ -5790,6 +5822,22 @@
     {
      "text": "-- i tink dat [[osdf]] should be a bishop not a pepe",
      "year": "2024"
+    }
+   ]
+  },
+  "person": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-cf203b",
+   "first_job": "j66",
+   "source": "pick",
+   "runs": [
+    "run-cf203b"
+   ],
+   "tweets": [
+    {
+     "text": "and when you find that person, know you have truly found love.",
+     "year": "2021"
     }
    ]
   },
@@ -8324,12 +8372,17 @@
    "first_job": "j6",
    "source": "pick",
    "runs": [
-    "run-888ea9"
+    "run-888ea9",
+    "run-cf203b"
    ],
    "tweets": [
     {
      "text": "-- they made phones but [[forget]] to put us inside",
      "year": "2025"
+    },
+    {
+     "text": "our parents taught us how to lie…",
+     "year": "2021"
     }
    ]
   },
@@ -10415,30 +10468,6 @@
   ],
   "run-cf203b": [
    [
-    "more",
-    "Quantity",
-    "j18",
-    "pick"
-   ],
-   [
-    "ishoda",
-    "Thing",
-    "j19",
-    "pick"
-   ],
-   [
-    "una",
-    "Person",
-    "j19",
-    "pick"
-   ],
-   [
-    "ton",
-    "Thing",
-    "j21",
-    "pick"
-   ],
-   [
     "toilet",
     "Thing",
     "j21",
@@ -10892,6 +10921,30 @@
     "darn",
     "Thing",
     "j65",
+    "pick"
+   ],
+   [
+    "us",
+    "Person",
+    "j66",
+    "pick"
+   ],
+   [
+    "juice",
+    "Thing",
+    "j66",
+    "pick"
+   ],
+   [
+    "person",
+    "Thing",
+    "j66",
+    "pick"
+   ],
+   [
+    "familiar",
+    "Thing",
+    "j66",
     "pick"
    ]
   ],
@@ -13726,6 +13779,10 @@
   "wiitbaw.woman": "woman()",
   "feminist.coalition": "coalition()",
   "get.off": "off(what: Thing)",
+  "parents.taught": "taught(who: Person)",
+  "self.love": "love(what: Thing)",
+  "when.find": "find(what: Thing)",
+  "would.sadly": "sadly(what: Thing)",
   "cooler.getdatemanufactured": "getDateManufactured()",
   "ronke.getlikes.contains": "getlikes.contains()",
   "kazeem.goodqualities.filter": "filter()",
@@ -13817,7 +13874,8 @@
   "kemi.setbodytemperature": "setbodytemperature()",
   "destiny.get": "get()",
   "thryd.jumpahead": "jumpahead()",
-  "new.powercouple": "powercouple()"
+  "new.powercouple": "powercouple()",
+  "new.nonprofitorganization": "nonprofitorganization()"
  },
  "parent": {
   "Person": "Thing",
@@ -14318,6 +14376,7 @@
    "one",
    "ori",
    "own",
+   "parents",
    "part",
    "pen",
    "pink",
@@ -14332,6 +14391,7 @@
    "rikwaya",
    "russian",
    "say",
+   "self",
    "share",
    "shi",
    "should",
@@ -14361,6 +14421,7 @@
    "well",
    "weya",
    "what",
+   "when",
    "where",
    "which",
    "who",
@@ -14369,6 +14430,7 @@
    "will",
    "wo",
    "woke",
+   "would",
    "wym",
    "yeah"
   ]
@@ -14445,5 +14507,5 @@
   "epilogue": "quiet",
   "coda": "quiet"
  },
- "updated": "2026-11-27T12:40:21-05:00"
+ "updated": "2026-11-27T13:26:53-05:00"
 }
