@@ -117,9 +117,17 @@
   const AI = () => root.thrydIntentAI;
   const log = info => { try{ root.thrydLogSend && root.thrydLogSend(Object.assign({branch: 'card'}, info)); }catch(e){} };
   function sentMap(){ try{ return JSON.parse(localStorage.getItem(STORE) || '{}') || {}; }catch(e){ return {}; } }
-  function markSent(job){ const m = sentMap(); m[job] = 1; try{ localStorage.setItem(STORE, JSON.stringify(m)); }catch(e){} }
+  // v642: a send locks only the card version it was sent on. If the same jN is rebuilt with
+  // new lines (or the send was consumed without a seat), the fresh card opens for a pick again.
+  function optSig(c){ try{ return String((c && c.job) || '') + '|' + ((c && c.options) || []).map(o => o && o.value).join('\u241e'); }catch(e){ return ''; } }
+  function markSent(job, c){ const m = sentMap(); m[job] = optSig(c && c.job === job ? c : card); try{ localStorage.setItem(STORE, JSON.stringify(m)); }catch(e){} }
   function unmarkSent(job){ const m = sentMap(); delete m[job]; try{ localStorage.setItem(STORE, JSON.stringify(m)); }catch(e){} }
-  function wasSent(job){ return !!(job && sentMap()[job]); }
+  function wasSent(job, c){
+    if(!job) return false; const v = sentMap()[job]; if(!v) return false;
+    const ref = (c && c.job === job) ? c : ((card && card.job === job) ? card : null);
+    if(!ref || !ref.options) return true;
+    return v === optSig(ref);
+  }
   const MENU_STORE = 'thryd_menu_sent';
   const MENU_DEDUPE_MS = 120000;
   function menuKey(run, action){ return String(run || '') + '::' + String(action || ''); }
@@ -763,7 +771,7 @@
       if(btn){ btn.disabled = false; btn.classList.remove('busy'); btn.textContent = 'Send'; }
       setStatus('Not sent \u2014 ' + friendly(r ? 'HTTP ' + r.status : '') + '. Your pick is kept; tap Send again in a moment.', 'err'); return;
     }
-    markSent(job);
+    markSent(job, card);
     logSent({kind: 'pick', run: body.run, job, label: labels.join(', ').slice(0, 80), event_id: eid});
     if(btn){ btn.classList.remove('busy'); btn.classList.add('sent'); btn.textContent = 'sent \u2713'; }
     try{ updateStrip(); }catch(e){}
@@ -832,7 +840,7 @@
       if(card && sig === cardSig){ if(settled) updateStrip(); return; } // unchanged: keep the DOM (and the pick) as is
       // v628: a waiting / closed refresh must not collapse the sent card (confirmation
       // and size stay until the next job is actually open, or the user closes the panel).
-      if(card && card.open && wasSent(card.job) && !(j.open && j.job && j.job !== card.job) && !isLocked(j)){
+      if(card && card.open && wasSent(card.job, j) && !(j.open && j.job && j.job !== card.job) && !isLocked(j)){
         cardSig = sig;
         if(metaChanged) updateStrip(); // v629: seat line / waiting / lock update in place, the sent card stays
         return;

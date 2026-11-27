@@ -149,7 +149,7 @@ test('v628: panel stays open after Send; waiting refresh keeps the sent card; ea
   // hook still blocks typeline AI.close; only a user close dismisses the panel
   assert.match(js, /if\(!userClose\) return;/);
   // after Send, a waiting / closed open_card must not collapse the sent confirmation
-  assert.match(js, /card\.open && wasSent\(card\.job\) && !\(j\.open && j\.job && j\.job !== card\.job\) && !isLocked\(j\)/);
+  assert.match(js, /card\.open && wasSent\(card\.job, j\) && !\(j\.open && j\.job && j\.job !== card\.job\) && !isLocked\(j\)/);
   assert.match(js, /Sent \\u2713 your ' \+ job \+ ' pick is in \\u2014 next job coming/);
   // full archive safe under each option: title + numbered lines (verbatim), «picked» highlighted, no curly quotes / italics
   assert.match(js, /function safeRows\(/);
@@ -302,4 +302,14 @@ test('v638: MENU and LOCK buttons sit in one sideways-sliding row; a swipe is no
   assert.match(html, /job_card\.js\?v=15/);
   const v = JSON.parse(ver);
   assert.ok(v.v >= 641);
+});
+
+import { test as __t } from 'node:test';
+import __a from 'node:assert/strict';
+import __fs from 'node:fs';
+__t('v642: sent lock is tied to the card version (rebuilt jN reopens)', () => {
+  const src = __fs.readFileSync(new URL('../assets/job_card.js', import.meta.url), 'utf8');
+  __a.match(src, /function optSig\(c\)/);
+  __a.match(src, /return v === optSig\(ref\)/);
+  __a.match(src, /markSent\(job, card\)/);
 });
