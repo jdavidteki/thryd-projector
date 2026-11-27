@@ -28,8 +28,8 @@
     "on",
     "deal"
    ],
-   "instances": 58,
-   "arg_instances": 15,
+   "instances": 59,
+   "arg_instances": 16,
    "parent": "Thing",
    "chain": [
     "Person",
@@ -4744,6 +4744,22 @@
     "run-345b3d"
    ],
    "tweets": []
+  },
+  "man": {
+   "class": "Person",
+   "cue": "word",
+   "first_run": "run-cf203b",
+   "first_job": "j61",
+   "source": "pick",
+   "runs": [
+    "run-cf203b"
+   ],
+   "tweets": [
+    {
+     "text": "- the ideal is a young man and an older woman",
+     "year": "2025"
+    }
+   ]
   },
   "many": {
    "class": "Quantity",
@@ -10345,12 +10361,6 @@
   ],
   "run-cf203b": [
    [
-    "standing",
-    "Thing",
-    "j14",
-    "pick"
-   ],
-   [
     "run",
     "Action",
     "j15",
@@ -10822,6 +10832,12 @@
     "now",
     "Frequency",
     "j60",
+    "pick"
+   ],
+   [
+    "man",
+    "Person",
+    "j61",
     "pick"
    ]
   ],
@@ -13643,6 +13659,9 @@
   "always.believed": "believed()",
   "sure.idts": "idts()",
   "what.happens": "happens(when: Frequency)",
+  "ideal.young": "young(who: Person)",
+  "iwo.iwono": "iwono()",
+  "model.con": "con()",
   "cooler.getdatemanufactured": "getDateManufactured()",
   "ronke.getlikes.contains": "getlikes.contains()",
   "kazeem.goodqualities.filter": "filter()",
@@ -13731,7 +13750,9 @@
   "new.miniskirt": "miniskirt()",
   "kemi.getshoesize": "getshoesize()",
   "ronkesister.setname": "setname()",
-  "kemi.setbodytemperature": "setbodytemperature()"
+  "kemi.setbodytemperature": "setbodytemperature()",
+  "destiny.get": "get()",
+  "thryd.jumpahead": "jumpahead()"
  },
  "parent": {
   "Person": "Thing",
@@ -14197,9 +14218,11 @@
    "honey",
    "hope",
    "however",
+   "ideal",
    "idt",
    "if",
    "inside",
+   "iwo",
    "j",
    "jesse",
    "kemi",
@@ -14214,6 +14237,7 @@
    "love",
    "make",
    "mean",
+   "model",
    "namco",
    "nd",
    "next",
@@ -14350,5 +14374,5 @@
   "epilogue": "quiet",
   "coda": "quiet"
  },
- "updated": "2026-11-26T23:52:43-05:00"
+ "updated": "2026-11-27T00:13:51-05:00"
 }

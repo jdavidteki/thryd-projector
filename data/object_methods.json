@@ -17693,7 +17693,7 @@
        "instance": "standing",
        "from_run": "run-cf203b",
        "from_job": "j14",
-       "source": "pick"
+       "source": "original"
       }
      ]
     }
@@ -17928,15 +17928,15 @@
      ],
      "consequence": "Kemi stares: \"na the part of d code surprise me.\" He swears it's real, \"lehgeet ni!\", then drops a warning: \"dem go run it down!\" Someone, he says, is coming to dig through the whole night.",
      "consequence_job": "j16",
-     "resolved": "part.d(what=standing:Thing) from j14",
+     "resolved": "part.d(what=code:Thing) from j40",
      "injected": [
       {
        "param": "what",
        "class": "Thing",
-       "instance": "standing",
-       "from_run": "run-cf203b",
-       "from_job": "j14",
-       "source": "pick"
+       "instance": "code",
+       "from_run": "run-2eb42d",
+       "from_job": "j40",
+       "source": "original"
       }
      ]
     }
@@ -26524,6 +26524,167 @@
    "faded": false,
    "last_run": "run-cf203b"
   },
+  "ideal.young": {
+   "object": "ideal",
+   "method": "young",
+   "args": [
+    "man"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j61",
+    "card": "w61",
+    "title": "ideal.young(man)",
+    "emoji": "🪃",
+    "at": "2026-11-27T00:13:36-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "ideal.young(man)",
+     "emoji": "🪃",
+     "arg": "man",
+     "run": "run-cf203b",
+     "job": "j61",
+     "tweets": [
+      {
+       "text": "- the ideal is a young man and an older woman",
+       "year": "2025"
+      }
+     ],
+     "consequence": "Where things stand: Kemi is still at her sister's table a week on, ring still on, saying \"that's why I am your wife\" and about to ask Tobi what it all means.",
+     "consequence_job": "j61",
+     "resolved": "ideal.young(who=man:Person) from j61",
+     "injected": [
+      {
+       "param": "who",
+       "class": "Person",
+       "instance": "man",
+       "from_run": "run-cf203b",
+       "from_job": "j61",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "who",
+      "class": "Person",
+      "default": "man",
+      "first_run": "run-cf203b",
+      "first_job": "j61"
+     }
+    ],
+    "text": "young(who: Person)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "iwo.iwono": {
+   "object": "iwo",
+   "method": "iwono",
+   "args": [
+    ""
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j61",
+    "card": "w61",
+    "title": "iwo.iwono()",
+    "emoji": "🛡️",
+    "at": "2026-11-27T00:13:36-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "iwo.iwono()",
+     "emoji": "🛡️",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j61",
+     "tweets": [
+      {
+       "text": "[[nbmgfdlc]] -- iwo, iwono!",
+       "year": "2024"
+      }
+     ],
+     "consequence": "Where things stand: Kemi is still at her sister's table a week on, ring still on, saying \"that's why I am your wife\" and about to ask Tobi what it all means.",
+     "consequence_job": "j61",
+     "resolved": "iwo.iwono()",
+     "injected": []
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [],
+    "text": "iwono()"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "model.con": {
+   "object": "model",
+   "method": "con",
+   "args": [
+    ""
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j61",
+    "card": "w61",
+    "title": "model.con()",
+    "emoji": "📨",
+    "at": "2026-11-27T00:13:36-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "model.con()",
+     "emoji": "📨",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j61",
+     "tweets": [
+      {
+       "text": "- the model con dey [[hpr]]",
+       "year": "2024"
+      }
+     ],
+     "consequence": "Where things stand: Kemi is still at her sister's table a week on, ring still on, saying \"that's why I am your wife\" and about to ask Tobi what it all means.",
+     "consequence_job": "j61",
+     "resolved": "model.con()",
+     "injected": []
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [],
+    "text": "con()"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
   "cooler.getdatemanufactured": {
    "object": "cooler",
    "method": "getDateManufactured",
@@ -30271,6 +30432,86 @@
    "prior": [],
    "faded": false,
    "last_run": null
+  },
+  "destiny.get": {
+   "object": "destiny",
+   "method": "get",
+   "args": [],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j61",
+    "card": "j61",
+    "title": "destiny.get(datinghistory(lasttwoyears))",
+    "emoji": "",
+    "at": "2026-11-27T00:13:23-05:00",
+    "source": "cli"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "destiny.get(datinghistory(lasttwoyears))",
+     "emoji": "",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j61",
+     "tweets": [],
+     "consequence": "The customer typed this on this agenda.",
+     "consequence_job": ""
+    }
+   ],
+   "source": "cli",
+   "cli": true,
+   "sig": {
+    "params": [],
+    "text": "get()"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "thryd.jumpahead": {
+   "object": "thryd",
+   "method": "jumpahead",
+   "args": [],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j61",
+    "card": "j61",
+    "title": "#thryd.jumpahead(twomonths)",
+    "emoji": "",
+    "at": "2026-11-27T00:13:26-05:00",
+    "source": "cli"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "#thryd.jumpahead(twomonths)",
+     "emoji": "",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j61",
+     "tweets": [],
+     "consequence": "The customer typed this on this agenda.",
+     "consequence_job": ""
+    }
+   ],
+   "source": "cli",
+   "cli": true,
+   "sig": {
+    "params": [],
+    "text": "jumpahead()"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
   }
  },
  "objects": {
@@ -30589,6 +30830,9 @@
    "dem.teh",
    "dem.really"
   ],
+  "destiny": [
+   "destiny.get"
+  ],
   "deya": [
    "deya.fighting"
   ],
@@ -30789,6 +31033,9 @@
   "however": [
    "however.go"
   ],
+  "ideal": [
+   "ideal.young"
+  ],
   "idt": [
    "idt.can"
   ],
@@ -30814,6 +31061,9 @@
   ],
   "it": [
    "it.do"
+  ],
+  "iwo": [
+   "iwo.iwono"
   ],
   "j": [
    "j.b"
@@ -31014,6 +31264,9 @@
   ],
   "media": [
    "media.all"
+  ],
+  "model": [
+   "model.con"
   ],
   "namco": [
    "namco.nawa"
@@ -31398,7 +31651,8 @@
    "thrill.know"
   ],
   "thryd": [
-   "thryd.importtheme"
+   "thryd.importtheme",
+   "thryd.jumpahead"
   ],
   "ticketattendant": [
    "ticketattendant.gettotal"
@@ -37153,6 +37407,14 @@
   "church_people_dont_subject": [
    {
     "scope": "safe",
+    "from": "cbe16f5b4efa",
+    "title": "1120. the chill guy",
+    "funcs": [
+     "model.con"
+    ]
+   },
+   {
+    "scope": "safe",
     "from": "d109fb70734b",
     "title": "1220. *speaks in tongues",
     "funcs": [
@@ -39651,6 +39913,16 @@
     "title": "829. a day in the life of god",
     "funcs": [
      "[nau,god].map"
+    ]
+   }
+  ],
+  "fire_subject": [
+   {
+    "scope": "safe",
+    "from": "ac7459359b3d",
+    "title": "817. fire",
+    "funcs": [
+     "iwo.iwono"
     ]
    }
   ],
@@ -51842,6 +52114,14 @@
   "sky_subject": [
    {
     "scope": "safe",
+    "from": "3fde8517f985",
+    "title": "1230. the old man and sisi nene",
+    "funcs": [
+     "ideal.young"
+    ]
+   },
+   {
+    "scope": "safe",
     "from": "94e1b60daa74",
     "title": "527. buy naija",
     "funcs": [
@@ -56502,6 +56782,9 @@
     "always.believed",
     "sure.idts",
     "what.happens",
+    "ideal.young",
+    "iwo.iwono",
+    "model.con",
     "cli.cli",
     "thryd.importtheme",
     "kemi.ismarried",
@@ -56521,7 +56804,9 @@
     "new.miniskirt",
     "kemi.getshoesize",
     "ronkesister.setname",
-    "kemi.setbodytemperature"
+    "kemi.setbodytemperature",
+    "destiny.get",
+    "thryd.jumpahead"
    ]
   },
   "run-d6fc": {
@@ -57237,6 +57522,13 @@
    ],
    "runs": []
   },
+  "3fde8517f985": {
+   "title": "1230. the old man and sisi nene",
+   "funcs": [
+    "ideal.young"
+   ],
+   "runs": []
+  },
   "40a61eb8865b": {
    "title": "324. confusion",
    "funcs": [
@@ -57756,7 +58048,10 @@
     "truth.without",
     "always.believed",
     "sure.idts",
-    "what.happens"
+    "what.happens",
+    "ideal.young",
+    "iwo.iwono",
+    "model.con"
    ],
    "runs": [
     "run-cf203b"
@@ -58331,6 +58626,13 @@
    ],
    "runs": []
   },
+  "ac7459359b3d": {
+   "title": "817. fire",
+   "funcs": [
+    "iwo.iwono"
+   ],
+   "runs": []
+  },
   "acf6b4479989": {
    "title": "1020. i maintain my champion",
    "funcs": [
@@ -58607,6 +58909,13 @@
    "title": "616. maturity",
    "funcs": [
     "teo.pray"
+   ],
+   "runs": []
+  },
+  "cbe16f5b4efa": {
+   "title": "1120. the chill guy",
+   "funcs": [
+    "model.con"
    ],
    "runs": []
   },
@@ -59343,6 +59652,7 @@
   ],
   "1*VlksqfR5mOLmYofEabzIrA.gif": [
    "94e1b60daa74",
+   "3fde8517f985",
    "9b4b423fcdb7"
   ],
   "1*-_a_jkNYyshOjz77uhZXyg.gif": [
@@ -59427,7 +59737,11 @@
    "ea4f0d9823e8"
   ],
   "1*aXJwYXzcaCqvfa1uQYjjUA.gif": [
+   "cbe16f5b4efa",
    "d109fb70734b"
+  ],
+  "1*OJJ3XPI9PNeWbd6859-kLg.jpeg": [
+   "cbe16f5b4efa"
   ],
   "1*ubGNThBbHFM_0OLyVAfKYw.gif": [
    "935c0e919db3"
@@ -60004,6 +60318,9 @@
   "1*D3gWdg9Dn-e54KKlmX8oXg.gif": [
    "132d9f3e6cde"
   ],
+  "1*89QLNQXrTQMp1hCKNoKEzA.gif": [
+   "ac7459359b3d"
+  ],
   "1*caHcC60SRLE7nr8l-mXc1w.jpeg": [
    "75c8a354a7c7"
   ],
@@ -60465,6 +60782,7 @@
   "1*aXJwYXzcaCqvfa1uQYjjUA.gif": {
    "runs": [],
    "safes": [
+    "cbe16f5b4efa",
     "d109fb70734b"
    ]
   },
@@ -60535,6 +60853,7 @@
    "runs": [],
    "safes": [
     "94e1b60daa74",
+    "3fde8517f985",
     "9b4b423fcdb7"
    ]
   },
@@ -61172,6 +61491,12 @@
     "86488bc8babd"
    ]
   },
+  "1*89QLNQXrTQMp1hCKNoKEzA.gif": {
+   "runs": [],
+   "safes": [
+    "ac7459359b3d"
+   ]
+  },
   "1*WrFSJNCz11JO3t2O2D_Y-w.gif": {
    "runs": [],
    "safes": [
@@ -61526,6 +61851,9 @@
    "dem.teh",
    "dem.really"
   ],
+  "destiny": [
+   "destiny.get"
+  ],
   "deya": [
    "deya.fighting"
   ],
@@ -61684,6 +62012,9 @@
   "however": [
    "however.go"
   ],
+  "ideal": [
+   "ideal.young"
+  ],
   "idt": [
    "idt.can"
   ],
@@ -61706,6 +62037,9 @@
   ],
   "it": [
    "it.do"
+  ],
+  "iwo": [
+   "iwo.iwono"
   ],
   "j": [
    "j.b"
@@ -61858,6 +62192,9 @@
   ],
   "media": [
    "media.all"
+  ],
+  "model": [
+   "model.con"
   ],
   "namco": [
    "namco.nawa"
@@ -62163,7 +62500,8 @@
    "thrill.know"
   ],
   "thryd": [
-   "thryd.importtheme"
+   "thryd.importtheme",
+   "thryd.jumpahead"
   ],
   "ticketattendant": [
    "ticketattendant.gettotal"
@@ -62644,6 +62982,9 @@
   "truth": [],
   "always": [],
   "sure": [],
+  "ideal": [],
+  "iwo": [],
+  "model": [],
   "cooler": [],
   "kazeem.goodqualities": [],
   "app": [],
@@ -62684,7 +63025,8 @@
   "woman": [],
   "closet": [],
   "kemisister": [],
-  "ronkesister": []
+  "ronkesister": [],
+  "destiny": []
  },
  "casts": {
   "run-5a58c4": [
@@ -62892,9 +63234,11 @@
    "honey",
    "hope",
    "however",
+   "ideal",
    "idt",
    "if",
    "inside",
+   "iwo",
    "j",
    "jesse",
    "kemi",
@@ -62909,6 +63253,7 @@
    "love",
    "make",
    "mean",
+   "model",
    "namco",
    "nd",
    "next",
@@ -62986,5 +63331,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-26T23:56:06-05:00"
+ "updated": "2026-11-27T00:13:52-05:00"
 }
