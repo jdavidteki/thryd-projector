@@ -108,8 +108,8 @@
     "see",
     "find"
    ],
-   "instances": 525,
-   "arg_instances": 199,
+   "instances": 526,
+   "arg_instances": 200,
    "parent": null,
    "chain": [
     "Thing"
@@ -176,8 +176,8 @@
     "back",
     "can"
    ],
-   "instances": 29,
-   "arg_instances": 26,
+   "instances": 30,
+   "arg_instances": 27,
    "parent": "Thing",
    "chain": [
     "Action",
@@ -1909,6 +1909,17 @@
      "year": "2025"
     }
    ]
+  },
+  "day": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-cf203b",
+   "first_job": "j76",
+   "source": "pick",
+   "runs": [
+    "run-cf203b"
+   ],
+   "tweets": []
   },
   "death": {
    "class": "Thing",
@@ -5785,6 +5796,22 @@
    ],
    "tweets": []
   },
+  "one": {
+   "class": "Action",
+   "cue": "tweet: to/will ...",
+   "first_run": "run-cf203b",
+   "first_job": "j76",
+   "source": "pick",
+   "runs": [
+    "run-cf203b"
+   ],
+   "tweets": [
+    {
+     "text": "- how will one thing change when something else changes?",
+     "year": "2024"
+    }
+   ]
+  },
   "only": {
    "class": "Thing",
    "cue": "default",
@@ -8942,6 +8969,11 @@
     {
      "text": "- daz y am your wife",
      "year": "2024"
+    },
+    {
+     "text": "[[wdigm,t?]] - this is why i cheat on my wife",
+     "year": "2026",
+     "id": "2024979310612717784"
     }
    ]
   },
@@ -10723,18 +10755,6 @@
   ],
   "run-cf203b": [
    [
-    "invented",
-    "Thing",
-    "j38",
-    "pick"
-   ],
-   [
-    "translated",
-    "Thing",
-    "j38",
-    "pick"
-   ],
-   [
     "want",
     "Thing",
     "j38",
@@ -10948,12 +10968,6 @@
     "how",
     "Manner",
     "j56",
-    "pick"
-   ],
-   [
-    "wife",
-    "Person",
-    "j57",
     "pick"
    ],
    [
@@ -11200,6 +11214,24 @@
     "why",
     "Thing",
     "j75",
+    "pick"
+   ],
+   [
+    "day",
+    "Thing",
+    "j76",
+    "pick"
+   ],
+   [
+    "one",
+    "Action",
+    "j76",
+    "pick"
+   ],
+   [
+    "wife",
+    "Person",
+    "j76",
     "pick"
    ]
   ],
@@ -14063,6 +14095,10 @@
   "old.people": "people(what: Thing)",
   "see.ba": "ba(what: Thing)",
   "then.asked": "asked(what: Thing)",
+  "because.last": "last(what: Thing)",
+  "how.will": "will(act: Action)",
+  "modafokas.owe": "owe()",
+  "why.cheat": "cheat(who: Person)",
   "cooler.getdatemanufactured": "getDateManufactured()",
   "ronke.getlikes.contains": "getlikes.contains()",
   "kazeem.goodqualities.filter": "filter()",
@@ -14635,6 +14671,7 @@
    "hold",
    "honey",
    "hope",
+   "how",
    "however",
    "humility",
    "ideal",
@@ -14657,6 +14694,7 @@
    "love",
    "make",
    "mean",
+   "modafokas",
    "model",
    "money",
    "most",
@@ -14809,5 +14847,5 @@
   "epilogue": "quiet",
   "coda": "quiet"
  },
- "updated": "2026-11-27T17:48:35-05:00"
+ "updated": "2026-11-27T17:55:22-05:00"
 }

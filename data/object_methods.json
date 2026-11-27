@@ -20986,7 +20986,7 @@
     ],
     "text": "thing(what: Thing)"
    },
-   "receiver_class": "Thing",
+   "receiver_class": "Action",
    "prior": [],
    "faded": false,
    "last_run": "run-cf203b"
@@ -22331,12 +22331,12 @@
      ],
      "consequence": "What just happened: The woman laughed at Kemi: \"if dem no teh you!\" Then, slower: \"well, loosely translated to the colonizer's syntax in the least.\" She reminded everyone who started it: \"dehwyeh the wans that invented.\" Then she spoke to T",
      "consequence_job": "j39",
-     "resolved": "dehwyeh.wans(what=invented:Thing) from j38",
+     "resolved": "dehwyeh.wans(what=want:Thing) from j38",
      "injected": [
       {
        "param": "what",
        "class": "Thing",
-       "instance": "invented",
+       "instance": "want",
        "from_run": "run-cf203b",
        "from_job": "j38",
        "source": "pick"
@@ -22444,12 +22444,12 @@
      ],
      "consequence": "What just happened: The woman laughed at Kemi: \"if dem no teh you!\" Then, slower: \"well, loosely translated to the colonizer's syntax in the least.\" She reminded everyone who started it: \"dehwyeh the wans that invented.\" Then she spoke to T",
      "consequence_job": "j39",
-     "resolved": "well.loosely(what=translated:Thing) from j38",
+     "resolved": "well.loosely(what=want:Thing) from j38",
      "injected": [
       {
        "param": "what",
        "class": "Thing",
-       "instance": "translated",
+       "instance": "want",
        "from_run": "run-cf203b",
        "from_job": "j38",
        "source": "pick"
@@ -26070,14 +26070,14 @@
      ],
      "consequence": "The lines that landed: \"#seniorgehs - i can see you\", \"daz y am your wife\", \"#ttb - it's all about the data\" and \"the j and b can [[tbu]]\".",
      "consequence_job": "j58",
-     "resolved": "daz.y(who=wife:Person) from j57",
+     "resolved": "daz.y(who=women:Person) from j51",
      "injected": [
       {
        "param": "who",
        "class": "Person",
-       "instance": "wife",
+       "instance": "women",
        "from_run": "run-cf203b",
-       "from_job": "j57",
+       "from_job": "j51",
        "source": "pick"
       }
      ]
@@ -29333,6 +29333,245 @@
    "prior": [],
    "faded": false,
    "last_run": "run-cf203b"
+  },
+  "because.last": {
+   "object": "because",
+   "method": "last",
+   "args": [
+    "day"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j76",
+    "card": "w76",
+    "title": "because.last(day)",
+    "emoji": "🏸",
+    "at": "2026-11-27T17:54:49-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "because.last(day)",
+     "emoji": "🏸",
+     "arg": "day",
+     "run": "run-cf203b",
+     "job": "j76",
+     "tweets": [],
+     "consequence": "The lines that landed: \"how will one thing change when something else changes?\", \"[[wdigm,t?]] - this is why i cheat on my wife\", \"#oyinboman - you modafokas owe me!!\" and \"Because on the last day, God don do bad thing??\".",
+     "consequence_job": "j77",
+     "resolved": "because.last(what=day:Thing) from j76",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "day",
+       "from_run": "run-cf203b",
+       "from_job": "j76",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "day",
+      "first_run": "run-cf203b",
+      "first_job": "j76"
+     }
+    ],
+    "text": "last(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "how.will": {
+   "object": "how",
+   "method": "will",
+   "args": [
+    "one"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j76",
+    "card": "w76",
+    "title": "how.will(one)",
+    "emoji": "🔕",
+    "at": "2026-11-27T17:54:49-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "how.will(one)",
+     "emoji": "🔕",
+     "arg": "one",
+     "run": "run-cf203b",
+     "job": "j76",
+     "tweets": [
+      {
+       "text": "- how will one thing change when something else changes?",
+       "year": "2024"
+      }
+     ],
+     "consequence": "What just happened: The last card asked for the next line, the one that answers \"see ba, that first crush type of love!\".",
+     "consequence_job": "j77",
+     "resolved": "how.will(act=one:Action) from j76",
+     "injected": [
+      {
+       "param": "act",
+       "class": "Action",
+       "instance": "one",
+       "from_run": "run-cf203b",
+       "from_job": "j76",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "act",
+      "class": "Action",
+      "default": "one",
+      "first_run": "run-cf203b",
+      "first_job": "j76"
+     }
+    ],
+    "text": "will(act: Action)"
+   },
+   "receiver_class": "Manner",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "modafokas.owe": {
+   "object": "modafokas",
+   "method": "owe",
+   "args": [
+    ""
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j76",
+    "card": "w76",
+    "title": "modafokas.owe()",
+    "emoji": "👓",
+    "at": "2026-11-27T17:54:49-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "modafokas.owe()",
+     "emoji": "👓",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j76",
+     "tweets": [
+      {
+       "text": "#oyinboman - you modafokas owe me!!",
+       "year": "2025"
+      }
+     ],
+     "consequence": "The lines that landed: \"how will one thing change when something else changes?\", \"[[wdigm,t?]] - this is why i cheat on my wife\", \"#oyinboman - you modafokas owe me!!\" and \"Because on the last day, God don do bad thing??\".",
+     "consequence_job": "j77",
+     "resolved": "modafokas.owe()",
+     "injected": []
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [],
+    "text": "owe()"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "why.cheat": {
+   "object": "why",
+   "method": "cheat",
+   "args": [
+    "wife"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j76",
+    "card": "w76",
+    "title": "why.cheat(wife)",
+    "emoji": "🧥",
+    "at": "2026-11-27T17:54:49-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "why.cheat(wife)",
+     "emoji": "🧥",
+     "arg": "wife",
+     "run": "run-cf203b",
+     "job": "j76",
+     "tweets": [
+      {
+       "text": "[[wdigm,t?]] - this is why i cheat on my wife",
+       "year": "2026",
+       "id": "2024979310612717784"
+      }
+     ],
+     "consequence": "The lines that landed: \"how will one thing change when something else changes?\", \"[[wdigm,t?]] - this is why i cheat on my wife\", \"#oyinboman - you modafokas owe me!!\" and \"Because on the last day, God don do bad thing??\".",
+     "consequence_job": "j77",
+     "resolved": "why.cheat(who=wife:Person) from j76",
+     "injected": [
+      {
+       "param": "who",
+       "class": "Person",
+       "instance": "wife",
+       "from_run": "run-cf203b",
+       "from_job": "j76",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "who",
+      "class": "Person",
+      "default": "wife",
+      "first_run": "run-cf203b",
+      "first_job": "j57"
+     }
+    ],
+    "text": "cheat(who: Person)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
   },
   "cooler.getdatemanufactured": {
    "object": "cooler",
@@ -33402,7 +33641,8 @@
   ],
   "because": [
    "because.ure",
-   "because.people"
+   "because.people",
+   "because.last"
   ],
   "believe": [
    "believe.can"
@@ -33873,6 +34113,9 @@
   "hours": [
    "hours.could"
   ],
+  "how": [
+   "how.will"
+  ],
   "however": [
    "however.go"
   ],
@@ -34117,6 +34360,9 @@
   ],
   "media": [
    "media.all"
+  ],
+  "modafokas": [
+   "modafokas.owe"
   ],
   "model": [
    "model.con"
@@ -34659,7 +34905,8 @@
    "who.has"
   ],
   "why": [
-   "why.thunder"
+   "why.thunder",
+   "why.cheat"
   ],
   "wife": [
    "wife.kill"
@@ -52133,6 +52380,7 @@
     "from": "21efbcb0b2c1",
     "title": "225. peace of mind",
     "funcs": [
+     "modafokas.owe",
      "titi.keep"
     ]
    }
@@ -59807,6 +60055,10 @@
     "old.people",
     "see.ba",
     "then.asked",
+    "because.last",
+    "how.will",
+    "modafokas.owe",
+    "why.cheat",
     "cli.cli",
     "thryd.importtheme",
     "kemi.ismarried",
@@ -60285,7 +60537,8 @@
   "21efbcb0b2c1": {
    "title": "225. peace of mind",
    "funcs": [
-    "titi.keep"
+    "titi.keep",
+    "modafokas.owe"
    ],
    "runs": []
   },
@@ -61176,7 +61429,11 @@
     "lez.see",
     "old.people",
     "see.ba",
-    "then.asked"
+    "then.asked",
+    "because.last",
+    "how.will",
+    "modafokas.owe",
+    "why.cheat"
    ],
    "runs": [
     "run-cf203b"
@@ -61727,7 +61984,8 @@
   "a81bb2664da8": {
    "title": "1031. trees must grow in heaven",
    "funcs": [
-    "make.eff"
+    "make.eff",
+    "how.will"
    ],
    "runs": []
   },
@@ -65002,7 +65260,8 @@
   ],
   "because": [
    "because.ure",
-   "because.people"
+   "because.people",
+   "because.last"
   ],
   "believe": [
    "believe.can"
@@ -65316,6 +65575,9 @@
   "hours": [
    "hours.could"
   ],
+  "how": [
+   "how.will"
+  ],
   "however": [
    "however.go"
   ],
@@ -65509,6 +65771,9 @@
   ],
   "media": [
    "media.all"
+  ],
+  "modafokas": [
+   "modafokas.owe"
   ],
   "model": [
    "model.con"
@@ -65963,7 +66228,8 @@
    "who.has"
   ],
   "why": [
-   "why.thunder"
+   "why.thunder",
+   "why.cheat"
   ],
   "wife": [
    "wife.kill"
@@ -66385,6 +66651,8 @@
   "suleja": [],
   "old": [],
   "see": [],
+  "how": [],
+  "modafokas": [],
   "cooler": [],
   "kazeem.goodqualities": [],
   "app": [],
@@ -66644,6 +66912,7 @@
    "hold",
    "honey",
    "hope",
+   "how",
    "however",
    "humility",
    "ideal",
@@ -66666,6 +66935,7 @@
    "love",
    "make",
    "mean",
+   "modafokas",
    "model",
    "money",
    "most",
@@ -66759,5 +67029,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-27T17:49:27-05:00"
+ "updated": "2026-11-27T17:55:22-05:00"
 }
