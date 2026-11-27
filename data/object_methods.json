@@ -16517,8 +16517,34 @@
     "emoji": "🪣",
     "at": "2026-11-24T23:40:56-05:00"
    },
-   "calls": 0,
+   "calls": 1,
    "titles": [
+    {
+     "title": "come.back(defenses)",
+     "emoji": "📗",
+     "arg": "defenses",
+     "run": "run-cf203b",
+     "job": "j74",
+     "tweets": [
+      {
+       "text": "#thryd - or come back to defenses",
+       "year": "2024"
+      }
+     ],
+     "consequence": "The lines that landed: \"[[ag]] - lez see who is most prolific\", \"loooool that's why their jollof taste like ice cream 🤣🤣🤣\", \"#thryd - or come back to defenses\" and \"Do you understand now?",
+     "consequence_job": "j75",
+     "resolved": "come.back(act=defenses:Action) from j74",
+     "injected": [
+      {
+       "param": "act",
+       "class": "Action",
+       "instance": "defenses",
+       "from_run": "run-cf203b",
+       "from_job": "j74",
+       "source": "pick"
+      }
+     ]
+    },
     {
      "title": "come.back(defenses)",
      "emoji": "🪣",
@@ -16561,7 +16587,16 @@
     "text": "back(act: Action)"
    },
    "receiver_class": "Action",
-   "prior": [],
+   "prior": [
+    {
+     "id": "go.back",
+     "title": "go.back(4pm)",
+     "run": "run-cf203b",
+     "job": "j29",
+     "at": "2026-11-26T01:33:12-05:00",
+     "why": "same method"
+    }
+   ],
    "faded": false,
    "last_run": "run-cf203b"
   },
@@ -21162,7 +21197,7 @@
        "instance": "give",
        "from_run": "run-cf203b",
        "from_job": "j32",
-       "source": "pick"
+       "source": "original"
       }
      ]
     }
@@ -21363,15 +21398,15 @@
      ],
      "consequence": "Then she hardens: \"i can never forgive dat oloriburuku,\" and \"the lie can never truth.\" But when Tobi touches her arm she breaks: \"when you touch me yea i feel butterflies.\" The cooler subject has been tapped 11 times since this agenda bega",
      "consequence_job": "j34",
-     "resolved": "lie.truth(when=never:Frequency) from j33",
+     "resolved": "lie.truth(when=never:Frequency) from j22",
      "injected": [
       {
        "param": "when",
        "class": "Frequency",
        "instance": "never",
-       "from_run": "run-cf203b",
-       "from_job": "j33",
-       "source": "pick"
+       "from_run": "run-5a58c4",
+       "from_job": "j22",
+       "source": "original"
       }
      ]
     }
@@ -21436,7 +21471,7 @@
        "instance": "butterflies",
        "from_run": "run-cf203b",
        "from_job": "j33",
-       "source": "pick"
+       "source": "original"
       }
      ]
     }
@@ -21595,7 +21630,8 @@
    "object": "understand",
    "method": "now",
    "args": [
-    ""
+    "",
+    "car"
    ],
    "runs": [
     "run-cf203b"
@@ -21608,8 +21644,20 @@
     "emoji": "🪿",
     "at": "2026-11-26T11:35:21-05:00"
    },
-   "calls": 1,
+   "calls": 2,
    "titles": [
+    {
+     "title": "understand.now(car)",
+     "emoji": "🎵",
+     "arg": "car",
+     "run": "run-cf203b",
+     "job": "j74",
+     "tweets": [],
+     "consequence": "What just happened: The last card asked for the next line, the one that answers \"because people love to take freedoms - naira.",
+     "consequence_job": "j75",
+     "resolved": "understand.now()",
+     "injected": []
+    },
     {
      "title": "understand.now()",
      "emoji": "🎱",
@@ -21652,7 +21700,16 @@
     "text": "now()"
    },
    "receiver_class": "Thing",
-   "prior": [],
+   "prior": [
+    {
+     "id": "understand.now",
+     "title": "understand.now()",
+     "run": "run-cf203b",
+     "job": "j71",
+     "at": "2026-11-27T16:57:46-05:00",
+     "why": "same method"
+    }
+   ],
    "faded": false,
    "last_run": "run-cf203b"
   },
@@ -27892,15 +27949,15 @@
      ],
      "consequence": "The lines that landed: \"Sinzling juniorboys, love way you lie.\", \"friend husband wedding we wey go last week.",
      "consequence_job": "j69",
-     "resolved": "sinzling.juniorboys(feeling=butterflies:Feeling) from j33",
+     "resolved": "sinzling.juniorboys(feeling=love:Feeling) from j58",
      "injected": [
       {
        "param": "feeling",
        "class": "Feeling",
-       "instance": "butterflies",
-       "from_run": "run-cf203b",
-       "from_job": "j33",
-       "source": "pick"
+       "instance": "love",
+       "from_run": "run-5a58c4",
+       "from_job": "j58",
+       "source": "original"
       }
      ]
     }
@@ -28952,6 +29009,104 @@
    "prior": [],
    "faded": false,
    "last_run": "run-cf203b"
+  },
+  "lez.see": {
+   "object": "lez",
+   "method": "see",
+   "args": [
+    "who"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j74",
+    "card": "w74",
+    "title": "lez.see(who)",
+    "emoji": "🏇",
+    "at": "2026-11-27T17:27:20-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "lez.see(who)",
+     "emoji": "🏇",
+     "arg": "who",
+     "run": "run-cf203b",
+     "job": "j74",
+     "tweets": [
+      {
+       "text": "[[ag]] - lez see who is most prolific",
+       "year": "2024"
+      }
+     ],
+     "consequence": "The lines that landed: \"[[ag]] - lez see who is most prolific\", \"loooool that's why their jollof taste like ice cream 🤣🤣🤣\", \"#thryd - or come back to defenses\" and \"Do you understand now?",
+     "consequence_job": "j75",
+     "resolved": "lez.see(what=who:Thing) from j74",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "who",
+       "from_run": "run-cf203b",
+       "from_job": "j74",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "who",
+      "first_run": "run-cf203b",
+      "first_job": "j74"
+     }
+    ],
+    "text": "see(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [
+    {
+     "id": "can.see",
+     "title": "can.see()",
+     "run": "run-cf203b",
+     "job": "j57",
+     "at": "2026-11-26T21:15:02-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "can.see",
+     "title": "can.see(code)",
+     "run": "run-cf203b",
+     "job": "j44",
+     "at": "2026-11-26T14:57:55-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "can.see",
+     "title": "can.see(how)",
+     "run": "run-cf203b",
+     "job": "j12",
+     "at": "2026-11-25T13:04:53-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "teo.see",
+     "title": "teo.see(way)",
+     "run": "run-5a58c4",
+     "job": "j52",
+     "at": "2026-11-24T15:12:14-05:00",
+     "why": "same method"
+    }
+   ],
+   "faded": false,
+   "last_run": null
   },
   "cooler.getdatemanufactured": {
    "object": "cooler",
@@ -33544,7 +33699,8 @@
    "lehgeet.ni"
   ],
   "lez": [
-   "lez.anada"
+   "lez.anada",
+   "lez.see"
   ],
   "lie": [
    "lie.truth"
@@ -59320,6 +59476,7 @@
     "humility.really",
     "money.becomes",
     "suleja.texas",
+    "lez.see",
     "cli.cli",
     "thryd.importtheme",
     "kemi.ismarried",
@@ -60683,7 +60840,8 @@
     "because.people",
     "humility.really",
     "money.becomes",
-    "suleja.texas"
+    "suleja.texas",
+    "lez.see"
    ],
    "runs": [
     "run-cf203b"
@@ -61212,7 +61370,8 @@
   "a6a89764a971": {
    "title": "1205. farotimi, paul, and silas",
    "funcs": [
-    "however.go"
+    "however.go",
+    "lez.see"
    ],
    "runs": []
   },
@@ -64925,7 +65084,8 @@
    "lehgeet.ni"
   ],
   "lez": [
-   "lez.anada"
+   "lez.anada",
+   "lez.see"
   ],
   "lie": [
    "lie.truth"
@@ -65849,7 +66009,10 @@
   "friend": [],
   "send": [],
   "sinzling": [],
-  "lez": [],
+  "lez": [
+   "Readable",
+   "Watchable"
+  ],
   "ami": [],
   "draw": [],
   "most": [],
@@ -66229,5 +66392,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-27T17:17:16-05:00"
+ "updated": "2026-11-27T17:27:28-05:00"
 }

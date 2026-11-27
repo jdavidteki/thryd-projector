@@ -105,11 +105,11 @@
    "param": "what",
    "methods": [
     "say",
-    "find",
-    "see"
+    "see",
+    "find"
    ],
-   "instances": 521,
-   "arg_instances": 194,
+   "instances": 522,
+   "arg_instances": 196,
    "parent": null,
    "chain": [
     "Thing"
@@ -1337,10 +1337,11 @@
   "car": {
    "class": "Thing",
    "cue": "default",
-   "first_run": "run-9780ba",
-   "first_job": null,
-   "source": "stage",
+   "first_run": "run-cf203b",
+   "first_job": "j74",
+   "source": "pick",
    "runs": [
+    "run-cf203b",
     "run-9780ba"
    ],
    "tweets": []
@@ -8868,6 +8869,22 @@
     }
    ]
   },
+  "who": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-cf203b",
+   "first_job": "j74",
+   "source": "pick",
+   "runs": [
+    "run-cf203b"
+   ],
+   "tweets": [
+    {
+     "text": "[[ag]] - lez see who is most prolific",
+     "year": "2024"
+    }
+   ]
+  },
   "wife": {
    "class": "Person",
    "cue": "word",
@@ -10662,24 +10679,6 @@
   ],
   "run-cf203b": [
    [
-    "give",
-    "Thing",
-    "j32",
-    "pick"
-   ],
-   [
-    "never",
-    "Frequency",
-    "j33",
-    "pick"
-   ],
-   [
-    "butterflies",
-    "Feeling",
-    "j33",
-    "pick"
-   ],
-   [
     "senrenre",
     "Thing",
     "j35",
@@ -11139,6 +11138,24 @@
     "last",
     "Thing",
     "j73",
+    "pick"
+   ],
+   [
+    "defenses",
+    "Action",
+    "j74",
+    "pick"
+   ],
+   [
+    "car",
+    "Thing",
+    "j74",
+    "pick"
+   ],
+   [
+    "who",
+    "Thing",
+    "j74",
     "pick"
    ]
   ],
@@ -13998,6 +14015,7 @@
   "humility.really": "really(what: Thing)",
   "money.becomes": "becomes(what: Thing)",
   "suleja.texas": "texas()",
+  "lez.see": "see(what: Thing)",
   "cooler.getdatemanufactured": "getDateManufactured()",
   "ronke.getlikes.contains": "getlikes.contains()",
   "kazeem.goodqualities.filter": "filter()",
@@ -14190,6 +14208,7 @@
     "irteiutk",
     "kazeem",
     "kunle",
+    "lez",
     "mama",
     "nobody",
     "now",
@@ -14251,6 +14270,7 @@
     "everywhere",
     "folake",
     "history",
+    "lez",
     "mamaronke",
     "nobody",
     "order",
@@ -14738,5 +14758,5 @@
   "epilogue": "quiet",
   "coda": "quiet"
  },
- "updated": "2026-11-27T17:16:24-05:00"
+ "updated": "2026-11-27T17:27:28-05:00"
 }
