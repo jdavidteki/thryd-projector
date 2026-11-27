@@ -105,11 +105,11 @@
    "param": "what",
    "methods": [
     "say",
-    "see",
-    "find"
+    "find",
+    "see"
    ],
-   "instances": 510,
-   "arg_instances": 183,
+   "instances": 512,
+   "arg_instances": 185,
    "parent": null,
    "chain": [
     "Thing"
@@ -1054,6 +1054,17 @@
    "runs": [
     "run-g3-B",
     "run-g3-A"
+   ],
+   "tweets": []
+  },
+  "black": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-cf203b",
+   "first_job": "j68",
+   "source": "pick",
+   "runs": [
+    "run-cf203b"
    ],
    "tweets": []
   },
@@ -4751,6 +4762,7 @@
    "source": "pick",
    "runs": [
     "run-5a58c4",
+    "run-cf203b",
     "run-2eb42d",
     "run-b9b963",
     "run-0ae93c"
@@ -4762,6 +4774,10 @@
     },
     {
      "text": "— daz what [[love]] is",
+     "year": "2025"
+    },
+    {
+     "text": "Sinzling juniorboys, love way you lie.",
      "year": "2025"
     }
    ]
@@ -8659,6 +8675,23 @@
     }
    ]
   },
+  "wedding": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-cf203b",
+   "first_job": "j68",
+   "source": "pick",
+   "runs": [
+    "run-cf203b"
+   ],
+   "tweets": [
+    {
+     "text": "friend husband wedding we wey go last week. bobo yen ti ya werey! 🤣🤣🤣",
+     "year": "2023",
+     "id": "1667569625641394180"
+    }
+   ]
+  },
   "weird": {
    "class": "Thing",
    "cue": "default",
@@ -10468,24 +10501,6 @@
   ],
   "run-cf203b": [
    [
-    "toilet",
-    "Thing",
-    "j21",
-    "pick"
-   ],
-   [
-    "less",
-    "Quantity",
-    "j21",
-    "pick"
-   ],
-   [
-    "reminds",
-    "Action",
-    "j23",
-    "pick"
-   ],
-   [
     "movement",
     "Thing",
     "j23",
@@ -10537,12 +10552,6 @@
     "4pm",
     "Action",
     "j29",
-    "pick"
-   ],
-   [
-    "wan",
-    "Thing",
-    "j30",
     "pick"
    ],
    [
@@ -10945,6 +10954,30 @@
     "familiar",
     "Thing",
     "j66",
+    "pick"
+   ],
+   [
+    "wan",
+    "Thing",
+    "j68",
+    "pick"
+   ],
+   [
+    "wedding",
+    "Thing",
+    "j68",
+    "pick"
+   ],
+   [
+    "black",
+    "Thing",
+    "j68",
+    "pick"
+   ],
+   [
+    "love",
+    "Feeling",
+    "j68",
     "pick"
    ]
   ],
@@ -13785,6 +13818,9 @@
   "would.sadly": "sadly(what: Thing)",
   "end.rope": "rope()",
   "higherups.powerhouses": "powerhouses()",
+  "friend.husband": "husband(what: Thing)",
+  "send.money": "money(what: Thing)",
+  "sinzling.juniorboys": "juniorboys(feeling: Feeling)",
   "cooler.getdatemanufactured": "getDateManufactured()",
   "ronke.getlikes.contains": "getlikes.contains()",
   "kazeem.goodqualities.filter": "filter()",
@@ -14336,6 +14372,7 @@
    "feminist",
    "finding",
    "forgive",
+   "friend",
    "get",
    "global",
    "go",
@@ -14396,10 +14433,12 @@
    "russian",
    "say",
    "self",
+   "send",
    "share",
    "shi",
    "should",
    "shu",
+   "sinzling",
    "skipping",
    "slapping",
    "something",
@@ -14511,5 +14550,5 @@
   "epilogue": "quiet",
   "coda": "quiet"
  },
- "updated": "2026-11-27T13:52:15-05:00"
+ "updated": "2026-11-27T14:10:52-05:00"
 }

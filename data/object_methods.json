@@ -18822,15 +18822,15 @@
      ],
      "consequence": "She smiles and says \"daz what ton me on.\" When he starts on the receipt she cuts him off: \"skipping consumes less energy.\" She laughs, \"a poty asin toilet or apoty eri?\", then reaches up for his head: \"remove your cap.\" 📖 Now: The phone is ",
      "consequence_job": "j22",
-     "resolved": "daz.what(what=toilet:Thing) from j21",
+     "resolved": "daz.what(what=ton:Thing) from j21",
      "injected": [
       {
        "param": "what",
        "class": "Thing",
-       "instance": "toilet",
+       "instance": "ton",
        "from_run": "run-cf203b",
        "from_job": "j21",
-       "source": "pick"
+       "source": "original"
       }
      ]
     }
@@ -18895,7 +18895,7 @@
        "instance": "toilet",
        "from_run": "run-cf203b",
        "from_job": "j21",
-       "source": "pick"
+       "source": "original"
       }
      ]
     }
@@ -18960,7 +18960,7 @@
        "instance": "less",
        "from_run": "run-cf203b",
        "from_job": "j21",
-       "source": "pick"
+       "source": "original"
       }
      ]
     }
@@ -19107,15 +19107,15 @@
      ],
      "consequence": "Kemi laughs \"have fun!\" and sways her hips at him, and he mutters \"a global ritual engine,\" like it's the only way to explain what she does to him.",
      "consequence_job": "j23",
-     "resolved": "global.ritual(what=toilet:Thing) from j21",
+     "resolved": "global.ritual(what=engine:Thing) from j34",
      "injected": [
       {
        "param": "what",
        "class": "Thing",
-       "instance": "toilet",
-       "from_run": "run-cf203b",
-       "from_job": "j21",
-       "source": "pick"
+       "instance": "engine",
+       "from_run": "run-5a58c4",
+       "from_job": "j34",
+       "source": "original"
       }
      ]
     }
@@ -19220,12 +19220,12 @@
      ],
      "consequence": "Then she goes cold: \"ehen?",
      "consequence_job": "j24",
-     "resolved": "ehen.serious(act=reminds:Action) from j23",
+     "resolved": "ehen.serious(act=broadway:Action) from j23",
      "injected": [
       {
        "param": "act",
        "class": "Action",
-       "instance": "reminds",
+       "instance": "broadway",
        "from_run": "run-cf203b",
        "from_job": "j23",
        "source": "pick"
@@ -20545,8 +20545,34 @@
     "emoji": "🦅",
     "at": "2026-11-26T01:41:43-05:00"
    },
-   "calls": 0,
+   "calls": 1,
    "titles": [
+    {
+     "title": "can.find(wan)",
+     "emoji": "🪖",
+     "arg": "wan",
+     "run": "run-cf203b",
+     "job": "j68",
+     "tweets": [
+      {
+       "text": "— the #thryd is if you can find wan line",
+       "year": "2025"
+      }
+     ],
+     "consequence": "🤣🤣🤣\", \"— the #thryd is if you can find wan line\" and \"and send some money to a black person today!",
+     "consequence_job": "j69",
+     "resolved": "can.find(what=wan:Thing) from j68",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "wan",
+       "from_run": "run-cf203b",
+       "from_job": "j68",
+       "source": "pick"
+      }
+     ]
+    },
     {
      "title": "can.find(wan)",
      "emoji": "🦅",
@@ -20561,12 +20587,12 @@
      ],
      "consequence": "What just happened: The woman dares them: \"the #thryd is if you can find wan line\" in those photos.",
      "consequence_job": "j31",
-     "resolved": "can.find(what=wan:Thing) from j30",
+     "resolved": "can.find(what=think:Thing) from j30",
      "injected": [
       {
        "param": "what",
        "class": "Thing",
-       "instance": "wan",
+       "instance": "think",
        "from_run": "run-cf203b",
        "from_job": "j30",
        "source": "pick"
@@ -20590,6 +20616,14 @@
    },
    "receiver_class": "Thing",
    "prior": [
+    {
+     "id": "when.find",
+     "title": "when.find(person)",
+     "run": "run-cf203b",
+     "job": "j66",
+     "at": "2026-11-27T13:26:27-05:00",
+     "why": "same method"
+    },
     {
      "id": "marisol.find",
      "title": "marisol.find(love)",
@@ -27639,6 +27673,197 @@
    "faded": false,
    "last_run": "run-cf203b"
   },
+  "friend.husband": {
+   "object": "friend",
+   "method": "husband",
+   "args": [
+    "wedding"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j68",
+    "card": "w68",
+    "title": "friend.husband(wedding)",
+    "emoji": "🎒",
+    "at": "2026-11-27T14:10:42-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "friend.husband(wedding)",
+     "emoji": "🎒",
+     "arg": "wedding",
+     "run": "run-cf203b",
+     "job": "j68",
+     "tweets": [
+      {
+       "text": "friend husband wedding we wey go last week. bobo yen ti ya werey! 🤣🤣🤣",
+       "year": "2023",
+       "id": "1667569625641394180"
+      }
+     ],
+     "consequence": "The lines that landed: \"Sinzling juniorboys, love way you lie.\", \"friend husband wedding we wey go last week.",
+     "consequence_job": "j69",
+     "resolved": "friend.husband(what=wedding:Thing) from j68",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "wedding",
+       "from_run": "run-cf203b",
+       "from_job": "j68",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "wedding",
+      "first_run": "run-cf203b",
+      "first_job": "j68"
+     }
+    ],
+    "text": "husband(what: Thing)"
+   },
+   "receiver_class": "Person",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "send.money": {
+   "object": "send",
+   "method": "money",
+   "args": [
+    "black"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j68",
+    "card": "w68",
+    "title": "send.money(black)",
+    "emoji": "📘",
+    "at": "2026-11-27T14:10:42-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "send.money(black)",
+     "emoji": "📘",
+     "arg": "black",
+     "run": "run-cf203b",
+     "job": "j68",
+     "tweets": [],
+     "consequence": "🤣🤣🤣\", \"— the #thryd is if you can find wan line\" and \"and send some money to a black person today!",
+     "consequence_job": "j69",
+     "resolved": "send.money(what=black:Thing) from j68",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "black",
+       "from_run": "run-cf203b",
+       "from_job": "j68",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "black",
+      "first_run": "run-cf203b",
+      "first_job": "j68"
+     }
+    ],
+    "text": "money(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "sinzling.juniorboys": {
+   "object": "sinzling",
+   "method": "juniorboys",
+   "args": [
+    "love"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j68",
+    "card": "w68",
+    "title": "sinzling.juniorboys(love)",
+    "emoji": "🗳️",
+    "at": "2026-11-27T14:10:42-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "sinzling.juniorboys(love)",
+     "emoji": "🗳️",
+     "arg": "love",
+     "run": "run-cf203b",
+     "job": "j68",
+     "tweets": [
+      {
+       "text": "Sinzling juniorboys, love way you lie.",
+       "year": "2025"
+      }
+     ],
+     "consequence": "The lines that landed: \"Sinzling juniorboys, love way you lie.\", \"friend husband wedding we wey go last week.",
+     "consequence_job": "j69",
+     "resolved": "sinzling.juniorboys(feeling=love:Feeling) from j68",
+     "injected": [
+      {
+       "param": "feeling",
+       "class": "Feeling",
+       "instance": "love",
+       "from_run": "run-cf203b",
+       "from_job": "j68",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "feeling",
+      "class": "Feeling",
+      "default": "love",
+      "first_run": "run-5a58c4",
+      "first_job": "j58"
+     }
+    ],
+    "text": "juniorboys(feeling: Feeling)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
   "cooler.getdatemanufactured": {
    "object": "cooler",
    "method": "getDateManufactured",
@@ -32004,6 +32229,9 @@
   "forgive": [
    "forgive.oloriburuku"
   ],
+  "friend": [
+   "friend.husband"
+  ],
   "fuel": [
    "fuel.buy"
   ],
@@ -32570,6 +32798,9 @@
   "seller": [
    "seller.feel"
   ],
+  "send": [
+   "send.money"
+  ],
   "shapes": [
    "shapes.do"
   ],
@@ -32588,6 +32819,9 @@
   ],
   "sia": [
    "sia.count"
+  ],
+  "sinzling": [
+   "sinzling.juniorboys"
   ],
   "skipping": [
    "skipping.consumes"
@@ -57907,6 +58141,9 @@
     "would.sadly",
     "end.rope",
     "higherups.powerhouses",
+    "friend.husband",
+    "send.money",
+    "sinzling.juniorboys",
     "cli.cli",
     "thryd.importtheme",
     "kemi.ismarried",
@@ -59243,7 +59480,10 @@
     "when.find",
     "would.sadly",
     "end.rope",
-    "higherups.powerhouses"
+    "higherups.powerhouses",
+    "friend.husband",
+    "send.money",
+    "sinzling.juniorboys"
    ],
    "runs": [
     "run-cf203b"
@@ -60262,6 +60502,13 @@
    "title": "116. pie",
    "funcs": [
     "calla.check"
+   ],
+   "runs": []
+  },
+  "d886e4c0a26a": {
+   "title": "wonderwake",
+   "funcs": [
+    "sinzling.juniorboys"
    ],
    "runs": []
   },
@@ -61673,6 +61920,9 @@
   "1*6HL5YNv8ctvM4bl6rHfSlA.gif": [
    "e164727d4c98",
    "ec307b47b819"
+  ],
+  "1*ZqZJL4edB31z3B6FyxKamg.jpeg": [
+   "d886e4c0a26a"
   ],
   "1*fLpUn94y8lK_dAdStwYooA.gif": [
    "ddeca0a1b3fa"
@@ -63224,6 +63474,9 @@
   "forgive": [
    "forgive.oloriburuku"
   ],
+  "friend": [
+   "friend.husband"
+  ],
   "fuel": [
    "fuel.buy"
   ],
@@ -63695,6 +63948,9 @@
   "seller": [
    "seller.feel"
   ],
+  "send": [
+   "send.money"
+  ],
   "shapes": [
    "shapes.do"
   ],
@@ -63713,6 +63969,9 @@
   ],
   "sia": [
    "sia.count"
+  ],
+  "sinzling": [
+   "sinzling.juniorboys"
   ],
   "skipping": [
    "skipping.consumes"
@@ -64308,6 +64567,9 @@
   "would": [],
   "end": [],
   "higherups": [],
+  "friend": [],
+  "send": [],
+  "sinzling": [],
   "cooler": [],
   "kazeem.goodqualities": [],
   "app": [],
@@ -64550,6 +64812,7 @@
    "feminist",
    "finding",
    "forgive",
+   "friend",
    "get",
    "global",
    "go",
@@ -64610,10 +64873,12 @@
    "russian",
    "say",
    "self",
+   "send",
    "share",
    "shi",
    "should",
    "shu",
+   "sinzling",
    "skipping",
    "slapping",
    "something",
@@ -64666,5 +64931,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-27T13:53:06-05:00"
+ "updated": "2026-11-27T14:10:52-05:00"
 }
