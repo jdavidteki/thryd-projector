@@ -15050,7 +15050,7 @@
   },
   "run-cf203b": {
    "forked_from": "safe:731d52737690",
-   "head": "116e9c666f",
+   "head": "f25cc05663",
    "commits": [
     {
      "id": "387e402c1d",
@@ -16878,16 +16878,7 @@
         "op": "define"
        }
       ],
-      "instances": [
-       [
-        "slip",
-        "Place"
-       ],
-       [
-        "doubt",
-        "Thing"
-       ]
-      ]
+      "instances": []
      }
     },
     {
@@ -21981,11 +21972,11 @@
      }
     },
     {
-     "id": "29cef7e844",
+     "id": "41d0ed3363",
      "parent": "80b7309850",
      "branch": "run-cf203b",
      "job": "j70",
-     "at": "2026-11-27T16:44:02-0500",
+     "at": "2026-11-27T16:50:56-05:00",
      "genre": "rising",
      "beat": "now",
      "diff": {
@@ -22032,13 +22023,38 @@
        }
       ],
       "facts_total": 5,
-      "functions": [],
-      "instances": []
+      "functions": [
+       {
+        "func": "ami.genius",
+        "title": "ami.genius()",
+        "op": "define"
+       },
+       {
+        "func": "now.una",
+        "title": "now.una(don)",
+        "op": "define"
+       },
+       {
+        "func": "will.read",
+        "title": "will.read(frame)",
+        "op": "define"
+       }
+      ],
+      "instances": [
+       [
+        "don",
+        "Thing"
+       ],
+       [
+        "frame",
+        "Thing"
+       ]
+      ]
      }
     },
     {
-     "id": "116e9c666f",
-     "parent": "29cef7e844",
+     "id": "f25cc05663",
+     "parent": "41d0ed3363",
      "branch": "run-cf203b",
      "job": "j71",
      "at": "2026-11-27T16:51:04-0500",
@@ -23036,10 +23052,10 @@
   "run-0ae93c": "a11a1eab61",
   "run-3a15d2": "fbc46c6eb7",
   "run-ab4653": "dd8e54daee",
-  "run-cf203b": "116e9c666f",
+  "run-cf203b": "f25cc05663",
   "run-888ea9": "7aa0131911",
   "run-cb805f": "8d23a93627"
  },
  "commits": 224,
- "updated": "2026-11-27T16:51:43-05:00"
+ "updated": "2026-11-27T16:52:33-05:00"
 }
