@@ -55,8 +55,8 @@
    "param": "how",
    "methods": [
     "fold",
-    "air",
-    "any"
+    "something",
+    "air"
    ],
    "instances": 9,
    "arg_instances": 9,
@@ -108,8 +108,8 @@
     "see",
     "find"
    ],
-   "instances": 522,
-   "arg_instances": 196,
+   "instances": 525,
+   "arg_instances": 199,
    "parent": null,
    "chain": [
     "Thing"
@@ -2196,6 +2196,23 @@
     }
    ]
   },
+  "doing": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-cf203b",
+   "first_job": "j75",
+   "source": "pick",
+   "runs": [
+    "run-cf203b"
+   ],
+   "tweets": [
+    {
+     "text": "old people doing things the old people way. lol. #life",
+     "year": "2023",
+     "id": "1669728401303773184"
+    }
+   ]
+  },
   "domicilary": {
    "class": "Thing",
    "cue": "default",
@@ -2826,6 +2843,17 @@
    "runs": [
     "run-g1-A",
     "run-g1-B"
+   ],
+   "tweets": []
+  },
+  "first": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-cf203b",
+   "first_job": "j75",
+   "source": "pick",
+   "runs": [
+    "run-cf203b"
    ],
    "tweets": []
   },
@@ -8885,6 +8913,22 @@
     }
    ]
   },
+  "why": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-cf203b",
+   "first_job": "j75",
+   "source": "pick",
+   "runs": [
+    "run-cf203b"
+   ],
+   "tweets": [
+    {
+     "text": "— then she asked me why can’t you see",
+     "year": "2024"
+    }
+   ]
+  },
   "wife": {
    "class": "Person",
    "cue": "word",
@@ -10679,30 +10723,6 @@
   ],
   "run-cf203b": [
    [
-    "senrenre",
-    "Thing",
-    "j35",
-    "pick"
-   ],
-   [
-    "quake",
-    "Thing",
-    "j35",
-    "pick"
-   ],
-   [
-    "song",
-    "Thing",
-    "j36",
-    "pick"
-   ],
-   [
-    "wrong",
-    "Thing",
-    "j37",
-    "pick"
-   ],
-   [
     "invented",
     "Thing",
     "j38",
@@ -11156,6 +11176,30 @@
     "who",
     "Thing",
     "j74",
+    "pick"
+   ],
+   [
+    "definitely",
+    "Manner",
+    "j75",
+    "pick"
+   ],
+   [
+    "doing",
+    "Thing",
+    "j75",
+    "pick"
+   ],
+   [
+    "first",
+    "Thing",
+    "j75",
+    "pick"
+   ],
+   [
+    "why",
+    "Thing",
+    "j75",
     "pick"
    ]
   ],
@@ -14016,6 +14060,9 @@
   "money.becomes": "becomes(what: Thing)",
   "suleja.texas": "texas()",
   "lez.see": "see(what: Thing)",
+  "old.people": "people(what: Thing)",
+  "see.ba": "ba(what: Thing)",
+  "then.asked": "asked(what: Thing)",
   "cooler.getdatemanufactured": "getDateManufactured()",
   "ronke.getlikes.contains": "getlikes.contains()",
   "kazeem.goodqualities.filter": "filter()",
@@ -14109,7 +14156,8 @@
   "thryd.jumpahead": "jumpahead()",
   "new.powercouple": "powercouple()",
   "new.nonprofitorganization": "nonprofitorganization()",
-  "kasai.settemperature": "settemperature()"
+  "kasai.settemperature": "settemperature()",
+  "thryd.changereality": "changereality()"
  },
  "parent": {
   "Person": "Thing",
@@ -14619,6 +14667,7 @@
    "nothing",
    "now",
    "ok",
+   "old",
    "once",
    "one",
    "ori",
@@ -14639,6 +14688,7 @@
    "rikwaya",
    "russian",
    "say",
+   "see",
    "self",
    "send",
    "share",
@@ -14759,5 +14809,5 @@
   "epilogue": "quiet",
   "coda": "quiet"
  },
- "updated": "2026-11-27T17:28:19-05:00"
+ "updated": "2026-11-27T17:48:35-05:00"
 }

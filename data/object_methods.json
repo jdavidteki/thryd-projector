@@ -19987,8 +19987,34 @@
     "emoji": "🦘",
     "at": "2026-11-26T00:43:26-05:00"
    },
-   "calls": 0,
+   "calls": 1,
    "titles": [
+    {
+     "title": "yeah.something(definitely)",
+     "emoji": "📚",
+     "arg": "definitely",
+     "run": "run-cf203b",
+     "job": "j75",
+     "tweets": [
+      {
+       "text": "#thryd - yeah, something definitely",
+       "year": "2024"
+      }
+     ],
+     "consequence": "#life\", \"— then she asked me why can’t you see\", \"#thryd - yeah, something definitely\" and \"see ba, that first crush type of love!\".",
+     "consequence_job": "j76",
+     "resolved": "yeah.something(how=definitely:Manner) from j75",
+     "injected": [
+      {
+       "param": "how",
+       "class": "Manner",
+       "instance": "definitely",
+       "from_run": "run-cf203b",
+       "from_job": "j75",
+       "source": "pick"
+      }
+     ]
+    },
     {
      "title": "yeah.something(definitely)",
      "emoji": "🦘",
@@ -21835,7 +21861,7 @@
        "instance": "senrenre",
        "from_run": "run-cf203b",
        "from_job": "j35",
-       "source": "pick"
+       "source": "original"
       }
      ]
     }
@@ -21909,7 +21935,7 @@
        "instance": "quake",
        "from_run": "run-cf203b",
        "from_job": "j35",
-       "source": "pick"
+       "source": "original"
       }
      ]
     }
@@ -21966,15 +21992,15 @@
      ],
      "consequence": "The woman is on speaker with the ladies, and she has the song.",
      "consequence_job": "j37",
-     "resolved": "cant.release(what=song:Thing) from j36",
+     "resolved": "cant.release(what=song:Thing) from j9",
      "injected": [
       {
        "param": "what",
        "class": "Thing",
        "instance": "song",
-       "from_run": "run-cf203b",
-       "from_job": "j36",
-       "source": "pick"
+       "from_run": "run-cb805f",
+       "from_job": "j9",
+       "source": "original"
       }
      ]
     }
@@ -22248,7 +22274,7 @@
        "instance": "wrong",
        "from_run": "run-cf203b",
        "from_job": "j37",
-       "source": "pick"
+       "source": "original"
       }
      ]
     }
@@ -29108,6 +29134,206 @@
    "faded": false,
    "last_run": "run-cf203b"
   },
+  "old.people": {
+   "object": "old",
+   "method": "people",
+   "args": [
+    "doing"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j75",
+    "card": "w75",
+    "title": "old.people(doing)",
+    "emoji": "📦",
+    "at": "2026-11-27T17:48:04-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "old.people(doing)",
+     "emoji": "📦",
+     "arg": "doing",
+     "run": "run-cf203b",
+     "job": "j75",
+     "tweets": [
+      {
+       "text": "old people doing things the old people way. lol. #life",
+       "year": "2023",
+       "id": "1669728401303773184"
+      }
+     ],
+     "consequence": "The lines that landed: \"old people doing things the old people way.",
+     "consequence_job": "j76",
+     "resolved": "old.people(what=doing:Thing) from j75",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "doing",
+       "from_run": "run-cf203b",
+       "from_job": "j75",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "doing",
+      "first_run": "run-cf203b",
+      "first_job": "j75"
+     }
+    ],
+    "text": "people(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [
+    {
+     "id": "because.people",
+     "title": "because.people(love)",
+     "run": "run-cf203b",
+     "job": "j73",
+     "at": "2026-11-27T17:15:43-05:00",
+     "why": "same method"
+    }
+   ],
+   "faded": false,
+   "last_run": null
+  },
+  "see.ba": {
+   "object": "see",
+   "method": "ba",
+   "args": [
+    "first"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j75",
+    "card": "w75",
+    "title": "see.ba(first)",
+    "emoji": "✏️",
+    "at": "2026-11-27T17:48:04-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "see.ba(first)",
+     "emoji": "✏️",
+     "arg": "first",
+     "run": "run-cf203b",
+     "job": "j75",
+     "tweets": [],
+     "consequence": "#life\", \"— then she asked me why can’t you see\", \"#thryd - yeah, something definitely\" and \"see ba, that first crush type of love!\".",
+     "consequence_job": "j76",
+     "resolved": "see.ba(what=first:Thing) from j75",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "first",
+       "from_run": "run-cf203b",
+       "from_job": "j75",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "first",
+      "first_run": "run-cf203b",
+      "first_job": "j75"
+     }
+    ],
+    "text": "ba(what: Thing)"
+   },
+   "receiver_class": "Action",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "then.asked": {
+   "object": "then",
+   "method": "asked",
+   "args": [
+    "why"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j75",
+    "card": "w75",
+    "title": "then.asked(why)",
+    "emoji": "🧆",
+    "at": "2026-11-27T17:48:04-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "then.asked(why)",
+     "emoji": "🧆",
+     "arg": "why",
+     "run": "run-cf203b",
+     "job": "j75",
+     "tweets": [
+      {
+       "text": "— then she asked me why can’t you see",
+       "year": "2024"
+      }
+     ],
+     "consequence": "#life\", \"— then she asked me why can’t you see\", \"#thryd - yeah, something definitely\" and \"see ba, that first crush type of love!\".",
+     "consequence_job": "j76",
+     "resolved": "then.asked(what=why:Thing) from j75",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "why",
+       "from_run": "run-cf203b",
+       "from_job": "j75",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "why",
+      "first_run": "run-cf203b",
+      "first_job": "j75"
+     }
+    ],
+    "text": "asked(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
   "cooler.getdatemanufactured": {
    "object": "cooler",
    "method": "getDateManufactured",
@@ -33055,6 +33281,46 @@
    "prior": [],
    "faded": false,
    "last_run": null
+  },
+  "thryd.changereality": {
+   "object": "thryd",
+   "method": "changereality",
+   "args": [],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j76",
+    "card": "j76",
+    "title": "#thryd.changereality(@thewhitehouse)",
+    "emoji": "",
+    "at": "2026-11-27T17:48:19-05:00",
+    "source": "cli"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "#thryd.changereality(@thewhitehouse)",
+     "emoji": "",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j76",
+     "tweets": [],
+     "consequence": "The customer typed this on this agenda.",
+     "consequence_job": ""
+    }
+   ],
+   "source": "cli",
+   "cli": true,
+   "sig": {
+    "params": [],
+    "text": "changereality()"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
   }
  },
  "objects": {
@@ -33923,6 +34189,9 @@
   "ok": [
    "ok.lemme"
   ],
+  "old": [
+   "old.people"
+  ],
   "omo": [
    "omo.fold"
   ],
@@ -34106,6 +34375,9 @@
    "say.ehn",
    "say.nigerian"
   ],
+  "see": [
+   "see.ba"
+  ],
   "self": [
    "self.love"
   ],
@@ -34260,7 +34532,8 @@
    "then.much",
    "then.said",
    "then.say",
-   "then.wanted"
+   "then.wanted",
+   "then.asked"
   ],
   "thing": [
    "thing.weird"
@@ -34270,7 +34543,8 @@
   ],
   "thryd": [
    "thryd.importtheme",
-   "thryd.jumpahead"
+   "thryd.jumpahead",
+   "thryd.changereality"
   ],
   "ticketattendant": [
    "ticketattendant.gettotal"
@@ -43182,6 +43456,16 @@
      "wife.kill",
      "pepe.settink",
      "kunle.teach"
+    ]
+   }
+  ],
+  "future_figure": [
+   {
+    "scope": "safe",
+    "from": "cbdf28e4ba3f",
+    "title": "916. the future",
+    "funcs": [
+     "then.asked"
     ]
    }
   ],
@@ -59520,6 +59804,9 @@
     "money.becomes",
     "suleja.texas",
     "lez.see",
+    "old.people",
+    "see.ba",
+    "then.asked",
     "cli.cli",
     "thryd.importtheme",
     "kemi.ismarried",
@@ -59544,7 +59831,8 @@
     "thryd.jumpahead",
     "new.powercouple",
     "new.nonprofitorganization",
-    "kasai.settemperature"
+    "kasai.settemperature",
+    "thryd.changereality"
    ]
   },
   "run-d6fc": {
@@ -60885,7 +61173,10 @@
     "humility.really",
     "money.becomes",
     "suleja.texas",
-    "lez.see"
+    "lez.see",
+    "old.people",
+    "see.ba",
+    "then.asked"
    ],
    "runs": [
     "run-cf203b"
@@ -61774,6 +62065,13 @@
    "title": "616. maturity",
    "funcs": [
     "teo.pray"
+   ],
+   "runs": []
+  },
+  "cbdf28e4ba3f": {
+   "title": "916. the future",
+   "funcs": [
+    "then.asked"
    ],
    "runs": []
   },
@@ -63292,6 +63590,9 @@
   "1*A8VcdJRdAnAsX2tFDP9GbQ.gif": [
    "b294af183233"
   ],
+  "1*sAvR5V9zdMWP2YOoHkIgjg.gif": [
+   "cbdf28e4ba3f"
+  ],
   "1*6mQWTrIfykhOKaN1kOzyTg.jpeg": [
    "1636974407c7"
   ],
@@ -64599,6 +64900,12 @@
     "b294af183233"
    ]
   },
+  "1*sAvR5V9zdMWP2YOoHkIgjg.gif": {
+   "runs": [],
+   "safes": [
+    "cbdf28e4ba3f"
+   ]
+  },
   "1*9L8yANUm-2EnYal4M3kKWQ.gif": {
    "runs": [],
    "safes": [
@@ -65265,6 +65572,9 @@
   "ok": [
    "ok.lemme"
   ],
+  "old": [
+   "old.people"
+  ],
   "omo": [
    "omo.fold"
   ],
@@ -65419,6 +65729,9 @@
    "say.ehn",
    "say.nigerian"
   ],
+  "see": [
+   "see.ba"
+  ],
   "self": [
    "self.love"
   ],
@@ -65532,7 +65845,8 @@
    "then.much",
    "then.said",
    "then.say",
-   "then.wanted"
+   "then.wanted",
+   "then.asked"
   ],
   "thing": [
    "thing.weird"
@@ -65542,7 +65856,8 @@
   ],
   "thryd": [
    "thryd.importtheme",
-   "thryd.jumpahead"
+   "thryd.jumpahead",
+   "thryd.changereality"
   ],
   "ticketattendant": [
    "ticketattendant.gettotal"
@@ -66068,6 +66383,8 @@
   "humility": [],
   "money": [],
   "suleja": [],
+  "old": [],
+  "see": [],
   "cooler": [],
   "kazeem.goodqualities": [],
   "app": [],
@@ -66359,6 +66676,7 @@
    "nothing",
    "now",
    "ok",
+   "old",
    "once",
    "one",
    "ori",
@@ -66379,6 +66697,7 @@
    "rikwaya",
    "russian",
    "say",
+   "see",
    "self",
    "send",
    "share",
@@ -66440,5 +66759,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-27T17:28:19-05:00"
+ "updated": "2026-11-27T17:48:36-05:00"
 }
