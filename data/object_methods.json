@@ -17064,12 +17064,12 @@
      ],
      "consequence": "What just happened: Last night the woman answered Kemi with \"does it not feel divine?\" and \"i wo imu ese.\" Then she admitted, \"eez mad that deh took me serious.\" Kemi said \"you good!\" and hung up as the light turned green.",
      "consequence_job": "j12",
-     "resolved": "eez.mad(what=deh:Thing) from j11",
+     "resolved": "eez.mad(what=ese:Thing) from j11",
      "injected": [
       {
        "param": "what",
        "class": "Thing",
-       "instance": "deh",
+       "instance": "ese",
        "from_run": "run-cf203b",
        "from_job": "j11",
        "source": "pick"
@@ -25990,6 +25990,119 @@
    "faded": false,
    "last_run": "run-cf203b"
   },
+  "pink.face": {
+   "object": "pink",
+   "method": "face",
+   "args": [
+    ""
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j58",
+    "card": "w58",
+    "title": "pink.face()",
+    "emoji": "🛼",
+    "at": "2026-11-26T21:35:28-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "pink.face()",
+     "emoji": "🛼",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j58",
+     "tweets": [
+      {
+       "text": "with pink on his face!",
+       "year": "2022"
+      }
+     ],
+     "consequence": "Where things stand: Kemi: a week later, last seen at her sister's table, ring still on, laughing at the mess she owes.",
+     "consequence_job": "j58",
+     "resolved": "pink.face()",
+     "injected": []
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [],
+    "text": "face()"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "rikwaya.any": {
+   "object": "rikwaya",
+   "method": "any",
+   "args": [
+    "accuracy"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j58",
+    "card": "w58",
+    "title": "rikwaya.any(accuracy)",
+    "emoji": "🛹",
+    "at": "2026-11-26T21:35:28-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "rikwaya.any(accuracy)",
+     "emoji": "🛹",
+     "arg": "accuracy",
+     "run": "run-cf203b",
+     "job": "j58",
+     "tweets": [
+      {
+       "text": "[[fear]] - rikwaya any accuracy",
+       "year": "2025"
+      }
+     ],
+     "consequence": "Where things stand: Kemi: a week later, last seen at her sister's table, ring still on, laughing at the mess she owes.",
+     "consequence_job": "j58",
+     "resolved": "rikwaya.any(how=accuracy:Manner) from j58",
+     "injected": [
+      {
+       "param": "how",
+       "class": "Manner",
+       "instance": "accuracy",
+       "from_run": "run-cf203b",
+       "from_job": "j58",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "how",
+      "class": "Manner",
+      "default": "accuracy",
+      "first_run": "run-5a58c4",
+      "first_job": "j25"
+     }
+    ],
+    "text": "any(how: Manner)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
   "cooler.getdatemanufactured": {
    "object": "cooler",
    "method": "getDateManufactured",
@@ -29657,6 +29770,46 @@
    "prior": [],
    "faded": false,
    "last_run": null
+  },
+  "ronkesister.setname": {
+   "object": "ronkesister",
+   "method": "setname",
+   "args": [],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j58",
+    "card": "j58",
+    "title": "ronkesister.setname(\"bose\")",
+    "emoji": "",
+    "at": "2026-11-26T21:35:19-05:00",
+    "source": "cli"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "ronkesister.setname(\"bose\")",
+     "emoji": "",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j58",
+     "tweets": [],
+     "consequence": "The customer typed this on this agenda.",
+     "consequence_job": ""
+    }
+   ],
+   "source": "cli",
+   "cli": true,
+   "sig": {
+    "params": [],
+    "text": "setname()"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
   }
  },
  "objects": {
@@ -30498,6 +30651,9 @@
   "phones": [
    "phones.make"
   ],
+  "pink": [
+   "pink.face"
+  ],
   "portable_subject": [
    "object.look"
   ],
@@ -30554,6 +30710,9 @@
   "request": [
    "request.track"
   ],
+  "rikwaya": [
+   "rikwaya.any"
+  ],
   "road": [
    "road.air"
   ],
@@ -30587,6 +30746,9 @@
    "ronke.get",
    "ronke.ischildofgod",
    "ronke.creditalert"
+  ],
+  "ronkesister": [
+   "ronkesister.setname"
   ],
   "russian": [
    "russian.mobs"
@@ -51155,6 +51317,14 @@
   "sky_subject": [
    {
     "scope": "safe",
+    "from": "94e1b60daa74",
+    "title": "527. buy naija",
+    "funcs": [
+     "rikwaya.any"
+    ]
+   },
+   {
+    "scope": "safe",
     "from": "9b4b423fcdb7",
     "title": "1026. the sky",
     "funcs": [
@@ -55788,6 +55958,8 @@
     "way.throw",
     "daz.y",
     "j.b",
+    "pink.face",
+    "rikwaya.any",
     "cli.cli",
     "thryd.importtheme",
     "kemi.ismarried",
@@ -55805,7 +55977,8 @@
     "new.mirror",
     "kemisister.getname",
     "new.miniskirt",
-    "kemi.getshoesize"
+    "kemi.getshoesize",
+    "ronkesister.setname"
    ]
   },
   "run-d6fc": {
@@ -57016,7 +57189,9 @@
     "now.know",
     "way.throw",
     "daz.y",
-    "j.b"
+    "j.b",
+    "pink.face",
+    "rikwaya.any"
    ],
    "runs": [
     "run-cf203b"
@@ -57307,6 +57482,13 @@
    "title": "323. never take teenage girls to bamako",
    "funcs": [
     "marisol.wait"
+   ],
+   "runs": []
+  },
+  "94e1b60daa74": {
+   "title": "527. buy naija",
+   "funcs": [
+    "rikwaya.any"
    ],
    "runs": []
   },
@@ -57966,6 +58148,13 @@
    ],
    "runs": []
   },
+  "d96651bc3108": {
+   "title": "please wear your n95s",
+   "funcs": [
+    "pink.face"
+   ],
+   "runs": []
+  },
   "da2bd5e3c2d7": {
    "title": "1103. a genz with the fear of god",
    "funcs": [
@@ -58560,7 +58749,14 @@
    "1c61078f1d2f"
   ],
   "1*VlksqfR5mOLmYofEabzIrA.gif": [
+   "94e1b60daa74",
    "9b4b423fcdb7"
+  ],
+  "1*-_a_jkNYyshOjz77uhZXyg.gif": [
+   "94e1b60daa74"
+  ],
+  "1*A1Wc3k-vILBUf9Vh-NuiGA.gif": [
+   "94e1b60daa74"
   ],
   "1*4sm5Tkx_e8El6aUmUN3s8g.gif": [
    "f402df6fd942"
@@ -59243,6 +59439,9 @@
   "1*jz2c9up58ZIZH827-o9ASg.gif": [
    "99382b159447"
   ],
+  "1*g_fXYLBH8I--iTV--t95pA.png": [
+   "d96651bc3108"
+  ],
   "1*9BPrFlA1A9e6Q2iPxRMtBQ.gif": [
    "5ed6dbcf2273"
   ],
@@ -59720,6 +59919,7 @@
   "1*VlksqfR5mOLmYofEabzIrA.gif": {
    "runs": [],
    "safes": [
+    "94e1b60daa74",
     "9b4b423fcdb7"
    ]
   },
@@ -61104,6 +61304,9 @@
   "phones": [
    "phones.make"
   ],
+  "pink": [
+   "pink.face"
+  ],
   "poty": [
    "poty.asin"
   ],
@@ -61154,6 +61357,9 @@
   "request": [
    "request.track"
   ],
+  "rikwaya": [
+   "rikwaya.any"
+  ],
   "road": [
    "road.air"
   ],
@@ -61187,6 +61393,9 @@
    "ronke.get",
    "ronke.ischildofgod",
    "ronke.creditalert"
+  ],
+  "ronkesister": [
+   "ronkesister.setname"
   ],
   "russian": [
    "russian.mobs"
@@ -61773,6 +61982,8 @@
   ],
   "way": [],
   "j": [],
+  "pink": [],
+  "rikwaya": [],
   "cooler": [],
   "kazeem.goodqualities": [],
   "app": [],
@@ -61812,7 +62023,8 @@
   "boy": [],
   "woman": [],
   "closet": [],
-  "kemisister": []
+  "kemisister": [],
+  "ronkesister": []
  },
  "casts": {
   "run-5a58c4": [
@@ -62047,6 +62259,7 @@
    "own",
    "part",
    "pen",
+   "pink",
    "poty",
    "precision",
    "put",
@@ -62055,6 +62268,7 @@
    "raised",
    "ready",
    "rebuke",
+   "rikwaya",
    "russian",
    "say",
    "share",
@@ -62108,5 +62322,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-26T21:16:37-05:00"
+ "updated": "2026-11-26T21:35:58-05:00"
 }
