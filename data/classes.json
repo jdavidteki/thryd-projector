@@ -28,8 +28,8 @@
     "on",
     "deal"
    ],
-   "instances": 57,
-   "arg_instances": 14,
+   "instances": 58,
+   "arg_instances": 15,
    "parent": "Thing",
    "chain": [
     "Person",
@@ -109,7 +109,7 @@
     "give"
    ],
    "instances": 504,
-   "arg_instances": 175,
+   "arg_instances": 176,
    "parent": null,
    "chain": [
     "Thing"
@@ -1234,13 +1234,19 @@
   "can": {
    "class": "Thing",
    "cue": "default",
-   "first_run": "run-9e3e84",
-   "first_job": null,
-   "source": "stage",
+   "first_run": "run-cf203b",
+   "first_job": "j57",
+   "source": "pick",
    "runs": [
+    "run-cf203b",
     "run-9e3e84"
    ],
-   "tweets": []
+   "tweets": [
+    {
+     "text": "- the j and b can [[tbu]]",
+     "year": "2024"
+    }
+   ]
   },
   "canadadry": {
    "class": "Thing",
@@ -8526,6 +8532,22 @@
     }
    ]
   },
+  "wife": {
+   "class": "Person",
+   "cue": "word",
+   "first_run": "run-cf203b",
+   "first_job": "j57",
+   "source": "pick",
+   "runs": [
+    "run-cf203b"
+   ],
+   "tweets": [
+    {
+     "text": "- daz y am your wife",
+     "year": "2024"
+    }
+   ]
+  },
   "wifi": {
    "class": "Thing",
    "cue": "default",
@@ -10271,18 +10293,6 @@
   ],
   "run-cf203b": [
    [
-    "defenses",
-    "Action",
-    "j7",
-    "pick"
-   ],
-   [
-    "dies",
-    "Thing",
-    "j9",
-    "pick"
-   ],
-   [
     "deh",
     "Thing",
     "j11",
@@ -10748,6 +10758,18 @@
     "how",
     "Manner",
     "j56",
+    "pick"
+   ],
+   [
+    "wife",
+    "Person",
+    "j57",
+    "pick"
+   ],
+   [
+    "can",
+    "Thing",
+    "j57",
     "pick"
    ]
   ],
@@ -13558,6 +13580,8 @@
   "namco.nawa": "nawa()",
   "now.know": "know(how: Manner)",
   "way.throw": "throw()",
+  "daz.y": "y(who: Person)",
+  "j.b": "b(what: Thing)",
   "cooler.getdatemanufactured": "getDateManufactured()",
   "ronke.getlikes.contains": "getlikes.contains()",
   "kazeem.goodqualities.filter": "filter()",
@@ -14111,6 +14135,7 @@
    "idt",
    "if",
    "inside",
+   "j",
    "jesse",
    "kemi",
    "know",
@@ -14256,5 +14281,5 @@
   "epilogue": "quiet",
   "coda": "quiet"
  },
- "updated": "2026-11-26T20:24:49-05:00"
+ "updated": "2026-11-26T21:15:47-05:00"
 }

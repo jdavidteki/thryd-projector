@@ -16541,7 +16541,7 @@
        "instance": "defenses",
        "from_run": "run-cf203b",
        "from_job": "j7",
-       "source": "pick"
+       "source": "original"
       }
      ]
     }
@@ -16894,7 +16894,7 @@
        "instance": "dies",
        "from_run": "run-cf203b",
        "from_job": "j9",
-       "source": "pick"
+       "source": "original"
       }
      ]
     }
@@ -17279,7 +17279,8 @@
    "method": "see",
    "args": [
     "how",
-    "code"
+    "code",
+    ""
    ],
    "runs": [
     "run-cf203b"
@@ -17292,8 +17293,34 @@
     "emoji": "🪅",
     "at": "2026-11-25T13:04:53-05:00"
    },
-   "calls": 1,
+   "calls": 2,
    "titles": [
+    {
+     "title": "can.see()",
+     "emoji": "🪇",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j57",
+     "tweets": [
+      {
+       "text": "#seniorgehs - i can see you",
+       "year": "2025"
+      }
+     ],
+     "consequence": "The lines that landed: \"#seniorgehs - i can see you\", \"daz y am your wife\", \"#ttb - it's all about the data\" and \"the j and b can [[tbu]]\".",
+     "consequence_job": "j58",
+     "resolved": "can.see(how=how:Manner) from j56",
+     "injected": [
+      {
+       "param": "how",
+       "class": "Manner",
+       "instance": "how",
+       "from_run": "run-cf203b",
+       "from_job": "j56",
+       "source": "pick"
+      }
+     ]
+    },
     {
      "title": "can.see(code)",
      "emoji": "🫑",
@@ -17365,6 +17392,14 @@
    "prior": [
     {
      "id": "can.see",
+     "title": "can.see(code)",
+     "run": "run-cf203b",
+     "job": "j44",
+     "at": "2026-11-26T14:57:55-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "can.see",
      "title": "can.see(how)",
      "run": "run-cf203b",
      "job": "j12",
@@ -17385,14 +17420,6 @@
      "run": "run-5a58c4",
      "job": "j41",
      "at": "2026-11-24T01:08:32-05:00",
-     "why": "same method"
-    },
-    {
-     "id": "order.see",
-     "title": "order.see(chaos)",
-     "run": "run-888ea9",
-     "job": "j9",
-     "at": "2026-11-23T20:00:23-05:00",
      "why": "same method"
     }
    ],
@@ -25833,6 +25860,136 @@
    "faded": false,
    "last_run": "run-cf203b"
   },
+  "daz.y": {
+   "object": "daz",
+   "method": "y",
+   "args": [
+    "wife"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j57",
+    "card": "w57",
+    "title": "daz.y(wife)",
+    "emoji": "🪈",
+    "at": "2026-11-26T21:15:02-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "daz.y(wife)",
+     "emoji": "🪈",
+     "arg": "wife",
+     "run": "run-cf203b",
+     "job": "j57",
+     "tweets": [
+      {
+       "text": "- daz y am your wife",
+       "year": "2024"
+      }
+     ],
+     "consequence": "The lines that landed: \"#seniorgehs - i can see you\", \"daz y am your wife\", \"#ttb - it's all about the data\" and \"the j and b can [[tbu]]\".",
+     "consequence_job": "j58",
+     "resolved": "daz.y(who=wife:Person) from j57",
+     "injected": [
+      {
+       "param": "who",
+       "class": "Person",
+       "instance": "wife",
+       "from_run": "run-cf203b",
+       "from_job": "j57",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "who",
+      "class": "Person",
+      "default": "wife",
+      "first_run": "run-cf203b",
+      "first_job": "j57"
+     }
+    ],
+    "text": "y(who: Person)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "j.b": {
+   "object": "j",
+   "method": "b",
+   "args": [
+    "can"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j57",
+    "card": "w57",
+    "title": "j.b(can)",
+    "emoji": "🪘",
+    "at": "2026-11-26T21:15:02-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "j.b(can)",
+     "emoji": "🪘",
+     "arg": "can",
+     "run": "run-cf203b",
+     "job": "j57",
+     "tweets": [
+      {
+       "text": "- the j and b can [[tbu]]",
+       "year": "2024"
+      }
+     ],
+     "consequence": "What just happened: The last card asked for the next line, the one that answers \"#nnb - i hear your shaking\".",
+     "consequence_job": "j58",
+     "resolved": "j.b(what=can:Thing) from j57",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "can",
+       "from_run": "run-cf203b",
+       "from_job": "j57",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "can",
+      "first_run": "run-cf203b",
+      "first_job": "j57"
+     }
+    ],
+    "text": "b(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
   "cooler.getdatemanufactured": {
    "object": "cooler",
    "method": "getDateManufactured",
@@ -29800,7 +29957,8 @@
    "das.right"
   ],
   "daz": [
-   "daz.what"
+   "daz.what",
+   "daz.y"
   ],
   "dehwyeh": [
    "dehwyeh.wans"
@@ -30036,6 +30194,9 @@
   ],
   "it": [
    "it.do"
+  ],
+  "j": [
+   "j.b"
   ],
   "j15": [
    "j15.getweather"
@@ -39584,6 +39745,16 @@
     "title": "829. a day in the life of god",
     "funcs": [
      "[nau,god].map"
+    ]
+   }
+  ],
+  "golden_ticket_figure": [
+   {
+    "scope": "safe",
+    "from": "4e0767672981",
+    "title": "225. i can see the future",
+    "funcs": [
+     "can.see"
     ]
    }
   ],
@@ -55615,6 +55786,8 @@
     "namco.nawa",
     "now.know",
     "way.throw",
+    "daz.y",
+    "j.b",
     "cli.cli",
     "thryd.importtheme",
     "kemi.ismarried",
@@ -56480,6 +56653,13 @@
    ],
    "runs": []
   },
+  "4e0767672981": {
+   "title": "225. i can see the future",
+   "funcs": [
+    "can.see"
+   ],
+   "runs": []
+  },
   "4e42e2aec04b": {
    "title": "731. i have death in my porsche",
    "funcs": [
@@ -56834,7 +57014,9 @@
     "hear.shaking",
     "namco.nawa",
     "now.know",
-    "way.throw"
+    "way.throw",
+    "daz.y",
+    "j.b"
    ],
    "runs": [
     "run-cf203b"
@@ -57039,6 +57221,13 @@
    "title": "613. in my mouth",
    "funcs": [
     "queen.everything"
+   ],
+   "runs": []
+  },
+  "8b8bdca4c4ac": {
+   "title": "810. cybersecurity software for autonomous vehicles",
+   "funcs": [
+    "daz.y"
    ],
    "runs": []
   },
@@ -57453,7 +57642,8 @@
   "b200fdc1a275": {
    "title": "815. house of cards: north africa",
    "funcs": [
-    "ronke.write"
+    "ronke.write",
+    "j.b"
    ],
    "runs": []
   },
@@ -58441,6 +58631,9 @@
    "ff9027478b51",
    "eb4af1c3e662"
   ],
+  "1*eh9Cdh5jbOmh_ESv0nIwyQ.gif": [
+   "4e0767672981"
+  ],
   "1*qJUuYpZI_yQTd-nzb8SYRA.gif": [
    "ea4f0d9823e8"
   ],
@@ -58498,6 +58691,9 @@
   ],
   "1*tAxaqeGGUg8XX2bme3UNug.jpeg": [
    "9780ba78cde1"
+  ],
+  "1*D9aiSMiAXOonstG6Tct2hA.gif": [
+   "8b8bdca4c4ac"
   ],
   "1*41Tcus9cP3e-v9zjh-PhSQ.gif": [
    "c02614739196"
@@ -60148,6 +60344,12 @@
     "d184b52bcb49"
    ]
   },
+  "1*eh9Cdh5jbOmh_ESv0nIwyQ.gif": {
+   "runs": [],
+   "safes": [
+    "4e0767672981"
+   ]
+  },
   "1*1M6PFkkIVPLKbAV4f7Fq0w.gif": {
    "runs": [],
    "safes": [
@@ -60466,7 +60668,8 @@
    "das.right"
   ],
   "daz": [
-   "daz.what"
+   "daz.what",
+   "daz.y"
   ],
   "dehwyeh": [
    "dehwyeh.wans"
@@ -60657,6 +60860,9 @@
   ],
   "it": [
    "it.do"
+  ],
+  "j": [
+   "j.b"
   ],
   "j15": [
    "j15.getweather"
@@ -61566,6 +61772,7 @@
    "Readable"
   ],
   "way": [],
+  "j": [],
   "cooler": [],
   "kazeem.goodqualities": [],
   "app": [],
@@ -61814,6 +62021,7 @@
    "idt",
    "if",
    "inside",
+   "j",
    "jesse",
    "kemi",
    "know",
@@ -61900,5 +62108,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-26T20:51:26-05:00"
+ "updated": "2026-11-26T21:15:47-05:00"
 }
