@@ -25202,6 +25202,200 @@
    "faded": false,
    "last_run": "run-cf203b"
   },
+  "however.go": {
+   "object": "however",
+   "method": "go",
+   "args": [
+    ""
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j54",
+    "card": "w54",
+    "title": "however.go()",
+    "emoji": "📻",
+    "at": "2026-11-26T19:35:50-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "however.go()",
+     "emoji": "📻",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j54",
+     "tweets": [
+      {
+       "text": "- however i do am na so e go go",
+       "year": "2024"
+      }
+     ],
+     "consequence": "The lines that landed: \"however i do am na so e go go\", \"#yorubbbygehinny[[hpr]] - by precision?\", \"#oyinboman - what a slam dunk!!\" and \"#thryd - and weya on earth!\".",
+     "consequence_job": "j55",
+     "resolved": "however.go()",
+     "injected": []
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [],
+    "text": "go()"
+   },
+   "receiver_class": "Thing",
+   "prior": [
+    {
+     "id": "story.go",
+     "title": "story.go()",
+     "run": "run-cf203b",
+     "job": "j19",
+     "at": "2026-11-25T16:50:16-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "dem.go",
+     "title": "dem.go(run)",
+     "run": "run-cf203b",
+     "job": "j15",
+     "at": "2026-11-25T13:50:25-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "hand.go",
+     "title": "hand.go(like)",
+     "run": "run-888ea9",
+     "job": "j6",
+     "at": "2026-11-23T18:21:50-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "titi.go",
+     "title": "titi.go(juss)",
+     "run": "run-g1-B",
+     "job": "j10",
+     "at": "2026-11-17T17:20:54-05:00",
+     "why": "same method"
+    }
+   ],
+   "faded": false,
+   "last_run": null
+  },
+  "weya.earth": {
+   "object": "weya",
+   "method": "earth",
+   "args": [
+    ""
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j54",
+    "card": "w54",
+    "title": "weya.earth()",
+    "emoji": "🧮",
+    "at": "2026-11-26T19:35:50-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "weya.earth()",
+     "emoji": "🧮",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j54",
+     "tweets": [
+      {
+       "text": "#thryd - and weya on earth!",
+       "year": "2024"
+      }
+     ],
+     "consequence": "The lines that landed: \"however i do am na so e go go\", \"#yorubbbygehinny[[hpr]] - by precision?\", \"#oyinboman - what a slam dunk!!\" and \"#thryd - and weya on earth!\".",
+     "consequence_job": "j55",
+     "resolved": "weya.earth()",
+     "injected": []
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [],
+    "text": "earth()"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "what.slam": {
+   "object": "what",
+   "method": "slam",
+   "args": [
+    "dunk"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j54",
+    "card": "w54",
+    "title": "what.slam(dunk)",
+    "emoji": "📀",
+    "at": "2026-11-26T19:35:50-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "what.slam(dunk)",
+     "emoji": "📀",
+     "arg": "dunk",
+     "run": "run-cf203b",
+     "job": "j54",
+     "tweets": [
+      {
+       "text": "#oyinboman - what a slam dunk!!",
+       "year": "2024"
+      }
+     ],
+     "consequence": "What just happened: The last card asked for the next line, the one that answers \"total awards domination\".",
+     "consequence_job": "j55",
+     "resolved": "what.slam(what=dunk:Thing) from j54",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "dunk",
+       "from_run": "run-cf203b",
+       "from_job": "j54",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "dunk",
+      "first_run": "run-cf203b",
+      "first_job": "j54"
+     }
+    ],
+    "text": "slam(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
   "cooler.getdatemanufactured": {
    "object": "cooler",
    "method": "getDateManufactured",
@@ -29372,6 +29566,9 @@
   "hours": [
    "hours.could"
   ],
+  "however": [
+   "however.go"
+  ],
   "idt": [
    "idt.can"
   ],
@@ -30035,13 +30232,15 @@
    "well.loosely"
   ],
   "weya": [
-   "weya.selling"
+   "weya.selling",
+   "weya.earth"
   ],
   "what": [
    "what.guys",
    "what.road",
    "what.get",
-   "what.say"
+   "what.say",
+   "what.slam"
   ],
   "whatever_happens_me_subject": [
    "object.look"
@@ -38815,6 +39014,16 @@
     ]
    }
   ],
+  "goat_figure": [
+   {
+    "scope": "safe",
+    "from": "5dd267d18a0c",
+    "title": "1202. the goat",
+    "funcs": [
+     "weya.earth"
+    ]
+   }
+  ],
   "god": [
    {
     "scope": "run",
@@ -41317,6 +41526,16 @@
     "title": "1215. keep the machine running",
     "funcs": [
      "nobody.see"
+    ]
+   }
+  ],
+  "json_life_subject": [
+   {
+    "scope": "safe",
+    "from": "793685d9da04",
+    "title": "814. the json of life",
+    "funcs": [
+     "what.slam"
     ]
    }
   ],
@@ -54905,6 +55124,9 @@
     "until.artists",
     "feeling.like",
     "total.awards",
+    "however.go",
+    "weya.earth",
+    "what.slam",
     "cli.cli",
     "thryd.importtheme",
     "kemi.ismarried",
@@ -55823,6 +56045,13 @@
    ],
    "runs": []
   },
+  "5dd267d18a0c": {
+   "title": "1202. the goat",
+   "funcs": [
+    "weya.earth"
+   ],
+   "runs": []
+  },
   "5ed6dbcf2273": {
    "title": "910. order pure water",
    "funcs": [
@@ -56085,7 +56314,10 @@
     "la.pooohhhh",
     "until.artists",
     "feeling.like",
-    "total.awards"
+    "total.awards",
+    "however.go",
+    "weya.earth",
+    "what.slam"
    ],
    "runs": [
     "run-cf203b"
@@ -56144,6 +56376,13 @@
    "title": "1226. faith can go fly herself!",
    "funcs": [
     "understand.now"
+   ],
+   "runs": []
+  },
+  "793685d9da04": {
+   "title": "814. the json of life",
+   "funcs": [
+    "what.slam"
    ],
    "runs": []
   },
@@ -56559,6 +56798,13 @@
    "title": "1104. i say laugh",
    "funcs": [
     "calla.laugh"
+   ],
+   "runs": []
+  },
+  "a6a89764a971": {
+   "title": "1205. farotimi, paul, and silas",
+   "funcs": [
+    "however.go"
    ],
    "runs": []
   },
@@ -58027,6 +58273,9 @@
   "1*N6DdH_v53PSeHRo3jYYVGw.jpeg": [
    "02c312614f2c"
   ],
+  "1*JMlZ20YiZkcIazzmXbNJnQ.gif": [
+   "793685d9da04"
+  ],
   "1*tYmqFDalbxw3Eto3-z4fvA.gif": [
    "22dfde78da97"
   ],
@@ -58048,6 +58297,9 @@
   ],
   "1*NIUcPPNMbOVZpzrAfqbDZA.jpeg": [
    "483f5ddc9d35"
+  ],
+  "1*OH_gobwb3zcC715bRdm3lg.gif": [
+   "5dd267d18a0c"
   ],
   "1*wBc96VCRNSAVjALoTEOSRw.gif": [
    "848a4737f33b"
@@ -58275,6 +58527,12 @@
   ],
   "1*P0EaCb-xVsqEG2B7phogZg.png": [
    "c7bca6239b82"
+  ],
+  "1*3MDcjLHWyCXmOJ9hLLPQmQ.gif": [
+   "a6a89764a971"
+  ],
+  "1*RUhR7vH9vgBnCaBHpQKLBw.gif": [
+   "a6a89764a971"
   ],
   "1*Pvu5qIY3ehevL_SC2nj5nQ.jpeg": [
    "feb29a74094b"
@@ -59161,6 +59419,12 @@
     "7cbc2e5ad31d"
    ]
   },
+  "1*OH_gobwb3zcC715bRdm3lg.gif": {
+   "runs": [],
+   "safes": [
+    "5dd267d18a0c"
+   ]
+  },
   "1*r60JaNtgDqXR6PpIsMmeLQ.gif": {
    "runs": [],
    "safes": [
@@ -59351,6 +59615,12 @@
    "runs": [],
    "safes": [
     "ddeca0a1b3fa"
+   ]
+  },
+  "1*JMlZ20YiZkcIazzmXbNJnQ.gif": {
+   "runs": [],
+   "safes": [
+    "793685d9da04"
    ]
   },
   "1*IQXI1PQrQf5fqcxwKtd49Q.gif": {
@@ -59807,6 +60077,9 @@
   ],
   "hours": [
    "hours.could"
+  ],
+  "however": [
+   "however.go"
   ],
   "idt": [
    "idt.can"
@@ -60335,13 +60608,15 @@
    "well.loosely"
   ],
   "weya": [
-   "weya.selling"
+   "weya.selling",
+   "weya.earth"
   ],
   "what": [
    "what.guys",
    "what.road",
    "what.get",
-   "what.say"
+   "what.say",
+   "what.slam"
   ],
   "where": [
    "where.boisie"
@@ -60717,6 +60992,7 @@
   "until": [],
   "feeling": [],
   "total": [],
+  "however": [],
   "cooler": [],
   "kazeem.goodqualities": [],
   "app": [],
@@ -60959,6 +61235,7 @@
    "have",
    "honey",
    "hope",
+   "however",
    "idt",
    "inside",
    "jesse",
@@ -61044,5 +61321,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-26T19:11:58-05:00"
+ "updated": "2026-11-26T19:36:21-05:00"
 }
