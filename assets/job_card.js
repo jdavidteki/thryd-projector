@@ -99,6 +99,8 @@
     '#aisheet .opts{display:flex;flex-direction:column;gap:4px;max-height:16em;overflow:auto}',
     '#aisheet button{font:600 12px/1.3 ui-sans-serif,system-ui,sans-serif;text-align:left;color:#efe9dc;background:rgba(255,255,255,.06);border:1px solid rgba(201,169,90,.4);border-radius:10px;padding:6px 10px;cursor:pointer}',
     '#aisheet button.sent{border-color:#2f8a50;background:rgba(47,138,80,.22)}',
+    '#aicard .aicsent.err{color:#f2b8a8}#aicard .aicwait .aicx{margin-left:auto;flex:0 0 auto;font:700 12px/1 ui-sans-serif,system-ui,sans-serif;color:#efe9dc;background:rgba(255,255,255,.08);border:1px solid rgba(201,169,90,.45);border-radius:999px;width:22px;height:22px;padding:0;cursor:pointer}',
+    '#aisheet input.aishf{width:100%;box-sizing:border-box;margin:0 0 6px;padding:6px 9px;border-radius:9px;border:1px solid rgba(201,169,90,.4);background:rgba(0,0,0,.3);color:#efe9dc;font:500 12.5px/1.3 ui-sans-serif,system-ui,sans-serif}',
     '@media (max-width:520px){#aibox.cards-on{width:96vw;bottom:6vh}#aicard .aicprompt{font-size:14.5px}}',
     '@media (max-height:600px){#aibox.cards-on{max-height:84vh;max-height:84dvh;bottom:6vh}#aibox.cards-on > .aim{display:none}#aibox.cards-on > form.airow{padding-top:7px}#aibox.cards-on textarea{min-height:32px}#aicard{gap:7px;padding:9px 12px 8px}#aicard .aicprompt{font-size:14px;line-height:1.55}}'
   ].join('\n');
@@ -166,8 +168,141 @@
   const SENT_LOG = 'thryd_sent_log_v630';
   const SENT_TTL = 6 * 3600 * 1000, DONE_MS = 5000;
   function sentLog(){ try{ const a = JSON.parse(localStorage.getItem(SENT_LOG) || '[]'); return Array.isArray(a) ? a.filter(e => e && e.event_id && Date.now() - (+e.sent_at || 0) < SENT_TTL) : []; }catch(e){ return []; } }
-  function saveSentLog(a){ try{ localStorage.setItem(SENT_LOG, JSON.stringify(a.slice(-12))); }catch(e){} }
-  function logSent(e){ const a = sentLog().filter(x => x.event_id !== e.event_id); a.push(Object.assign({sent_at: Date.now()}, e)); saveSentLog(a); kickLane(); }
+  function saveSentLog(a){
+    const typed = a.filter(e => e.kind === 'typed').slice(-20), rest = a.filter(e => e.kind !== 'typed').slice(-12);   // v645: typed bursts never evict a pick / tap
+    try{ localStorage.setItem(SENT_LOG, JSON.stringify(rest.concat(typed).sort((x, y) => (+x.sent_at || 0) - (+y.sent_at || 0)))); }catch(e){}
+  }
+  function logSent(e){ const a = sentLog().filter(x => x.event_id !== e.event_id); a.push(Object.assign({sent_at: Date.now()}, e)); saveSentLog(a); if(e.kind !== 'typed') kickLane(); pillTick(); }
+  // v645 (Jesuye 11/27 1:59 PM pills hung on 'waiting'; 2:00 PM "add an x next to a waiting status in case we want to
+  // cancel the request"): each pill reads the box's plain answer (open_card note / relay reply), says so when the box
+  // has not confirmed, and a \u2715 cancels the request by event_id: the card unlocks at once, the box drops the event if
+  // it has not acted on it yet, and says plainly when it already has. A cancel never unseats anything.
+  const NOTE_MS = 15000, QUIET_MS = 180000, TYPED_SHOW_MS = 3000, TYPED_TTL = 600000;
+  function patchSent(eid, patch){ const a = sentLog(); const e = a.find(x => x.event_id === eid); if(!e) return null; Object.assign(e, patch); saveSentLog(a); return e; }
+  function dropSent(eids){ const set = new Set(eids); saveSentLog(sentLog().filter(e => !set.has(e.event_id))); }
+  function pillWhat(e){ return e.kind === 'pick' ? (e.job + ' pick') : (e.kind === 'typed' ? (e.label || 'typed line') : (e.label || e.action || 'tap')); }
+  function pillState(e, j, now){
+    now = now || Date.now();
+    const what = pillWhat(e);
+    const res = j && (j.resolved || []).find(x => x && x.event_id === e.event_id);
+    const p = (j && j.pending) || {};
+    const pend = (p.pick && p.pick.event_id === e.event_id) ? p.pick : (p.menu || []).find(x => x && x.event_id === e.event_id);
+    const note = (res && res.note) || (pend && pend.note) || e.note || '';
+    if(e.cancel === 'cancelled' || (res && res.status === 'cancelled')) return {text: '\u2715 ' + what + ' cancelled', cls: 'done', x: false};
+    if(e.cancel === 'too_late') return {text: what + ' \u00b7 ' + (e.note || 'already done \u2014 can\u2019t cancel'), cls: 'done', x: false};
+    if(e.done_at) return {text: note ? (what + ' \u00b7 ' + note) : ('\u2713 ' + what + ' done'), cls: 'done', x: false};
+    if(e.cancel === 'sending' && now - (+e.cancel_at || 0) < 45000) return {text: what + ' \u00b7 cancelling\u2026', cls: 'busy', x: false};
+    if(e.cancel === 'sending' || e.cancel === 'unconfirmed') return {text: what + ' \u00b7 cancel not confirmed \u00b7 tap \u2715 to retry', cls: 'err', x: true};
+    const tm = e.sent_at ? hhmm(new Date(+e.sent_at).toISOString()) : '';
+    const head = what + ' sent' + (tm ? ' \u00b7 ' + tm : '');
+    if(note) return {text: head + ' \u00b7 ' + note, cls: '', x: true};
+    const age = now - (+e.sent_at || 0);
+    if(e.receipt_at || pend) return {text: head + (age > QUIET_MS ? ' \u00b7 received, no answer yet' : ' \u00b7 received \u00b7 waiting'), cls: '', x: true};
+    if(e.unconfirmed || age > RECEIPT_MS + 2000) return {text: head + ' \u00b7 box hasn\u2019t confirmed', cls: 'err', x: true};
+    return {text: head + ' \u00b7 waiting', cls: '', x: true};
+  }
+  let pillT = 0;
+  function pillTick(){
+    if(pillT) return;
+    pillT = setInterval(() => {
+      const live = sentLog().filter(e => !e.done_at);
+      if(!live.length){ clearInterval(pillT); pillT = 0; }
+      try{ settleSent(meta || card); updateStrip(); }catch(err){}
+    }, 5000);
+  }
+  // the card / tap can be sent again at once after a cancel
+  function liftLock(e){
+    if(e.kind === 'pick'){
+      unmarkSent(e.job);
+      if(pendingSend && pendingSend.body && pendingSend.body.event_id === e.event_id) pendingSend = null;
+      if(card && card.job === e.job) status = {job: e.job, text: 'Cancelled \u2014 pick again when you\u2019re ready.', kind: ''};
+    } else if(e.kind === 'menu'){
+      Object.keys(pendingMenu).forEach(k => { if(pendingMenu[k] && pendingMenu[k].body && pendingMenu[k].body.event_id === e.event_id) delete pendingMenu[k]; });
+      try{ const mm = JSON.parse(localStorage.getItem(MENU_STORE) || '{}') || {}; delete mm[menuKey(e.run, e.action)]; localStorage.setItem(MENU_STORE, JSON.stringify(mm)); }catch(err){}
+    }
+  }
+  function relock(e){ if(e.kind === 'pick' && card && card.job === e.job) markSent(e.job, card); else if(e.kind === 'menu') markMenu(e.run, e.action); }
+  function cancelBody(e, cid){
+    return {v:1, type:'cancel', event_id:cid, rid:cid + '-r', target:e.event_id,
+      target_type: e.kind === 'pick' ? 'card_pick' : (e.kind === 'typed' ? 'call' : 'menu_action'),
+      run: e.run || (card && card.run) || undefined, source:'projector', client_ts:new Date().toISOString()};
+  }
+  async function cancelSent(eid){
+    const e = sentLog().find(x => x.event_id === eid);
+    if(!e || e.done_at || (e.cancel === 'sending' && Date.now() - (+e.cancel_at || 0) < 45000)) return;
+    const cid = e.cancel_id || uid('cancel-');                 // a retry re-sends the SAME cancel (the box dedupes it)
+    patchSent(eid, {cancel: 'sending', cancel_id: cid, cancel_at: Date.now()});
+    liftLock(e);
+    try{ render(); }catch(err){}
+    log({event: 'cancel', target: eid, kind: e.kind});
+    const body = cancelBody(e, cid);
+    let m = null;
+    try{ const r = await post(body); if(r && r.ok) m = await awaitReply(body, Math.floor(Date.now() / 1000) - 5, r, RECEIPT_MS); }catch(err){}
+    applyCancel(eid, m);
+  }
+  function applyCancel(eid, m){
+    const e = sentLog().find(x => x.event_id === eid); if(!e) return null;
+    let out;
+    if(m && m.status === 'too_late'){ out = patchSent(eid, {cancel: 'too_late', note: m.note || 'already done \u2014 can\u2019t cancel', done_at: Date.now()}); relock(e); }
+    else if(m && (m.status === 'cancelled' || m.ok)) out = patchSent(eid, {cancel: 'cancelled', done_at: Date.now()});
+    else out = patchSent(eid, {cancel: 'unconfirmed'});
+    try{ updateStrip(); }catch(err){}
+    setTimeout(() => { try{ settleSent(meta || card); updateStrip(); }catch(err){} }, NOTE_MS + 300);
+    return out;
+  }
+  // a \u2715 for a waiting entry this browser did not send (open_card pending): adopt it into the log, then cancel
+  function adoptX(e){
+    const x = document.createElement('button'); x.type = 'button'; x.className = 'aicx'; x.textContent = '\u2715';
+    x.title = 'cancel this request'; x.setAttribute('aria-label', 'cancel ' + pillWhat(e));
+    tapOnce(x, () => { if(!sentLog().some(y => y.event_id === e.event_id)) logSent(Object.assign({sent_at: Date.now()}, e)); cancelSent(e.event_id); });
+    return x;
+  }
+  function cancelTyped(){ sentLog().filter(e => e.kind === 'typed' && !e.done_at && e.cancel !== 'sending').forEach(e => cancelSent(e.event_id)); }
+  // typed lines (the typeline's own 'call' posts) get one shared pill while the box has not answered them
+  let typedT = 0;
+  function watchTyped(){
+    if(typedT) return;
+    typedT = setInterval(typedPoll, 3000);
+  }
+  async function typedPoll(){
+    {
+      const ws = sentLog().filter(e => e.kind === 'typed' && !e.done_at && !e.cancel);
+      const old = sentLog().filter(e => e.kind === 'typed' && Date.now() - (+e.sent_at || 0) > TYPED_TTL).map(e => e.event_id);
+      if(old.length) dropSent(old);
+      if(!ws.length){ clearInterval(typedT); typedT = 0; try{ updateStrip(); }catch(err){} return; }
+      const bases = {};
+      ws.forEach(e => { if(e.reply) (bases[e.reply] = bases[e.reply] || []).push(e); });
+      const got = [];
+      for(const base of Object.keys(bases)){
+        const t0 = Math.min.apply(null, bases[base].map(e => Math.floor((+e.sent_at || 0) / 1000) - 5));
+        try{
+          const getter = root.thrydNtfyGet || ((u, ms) => fetch(u, {cache: 'no-store'}));
+          const tx = await (await getter(base + '/json?poll=1&since=' + t0, 8000)).text();
+          const ids = new Set();
+          for(const l of String(tx).split('\n')){ if(!l) continue; try{ const m = JSON.parse(JSON.parse(l).message || '{}'); if(m.event_id) ids.add(m.event_id); if(m.rid) ids.add(m.rid); }catch(err){} }
+          bases[base].forEach(e => { if(ids.has(e.event_id) || ids.has(e.event_id + '-r') || (e.rid && ids.has(e.rid))) got.push(e.event_id); });
+        }catch(err){}
+      }
+      if(got.length) dropSent(got);
+      try{ updateStrip(); }catch(err){}
+    }
+  }
+  function hookTyped(){
+    const tl = root.thrydTypelinePost;
+    if(!tl || tl._v645) return !!tl;
+    const w = async function(body, kind){
+      const r = await tl.apply(this, arguments);
+      try{
+        if(body && body.type === 'call' && body.source === 'cli' && body.event_id && r && r.ok){
+          const reply = r.reply || (r.endpoint ? String(r.endpoint).replace(/\/?$/, '') + '-r' : null);
+          logSent({kind: 'typed', run: card && card.run, label: String(body.raw || body.text || 'typed line').slice(0, 40), event_id: body.event_id, rid: body.rid, reply});
+          watchTyped();
+        }
+      }catch(err){}
+      return r;
+    };
+    w._v645 = true; root.thrydTypelinePost = w; return true;
+  }
   function jn(j){ const m = /^j(\d+)$/i.exec(String(j || '')); return m ? +m[1] : 0; }
   function atMs(iso){ const t = Date.parse(iso || ''); return isNaN(t) ? 0 : t; }
   // is a sent entry finished, judged from an open_card payload?
@@ -190,22 +325,39 @@
   }
   function settleSent(j){
     const a = sentLog(); let changed = false;
-    a.forEach(e => { if(!e.done_at && sentResolved(e, j)){ e.done_at = Date.now(); changed = true; } });
-    const keep = a.filter(e => !(e.done_at && Date.now() - e.done_at > DONE_MS));
+    a.forEach(e => {
+      if(e.kind === 'typed') return;
+      const res = j && (j.resolved || []).find(x => x && x.event_id === e.event_id);
+      if(res && res.note && e.note !== res.note){ e.note = res.note; changed = true; }
+      if(res && res.status === 'cancelled' && !e.cancel){ e.cancel = 'cancelled'; changed = true; }
+      if(!e.done_at && sentResolved(e, j)){ e.done_at = Date.now(); changed = true; }
+    });
+    const keep = a.filter(e => !(e.done_at && Date.now() - e.done_at > ((e.note || e.cancel) ? NOTE_MS : DONE_MS)));
     if(changed || keep.length !== a.length) saveSentLog(keep);
-    if(changed) setTimeout(() => { try{ settleSent(meta || card); updateStrip(); }catch(e){} }, DONE_MS + 200);
+    if(changed) setTimeout(() => { try{ settleSent(meta || card); updateStrip(); }catch(e){} }, NOTE_MS + 200);
     return changed;
   }
   function sentPills(run){
-    return sentLog().filter(e => !run || !e.run || e.run === run).map(e => {
-      const w = document.createElement('div'); w.className = 'aicwait aicsent' + (e.done_at ? ' done' : ''); w.setAttribute('role', 'status');
-      w.dataset.eid = e.event_id;
+    const j = meta || card, now = Date.now();
+    const all = sentLog().filter(e => !run || !e.run || e.run === run);
+    const pill = (text, cls, onX, xLabel, eid) => {
+      const w = document.createElement('div'); w.className = 'aicwait aicsent' + (cls ? ' ' + cls : ''); w.setAttribute('role', 'status');
+      if(eid) w.dataset.eid = eid;
       const d = document.createElement('span'); d.className = 'dot'; w.appendChild(d);
-      const what = e.kind === 'pick' ? (e.job + ' pick') : (e.label || e.action || 'tap');
-      const tm = hhmm(new Date(+e.sent_at).toISOString());
-      w.appendChild(document.createTextNode(e.done_at ? ('\u2713 ' + what + ' done') : (what + ' sent' + (tm ? ' \u00b7 ' + tm : '') + ' \u00b7 waiting')));
+      const t = document.createElement('span'); t.textContent = text; w.appendChild(t);
+      if(onX){ const x = document.createElement('button'); x.type = 'button'; x.className = 'aicx'; x.textContent = '\u2715'; x.title = 'cancel this request'; x.setAttribute('aria-label', 'cancel ' + xLabel); tapOnce(x, onX); w.appendChild(x); }
       return w;
-    });
+    };
+    const out = all.filter(e => e.kind !== 'typed').map(e => { const s = pillState(e, j, now); return pill(s.text, s.cls, s.x ? () => cancelSent(e.event_id) : null, pillWhat(e), e.event_id); });
+    const typed = all.filter(e => e.kind === 'typed' && (e.cancel || e.done_at || now - (+e.sent_at || 0) > TYPED_SHOW_MS));
+    const tw = typed.filter(e => !e.cancel && !e.done_at);
+    if(tw.length){
+      const n = tw.length, tm = hhmm(new Date(+tw[0].sent_at).toISOString());
+      const late = now - (+tw[0].sent_at || 0) > RECEIPT_MS + 2000;
+      out.push(pill((n === 1 ? ('\u201c' + tw[0].label + '\u201d') : (n + ' typed lines')) + ' sent' + (tm ? ' \u00b7 ' + tm : '') + (late ? ' \u00b7 box hasn\u2019t answered' : ' \u00b7 waiting'), late ? 'err' : '', cancelTyped, 'typed lines'));
+    }
+    typed.filter(e => e.cancel || e.done_at).forEach(e => { const s = pillState(e, j, now); out.push(pill(s.text, s.cls, s.x ? () => cancelSent(e.event_id) : null, pillWhat(e), e.event_id)); });
+    return out;
   }
   // v630 card lane: the box publishes each changed open card to ntfy <drag topic>-c (chunked) the moment it is
   // seated, so the panel need not wait for a Pages build. Polled every 5 s only while a Send is waiting (max 6 min).
@@ -564,18 +716,28 @@
     if(pk && !isLocked(m) && !pillJobs.has(pk.job)){
       const w = document.createElement('div'); w.className = 'aicwait'; w.setAttribute('role', 'status');
       const d = document.createElement('span'); d.className = 'dot'; w.appendChild(d);
-      w.appendChild(document.createTextNode(pk.job + ' pick waiting to be seated' + (hhmm(pk.at) ? ' \u00b7 sent ' + hhmm(pk.at) : '')));
+      w.appendChild(document.createTextNode(pk.job + ' pick waiting to be seated' + (hhmm(pk.at) ? ' \u00b7 sent ' + hhmm(pk.at) : '') + (pk.note ? ' \u00b7 ' + pk.note : '')));
+      if(pk.event_id) w.appendChild(adoptX({kind: 'pick', run: m.run, job: pk.job, event_id: pk.event_id}));
       wrap.appendChild(w);
     }
     const menus = ((m && m.pending && m.pending.menu) || []).filter(x => !pillLabels.has(x.label));
     pills.forEach(x => wrap.appendChild(x));
-    if(menus && menus.length){
+    // v645: taps sent from another tab / device: one pill each, with the box's note and a \u2715
+    (menus || []).forEach(x => {
       const w = document.createElement('div'); w.className = 'aicwait';
       const d = document.createElement('span'); d.className = 'dot'; w.appendChild(d);
-      w.appendChild(document.createTextNode(menus.map(x => x.label).join(', ') + ' waiting'));
+      w.appendChild(document.createTextNode((x.label || x.action || 'tap') + (x.note ? ' \u00b7 ' + x.note : ' waiting')));
+      if(x.event_id) w.appendChild(adoptX({kind: 'menu', run: m.run, job: x.job || null, action: x.action, label: x.label, event_id: x.event_id}));
       wrap.appendChild(w);
-    }
+    });
     asyncPills(m).forEach(x => wrap.appendChild(x));
+    // v645: Jesuye's tab sat on v643 because auto-reload waits for an idle / hidden tab; offer the reload instead
+    if(root.__thrydUpdateReady && root.__thrydUpdateReady > (+root.__thrydVer || 0) && root.thrydReloadNow){
+      const u = document.createElement('button'); u.type = 'button'; u.className = 'aicwait aicupd';
+      u.textContent = '\u21bb update ready (v' + root.__thrydUpdateReady + ') \u00b7 tap to reload';
+      tapOnce(u, () => { try{ root.thrydReloadNow(); }catch(e){} });
+      wrap.appendChild(u);
+    }
     wrap.style.display = wrap.childNodes.length ? 'flex' : 'none';
     wrap.style.flexDirection = 'column'; wrap.style.gap = '6px';
     return wrap;
@@ -587,6 +749,7 @@
   }
 
 
+  function sheetKey(t){ return String(t || '').toLowerCase().replace(/\s*(?:->|=>|\u2192|\bto\b)\s*/g, '\u2192').replace(/[^\p{L}\p{N}\u2192]+/gu, ' ').replace(/\s*\u2192\s*/g, '\u2192').replace(/\s+/g, ' ').trim(); }
   function sheetEl(s){
     const box = document.createElement('div'); box.id = 'aisheet';
     if(s.prompt){ const h = document.createElement('div'); h.className = 'sh'; h.textContent = s.prompt; box.appendChild(h); }
@@ -595,7 +758,16 @@
     const opts = s.options || [];
     if(opts.length){
       const wrap = document.createElement('div'); wrap.className = 'opts';
-      opts.forEach(o => wrap.appendChild(menuBtn(o)));
+      const btns = opts.map(o => { const b = menuBtn(o); b.dataset.k = sheetKey(o.label); wrap.appendChild(b); return {b, o}; });
+      // v645: agenda lists (and any long sheet) take a typed name: "cheat to mean" filters to cheat \u2192 mean; Enter opens it
+      if(s.kind === 'agendas' || opts.length > 8){
+        const f = document.createElement('input'); f.type = 'text'; f.className = 'aishf'; f.autocomplete = 'off';
+        f.placeholder = s.kind === 'agendas' ? 'type a name \u00b7 e.g. cheat \u2192 mean' : 'type to find';
+        const shown = () => btns.filter(x => x.b.style.display !== 'none');
+        f.addEventListener('input', () => { const q = sheetKey(f.value); btns.forEach(x => { x.b.style.display = (!q || x.b.dataset.k.indexOf(q) >= 0) ? '' : 'none'; }); });
+        f.addEventListener('keydown', ev => { ev.stopPropagation(); if(ev.key !== 'Enter') return; ev.preventDefault(); const v = shown(); if(v.length === 1) sendMenu(v[0].b, v[0].o); else menuNote(v.length ? (v.length + ' match \u2014 type a little more') : 'no agenda by that name', v.length ? '' : 'err'); });
+        box.appendChild(f);
+      }
       box.appendChild(wrap);
     }
     return box;
@@ -611,7 +783,9 @@
     jobEl.textContent = '';
     jobEl.appendChild(seatStrip());
     const sheet = (meta && meta.sheet) || (c && c.sheet);
-    if(sheet && (sheet.prompt || (sheet.options || []).length || sheet.body)){
+    // v645 (Jesuye 2:12 PM): no "How many minutes?" seed card over an open job card
+    const seedBlocked = !!(sheet && sheet.kind === 'minutes' && seedGate(c));
+    if(sheet && !seedBlocked && (sheet.prompt || (sheet.options || []).length || sheet.body)){
       jobEl.appendChild(sheetEl(sheet));
     }
     if(!c || !c.open || !(c.options || []).length){
@@ -800,18 +974,20 @@
     if(!m){
       if(pendingSend !== ps) return;
       ps.state = 'not_received'; unmarkSent(job);
+      patchSent(eid, {unconfirmed: true});
       log({event: 'receipt_timeout', job, event_id: eid});
       status = {job, text: '\u2717 the box hasn\u2019t confirmed this send after 20 s. Tap Resend \u2014 it\u2019s the same send, so it can\u2019t pick twice.', kind: 'err'};
       render();
       lateReceipt(ps);
       return;
     }
+    patchSent(eid, {receipt_at: Date.now(), note: m.note || undefined});
     takeReceipt(ps, m);
   }
   // after a 20 s timeout keep listening a little longer; a late receipt still flips the card to ✓
   async function lateReceipt(ps){
     const m = await awaitReply(ps.body, ps.t0, ps.r, 0, [5000, 10000, 15000, 15000, 15000]);
-    if(m && pendingSend === ps && ps.state === 'not_received' && !sending) takeReceipt(ps, m);
+    if(m && pendingSend === ps && ps.state === 'not_received' && !sending){ patchSent(ps.body.event_id, {receipt_at: Date.now(), note: m.note || undefined}); takeReceipt(ps, m); }
   }
   function takeReceipt(ps, m){
     const job = ps.job;
@@ -838,8 +1014,14 @@
     render();
   }
 
+  // v645 (Jesuye 2:12 PM "it shouldn't be asking for a new agenda while still responding to the old one"):
+  // Seed / Draw a story / their minutes step wait until the open agenda job is finished or locked.
+  const SEED_RE = /^(?:menu:\s*)?(?:seed an agenda|draw a story|draw an agenda)$|^minutes:\s*\d+/i;
+  function seedGate(c){ return !!(c && c.open && c.job && (c.options || []).length && !isLocked(meta || c)); }
+  function seedNote(c){ return c.job + ' is open \u2014 finish or lock this agenda first'; }
   function sendMenu(btn, o){
     if(!o || !o.value || btn.disabled) return;
+    if(SEED_RE.test(String(o.value).trim()) && seedGate(card)){ menuNote(seedNote(card), 'err'); log({event: 'seed_blocked', job: card.job, action: o.value}); return; }
     const run = card && card.run;
     const again = pendingMenu[o.value] && pendingMenu[o.value].state === 'not_received' ? pendingMenu[o.value] : null;
     if(!again && menuRecent(run, o.value)){ btn.classList.add('sent'); btn.title = 'sent'; menuNote(o.label + ' already sent \u2713', 'ok'); return; } // drop before POST
@@ -854,6 +1036,8 @@
     const fail = why => { pm.state = 'not_received'; btn.disabled = false; btn.classList.add('err'); setTimeout(() => btn.classList.remove('err'), 1400); menuNote(o.label + ' not sent \u2014 ' + friendly(why) + '. Tap it again in a moment (same send, no double).', 'err'); };
     const done = m => {
       if(pendingMenu[o.value] === pm) delete pendingMenu[o.value];
+      patchSent(eid, m.ok ? {receipt_at: Date.now(), note: m.note || undefined, unconfirmed: false} : {done_at: Date.now(), note: m.detail || m.code || 'not accepted'});
+      try{ updateStrip(); }catch(err){}
       if(m.ok) return menuNote(o.label + ' received \u2713', 'ok');
       if(m.code === 'duplicate' || m.status === 'duplicate') return menuNote(o.label + ' already received \u2713', 'ok');
       btn.classList.remove('sent'); menuNote('\u2717 ' + o.label + ' not accepted \u2014 ' + (m.detail || m.code || 'rejected'), 'err');
@@ -866,7 +1050,7 @@
       const m = await awaitReply(body, t0, r, RECEIPT_MS);
       if(m) return done(m);
       // v644: no receipt in 20 s: say so; a second tap resends the same event_id (the box dedupes it)
-      pm.state = 'not_received'; btn.classList.remove('sent'); btn.title = 'resend';
+      pm.state = 'not_received'; btn.classList.remove('sent'); btn.title = 'resend'; patchSent(eid, {unconfirmed: true});
       try{ const mm = JSON.parse(localStorage.getItem(MENU_STORE) || '{}') || {}; delete mm[menuKey(run, o.value)]; localStorage.setItem(MENU_STORE, JSON.stringify(mm)); }catch(e){}
       menuNote('\u2717 the box hasn\u2019t confirmed ' + o.label + ' after 20 s. Tap it again to resend (same send, no double).', 'err');
       const late = await awaitReply(body, t0, r, 0, [5000, 10000, 15000, 15000, 15000]);
@@ -957,8 +1141,11 @@
     return true;
   }
 
+  addEventListener('thryd-update-ready', () => { try{ updateStrip(); }catch(e){} });
   function ready(){
     laneOpen();                                   // v632: lane from load, panel open or not
+    if(!hookTyped()) setTimeout(hookTyped, 1500); // v645: typed lines get a pill with a \u2715 while unanswered
+    if(sentLog().some(e => !e.done_at)){ pillTick(); watchTyped(); }
     if(hookClose()) return;
     setTimeout(ready, 100);
   }

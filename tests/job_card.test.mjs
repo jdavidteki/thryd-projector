@@ -8,12 +8,12 @@ const js = rd('assets/job_card.js'), html = rd('index.html'), st = rd('assets/st
 
 test('job_card.js loads by default; ?cards=0 hides the panel', ()=>{
   assert.match(html, /cards=0/);
-  assert.match(html, /job_card\.js\?v=18/);
+  assert.match(html, /job_card\.js\?v=19/);
   assert.match(js, /cards=0/);
   assert.match(html, /if\(!\/\(\?:\^\|\[\?&\]\)cards=0/);
   assert.match(js, /if\(\/\(\?:\^\|\[\?&\]\)cards=0/);
   assert.doesNotMatch(html, /if\(\/\(\?:\^\|\[\?&\]\)cards=1/);
-  assert.match(html, /var VER=644,/);
+  assert.match(html, /var VER=645,/);
   const v = JSON.parse(ver);
   assert.ok(v.v >= 644);
 });
@@ -166,7 +166,7 @@ test('v628: panel stays open after Send; waiting refresh keeps the sent card; ea
   assert.match(js, /border-radius:8px;white-space:normal/);
   assert.match(js, /max-height:15em;overflow-y:auto/);
   assert.match(js, /touch-action:pan-y/);
-  assert.match(html, /job_card\.js\?v=18/);
+  assert.match(html, /job_card\.js\?v=19/);
   assert.match(html, /intent_ai\.js\?v=614/);
   const src = js.slice(js.indexOf('function safeText(o){'), js.indexOf('function render(){'));
   const f = new Function(src + '; return {safeRows, safeText};')();
@@ -214,7 +214,8 @@ test('v630: sent taps survive a refresh as pills, cleared by resolved/seated, ca
   assert.match(js, /SENT_LOG = 'thryd_sent_log_v630'/);
   assert.match(js, /logSent\(\{kind: 'pick'/);
   assert.match(js, /logSent\(\{kind: 'menu'/);
-  assert.match(js, /' sent' \+ \(tm \? ' \\u00b7 ' \+ tm : ''\) \+ ' \\u00b7 waiting'/);
+  assert.match(js, /' sent' \+ \(tm \? ' \\u00b7 ' \+ tm : ''\)/);
+  assert.match(js, /head \+ ' \\u00b7 waiting'/);   // v645: pillState
   assert.match(js, /'\\u2713 ' \+ what \+ ' done'/);
   assert.match(js, /j\.resolved/);
   assert.match(js, /'-c'/);
@@ -251,8 +252,8 @@ test('v633: archive safe lines flow inline at a smaller font; title stays its ow
 });
 
 test('v634: open async jobs render as persistent waiting-on-real-life pills; empty list shows nothing', ()=>{
-  assert.match(html, /var VER=644,/);
-  assert.match(html, /job_card\.js\?v=18/);
+  assert.match(html, /var VER=645,/);
+  assert.match(html, /job_card\.js\?v=19/);
   const v = JSON.parse(ver);
   assert.ok(v.v >= 644);
   assert.match(js, /function asyncPills\(/);
@@ -298,8 +299,8 @@ test('v638: MENU and LOCK buttons sit in one sideways-sliding row; a swipe is no
   assert.match(js, /sc\.appendChild\(menuBtn\(o\)\)/);
   assert.doesNotMatch(js, /#aimenu \.aimrow\{display:flex;flex-wrap:wrap/);
   assert.match(js, /Math\.abs\(\(ev\.clientX \|\| sx\) - sx\) > 14/);
-  assert.match(html, /var VER=644,/);
-  assert.match(html, /job_card\.js\?v=18/);
+  assert.match(html, /var VER=645,/);
+  assert.match(html, /job_card\.js\?v=19/);
   const v = JSON.parse(ver);
   assert.ok(v.v >= 644);
 });
@@ -323,8 +324,8 @@ __t('v644: send_receipt: tick only on the box receipt; 20 s timeout offers Resen
   const html = __fs.readFileSync(new URL('../index.html', import.meta.url), 'utf8');
   const ver = JSON.parse(__fs.readFileSync(new URL('../data/version.json', import.meta.url), 'utf8'));
   const pj = __fs.readFileSync(new URL('../assets/projector.js', import.meta.url), 'utf8');
-  __a.match(html, /var VER=644,/); __a.match(html, /job_card\.js\?v=18/); __a.match(html, /projector\.js\?v=577/);
-  __a.equal(ver.v, 644);
+  __a.match(html, /var VER=645,/); __a.match(html, /job_card\.js\?v=19/); __a.match(html, /projector\.js\?v=578/);
+  __a.equal(ver.v, 645);
   __a.match(src, /const RECEIPT_MS = 20000;/);
   __a.match(src, /const eid = again \? again\.body\.event_id : uid\('pick-'\)/);          // resend reuses the event_id
   __a.match(src, /const body = again \? again\.body :/);
@@ -348,4 +349,50 @@ __t('v644: send_receipt: tick only on the box receipt; 20 s timeout offers Resen
   __a.equal((await aw(body, 1, {}, 20000)).status, 'accepted');
   replies = []; meta = {resolved: [{event_id: body.event_id}]};
   __a.equal((await aw(body, 1, {}, 20000)).status, 'seated');
+});
+__t('v645: pills read the box answer, say when unconfirmed, and a ✕ cancels by event_id without double picks', async () => {
+  const src = __fs.readFileSync(new URL('../assets/job_card.js', import.meta.url), 'utf8');
+  const html = __fs.readFileSync(new URL('../index.html', import.meta.url), 'utf8');
+  const pj = __fs.readFileSync(new URL('../assets/projector.js', import.meta.url), 'utf8');
+  const ver = JSON.parse(__fs.readFileSync(new URL('../data/version.json', import.meta.url), 'utf8'));
+  __a.equal(ver.v, 645); __a.match(html, /var VER=645,/); __a.match(html, /job_card\.js\?v=19/); __a.match(html, /projector\.js\?v=578/);
+  __a.match(html, /thryd-update-ready/); __a.match(html, /window\.thrydReloadNow=/);
+  __a.match(src, /update ready \(v/);
+  __a.match(pj, /accept\(r, dest\.name, dest\.ep\)/);                       // reply topic follows the topic that carried it
+  const a = src.indexOf('  function pillWhat('), b = src.indexOf('  let pillT = 0;');
+  const mk = new Function('RECEIPT_MS', 'NOTE_MS', 'QUIET_MS', 'hhmm', src.slice(a, b) + '; return {pillState, pillWhat};');
+  const {pillState} = mk(20000, 15000, 180000, () => '1:51 PM');
+  const now = 1_000_000_000_000;
+  const jump = {kind: 'menu', label: '⏩ Jump ahead', action: 'jump ahead', event_id: 'menu-b2fb10f1', sent_at: now - 5000};
+  __a.deepEqual(pillState(jump, {}, now), {text: '⏩ Jump ahead sent · 1:51 PM · waiting', cls: '', x: true});
+  __a.equal(pillState(Object.assign({}, jump, {sent_at: now - 30000}), {}, now).text, '⏩ Jump ahead sent · 1:51 PM · box hasn’t confirmed');
+  __a.equal(pillState(Object.assign({}, jump, {sent_at: now - 30000, receipt_at: now - 25000}), {}, now).text, '⏩ Jump ahead sent · 1:51 PM · received · waiting');
+  __a.equal(pillState(Object.assign({}, jump, {sent_at: now - 200000, receipt_at: now - 190000}), {}, now).text, '⏩ Jump ahead sent · 1:51 PM · received, no answer yet');
+  const j = {resolved: [{event_id: 'menu-b2fb10f1', status: 'declined', note: 'Jump ahead: not at a lock yet (257/270)'}]};
+  __a.equal(pillState(Object.assign({}, jump, {done_at: now}), j, now).text, '⏩ Jump ahead · Jump ahead: not at a lock yet (257/270)');
+  __a.equal(pillState(Object.assign({}, jump, {done_at: now}), j, now).x, false);
+  const pend = {pending: {menu: [{event_id: 'menu-b2fb10f1', label: '⏩ Jump ahead', note: 'with the Chief of Staff'}]}};
+  __a.equal(pillState(jump, pend, now).text, '⏩ Jump ahead sent · 1:51 PM · with the Chief of Staff');
+  __a.equal(pillState(Object.assign({}, jump, {cancel: 'sending', cancel_at: now - 1000}), {}, now).x, false);
+  __a.equal(pillState(Object.assign({}, jump, {cancel: 'unconfirmed'}), {}, now).text, '⏩ Jump ahead · cancel not confirmed · tap ✕ to retry');
+  __a.equal(pillState(Object.assign({}, jump, {cancel: 'cancelled', done_at: now}), {}, now).text, '✕ ⏩ Jump ahead cancelled');
+  const pick = {kind: 'pick', job: 'j68', event_id: 'pick-1', sent_at: now - 1000, cancel: 'too_late', note: 'already seated — can’t cancel', done_at: now};
+  __a.equal(pillState(pick, {}, now).text, 'j68 pick · already seated — can’t cancel');
+  // ✕: same cancel id on retry, the lock lifts (card can be picked again), too_late re-locks, state persists in localStorage
+  __a.match(src, /const cid = e\.cancel_id \|\| uid\('cancel-'\)/);
+  __a.match(src, /type:'cancel', event_id:cid, rid:cid \+ '-r', target:e\.event_id/);
+  __a.match(src, /function liftLock\(e\)\{\n\s+if\(e\.kind === 'pick'\)\{\n\s+unmarkSent\(e\.job\);/);
+  __a.match(src, /m\.status === 'too_late'\)\{ out = patchSent\(eid, \{cancel: 'too_late'.*relock\(e\)/);
+  __a.match(src, /localStorage\.setItem\(SENT_LOG/);
+  __a.match(src, /kind: 'typed'/); __a.match(src, /cancelTyped/);
+  __a.match(src, /adoptX\(\{kind: 'menu'/);                                   // taps from another tab get a ✕ too
+  __a.match(src, /type a name \\u00b7 e\.g\. cheat \\u2192 mean/);            // agenda list takes a typed name  // Seed / Draw / minutes never open over an open job card (Jesuye 2:12 PM)
+  const g0 = src.indexOf('  const SEED_RE ='), g1 = src.indexOf('  function sendMenu(');
+  const G = new Function('isLocked', 'meta', src.slice(g0, g1) + '; return {SEED_RE, seedGate, seedNote};')(m => !!(m && m.lock_open), null);
+  __a.ok(G.SEED_RE.test('menu: Seed an agenda') && G.SEED_RE.test('minutes: 120') && G.SEED_RE.test('menu: Draw a story'));
+  __a.ok(!G.SEED_RE.test('menu: Show all agendas'));
+  __a.equal(G.seedGate({open: true, job: 'j69', options: [{}]}), true);
+  __a.equal(G.seedGate({open: true, job: 'j69', options: [{}], lock_open: true}), false);
+  __a.equal(G.seedNote({job: 'j69'}), 'j69 is open — finish or lock this agenda first');
+  __a.match(src, /sheet\.kind === 'minutes' && seedGate\(c\)/);
 });

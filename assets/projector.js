@@ -129,9 +129,10 @@ window.thrydTypelinePost=async function(body, kind){
   if(!topics.length&&!(backup&&backup.endpoint)){const e=new Error('no_endpoint');e.status='no_endpoint';window.thrydLogSend({branch:'no_endpoint',kind:kind,event_id:payload.event_id});throw e;}
   if(topics[0]) try{const ok=window.thrydSendBeacon(topics[0].ep, payload);window.thrydLogSend({branch:'sendBeacon',ok:ok,endpoint:topics[0].ep,event_id:payload.event_id,kind:kind});}catch(e){}
   let lastErr='not posted', winner=null;
-  const accept=function(r, via){
+  const accept=function(r, via, ep){
     if(winner||!r||!r.ok||!r.ntfyId) return r;
-    r.via=via; r.reply=r.reply||(via==='backup'&&backup&&backup.reply)||null;
+    // v645: the box replies on <the topic that carried it>-r; a cli-topic win used to leave the panel polling drag-r
+    r.via=via; r.reply=r.reply||(via==='backup'&&backup&&backup.reply)||(ep?String(ep).replace(/\/?$/,'')+'-r':null);
     winner=r;
     window.thrydLogSend({branch:'typeline_accept',via:via,id:r.ntfyId,event_id:payload.event_id,kind:kind});
     return r;
@@ -145,7 +146,7 @@ window.thrydTypelinePost=async function(body, kind){
         window.thrydLogSend({branch:'typeline_post',attempt:i+1,topic:dest.name,endpoint:dest.ep,event_id:payload.event_id,kind:kind,source:payload.source});
         const r=await window.thrydSimplePost(dest.ep, payload, 20000);
         window.thrydLogSend({branch:'typeline_post_done',attempt:i+1,topic:dest.name,ok:!!(r&&r.ok),status:r&&r.status,id:r&&r.ntfyId,event_id:payload.event_id});
-        if(r&&r.ok&&r.ntfyId) return accept(r, dest.name);
+        if(r&&r.ok&&r.ntfyId) return accept(r, dest.name, dest.ep);
         lastErr=r&&r.ok?'ntfy 200 with no id':('HTTP '+(r&&r.status));
       }catch(e){
         lastErr=(window.thrydIsTimeout&&window.thrydIsTimeout(e))?'timed out':String(e&&e.message||e);
