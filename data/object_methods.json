@@ -29810,6 +29810,46 @@
    "prior": [],
    "faded": false,
    "last_run": null
+  },
+  "kemi.setbodytemperature": {
+   "object": "kemi",
+   "method": "setbodytemperature",
+   "args": [],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j59",
+    "card": "j59",
+    "title": "kemi.setbodytemperature(100)",
+    "emoji": "",
+    "at": "2026-11-26T21:59:12-05:00",
+    "source": "cli"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "kemi.setbodytemperature(100)",
+     "emoji": "",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j59",
+     "tweets": [],
+     "consequence": "The customer typed this on this agenda.",
+     "consequence_job": ""
+    }
+   ],
+   "source": "cli",
+   "cli": true,
+   "sig": {
+    "params": [],
+    "text": "setbodytemperature()"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
   }
  },
  "objects": {
@@ -30392,7 +30432,8 @@
    "kemi.ismarried",
    "kemi.setlocation",
    "kemi.getlastperiod",
-   "kemi.getshoesize"
+   "kemi.getshoesize",
+   "kemi.setbodytemperature"
   ],
   "kemisister": [
    "kemisister.getname"
@@ -55978,7 +56019,8 @@
     "kemisister.getname",
     "new.miniskirt",
     "kemi.getshoesize",
-    "ronkesister.setname"
+    "ronkesister.setname",
+    "kemi.setbodytemperature"
    ]
   },
   "run-d6fc": {
@@ -61102,7 +61144,8 @@
    "kemi.ismarried",
    "kemi.setlocation",
    "kemi.getlastperiod",
-   "kemi.getshoesize"
+   "kemi.getshoesize",
+   "kemi.setbodytemperature"
   ],
   "kemisister": [
    "kemisister.getname"
@@ -62322,5 +62365,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-26T21:41:52-05:00"
+ "updated": "2026-11-26T21:59:30-05:00"
 }
