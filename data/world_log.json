@@ -15050,7 +15050,7 @@
   },
   "run-cf203b": {
    "forked_from": "safe:731d52737690",
-   "head": "7e1e5a653d",
+   "head": "29cef7e844",
    "commits": [
     {
      "id": "387e402c1d",
@@ -16628,16 +16628,7 @@
         "op": "define"
        }
       ],
-      "instances": [
-       [
-        "movement",
-        "Thing"
-       ],
-       [
-        "broadway",
-        "Action"
-       ]
-      ]
+      "instances": []
      }
     },
     {
@@ -16888,10 +16879,6 @@
        }
       ],
       "instances": [
-       [
-        "fun",
-        "Thing"
-       ],
        [
         "slip",
         "Place"
@@ -17373,10 +17360,6 @@
        }
       ],
       "instances": [
-       [
-        "about",
-        "Thing"
-       ],
        [
         "skills",
         "Thing"
@@ -21945,8 +21928,61 @@
      }
     },
     {
-     "id": "7e1e5a653d",
+     "id": "80b7309850",
      "parent": "43e12b5134",
+     "branch": "run-cf203b",
+     "job": "j69",
+     "at": "2026-11-27T16:43:59-05:00",
+     "genre": "rising",
+     "beat": "now",
+     "diff": {
+      "facts": [],
+      "facts_total": 0,
+      "functions": [
+       {
+        "func": "one.thing",
+        "title": "one.thing(about)",
+        "op": "call"
+       },
+       {
+        "func": "have.lines",
+        "title": "have.lines(rn)",
+        "op": "define"
+       },
+       {
+        "func": "lez.anada",
+        "title": "lez.anada(strategy)",
+        "op": "define"
+       },
+       {
+        "func": "now.got",
+        "title": "now.got(funke)",
+        "op": "define"
+       }
+      ],
+      "instances": [
+       [
+        "about",
+        "Thing"
+       ],
+       [
+        "rn",
+        "Thing"
+       ],
+       [
+        "strategy",
+        "Thing"
+       ],
+       [
+        "funke",
+        "Thing"
+       ]
+      ]
+     }
+    },
+    {
+     "id": "29cef7e844",
+     "parent": "80b7309850",
      "branch": "run-cf203b",
      "job": "j70",
      "at": "2026-11-27T16:44:02-0500",
@@ -21969,9 +22005,33 @@
         "code": "#thryd.miracle.log(1);",
         "scope": null,
         "cause_id": null
+       },
+       {
+        "id": "wt_cbc87b3fba",
+        "object": "tn",
+        "kind": "func_call",
+        "code": "[[tn]];",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_925273c200",
+        "object": "isl",
+        "kind": "func_call",
+        "code": "[[isl]];",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_291b7eccea",
+        "object": "shock",
+        "kind": "func_call",
+        "code": "[[shock]];",
+        "scope": null,
+        "cause_id": null
        }
       ],
-      "facts_total": 2,
+      "facts_total": 5,
       "functions": [],
       "instances": []
      }
@@ -22920,10 +22980,10 @@
   "run-0ae93c": "a11a1eab61",
   "run-3a15d2": "fbc46c6eb7",
   "run-ab4653": "dd8e54daee",
-  "run-cf203b": "7e1e5a653d",
+  "run-cf203b": "29cef7e844",
   "run-888ea9": "7aa0131911",
   "run-cb805f": "8d23a93627"
  },
- "commits": 222,
- "updated": "2026-11-27T16:44:04-05:00"
+ "commits": 223,
+ "updated": "2026-11-27T16:44:57-05:00"
 }
