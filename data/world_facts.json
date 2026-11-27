@@ -7163,16 +7163,6 @@
 ],
 "abeokuta_parlour": [
 {
-"id": "wf_9fda1e460b",
-"kind": "consequence",
-"text": "The abeokuta parlour leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"code": "saturday_october.interactwith(abeokuta_parlour){ abeokuta_parlour.receives(saturday_october.envelope); abeokuta_parlour.remembers(bisola, 'brown envelope'); }",
-"author": "cos",
-"run": "run-g1-B",
-"card": "j6",
-"other": "saturday_october"
-},
-{
 "id": "wt_ea37c3bdf2",
 "kind": "call",
 "text": "Someone at the projector tapped the abeokuta parlour and made it glow.",
@@ -7211,6 +7201,16 @@
 "run": "run-cf203b",
 "card": "j6",
 "other": "surulere_party_hall"
+},
+{
+"id": "wt_e6520250c2",
+"kind": "func_call",
+"text": "Someone at the projector saw the abeokuta parlour meets the surulere party hall.",
+"code": "abeokuta_parlour.meets(surulere_party_hall);",
+"author": "projector",
+"run": "run-cf203b",
+"card": "w72",
+"other": null
 }
 ],
 "uch": [
@@ -14509,5 +14509,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-27T16:58:28-0500"
+"updated": "2026-11-27T17:01:55-0500"
 }
