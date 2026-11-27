@@ -7227,6 +7227,16 @@
 "run": "run-cf203b",
 "card": "w64",
 "other": null
+},
+{
+"id": "wf_c186a6aff3",
+"kind": "consequence",
+"text": "The ikorodu marina now remembers the cooler: The customer typed cooler.getdatemanufactured() on run-qa j1.",
+"code": "cooler.interactwith(ikorodu_marina){ ikorodu_marina.receives(cooler.something); }",
+"author": "cos",
+"run": "run-cf203b",
+"card": "j1",
+"other": "cooler"
 }
 ],
 "fayago": [
@@ -13530,17 +13540,6 @@
 },
 "consequences": [
 {
-"id": "wf_dd983a6121",
-"ts": "2026-11-24T13:18:47-0500",
-"a": "heatflag",
-"b": "miami",
-"code": "heatflag.interactwith(miami){ miami.receives(heatflag.code); miami.remembers(ejiro, 'juju code'); }",
-"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up beside the phone at the miami.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j2"
-},
-{
 "id": "wf_8d41bbe30c",
 "ts": "2026-11-24T13:19:38-0500",
 "a": "tag_sessy",
@@ -13968,6 +13967,17 @@
 "author": "cos",
 "run": "run-cf203b",
 "card": "j32"
+},
+{
+"id": "wf_c186a6aff3",
+"ts": "2026-11-27T02:18:16-0500",
+"a": "cooler",
+"b": "ikorodu_marina",
+"code": "cooler.interactwith(ikorodu_marina){ ikorodu_marina.receives(cooler.something); }",
+"text": "The ikorodu marina now remembers the cooler: The customer typed cooler.getdatemanufactured() on run-qa j1.",
+"author": "cos",
+"run": "run-cf203b",
+"card": "j1"
 }
 ],
 "memories": [
@@ -14071,5 +14081,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-27T02:17:24-0500"
+"updated": "2026-11-27T02:18:16-0500"
 }
