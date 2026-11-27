@@ -132,7 +132,7 @@
  "lines": 261,
  "next_lock_at_lines": 270,
  "lock_open": false,
- "at": "2026-11-27T14:10:43-05:00",
+ "at": "2026-11-27T14:17:38-05:00",
  "pinned": true,
  "last_seat": {
   "job": "j68",
@@ -144,16 +144,7 @@
   ],
   "at": "2026-11-27T14:10:42-05:00"
  },
- "pending": {
-  "menu": [
-   {
-    "label": "2 hrs",
-    "at": "2026-11-27T14:01:16-05:00",
-    "action": "minutes: 120",
-    "event_id": "menu-4e8954d2-0d56-4eba-a24f-ed8ea4b17dba"
-   }
-  ]
- },
+ "pending": null,
  "resolved": [
   {
    "event_id": "pick-82911399-1ce6-43bd-bc4c-eca988cb1a45",
@@ -193,6 +184,14 @@
    "note": "Seed an agenda: set aside"
   },
   {
+   "event_id": "menu-4e8954d2-0d56-4eba-a24f-ed8ea4b17dba",
+   "type": "menu_action",
+   "status": "declined",
+   "job": "j68",
+   "action": "minutes: 120",
+   "note": "2 hrs: set aside — j69 is open, finish or lock this agenda first"
+  },
+  {
    "event_id": "pick-8cfe0135-ce11-40ad-89aa-c9872b70d29e",
    "type": "card_pick",
    "status": "seated",
@@ -200,30 +199,5 @@
    "action": null
   }
  ],
- "async_jobs": [],
- "sheet": {
-  "kind": "minutes",
-  "prompt": "How many minutes?",
-  "helpText": "How long is this sitting? 30 min is 18 lines, 1 hr is 35, 2 hrs is 65 (about 9 lines / 16 min per card). Type a custom length if you like.",
-  "options": [
-   {
-    "label": "30 min",
-    "value": "minutes: 30",
-    "safe": "18 lines (about 9 lines / 16 min per card)"
-   },
-   {
-    "label": "1 hr",
-    "value": "minutes: 60",
-    "safe": "35 lines (about 9 lines / 16 min per card)"
-   },
-   {
-    "label": "2 hrs",
-    "value": "minutes: 120",
-    "safe": "65 lines (about 9 lines / 16 min per card)"
-   }
-  ],
-  "allowCustom": true,
-  "at": "2026-11-27T13:56:18-05:00",
-  "source_action": "menu: Seed an agenda"
- }
+ "async_jobs": []
 }
