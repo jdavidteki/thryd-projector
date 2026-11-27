@@ -13,7 +13,7 @@ test('job_card.js loads by default; ?cards=0 hides the panel', ()=>{
   assert.match(html, /if\(!\/\(\?:\^\|\[\?&\]\)cards=0/);
   assert.match(js, /if\(\/\(\?:\^\|\[\?&\]\)cards=0/);
   assert.doesNotMatch(html, /if\(\/\(\?:\^\|\[\?&\]\)cards=1/);
-  assert.match(html, /var VER=645,/);
+  assert.match(html, /var VER=(6[4-9]\d),/);
   const v = JSON.parse(ver);
   assert.ok(v.v >= 644);
 });
@@ -252,7 +252,7 @@ test('v633: archive safe lines flow inline at a smaller font; title stays its ow
 });
 
 test('v634: open async jobs render as persistent waiting-on-real-life pills; empty list shows nothing', ()=>{
-  assert.match(html, /var VER=645,/);
+  assert.match(html, /var VER=(6[4-9]\d),/);
   assert.match(html, /job_card\.js\?v=19/);
   const v = JSON.parse(ver);
   assert.ok(v.v >= 644);
@@ -299,7 +299,7 @@ test('v638: MENU and LOCK buttons sit in one sideways-sliding row; a swipe is no
   assert.match(js, /sc\.appendChild\(menuBtn\(o\)\)/);
   assert.doesNotMatch(js, /#aimenu \.aimrow\{display:flex;flex-wrap:wrap/);
   assert.match(js, /Math\.abs\(\(ev\.clientX \|\| sx\) - sx\) > 14/);
-  assert.match(html, /var VER=645,/);
+  assert.match(html, /var VER=(6[4-9]\d),/);
   assert.match(html, /job_card\.js\?v=19/);
   const v = JSON.parse(ver);
   assert.ok(v.v >= 644);
@@ -324,8 +324,8 @@ __t('v644: send_receipt: tick only on the box receipt; 20 s timeout offers Resen
   const html = __fs.readFileSync(new URL('../index.html', import.meta.url), 'utf8');
   const ver = JSON.parse(__fs.readFileSync(new URL('../data/version.json', import.meta.url), 'utf8'));
   const pj = __fs.readFileSync(new URL('../assets/projector.js', import.meta.url), 'utf8');
-  __a.match(html, /var VER=645,/); __a.match(html, /job_card\.js\?v=19/); __a.match(html, /projector\.js\?v=578/);
-  __a.equal(ver.v, 645);
+  __a.match(html, /var VER=(6[4-9]\d),/); __a.match(html, /job_card\.js\?v=19/); __a.match(html, /projector\.js\?v=578/);
+  __a.ok(ver.v >= 645);
   __a.match(src, /const RECEIPT_MS = 20000;/);
   __a.match(src, /const eid = again \? again\.body\.event_id : uid\('pick-'\)/);          // resend reuses the event_id
   __a.match(src, /const body = again \? again\.body :/);
@@ -355,7 +355,7 @@ __t('v645: pills read the box answer, say when unconfirmed, and a ✕ cancels by
   const html = __fs.readFileSync(new URL('../index.html', import.meta.url), 'utf8');
   const pj = __fs.readFileSync(new URL('../assets/projector.js', import.meta.url), 'utf8');
   const ver = JSON.parse(__fs.readFileSync(new URL('../data/version.json', import.meta.url), 'utf8'));
-  __a.equal(ver.v, 645); __a.match(html, /var VER=645,/); __a.match(html, /job_card\.js\?v=19/); __a.match(html, /projector\.js\?v=578/);
+  __a.ok(ver.v >= 645); __a.match(html, /var VER=(6[4-9]\d),/); __a.match(html, /job_card\.js\?v=19/); __a.match(html, /projector\.js\?v=578/);
   __a.match(html, /thryd-update-ready/); __a.match(html, /window\.thrydReloadNow=/);
   __a.match(src, /update ready \(v/);
   __a.match(pj, /accept\(r, dest\.name, dest\.ep\)/);                       // reply topic follows the topic that carried it

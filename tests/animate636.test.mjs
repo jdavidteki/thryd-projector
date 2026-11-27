@@ -23,9 +23,9 @@ test('index, loader and version.json stay at or above v636; cut_animate.js loads
   assert.match(html, /cut_animate\.js\?v=1['"],'stage\.js\?v=\d+'/);
 });
 
-test('anim_cuts manifest has dwell_k 2 and a cuts list (still fallback when empty or file missing)', ()=>{
+test('anim_cuts manifest has dwell_k 3.5 (v646) and a cuts list (still fallback when empty or file missing)', ()=>{
   assert.equal(anim.v, 1);
-  assert.equal(anim.dwell_k, 2);
+  assert.equal(anim.dwell_k, 3.5);
   assert.ok(Array.isArray(anim.cuts));
   assert.match(st, /data\/anim_cuts\.json/);
   assert.match(st, /function applyAnim\(/);
@@ -33,11 +33,11 @@ test('anim_cuts manifest has dwell_k 2 and a cuts list (still fallback when empt
   assert.match(st, /L\.hasAnim = true/);
 });
 
-test('animated stills stay in the sky 2x as long as plain stills (ANIM_DWELL_K = 2); live views keep their own 2.5x', ()=>{
-  assert.match(st, /const ANIM_DWELL_K = 2;/);
-  assert.match(st, /L\.hasAnim \? ANIM_DWELL_K : 1/);
-  assert.match(st, /const LIVE_DWELL_K = 2\.5;/);
-  assert.match(st, /row\.live_view \? LIVE_DWELL_K : \(L\.hasAnim \? ANIM_DWELL_K : 1\)/);
+test('v646: animated groups stay 3.5x as long as plain stills (ANIM_DWELL_K = 3.5); live views 4x', ()=>{
+  assert.match(st, /const ANIM_DWELL_K = 3\.5;/);
+  assert.match(st, /\(L\.hasAnim \|\| L\.animated\) \? ANIM_DWELL_K : 1/);
+  assert.match(st, /const LIVE_DWELL_K = 4;/);
+  assert.match(st, /row\.live_view \? LIVE_DWELL_K : \(\(L\.hasAnim \|\| L\.animated\) \? ANIM_DWELL_K : 1\)/);
 });
 
 test('ambient in-cut paint runs on the display-rate loop for visible cuts, not off-screen, not when reduced-motion', ()=>{
@@ -54,7 +54,7 @@ test('kindOf, un-synced phases, person breath/sway/blink, object kinds, and verb
   assert.equal(A.kindOf('cup'), 'cup');
   assert.equal(A.kindOf('lantern'), 'lamp');
   assert.equal(A.kindOf('flag'), 'cloth');
-  assert.equal(A.ANIM_DWELL_K, 2);
+  assert.equal(A.ANIM_DWELL_K, 3.5);
   const a = {label: 'cut1', klass: 'person', g: {mid: 'a'}};
   const b = {label: 'cut1', klass: 'person', g: {mid: 'b'}};
   const pa = A.sampleAmbient(a, 0, 100, 200);
@@ -99,7 +99,7 @@ test('fun was not cut: display-rate loop, grain default, and v635 float stay', (
 });
 
 test('v641: fe_anim.js loads after stage.js (opt-in ?feanim=1); applyLiveAnim is on the stage; 20 pilot candidates are published', ()=>{
-  assert.match(html, /stage\.js\?v=641','fe_anim\.js\?v=2/);
+  assert.match(html, /stage\.js\?v=6[4-9]\d','fe_anim\.js\?v=2/);
   assert.match(st, /function applyLiveAnim\(/);
   assert.match(st, /S\.applyLiveAnim = applyLiveAnim/);
   assert.match(st, /root\.ThrydStage = S/);

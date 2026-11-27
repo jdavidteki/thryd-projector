@@ -1,7 +1,7 @@
 // v639: in-browser free image-to-video queue for the 20 pilot cuts
 import test from 'node:test';
 import assert from 'node:assert';
-import {readFileSync} from 'node:fs';
+import {readFileSync, existsSync} from 'node:fs';
 import {createContext, runInContext} from 'node:vm';
 
 const here = new URL('..', import.meta.url);
@@ -50,9 +50,9 @@ function load(search=''){
 }
 
 test('v641: fe_anim.js is loaded after stage.js and version is 641', ()=>{
-  assert.equal(ver.v, 641);
-  assert.match(html, /var VER=641,/);
-  assert.match(html, /stage\.js\?v=641','fe_anim\.js\?v=2/);
+  assert.ok(ver.v >= 641);
+  assert.match(html, /var VER=(6[4-9]\d),/);
+  assert.match(html, /stage\.js\?v=6[4-9]\d','fe_anim\.js\?v=2/);
 });
 
 test('uses the public Lightricks LTX space over a CDN @gradio/client, never a paid or Grok API', ()=>{
@@ -64,9 +64,13 @@ test('uses the public Lightricks LTX space over a CDN @gradio/client, never a pa
   assert.match(src, /Never uses Grok \/ paid APIs/);
 });
 
-test('twenty pilot candidates are published with png + prompt + sizes; cuts start empty', ()=>{
+test('twenty pilot candidates are published with png + prompt + sizes; v646 cuts are real files keyed by medium id + cut', ()=>{
   assert.equal(anim.candidates.length, 20);
-  assert.equal((anim.cuts || []).length, 0);
+  for(const c of (anim.cuts || [])){
+    assert.ok(c.medium_image_id && c.cut && /^assets\/anim_cuts\/[^/]+\.gif$/.test(c.anim));
+    assert.ok(existsSync(new URL(c.anim, here)), 'anim file shipped: ' + c.anim);
+    assert.ok(c.bytes > 0 && c.bytes < 2.2e6, 'GIF stays under ~2 MB');
+  }
   for(const c of anim.candidates){
     assert.ok(c.cut_id && c.png.startsWith('assets/anim_pilot/'));
     assert.ok(c.prompt && c.prompt.length > 8);

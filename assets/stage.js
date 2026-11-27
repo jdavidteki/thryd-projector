@@ -85,9 +85,19 @@
   const INFLIGHT = PHONE ? 1 : 2;             // groups decoding at the same time (in the decode worker, off the main thread)
   const BG_P = PHONE ? 0.8 : 0.9;             // share of groups that get the faded source-frame backdrop (covers the gaps)
   // live views (Jesuye 14 Nov 2026 8:52 AM ET): newest final jN GIFs jump the queue and stay ~2.5× as long as a normal cut
-  const LIVE_DWELL_K = 2.5;                    // vs a normal group life of 30–50s (phone) or 35–70s (desktop)
-  const ANIM_DWELL_K = 2;                      // v636: a still with a manifest anim GIF stays in the sky 2x as long as a plain still
+  const LIVE_DWELL_K = 4;                      // v646 (was 2.5): vs a normal group life of 30–50s (phone) or 35–70s (desktop)
+  const ANIM_DWELL_K = 3.5;                    // v646 (was 2, and Medium GIF groups were 1x): every animated group (Medium GIF or still with a manifest anim) stays 3.5x a plain still
   S.ANIM_DWELL_K = ANIM_DWELL_K;
+  // v646 (Jesuye 27 Nov 2026 4:53 PM ET "make the live ones stay longer - there should always be at least 10 live objects on screen"):
+  // a floor of LIVE_FLOOR animated cuts (cuts with more than one frame: Medium GIF cuts, anim-manifest cuts, live-view cuts).
+  // A group whose leaving would drop the stage under the floor does not leave on 'life' or get evicted for room; while under
+  // the floor the deck prefers GIFs and stills with an anim. With fewer than LIVE_FLOOR animated cuts available, all of them stay.
+  const LIVE_FLOOR = 10;
+  const isLiveCut = c => !!(c && !c.map && !isLeaving(c) && c.frames && c.frames.length > 1);
+  const liveCutsOn = ()=> S.cuts.filter(isLiveCut).length;
+  const groupLiveCuts = g => (g && g.cuts ? g.cuts.filter(isLiveCut).length : 0);
+  function floorHolds(g){ const n = groupLiveCuts(g); return n > 0 && liveCutsOn() - n < LIVE_FLOOR; }
+  S.LIVE_FLOOR = LIVE_FLOOR; S.liveCutsOn = liveCutsOn; S.floorHolds = floorHolds; S.isLiveCut = isLiveCut;
   const LIVE_POLL_MS = 45000;                  // at most as often as the data loop; do not poll faster
   const LIVE_KEEP = 3;                         // most recent 1–3 of the current agenda recur more often than ordinary cuts
   // a live view that has left stays off for a while before it recurs (fix 14 Nov 9:45 AM ET: they came straight back, so they
@@ -379,6 +389,14 @@
     // live-view cut groups are kind 'gif' too (v505) but have their own lane: they must not use up the Medium GIF slots (fix 14 Nov 9:45 AM ET)
     const gifsOn = S.groups.filter(g => g.kind === 'gif' && !g.live).length;
     const gifShare = ok.filter(a => a.kind === 'gif').length / ok.length; // GIFs come up in proportion to how many are left, so 109 GIFs don't loop
+    // v646 live floor: under LIVE_FLOOR animated cuts, take a GIF (or a still with a manifest anim) next; the byte budget still applies
+    const under = liveCutsOn() < LIVE_FLOOR;
+    const animStill = a => a.kind !== 'gif' && animMids().has(a.medium_image_id);
+    if(under){
+      const lp = ok.filter(animStill).concat(gifsOn < (PHONE ? 4 : 8) ? ok.filter(a => a.kind === 'gif') : []);
+      const lp2 = lp.length ? lp : live.filter(animStill).concat(gifsOn < (PHONE ? 4 : 8) ? live.filter(a => a.kind === 'gif') : []);
+      if(lp2.length){ const row = lp2[Math.random() * lp2.length | 0]; SEEN.add(row.medium_image_id); saveSeen(); return row; }
+    }
     const wantGif = gifsOn < (PHONE ? 1 : 2) && Math.random() < gifShare;
     const pool = ok.filter(a => (a.kind === 'gif') === wantGif);
     let from = pool.length ? pool : ok;
@@ -508,12 +526,13 @@
   }
 
   // v636: a cut may name an animated GIF in data/anim_cuts.json (or object.anim). Missing/failed files fall back to the still.
-  const ANIM = S.animCuts = {v: 0, dwell_k: 2, by: new Map(), at: 0};
+  const ANIM = S.animCuts = {v: 0, dwell_k: 3.5, by: new Map(), at: 0};
   function animKey(mid, label){ return String(mid || '') + '\t' + String(label || ''); }
+  function animMids(){ const m = new Set(); ANIM.by.forEach(c => m.add(c.medium_image_id)); return m; }
   function loadAnimCatalog(){
     fetch('data/anim_cuts.json?t=' + Date.now(), {cache: 'no-store'}).then(r => r.ok ? r.json() : null).then(d => {
       if(!d) return;
-      ANIM.v = d.v || 1; ANIM.dwell_k = +d.dwell_k || 2; ANIM.at = Date.now(); ANIM.by.clear();
+      ANIM.v = d.v || 1; ANIM.dwell_k = +d.dwell_k || 3.5; ANIM.at = Date.now(); ANIM.by.clear();
       (d.cuts || []).forEach(c => { if(c && c.medium_image_id && (c.anim || c.webp)) ANIM.by.set(animKey(c.medium_image_id, c.cut || c.label), c); });
       // v641: only swap a still when a *new* anim url actually exists; never redraw stills on an empty or unchanged catalog (that flicker was visible on phones)
       try{ if(S.applyLiveAnim && ANIM.by.size) applyCatalogToStage(); }catch(e){}
@@ -604,7 +623,7 @@
     const pos = placeGroup(L.Dw, L.Dh, newest ? {center: true} : null); const v = view();
     if(newest) clearRect(pos.gx, pos.gy, L.Dw, L.Dh, row.medium_image_id);
     const g = {mid: row.medium_image_id, row, kind: L.kind, x: pos.gx, y: pos.gy, w: L.Dw, h: L.Dh, k: L.k, fw: L.fw, fh: L.fh,
-      title: row.title || titleOf(row.medium_image_id), agenda: !!row.agenda, live: !!row.live_view, run: row.run || null, card: row.card || null, born: Date.now(), life: (PHONE ? R(30, 50) : R(35, 70)) * 1000 * (row.live_view ? LIVE_DWELL_K : (L.hasAnim ? ANIM_DWELL_K : 1)), cuts: [], gone: false, offSince: 0, sha: row.source_sha256 || '', ver: row.pack_version || '1', place: row.place || null, colour: row.colour || row.color || null, fresh: !!(L.fresh || row.fresh), newest};
+      title: row.title || titleOf(row.medium_image_id), agenda: !!row.agenda, live: !!row.live_view, run: row.run || null, card: row.card || null, born: Date.now(), life: (PHONE ? R(30, 50) : R(35, 70)) * 1000 * (row.live_view ? LIVE_DWELL_K : ((L.hasAnim || L.animated) ? ANIM_DWELL_K : 1)), cuts: [], gone: false, offSince: 0, sha: row.source_sha256 || '', ver: row.pack_version || '1', place: row.place || null, colour: row.colour || row.color || null, fresh: !!(L.fresh || row.fresh), newest};
     if(L.bg && !row.live_view){
       const c = document.createElement('canvas'); c.className = 'gbg' + (L.bgMask ? ' gm' : '') + (L.bgMask && g.fresh ? ' gfresh' : ''); c.width = L.bg.width; c.height = L.bg.height;
       c.getContext('2d').drawImage(L.bg, 0, 0); L.bg.close && L.bg.close();
@@ -1088,7 +1107,7 @@
     if(!n || g.run !== n.run || g.mid === liveId(n)) return false;
     return !liveOn(liveId(n));
   }
-  function evictable(g){ return !!(g && !g.gone && !g.map && !g.cuts.some(c => c.dragging) && !isNewestGroup(g) && !lastCutLiveOnStage(g)); }
+  function evictable(g){ return !!(g && !g.gone && !g.map && !g.cuts.some(c => c.dragging) && !isNewestGroup(g) && !lastCutLiveOnStage(g) && !floorHolds(g)); }
   function hasCut(v){
     const c = v && v.cut;
     if(!c || !c.pack || !/^assets\/live_views\/[^?#]+\.cut\.json$/.test(String(c.pack))) return false;
@@ -1301,7 +1320,10 @@
       if(vis) g.offSince = 0; else if(!g.offSince) g.offSince = now;
       if(isNewestGroup(g) || netHeld()) g.offSince = 0;
       else if(g.offSince && now - g.offSince > 12000) exitGroup(g, false, 'offscreen');
-      else if(!netHeld() && now - g.born > g.life && !g.cuts.some(c => c.dragging)) exitGroup(g, false, 'life');
+      else if(!netHeld() && now - g.born > g.life && !g.cuts.some(c => c.dragging)){
+        if(floorHolds(g)) g.life += 20000; // v646 live floor: an animated group stays until enough other live cuts are on
+        else exitGroup(g, false, 'life');
+      }
     });
     // soft cap equals CAP: evict only to make room for an incoming group (place/makeRoom), never early
     const incoming = !!(S.ready.length || S.loading || (S.liveViews && S.liveViews.pending && S.liveViews.pending.length));

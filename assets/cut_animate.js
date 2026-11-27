@@ -235,7 +235,7 @@
   }
 
   const API = {
-    PERSON, VERBS, DEFAULT_MS, ANIM_DWELL_K: 2,
+    PERSON, VERBS, DEFAULT_MS, ANIM_DWELL_K: 3.5,
     hash, seedOf, kindOf, phases, sampleAmbient, keepSrc, paintAmbient,
     makeScript, sampleScript, applyScript,
     verbOf: function(name){ return VERBS[String(name || '').toLowerCase()] || null; }

@@ -8,14 +8,14 @@ const root = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..')
 const src = fs.readFileSync(path.join(root, 'assets/stage.js'), 'utf8');
 const jsonPath = path.join(root, 'data/live_views.json');
 
-test('stage.js keeps a 2.5× live-view dwell and a 45s poll', () => {
-  assert.match(src, /const LIVE_DWELL_K = 2\.5/);
+test('stage.js keeps a 4× live-view dwell (v646, was 2.5×) and a 45s poll', () => {
+  assert.match(src, /const LIVE_DWELL_K = 4;/);
   assert.match(src, /const LIVE_POLL_MS = 45000/);
   assert.match(src, /const LIVE_KEEP = 3/);
   assert.match(src, /data\/live_views\.json/);
   assert.match(src, /setInterval\(pollLiveViews, LIVE_POLL_MS\)/);
-  assert.match(src, /row\.live_view \? LIVE_DWELL_K : \(L\.hasAnim \? ANIM_DWELL_K : 1\)/);
-  assert.match(src, /const ANIM_DWELL_K = 2/);
+  assert.match(src, /row\.live_view \? LIVE_DWELL_K : \(\(L\.hasAnim \|\| L\.animated\) \? ANIM_DWELL_K : 1\)/);
+  assert.match(src, /const ANIM_DWELL_K = 3\.5;/);
 });
 
 test('live views jump the pending queue and do not write the no-repeat deck key', () => {

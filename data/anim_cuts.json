@@ -1,6 +1,6 @@
 {
   "v": 1,
-  "dwell_k": 2,
+  "dwell_k": 3.5,
   "space": "Lightricks/ltx-video-distilled",
   "endpoint": "/image_to_video",
   "note": "Per-cut animated GIF/webp for projector stills. Keyed by medium_image_id + cut label. The stage plays anim when the file is present and falls back to the still (plus ambient in-cut motion) when it is missing or fails to load. dwell_k is the on-screen life multiplier vs a plain still (2x). candidates: 20 pilot stills (assets/anim_pilot) generated in the viewer browser via the free public LTX-Video Space, then saved once through the intake /anim_cut endpoint.",
@@ -366,5 +366,83 @@
       ]
     }
   ],
-  "cuts": []
+  "cuts": [
+    {
+      "cut_id": "x_notnotnotnotyn_3_1720184582803279872.jpg__cut1",
+      "medium_image_id": "x_notnotnotnotyn_3_1720184582803279872.jpg",
+      "cut": "cut1",
+      "anim": "assets/anim_cuts/x_notnotnotnotyn_3_1720184582803279872.jpg__cut1.gif",
+      "frames": 20,
+      "size": [
+        355,
+        360
+      ],
+      "bytes": 1031834,
+      "sha256": "9c13dd607be0b42cec70f88b4f41323b47c5dd92bf880f5a266a5dcbb3e3e401",
+      "source": "huggingface-space-free",
+      "space": null,
+      "object": "woman_wrap",
+      "person": true,
+      "prompt": "a woman in a head wrap sits and breathes naturally, her shoulders rise and fall, she blinks and shifts slightly, fabric moves softly, gentle subtle movement, the subject stays in the same pose and position and keeps facing the same direction, no head turning, static camera, plain grey background",
+      "at": "2026-11-27T17:00:22-05:00"
+    },
+    {
+      "cut_id": "x_notnotnotnotyn_3_1779384191991324672.jpg__cut1",
+      "medium_image_id": "x_notnotnotnotyn_3_1779384191991324672.jpg",
+      "cut": "cut1",
+      "anim": "assets/anim_cuts/x_notnotnotnotyn_3_1779384191991324672.jpg__cut1.gif",
+      "frames": 20,
+      "size": [
+        197,
+        360
+      ],
+      "bytes": 912271,
+      "sha256": "2e4c526f3ba68370b0cbcdf6f5456970b9b8f4fb7fb32f5fb5e467513d1e4e37",
+      "source": "huggingface-space-free",
+      "space": "r3gm/wan2-2-fp8da-aoti-preview2",
+      "object": "man_robe",
+      "person": true,
+      "prompt": "a man in a robe breathes, smiles warmly and nods slightly, robe fabric shifting, natural everyday motion, gentle subtle movement, the subject stays in the same pose and position and keeps facing the same direction, no head turning, static camera, plain grey background",
+      "at": "2026-11-27T17:00:22-05:00"
+    },
+    {
+      "cut_id": "1_QXhC37JhfoIHxI_6C7jlUA.gif__cut1",
+      "medium_image_id": "1*QXhC37JhfoIHxI_6C7jlUA.gif",
+      "cut": "cut1",
+      "anim": "assets/anim_cuts/1_QXhC37JhfoIHxI_6C7jlUA.gif__cut1.gif",
+      "frames": 20,
+      "size": [
+        360,
+        360
+      ],
+      "bytes": 1728534,
+      "sha256": "fe581679ba059593215d97e7f14cef15adc6da69ac5715ca3b7607b8138bcaa1",
+      "source": "huggingface-space-free",
+      "space": "alexnasa/ltx-2-TURBO",
+      "object": "sphere_wire",
+      "person": false,
+      "prompt": "a wire sphere slowly rotates in place, light catching the wires, gentle subtle movement, the subject stays in the same pose and position and keeps facing the same direction, no head turning, static camera, plain grey background",
+      "at": "2026-11-27T17:00:22-05:00"
+    },
+    {
+      "cut_id": "x_notnotnotnotyn_3_1720129603153342464.jpg__cut1",
+      "medium_image_id": "x_notnotnotnotyn_3_1720129603153342464.jpg",
+      "cut": "cut1",
+      "anim": "assets/anim_cuts/x_notnotnotnotyn_3_1720129603153342464.jpg__cut1.gif",
+      "frames": 20,
+      "size": [
+        280,
+        360
+      ],
+      "bytes": 1454089,
+      "sha256": "3857fd8a29182c33a158a606362b7a21e7963356fbb0c8cd0e558ea9c08138ec",
+      "source": "huggingface-space-free",
+      "space": "r3gm/wan2-2-fp8da-aoti-preview2",
+      "object": "woman_gele",
+      "person": true,
+      "prompt": "a woman in a head wrap sits writing, her hand moves the pen, she breathes and blinks, gentle natural everyday motion, the person stays in the same pose and place and keeps facing the same direction, static camera, plain grey background",
+      "at": "2026-11-27T17:00:22-05:00"
+    }
+  ],
+  "cuts_source": "v646: box-generated via free public Hugging Face Wan 2.2 i2v Spaces (anonymous ZeroGPU; no token, no paid API)"
 }
