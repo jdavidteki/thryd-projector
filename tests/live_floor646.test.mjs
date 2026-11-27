@@ -61,3 +61,7 @@ test('floor is wired into life expiry, eviction and the deck', ()=>{
   assert.match(st, /const under = liveCutsOn\(\) < LIVE_FLOOR;/);
   assert.match(st, /animMids\(\)\.has\(a\.medium_image_id\)/);
 });
+
+test('stills with a real moving version come up about 1 pick in 3 while any is free', ()=>{
+  assert.match(st, /if\(Math\.random\(\) < 0\.33\)\{ const as = live\.filter\(animStill\);/);
+});

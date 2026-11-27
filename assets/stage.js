@@ -397,6 +397,8 @@
       const lp2 = lp.length ? lp : live.filter(animStill).concat(gifsOn < (PHONE ? 4 : 8) ? live.filter(a => a.kind === 'gif') : []);
       if(lp2.length){ const row = lp2[Math.random() * lp2.length | 0]; SEEN.add(row.medium_image_id); saveSeen(); return row; }
     }
+    // v646: stills that have a real moving version come up often (about 1 pick in 3 while any is free), not 4 in 642
+    if(Math.random() < 0.33){ const as = live.filter(animStill); if(as.length){ const row = as[Math.random() * as.length | 0]; SEEN.add(row.medium_image_id); saveSeen(); return row; } }
     const wantGif = gifsOn < (PHONE ? 1 : 2) && Math.random() < gifShare;
     const pool = ok.filter(a => (a.kind === 'gif') === wantGif);
     let from = pool.length ? pool : ok;
@@ -624,6 +626,7 @@
     if(newest) clearRect(pos.gx, pos.gy, L.Dw, L.Dh, row.medium_image_id);
     const g = {mid: row.medium_image_id, row, kind: L.kind, x: pos.gx, y: pos.gy, w: L.Dw, h: L.Dh, k: L.k, fw: L.fw, fh: L.fh,
       title: row.title || titleOf(row.medium_image_id), agenda: !!row.agenda, live: !!row.live_view, run: row.run || null, card: row.card || null, born: Date.now(), life: (PHONE ? R(30, 50) : R(35, 70)) * 1000 * (row.live_view ? LIVE_DWELL_K : ((L.hasAnim || L.animated) ? ANIM_DWELL_K : 1)), cuts: [], gone: false, offSince: 0, sha: row.source_sha256 || '', ver: row.pack_version || '1', place: row.place || null, colour: row.colour || row.color || null, fresh: !!(L.fresh || row.fresh), newest};
+    if(L.hasAnim) g.hasAnim = true; // v648: a still with a manifest anim is marked on its group (QA + dwell refresh)
     if(L.bg && !row.live_view){
       const c = document.createElement('canvas'); c.className = 'gbg' + (L.bgMask ? ' gm' : '') + (L.bgMask && g.fresh ? ' gfresh' : ''); c.width = L.bg.width; c.height = L.bg.height;
       c.getContext('2d').drawImage(L.bg, 0, 0); L.bg.close && L.bg.close();

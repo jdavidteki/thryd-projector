@@ -24,5 +24,5 @@ test('panel option and seat line paint the hook colour from the payload', ()=>{
 test('story drawing stroke keeps the hook colour', ()=>{
   assert.match(sc, /s\.role==='hook'&&\/\^#\[0-9a-f\]\{6\}\$\/i\.test\(s\.color\|\|''\)\)\?s\.color/);
   assert.match(html, /story_card\.js\?v=21/);
-  assert.match(html, /var VER=647,/);
+  assert.match(html, /var VER=(6[4-9]\d),/);
 });
