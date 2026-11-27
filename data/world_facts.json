@@ -13566,20 +13566,21 @@
 "card": "j64",
 "other": null
 }
+],
+"foc_me": [
+{
+"id": "wf_9e0c8536c5",
+"kind": "consequence",
+"text": "The foc me now remembers the ikorodu: Someone at the projector saw the ikorodu gets tangled up with the foc me.",
+"code": "ikorodu.interactwith(foc_me){ foc_me.receives(ikorodu.something); }",
+"author": "cos",
+"run": "run-cf203b",
+"card": "w65",
+"other": "ikorodu"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_8d41bbe30c",
-"ts": "2026-11-24T13:19:38-0500",
-"a": "tag_sessy",
-"b": "teomarisollove",
-"code": "tag_sessy.interactwith(teomarisollove){ teomarisollove.receives(tag_sessy.code); teomarisollove.remembers(ejiro, 'juju code'); }",
-"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up with the teomarisollove, which is still in love, said out loud by Marisol (w14 causeway).",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j2"
-},
 {
 "id": "wf_530bfee68a",
 "ts": "2026-11-24T13:21:19-0500",
@@ -14008,6 +14009,17 @@
 "author": "cos",
 "run": "run-cf203b",
 "card": "j1"
+},
+{
+"id": "wf_9e0c8536c5",
+"ts": "2026-11-27T02:46:23-0500",
+"a": "ikorodu",
+"b": "foc_me",
+"code": "ikorodu.interactwith(foc_me){ foc_me.receives(ikorodu.something); }",
+"text": "The foc me now remembers the ikorodu: Someone at the projector saw the ikorodu gets tangled up with the foc me.",
+"author": "cos",
+"run": "run-cf203b",
+"card": "w65"
 }
 ],
 "memories": [
@@ -14111,5 +14123,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-27T02:45:33-0500"
+"updated": "2026-11-27T02:46:23-0500"
 }
