@@ -390,8 +390,15 @@
     const gifsOn = S.groups.filter(g => g.kind === 'gif' && !g.live).length;
     const gifShare = ok.filter(a => a.kind === 'gif').length / ok.length; // GIFs come up in proportion to how many are left, so 109 GIFs don't loop
     // v646 live floor: under LIVE_FLOOR animated cuts, take a GIF (or a still with a manifest anim) next; the byte budget still applies
+    // v650: if catalog (HF) anims are short, pick those stills first — live views already on stage must not block them
     const under = liveCutsOn() < LIVE_FLOOR;
+    const short = typeof animFloorShort === 'function' && animFloorShort();
     const animStill = a => a.kind !== 'gif' && animMids().has(a.medium_image_id);
+    if(short){
+      const as = ok.filter(animStill);
+      const as2 = as.length ? as : live.filter(animStill);
+      if(as2.length){ const row = as2[Math.random() * as2.length | 0]; SEEN.add(row.medium_image_id); saveSeen(); return row; }
+    }
     if(under){
       const lp = ok.filter(animStill).concat(gifsOn < (PHONE ? 4 : 8) ? ok.filter(a => a.kind === 'gif') : []);
       const lp2 = lp.length ? lp : live.filter(animStill).concat(gifsOn < (PHONE ? 4 : 8) ? live.filter(a => a.kind === 'gif') : []);
@@ -531,6 +538,12 @@
   const ANIM = S.animCuts = {v: 0, dwell_k: 3.5, by: new Map(), at: 0};
   function animKey(mid, label){ return String(mid || '') + '\t' + String(label || ''); }
   function animMids(){ const m = new Set(); ANIM.by.forEach(c => m.add(c.medium_image_id)); return m; }
+  // v650: catalog image-to-video cuts (data/anim_cuts.json) get a reserved lane so live views cannot crowd them out
+  function isCatalogAnim(g){ return !!(g && !g.gone && !g.map && ANIM.by.size && animMids().has(g.mid) && (g.hasAnim || groupLiveCuts(g) > 0)); }
+  function animSeated(){ const m = new Set(); S.groups.forEach(g => { if(isCatalogAnim(g)) m.add(g.mid); }); return m.size; }
+  function animFloorNeed(){ const n = animMids().size; return n ? Math.max(0, Math.min(LIVE_FLOOR, n) - animSeated()) : 0; }
+  function animFloorShort(){ return animFloorNeed() > 0; }
+  S.isCatalogAnim = isCatalogAnim; S.animSeated = animSeated; S.animFloorNeed = animFloorNeed; S.animFloorShort = animFloorShort;
   function loadAnimCatalog(){
     fetch('data/anim_cuts.json?t=' + Date.now(), {cache: 'no-store'}).then(r => r.ok ? r.json() : null).then(d => {
       if(!d) return;
@@ -1110,7 +1123,7 @@
     if(!n || g.run !== n.run || g.mid === liveId(n)) return false;
     return !liveOn(liveId(n));
   }
-  function evictable(g){ return !!(g && !g.gone && !g.map && !g.cuts.some(c => c.dragging) && !isNewestGroup(g) && !lastCutLiveOnStage(g) && !floorHolds(g)); }
+  function evictable(g){ return !!(g && !g.gone && !g.map && !g.cuts.some(c => c.dragging) && !isNewestGroup(g) && !lastCutLiveOnStage(g) && !floorHolds(g) && !isCatalogAnim(g)); }
   function hasCut(v){
     const c = v && v.cut;
     if(!c || !c.pack || !/^assets\/live_views\/[^?#]+\.cut\.json$/.test(String(c.pack))) return false;
@@ -1268,17 +1281,44 @@
 
   async function spawnOne(){
     if(S.loading >= INFLIGHT) return;
-    // newest live views go first, even if the Medium deck is mid-cycle or the manifest is still loading
+    // v650: while the catalog-anim lane is short, only the newest live view may jump the queue; older live views and
+    // the story-draw flood wait until the reserved image-to-video cuts are seated (and actually animating).
+    const shortAnim = !netHeld() && typeof animFloorShort === 'function' && animFloorShort();
     if(LV.pending.length){
-      const v = LV.pending.shift();
-      await spawnLive(v);
-      if(!paused()) setTimeout(spawnOne, 50);
-      return;
+      const v = LV.pending[0];
+      const newest = newestLive();
+      const isNew = !!(newest && liveId(newest) === liveId(v) && !liveOn(liveId(v)));
+      if(isNew || !shortAnim){
+        LV.pending.shift();
+        await spawnLive(v);
+        if(!paused()) setTimeout(spawnOne, 50);
+        return;
+      }
     }
     if(!manifest) return;
+    if(shortAnim){
+      // evict ordinary (non-catalog-anim) groups so a reserved still can decode even when live views have filled CAP
+      if(S.bytes > BUDGET * .9) evictOldest('anim-floor-budget');
+      while(activeStoryCuts().length >= CAP - 3 && evictOldest('anim-floor')){}
+    }
     if(S.ready.length >= READY || S.bytes > BUDGET * .9) return;
     // at the cut cap: keep wing items if any, but do not decode more; place() evicts when a ready group needs room
+    // v650: if the catalog-anim lane is short, evict above already ran; if still at cap (nothing evictable), wait
     if(activeStoryCuts().length >= CAP) return;
+    if(shortAnim){
+      const row = pickRow();
+      if(row && animMids().has(row.medium_image_id)){
+        S.recent.push(row.medium_image_id); if(S.recent.length > 40) S.recent.shift();
+        S.loading++;
+        try{ const L = await loadGroup(row); const held = L.frames.reduce((n, f) => n + bytesOf(f), 0) + (L.bg ? L.bg.width * L.bg.height * 4 : 0);
+          const item = {row, L, held}; S.bytes += held; S.ready.push(item); place(item); S.bad.ok(row.medium_image_id); netOk(); }
+        catch(e){ const why = String(e && e.message || e); if(why !== 'cap' && why !== 'budget') failed(row.medium_image_id, why); else S.recent.push(row.medium_image_id); S.fails++; note('skip', row.medium_image_id, why); }
+        finally{ S.loading--; }
+        if(!paused()) setTimeout(spawnOne, 50);
+        return;
+      }
+      // pickRow had no catalog still left (cooling or already seated as a non-anim still): fall through
+    }
     const prefer = netHeld() ? null : wantLive();
     if(prefer){
       await spawnLive(prefer);
@@ -1321,10 +1361,10 @@
       if(g.map){ g.offSince = 0; return; }
       const vis = g.x < v.x + v.w && g.x + g.w > v.x && g.y < v.y + v.h && g.y + g.h > v.y;
       if(vis) g.offSince = 0; else if(!g.offSince) g.offSince = now;
-      if(isNewestGroup(g) || netHeld()) g.offSince = 0;
+      if(isNewestGroup(g) || netHeld() || isCatalogAnim(g) || floorHolds(g)) g.offSince = 0;
       else if(g.offSince && now - g.offSince > 12000) exitGroup(g, false, 'offscreen');
       else if(!netHeld() && now - g.born > g.life && !g.cuts.some(c => c.dragging)){
-        if(floorHolds(g)) g.life += 20000; // v646 live floor: an animated group stays until enough other live cuts are on
+        if(floorHolds(g) || isCatalogAnim(g)) g.life += 20000; // v646/v650: floor groups and reserved catalog anims stay
         else exitGroup(g, false, 'life');
       }
     });
@@ -1351,6 +1391,11 @@
         if(now - last > 30 * 60e3 && !S.reloading) fetch('data/version.json?t=' + now, {cache: 'no-store'}).then(r => { r.text().catch(()=>{}); if(!r.ok) return;
           try{ sessionStorage.setItem('thryd_starve_reload', String(Date.now())); }catch(e){} note('starve guard: reloading hidden page'); S.reloading = true; setTimeout(()=> location.reload(), 200); }).catch(()=>{});
       } else note('starve guard: walked a group off; reload deferred until hidden');
+    }
+    // v650: if a catalog still came on before its anim decoded, swap in place; if it has been a still too long, let it leave so the lane can retry
+    if(ANIM.by.size){
+      try{ if(S.groups.some(g => g && !g.gone && !g.map && animMids().has(g.mid) && !isCatalogAnim(g))) applyCatalogToStage(); }catch(e){}
+      S.groups.filter(g => g && !g.gone && !g.map && animMids().has(g.mid) && !isCatalogAnim(g) && now - g.born > 25000 && !g.cuts.some(c => c.dragging) && !isNewestGroup(g)).forEach(g => exitGroup(g, false, 'anim-retry'));
     }
     camHold();
     if(!S.groups.some(g => g.map && !g.gone)) try{ bootMap(); }catch(e){}

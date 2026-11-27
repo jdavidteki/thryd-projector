@@ -56,12 +56,27 @@ test('fewer than 10 animated cuts in total: every animated group stays', ()=>{
 });
 
 test('floor is wired into life expiry, eviction and the deck', ()=>{
-  assert.match(st, /if\(floorHolds\(g\)\) g\.life \+= 20000;/);
-  assert.match(st, /function evictable\(g\)\{[^\n]*!floorHolds\(g\)\)/);
+  assert.match(st, /if\(floorHolds\(g\) \|\| isCatalogAnim\(g\)\) g\.life \+= 20000;/);
+  assert.match(st, /function evictable\(g\)\{[^\n]*!floorHolds\(g\) && !isCatalogAnim\(g\)\)/);
   assert.match(st, /const under = liveCutsOn\(\) < LIVE_FLOOR;/);
   assert.match(st, /animMids\(\)\.has\(a\.medium_image_id\)/);
 });
 
 test('stills with a real moving version come up about 1 pick in 3 while any is free', ()=>{
   assert.match(st, /if\(Math\.random\(\) < 0\.33\)\{ const as = live\.filter\(animStill\);/);
+});
+
+test('v650: catalog image-to-video cuts have a reserved lane so live views cannot satisfy the floor alone', ()=>{
+  assert.match(st, /function animFloorShort\(\)/);
+  assert.match(st, /function isCatalogAnim\(g\)/);
+  assert.match(st, /function animSeated\(\)/);
+  assert.match(st, /const short = typeof animFloorShort === 'function' && animFloorShort\(\);/);
+  assert.match(st, /if\(short\)\{\s*const as = ok\.filter\(animStill\);/s);
+  assert.match(st, /!floorHolds\(g\) && !isCatalogAnim\(g\)\)/);
+  assert.match(st, /isNewestGroup\(g\) \|\| netHeld\(\) \|\| isCatalogAnim\(g\) \|\| floorHolds\(g\)/);
+  assert.match(st, /if\(floorHolds\(g\) \|\| isCatalogAnim\(g\)\) g\.life \+= 20000;/);
+  assert.match(st, /const shortAnim = !netHeld\(\) && typeof animFloorShort === 'function' && animFloorShort\(\);/);
+  assert.match(st, /isNew \|\| !shortAnim/);
+  assert.match(st, /evictOldest\('anim-floor'\)/);
+  assert.match(st, /exitGroup\(g, false, 'anim-retry'\)/);
 });
