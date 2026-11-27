@@ -25047,6 +25047,161 @@
    "faded": false,
    "last_run": "run-cf203b"
   },
+  "feeling.like": {
+   "object": "feeling",
+   "method": "like",
+   "args": [
+    "only"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j53",
+    "card": "w53",
+    "title": "feeling.like(only)",
+    "emoji": "🧰",
+    "at": "2026-11-26T19:10:53-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "feeling.like(only)",
+     "emoji": "🧰",
+     "arg": "only",
+     "run": "run-cf203b",
+     "job": "j53",
+     "tweets": [
+      {
+       "text": "feeling like the only one out here",
+       "year": "2024"
+      }
+     ],
+     "consequence": "What just happened: The lines that landed: \"feeling like the only one out here\", \"oh benjamin can't you see\", \"#thryd - this is a junction\" and \"total awards domination\".",
+     "consequence_job": "j54",
+     "resolved": "feeling.like(what=only:Thing) from j53",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "only",
+       "from_run": "run-cf203b",
+       "from_job": "j53",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "only",
+      "first_run": "run-2eb42d",
+      "first_job": "j44"
+     }
+    ],
+    "text": "like(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [
+    {
+     "id": "disgusting.like",
+     "title": "disgusting.like(sheettt)",
+     "run": "run-cf203b",
+     "job": "j50",
+     "at": "2026-11-26T17:54:10-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "dont.like",
+     "title": "dont.like(senrenre)",
+     "run": "run-cf203b",
+     "job": "j35",
+     "at": "2026-11-26T11:47:28-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "sounded.like",
+     "title": "sounded.like(give)",
+     "run": "run-cf203b",
+     "job": "j32",
+     "at": "2026-11-26T02:08:31-05:00",
+     "why": "same method"
+    }
+   ],
+   "faded": false,
+   "last_run": null
+  },
+  "total.awards": {
+   "object": "total",
+   "method": "awards",
+   "args": [
+    "domination"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j53",
+    "card": "w53",
+    "title": "total.awards(domination)",
+    "emoji": "🎙️",
+    "at": "2026-11-26T19:10:53-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "total.awards(domination)",
+     "emoji": "🎙️",
+     "arg": "domination",
+     "run": "run-cf203b",
+     "job": "j53",
+     "tweets": [
+      {
+       "text": "- total awards domination",
+       "year": "2024"
+      }
+     ],
+     "consequence": "What just happened: The lines that landed: \"feeling like the only one out here\", \"oh benjamin can't you see\", \"#thryd - this is a junction\" and \"total awards domination\".",
+     "consequence_job": "j54",
+     "resolved": "total.awards(what=domination:Thing) from j53",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "domination",
+       "from_run": "run-cf203b",
+       "from_job": "j53",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "domination",
+      "first_run": "run-cf203b",
+      "first_job": "j53"
+     }
+    ],
+    "text": "awards(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
   "cooler.getdatemanufactured": {
    "object": "cooler",
    "method": "getDateManufactured",
@@ -29124,6 +29279,9 @@
    "feel.divine",
    "feel.shame"
   ],
+  "feeling": [
+   "feeling.like"
+  ],
   "finding": [
    "finding.precisions"
   ],
@@ -29825,6 +29983,9 @@
   ],
   "toothbrush": [
    "toothbrush.on"
+  ],
+  "total": [
+   "total.awards"
   ],
   "touch": [
    "touch.again",
@@ -54742,6 +54903,8 @@
     "idt.can",
     "la.pooohhhh",
     "until.artists",
+    "feeling.like",
+    "total.awards",
     "cli.cli",
     "thryd.importtheme",
     "kemi.ismarried",
@@ -55721,6 +55884,13 @@
     "run-86b1"
    ]
   },
+  "66154094d376": {
+   "title": "717. award ceremonies",
+   "funcs": [
+    "total.awards"
+   ],
+   "runs": []
+  },
   "674a28249f9f": {
    "title": "828. the throne of grace",
    "funcs": [
@@ -55913,7 +56083,9 @@
     "got.zero",
     "idt.can",
     "la.pooohhhh",
-    "until.artists"
+    "until.artists",
+    "feeling.like",
+    "total.awards"
    ],
    "runs": [
     "run-cf203b"
@@ -57202,6 +57374,13 @@
    ],
    "runs": []
   },
+  "faef17393d46": {
+   "title": "the sparrow",
+   "funcs": [
+    "feeling.like"
+   ],
+   "runs": []
+  },
   "fbb6af08827a": {
    "title": "1010. i might be rich, but i'm still igbo",
    "funcs": [
@@ -57260,6 +57439,9 @@
   }
  },
  "scene_safes": {
+  "1*S7R3G3fJlBPaEkTAinD_hg.gif": [
+   "66154094d376"
+  ],
   "1*fskbzXlSjZ5z4INByMFdlQ.gif": [
    "448d73991801"
   ],
@@ -57938,6 +58120,9 @@
   ],
   "1*-VkeQVfQ8_nV5UfHbV3HUg.gif": [
    "bd7fa6cf3e04"
+  ],
+  "1*h4rNgYKmxft23eo4ID5PWQ.jpeg": [
+   "faef17393d46"
   ],
   "1*ydvI98r-Gi1LIhWMk0fXow.gif": [
    "ba4901337f02"
@@ -59539,6 +59724,9 @@
    "feel.divine",
    "feel.shame"
   ],
+  "feeling": [
+   "feeling.like"
+  ],
   "finding": [
    "finding.precisions"
   ],
@@ -60099,6 +60287,9 @@
   "toothbrush": [
    "toothbrush.on"
   ],
+  "total": [
+   "total.awards"
+  ],
   "touch": [
    "touch.again",
    "touch.feel"
@@ -60524,6 +60715,8 @@
   "idt": [],
   "la": [],
   "until": [],
+  "feeling": [],
+  "total": [],
   "cooler": [],
   "kazeem.goodqualities": [],
   "app": [],
@@ -60755,6 +60948,7 @@
    "ehen",
    "even",
    "feel",
+   "feeling",
    "finding",
    "forgive",
    "global",
@@ -60817,6 +61011,7 @@
    "textbook",
    "then",
    "till",
+   "total",
    "touch",
    "understand",
    "until",
@@ -60849,5 +61044,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-26T19:05:18-05:00"
+ "updated": "2026-11-26T19:11:08-05:00"
 }

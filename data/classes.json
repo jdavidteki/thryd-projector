@@ -108,8 +108,8 @@
     "see",
     "give"
    ],
-   "instances": 500,
-   "arg_instances": 171,
+   "instances": 501,
+   "arg_instances": 172,
    "parent": null,
    "chain": [
     "Thing"
@@ -2108,6 +2108,22 @@
     "run-f73e23"
    ],
    "tweets": []
+  },
+  "domination": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-cf203b",
+   "first_job": "j53",
+   "source": "pick",
+   "runs": [
+    "run-cf203b"
+   ],
+   "tweets": [
+    {
+     "text": "- total awards domination",
+     "year": "2024"
+    }
+   ]
   },
   "donaldtrump": {
    "class": "Thing",
@@ -5447,12 +5463,17 @@
    "first_job": "j44",
    "source": "pick",
    "runs": [
-    "run-2eb42d"
+    "run-2eb42d",
+    "run-cf203b"
    ],
    "tweets": [
     {
      "text": "- and you want to buy only 2? comeon!",
      "year": "2025"
+    },
+    {
+     "text": "feeling like the only one out here",
+     "year": "2024"
     }
    ]
   },
@@ -10641,6 +10662,18 @@
     "Thing",
     "j52",
     "pick"
+   ],
+   [
+    "only",
+    "Thing",
+    "j53",
+    "pick"
+   ],
+   [
+    "domination",
+    "Thing",
+    "j53",
+    "pick"
    ]
   ],
   "run-b70200": [
@@ -13438,6 +13471,8 @@
   "idt.can": "can(act: Action)",
   "la.pooohhhh": "pooohhhh()",
   "until.artists": "artists(what: Thing)",
+  "feeling.like": "like(what: Thing)",
+  "total.awards": "awards(what: Thing)",
   "cooler.getdatemanufactured": "getDateManufactured()",
   "ronke.getlikes.contains": "getlikes.contains()",
   "kazeem.goodqualities.filter": "filter()",
@@ -13973,6 +14008,7 @@
    "ehen",
    "even",
    "feel",
+   "feeling",
    "finding",
    "forgive",
    "global",
@@ -14035,6 +14071,7 @@
    "textbook",
    "then",
    "till",
+   "total",
    "touch",
    "understand",
    "until",
@@ -14126,5 +14163,5 @@
   "epilogue": "quiet",
   "coda": "quiet"
  },
- "updated": "2026-11-26T18:52:25-05:00"
+ "updated": "2026-11-26T19:11:08-05:00"
 }
