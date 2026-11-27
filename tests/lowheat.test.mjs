@@ -30,6 +30,13 @@ test('decorative loops keep their own pace while visible, including when idle', 
 
 test('version check every 5 min', ()=>{ assert.match(html, /setInterval\(chk,300000\)/); assert.match(html, /var VER=\d+,/); });
 
+test('auto-version refresh does not reload while music is wanted', ()=>{
+  assert.match(html, /function musicOn\(\)/);
+  assert.match(html, /thrydSound\.state/);
+  assert.match(html, /if\(musicOn\(\)\)return false;/);
+  assert.match(html, /will not reload while yoki\/lofi\/brown is wanted/);
+});
+
 test('decorative loops use LH.deco; slideshow, live GIF, audio and persistence opt out', ()=>{
   assert.match(rd('assets/alive.js'), /LH\.deco:requestAnimationFrame\)\(anim\)/);
   const g = rd('story/gode.js'); assert.match(g, /LH\.deco:requestAnimationFrame\)\(drift\)/); assert.match(g, /LH\.decoEvery:setInterval\)\(settle,1000\)/);

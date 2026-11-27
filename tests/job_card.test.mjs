@@ -8,14 +8,14 @@ const js = rd('assets/job_card.js'), html = rd('index.html'), st = rd('assets/st
 
 test('job_card.js loads by default; ?cards=0 hides the panel', ()=>{
   assert.match(html, /cards=0/);
-  assert.match(html, /job_card\.js\?v=14/);
+  assert.match(html, /job_card\.js\?v=15/);
   assert.match(js, /cards=0/);
   assert.match(html, /if\(!\/\(\?:\^\|\[\?&\]\)cards=0/);
   assert.match(js, /if\(\/\(\?:\^\|\[\?&\]\)cards=0/);
   assert.doesNotMatch(html, /if\(\/\(\?:\^\|\[\?&\]\)cards=1/);
-  assert.match(html, /var VER=637,/);
+  assert.match(html, /var VER=638,/);
   const v = JSON.parse(ver);
-  assert.ok(v.v >= 637);
+  assert.ok(v.v >= 638);
 });
 
 test('layout is job card, then typeline, then plain always-visible buttons', ()=>{
@@ -166,7 +166,7 @@ test('v628: panel stays open after Send; waiting refresh keeps the sent card; ea
   assert.match(js, /border-radius:8px;white-space:normal/);
   assert.match(js, /max-height:15em;overflow-y:auto/);
   assert.match(js, /touch-action:pan-y/);
-  assert.match(html, /job_card\.js\?v=14/);
+  assert.match(html, /job_card\.js\?v=15/);
   assert.match(html, /intent_ai\.js\?v=614/);
   const src = js.slice(js.indexOf('function safeText(o){'), js.indexOf('function render(){'));
   const f = new Function(src + '; return {safeRows, safeText};')();
@@ -251,10 +251,10 @@ test('v633: archive safe lines flow inline at a smaller font; title stays its ow
 });
 
 test('v634: open async jobs render as persistent waiting-on-real-life pills; empty list shows nothing', ()=>{
-  assert.match(html, /var VER=637,/);
-  assert.match(html, /job_card\.js\?v=14/);
+  assert.match(html, /var VER=638,/);
+  assert.match(html, /job_card\.js\?v=15/);
   const v = JSON.parse(ver);
-  assert.ok(v.v >= 637);
+  assert.ok(v.v >= 638);
   assert.match(js, /function asyncPills\(/);
   assert.match(js, /function jobText\(/);
   assert.match(js, /function ago\(/);
@@ -285,4 +285,21 @@ test('v634: open async jobs render as persistent waiting-on-real-life pills; emp
   assert.ok(Array.isArray(card.async_jobs), 'export carries async_jobs (possibly empty)');
   // never invent: every listed job has a real id
   assert.ok(card.async_jobs.every(j => j && typeof j.id === 'string' && j.id && typeof j.text === 'string'));
+});
+
+test('v638: MENU and LOCK buttons sit in one sideways-sliding row; a swipe is not a tap', ()=>{
+  assert.match(js, /#aimenu \.aimrow\{display:flex;flex-wrap:nowrap/);
+  assert.match(js, /#aimenu \.aimscroll\{/);
+  assert.match(js, /overflow-x:auto/);
+  assert.match(js, /-webkit-overflow-scrolling:touch/);
+  assert.match(js, /scroll-snap-type:x proximity/);
+  assert.match(js, /#aimenu \.aimscroll::after\{content:""/);
+  assert.match(js, /sc\.className = 'aimscroll'/);
+  assert.match(js, /sc\.appendChild\(menuBtn\(o\)\)/);
+  assert.doesNotMatch(js, /#aimenu \.aimrow\{display:flex;flex-wrap:wrap/);
+  assert.match(js, /Math\.abs\(\(ev\.clientX \|\| sx\) - sx\) > 14/);
+  assert.match(html, /var VER=638,/);
+  assert.match(html, /job_card\.js\?v=15/);
+  const v = JSON.parse(ver);
+  assert.ok(v.v >= 638);
 });

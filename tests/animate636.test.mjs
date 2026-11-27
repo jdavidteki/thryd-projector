@@ -17,10 +17,10 @@ function loadAnimate(){
   return root.ThrydCutAnimate;
 }
 
-test('index, loader and version.json are at v636; cut_animate.js loads before stage.js', ()=>{
-  assert.equal(ver.v, 636);
-  assert.match(html, /var VER=636,/);
-  assert.match(html, /cut_animate\.js\?v=1['"],'stage\.js\?v=636'/);
+test('index, loader and version.json stay at or above v636; cut_animate.js loads before stage.js', ()=>{
+  assert.ok(ver.v >= 636);
+  assert.match(html, /var VER=\d+,/);
+  assert.match(html, /cut_animate\.js\?v=1['"],'stage\.js\?v=\d+'/);
 });
 
 test('anim_cuts manifest has dwell_k 2 and a cuts list (still fallback when empty or file missing)', ()=>{

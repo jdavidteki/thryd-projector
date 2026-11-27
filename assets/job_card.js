@@ -59,12 +59,15 @@
     '#aicard .aicgo.busy{opacity:.75}',
     '#aicard .aicempty{font:italic 400 14px/1.5 ThrydRead,Georgia,serif;color:#a59f91}',
     '#aimenu{flex:0 0 auto;display:flex;flex-direction:column;gap:6px;padding:8px 12px 10px;margin:0}',
-    '#aimenu .aimrow{display:flex;flex-wrap:wrap;align-items:center;gap:6px}',
-    '#aimenu button{font:600 12px/1.2 ui-sans-serif,system-ui,sans-serif;color:#efe9dc;background:rgba(255,255,255,.06);border:1px solid rgba(201,169,90,.45);border-radius:999px;padding:5px 11px;cursor:pointer;min-height:30px}',
+    '#aimenu .aimrow{display:flex;flex-wrap:nowrap;align-items:center;gap:6px;min-width:0}',
+    '#aimenu .aimscroll{flex:1 1 auto;min-width:0;display:flex;flex-wrap:nowrap;align-items:center;gap:6px;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;touch-action:pan-x;scroll-snap-type:x proximity;scrollbar-width:thin;scrollbar-color:rgba(255,215,106,.45) transparent}',
+    '#aimenu .aimscroll::-webkit-scrollbar{height:3px}#aimenu .aimscroll::-webkit-scrollbar-thumb{background:rgba(255,215,106,.45);border-radius:2px}',
+    '#aimenu .aimscroll::after{content:"";flex:0 0 18px;width:18px;height:30px;margin-left:-18px;position:sticky;right:0;background:linear-gradient(to right,transparent,rgba(16,15,13,.92));pointer-events:none;z-index:1}',
+    '#aimenu button{font:600 12px/1.2 ui-sans-serif,system-ui,sans-serif;color:#efe9dc;background:rgba(255,255,255,.06);border:1px solid rgba(201,169,90,.45);border-radius:999px;padding:5px 11px;cursor:pointer;min-height:30px;flex:0 0 auto;white-space:nowrap;scroll-snap-align:start}',
     '#aimenu button.live{border-color:rgba(255,120,120,.55);background:rgba(255,90,90,.1)}',
     '#aimenu button.sent{border-color:#2f8a50;background:rgba(47,138,80,.22);color:#d8ffe5}',
     '#aimenu button.err{border-color:#a04040;background:rgba(160,64,64,.25)}',
-    '#aimenu .aimlab{color:#8f897c;font:600 10px/1 ui-sans-serif,system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;font-variant:small-caps;min-width:40px}',
+    '#aimenu .aimlab{color:#8f897c;font:600 10px/1 ui-sans-serif,system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;font-variant:small-caps;min-width:40px;flex:0 0 auto}',
     '#aimenu .aimnote{font:500 11.5px/1.3 ui-sans-serif,system-ui,sans-serif;color:#b8b2a4;min-height:1.3em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}',
     '#aimenu .aimnote.ok{color:#7fe0a0}#aimenu .aimnote.err{color:#ff8f86}#aimenu .aimnote.busy{color:#ffd76a}',
     // v629 seat line + lock progress + waiting state + lock banner (Jesuye 2:05 PM "make it happen")
@@ -658,18 +661,23 @@
     if(main.length){
       const row = document.createElement('div'); row.className = 'aimrow'; row.dataset.row = 'main';
       const lab = document.createElement('span'); lab.className = 'aimlab'; lab.textContent = 'menu'; row.appendChild(lab);
+      const sc = document.createElement('div'); sc.className = 'aimscroll';
       // one Jump ahead only (Jesuye 12:39 PM): the LOCK row keeps it
       const lockHasJump = ((c && c.menus && c.menus.lock) || []).some(x => /jump ahead/i.test(String(x.value || x.label || '')));
       // v637: full [[god]] navigator on the menu row; Jump ahead stays on LOCK only; Live view shows while waiting too
-      main.filter(o => !(lockHasJump && /jump ahead/i.test(String(o.value || o.label || '')))).forEach(o => row.appendChild(menuBtn(o)));
-      ((c && c.menus && c.menus.live) || []).forEach(o => { const lb = menuBtn(o); lb.classList.add('live'); row.appendChild(lb); });
+      // v638: buttons live in a sideways-sliding strip so the story above keeps the height
+      main.filter(o => !(lockHasJump && /jump ahead/i.test(String(o.value || o.label || '')))).forEach(o => sc.appendChild(menuBtn(o)));
+      ((c && c.menus && c.menus.live) || []).forEach(o => { const lb = menuBtn(o); lb.classList.add('live'); sc.appendChild(lb); });
+      row.appendChild(sc);
       menuEl.appendChild(row);
     }
     const lock = (c && c.menus && c.menus.lock) || [];
     if(lock.length){
       const row = document.createElement('div'); row.className = 'aimrow' + (isLocked(meta || c) ? ' hot' : ''); row.dataset.row = 'lock';
       const lab = document.createElement('span'); lab.className = 'aimlab'; lab.textContent = 'lock'; row.appendChild(lab);
-      withPublish(lock).forEach(o => row.appendChild(menuBtn(o)));
+      const sc = document.createElement('div'); sc.className = 'aimscroll';
+      withPublish(lock).forEach(o => sc.appendChild(menuBtn(o)));
+      row.appendChild(sc);
       menuEl.appendChild(row);
     }
     const mn = document.createElement('div'); mn.className = 'aimnote'; mn.id = 'aimnote'; mn.setAttribute('role', 'status'); menuEl.appendChild(mn);
@@ -684,8 +692,10 @@
   // within 600 ms of a pointerup activation is ignored.
   let lastUp = {el: null, at: 0};
   function tapOnce(el, fn){
-    let last = 0;
+    let last = 0, sx = 0, sy = 0;
+    el.addEventListener('pointerdown', ev => { sx = ev.clientX || 0; sy = ev.clientY || 0; }, {passive: true});
     const run = ev => { ev.preventDefault(); ev.stopPropagation(); if(el.disabled) return; const now = Date.now();
+      if(Math.abs((ev.clientX || sx) - sx) > 14 || Math.abs((ev.clientY || sy) - sy) > 14) return;
       if(ev.type === 'click' && lastUp.el && lastUp.el !== el && now - lastUp.at < 600) return;
       if(now - last < 450) return; last = now; if(ev.type === 'pointerup') lastUp = {el, at: now}; fn(ev); };
     el.addEventListener('pointerup', ev => { if(ev.pointerType === 'mouse' && ev.button !== 0) return; run(ev); });

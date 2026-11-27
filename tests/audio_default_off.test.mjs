@@ -72,6 +72,7 @@ function loadExtras(opts){
       getElementById(id){ return ids[id] || null; },
       createElement(name){ return el('', name); },
       body,
+      hidden: !!(opts && opts.hidden),
     },
     localStorage: ls,
     speechSynthesis: {
@@ -94,8 +95,17 @@ function loadExtras(opts){
     addEventListener(type, fn, cap){ (listeners[type] = listeners[type] || []).push(fn); },
     window: {},
     history: { replaceState(){} },
+    sessionStorage: opts && opts.session || null,
+    navigator: { mediaSession: opts && opts.mediaSession || undefined },
+    MediaMetadata: class { constructor(o){ Object.assign(this, o); } },
     ImageDecoder: undefined,
     AudioContext: opts && opts.AC,
+  };
+  ctx.sessionStorage = ctx.sessionStorage || {
+    _s: Object.assign({}, (opts && opts.sessionInit) || {}),
+    getItem(k){ return Object.prototype.hasOwnProperty.call(this._s, k) ? this._s[k] : null; },
+    setItem(k, v){ this._s[k] = String(v); },
+    removeItem(k){ delete this._s[k]; },
   };
   ctx.window = ctx;
   ctx.globalThis = ctx;
@@ -258,4 +268,47 @@ test('brown noise without Web Audio stays quiet and does not retry forever', asy
   const L = loadExtras({ store: { thryd_mute: '1' } });
   await L.ctx.thrydSound.set('brown'); await tick(6);
   assert.equal(L.ctx.thrydSound.state().tries, 0); assert.equal(L.ctx.thrydSound.state().brown, null);
+});
+
+test('yoki resumes the same song and spot from sessionStorage after a reload', async () => {
+  const sessionInit = { thryd_sound_pos: JSON.stringify({ id: 'b2', t: 42, at: Date.now() }) };
+  const L = loadExtras({ store: { thryd_sound: 'yoki' }, songs: SONGS, sessionInit });
+  await tick(8);
+  assert.equal(L.audioPlays[0], SONGS[1].audio, 'resumes song b2, not a fresh shuffle');
+  assert.equal(L.audios[0].currentTime, 42);
+  const st = L.ctx.thrydSound.state();
+  assert.equal(st.song.id, 'b2');
+  assert.equal(st.t, 42);
+});
+
+test('yoki sets Media Session metadata and play/pause/next handlers', async () => {
+  const handlers = {};
+  const ms = {
+    metadata: null, playbackState: 'none',
+    setActionHandler(name, fn){ handlers[name] = fn; },
+  };
+  const L = loadExtras({ store: { thryd_mute: '1' }, songs: SONGS, mediaSession: ms });
+  await L.ctx.thrydSound.set('yoki'); await tick(8);
+  assert.ok(ms.metadata && /Song [AB]/.test(ms.metadata.title), ms.metadata && ms.metadata.title);
+  assert.equal(ms.metadata.album, '#thryd projector');
+  assert.equal(ms.playbackState, 'playing');
+  assert.equal(typeof handlers.play, 'function');
+  assert.equal(typeof handlers.pause, 'function');
+  assert.equal(typeof handlers.nexttrack, 'function');
+  const n = L.audioPlays.length;
+  handlers.nexttrack(); await tick(4);
+  assert.ok(L.audioPlays.length > n, 'lock-screen next skips to another song');
+  handlers.pause();
+  assert.equal(L.audios[0].paused, true);
+});
+
+test('a pagehide while yoki plays stores the current song and time', async () => {
+  const L = loadExtras({ store: { thryd_mute: '1' }, songs: SONGS });
+  await L.ctx.thrydSound.set('yoki'); await tick(8);
+  L.audios[0].currentTime = 17;
+  fire(L.listeners, 'pagehide', {});
+  const raw = L.ctx.sessionStorage.getItem('thryd_sound_pos');
+  const pos = JSON.parse(raw);
+  assert.equal(pos.id, L.ctx.thrydSound.state().song.id);
+  assert.equal(pos.t, 17);
 });

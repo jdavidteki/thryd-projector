@@ -6,7 +6,9 @@
 //         merged, the PR branch's raw copy); a small credit shows song · artist · africariyoki, and the current LRC line faintly
 // Audio starts only from a user gesture (autoplay rules). The choice is saved as thryd_sound (migrated from thryd_mute, '0' = lofi);
 // a reload with a saved mode tries to resume, and if the browser refuses it waits for the next tap anywhere. One audio element,
-// so the modes never overlap. Stream/song errors retry quietly with backoff (lofi: next mount of the current station; yoki: skip to the next song).
+// so the modes never overlap. The player is a plain HTMLAudioElement (never a <video>, never paused on visibilitychange/pagehide).
+// Media Session metadata + play/pause/next keep yoki/lofi on the lock screen; a hidden tab does not stop the audio (visual loops may idle).
+// Song id + position are saved so a reload can resume the same spot; the auto-version refresh will not reload while music is wanted. Stream/song errors retry quietly with backoff (lofi: next mount of the current station; yoki: skip to the next song).
 // A small ⏭ next to the dropdown (hidden in off/brown) does whatever next means: yoki calls nextSong(); lofi reconnects on the next station.
 //   brown (Jesuye 15 Nov 2026 5:08 AM ET "find a good brown noise api and add it") brown noise generated live in the browser with
 //         Web Audio: leaky-integrated white noise (AudioWorklet, ScriptProcessor fallback), a gentle low-pass and a slow soft swell,
@@ -58,8 +60,11 @@ function mkAudio(){ if(au) return au; au=new Audio(); au.id='lofi'; au.preload='
     au.addEventListener('playing',()=>{tries=0; yfail=0; if(want){muted=false; show(); setCredit();}});
     au.addEventListener('ended',()=>{ if(!want||waitTap) return; if(mode==='yoki') nextSong(); else retry(); });
     au.addEventListener('error',()=>{ if(!want||waitTap||!au.getAttribute||!au.getAttribute('src')) return; if(mode==='yoki'){ yfail++; if(yfail<4) setTimeout(()=>{ if(want&&mode==='yoki') nextSong(); },800); else retry(); } else retry(); });
-    au.addEventListener('timeupdate',()=>{ if(mode!=='yoki'||!ylrc.length||!lyr) return; const t=au.currentTime; let cur='';
+    au.addEventListener('timeupdate',()=>{ if(mode==='yoki'){ if(!au._posAt||Date.now()-au._posAt>3000){ au._posAt=Date.now(); savePos(); } }
+      if(mode!=='yoki'||!ylrc.length||!lyr) return; const t=au.currentTime; let cur='';
       for(let i=0;i<ylrc.length&&ylrc[i][0]<=t+.2;i++) cur=ylrc[i][1]; if(lyr.textContent!==cur){ lyr.textContent=cur; lyr.className=cur?'':'off'; } });
+    au.addEventListener('playing',()=>{ setSession(); });
+    au.addEventListener('pause',()=>{ setSession(); savePos(); });
   }
   if(document.body&&document.body.appendChild) document.body.appendChild(au); return au; }
 function retry(){ if(!want||retryT) return; tries++;
@@ -84,14 +89,35 @@ function loadLrc(s){ ylrc=[]; if(!s||!s.lrc) return; const id=++yreq; const u=/^
 // If the DJ is missing, slow (6 s) or fails, extras.js's own shuffle bag picks instead.
 let ytok=0;
 const YDJ=()=>window.thrydYokiDJ&&window.thrydYokiDJ.next?window.thrydYokiDJ:null;
+const PLAY_KEY='thryd_sound_pos';
+function peekPos(){ try{ const p=JSON.parse(sessionStorage.getItem(PLAY_KEY)||'null'); if(p&&p.id&&Date.now()-(+p.at||0)<6*3600*1000) return p; }catch(e){} return null; }
+function savePos(){ if(mode!=='yoki'||!want||!ysong||!au) return; try{ sessionStorage.setItem(PLAY_KEY, JSON.stringify({id:ysong.id, t:au.currentTime||0, at:Date.now()})); }catch(e){} }
+function setSession(){ try{ const ms=typeof navigator!=='undefined'&&navigator.mediaSession; if(!ms) return;
+    if(mode==='off'||!want){ try{ ms.metadata=null; }catch(e){} try{ ms.playbackState='none'; }catch(e){} return; }
+    let title='#thryd', artist='';
+    if(mode==='yoki'&&ysong){ title=ysong.title||'yoki'; artist=ysong.artist||'africariyoki'; }
+    else if(mode==='lofi'){ const st=lofiSt(); title=st.name; artist='lofi'; }
+    else if(mode==='brown'){ title='brown noise'; artist='thryd projector'; }
+    if(typeof MediaMetadata==='function') ms.metadata=new MediaMetadata({title:title, artist:artist, album:'#thryd projector'});
+    const playing=mode==='brown'?!!BN.on: !!(au&&!au.paused);
+    try{ ms.playbackState=playing?'playing':'paused'; }catch(e){}
+    if(ms.setActionHandler){ ms.setActionHandler('play', ()=>{ if(mode==='brown') brownStart(true); else if(au){ const p=au.play(); if(p&&p.catch)p.catch(()=>{}); } });
+      ms.setActionHandler('pause', ()=>{ if(mode==='brown') brownStop(); else if(au) try{au.pause();}catch(e){} });
+      ms.setActionHandler('nexttrack', ()=>{ nextSound(); });
+      ms.setActionHandler('previoustrack', ()=>{ if(au&&mode==='yoki'){ try{au.currentTime=0; const p=au.play(); if(p&&p.catch)p.catch(()=>{}); }catch(e){} } }); }
+  }catch(e){} }
 function nextSong(){ if(!ylist||!ylist.length) return start(false); const tok=++ytok, dj=YDJ();
   const go=r=>{ if(tok!==ytok||!want||mode!=='yoki') return; const s=r&&ylist.find(x=>x.id===r.id); return playSong(s||pick(), s?r.why:null); };
   if(!dj) return go(null);
   return Promise.race([dj.next(id=>ylist.some(x=>x.id===id)), new Promise(res=>setTimeout(()=>res(null),6000))]).catch(()=>null).then(go); }
 function playSong(s, why){ ysong=s; loadLrc(ysong); if(lyr){lyr.textContent=''; lyr.className='off';}
-  const a=mkAudio(); a.src=ysong.audio; a.volume=YOKI.vol; setCredit(); let p; try{p=a.play();}catch(e){p=Promise.reject(e);}
-  return Promise.resolve(p).then(()=>{waitTap=false; muted=false; show(); setCredit(); const dj=YDJ(); if(why&&dj&&dj.showWhy) dj.showWhy(why);}).catch(e=>played(e,false)); }
-if(window.thrydYokiDJ) window.thrydYokiDJ.onShift=()=>{ if(mode==='yoki'&&want&&!waitTap&&au&&au.currentTime>25) nextSong(); };
+  const a=mkAudio(); a.src=ysong.audio; a.volume=YOKI.vol; setCredit(); setSession();
+  const saved=peekPos(), t=(saved&&saved.id===ysong.id)?(+saved.t||0):0;
+  const apply=()=>{ if(t>1){ try{ a.currentTime=t; }catch(e){} } };
+  if(a.readyState>=1) apply(); else if(a.addEventListener) a.addEventListener('loadedmetadata', apply, {once:true});
+  let p; try{p=a.play();}catch(e){p=Promise.reject(e);}
+  return Promise.resolve(p).then(()=>{waitTap=false; muted=false; show(); setCredit(); apply(); savePos(); setSession(); const dj=YDJ(); if(why&&dj&&dj.showWhy) dj.showWhy(why);}).catch(e=>played(e,false)); }
+if(window.thrydYokiDJ) window.thrydYokiDJ.onShift=()=>{ if(document.hidden) return; if(mode==='yoki'&&want&&!waitTap&&au&&au.currentTime>25) nextSong(); };
 function played(e,fromTap){ if(e&&e.name==='NotAllowedError'){ waitTap=true; muted=true; show(); setCredit();
     gate.textContent=fromTap?'🔊 Tap again to start the music':'🔊 Tap anywhere to resume the music'; gate.classList.remove('off'); return; }
   if(mode==='yoki'&&ylist){ yfail++; if(yfail<4){ setTimeout(()=>{ if(want&&mode==='yoki') nextSong(); },800); return; } }
@@ -136,18 +162,20 @@ function brownStop(){ if(!BN.ctx||!BN.on&&!BN.offT) return; BN.on=false; brownTo
   BN.offT=setTimeout(()=>{ BN.offT=0; if(!BN.on&&BN.ctx&&BN.ctx.state==='running') BN.ctx.suspend().catch(()=>{}); }, BROWN.fade*1000+300); }
 function start(fromTap){ want=true; if(mode==='brown'){ if(retryT){clearTimeout(retryT);retryT=0;} return brownStart(fromTap); } const a=mkAudio(); if(retryT){clearTimeout(retryT);retryT=0;}
   if(mode==='yoki'){
-    if(!ylist){ return loadSongs().then(()=>{ if(want&&mode==='yoki') return nextSong(); }).catch(()=>retry()); }
-    if(waitTap&&ysong&&a.getAttribute&&a.getAttribute('src')){ let p; try{p=a.play();}catch(e){p=Promise.reject(e);} return Promise.resolve(p).then(()=>{waitTap=false; muted=false; show(); setCredit();}).catch(e=>played(e,fromTap)); }
+    if(!ylist){ return loadSongs().then(()=>{ if(want&&mode==='yoki') return start(fromTap); }).catch(()=>retry()); }
+    if(waitTap&&ysong&&a.getAttribute&&a.getAttribute('src')){ let p; try{p=a.play();}catch(e){p=Promise.reject(e);} return Promise.resolve(p).then(()=>{waitTap=false; muted=false; show(); setCredit(); setSession();}).catch(e=>played(e,fromTap)); }
+    const saved=peekPos(), hit=saved&&ylist.find(x=>x.id===saved.id);
+    if(hit) return playSong(hit, 'resumed');
     return nextSong();
   }
   const st=lofiSt(); a.src=st.urls[tries%st.urls.length]+(tries?('?r='+Date.now()):''); a.volume=(window.speechSynthesis&&speechSynthesis.speaking)?LOFI.duck:LOFI.vol;
   let p; try{p=a.play();}catch(e){p=Promise.reject(e);}
   return Promise.resolve(p).then(()=>{waitTap=false; muted=false; show(); setCredit();}).catch(e=>played(e,fromTap)); }
 function stop(){ want=false; waitTap=false; tries=0; yfail=0; if(retryT){clearTimeout(retryT);retryT=0;} brownStop(); if(au){ try{au.pause(); au.removeAttribute('src'); au.load();}catch(e){} }
-  muted=true; ylrc=[]; yreq++; ytok++; try{ if(window.thrydYokiDJ&&window.thrydYokiDJ.setActive) window.thrydYokiDJ.setActive(false); }catch(e){} if(credit) credit.className='off'; if(lyr){lyr.className='off'; lyr.textContent='';} }
+  muted=true; ylrc=[]; yreq++; ytok++; try{ if(window.thrydYokiDJ&&window.thrydYokiDJ.setActive) window.thrydYokiDJ.setActive(false); }catch(e){} if(credit) credit.className='off'; if(lyr){lyr.className='off'; lyr.textContent='';} setSession(); }
 function setMode(m, fromTap){ if(MODES.indexOf(m)<0) m='off'; stop(); mode=m; save(m); show();
   if(m==='off'){ if(window.speechSynthesis) speechSynthesis.cancel(); gate.classList.add('off'); return Promise.resolve(); }
-  unlocked=true; gate.classList.add('off'); si=0; return start(!!fromTap); }
+  unlocked=true; gate.classList.add('off'); si=0; return Promise.resolve(start(!!fromTap)).then(r=>{ setSession(); return r; }); }
 sel.onchange=e=>{ e&&e.stopPropagation&&e.stopPropagation(); setMode(sel.value, true); };
 if(btn) btn.onclick=e=>{ e&&e.stopPropagation&&e.stopPropagation(); setMode(mode==='off'?'lofi':'off', true); }; // old button, kept working
 
@@ -186,14 +214,15 @@ if(SPEECH)(function loop(){setTimeout(()=>{try{speakOnce();}catch(e){} loop();},
 // duck the music while a line is spoken (only with ?audio=speech)
 if(SPEECH&&'speechSynthesis' in window)(window.LH?LH.keep:setInterval)(()=>{if(au&&want&&!au.paused)au.volume=speechSynthesis.speaking?LOFI.duck:(mode==='yoki'?YOKI.vol:LOFI.vol);
   if(BN.on&&BN.master){ const v=brownVol(); if(BN.duckV!==v){ BN.duckV=v; brownTo(v,.5); } }},500);
-// a reload with a saved mode: try to resume; if the browser says no, wait for the next tap
+// a reload with a saved mode: try to resume the same song and spot; if the browser says no, wait for the next tap
 { const m0=savedMode(); if(m0!=='off'){ mode=m0; show(); want=true; waitTap=true; start(false); } }
+['pagehide','visibilitychange','beforeunload'].forEach(ev=>addEventListener(ev,()=>{ if(ev!=='visibilitychange'||document.hidden) savePos(); },{passive:true}));
 // watchdog: playback that stops advancing for 20 s while it should play reconnects (lofi) or moves on (yoki), with the same backoff
-let lastT=-1; (window.LH?LH.keep:setInterval)(()=>{ if(mode==='brown'||!au||!want||waitTap||retryT||au.paused){lastT=-1;return;} if(au.currentTime===lastT){ if(mode==='yoki') nextSong(); else retry(); } lastT=au.currentTime; },20000);
+let lastT=-1; (window.LH?LH.keep:setInterval)(()=>{ if(document.hidden||mode==='brown'||!au||!want||waitTap||retryT||au.paused){lastT=-1;return;} if(au.currentTime===lastT){ if(mode==='yoki') nextSong(); else retry(); } lastT=au.currentTime; },20000);
 // level(): RMS of the brown-noise output right now (for QA; creates one analyser on first use)
 function brownLevel(){ if(!BN.ctx||!BN.master) return 0; if(!BN.an){ BN.an=BN.ctx.createAnalyser(); BN.an.fftSize=2048; BN.master.connect(BN.an); }
   const d=new Float32Array(BN.an.fftSize); BN.an.getFloatTimeDomainData(d); let s=0; for(let i=0;i<d.length;i++) s+=d[i]*d[i]; return Math.sqrt(s/d.length); }
-window.thrydLofi=window.thrydSound={level:brownLevel,set:m=>setMode(m,true),start:()=>start(true),stop:()=>setMode('off'),state:()=>({mode,want,waitTap,muted,tries,src:au&&au.src,paused:au?au.paused:true,song:ysong&&{title:ysong.title,artist:ysong.artist},songs:ylist?ylist.length:0,lrc:ylrc.length,station:mode==='lofi'&&lofiSt().name,
+window.thrydLofi=window.thrydSound={level:brownLevel,set:m=>setMode(m,true),start:()=>start(true),stop:()=>setMode('off'),state:()=>({mode,want,waitTap,muted,tries,src:au&&au.src,paused:au?au.paused:true,t:au?au.currentTime:0,song:ysong&&{id:ysong.id,title:ysong.title,artist:ysong.artist},songs:ylist?ylist.length:0,lrc:ylrc.length,station:mode==='lofi'&&lofiSt().name,
   brown:BN.ctx?{ctx:BN.ctx.state,on:BN.on,worklet:BN.worklet,gain:BN.master?+BN.master.gain.value.toFixed(3):0}:null})};
 // ---------- Add GIF
 const DB=new Promise((res,rej)=>{const r=indexedDB.open('thryd-projector',1);r.onupgradeneeded=()=>r.result.createObjectStore('gifs',{keyPath:'id'});r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error);});
