@@ -88,7 +88,9 @@ function loadExtras(opts){
       play(){ audioPlays.push(this.src); if(opts && opts.block){ const e = new Error('blocked'); e.name = 'NotAllowedError'; return Promise.reject(e); } this.paused = false; return Promise.resolve(); }
       pause(){ this.paused = true; } load(){} setAttribute(){} removeAttribute(k){ if(k === 'src') this.src = ''; } addEventListener(t, f){ this.ev[t] = f; } },
     fetch: async (u) => { fetches.push(String(u));
-      if(opts && opts.songs && /songs\.json/.test(String(u)) && !(opts.failFirst && /africariyoki\.com/.test(String(u)))) return { ok: true, json: async () => ({ songs: opts.songs }) };
+      const catalog = /yoki_catalog\.json(?:\?|$)|\/songs\.json(?:\?|$)|songs\.json$/.test(String(u));
+      const fail = opts && opts.failFirst && (/yoki_catalog\.json/.test(String(u)) || (opts.failHost && String(u).includes(opts.failHost)));
+      if(opts && opts.songs && catalog && !fail) return { ok: true, json: async () => ({ songs: opts.songs }) };
       if(opts && opts.songs && /\.lrc$/.test(String(u))) return { ok: true, text: async () => '[00:00.00]first line\n[00:01.00]second line\n' };
       return { ok: false, json: async () => null, text: async () => '' }; },
     indexedDB: { open(){ return fakeIDBRequest(); } },
@@ -171,11 +173,11 @@ test('picking lofi plays the ABM stream with its credit; off stops it and drops 
   assert.equal(L.audios.length, 1, 'one audio element, never two players');
 });
 
-test('picking yoki shuffles africariyoki songs from the API with a song credit and LRC', async () => {
+test('picking yoki shuffles africariyoki songs from the local catalog with a song credit and LRC', async () => {
   const L = loadExtras({ store: { thryd_mute: '1' }, songs: SONGS });
   await L.ctx.thrydSound.set('yoki'); await tick(8);
-  assert.ok(L.fetches.some(u => u === 'https://www.africariyoki.com/api/songs.json'));
-  assert.ok(SONGS.some(s => s.audio === L.audioPlays[0]), 'plays a song from the API');
+  assert.ok(L.fetches.some(u => u === 'data/yoki_catalog.json' || /yoki_catalog\.json/.test(u)));
+  assert.ok(SONGS.some(s => s.audio === L.audioPlays[0]), 'plays a song from the catalog');
   const st = L.ctx.thrydSound.state();
   const credit = L.body.children.find(c => c.id === 'lofi_credit');
   assert.ok(/ · africariyoki$/.test(credit.textContent) && credit.href === 'https://www.africariyoki.com/');
@@ -186,11 +188,43 @@ test('picking yoki shuffles africariyoki songs from the API with a song credit a
   assert.ok(SONGS.some(s => s.audio === L.audioPlays[1]));
 });
 
-test('yoki falls back to the second songs URL when the first fails', async () => {
+test('yoki falls back to the public songs API when the local catalog fails', async () => {
   const L = loadExtras({ store: { thryd_mute: '1' }, songs: SONGS, failFirst: true });
   await L.ctx.thrydSound.set('yoki'); await tick(8);
-  assert.ok(L.fetches.some(u => /raw\.githubusercontent\.com/.test(u)));
+  assert.ok(L.fetches.some(u => u === 'data/yoki_catalog.json' || /yoki_catalog\.json/.test(u)));
+  assert.ok(L.fetches.some(u => u === 'https://www.africariyoki.com/api/songs.json' || /raw\.githubusercontent\.com/.test(u)));
   assert.ok(SONGS.some(s => s.audio === L.audioPlays[0]));
+});
+
+test('extras.js tries the local africariyoki catalog before the public APIs', () => {
+  const js = fs.readFileSync(path.join(root, 'assets/extras.js'), 'utf8');
+  const m = js.match(/apis:\[([^\]]+)\]/);
+  assert.ok(m, 'YOKI.apis list');
+  const apis = [...m[1].matchAll(/'([^']+)'/g)].map(x => x[1]);
+  assert.equal(apis[0], 'data/yoki_catalog.json');
+  assert.ok(apis.includes('https://www.africariyoki.com/api/songs.json'));
+  assert.ok(apis.some(u => /raw\.githubusercontent\.com\/jdavidteki\/africariyoki/.test(u)));
+});
+
+test('yoki_catalog and yoki_songs cover the verified playable africariyoki songs', () => {
+  const cat = JSON.parse(fs.readFileSync(path.join(root, 'data/yoki_catalog.json'), 'utf8'));
+  const ys = JSON.parse(fs.readFileSync(path.join(root, 'data/yoki_songs.json'), 'utf8'));
+  const yi = JSON.parse(fs.readFileSync(path.join(root, 'data/yoki_index.json'), 'utf8'));
+  assert.equal(cat.count, cat.songs.length);
+  assert.ok(cat.songs.length >= 404, 'full playable catalog, was 403');
+  assert.equal(ys.count, ys.songs.length);
+  assert.equal(ys.songs.length, cat.songs.length);
+  assert.equal(yi.songs.length, cat.songs.length);
+  const ids = new Set();
+  for (const s of cat.songs) {
+    assert.ok(s.id && s.title && /^https:\/\//.test(s.audio), s.id);
+    assert.ok(!ids.has(s.id), 'unique id ' + s.id);
+    ids.add(s.id);
+  }
+  const mg = cat.songs.find(s => s.id === 'dHmN2sfVlnE');
+  assert.ok(mg && mg.title === 'Mystery Girl' && /dHmN2sfVlnE\.mp3$/.test(mg.audio));
+  const djIds = new Set(ys.songs.map(s => s.id));
+  for (const id of ids) assert.ok(djIds.has(id), 'DJ catalog missing ' + id);
 });
 
 test('spoken lines stay off by default (they would talk over the music)', async () => {

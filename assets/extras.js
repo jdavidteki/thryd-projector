@@ -26,7 +26,7 @@ const LOFI={stations:[
   {name:'Code Radio', credit:'https://coderadio.freecodecamp.org/', text:'Code Radio · freeCodeCamp', title:'Music: freeCodeCamp Code Radio. coderadio.freecodecamp.org', urls:['https://coderadio-admin-v2.freecodecamp.org/listen/coderadio/radio.mp3']},
 ], vol:.35, duck:.12};
 function lofiSt(){ return LOFI.stations[si%LOFI.stations.length]; }
-const YOKI={apis:['https://www.africariyoki.com/api/songs.json','https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/songs.json'],
+const YOKI={apis:['data/yoki_catalog.json','https://www.africariyoki.com/api/songs.json','https://raw.githubusercontent.com/jdavidteki/africariyoki/api-songs-json-pages/api/songs.json'],
   site:'https://www.africariyoki.com/', vol:.3};
 const BROWN={vol:.32, duck:.12, fade:1.5, lp:520, swellHz:.045, swellDepth:.16};
 const MODES=['off','lofi','yoki','brown'], LABEL={off:'🔇 sound off', lofi:'🎧 lofi', yoki:'🎤 yoki', brown:'🟤 brown noise'};
