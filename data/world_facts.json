@@ -10817,16 +10817,6 @@
 ],
 "cooler_subject": [
 {
-"id": "wt_39a1313100",
-"kind": "call",
-"text": "Someone at the projector tapped the cooler subject and made it glow.",
-"code": "cooler_subject.glow();",
-"author": "projector",
-"run": "run-cf203b",
-"card": "w60",
-"other": null
-},
-{
 "id": "wt_07145681c3",
 "kind": "call",
 "text": "Someone at the projector tapped the cooler subject and made it glow.",
@@ -10865,6 +10855,16 @@
 "run": "run-cf203b",
 "card": "w65",
 "other": null
+},
+{
+"id": "wt_f06c304a70",
+"kind": "consequence",
+"text": "To keep her hands busy, the sister opens the cooler on the table and serves the jollof, so the parcel question waits until everyone has eaten.",
+"code": "cooler_subject.receives(kemisister, 'hand'); cooler_subject.set('lid', 'open, sister serving jollof while the phone stays face down');",
+"author": "cos",
+"run": "run-cf203b",
+"card": "j65",
+"other": "kemisister"
 }
 ],
 "investor": [
@@ -11173,26 +11173,6 @@
 ],
 "kemi": [
 {
-"id": "wt_3cbedd1bd6",
-"kind": "func_call",
-"text": "The customer typed kemi.setlocation(amusementpark) on run-cf203b j32. It came back: Kemi's location is now amusementpark. Implementation: function setlocation(location){\n  this.location = \"amusementpark\";\n  this.caption = location;\n  return this.location;\n}. kemi now has kemi.setlocation as a method on this agenda, and it can be called again.",
-"code": "kemi.setlocation(amusementpark);",
-"author": "customer",
-"run": "run-cf203b",
-"card": "j32",
-"other": null
-},
-{
-"id": "wt_7be00476bd",
-"kind": "consequence",
-"text": "Kemi tells what she heard in Tobi's half step: it sounded like give me a hug.",
-"code": "kemi.interactwith(tobi){ kemi.hears(tobi, 'half step'); kemi.set('heard', 'it sounded like give me a hug, in his half step'); }",
-"author": "cos",
-"run": "run-cf203b",
-"card": "j32",
-"other": "tobi"
-},
-{
 "id": "wt_f3cd4bc161",
 "kind": "func_call",
 "text": "The customer typed kemi.getlastperiod() on run-cf203b j49. It came back: lastperiod. Implementation: function getlastperiod(){\n  const value = \"lastperiod\";\n  learned.kemi.lastperiod = value;\n  return value;\n}. kemi now has kemi.getlastperiod as a method on this agenda, and it can be called again.",
@@ -11221,6 +11201,26 @@
 "run": "run-cf203b",
 "card": "j59",
 "other": null
+},
+{
+"id": "wt_2a550ad5e3",
+"kind": "consequence",
+"text": "Kemi's phone buzzes on her sister's table with Tobi's message, ending you got my msg?",
+"code": "kemi.receives(tobi, 'message'); kemi.set('phone', 'buzzing on the sister table: you got mi msg?');",
+"author": "cos",
+"run": "run-cf203b",
+"card": "j64",
+"other": "tobi"
+},
+{
+"id": "wt_ef263c3ad1",
+"kind": "consequence",
+"text": "Kemi asks her sister whether the parcel is from Tobi or from the woman, because the woman has been quiet for a week.",
+"code": "kemi.interactwith(kemisister){ kemi.asks(kemisister, 'woman'); kemi.set('question', 'woman?!! is the parcel from tobi or from her'); }",
+"author": "cos",
+"run": "run-cf203b",
+"card": "j64",
+"other": "kemisister"
 }
 ],
 "wys": [
@@ -12341,6 +12341,16 @@
 "run": "run-cf203b",
 "card": "j37",
 "other": null
+},
+{
+"id": "wt_b100d4400f",
+"kind": "consequence",
+"text": "From home, Tobi finally sends Kemi a message and a parcel, and tells her it should get to her in 5 business days.",
+"code": "tobi.interactwith(kemi){ tobi.sends(kemi, 'message'); tobi.set('message', 'sent from home with a parcel: it should get to you in 5 business days'); }",
+"author": "cos",
+"run": "run-cf203b",
+"card": "j64",
+"other": "kemi"
 }
 ],
 "amusementpark": [
@@ -12753,6 +12763,16 @@
 "run": "run-cf203b",
 "card": "j51",
 "other": null
+},
+{
+"id": "wt_d34408f21f",
+"kind": "consequence",
+"text": "Her sister reads the message off Kemi's phone and puts her hand flat on it: hold jare, don't answer yet.",
+"code": "kemisister.interactwith(kemi){ kemisister.receives(kemi, 'message'); kemisister.set('hand', 'flat on the phone: hold jare!!! do not answer yet'); }",
+"author": "cos",
+"run": "run-cf203b",
+"card": "j64",
+"other": "kemi"
 }
 ],
 "taomm": [
@@ -13602,61 +13622,6 @@
 },
 "consequences": [
 {
-"id": "wf_530bfee68a",
-"ts": "2026-11-24T13:21:19-0500",
-"a": "cooler",
-"b": "ikorodu",
-"code": "cooler.interactwith(ikorodu){ ikorodu.receives(cooler.something); }",
-"text": "The ikorodu now remembers the cooler: The customer typed cooler.getdatemanufactured() on run-qa j1.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j1"
-},
-{
-"id": "wf_de280ef593",
-"ts": "2026-11-24T13:23:01-0500",
-"a": "teoloveletter",
-"b": "marker",
-"code": "teoloveletter.interactwith(marker){ marker.receives(teoloveletter.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the nice day sign at the marker, and Kunle reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
-"id": "wf_5e36fc781a",
-"ts": "2026-11-24T13:23:53-0500",
-"a": "marker_b",
-"b": "tnw",
-"code": "marker_b.interactwith(tnw){ tnw.receives(marker_b.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the tnw, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
-"id": "wf_c09788cf4d",
-"ts": "2026-11-24T13:25:36-0500",
-"a": "ikorodu_marina",
-"b": "yaba",
-"code": "ikorodu_marina.interactwith(yaba){ yaba.receives(ikorodu_marina.envelope); yaba.remembers(bisola, 'brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up beside the phone at the yaba.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
-"id": "wf_f35ca85778",
-"ts": "2026-11-24T13:28:08-0500",
-"a": "marker_c",
-"b": "tie",
-"code": "marker_c.interactwith(tie){ tie.receives(marker_c.shirt); tie.remembers(bisola, 'green shirt'); tie.tucks(marker_c, 'ikeja laundromat receipt into the brown envelope'); }",
-"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up inside the brown envelope at the tie, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j8"
-},
-{
 "id": "wf_af10c4b790",
 "ts": "2026-11-24T13:29:50-0500",
 "a": "house",
@@ -14040,6 +14005,61 @@
 "author": "cos",
 "run": "run-cf203b",
 "card": "w65"
+},
+{
+"id": "wt_b100d4400f",
+"ts": "2026-11-27T12:04:59-0500",
+"a": "kemi",
+"b": "tobi",
+"code": "tobi.interactwith(kemi){ tobi.sends(kemi, 'message'); tobi.set('message', 'sent from home with a parcel: it should get to you in 5 business days'); }",
+"text": "From home, Tobi finally sends Kemi a message and a parcel, and tells her it should get to her in 5 business days.",
+"author": "cos",
+"run": "run-cf203b",
+"card": "j64"
+},
+{
+"id": "wt_2a550ad5e3",
+"ts": "2026-11-27T12:04:59-0500",
+"a": "tobi",
+"b": "kemi",
+"code": "kemi.receives(tobi, 'message'); kemi.set('phone', 'buzzing on the sister table: you got mi msg?');",
+"text": "Kemi's phone buzzes on her sister's table with Tobi's message, ending you got my msg?",
+"author": "cos",
+"run": "run-cf203b",
+"card": "j64"
+},
+{
+"id": "wt_d34408f21f",
+"ts": "2026-11-27T12:04:59-0500",
+"a": "kemi",
+"b": "kemisister",
+"code": "kemisister.interactwith(kemi){ kemisister.receives(kemi, 'message'); kemisister.set('hand', 'flat on the phone: hold jare!!! do not answer yet'); }",
+"text": "Her sister reads the message off Kemi's phone and puts her hand flat on it: hold jare, don't answer yet.",
+"author": "cos",
+"run": "run-cf203b",
+"card": "j64"
+},
+{
+"id": "wt_ef263c3ad1",
+"ts": "2026-11-27T12:04:59-0500",
+"a": "kemisister",
+"b": "kemi",
+"code": "kemi.interactwith(kemisister){ kemi.asks(kemisister, 'woman'); kemi.set('question', 'woman?!! is the parcel from tobi or from her'); }",
+"text": "Kemi asks her sister whether the parcel is from Tobi or from the woman, because the woman has been quiet for a week.",
+"author": "cos",
+"run": "run-cf203b",
+"card": "j64"
+},
+{
+"id": "wt_f06c304a70",
+"ts": "2026-11-27T12:04:59-0500",
+"a": "kemisister",
+"b": "cooler_subject",
+"code": "cooler_subject.receives(kemisister, 'hand'); cooler_subject.set('lid', 'open, sister serving jollof while the phone stays face down');",
+"text": "To keep her hands busy, the sister opens the cooler on the table and serves the jollof, so the parcel question waits until everyone has eaten.",
+"author": "cos",
+"run": "run-cf203b",
+"card": "j65"
 }
 ],
 "memories": [
@@ -14143,5 +14163,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-27T12:04:03-0500"
+"updated": "2026-11-27T12:05:44-0500"
 }

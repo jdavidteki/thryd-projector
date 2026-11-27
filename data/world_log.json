@@ -15050,7 +15050,7 @@
   },
   "run-cf203b": {
    "forked_from": "safe:731d52737690",
-   "head": "5f08f736bf",
+   "head": "349648b7ad",
    "commits": [
     {
      "id": "387e402c1d",
@@ -20992,7 +20992,7 @@
      }
     },
     {
-     "id": "9c4e3f1c38",
+     "id": "8d7f7b3cf8",
      "parent": "87364fc07d",
      "branch": "run-cf203b",
      "job": "j64",
@@ -21400,9 +21400,41 @@
         "code": "alorof.hears(cut7, 'kill');",
         "scope": "ripple",
         "cause_id": "wt_7f07bc6205"
+       },
+       {
+        "id": "wt_b100d4400f",
+        "object": "tobi",
+        "kind": "consequence",
+        "code": "tobi.interactwith(kemi){ tobi.sends(kemi, 'message'); tobi.set('message', 'sent from home with a parcel: it should get to you in 5 business",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_2a550ad5e3",
+        "object": "kemi",
+        "kind": "consequence",
+        "code": "kemi.receives(tobi, 'message'); kemi.set('phone', 'buzzing on the sister table: you got mi msg?');",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_d34408f21f",
+        "object": "kemisister",
+        "kind": "consequence",
+        "code": "kemisister.interactwith(kemi){ kemisister.receives(kemi, 'message'); kemisister.set('hand', 'flat on the phone: hold jare!!! do not answer y",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_ef263c3ad1",
+        "object": "kemi",
+        "kind": "consequence",
+        "code": "kemi.interactwith(kemisister){ kemi.asks(kemisister, 'woman'); kemi.set('question', 'woman?!! is the parcel from tobi or from her'); }",
+        "scope": null,
+        "cause_id": null
        }
       ],
-      "facts_total": 50,
+      "facts_total": 54,
       "functions": [
        {
         "func": "got.msg",
@@ -21434,8 +21466,8 @@
      }
     },
     {
-     "id": "5f08f736bf",
-     "parent": "9c4e3f1c38",
+     "id": "349648b7ad",
+     "parent": "8d7f7b3cf8",
      "branch": "run-cf203b",
      "job": "j65",
      "at": "2026-11-27T02:42:07-0500",
@@ -21538,9 +21570,17 @@
         "code": "cooler_subject.glow();",
         "scope": null,
         "cause_id": null
+       },
+       {
+        "id": "wt_f06c304a70",
+        "object": "cooler_subject",
+        "kind": "consequence",
+        "code": "cooler_subject.receives(kemisister, 'hand'); cooler_subject.set('lid', 'open, sister serving jollof while the phone stays face down');",
+        "scope": null,
+        "cause_id": null
        }
       ],
-      "facts_total": 12,
+      "facts_total": 13,
       "functions": [],
       "instances": []
      }
@@ -22489,10 +22529,10 @@
   "run-0ae93c": "a11a1eab61",
   "run-3a15d2": "fbc46c6eb7",
   "run-ab4653": "dd8e54daee",
-  "run-cf203b": "5f08f736bf",
+  "run-cf203b": "349648b7ad",
   "run-888ea9": "7aa0131911",
   "run-cb805f": "8d23a93627"
  },
  "commits": 218,
- "updated": "2026-11-27T12:04:04-05:00"
+ "updated": "2026-11-27T12:05:45-05:00"
 }
