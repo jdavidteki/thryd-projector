@@ -19511,15 +19511,15 @@
      ],
      "consequence": "He begs her to trust him, \"once you kill all doubt,\" and drifts off about how \"agboro lan so fun omo oluwabi,\" the street life he misses.",
      "consequence_job": "j26",
-     "resolved": "agboro.lan(what=doubt:Thing) from j25",
+     "resolved": "agboro.lan(what=fun:Thing) from j25",
      "injected": [
       {
        "param": "what",
        "class": "Thing",
-       "instance": "doubt",
+       "instance": "fun",
        "from_run": "run-cf203b",
        "from_job": "j25",
-       "source": "pick"
+       "source": "original"
       }
      ]
     }
@@ -19584,7 +19584,7 @@
        "instance": "slip",
        "from_run": "run-cf203b",
        "from_job": "j25",
-       "source": "pick"
+       "source": "original"
       }
      ]
     }
@@ -19682,7 +19682,7 @@
        "instance": "doubt",
        "from_run": "run-cf203b",
        "from_job": "j25",
-       "source": "pick"
+       "source": "original"
       }
      ]
     }
@@ -28081,6 +28081,205 @@
    "faded": false,
    "last_run": "run-cf203b"
   },
+  "ami.genius": {
+   "object": "ami",
+   "method": "genius",
+   "args": [
+    ""
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j70",
+    "card": "w70",
+    "title": "ami.genius()",
+    "emoji": "🎽",
+    "at": "2026-11-27T16:50:56-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "ami.genius()",
+     "emoji": "🎽",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j70",
+     "tweets": [
+      {
+       "text": "#juniorboys -- oh, [[ami]] [[genius]]",
+       "year": "2024"
+      }
+     ],
+     "consequence": "The lines that landed: \"and now i’m just doing my best…\", \"#oyinboman - now una don enter texas all the way from suleja\", \"#juniorboys -- oh, [[ami]] [[genius]]\" and \"a.i will read the frame, for longer\".",
+     "consequence_job": "j71",
+     "resolved": "ami.genius()",
+     "injected": []
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [],
+    "text": "genius()"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "now.una": {
+   "object": "now",
+   "method": "una",
+   "args": [
+    "don"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j70",
+    "card": "w70",
+    "title": "now.una(don)",
+    "emoji": "📎",
+    "at": "2026-11-27T16:50:56-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "now.una(don)",
+     "emoji": "📎",
+     "arg": "don",
+     "run": "run-cf203b",
+     "job": "j70",
+     "tweets": [
+      {
+       "text": "#oyinboman - now una don enter texas all the way from suleja",
+       "year": "2025",
+       "id": "1934287101232816130"
+      }
+     ],
+     "consequence": "The lines that landed: \"and now i’m just doing my best…\", \"#oyinboman - now una don enter texas all the way from suleja\", \"#juniorboys -- oh, [[ami]] [[genius]]\" and \"a.i will read the frame, for longer\".",
+     "consequence_job": "j71",
+     "resolved": "now.una(what=don:Thing) from j70",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "don",
+       "from_run": "run-cf203b",
+       "from_job": "j70",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "don",
+      "first_run": "run-cf203b",
+      "first_job": "j70"
+     }
+    ],
+    "text": "una(what: Thing)"
+   },
+   "receiver_class": "Frequency",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "will.read": {
+   "object": "will",
+   "method": "read",
+   "args": [
+    "frame"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j70",
+    "card": "w70",
+    "title": "will.read(frame)",
+    "emoji": "🍝",
+    "at": "2026-11-27T16:50:56-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "will.read(frame)",
+     "emoji": "🍝",
+     "arg": "frame",
+     "run": "run-cf203b",
+     "job": "j70",
+     "tweets": [],
+     "consequence": "The lines that landed: \"and now i’m just doing my best…\", \"#oyinboman - now una don enter texas all the way from suleja\", \"#juniorboys -- oh, [[ami]] [[genius]]\" and \"a.i will read the frame, for longer\".",
+     "consequence_job": "j71",
+     "resolved": "will.read(what=frame:Thing) from j70",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "frame",
+       "from_run": "run-cf203b",
+       "from_job": "j70",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "frame",
+      "first_run": "run-cf203b",
+      "first_job": "j70"
+     }
+    ],
+    "text": "read(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [
+    {
+     "id": "chairman.read",
+     "title": "chairman.read(message)",
+     "run": "run-2eb42d",
+     "job": "j40",
+     "at": "2026-11-18T19:11:58-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "kazeem.read",
+     "title": "kazeem.read(board)",
+     "run": "run-2eb42d",
+     "job": "j34",
+     "at": "2026-11-18T17:32:20-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "kunle.read",
+     "title": "kunle.read(keys)",
+     "run": "run-g1-B",
+     "job": "j15",
+     "at": "2026-11-17T19:08:15-05:00",
+     "why": "same method"
+    }
+   ],
+   "faded": false,
+   "last_run": null
+  },
   "cooler.getdatemanufactured": {
    "object": "cooler",
    "method": "getDateManufactured",
@@ -32037,6 +32236,9 @@
   "american_olamide_subject": [
    "object.look"
   ],
+  "ami": [
+   "ami.genius"
+  ],
   "amono": [
    "amono.tete"
   ],
@@ -32824,7 +33026,8 @@
   ],
   "now": [
    "now.know",
-   "now.got"
+   "now.got",
+   "now.una"
   ],
   "object": [
    "object.look"
@@ -33302,7 +33505,8 @@
   ],
   "will": [
    "will.deal",
-   "will.sit"
+   "will.sit",
+   "will.read"
   ],
   "wo": [
    "wo.imu"
@@ -45300,6 +45504,16 @@
     "funcs": [
      "hope.notyn",
      "calla.lead"
+    ]
+   }
+  ],
+  "leave_confirmation_figure": [
+   {
+    "scope": "safe",
+    "from": "cd5a1830e1f0",
+    "title": "905. leave confirmation",
+    "funcs": [
+     "ami.genius"
     ]
    }
   ],
@@ -58369,6 +58583,9 @@
     "have.lines",
     "lez.anada",
     "now.got",
+    "ami.genius",
+    "now.una",
+    "will.read",
     "cli.cli",
     "thryd.importtheme",
     "kemi.ismarried",
@@ -59712,7 +59929,10 @@
     "sinzling.juniorboys",
     "have.lines",
     "lez.anada",
-    "now.got"
+    "now.got",
+    "ami.genius",
+    "now.una",
+    "will.read"
    ],
    "runs": [
     "run-cf203b"
@@ -60607,6 +60827,13 @@
    "title": "1120. the chill guy",
    "funcs": [
     "model.con"
+   ],
+   "runs": []
+  },
+  "cd5a1830e1f0": {
+   "title": "905. leave confirmation",
+   "funcs": [
+    "ami.genius"
    ],
    "runs": []
   },
@@ -61862,6 +62089,9 @@
    "df5b0a831c3c",
    "236b487cf22b"
   ],
+  "1*HEZsk6eNZCVwrLucglJJkg.gif": [
+   "cd5a1830e1f0"
+  ],
   "1*S4ZRk-jwIP-ivzWkC4YK9A.png": [
    "9961df213f2c"
   ],
@@ -62806,6 +63036,12 @@
     "d66009c8696d"
    ]
   },
+  "1*HEZsk6eNZCVwrLucglJJkg.gif": {
+   "runs": [],
+   "safes": [
+    "cd5a1830e1f0"
+   ]
+  },
   "1*6aKiM29-1_KKVxtLtMSI-A.gif": {
    "runs": [],
    "safes": [
@@ -63448,6 +63684,9 @@
   "always": [
    "always.believed"
   ],
+  "ami": [
+   "ami.genius"
+  ],
   "amono": [
    "amono.tete"
   ],
@@ -64015,7 +64254,8 @@
   ],
   "now": [
    "now.know",
-   "now.got"
+   "now.got",
+   "now.una"
   ],
   "object": [
    "object.look"
@@ -64411,7 +64651,8 @@
   ],
   "will": [
    "will.deal",
-   "will.sit"
+   "will.sit",
+   "will.read"
   ],
   "wo": [
    "wo.imu"
@@ -64709,6 +64950,7 @@
   "go": [],
   "stomach": [],
   "will": [
+   "Readable",
    "Watchable"
   ],
   "could": [],
@@ -64805,6 +65047,7 @@
   "send": [],
   "sinzling": [],
   "lez": [],
+  "ami": [],
   "cooler": [],
   "kazeem.goodqualities": [],
   "app": [],
@@ -65015,6 +65258,7 @@
    "alorof",
    "also",
    "always",
+   "ami",
    "amono",
    "and",
    "beat",
@@ -65167,5 +65411,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-27T16:44:57-05:00"
+ "updated": "2026-11-27T16:51:43-05:00"
 }
