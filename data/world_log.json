@@ -15050,7 +15050,7 @@
   },
   "run-cf203b": {
    "forked_from": "safe:731d52737690",
-   "head": "805317c37e",
+   "head": "5d42e4e3e7",
    "commits": [
     {
      "id": "eda103402b",
@@ -20972,7 +20972,7 @@
      }
     },
     {
-     "id": "805317c37e",
+     "id": "5d42e4e3e7",
      "parent": "d6c85263ed",
      "branch": "run-cf203b",
      "job": "j64",
@@ -21236,9 +21236,73 @@
         "code": "alorof.hears(person, 'gbogbo');",
         "scope": "ripple",
         "cause_id": "wt_3408d9158d"
+       },
+       {
+        "id": "wt_b13d566e99",
+        "object": "once",
+        "kind": "func_call",
+        "code": "once.kill('errors');",
+        "scope": "env",
+        "cause_id": null
+       },
+       {
+        "id": "wt_7a9e351087",
+        "object": "agboro",
+        "kind": "func_call",
+        "code": "agboro.hears(cut7, 'kill');",
+        "scope": "ripple",
+        "cause_id": "wt_b13d566e99"
+       },
+       {
+        "id": "wt_bee8d22ed6",
+        "object": "ahan",
+        "kind": "func_call",
+        "code": "ahan.hears(cut7, 'kill');",
+        "scope": "ripple",
+        "cause_id": "wt_b13d566e99"
+       },
+       {
+        "id": "wt_3009ee34ef",
+        "object": "alorof",
+        "kind": "func_call",
+        "code": "alorof.hears(cut7, 'kill');",
+        "scope": "ripple",
+        "cause_id": "wt_b13d566e99"
+       },
+       {
+        "id": "wt_8e0f9c22aa",
+        "object": "eez",
+        "kind": "func_call",
+        "code": "eez.heddie('errors');",
+        "scope": "env",
+        "cause_id": null
+       },
+       {
+        "id": "wt_faf545f853",
+        "object": "agboro",
+        "kind": "func_call",
+        "code": "agboro.hears(cut7, 'heddie');",
+        "scope": "ripple",
+        "cause_id": "wt_8e0f9c22aa"
+       },
+       {
+        "id": "wt_bc56133c2e",
+        "object": "ahan",
+        "kind": "func_call",
+        "code": "ahan.hears(cut7, 'heddie');",
+        "scope": "ripple",
+        "cause_id": "wt_8e0f9c22aa"
+       },
+       {
+        "id": "wt_8b4f5bef76",
+        "object": "alorof",
+        "kind": "func_call",
+        "code": "alorof.hears(cut7, 'heddie');",
+        "scope": "ripple",
+        "cause_id": "wt_8e0f9c22aa"
        }
       ],
-      "facts_total": 32,
+      "facts_total": 40,
       "functions": [],
       "instances": []
      }
@@ -22187,10 +22251,10 @@
   "run-0ae93c": "a11a1eab61",
   "run-3a15d2": "fbc46c6eb7",
   "run-ab4653": "dd8e54daee",
-  "run-cf203b": "805317c37e",
+  "run-cf203b": "5d42e4e3e7",
   "run-888ea9": "7aa0131911",
   "run-cb805f": "8d23a93627"
  },
  "commits": 216,
- "updated": "2026-11-27T01:03:54-05:00"
+ "updated": "2026-11-27T01:06:26-05:00"
 }
