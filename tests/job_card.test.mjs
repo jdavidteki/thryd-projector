@@ -8,14 +8,14 @@ const js = rd('assets/job_card.js'), html = rd('index.html'), st = rd('assets/st
 
 test('job_card.js loads by default; ?cards=0 hides the panel', ()=>{
   assert.match(html, /cards=0/);
-  assert.match(html, /job_card\.js\?v=17/);
+  assert.match(html, /job_card\.js\?v=18/);
   assert.match(js, /cards=0/);
   assert.match(html, /if\(!\/\(\?:\^\|\[\?&\]\)cards=0/);
   assert.match(js, /if\(\/\(\?:\^\|\[\?&\]\)cards=0/);
   assert.doesNotMatch(html, /if\(\/\(\?:\^\|\[\?&\]\)cards=1/);
-  assert.match(html, /var VER=643,/);
+  assert.match(html, /var VER=644,/);
   const v = JSON.parse(ver);
-  assert.ok(v.v >= 641);
+  assert.ok(v.v >= 644);
 });
 
 test('layout is job card, then typeline, then plain always-visible buttons', ()=>{
@@ -49,7 +49,7 @@ test('after Send the panel waits for the next job, then swaps on the slow poll',
 
 test('one Send per job client-side; menu taps deduped for 2 minutes before POST', ()=>{
   assert.match(js, /wasSent\(card\.job\)/);
-  assert.match(js, /'sent \\u2713' : 'Send'/);
+  assert.match(js, /'sent \\u2713' : \(resendFor\(c\) \? 'Resend' : 'Send'\)/);   // v644: Resend after a receipt timeout
   assert.match(js, /MENU_DEDUPE_MS = 120000/);
   assert.match(js, /drop before POST/);
   assert.match(js, /type:'card_pick'/);
@@ -104,7 +104,7 @@ test('v622: card/menu posts use the typeline lane with 429 backoff+retry, friend
   assert.doesNotMatch(js, /'HTTP ' \+ r\.status \+ \(r\.status === 429/);
   assert.match(js, /lockHasJump/);
   assert.match(js, /max-height:15em;overflow-y:auto/);
-  assert.match(js, /awaitReply\(body, t0, r\)/);
+  assert.match(js, /awaitReply\(body, t0, r, RECEIPT_MS\)/);   // v644: 20 s receipt window
 });
 
 test('v623: 🎥 is a Live view pill (own menu_action per job), not a line option', ()=>{
@@ -166,7 +166,7 @@ test('v628: panel stays open after Send; waiting refresh keeps the sent card; ea
   assert.match(js, /border-radius:8px;white-space:normal/);
   assert.match(js, /max-height:15em;overflow-y:auto/);
   assert.match(js, /touch-action:pan-y/);
-  assert.match(html, /job_card\.js\?v=17/);
+  assert.match(html, /job_card\.js\?v=18/);
   assert.match(html, /intent_ai\.js\?v=614/);
   const src = js.slice(js.indexOf('function safeText(o){'), js.indexOf('function render(){'));
   const f = new Function(src + '; return {safeRows, safeText};')();
@@ -251,10 +251,10 @@ test('v633: archive safe lines flow inline at a smaller font; title stays its ow
 });
 
 test('v634: open async jobs render as persistent waiting-on-real-life pills; empty list shows nothing', ()=>{
-  assert.match(html, /var VER=643,/);
-  assert.match(html, /job_card\.js\?v=17/);
+  assert.match(html, /var VER=644,/);
+  assert.match(html, /job_card\.js\?v=18/);
   const v = JSON.parse(ver);
-  assert.ok(v.v >= 641);
+  assert.ok(v.v >= 644);
   assert.match(js, /function asyncPills\(/);
   assert.match(js, /function jobText\(/);
   assert.match(js, /function ago\(/);
@@ -298,10 +298,10 @@ test('v638: MENU and LOCK buttons sit in one sideways-sliding row; a swipe is no
   assert.match(js, /sc\.appendChild\(menuBtn\(o\)\)/);
   assert.doesNotMatch(js, /#aimenu \.aimrow\{display:flex;flex-wrap:wrap/);
   assert.match(js, /Math\.abs\(\(ev\.clientX \|\| sx\) - sx\) > 14/);
-  assert.match(html, /var VER=643,/);
-  assert.match(html, /job_card\.js\?v=17/);
+  assert.match(html, /var VER=644,/);
+  assert.match(html, /job_card\.js\?v=18/);
   const v = JSON.parse(ver);
-  assert.ok(v.v >= 641);
+  assert.ok(v.v >= 644);
 });
 
 import { test as __t } from 'node:test';
@@ -317,4 +317,35 @@ __t('v643: rebuilt jN clears old note/lock; already_sent is not a success', () =
   const src = __fs.readFileSync(new URL('../assets/job_card.js', import.meta.url), 'utf8');
   __a.match(src, /card\.job === j\.job && optSig\(card\) !== optSig\(j\)/);
   __a.match(src, /m\.code === 'already_sent'\)\{ unmarkSent\(job\)/);
+});
+__t('v644: send_receipt: tick only on the box receipt; 20 s timeout offers Resend with the same event_id', async () => {
+  const src = __fs.readFileSync(new URL('../assets/job_card.js', import.meta.url), 'utf8');
+  const html = __fs.readFileSync(new URL('../index.html', import.meta.url), 'utf8');
+  const ver = JSON.parse(__fs.readFileSync(new URL('../data/version.json', import.meta.url), 'utf8'));
+  const pj = __fs.readFileSync(new URL('../assets/projector.js', import.meta.url), 'utf8');
+  __a.match(html, /var VER=644,/); __a.match(html, /job_card\.js\?v=18/); __a.match(html, /projector\.js\?v=577/);
+  __a.equal(ver.v, 644);
+  __a.match(src, /const RECEIPT_MS = 20000;/);
+  __a.match(src, /const eid = again \? again\.body\.event_id : uid\('pick-'\)/);          // resend reuses the event_id
+  __a.match(src, /const body = again \? again\.body :/);
+  __a.match(src, /hasn\\u2019t confirmed this send after 20 s\. Tap Resend/);
+  __a.match(src, /waitingReceipt \? 'sending\\u2026'/);                                   // no tick while waiting
+  __a.doesNotMatch(src, /Sent \\u2713 waiting for the receipt/);
+  __a.doesNotMatch(src, /no receipt yet \\u2014 it will still be picked up/);
+  __a.match(pj, /setTimeout\(r,kind==='card'\?0:8000\)/);                                 // picks go to the backup at once
+  // awaitReply: stops at the limit, matches only this event id, and a seat in open_card resolved[] counts as the receipt
+  const a = src.indexOf('  async function awaitReply('), b = src.indexOf('  function isLiveOpt(');
+  let meta = null, polls = [], replies = [];
+  const root = {thrydDrag: () => ({reply: 'https://x/r'}), thrydNtfyGet: async (u) => { polls.push(u); return {text: async () => replies.join('\n')}; }};
+  const make = new Function('root', 'sleep', 'getMeta', 'let card = null; function seenResolved(eid){ const j = getMeta(); return !!(j && (j.resolved || []).some(x => x && x.event_id === eid)); }\n' + src.slice(a, b) + '; return awaitReply;');
+  const aw = make(root, async () => {}, () => meta);
+  const body = {event_id: 'pick-aaaaaaaaaaaaaaaa', rid: 'pick-aaaaaaaaaaaaaaaa-r'};
+  __a.equal(await aw(body, 1, {}, 20000), null);
+  __a.equal(polls.length, 7);                                                              // 1+1.5+2+2.5+3+4+6 = 20 s
+  replies = [JSON.stringify({message: JSON.stringify({rid: 'other-r', event_id: 'other', ok: true})})];
+  __a.equal(await aw(body, 1, {}, 20000), null);                                           // someone else's receipt is not ours
+  replies.push(JSON.stringify({message: JSON.stringify({rid: body.rid, event_id: body.event_id, ok: true, status: 'accepted'})}));
+  __a.equal((await aw(body, 1, {}, 20000)).status, 'accepted');
+  replies = []; meta = {resolved: [{event_id: body.event_id}]};
+  __a.equal((await aw(body, 1, {}, 20000)).status, 'seated');
 });

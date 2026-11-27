@@ -156,7 +156,10 @@ window.thrydTypelinePost=async function(body, kind){
   })();
   const backupRun=(async()=>{
     if(!backup||!backup.endpoint) return null;
-    await new Promise(r=>setTimeout(r,8000));
+    // v644 picklag: card picks / menu taps (kind 'card') go to the backup host at once, in parallel; the 8 s hold cost every
+    // pick ~8 s whenever ntfy.sh did not answer (most picks 11/24-11/27 landed via backup ~7-8 s after the tap). The relay
+    // dedupes the two copies by event_id. Typed lines keep the 8 s hold.
+    await new Promise(r=>setTimeout(r,kind==='card'?0:8000));
     if(winner) return winner;
     const ev=window.thrydStamp(Object.assign({},payload,{transport:'backup'}));
     window.thrydLogSend({branch:'backup_parallel',event_id:payload.event_id,kind:kind});

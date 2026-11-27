@@ -112,6 +112,15 @@
   let sel = {job: null, values: new Set(), text: ''};
   let status = {job: null, text: '', kind: ''};
   let asyncOpen = new Set(); // v634: which async-job pills are expanded
+  // v644 send_receipt (Jesuye "yes" 11/27 1:27 PM ET; j64/j66 sends that looked sent but had not reached the box):
+  // a Send shows a tick only once the box answers for that exact event_id (relay reply, or open_card resolved[]).
+  // No answer in RECEIPT_MS: say so plainly and offer Resend, which re-posts the SAME body / event_id, so the box
+  // dedupes it (relay event_id + card_pick find_event) and it can never become a second pick.
+  const RECEIPT_MS = 20000;
+  let pendingSend = null;            // {job, sig, body, r, t0, state: 'waiting'|'not_received'}
+  const pendingMenu = {};            // action -> {body, r, t0} awaiting a receipt / resend
+  function resendFor(c){ return (pendingSend && c && pendingSend.state === 'not_received' && pendingSend.job === c.job && pendingSend.sig === optSig(c)) ? pendingSend : null; }
+  function seenResolved(eid){ const j = meta || card; return !!(j && (j.resolved || []).some(x => x && x.event_id === eid)); }
 
   const box = () => document.getElementById('aibox');
   const AI = () => root.thrydIntentAI;
@@ -306,13 +315,17 @@
     throw lastE || new Error('no response');
   }
   // Wait for the validator's answer on the reply topic (same pattern as stage.js taps).
-  async function awaitReply(body, t0, r){
+  async function awaitReply(body, t0, r, limitMs, waits){
     const DG = (root.thrydDrag && root.thrydDrag()) || root.DRAG || {};
     // the reply comes back on <the topic it was posted to>-r (relay.py); backup posts carry r.reply
     const base = (r && r.reply) || (r && r.endpoint ? String(r.endpoint).replace(/\/?$/, '') + '-r' : null) || DG.reply || (DG.endpoint ? String(DG.endpoint).replace(/\/?$/, '') + '-r' : null);
-    if(!base) return null;
-    for(const w of [1500, 2500, 4000, 6000, 8000, 12000]){
-      await sleep(w);
+    const plan = waits || (limitMs ? [1000, 1500, 2000, 2500, 3000, 4000, 6000] : [1500, 2500, 4000, 6000, 8000, 12000]);
+    let spent = 0;
+    for(const w of plan){
+      if(limitMs && spent >= limitMs) break;
+      await sleep(w); spent += w;
+      if(seenResolved(body.event_id)) return {ok: true, status: 'seated', event_id: body.event_id, via: 'open_card'};   // v644: the seat itself is a receipt
+      if(!base) continue;
       try{
         const getter = root.thrydNtfyGet || ((u, ms) => fetch(u, {cache: 'no-store'}));
         const tx = await (await getter(base + '/json?poll=1&since=' + t0, 8000)).text();
@@ -656,8 +669,9 @@
       const n = document.createElement('div'); n.className = 'aicnote'; n.id = 'aicnote'; n.setAttribute('role', 'status'); n.setAttribute('aria-live', 'polite');
       if(status.job === c.job && status.text){ n.textContent = status.text; if(status.kind) n.classList.add(status.kind); }
       else if(locked){ n.textContent = 'sent \u2014 next job coming'; n.classList.add('ok'); }
-      const go = document.createElement('button'); go.type = 'button'; go.className = 'aicgo' + (locked ? ' sent' : '');
-      go.textContent = locked ? 'sent \u2713' : 'Send'; go.disabled = locked;
+      const waitingReceipt = !!(locked && pendingSend && pendingSend.state === 'waiting' && pendingSend.job === c.job);   // v644: no tick before the receipt
+      const go = document.createElement('button'); go.type = 'button'; go.className = 'aicgo' + (waitingReceipt ? ' busy' : (locked ? ' sent' : ''));
+      go.textContent = waitingReceipt ? 'sending\u2026' : (locked ? 'sent \u2713' : (resendFor(c) ? 'Resend' : 'Send')); go.disabled = locked;
       tapOnce(go, () => sendCard(go));
       row.append(n, go);
       jobEl.appendChild(row);
@@ -730,11 +744,12 @@
     if(sending){ setStatus('still sending\u2026', 'busy'); return; }
     if(!card || !card.open){ setStatus('This card is closed \u2014 there is no open job right now.', 'err'); return; }
     if(wasSent(card.job)){ setStatus('Already sent for ' + card.job + ' \u2014 next job coming.', 'ok'); return; }
+    const again = resendFor(card);   // v644: Resend re-posts the same event_id (no double pick)
     const chosen = (card.options || []).map(o => o.value).filter(v => sel.values.has(v));
-    const labels = (card.options || []).filter(o => sel.values.has(o.value)).map(o => o.label);
+    const labels = again ? (again.body.labels || []) : (card.options || []).filter(o => sel.values.has(o.value)).map(o => o.label);
     const free = (document.querySelector('#aicard .aicfree') || {}).value;
     const text = (free && String(free).trim()) || undefined;
-    if(!chosen.length && !text){
+    if(!again && !chosen.length && !text){
       setStatus('Pick a line (or type one) first.', 'err');
       if(btn){ btn.classList.add('err'); setTimeout(() => btn.classList.remove('err'), 1400); }
       log({event: 'send_empty', job: card.job});
@@ -748,75 +763,114 @@
     if(fresh && typeof fresh === 'object' && (!fresh.open || fresh.job !== job)){
       sending = false;
       const was = job; card = fresh; meta = fresh; cardSig = JSON.stringify(fresh);
+      if(again && seenResolved(again.body.event_id)){ pendingSend = null; status = {job: fresh.job, text: '\u2713 your ' + was + ' pick was seated \u2014 ' + (fresh.open ? fresh.job + ' is open now.' : 'next card coming.'), kind: 'ok'}; render(); return; }
       log({event: 'send_stale', job: was, open: fresh.open ? fresh.job : null});
       status = {job: fresh.job, text: fresh.open ? (was + ' is closed \u2014 ' + fresh.job + ' is open now. Pick again.') : (was + ' is closed \u2014 no open job right now.'), kind: 'err'};
       render(); return;
     }
-    const eid = uid('pick-');
-    const body = {v:1, type:'card_pick', event_id:eid, rid:eid+'-r', run:card.run, job:card.job, card:card.card,
+    const eid = again ? again.body.event_id : uid('pick-');
+    const body = again ? again.body : {v:1, type:'card_pick', event_id:eid, rid:eid+'-r', run:card.run, job:card.job, card:card.card,
       options:chosen, labels:labels, source:'projector', client_ts:new Date().toISOString()};
-    if(text) body.text = text.slice(0, 500);
-    setStatus('Sending\u2026', 'busy');
-    const t0 = Math.floor(Date.now() / 1000) - 5;
+    if(!again && text) body.text = text.slice(0, 500);
+    const t0 = again ? again.t0 : Math.floor(Date.now() / 1000) - 5;
+    const ps = pendingSend = {job, sig: optSig(card), body, t0, r: null, state: 'waiting'};
+    setStatus(again ? '\u2026 resending the same pick to the box' : '\u2026 sending to the box', 'busy');
     let r = null;
     const onRetry = (n, wait) => setStatus('The network is busy \u2014 retrying in ' + Math.round(wait / 1000) + ' s (' + (n + 1) + '/3)\u2026', 'busy');
     try{ r = await post(body, onRetry); }
     catch(e){
-      sending = false; log({event: 'send_throw', job, error: String(e && e.message || e)});
-      if(btn){ btn.disabled = false; btn.classList.remove('busy'); btn.textContent = 'Send'; }
-      setStatus('Not sent \u2014 ' + friendly(e) + '. Your pick is kept; tap Send again in a moment.', 'err'); return;
+      sending = false; ps.state = 'not_received'; log({event: 'send_throw', job, error: String(e && e.message || e), event_id: eid});
+      if(btn){ btn.disabled = false; btn.classList.remove('busy'); btn.textContent = 'Resend'; }
+      setStatus('Not sent \u2014 ' + friendly(e) + '. Your pick is kept; tap Resend in a moment (same send, no double pick).', 'err'); return;
     }
     if(!(r && r.ok)){
-      sending = false; log({event: 'send_http', job, status: r && r.status});
-      if(btn){ btn.disabled = false; btn.classList.remove('busy'); btn.textContent = 'Send'; }
-      setStatus('Not sent \u2014 ' + friendly(r ? 'HTTP ' + r.status : '') + '. Your pick is kept; tap Send again in a moment.', 'err'); return;
+      sending = false; ps.state = 'not_received'; log({event: 'send_http', job, status: r && r.status, event_id: eid});
+      if(btn){ btn.disabled = false; btn.classList.remove('busy'); btn.textContent = 'Resend'; }
+      setStatus('Not sent \u2014 ' + friendly(r ? 'HTTP ' + r.status : '') + '. Your pick is kept; tap Resend in a moment (same send, no double pick).', 'err'); return;
     }
-    markSent(job, card);
+    ps.r = r;
+    markSent(job, card);   // holds the card while the receipt is pending (no second pick)
     logSent({kind: 'pick', run: body.run, job, label: labels.join(', ').slice(0, 80), event_id: eid});
-    if(btn){ btn.classList.remove('busy'); btn.classList.add('sent'); btn.textContent = 'sent \u2713'; }
+    if(btn){ btn.classList.add('busy'); btn.textContent = 'sending\u2026'; }
     try{ updateStrip(); }catch(e){}
-    setStatus('Sent \u2713 waiting for the receipt\u2026', 'busy');
-    log({event: 'send_ok', job, id: r.ntfyId, event_id: eid});
-    const m = await awaitReply(body, t0, r);
+    setStatus('\u2026 waiting for the box to confirm ' + job, 'busy');
+    log({event: 'send_ok', job, id: r.ntfyId, event_id: eid, resend: !!again});
+    const m = await awaitReply(body, t0, r, RECEIPT_MS);
     sending = false;
-    if(card && card.job !== job) return;
-    if(!m){ setStatus('Sent \u2713 (no receipt yet \u2014 it will still be picked up)', 'ok'); return; }
-    if(m.ok){ setStatus('Received \u2713 your ' + job + ' pick is in \u2014 next job coming.', 'ok'); return; }
-    // v643: 'already_sent' means this Send was NOT stored, so never show it as a success or keep the lock.
-    if(m.code === 'already_sent'){ unmarkSent(job); status = {job, text: 'Not stored \u2014 the box already had a send for ' + job + '. Tap Send again.', kind: 'err'}; render(); return; }
-    // v628: the pick already posted; a seat can make the open job disappear before the
-    // receipt. Keep this card, its size, and the sent confirmation — don't collapse to
-    // the waiting empty state.
-    if(m.code === 'job_mismatch' || m.code === 'no_open_job'){
-      setStatus('Sent \u2713 your ' + job + ' pick is in \u2014 next job coming.', 'ok');
+    if(!m){
+      if(pendingSend !== ps) return;
+      ps.state = 'not_received'; unmarkSent(job);
+      log({event: 'receipt_timeout', job, event_id: eid});
+      status = {job, text: '\u2717 the box hasn\u2019t confirmed this send after 20 s. Tap Resend \u2014 it\u2019s the same send, so it can\u2019t pick twice.', kind: 'err'};
+      render();
+      lateReceipt(ps);
       return;
     }
+    takeReceipt(ps, m);
+  }
+  // after a 20 s timeout keep listening a little longer; a late receipt still flips the card to ✓
+  async function lateReceipt(ps){
+    const m = await awaitReply(ps.body, ps.t0, ps.r, 0, [5000, 10000, 15000, 15000, 15000]);
+    if(m && pendingSend === ps && ps.state === 'not_received' && !sending) takeReceipt(ps, m);
+  }
+  function takeReceipt(ps, m){
+    const job = ps.job;
+    if(pendingSend === ps) pendingSend = null;
+    if(card && card.job !== job){ if(m.ok) status = {job: card.job, text: '\u2713 your ' + job + ' pick reached the box.', kind: 'ok'}; return; }
+    const btn = document.querySelector('#aicard .aicgo');
+    if(m.ok){
+      markSent(job, card);
+      if(btn){ btn.disabled = true; btn.classList.remove('busy'); btn.classList.add('sent'); btn.textContent = 'sent \u2713'; }
+      status = {job, text: (m.status === 'seated' ? '\u2713 seated on ' + job : '\u2713 the box has your ' + job + ' pick') + ' \u2014 next card coming.', kind: 'ok'};
+      setStatus(status.text, 'ok'); return;
+    }
+    // v643: 'already_sent' means this Send was NOT stored, so never show it as a success or keep the lock.
+    if(m.code === 'already_sent'){ unmarkSent(job); status = {job, text: 'Not stored \u2014 the box already had a send for ' + job + '. Tap Send again.', kind: 'err'}; render(); return; }
+    // v628: a seat can make the open job disappear before the receipt. v644: only call it in when the seat shows this event.
+    if(m.code === 'job_mismatch' || m.code === 'no_open_job'){
+      if(seenResolved(ps.body.event_id)){ setStatus('Sent \u2713 your ' + job + ' pick is in \u2014 next job coming.', 'ok'); return; }
+      unmarkSent(job);
+      status = {job, text: '\u2717 ' + job + ' closed before this send reached the box, so it was not stored. Pick on the open card.', kind: 'err'};
+      render(); return;
+    }
     unmarkSent(job);
-    status = {job, text: 'Not accepted \u00b7 ' + (m.detail || m.code || 'rejected') + ' \u00b7 tap Send to try again.', kind: 'err'};
+    status = {job, text: '\u2717 Not accepted \u00b7 ' + (m.detail || m.code || 'rejected') + ' \u00b7 tap Send to try again.', kind: 'err'};
     render();
   }
 
   function sendMenu(btn, o){
     if(!o || !o.value || btn.disabled) return;
     const run = card && card.run;
-    if(menuRecent(run, o.value)){ btn.classList.add('sent'); btn.title = 'sent'; menuNote(o.label + ' already sent \u2713', 'ok'); return; } // drop before POST
-    if(o.href){ try{ window.open(o.href, '_blank', 'noopener'); }catch(e){} }
-    btn.disabled = true; menuNote('sending ' + o.label + '\u2026', '');
-    const eid = uid('menu-');
-    const body = {v:1, type:'menu_action', event_id:eid, rid:eid+'-r', run:card && card.run, job:card && card.job, card:card && card.card,
+    const again = pendingMenu[o.value] && pendingMenu[o.value].state === 'not_received' ? pendingMenu[o.value] : null;
+    if(!again && menuRecent(run, o.value)){ btn.classList.add('sent'); btn.title = 'sent'; menuNote(o.label + ' already sent \u2713', 'ok'); return; } // drop before POST
+    if(o.href && !again){ try{ window.open(o.href, '_blank', 'noopener'); }catch(e){} }
+    btn.disabled = true; menuNote((again ? 'resending ' : 'sending ') + o.label + '\u2026', '');
+    const eid = again ? again.body.event_id : uid('menu-');
+    const body = again ? again.body : {v:1, type:'menu_action', event_id:eid, rid:eid+'-r', run:card && card.run, job:card && card.job, card:card && card.card,
       action:o.value, label:o.label, source:'projector', client_ts:new Date().toISOString()};
-    const t0 = Math.floor(Date.now() / 1000) - 5;
+    const t0 = again ? again.t0 : Math.floor(Date.now() / 1000) - 5;
+    const pm = pendingMenu[o.value] = {body, t0, r: null, state: 'waiting'};
     const onRetry = (n, wait) => menuNote(o.label + ': the network is busy \u2014 retrying in ' + Math.round(wait / 1000) + ' s (' + (n + 1) + '/3)\u2026', 'busy');
-    const fail = why => { btn.disabled = false; btn.classList.add('err'); setTimeout(() => btn.classList.remove('err'), 1400); menuNote(o.label + ' not sent \u2014 ' + friendly(why) + '. Tap it again in a moment.', 'err'); };
-    post(body, onRetry).then(async r => {
-      if(!(r && r.ok)) return fail(r ? 'HTTP ' + r.status : '');
-      btn.disabled = false; markMenu(run, o.value); logSent({kind: 'menu', run, job: body.job || null, action: o.value, label: o.label, event_id: eid}); try{ updateStrip(); }catch(e){}
-      btn.classList.add('sent'); btn.title = 'sent'; menuNote(o.label + ' sent \u2713 waiting for the receipt\u2026', 'busy');
-      const m = await awaitReply(body, t0, r);
-      if(!m) return menuNote(o.label + ' sent \u2713', 'ok');
+    const fail = why => { pm.state = 'not_received'; btn.disabled = false; btn.classList.add('err'); setTimeout(() => btn.classList.remove('err'), 1400); menuNote(o.label + ' not sent \u2014 ' + friendly(why) + '. Tap it again in a moment (same send, no double).', 'err'); };
+    const done = m => {
+      if(pendingMenu[o.value] === pm) delete pendingMenu[o.value];
       if(m.ok) return menuNote(o.label + ' received \u2713', 'ok');
       if(m.code === 'duplicate' || m.status === 'duplicate') return menuNote(o.label + ' already received \u2713', 'ok');
-      btn.classList.remove('sent'); menuNote(o.label + ' not accepted \u2014 ' + (m.detail || m.code || 'rejected'), 'err');
+      btn.classList.remove('sent'); menuNote('\u2717 ' + o.label + ' not accepted \u2014 ' + (m.detail || m.code || 'rejected'), 'err');
+    };
+    post(body, onRetry).then(async r => {
+      if(!(r && r.ok)) return fail(r ? 'HTTP ' + r.status : '');
+      pm.r = r;
+      btn.disabled = false; markMenu(run, o.value); logSent({kind: 'menu', run, job: body.job || null, action: o.value, label: o.label, event_id: eid}); try{ updateStrip(); }catch(e){}
+      btn.title = 'sending'; menuNote('\u2026 ' + o.label + ' sent, waiting for the box to confirm', 'busy');
+      const m = await awaitReply(body, t0, r, RECEIPT_MS);
+      if(m) return done(m);
+      // v644: no receipt in 20 s: say so; a second tap resends the same event_id (the box dedupes it)
+      pm.state = 'not_received'; btn.classList.remove('sent'); btn.title = 'resend';
+      try{ const mm = JSON.parse(localStorage.getItem(MENU_STORE) || '{}') || {}; delete mm[menuKey(run, o.value)]; localStorage.setItem(MENU_STORE, JSON.stringify(mm)); }catch(e){}
+      menuNote('\u2717 the box hasn\u2019t confirmed ' + o.label + ' after 20 s. Tap it again to resend (same send, no double).', 'err');
+      const late = await awaitReply(body, t0, r, 0, [5000, 10000, 15000, 15000, 15000]);
+      if(late && pendingMenu[o.value] === pm && pm.state === 'not_received'){ btn.classList.add('sent'); btn.title = 'sent'; markMenu(run, o.value); done(late); }
     }).catch(fail);
   }
 
