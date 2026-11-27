@@ -1401,16 +1401,6 @@
 ],
 "isl": [
 {
-"id": "wf_c89c54d265",
-"kind": "consequence",
-"text": "The isl leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"code": "isl.receives(yaba_bookshop.receipt);",
-"author": "cos",
-"run": "run-b9b963",
-"card": "j6",
-"other": "yaba_bookshop"
-},
-{
 "id": "wf_575d8b24a7",
 "kind": "consequence",
 "text": "When the seen meets the isl, Bisola's receipt and Kunle's worm question trade places, and Kunle's question ends up scrawled on the back of her receipt.",
@@ -1438,6 +1428,16 @@
 "author": "customer",
 "run": "run-cf203b",
 "card": "j50",
+"other": null
+},
+{
+"id": "wt_4696c97574",
+"kind": "func_call",
+"text": "The customer typed [[isl]] on run-cf203b j54.",
+"code": "[[isl]];",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j54",
 "other": null
 },
 {
@@ -6465,6 +6465,16 @@
 "run": "run-5a58c4",
 "card": "j6",
 "other": "marker_c"
+},
+{
+"id": "wt_5d1f37c432",
+"kind": "func_call",
+"text": "The customer typed [[hpr]] on run-cf203b j54.",
+"code": "[[hpr]];",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j54",
+"other": null
 }
 ],
 "little_tenderness": [
@@ -13133,5 +13143,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-26T19:13:37-0500"
+"updated": "2026-11-26T19:35:29-0500"
 }
