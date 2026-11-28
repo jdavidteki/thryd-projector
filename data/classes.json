@@ -59,8 +59,8 @@
     "something",
     "air"
    ],
-   "instances": 9,
-   "arg_instances": 9,
+   "instances": 10,
+   "arg_instances": 10,
    "parent": "Thing",
    "chain": [
     "Manner",
@@ -109,8 +109,8 @@
     "see",
     "find"
    ],
-   "instances": 533,
-   "arg_instances": 207,
+   "instances": 536,
+   "arg_instances": 210,
    "parent": null,
    "chain": [
     "Thing"
@@ -1156,6 +1156,22 @@
     "run-2eb42d"
    ],
    "tweets": []
+  },
+  "brain": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-788e05",
+   "first_job": "j2",
+   "source": "pick",
+   "runs": [
+    "run-788e05"
+   ],
+   "tweets": [
+    {
+     "text": "[[iob]] - anyway, click his brain yuwee see it too",
+     "year": "2024"
+    }
+   ]
   },
   "bribescollected": {
    "class": "Thing",
@@ -6605,6 +6621,23 @@
    ],
    "tweets": []
   },
+  "really": {
+   "class": "Manner",
+   "cue": "suffix -ly",
+   "first_run": "run-788e05",
+   "first_job": "j2",
+   "source": "pick",
+   "runs": [
+    "run-788e05"
+   ],
+   "tweets": [
+    {
+     "text": "condolences to his family! we really need to do better as a people.",
+     "year": "2023",
+     "id": "1654443011839782914"
+    }
+   ]
+  },
   "realseunkuti": {
    "class": "Thing",
    "cue": "default",
@@ -6815,6 +6848,22 @@
     }
    ]
   },
+  "right": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-788e05",
+   "first_job": "j2",
+   "source": "pick",
+   "runs": [
+    "run-788e05"
+   ],
+   "tweets": [
+    {
+     "text": "“that is good news, right?…so…so why is your face upset?”",
+     "year": "2022"
+    }
+   ]
+  },
   "rihanna": {
    "class": "Thing",
    "cue": "default",
@@ -6995,6 +7044,17 @@
    "source": "typed",
    "runs": [
     "run-6fb0c0"
+   ],
+   "tweets": []
+  },
+  "samsons": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-788e05",
+   "first_job": "j2",
+   "source": "pick",
+   "runs": [
+    "run-788e05"
    ],
    "tweets": []
   },
@@ -11409,6 +11469,30 @@
     "Action",
     "j1",
     "pick"
+   ],
+   [
+    "brain",
+    "Thing",
+    "j2",
+    "pick"
+   ],
+   [
+    "really",
+    "Manner",
+    "j2",
+    "pick"
+   ],
+   [
+    "samsons",
+    "Thing",
+    "j2",
+    "pick"
+   ],
+   [
+    "right",
+    "Thing",
+    "j2",
+    "pick"
    ]
   ],
   "run-b70200": [
@@ -14286,6 +14370,10 @@
   "now.see": "see(what: Thing)",
   "see.why": "why(what: Thing)",
   "tell.say": "say(act: Action)",
+  "anyway.click": "click(what: Thing)",
+  "condolences.family": "family(how: Manner)",
+  "could.see": "see(what: Thing)",
+  "good.news": "news(what: Thing)",
   "cooler.getdatemanufactured": "getDateManufactured()",
   "ronke.getlikes.contains": "getlikes.contains()",
   "kazeem.goodqualities.filter": "filter()",
@@ -14474,6 +14562,7 @@
     "calla",
     "can",
     "chairman",
+    "could",
     "crime",
     "dez",
     "ehen",
@@ -14541,6 +14630,7 @@
     "calla",
     "can",
     "chairman",
+    "could",
     "dez",
     "everywhere",
     "folake",
@@ -14973,7 +15063,11 @@
    "yuwa"
   ],
   "run-788e05": [
+   "anyway",
+   "condolences",
+   "could",
    "eez",
+   "good",
    "now",
    "see",
    "tell"
@@ -15051,5 +15145,5 @@
   "epilogue": "quiet",
   "coda": "quiet"
  },
- "updated": "2026-11-27T23:01:47-05:00"
+ "updated": "2026-11-27T23:30:47-05:00"
 }

@@ -30433,6 +30433,295 @@
    "faded": false,
    "last_run": "run-788e05"
   },
+  "anyway.click": {
+   "object": "anyway",
+   "method": "click",
+   "args": [
+    "brain"
+   ],
+   "runs": [
+    "run-788e05"
+   ],
+   "defined": {
+    "run": "run-788e05",
+    "job": "j2",
+    "card": "w2",
+    "title": "anyway.click(brain)",
+    "emoji": "🪬",
+    "at": "2026-11-27T23:30:09-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "anyway.click(brain)",
+     "emoji": "🪬",
+     "arg": "brain",
+     "run": "run-788e05",
+     "job": "j2",
+     "tweets": [
+      {
+       "text": "[[iob]] - anyway, click his brain yuwee see it too",
+       "year": "2024"
+      }
+     ],
+     "consequence": "we really need to do better as a people.\", \"[[iob]] - anyway, click his brain yuwee see it too\" and \"He could see that Samson’s mind, for longer\".",
+     "consequence_job": "j3",
+     "resolved": "anyway.click(what=brain:Thing) from j2",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "brain",
+       "from_run": "run-788e05",
+       "from_job": "j2",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "brain",
+      "first_run": "run-788e05",
+      "first_job": "j2"
+     }
+    ],
+    "text": "click(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": "run-788e05"
+  },
+  "condolences.family": {
+   "object": "condolences",
+   "method": "family",
+   "args": [
+    "really"
+   ],
+   "runs": [
+    "run-788e05"
+   ],
+   "defined": {
+    "run": "run-788e05",
+    "job": "j2",
+    "card": "w2",
+    "title": "condolences.family(really)",
+    "emoji": "🧊",
+    "at": "2026-11-27T23:30:09-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "condolences.family(really)",
+     "emoji": "🧊",
+     "arg": "really",
+     "run": "run-788e05",
+     "job": "j2",
+     "tweets": [
+      {
+       "text": "condolences to his family! we really need to do better as a people.",
+       "year": "2023",
+       "id": "1654443011839782914"
+      }
+     ],
+     "consequence": "The lines that landed: \"“that is good news, right?…so…so why is your face upset?”\", \"condolences to his family!",
+     "consequence_job": "j3",
+     "resolved": "condolences.family(how=really:Manner) from j2",
+     "injected": [
+      {
+       "param": "how",
+       "class": "Manner",
+       "instance": "really",
+       "from_run": "run-788e05",
+       "from_job": "j2",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "how",
+      "class": "Manner",
+      "default": "really",
+      "first_run": "run-788e05",
+      "first_job": "j2"
+     }
+    ],
+    "text": "family(how: Manner)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": "run-788e05"
+  },
+  "could.see": {
+   "object": "could",
+   "method": "see",
+   "args": [
+    "samson's"
+   ],
+   "runs": [
+    "run-788e05"
+   ],
+   "defined": {
+    "run": "run-788e05",
+    "job": "j2",
+    "card": "w2",
+    "title": "could.see(samson's)",
+    "emoji": "📋",
+    "at": "2026-11-27T23:30:09-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "could.see(samson's)",
+     "emoji": "📋",
+     "arg": "samson's",
+     "run": "run-788e05",
+     "job": "j2",
+     "tweets": [],
+     "consequence": "we really need to do better as a people.\", \"[[iob]] - anyway, click his brain yuwee see it too\" and \"He could see that Samson’s mind, for longer\".",
+     "consequence_job": "j3",
+     "resolved": "could.see(what=samsons:Thing) from j2",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "samsons",
+       "from_run": "run-788e05",
+       "from_job": "j2",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "samsons",
+      "first_run": "run-788e05",
+      "first_job": "j2"
+     }
+    ],
+    "text": "see(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [
+    {
+     "id": "now.see",
+     "title": "now.see(own)",
+     "run": "run-788e05",
+     "job": "j1",
+     "at": "2026-11-27T23:01:34-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "lez.see",
+     "title": "lez.see(who)",
+     "run": "run-cf203b",
+     "job": "j74",
+     "at": "2026-11-27T17:27:20-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "can.see",
+     "title": "can.see()",
+     "run": "run-cf203b",
+     "job": "j57",
+     "at": "2026-11-26T21:15:02-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "can.see",
+     "title": "can.see(code)",
+     "run": "run-cf203b",
+     "job": "j44",
+     "at": "2026-11-26T14:57:55-05:00",
+     "why": "same method"
+    }
+   ],
+   "faded": false,
+   "last_run": "run-788e05"
+  },
+  "good.news": {
+   "object": "good",
+   "method": "news",
+   "args": [
+    "right"
+   ],
+   "runs": [
+    "run-788e05"
+   ],
+   "defined": {
+    "run": "run-788e05",
+    "job": "j2",
+    "card": "w2",
+    "title": "good.news(right)",
+    "emoji": "🪞",
+    "at": "2026-11-27T23:30:09-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "good.news(right)",
+     "emoji": "🪞",
+     "arg": "right",
+     "run": "run-788e05",
+     "job": "j2",
+     "tweets": [
+      {
+       "text": "“that is good news, right?…so…so why is your face upset?”",
+       "year": "2022"
+      }
+     ],
+     "consequence": "What just happened: The last card asked for the next line, the one that answers \"eez good to come back [[home]] and see\".",
+     "consequence_job": "j3",
+     "resolved": "good.news(what=right:Thing) from j2",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "right",
+       "from_run": "run-788e05",
+       "from_job": "j2",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "right",
+      "first_run": "run-788e05",
+      "first_job": "j2"
+     }
+    ],
+    "text": "news(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": "run-788e05"
+  },
   "cooler.getdatemanufactured": {
    "object": "cooler",
    "method": "getDateManufactured",
@@ -34559,6 +34848,9 @@
   "and": [
    "and.not"
   ],
+  "anyway": [
+   "anyway.click"
+  ],
   "aotl": [
    "aotl.isline"
   ],
@@ -34693,6 +34985,9 @@
    "con.mend",
    "con.tok"
   ],
+  "condolences": [
+   "condolences.family"
+  ],
   "cooler": [
    "cooler.getdatemanufactured",
    "cooler.diag",
@@ -34783,7 +35078,8 @@
    "kazeem.use"
   ],
   "could": [
-   "could.accuracy"
+   "could.accuracy",
+   "could.see"
   ],
   "could_never_make_subject": [
    "object.look"
@@ -35006,6 +35302,9 @@
   ],
   "gol": [
    "gol.lo"
+  ],
+  "good": [
+   "good.news"
   ],
   "got": [
    "got.zero",
@@ -43642,6 +43941,14 @@
    }
   ],
   "find_premiere_subject": [
+   {
+    "scope": "safe",
+    "from": "0f5f19d9584f",
+    "title": "this our dangote problem",
+    "funcs": [
+     "anyway.click"
+    ]
+   },
    {
     "scope": "safe",
     "from": "90d1c21dc449",
@@ -60743,7 +61050,11 @@
     "eez.good",
     "now.see",
     "see.why",
-    "tell.say"
+    "tell.say",
+    "anyway.click",
+    "condolences.family",
+    "could.see",
+    "good.news"
    ]
   },
   "run-7c51d3": {
@@ -61230,7 +61541,11 @@
     "eez.good",
     "now.see",
     "see.why",
-    "tell.say"
+    "tell.say",
+    "anyway.click",
+    "condolences.family",
+    "could.see",
+    "good.news"
    ],
    "runs": [
     "run-788e05"
@@ -61344,6 +61659,13 @@
    "funcs": [
     "court.order",
     "see.why"
+   ],
+   "runs": []
+  },
+  "0f5f19d9584f": {
+   "title": "this our dangote problem",
+   "funcs": [
+    "anyway.click"
    ],
    "runs": []
   },
@@ -63157,6 +63479,13 @@
    ],
    "runs": []
   },
+  "b35798a20d7a": {
+   "title": "i die.",
+   "funcs": [
+    "good.news"
+   ],
+   "runs": []
+  },
   "b4186d5597d1": {
    "title": "1212. 6 months in africa",
    "funcs": [
@@ -64488,6 +64817,9 @@
   "1*YZUNo5EzykCIS5g6pXH5mg.gif": [
    "9876ef803050"
   ],
+  "1*ALYtnG53nl6AhT5q1nnwNA.png": [
+   "b35798a20d7a"
+  ],
   "1*zrB4_o17RWv4gL-UWlmLjw.gif": [
    "ab50ea626b8b"
   ],
@@ -64847,7 +65179,8 @@
    "7fd0517fc036"
   ],
   "1*NQPKmNLPgP3qAWkFrAMX5w.gif": [
-   "90d1c21dc449"
+   "90d1c21dc449",
+   "0f5f19d9584f"
   ],
   "1*wEt-yP7UcMEW5nDXvsquJg.jpeg": [
    "91015ab851a4"
@@ -65506,7 +65839,8 @@
   "1*NQPKmNLPgP3qAWkFrAMX5w.gif": {
    "runs": [],
    "safes": [
-    "90d1c21dc449"
+    "90d1c21dc449",
+    "0f5f19d9584f"
    ]
   },
   "1*iZ3ApK-dVLn7b4Wx4QB9bA.gif": {
@@ -66273,6 +66607,9 @@
   "and": [
    "and.not"
   ],
+  "anyway": [
+   "anyway.click"
+  ],
   "aotl": [
    "aotl.isline"
   ],
@@ -66386,6 +66723,9 @@
    "con.mend",
    "con.tok"
   ],
+  "condolences": [
+   "condolences.family"
+  ],
   "cooler": [
    "cooler.getdatemanufactured",
    "cooler.diag",
@@ -66396,7 +66736,8 @@
    "cooler.clilive567mdkxvp"
   ],
   "could": [
-   "could.accuracy"
+   "could.accuracy",
+   "could.see"
   ],
   "court": [
    "court.order"
@@ -66560,6 +66901,9 @@
   ],
   "gol": [
    "gol.lo"
+  ],
+  "good": [
+   "good.news"
   ],
   "got": [
    "got.zero",
@@ -67604,7 +67948,10 @@
    "Readable",
    "Watchable"
   ],
-  "could": [],
+  "could": [
+   "Readable",
+   "Watchable"
+  ],
   "love": [],
   "one": [],
   "pen": [],
@@ -67722,6 +68069,9 @@
   "tell": [
    "Speakable"
   ],
+  "anyway": [],
+  "condolences": [],
+  "good": [],
   "cooler": [],
   "kazeem.goodqualities": [],
   "app": [],
@@ -68092,7 +68442,11 @@
    "yuwa"
   ],
   "run-788e05": [
+   "anyway",
+   "condolences",
+   "could",
    "eez",
+   "good",
    "now",
    "see",
    "tell"
@@ -68112,5 +68466,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-27T23:02:38-05:00"
+ "updated": "2026-11-27T23:31:38-05:00"
 }
