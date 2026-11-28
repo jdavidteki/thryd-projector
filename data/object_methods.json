@@ -29788,12 +29788,12 @@
      ],
      "consequence": "What just happened: The last card asked for the next line, the one that answers \"He could see that Samson’s mind, for longer\".",
      "consequence_job": "j4",
-     "resolved": "see.now(what=dont:Thing) from j3",
+     "resolved": "see.now(what=why:Thing) from j3",
      "injected": [
       {
        "param": "what",
        "class": "Thing",
-       "instance": "dont",
+       "instance": "why",
        "from_run": "run-788e05",
        "from_job": "j3",
        "source": "pick"
@@ -30855,12 +30855,12 @@
      ],
      "consequence": "need to.\", \"you go see why na burnaboy need to\", \"and dyeriz a.i now so you dont really need him!\" and \"you see am now?",
      "consequence_job": "j4",
-     "resolved": "dyeriz.now(what=dont:Thing) from j3",
+     "resolved": "dyeriz.now(what=why:Thing) from j3",
      "injected": [
       {
        "param": "what",
        "class": "Thing",
-       "instance": "dont",
+       "instance": "why",
        "from_run": "run-788e05",
        "from_job": "j3",
        "source": "pick"
@@ -31648,7 +31648,7 @@
        "instance": "still",
        "from_run": "run-788e05",
        "from_job": "j6",
-       "source": "pick"
+       "source": "original"
       }
      ]
     }
@@ -31678,6 +31678,313 @@
      "why": "same method"
     }
    ],
+   "faded": false,
+   "last_run": "run-788e05"
+  },
+  "call.him": {
+   "object": "call",
+   "method": "him",
+   "args": [
+    "i'll"
+   ],
+   "runs": [
+    "run-788e05"
+   ],
+   "defined": {
+    "run": "run-788e05",
+    "job": "j7",
+    "card": "w7",
+    "title": "call.him(i'll)",
+    "emoji": "🪸",
+    "at": "2026-11-28T00:40:46-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "call.him(i'll)",
+     "emoji": "🪸",
+     "arg": "i'll",
+     "run": "run-788e05",
+     "job": "j7",
+     "tweets": [],
+     "consequence": "lol #seniorboys\", \"And….There is a line still connected to their ancestors.\", \"i tole you this guy dont know what eez doing!\" and \"call him for me, i'll give him that\".",
+     "consequence_job": "j8",
+     "resolved": "call.him(what=ill:Thing) from j7",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "ill",
+       "from_run": "run-788e05",
+       "from_job": "j7",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "ill",
+      "first_run": "run-788e05",
+      "first_job": "j7"
+     }
+    ],
+    "text": "him(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [
+    {
+     "id": "shoot.him",
+     "title": "shoot.him(god)",
+     "run": "run-788e05",
+     "job": "j4",
+     "at": "2026-11-28T00:03:19-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "dont.him",
+     "title": "dont.him()",
+     "run": "run-cf203b",
+     "job": "j62",
+     "at": "2026-11-27T00:36:57-05:00",
+     "why": "same method"
+    }
+   ],
+   "faded": false,
+   "last_run": "run-788e05"
+  },
+  "somebody.tell": {
+   "object": "somebody",
+   "method": "tell",
+   "args": [
+    "can't"
+   ],
+   "runs": [
+    "run-788e05"
+   ],
+   "defined": {
+    "run": "run-788e05",
+    "job": "j7",
+    "card": "w7",
+    "title": "somebody.tell(can't)",
+    "emoji": "🧯",
+    "at": "2026-11-28T00:40:46-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "somebody.tell(can't)",
+     "emoji": "🧯",
+     "arg": "can't",
+     "run": "run-788e05",
+     "job": "j7",
+     "tweets": [
+      {
+       "text": "somebody tell they can't fight God! lol #seniorboys",
+       "year": "2023",
+       "id": "1658520232309162016"
+      }
+     ],
+     "consequence": "The lines that landed: \"somebody tell they can't fight God!",
+     "consequence_job": "j8",
+     "resolved": "somebody.tell(what=cant:Thing) from j7",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "cant",
+       "from_run": "run-788e05",
+       "from_job": "j7",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "cant",
+      "first_run": "run-788e05",
+      "first_job": "j7"
+     }
+    ],
+    "text": "tell(what: Thing)"
+   },
+   "receiver_class": "Person",
+   "prior": [
+    {
+     "id": "marisol.tell",
+     "title": "marisol.tell(something)",
+     "run": "run-5a58c4",
+     "job": "j41",
+     "at": "2026-11-24T01:08:32-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "mamaronke.tell",
+     "title": "mamaronke.tell(ice)",
+     "run": "run-2eb42d",
+     "job": "j25",
+     "at": "2026-11-18T11:37:20-05:00",
+     "why": "same method"
+    }
+   ],
+   "faded": false,
+   "last_run": "run-788e05"
+  },
+  "there.line": {
+   "object": "there",
+   "method": "line",
+   "args": [
+    "still"
+   ],
+   "runs": [
+    "run-788e05"
+   ],
+   "defined": {
+    "run": "run-788e05",
+    "job": "j7",
+    "card": "w7",
+    "title": "there.line(still)",
+    "emoji": "🪩",
+    "at": "2026-11-28T00:40:46-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "there.line(still)",
+     "emoji": "🪩",
+     "arg": "still",
+     "run": "run-788e05",
+     "job": "j7",
+     "tweets": [
+      {
+       "text": "And….There is a line still connected to their ancestors.",
+       "year": "2022"
+      }
+     ],
+     "consequence": "lol #seniorboys\", \"And….There is a line still connected to their ancestors.\", \"i tole you this guy dont know what eez doing!\" and \"call him for me, i'll give him that\".",
+     "consequence_job": "j8",
+     "resolved": "there.line(when=still:Frequency) from j7",
+     "injected": [
+      {
+       "param": "when",
+       "class": "Frequency",
+       "instance": "still",
+       "from_run": "run-788e05",
+       "from_job": "j7",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "when",
+      "class": "Frequency",
+      "default": "still",
+      "first_run": "run-788e05",
+      "first_job": "j6"
+     }
+    ],
+    "text": "line(when: Frequency)"
+   },
+   "receiver_class": "Place",
+   "prior": [
+    {
+     "id": "draw.line",
+     "title": "draw.line(cincinnati)",
+     "run": "run-cf203b",
+     "job": "j71",
+     "at": "2026-11-27T16:57:46-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "blender.line",
+     "title": "blender.line(liters)",
+     "run": "run-5a58c4",
+     "job": "j31",
+     "at": "2026-11-17T15:11:45-05:00",
+     "why": "same method"
+    }
+   ],
+   "faded": false,
+   "last_run": "run-788e05"
+  },
+  "tole.guy": {
+   "object": "tole",
+   "method": "guy",
+   "args": [
+    "dont"
+   ],
+   "runs": [
+    "run-788e05"
+   ],
+   "defined": {
+    "run": "run-788e05",
+    "job": "j7",
+    "card": "w7",
+    "title": "tole.guy(dont)",
+    "emoji": "🫧",
+    "at": "2026-11-28T00:40:46-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "tole.guy(dont)",
+     "emoji": "🫧",
+     "arg": "dont",
+     "run": "run-788e05",
+     "job": "j7",
+     "tweets": [
+      {
+       "text": "- i tole you this guy dont know what eez doing!",
+       "year": "2025"
+      }
+     ],
+     "consequence": "lol #seniorboys\", \"And….There is a line still connected to their ancestors.\", \"i tole you this guy dont know what eez doing!\" and \"call him for me, i'll give him that\".",
+     "consequence_job": "j8",
+     "resolved": "tole.guy(what=dont:Thing) from j7",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "dont",
+       "from_run": "run-788e05",
+       "from_job": "j7",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "dont",
+      "first_run": "run-cb805f",
+      "first_job": "j5"
+     }
+    ],
+    "text": "guy(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
    "faded": false,
    "last_run": "run-788e05"
   },
@@ -36076,7 +36383,8 @@
    "person.rest"
   ],
   "call": [
-   "call.court"
+   "call.court",
+   "call.him"
   ],
   "calla": [
    "calla.stare",
@@ -37663,6 +37971,9 @@
   "society": [
    "society.where"
   ],
+  "somebody": [
+   "somebody.tell"
+  ],
   "something": [
    "something.wrong",
    "something.fill"
@@ -37839,6 +38150,9 @@
   "then_yoruba_christians_figure": [
    "person.rest"
   ],
+  "there": [
+   "there.line"
+  ],
   "there_something_out_figure": [
    "person.rest"
   ],
@@ -37893,6 +38207,9 @@
   ],
   "tola": [
    "tola.why"
+  ],
+  "tole": [
+   "tole.guy"
   ],
   "toothbrush": [
    "toothbrush.on"
@@ -62066,6 +62383,14 @@
   "wizkid_sarkodie_ami_figure": [
    {
     "scope": "safe",
+    "from": "1390c7e1eb9f",
+    "title": "802. wizkid, sarkodie, [[ami]], and reeky",
+    "funcs": [
+     "tole.guy"
+    ]
+   },
+   {
+    "scope": "safe",
     "from": "2e8d6c6d24fa",
     "title": "103. acts of the apostles",
     "funcs": [
@@ -62976,6 +63301,10 @@
     "debby.see",
     "diss.thing",
     "samson.when",
+    "call.him",
+    "somebody.tell",
+    "there.line",
+    "tole.guy",
     "thryd.importtheme",
     "chrome.add",
     "thryd.log",
@@ -63483,7 +63812,11 @@
     "where.next",
     "debby.see",
     "diss.thing",
-    "samson.when"
+    "samson.when",
+    "call.him",
+    "somebody.tell",
+    "there.line",
+    "tole.guy"
    ],
    "runs": [
     "run-788e05"
@@ -63650,6 +63983,13 @@
     "dez.follow",
     "issues.out",
     "teo.open"
+   ],
+   "runs": []
+  },
+  "1390c7e1eb9f": {
+   "title": "802. wizkid, sarkodie, [[ami]], and reeky",
+   "funcs": [
+    "tole.guy"
    ],
    "runs": []
   },
@@ -65522,6 +65862,13 @@
    ],
    "runs": []
   },
+  "be0339c040dd": {
+   "title": "the mission of the nigerian millennial, a white paper",
+   "funcs": [
+    "there.line"
+   ],
+   "runs": []
+  },
   "bec58eab522c": {
    "title": "807. you know africans nau",
    "funcs": [
@@ -66700,6 +67047,7 @@
    "79a01af12615"
   ],
   "1*jAmSDHK6yaAgVhhK9xU8Rg.gif": [
+   "1390c7e1eb9f",
    "2e8d6c6d24fa"
   ],
   "1*qbGtqyn_sKX4zdqE_bAgvg.jpeg": [
@@ -67253,6 +67601,12 @@
   "1*6HL5YNv8ctvM4bl6rHfSlA.gif": [
    "e164727d4c98",
    "ec307b47b819"
+  ],
+  "1*JfaQ8q3GaQ1TKbwosDZ7Og.png": [
+   "be0339c040dd"
+  ],
+  "1*5VTz3VKRvalkOThKCmuZ4g.jpeg": [
+   "be0339c040dd"
   ],
   "1*ZqZJL4edB31z3B6FyxKamg.jpeg": [
    "d886e4c0a26a"
@@ -67847,6 +68201,7 @@
   "1*jAmSDHK6yaAgVhhK9xU8Rg.gif": {
    "runs": [],
    "safes": [
+    "1390c7e1eb9f",
     "2e8d6c6d24fa"
    ]
   },
@@ -68641,7 +68996,8 @@
    "buy.fold"
   ],
   "call": [
-   "call.court"
+   "call.court",
+   "call.him"
   ],
   "calla": [
    "calla.stare",
@@ -69442,6 +69798,9 @@
   "society": [
    "society.where"
   ],
+  "somebody": [
+   "somebody.tell"
+  ],
   "something": [
    "something.wrong",
    "something.fill"
@@ -69523,6 +69882,9 @@
    "then.wanted",
    "then.asked"
   ],
+  "there": [
+   "there.line"
+  ],
   "thing": [
    "thing.weird"
   ],
@@ -69556,6 +69918,9 @@
   ],
   "tola": [
    "tola.why"
+  ],
+  "tole": [
+   "tole.guy"
   ],
   "toothbrush": [
    "toothbrush.on"
@@ -70099,6 +70464,9 @@
   ],
   "diss": [],
   "samson": [],
+  "somebody": [],
+  "there": [],
+  "tole": [],
   "cooler": [],
   "kazeem.goodqualities": [],
   "app": [],
@@ -70472,6 +70840,7 @@
   ],
   "run-788e05": [
    "anyway",
+   "call",
    "chugging",
    "condolences",
    "could",
@@ -70488,7 +70857,10 @@
    "see",
    "shoot",
    "society",
+   "somebody",
    "tell",
+   "there",
+   "tole",
    "where"
   ]
  },
@@ -70506,5 +70878,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-28T00:30:06-05:00"
+ "updated": "2026-11-28T00:41:44-05:00"
 }
