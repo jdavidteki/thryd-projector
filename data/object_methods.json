@@ -31295,12 +31295,12 @@
      "tweets": [],
      "consequence": "#life\", \"person dey rest, mind him [[nomb]]\" and \"shoot him!",
      "consequence_job": "j5",
-     "resolved": "shoot.him(what=god:Thing) from j4",
+     "resolved": "shoot.him(what=good:Thing) from j4",
      "injected": [
       {
        "param": "what",
        "class": "Thing",
-       "instance": "god",
+       "instance": "good",
        "from_run": "run-788e05",
        "from_job": "j4",
        "source": "pick"
@@ -32148,12 +32148,12 @@
      ],
      "consequence": "The lines that landed: \"#seniorgehs -- eez like eez bad but i can't stop staring\", \"na poor family dey get too much family secrets.\", \"God, if we have offended you, just say that.",
      "consequence_job": "j9",
-     "resolved": "poor.family(what=get:Thing) from j8",
+     "resolved": "poor.family(what=offended:Thing) from j8",
      "injected": [
       {
        "param": "what",
        "class": "Thing",
-       "instance": "get",
+       "instance": "offended",
        "from_run": "run-788e05",
        "from_job": "j8",
        "source": "pick"
@@ -32535,6 +32535,197 @@
     "text": "think(what: Thing)"
    },
    "receiver_class": "Frequency",
+   "prior": [],
+   "faded": false,
+   "last_run": "run-788e05"
+  },
+  "false.agenda": {
+   "object": "false",
+   "method": "agenda",
+   "args": [
+    "god"
+   ],
+   "runs": [
+    "run-788e05"
+   ],
+   "defined": {
+    "run": "run-788e05",
+    "job": "j10",
+    "card": "w10",
+    "title": "false.agenda(god)",
+    "emoji": "🎺",
+    "at": "2026-11-28T01:38:51-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "false.agenda(god)",
+     "emoji": "🎺",
+     "arg": "god",
+     "run": "run-788e05",
+     "job": "j10",
+     "tweets": [
+      {
+       "text": "this false agenda that God needs us to praise him. lol! #seniorboys",
+       "year": "2023",
+       "id": "1650268959084539904"
+      }
+     ],
+     "consequence": "The lines that landed: \"this false agenda that God needs us to praise him.",
+     "consequence_job": "j11",
+     "resolved": "false.agenda(what=god:Thing) from j10",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "god",
+       "from_run": "run-788e05",
+       "from_job": "j10",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "god",
+      "first_run": "run-5a58c4",
+      "first_job": "j40"
+     }
+    ],
+    "text": "agenda(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": "run-788e05"
+  },
+  "go.still": {
+   "object": "go",
+   "method": "still",
+   "args": [
+    "get"
+   ],
+   "runs": [
+    "run-788e05"
+   ],
+   "defined": {
+    "run": "run-788e05",
+    "job": "j10",
+    "card": "w10",
+    "title": "go.still(get)",
+    "emoji": "🪗",
+    "at": "2026-11-28T01:38:51-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "go.still(get)",
+     "emoji": "🪗",
+     "arg": "get",
+     "run": "run-788e05",
+     "job": "j10",
+     "tweets": [
+      {
+       "text": "[[god]]#seniorboys - i go still get money",
+       "year": "2024"
+      }
+     ],
+     "consequence": "The lines that landed: \"this false agenda that God needs us to praise him.",
+     "consequence_job": "j11",
+     "resolved": "go.still(what=get:Thing) from j10",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "get",
+       "from_run": "run-788e05",
+       "from_job": "j10",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "get",
+      "first_run": "run-5a58c4",
+      "first_job": "j39"
+     }
+    ],
+    "text": "still(what: Thing)"
+   },
+   "receiver_class": "Action",
+   "prior": [],
+   "faded": false,
+   "last_run": "run-788e05"
+  },
+  "seniorgehs.straight": {
+   "object": "seniorgehs",
+   "method": "straight",
+   "args": [
+    "line"
+   ],
+   "runs": [
+    "run-788e05"
+   ],
+   "defined": {
+    "run": "run-788e05",
+    "job": "j10",
+    "card": "w10",
+    "title": "seniorgehs.straight(line)",
+    "emoji": "📯",
+    "at": "2026-11-28T01:38:51-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "seniorgehs.straight(line)",
+     "emoji": "📯",
+     "arg": "line",
+     "run": "run-788e05",
+     "job": "j10",
+     "tweets": [],
+     "consequence": "What just happened: The last card asked for the first line of what happens next.",
+     "consequence_job": "j11",
+     "resolved": "seniorgehs.straight(what=line:Thing) from j10",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "line",
+       "from_run": "run-788e05",
+       "from_job": "j10",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "line",
+      "first_run": "run-788e05",
+      "first_job": "j10"
+     }
+    ],
+    "text": "straight(what: Thing)"
+   },
+   "receiver_class": "Person",
    "prior": [],
    "faded": false,
    "last_run": "run-788e05"
@@ -37387,6 +37578,9 @@
   "fake_nigerian_figure": [
    "person.rest"
   ],
+  "false": [
+   "false.agenda"
+  ],
   "family_compound_ikorodu_subject_eighth": [
    "kunle.teach",
    "kunle.mix",
@@ -37515,7 +37709,8 @@
   "go": [
    "go.back",
    "go.fit",
-   "go.see"
+   "go.see",
+   "go.still"
   ],
   "goat_figure": [
    "person.rest"
@@ -38478,6 +38673,9 @@
   ],
   "send": [
    "send.money"
+  ],
+  "seniorgehs": [
+   "seniorgehs.straight"
   ],
   "shakespopi_figure": [
    "person.rest"
@@ -47148,6 +47346,7 @@
     "from": "ac7459359b3d",
     "title": "817. fire",
     "funcs": [
+     "go.still",
      "iwo.iwono"
     ]
    }
@@ -63878,6 +64077,9 @@
     "because.yuwa",
     "people.look",
     "still.think",
+    "false.agenda",
+    "go.still",
+    "seniorgehs.straight",
     "thryd.importtheme",
     "chrome.add",
     "thryd.log",
@@ -64397,7 +64599,10 @@
     "baba.draw",
     "because.yuwa",
     "people.look",
-    "still.think"
+    "still.think",
+    "false.agenda",
+    "go.still",
+    "seniorgehs.straight"
    ],
    "runs": [
     "run-788e05"
@@ -66240,7 +66445,8 @@
   "ac7459359b3d": {
    "title": "817. fire",
    "funcs": [
-    "iwo.iwono"
+    "iwo.iwono",
+    "go.still"
    ],
    "runs": []
   },
@@ -69785,6 +69991,9 @@
    "everywhere.getcome",
    "everywhere.getyanju"
   ],
+  "false": [
+   "false.agenda"
+  ],
   "feel": [
    "feel.divine",
    "feel.shame"
@@ -69836,7 +70045,8 @@
   "go": [
    "go.back",
    "go.fit",
-   "go.see"
+   "go.see",
+   "go.still"
   ],
   "god": [
    "god.have"
@@ -70353,6 +70563,9 @@
   ],
   "send": [
    "send.money"
+  ],
+  "seniorgehs": [
+   "seniorgehs.straight"
   ],
   "shapes": [
    "shapes.do"
@@ -71067,6 +71280,8 @@
   "poor": [],
   "baba": [],
   "still": [],
+  "false": [],
+  "seniorgehs": [],
   "cooler": [],
   "kazeem.goodqualities": [],
   "app": [],
@@ -71450,6 +71665,7 @@
    "diss",
    "dyeriz",
    "eez",
+   "false",
    "go",
    "god",
    "good",
@@ -71460,6 +71676,7 @@
    "poor",
    "samson",
    "see",
+   "seniorgehs",
    "shoot",
    "society",
    "somebody",
@@ -71484,5 +71701,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-28T01:25:53-05:00"
+ "updated": "2026-11-28T01:40:00-05:00"
 }
