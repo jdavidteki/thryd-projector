@@ -10789,16 +10789,6 @@
 ],
 "person": [
 {
-"id": "wt_a41ec865f7",
-"kind": "call",
-"text": "Someone at the projector tapped the person and made it grow.",
-"code": "person.grow();",
-"author": "projector",
-"run": "run-0ae93c",
-"card": "j10",
-"other": null
-},
-{
 "id": "wt_10629b377f",
 "kind": "func_call",
 "text": "Someone at the projector tapped the notnotnotnotyn oct figure and called person.rest(what=mind:Thing) from j4, first seated in run-788e05 j4.",
@@ -10832,6 +10822,16 @@
 "id": "wt_2e19812a62",
 "kind": "func_call",
 "text": "Someone at the projector tapped the notnotnotnotyn oct figure and called person.rest(what=wan:Thing) from j9, first seated in run-788e05 j4.",
+"code": "person.rest('wan');",
+"author": "projector",
+"run": "run-888ea9",
+"card": "w11",
+"other": null
+},
+{
+"id": "wt_798039daa3",
+"kind": "func_call",
+"text": "Someone at the projector tapped the does mean figure and called person.rest(what=wan:Thing) from j9, first seated in run-788e05 j4.",
 "code": "person.rest('wan');",
 "author": "projector",
 "run": "run-888ea9",
@@ -14567,6 +14567,16 @@
 "run": "run-888ea9",
 "card": "w11",
 "other": null
+},
+{
+"id": "wt_44bf83b979",
+"kind": "func_call",
+"text": "The anyway hears it (because person.rest(what=wan:Thing) from j9).",
+"code": "anyway.hears(does_mean_figure, 'rest');",
+"author": "projector",
+"run": "run-888ea9",
+"card": "w11",
+"other": null
 }
 ],
 "condolences": [
@@ -14613,6 +14623,16 @@
 "run": "run-888ea9",
 "card": "w11",
 "other": null
+},
+{
+"id": "wt_5001746943",
+"kind": "func_call",
+"text": "The baba hears it (because person.rest(what=wan:Thing) from j9).",
+"code": "baba.hears(does_mean_figure, 'rest');",
+"author": "projector",
+"run": "run-888ea9",
+"card": "w11",
+"other": null
 }
 ],
 "ojuelegba_bus_stop_subject_second": [
@@ -14633,6 +14653,18 @@
 "kind": "func_call",
 "text": "The ojuelegba bus stop subject third hears it (because kazeem.lift(what=currentaffairs:Thing)).",
 "code": "ojuelegba_bus_stop_subject_third.hears(ojuelegba_bus_stop_subject_fourth, 'lift');",
+"author": "projector",
+"run": "run-888ea9",
+"card": "w11",
+"other": null
+}
+],
+"because": [
+{
+"id": "wt_885c2510bb",
+"kind": "func_call",
+"text": "The because hears it (because person.rest(what=wan:Thing) from j9).",
+"code": "because.hears(does_mean_figure, 'rest');",
 "author": "projector",
 "run": "run-888ea9",
 "card": "w11",
@@ -15183,5 +15215,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-28T01:13:14-0500"
+"updated": "2026-11-28T01:17:25-0500"
 }
