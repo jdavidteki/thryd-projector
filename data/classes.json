@@ -109,8 +109,8 @@
     "say",
     "find"
    ],
-   "instances": 557,
-   "arg_instances": 220,
+   "instances": 558,
+   "arg_instances": 221,
    "parent": null,
    "chain": [
     "Thing"
@@ -148,8 +148,8 @@
    "param": "feeling",
    "methods": [
     "give",
-    "teach",
-    "feel"
+    "hide",
+    "teach"
    ],
    "instances": 8,
    "arg_instances": 8,
@@ -642,6 +642,22 @@
     "run-b70200"
    ],
    "tweets": []
+  },
+  "ami": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-788e05",
+   "first_job": "j16",
+   "source": "pick",
+   "runs": [
+    "run-788e05"
+   ],
+   "tweets": [
+    {
+     "text": "#seniorboys[[ami]] - see maaaiiiii guy!!!!!!!",
+     "year": "2026"
+    }
+   ]
   },
   "amina": {
    "class": "Thing",
@@ -5237,6 +5253,7 @@
    "runs": [
     "run-5a58c4",
     "run-cf203b",
+    "run-788e05",
     "run-b9b963",
     "run-2eb42d",
     "run-0ae93c"
@@ -12085,12 +12102,6 @@
     "pick"
    ],
    [
-    "longing",
-    "Thing",
-    "j15",
-    "pick"
-   ],
-   [
     "doubt",
     "Thing",
     "j15",
@@ -12106,6 +12117,24 @@
     "joy",
     "Feeling",
     "j15",
+    "pick"
+   ],
+   [
+    "love",
+    "Feeling",
+    "j16",
+    "pick"
+   ],
+   [
+    "longing",
+    "Thing",
+    "j16",
+    "pick"
+   ],
+   [
+    "ami",
+    "Thing",
+    "j16",
     "pick"
    ],
    [
@@ -15109,6 +15138,10 @@
   "friends.grow": "grow(what: Thing)",
   "lola.give": "give(feeling: Feeling)",
   "seniorboys.grow": "grow(feeling: Feeling)",
+  "daughter.hear": "hear(what: Thing)",
+  "letter.hide": "hide(feeling: Feeling)",
+  "lie.need": "need(what: Thing)",
+  "seniorboys.give": "give(what: Thing)",
   "cooler.getdatemanufactured": "getDateManufactured()",
   "ronke.getlikes.contains": "getlikes.contains()",
   "kazeem.goodqualities.filter": "filter()",
@@ -15347,6 +15380,7 @@
     "dez",
     "god",
     "lateef",
+    "letter",
     "omo",
     "ronke",
     "teo"
@@ -15628,6 +15662,8 @@
    "good",
    "guy",
    "how",
+   "letter",
+   "lie",
    "life",
    "lola",
    "now",
@@ -15921,5 +15957,5 @@
   "epilogue": "quiet",
   "coda": "quiet"
  },
- "updated": "2026-11-28T13:11:24-05:00"
+ "updated": "2026-11-28T13:23:05-05:00"
 }

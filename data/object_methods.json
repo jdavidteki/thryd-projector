@@ -33591,12 +33591,12 @@
      ],
      "consequence": "What just happened: The last card asked for the next line, the one that answers \"You still reach precision — we cant blame [[god]]\".",
      "consequence_job": "j16",
-     "resolved": "daughter.hide(what=longing:Thing) from j15",
+     "resolved": "daughter.hide(what=doubt:Thing) from j15",
      "injected": [
       {
        "param": "what",
        "class": "Thing",
-       "instance": "longing",
+       "instance": "doubt",
        "from_run": "run-788e05",
        "from_job": "j15",
        "source": "pick"
@@ -33868,6 +33868,355 @@
    },
    "receiver_class": "Person",
    "prior": [],
+   "faded": false,
+   "last_run": "run-788e05"
+  },
+  "daughter.hear": {
+   "object": "daughter",
+   "method": "hear",
+   "args": [
+    "longing"
+   ],
+   "runs": [
+    "run-788e05"
+   ],
+   "defined": {
+    "run": "run-788e05",
+    "job": "j16",
+    "card": "w16",
+    "title": "daughter.hear(longing)",
+    "emoji": "🌵",
+    "at": "2026-11-28T13:22:52-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "daughter.hear(longing)",
+     "emoji": "🌵",
+     "arg": "longing",
+     "run": "run-788e05",
+     "job": "j16",
+     "tweets": [],
+     "consequence": "What just happened: The last card asked for the next line, the one that answers \"nobody bigger - lol.",
+     "consequence_job": "j17",
+     "resolved": "daughter.hear(what=longing:Thing) from j16",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "longing",
+       "from_run": "run-788e05",
+       "from_job": "j16",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "longing",
+      "first_run": "run-788e05",
+      "first_job": "j13"
+     }
+    ],
+    "text": "hear(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [
+    {
+     "id": "calla.hear",
+     "title": "calla.hear(stories)",
+     "run": "run-5a58c4",
+     "job": "j34",
+     "at": "2026-11-17T16:22:07-05:00",
+     "why": "same method"
+    }
+   ],
+   "faded": false,
+   "last_run": "run-788e05"
+  },
+  "letter.hide": {
+   "object": "letter",
+   "method": "hide",
+   "args": [
+    "love"
+   ],
+   "runs": [
+    "run-788e05"
+   ],
+   "defined": {
+    "run": "run-788e05",
+    "job": "j16",
+    "card": "w16",
+    "title": "letter.hide(love)",
+    "emoji": "🌋",
+    "at": "2026-11-28T13:22:52-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "letter.hide(love)",
+     "emoji": "🌋",
+     "arg": "love",
+     "run": "run-788e05",
+     "job": "j16",
+     "tweets": [
+      {
+       "text": "a love letter to the new nigerian. #coto",
+       "year": "2022",
+       "id": "1569799707186061312"
+      }
+     ],
+     "consequence": "The lines that landed: \"These clueless people can’t hear the weird, na smo smo\", \"#seniorboys[[ami]] - see maaaiiiii guy!!!!!!!\", \"a love letter to the new nigerian.",
+     "consequence_job": "j17",
+     "resolved": "letter.hide(feeling=love:Feeling) from j16",
+     "injected": [
+      {
+       "param": "feeling",
+       "class": "Feeling",
+       "instance": "love",
+       "from_run": "run-788e05",
+       "from_job": "j16",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "feeling",
+      "class": "Feeling",
+      "default": "love",
+      "first_run": "run-5a58c4",
+      "first_job": "j58"
+     }
+    ],
+    "text": "hide(feeling: Feeling)"
+   },
+   "receiver_class": "Thing",
+   "prior": [
+    {
+     "id": "daughter.hide",
+     "title": "daughter.hide(longing)",
+     "run": "run-788e05",
+     "job": "j15",
+     "at": "2026-11-28T12:31:46-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "god.hide",
+     "title": "god.hide(joy)",
+     "run": "run-788e05",
+     "job": "j13",
+     "at": "2026-11-28T12:26:06-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "teo.hide",
+     "title": "teo.hide(tnw,deya)",
+     "run": "run-5a58c4",
+     "job": "j23",
+     "at": "2026-11-16T23:50:03-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "lateef.hide",
+     "title": "lateef.hide(juniorbiys,paul)",
+     "run": "run-cb805f",
+     "job": "j12",
+     "at": "2026-10-24T08:09:44-05:00",
+     "why": "same method"
+    }
+   ],
+   "faded": false,
+   "last_run": "run-788e05"
+  },
+  "lie.need": {
+   "object": "lie",
+   "method": "need",
+   "args": [
+    "longing"
+   ],
+   "runs": [
+    "run-788e05"
+   ],
+   "defined": {
+    "run": "run-788e05",
+    "job": "j16",
+    "card": "w16",
+    "title": "lie.need(longing)",
+    "emoji": "🏝️",
+    "at": "2026-11-28T13:22:52-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "lie.need(longing)",
+     "emoji": "🏝️",
+     "arg": "longing",
+     "run": "run-788e05",
+     "job": "j16",
+     "tweets": [
+      {
+       "text": "a society where people need to lie. need to.",
+       "year": "2023",
+       "id": "1618336562722525184"
+      }
+     ],
+     "consequence": "#coto\" and \"a society where people need to lie.",
+     "consequence_job": "j17",
+     "resolved": "lie.need(what=longing:Thing) from j16",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "longing",
+       "from_run": "run-788e05",
+       "from_job": "j16",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "longing",
+      "first_run": "run-788e05",
+      "first_job": "j13"
+     }
+    ],
+    "text": "need(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [
+    {
+     "id": "guy.need",
+     "title": "guy.need(therapy)",
+     "run": "run-cf203b",
+     "job": "j39",
+     "at": "2026-11-26T13:15:20-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "marisol.need",
+     "title": "marisol.need(variety)",
+     "run": "run-5a58c4",
+     "job": "j66",
+     "at": "2026-11-24T21:47:08-05:00",
+     "why": "same method"
+    }
+   ],
+   "faded": false,
+   "last_run": "run-788e05"
+  },
+  "seniorboys.give": {
+   "object": "seniorboys",
+   "method": "give",
+   "args": [
+    "ami"
+   ],
+   "runs": [
+    "run-788e05"
+   ],
+   "defined": {
+    "run": "run-788e05",
+    "job": "j16",
+    "card": "w16",
+    "title": "seniorboys.give(ami)",
+    "emoji": "🪐",
+    "at": "2026-11-28T13:22:52-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "seniorboys.give(ami)",
+     "emoji": "🪐",
+     "arg": "ami",
+     "run": "run-788e05",
+     "job": "j16",
+     "tweets": [
+      {
+       "text": "#seniorboys[[ami]] - see maaaiiiii guy!!!!!!!",
+       "year": "2026"
+      }
+     ],
+     "consequence": "The lines that landed: \"These clueless people can’t hear the weird, na smo smo\", \"#seniorboys[[ami]] - see maaaiiiii guy!!!!!!!\", \"a love letter to the new nigerian.",
+     "consequence_job": "j17",
+     "resolved": "seniorboys.give(what=ami:Thing) from j16",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "ami",
+       "from_run": "run-788e05",
+       "from_job": "j16",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "ami",
+      "first_run": "run-788e05",
+      "first_job": "j16"
+     }
+    ],
+    "text": "give(what: Thing)"
+   },
+   "receiver_class": "Person",
+   "prior": [
+    {
+     "id": "lola.give",
+     "title": "lola.give(pride)",
+     "run": "run-788e05",
+     "job": "j15",
+     "at": "2026-11-28T12:31:46-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "life.give",
+     "title": "life.give(joy)",
+     "run": "run-788e05",
+     "job": "j14",
+     "at": "2026-11-28T12:29:03-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "teo.give",
+     "title": "teo.give(precisions)",
+     "run": "run-5a58c4",
+     "job": "j43",
+     "at": "2026-11-24T01:36:54-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "investor.give",
+     "title": "investor.give(advice)",
+     "run": "run-2eb42d",
+     "job": "j40",
+     "at": "2026-11-18T19:11:58-05:00",
+     "why": "same method"
+    }
+   ],
    "faded": false,
    "last_run": "run-788e05"
   },
@@ -38537,7 +38886,8 @@
    "das.right"
   ],
   "daughter": [
-   "daughter.hide"
+   "daughter.hide",
+   "daughter.hear"
   ],
   "daz": [
    "daz.what",
@@ -39212,12 +39562,16 @@
   "lekki_rooftop_subject_third": [
    "person.rest"
   ],
+  "letter": [
+   "letter.hide"
+  ],
   "lez": [
    "lez.anada",
    "lez.see"
   ],
   "lie": [
-   "lie.truth"
+   "lie.truth",
+   "lie.need"
   ],
   "lie_figure": [
    "person.rest"
@@ -39832,7 +40186,8 @@
    "send.money"
   ],
   "seniorboys": [
-   "seniorboys.grow"
+   "seniorboys.grow",
+   "seniorboys.give"
   ],
   "seniorgehs": [
    "seniorgehs.straight",
@@ -65266,6 +65621,10 @@
     "friends.grow",
     "lola.give",
     "seniorboys.grow",
+    "daughter.hear",
+    "letter.hide",
+    "lie.need",
+    "seniorboys.give",
     "thryd.importtheme",
     "chrome.add",
     "thryd.log",
@@ -65811,7 +66170,11 @@
     "daughter.hide",
     "friends.grow",
     "lola.give",
-    "seniorboys.grow"
+    "seniorboys.grow",
+    "daughter.hear",
+    "letter.hide",
+    "lie.need",
+    "seniorboys.give"
    ],
    "runs": [
     "run-788e05"
@@ -66429,7 +66792,8 @@
   "3a15d22b1fae": {
    "title": "128. the way god sees",
    "funcs": [
-    "teo.see"
+    "teo.see",
+    "seniorboys.give"
    ],
    "runs": []
   },
@@ -66618,7 +66982,8 @@
     "samson.when",
     "somebody.tell",
     "baba.draw",
-    "still.think"
+    "still.think",
+    "lie.need"
    ],
    "runs": []
   },
@@ -71170,7 +71535,8 @@
    "das.right"
   ],
   "daughter": [
-   "daughter.hide"
+   "daughter.hide",
+   "daughter.hear"
   ],
   "daz": [
    "daz.what",
@@ -71526,12 +71892,16 @@
   "lehgeet": [
    "lehgeet.ni"
   ],
+  "letter": [
+   "letter.hide"
+  ],
   "lez": [
    "lez.anada",
    "lez.see"
   ],
   "lie": [
-   "lie.truth"
+   "lie.truth",
+   "lie.need"
   ],
   "life": [
    "life.give",
@@ -71860,7 +72230,8 @@
    "send.money"
   ],
   "seniorboys": [
-   "seniorboys.grow"
+   "seniorboys.grow",
+   "seniorboys.give"
   ],
   "seniorgehs": [
    "seniorgehs.straight",
@@ -72591,6 +72962,9 @@
   "friends": [],
   "lola": [],
   "seniorboys": [],
+  "letter": [
+   "Foldable"
+  ],
   "cooler": [],
   "kazeem.goodqualities": [],
   "app": [],
@@ -72782,6 +73156,8 @@
    "good",
    "guy",
    "how",
+   "letter",
+   "lie",
    "life",
    "lola",
    "now",
@@ -73017,5 +73393,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-28T13:11:25-05:00"
+ "updated": "2026-11-28T13:23:56-05:00"
 }
