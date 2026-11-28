@@ -147,12 +147,12 @@
   "Feeling": {
    "param": "feeling",
    "methods": [
+    "give",
     "teach",
-    "feel",
-    "find"
+    "feel"
    ],
-   "instances": 7,
-   "arg_instances": 7,
+   "instances": 8,
+   "arg_instances": 8,
    "parent": "Thing",
    "chain": [
     "Feeling",
@@ -2486,7 +2486,8 @@
    "first_job": "j25",
    "source": "pick",
    "runs": [
-    "run-cf203b"
+    "run-cf203b",
+    "run-788e05"
    ],
    "tweets": [
     {
@@ -6765,6 +6766,22 @@
     "run-0ae93c"
    ],
    "tweets": []
+  },
+  "pride": {
+   "class": "Feeling",
+   "cue": "word",
+   "first_run": "run-788e05",
+   "first_job": "j15",
+   "source": "pick",
+   "runs": [
+    "run-788e05"
+   ],
+   "tweets": [
+    {
+     "text": "- and dyeriz a.i now so you dont really need him!",
+     "year": "2025"
+    }
+   ]
   },
   "quake": {
    "class": "Thing",
@@ -12039,21 +12056,33 @@
     "pick"
    ],
    [
-    "joy",
-    "Feeling",
+    "seniorgehs",
+    "Person",
     "j14",
     "pick"
    ],
    [
     "longing",
     "Thing",
-    "j14",
+    "j15",
     "pick"
    ],
    [
-    "seniorgehs",
-    "Person",
-    "j14",
+    "doubt",
+    "Thing",
+    "j15",
+    "pick"
+   ],
+   [
+    "pride",
+    "Feeling",
+    "j15",
+    "pick"
+   ],
+   [
+    "joy",
+    "Feeling",
+    "j15",
     "pick"
    ],
    [
@@ -15053,6 +15082,10 @@
   "life.return": "return(what: Thing)",
   "seniorgehs.return": "return(what: Thing)",
   "god.pray": "pray(what: Thing)",
+  "daughter.hide": "hide(what: Thing)",
+  "friends.grow": "grow(what: Thing)",
+  "lola.give": "give(feeling: Feeling)",
+  "seniorboys.grow": "grow(feeling: Feeling)",
   "cooler.getdatemanufactured": "getDateManufactured()",
   "ronke.getlikes.contains": "getlikes.contains()",
   "kazeem.goodqualities.filter": "filter()",
@@ -15287,6 +15320,7 @@
    ],
    "objects": [
     "buy",
+    "daughter",
     "dez",
     "god",
     "lateef",
@@ -15559,17 +15593,20 @@
    "chugging",
    "condolences",
    "could",
+   "daughter",
    "debby",
    "diss",
    "dyeriz",
    "eez",
    "false",
+   "friends",
    "go",
    "god",
    "good",
    "guy",
    "how",
    "life",
+   "lola",
    "now",
    "old",
    "people",
@@ -15577,6 +15614,7 @@
    "poor",
    "samson",
    "see",
+   "seniorboys",
    "seniorgehs",
    "shoot",
    "society",
@@ -15860,5 +15898,5 @@
   "epilogue": "quiet",
   "coda": "quiet"
  },
- "updated": "2026-11-28T12:29:10-05:00"
+ "updated": "2026-11-28T12:32:33-05:00"
 }
