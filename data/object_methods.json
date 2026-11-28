@@ -30337,7 +30337,8 @@
    "object": "see",
    "method": "why",
    "args": [
-    "mind"
+    "mind",
+    "people"
    ],
    "runs": [
     "run-788e05"
@@ -30350,8 +30351,34 @@
     "emoji": "🎈",
     "at": "2026-11-27T23:01:34-05:00"
    },
-   "calls": 0,
+   "calls": 1,
    "titles": [
+    {
+     "title": "see.why(people)",
+     "emoji": "🪷",
+     "arg": "people",
+     "run": "run-788e05",
+     "job": "j5",
+     "tweets": [
+      {
+       "text": "- i see why your people call it prick!",
+       "year": "2026"
+      }
+     ],
+     "consequence": "The lines that landed: \"really you can't beat a child and tell him\", \"[[tnbt]] - #juniorgirls - where is the next mummy are?\", \"i see why your people call it prick!\" and \"chugging ahead right in front of him, #sessy [[htpto]] - bad guy\".",
+     "consequence_job": "j6",
+     "resolved": "see.why(what=right:Thing) from j5",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "right",
+       "from_run": "run-788e05",
+       "from_job": "j5",
+       "source": "pick"
+      }
+     ]
+    },
     {
      "title": "see.why(mind)",
      "emoji": "🎈",
@@ -30394,7 +30421,16 @@
     "text": "why(what: Thing)"
    },
    "receiver_class": "Action",
-   "prior": [],
+   "prior": [
+    {
+     "id": "see.why",
+     "title": "see.why(mind)",
+     "run": "run-788e05",
+     "job": "j1",
+     "at": "2026-11-27T23:01:34-05:00",
+     "why": "same method"
+    }
+   ],
    "faded": false,
    "last_run": "run-788e05"
   },
@@ -30754,12 +30790,12 @@
      ],
      "consequence": "What just happened: The last card asked for the next line, the one that answers \"eez good to come back [[home]] and see\".",
      "consequence_job": "j3",
-     "resolved": "good.news(what=right:Thing) from j2",
+     "resolved": "good.news(what=brain:Thing) from j2",
      "injected": [
       {
        "param": "what",
        "class": "Thing",
-       "instance": "right",
+       "instance": "brain",
        "from_run": "run-788e05",
        "from_job": "j2",
        "source": "pick"
@@ -31008,12 +31044,12 @@
      ],
      "consequence": "The lines that landed: \"a society where people need to lie.",
      "consequence_job": "j4",
-     "resolved": "society.where(who=people:Person) from j3",
+     "resolved": "society.where(who=baba:Person) from j3",
      "injected": [
       {
        "param": "who",
        "class": "Person",
-       "instance": "people",
+       "instance": "baba",
        "from_run": "run-788e05",
        "from_job": "j3",
        "source": "pick"
@@ -31269,6 +31305,132 @@
      "why": "same method"
     }
    ],
+   "faded": false,
+   "last_run": "run-788e05"
+  },
+  "chugging.ahead": {
+   "object": "chugging",
+   "method": "ahead",
+   "args": [
+    "right"
+   ],
+   "runs": [
+    "run-788e05"
+   ],
+   "defined": {
+    "run": "run-788e05",
+    "job": "j5",
+    "card": "w5",
+    "title": "chugging.ahead(right)",
+    "emoji": "🦋",
+    "at": "2026-11-28T00:18:07-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "chugging.ahead(right)",
+     "emoji": "🦋",
+     "arg": "right",
+     "run": "run-788e05",
+     "job": "j5",
+     "tweets": [],
+     "consequence": "The lines that landed: \"really you can't beat a child and tell him\", \"[[tnbt]] - #juniorgirls - where is the next mummy are?\", \"i see why your people call it prick!\" and \"chugging ahead right in front of him, #sessy [[htpto]] - bad guy\".",
+     "consequence_job": "j6",
+     "resolved": "chugging.ahead(what=right:Thing) from j5",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "right",
+       "from_run": "run-788e05",
+       "from_job": "j5",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "right",
+      "first_run": "run-788e05",
+      "first_job": "j2"
+     }
+    ],
+    "text": "ahead(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": "run-788e05"
+  },
+  "where.next": {
+   "object": "where",
+   "method": "next",
+   "args": [
+    "mummy"
+   ],
+   "runs": [
+    "run-788e05"
+   ],
+   "defined": {
+    "run": "run-788e05",
+    "job": "j5",
+    "card": "w5",
+    "title": "where.next(mummy)",
+    "emoji": "🎲",
+    "at": "2026-11-28T00:18:07-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "where.next(mummy)",
+     "emoji": "🎲",
+     "arg": "mummy",
+     "run": "run-788e05",
+     "job": "j5",
+     "tweets": [
+      {
+       "text": "[[tnbt]] - #juniorgirls - where is the next mummy are?",
+       "year": "2025",
+       "id": "1956041601450414442"
+      }
+     ],
+     "consequence": "The lines that landed: \"really you can't beat a child and tell him\", \"[[tnbt]] - #juniorgirls - where is the next mummy are?\", \"i see why your people call it prick!\" and \"chugging ahead right in front of him, #sessy [[htpto]] - bad guy\".",
+     "consequence_job": "j6",
+     "resolved": "where.next(what=mummy:Thing) from j5",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "mummy",
+       "from_run": "run-788e05",
+       "from_job": "j5",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "mummy",
+      "first_run": "run-788e05",
+      "first_job": "j5"
+     }
+    ],
+    "text": "next(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
    "faded": false,
    "last_run": "run-788e05"
   },
@@ -35745,6 +35907,9 @@
   "chrome": [
    "chrome.add"
   ],
+  "chugging": [
+   "chugging.ahead"
+  ],
   "cleaner": [
    "cleaner.lift"
   ],
@@ -37609,7 +37774,8 @@
    "when.two"
   ],
   "where": [
-   "where.boisie"
+   "where.boisie",
+   "where.next"
   ],
   "where_chinwe_figure": [
    "person.rest"
@@ -62548,6 +62714,8 @@
     "eez.now",
     "person.rest",
     "shoot.him",
+    "chugging.ahead",
+    "where.next",
     "thryd.importtheme",
     "chrome.add",
     "thryd.log",
@@ -63050,7 +63218,9 @@
     "society.where",
     "eez.now",
     "person.rest",
-    "shoot.him"
+    "shoot.him",
+    "chugging.ahead",
+    "where.next"
    ],
    "runs": [
     "run-788e05"
@@ -63134,6 +63304,13 @@
    "title": "1226. the mr. jollof of nollywood",
    "funcs": [
     "also.vlogs"
+   ],
+   "runs": []
+  },
+  "0bee4a651ac9": {
+   "title": "124. rich white people",
+   "funcs": [
+    "see.why"
    ],
    "runs": []
   },
@@ -66263,6 +66440,12 @@
   "1*SKqzlBc1vQA5PWKQJUBt-g.gif": [
    "ecbaffa655c1"
   ],
+  "1*KhgK92ZJOsAincafmgufvQ.gif": [
+   "0bee4a651ac9"
+  ],
+  "1*XpI0VYf6xzR2EtZZlwkWpQ.jpeg": [
+   "0bee4a651ac9"
+  ],
   "1*PazOivjHaFfUH4x1xQ-GSw.gif": [
    "a574892d43f3"
   ],
@@ -68229,6 +68412,9 @@
   "chrome": [
    "chrome.add"
   ],
+  "chugging": [
+   "chugging.ahead"
+  ],
   "cleaner": [
    "cleaner.lift"
   ],
@@ -69164,7 +69350,8 @@
    "when.two"
   ],
   "where": [
-   "where.boisie"
+   "where.boisie",
+   "where.next"
   ],
   "which": [
    "which.one"
@@ -69622,6 +69809,7 @@
   "society": [],
   "person": [],
   "shoot": [],
+  "chugging": [],
   "cooler": [],
   "kazeem.goodqualities": [],
   "app": [],
@@ -69995,6 +70183,7 @@
   ],
   "run-788e05": [
    "anyway",
+   "chugging",
    "condolences",
    "could",
    "dyeriz",
@@ -70007,7 +70196,8 @@
    "see",
    "shoot",
    "society",
-   "tell"
+   "tell",
+   "where"
   ]
  },
  "gc": {
@@ -70024,5 +70214,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-28T00:04:59-05:00"
+ "updated": "2026-11-28T00:19:20-05:00"
 }

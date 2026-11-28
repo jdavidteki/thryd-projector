@@ -2607,16 +2607,6 @@
 ],
 "cup": [
 {
-"id": "wf_60d51d62e0",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the juju code at the cup, and Ejiro reads the name twice.",
-"code": "asmathic.interactwith(cup){ cup.receives(asmathic.envelope); cup.remembers(bisola, 'brown envelope'); cup.tucks(asmathic, 'yaba bookshop receipt into the juju code'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "asmathic"
-},
-{
 "id": "wf_e43deff5fa",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the juju code at the cup, and Ejiro reads the name twice.",
@@ -2644,6 +2634,16 @@
 "author": "projector",
 "run": "run-cf203b",
 "card": "w24",
+"other": null
+},
+{
+"id": "wt_ddec00c3db",
+"kind": "func_call",
+"text": "The cup hears it (because person.rest(what=mind:Thing) from j4).",
+"code": "cup.hears(notnotnotnotyn_oct_figure, 'rest');",
+"author": "projector",
+"run": "run-788e05",
+"card": "w5",
 "other": null
 },
 {
@@ -10797,6 +10797,36 @@
 "run": "run-0ae93c",
 "card": "j10",
 "other": null
+},
+{
+"id": "wt_10629b377f",
+"kind": "func_call",
+"text": "Someone at the projector tapped the notnotnotnotyn oct figure and called person.rest(what=mind:Thing) from j4, first seated in run-788e05 j4.",
+"code": "person.rest('mind');",
+"author": "projector",
+"run": "run-788e05",
+"card": "w5",
+"other": null
+},
+{
+"id": "wt_c3c48acb05",
+"kind": "func_call",
+"text": "Someone at the projector tapped the person and called person.rest(what=errors:Thing) from j52, first seated in run-788e05 j4.",
+"code": "person.rest('errors');",
+"author": "projector",
+"run": "run-788e05",
+"card": "w5",
+"other": null
+},
+{
+"id": "wt_90cc82af37",
+"kind": "func_call",
+"text": "Someone at the projector tapped the people scene figure and called person.rest(what=mind:Thing) from j4, first seated in run-788e05 j4.",
+"code": "person.rest('mind');",
+"author": "projector",
+"run": "run-788e05",
+"card": "w5",
+"other": null
 }
 ],
 "if_heaven_then_figure": [
@@ -11621,26 +11651,6 @@
 ],
 "ahan": [
 {
-"id": "wt_bee8d22ed6",
-"kind": "func_call",
-"text": "The ahan hears it (because once.kill(what=errors:Thing) from j52).",
-"code": "ahan.hears(cut7, 'kill');",
-"author": "projector",
-"run": "run-cf203b",
-"card": "w64",
-"other": null
-},
-{
-"id": "wt_bc56133c2e",
-"kind": "func_call",
-"text": "The ahan hears it (because eez.heddie(what=errors:Thing) from j52).",
-"code": "ahan.hears(cut7, 'heddie');",
-"author": "projector",
-"run": "run-cf203b",
-"card": "w64",
-"other": null
-},
-{
 "id": "wt_b873542933",
 "kind": "func_call",
 "text": "The ahan hears it (because once.kill(what=errors:Thing) from j52).",
@@ -11668,6 +11678,26 @@
 "author": "projector",
 "run": "run-cf203b",
 "card": "w79",
+"other": null
+},
+{
+"id": "wt_aa6fe92493",
+"kind": "func_call",
+"text": "The ahan hears it (because once.kill(what=errors:Thing) from j52).",
+"code": "ahan.hears(person, 'kill');",
+"author": "projector",
+"run": "run-788e05",
+"card": "w5",
+"other": null
+},
+{
+"id": "wt_2b24225a7d",
+"kind": "func_call",
+"text": "The ahan hears it (because person.rest(what=errors:Thing) from j52).",
+"code": "ahan.hears(person, 'rest');",
+"author": "projector",
+"run": "run-788e05",
+"card": "w5",
 "other": null
 }
 ],
@@ -11957,26 +11987,6 @@
 ],
 "alorof": [
 {
-"id": "wt_3009ee34ef",
-"kind": "func_call",
-"text": "The alorof hears it (because once.kill(what=errors:Thing) from j52).",
-"code": "alorof.hears(cut7, 'kill');",
-"author": "projector",
-"run": "run-cf203b",
-"card": "w64",
-"other": null
-},
-{
-"id": "wt_8b4f5bef76",
-"kind": "func_call",
-"text": "The alorof hears it (because eez.heddie(what=errors:Thing) from j52).",
-"code": "alorof.hears(cut7, 'heddie');",
-"author": "projector",
-"run": "run-cf203b",
-"card": "w64",
-"other": null
-},
-{
 "id": "wt_a7ea15dbde",
 "kind": "func_call",
 "text": "The alorof hears it (because once.kill(what=errors:Thing) from j52).",
@@ -12004,6 +12014,26 @@
 "author": "projector",
 "run": "run-cf203b",
 "card": "w79",
+"other": null
+},
+{
+"id": "wt_c35ea7cebe",
+"kind": "func_call",
+"text": "The alorof hears it (because once.kill(what=errors:Thing) from j52).",
+"code": "alorof.hears(person, 'kill');",
+"author": "projector",
+"run": "run-788e05",
+"card": "w5",
+"other": null
+},
+{
+"id": "wt_4512578832",
+"kind": "func_call",
+"text": "The alorof hears it (because person.rest(what=errors:Thing) from j52).",
+"code": "alorof.hears(person, 'rest');",
+"author": "projector",
+"run": "run-788e05",
+"card": "w5",
 "other": null
 }
 ],
@@ -12181,26 +12211,6 @@
 ],
 "agboro": [
 {
-"id": "wt_7a9e351087",
-"kind": "func_call",
-"text": "The agboro hears it (because once.kill(what=errors:Thing) from j52).",
-"code": "agboro.hears(cut7, 'kill');",
-"author": "projector",
-"run": "run-cf203b",
-"card": "w64",
-"other": null
-},
-{
-"id": "wt_faf545f853",
-"kind": "func_call",
-"text": "The agboro hears it (because eez.heddie(what=errors:Thing) from j52).",
-"code": "agboro.hears(cut7, 'heddie');",
-"author": "projector",
-"run": "run-cf203b",
-"card": "w64",
-"other": null
-},
-{
 "id": "wt_f878b54d66",
 "kind": "func_call",
 "text": "The agboro hears it (because once.kill(what=errors:Thing) from j52).",
@@ -12228,6 +12238,26 @@
 "author": "projector",
 "run": "run-cf203b",
 "card": "w79",
+"other": null
+},
+{
+"id": "wt_d2d1e09ef0",
+"kind": "func_call",
+"text": "The agboro hears it (because once.kill(what=errors:Thing) from j52).",
+"code": "agboro.hears(person, 'kill');",
+"author": "projector",
+"run": "run-788e05",
+"card": "w5",
+"other": null
+},
+{
+"id": "wt_5d6d972bda",
+"kind": "func_call",
+"text": "The agboro hears it (because person.rest(what=errors:Thing) from j52).",
+"code": "agboro.hears(person, 'rest');",
+"author": "projector",
+"run": "run-788e05",
+"card": "w5",
 "other": null
 }
 ],
@@ -13893,6 +13923,16 @@
 "run": "run-cf203b",
 "card": "w64",
 "other": null
+},
+{
+"id": "wt_e5abef7683",
+"kind": "func_call",
+"text": "Someone at the projector tapped the person and called once.kill(what=errors:Thing) from j52 from its agenda run-cf203b, first seated in run-cf203b j25.",
+"code": "once.kill('errors');",
+"author": "projector",
+"run": "run-788e05",
+"card": "w5",
+"other": null
 }
 ],
 "rwp": [
@@ -14476,6 +14516,62 @@
 "card": "j2",
 "other": null
 }
+],
+"anyway": [
+{
+"id": "wt_3b66dc799a",
+"kind": "func_call",
+"text": "The anyway hears it (because person.rest(what=mind:Thing) from j4).",
+"code": "anyway.hears(notnotnotnotyn_oct_figure, 'rest');",
+"author": "projector",
+"run": "run-788e05",
+"card": "w5",
+"other": null
+},
+{
+"id": "wt_bf81dadee0",
+"kind": "func_call",
+"text": "The anyway hears it (because person.rest(what=mind:Thing) from j4).",
+"code": "anyway.hears(people_scene_figure, 'rest');",
+"author": "projector",
+"run": "run-788e05",
+"card": "w5",
+"other": null
+}
+],
+"condolences": [
+{
+"id": "wt_27111de8f8",
+"kind": "func_call",
+"text": "The condolences hears it (because person.rest(what=mind:Thing) from j4).",
+"code": "condolences.hears(notnotnotnotyn_oct_figure, 'rest');",
+"author": "projector",
+"run": "run-788e05",
+"card": "w5",
+"other": null
+},
+{
+"id": "wt_e2238f3f61",
+"kind": "func_call",
+"text": "The condolences hears it (because person.rest(what=mind:Thing) from j4).",
+"code": "condolences.hears(people_scene_figure, 'rest');",
+"author": "projector",
+"run": "run-788e05",
+"card": "w5",
+"other": null
+}
+],
+"could": [
+{
+"id": "wt_0cd7872ab2",
+"kind": "func_call",
+"text": "The could hears it (because person.rest(what=mind:Thing) from j4).",
+"code": "could.hears(people_scene_figure, 'rest');",
+"author": "projector",
+"run": "run-788e05",
+"card": "w5",
+"other": null
+}
 ]
 },
 "consequences": [
@@ -15021,5 +15117,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-27T23:51:37-0500"
+"updated": "2026-11-28T00:18:20-0500"
 }
