@@ -7213,16 +7213,6 @@
 ],
 "abeokuta_parlour": [
 {
-"id": "wt_95d4645c01",
-"kind": "func_call",
-"text": "Someone at the projector saw the abeokuta parlour meets the surulere party hall.",
-"code": "abeokuta_parlour.meets(surulere_party_hall);",
-"author": "projector",
-"run": "run-cf203b",
-"card": "w19",
-"other": null
-},
-{
 "id": "wf_2a147ce2fd",
 "kind": "consequence",
 "text": "The abeokuta parlour leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
@@ -7261,6 +7251,16 @@
 "run": "run-788e05",
 "card": "j6",
 "other": "yaba"
+},
+{
+"id": "wt_d524f8c2c4",
+"kind": "consequence",
+"text": "In the Abeokuta parlour the radio sermon about God needing our praise is turned down and the women under the dryers go quiet, the same gist now said in two places.",
+"code": "abeokuta_parlour.receives(no_palmgrove_close.gist); abeokuta_parlour.set('radio', 'turned down when the sermon says god needs our praise, the dryers go quiet');",
+"author": "cos",
+"run": "run-788e05",
+"card": "j10",
+"other": "no_palmgrove_close"
 }
 ],
 "uch": [
@@ -10901,6 +10901,16 @@
 "run": "run-788e05",
 "card": "j6",
 "other": "yaba"
+},
+{
+"id": "wt_6716d655a9",
+"kind": "consequence",
+"text": "At No Palmgrove Close the neighbours repeat what Debby said, and someone adds: if we have offended God, let him say so.",
+"code": "no_palmgrove_close.receives(debby.doubt); no_palmgrove_close.set('gist', 'neighbours repeat debby, one says if we have offended god let him just say so');",
+"author": "cos",
+"run": "run-788e05",
+"card": "j8",
+"other": "debby"
 }
 ],
 "cake_by_ocean_figure": [
@@ -14722,64 +14732,43 @@
 "card": "w11",
 "other": null
 }
+],
+"samson": [
+{
+"id": "wt_94dff6d7ab",
+"kind": "consequence",
+"text": "Samson sits on the Oke Ayo bus with a cap pulled low, so nobody stares at his hair.",
+"code": "samson.interactwith(oke_ayo_bus){ samson.set('cap', 'pulled low on the oke ayo bus so nobody stares at his hair'); }",
+"author": "cos",
+"run": "run-788e05",
+"card": "j6",
+"other": "oke_ayo_bus"
+},
+{
+"id": "wt_ae3d9213c7",
+"kind": "consequence",
+"text": "Samson hears Debby's doubt come back to him from two places, takes the cap off, and says thanks to the driver: the thread of his hair is closed.",
+"code": "samson.interactwith(debby){ samson.receives(debby.doubt); samson.set('cap', 'off and held in his hand at the last stop, thanks said to the driver'); }",
+"author": "cos",
+"run": "run-788e05",
+"card": "j11",
+"other": "debby"
+}
+],
+"debby": [
+{
+"id": "wt_aa9c0079f4",
+"kind": "consequence",
+"text": "Debby sees the cap, reads what it hides, and says out loud that the child of God talk is a lie: nobody covers what God approves.",
+"code": "debby.interactwith(samson){ debby.receives(samson.cap); debby.set('doubt', 'saw the cap and said the child of god talk is a lie, nobody covers what god approves'); }",
+"author": "cos",
+"run": "run-788e05",
+"card": "j6",
+"other": "samson"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_8ff018ed50",
-"ts": "2026-11-24T13:46:47-0500",
-"a": "marker_b",
-"b": "cell_phone",
-"code": "marker_b.interactwith(cell_phone){ cell_phone.receives(marker_b.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the cell phone, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
-"id": "wf_9a1f03188c",
-"ts": "2026-11-24T13:49:18-0500",
-"a": "health_marisol",
-"b": "calla",
-"code": "health_marisol.interactwith(calla){ calla.receives(health_marisol.envelope); calla.remembers(bisola, 'brown envelope'); }",
-"text": "The calla leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
-"id": "wf_2ee041918d",
-"ts": "2026-11-24T13:51:01-0500",
-"a": "jetty_south_pointe",
-"b": "teomarisollove",
-"code": "jetty_south_pointe.interactwith(teomarisollove){ teomarisollove.receives(jetty_south_pointe.shirt); teomarisollove.remembers(bisola, 'green shirt'); }",
-"text": "An Ikeja laundromat receipt with Bisola's name and 'green shirt' on it, 10:15am, turns up with the teomarisollove, which is still in love, said out loud by Marisol (w14 causeway).",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j8"
-},
-{
-"id": "wf_838266b3ff",
-"ts": "2026-11-24T14:01:06-0500",
-"a": "heat",
-"b": "chair",
-"code": "heat.interactwith(chair){ chair.receives(heat.envelope); chair.remembers(bisola, 'brown envelope'); chair.tucks(heat, 'yaba bookshop receipt into the 11:20pm'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the 11:20pm at the chair, and Taiwo reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
-"id": "wf_02c9c39e10",
-"ts": "2026-11-24T14:04:28-0500",
-"a": "tbp",
-"b": "tie",
-"code": "tbp.interactwith(tie){ tie.receives(tbp.envelope); tie.remembers(bisola, 'brown envelope'); tie.tucks(tbp, 'yaba bookshop receipt into the green shirt'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the green shirt at the tie, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
 {
 "id": "wf_877ad0ce6b",
 "ts": "2026-11-24T14:05:21-0500",
@@ -15164,6 +15153,61 @@
 "author": "cos",
 "run": "run-788e05",
 "card": "j13"
+},
+{
+"id": "wt_94dff6d7ab",
+"ts": "2026-11-28T10:24:42-0500",
+"a": "oke_ayo_bus",
+"b": "samson",
+"code": "samson.interactwith(oke_ayo_bus){ samson.set('cap', 'pulled low on the oke ayo bus so nobody stares at his hair'); }",
+"text": "Samson sits on the Oke Ayo bus with a cap pulled low, so nobody stares at his hair.",
+"author": "cos",
+"run": "run-788e05",
+"card": "j6"
+},
+{
+"id": "wt_aa9c0079f4",
+"ts": "2026-11-28T10:24:42-0500",
+"a": "samson",
+"b": "debby",
+"code": "debby.interactwith(samson){ debby.receives(samson.cap); debby.set('doubt', 'saw the cap and said the child of god talk is a lie, nobody covers what god approves'); }",
+"text": "Debby sees the cap, reads what it hides, and says out loud that the child of God talk is a lie: nobody covers what God approves.",
+"author": "cos",
+"run": "run-788e05",
+"card": "j6"
+},
+{
+"id": "wt_6716d655a9",
+"ts": "2026-11-28T10:24:42-0500",
+"a": "debby",
+"b": "no_palmgrove_close",
+"code": "no_palmgrove_close.receives(debby.doubt); no_palmgrove_close.set('gist', 'neighbours repeat debby, one says if we have offended god let him just say so');",
+"text": "At No Palmgrove Close the neighbours repeat what Debby said, and someone adds: if we have offended God, let him say so.",
+"author": "cos",
+"run": "run-788e05",
+"card": "j8"
+},
+{
+"id": "wt_d524f8c2c4",
+"ts": "2026-11-28T10:24:42-0500",
+"a": "no_palmgrove_close",
+"b": "abeokuta_parlour",
+"code": "abeokuta_parlour.receives(no_palmgrove_close.gist); abeokuta_parlour.set('radio', 'turned down when the sermon says god needs our praise, the dryers go quiet');",
+"text": "In the Abeokuta parlour the radio sermon about God needing our praise is turned down and the women under the dryers go quiet, the same gist now said in two places.",
+"author": "cos",
+"run": "run-788e05",
+"card": "j10"
+},
+{
+"id": "wt_ae3d9213c7",
+"ts": "2026-11-28T10:24:42-0500",
+"a": "debby",
+"b": "samson",
+"code": "samson.interactwith(debby){ samson.receives(debby.doubt); samson.set('cap', 'off and held in his hand at the last stop, thanks said to the driver'); }",
+"text": "Samson hears Debby's doubt come back to him from two places, takes the cap off, and says thanks to the driver: the thread of his hair is closed.",
+"author": "cos",
+"run": "run-788e05",
+"card": "j11"
 }
 ],
 "memories": [
@@ -15267,5 +15311,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-28T10:21:58-0500"
+"updated": "2026-11-28T10:25:20-0500"
 }

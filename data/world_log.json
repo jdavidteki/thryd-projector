@@ -23546,7 +23546,7 @@
   },
   "run-788e05": {
    "forked_from": "safe:08a8466187dc",
-   "head": "4c289fbb1b",
+   "head": "e8046ebffc",
    "commits": [
     {
      "id": "1250cf9b22",
@@ -23972,7 +23972,7 @@
      }
     },
     {
-     "id": "0119077df1",
+     "id": "754ec3f140",
      "parent": "110c3ac375",
      "branch": "run-788e05",
      "job": "j6",
@@ -24004,9 +24004,25 @@
         "code": "yaba.interactwith(abeokuta_parlour){ abeokuta_parlour.receives(yaba.envelope); abeokuta_parlour.remembers(bisola, 'brown envelope'); }",
         "scope": null,
         "cause_id": null
+       },
+       {
+        "id": "wt_94dff6d7ab",
+        "object": "samson",
+        "kind": "consequence",
+        "code": "samson.interactwith(oke_ayo_bus){ samson.set('cap', 'pulled low on the oke ayo bus so nobody stares at his hair'); }",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_aa9c0079f4",
+        "object": "debby",
+        "kind": "consequence",
+        "code": "debby.interactwith(samson){ debby.receives(samson.cap); debby.set('doubt', 'saw the cap and said the child of god talk is a lie, nobody cove",
+        "scope": null,
+        "cause_id": null
        }
       ],
-      "facts_total": 3,
+      "facts_total": 5,
       "functions": [
        {
         "func": "debby.see",
@@ -24037,8 +24053,8 @@
      }
     },
     {
-     "id": "1d6c18ab3f",
-     "parent": "0119077df1",
+     "id": "056df04864",
+     "parent": "754ec3f140",
      "branch": "run-788e05",
      "job": "j7",
      "at": "2026-11-28T00:40:46-05:00",
@@ -24090,16 +24106,25 @@
      }
     },
     {
-     "id": "655a885187",
-     "parent": "1d6c18ab3f",
+     "id": "698c3dc422",
+     "parent": "056df04864",
      "branch": "run-788e05",
      "job": "j8",
      "at": "2026-11-28T00:50:09-05:00",
      "genre": "rising",
      "beat": "now",
      "diff": {
-      "facts": [],
-      "facts_total": 0,
+      "facts": [
+       {
+        "id": "wt_6716d655a9",
+        "object": "no_palmgrove_close",
+        "kind": "consequence",
+        "code": "no_palmgrove_close.receives(debby.doubt); no_palmgrove_close.set('gist', 'neighbours repeat debby, one says if we have offended god let him",
+        "scope": null,
+        "cause_id": null
+       }
+      ],
+      "facts_total": 1,
       "functions": [
        {
         "func": "god.have",
@@ -24139,8 +24164,8 @@
      }
     },
     {
-     "id": "baf17c65a4",
-     "parent": "655a885187",
+     "id": "dbd0768324",
+     "parent": "698c3dc422",
      "branch": "run-788e05",
      "job": "j9",
      "at": "2026-11-28T01:08:09-05:00",
@@ -24192,16 +24217,25 @@
      }
     },
     {
-     "id": "913b8e6244",
-     "parent": "baf17c65a4",
+     "id": "c919b885e4",
+     "parent": "dbd0768324",
      "branch": "run-788e05",
      "job": "j10",
      "at": "2026-11-28T01:38:51-05:00",
      "genre": "rising",
      "beat": "now",
      "diff": {
-      "facts": [],
-      "facts_total": 0,
+      "facts": [
+       {
+        "id": "wt_d524f8c2c4",
+        "object": "abeokuta_parlour",
+        "kind": "consequence",
+        "code": "abeokuta_parlour.receives(no_palmgrove_close.gist); abeokuta_parlour.set('radio', 'turned down when the sermon says god needs our praise, th",
+        "scope": null,
+        "cause_id": null
+       }
+      ],
+      "facts_total": 1,
       "functions": [
        {
         "func": "false.agenda",
@@ -24236,8 +24270,8 @@
      }
     },
     {
-     "id": "e6ef7f1afe",
-     "parent": "913b8e6244",
+     "id": "1b9561da7e",
+     "parent": "c919b885e4",
      "branch": "run-788e05",
      "job": "j11",
      "at": "2026-11-28T03:34:28-0500",
@@ -24300,16 +24334,24 @@
         "code": "oke_ayo_bus.interactwith(clock);",
         "scope": null,
         "cause_id": null
+       },
+       {
+        "id": "wt_ae3d9213c7",
+        "object": "samson",
+        "kind": "consequence",
+        "code": "samson.interactwith(debby){ samson.receives(debby.doubt); samson.set('cap', 'off and held in his hand at the last stop, thanks said to the d",
+        "scope": null,
+        "cause_id": null
        }
       ],
-      "facts_total": 7,
+      "facts_total": 8,
       "functions": [],
       "instances": []
      }
     },
     {
-     "id": "4c289fbb1b",
-     "parent": "e6ef7f1afe",
+     "id": "e8046ebffc",
+     "parent": "1b9561da7e",
      "branch": "run-788e05",
      "job": "j13",
      "at": "2026-11-28T03:28:33-0500",
@@ -24755,9 +24797,9 @@
   "run-ab4653": "dd8e54daee",
   "run-cf203b": "ef471d637d",
   "run-888ea9": "e7f8e2d9e6",
-  "run-788e05": "4c289fbb1b",
+  "run-788e05": "e8046ebffc",
   "run-cb805f": "8d23a93627"
  },
  "commits": 245,
- "updated": "2026-11-28T10:22:00-05:00"
+ "updated": "2026-11-28T10:25:22-05:00"
 }
