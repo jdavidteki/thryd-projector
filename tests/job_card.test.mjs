@@ -78,8 +78,8 @@ test('one slow poll (>=30s) only while the panel is open; no work when hidden', 
   assert.match(js, /function stopPoll/);
 });
 
-test('CAP_DEFAULT is back to 36 (Jesuye approved 26 Nov 12:35 PM); video_card.js is not the hook', ()=>{
-  assert.match(st, /const CAP_DEFAULT = 36;/);
+test('CAP_DEFAULT is 56 (Jesuye 28 Nov 2:29 PM ET); video_card.js is not the hook', ()=>{
+  assert.match(st, /const CAP_DEFAULT = 56;/);
   assert.doesNotMatch(st, /Follow-up \(after Jesuye approves command-panel job cards\)/);
   assert.doesNotMatch(html, /video_card\.js\?v=6/);
 });

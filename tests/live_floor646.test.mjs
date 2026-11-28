@@ -56,8 +56,8 @@ test('fewer than 10 animated cuts in total: every animated group stays', ()=>{
 });
 
 test('floor is wired into life expiry, eviction and the deck', ()=>{
-  assert.match(st, /if\(floorHolds\(g\) \|\| isCatalogAnim\(g\)\) g\.life \+= 20000;/);
-  assert.match(st, /function evictable\(g\)\{[^\n]*!floorHolds\(g\) && !isCatalogAnim\(g\)\)/);
+  assert.match(st, /if\(floorHolds\(g\) \|\| isCatalogAnim\(g\) \|\| isHfGroup\(g\)\) g\.life \+= 20000;/);
+  assert.match(st, /function evictable\(g\)\{[^\n]*!floorHolds\(g\) && !isCatalogAnim\(g\) && !isHfGroup\(g\)\)/);
   assert.match(st, /const under = liveCutsOn\(\) < LIVE_FLOOR;/);
   assert.match(st, /animMids\(\)\.has\(a\.medium_image_id\)/);
 });
@@ -72,9 +72,9 @@ test('v650: catalog image-to-video cuts have a reserved lane so live views canno
   assert.match(st, /function animSeated\(\)/);
   assert.match(st, /const short = typeof animFloorShort === 'function' && animFloorShort\(\);/);
   assert.match(st, /if\(short\)\{\s*const as = ok\.filter\(animStill\);/s);
-  assert.match(st, /!floorHolds\(g\) && !isCatalogAnim\(g\)\)/);
-  assert.match(st, /isNewestGroup\(g\) \|\| netHeld\(\) \|\| isCatalogAnim\(g\) \|\| floorHolds\(g\)/);
-  assert.match(st, /if\(floorHolds\(g\) \|\| isCatalogAnim\(g\)\) g\.life \+= 20000;/);
+  assert.match(st, /!floorHolds\(g\) && !isCatalogAnim\(g\) && !isHfGroup\(g\)\)/);
+  assert.match(st, /isNewestGroup\(g\) \|\| netHeld\(\) \|\| isCatalogAnim\(g\) \|\| isHfGroup\(g\) \|\| floorHolds\(g\)/);
+  assert.match(st, /if\(floorHolds\(g\) \|\| isCatalogAnim\(g\) \|\| isHfGroup\(g\)\) g\.life \+= 20000;/);
   assert.match(st, /const shortAnim = !netHeld\(\) && typeof animFloorShort === 'function' && animFloorShort\(\);/);
   assert.match(st, /isNew \|\| !shortAnim/);
   assert.match(st, /evictOldest\('anim-floor'\)/);
@@ -85,4 +85,18 @@ test('v651: still siblings in an animated group do not close their bitmap or bre
   assert.match(st, /if\(fr\.length === 1 && !L\.hasAnim && !L\.animated\)/);
   assert.match(st, /cut\.frames\.length < 2/);
   assert.match(st, /try\{ frame\(now\); \}catch\(e\)\{ try\{ scheduleFrame\(\); \}catch\(e2\)\{\} \}/);
+});
+
+test('v662: cap is 56; Hugging Face catalog groups are never evicted to make room; floor and dwell stay', ()=>{
+  assert.match(st, /const CAP_DEFAULT = 56;/);
+  assert.match(st, /const SOFT_CAP = CAP;/);
+  assert.match(st, /function isHfGroup\(g\)/);
+  assert.match(st, /S\.isHfGroup = isHfGroup/);
+  assert.match(st, /function evictable\(g\)\{[^\n]*!isCatalogAnim\(g\) && !isHfGroup\(g\)\)/);
+  assert.match(st, /isCatalogAnim\(g\) \|\| isHfGroup\(g\) \|\| floorHolds\(g\)/);
+  assert.match(st, /if\(floorHolds\(g\) \|\| isCatalogAnim\(g\) \|\| isHfGroup\(g\)\) g\.life \+= 20000;/);
+  assert.match(st, /const LIVE_FLOOR = 10;/);
+  assert.match(st, /const ANIM_DWELL_K = 3\.5;/);
+  assert.match(st, /const LIVE_DWELL_K = 4;/);
+  assert.match(st, /exitGroup\(g, false, 'anim-retry'\)/);
 });

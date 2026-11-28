@@ -22,5 +22,5 @@ test('v661: send-all and pager share one row on short screens; page is kept acro
 });
 test('v661: loader and version', () => {
   assert.match(html, /job_card\.js\?v=25/);
-  assert.match(html, /var VER=661/);
+  assert.match(html, /var VER=662/);
 });

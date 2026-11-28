@@ -63,8 +63,9 @@
   // group always waiting in the wings so a leaving story is replaced at once, and spawns aimed at the emptiest part of the screen
   // v617 heat (Jesuye 26 Nov 2026 1:16 AM ET "or even 10"): one config for how many story objects (cuts) may be on the
   // stage at once; older groups walk off and new ones rotate in. Pins do not count. Change CAP_DEFAULT to retune;
-  // ?cap=N overrides for QA (e.g. ?cap=20 or ?cap=36). v610 had set this at 36 (desktop 72→36, same as phone).
-  const CAP_DEFAULT = 36;
+  // ?cap=N overrides for QA (e.g. ?cap=20 or ?cap=56). v610 had set this at 36 (desktop 72→36, same as phone).
+  // v662 (Jesuye 28 Nov 2026 2:29 PM ET "increase from 36 to 56 and leave the hugging face objects there"): CAP_DEFAULT 36→56.
+  const CAP_DEFAULT = 56;
   const CAP = (function(){ try{ const n = +(new URLSearchParams(location.search).get('cap')); if(n >= 1 && n <= 200) return Math.floor(n); }catch(e){} return CAP_DEFAULT; })();
   // v618 (Jesuye 26 Nov 2026 1:46 AM ET): hold 10 picture objects most of the time. SOFT_CAP equals CAP, so
   // the oldest is evicted only to make room for an incoming group (not early at 8). MAX_GROUPS is large enough
@@ -546,10 +547,14 @@
   function animMids(){ const m = new Set(); ANIM.by.forEach(c => m.add(c.medium_image_id)); return m; }
   // v650: catalog image-to-video cuts (data/anim_cuts.json) get a reserved lane so live views cannot crowd them out
   function isCatalogAnim(g){ return !!(g && !g.gone && !g.map && ANIM.by.size && animMids().has(g.mid) && (g.hasAnim || groupLiveCuts(g) > 0)); }
+  // v662: Hugging Face image-to-video catalog groups (data/anim_cuts.json, source huggingface-space-free) stay on stage.
+  // They are never evicted or swapped out to make room, even before the anim has seated. anim-retry may still refresh a
+  // catalog still that has not received its GIF after 25s (that is a decode retry, not a room eviction).
+  function isHfGroup(g){ return !!(g && !g.gone && !g.map && ANIM.by.size && animMids().has(g.mid)); }
   function animSeated(){ const m = new Set(); S.groups.forEach(g => { if(isCatalogAnim(g)) m.add(g.mid); }); return m.size; }
   function animFloorNeed(){ const n = animMids().size; return n ? Math.max(0, Math.min(LIVE_FLOOR, n) - animSeated()) : 0; }
   function animFloorShort(){ return animFloorNeed() > 0; }
-  S.isCatalogAnim = isCatalogAnim; S.animSeated = animSeated; S.animFloorNeed = animFloorNeed; S.animFloorShort = animFloorShort;
+  S.isCatalogAnim = isCatalogAnim; S.isHfGroup = isHfGroup; S.animSeated = animSeated; S.animFloorNeed = animFloorNeed; S.animFloorShort = animFloorShort;
   function loadAnimCatalog(){
     fetch('data/anim_cuts.json?t=' + Date.now(), {cache: 'no-store'}).then(r => r.ok ? r.json() : null).then(d => {
       if(!d) return;
@@ -1131,7 +1136,7 @@
     if(!n || g.run !== n.run || g.mid === liveId(n)) return false;
     return !liveOn(liveId(n));
   }
-  function evictable(g){ return !!(g && !g.gone && !g.map && !g.cuts.some(c => c.dragging) && !isNewestGroup(g) && !lastCutLiveOnStage(g) && !floorHolds(g) && !isCatalogAnim(g)); }
+  function evictable(g){ return !!(g && !g.gone && !g.map && !g.cuts.some(c => c.dragging) && !isNewestGroup(g) && !lastCutLiveOnStage(g) && !floorHolds(g) && !isCatalogAnim(g) && !isHfGroup(g)); }
   function hasCut(v){
     const c = v && v.cut;
     if(!c || !c.pack || !/^assets\/live_views\/[^?#]+\.cut\.json$/.test(String(c.pack))) return false;
@@ -1369,10 +1374,10 @@
       if(g.map){ g.offSince = 0; return; }
       const vis = g.x < v.x + v.w && g.x + g.w > v.x && g.y < v.y + v.h && g.y + g.h > v.y;
       if(vis) g.offSince = 0; else if(!g.offSince) g.offSince = now;
-      if(isNewestGroup(g) || netHeld() || isCatalogAnim(g) || floorHolds(g)) g.offSince = 0;
+      if(isNewestGroup(g) || netHeld() || isCatalogAnim(g) || isHfGroup(g) || floorHolds(g)) g.offSince = 0;
       else if(g.offSince && now - g.offSince > 12000) exitGroup(g, false, 'offscreen');
       else if(!netHeld() && now - g.born > g.life && !g.cuts.some(c => c.dragging)){
-        if(floorHolds(g) || isCatalogAnim(g)) g.life += 20000; // v646/v650: floor groups and reserved catalog anims stay
+        if(floorHolds(g) || isCatalogAnim(g) || isHfGroup(g)) g.life += 20000; // v646/v650/v662: floor, catalog anims, and HF catalog groups stay
         else exitGroup(g, false, 'life');
       }
     });

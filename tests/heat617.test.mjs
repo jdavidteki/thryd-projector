@@ -44,8 +44,8 @@ test('map-pin pulse and LIVE badge blink pause only when hidden; video card stil
   assert.match(css, /html\.lh-hidden \.videocard[\s\S]*animation-play-state:paused/);
 });
 
-test('one CAP_DEFAULT (36) sets how many story objects are on stage; ?cap=N overrides; groups and soft cap follow', ()=>{
-  assert.match(st, /const CAP_DEFAULT = 36;/);
+test('one CAP_DEFAULT (56) sets how many story objects are on stage; ?cap=N overrides; groups and soft cap follow', ()=>{
+  assert.match(st, /const CAP_DEFAULT = 56;/);
   assert.match(st, /URLSearchParams\(location\.search\)\.get\('cap'\)/);
   assert.match(st, /const CAP = \(function\(\)\{/);
   assert.match(st, /const SOFT_CAP = CAP;/);
