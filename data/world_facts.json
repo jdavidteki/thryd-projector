@@ -10831,6 +10831,16 @@
 "run": "run-788e05",
 "card": "w1",
 "other": null
+},
+{
+"id": "wf_44756c6cfc",
+"kind": "consequence",
+"text": "The no palmgrove close leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "yaba.interactwith(no_palmgrove_close){ no_palmgrove_close.receives(yaba.envelope); no_palmgrove_close.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-788e05",
+"card": "j6",
+"other": "yaba"
 }
 ],
 "cake_by_ocean_figure": [
@@ -14426,17 +14436,6 @@
 },
 "consequences": [
 {
-"id": "wf_da0c45a1a8",
-"ts": "2026-11-24T13:35:48-0500",
-"a": "marker_b",
-"b": "laptop",
-"code": "marker_b.interactwith(laptop){ laptop.receives(marker_b.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the lamp soot at the laptop, and Taiwo reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
 "id": "wf_78b991c505",
 "ts": "2026-11-24T13:37:31-0500",
 "a": "reality",
@@ -14864,6 +14863,17 @@
 "author": "cos",
 "run": "run-788e05",
 "card": "j6"
+},
+{
+"id": "wf_44756c6cfc",
+"ts": "2026-11-27T22:52:34-0500",
+"a": "yaba",
+"b": "no_palmgrove_close",
+"code": "yaba.interactwith(no_palmgrove_close){ no_palmgrove_close.receives(yaba.envelope); no_palmgrove_close.remembers(bisola, 'brown envelope'); }",
+"text": "The no palmgrove close leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-788e05",
+"card": "j6"
 }
 ],
 "memories": [
@@ -14967,5 +14977,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-27T22:50:54-0500"
+"updated": "2026-11-27T22:52:34-0500"
 }
