@@ -8,9 +8,9 @@ const js = rd('assets/job_card.js'), html = rd('index.html'), st = rd('assets/st
 
 test('job_card.js loads by default; ?cards=0 hides the panel', ()=>{
   assert.match(html, /cards=0/);
-  assert.match(html, /job_card\.js\?v=2[123]/);
+  assert.match(html, /job_card\.js\?v=2[1234]/);
   assert.match(js, /cards=0/);
-  assert.match(html, /if\(!\/\(\?:\^\|\[\?&\]\)cards=0/);
+  assert.match(html, /(?:if\(!|wantCard=!)\/\(\?:\^\|\[\?&\]\)cards=0/);
   assert.match(js, /if\(\/\(\?:\^\|\[\?&\]\)cards=0/);
   assert.doesNotMatch(html, /if\(\/\(\?:\^\|\[\?&\]\)cards=1/);
   assert.match(html, /var VER=(6[4-9]\d),/);
@@ -181,7 +181,7 @@ test('v628: panel stays open after Send; waiting refresh keeps the sent card; ea
   assert.match(js, /border-radius:8px;white-space:normal/);
   assert.match(js, /max-height:15em;overflow-y:auto/);
   assert.match(js, /touch-action:pan-y/);
-  assert.match(html, /job_card\.js\?v=2[123]/);
+  assert.match(html, /job_card\.js\?v=2[1234]/);
   assert.match(html, /intent_ai\.js\?v=614/);
   const src = js.slice(js.indexOf('function stripTweetUrls(s){') >= 0 ? js.indexOf('function stripTweetUrls(s){') : js.indexOf('function safeText(o){'), js.indexOf('function render(){'));
   const f = new Function(src + '; return {safeRows, safeText};')();
@@ -268,7 +268,7 @@ test('v633: archive safe lines flow inline at a smaller font; title stays its ow
 
 test('v634: open async jobs render as persistent waiting-on-real-life pills; empty list shows nothing', ()=>{
   assert.match(html, /var VER=(6[4-9]\d),/);
-  assert.match(html, /job_card\.js\?v=2[123]/);
+  assert.match(html, /job_card\.js\?v=2[1234]/);
   const v = JSON.parse(ver);
   assert.ok(v.v >= 644);
   assert.match(js, /function asyncPills\(/);
@@ -314,7 +314,7 @@ test('v653: MENU and LOCK stay one nowrap row (v654: 40px targets, sideways scro
   assert.match(js, /sc\.appendChild\(menuBtn\(o\)\)/);
   assert.match(js, /Math\.abs\(\(ev\.clientX \|\| sx\) - sx\) > 14/);
   assert.match(html, /var VER=(6[4-9]\d),/);
-  assert.match(html, /job_card\.js\?v=2[123]/);
+  assert.match(html, /job_card\.js\?v=2[1234]/);
   const v = JSON.parse(ver);
   assert.ok(v.v >= 644);
 });
@@ -338,7 +338,7 @@ __t('v644: send_receipt: tick only on the box receipt; 20 s timeout offers Resen
   const html = __fs.readFileSync(new URL('../index.html', import.meta.url), 'utf8');
   const ver = JSON.parse(__fs.readFileSync(new URL('../data/version.json', import.meta.url), 'utf8'));
   const pj = __fs.readFileSync(new URL('../assets/projector.js', import.meta.url), 'utf8');
-  __a.match(html, /var VER=(6[4-9]\d),/); __a.match(html, /job_card\.js\?v=2[123]/); __a.match(html, /projector\.js\?v=578/);
+  __a.match(html, /var VER=(6[4-9]\d),/); __a.match(html, /job_card\.js\?v=2[1234]/); __a.match(html, /projector\.js\?v=578/);
   __a.ok(ver.v >= 645);
   __a.match(src, /const RECEIPT_MS = 20000;/);
   __a.match(src, /const eid = again \? again\.body\.event_id : uid\('pick-'\)/);          // resend reuses the event_id
@@ -369,7 +369,7 @@ __t('v645: pills read the box answer, say when unconfirmed, and a ✕ cancels by
   const html = __fs.readFileSync(new URL('../index.html', import.meta.url), 'utf8');
   const pj = __fs.readFileSync(new URL('../assets/projector.js', import.meta.url), 'utf8');
   const ver = JSON.parse(__fs.readFileSync(new URL('../data/version.json', import.meta.url), 'utf8'));
-  __a.ok(ver.v >= 645); __a.match(html, /var VER=(6[4-9]\d),/); __a.match(html, /job_card\.js\?v=2[123]/); __a.match(html, /projector\.js\?v=578/);
+  __a.ok(ver.v >= 645); __a.match(html, /var VER=(6[4-9]\d),/); __a.match(html, /job_card\.js\?v=2[1234]/); __a.match(html, /projector\.js\?v=578/);
   __a.match(html, /thryd-update-ready/); __a.match(html, /window\.thrydReloadNow=/);
   __a.match(src, /update ready \(v/);
   __a.match(pj, /accept\(r, dest\.name, dest\.ep\)/);                       // reply topic follows the topic that carried it
@@ -426,7 +426,7 @@ test('v652 Prayer jobs shows about 5 cards; Show all agendas box has an x and Es
   assert.match(js, /cards\.slice\(lo, lo \+ PRAYER_PAGE\)/);
   assert.match(js, /if\(document\.getElementById\('aisheet'\)\)/);
   assert.match(js, /closeSheet\(\); return;/);
-  assert.match(html, /job_card\.js\?v=2[123]/);
+  assert.match(html, /job_card\.js\?v=2[1234]/);
   const v = JSON.parse(ver);
   assert.ok(v.v >= 652);
 });
@@ -540,17 +540,17 @@ test('v658 typelines use self-hosted JetBrains Mono at 15px; 40px dock height is
   assert.doesNotMatch(js, /#aicard \.aicfree\{[^}]*ThrydRead/);
   // story / card body stays on ThrydRead
   assert.match(js, /#aicard \.aicprompt\{[^}]*ThrydRead/);
-  assert.match(html, /var VER=(658|659),/);
+  assert.match(html, /var VER=(658|659|660),/);
   const v2 = JSON.parse(ver);
   assert.ok(v2.v >= 658);
 });
 
 test('v659 tweet option descriptions never render x.com or twitter.com URLs; 🎥 is not a list option', ()=>{
   assert.match(js, /function stripTweetUrls\(s\)\{/);
-  assert.match(html, /job_card\.js\?v=23/);
-  assert.match(html, /var VER=659,/);
+  assert.match(html, /job_card\.js\?v=24/);
+  assert.match(html, /var VER=66[09],/);
   const v = JSON.parse(ver);
-  assert.equal(v.v, 659);
+  assert.ok(v.v >= 659);
   const src = js.slice(js.indexOf('function stripTweetUrls(s){'), js.indexOf('function render(){'));
   const f = new Function(src + '; return {stripTweetUrls, safeText, safeRows};')();
   const raw = 'tweet, 2026-02-23, x.com/i/status/2026052053957566676: 1. «- tell am say make him come back» / 2. next line';
@@ -592,3 +592,21 @@ test('v659 job cards list 4 line options; 🎥 Live stays on the menu pill; no t
   }
 });
 
+test('v660 next card comes from origin raw without waiting for Pages; fast poll while a pick is in flight', ()=>{
+  assert.match(js, /FAST_POLL_MS = 2000/);
+  assert.match(js, /function rawBase\(\)/);
+  assert.match(js, /raw\.githubusercontent\.com/);
+  assert.match(js, /function cardUrls\(\)/);
+  assert.match(js, /function startFastPoll\(\)/);
+  assert.match(js, /function waitingOnNext\(\)/);
+  assert.match(js, /kickLane\(\); startFastPoll\(\)/);
+  assert.match(js, /setStatus\(status\.text, 'ok'\); startFastPoll\(\)/);
+  assert.match(js, /if\(!waitingOnNext\(\)\) stopFastPoll\(\)/);
+  assert.match(js, /ok\.sort\(\(a, b\) => atMs\(b\.at\) - atMs\(a\.at\)\)/);
+  assert.match(js, /POLL_MS = 30000/);
+  assert.match(html, /var VER=660,/);
+  assert.match(html, /job_card\.js\?v=24/);
+  assert.match(html, /raw\.githubusercontent\.com/);
+  const v = JSON.parse(rd('data/version.json'));
+  assert.equal(v.v, 660);
+});

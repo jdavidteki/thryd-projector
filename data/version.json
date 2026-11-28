@@ -1,5 +1,5 @@
 {
- "v": 659,
- "at": "2026-11-27T23:58:52-05:00",
- "note": "v659: tweet options no longer show an X/Twitter status URL or the old 'tweet, YYYY-MM-DD, x.com/i/status/\u2026' header (ids stay in internal `_source` only, never rendered). Job cards list just the 4 line options \u2014 the \ud83c\udfa5 live view is no longer a list option (the v657 list description is dropped); it stays on the menu's \ud83c\udfa5 Live pill. Typed commands are still seated in world.db tagged to the job, but the townhall.night { \u2026 } block and any typeline echo are not printed back on the customer-facing card. v658 typeline font and the v657 landscape panel are kept. version.json -> 659"
+ "v": 660,
+ "at": "2026-11-28T00:25:13-05:00",
+ "note": "v660: after a pick, the next job card is meant to show in about 5s without a GitHub Pages build. job_card.js reads open_card.json from origin raw (raw.githubusercontent, cache-bust) and Pages, and uses the newest `at`; while a pick is in flight it polls every 2s and swaps the next jN in automatically (the 30s idle Pages poll is unchanged). On github.io, job_card.js itself is loaded from origin raw (blob) so the script is not stuck behind Pages; assets/ is the fallback. The version check also reads origin raw. open_card_push still publishes the ntfy card lane and git-pushes data/open_card.json immediately on every seat (no force). auto_seat banks w(open+1) and w(open+2) in the background after open_card_next (bank_options only, never a future jobs/wK.json; respects the lock). v659 card list / typeline font / landscape panel are kept. version.json -> 660"
 }

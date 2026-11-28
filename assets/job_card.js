@@ -155,6 +155,9 @@
 
   const STORE = 'thryd_card_sent';
   const POLL_MS = 30000;
+  // v660 (Jesuye 12:18 AM "prevent this customer waiting"): while a pick is in flight, also poll
+  // origin raw (and Pages) every 2 s so the next card appears without a GitHub Pages build.
+  const FAST_POLL_MS = 2000;
   let card = null, cardSig = '', pollId = 0, userClose = false, sending = false;
   let meta = null; // v629: newest fetched payload (seat line / pending / lock), even while a sent card is kept
   // Selection lives in JS, not only in the DOM, so a poll / re-render never wipes a pick (v621).
@@ -219,7 +222,7 @@
     const typed = a.filter(e => e.kind === 'typed').slice(-20), rest = a.filter(e => e.kind !== 'typed').slice(-12);   // v645: typed bursts never evict a pick / tap
     try{ localStorage.setItem(SENT_LOG, JSON.stringify(rest.concat(typed).sort((x, y) => (+x.sent_at || 0) - (+y.sent_at || 0)))); }catch(e){}
   }
-  function logSent(e){ const a = sentLog().filter(x => x.event_id !== e.event_id); a.push(Object.assign({sent_at: Date.now()}, e)); saveSentLog(a); if(e.kind !== 'typed') kickLane(); pillTick(); }
+  function logSent(e){ const a = sentLog().filter(x => x.event_id !== e.event_id); a.push(Object.assign({sent_at: Date.now()}, e)); saveSentLog(a); if(e.kind !== 'typed'){ kickLane(); startFastPoll(); } pillTick(); }
   // v645 (Jesuye 11/27 1:59 PM pills hung on 'waiting'; 2:00 PM "add an x next to a waiting status in case we want to
   // cancel the request"): each pill reads the box's plain answer (open_card note / relay reply), says so when the box
   // has not confirmed, and a \u2715 cancels the request by event_id: the card unlocks at once, the box drops the event if
@@ -1211,11 +1214,52 @@ function stripTweetUrls(s){
   }
   function menuNote(text, kind){ const n = document.getElementById('aimnote'); if(n){ n.textContent = text || ''; n.className = 'aimnote' + (kind ? ' ' + kind : ''); } }
 
+  function rawBase(){
+    const host = String((typeof location !== 'undefined' && location.hostname) || '');
+    const m = host.match(/^([^.]+)\.github\.io$/i);
+    if(!m) return '';
+    const repo = String((location.pathname || '/').split('/')[1] || '').replace(/\/+$/, '');
+    return repo ? ('https://raw.githubusercontent.com/' + m[1] + '/' + repo + '/main/') : '';
+  }
+  function cardUrls(){
+    const t = Date.now();
+    const local = 'data/open_card.json?t=' + t;
+    const base = rawBase();
+    // Origin raw is current as soon as open_card_push lands; Pages can lag minutes.
+    return base ? [base + 'data/open_card.json?t=' + t, local] : [local];
+  }
   function fetchOpen(ms){
     const ac = typeof AbortController === 'function' ? new AbortController() : null;
     const t = setTimeout(() => { try{ ac && ac.abort(); }catch(e){} }, ms || 8000);
-    return fetch('data/open_card.json?t=' + Date.now(), {cache: 'no-store', signal: ac ? ac.signal : undefined})
-      .then(r => r.ok ? r.json() : null).catch(() => null).finally(() => clearTimeout(t));
+    const opts = {cache: 'no-store', signal: ac ? ac.signal : undefined};
+    return Promise.all((cardUrls()).map(u => fetch(u, opts).then(r => r.ok ? r.json() : null).catch(() => null)))
+      .then(rows => {
+        const ok = rows.filter(j => j && typeof j === 'object');
+        if(!ok.length) return null;
+        ok.sort((a, b) => atMs(b.at) - atMs(a.at));
+        return ok[0];
+      })
+      .catch(() => null)
+      .finally(() => clearTimeout(t));
+  }
+  function waitingOnNext(){
+    return !!(pendingSend || (card && card.open && wasSent(card.job)));
+  }
+  let fastPollId = 0;
+  function stopFastPoll(){
+    if(!fastPollId) return;
+    clearInterval(fastPollId);
+    fastPollId = 0;
+  }
+  function startFastPoll(){
+    if(fastPollId) return;
+    const tick = () => {
+      if(document.hidden) return;
+      if(!waitingOnNext()){ stopFastPoll(); return; }
+      fetchCard();
+    };
+    fastPollId = setInterval(tick, FAST_POLL_MS);
+    tick();
   }
 
   async function sendCard(btn){
@@ -1302,7 +1346,7 @@ function stripTweetUrls(s){
       markSent(job, card);
       if(btn){ btn.disabled = true; btn.classList.remove('busy'); btn.classList.add('sent'); btn.textContent = 'sent \u2713'; }
       status = {job, text: (m.status === 'seated' ? '\u2713 seated on ' + job : '\u2713 the box has your ' + job + ' pick') + ' \u2014 next card coming.', kind: 'ok'};
-      setStatus(status.text, 'ok'); return;
+      setStatus(status.text, 'ok'); startFastPoll(); return;
     }
     // v643: 'already_sent' means this Send was NOT stored, so never show it as a success or keep the lock.
     if(m.code === 'already_sent'){ unmarkSent(job); status = {job, text: 'Not stored \u2014 the box already had a send for ' + job + '. Tap #thryd again.', kind: 'err'}; render(); return; }
@@ -1395,6 +1439,7 @@ function stripTweetUrls(s){
       }
       card = j; cardSig = sig;
       noteJobAlert(j);
+      if(!waitingOnNext()) stopFastPoll();
       if(box() && box().classList.contains('on')) render();   // v632: a lane card before the panel opens is kept for open()
       else paintJobBadge();
     }
