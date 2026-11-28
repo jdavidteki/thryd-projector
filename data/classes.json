@@ -18,7 +18,8 @@
    ],
    "overrides": {},
    "implements": [
-    "Readable"
+    "Readable",
+    "Watchable"
    ]
   },
   "Person": {
@@ -105,11 +106,11 @@
    "param": "what",
    "methods": [
     "say",
-    "find",
-    "see"
+    "see",
+    "find"
    ],
-   "instances": 531,
-   "arg_instances": 205,
+   "instances": 533,
+   "arg_instances": 207,
    "parent": null,
    "chain": [
     "Thing"
@@ -176,8 +177,8 @@
     "back",
     "can"
    ],
-   "instances": 31,
-   "arg_instances": 28,
+   "instances": 32,
+   "arg_instances": 29,
    "parent": "Thing",
    "chain": [
     "Action",
@@ -1617,9 +1618,15 @@
    "first_job": "j77",
    "source": "pick",
    "runs": [
-    "run-cf203b"
+    "run-cf203b",
+    "run-788e05"
    ],
-   "tweets": []
+   "tweets": [
+    {
+     "text": "- eez good to come back [[home]] and see",
+     "year": "2025"
+    }
+   ]
   },
   "comedy": {
    "class": "Thing",
@@ -4965,6 +4972,23 @@
     }
    ]
   },
+  "make": {
+   "class": "Action",
+   "cue": "word",
+   "first_run": "run-788e05",
+   "first_job": "j1",
+   "source": "pick",
+   "runs": [
+    "run-788e05"
+   ],
+   "tweets": [
+    {
+     "text": "- tell am say make him come back",
+     "year": "2026",
+     "id": "2026052053957566676"
+    }
+   ]
+  },
   "malaria": {
    "class": "Thing",
    "cue": "default",
@@ -5148,6 +5172,22 @@
     "run-b70200"
    ],
    "tweets": []
+  },
+  "mind": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-788e05",
+   "first_job": "j1",
+   "source": "pick",
+   "runs": [
+    "run-788e05"
+   ],
+   "tweets": [
+    {
+     "text": "[[nomb]] - you see, this is why i mind",
+     "year": "2025"
+    }
+   ]
   },
   "missedcalls": {
    "class": "Thing",
@@ -5875,6 +5915,22 @@
     {
      "text": "feeling like the only one out here",
      "year": "2024"
+    }
+   ]
+  },
+  "own": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-788e05",
+   "first_job": "j1",
+   "source": "pick",
+   "runs": [
+    "run-788e05"
+   ],
+   "tweets": [
+    {
+     "text": "- now but i no see. na ![[heat]][[play]] own still",
+     "year": "2025"
     }
    ]
   },
@@ -11329,6 +11385,32 @@
     "pick"
    ]
   ],
+  "run-788e05": [
+   [
+    "come",
+    "Action",
+    "j1",
+    "pick"
+   ],
+   [
+    "own",
+    "Thing",
+    "j1",
+    "pick"
+   ],
+   [
+    "mind",
+    "Thing",
+    "j1",
+    "pick"
+   ],
+   [
+    "make",
+    "Action",
+    "j1",
+    "pick"
+   ]
+  ],
   "run-b70200": [
    [
     "michaeljackson",
@@ -14200,6 +14282,10 @@
   "take.left": "left(what: Thing)",
   "wye.lagos": "lagos(what: Thing)",
   "god.have": "have(what: Thing)",
+  "eez.good": "good(act: Action)",
+  "now.see": "see(what: Thing)",
+  "see.why": "why(what: Thing)",
+  "tell.say": "say(act: Action)",
   "cooler.getdatemanufactured": "getDateManufactured()",
   "ronke.getlikes.contains": "getlikes.contains()",
   "kazeem.goodqualities.filter": "filter()",
@@ -14443,6 +14529,7 @@
    ],
    "classes": [
     "Action",
+    "Frequency",
     "Manner",
     "Person",
     "Place",
@@ -14461,6 +14548,7 @@
     "lez",
     "mamaronke",
     "nobody",
+    "now",
     "order",
     "ronke",
     "teo",
@@ -14550,6 +14638,7 @@
     "road",
     "ronke",
     "stupidity",
+    "tell",
     "teo",
     "then",
     "toothbrush",
@@ -14882,6 +14971,12 @@
    "wym",
    "yeah",
    "yuwa"
+  ],
+  "run-788e05": [
+   "eez",
+   "now",
+   "see",
+   "tell"
   ]
  },
  "genre_types": {
@@ -14956,5 +15051,5 @@
   "epilogue": "quiet",
   "coda": "quiet"
  },
- "updated": "2026-11-27T20:11:42-05:00"
+ "updated": "2026-11-27T23:01:47-05:00"
 }

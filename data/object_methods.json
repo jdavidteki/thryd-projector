@@ -30106,6 +30106,333 @@
    "faded": false,
    "last_run": "run-cf203b"
   },
+  "eez.good": {
+   "object": "eez",
+   "method": "good",
+   "args": [
+    "come"
+   ],
+   "runs": [
+    "run-788e05"
+   ],
+   "defined": {
+    "run": "run-788e05",
+    "job": "j1",
+    "card": "w1",
+    "title": "eez.good(come)",
+    "emoji": "🪤",
+    "at": "2026-11-27T23:01:34-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "eez.good(come)",
+     "emoji": "🪤",
+     "arg": "come",
+     "run": "run-788e05",
+     "job": "j1",
+     "tweets": [
+      {
+       "text": "- eez good to come back [[home]] and see",
+       "year": "2025"
+      }
+     ],
+     "consequence": "What just happened: The lines that landed: \"tell am say make him come back\", \"[[nomb]] - you see, this is why i mind\", \"now but i no see.",
+     "consequence_job": "j2",
+     "resolved": "eez.good(act=come:Action) from j1",
+     "injected": [
+      {
+       "param": "act",
+       "class": "Action",
+       "instance": "come",
+       "from_run": "run-788e05",
+       "from_job": "j1",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "act",
+      "class": "Action",
+      "default": "come",
+      "first_run": "run-cf203b",
+      "first_job": "j77"
+     }
+    ],
+    "text": "good(act: Action)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "now.see": {
+   "object": "now",
+   "method": "see",
+   "args": [
+    "own"
+   ],
+   "runs": [
+    "run-788e05"
+   ],
+   "defined": {
+    "run": "run-788e05",
+    "job": "j1",
+    "card": "w1",
+    "title": "now.see(own)",
+    "emoji": "🧲",
+    "at": "2026-11-27T23:01:34-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "now.see(own)",
+     "emoji": "🧲",
+     "arg": "own",
+     "run": "run-788e05",
+     "job": "j1",
+     "tweets": [
+      {
+       "text": "- now but i no see. na ![[heat]][[play]] own still",
+       "year": "2025"
+      }
+     ],
+     "consequence": "What just happened: The lines that landed: \"tell am say make him come back\", \"[[nomb]] - you see, this is why i mind\", \"now but i no see.",
+     "consequence_job": "j2",
+     "resolved": "now.see(what=own:Thing) from j1",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "own",
+       "from_run": "run-788e05",
+       "from_job": "j1",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "own",
+      "first_run": "run-788e05",
+      "first_job": "j1"
+     }
+    ],
+    "text": "see(what: Thing)"
+   },
+   "receiver_class": "Frequency",
+   "prior": [
+    {
+     "id": "lez.see",
+     "title": "lez.see(who)",
+     "run": "run-cf203b",
+     "job": "j74",
+     "at": "2026-11-27T17:27:20-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "can.see",
+     "title": "can.see()",
+     "run": "run-cf203b",
+     "job": "j57",
+     "at": "2026-11-26T21:15:02-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "can.see",
+     "title": "can.see(code)",
+     "run": "run-cf203b",
+     "job": "j44",
+     "at": "2026-11-26T14:57:55-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "can.see",
+     "title": "can.see(how)",
+     "run": "run-cf203b",
+     "job": "j12",
+     "at": "2026-11-25T13:04:53-05:00",
+     "why": "same method"
+    }
+   ],
+   "faded": false,
+   "last_run": null
+  },
+  "see.why": {
+   "object": "see",
+   "method": "why",
+   "args": [
+    "mind"
+   ],
+   "runs": [
+    "run-788e05"
+   ],
+   "defined": {
+    "run": "run-788e05",
+    "job": "j1",
+    "card": "w1",
+    "title": "see.why(mind)",
+    "emoji": "🎈",
+    "at": "2026-11-27T23:01:34-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "see.why(mind)",
+     "emoji": "🎈",
+     "arg": "mind",
+     "run": "run-788e05",
+     "job": "j1",
+     "tweets": [
+      {
+       "text": "[[nomb]] - you see, this is why i mind",
+       "year": "2025"
+      }
+     ],
+     "consequence": "What just happened: The lines that landed: \"tell am say make him come back\", \"[[nomb]] - you see, this is why i mind\", \"now but i no see.",
+     "consequence_job": "j2",
+     "resolved": "see.why(what=mind:Thing) from j1",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "mind",
+       "from_run": "run-788e05",
+       "from_job": "j1",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "mind",
+      "first_run": "run-788e05",
+      "first_job": "j1"
+     }
+    ],
+    "text": "why(what: Thing)"
+   },
+   "receiver_class": "Action",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "tell.say": {
+   "object": "tell",
+   "method": "say",
+   "args": [
+    "make"
+   ],
+   "runs": [
+    "run-788e05"
+   ],
+   "defined": {
+    "run": "run-788e05",
+    "job": "j1",
+    "card": "w1",
+    "title": "tell.say(make)",
+    "emoji": "🪙",
+    "at": "2026-11-27T23:01:34-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "tell.say(make)",
+     "emoji": "🪙",
+     "arg": "make",
+     "run": "run-788e05",
+     "job": "j1",
+     "tweets": [
+      {
+       "text": "- tell am say make him come back",
+       "year": "2026",
+       "id": "2026052053957566676"
+      }
+     ],
+     "consequence": "What just happened: The lines that landed: \"tell am say make him come back\", \"[[nomb]] - you see, this is why i mind\", \"now but i no see.",
+     "consequence_job": "j2",
+     "resolved": "tell.say(act=make:Action) from j1",
+     "injected": [
+      {
+       "param": "act",
+       "class": "Action",
+       "instance": "make",
+       "from_run": "run-788e05",
+       "from_job": "j1",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "act",
+      "class": "Action",
+      "default": "make",
+      "first_run": "run-788e05",
+      "first_job": "j1"
+     }
+    ],
+    "text": "say(act: Action)"
+   },
+   "receiver_class": "Thing",
+   "prior": [
+    {
+     "id": "then.say",
+     "title": "then.say(iyiz)",
+     "run": "run-cf203b",
+     "job": "j51",
+     "at": "2026-11-26T18:30:47-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "stupidity.say",
+     "title": "stupidity.say(know)",
+     "run": "run-cf203b",
+     "job": "j50",
+     "at": "2026-11-26T17:54:10-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "what.say",
+     "title": "what.say()",
+     "run": "run-cf203b",
+     "job": "j34",
+     "at": "2026-11-26T11:35:21-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "teo.say",
+     "title": "teo.say(dem)",
+     "run": "run-5a58c4",
+     "job": "j36",
+     "at": "2026-11-23T23:51:56-05:00",
+     "why": "same method"
+    }
+   ],
+   "faded": false,
+   "last_run": null
+  },
   "cooler.getdatemanufactured": {
    "object": "cooler",
    "method": "getDateManufactured",
@@ -34578,7 +34905,8 @@
   "eez": [
    "eez.mad",
    "eez.getting",
-   "eez.heddie"
+   "eez.heddie",
+   "eez.good"
   ],
   "ehen": [
    "ehen.serious"
@@ -35049,7 +35377,8 @@
   "now": [
    "now.know",
    "now.got",
-   "now.una"
+   "now.una",
+   "now.see"
   ],
   "object": [
    "object.look"
@@ -35248,7 +35577,8 @@
   ],
   "see": [
    "see.ba",
-   "see.now"
+   "see.now",
+   "see.why"
   ],
   "self": [
    "self.love"
@@ -35356,6 +35686,9 @@
    "titi.listen",
    "titi.let",
    "titi.keep"
+  ],
+  "tell": [
+   "tell.say"
   ],
   "teo": [
    "teo.hide",
@@ -41189,6 +41522,7 @@
     "from": "0edd03763978",
     "title": "1215. how to [[bring down dollar]]",
     "funcs": [
+     "see.why",
      "court.order"
     ]
    },
@@ -55568,6 +55902,7 @@
     "from": "35e37a321959",
     "title": "803. satan don fall for gutter",
     "funcs": [
+     "now.see",
      "ronke.say",
      "mamaronke.claim"
     ]
@@ -57451,6 +57786,7 @@
     "from": "1d08b133d292",
     "title": "918. and then the yoruba christians",
     "funcs": [
+     "eez.good",
      "art.look"
     ]
    }
@@ -60401,6 +60737,15 @@
    "safe": "40a61eb8865b",
    "funcs": []
   },
+  "run-788e05": {
+   "safe": "08a8466187dc",
+   "funcs": [
+    "eez.good",
+    "now.see",
+    "see.why",
+    "tell.say"
+   ]
+  },
   "run-7c51d3": {
    "safe": "35e37a321959",
    "funcs": []
@@ -60879,6 +61224,18 @@
    ],
    "runs": []
   },
+  "08a8466187dc": {
+   "title": "829. oyinboman juju",
+   "funcs": [
+    "eez.good",
+    "now.see",
+    "see.why",
+    "tell.say"
+   ],
+   "runs": [
+    "run-788e05"
+   ]
+  },
   "08ae9d49aa5e": {
    "title": "1029. convince you",
    "funcs": [
@@ -60985,7 +61342,8 @@
   "0edd03763978": {
    "title": "1215. how to [[bring down dollar]]",
    "funcs": [
-    "court.order"
+    "court.order",
+    "see.why"
    ],
    "runs": []
   },
@@ -61143,7 +61501,8 @@
   "1d08b133d292": {
    "title": "918. and then the yoruba christians",
    "funcs": [
-    "art.look"
+    "art.look",
+    "eez.good"
    ],
    "runs": []
   },
@@ -61372,7 +61731,8 @@
    "title": "803. satan don fall for gutter",
    "funcs": [
     "mamaronke.claim",
-    "ronke.say"
+    "ronke.say",
+    "now.see"
    ],
    "runs": [
     "run-7c51d3"
@@ -64442,6 +64802,9 @@
   "1*OxKnomuHjOiACr_RO6u1fw.gif": [
    "2dc47878adf9"
   ],
+  "1*9nvX_VwLJViyKMM13fgZXQ.gif": [
+   "08a8466187dc"
+  ],
   "1*IQXI1PQrQf5fqcxwKtd49Q.gif": [
    "c5f656640dae"
   ],
@@ -66119,7 +66482,8 @@
   "eez": [
    "eez.mad",
    "eez.getting",
-   "eez.heddie"
+   "eez.heddie",
+   "eez.good"
   ],
   "ehen": [
    "ehen.serious"
@@ -66507,7 +66871,8 @@
   "now": [
    "now.know",
    "now.got",
-   "now.una"
+   "now.una",
+   "now.see"
   ],
   "object": [
    "object.look"
@@ -66677,7 +67042,8 @@
   ],
   "see": [
    "see.ba",
-   "see.now"
+   "see.now",
+   "see.why"
   ],
   "self": [
    "self.love"
@@ -66765,6 +67131,9 @@
   ],
   "taraji": [
    "taraji.measure"
+  ],
+  "tell": [
+   "tell.say"
   ],
   "teo": [
    "teo.hide",
@@ -67300,7 +67669,8 @@
   "if": [],
   "namco": [],
   "now": [
-   "Readable"
+   "Readable",
+   "Watchable"
   ],
   "way": [],
   "j": [],
@@ -67349,6 +67719,9 @@
   "take": [],
   "wye": [],
   "god": [],
+  "tell": [
+   "Speakable"
+  ],
   "cooler": [],
   "kazeem.goodqualities": [],
   "app": [],
@@ -67717,6 +68090,12 @@
    "wym",
    "yeah",
    "yuwa"
+  ],
+  "run-788e05": [
+   "eez",
+   "now",
+   "see",
+   "tell"
   ]
  },
  "gc": {
@@ -67732,5 +68111,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-27T20:59:58-05:00"
+ "updated": "2026-11-27T23:01:48-05:00"
 }
