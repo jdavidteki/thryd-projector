@@ -29195,12 +29195,12 @@
      ],
      "consequence": "The lines that landed: \"eez now dat all the good lines\", \"old people doing things the old people way.",
      "consequence_job": "j5",
-     "resolved": "old.people(what=doing:Thing) from j4",
+     "resolved": "old.people(what=good:Thing) from j4",
      "injected": [
       {
        "param": "what",
        "class": "Thing",
-       "instance": "doing",
+       "instance": "good",
        "from_run": "run-788e05",
        "from_job": "j4",
        "source": "pick"
@@ -32248,6 +32248,296 @@
    "prior": [],
    "faded": false,
    "last_run": "run-788e05"
+  },
+  "baba.draw": {
+   "object": "baba",
+   "method": "draw",
+   "args": [
+    "wan"
+   ],
+   "runs": [
+    "run-788e05"
+   ],
+   "defined": {
+    "run": "run-788e05",
+    "job": "j9",
+    "card": "w9",
+    "title": "baba.draw(wan)",
+    "emoji": "🧂",
+    "at": "2026-11-28T01:08:09-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "baba.draw(wan)",
+     "emoji": "🧂",
+     "arg": "wan",
+     "run": "run-788e05",
+     "job": "j9",
+     "tweets": [
+      {
+       "text": "- no, baba draw wan line the oda day",
+       "year": "2026",
+       "id": "2024979952890761510"
+      }
+     ],
+     "consequence": "What just happened: The last card asked for the next line, the one that answers \"call him for me, i'll give him that\".",
+     "consequence_job": "j9",
+     "resolved": "baba.draw(what=wan:Thing) from j9",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "wan",
+       "from_run": "run-788e05",
+       "from_job": "j9",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "wan",
+      "first_run": "run-5a58c4",
+      "first_job": "j26"
+     }
+    ],
+    "text": "draw(what: Thing)"
+   },
+   "receiver_class": "Person",
+   "prior": [
+    {
+     "id": "calla.draw",
+     "title": "calla.draw(water)",
+     "run": "run-5a58c4",
+     "job": "j42",
+     "at": "2026-11-24T01:36:54-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "folake.draw",
+     "title": "folake.draw(lines)",
+     "run": "run-g1-B",
+     "job": "j11",
+     "at": "2026-11-17T18:25:59-05:00",
+     "why": "same method"
+    }
+   ],
+   "faded": false,
+   "last_run": null
+  },
+  "because.yuwa": {
+   "object": "because",
+   "method": "yuwa",
+   "args": [
+    "doing"
+   ],
+   "runs": [
+    "run-788e05"
+   ],
+   "defined": {
+    "run": "run-788e05",
+    "job": "j9",
+    "card": "w9",
+    "title": "because.yuwa(doing)",
+    "emoji": "🥥",
+    "at": "2026-11-28T01:08:09-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "because.yuwa(doing)",
+     "emoji": "🥥",
+     "arg": "doing",
+     "run": "run-788e05",
+     "job": "j9",
+     "tweets": [
+      {
+       "text": "- because yuwa doing like you dont know him",
+       "year": "2024"
+      }
+     ],
+     "consequence": "What just happened: The last card asked for the next line, the one that answers \"call him for me, i'll give him that\".",
+     "consequence_job": "j9",
+     "resolved": "because.yuwa(what=doing:Thing) from j9",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "doing",
+       "from_run": "run-788e05",
+       "from_job": "j9",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "doing",
+      "first_run": "run-cf203b",
+      "first_job": "j75"
+     }
+    ],
+    "text": "yuwa(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "people.look": {
+   "object": "people",
+   "method": "look",
+   "args": [
+    "him"
+   ],
+   "runs": [
+    "run-788e05"
+   ],
+   "defined": {
+    "run": "run-788e05",
+    "job": "j9",
+    "card": "w9",
+    "title": "people.look(him)",
+    "emoji": "🍯",
+    "at": "2026-11-28T01:08:09-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "people.look(him)",
+     "emoji": "🍯",
+     "arg": "him",
+     "run": "run-788e05",
+     "job": "j9",
+     "tweets": [
+      {
+       "text": "#seniorboys — people look at him and see money",
+       "year": "2025"
+      }
+     ],
+     "consequence": "What just happened: The last card asked for the next line, the one that answers \"call him for me, i'll give him that\".",
+     "consequence_job": "j9",
+     "resolved": "people.look(who=him:Person) from j9",
+     "injected": [
+      {
+       "param": "who",
+       "class": "Person",
+       "instance": "him",
+       "from_run": "run-788e05",
+       "from_job": "j9",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "who",
+      "class": "Person",
+      "default": "him",
+      "first_run": "run-cf203b",
+      "first_job": "j34"
+     }
+    ],
+    "text": "look(who: Person)"
+   },
+   "receiver_class": "Person",
+   "prior": [
+    {
+     "id": "art.look",
+     "title": "art.look(subjective)",
+     "run": "run-888ea9",
+     "job": "j11",
+     "at": "2026-11-23T22:45:57-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "object.look",
+     "title": "object.look(ladipoe)",
+     "run": "run-888ea9",
+     "job": "j7",
+     "at": "2026-11-23T18:37:05-05:00",
+     "why": "same method"
+    }
+   ],
+   "faded": false,
+   "last_run": null
+  },
+  "still.think": {
+   "object": "still",
+   "method": "think",
+   "args": [
+    "about"
+   ],
+   "runs": [
+    "run-788e05"
+   ],
+   "defined": {
+    "run": "run-788e05",
+    "job": "j9",
+    "card": "w9",
+    "title": "still.think(about)",
+    "emoji": "🥁",
+    "at": "2026-11-28T01:08:09-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "still.think(about)",
+     "emoji": "🥁",
+     "arg": "about",
+     "run": "run-788e05",
+     "job": "j9",
+     "tweets": [],
+     "consequence": "What just happened: The last card asked for the next line, the one that answers \"call him for me, i'll give him that\".",
+     "consequence_job": "j9",
+     "resolved": "still.think(what=about:Thing) from j9",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "about",
+       "from_run": "run-788e05",
+       "from_job": "j9",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "about",
+      "first_run": "run-cf203b",
+      "first_job": "j31"
+     }
+    ],
+    "text": "think(what: Thing)"
+   },
+   "receiver_class": "Frequency",
+   "prior": [],
+   "faded": false,
+   "last_run": null
   },
   "cooler.getdatemanufactured": {
    "object": "cooler",
@@ -36568,6 +36858,9 @@
   "ayok_focus_figure_second": [
    "woman.setname"
   ],
+  "baba": [
+   "baba.draw"
+  ],
   "back_row_chemistry_subject_third": [
    "person.rest"
   ],
@@ -36580,7 +36873,8 @@
   "because": [
    "because.ure",
    "because.people",
-   "because.last"
+   "because.last",
+   "because.yuwa"
   ],
   "beef_figure": [
    "person.rest"
@@ -37942,7 +38236,8 @@
   ],
   "people": [
    "people.getocsw",
-   "people.everybody"
+   "people.everybody",
+   "people.look"
   ],
   "people_scene_figure": [
    "person.rest"
@@ -38276,6 +38571,9 @@
   ],
   "steal_god_figure": [
    "person.rest"
+  ],
+  "still": [
+   "still.think"
   ],
   "stomach": [
    "stomach.infrastructure"
@@ -63576,6 +63874,10 @@
     "eez.like",
     "poor.family",
     "see.jollz",
+    "baba.draw",
+    "because.yuwa",
+    "people.look",
+    "still.think",
     "thryd.importtheme",
     "chrome.add",
     "thryd.log",
@@ -64091,7 +64393,11 @@
     "tole.guy",
     "eez.like",
     "poor.family",
-    "see.jollz"
+    "see.jollz",
+    "baba.draw",
+    "because.yuwa",
+    "people.look",
+    "still.think"
    ],
    "runs": [
     "run-788e05"
@@ -65832,7 +66138,8 @@
   "9ef5a1153057": {
    "title": "1124. this is very very veerrrryyyyyy important",
    "funcs": [
-    "teo.guess"
+    "teo.guess",
+    "people.look"
    ],
    "runs": []
   },
@@ -65867,7 +66174,8 @@
   "a574892d43f3": {
    "title": "1104. i say laugh",
    "funcs": [
-    "calla.laugh"
+    "calla.laugh",
+    "because.yuwa"
    ],
    "runs": []
   },
@@ -69238,13 +69546,17 @@
   "attendant": [
    "attendant.put"
   ],
+  "baba": [
+   "baba.draw"
+  ],
   "beat": [
    "beat.out"
   ],
   "because": [
    "because.ure",
    "because.people",
-   "because.last"
+   "because.last",
+   "because.yuwa"
   ],
   "believe": [
    "believe.can"
@@ -69897,7 +70209,8 @@
   ],
   "people": [
    "people.getocsw",
-   "people.everybody"
+   "people.everybody",
+   "people.look"
   ],
   "pepe": [
    "pepe.settink"
@@ -70100,6 +70413,9 @@
   ],
   "stay": [
    "stay.above"
+  ],
+  "still": [
+   "still.think"
   ],
   "stomach": [
    "stomach.infrastructure"
@@ -70749,6 +71065,8 @@
   "there": [],
   "tole": [],
   "poor": [],
+  "baba": [],
+  "still": [],
   "cooler": [],
   "kazeem.goodqualities": [],
   "app": [],
@@ -71122,6 +71440,8 @@
   ],
   "run-788e05": [
    "anyway",
+   "baba",
+   "because",
    "call",
    "chugging",
    "condolences",
@@ -71135,6 +71455,7 @@
    "good",
    "now",
    "old",
+   "people",
    "person",
    "poor",
    "samson",
@@ -71142,6 +71463,7 @@
    "shoot",
    "society",
    "somebody",
+   "still",
    "tell",
    "there",
    "tole",
@@ -71162,5 +71484,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-28T00:51:39-05:00"
+ "updated": "2026-11-28T01:08:17-05:00"
 }
