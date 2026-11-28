@@ -72,7 +72,7 @@
  "lines": 302,
  "next_lock_at_lines": 302,
  "lock_open": true,
- "at": "2026-11-27T20:55:55-05:00",
+ "at": "2026-11-27T20:57:32-05:00",
  "pinned": true,
  "waiting": true,
  "seated_job": "j79",
@@ -85,13 +85,6 @@
  },
  "pending": null,
  "resolved": [
-  {
-   "event_id": "pick-ab5f573a-8a8f-4219-8af9-efe9b5108928",
-   "type": "card_pick",
-   "status": "seated",
-   "job": "j73",
-   "action": null
-  },
   {
    "event_id": "pick-4f02279e-d5fa-4ce0-8b83-fcb1e0cb1241",
    "type": "card_pick",
@@ -171,54 +164,39 @@
    "job": "j79",
    "action": "menu: More",
    "note": "opened on the panel"
+  },
+  {
+   "event_id": "menu-539ee630-7620-4eef-826c-b9fe8cf98086",
+   "type": "menu_action",
+   "status": "done",
+   "job": "j79",
+   "action": "menu: Seed an agenda"
   }
  ],
  "async_jobs": [],
  "sheet": {
-  "kind": "more",
-  "prompt": "⋯ More",
-  "helpText": "Move, the Hold views, the story diagram, [[hpr]], the Lovemap and Podcasts. Tweets is on the lock row. The × closes this box.",
+  "kind": "minutes",
+  "prompt": "How many minutes?",
+  "helpText": "How long is this sitting? 30 min is 18 lines, 1 hr is 35, 2 hrs is 65 (about 9 lines / 16 min per card). Type a custom length if you like.",
   "options": [
    {
-    "label": "🧭 Move",
-    "value": "menu: Move",
-    "safe": "Moves a person or thing in the story. The Chief of Staff handles it."
+    "label": "30 min",
+    "value": "minutes: 30",
+    "safe": "18 lines (about 9 lines / 16 min per card)"
    },
    {
-    "label": "🧠 story model",
-    "value": "hold: story model",
-    "safe": "a story is a person: object circles are neurons, edges are synapses, sold as a 3D model"
+    "label": "1 hr",
+    "value": "minutes: 60",
+    "safe": "35 lines (about 9 lines / 16 min per card)"
    },
    {
-    "label": "📜 view story plot",
-    "value": "hold: view story plot",
-    "safe": "the story so far in plain words: cast, main thread, edges, objects, open threads, shape, and what it is still waiting for"
-   },
-   {
-    "label": "🖼️ Story diagram",
-    "value": "menu: view story diagram",
-    "safe": "The painted story building on the projector site."
-   },
-   {
-    "label": "🐦 [[hpr]]",
-    "value": "menu: [[hpr]]",
-    "safe": "Opens the hpr job. The Chief of Staff handles it."
-   },
-   {
-    "label": "🗺️ Lovemap",
-    "value": "menu: Lovemap",
-    "href": "https://jdavidteki.github.io/thryd-projector/",
-    "safe": "Opens the lovemap page."
-   },
-   {
-    "label": "🎙️ Podcasts",
-    "value": "menu: Podcasts",
-    "href": "https://jdavidteki.github.io/thryd-projector/podcasts/",
-    "safe": "Opens the podcasts page."
+    "label": "2 hrs",
+    "value": "minutes: 120",
+    "safe": "65 lines (about 9 lines / 16 min per card)"
    }
   ],
-  "allowCustom": false,
-  "at": "2026-11-27T20:55:55-05:00",
-  "source_action": "menu: More"
+  "allowCustom": true,
+  "at": "2026-11-27T20:57:30-05:00",
+  "source_action": "menu: Seed an agenda"
  }
 }
