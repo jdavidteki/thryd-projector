@@ -30094,7 +30094,8 @@
     "offended"
    ],
    "runs": [
-    "run-cf203b"
+    "run-cf203b",
+    "run-788e05"
    ],
    "defined": {
     "run": "run-cf203b",
@@ -30104,8 +30105,35 @@
     "emoji": "🍱",
     "at": "2026-11-27T20:11:21-05:00"
    },
-   "calls": 0,
+   "calls": 1,
    "titles": [
+    {
+     "title": "god.have(offended)",
+     "emoji": "🦀",
+     "arg": "offended",
+     "run": "run-788e05",
+     "job": "j8",
+     "tweets": [
+      {
+       "text": "God, if we have offended you, just say that. because see now 😔",
+       "year": "2023",
+       "id": "1640388642291040256"
+      }
+     ],
+     "consequence": "The lines that landed: \"#seniorgehs -- eez like eez bad but i can't stop staring\", \"na poor family dey get too much family secrets.\", \"God, if we have offended you, just say that.",
+     "consequence_job": "j9",
+     "resolved": "god.have(what=offended:Thing) from j8",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "offended",
+       "from_run": "run-788e05",
+       "from_job": "j8",
+       "source": "pick"
+      }
+     ]
+    },
     {
      "title": "god.have(offended)",
      "emoji": "🍱",
@@ -30168,7 +30196,7 @@
     }
    ],
    "faded": false,
-   "last_run": "run-cf203b"
+   "last_run": "run-788e05"
   },
   "eez.good": {
    "object": "eez",
@@ -31984,6 +32012,239 @@
     "text": "guy(what: Thing)"
    },
    "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": "run-788e05"
+  },
+  "eez.like": {
+   "object": "eez",
+   "method": "like",
+   "args": [
+    "bad"
+   ],
+   "runs": [
+    "run-788e05"
+   ],
+   "defined": {
+    "run": "run-788e05",
+    "job": "j8",
+    "card": "w8",
+    "title": "eez.like(bad)",
+    "emoji": "🦉",
+    "at": "2026-11-28T00:50:09-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "eez.like(bad)",
+     "emoji": "🦉",
+     "arg": "bad",
+     "run": "run-788e05",
+     "job": "j8",
+     "tweets": [
+      {
+       "text": "#seniorgehs -- eez like eez bad but i can't stop staring",
+       "year": "2025"
+      }
+     ],
+     "consequence": "The lines that landed: \"#seniorgehs -- eez like eez bad but i can't stop staring\", \"na poor family dey get too much family secrets.\", \"God, if we have offended you, just say that.",
+     "consequence_job": "j9",
+     "resolved": "eez.like(feeling=bad:Feeling) from j8",
+     "injected": [
+      {
+       "param": "feeling",
+       "class": "Feeling",
+       "instance": "bad",
+       "from_run": "run-788e05",
+       "from_job": "j8",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "feeling",
+      "class": "Feeling",
+      "default": "bad",
+      "first_run": "run-5a58c4",
+      "first_job": "j30"
+     }
+    ],
+    "text": "like(feeling: Feeling)"
+   },
+   "receiver_class": "Thing",
+   "prior": [
+    {
+     "id": "feeling.like",
+     "title": "feeling.like(only)",
+     "run": "run-cf203b",
+     "job": "j53",
+     "at": "2026-11-26T19:10:53-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "disgusting.like",
+     "title": "disgusting.like(sheettt)",
+     "run": "run-cf203b",
+     "job": "j50",
+     "at": "2026-11-26T17:54:10-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "dont.like",
+     "title": "dont.like(senrenre)",
+     "run": "run-cf203b",
+     "job": "j35",
+     "at": "2026-11-26T11:47:28-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "sounded.like",
+     "title": "sounded.like(give)",
+     "run": "run-cf203b",
+     "job": "j32",
+     "at": "2026-11-26T02:08:31-05:00",
+     "why": "same method"
+    }
+   ],
+   "faded": false,
+   "last_run": "run-788e05"
+  },
+  "poor.family": {
+   "object": "poor",
+   "method": "family",
+   "args": [
+    "get"
+   ],
+   "runs": [
+    "run-788e05"
+   ],
+   "defined": {
+    "run": "run-788e05",
+    "job": "j8",
+    "card": "w8",
+    "title": "poor.family(get)",
+    "emoji": "🐌",
+    "at": "2026-11-28T00:50:09-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "poor.family(get)",
+     "emoji": "🐌",
+     "arg": "get",
+     "run": "run-788e05",
+     "job": "j8",
+     "tweets": [
+      {
+       "text": "na poor family dey get too much family secrets.",
+       "year": "2022",
+       "id": "1559361955378466818"
+      }
+     ],
+     "consequence": "The lines that landed: \"#seniorgehs -- eez like eez bad but i can't stop staring\", \"na poor family dey get too much family secrets.\", \"God, if we have offended you, just say that.",
+     "consequence_job": "j9",
+     "resolved": "poor.family(what=get:Thing) from j8",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "get",
+       "from_run": "run-788e05",
+       "from_job": "j8",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "get",
+      "first_run": "run-5a58c4",
+      "first_job": "j39"
+     }
+    ],
+    "text": "family(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [
+    {
+     "id": "condolences.family",
+     "title": "condolences.family(really)",
+     "run": "run-788e05",
+     "job": "j2",
+     "at": "2026-11-27T23:30:09-05:00",
+     "why": "same method"
+    }
+   ],
+   "faded": false,
+   "last_run": "run-788e05"
+  },
+  "see.jollz": {
+   "object": "see",
+   "method": "jollz",
+   "args": [
+    "una"
+   ],
+   "runs": [
+    "run-788e05"
+   ],
+   "defined": {
+    "run": "run-788e05",
+    "job": "j8",
+    "card": "w8",
+    "title": "see.jollz(una)",
+    "emoji": "🍋",
+    "at": "2026-11-28T00:50:09-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "see.jollz(una)",
+     "emoji": "🍋",
+     "arg": "una",
+     "run": "run-788e05",
+     "job": "j8",
+     "tweets": [],
+     "consequence": "because see now 😔\" and \"see see @jollz - una no hear about nigerian airways?",
+     "consequence_job": "j9",
+     "resolved": "see.jollz(who=una:Person) from j8",
+     "injected": [
+      {
+       "param": "who",
+       "class": "Person",
+       "instance": "una",
+       "from_run": "run-788e05",
+       "from_job": "j8",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "who",
+      "class": "Person",
+      "default": "una",
+      "first_run": "run-cf203b",
+      "first_job": "j19"
+     }
+    ],
+    "text": "jollz(who: Person)"
+   },
+   "receiver_class": "Action",
    "prior": [],
    "faded": false,
    "last_run": "run-788e05"
@@ -36775,7 +37036,8 @@
    "eez.getting",
    "eez.heddie",
    "eez.good",
-   "eez.now"
+   "eez.now",
+   "eez.like"
   ],
   "ehen": [
    "ehen.serious"
@@ -37712,6 +37974,9 @@
   "point_kill_figure": [
    "person.rest"
   ],
+  "poor": [
+   "poor.family"
+  ],
   "portable_subject": [
    "object.look"
   ],
@@ -37907,7 +38172,8 @@
   "see": [
    "see.ba",
    "see.now",
-   "see.why"
+   "see.why",
+   "see.jollz"
   ],
   "self": [
    "self.love"
@@ -62240,6 +62506,7 @@
     "from": "db02d908b461",
     "title": "823. your wife will understand",
     "funcs": [
+     "eez.like",
      "yuwa.best",
      "boze.watch",
      "calla.stare",
@@ -63282,6 +63549,7 @@
    "funcs": [
     "old.people",
     "see.now",
+    "god.have",
     "eez.good",
     "now.see",
     "see.why",
@@ -63305,6 +63573,9 @@
     "somebody.tell",
     "there.line",
     "tole.guy",
+    "eez.like",
+    "poor.family",
+    "see.jollz",
     "thryd.importtheme",
     "chrome.add",
     "thryd.log",
@@ -63794,6 +64065,7 @@
    "funcs": [
     "old.people",
     "see.now",
+    "god.have",
     "eez.good",
     "now.see",
     "see.why",
@@ -63816,7 +64088,10 @@
     "call.him",
     "somebody.tell",
     "there.line",
-    "tole.guy"
+    "tole.guy",
+    "eez.like",
+    "poor.family",
+    "see.jollz"
    ],
    "runs": [
     "run-788e05"
@@ -66173,7 +66448,8 @@
     "dez.sit",
     "calla.stare",
     "boze.watch",
-    "yuwa.best"
+    "yuwa.best",
+    "eez.like"
    ],
    "runs": []
   },
@@ -69176,7 +69452,8 @@
    "eez.getting",
    "eez.heddie",
    "eez.good",
-   "eez.now"
+   "eez.now",
+   "eez.like"
   ],
   "ehen": [
    "ehen.serious"
@@ -69637,6 +69914,9 @@
   "pink": [
    "pink.face"
   ],
+  "poor": [
+   "poor.family"
+  ],
   "poty": [
    "poty.asin"
   ],
@@ -69749,7 +70029,8 @@
   "see": [
    "see.ba",
    "see.now",
-   "see.why"
+   "see.why",
+   "see.jollz"
   ],
   "self": [
    "self.love"
@@ -70467,6 +70748,7 @@
   "somebody": [],
   "there": [],
   "tole": [],
+  "poor": [],
   "cooler": [],
   "kazeem.goodqualities": [],
   "app": [],
@@ -70849,10 +71131,12 @@
    "dyeriz",
    "eez",
    "go",
+   "god",
    "good",
    "now",
    "old",
    "person",
+   "poor",
    "samson",
    "see",
    "shoot",
@@ -70878,5 +71162,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-28T00:41:44-05:00"
+ "updated": "2026-11-28T00:51:39-05:00"
 }

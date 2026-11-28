@@ -109,7 +109,7 @@
     "say",
     "find"
    ],
-   "instances": 546,
+   "instances": 548,
    "arg_instances": 215,
    "parent": null,
    "chain": [
@@ -891,7 +891,8 @@
    "first_job": "j30",
    "source": "pick",
    "runs": [
-    "run-5a58c4"
+    "run-5a58c4",
+    "run-788e05"
    ],
    "tweets": [
     {
@@ -3299,9 +3300,16 @@
    "first_job": "j39",
    "source": "pick",
    "runs": [
-    "run-5a58c4"
+    "run-5a58c4",
+    "run-788e05"
    ],
-   "tweets": []
+   "tweets": [
+    {
+     "text": "na poor family dey get too much family secrets.",
+     "year": "2022",
+     "id": "1559361955378466818"
+    }
+   ]
   },
   "give": {
    "class": "Thing",
@@ -4480,6 +4488,28 @@
      "year": "2025"
     }
    ]
+  },
+  "kikerecords": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-788e05",
+   "first_job": "j8",
+   "source": "typed",
+   "runs": [
+    "run-788e05"
+   ],
+   "tweets": []
+  },
+  "kingdrewsky": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-788e05",
+   "first_job": "j8",
+   "source": "typed",
+   "runs": [
+    "run-788e05"
+   ],
+   "tweets": []
   },
   "kishin": {
    "class": "Place",
@@ -5996,7 +6026,8 @@
    "first_job": "j79",
    "source": "pick",
    "runs": [
-    "run-cf203b"
+    "run-cf203b",
+    "run-788e05"
    ],
    "tweets": [
     {
@@ -8902,7 +8933,8 @@
    "first_job": "j19",
    "source": "pick",
    "runs": [
-    "run-cf203b"
+    "run-cf203b",
+    "run-788e05"
    ],
    "tweets": [
     {
@@ -11769,6 +11801,30 @@
     "pick"
    ],
    [
+    "offended",
+    "Thing",
+    "j8",
+    "pick"
+   ],
+   [
+    "bad",
+    "Feeling",
+    "j8",
+    "pick"
+   ],
+   [
+    "get",
+    "Thing",
+    "j8",
+    "pick"
+   ],
+   [
+    "una",
+    "Person",
+    "j8",
+    "pick"
+   ],
+   [
     "fireboydml",
     "Thing",
     "j2",
@@ -11814,6 +11870,18 @@
     "socialite",
     "Thing",
     "j7",
+    "typed"
+   ],
+   [
+    "kikerecords",
+    "Thing",
+    "j8",
+    "typed"
+   ],
+   [
+    "kingdrewsky",
+    "Thing",
+    "j8",
     "typed"
    ]
   ],
@@ -14711,6 +14779,9 @@
   "somebody.tell": "tell(what: Thing)",
   "there.line": "line(when: Frequency)",
   "tole.guy": "guy(what: Thing)",
+  "eez.like": "like(feeling: Feeling)",
+  "poor.family": "family(what: Thing)",
+  "see.jollz": "jollz(who: Person)",
   "cooler.getdatemanufactured": "getDateManufactured()",
   "ronke.getlikes.contains": "getlikes.contains()",
   "kazeem.goodqualities.filter": "filter()",
@@ -15417,10 +15488,12 @@
    "dyeriz",
    "eez",
    "go",
+   "god",
    "good",
    "now",
    "old",
    "person",
+   "poor",
    "samson",
    "see",
    "shoot",
@@ -15504,5 +15577,5 @@
   "epilogue": "quiet",
   "coda": "quiet"
  },
- "updated": "2026-11-28T00:40:54-05:00"
+ "updated": "2026-11-28T00:50:49-05:00"
 }
