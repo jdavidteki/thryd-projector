@@ -95,7 +95,7 @@
  "lines": 40,
  "next_lock_at_lines": 71,
  "lock_open": false,
- "at": "2026-11-28T01:38:51-05:00",
+ "at": "2026-11-28T02:33:44-05:00",
  "pinned": true,
  "last_seat": {
   "job": "j10",
@@ -107,32 +107,8 @@
   ],
   "at": "2026-11-28T01:38:51-05:00"
  },
- "pending": {
-  "menu": [
-   {
-    "label": "📣 Publish",
-    "at": "2026-11-28T01:10:27-05:00",
-    "action": "publish!",
-    "event_id": "menu-281c0d13-7f59-4873-b47f-91d595be59de",
-    "note": "Publish is with the Chief of Staff — they will pack it from here."
-   }
-  ]
- },
+ "pending": null,
  "resolved": [
-  {
-   "event_id": "pick-a83cf4e0-cdac-47eb-bd99-b9e1304a92a1",
-   "type": "card_pick",
-   "status": "seated",
-   "job": "j3",
-   "action": null
-  },
-  {
-   "event_id": "pick-e6820f3e-3ef7-4d5a-8448-9c2fa1abf0a9",
-   "type": "card_pick",
-   "status": "seated",
-   "job": "j4",
-   "action": null
-  },
   {
    "event_id": "pick-83c9df26-393d-4ce0-973e-b7b31d22ae3e",
    "type": "card_pick",
@@ -193,6 +169,14 @@
    "action": null
   },
   {
+   "event_id": "menu-281c0d13-7f59-4873-b47f-91d595be59de",
+   "type": "menu_action",
+   "status": "cancelled",
+   "job": "j9",
+   "action": "publish!",
+   "note": "cancelled"
+  },
+  {
    "event_id": "menu-f2d113b3-00c0-4eab-b1c4-34ed082cb517",
    "type": "menu_action",
    "status": "done",
@@ -206,7 +190,1249 @@
    "status": "seated",
    "job": "j10",
    "action": null
+  },
+  {
+   "event_id": "menu-62195ec6-fa8e-4464-b835-ef1e633035de",
+   "type": "menu_action",
+   "status": "done",
+   "job": "j11",
+   "action": "menu: Prayer jobs"
   }
  ],
- "async_jobs": []
+ "async_jobs": [],
+ "sheet": {
+  "kind": "prayers",
+  "prompt": "🙏 Prayer jobs · 38 open, 5 at a time",
+  "helpText": "About 5 prayer cards at a time. Tap Yes or No on any card; use Next for more. Menu 🏠 leaves them unanswered and closes this box.",
+  "options": [
+   {
+    "label": "Yes 🙏",
+    "value": "prayer: run-bd649b p1: yes"
+   },
+   {
+    "label": "No ✋",
+    "value": "prayer: run-bd649b p1: no"
+   },
+   {
+    "label": "Menu 🏠",
+    "value": "prayer: run-bd649b p1: menu"
+   },
+   {
+    "label": "Yes 🙏",
+    "value": "prayer: run-dfd59e p5: yes"
+   },
+   {
+    "label": "No ✋",
+    "value": "prayer: run-dfd59e p5: no"
+   },
+   {
+    "label": "Menu 🏠",
+    "value": "prayer: run-dfd59e p5: menu"
+   },
+   {
+    "label": "Yes 🙏",
+    "value": "prayer: run-dfd59e p4: yes"
+   },
+   {
+    "label": "No ✋",
+    "value": "prayer: run-dfd59e p4: no"
+   },
+   {
+    "label": "Menu 🏠",
+    "value": "prayer: run-dfd59e p4: menu"
+   },
+   {
+    "label": "Yes 🙏",
+    "value": "prayer: run-dfd59e p3: yes"
+   },
+   {
+    "label": "No ✋",
+    "value": "prayer: run-dfd59e p3: no"
+   },
+   {
+    "label": "Menu 🏠",
+    "value": "prayer: run-dfd59e p3: menu"
+   },
+   {
+    "label": "Yes 🙏",
+    "value": "prayer: run-dfd59e p2: yes"
+   },
+   {
+    "label": "No ✋",
+    "value": "prayer: run-dfd59e p2: no"
+   },
+   {
+    "label": "Menu 🏠",
+    "value": "prayer: run-dfd59e p2: menu"
+   },
+   {
+    "label": "Yes 🙏",
+    "value": "prayer: run-dfd59e p1: yes"
+   },
+   {
+    "label": "No ✋",
+    "value": "prayer: run-dfd59e p1: no"
+   },
+   {
+    "label": "Menu 🏠",
+    "value": "prayer: run-dfd59e p1: menu"
+   },
+   {
+    "label": "Yes 🙏",
+    "value": "prayer: run-cb805f p7: yes"
+   },
+   {
+    "label": "No ✋",
+    "value": "prayer: run-cb805f p7: no"
+   },
+   {
+    "label": "Menu 🏠",
+    "value": "prayer: run-cb805f p7: menu"
+   },
+   {
+    "label": "Yes 🙏",
+    "value": "prayer: run-cb805f p6: yes"
+   },
+   {
+    "label": "No ✋",
+    "value": "prayer: run-cb805f p6: no"
+   },
+   {
+    "label": "Menu 🏠",
+    "value": "prayer: run-cb805f p6: menu"
+   },
+   {
+    "label": "Yes 🙏",
+    "value": "prayer: run-0e8c p5: yes"
+   },
+   {
+    "label": "No ✋",
+    "value": "prayer: run-0e8c p5: no"
+   },
+   {
+    "label": "Menu 🏠",
+    "value": "prayer: run-0e8c p5: menu"
+   },
+   {
+    "label": "Yes 🙏",
+    "value": "prayer: run-0e8c p4: yes"
+   },
+   {
+    "label": "No ✋",
+    "value": "prayer: run-0e8c p4: no"
+   },
+   {
+    "label": "Menu 🏠",
+    "value": "prayer: run-0e8c p4: menu"
+   },
+   {
+    "label": "Yes 🙏",
+    "value": "prayer: run-0e8c p3: yes"
+   },
+   {
+    "label": "No ✋",
+    "value": "prayer: run-0e8c p3: no"
+   },
+   {
+    "label": "Menu 🏠",
+    "value": "prayer: run-0e8c p3: menu"
+   },
+   {
+    "label": "Yes 🙏",
+    "value": "prayer: run-0e8c p2: yes"
+   },
+   {
+    "label": "No ✋",
+    "value": "prayer: run-0e8c p2: no"
+   },
+   {
+    "label": "Menu 🏠",
+    "value": "prayer: run-0e8c p2: menu"
+   },
+   {
+    "label": "Yes 🙏",
+    "value": "prayer: run-0e8c p1: yes"
+   },
+   {
+    "label": "No ✋",
+    "value": "prayer: run-0e8c p1: no"
+   },
+   {
+    "label": "Menu 🏠",
+    "value": "prayer: run-0e8c p1: menu"
+   },
+   {
+    "label": "Yes 🙏",
+    "value": "prayer: run-2716 p23: yes"
+   },
+   {
+    "label": "No ✋",
+    "value": "prayer: run-2716 p23: no"
+   },
+   {
+    "label": "Menu 🏠",
+    "value": "prayer: run-2716 p23: menu"
+   },
+   {
+    "label": "Yes 🙏",
+    "value": "prayer: run-2716 p22: yes"
+   },
+   {
+    "label": "No ✋",
+    "value": "prayer: run-2716 p22: no"
+   },
+   {
+    "label": "Menu 🏠",
+    "value": "prayer: run-2716 p22: menu"
+   },
+   {
+    "label": "Yes 🙏",
+    "value": "prayer: run-2716 p21: yes"
+   },
+   {
+    "label": "No ✋",
+    "value": "prayer: run-2716 p21: no"
+   },
+   {
+    "label": "Menu 🏠",
+    "value": "prayer: run-2716 p21: menu"
+   },
+   {
+    "label": "Yes 🙏",
+    "value": "prayer: run-2716 p20: yes"
+   },
+   {
+    "label": "No ✋",
+    "value": "prayer: run-2716 p20: no"
+   },
+   {
+    "label": "Menu 🏠",
+    "value": "prayer: run-2716 p20: menu"
+   },
+   {
+    "label": "Yes 🙏",
+    "value": "prayer: run-2716 p19: yes"
+   },
+   {
+    "label": "No ✋",
+    "value": "prayer: run-2716 p19: no"
+   },
+   {
+    "label": "Menu 🏠",
+    "value": "prayer: run-2716 p19: menu"
+   },
+   {
+    "label": "Yes 🙏",
+    "value": "prayer: run-2716 p18: yes"
+   },
+   {
+    "label": "No ✋",
+    "value": "prayer: run-2716 p18: no"
+   },
+   {
+    "label": "Menu 🏠",
+    "value": "prayer: run-2716 p18: menu"
+   },
+   {
+    "label": "Yes 🙏",
+    "value": "prayer: run-2716 p14: yes"
+   },
+   {
+    "label": "No ✋",
+    "value": "prayer: run-2716 p14: no"
+   },
+   {
+    "label": "Menu 🏠",
+    "value": "prayer: run-2716 p14: menu"
+   },
+   {
+    "label": "Yes 🙏",
+    "value": "prayer: run-2716 p6: yes"
+   },
+   {
+    "label": "No ✋",
+    "value": "prayer: run-2716 p6: no"
+   },
+   {
+    "label": "Menu 🏠",
+    "value": "prayer: run-2716 p6: menu"
+   },
+   {
+    "label": "Yes 🙏",
+    "value": "prayer: run-2716 p5: yes"
+   },
+   {
+    "label": "No ✋",
+    "value": "prayer: run-2716 p5: no"
+   },
+   {
+    "label": "Menu 🏠",
+    "value": "prayer: run-2716 p5: menu"
+   },
+   {
+    "label": "Yes 🙏",
+    "value": "prayer: run-2716 p13: yes"
+   },
+   {
+    "label": "No ✋",
+    "value": "prayer: run-2716 p13: no"
+   },
+   {
+    "label": "Menu 🏠",
+    "value": "prayer: run-2716 p13: menu"
+   },
+   {
+    "label": "Yes 🙏",
+    "value": "prayer: run-2716 p12: yes"
+   },
+   {
+    "label": "No ✋",
+    "value": "prayer: run-2716 p12: no"
+   },
+   {
+    "label": "Menu 🏠",
+    "value": "prayer: run-2716 p12: menu"
+   },
+   {
+    "label": "Yes 🙏",
+    "value": "prayer: run-2716 p11: yes"
+   },
+   {
+    "label": "No ✋",
+    "value": "prayer: run-2716 p11: no"
+   },
+   {
+    "label": "Menu 🏠",
+    "value": "prayer: run-2716 p11: menu"
+   },
+   {
+    "label": "Yes 🙏",
+    "value": "prayer: run-2716 p10: yes"
+   },
+   {
+    "label": "No ✋",
+    "value": "prayer: run-2716 p10: no"
+   },
+   {
+    "label": "Menu 🏠",
+    "value": "prayer: run-2716 p10: menu"
+   },
+   {
+    "label": "Yes 🙏",
+    "value": "prayer: run-d6fc p2: yes"
+   },
+   {
+    "label": "No ✋",
+    "value": "prayer: run-d6fc p2: no"
+   },
+   {
+    "label": "Yes 🙏",
+    "value": "prayer: run-d6fc p1: yes"
+   },
+   {
+    "label": "No ✋",
+    "value": "prayer: run-d6fc p1: no"
+   },
+   {
+    "label": "Yes 🙏",
+    "value": "prayer: run-86b1 p2: yes"
+   },
+   {
+    "label": "No ✋",
+    "value": "prayer: run-86b1 p2: no"
+   },
+   {
+    "label": "Yes 🙏",
+    "value": "prayer: run-86b1 p1: yes"
+   },
+   {
+    "label": "No ✋",
+    "value": "prayer: run-86b1 p1: no"
+   },
+   {
+    "label": "Yes 🙏",
+    "value": "prayer: run-175d p4: yes"
+   },
+   {
+    "label": "No ✋",
+    "value": "prayer: run-175d p4: no"
+   },
+   {
+    "label": "Yes 🙏",
+    "value": "prayer: run-175d p3: yes"
+   },
+   {
+    "label": "No ✋",
+    "value": "prayer: run-175d p3: no"
+   },
+   {
+    "label": "Yes 🙏",
+    "value": "prayer: run-175d p2: yes"
+   },
+   {
+    "label": "No ✋",
+    "value": "prayer: run-175d p2: no"
+   },
+   {
+    "label": "Yes 🙏",
+    "value": "prayer: run-175d p1: yes"
+   },
+   {
+    "label": "No ✋",
+    "value": "prayer: run-175d p1: no"
+   },
+   {
+    "label": "Yes 🙏",
+    "value": "prayer: run-febe p2: yes"
+   },
+   {
+    "label": "No ✋",
+    "value": "prayer: run-febe p2: no"
+   },
+   {
+    "label": "Yes 🙏",
+    "value": "prayer: run-febe p1: yes"
+   },
+   {
+    "label": "No ✋",
+    "value": "prayer: run-febe p1: no"
+   },
+   {
+    "label": "Yes 🙏",
+    "value": "prayer: run-6e6a p7: yes"
+   },
+   {
+    "label": "No ✋",
+    "value": "prayer: run-6e6a p7: no"
+   },
+   {
+    "label": "Yes 🙏",
+    "value": "prayer: run-6e6a p1: yes"
+   },
+   {
+    "label": "No ✋",
+    "value": "prayer: run-6e6a p1: no"
+   }
+  ],
+  "allowCustom": false,
+  "at": "2026-11-28T02:33:42-05:00",
+  "source_action": "menu: Prayer jobs",
+  "cards": [
+   {
+    "id": "p1",
+    "prompt": "🙏 p1: Rotimi asks Aunty Bimpe to say nothing at the table tonight. Yes or no?",
+    "helpText": "Prayer card. Not seated: it only changes the world.",
+    "options": [
+     {
+      "label": "Yes 🙏",
+      "value": "prayer: run-bd649b p1: yes",
+      "safe": "She chews, nods, and for once leaves the loud thing unsaid. Hold a wide two-shot, no cut."
+     },
+     {
+      "label": "No ✋",
+      "value": "prayer: run-bd649b p1: no",
+      "safe": "She says it to the room, and he laughs before he answers. Rack focus from the speaker to the answer."
+     },
+     {
+      "label": "Menu 🏠",
+      "value": "prayer: run-bd649b p1: menu",
+      "safe": "Leave this prayer unanswered and go back to the main menu."
+     }
+    ],
+    "from": "worm → laugh"
+   },
+   {
+    "id": "p5",
+    "prompt": "🙏 p5: Adaora asks Kunle to be listened to the first time. Yes or no?",
+    "helpText": "Prayer card. Not seated: it only changes the world.",
+    "options": [
+     {
+      "label": "Yes 🙏",
+      "value": "prayer: run-dfd59e p5: yes",
+      "safe": "Kunle grants it, and Adaora is seen doing what Adaora came to do."
+     },
+     {
+      "label": "No ✋",
+      "value": "prayer: run-dfd59e p5: no",
+      "safe": "Kunle holds back, and what Adaora lacks (ordinary belonging without explaining her body) stays in the room."
+     },
+     {
+      "label": "Menu 🏠",
+      "value": "prayer: run-dfd59e p5: menu",
+      "safe": "Leave this prayer unanswered and go back to the main menu."
+     }
+    ],
+    "from": "means → gwagwalada"
+   },
+   {
+    "id": "p4",
+    "prompt": "🙏 p4: Kunle asks God to finish a job exactly. Yes or no?",
+    "helpText": "Prayer card. Not seated: it only changes the world.",
+    "options": [
+     {
+      "label": "Yes 🙏",
+      "value": "prayer: run-dfd59e p4: yes",
+      "safe": "God grants it, and Kunle is seen doing what Kunle came to do."
+     },
+     {
+      "label": "No ✋",
+      "value": "prayer: run-dfd59e p4: no",
+      "safe": "God holds back, and what Kunle lacks (be told he can stop measuring) stays in the room."
+     },
+     {
+      "label": "Menu 🏠",
+      "value": "prayer: run-dfd59e p4: menu",
+      "safe": "Leave this prayer unanswered and go back to the main menu."
+     }
+    ],
+    "from": "means → gwagwalada"
+   },
+   {
+    "id": "p3",
+    "prompt": "🙏 p3: Iffy asks God for a morning with no bad news. Yes or no?",
+    "helpText": "Prayer card. Not seated: it only changes the world.",
+    "options": [
+     {
+      "label": "Yes 🙏",
+      "value": "prayer: run-dfd59e p3: yes",
+      "safe": "The morning stays quiet."
+     },
+     {
+      "label": "No ✋",
+      "value": "prayer: run-dfd59e p3: no",
+      "safe": "Bad news comes before noon."
+     },
+     {
+      "label": "Menu 🏠",
+      "value": "prayer: run-dfd59e p3: menu",
+      "safe": "Leave this prayer unanswered and go back to the main menu."
+     }
+    ],
+    "from": "means → gwagwalada"
+   },
+   {
+    "id": "p2",
+    "prompt": "🙏 p2: Bisola asks Taiwo to stay until the first people come through the gate. Yes or no?",
+    "helpText": "Prayer card. Not seated: it only changes the world.",
+    "options": [
+     {
+      "label": "Yes 🙏",
+      "value": "prayer: run-dfd59e p2: yes",
+      "safe": "Taiwo stays."
+     },
+     {
+      "label": "No ✋",
+      "value": "prayer: run-dfd59e p2: no",
+      "safe": "Taiwo leaves before anyone comes."
+     },
+     {
+      "label": "Menu 🏠",
+      "value": "prayer: run-dfd59e p2: menu",
+      "safe": "Leave this prayer unanswered and go back to the main menu."
+     }
+    ],
+    "from": "means → gwagwalada"
+   },
+   {
+    "id": "p1",
+    "prompt": "🙏 p1: Iffy prays that Kunle answers the message today. Yes or no?",
+    "helpText": "Prayer card. Not seated: it only changes the world.",
+    "options": [
+     {
+      "label": "Yes 🙏",
+      "value": "prayer: run-dfd59e p1: yes",
+      "safe": "The message gets an answer today."
+     },
+     {
+      "label": "No ✋",
+      "value": "prayer: run-dfd59e p1: no",
+      "safe": "The message waits another day."
+     },
+     {
+      "label": "Menu 🏠",
+      "value": "prayer: run-dfd59e p1: menu",
+      "safe": "Leave this prayer unanswered and go back to the main menu."
+     }
+    ],
+    "from": "means → gwagwalada"
+   },
+   {
+    "id": "p7",
+    "prompt": "🙏 p7: Amina Seidu asks Lateef to stay until the first people come through the gate. Yes or no?",
+    "helpText": "Prayer card. Not seated: it only changes the world.",
+    "options": [
+     {
+      "label": "Yes 🙏",
+      "value": "prayer: run-cb805f p7: yes",
+      "safe": "Lateef stays."
+     },
+     {
+      "label": "No ✋",
+      "value": "prayer: run-cb805f p7: no",
+      "safe": "Lateef leaves before anyone comes."
+     },
+     {
+      "label": "Menu 🏠",
+      "value": "prayer: run-cb805f p7: menu",
+      "safe": "Leave this prayer unanswered and go back to the main menu."
+     }
+    ],
+    "from": "sunshine → happiness"
+   },
+   {
+    "id": "p6",
+    "prompt": "🙏 p6: Kunle asks Lateef to keep the Milo tin one more night. Yes or no?",
+    "helpText": "Prayer card. Not seated: it only changes the world.",
+    "options": [
+     {
+      "label": "Yes 🙏",
+      "value": "prayer: run-cb805f p6: yes",
+      "safe": "Lateef keeps the Milo tin overnight."
+     },
+     {
+      "label": "No ✋",
+      "value": "prayer: run-cb805f p6: no",
+      "safe": "Lateef hands the Milo tin back tonight."
+     },
+     {
+      "label": "Menu 🏠",
+      "value": "prayer: run-cb805f p6: menu",
+      "safe": "Leave this prayer unanswered and go back to the main menu."
+     }
+    ],
+    "from": "sunshine → happiness"
+   },
+   {
+    "id": "p5",
+    "prompt": "🙏 p5: Mama asks Pastor Obi to count the offering himself this week. Yes or no?",
+    "helpText": "Prayer card. Not seated: it only changes the world.",
+    "options": [
+     {
+      "label": "Yes 🙏",
+      "value": "prayer: run-0e8c p5: yes",
+      "safe": "He counts it once out loud, finds it short, and learns what she has been carrying. Cut to a slow push-in on the hands."
+     },
+     {
+      "label": "No ✋",
+      "value": "prayer: run-0e8c p5: no",
+      "safe": "He hands the bucket back and she counts it twice, saying nothing. Hold a wide two-shot, no cut."
+     },
+     {
+      "label": "Menu 🏠",
+      "value": "prayer: run-0e8c p5: menu",
+      "safe": "Leave this prayer unanswered and go back to the main menu."
+     }
+    ],
+    "from": "outside → fear"
+   },
+   {
+    "id": "p4",
+    "prompt": "🙏 p4: The hawkers ask the bus stop to wait one more minute for the 6:25 bus. Yes or no?",
+    "helpText": "Prayer card. Not seated: it only changes the world.",
+    "options": [
+     {
+      "label": "Yes 🙏",
+      "value": "prayer: run-0e8c p4: yes",
+      "safe": "The bus pulls in late, and the stop fills with sellers calling at once. Match cut to the object they were holding."
+     },
+     {
+      "label": "No ✋",
+      "value": "prayer: run-0e8c p4: no",
+      "safe": "The bus does not come, and the crowd drifts home in short Pidgin. Cut to a slow push-in on the hands."
+     },
+     {
+      "label": "Menu 🏠",
+      "value": "prayer: run-0e8c p4: menu",
+      "safe": "Leave this prayer unanswered and go back to the main menu."
+     }
+    ],
+    "from": "outside → fear"
+   },
+   {
+    "id": "p3",
+    "prompt": "🙏 p3: Kazeem asks the crew to let him count one beat late without correcting him. Yes or no?",
+    "helpText": "Prayer card. Not seated: it only changes the world.",
+    "options": [
+     {
+      "label": "Yes 🙏",
+      "value": "prayer: run-0e8c p3: yes",
+      "safe": "They wait for his count, and the left turn lands together. Match cut to the object they were holding."
+     },
+     {
+      "label": "No ✋",
+      "value": "prayer: run-0e8c p3: no",
+      "safe": "Someone corrects him out loud, and he counts the rest in his head. Cut to a slow push-in on the hands."
+     },
+     {
+      "label": "Menu 🏠",
+      "value": "prayer: run-0e8c p3: menu",
+      "safe": "Leave this prayer unanswered and go back to the main menu."
+     }
+    ],
+    "from": "outside → fear"
+   },
+   {
+    "id": "p2",
+    "prompt": "🙏 p2: The crew asks the hall to stay quiet for one count. Yes or no?",
+    "helpText": "Prayer card. Not seated: it only changes the world.",
+    "options": [
+     {
+      "label": "Yes 🙏",
+      "value": "prayer: run-0e8c p2: yes",
+      "safe": "The hall holds its breath, and the left turn lands in silence. Close-up, shallow depth, a long held beat."
+     },
+     {
+      "label": "No ✋",
+      "value": "prayer: run-0e8c p2: no",
+      "safe": "Someone coughs, and the count starts over. Match cut to the object they were holding."
+     },
+     {
+      "label": "Menu 🏠",
+      "value": "prayer: run-0e8c p2: menu",
+      "safe": "Leave this prayer unanswered and go back to the main menu."
+     }
+    ],
+    "from": "outside → fear"
+   },
+   {
+    "id": "p1",
+    "prompt": "🙏 p1: Kunle asks Dapo to finish a job exactly. Yes or no?",
+    "helpText": "Prayer card. Not seated: it only changes the world.",
+    "options": [
+     {
+      "label": "Yes 🙏",
+      "value": "prayer: run-0e8c p1: yes",
+      "safe": "Dapo grants it, and Kunle is seen doing what Kunle came to do."
+     },
+     {
+      "label": "No ✋",
+      "value": "prayer: run-0e8c p1: no",
+      "safe": "Dapo holds back, and what Kunle lacks (be told he can stop measuring) stays in the room."
+     },
+     {
+      "label": "Menu 🏠",
+      "value": "prayer: run-0e8c p1: menu",
+      "safe": "Leave this prayer unanswered and go back to the main menu."
+     }
+    ],
+    "from": "outside → fear"
+   },
+   {
+    "id": "p23",
+    "prompt": "🙏 p23: Bimbo asks Daddy to bless the wrapper with the different pattern. Yes or no?",
+    "helpText": "Prayer card. Not seated: it only changes the world.",
+    "options": [
+     {
+      "label": "Yes 🙏",
+      "value": "prayer: run-2716 p23: yes",
+      "safe": "His voice drops from booming to quiet, and the church sees her stand straight. Close-up, shallow depth, a long held beat."
+     },
+     {
+      "label": "No ✋",
+      "value": "prayer: run-2716 p23: no",
+      "safe": "He calls it orishirishi, and she wears it anyway. Match cut to the object they were holding."
+     },
+     {
+      "label": "Menu 🏠",
+      "value": "prayer: run-2716 p23: menu",
+      "safe": "Leave this prayer unanswered and go back to the main menu."
+     }
+    ],
+    "from": "undenayable → evidence"
+   },
+   {
+    "id": "p22",
+    "prompt": "🙏 p22: Adaora asks God to be listened to the first time. Yes or no?",
+    "helpText": "Prayer card. Not seated: it only changes the world.",
+    "options": [
+     {
+      "label": "Yes 🙏",
+      "value": "prayer: run-2716 p22: yes",
+      "safe": "God grants it, and Adaora is seen doing what Adaora came to do."
+     },
+     {
+      "label": "No ✋",
+      "value": "prayer: run-2716 p22: no",
+      "safe": "God holds back, and what Adaora lacks (ordinary belonging without explaining her body) stays in the room."
+     },
+     {
+      "label": "Menu 🏠",
+      "value": "prayer: run-2716 p22: menu",
+      "safe": "Leave this prayer unanswered and go back to the main menu."
+     }
+    ],
+    "from": "undenayable → evidence"
+   },
+   {
+    "id": "p21",
+    "prompt": "🙏 p21: Adaora asks Kunle to be heard the first time. Yes or no?",
+    "helpText": "Prayer card. Not seated: it only changes the world.",
+    "options": [
+     {
+      "label": "Yes 🙏",
+      "value": "prayer: run-2716 p21: yes",
+      "safe": "Kunle grants it, and Adaora is seen doing what Adaora came to do."
+     },
+     {
+      "label": "No ✋",
+      "value": "prayer: run-2716 p21: no",
+      "safe": "Kunle holds back, and what Adaora lacks (ordinary belonging) stays in the room."
+     },
+     {
+      "label": "Menu 🏠",
+      "value": "prayer: run-2716 p21: menu",
+      "safe": "Leave this prayer unanswered and go back to the main menu."
+     }
+    ],
+    "from": "undenayable → evidence"
+   },
+   {
+    "id": "p20",
+    "prompt": "🙏 p20: Folake asks God to keep the paper kite and have it become something. Yes or no?",
+    "helpText": "Prayer card. Not seated: it only changes the world.",
+    "options": [
+     {
+      "label": "Yes 🙏",
+      "value": "prayer: run-2716 p20: yes",
+      "safe": "God grants it, and Folake is seen doing what Folake came to do."
+     },
+     {
+      "label": "No ✋",
+      "value": "prayer: run-2716 p20: no",
+      "safe": "God holds back, and what Folake lacks (be believed when she says she sees something others do not) stays in the room."
+     },
+     {
+      "label": "Menu 🏠",
+      "value": "prayer: run-2716 p20: menu",
+      "safe": "Leave this prayer unanswered and go back to the main menu."
+     }
+    ],
+    "from": "undenayable → evidence"
+   },
+   {
+    "id": "p19",
+    "prompt": "🙏 p19: Folake asks the projectionist to keep the paper kite and have it become something. Yes or no?",
+    "helpText": "Prayer card. Not seated: it only changes the world.",
+    "options": [
+     {
+      "label": "Yes 🙏",
+      "value": "prayer: run-2716 p19: yes",
+      "safe": "The projectionist grants it, and Folake is seen doing what Folake came to do."
+     },
+     {
+      "label": "No ✋",
+      "value": "prayer: run-2716 p19: no",
+      "safe": "The projectionist holds back, and what Folake lacks (be believed when she says she sees something others do not) stays in the room."
+     },
+     {
+      "label": "Menu 🏠",
+      "value": "prayer: run-2716 p19: menu",
+      "safe": "Leave this prayer unanswered and go back to the main menu."
+     }
+    ],
+    "from": "undenayable → evidence"
+   },
+   {
+    "id": "p18",
+    "prompt": "🙏 p18: Kunle asks the shopkeeper to finish a job exactly. Yes or no?",
+    "helpText": "Prayer card. Not seated: it only changes the world.",
+    "options": [
+     {
+      "label": "Yes 🙏",
+      "value": "prayer: run-2716 p18: yes",
+      "safe": "The shopkeeper grants it, and Kunle is seen doing what Kunle came to do."
+     },
+     {
+      "label": "No ✋",
+      "value": "prayer: run-2716 p18: no",
+      "safe": "The shopkeeper holds back, and what Kunle lacks (be told he can stop measuring) stays in the room."
+     },
+     {
+      "label": "Menu 🏠",
+      "value": "prayer: run-2716 p18: menu",
+      "safe": "Leave this prayer unanswered and go back to the main menu."
+     }
+    ],
+    "from": "undenayable → evidence"
+   },
+   {
+    "id": "p14",
+    "prompt": "🙏 p14: Kunle asks God to hem the trousers exactly. Yes or no?",
+    "helpText": "Prayer card. Not seated: it only changes the world.",
+    "options": [
+     {
+      "label": "Yes 🙏",
+      "value": "prayer: run-2716 p14: yes",
+      "safe": "God grants it, and Kunle is seen doing what Kunle came to do."
+     },
+     {
+      "label": "No ✋",
+      "value": "prayer: run-2716 p14: no",
+      "safe": "God holds back, and what Kunle lacks (be told the job is done) stays in the room."
+     },
+     {
+      "label": "Menu 🏠",
+      "value": "prayer: run-2716 p14: menu",
+      "safe": "Leave this prayer unanswered and go back to the main menu."
+     }
+    ],
+    "from": "undenayable → evidence"
+   },
+   {
+    "id": "p6",
+    "prompt": "🙏 p6: Adaora asks God for one person in the hall to say her name before she has to ask. Yes or no?",
+    "helpText": "Prayer card. Not seated: it only changes the world.",
+    "options": [
+     {
+      "label": "Yes 🙏",
+      "value": "prayer: run-2716 p6: yes",
+      "safe": "Bolanle looks up from a fold and says it right, first time, and Adaora lowers her hand from the folder."
+     },
+     {
+      "label": "No ✋",
+      "value": "prayer: run-2716 p6: no",
+      "safe": "The room stays quiet, and she keeps one palm flat on the folder until six."
+     },
+     {
+      "label": "Menu 🏠",
+      "value": "prayer: run-2716 p6: menu",
+      "safe": "Leave this prayer unanswered and go back to the main menu."
+     }
+    ],
+    "from": "undenayable → evidence"
+   },
+   {
+    "id": "p5",
+    "prompt": "🙏 p5: Kunle asks God to let the green-pen ticket stay a ticket and not turn into paper. Yes or no?",
+    "helpText": "Prayer card. Not seated: it only changes the world.",
+    "options": [
+     {
+      "label": "Yes 🙏",
+      "value": "prayer: run-2716 p5: yes",
+      "safe": "The ticket stays warm and creased in his sleeve, still carrying the name Adaora asked him to say back."
+     },
+     {
+      "label": "No ✋",
+      "value": "prayer: run-2716 p5: no",
+      "safe": "It folds into a flat sheet in the ledger, and he lets it go without a word."
+     },
+     {
+      "label": "Menu 🏠",
+      "value": "prayer: run-2716 p5: menu",
+      "safe": "Leave this prayer unanswered and go back to the main menu."
+     }
+    ],
+    "from": "undenayable → evidence"
+   },
+   {
+    "id": "p13",
+    "prompt": "🙏 p13: Kunle asks God to tell him whether the green-pen ticket was ever his to keep. Yes or no?",
+    "helpText": "Prayer card. Not seated: it only changes the world.",
+    "options": [
+     {
+      "label": "Yes 🙏",
+      "value": "prayer: run-2716 p13: yes",
+      "safe": "The paper warms in his hand, and nobody asks for it back."
+     },
+     {
+      "label": "No ✋",
+      "value": "prayer: run-2716 p13: no",
+      "safe": "The clerk holds out her palm, and he places it there flat."
+     },
+     {
+      "label": "Menu 🏠",
+      "value": "prayer: run-2716 p13: menu",
+      "safe": "Leave this prayer unanswered and go back to the main menu."
+     }
+    ],
+    "from": "undenayable → evidence"
+   },
+   {
+    "id": "p12",
+    "prompt": "🙏 p12: the clerk asks God for one minute of quiet in the hall before the bell. Yes or no?",
+    "helpText": "Prayer card. Not seated: it only changes the world.",
+    "options": [
+     {
+      "label": "Yes 🙏",
+      "value": "prayer: run-2716 p12: yes",
+      "safe": "The stamp stops, the boxes stop, and six o'clock arrives to a room breathing together."
+     },
+     {
+      "label": "No ✋",
+      "value": "prayer: run-2716 p12: no",
+      "safe": "The counting goes on to the last number, and the bell rings over it."
+     },
+     {
+      "label": "Menu 🏠",
+      "value": "prayer: run-2716 p12: menu",
+      "safe": "Leave this prayer unanswered and go back to the main menu."
+     }
+    ],
+    "from": "undenayable → evidence"
+   },
+   {
+    "id": "p11",
+    "prompt": "🙏 p11: Bolanle asks God for a crease that holds the first time she folds it. Yes or no?",
+    "helpText": "Prayer card. Not seated: it only changes the world.",
+    "options": [
+     {
+      "label": "Yes 🙏",
+      "value": "prayer: run-2716 p11: yes",
+      "safe": "The boat keeps its shape on the table, and she hands it to Kunle without a word."
+     },
+     {
+      "label": "No ✋",
+      "value": "prayer: run-2716 p11: no",
+      "safe": "It springs open, she folds it again harder, and the table shakes."
+     },
+     {
+      "label": "Menu 🏠",
+      "value": "prayer: run-2716 p11: menu",
+      "safe": "Leave this prayer unanswered and go back to the main menu."
+     }
+    ],
+    "from": "undenayable → evidence"
+   },
+   {
+    "id": "p10",
+    "prompt": "🙏 p10: Adaora asks God to let her close the folder without anyone asking what is inside. Yes or no?",
+    "helpText": "Prayer card. Not seated: it only changes the world.",
+    "options": [
+     {
+      "label": "Yes 🙏",
+      "value": "prayer: run-2716 p10: yes",
+      "safe": "The hall goes on stamping, and she leaves with the folder under her arm and her palm relaxed."
+     },
+     {
+      "label": "No ✋",
+      "value": "prayer: run-2716 p10: no",
+      "safe": "The clerk asks, the room turns, and she opens it with her name facing out."
+     },
+     {
+      "label": "Menu 🏠",
+      "value": "prayer: run-2716 p10: menu",
+      "safe": "Leave this prayer unanswered and go back to the main menu."
+     }
+    ],
+    "from": "undenayable → evidence"
+   },
+   {
+    "id": "p2",
+    "prompt": "🙏 p2: the shopkeeper asks the lantern glass for a clear picture of tomorrow before the rain returns. Yes or No?",
+    "helpText": "Prayer card. Not seated: it only changes the world.",
+    "options": [
+     {
+      "label": "Yes 🙏",
+      "value": "prayer: run-d6fc p2: yes",
+      "safe": "The glass clears, tomorrow's weather is written plainly, and the shop keeps its flames steady."
+     },
+     {
+      "label": "No ✋",
+      "value": "prayer: run-d6fc p2: no",
+      "safe": "The glass fogs over; tomorrow stays a guess and the lanterns lean toward the door."
+     }
+    ],
+    "from": "possibilities → future"
+   },
+   {
+    "id": "p1",
+    "prompt": "🙏 p1: Folake asks the kite for one more shape that she can see before the agenda ends. Yes or No?",
+    "helpText": "Prayer card. Not seated: it only changes the world.",
+    "options": [
+     {
+      "label": "Yes 🙏",
+      "value": "prayer: run-d6fc p1: yes",
+      "safe": "The kite becomes a window she can step through, and the empty cinema hall fills with a quiet, hopeful light."
+     },
+     {
+      "label": "No ✋",
+      "value": "prayer: run-d6fc p1: no",
+      "safe": "The kite stays paper; the window closes and the hall stays empty a little longer."
+     }
+    ],
+    "from": "possibilities → future"
+   },
+   {
+    "id": "p2",
+    "prompt": "🙏 p2: Kehinde asks her parents for forgiveness for the torn hem and the old hurt behind it. Yes or No?",
+    "helpText": "Prayer card. Not seated: it only changes the world.",
+    "options": [
+     {
+      "label": "Yes 🙏",
+      "value": "prayer: run-86b1 p2: yes",
+      "safe": "They forgive, the hem is mended, and the night class opens its doors with a lighter air."
+     },
+     {
+      "label": "No ✋",
+      "value": "prayer: run-86b1 p2: no",
+      "safe": "They stay silent; the hem stays torn and the hurt follows her into the exam hall."
+     }
+    ],
+    "from": "everything → now"
+   },
+   {
+    "id": "p1",
+    "prompt": "🙏 p1: the tailor asks God for one more steady stitch before the concert curtain rises. Yes or No?",
+    "helpText": "Prayer card. Not seated: it only changes the world.",
+    "options": [
+     {
+      "label": "Yes 🙏",
+      "value": "prayer: run-86b1 p1: yes",
+      "safe": "The stitch holds, the curtain hangs straight, and the love letter inside it stays sealed through the agenda."
+     },
+     {
+      "label": "No ✋",
+      "value": "prayer: run-86b1 p1: no",
+      "safe": "The thread snaps; the curtain sags and the letter slips out for everyone to read."
+     }
+    ],
+    "from": "everything → now"
+   },
+   {
+    "id": "p4",
+    "prompt": "🙏 p4: Dapo's ghost asks the road for the way back to the shed. Yes or No?",
+    "helpText": "Prayer card. Not seated: it only changes the world.",
+    "options": [
+     {
+      "label": "Yes 🙏",
+      "value": "prayer: run-175d p4: yes",
+      "safe": "The gate swings open once and the ghost walks home along the proverb's road."
+     },
+     {
+      "label": "No ✋",
+      "value": "prayer: run-175d p4: no",
+      "safe": "The road bends away; the ghost stays at the gate, still counting steps."
+     }
+    ],
+    "from": "see → line"
+   },
+   {
+    "id": "p3",
+    "prompt": "🙏 p3: Funmi asks the moon for one honest measurement of the ruler. Yes or No?",
+    "helpText": "Prayer card. Not seated: it only changes the world.",
+    "options": [
+     {
+      "label": "Yes 🙏",
+      "value": "prayer: run-175d p3: yes",
+      "safe": "The ruler reads one length and the sugar bowl stops stirring; the agenda settles."
+     },
+     {
+      "label": "No ✋",
+      "value": "prayer: run-175d p3: no",
+      "safe": "The ruler keeps two lengths and the grain in the bowl stays restless."
+     }
+    ],
+    "from": "see → line"
+   },
+   {
+    "id": "p2",
+    "prompt": "🙏 p2: Dapo asks the shed lamp for one more minute of light to finish the line. Yes or No?",
+    "helpText": "Prayer card. Not seated: it only changes the world.",
+    "options": [
+     {
+      "label": "Yes 🙏",
+      "value": "prayer: run-175d p2: yes",
+      "safe": "The lamp holds steady; Dapo finishes the line and the warm ruler cools by morning."
+     },
+     {
+      "label": "No ✋",
+      "value": "prayer: run-175d p2: no",
+      "safe": "The lamp dips; the line stays unfinished and his stool is found empty."
+     }
+    ],
+    "from": "see → line"
+   },
+   {
+    "id": "p1",
+    "prompt": "🙏 p1: Funmi asks the draughtsman for the second end of the bent line. Yes or No?",
+    "helpText": "Prayer card. Not seated: it only changes the world.",
+    "options": [
+     {
+      "label": "Yes 🙏",
+      "value": "prayer: run-175d p1: yes",
+      "safe": "He draws it in pencil, and the agenda gains an end to stand on; the studio clerk's two measurements agree."
+     },
+     {
+      "label": "No ✋",
+      "value": "prayer: run-175d p1: no",
+      "safe": "He keeps the pencil down; the line stays open and the clerk keeps two answers."
+     }
+    ],
+    "from": "see → line"
+   },
+   {
+    "id": "p2",
+    "prompt": "🙏 p2: Ngozi asks God: if we have offended you, just say that. Yes or no?",
+    "helpText": "Prayer card. Not seated: it only changes the world.",
+    "options": [
+     {
+      "label": "Yes 🙏",
+      "value": "prayer: run-febe p2: yes",
+      "safe": "Something answers — not with comfort, but with a word she cannot unhear."
+     },
+     {
+      "label": "No ✋",
+      "value": "prayer: run-febe p2: no",
+      "safe": "The tomatoes keep selling. Heaven does not take the question."
+     }
+    ],
+    "from": "love → breakup"
+   },
+   {
+    "id": "p1",
+    "prompt": "🙏 p1: Danladi asks the host of heaven to bring Ngozi back on the line. Yes or no?",
+    "helpText": "Prayer card. Not seated: it only changes the world.",
+    "options": [
+     {
+      "label": "Yes 🙏",
+      "value": "prayer: run-febe p1: yes",
+      "safe": "The dead line clicks. A voice answers. Whether it is hers is another story."
+     },
+     {
+      "label": "No ✋",
+      "value": "prayer: run-febe p1: no",
+      "safe": "The ringing goes on into empty air. Heaven keeps its silence for now."
+     }
+    ],
+    "from": "love → breakup"
+   },
+   {
+    "id": "p7",
+    "prompt": "🙏 p7: Lawal asks Funmi to call him tonight. Yes or no?",
+    "helpText": "Prayer card. Not seated: it only changes the world.",
+    "options": [
+     {
+      "label": "Yes 🙏",
+      "value": "prayer: run-6e6a p7: yes",
+      "safe": "She calls him from her father's stall that night."
+     },
+     {
+      "label": "No ✋",
+      "value": "prayer: run-6e6a p7: no",
+      "safe": "The phone buzzes under the mango tree and nobody answers."
+     }
+    ],
+    "from": "confusion → shock"
+   },
+   {
+    "id": "p1",
+    "prompt": "🙏 p1: The soldier from 2010, red cheek and all, asks Funmi for his old Nokia back. Yes or no?",
+    "helpText": "Prayer card. Not seated: it only changes the world.",
+    "options": [
+     {
+      "label": "Yes 🙏",
+      "value": "prayer: run-6e6a p1: yes",
+      "safe": "He gets the Nokia back and drives off with the hacker's messages still on it."
+     },
+     {
+      "label": "No ✋",
+      "value": "prayer: run-6e6a p1: no",
+      "safe": "The Nokia stays nailed above the charging board, and the soldier keeps coming back for it."
+     }
+    ],
+    "from": "confusion → shock"
+   }
+  ],
+  "page_size": 5
+ }
 }
