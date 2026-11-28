@@ -15050,7 +15050,7 @@
   },
   "run-cf203b": {
    "forked_from": "safe:731d52737690",
-   "head": "d057308020",
+   "head": "e7efc6978b",
    "commits": [
     {
      "id": "387e402c1d",
@@ -18143,14 +18143,6 @@
        }
       ],
       "instances": [
-       [
-        "ezaley",
-        "Thing"
-       ],
-       [
-        "loooooong",
-        "Thing"
-       ],
        [
         "piknik",
         "Thing"
@@ -21804,10 +21796,6 @@
       ],
       "instances": [
        [
-        "wan",
-        "Thing"
-       ],
-       [
         "wedding",
         "Thing"
        ],
@@ -22347,10 +22335,6 @@
         "Manner"
        ],
        [
-        "doing",
-        "Thing"
-       ],
-       [
         "first",
         "Thing"
        ],
@@ -22617,11 +22601,11 @@
      }
     },
     {
-     "id": "d057308020",
+     "id": "cefa694480",
      "parent": "5411ab24e8",
      "branch": "run-cf203b",
      "job": "j78",
-     "at": "2026-11-27T19:48:55-0500",
+     "at": "2026-11-27T19:56:53-05:00",
      "genre": "rising",
      "beat": "now",
      "diff": {
@@ -22652,6 +22636,180 @@
        }
       ],
       "facts_total": 3,
+      "functions": [
+       {
+        "func": "can.find",
+        "title": "can.find(wan)",
+        "op": "call"
+       },
+       {
+        "func": "life.what",
+        "title": "life.what(doing)",
+        "op": "define"
+       },
+       {
+        "func": "take.left",
+        "title": "take.left(then)",
+        "op": "define"
+       },
+       {
+        "func": "wye.lagos",
+        "title": "wye.lagos(shoot)",
+        "op": "define"
+       }
+      ],
+      "instances": [
+       [
+        "wan",
+        "Thing"
+       ],
+       [
+        "doing",
+        "Thing"
+       ],
+       [
+        "then",
+        "Thing"
+       ],
+       [
+        "shoot",
+        "Thing"
+       ]
+      ]
+     }
+    },
+    {
+     "id": "e7efc6978b",
+     "parent": "cefa694480",
+     "branch": "run-cf203b",
+     "job": "j79",
+     "at": "2026-11-27T19:56:59-0500",
+     "genre": "rising",
+     "beat": "now",
+     "diff": {
+      "facts": [
+       {
+        "id": "wt_b9c4426226",
+        "object": "tvol",
+        "kind": "func_call",
+        "code": "[[tvol]];",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_c5f9c6399b",
+        "object": "vpdnp",
+        "kind": "func_call",
+        "code": "[[vpdnp]];",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_786f654153",
+        "object": "bminy",
+        "kind": "func_call",
+        "code": "[[bminy]];",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_22c364c7fc",
+        "object": "cli",
+        "kind": "func_call",
+        "code": "[[tp$on]];",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_99298306e2",
+        "object": "cli",
+        "kind": "func_call",
+        "code": "#thryd.miracle.log(1);",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_5e352b80e1",
+        "object": "cli",
+        "kind": "func_call",
+        "code": null,
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_3aca2b7767",
+        "object": "aam",
+        "kind": "func_call",
+        "code": "[[aam]];",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_2313a975bd",
+        "object": "rl",
+        "kind": "func_call",
+        "code": "[[rl]];",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_c95db8fa22",
+        "object": "abitng",
+        "kind": "func_call",
+        "code": "[[abitng]];",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_11d8f5ce48",
+        "object": "htsn",
+        "kind": "func_call",
+        "code": "[[htsn]];",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_619f31615e",
+        "object": "does_mean_figure",
+        "kind": "call",
+        "code": "does_mean_figure.glow();",
+        "scope": null,
+        "cause_id": null
+       },
+       {
+        "id": "wt_286c92e705",
+        "object": "adaora",
+        "kind": "func_call",
+        "code": "adaora.write('generation');",
+        "scope": "own",
+        "cause_id": null
+       },
+       {
+        "id": "wt_a1cd24aa1d",
+        "object": "agboro",
+        "kind": "func_call",
+        "code": "agboro.hears(does_mean_figure, 'write');",
+        "scope": "ripple",
+        "cause_id": "wt_286c92e705"
+       },
+       {
+        "id": "wt_ecf1c90df4",
+        "object": "ahan",
+        "kind": "func_call",
+        "code": "ahan.hears(does_mean_figure, 'write');",
+        "scope": "ripple",
+        "cause_id": "wt_286c92e705"
+       },
+       {
+        "id": "wt_f9e13b5e3e",
+        "object": "alorof",
+        "kind": "func_call",
+        "code": "alorof.hears(does_mean_figure, 'write');",
+        "scope": "ripple",
+        "cause_id": "wt_286c92e705"
+       }
+      ],
+      "facts_total": 15,
       "functions": [],
       "instances": []
      }
@@ -23616,10 +23774,10 @@
   "run-0ae93c": "a11a1eab61",
   "run-3a15d2": "fbc46c6eb7",
   "run-ab4653": "dd8e54daee",
-  "run-cf203b": "d057308020",
+  "run-cf203b": "e7efc6978b",
   "run-888ea9": "73f36161c8",
   "run-cb805f": "8d23a93627"
  },
- "commits": 231,
- "updated": "2026-11-27T19:50:01-05:00"
+ "commits": 232,
+ "updated": "2026-11-27T19:58:23-05:00"
 }

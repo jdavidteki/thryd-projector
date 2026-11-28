@@ -6087,7 +6087,7 @@
    },
    "receiver_class": "Person",
    "prior": [],
-   "faded": true,
+   "faded": false,
    "last_run": "run-g1-B"
   },
   "folake.hold": {
@@ -20623,8 +20623,34 @@
     "emoji": "🦅",
     "at": "2026-11-26T01:41:43-05:00"
    },
-   "calls": 1,
+   "calls": 2,
    "titles": [
+    {
+     "title": "can.find(wan)",
+     "emoji": "🥉",
+     "arg": "wan",
+     "run": "run-cf203b",
+     "job": "j78",
+     "tweets": [
+      {
+       "text": "— the #thryd is if you can find wan line",
+       "year": "2025"
+      }
+     ],
+     "consequence": "The lines that landed: \"#thryd -- take a left, then a right, then anada right\", \"[[nh]] - they wye in lagos for this shoot #seniorboys -- next year\", \"— the #thryd is if you can find wan line\" and \"in this life, and what are they doing here",
+     "consequence_job": "j79",
+     "resolved": "can.find(what=wan:Thing) from j78",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "wan",
+       "from_run": "run-cf203b",
+       "from_job": "j78",
+       "source": "pick"
+      }
+     ]
+    },
     {
      "title": "can.find(wan)",
      "emoji": "🪖",
@@ -20639,12 +20665,12 @@
      ],
      "consequence": "🤣🤣🤣\", \"— the #thryd is if you can find wan line\" and \"and send some money to a black person today!",
      "consequence_job": "j69",
-     "resolved": "can.find(what=wan:Thing) from j68",
+     "resolved": "can.find(what=wedding:Thing) from j68",
      "injected": [
       {
        "param": "what",
        "class": "Thing",
-       "instance": "wan",
+       "instance": "wedding",
        "from_run": "run-cf203b",
        "from_job": "j68",
        "source": "pick"
@@ -22746,12 +22772,12 @@
      ],
      "consequence": "The woman said it out loud on speaker, with the ladies listening: this has been going on a long time, long enough that they went to the picnic together.",
      "consequence_job": "j41",
-     "resolved": "has.bark(what=ezaley:Thing) from j40",
+     "resolved": "has.bark(what=piknik:Thing) from j40",
      "injected": [
       {
        "param": "what",
        "class": "Thing",
-       "instance": "ezaley",
+       "instance": "piknik",
        "from_run": "run-cf203b",
        "from_job": "j40",
        "source": "pick"
@@ -22811,12 +22837,12 @@
      ],
      "consequence": "The woman said it out loud on speaker, with the ladies listening: this has been going on a long time, long enough that they went to the picnic together.",
      "consequence_job": "j41",
-     "resolved": "long.looooong(what=loooooong:Thing) from j40",
+     "resolved": "long.looooong(what=piknik:Thing) from j40",
      "injected": [
       {
        "param": "what",
        "class": "Thing",
-       "instance": "loooooong",
+       "instance": "piknik",
        "from_run": "run-cf203b",
        "from_job": "j40",
        "source": "pick"
@@ -29168,12 +29194,12 @@
      ],
      "consequence": "The lines that landed: \"old people doing things the old people way.",
      "consequence_job": "j76",
-     "resolved": "old.people(what=doing:Thing) from j75",
+     "resolved": "old.people(what=first:Thing) from j75",
      "injected": [
       {
        "param": "what",
        "class": "Thing",
-       "instance": "doing",
+       "instance": "first",
        "from_run": "run-cf203b",
        "from_job": "j75",
        "source": "pick"
@@ -29778,6 +29804,222 @@
      "why": "same method"
     }
    ],
+   "faded": false,
+   "last_run": "run-cf203b"
+  },
+  "life.what": {
+   "object": "life",
+   "method": "what",
+   "args": [
+    "doing"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j78",
+    "card": "w78",
+    "title": "life.what(doing)",
+    "emoji": "👜",
+    "at": "2026-11-27T19:56:53-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "life.what(doing)",
+     "emoji": "👜",
+     "arg": "doing",
+     "run": "run-cf203b",
+     "job": "j78",
+     "tweets": [],
+     "consequence": "The lines that landed: \"#thryd -- take a left, then a right, then anada right\", \"[[nh]] - they wye in lagos for this shoot #seniorboys -- next year\", \"— the #thryd is if you can find wan line\" and \"in this life, and what are they doing here",
+     "consequence_job": "j79",
+     "resolved": "life.what(what=doing:Thing) from j78",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "doing",
+       "from_run": "run-cf203b",
+       "from_job": "j78",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "doing",
+      "first_run": "run-cf203b",
+      "first_job": "j75"
+     }
+    ],
+    "text": "what(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [
+    {
+     "id": "bumbum.what",
+     "title": "bumbum.what()",
+     "run": "run-cf203b",
+     "job": "j37",
+     "at": "2026-11-26T12:33:21-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "know.what",
+     "title": "know.what(gonna)",
+     "run": "run-cf203b",
+     "job": "j29",
+     "at": "2026-11-26T01:33:12-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "daz.what",
+     "title": "daz.what(ton)",
+     "run": "run-cf203b",
+     "job": "j21",
+     "at": "2026-11-25T17:35:03-05:00",
+     "why": "same method"
+    }
+   ],
+   "faded": false,
+   "last_run": "run-cf203b"
+  },
+  "take.left": {
+   "object": "take",
+   "method": "left",
+   "args": [
+    "then"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j78",
+    "card": "w78",
+    "title": "take.left(then)",
+    "emoji": "🪀",
+    "at": "2026-11-27T19:56:53-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "take.left(then)",
+     "emoji": "🪀",
+     "arg": "then",
+     "run": "run-cf203b",
+     "job": "j78",
+     "tweets": [
+      {
+       "text": "#thryd -- take a left, then a right, then anada right",
+       "year": "2025"
+      }
+     ],
+     "consequence": "The lines that landed: \"#thryd -- take a left, then a right, then anada right\", \"[[nh]] - they wye in lagos for this shoot #seniorboys -- next year\", \"— the #thryd is if you can find wan line\" and \"in this life, and what are they doing here",
+     "consequence_job": "j79",
+     "resolved": "take.left(what=then:Thing) from j78",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "then",
+       "from_run": "run-cf203b",
+       "from_job": "j78",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "then",
+      "first_run": "run-cf203b",
+      "first_job": "j78"
+     }
+    ],
+    "text": "left(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": "run-cf203b"
+  },
+  "wye.lagos": {
+   "object": "wye",
+   "method": "lagos",
+   "args": [
+    "shoot"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j78",
+    "card": "w78",
+    "title": "wye.lagos(shoot)",
+    "emoji": "🕶️",
+    "at": "2026-11-27T19:56:53-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "wye.lagos(shoot)",
+     "emoji": "🕶️",
+     "arg": "shoot",
+     "run": "run-cf203b",
+     "job": "j78",
+     "tweets": [
+      {
+       "text": "[[nh]] - they wye in lagos for this shoot #seniorboys -- next year",
+       "year": "2026",
+       "id": "2025318328638521391"
+      }
+     ],
+     "consequence": "The lines that landed: \"#thryd -- take a left, then a right, then anada right\", \"[[nh]] - they wye in lagos for this shoot #seniorboys -- next year\", \"— the #thryd is if you can find wan line\" and \"in this life, and what are they doing here",
+     "consequence_job": "j79",
+     "resolved": "wye.lagos(what=shoot:Thing) from j78",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "shoot",
+       "from_run": "run-cf203b",
+       "from_job": "j78",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "shoot",
+      "first_run": "run-cf203b",
+      "first_job": "j78"
+     }
+    ],
+    "text": "lagos(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
    "faded": false,
    "last_run": "run-cf203b"
   },
@@ -34509,7 +34751,8 @@
    "lie.truth"
   ],
   "life": [
-   "life.give"
+   "life.give",
+   "life.what"
   ],
   "like": [
    "like.about"
@@ -34961,6 +35204,9 @@
   "sure": [
    "sure.idts"
   ],
+  "take": [
+   "take.left"
+  ],
   "taking": [
    "taking.isnotes"
   ],
@@ -35192,6 +35438,9 @@
   ],
   "would": [
    "would.sadly"
+  ],
+  "wye": [
+   "wye.lagos"
   ],
   "wym": [
    "wym.dont"
@@ -60326,6 +60575,9 @@
     "decide.when",
     "reaching.potential",
     "see.now",
+    "life.what",
+    "take.left",
+    "wye.lagos",
     "cli.cli",
     "thryd.importtheme",
     "kemi.ismarried",
@@ -61711,7 +61963,10 @@
     "why.cheat",
     "decide.when",
     "reaching.potential",
-    "see.now"
+    "see.now",
+    "life.what",
+    "take.left",
+    "wye.lagos"
    ],
    "runs": [
     "run-cf203b"
@@ -61783,7 +62038,8 @@
   "79a01af12615": {
    "title": "122. floating",
    "funcs": [
-    "what.road"
+    "what.road",
+    "take.left"
    ],
    "runs": []
   },
@@ -65990,7 +66246,8 @@
    "lie.truth"
   ],
   "life": [
-   "life.give"
+   "life.give",
+   "life.what"
   ],
   "like": [
    "like.about"
@@ -66363,6 +66620,9 @@
   "sure": [
    "sure.idts"
   ],
+  "take": [
+   "take.left"
+  ],
   "taking": [
    "taking.isnotes"
   ],
@@ -66544,6 +66804,9 @@
   ],
   "would": [
    "would.sadly"
+  ],
+  "wye": [
+   "wye.lagos"
   ],
   "wym": [
    "wym.dont"
@@ -66943,6 +67206,8 @@
   "modafokas": [],
   "decide": [],
   "reaching": [],
+  "take": [],
+  "wye": [],
   "cooler": [],
   "kazeem.goodqualities": [],
   "app": [],
@@ -67220,6 +67485,7 @@
    "lehgeet",
    "lez",
    "lie",
+   "life",
    "like",
    "long",
    "longer",
@@ -67279,6 +67545,7 @@
    "stupidity",
    "suleja",
    "sure",
+   "take",
    "textbook",
    "then",
    "till",
@@ -67303,6 +67570,7 @@
    "wo",
    "woke",
    "would",
+   "wye",
    "wym",
    "yeah",
    "yuwa"
@@ -67321,5 +67589,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-27T19:50:01-05:00"
+ "updated": "2026-11-27T19:58:23-05:00"
 }

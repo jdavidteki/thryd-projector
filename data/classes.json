@@ -105,11 +105,11 @@
    "param": "what",
    "methods": [
     "say",
-    "see",
-    "find"
+    "find",
+    "see"
    ],
-   "instances": 528,
-   "arg_instances": 202,
+   "instances": 530,
+   "arg_instances": 204,
    "parent": null,
    "chain": [
     "Thing"
@@ -7247,6 +7247,23 @@
     }
    ]
   },
+  "shoot": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-cf203b",
+   "first_job": "j78",
+   "source": "pick",
+   "runs": [
+    "run-cf203b"
+   ],
+   "tweets": [
+    {
+     "text": "[[nh]] - they wye in lagos for this shoot #seniorboys -- next year",
+     "year": "2026",
+     "id": "2025318328638521391"
+    }
+   ]
+  },
   "should": {
    "class": "Thing",
    "cue": "default",
@@ -8036,6 +8053,22 @@
     },
     {
      "text": "— and i will deal with them!",
+     "year": "2025"
+    }
+   ]
+  },
+  "then": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-cf203b",
+   "first_job": "j78",
+   "source": "pick",
+   "runs": [
+    "run-cf203b"
+   ],
+   "tweets": [
+    {
+     "text": "#thryd -- take a left, then a right, then anada right",
      "year": "2025"
     }
    ]
@@ -10799,18 +10832,6 @@
   ],
   "run-cf203b": [
    [
-    "ezaley",
-    "Thing",
-    "j40",
-    "pick"
-   ],
-   [
-    "loooooong",
-    "Thing",
-    "j40",
-    "pick"
-   ],
-   [
     "piknik",
     "Thing",
     "j40",
@@ -11093,12 +11114,6 @@
     "pick"
    ],
    [
-    "wan",
-    "Thing",
-    "j68",
-    "pick"
-   ],
-   [
     "wedding",
     "Thing",
     "j68",
@@ -11225,12 +11240,6 @@
     "pick"
    ],
    [
-    "doing",
-    "Thing",
-    "j75",
-    "pick"
-   ],
-   [
     "first",
     "Thing",
     "j75",
@@ -11276,6 +11285,30 @@
     "pehson",
     "Thing",
     "j77",
+    "pick"
+   ],
+   [
+    "wan",
+    "Thing",
+    "j78",
+    "pick"
+   ],
+   [
+    "doing",
+    "Thing",
+    "j78",
+    "pick"
+   ],
+   [
+    "then",
+    "Thing",
+    "j78",
+    "pick"
+   ],
+   [
+    "shoot",
+    "Thing",
+    "j78",
     "pick"
    ]
   ],
@@ -14146,6 +14179,9 @@
   "decide.when": "when(act: Action)",
   "reaching.potential": "potential(what: Thing)",
   "see.now": "now(what: Thing)",
+  "life.what": "what(what: Thing)",
+  "take.left": "left(what: Thing)",
+  "wye.lagos": "lagos(what: Thing)",
   "cooler.getdatemanufactured": "getDateManufactured()",
   "ronke.getlikes.contains": "getlikes.contains()",
   "kazeem.goodqualities.filter": "filter()",
@@ -14737,6 +14773,7 @@
    "lehgeet",
    "lez",
    "lie",
+   "life",
    "like",
    "long",
    "longer",
@@ -14796,6 +14833,7 @@
    "stupidity",
    "suleja",
    "sure",
+   "take",
    "textbook",
    "then",
    "till",
@@ -14820,6 +14858,7 @@
    "wo",
    "woke",
    "would",
+   "wye",
    "wym",
    "yeah",
    "yuwa"
@@ -14897,5 +14936,5 @@
   "epilogue": "quiet",
   "coda": "quiet"
  },
- "updated": "2026-11-27T19:49:11-05:00"
+ "updated": "2026-11-27T19:57:33-05:00"
 }
