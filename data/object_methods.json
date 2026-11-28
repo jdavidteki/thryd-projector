@@ -4253,10 +4253,12 @@
    "object": "life",
    "method": "give",
    "args": [
-    "money"
+    "money",
+    "joy"
    ],
    "runs": [
-    "run-5a58c4"
+    "run-5a58c4",
+    "run-788e05"
    ],
    "defined": {
     "run": "run-5a58c4",
@@ -4266,8 +4268,35 @@
     "emoji": "🏦",
     "at": "2026-11-17T15:46:37-05:00"
    },
-   "calls": 0,
+   "calls": 1,
    "titles": [
+    {
+     "title": "life.give(joy)",
+     "emoji": "🗝️",
+     "arg": "joy",
+     "run": "run-788e05",
+     "job": "j14",
+     "tweets": [
+      {
+       "text": "old people doing things the old people way. lol. #life",
+       "year": "2023",
+       "id": "1669728401303773184"
+      }
+     ],
+     "consequence": "#life\" and \"You still reach precision — we cant blame [[god]]\".",
+     "consequence_job": "j15",
+     "resolved": "life.give(what=longing:Thing) from j14",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "longing",
+       "from_run": "run-788e05",
+       "from_job": "j14",
+       "source": "pick"
+      }
+     ]
+    },
     {
      "title": "life.give(money)",
      "emoji": "🏦",
@@ -4318,9 +4347,42 @@
     "text": "give(what: Thing)"
    },
    "receiver_class": "Thing",
-   "prior": [],
+   "prior": [
+    {
+     "id": "teo.give",
+     "title": "teo.give(precisions)",
+     "run": "run-5a58c4",
+     "job": "j43",
+     "at": "2026-11-24T01:36:54-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "investor.give",
+     "title": "investor.give(advice)",
+     "run": "run-2eb42d",
+     "job": "j40",
+     "at": "2026-11-18T19:11:58-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "mamaronke.give",
+     "title": "mamaronke.give(money)",
+     "run": "run-2eb42d",
+     "job": "j36",
+     "at": "2026-11-18T17:52:40-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "life.give",
+     "title": "life.give(money)",
+     "run": "run-5a58c4",
+     "job": "j32",
+     "at": "2026-11-17T15:46:37-05:00",
+     "why": "same method"
+    }
+   ],
    "faded": false,
-   "last_run": "run-5a58c4"
+   "last_run": "run-788e05"
   },
   "teo.come": {
    "object": "teo",
@@ -33143,14 +33205,14 @@
      ],
      "consequence": "God has come!",
      "consequence_job": "j14",
-     "resolved": "god.hide(feeling=joy:Feeling) from j13",
+     "resolved": "god.hide(feeling=bad:Feeling) from j8",
      "injected": [
       {
        "param": "feeling",
        "class": "Feeling",
-       "instance": "joy",
+       "instance": "bad",
        "from_run": "run-788e05",
-       "from_job": "j13",
+       "from_job": "j8",
        "source": "pick"
       }
      ]
@@ -33225,12 +33287,12 @@
      ],
      "consequence": "#seniorboys\", \"— where have you been all my #life\", \"you see am now?",
      "consequence_job": "j14",
-     "resolved": "life.return(what=longing:Thing) from j13",
+     "resolved": "life.return(what=tiwwn:Thing) from j13",
      "injected": [
       {
        "param": "what",
        "class": "Thing",
-       "instance": "longing",
+       "instance": "tiwwn",
        "from_run": "run-788e05",
        "from_job": "j13",
        "source": "pick"
@@ -33283,8 +33345,34 @@
     "emoji": "🛶",
     "at": "2026-11-28T12:26:06-05:00"
    },
-   "calls": 0,
+   "calls": 1,
    "titles": [
+    {
+     "title": "seniorgehs.return(longing)",
+     "emoji": "🛸",
+     "arg": "longing",
+     "run": "run-788e05",
+     "job": "j14",
+     "tweets": [
+      {
+       "text": "- the real mind bending happens",
+       "year": "2025"
+      }
+     ],
+     "consequence": "#seniorgehs 🤣🤣🤣\", \"the real mind bending happens\", \"old people doing things the old people way.",
+     "consequence_job": "j15",
+     "resolved": "seniorgehs.return(what=longing:Thing) from j14",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "longing",
+       "from_run": "run-788e05",
+       "from_job": "j14",
+       "source": "pick"
+      }
+     ]
+    },
     {
      "title": "seniorgehs.return(longing)",
      "emoji": "🛶",
@@ -33294,12 +33382,12 @@
      "tweets": [],
      "consequence": "What just happened: The last card asked for the next line, the one that answers \"what if she doesn't stand up.",
      "consequence_job": "j14",
-     "resolved": "seniorgehs.return(what=longing:Thing) from j13",
+     "resolved": "seniorgehs.return(what=tiwwn:Thing) from j13",
      "injected": [
       {
        "param": "what",
        "class": "Thing",
-       "instance": "longing",
+       "instance": "tiwwn",
        "from_run": "run-788e05",
        "from_job": "j13",
        "source": "pick"
@@ -33324,11 +33412,116 @@
    "receiver_class": "Person",
    "prior": [
     {
+     "id": "life.return",
+     "title": "life.return(longing)",
+     "run": "run-788e05",
+     "job": "j13",
+     "at": "2026-11-28T12:26:06-05:00",
+     "why": "same method"
+    },
+    {
      "id": "calla.return",
      "title": "calla.return(sender)",
      "run": "run-5a58c4",
      "job": "j59",
      "at": "2026-11-24T18:44:48-05:00",
+     "why": "same method"
+    }
+   ],
+   "faded": false,
+   "last_run": "run-788e05"
+  },
+  "god.pray": {
+   "object": "god",
+   "method": "pray",
+   "args": [
+    "longing",
+    "seniorgehs"
+   ],
+   "runs": [
+    "run-788e05"
+   ],
+   "defined": {
+    "run": "run-788e05",
+    "job": "j14",
+    "card": "w14",
+    "title": "god.pray(longing)",
+    "emoji": "🔭",
+    "at": "2026-11-28T12:29:03-05:00"
+   },
+   "calls": 1,
+   "titles": [
+    {
+     "title": "god.pray(seniorgehs)",
+     "emoji": "🚲",
+     "arg": "seniorgehs",
+     "run": "run-788e05",
+     "job": "j14",
+     "tweets": [
+      {
+       "text": "God wen do him own go also do ywa own o! #seniorgehs 🤣🤣🤣",
+       "year": "2023",
+       "id": "1667604383826149378"
+      }
+     ],
+     "consequence": "The lines that landed: \"God wen do him own go also do ywa own o!",
+     "consequence_job": "j15",
+     "resolved": "god.pray(what=longing:Thing) from j14",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "longing",
+       "from_run": "run-788e05",
+       "from_job": "j14",
+       "source": "pick"
+      }
+     ]
+    },
+    {
+     "title": "god.pray(longing)",
+     "emoji": "🔭",
+     "arg": "longing",
+     "run": "run-788e05",
+     "job": "j14",
+     "tweets": [],
+     "consequence": "The lines that landed: \"God wen do him own go also do ywa own o!",
+     "consequence_job": "j15",
+     "resolved": "god.pray(what=longing:Thing) from j14",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "longing",
+       "from_run": "run-788e05",
+       "from_job": "j14",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "longing",
+      "first_run": "run-788e05",
+      "first_job": "j13"
+     }
+    ],
+    "text": "pray(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [
+    {
+     "id": "teo.pray",
+     "title": "teo.pray(how)",
+     "run": "run-5a58c4",
+     "job": "j53",
+     "at": "2026-11-24T15:31:13-05:00",
      "why": "same method"
     }
    ],
@@ -38324,7 +38517,8 @@
   ],
   "god": [
    "god.have",
-   "god.hide"
+   "god.hide",
+   "god.pray"
   ],
   "god_doesnt_make_figure": [
    "person.rest"
@@ -64667,6 +64861,7 @@
   "run-788e05": {
    "safe": "08a8466187dc",
    "funcs": [
+    "life.give",
     "old.people",
     "see.now",
     "god.have",
@@ -64710,6 +64905,7 @@
     "god.hide",
     "life.return",
     "seniorgehs.return",
+    "god.pray",
     "thryd.importtheme",
     "chrome.add",
     "thryd.log",
@@ -65197,6 +65393,7 @@
   "08a8466187dc": {
    "title": "829. oyinboman juju",
    "funcs": [
+    "life.give",
     "old.people",
     "see.now",
     "god.have",
@@ -65239,7 +65436,8 @@
     "baba.hold",
     "god.hide",
     "life.return",
-    "seniorgehs.return"
+    "seniorgehs.return",
+    "god.pray"
    ],
    "runs": [
     "run-788e05"
@@ -67999,6 +68197,13 @@
    ],
    "runs": []
   },
+  "fc7fc2ded7bf": {
+   "title": "1119. the mind of god",
+   "funcs": [
+    "seniorgehs.return"
+   ],
+   "runs": []
+  },
   "fd477083df3c": {
    "title": "african genzs are better at social issues",
    "funcs": [
@@ -68586,6 +68791,7 @@
    "a81bb2664da8"
   ],
   "1*lDKS3MnQQ0QbWboPIBFuYA.gif": [
+   "fc7fc2ded7bf",
    "da2bd5e3c2d7"
   ],
   "1*nm6YAew9EpjYUYW1K831ew.gif": [
@@ -70715,7 +70921,8 @@
   ],
   "god": [
    "god.have",
-   "god.hide"
+   "god.hide",
+   "god.pray"
   ],
   "gol": [
    "gol.lo"
@@ -72127,6 +72334,42 @@
    "pepe",
    "wife"
   ],
+  "run-788e05": [
+   "anyway",
+   "baba",
+   "because",
+   "call",
+   "chugging",
+   "condolences",
+   "could",
+   "debby",
+   "diss",
+   "dyeriz",
+   "eez",
+   "false",
+   "go",
+   "god",
+   "good",
+   "guy",
+   "how",
+   "life",
+   "now",
+   "old",
+   "people",
+   "person",
+   "poor",
+   "samson",
+   "see",
+   "seniorgehs",
+   "shoot",
+   "society",
+   "somebody",
+   "still",
+   "tell",
+   "there",
+   "tole",
+   "where"
+  ],
   "run-g1-B": [
    "[maybe,know]",
    "adaora",
@@ -72326,42 +72569,6 @@
    "wym",
    "yeah",
    "yuwa"
-  ],
-  "run-788e05": [
-   "anyway",
-   "baba",
-   "because",
-   "call",
-   "chugging",
-   "condolences",
-   "could",
-   "debby",
-   "diss",
-   "dyeriz",
-   "eez",
-   "false",
-   "go",
-   "god",
-   "good",
-   "guy",
-   "how",
-   "life",
-   "now",
-   "old",
-   "people",
-   "person",
-   "poor",
-   "samson",
-   "see",
-   "seniorgehs",
-   "shoot",
-   "society",
-   "somebody",
-   "still",
-   "tell",
-   "there",
-   "tole",
-   "where"
   ]
  },
  "gc": {
@@ -72378,5 +72585,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-28T12:27:31-05:00"
+ "updated": "2026-11-28T12:30:01-05:00"
 }
