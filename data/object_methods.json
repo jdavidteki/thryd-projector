@@ -29729,10 +29729,12 @@
    "object": "see",
    "method": "now",
    "args": [
-    "pehson"
+    "pehson",
+    "baba"
    ],
    "runs": [
-    "run-cf203b"
+    "run-cf203b",
+    "run-788e05"
    ],
    "defined": {
     "run": "run-cf203b",
@@ -29742,8 +29744,34 @@
     "emoji": "👒",
     "at": "2026-11-27T19:48:49-05:00"
    },
-   "calls": 0,
+   "calls": 1,
    "titles": [
+    {
+     "title": "see.now(baba)",
+     "emoji": "🐟",
+     "arg": "baba",
+     "run": "run-788e05",
+     "job": "j3",
+     "tweets": [
+      {
+       "text": "- you see am now? [[tiwwn]]! baba ibeji!",
+       "year": "2025"
+      }
+     ],
+     "consequence": "What just happened: The last card asked for the next line, the one that answers \"He could see that Samson’s mind, for longer\".",
+     "consequence_job": "j4",
+     "resolved": "see.now(what=dont:Thing) from j3",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "dont",
+       "from_run": "run-788e05",
+       "from_job": "j3",
+       "source": "pick"
+      }
+     ]
+    },
     {
      "title": "see.now(pehson)",
      "emoji": "👒",
@@ -29788,6 +29816,14 @@
    "receiver_class": "Action",
    "prior": [
     {
+     "id": "see.now",
+     "title": "see.now(pehson)",
+     "run": "run-cf203b",
+     "job": "j77",
+     "at": "2026-11-27T19:48:49-05:00",
+     "why": "same method"
+    },
+    {
      "id": "understand.now",
      "title": "understand.now(car)",
      "run": "run-cf203b",
@@ -29805,7 +29841,7 @@
     }
    ],
    "faded": false,
-   "last_run": "run-cf203b"
+   "last_run": "run-788e05"
   },
   "life.what": {
    "object": "life",
@@ -30716,6 +30752,260 @@
      }
     ],
     "text": "news(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": "run-788e05"
+  },
+  "dyeriz.now": {
+   "object": "dyeriz",
+   "method": "now",
+   "args": [
+    "dont"
+   ],
+   "runs": [
+    "run-788e05"
+   ],
+   "defined": {
+    "run": "run-788e05",
+    "job": "j3",
+    "card": "w3",
+    "title": "dyeriz.now(dont)",
+    "emoji": "🧱",
+    "at": "2026-11-27T23:53:39-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "dyeriz.now(dont)",
+     "emoji": "🧱",
+     "arg": "dont",
+     "run": "run-788e05",
+     "job": "j3",
+     "tweets": [
+      {
+       "text": "- and dyeriz a.i now so you dont really need him!",
+       "year": "2025"
+      }
+     ],
+     "consequence": "need to.\", \"you go see why na burnaboy need to\", \"and dyeriz a.i now so you dont really need him!\" and \"you see am now?",
+     "consequence_job": "j4",
+     "resolved": "dyeriz.now(what=dont:Thing) from j3",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "dont",
+       "from_run": "run-788e05",
+       "from_job": "j3",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "dont",
+      "first_run": "run-cb805f",
+      "first_job": "j5"
+     }
+    ],
+    "text": "now(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [
+    {
+     "id": "see.now",
+     "title": "see.now(pehson)",
+     "run": "run-cf203b",
+     "job": "j77",
+     "at": "2026-11-27T19:48:49-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "understand.now",
+     "title": "understand.now(car)",
+     "run": "run-cf203b",
+     "job": "j74",
+     "at": "2026-11-27T17:27:20-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "understand.now",
+     "title": "understand.now()",
+     "run": "run-cf203b",
+     "job": "j71",
+     "at": "2026-11-27T16:57:46-05:00",
+     "why": "same method"
+    }
+   ],
+   "faded": false,
+   "last_run": "run-788e05"
+  },
+  "go.see": {
+   "object": "go",
+   "method": "see",
+   "args": [
+    "why"
+   ],
+   "runs": [
+    "run-788e05"
+   ],
+   "defined": {
+    "run": "run-788e05",
+    "job": "j3",
+    "card": "w3",
+    "title": "go.see(why)",
+    "emoji": "",
+    "at": "2026-11-27T23:53:39-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "go.see(why)",
+     "emoji": "",
+     "arg": "why",
+     "run": "run-788e05",
+     "job": "j3",
+     "tweets": [
+      {
+       "text": "- you go see why na burnaboy need to",
+       "year": "2024"
+      }
+     ],
+     "consequence": "need to.\", \"you go see why na burnaboy need to\", \"and dyeriz a.i now so you dont really need him!\" and \"you see am now?",
+     "consequence_job": "j4",
+     "resolved": "go.see(what=why:Thing) from j3",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "why",
+       "from_run": "run-788e05",
+       "from_job": "j3",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "why",
+      "first_run": "run-cf203b",
+      "first_job": "j75"
+     }
+    ],
+    "text": "see(what: Thing)"
+   },
+   "receiver_class": "Action",
+   "prior": [
+    {
+     "id": "could.see",
+     "title": "could.see(samson's)",
+     "run": "run-788e05",
+     "job": "j2",
+     "at": "2026-11-27T23:30:09-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "now.see",
+     "title": "now.see(own)",
+     "run": "run-788e05",
+     "job": "j1",
+     "at": "2026-11-27T23:01:34-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "lez.see",
+     "title": "lez.see(who)",
+     "run": "run-cf203b",
+     "job": "j74",
+     "at": "2026-11-27T17:27:20-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "can.see",
+     "title": "can.see()",
+     "run": "run-cf203b",
+     "job": "j57",
+     "at": "2026-11-26T21:15:02-05:00",
+     "why": "same method"
+    }
+   ],
+   "faded": false,
+   "last_run": "run-788e05"
+  },
+  "society.where": {
+   "object": "society",
+   "method": "where",
+   "args": [
+    "people"
+   ],
+   "runs": [
+    "run-788e05"
+   ],
+   "defined": {
+    "run": "run-788e05",
+    "job": "j3",
+    "card": "w3",
+    "title": "society.where(people)",
+    "emoji": "🧾",
+    "at": "2026-11-27T23:53:39-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "society.where(people)",
+     "emoji": "🧾",
+     "arg": "people",
+     "run": "run-788e05",
+     "job": "j3",
+     "tweets": [
+      {
+       "text": "a society where people need to lie. need to.",
+       "year": "2023",
+       "id": "1618336562722525184"
+      }
+     ],
+     "consequence": "The lines that landed: \"a society where people need to lie.",
+     "consequence_job": "j4",
+     "resolved": "society.where(who=people:Person) from j3",
+     "injected": [
+      {
+       "param": "who",
+       "class": "Person",
+       "instance": "people",
+       "from_run": "run-788e05",
+       "from_job": "j3",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "who",
+      "class": "Person",
+      "default": "people",
+      "first_run": "run-g1-B",
+      "first_job": "j12"
+     }
+    ],
+    "text": "where(who: Person)"
    },
    "receiver_class": "Thing",
    "prior": [],
@@ -35320,7 +35610,8 @@
    "draw.line"
   ],
   "dyeriz": [
-   "dyeriz.notyn"
+   "dyeriz.notyn",
+   "dyeriz.now"
   ],
   "eez": [
    "eez.mad",
@@ -35416,7 +35707,8 @@
   ],
   "go": [
    "go.back",
-   "go.fit"
+   "go.fit",
+   "go.see"
   ],
   "god": [
    "god.have"
@@ -36046,6 +36338,9 @@
   "slapping": [
    "slapping.engine",
    "slapping.because"
+  ],
+  "society": [
+   "society.where"
   ],
   "something": [
    "something.wrong",
@@ -43578,6 +43873,7 @@
     "from": "ff9027478b51",
     "title": "1227. be doing something",
     "funcs": [
+     "see.now",
      "kazeem.lift"
     ]
    }
@@ -46644,6 +46940,7 @@
     "from": "b6b3ff823f66",
     "title": "1113. when an igbo man talks like an #oyinboman",
     "funcs": [
+     "dyeriz.now",
      "media.all"
     ]
    }
@@ -61175,6 +61472,7 @@
   "run-788e05": {
    "safe": "08a8466187dc",
    "funcs": [
+    "see.now",
     "eez.good",
     "now.see",
     "see.why",
@@ -61183,6 +61481,9 @@
     "condolences.family",
     "could.see",
     "good.news",
+    "dyeriz.now",
+    "go.see",
+    "society.where",
     "thryd.importtheme",
     "chrome.add",
     "thryd.log",
@@ -61670,6 +61971,7 @@
   "08a8466187dc": {
    "title": "829. oyinboman juju",
    "funcs": [
+    "see.now",
     "eez.good",
     "now.see",
     "see.why",
@@ -61677,7 +61979,10 @@
     "anyway.click",
     "condolences.family",
     "could.see",
-    "good.news"
+    "good.news",
+    "dyeriz.now",
+    "go.see",
+    "society.where"
    ],
    "runs": [
     "run-788e05"
@@ -62671,7 +62976,8 @@
    "title": "1212. self-care",
    "funcs": [
     "[kept,getting].map",
-    "netflix.chill"
+    "netflix.chill",
+    "go.see"
    ],
    "runs": []
   },
@@ -63652,7 +63958,8 @@
   "b6b3ff823f66": {
    "title": "1113. when an igbo man talks like an #oyinboman",
    "funcs": [
-    "media.all"
+    "media.all",
+    "dyeriz.now"
    ],
    "runs": []
   },
@@ -64431,7 +64738,8 @@
   "ff9027478b51": {
    "title": "1227. be doing something",
    "funcs": [
-    "kazeem.lift"
+    "kazeem.lift",
+    "see.now"
    ],
    "runs": []
   }
@@ -66953,7 +67261,8 @@
    "draw.line"
   ],
   "dyeriz": [
-   "dyeriz.notyn"
+   "dyeriz.notyn",
+   "dyeriz.now"
   ],
   "eez": [
    "eez.mad",
@@ -67029,7 +67338,8 @@
   ],
   "go": [
    "go.back",
-   "go.fit"
+   "go.fit",
+   "go.see"
   ],
   "god": [
    "god.have"
@@ -67568,6 +67878,9 @@
    "slapping.engine",
    "slapping.because"
   ],
+  "society": [
+   "society.where"
+  ],
   "something": [
    "something.wrong",
    "something.fill"
@@ -68081,7 +68394,10 @@
   "queen": [],
   "rebuke": [],
   "hope": [],
-  "go": [],
+  "go": [
+   "Readable",
+   "Watchable"
+  ],
   "stomach": [],
   "will": [
    "Readable",
@@ -68211,6 +68527,7 @@
   "anyway": [],
   "condolences": [],
   "good": [],
+  "society": [],
   "cooler": [],
   "kazeem.goodqualities": [],
   "app": [],
@@ -68586,10 +68903,13 @@
    "anyway",
    "condolences",
    "could",
+   "dyeriz",
    "eez",
+   "go",
    "good",
    "now",
    "see",
+   "society",
    "tell"
   ]
  },
@@ -68607,5 +68927,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-27T23:51:39-05:00"
+ "updated": "2026-11-27T23:54:59-05:00"
 }

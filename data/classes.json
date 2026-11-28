@@ -29,8 +29,8 @@
     "on",
     "best"
    ],
-   "instances": 59,
-   "arg_instances": 17,
+   "instances": 60,
+   "arg_instances": 18,
    "parent": "Thing",
    "chain": [
     "Person",
@@ -109,7 +109,7 @@
     "see",
     "find"
    ],
-   "instances": 537,
+   "instances": 538,
    "arg_instances": 210,
    "parent": null,
    "chain": [
@@ -785,6 +785,17 @@
    ],
    "tweets": []
   },
+  "awwbnft": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-788e05",
+   "first_job": "j3",
+   "source": "typed",
+   "runs": [
+    "run-788e05"
+   ],
+   "tweets": []
+  },
   "ayrastarr": {
    "class": "Thing",
    "cue": "default",
@@ -817,6 +828,22 @@
     "run-93d6ff"
    ],
    "tweets": []
+  },
+  "baba": {
+   "class": "Person",
+   "cue": "word",
+   "first_run": "run-788e05",
+   "first_job": "j3",
+   "source": "pick",
+   "runs": [
+    "run-788e05"
+   ],
+   "tweets": [
+    {
+     "text": "- you see am now? [[tiwwn]]! baba ibeji!",
+     "year": "2025"
+    }
+   ]
   },
   "babaoyewole": {
    "class": "Thing",
@@ -1935,7 +1962,8 @@
    "first_job": "j50",
    "source": "pick",
    "runs": [
-    "run-5a58c4"
+    "run-5a58c4",
+    "run-788e05"
    ],
    "tweets": [
     {
@@ -2337,11 +2365,16 @@
    "first_job": "j5",
    "source": "pick",
    "runs": [
-    "run-cb805f"
+    "run-cb805f",
+    "run-788e05"
    ],
    "tweets": [
     {
      "text": "- i know you dont really care!",
+     "year": "2025"
+    },
+    {
+     "text": "- and dyeriz a.i now so you dont really need him!",
      "year": "2025"
     }
    ]
@@ -6116,12 +6149,18 @@
    "source": "pick",
    "runs": [
     "run-g1-B",
-    "run-cf203b"
+    "run-cf203b",
+    "run-788e05"
    ],
    "tweets": [
     {
      "text": "- so we can visualize awa #thryd:om-- the people need to see-",
      "year": "2025"
+    },
+    {
+     "text": "a society where people need to lie. need to.",
+     "year": "2023",
+     "id": "1618336562722525184"
     }
    ]
   },
@@ -9168,11 +9207,16 @@
    "first_job": "j75",
    "source": "pick",
    "runs": [
-    "run-cf203b"
+    "run-cf203b",
+    "run-788e05"
    ],
    "tweets": [
     {
      "text": "— then she asked me why can’t you see",
+     "year": "2024"
+    },
+    {
+     "text": "- you go see why na burnaboy need to",
      "year": "2024"
     }
    ]
@@ -11506,9 +11550,45 @@
     "pick"
    ],
    [
+    "baba",
+    "Person",
+    "j3",
+    "pick"
+   ],
+   [
+    "dont",
+    "Thing",
+    "j3",
+    "pick"
+   ],
+   [
+    "why",
+    "Thing",
+    "j3",
+    "pick"
+   ],
+   [
+    "people",
+    "Person",
+    "j3",
+    "pick"
+   ],
+   [
     "fireboydml",
     "Thing",
     "j2",
+    "typed"
+   ],
+   [
+    "data",
+    "Thing",
+    "j3",
+    "typed"
+   ],
+   [
+    "awwbnft",
+    "Thing",
+    "j3",
     "typed"
    ]
   ],
@@ -14391,6 +14471,9 @@
   "condolences.family": "family(how: Manner)",
   "could.see": "see(what: Thing)",
   "good.news": "news(what: Thing)",
+  "dyeriz.now": "now(what: Thing)",
+  "go.see": "see(what: Thing)",
+  "society.where": "where(who: Person)",
   "cooler.getdatemanufactured": "getDateManufactured()",
   "ronke.getlikes.contains": "getlikes.contains()",
   "kazeem.goodqualities.filter": "filter()",
@@ -14587,6 +14670,7 @@
     "dez",
     "ehen",
     "folake",
+    "go",
     "history",
     "irteiutk",
     "kazeem",
@@ -14654,6 +14738,7 @@
     "dez",
     "everywhere",
     "folake",
+    "go",
     "history",
     "lez",
     "mamaronke",
@@ -15086,10 +15171,13 @@
    "anyway",
    "condolences",
    "could",
+   "dyeriz",
    "eez",
+   "go",
    "good",
    "now",
    "see",
+   "society",
    "tell"
   ]
  },
@@ -15165,5 +15253,5 @@
   "epilogue": "quiet",
   "coda": "quiet"
  },
- "updated": "2026-11-27T23:51:38-05:00"
+ "updated": "2026-11-27T23:54:08-05:00"
 }

@@ -657,10 +657,27 @@
   }
 
   // v628: full archive safe (chat option description) under each option.
+  // v659: never render an X/Twitter status URL or the old 'tweet, date, x.com/i/status/…' header.
+  // Status ids may exist on the option as `_source` but are not shown. 🎥 keeps its live-view text.
+  function stripTweetUrls(s){
+    if(s == null) return '';
+    s = String(s);
+    if(/^\s*a live view of the scene so far\s*$/i.test(s)) return s.trim();
+    s = s.replace(/tweet(?:,\s*(?:19|20)\d\d-\d\d-\d\d)?,?\s*(?:https?:\/\/)?(?:www\.)?(?:x|twitter)\.com\/i\/status\/\d+\s*:?\s*/gi, '');
+    s = s.replace(/(?:https?:\/\/)?(?:www\.)?(?:x|twitter)\.com\/(?:[A-Za-z0-9_]+\/)?status\/\d+\S*/gi, '');
+    s = s.replace(/(?:https?:\/\/)?(?:www\.)?(?:x|twitter)\.com(?:\/\S*)?/gi, '');
+    s = s.replace(/\s*\+\s*/g, ' / ');
+    s = s.replace(/\s*:\s+(?=\d+\.\s)/g, ' / ');
+    s = s.replace(/(?:^|\s)\/\s*\/\s*/g, ' / ').replace(/^\s*\/\s*/, '').replace(/\s*\/\s*$/, '');
+    return s.replace(/[ \t]{2,}/g, ' ').trim();
+  }
   function safeText(o){
-    if(o && typeof o.safe === 'string' && o.safe.trim()) return o.safe;
-    if(o && typeof o.description === 'string' && o.description.trim()) return o.description;
-    return '';
+    let raw = '';
+    if(o && typeof o.safe === 'string' && o.safe.trim()) raw = o.safe;
+    else if(o && typeof o.description === 'string' && o.description.trim()) raw = o.description;
+    if(!raw) return '';
+    if(typeof isLiveOpt === 'function' && isLiveOpt(o)) return raw;
+    return stripTweetUrls(raw);
   }
   function safeRows(text){
     let s = String(text || '').replace(/\s+$/, '');
@@ -1053,7 +1070,7 @@
     } else {
       const locked = wasSent(c.job);
       if(c.prompt) body.appendChild(promptEl(c.prompt));
-      if(c.helpText){ const h = document.createElement('div'); h.className = 'aichelt'; h.textContent = c.helpText; body.appendChild(h); }
+      if(c.helpText){ const h = document.createElement('div'); h.className = 'aichelt'; h.textContent = stripTweetUrls(c.helpText); body.appendChild(h); }
       const opts = document.createElement('div'); opts.className = 'aicopts';
       // v657: 🎥 is still the Live view pill in the menu row, and also a list option so its
       // description ('a live view of the scene so far') shows the same way the other options do.
