@@ -22904,7 +22904,7 @@
   },
   "run-888ea9": {
    "forked_from": "safe:38688e69edf3",
-   "head": "88774ed4a9",
+   "head": "b597afaee7",
    "commits": [
     {
      "id": "b0726dfc67",
@@ -23242,7 +23242,7 @@
      }
     },
     {
-     "id": "88774ed4a9",
+     "id": "b597afaee7",
      "parent": "e1b3375c1f",
      "branch": "run-888ea9",
      "job": "j11",
@@ -23410,9 +23410,73 @@
         "code": "https://medium.com/@notnotnotnotyn/126-the-friends-of-bad-people-2001bd0a991c;",
         "scope": null,
         "cause_id": null
+       },
+       {
+        "id": "wt_2e19812a62",
+        "object": "person",
+        "kind": "func_call",
+        "code": "person.rest('wan');",
+        "scope": "own",
+        "cause_id": null
+       },
+       {
+        "id": "wt_d9a055a756",
+        "object": "cup",
+        "kind": "func_call",
+        "code": "cup.hears(notnotnotnotyn_oct_figure, 'rest');",
+        "scope": "ripple",
+        "cause_id": "wt_2e19812a62"
+       },
+       {
+        "id": "wt_d469ae1838",
+        "object": "anyway",
+        "kind": "func_call",
+        "code": "anyway.hears(notnotnotnotyn_oct_figure, 'rest');",
+        "scope": "ripple",
+        "cause_id": "wt_2e19812a62"
+       },
+       {
+        "id": "wt_11d700eb0b",
+        "object": "baba",
+        "kind": "func_call",
+        "code": "baba.hears(notnotnotnotyn_oct_figure, 'rest');",
+        "scope": "ripple",
+        "cause_id": "wt_2e19812a62"
+       },
+       {
+        "id": "wt_ebf1155160",
+        "object": "kazeem",
+        "kind": "func_call",
+        "code": "kazeem.lift('currentaffairs');",
+        "scope": "env",
+        "cause_id": null
+       },
+       {
+        "id": "wt_a550f2ff75",
+        "object": "ojuelegba_bus_stop_subject_second",
+        "kind": "func_call",
+        "code": "ojuelegba_bus_stop_subject_second.hears(ojuelegba_bus_stop_subject_fourth, 'lift');",
+        "scope": "ripple",
+        "cause_id": "wt_ebf1155160"
+       },
+       {
+        "id": "wt_6a68381779",
+        "object": "ojuelegba_bus_stop_subject_third",
+        "kind": "func_call",
+        "code": "ojuelegba_bus_stop_subject_third.hears(ojuelegba_bus_stop_subject_fourth, 'lift');",
+        "scope": "ripple",
+        "cause_id": "wt_ebf1155160"
+       },
+       {
+        "id": "wt_22ffcd02e3",
+        "object": "attendant",
+        "kind": "func_call",
+        "code": "attendant.hears(ojuelegba_bus_stop_subject_fourth, 'lift');",
+        "scope": "ripple",
+        "cause_id": "wt_ebf1155160"
        }
       ],
-      "facts_total": 20,
+      "facts_total": 28,
       "functions": [
        {
         "func": "art.look",
@@ -24518,10 +24582,10 @@
   "run-3a15d2": "fbc46c6eb7",
   "run-ab4653": "dd8e54daee",
   "run-cf203b": "ef471d637d",
-  "run-888ea9": "88774ed4a9",
+  "run-888ea9": "b597afaee7",
   "run-788e05": "57d47b66b6",
   "run-cb805f": "8d23a93627"
  },
  "commits": 242,
- "updated": "2026-11-28T01:09:07-05:00"
+ "updated": "2026-11-28T01:13:16-05:00"
 }

@@ -2607,16 +2607,6 @@
 ],
 "cup": [
 {
-"id": "wf_e43deff5fa",
-"kind": "consequence",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the juju code at the cup, and Ejiro reads the name twice.",
-"code": "jnoel.interactwith(cup){ cup.receives(jnoel.envelope); cup.remembers(bisola, 'brown envelope'); cup.tucks(jnoel, 'yaba bookshop receipt into the juju code'); }",
-"author": "cos",
-"run": "run-2eb42d",
-"card": "j6",
-"other": "jnoel"
-},
-{
 "id": "wf_20bc2e5c8e",
 "kind": "consequence",
 "text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the juju code at the cup, and Ejiro reads the name twice.",
@@ -2644,6 +2634,16 @@
 "author": "projector",
 "run": "run-788e05",
 "card": "w5",
+"other": null
+},
+{
+"id": "wt_d9a055a756",
+"kind": "func_call",
+"text": "The cup hears it (because person.rest(what=wan:Thing) from j9).",
+"code": "cup.hears(notnotnotnotyn_oct_figure, 'rest');",
+"author": "projector",
+"run": "run-888ea9",
+"card": "w11",
 "other": null
 },
 {
@@ -10827,6 +10827,16 @@
 "run": "run-788e05",
 "card": "w5",
 "other": null
+},
+{
+"id": "wt_2e19812a62",
+"kind": "func_call",
+"text": "Someone at the projector tapped the notnotnotnotyn oct figure and called person.rest(what=wan:Thing) from j9, first seated in run-788e05 j4.",
+"code": "person.rest('wan');",
+"author": "projector",
+"run": "run-888ea9",
+"card": "w11",
+"other": null
 }
 ],
 "if_heaven_then_figure": [
@@ -12352,6 +12362,16 @@
 "author": "projector",
 "run": "run-cf203b",
 "card": "w42",
+"other": null
+},
+{
+"id": "wt_22ffcd02e3",
+"kind": "func_call",
+"text": "The attendant hears it (because kazeem.lift(what=currentaffairs:Thing)).",
+"code": "attendant.hears(ojuelegba_bus_stop_subject_fourth, 'lift');",
+"author": "projector",
+"run": "run-888ea9",
+"card": "w11",
 "other": null
 }
 ],
@@ -14537,6 +14557,16 @@
 "run": "run-788e05",
 "card": "w5",
 "other": null
+},
+{
+"id": "wt_d469ae1838",
+"kind": "func_call",
+"text": "The anyway hears it (because person.rest(what=wan:Thing) from j9).",
+"code": "anyway.hears(notnotnotnotyn_oct_figure, 'rest');",
+"author": "projector",
+"run": "run-888ea9",
+"card": "w11",
+"other": null
 }
 ],
 "condolences": [
@@ -14570,6 +14600,42 @@
 "author": "projector",
 "run": "run-788e05",
 "card": "w5",
+"other": null
+}
+],
+"baba": [
+{
+"id": "wt_11d700eb0b",
+"kind": "func_call",
+"text": "The baba hears it (because person.rest(what=wan:Thing) from j9).",
+"code": "baba.hears(notnotnotnotyn_oct_figure, 'rest');",
+"author": "projector",
+"run": "run-888ea9",
+"card": "w11",
+"other": null
+}
+],
+"ojuelegba_bus_stop_subject_second": [
+{
+"id": "wt_a550f2ff75",
+"kind": "func_call",
+"text": "The ojuelegba bus stop subject second hears it (because kazeem.lift(what=currentaffairs:Thing)).",
+"code": "ojuelegba_bus_stop_subject_second.hears(ojuelegba_bus_stop_subject_fourth, 'lift');",
+"author": "projector",
+"run": "run-888ea9",
+"card": "w11",
+"other": null
+}
+],
+"ojuelegba_bus_stop_subject_third": [
+{
+"id": "wt_6a68381779",
+"kind": "func_call",
+"text": "The ojuelegba bus stop subject third hears it (because kazeem.lift(what=currentaffairs:Thing)).",
+"code": "ojuelegba_bus_stop_subject_third.hears(ojuelegba_bus_stop_subject_fourth, 'lift');",
+"author": "projector",
+"run": "run-888ea9",
+"card": "w11",
 "other": null
 }
 ]
@@ -15117,5 +15183,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-28T00:18:20-0500"
+"updated": "2026-11-28T01:13:14-0500"
 }
