@@ -10819,16 +10819,6 @@
 ],
 "person": [
 {
-"id": "wt_668e954827",
-"kind": "func_call",
-"text": "Someone at the projector tapped the cut1 and called person.rest(what=offended:Thing) from j8 from its agenda run-788e05, first seated in run-788e05 j4.",
-"code": "person.rest('offended');",
-"author": "projector",
-"run": "run-788e05",
-"card": "w18",
-"other": null
-},
-{
 "id": "wt_85fbf93026",
 "kind": "func_call",
 "text": "Someone at the projector tapped the cooler subject and called person.rest(what=god:Thing) from j17, first seated in run-788e05 j4.",
@@ -10862,6 +10852,16 @@
 "id": "wt_b634b8c76c",
 "kind": "func_call",
 "text": "Someone at the projector tapped the notnotnotnotyn nov figure and called person.rest(what=god:Thing) from j17, first seated in run-788e05 j4.",
+"code": "person.rest('god');",
+"author": "projector",
+"run": "run-788e05",
+"card": "w18",
+"other": null
+},
+{
+"id": "wt_99f6429be7",
+"kind": "func_call",
+"text": "Someone at the projector tapped the cooler subject third and called person.rest(what=god:Thing) from j17, first seated in run-788e05 j4.",
 "code": "person.rest('god');",
 "author": "projector",
 "run": "run-788e05",
@@ -11521,16 +11521,6 @@
 ],
 "cooler_subject_second": [
 {
-"id": "wt_50b70935df",
-"kind": "call",
-"text": "Someone at the projector tapped the cooler subject second and made it glow.",
-"code": "cooler_subject_second.glow();",
-"author": "projector",
-"run": "run-cf203b",
-"card": "w28",
-"other": null
-},
-{
 "id": "wt_0f7d10a805",
 "kind": "func_call",
 "text": "The cooler subject second hears it (because kazeem.lift(what=only:Thing) from j44).",
@@ -11568,6 +11558,16 @@
 "author": "projector",
 "run": "run-788e05",
 "card": "w11",
+"other": null
+},
+{
+"id": "wt_6b039c72b1",
+"kind": "func_call",
+"text": "The cooler subject second hears it (because person.rest(what=god:Thing) from j17).",
+"code": "cooler_subject_second.hears(cooler_subject_third, 'rest');",
+"author": "projector",
+"run": "run-788e05",
+"card": "w18",
 "other": null
 }
 ],
@@ -14619,16 +14619,6 @@
 ],
 "anyway": [
 {
-"id": "wt_ed750b74f5",
-"kind": "func_call",
-"text": "The anyway hears it (because guy.where(what=offended:Thing) from j8).",
-"code": "anyway.hears(cut1, 'where');",
-"author": "projector",
-"run": "run-788e05",
-"card": "w18",
-"other": null
-},
-{
 "id": "wt_0720af7781",
 "kind": "func_call",
 "text": "The anyway hears it (because person.rest(what=god:Thing) from j17).",
@@ -14663,6 +14653,16 @@
 "kind": "func_call",
 "text": "The anyway hears it (because person.rest(what=god:Thing) from j17).",
 "code": "anyway.hears(notnotnotnotyn_nov_figure, 'rest');",
+"author": "projector",
+"run": "run-788e05",
+"card": "w18",
+"other": null
+},
+{
+"id": "wt_4c0b216599",
+"kind": "func_call",
+"text": "The anyway hears it (because person.rest(what=god:Thing) from j17).",
+"code": "anyway.hears(cooler_subject_third, 'rest');",
 "author": "projector",
 "run": "run-788e05",
 "card": "w18",
@@ -14705,16 +14705,6 @@
 ],
 "baba": [
 {
-"id": "wt_81296edb53",
-"kind": "func_call",
-"text": "The baba hears it (because guy.where(what=offended:Thing) from j8).",
-"code": "baba.hears(cut1, 'where');",
-"author": "projector",
-"run": "run-788e05",
-"card": "w18",
-"other": null
-},
-{
 "id": "wt_b8f0a03a68",
 "kind": "func_call",
 "text": "The baba hears it (because person.rest(what=god:Thing) from j17).",
@@ -14749,6 +14739,16 @@
 "kind": "func_call",
 "text": "The baba hears it (because person.rest(what=god:Thing) from j17).",
 "code": "baba.hears(notnotnotnotyn_nov_figure, 'rest');",
+"author": "projector",
+"run": "run-788e05",
+"card": "w18",
+"other": null
+},
+{
+"id": "wt_cfc2cc0d6f",
+"kind": "func_call",
+"text": "The baba hears it (because person.rest(what=god:Thing) from j17).",
+"code": "baba.hears(cooler_subject_third, 'rest');",
 "author": "projector",
 "run": "run-788e05",
 "card": "w18",
@@ -15687,5 +15687,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-28T15:55:50-0500"
+"updated": "2026-11-28T16:08:24-0500"
 }
