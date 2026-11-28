@@ -6555,6 +6555,16 @@
 "run": "run-cf203b",
 "card": "j54",
 "other": null
+},
+{
+"id": "wf_c82a2f7be3",
+"kind": "consequence",
+"text": "The hpr leaves with a Sheep note with Kunle's name and 'scorched container number' on it.",
+"code": "sheep.interactwith(hpr){ hpr.receives(sheep.number); hpr.remembers(kunle, 'scorched container number'); }",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "w7",
+"other": "sheep"
 }
 ],
 "little_tenderness": [
@@ -7159,6 +7169,26 @@
 "run": "run-g1-B",
 "card": "j5",
 "other": "surulere"
+},
+{
+"id": "wt_bd561eb17a",
+"kind": "func_call",
+"text": "Someone at the projector saw the oke ayo bus meet the lagos.",
+"code": "oke_ayo_bus.meets(lagos);",
+"author": "projector",
+"run": "run-788e05",
+"card": "w1",
+"other": null
+},
+{
+"id": "wf_591ae09c56",
+"kind": "consequence",
+"text": "The oke ayo bus leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "lagos.interactwith(oke_ayo_bus){ oke_ayo_bus.receives(lagos.envelope); oke_ayo_bus.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-788e05",
+"card": "j6",
+"other": "lagos"
 }
 ],
 "abeokuta_parlour": [
@@ -14386,28 +14416,6 @@
 },
 "consequences": [
 {
-"id": "wf_af10c4b790",
-"ts": "2026-11-24T13:29:50-0500",
-"a": "house",
-"b": "tbp",
-"code": "house.interactwith(tbp){ tbp.receives(house.sign); tbp.remembers(kunle, 'nice day sign'); tbp.tucks(house, 'marker note into the brown envelope'); }",
-"text": "A Marker note with Kunle's name and 'nice day sign' on it, turns up inside the brown envelope at the tbp, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j3"
-},
-{
-"id": "wf_fd9a4b64cb",
-"ts": "2026-11-24T13:34:07-0500",
-"a": "heat",
-"b": "wser",
-"code": "heat.interactwith(wser){ wser.receives(heat.envelope); wser.remembers(bisola, 'brown envelope'); }",
-"text": "The wser leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
 "id": "wf_da0c45a1a8",
 "ts": "2026-11-24T13:35:48-0500",
 "a": "marker_b",
@@ -14824,6 +14832,28 @@
 "author": "cos",
 "run": "run-cf203b",
 "card": "j65"
+},
+{
+"id": "wf_c82a2f7be3",
+"ts": "2026-11-27T22:41:43-0500",
+"a": "sheep",
+"b": "hpr",
+"code": "sheep.interactwith(hpr){ hpr.receives(sheep.number); hpr.remembers(kunle, 'scorched container number'); }",
+"text": "The hpr leaves with a Sheep note with Kunle's name and 'scorched container number' on it.",
+"author": "cos",
+"run": "run-5a58c4",
+"card": "w7"
+},
+{
+"id": "wf_591ae09c56",
+"ts": "2026-11-27T22:44:14-0500",
+"a": "lagos",
+"b": "oke_ayo_bus",
+"code": "lagos.interactwith(oke_ayo_bus){ oke_ayo_bus.receives(lagos.envelope); oke_ayo_bus.remembers(bisola, 'brown envelope'); }",
+"text": "The oke ayo bus leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-788e05",
+"card": "j6"
 }
 ],
 "memories": [
@@ -14927,5 +14957,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-27T20:59:56-0500"
+"updated": "2026-11-27T22:44:14-0500"
 }
