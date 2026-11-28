@@ -9013,16 +9013,6 @@
 ],
 "new": [
 {
-"id": "wt_bd0118ea60",
-"kind": "func_call",
-"text": "The customer typed new makeup(maryk) on run-cf203b j23. It came back: New makeup maryk. Implementation: function makeup(what){\n  NEW_MAKEUP_COUNT += 1;\n  this.lastMakeup = \"maryk\";\n  return \"New makeup maryk\";\n}. new now has new.makeup as a method on this agenda, and it can be called again.",
-"code": "new makeup(maryk);",
-"author": "customer",
-"run": "run-cf203b",
-"card": "j23",
-"other": null
-},
-{
 "id": "wt_6933b9b76e",
 "kind": "func_call",
 "text": "The customer typed new mirror() on run-cf203b j50. It came back: New mirror. Implementation: function mirror(){\n  NEW_MIRROR_COUNT += 1;\n  this.lastMirror = \"New mirror\";\n  return \"New mirror\";\n}. new now has new.mirror as a method on this agenda, and it can be called again.",
@@ -9061,29 +9051,19 @@
 "run": "run-cf203b",
 "card": "j67",
 "other": null
+},
+{
+"id": "wt_c2599f7c93",
+"kind": "func_call",
+"text": "The customer typed new person(\"kolade\") on run-cf203b j78. It came back: New person kolade. Implementation: function person(what){\n  NEW_PERSON_COUNT += 1;\n  this.lastPerson = \"kolade\";\n  return \"New person kolade\";\n}. new now has new.person as a method on this agenda, and it can be called again.",
+"code": "new person(\"kolade\");",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j78",
+"other": null
 }
 ],
 "cli": [
-{
-"id": "wt_a29a85cc8d",
-"kind": "func_call",
-"text": "The customer typed [[ayfa?]] on run-cf203b j73. It came back: [[ayfa?]]. Implementation: /* [[ayfa?]] */.",
-"code": "[[ayfa?]];",
-"author": "customer",
-"run": "run-cf203b",
-"card": "j73",
-"other": null
-},
-{
-"id": "wt_3f79fe7397",
-"kind": "func_call",
-"text": "The customer typed #thryd.miracle.log(1) on run-cf203b j74. It came back: #thryd.miracle.log(1). Implementation: /* #thryd.miracle.log(1) */.",
-"code": "#thryd.miracle.log(1);",
-"author": "customer",
-"run": "run-cf203b",
-"card": "j74",
-"other": null
-},
 {
 "id": "wt_e7045d78f4",
 "kind": "func_call",
@@ -9112,6 +9092,26 @@
 "author": "customer",
 "run": "run-cf203b",
 "card": "j76",
+"other": null
+},
+{
+"id": "wt_73f03b14f4",
+"kind": "func_call",
+"text": "The customer typed #life on run-cf203b j78. It came back: #life. Implementation: /* #life */.",
+"code": "#life;",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j78",
+"other": null
+},
+{
+"id": "wt_3c2b909900",
+"kind": "func_call",
+"text": "The customer typed #thryd.miracle.log(1) on run-cf203b j78. It came back: #thryd.miracle.log(1). Implementation: /* #thryd.miracle.log(1) */.",
+"code": "#thryd.miracle.log(1);",
+"author": "customer",
+"run": "run-cf203b",
+"card": "j78",
 "other": null
 }
 ],
@@ -14769,5 +14769,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-27T18:43:27-0500"
+"updated": "2026-11-27T19:49:09-0500"
 }

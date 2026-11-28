@@ -22331,15 +22331,15 @@
      ],
      "consequence": "What just happened: The woman laughed at Kemi: \"if dem no teh you!\" Then, slower: \"well, loosely translated to the colonizer's syntax in the least.\" She reminded everyone who started it: \"dehwyeh the wans that invented.\" Then she spoke to T",
      "consequence_job": "j39",
-     "resolved": "dehwyeh.wans(what=want:Thing) from j38",
+     "resolved": "dehwyeh.wans(what=invented:Thing) from j38",
      "injected": [
       {
        "param": "what",
        "class": "Thing",
-       "instance": "want",
+       "instance": "invented",
        "from_run": "run-cf203b",
        "from_job": "j38",
-       "source": "pick"
+       "source": "original"
       }
      ]
     }
@@ -22444,15 +22444,15 @@
      ],
      "consequence": "What just happened: The woman laughed at Kemi: \"if dem no teh you!\" Then, slower: \"well, loosely translated to the colonizer's syntax in the least.\" She reminded everyone who started it: \"dehwyeh the wans that invented.\" Then she spoke to T",
      "consequence_job": "j39",
-     "resolved": "well.loosely(what=want:Thing) from j38",
+     "resolved": "well.loosely(what=translated:Thing) from j38",
      "injected": [
       {
        "param": "what",
        "class": "Thing",
-       "instance": "want",
+       "instance": "translated",
        "from_run": "run-cf203b",
        "from_job": "j38",
-       "source": "pick"
+       "source": "original"
       }
      ]
     }
@@ -22517,7 +22517,7 @@
        "instance": "want",
        "from_run": "run-cf203b",
        "from_job": "j38",
-       "source": "pick"
+       "source": "original"
       }
      ]
     }
@@ -22615,7 +22615,7 @@
        "instance": "therapy",
        "from_run": "run-cf203b",
        "from_job": "j39",
-       "source": "pick"
+       "source": "original"
       }
      ]
     }
@@ -22689,7 +22689,7 @@
        "instance": "anymore",
        "from_run": "run-cf203b",
        "from_job": "j39",
-       "source": "pick"
+       "source": "original"
       }
      ]
     }
@@ -29573,6 +29573,214 @@
    "faded": false,
    "last_run": "run-cf203b"
   },
+  "decide.when": {
+   "object": "decide",
+   "method": "when",
+   "args": [
+    "come"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j77",
+    "card": "w77",
+    "title": "decide.when(come)",
+    "emoji": "🔔",
+    "at": "2026-11-27T19:48:49-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "decide.when(come)",
+     "emoji": "🔔",
+     "arg": "come",
+     "run": "run-cf203b",
+     "job": "j77",
+     "tweets": [],
+     "consequence": "The lines that landed: \"see now pehson no fit [[tuff]] money in\", \"#juniorboys - reaching - potential difference\", \"[[msbr]] - was that he went to [[bow]]\" and \"they decide when we come in and go out, you have to switch positions\".",
+     "consequence_job": "j78",
+     "resolved": "decide.when(act=come:Action) from j77",
+     "injected": [
+      {
+       "param": "act",
+       "class": "Action",
+       "instance": "come",
+       "from_run": "run-cf203b",
+       "from_job": "j77",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "act",
+      "class": "Action",
+      "default": "come",
+      "first_run": "run-cf203b",
+      "first_job": "j77"
+     }
+    ],
+    "text": "when(act: Action)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": "run-cf203b"
+  },
+  "reaching.potential": {
+   "object": "reaching",
+   "method": "potential",
+   "args": [
+    "difference"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j77",
+    "card": "w77",
+    "title": "reaching.potential(difference)",
+    "emoji": "🎨",
+    "at": "2026-11-27T19:48:49-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "reaching.potential(difference)",
+     "emoji": "🎨",
+     "arg": "difference",
+     "run": "run-cf203b",
+     "job": "j77",
+     "tweets": [
+      {
+       "text": "#juniorboys - reaching - potential difference",
+       "year": "2024",
+       "id": "1815009623662882942"
+      }
+     ],
+     "consequence": "The lines that landed: \"see now pehson no fit [[tuff]] money in\", \"#juniorboys - reaching - potential difference\", \"[[msbr]] - was that he went to [[bow]]\" and \"they decide when we come in and go out, you have to switch positions\".",
+     "consequence_job": "j78",
+     "resolved": "reaching.potential(what=difference:Thing) from j77",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "difference",
+       "from_run": "run-cf203b",
+       "from_job": "j77",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "difference",
+      "first_run": "run-cf203b",
+      "first_job": "j77"
+     }
+    ],
+    "text": "potential(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": "run-cf203b"
+  },
+  "see.now": {
+   "object": "see",
+   "method": "now",
+   "args": [
+    "pehson"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j77",
+    "card": "w77",
+    "title": "see.now(pehson)",
+    "emoji": "👒",
+    "at": "2026-11-27T19:48:49-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "see.now(pehson)",
+     "emoji": "👒",
+     "arg": "pehson",
+     "run": "run-cf203b",
+     "job": "j77",
+     "tweets": [
+      {
+       "text": "- see now pehson no fit [[tuff]] money in",
+       "year": "2025"
+      }
+     ],
+     "consequence": "The lines that landed: \"see now pehson no fit [[tuff]] money in\", \"#juniorboys - reaching - potential difference\", \"[[msbr]] - was that he went to [[bow]]\" and \"they decide when we come in and go out, you have to switch positions\".",
+     "consequence_job": "j78",
+     "resolved": "see.now(what=pehson:Thing) from j77",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "pehson",
+       "from_run": "run-cf203b",
+       "from_job": "j77",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "pehson",
+      "first_run": "run-cf203b",
+      "first_job": "j77"
+     }
+    ],
+    "text": "now(what: Thing)"
+   },
+   "receiver_class": "Action",
+   "prior": [
+    {
+     "id": "understand.now",
+     "title": "understand.now(car)",
+     "run": "run-cf203b",
+     "job": "j74",
+     "at": "2026-11-27T17:27:20-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "understand.now",
+     "title": "understand.now()",
+     "run": "run-cf203b",
+     "job": "j71",
+     "at": "2026-11-27T16:57:46-05:00",
+     "why": "same method"
+    }
+   ],
+   "faded": false,
+   "last_run": "run-cf203b"
+  },
   "cooler.getdatemanufactured": {
    "object": "cooler",
    "method": "getDateManufactured",
@@ -33560,6 +33768,46 @@
    "prior": [],
    "faded": false,
    "last_run": null
+  },
+  "new.person": {
+   "object": "new",
+   "method": "person",
+   "args": [],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j78",
+    "card": "j78",
+    "title": "new person(\"kolade\")",
+    "emoji": "",
+    "at": "2026-11-27T19:48:55-05:00",
+    "source": "cli"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "new person(\"kolade\")",
+     "emoji": "",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j78",
+     "tweets": [],
+     "consequence": "The customer typed this on this agenda.",
+     "consequence_job": ""
+    }
+   ],
+   "source": "cli",
+   "cli": true,
+   "sig": {
+    "params": [],
+    "text": "person()"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
   }
  },
  "objects": {
@@ -33876,6 +34124,9 @@
   "daz": [
    "daz.what",
    "daz.y"
+  ],
+  "decide": [
+   "decide.when"
   ],
   "dehwyeh": [
    "dehwyeh.wans"
@@ -34393,7 +34644,8 @@
    "new.mirror",
    "new.miniskirt",
    "new.powercouple",
-   "new.nonprofitorganization"
+   "new.nonprofitorganization",
+   "new.person"
   ],
   "new_yuwa_running_subject": [
    "object.look"
@@ -34533,6 +34785,9 @@
    "randomrestaurant.put",
    "randomrestaurant.addguest"
   ],
+  "reaching": [
+   "reaching.potential"
+  ],
   "ready": [
    "ready.finally"
   ],
@@ -34622,7 +34877,8 @@
    "say.nigerian"
   ],
   "see": [
-   "see.ba"
+   "see.ba",
+   "see.now"
   ],
   "self": [
    "self.love"
@@ -49772,6 +50028,14 @@
   "mfjpm_subject": [
    {
     "scope": "safe",
+    "from": "44cdf3c43503",
+    "title": "1130. mfjpm",
+    "funcs": [
+     "see.now"
+    ]
+   },
+   {
+    "scope": "safe",
     "from": "8e5bbd0ffb78",
     "title": "105. there are approximately 93 thousand steps up the ladder of success",
     "funcs": [
@@ -60059,6 +60323,9 @@
     "how.will",
     "modafokas.owe",
     "why.cheat",
+    "decide.when",
+    "reaching.potential",
+    "see.now",
     "cli.cli",
     "thryd.importtheme",
     "kemi.ismarried",
@@ -60084,7 +60351,8 @@
     "new.powercouple",
     "new.nonprofitorganization",
     "kasai.settemperature",
-    "thryd.changereality"
+    "thryd.changereality",
+    "new.person"
    ]
   },
   "run-d6fc": {
@@ -60900,6 +61168,13 @@
    ],
    "runs": []
   },
+  "44cdf3c43503": {
+   "title": "1130. mfjpm",
+   "funcs": [
+    "see.now"
+   ],
+   "runs": []
+  },
   "4558fb3e9d83": {
    "title": "624. delete your drafts",
    "funcs": [
@@ -61433,7 +61708,10 @@
     "because.last",
     "how.will",
     "modafokas.owe",
-    "why.cheat"
+    "why.cheat",
+    "decide.when",
+    "reaching.potential",
+    "see.now"
    ],
    "runs": [
     "run-cf203b"
@@ -63076,7 +63354,8 @@
    "7cc3dcbddb18"
   ],
   "1*o1i7GwsY0GysFRDNM5TZng.gif": [
-   "8e5bbd0ffb78"
+   "8e5bbd0ffb78",
+   "44cdf3c43503"
   ],
   "1*RsUH6hRZMu8g1gDOm4UE_w.gif": [
    "8e5bbd0ffb78"
@@ -64455,7 +64734,8 @@
   "1*o1i7GwsY0GysFRDNM5TZng.gif": {
    "runs": [],
    "safes": [
-    "8e5bbd0ffb78"
+    "8e5bbd0ffb78",
+    "44cdf3c43503"
    ]
   },
   "1*KXwbkTufRr9n_NRssBfDvA.gif": {
@@ -65381,6 +65661,9 @@
    "daz.what",
    "daz.y"
   ],
+  "decide": [
+   "decide.when"
+  ],
   "dehwyeh": [
    "dehwyeh.wans"
   ],
@@ -65804,7 +66087,8 @@
    "new.mirror",
    "new.miniskirt",
    "new.powercouple",
-   "new.nonprofitorganization"
+   "new.nonprofitorganization",
+   "new.person"
   ],
   "next": [
    "next.kin"
@@ -65929,6 +66213,9 @@
    "randomrestaurant.put",
    "randomrestaurant.addguest"
   ],
+  "reaching": [
+   "reaching.potential"
+  ],
   "ready": [
    "ready.finally"
   ],
@@ -65995,7 +66282,8 @@
    "say.nigerian"
   ],
   "see": [
-   "see.ba"
+   "see.ba",
+   "see.now"
   ],
   "self": [
    "self.love"
@@ -66653,6 +66941,8 @@
   "see": [],
   "how": [],
   "modafokas": [],
+  "decide": [],
+  "reaching": [],
   "cooler": [],
   "kazeem.goodqualities": [],
   "app": [],
@@ -66881,6 +67171,7 @@
    "daddy",
    "das",
    "daz",
+   "decide",
    "dehwyeh",
    "dem",
    "deya",
@@ -66962,6 +67253,7 @@
    "queen",
    "quickly",
    "raised",
+   "reaching",
    "ready",
    "rebuke",
    "rikwaya",
@@ -67029,5 +67321,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-27T17:56:13-05:00"
+ "updated": "2026-11-27T19:50:01-05:00"
 }
