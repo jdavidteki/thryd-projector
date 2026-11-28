@@ -7189,6 +7189,16 @@
 "run": "run-788e05",
 "card": "j6",
 "other": "lagos"
+},
+{
+"id": "wf_31b70cf7e8",
+"kind": "consequence",
+"text": "The oke ayo bus now remembers the clock: The clock hears it (because titi.let(what=finish:Thing) from j13).",
+"code": "clock.interactwith(oke_ayo_bus){ oke_ayo_bus.receives(clock.something); }",
+"author": "cos",
+"run": "run-788e05",
+"card": "j13",
+"other": "clock"
 }
 ],
 "abeokuta_parlour": [
@@ -14674,17 +14684,6 @@
 },
 "consequences": [
 {
-"id": "wf_fb28e2ccc0",
-"ts": "2026-11-24T13:45:04-0500",
-"a": "reality",
-"b": "htpto",
-"code": "reality.interactwith(htpto){ htpto.receives(reality.envelope); htpto.remembers(bisola, 'brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up with the teomarisollove, which is still in love, said out loud by Marisol (w14 causeway).",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
 "id": "wf_8ff018ed50",
 "ts": "2026-11-24T13:46:47-0500",
 "a": "marker_b",
@@ -15112,6 +15111,17 @@
 "author": "cos",
 "run": "run-788e05",
 "card": "j6"
+},
+{
+"id": "wf_31b70cf7e8",
+"ts": "2026-11-28T03:28:33-0500",
+"a": "clock",
+"b": "oke_ayo_bus",
+"code": "clock.interactwith(oke_ayo_bus){ oke_ayo_bus.receives(clock.something); }",
+"text": "The oke ayo bus now remembers the clock: The clock hears it (because titi.let(what=finish:Thing) from j13).",
+"author": "cos",
+"run": "run-788e05",
+"card": "j13"
 }
 ],
 "memories": [
@@ -15215,5 +15225,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-28T02:41:24-0500"
+"updated": "2026-11-28T03:28:33-0500"
 }
