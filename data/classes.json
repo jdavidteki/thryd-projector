@@ -109,8 +109,8 @@
     "see",
     "find"
    ],
-   "instances": 538,
-   "arg_instances": 210,
+   "instances": 540,
+   "arg_instances": 211,
    "parent": null,
    "chain": [
     "Thing"
@@ -1827,6 +1827,17 @@
     }
    ]
   },
+  "cubanachiefpriest": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-788e05",
+   "first_job": "j4",
+   "source": "typed",
+   "runs": [
+    "run-788e05"
+   ],
+   "tweets": []
+  },
   "culture": {
    "class": "Thing",
    "cue": "default",
@@ -2293,7 +2304,8 @@
    "first_job": "j75",
    "source": "pick",
    "runs": [
-    "run-cf203b"
+    "run-cf203b",
+    "run-788e05"
    ],
    "tweets": [
     {
@@ -3293,7 +3305,8 @@
    "first_job": "j40",
    "source": "pick",
    "runs": [
-    "run-5a58c4"
+    "run-5a58c4",
+    "run-788e05"
    ],
    "tweets": [
     {
@@ -3322,6 +3335,22 @@
     },
     {
      "text": "— i know change is gonna commeeee!",
+     "year": "2025"
+    }
+   ]
+  },
+  "good": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-788e05",
+   "first_job": "j4",
+   "source": "pick",
+   "runs": [
+    "run-788e05"
+   ],
+   "tweets": [
+    {
+     "text": "- eez now dat all the good lines",
      "year": "2025"
     }
    ]
@@ -5246,6 +5275,10 @@
     {
      "text": "[[nomb]] - you see, this is why i mind",
      "year": "2025"
+    },
+    {
+     "text": "- person dey rest, mind him [[nomb]]",
+     "year": "2024"
     }
    ]
   },
@@ -11514,12 +11547,6 @@
     "pick"
    ],
    [
-    "mind",
-    "Thing",
-    "j1",
-    "pick"
-   ],
-   [
     "make",
     "Action",
     "j1",
@@ -11574,6 +11601,30 @@
     "pick"
    ],
    [
+    "doing",
+    "Thing",
+    "j4",
+    "pick"
+   ],
+   [
+    "good",
+    "Thing",
+    "j4",
+    "pick"
+   ],
+   [
+    "mind",
+    "Thing",
+    "j4",
+    "pick"
+   ],
+   [
+    "god",
+    "Thing",
+    "j4",
+    "pick"
+   ],
+   [
     "fireboydml",
     "Thing",
     "j2",
@@ -11589,6 +11640,12 @@
     "awwbnft",
     "Thing",
     "j3",
+    "typed"
+   ],
+   [
+    "cubanachiefpriest",
+    "Thing",
+    "j4",
     "typed"
    ]
   ],
@@ -14474,6 +14531,9 @@
   "dyeriz.now": "now(what: Thing)",
   "go.see": "see(what: Thing)",
   "society.where": "where(who: Person)",
+  "eez.now": "now(what: Thing)",
+  "person.rest": "rest(what: Thing)",
+  "shoot.him": "him(what: Thing)",
   "cooler.getdatemanufactured": "getDateManufactured()",
   "ronke.getlikes.contains": "getlikes.contains()",
   "kazeem.goodqualities.filter": "filter()",
@@ -15176,7 +15236,10 @@
    "go",
    "good",
    "now",
+   "old",
+   "person",
    "see",
+   "shoot",
    "society",
    "tell"
   ]
@@ -15253,5 +15316,5 @@
   "epilogue": "quiet",
   "coda": "quiet"
  },
- "updated": "2026-11-27T23:54:08-05:00"
+ "updated": "2026-11-28T00:04:09-05:00"
 }

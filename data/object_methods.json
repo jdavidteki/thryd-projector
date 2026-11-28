@@ -29167,7 +29167,8 @@
     "doing"
    ],
    "runs": [
-    "run-cf203b"
+    "run-cf203b",
+    "run-788e05"
    ],
    "defined": {
     "run": "run-cf203b",
@@ -29177,8 +29178,35 @@
     "emoji": "📦",
     "at": "2026-11-27T17:48:04-05:00"
    },
-   "calls": 0,
+   "calls": 1,
    "titles": [
+    {
+     "title": "old.people(doing)",
+     "emoji": "🪁",
+     "arg": "doing",
+     "run": "run-788e05",
+     "job": "j4",
+     "tweets": [
+      {
+       "text": "old people doing things the old people way. lol. #life",
+       "year": "2023",
+       "id": "1669728401303773184"
+      }
+     ],
+     "consequence": "The lines that landed: \"eez now dat all the good lines\", \"old people doing things the old people way.",
+     "consequence_job": "j5",
+     "resolved": "old.people(what=doing:Thing) from j4",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "doing",
+       "from_run": "run-788e05",
+       "from_job": "j4",
+       "source": "pick"
+      }
+     ]
+    },
     {
      "title": "old.people(doing)",
      "emoji": "📦",
@@ -30338,12 +30366,12 @@
      ],
      "consequence": "What just happened: The lines that landed: \"tell am say make him come back\", \"[[nomb]] - you see, this is why i mind\", \"now but i no see.",
      "consequence_job": "j2",
-     "resolved": "see.why(what=mind:Thing) from j1",
+     "resolved": "see.why(what=own:Thing) from j1",
      "injected": [
       {
        "param": "what",
        "class": "Thing",
-       "instance": "mind",
+       "instance": "own",
        "from_run": "run-788e05",
        "from_job": "j1",
        "source": "pick"
@@ -31011,6 +31039,238 @@
    "prior": [],
    "faded": false,
    "last_run": "run-788e05"
+  },
+  "eez.now": {
+   "object": "eez",
+   "method": "now",
+   "args": [
+    "good"
+   ],
+   "runs": [
+    "run-788e05"
+   ],
+   "defined": {
+    "run": "run-788e05",
+    "job": "j4",
+    "card": "w4",
+    "title": "eez.now(good)",
+    "emoji": "🕯️",
+    "at": "2026-11-28T00:03:19-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "eez.now(good)",
+     "emoji": "🕯️",
+     "arg": "good",
+     "run": "run-788e05",
+     "job": "j4",
+     "tweets": [
+      {
+       "text": "- eez now dat all the good lines",
+       "year": "2025"
+      }
+     ],
+     "consequence": "The lines that landed: \"eez now dat all the good lines\", \"old people doing things the old people way.",
+     "consequence_job": "j5",
+     "resolved": "eez.now(what=good:Thing) from j4",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "good",
+       "from_run": "run-788e05",
+       "from_job": "j4",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "good",
+      "first_run": "run-788e05",
+      "first_job": "j4"
+     }
+    ],
+    "text": "now(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [
+    {
+     "id": "see.now",
+     "title": "see.now(baba)",
+     "run": "run-788e05",
+     "job": "j3",
+     "at": "2026-11-27T23:53:39-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "dyeriz.now",
+     "title": "dyeriz.now(dont)",
+     "run": "run-788e05",
+     "job": "j3",
+     "at": "2026-11-27T23:53:39-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "see.now",
+     "title": "see.now(pehson)",
+     "run": "run-cf203b",
+     "job": "j77",
+     "at": "2026-11-27T19:48:49-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "understand.now",
+     "title": "understand.now(car)",
+     "run": "run-cf203b",
+     "job": "j74",
+     "at": "2026-11-27T17:27:20-05:00",
+     "why": "same method"
+    }
+   ],
+   "faded": false,
+   "last_run": null
+  },
+  "person.rest": {
+   "object": "person",
+   "method": "rest",
+   "args": [
+    "mind"
+   ],
+   "runs": [
+    "run-788e05"
+   ],
+   "defined": {
+    "run": "run-788e05",
+    "job": "j4",
+    "card": "w4",
+    "title": "person.rest(mind)",
+    "emoji": "🔑",
+    "at": "2026-11-28T00:03:19-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "person.rest(mind)",
+     "emoji": "🔑",
+     "arg": "mind",
+     "run": "run-788e05",
+     "job": "j4",
+     "tweets": [
+      {
+       "text": "- person dey rest, mind him [[nomb]]",
+       "year": "2024"
+      }
+     ],
+     "consequence": "#life\", \"person dey rest, mind him [[nomb]]\" and \"shoot him!",
+     "consequence_job": "j5",
+     "resolved": "person.rest(what=mind:Thing) from j4",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "mind",
+       "from_run": "run-788e05",
+       "from_job": "j4",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "mind",
+      "first_run": "run-788e05",
+      "first_job": "j1"
+     }
+    ],
+    "text": "rest(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "shoot.him": {
+   "object": "shoot",
+   "method": "him",
+   "args": [
+    "god"
+   ],
+   "runs": [
+    "run-788e05"
+   ],
+   "defined": {
+    "run": "run-788e05",
+    "job": "j4",
+    "card": "w4",
+    "title": "shoot.him(god)",
+    "emoji": "🧵",
+    "at": "2026-11-28T00:03:19-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "shoot.him(god)",
+     "emoji": "🧵",
+     "arg": "god",
+     "run": "run-788e05",
+     "job": "j4",
+     "tweets": [],
+     "consequence": "#life\", \"person dey rest, mind him [[nomb]]\" and \"shoot him!",
+     "consequence_job": "j5",
+     "resolved": "shoot.him(what=god:Thing) from j4",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "god",
+       "from_run": "run-788e05",
+       "from_job": "j4",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "god",
+      "first_run": "run-5a58c4",
+      "first_job": "j40"
+     }
+    ],
+    "text": "him(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [
+    {
+     "id": "dont.him",
+     "title": "dont.him()",
+     "run": "run-cf203b",
+     "job": "j62",
+     "at": "2026-11-27T00:36:57-05:00",
+     "why": "same method"
+    }
+   ],
+   "faded": false,
+   "last_run": null
   },
   "cooler.getdatemanufactured": {
    "object": "cooler",
@@ -35219,11 +35479,20 @@
   "[nau,god]": [
    "[nau,god].map"
   ],
+  "abi_no_longer_figure": [
+   "person.rest"
+  ],
+  "abraham_figure": [
+   "person.rest"
+  ],
   "accountability_subject": [
    "object.look"
   ],
   "accuracy": [
    "accuracy.see"
+  ],
+  "actual_end_boredom_figure": [
+   "person.rest"
   ],
   "adaora": [
    "adaora.call",
@@ -35232,11 +35501,32 @@
    "adaora.note",
    "adaora.cap"
   ],
+  "african_ish_figure": [
+   "person.rest"
+  ],
+  "african_picasso_figure": [
+   "person.rest"
+  ],
+  "africans_heaven_figure": [
+   "person.rest"
+  ],
+  "afrobeats_rhythm_love_figure": [
+   "person.rest"
+  ],
+  "afrosuperman_figure": [
+   "person.rest"
+  ],
+  "against_all_odds_figure": [
+   "person.rest"
+  ],
   "agboro": [
    "agboro.lan"
   ],
   "ahan": [
    "ahan.wayayou"
+  ],
+  "all_nigerian_hormones_figure": [
+   "person.rest"
   ],
   "alorof": [
    "alorof.things"
@@ -35246,6 +35536,12 @@
   ],
   "always": [
    "always.believed"
+  ],
+  "always_remember_devil_figure": [
+   "person.rest"
+  ],
+  "always_take_forever_figure": [
+   "person.rest"
   ],
   "american_olamide_subject": [
    "object.look"
@@ -35259,11 +35555,17 @@
   "and": [
    "and.not"
   ],
+  "anxiety_figure": [
+   "person.rest"
+  ],
   "anyway": [
    "anyway.click"
   ],
   "aotl": [
    "aotl.isline"
+  ],
+  "apapa_container_yard_subject_second": [
+   "person.rest"
   ],
   "app": [
    "app.getname"
@@ -35271,14 +35573,29 @@
   "arisetv": [
    "arisetv.newguest"
   ],
+  "arrange_eventualities_figure": [
+   "person.rest"
+  ],
   "art": [
    "art.look"
+  ],
+  "art_making_money_figure": [
+   "person.rest"
+  ],
+  "arts_can_see_figure": [
+   "person.rest"
   ],
   "attendant": [
    "attendant.put"
   ],
   "ayok_focus_figure_second": [
    "woman.setname"
+  ],
+  "back_row_chemistry_subject_third": [
+   "person.rest"
+  ],
+  "beach_lummus_park_subject": [
+   "person.rest"
   ],
   "beat": [
    "beat.out"
@@ -35288,8 +35605,29 @@
    "because.people",
    "because.last"
   ],
+  "beef_figure": [
+   "person.rest"
+  ],
   "believe": [
    "believe.can"
+  ],
+  "believe_yourself_figure": [
+   "person.rest"
+  ],
+  "better_dragging_figure": [
+   "person.rest"
+  ],
+  "bicycle_scene_figure": [
+   "person.rest"
+  ],
+  "big_mummy_new_figure": [
+   "person.rest"
+  ],
+  "billionaires_figure": [
+   "person.rest"
+  ],
+  "black_but_not_figure": [
+   "person.rest"
   ],
   "blender": [
    "blender.line"
@@ -35304,6 +35642,9 @@
   "bobo": [
    "bobo.on"
   ],
+  "bow_charter_boat_subject": [
+   "person.rest"
+  ],
   "boy": [
    "boy.alone"
   ],
@@ -35313,8 +35654,17 @@
   "bumbum": [
    "bumbum.what"
   ],
+  "burial_reception_hall_subject_second": [
+   "person.rest"
+  ],
+  "bus_scene_figure": [
+   "person.rest"
+  ],
   "buy": [
    "buy.fold"
+  ],
+  "cake_by_ocean_figure": [
+   "person.rest"
   ],
   "call": [
    "call.court"
@@ -35359,12 +35709,30 @@
    "can.find",
    "can.slap"
   ],
+  "can_model_hear_figure": [
+   "person.rest"
+  ],
   "cant": [
    "cant.release",
    "cant.cough"
   ],
+  "carbohydrates_maggi_figure": [
+   "person.rest"
+  ],
+  "cardi_king_women_figure": [
+   "person.rest"
+  ],
   "care": [
    "care.on"
+  ],
+  "cashew_nut_belly_figure": [
+   "person.rest"
+  ],
+  "certain_individuals_figure": [
+   "person.rest"
+  ],
+  "chair_scene_figure": [
+   "person.rest"
   ],
   "chairman": [
    "chairman.check",
@@ -35383,8 +35751,14 @@
   "cli": [
    "cli.cli"
   ],
+  "close_figure": [
+   "person.rest"
+  ],
   "closet": [
    "closet.get"
+  ],
+  "club_terrace_admiralty_subject_sixth": [
+   "person.rest"
   ],
   "code": [
    "code.say"
@@ -35395,12 +35769,21 @@
   "come": [
    "come.back"
   ],
+  "compure_steeze_figure": [
+   "person.rest"
+  ],
+  "computer_village_subject_3": [
+   "person.rest"
+  ],
   "con": [
    "con.mend",
    "con.tok"
   ],
   "condolences": [
    "condolences.family"
+  ],
+  "content_deals_figure": [
+   "person.rest"
   ],
   "cooler": [
    "cooler.getdatemanufactured",
@@ -35410,6 +35793,9 @@
    "cooler.clilive565mc19vx",
    "cooler.clilive567mdh8en",
    "cooler.clilive567mdkxvp"
+  ],
+  "cooler_subject": [
+   "person.rest"
   ],
   "cooler_subject_2_fifth": [
    "kazeem.lift",
@@ -35422,6 +35808,9 @@
    "kazeem.run",
    "kazeem.score",
    "kazeem.use"
+  ],
+  "cooler_subject_2_second": [
+   "person.rest"
   ],
   "cooler_subject_2_sixth": [
    "ronke.mend",
@@ -35479,6 +35868,9 @@
    "ronke.ischildofgod",
    "ronke.creditalert"
   ],
+  "cooler_subject_second": [
+   "person.rest"
+  ],
   "cooler_subject_sixth": [
    "kazeem.lift",
    "kazeem.play",
@@ -35490,6 +35882,9 @@
    "kazeem.run",
    "kazeem.score",
    "kazeem.use"
+  ],
+  "cooler_subject_third": [
+   "person.rest"
   ],
   "could": [
    "could.accuracy",
@@ -35507,6 +35902,9 @@
   "daddy": [
    "daddy.freeze"
   ],
+  "dami_going_japa_figure": [
+   "person.rest"
+  ],
   "danfo_stuck_halfway_subject_eighth": [
    "kunle.teach",
    "kunle.mix",
@@ -35514,12 +35912,18 @@
    "kunle.read",
    "kunle.walk"
   ],
+  "danfo_stuck_halfway_subject_fourth": [
+   "person.rest"
+  ],
   "danfo_stuck_halfway_subject_seventh": [
    "titi.go",
    "titi.start",
    "titi.listen",
    "titi.let",
    "titi.keep"
+  ],
+  "danfo_stuck_third_subject": [
+   "person.rest"
   ],
   "das": [
    "das.right"
@@ -35534,14 +35938,26 @@
   "dehwyeh": [
    "dehwyeh.wans"
   ],
+  "dele_woli_agba_figure": [
+   "person.rest"
+  ],
   "dem": [
    "dem.go",
    "dem.get",
    "dem.teh",
    "dem.really"
   ],
+  "demons_phone_figure": [
+   "person.rest"
+  ],
+  "department_destinies_destroyed_figure": [
+   "person.rest"
+  ],
   "destiny": [
    "destiny.get"
+  ],
+  "dey_compete_own_figure": [
+   "person.rest"
   ],
   "deya": [
    "deya.fighting"
@@ -35590,11 +36006,20 @@
   "dignity": [
    "dignity.hustle"
   ],
+  "dirty_youtube_figure": [
+   "person.rest"
+  ],
   "disgusting": [
    "disgusting.like"
   ],
   "disstrack": [
    "disstrack.getowner"
+  ],
+  "do_think_figure": [
+   "person.rest"
+  ],
+  "does_mean_figure": [
+   "person.rest"
   ],
   "doing": [
    "doing.getawaselves"
@@ -35602,6 +36027,12 @@
   "dont": [
    "dont.like",
    "dont.him"
+  ],
+  "dont_anoint_algorithm_figure": [
+   "person.rest"
+  ],
+  "dont_come_back_figure": [
+   "person.rest"
   ],
   "dragon": [
    "dragon.show"
@@ -35617,7 +36048,8 @@
    "eez.mad",
    "eez.getting",
    "eez.heddie",
-   "eez.good"
+   "eez.good",
+   "eez.now"
   ],
   "ehen": [
    "ehen.serious"
@@ -35625,10 +36057,31 @@
   "end": [
    "end.rope"
   ],
+  "end_world_poverty_figure": [
+   "person.rest"
+  ],
+  "energy_conversion_figure": [
+   "person.rest"
+  ],
+  "english_not_too_figure": [
+   "person.rest"
+  ],
   "even": [
    "even.feels",
    "even.ask",
    "even.sef"
+  ],
+  "even_aliens_put_figure": [
+   "person.rest"
+  ],
+  "even_gods_don_figure": [
+   "person.rest"
+  ],
+  "ever_figure": [
+   "person.rest"
+  ],
+  "everybody_tripping_figure": [
+   "person.rest"
   ],
   "everywhere": [
    "everywhere.getdayagreeeeeennnn",
@@ -35636,6 +36089,21 @@
    "everywhere.getdidnt",
    "everywhere.getcome",
    "everywhere.getyanju"
+  ],
+  "excuse_me_figure": [
+   "person.rest"
+  ],
+  "exotic_figure": [
+   "person.rest"
+  ],
+  "faith_figure": [
+   "person.rest"
+  ],
+  "faith_life_figure": [
+   "person.rest"
+  ],
+  "fake_nigerian_figure": [
+   "person.rest"
   ],
   "family_compound_ikorodu_subject_eighth": [
    "kunle.teach",
@@ -35651,6 +36119,12 @@
    "titi.let",
    "titi.keep"
   ],
+  "father_forgive_me_figure": [
+   "person.rest"
+  ],
+  "favourite_line_smile_figure": [
+   "person.rest"
+  ],
   "feel": [
    "feel.divine",
    "feel.shame"
@@ -35658,8 +36132,17 @@
   "feeling": [
    "feeling.like"
   ],
+  "felakuti_gmail_com_figure": [
+   "person.rest"
+  ],
   "feminist": [
    "feminist.coalition"
+  ],
+  "fgcr_figure": [
+   "person.rest"
+  ],
+  "find_precision_figure": [
+   "person.rest"
   ],
   "finding": [
    "finding.precisions"
@@ -35667,11 +36150,23 @@
   "fine": [
    "fine.weigh"
   ],
+  "fire_escape_outside_subject_fourth": [
+   "person.rest"
+  ],
   "fire_subject": [
    "object.look"
   ],
   "flamingo": [
    "flamingo.stand"
+  ],
+  "flesh_blood_money_figure": [
+   "person.rest"
+  ],
+  "flexes_figure": [
+   "person.rest"
+  ],
+  "florida_subject_fifth": [
+   "person.rest"
   ],
   "folake": [
    "folake.draw",
@@ -35679,11 +36174,29 @@
    "folake.hold",
    "folake.keep"
   ],
+  "food_ready_figure": [
+   "person.rest"
+  ],
+  "football_match_figure": [
+   "person.rest"
+  ],
   "forgive": [
    "forgive.oloriburuku"
   ],
   "friend": [
    "friend.husband"
+  ],
+  "friends_bad_people_figure": [
+   "person.rest"
+  ],
+  "from_anambra_figure": [
+   "person.rest"
+  ],
+  "front_pew_mushin_subject_second": [
+   "person.rest"
+  ],
+  "front_step_house_subject_fifth": [
+   "person.rest"
   ],
   "fuel": [
    "fuel.buy"
@@ -35692,14 +36205,26 @@
    "funke.show",
    "funke.getdategraduated"
   ],
+  "future_figure": [
+   "person.rest"
+  ],
   "g": [
    "g.mm"
+  ],
+  "gay_women_dress_figure": [
+   "person.rest"
+  ],
+  "genius_figure": [
+   "person.rest"
   ],
   "get": [
    "get.off"
   ],
   "giants_world_subject": [
    "object.look"
+  ],
+  "give_me_money_figure": [
+   "person.rest"
   ],
   "global": [
    "global.ritual",
@@ -35710,8 +36235,17 @@
    "go.fit",
    "go.see"
   ],
+  "goat_figure": [
+   "person.rest"
+  ],
   "god": [
    "god.have"
+  ],
+  "god_doesnt_make_figure": [
+   "person.rest"
+  ],
+  "god_needs_help_figure": [
+   "person.rest"
   ],
   "god_subject": [
    "object.look"
@@ -35722,15 +36256,30 @@
   "good": [
    "good.news"
   ],
+  "good_pastor_figure": [
+   "person.rest"
+  ],
   "got": [
    "got.zero",
    "got.msg"
   ],
+  "got_options_figure": [
+   "person.rest"
+  ],
   "grammy": [
    "grammy.swear"
   ],
+  "great_our_god_figure": [
+   "person.rest"
+  ],
   "green": [
    "green.passport"
+  ],
+  "grok_aunty_figure": [
+   "person.rest"
+  ],
+  "guilt_love_concern_figure": [
+   "person.rest"
   ],
   "guy": [
    "guy.wan",
@@ -35746,6 +36295,9 @@
   "hands": [
    "hands.wash"
   ],
+  "happiness_juss_texted_figure": [
+   "person.rest"
+  ],
   "has": [
    "has.bark"
   ],
@@ -35754,18 +36306,54 @@
    "have.feelings",
    "have.lines"
   ],
+  "have_death_porsche_figure": [
+   "person.rest"
+  ],
+  "have_idea_figure": [
+   "person.rest"
+  ],
+  "have_two_hands_figure": [
+   "person.rest"
+  ],
+  "heal_must_first_figure": [
+   "person.rest"
+  ],
   "hear": [
    "hear.setword",
    "hear.shaking"
   ],
+  "hear_baby_figure": [
+   "person.rest"
+  ],
+  "heat_figure": [
+   "person.rest"
+  ],
+  "heavenly_bugs_figure": [
+   "person.rest"
+  ],
+  "here_figure": [
+   "person.rest"
+  ],
+  "hey_bro_figure": [
+   "person.rest"
+  ],
+  "high_pidgin_english_figure": [
+   "person.rest"
+  ],
   "higherups": [
    "higherups.powerhouses"
+  ],
+  "highkey_figure": [
+   "person.rest"
   ],
   "history": [
    "history.see"
   ],
   "hold": [
    "hold.jare"
+  ],
+  "holy_water_figure": [
+   "person.rest"
   ],
   "honey": [
    "honey.pot"
@@ -35785,8 +36373,17 @@
   "humility": [
    "humility.really"
   ],
+  "ice_way_figure": [
+   "person.rest"
+  ],
+  "icons_figure": [
+   "person.rest"
+  ],
   "ideal": [
    "ideal.young"
+  ],
+  "identity_as_white_figure": [
+   "person.rest"
   ],
   "idt": [
    "idt.can"
@@ -35794,11 +36391,41 @@
   "if": [
    "if.it"
   ],
+  "if_elite_iscompromised_figure": [
+   "person.rest"
+  ],
+  "if_heaven_then_figure": [
+   "person.rest"
+  ],
+  "ikeja_laundromat_subject_second": [
+   "person.rest"
+  ],
+  "ill_buy_tulips_figure": [
+   "person.rest"
+  ],
   "imagination_generation_subject": [
    "object.look"
   ],
+  "imela_means_have_figure": [
+   "person.rest"
+  ],
+  "indomie_egg_figure": [
+   "person.rest"
+  ],
+  "industry_feast_figure": [
+   "person.rest"
+  ],
   "inside": [
    "inside.teeth"
+  ],
+  "inside_vase_figure": [
+   "person.rest"
+  ],
+  "internet_fraudster_figure": [
+   "person.rest"
+  ],
+  "internet_was_created_figure": [
+   "person.rest"
   ],
   "investor": [
    "investor.sign",
@@ -35829,6 +36456,15 @@
   "jesse": [
    "jesse.jaayne"
   ],
+  "jesus_king_figure": [
+   "person.rest"
+  ],
+  "jesus_was_very_figure": [
+   "person.rest"
+  ],
+  "jetty_south_pointe_subject_2_second": [
+   "person.rest"
+  ],
   "json_life_subject": [
    "object.look"
   ],
@@ -35840,6 +36476,12 @@
    "k.g570",
    "k.qa573",
    "k.qa572"
+  ],
+  "kamala_didnt_won_figure": [
+   "person.rest"
+  ],
+  "kano_wedding_tent_subject_second": [
+   "person.rest"
   ],
   "kasai": [
    "kasai.settemperature"
@@ -35870,12 +36512,18 @@
   "kemisister": [
    "kemisister.getname"
   ],
+  "key_person_figure": [
+   "person.rest"
+  ],
   "know": [
    "know.african",
    "know.uber",
    "know.what",
    "know.change",
    "know.getWant"
+  ],
+  "know_youre_trying_figure": [
+   "person.rest"
   ],
   "kunle": [
    "kunle.teach",
@@ -35897,11 +36545,20 @@
   "ladies": [
    "ladies.taking"
   ],
+  "lady_javascript_boyfriend_figure": [
+   "person.rest"
+  ],
   "laff": [
    "laff.made"
   ],
   "lagbara": [
    "lagbara.on"
+  ],
+  "laptop_scene_figure": [
+   "person.rest"
+  ],
+  "last_lines_figure": [
+   "person.rest"
   ],
   "lateef": [
    "lateef.teach",
@@ -35910,8 +36567,20 @@
   "lb": [
    "lb.includes"
   ],
+  "lead_us_mood_figure": [
+   "person.rest"
+  ],
+  "leave_confirmation_figure": [
+   "person.rest"
+  ],
   "lehgeet": [
    "lehgeet.ni"
+  ],
+  "lekki_pharmacy_subject_fourth": [
+   "person.rest"
+  ],
+  "lekki_rooftop_subject_third": [
+   "person.rest"
   ],
   "lez": [
    "lez.anada",
@@ -35920,9 +36589,15 @@
   "lie": [
    "lie.truth"
   ],
+  "lie_figure": [
+   "person.rest"
+  ],
   "life": [
    "life.give",
    "life.what"
+  ],
+  "life_works_heija_figure": [
+   "person.rest"
   ],
   "like": [
    "like.about"
@@ -35938,6 +36613,9 @@
   ],
   "love": [
    "love.war"
+  ],
+  "love_everything_going_figure": [
+   "person.rest"
   ],
   "lowaleechelons_subject": [
    "object.look"
@@ -36025,17 +36703,47 @@
   "media": [
    "media.all"
   ],
+  "meet_wilsons_figure": [
+   "person.rest"
+  ],
+  "miami_subject_2_third": [
+   "person.rest"
+  ],
+  "miami_subject_third": [
+   "person.rest"
+  ],
+  "might_rich_but_figure": [
+   "person.rest"
+  ],
+  "miss_figure": [
+   "person.rest"
+  ],
+  "mitosis_figure": [
+   "person.rest"
+  ],
   "modafokas": [
    "modafokas.owe"
   ],
   "model": [
    "model.con"
   ],
+  "modern_african_history_figure": [
+   "person.rest"
+  ],
   "money": [
    "money.becomes"
   ],
+  "monkey_movie_figure": [
+   "person.rest"
+  ],
+  "monkification_figure": [
+   "person.rest"
+  ],
   "most": [
    "most.prolific"
+  ],
+  "mouth_big_figure": [
+   "person.rest"
   ],
   "namco": [
    "namco.nawa"
@@ -36060,8 +36768,17 @@
    "new.nonprofitorganization",
    "new.person"
   ],
+  "new_culture_figure": [
+   "person.rest"
+  ],
+  "new_fela_figure": [
+   "person.rest"
+  ],
   "new_yuwa_running_subject": [
    "object.look"
+  ],
+  "news_figure": [
+   "person.rest"
   ],
   "next": [
    "next.kin"
@@ -36072,8 +36789,20 @@
   "nigerian": [
    "nigerian.nuclear"
   ],
+  "niggas_figure": [
+   "person.rest"
+  ],
+  "nla_agbara_figure": [
+   "person.rest"
+  ],
   "nnb_subject": [
    "object.look"
+  ],
+  "no_go_fold_figure": [
+   "person.rest"
+  ],
+  "no_me_go_figure": [
+   "person.rest"
   ],
   "nobody": [
    "nobody.weigh",
@@ -36089,6 +36818,39 @@
   "nothing": [
    "nothing.funny"
   ],
+  "notnotnotnotyn_apr_figure": [
+   "person.rest"
+  ],
+  "notnotnotnotyn_dec_figure": [
+   "person.rest"
+  ],
+  "notnotnotnotyn_feb_figure": [
+   "person.rest"
+  ],
+  "notnotnotnotyn_jan_figure": [
+   "person.rest"
+  ],
+  "notnotnotnotyn_jul_figure": [
+   "person.rest"
+  ],
+  "notnotnotnotyn_jun_figure": [
+   "person.rest"
+  ],
+  "notnotnotnotyn_mar_figure": [
+   "person.rest"
+  ],
+  "notnotnotnotyn_may_figure": [
+   "person.rest"
+  ],
+  "notnotnotnotyn_nov_figure": [
+   "person.rest"
+  ],
+  "notnotnotnotyn_oct_figure": [
+   "person.rest"
+  ],
+  "notnotnotnotyn_sep_figure": [
+   "person.rest"
+  ],
   "now": [
    "now.know",
    "now.got",
@@ -36098,14 +36860,32 @@
   "object": [
    "object.look"
   ],
+  "oh_pls_shaaatttaaapppp_figure": [
+   "person.rest"
+  ],
+  "ojuelegba_bus_stop_subject_fourth": [
+   "person.rest"
+  ],
   "ok": [
    "ok.lemme"
+  ],
+  "ok_next_quincy_figure": [
+   "person.rest"
   ],
   "old": [
    "old.people"
   ],
+  "old_men_see_figure": [
+   "person.rest"
+  ],
+  "oloriburuku_figure": [
+   "person.rest"
+  ],
   "omo": [
    "omo.fold"
+  ],
+  "omo_mummy_figure": [
+   "person.rest"
   ],
   "once": [
    "once.understand",
@@ -36114,20 +36894,47 @@
   "one": [
    "one.thing"
   ],
+  "one_want_tiffany_figure": [
+   "person.rest"
+  ],
+  "only_goodness_figure": [
+   "person.rest"
+  ],
+  "only_me_tems_figure": [
+   "person.rest"
+  ],
+  "onomatopeia_people_figure": [
+   "person.rest"
+  ],
   "openmedia": [
    "openmedia.isgif"
+  ],
+  "or_something_figure": [
+   "person.rest"
   ],
   "order": [
    "order.see"
   ],
+  "order_pure_water_figure": [
+   "person.rest"
+  ],
   "ori": [
    "ori.la"
+  ],
+  "otilor_thing_mind_figure": [
+   "person.rest"
   ],
   "own": [
    "own.going"
   ],
   "oyinboman": [
    "oyinboman.know"
+  ],
+  "pain_figure": [
+   "person.rest"
+  ],
+  "pain_suffering_figure": [
+   "person.rest"
   ],
   "parents": [
    "parents.taught"
@@ -36139,12 +36946,18 @@
   "pawa": [
    "pawa.full"
   ],
+  "pawa_pass_pawa_figure": [
+   "person.rest"
+  ],
   "pen": [
    "pen.imagination"
   ],
   "people": [
    "people.getocsw",
    "people.everybody"
+  ],
+  "people_scene_figure": [
+   "person.rest"
   ],
   "people_scene_subject": [
    "object.look"
@@ -36155,11 +36968,23 @@
   "pepu": [
    "pepu.setmany"
   ],
+  "person": [
+   "person.rest"
+  ],
   "phones": [
    "phones.make"
   ],
   "pink": [
    "pink.face"
+  ],
+  "play_figure": [
+   "person.rest"
+  ],
+  "poetry_figure": [
+   "person.rest"
+  ],
+  "point_kill_figure": [
+   "person.rest"
   ],
   "portable_subject": [
    "object.look"
@@ -36170,8 +36995,35 @@
   "precision": [
    "precision.accuracy"
   ],
+  "president_general_among_figure": [
+   "person.rest"
+  ],
+  "product_manager_figure": [
+   "person.rest"
+  ],
+  "production_figure": [
+   "person.rest"
+  ],
+  "products_services_figure": [
+   "person.rest"
+  ],
+  "program_dog_figure": [
+   "person.rest"
+  ],
+  "properties_line_figure": [
+   "person.rest"
+  ],
+  "ptsd_figure": [
+   "person.rest"
+  ],
   "put": [
    "put.down"
+  ],
+  "put_humanity_back_figure": [
+   "person.rest"
+  ],
+  "put_safe_figure": [
+   "person.rest"
   ],
   "qa568cli": [
    "qa568cli.nullfallback",
@@ -36188,6 +37040,9 @@
   ],
   "quickly": [
    "quickly.realize"
+  ],
+  "quiet_stretch_sand_subject_2_eighth": [
+   "person.rest"
   ],
   "rainbow": [
    "rainbow.show"
@@ -36223,14 +37078,29 @@
   "request": [
    "request.track"
   ],
+  "reverse_poverty_capital_figure": [
+   "person.rest"
+  ],
+  "revolutionize_pop_figure": [
+   "person.rest"
+  ],
   "rikwaya": [
    "rikwaya.any"
+  ],
+  "rise_therealseunkuti_figure": [
+   "person.rest"
+  ],
+  "risk_figure": [
+   "person.rest"
   ],
   "road": [
    "road.air"
   ],
   "rock": [
    "rock.isages"
+  ],
+  "rokokun_figure": [
+   "person.rest"
   ],
   "ronke": [
    "ronke.mend",
@@ -36269,6 +37139,9 @@
   "sakitout": [
    "sakitout.setname"
   ],
+  "satan_don_fall_figure": [
+   "person.rest"
+  ],
   "saturday_october_subject_second": [
    "folake.draw",
    "folake.see",
@@ -36282,6 +37155,9 @@
    "titi.let",
    "titi.keep"
   ],
+  "sawmill_oko_baba_subject": [
+   "person.rest"
+  ],
   "sawmill_oko_baba_subject_fourth": [
    "kunle.teach",
    "kunle.mix",
@@ -36292,6 +37168,12 @@
   "say": [
    "say.ehn",
    "say.nigerian"
+  ],
+  "say_sorry_figure": [
+   "person.rest"
+  ],
+  "say_yuwa_artist_figure": [
+   "person.rest"
   ],
   "see": [
    "see.ba",
@@ -36307,18 +37189,30 @@
   "send": [
    "send.money"
   ],
+  "shakespopi_figure": [
+   "person.rest"
+  ],
   "shapes": [
    "shapes.do"
   ],
   "share": [
    "share.minerals"
   ],
+  "sheep_scene_figure": [
+   "person.rest"
+  ],
   "shi": [
    "shi.gbogbo"
+  ],
+  "shoot": [
+   "shoot.him"
   ],
   "should": [
    "should.fighting",
    "should.get"
+  ],
+  "should_tell_stalin_figure": [
+   "person.rest"
   ],
   "shu": [
    "shu.making"
@@ -36328,6 +37222,12 @@
   ],
   "sinzling": [
    "sinzling.juniorboys"
+  ],
+  "sister_oprah_figure": [
+   "person.rest"
+  ],
+  "skating_skating_skating_figure": [
+   "person.rest"
   ],
   "skipping": [
    "skipping.consumes"
@@ -36346,14 +37246,29 @@
    "something.wrong",
    "something.fill"
   ],
+  "something_has_happened_figure": [
+   "person.rest"
+  ],
   "song": [
    "song.hit"
+  ],
+  "sorry_im_late_figure": [
+   "person.rest"
   ],
   "sounded": [
    "sounded.like"
   ],
+  "source_figure": [
+   "person.rest"
+  ],
   "speaker": [
    "speaker.play"
+  ],
+  "spirit_figure": [
+   "person.rest"
+  ],
+  "sports_ball_scene_figure": [
+   "person.rest"
   ],
   "state": [
    "state.update"
@@ -36361,11 +37276,17 @@
   "stay": [
    "stay.above"
   ],
+  "steal_god_figure": [
+   "person.rest"
+  ],
   "stomach": [
    "stomach.infrastructure"
   ],
   "story": [
    "story.go"
+  ],
+  "streets_protocol_figure": [
+   "person.rest"
   ],
   "stringify": [
    "stringify.boolean"
@@ -36376,11 +37297,26 @@
   "stupidity": [
    "stupidity.say"
   ],
+  "sugar_figure": [
+   "person.rest"
+  ],
   "suleja": [
    "suleja.texas"
   ],
+  "sun_shining_figure": [
+   "person.rest"
+  ],
   "sure": [
    "sure.idts"
+  ],
+  "suya_figure": [
+   "person.rest"
+  ],
+  "swim_figure": [
+   "person.rest"
+  ],
+  "synergy_figure": [
+   "person.rest"
   ],
   "take": [
    "take.left"
@@ -36388,8 +37324,14 @@
   "taking": [
    "taking.isnotes"
   ],
+  "talk_about_love_figure": [
+   "person.rest"
+  ],
   "taraji": [
    "taraji.measure"
+  ],
+  "tea_bread_everyday_figure": [
+   "person.rest"
   ],
   "tea_bread_stall_subject": [
    "receipt.get"
@@ -36410,6 +37352,9 @@
   ],
   "tell": [
    "tell.say"
+  ],
+  "tend_think_africans_figure": [
+   "person.rest"
   ],
   "teo": [
    "teo.hide",
@@ -36464,6 +37409,21 @@
    "then.wanted",
    "then.asked"
   ],
+  "then_act_god_figure": [
+   "person.rest"
+  ],
+  "then_god_not_figure": [
+   "person.rest"
+  ],
+  "then_yoruba_christians_figure": [
+   "person.rest"
+  ],
+  "there_something_out_figure": [
+   "person.rest"
+  ],
+  "they_dont_love_figure": [
+   "person.rest"
+  ],
   "thing": [
    "thing.weird"
   ],
@@ -36475,6 +37435,9 @@
    "thryd.jumpahead",
    "thryd.changereality",
    "thryd.log"
+  ],
+  "thryd_safe_narrative_figure": [
+   "person.rest"
   ],
   "ticketattendant": [
    "ticketattendant.gettotal"
@@ -36495,14 +37458,26 @@
    "titi.let",
    "titi.keep"
   ],
+  "tiwa_savage_friends_figure": [
+   "person.rest"
+  ],
+  "toast_figure": [
+   "person.rest"
+  ],
   "tobi": [
    "tobi.setbloodpressure"
+  ],
+  "today_episode_fear_figure": [
+   "person.rest"
   ],
   "tola": [
    "tola.why"
   ],
   "toothbrush": [
    "toothbrush.on"
+  ],
+  "top_deck_charter_subject_fifth": [
+   "person.rest"
   ],
   "total": [
    "total.awards"
@@ -36514,14 +37489,29 @@
   "townhallmeeting": [
    "townhallmeeting.newguest"
   ],
+  "tracking_number_figure": [
+   "person.rest"
+  ],
   "travel": [
    "travel.close"
+  ],
+  "true_dont_pinch_figure": [
+   "person.rest"
+  ],
+  "true_love_figure": [
+   "person.rest"
   ],
   "truth": [
    "truth.without"
   ],
   "tunde": [
    "tunde.getlocation"
+  ],
+  "turn_neighbour_figure": [
+   "person.rest"
+  ],
+  "two_pieces_ambition_figure": [
+   "person.rest"
   ],
   "ty": [
    "ty.beplo"
@@ -36533,8 +37523,17 @@
   "uber": [
    "uber.addnewcustomer"
   ],
+  "uh_figure": [
+   "person.rest"
+  ],
+  "uncle_will_smith_figure": [
+   "person.rest"
+  ],
   "uncle_will_smith_subject": [
    "object.look"
+  ],
+  "under_pressure_figure": [
+   "person.rest"
   ],
   "understand": [
    "understand.now"
@@ -36542,17 +37541,38 @@
   "until": [
    "until.artists"
   ],
+  "up_figure": [
+   "person.rest"
+  ],
+  "urges_figure": [
+   "person.rest"
+  ],
   "use": [
    "use.mend"
   ],
   "used": [
    "used.awa"
   ],
+  "usher_by_kiss_figure": [
+   "person.rest"
+  ],
+  "voice_god_figure": [
+   "person.rest"
+  ],
   "waga": [
    "waga.lifestyle"
   ],
+  "walahi_love_sweet_figure": [
+   "person.rest"
+  ],
+  "wana_ghana_figure": [
+   "person.rest"
+  ],
   "wanow": [
    "wanow.knew"
+  ],
+  "was_her_idea_figure": [
+   "person.rest"
   ],
   "way": [
    "way.throw"
@@ -36562,6 +37582,12 @@
   ],
   "well": [
    "well.loosely"
+  ],
+  "wells_fargo_figure": [
+   "person.rest"
+  ],
+  "wetin_sef_dey_figure": [
+   "person.rest"
   ],
   "weya": [
    "weya.selling",
@@ -36585,11 +37611,17 @@
   "where": [
    "where.boisie"
   ],
+  "where_chinwe_figure": [
+   "person.rest"
+  ],
   "which": [
    "which.one"
   ],
   "who": [
    "who.has"
+  ],
+  "wholesome_scenes_figure": [
+   "person.rest"
   ],
   "why": [
    "why.thunder",
@@ -36609,6 +37641,12 @@
    "will.sit",
    "will.read"
   ],
+  "will_tell_mummy_figure": [
+   "person.rest"
+  ],
+  "wizkid_sarkodie_ami_figure": [
+   "person.rest"
+  ],
   "wo": [
    "wo.imu"
   ],
@@ -36617,6 +37655,12 @@
   ],
   "woman": [
    "woman.setname"
+  ],
+  "woman_big_nyash_figure": [
+   "person.rest"
+  ],
+  "world_has_finished_figure": [
+   "person.rest"
   ],
   "worry": [
    "worry.have"
@@ -36633,8 +37677,23 @@
   "y": [
    "y.np"
   ],
+  "yaba_bookshop_subject": [
+   "person.rest"
+  ],
+  "yaba_bookshop_subject_third": [
+   "person.rest"
+  ],
+  "yaba_bukka_counter_subject": [
+   "person.rest"
+  ],
   "yeah": [
    "yeah.something"
+  ],
+  "yee_think_previous_figure": [
+   "person.rest"
+  ],
+  "yoruba_men_only_figure": [
+   "person.rest"
   ],
   "yorubbbygehinny": [
    "yorubbbygehinny.getagenda"
@@ -44201,6 +45260,7 @@
     "from": "fad8da2e5cf6",
     "title": "1129. how to [[fail]]",
     "funcs": [
+     "eez.now",
      "titi.let",
      "care.on"
     ]
@@ -61472,6 +62532,7 @@
   "run-788e05": {
    "safe": "08a8466187dc",
    "funcs": [
+    "old.people",
     "see.now",
     "eez.good",
     "now.see",
@@ -61484,6 +62545,9 @@
     "dyeriz.now",
     "go.see",
     "society.where",
+    "eez.now",
+    "person.rest",
+    "shoot.him",
     "thryd.importtheme",
     "chrome.add",
     "thryd.log",
@@ -61971,6 +63035,7 @@
   "08a8466187dc": {
    "title": "829. oyinboman juju",
    "funcs": [
+    "old.people",
     "see.now",
     "eez.good",
     "now.see",
@@ -61982,7 +63047,10 @@
     "good.news",
     "dyeriz.now",
     "go.see",
-    "society.where"
+    "society.where",
+    "eez.now",
+    "person.rest",
+    "shoot.him"
    ],
    "runs": [
     "run-788e05"
@@ -64136,6 +65204,13 @@
    ],
    "runs": []
   },
+  "cbe47f9b011d": {
+   "title": "629. oloriburuku",
+   "funcs": [
+    "person.rest"
+   ],
+   "runs": []
+  },
   "cd5a1830e1f0": {
    "title": "905. leave confirmation",
    "funcs": [
@@ -64668,7 +65743,8 @@
    "title": "1129. how to [[fail]]",
    "funcs": [
     "care.on",
-    "titi.let"
+    "titi.let",
+    "eez.now"
    ],
    "runs": []
   },
@@ -65498,6 +66574,9 @@
   ],
   "1*cxPiorOEixTS9BMkPYr8LA.gif": [
    "741a80eaf54d"
+  ],
+  "1*mLfEONsk52pc8G3JyKOA1A.gif": [
+   "cbe47f9b011d"
   ],
   "1*_EjFgtPmEaDMbd0l7TYupQ.gif": [
    "b7e8db85ddac",
@@ -66623,6 +67702,12 @@
     "9338aadfde6e"
    ]
   },
+  "1*mLfEONsk52pc8G3JyKOA1A.gif": {
+   "runs": [],
+   "safes": [
+    "cbe47f9b011d"
+   ]
+  },
   "1*XsF804isrp09SPHLU2-Itw.gif": {
    "runs": [],
    "safes": [
@@ -67268,7 +68353,8 @@
    "eez.mad",
    "eez.getting",
    "eez.heddie",
-   "eez.good"
+   "eez.good",
+   "eez.now"
   ],
   "ehen": [
    "ehen.serious"
@@ -67720,6 +68806,9 @@
   "pepu": [
    "pepu.setmany"
   ],
+  "person": [
+   "person.rest"
+  ],
   "phones": [
    "phones.make"
   ],
@@ -67854,6 +68943,9 @@
   ],
   "shi": [
    "shi.gbogbo"
+  ],
+  "shoot": [
+   "shoot.him"
   ],
   "should": [
    "should.fighting",
@@ -68528,6 +69620,8 @@
   "condolences": [],
   "good": [],
   "society": [],
+  "person": [],
+  "shoot": [],
   "cooler": [],
   "kazeem.goodqualities": [],
   "app": [],
@@ -68908,7 +70002,10 @@
    "go",
    "good",
    "now",
+   "old",
+   "person",
    "see",
+   "shoot",
    "society",
    "tell"
   ]
@@ -68927,5 +70024,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-27T23:54:59-05:00"
+ "updated": "2026-11-28T00:04:09-05:00"
 }
