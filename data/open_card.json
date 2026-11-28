@@ -1,44 +1,12 @@
 {
- "open": true,
+ "open": false,
  "run": "run-cf203b",
- "job": "j80",
- "card": "w80",
- "kind": "job",
- "prompt": "j80: cheat → mean · 1202. what does it mean? · 302 lines in\nWhat just happened: The last card asked for the next line, the one that answers \"in this life, and what are they doing here?\". The lines that landed: \"God, if we have offended you, just say that. because see now 😔\".\n📖 Now: Get the next line, the one that answers \"God, if we have offended you, just say that. because see now 😔\".",
- "helpText": "s: cheat → d: mean (1202. what does it mean?): 302. 🌶️🌶️🌶️ extra spicy. [[the news]]: \"are the market women in all our dilapitated markets tired as well?\" 2022.",
- "options": [
-  {
-   "label": "love.first(real) 🌂",
-   "value": "j80: love was the first real thing that happened to me",
-   "line": "love was the first real thing that happened to me",
-   "safe": "tweet, 2022-07-24, x.com/i/status/1551113118356590595: 1. «love was the first real thing that happened to me» + tweet, 2022-07-28, x.com/i/status/1552673157055651840: 2. when he starts calling you your first name more than 'baby' <<<<<< + tweet, 2022-07-29, x.com/i/status/1553039269677113344: 3. white people need you to remain poor / 4. white people don't love you / 5. white people are not better than you / 6. heal ❤️❤️"
-  },
-  {
-   "label": "you're.right(there) 🎠",
-   "value": "j80: - you're right in there, aren't you?",
-   "line": "- you're right in there, aren't you?",
-   "safe": "https://notnotnotnotyn.medium.com/p/fb58ad8aef97: 1. #sessy - joy is coming / 2. #seniorgehs -- i'm the greatest / 3. «- you're right in there, aren't you?» / 4. #oyinboman -- yes, reporting live / 5. - deya skiming to [[tuff]] your moni"
-  },
-  {
-   "label": "ami.genius() 🗞️",
-   "value": "j80: #juniorboys -- oh, [[ami]] [[genius]]",
-   "line": "#juniorboys -- oh, [[ami]] [[genius]]",
-   "safe": "905. leave confirmation: 1. [[ittwefyf?]] - print or email? / 2. #seniorboys - nawa you o! / 3. «#juniorboys -- oh, [[ami]] [[genius]]» / 4. -- make e no be like say i no toke am / 5. - [[the future]] of [[tcc'c]] creation (back from j70)",
-   "role": "hook",
-   "color": "#ff2bd6"
-  },
-  {
-   "label": "because.yourself(why) 🥗",
-   "value": "j80: - because by yourself, Why You Might See Her \"Lagging Behind\"",
-   "line": "- because by yourself, Why You Might See Her \"Lagging Behind\"",
-   "safe": "spliced from 2 real sources: «- because by yourself,» + «Why You Might See Her \"Lagging Behind\"» — african genzs are better at social issues: 1. [[nw]] - [[god]] has a plan / 2. - you see why eez important? / 3. «- because by yourself, you no get money» / 4. - but collectively, as a kontri, you get money / 5. #oyinboman - and they know say you no know! + made by humans: 6. where \"made by humans\" authenticity becomes a premium selling point. / 7. (digitalnative.tech) / 8. «Comparison to Temi Otedola: Why You Might See Her \"Lagging Behind\"» / 9. Your intuition about Temi Otedola lagging could hold in a hypothetical matchup / 10. especially if we're measuring by cultural depth and long-term pop innovation rather than immediate"
-  },
-  {
-   "label": "🎥",
-   "value": "j80: 🎥",
-   "line": ""
-  }
- ],
+ "job": null,
+ "card": null,
+ "kind": null,
+ "prompt": "",
+ "helpText": "",
+ "options": [],
  "multiSelect": true,
  "allowCustom": true,
  "menus": {
@@ -70,12 +38,6 @@
   ],
   "lock": [
    {
-    "safe": "End the agenda now at the lines already seated. Nothing else starts.",
-    "label": "🔒 Lock now",
-    "value": "lock now",
-    "line": "lock now"
-   },
-   {
     "safe": "- believe it so it can work",
     "label": "🎁 Make the Hold",
     "value": "souvenir",
@@ -92,20 +54,28 @@
     "label": "📣 Publish",
     "value": "publish!",
     "line": "publish!"
+   },
+   {
+    "safe": "- woke [[up]] that morning",
+    "label": "⏩ Continue",
+    "value": "jump ahead",
+    "line": "jump ahead"
    }
   ],
   "live": [
    {
     "label": "🎥 Live view",
-    "value": "live_view: j80"
+    "value": "live_view: j79"
    }
   ]
  },
  "lines": 302,
- "next_lock_at_lines": 308,
- "lock_open": false,
- "at": "2026-11-27T20:48:21-05:00",
+ "next_lock_at_lines": 302,
+ "lock_open": true,
+ "at": "2026-11-27T20:50:09-05:00",
  "pinned": true,
+ "waiting": true,
+ "seated_job": "j79",
  "last_seat": {
   "job": "j79",
   "lines": [
@@ -115,13 +85,6 @@
  },
  "pending": null,
  "resolved": [
-  {
-   "event_id": "pick-3a9172b9-64f7-44ce-a350-74b659c28e46",
-   "type": "card_pick",
-   "status": "seated",
-   "job": "j71",
-   "action": null
-  },
   {
    "event_id": "menu-9ac94145-b090-4843-ac15-992f5fd1690f",
    "type": "menu_action",
@@ -199,6 +162,14 @@
    "status": "done",
    "job": "j80",
    "action": "menu: Show all agendas"
+  },
+  {
+   "event_id": "menu-d17416ac-aa88-4bab-ae6c-9dc5ae17f3be",
+   "type": "menu_action",
+   "status": "done",
+   "job": "j80",
+   "action": "lock now",
+   "note": "Locked at 302 lines. Nothing else started."
   }
  ],
  "async_jobs": [],
