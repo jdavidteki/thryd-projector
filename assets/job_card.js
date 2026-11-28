@@ -96,17 +96,33 @@
     '#aimenu .aimrow.hot{padding:5px 6px;margin:0 -6px;border-radius:10px;background:rgba(255,215,106,.1);box-shadow:inset 0 0 0 1px rgba(255,215,106,.55)}',
     '#aimenu .aimrow.hot .aimlab{color:#ffd76a}',
     '#aimenu .aimrow.hot button{border-color:#ffd76a;color:#fff3cf}',
-    '#aisheet{margin:6px 0 0;padding:8px 10px;border:1px solid rgba(201,169,90,.35);border-radius:12px;background:rgba(0,0,0,.28)}',
-    '#aisheet .sh{font:650 13px/1.3 ui-sans-serif,system-ui,sans-serif;color:#efe9dc;margin:0 0 4px}',
+    '#aisheet{position:relative;margin:6px 0 0;padding:8px 10px;border:1px solid rgba(201,169,90,.35);border-radius:12px;background:rgba(0,0,0,.28);flex:1 1 auto;min-height:0;display:flex;flex-direction:column}',
+    '#aisheet .shrow{display:flex;align-items:flex-start;gap:8px;margin:0 0 4px}',
+    '#aisheet .sh{font:650 13px/1.3 ui-sans-serif,system-ui,sans-serif;color:#efe9dc;margin:0;flex:1;min-width:0;padding-top:8px}',
+    '#aisheet .shx{flex:0 0 auto;box-sizing:border-box;width:44px;height:44px;min-width:44px;min-height:44px;padding:0;border-radius:999px;font:700 22px/1 ui-sans-serif,system-ui,sans-serif;text-align:center;color:#efe9dc;background:rgba(255,255,255,.1);border:1px solid rgba(201,169,90,.55);cursor:pointer;-webkit-tap-highlight-color:transparent}',
     '#aisheet .ht{font:500 11.5px/1.35 ui-sans-serif,system-ui,sans-serif;color:#b8b2a4;margin:0 0 8px;white-space:pre-wrap}',
     '#aisheet .bd{font:500 12px/1.4 ui-sans-serif,system-ui,sans-serif;color:#efe9dc;white-space:pre-wrap;max-height:12em;overflow:auto;margin:0 0 8px}',
     '#aisheet .opts{display:flex;flex-direction:column;gap:4px;max-height:16em;overflow:auto}',
     '#aisheet button{font:600 12px/1.3 ui-sans-serif,system-ui,sans-serif;text-align:left;color:#efe9dc;background:rgba(255,255,255,.06);border:1px solid rgba(201,169,90,.4);border-radius:10px;padding:6px 10px;cursor:pointer}',
     '#aisheet button.sent{border-color:#2f8a50;background:rgba(47,138,80,.22)}',
+    '#aibox.cards-on:has(#aisheet){max-height:min(90vh,820px);max-height:min(90dvh,820px);bottom:3vh}',
+    '#aicard:has(#aisheet) .aicseat .sl{display:none}',
+    '#aicard:has(#aisheet) .aicseat{padding:5px 8px 6px;gap:4px}',
+    '#aisheet .pcards{display:flex;flex-direction:column;gap:7px;flex:1 1 auto;min-height:10em;overflow:auto;-webkit-overflow-scrolling:touch}',
+    '#aisheet .pcard{border:1px solid rgba(201,169,90,.4);border-radius:12px;padding:7px 8px;background:rgba(255,255,255,.04)}',
+    '#aisheet .pcard .ppr{font:650 13px/1.35 ui-sans-serif,system-ui,sans-serif;color:#efe9dc;margin:0 0 3px}',
+    '#aisheet .pcard .pfrom{font:500 10.5px/1.3 ui-sans-serif,system-ui,sans-serif;color:#b8b2a4;margin:0 0 3px}',
+    '#aisheet .pcard .pht{font:500 11px/1.3 ui-sans-serif,system-ui,sans-serif;color:#b8b2a4;margin:0 0 5px}',
+    '#aisheet .pcard .popts{display:flex;flex-wrap:wrap;gap:5px}',
+    '#aisheet .pcard .popts button{flex:1 1 auto;min-height:36px;padding:7px 10px}',
+    '#aisheet .pnav{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:0 0 7px;flex:0 0 auto}',
+    '#aisheet .pnav .ppos{font:500 11.5px/1.3 ui-sans-serif,system-ui,sans-serif;color:#b8b2a4}',
+    '#aisheet .pnav button{min-height:36px;min-width:64px;text-align:center}',
+    '#aisheet .pnav button:disabled{opacity:.4;cursor:default}',
     '#aicard .aicsent.err{color:#f2b8a8}#aicard .aicwait .aicx{margin-left:auto;flex:0 0 auto;font:700 12px/1 ui-sans-serif,system-ui,sans-serif;color:#efe9dc;background:rgba(255,255,255,.08);border:1px solid rgba(201,169,90,.45);border-radius:999px;width:22px;height:22px;padding:0;cursor:pointer}',
     '#aisheet input.aishf{width:100%;box-sizing:border-box;margin:0 0 6px;padding:6px 9px;border-radius:9px;border:1px solid rgba(201,169,90,.4);background:rgba(0,0,0,.3);color:#efe9dc;font:500 12.5px/1.3 ui-sans-serif,system-ui,sans-serif}',
     '@media (max-width:520px){#aibox.cards-on{width:96vw;bottom:6vh}#aicard .aicprompt{font-size:14.5px}}',
-    '@media (max-height:600px){#aibox.cards-on{max-height:84vh;max-height:84dvh;bottom:6vh}#aibox.cards-on > .aim{display:none}#aibox.cards-on > form.airow{padding-top:7px}#aibox.cards-on textarea{min-height:32px}#aicard{gap:7px;padding:9px 12px 8px}#aicard .aicprompt{font-size:14px;line-height:1.55}}'
+    '@media (max-height:600px){#aibox.cards-on{max-height:88vh;max-height:88dvh;bottom:3vh}#aibox.cards-on:has(#aisheet){max-height:96vh;max-height:96dvh;bottom:1vh}#aibox.cards-on > .aim{display:none}#aibox.cards-on > form.airow{padding-top:5px}#aibox.cards-on textarea{min-height:30px}#aicard{gap:5px;padding:6px 10px 5px}#aicard .aicprompt{font-size:14px;line-height:1.55}#aicard:has(#aisheet) .aicseat{display:none}#aisheet .ht,#aisheet .pfrom{display:none}#aisheet .pcards{min-height:7em;gap:5px}#aisheet .pcard{padding:5px 7px}#aisheet .pcard .popts button{min-height:32px;padding:5px 8px}}'
   ].join('\n');
   const st = document.createElement('style'); st.textContent = CSS; document.head.appendChild(st);
 
@@ -757,11 +773,79 @@
 
 
   function sheetKey(t){ return String(t || '').toLowerCase().replace(/\s*(?:->|=>|\u2192|\bto\b)\s*/g, '\u2192').replace(/[^\p{L}\p{N}\u2192]+/gu, ' ').replace(/\s*\u2192\s*/g, '\u2192').replace(/\s+/g, ' ').trim(); }
+  // v652: Show all agendas (and every panel sheet) gets a phone-friendly ×; Escape closes the box first.
+  const SHEET_CLOSED_STORE = 'thryd_sheet_closed';
+  const PRAYER_PAGE = 5;
+  let sheetPage = 0, sheetPageFor = '';
+  let closedSheet = (function(){ try{ return String(localStorage.getItem(SHEET_CLOSED_STORE) || ''); }catch(e){ return ''; } })();
+  function sheetId(s){ return String((s && s.kind) || '') + '|' + String((s && s.at) || ''); }
+  function isSheetClosed(s){ return !!(s && sheetId(s) && sheetId(s) === closedSheet); }
+  function closeSheet(){
+    const s = (meta && meta.sheet) || (card && card.sheet);
+    if(s){ closedSheet = sheetId(s); try{ localStorage.setItem(SHEET_CLOSED_STORE, closedSheet); }catch(e){} }
+    const el = document.getElementById('aisheet'); if(el) el.remove();
+    try{ render(); }catch(e){}
+  }
+  function sheetCloseBtn(){
+    const b = document.createElement('button'); b.type = 'button'; b.className = 'shx';
+    b.setAttribute('aria-label', 'Close'); b.title = 'Close'; b.textContent = '\u00d7';
+    tapOnce(b, () => closeSheet());
+    return b;
+  }
+  function fillPrayerCards(box, s){
+    const cards = s.cards || [];
+    const id = sheetId(s);
+    if(sheetPageFor !== id){ sheetPage = 0; sheetPageFor = id; }
+    const pages = Math.max(1, Math.ceil(cards.length / PRAYER_PAGE) || 1);
+    if(sheetPage >= pages) sheetPage = pages - 1;
+    if(sheetPage < 0) sheetPage = 0;
+    const lo = sheetPage * PRAYER_PAGE;
+    const slice = cards.slice(lo, lo + PRAYER_PAGE);
+    if(cards.length > PRAYER_PAGE){
+      const nav = document.createElement('div'); nav.className = 'pnav';
+      const prev = document.createElement('button'); prev.type = 'button'; prev.textContent = 'Previous'; prev.disabled = sheetPage <= 0;
+      const next = document.createElement('button'); next.type = 'button'; next.textContent = 'Next'; next.disabled = sheetPage >= pages - 1;
+      const pos = document.createElement('div'); pos.className = 'ppos';
+      const hi = Math.min(lo + slice.length, cards.length);
+      pos.textContent = (lo + 1) + '\u2013' + hi + ' of ' + cards.length;
+      if(!prev.disabled) tapOnce(prev, () => { sheetPage -= 1; render(); });
+      if(!next.disabled) tapOnce(next, () => { sheetPage += 1; render(); });
+      nav.appendChild(prev); nav.appendChild(pos); nav.appendChild(next);
+      box.appendChild(nav);
+    }
+    const wrap = document.createElement('div'); wrap.className = 'pcards';
+    slice.forEach(c => {
+      const el = document.createElement('div'); el.className = 'pcard';
+      if(c.id) el.dataset.id = c.id;
+      if(c.prompt){ const h = document.createElement('div'); h.className = 'ppr'; h.textContent = c.prompt; el.appendChild(h); }
+      if(c.from){ const f = document.createElement('div'); f.className = 'pfrom'; f.textContent = c.from; el.appendChild(f); }
+      const opts = document.createElement('div'); opts.className = 'popts';
+      (c.options || []).forEach(o => {
+        const b = menuBtn(o);
+        if(/:\s*menu$/i.test(String(o && o.value || ''))){
+          tapOnce(b, () => closeSheet());
+        }
+        opts.appendChild(b);
+      });
+      el.appendChild(opts);
+      wrap.appendChild(el);
+    });
+    box.appendChild(wrap);
+  }
+
   function sheetEl(s){
     const box = document.createElement('div'); box.id = 'aisheet';
-    if(s.prompt){ const h = document.createElement('div'); h.className = 'sh'; h.textContent = s.prompt; box.appendChild(h); }
-    if(s.helpText){ const h = document.createElement('div'); h.className = 'ht'; h.textContent = s.helpText; box.appendChild(h); }
+    const head = document.createElement('div'); head.className = 'shrow';
+    const h = document.createElement('div'); h.className = 'sh'; h.textContent = s.prompt || '';
+    head.appendChild(h); head.appendChild(sheetCloseBtn());
+    box.appendChild(head);
+    if(s.helpText){ const t = document.createElement('div'); t.className = 'ht'; t.textContent = s.helpText; box.appendChild(t); }
     if(s.body){ const b = document.createElement('div'); b.className = 'bd'; b.textContent = s.body; box.appendChild(b); }
+    const cards = s.cards || [];
+    if(cards.length || s.kind === 'prayers'){
+      if(cards.length) fillPrayerCards(box, s);
+      return box;
+    }
     const opts = s.options || [];
     if(opts.length){
       const wrap = document.createElement('div'); wrap.className = 'opts';
@@ -792,10 +876,14 @@
     const sheet = (meta && meta.sheet) || (c && c.sheet);
     // v645 (Jesuye 2:12 PM): no "How many minutes?" seed card over an open job card
     const seedBlocked = !!(sheet && sheet.kind === 'minutes' && seedGate(c));
-    if(sheet && !seedBlocked && (sheet.prompt || (sheet.options || []).length || sheet.body)){
+    const sheetGone = isSheetClosed(sheet);
+    const showSheet = !!(sheet && !seedBlocked && !sheetGone && (sheet.prompt || (sheet.options || []).length || sheet.body || (sheet.cards || []).length));
+    if(showSheet){
       jobEl.appendChild(sheetEl(sheet));
     }
-    if(!c || !c.open || !(c.options || []).length){
+    if(showSheet){
+      // v652: Prayer jobs / Show all agendas take the card area so ~5 cards (or the agenda list) stay on screen
+    } else if(!c || !c.open || !(c.options || []).length){
       if(c && isLocked(meta || c)){ /* the lock banner above says it */ }
       else {
       const empty = document.createElement('div'); empty.className = 'aicempty';
@@ -1144,6 +1232,8 @@
     addEventListener('keydown', ev => {
       if(ev.key !== 'Escape') return;
       if(!(box() && box().classList.contains('on'))) return;
+      // v652: Escape closes the Show all agendas / Prayer jobs box first, then the panel
+      if(document.getElementById('aisheet')){ ev.preventDefault(); ev.stopPropagation(); ev.stopImmediatePropagation(); closeSheet(); return; }
       const t = ev.target;
       if(t && t.classList && t.classList.contains('aicfree')) return;
       userClose = true; try{ _close.call(ai); } finally { userClose = false; stopPoll(); }

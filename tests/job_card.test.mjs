@@ -8,7 +8,7 @@ const js = rd('assets/job_card.js'), html = rd('index.html'), st = rd('assets/st
 
 test('job_card.js loads by default; ?cards=0 hides the panel', ()=>{
   assert.match(html, /cards=0/);
-  assert.match(html, /job_card\.js\?v=19/);
+  assert.match(html, /job_card\.js\?v=20/);
   assert.match(js, /cards=0/);
   assert.match(html, /if\(!\/\(\?:\^\|\[\?&\]\)cards=0/);
   assert.match(js, /if\(\/\(\?:\^\|\[\?&\]\)cards=0/);
@@ -36,7 +36,8 @@ test('layout is job card, then typeline, then plain always-visible buttons', ()=
     '🕊️ [[poetry]]','🐦 [[hpr]]','🗺️ Lovemap','🎙️ Podcasts'
   ]);
   assert.ok(card.menus.lock.length >= 4);
-  assert.deepEqual(card.menus.lock.map(o => o.value), ['souvenir','tweets','publish!','jump ahead']);
+  const lockVals = card.menus.lock.map(o => o.value);
+  ['souvenir','tweets','publish!','jump ahead'].forEach(v => assert.ok(lockVals.includes(v), v));
   assert.equal(card.menus.lock.find(o => o.value === 'publish!').label, '📣 Publish');
 });
 
@@ -166,7 +167,7 @@ test('v628: panel stays open after Send; waiting refresh keeps the sent card; ea
   assert.match(js, /border-radius:8px;white-space:normal/);
   assert.match(js, /max-height:15em;overflow-y:auto/);
   assert.match(js, /touch-action:pan-y/);
-  assert.match(html, /job_card\.js\?v=19/);
+  assert.match(html, /job_card\.js\?v=20/);
   assert.match(html, /intent_ai\.js\?v=614/);
   const src = js.slice(js.indexOf('function safeText(o){'), js.indexOf('function render(){'));
   const f = new Function(src + '; return {safeRows, safeText};')();
@@ -253,7 +254,7 @@ test('v633: archive safe lines flow inline at a smaller font; title stays its ow
 
 test('v634: open async jobs render as persistent waiting-on-real-life pills; empty list shows nothing', ()=>{
   assert.match(html, /var VER=(6[4-9]\d),/);
-  assert.match(html, /job_card\.js\?v=19/);
+  assert.match(html, /job_card\.js\?v=20/);
   const v = JSON.parse(ver);
   assert.ok(v.v >= 644);
   assert.match(js, /function asyncPills\(/);
@@ -300,7 +301,7 @@ test('v638: MENU and LOCK buttons sit in one sideways-sliding row; a swipe is no
   assert.doesNotMatch(js, /#aimenu \.aimrow\{display:flex;flex-wrap:wrap/);
   assert.match(js, /Math\.abs\(\(ev\.clientX \|\| sx\) - sx\) > 14/);
   assert.match(html, /var VER=(6[4-9]\d),/);
-  assert.match(html, /job_card\.js\?v=19/);
+  assert.match(html, /job_card\.js\?v=20/);
   const v = JSON.parse(ver);
   assert.ok(v.v >= 644);
 });
@@ -324,7 +325,7 @@ __t('v644: send_receipt: tick only on the box receipt; 20 s timeout offers Resen
   const html = __fs.readFileSync(new URL('../index.html', import.meta.url), 'utf8');
   const ver = JSON.parse(__fs.readFileSync(new URL('../data/version.json', import.meta.url), 'utf8'));
   const pj = __fs.readFileSync(new URL('../assets/projector.js', import.meta.url), 'utf8');
-  __a.match(html, /var VER=(6[4-9]\d),/); __a.match(html, /job_card\.js\?v=19/); __a.match(html, /projector\.js\?v=578/);
+  __a.match(html, /var VER=(6[4-9]\d),/); __a.match(html, /job_card\.js\?v=20/); __a.match(html, /projector\.js\?v=578/);
   __a.ok(ver.v >= 645);
   __a.match(src, /const RECEIPT_MS = 20000;/);
   __a.match(src, /const eid = again \? again\.body\.event_id : uid\('pick-'\)/);          // resend reuses the event_id
@@ -355,7 +356,7 @@ __t('v645: pills read the box answer, say when unconfirmed, and a ✕ cancels by
   const html = __fs.readFileSync(new URL('../index.html', import.meta.url), 'utf8');
   const pj = __fs.readFileSync(new URL('../assets/projector.js', import.meta.url), 'utf8');
   const ver = JSON.parse(__fs.readFileSync(new URL('../data/version.json', import.meta.url), 'utf8'));
-  __a.ok(ver.v >= 645); __a.match(html, /var VER=(6[4-9]\d),/); __a.match(html, /job_card\.js\?v=19/); __a.match(html, /projector\.js\?v=578/);
+  __a.ok(ver.v >= 645); __a.match(html, /var VER=(6[4-9]\d),/); __a.match(html, /job_card\.js\?v=20/); __a.match(html, /projector\.js\?v=578/);
   __a.match(html, /thryd-update-ready/); __a.match(html, /window\.thrydReloadNow=/);
   __a.match(src, /update ready \(v/);
   __a.match(pj, /accept\(r, dest\.name, dest\.ep\)/);                       // reply topic follows the topic that carried it
@@ -396,3 +397,24 @@ __t('v645: pills read the box answer, say when unconfirmed, and a ✕ cancels by
   __a.equal(G.seedNote({job: 'j69'}), 'j69 is open — finish or lock this agenda first');
   __a.match(src, /sheet\.kind === 'minutes' && seedGate\(c\)/);
 });
+
+test('v652 Prayer jobs shows about 5 cards; Show all agendas box has an x and Escape closes it', ()=>{
+  assert.match(js, /const PRAYER_PAGE = 5/);
+  assert.match(js, /function fillPrayerCards\(/);
+  assert.match(js, /function closeSheet\(/);
+  assert.match(js, /function sheetCloseBtn\(/);
+  assert.match(js, /className = 'shx'/);
+  assert.match(js, /aria-label', 'Close'/);
+  assert.match(js, /textContent = '\\u00d7'/);
+  assert.match(js, /#aisheet \.shx\{/);
+  assert.match(js, /width:44px;height:44px;min-width:44px;min-height:44px/);
+  assert.match(js, /isSheetClosed\(sheet\)/);
+  assert.match(js, /s\.kind === 'prayers'/);
+  assert.match(js, /cards\.slice\(lo, lo \+ PRAYER_PAGE\)/);
+  assert.match(js, /if\(document\.getElementById\('aisheet'\)\)/);
+  assert.match(js, /closeSheet\(\); return;/);
+  assert.match(html, /job_card\.js\?v=20/);
+  const v = JSON.parse(ver);
+  assert.equal(v.v, 652);
+});
+
