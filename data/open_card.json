@@ -95,7 +95,7 @@
  "lines": 40,
  "next_lock_at_lines": 71,
  "lock_open": false,
- "at": "2026-11-28T03:27:46-05:00",
+ "at": "2026-11-28T03:27:56-05:00",
  "pinned": true,
  "last_seat": {
   "job": "j10",
@@ -109,14 +109,6 @@
  },
  "pending": null,
  "resolved": [
-  {
-   "event_id": "menu-ad39db50-b69c-4b53-9432-e6b96ecfcc2c",
-   "type": "menu_action",
-   "status": "done",
-   "job": "j11",
-   "action": "prayer: run-0e8c p4: yes",
-   "note": "held, tap Send all"
-  },
   {
    "event_id": "menu-832a8485-eef4-446d-8223-37ea5aec9d8e",
    "type": "menu_action",
@@ -204,29 +196,25 @@
    "job": "j11",
    "action": "prayer: run-2716 p19: maybe",
    "note": "held, tap Send all"
+  },
+  {
+   "event_id": "menu-81b91e40-2d9b-401e-a8e9-57803ec77515",
+   "type": "menu_action",
+   "status": "done",
+   "job": "j11",
+   "action": "prayer: run-2716 p18: yes",
+   "note": "held, tap Send all"
   }
  ],
  "async_jobs": [],
  "sheet": {
   "kind": "prayers",
-  "prompt": "🙏 Prayer jobs · 18 answered · 38 listed",
+  "prompt": "🙏 Prayer jobs · 19 answered · 38 listed",
   "helpText": "5 at a time, Next for more. Tap Yes, Maybe or No. Answers are held and the card moves to the back; nothing is sent until you tap Send all.",
   "options": [
    {
-    "label": "📨 Send all answered prayers (18)",
-    "value": "prayer: send all 18"
-   },
-   {
-    "label": "Yes 🙏",
-    "value": "prayer: run-2716 p18: yes"
-   },
-   {
-    "label": "Maybe 🤔",
-    "value": "prayer: run-2716 p18: maybe"
-   },
-   {
-    "label": "No ✋",
-    "value": "prayer: run-2716 p18: no"
+    "label": "📨 Send all answered prayers (19)",
+    "value": "prayer: send all 19"
    },
    {
     "label": "Yes 🙏",
@@ -671,46 +659,34 @@
    {
     "label": "No ✋",
     "value": "prayer: run-2716 p19: no"
+   },
+   {
+    "label": "Yes 🙏",
+    "value": "prayer: run-2716 p18: yes"
+   },
+   {
+    "label": "Maybe 🤔",
+    "value": "prayer: run-2716 p18: maybe"
+   },
+   {
+    "label": "No ✋",
+    "value": "prayer: run-2716 p18: no"
    }
   ],
   "allowCustom": false,
-  "at": "2026-11-28T03:27:36-05:00",
+  "at": "2026-11-28T03:27:55-05:00",
   "source_action": "menu: Prayer jobs",
   "counts": {
-   "answered": 18,
+   "answered": 19,
    "listed": 38,
    "sent": 0
   },
   "send_all": {
-   "label": "📨 Send all answered prayers (18)",
-   "value": "prayer: send all 18",
-   "count": 18
+   "label": "📨 Send all answered prayers (19)",
+   "value": "prayer: send all 19",
+   "count": 19
   },
   "cards": [
-   {
-    "id": "p18",
-    "prompt": "🙏 p18: Kunle asks the shopkeeper to finish a job exactly. Yes, maybe or no?",
-    "helpText": "Prayer card. Not seated: it only changes the world.",
-    "options": [
-     {
-      "label": "Yes 🙏",
-      "value": "prayer: run-2716 p18: yes",
-      "safe": "The shopkeeper grants it, and Kunle is seen doing what Kunle came to do."
-     },
-     {
-      "label": "Maybe 🤔",
-      "value": "prayer: run-2716 p18: maybe",
-      "safe": "Neither happens yet: the ask hangs in the room. Hold a long beat on the asker's face, no cut."
-     },
-     {
-      "label": "No ✋",
-      "value": "prayer: run-2716 p18: no",
-      "safe": "The shopkeeper holds back, and what Kunle lacks (be told he can stop measuring) stays in the room."
-     }
-    ],
-    "from": "undenayable → evidence",
-    "run": "run-2716"
-   },
    {
     "id": "p14",
     "prompt": "🙏 p14: Kunle asks God to hem the trousers exactly. Yes, maybe or no?",
@@ -1670,6 +1646,34 @@
     "answer": "maybe",
     "answer_label": "Maybe 🤔",
     "answered_at": "2026-11-28T03:27:36.876-05:00"
+   },
+   {
+    "id": "p18",
+    "prompt": "🙏 p18: Kunle asks the shopkeeper to finish a job exactly. Yes, maybe or no?",
+    "helpText": "Prayer card. Not seated: it only changes the world.",
+    "options": [
+     {
+      "label": "Yes 🙏",
+      "value": "prayer: run-2716 p18: yes",
+      "safe": "The shopkeeper grants it, and Kunle is seen doing what Kunle came to do."
+     },
+     {
+      "label": "Maybe 🤔",
+      "value": "prayer: run-2716 p18: maybe",
+      "safe": "Neither happens yet: the ask hangs in the room. Hold a long beat on the asker's face, no cut."
+     },
+     {
+      "label": "No ✋",
+      "value": "prayer: run-2716 p18: no",
+      "safe": "The shopkeeper holds back, and what Kunle lacks (be told he can stop measuring) stays in the room."
+     }
+    ],
+    "from": "undenayable → evidence",
+    "run": "run-2716",
+    "held": true,
+    "answer": "yes",
+    "answer_label": "Yes 🙏",
+    "answered_at": "2026-11-28T03:27:55.925-05:00"
    }
   ],
   "page_size": 5
