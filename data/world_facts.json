@@ -7193,16 +7193,6 @@
 ],
 "abeokuta_parlour": [
 {
-"id": "wt_ea37c3bdf2",
-"kind": "call",
-"text": "Someone at the projector tapped the abeokuta parlour and made it glow.",
-"code": "abeokuta_parlour.glow();",
-"author": "projector",
-"run": "run-9e3e84",
-"card": "j6",
-"other": null
-},
-{
 "id": "wf_aba8bc53d1",
 "kind": "consequence",
 "text": "The abeokuta parlour now remembers the miami: 11:45pm, Monday 2 November 2026: A phone on the counter starts the off-key chorus, then.",
@@ -7241,6 +7231,16 @@
 "run": "run-cf203b",
 "card": "w72",
 "other": null
+},
+{
+"id": "wf_e0ea6e4bb5",
+"kind": "consequence",
+"text": "The abeokuta parlour leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"code": "yaba.interactwith(abeokuta_parlour){ abeokuta_parlour.receives(yaba.envelope); abeokuta_parlour.remembers(bisola, 'brown envelope'); }",
+"author": "cos",
+"run": "run-788e05",
+"card": "j6",
+"other": "yaba"
 }
 ],
 "uch": [
@@ -14674,17 +14674,6 @@
 },
 "consequences": [
 {
-"id": "wf_9cb132319d",
-"ts": "2026-11-24T13:44:11-0500",
-"a": "marker_b",
-"b": "prior_reality",
-"code": "marker_b.interactwith(prior_reality){ prior_reality.receives(marker_b.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the green shirt at the prior reality, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
 "id": "wf_fb28e2ccc0",
 "ts": "2026-11-24T13:45:04-0500",
 "a": "reality",
@@ -15112,6 +15101,17 @@
 "author": "cos",
 "run": "run-788e05",
 "card": "j2"
+},
+{
+"id": "wf_e0ea6e4bb5",
+"ts": "2026-11-28T02:41:24-0500",
+"a": "yaba",
+"b": "abeokuta_parlour",
+"code": "yaba.interactwith(abeokuta_parlour){ abeokuta_parlour.receives(yaba.envelope); abeokuta_parlour.remembers(bisola, 'brown envelope'); }",
+"text": "The abeokuta parlour leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
+"author": "cos",
+"run": "run-788e05",
+"card": "j6"
 }
 ],
 "memories": [
@@ -15215,5 +15215,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-28T01:17:25-0500"
+"updated": "2026-11-28T02:41:24-0500"
 }
