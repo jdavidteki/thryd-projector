@@ -130,7 +130,9 @@
     '#aicard .aicsent.err{color:#f2b8a8}#aicard .aicwait .aicx{margin-left:auto;flex:0 0 auto;font:700 12px/1 ui-sans-serif,system-ui,sans-serif;color:#efe9dc;background:rgba(255,255,255,.08);border:1px solid rgba(201,169,90,.45);border-radius:999px;width:22px;height:22px;padding:0;cursor:pointer}',
     '#aisheet input.aishf{width:100%;box-sizing:border-box;margin:0 0 6px;padding:8px 10px;border-radius:9px;border:1px solid rgba(201,169,90,.4);background:rgba(0,0,0,.3);color:#efe9dc;font:500 12.5px/1.3 ui-sans-serif,system-ui,sans-serif;min-height:40px}',
     '@media (max-width:520px){#aibox.cards-on{width:96vw;bottom:6vh}#aicard .aicprompt{font-size:14.5px}#aimenu{padding:4px 6px 5px}#aimenu .aimscroll{max-height:44px;gap:5px}}',
-    '@media (max-height:600px){#aibox.cards-on{max-height:62vh;max-height:62dvh;bottom:5vh}#aibox.cards-on:has(#aisheet),#aibox.cards-on:has(.aicopts),#aibox.cards-on:has(.aicseed),#aibox.cards-on:has(.aiclock){max-height:84vh;max-height:84dvh;bottom:2vh}#aibox.cards-on > .aim{display:none}#aibox.cards-on:has(#aisheet) > form.airow,#aibox.cards-on:has(.aicopts) > form.airow,#aibox.cards-on:has(.aicseed) > form.airow,#aibox.cards-on:has(.aiclock) > form.airow{display:none}#aibox.cards-on > form.airow{padding-top:4px}#aibox.cards-on textarea{min-height:40px;padding:8px 10px}#aicard{gap:4px;padding:5px 8px 4px}#aicard .aicprompt{font-size:14px;line-height:1.55}#aicard .aicseat .sl{display:none}#aicard:has(#aisheet) .aicseat{display:none}#aicard:has(#aisheet) .aiclock{display:none}#aicard .aiclock{padding:4px 8px;font-size:12px}#aisheet .ht,#aisheet .pfrom{display:none}#aisheet .opts{max-height:min(28vh,132px);overflow-y:auto;-webkit-overflow-scrolling:touch}#aisheet .pcards{min-height:6em;gap:5px}#aisheet .pcard{padding:5px 7px}}'
+    '@media (max-height:600px){#aibox.cards-on{max-height:62vh;max-height:62dvh;bottom:5vh}#aibox.cards-on:has(#aisheet),#aibox.cards-on:has(.aicopts),#aibox.cards-on:has(.aicseed),#aibox.cards-on:has(.aiclock){max-height:84vh;max-height:84dvh;bottom:2vh}#aibox.cards-on > .aim{display:none}#aibox.cards-on:has(#aisheet) > form.airow,#aibox.cards-on:has(.aicopts) > form.airow,#aibox.cards-on:has(.aiclock) > form.airow{display:none}#aibox.cards-on > form.airow{padding-top:4px}#aibox.cards-on textarea{min-height:40px;padding:8px 10px}#aicard{gap:4px;padding:5px 8px 4px}#aicard .aicprompt{font-size:14px;line-height:1.55}#aicard .aicseat .sl{display:none}#aicard:has(#aisheet) .aicseat{display:none}#aicard:has(#aisheet) .aiclock{display:none}#aicard .aiclock{padding:4px 8px;font-size:12px}#aisheet .ht,#aisheet .pfrom{display:none}#aisheet .opts{max-height:min(28vh,132px);overflow-y:auto;-webkit-overflow-scrolling:touch}#aisheet .pcards{min-height:6em;gap:5px}#aisheet .pcard{padding:5px 7px}}',
+    /* v655: typeline stays up while a seed waits for the Medium link, on every viewport */
+    '#aibox.cards-on:has(.aicseed) > form.airow,#aibox.cards-on.seed-wait > form.airow{display:flex!important}'
   ].join('\n');
   const st = document.createElement('style'); st.textContent = CSS; document.head.appendChild(st);
 
@@ -710,6 +712,26 @@
       return w;
     });
   }
+  function armSeedTypeline(m){
+    const box = document.getElementById('aibox');
+    if(!box) return;
+    const ta = box.querySelector('form.airow textarea, form.airow input:not([type=hidden])');
+    const pending = !!(m && m.seed_pending && (m.seed_pending.status === 'waiting_for_medium_link' || !m.seed_pending.status));
+    box.classList.toggle('seed-wait', pending);
+    if(!ta) return;
+    if(pending){
+      ta.placeholder = 'paste the Medium link';
+      ta.setAttribute('aria-label', 'paste the Medium link');
+      if(ta.dataset.seedPh !== '1'){
+        ta.dataset.seedPh = '1';
+        try{ ta.focus(); }catch(e){}
+      }
+    } else if(ta.dataset.seedPh){
+      delete ta.dataset.seedPh;
+      ta.removeAttribute('aria-label');
+      try{ ta.placeholder = (innerWidth < 560) ? 'type a call \u00b7 or say it' : 'type a call \u00b7 teo.fold() \u00b7 or say what you want'; }catch(e){}
+    }
+  }
   function seatStrip(){
 
     const m = meta || card, c = card;
@@ -778,12 +800,14 @@
       wrap.appendChild(u);
     }
     wrap.style.display = wrap.childNodes.length ? 'flex' : 'none';
+    armSeedTypeline(m);
     return wrap;
   }
   function updateStrip(){
     const old = document.getElementById('aicfb'); if(!old) return;
     old.replaceWith(seatStrip());
     const lr = document.querySelector('#aimenu .aimrow[data-row="lock"]'); if(lr) lr.classList.toggle('hot', isLocked(meta || card));
+    armSeedTypeline(meta || card);
   }
 
 

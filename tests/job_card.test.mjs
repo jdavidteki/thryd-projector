@@ -282,7 +282,7 @@ test('v634: open async jobs render as persistent waiting-on-real-life pills; emp
   assert.doesNotMatch(js, /setInterval\([^)]*async/i);
   assert.doesNotMatch(js, /requestAnimationFrame/);
   // no result-entry form wired on the pill
-  const pillSrc = js.slice(js.indexOf('function asyncPills('), js.indexOf('function seatStrip(){'));
+  const pillSrc = js.slice(js.indexOf('function asyncPills('), js.indexOf('function armSeedTypeline(') >= 0 ? js.indexOf('function armSeedTypeline(') : js.indexOf('function seatStrip(){'));
   assert.doesNotMatch(pillSrc, /setscore|setresult|textarea|input/i);
   const src = js.slice(js.indexOf('function prettyKind('), js.indexOf('function asyncPills('));
   const f = new Function(src + '; return {prettyKind, jobText, ago};')();
@@ -437,7 +437,7 @@ test('v653/v654 menu and lock stay one line; lock banner is short', ()=>{
   assert.match(js, /#aimenu \.aimscroll\{[^}]*flex-wrap:nowrap/);
   assert.match(js, /\\ud83d\\udd12 Locked \\u00b7 /);
   assert.doesNotMatch(js, /Pick from the lock row below/);
-  assert.match(html, /var VER=654,/);
+  assert.match(html, /var VER=(6[5-9]\d|65\d),/);
   const v = JSON.parse(ver);
   assert.ok(v.v >= 654);
 });
@@ -452,12 +452,22 @@ test('v654 sheet options are inline pills; menu slider auto-hides; panel stays t
   assert.match(js, /armScrollHide\(sc\)/);
   assert.match(js, /aicpills/);
   assert.match(js, /#aibox\.cards-on:has\(#aisheet \.pcards\)/);
-  assert.match(html, /var VER=654,/);
+  assert.match(html, /var VER=(6[5-9]\d|65\d),/);
   const v = JSON.parse(ver);
-  assert.equal(v.v, 654);
+  assert.ok(v.v >= 654);
   assert.doesNotMatch(js, /Pick from the lock row below/);
   assert.match(js, /seed_pending/);
   assert.match(js, /seed\.label/);
   assert.match(js, /#aisheet \.shx\{[^}]*min-height:40px/);
   assert.match(js, /#aisheet button\{[^}]*min-height:40px/);
+});
+
+test('v655 typeline stays up for the Medium link, focused, with a paste placeholder', ()=>{
+  assert.match(js, /paste the Medium link/);
+  assert.match(js, /function armSeedTypeline/);
+  assert.match(js, /#aibox\.cards-on:has\(\.aicseed\) > form\.airow,#aibox\.cards-on\.seed-wait > form\.airow\{display:flex!important\}/);
+  assert.doesNotMatch(js, /#aibox\.cards-on:has\(\.aicseed\) > form\.airow,#aibox\.cards-on:has\(\.aiclock\) > form\.airow\{display:none\}/);
+  assert.match(html, /var VER=655,/);
+  const v = JSON.parse(ver);
+  assert.equal(v.v, 655);
 });
