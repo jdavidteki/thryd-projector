@@ -95,7 +95,7 @@
  "lines": 40,
  "next_lock_at_lines": 71,
  "lock_open": false,
- "at": "2026-11-28T03:16:12-05:00",
+ "at": "2026-11-28T03:22:37-05:00",
  "pinned": true,
  "last_seat": {
   "job": "j10",
@@ -109,21 +109,6 @@
  },
  "pending": null,
  "resolved": [
-  {
-   "event_id": "pick-376214b1-fef3-4410-adc3-914a19b02237",
-   "type": "card_pick",
-   "status": "seated",
-   "job": "j7",
-   "action": null
-  },
-  {
-   "event_id": "menu-316115ca-364c-4e58-8346-b7730a4f3db9",
-   "type": "menu_action",
-   "status": "done",
-   "job": "j8",
-   "action": "live_view: j8",
-   "note": "j8 live view"
-  },
   {
    "event_id": "pick-6cd9bf46-d7ef-4ed1-ba97-09b99e9ed210",
    "type": "card_pick",
@@ -199,41 +184,33 @@
    "job": "j11",
    "action": "prayer: run-dfd59e p4: no",
    "note": "held, tap Send all"
+  },
+  {
+   "event_id": "menu-a7bab8d9-aa19-406a-8cfd-caf274a35ced",
+   "type": "menu_action",
+   "status": "done",
+   "job": "j11",
+   "action": "prayer: run-dfd59e p3: maybe",
+   "note": "held, tap Send all"
+  },
+  {
+   "event_id": "menu-97b4849a-2e5f-4bc2-9caf-a045a74e3c36",
+   "type": "menu_action",
+   "status": "done",
+   "job": "j11",
+   "action": "prayer: run-dfd59e p2: no",
+   "note": "held, tap Send all"
   }
  ],
  "async_jobs": [],
  "sheet": {
   "kind": "prayers",
-  "prompt": "🙏 Prayer jobs · 3 answered · 38 listed",
+  "prompt": "🙏 Prayer jobs · 5 answered · 38 listed",
   "helpText": "5 at a time, Next for more. Tap Yes, Maybe or No. Answers are held and the card moves to the back; nothing is sent until you tap Send all.",
   "options": [
    {
-    "label": "📨 Send all answered prayers (3)",
-    "value": "prayer: send all 3"
-   },
-   {
-    "label": "Yes 🙏",
-    "value": "prayer: run-dfd59e p3: yes"
-   },
-   {
-    "label": "Maybe 🤔",
-    "value": "prayer: run-dfd59e p3: maybe"
-   },
-   {
-    "label": "No ✋",
-    "value": "prayer: run-dfd59e p3: no"
-   },
-   {
-    "label": "Yes 🙏",
-    "value": "prayer: run-dfd59e p2: yes"
-   },
-   {
-    "label": "Maybe 🤔",
-    "value": "prayer: run-dfd59e p2: maybe"
-   },
-   {
-    "label": "No ✋",
-    "value": "prayer: run-dfd59e p2: no"
+    "label": "📨 Send all answered prayers (5)",
+    "value": "prayer: send all 5"
    },
    {
     "label": "Yes 🙏",
@@ -666,70 +643,46 @@
    {
     "label": "No ✋",
     "value": "prayer: run-dfd59e p4: no"
+   },
+   {
+    "label": "Yes 🙏",
+    "value": "prayer: run-dfd59e p3: yes"
+   },
+   {
+    "label": "Maybe 🤔",
+    "value": "prayer: run-dfd59e p3: maybe"
+   },
+   {
+    "label": "No ✋",
+    "value": "prayer: run-dfd59e p3: no"
+   },
+   {
+    "label": "Yes 🙏",
+    "value": "prayer: run-dfd59e p2: yes"
+   },
+   {
+    "label": "Maybe 🤔",
+    "value": "prayer: run-dfd59e p2: maybe"
+   },
+   {
+    "label": "No ✋",
+    "value": "prayer: run-dfd59e p2: no"
    }
   ],
   "allowCustom": false,
-  "at": "2026-11-28T03:16:12-05:00",
+  "at": "2026-11-28T03:22:31-05:00",
   "source_action": "menu: Prayer jobs",
   "counts": {
-   "answered": 3,
+   "answered": 5,
    "listed": 38,
    "sent": 0
   },
   "send_all": {
-   "label": "📨 Send all answered prayers (3)",
-   "value": "prayer: send all 3",
-   "count": 3
+   "label": "📨 Send all answered prayers (5)",
+   "value": "prayer: send all 5",
+   "count": 5
   },
   "cards": [
-   {
-    "id": "p3",
-    "prompt": "🙏 p3: Iffy asks God for a morning with no bad news. Yes, maybe or no?",
-    "helpText": "Prayer card. Not seated: it only changes the world.",
-    "options": [
-     {
-      "label": "Yes 🙏",
-      "value": "prayer: run-dfd59e p3: yes",
-      "safe": "The morning stays quiet."
-     },
-     {
-      "label": "Maybe 🤔",
-      "value": "prayer: run-dfd59e p3: maybe",
-      "safe": "Neither happens yet: the ask hangs in the room. Hold a long beat on the asker's face, no cut."
-     },
-     {
-      "label": "No ✋",
-      "value": "prayer: run-dfd59e p3: no",
-      "safe": "Bad news comes before noon."
-     }
-    ],
-    "from": "means → gwagwalada",
-    "run": "run-dfd59e"
-   },
-   {
-    "id": "p2",
-    "prompt": "🙏 p2: Bisola asks Taiwo to stay until the first people come through the gate. Yes, maybe or no?",
-    "helpText": "Prayer card. Not seated: it only changes the world.",
-    "options": [
-     {
-      "label": "Yes 🙏",
-      "value": "prayer: run-dfd59e p2: yes",
-      "safe": "Taiwo stays."
-     },
-     {
-      "label": "Maybe 🤔",
-      "value": "prayer: run-dfd59e p2: maybe",
-      "safe": "Neither happens yet: the ask hangs in the room. Hold a long beat on the asker's face, no cut."
-     },
-     {
-      "label": "No ✋",
-      "value": "prayer: run-dfd59e p2: no",
-      "safe": "Taiwo leaves before anyone comes."
-     }
-    ],
-    "from": "means → gwagwalada",
-    "run": "run-dfd59e"
-   },
    {
     "id": "p1",
     "prompt": "🙏 p1: Iffy prays that Kunle answers the message today. Yes, maybe or no?",
@@ -1605,6 +1558,62 @@
     "answer": "no",
     "answer_label": "No ✋",
     "answered_at": "2026-11-28T02:55:39.000-05:00"
+   },
+   {
+    "id": "p3",
+    "prompt": "🙏 p3: Iffy asks God for a morning with no bad news. Yes, maybe or no?",
+    "helpText": "Prayer card. Not seated: it only changes the world.",
+    "options": [
+     {
+      "label": "Yes 🙏",
+      "value": "prayer: run-dfd59e p3: yes",
+      "safe": "The morning stays quiet."
+     },
+     {
+      "label": "Maybe 🤔",
+      "value": "prayer: run-dfd59e p3: maybe",
+      "safe": "Neither happens yet: the ask hangs in the room. Hold a long beat on the asker's face, no cut."
+     },
+     {
+      "label": "No ✋",
+      "value": "prayer: run-dfd59e p3: no",
+      "safe": "Bad news comes before noon."
+     }
+    ],
+    "from": "means → gwagwalada",
+    "run": "run-dfd59e",
+    "held": true,
+    "answer": "maybe",
+    "answer_label": "Maybe 🤔",
+    "answered_at": "2026-11-28T03:22:14.577-05:00"
+   },
+   {
+    "id": "p2",
+    "prompt": "🙏 p2: Bisola asks Taiwo to stay until the first people come through the gate. Yes, maybe or no?",
+    "helpText": "Prayer card. Not seated: it only changes the world.",
+    "options": [
+     {
+      "label": "Yes 🙏",
+      "value": "prayer: run-dfd59e p2: yes",
+      "safe": "Taiwo stays."
+     },
+     {
+      "label": "Maybe 🤔",
+      "value": "prayer: run-dfd59e p2: maybe",
+      "safe": "Neither happens yet: the ask hangs in the room. Hold a long beat on the asker's face, no cut."
+     },
+     {
+      "label": "No ✋",
+      "value": "prayer: run-dfd59e p2: no",
+      "safe": "Taiwo leaves before anyone comes."
+     }
+    ],
+    "from": "means → gwagwalada",
+    "run": "run-dfd59e",
+    "held": true,
+    "answer": "no",
+    "answer_label": "No ✋",
+    "answered_at": "2026-11-28T03:22:31.678-05:00"
    }
   ],
   "page_size": 5
