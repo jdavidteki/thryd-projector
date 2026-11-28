@@ -29,8 +29,8 @@
     "on",
     "best"
    ],
-   "instances": 60,
-   "arg_instances": 19,
+   "instances": 61,
+   "arg_instances": 20,
    "parent": "Thing",
    "chain": [
     "Person",
@@ -147,8 +147,8 @@
   "Feeling": {
    "param": "feeling",
    "methods": [
-    "give",
     "hide",
+    "give",
     "teach"
    ],
    "instances": 8,
@@ -7596,6 +7596,23 @@
     }
    ]
   },
+  "seniorboys": {
+   "class": "Person",
+   "cue": "word",
+   "first_run": "run-788e05",
+   "first_job": "j17",
+   "source": "pick",
+   "runs": [
+    "run-788e05"
+   ],
+   "tweets": [
+    {
+     "text": "somebody tell they can't fight God! lol #seniorboys",
+     "year": "2023",
+     "id": "1658520232309162016"
+    }
+   ]
+  },
   "seniorgehs": {
    "class": "Person",
    "cue": "word",
@@ -12042,12 +12059,6 @@
     "pick"
    ],
    [
-    "god",
-    "Thing",
-    "j10",
-    "pick"
-   ],
-   [
     "get",
     "Thing",
     "j10",
@@ -12108,12 +12119,6 @@
     "pick"
    ],
    [
-    "pride",
-    "Feeling",
-    "j15",
-    "pick"
-   ],
-   [
     "joy",
     "Feeling",
     "j15",
@@ -12126,15 +12131,33 @@
     "pick"
    ],
    [
-    "longing",
+    "ami",
     "Thing",
     "j16",
     "pick"
    ],
    [
-    "ami",
+    "seniorboys",
+    "Person",
+    "j17",
+    "pick"
+   ],
+   [
+    "pride",
+    "Feeling",
+    "j17",
+    "pick"
+   ],
+   [
+    "god",
     "Thing",
-    "j16",
+    "j17",
+    "pick"
+   ],
+   [
+    "longing",
+    "Thing",
+    "j17",
     "pick"
    ],
    [
@@ -15142,6 +15165,10 @@
   "letter.hide": "hide(feeling: Feeling)",
   "lie.need": "need(what: Thing)",
   "seniorboys.give": "give(what: Thing)",
+  "god.tell": "tell(who: Person)",
+  "man.hide": "hide(feeling: Feeling)",
+  "seniorgehs.give": "give(what: Thing)",
+  "shaqs.break": "break(what: Thing)",
   "cooler.getdatemanufactured": "getDateManufactured()",
   "ronke.getlikes.contains": "getlikes.contains()",
   "kazeem.goodqualities.filter": "filter()",
@@ -15381,6 +15408,7 @@
     "god",
     "lateef",
     "letter",
+    "man",
     "omo",
     "ronke",
     "teo"
@@ -15666,6 +15694,7 @@
    "lie",
    "life",
    "lola",
+   "man",
    "now",
    "old",
    "people",
@@ -15675,6 +15704,7 @@
    "see",
    "seniorboys",
    "seniorgehs",
+   "shaqs",
    "shoot",
    "society",
    "somebody",
@@ -15957,5 +15987,5 @@
   "epilogue": "quiet",
   "coda": "quiet"
  },
- "updated": "2026-11-28T13:23:05-05:00"
+ "updated": "2026-11-28T14:15:24-05:00"
 }

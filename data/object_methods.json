@@ -32727,12 +32727,12 @@
      ],
      "consequence": "The lines that landed: \"this false agenda that God needs us to praise him.",
      "consequence_job": "j11",
-     "resolved": "false.agenda(what=god:Thing) from j10",
+     "resolved": "false.agenda(what=get:Thing) from j10",
      "injected": [
       {
        "param": "what",
        "class": "Thing",
-       "instance": "god",
+       "instance": "get",
        "from_run": "run-788e05",
        "from_job": "j10",
        "source": "pick"
@@ -33746,12 +33746,12 @@
      ],
      "consequence": "What just happened: The last card asked for the next line, the one that answers \"You still reach precision — we cant blame [[god]]\".",
      "consequence_job": "j16",
-     "resolved": "lola.give(feeling=pride:Feeling) from j15",
+     "resolved": "lola.give(feeling=joy:Feeling) from j15",
      "injected": [
       {
        "param": "feeling",
        "class": "Feeling",
-       "instance": "pride",
+       "instance": "joy",
        "from_run": "run-788e05",
        "from_job": "j15",
        "source": "pick"
@@ -33899,12 +33899,12 @@
      "tweets": [],
      "consequence": "What just happened: The last card asked for the next line, the one that answers \"nobody bigger - lol.",
      "consequence_job": "j17",
-     "resolved": "daughter.hear(what=longing:Thing) from j16",
+     "resolved": "daughter.hear(what=ami:Thing) from j16",
      "injected": [
       {
        "param": "what",
        "class": "Thing",
-       "instance": "longing",
+       "instance": "ami",
        "from_run": "run-788e05",
        "from_job": "j16",
        "source": "pick"
@@ -34073,12 +34073,12 @@
      ],
      "consequence": "#coto\" and \"a society where people need to lie.",
      "consequence_job": "j17",
-     "resolved": "lie.need(what=longing:Thing) from j16",
+     "resolved": "lie.need(what=ami:Thing) from j16",
      "injected": [
       {
        "param": "what",
        "class": "Thing",
-       "instance": "longing",
+       "instance": "ami",
        "from_run": "run-788e05",
        "from_job": "j16",
        "source": "pick"
@@ -34219,6 +34219,354 @@
    ],
    "faded": false,
    "last_run": "run-788e05"
+  },
+  "god.tell": {
+   "object": "god",
+   "method": "tell",
+   "args": [
+    "seniorboys"
+   ],
+   "runs": [
+    "run-788e05"
+   ],
+   "defined": {
+    "run": "run-788e05",
+    "job": "j17",
+    "card": "w17",
+    "title": "god.tell(seniorboys)",
+    "emoji": "🍄",
+    "at": "2026-11-28T14:14:58-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "god.tell(seniorboys)",
+     "emoji": "🍄",
+     "arg": "seniorboys",
+     "run": "run-788e05",
+     "job": "j17",
+     "tweets": [
+      {
+       "text": "somebody tell they can't fight God! lol #seniorboys",
+       "year": "2023",
+       "id": "1658520232309162016"
+      }
+     ],
+     "consequence": "The lines that landed: \"somebody tell they can't fight God!",
+     "consequence_job": "j18",
+     "resolved": "god.tell(who=seniorboys:Person) from j17",
+     "injected": [
+      {
+       "param": "who",
+       "class": "Person",
+       "instance": "seniorboys",
+       "from_run": "run-788e05",
+       "from_job": "j17",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "who",
+      "class": "Person",
+      "default": "seniorboys",
+      "first_run": "run-788e05",
+      "first_job": "j17"
+     }
+    ],
+    "text": "tell(who: Person)"
+   },
+   "receiver_class": "Thing",
+   "prior": [
+    {
+     "id": "somebody.tell",
+     "title": "somebody.tell(can't)",
+     "run": "run-788e05",
+     "job": "j7",
+     "at": "2026-11-28T00:40:46-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "marisol.tell",
+     "title": "marisol.tell(something)",
+     "run": "run-5a58c4",
+     "job": "j41",
+     "at": "2026-11-24T01:08:32-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "mamaronke.tell",
+     "title": "mamaronke.tell(ice)",
+     "run": "run-2eb42d",
+     "job": "j25",
+     "at": "2026-11-18T11:37:20-05:00",
+     "why": "same method"
+    }
+   ],
+   "faded": false,
+   "last_run": null
+  },
+  "man.hide": {
+   "object": "man",
+   "method": "hide",
+   "args": [
+    "pride"
+   ],
+   "runs": [
+    "run-788e05"
+   ],
+   "defined": {
+    "run": "run-788e05",
+    "job": "j17",
+    "card": "w17",
+    "title": "man.hide(pride)",
+    "emoji": "🌙",
+    "at": "2026-11-28T14:14:58-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "man.hide(pride)",
+     "emoji": "🌙",
+     "arg": "pride",
+     "run": "run-788e05",
+     "job": "j17",
+     "tweets": [],
+     "consequence": "lol #seniorboys\", \"because God doesn't like chaos#seniorgehs\", \"obaja is the highest man in the land; big up!\" and \"One of Big Shaq’s alter ego, Dr.\".",
+     "consequence_job": "j18",
+     "resolved": "man.hide(feeling=pride:Feeling) from j17",
+     "injected": [
+      {
+       "param": "feeling",
+       "class": "Feeling",
+       "instance": "pride",
+       "from_run": "run-788e05",
+       "from_job": "j17",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "feeling",
+      "class": "Feeling",
+      "default": "pride",
+      "first_run": "run-788e05",
+      "first_job": "j15"
+     }
+    ],
+    "text": "hide(feeling: Feeling)"
+   },
+   "receiver_class": "Person",
+   "prior": [
+    {
+     "id": "letter.hide",
+     "title": "letter.hide(love)",
+     "run": "run-788e05",
+     "job": "j16",
+     "at": "2026-11-28T13:22:52-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "daughter.hide",
+     "title": "daughter.hide(longing)",
+     "run": "run-788e05",
+     "job": "j15",
+     "at": "2026-11-28T12:31:46-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "god.hide",
+     "title": "god.hide(joy)",
+     "run": "run-788e05",
+     "job": "j13",
+     "at": "2026-11-28T12:26:06-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "teo.hide",
+     "title": "teo.hide(tnw,deya)",
+     "run": "run-5a58c4",
+     "job": "j23",
+     "at": "2026-11-16T23:50:03-05:00",
+     "why": "same method"
+    }
+   ],
+   "faded": false,
+   "last_run": null
+  },
+  "seniorgehs.give": {
+   "object": "seniorgehs",
+   "method": "give",
+   "args": [
+    "god"
+   ],
+   "runs": [
+    "run-788e05"
+   ],
+   "defined": {
+    "run": "run-788e05",
+    "job": "j17",
+    "card": "w17",
+    "title": "seniorgehs.give(god)",
+    "emoji": "🌾",
+    "at": "2026-11-28T14:14:58-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "seniorgehs.give(god)",
+     "emoji": "🌾",
+     "arg": "god",
+     "run": "run-788e05",
+     "job": "j17",
+     "tweets": [
+      {
+       "text": "because God doesn't like chaos#seniorgehs",
+       "year": "2023",
+       "id": "1690193551999524864"
+      }
+     ],
+     "consequence": "The lines that landed: \"somebody tell they can't fight God!",
+     "consequence_job": "j18",
+     "resolved": "seniorgehs.give(what=god:Thing) from j17",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "god",
+       "from_run": "run-788e05",
+       "from_job": "j17",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "god",
+      "first_run": "run-5a58c4",
+      "first_job": "j40"
+     }
+    ],
+    "text": "give(what: Thing)"
+   },
+   "receiver_class": "Person",
+   "prior": [
+    {
+     "id": "seniorboys.give",
+     "title": "seniorboys.give(ami)",
+     "run": "run-788e05",
+     "job": "j16",
+     "at": "2026-11-28T13:22:52-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "lola.give",
+     "title": "lola.give(pride)",
+     "run": "run-788e05",
+     "job": "j15",
+     "at": "2026-11-28T12:31:46-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "life.give",
+     "title": "life.give(joy)",
+     "run": "run-788e05",
+     "job": "j14",
+     "at": "2026-11-28T12:29:03-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "teo.give",
+     "title": "teo.give(precisions)",
+     "run": "run-5a58c4",
+     "job": "j43",
+     "at": "2026-11-24T01:36:54-05:00",
+     "why": "same method"
+    }
+   ],
+   "faded": false,
+   "last_run": null
+  },
+  "shaqs.break": {
+   "object": "shaqs",
+   "method": "break",
+   "args": [
+    "longing"
+   ],
+   "runs": [
+    "run-788e05"
+   ],
+   "defined": {
+    "run": "run-788e05",
+    "job": "j17",
+    "card": "w17",
+    "title": "shaqs.break(longing)",
+    "emoji": "🍁",
+    "at": "2026-11-28T14:14:58-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "shaqs.break(longing)",
+     "emoji": "🍁",
+     "arg": "longing",
+     "run": "run-788e05",
+     "job": "j17",
+     "tweets": [
+      {
+       "text": "One of Big Shaq’s alter ego, Dr.",
+       "year": "2021"
+      }
+     ],
+     "consequence": "What just happened: The last card asked for the next line, the one that answers \"a society where people need to lie.",
+     "consequence_job": "j18",
+     "resolved": "shaqs.break(what=longing:Thing) from j17",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "longing",
+       "from_run": "run-788e05",
+       "from_job": "j17",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "longing",
+      "first_run": "run-788e05",
+      "first_job": "j13"
+     }
+    ],
+    "text": "break(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
   },
   "cooler.getdatemanufactured": {
    "object": "cooler",
@@ -38536,6 +38884,9 @@
   "attendant": [
    "attendant.put"
   ],
+  "ayok_focus_figure": [
+   "man.hide"
+  ],
   "ayok_focus_figure_second": [
    "woman.setname"
   ],
@@ -39217,7 +39568,8 @@
   "god": [
    "god.have",
    "god.hide",
-   "god.pray"
+   "god.pray",
+   "god.tell"
   ],
   "god_doesnt_make_figure": [
    "person.rest"
@@ -39630,6 +39982,9 @@
    "mamaronke.note",
    "mamaronke.say",
    "mamaronke.buy"
+  ],
+  "man": [
+   "man.hide"
   ],
   "map": [
    "map.which"
@@ -40191,13 +40546,17 @@
   ],
   "seniorgehs": [
    "seniorgehs.straight",
-   "seniorgehs.return"
+   "seniorgehs.return",
+   "seniorgehs.give"
   ],
   "shakespopi_figure": [
    "person.rest"
   ],
   "shapes": [
    "shapes.do"
+  ],
+  "shaqs": [
+   "shaqs.break"
   ],
   "share": [
    "share.minerals"
@@ -65625,6 +65984,10 @@
     "letter.hide",
     "lie.need",
     "seniorboys.give",
+    "god.tell",
+    "man.hide",
+    "seniorgehs.give",
+    "shaqs.break",
     "thryd.importtheme",
     "chrome.add",
     "thryd.log",
@@ -66174,7 +66537,11 @@
     "daughter.hear",
     "letter.hide",
     "lie.need",
-    "seniorboys.give"
+    "seniorboys.give",
+    "god.tell",
+    "man.hide",
+    "seniorgehs.give",
+    "shaqs.break"
    ],
    "runs": [
     "run-788e05"
@@ -66983,7 +67350,8 @@
     "somebody.tell",
     "baba.draw",
     "still.think",
-    "lie.need"
+    "lie.need",
+    "god.tell"
    ],
    "runs": []
   },
@@ -67178,6 +67546,13 @@
    "title": "828. the throne of grace",
    "funcs": [
     "eez.mad"
+   ],
+   "runs": []
+  },
+  "67d17a31aa5c": {
+   "title": "man’s not hot",
+   "funcs": [
+    "shaqs.break"
    ],
    "runs": []
   },
@@ -69601,6 +69976,9 @@
    "d63228ef5cbc",
    "c5a2b107dc8b"
   ],
+  "1*peILzOCho_5AguVfng-7Vg.jpeg": [
+   "67d17a31aa5c"
+  ],
   "1*EGfa3VQWdL61AGY_DW56zA.gif": [
    "fbb6af08827a"
   ],
@@ -71704,7 +72082,8 @@
   "god": [
    "god.have",
    "god.hide",
-   "god.pray"
+   "god.pray",
+   "god.tell"
   ],
   "gol": [
    "gol.lo"
@@ -71948,6 +72327,9 @@
    "mamaronke.note",
    "mamaronke.say",
    "mamaronke.buy"
+  ],
+  "man": [
+   "man.hide"
   ],
   "map": [
    "map.which"
@@ -72235,10 +72617,14 @@
   ],
   "seniorgehs": [
    "seniorgehs.straight",
-   "seniorgehs.return"
+   "seniorgehs.return",
+   "seniorgehs.give"
   ],
   "shapes": [
    "shapes.do"
+  ],
+  "shaqs": [
+   "shaqs.break"
   ],
   "share": [
    "share.minerals"
@@ -72965,6 +73351,10 @@
   "letter": [
    "Foldable"
   ],
+  "man": [
+   "Foldable"
+  ],
+  "shaqs": [],
   "cooler": [],
   "kazeem.goodqualities": [],
   "app": [],
@@ -73160,6 +73550,7 @@
    "lie",
    "life",
    "lola",
+   "man",
    "now",
    "old",
    "people",
@@ -73169,6 +73560,7 @@
    "see",
    "seniorboys",
    "seniorgehs",
+   "shaqs",
    "shoot",
    "society",
    "somebody",
@@ -73393,5 +73785,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-28T13:23:56-05:00"
+ "updated": "2026-11-28T14:15:24-05:00"
 }
