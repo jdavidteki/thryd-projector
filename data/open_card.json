@@ -95,7 +95,7 @@
  "lines": 40,
  "next_lock_at_lines": 71,
  "lock_open": false,
- "at": "2026-11-28T03:22:39-05:00",
+ "at": "2026-11-28T03:23:37-05:00",
  "pinned": true,
  "last_seat": {
   "job": "j10",
@@ -109,14 +109,6 @@
  },
  "pending": null,
  "resolved": [
-  {
-   "event_id": "menu-0398f304-70a5-4c53-84a0-41faa8185dda",
-   "type": "menu_action",
-   "status": "cancelled",
-   "job": "j9",
-   "action": "live_view: j9",
-   "note": "cancelled"
-  },
   {
    "event_id": "pick-772dd3f9-7b16-41ff-bcfe-5f2c5d293a68",
    "type": "card_pick",
@@ -201,29 +193,25 @@
    "job": "j11",
    "action": "prayer: run-dfd59e p2: maybe",
    "note": "held, tap Send all"
+  },
+  {
+   "event_id": "menu-d97a6e67-3a15-4dc0-86c6-1564f551bd14",
+   "type": "menu_action",
+   "status": "done",
+   "job": "j11",
+   "action": "prayer: run-dfd59e p1: yes",
+   "note": "held, tap Send all"
   }
  ],
  "async_jobs": [],
  "sheet": {
   "kind": "prayers",
-  "prompt": "🙏 Prayer jobs · 5 answered · 38 listed",
+  "prompt": "🙏 Prayer jobs · 6 answered · 38 listed",
   "helpText": "5 at a time, Next for more. Tap Yes, Maybe or No. Answers are held and the card moves to the back; nothing is sent until you tap Send all.",
   "options": [
    {
-    "label": "📨 Send all answered prayers (5)",
-    "value": "prayer: send all 5"
-   },
-   {
-    "label": "Yes 🙏",
-    "value": "prayer: run-dfd59e p1: yes"
-   },
-   {
-    "label": "Maybe 🤔",
-    "value": "prayer: run-dfd59e p1: maybe"
-   },
-   {
-    "label": "No ✋",
-    "value": "prayer: run-dfd59e p1: no"
+    "label": "📨 Send all answered prayers (6)",
+    "value": "prayer: send all 6"
    },
    {
     "label": "Yes 🙏",
@@ -668,46 +656,34 @@
    {
     "label": "No ✋",
     "value": "prayer: run-dfd59e p2: no"
+   },
+   {
+    "label": "Yes 🙏",
+    "value": "prayer: run-dfd59e p1: yes"
+   },
+   {
+    "label": "Maybe 🤔",
+    "value": "prayer: run-dfd59e p1: maybe"
+   },
+   {
+    "label": "No ✋",
+    "value": "prayer: run-dfd59e p1: no"
    }
   ],
   "allowCustom": false,
-  "at": "2026-11-28T03:22:37-05:00",
+  "at": "2026-11-28T03:23:21-05:00",
   "source_action": "menu: Prayer jobs",
   "counts": {
-   "answered": 5,
+   "answered": 6,
    "listed": 38,
    "sent": 0
   },
   "send_all": {
-   "label": "📨 Send all answered prayers (5)",
-   "value": "prayer: send all 5",
-   "count": 5
+   "label": "📨 Send all answered prayers (6)",
+   "value": "prayer: send all 6",
+   "count": 6
   },
   "cards": [
-   {
-    "id": "p1",
-    "prompt": "🙏 p1: Iffy prays that Kunle answers the message today. Yes, maybe or no?",
-    "helpText": "Prayer card. Not seated: it only changes the world.",
-    "options": [
-     {
-      "label": "Yes 🙏",
-      "value": "prayer: run-dfd59e p1: yes",
-      "safe": "The message gets an answer today."
-     },
-     {
-      "label": "Maybe 🤔",
-      "value": "prayer: run-dfd59e p1: maybe",
-      "safe": "Neither happens yet: the ask hangs in the room. Hold a long beat on the asker's face, no cut."
-     },
-     {
-      "label": "No ✋",
-      "value": "prayer: run-dfd59e p1: no",
-      "safe": "The message waits another day."
-     }
-    ],
-    "from": "means → gwagwalada",
-    "run": "run-dfd59e"
-   },
    {
     "id": "p7",
     "prompt": "🙏 p7: Amina Seidu asks Lateef to stay until the first people come through the gate. Yes, maybe or no?",
@@ -1615,6 +1591,34 @@
     "answer": "maybe",
     "answer_label": "Maybe 🤔",
     "answered_at": "2026-11-28T03:22:37.856-05:00"
+   },
+   {
+    "id": "p1",
+    "prompt": "🙏 p1: Iffy prays that Kunle answers the message today. Yes, maybe or no?",
+    "helpText": "Prayer card. Not seated: it only changes the world.",
+    "options": [
+     {
+      "label": "Yes 🙏",
+      "value": "prayer: run-dfd59e p1: yes",
+      "safe": "The message gets an answer today."
+     },
+     {
+      "label": "Maybe 🤔",
+      "value": "prayer: run-dfd59e p1: maybe",
+      "safe": "Neither happens yet: the ask hangs in the room. Hold a long beat on the asker's face, no cut."
+     },
+     {
+      "label": "No ✋",
+      "value": "prayer: run-dfd59e p1: no",
+      "safe": "The message waits another day."
+     }
+    ],
+    "from": "means → gwagwalada",
+    "run": "run-dfd59e",
+    "held": true,
+    "answer": "yes",
+    "answer_label": "Yes 🙏",
+    "answered_at": "2026-11-28T03:23:21.773-05:00"
    }
   ],
   "page_size": 5
