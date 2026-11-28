@@ -55,7 +55,8 @@ test('layout is job card, then typeline, then plain always-visible buttons', ()=
 test('after Send the panel waits for the next job, then swaps on the slow poll', ()=>{
   assert.match(js, /sent \\u2014 next job coming/);
   assert.match(js, /published card moves to the next jN/);
-  assert.match(js, /if\(!panelOn\) return Promise.resolve\(\)/);
+  assert.match(js, /still fetch when the panel is closed so the job alert/);
+  assert.match(js, /if\(document\.hidden\) return Promise.resolve\(\)/);
   assert.match(js, /POLL_MS = 30000/);
 });
 
@@ -201,7 +202,7 @@ test('v628: panel stays open after Send; waiting refresh keeps the sent card; ea
 test('v629: seat line, lock progress, waiting-to-be-seated, lock state on the panel', ()=>{
   assert.match(js, /function seatStrip\(\)/);
   assert.match(js, /function updateStrip\(\)/);
-  assert.match(js, /jobEl\.appendChild\(seatStrip\(\)\)/);
+  assert.match(js, /(jobEl|body)\.appendChild\(seatStrip\(\)\)/);
   assert.match(js, /if\(metaChanged\) updateStrip\(\)/);
   assert.match(js, /pick waiting to be seated/);
   assert.match(js, /\\ud83d\\udd12 Locked \\u00b7 /);
@@ -467,7 +468,43 @@ test('v655 typeline stays up for the Medium link, focused, with a paste placehol
   assert.match(js, /function armSeedTypeline/);
   assert.match(js, /#aibox\.cards-on:has\(\.aicseed\) > form\.airow,#aibox\.cards-on\.seed-wait > form\.airow\{display:flex!important\}/);
   assert.doesNotMatch(js, /#aibox\.cards-on:has\(\.aicseed\) > form\.airow,#aibox\.cards-on:has\(\.aiclock\) > form\.airow\{display:none\}/);
-  assert.match(html, /var VER=655,/);
+  assert.match(html, /var VER=(6[5-9]\d),/);
   const v = JSON.parse(ver);
-  assert.equal(v.v, 655);
+  assert.ok(v.v >= 655);
+});
+
+test('v656 typeline + #thryd stay docked above the menu; only the options list scrolls', ()=>{
+  assert.match(js, /aicdock/);
+  assert.match(js, /aicbody/);
+  assert.match(js, /#aicard\{[^}]*overflow:hidden/);
+  assert.match(js, /#aicard \.aicbody\{[^}]*overflow:auto/);
+  assert.match(js, /#aicard \.aicdock\{[^}]*flex:0 0 auto/);
+  assert.match(js, /padding-bottom:8px/);
+  assert.match(js, /visualViewport/);
+  assert.match(js, /function liftForKeyboard/);
+  assert.match(js, /function armKeyboardLift/);
+  assert.match(js, /dock\.appendChild\(t\)/);
+  assert.match(js, /jobEl\.appendChild\(dock\)/);
+  assert.match(html, /var VER=656,/);
+  const v2 = JSON.parse(ver);
+  assert.equal(v2.v, 656);
+});
+
+test('v656 next job card shows in the existing alert and stays there, not tappable', ()=>{
+  assert.match(js, /function isJobCard/);
+  assert.match(js, /function jobAlertTitle/);
+  assert.match(js, /function noteJobAlert/);
+  assert.match(js, /function jobAlertEl/);
+  assert.match(js, /aicwait aicalert/);
+  assert.match(js, /id = 'aicalert'/);
+  assert.match(js, /if\(j\.kind && j\.kind !== 'job'\) return false/);
+  assert.match(js, /jobAlert && jobAlert\.job === j\.job/);
+  assert.match(js, /pointer-events:none/);
+  // not a tappable control: the alert is a div status, never a button, never tapOnce
+  const alertSrc = js.slice(js.indexOf('function jobAlertEl('), js.indexOf('function seatStrip()'));
+  assert.match(alertSrc, /createElement\('div'\)/);
+  assert.doesNotMatch(alertSrc, /createElement\('button'\)/);
+  assert.doesNotMatch(alertSrc, /tapOnce/);
+  assert.match(js, /aicmdalert/);
+  assert.doesNotMatch(js, /thrydCtx\(\)\.toast/);
 });

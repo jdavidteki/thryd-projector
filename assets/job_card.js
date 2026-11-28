@@ -22,8 +22,11 @@
     '#aibox.cards-on textarea{font-size:13px;min-height:40px;padding:8px 10px}#aibox.cards-on #aisend{min-height:40px;min-width:44px}',
     '#aibox.cards-on textarea::placeholder{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#7d786c}',
     '#aibox.cards-on > .aic:empty{display:none}',
-    '#aicard{flex:1 1 auto;min-height:0;overflow:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;display:flex;flex-direction:column;gap:6px;padding:7px 10px 6px;border-bottom:1px solid rgba(255,255,255,.07)}',
-    '#aicard::-webkit-scrollbar{width:6px}#aicard::-webkit-scrollbar-thumb{background:rgba(255,255,255,.18);border-radius:3px}',
+    '#aicard{flex:1 1 auto;min-height:0;overflow:hidden;display:flex;flex-direction:column;gap:6px;padding:7px 10px 6px;border-bottom:1px solid rgba(255,255,255,.07)}',
+    /* v656: only the options list scrolls; typeline + #thryd stay docked above the menu */
+    '#aicard .aicbody{flex:1 1 auto;min-height:0;overflow:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;display:flex;flex-direction:column;gap:6px;padding-bottom:8px}',
+    '#aicard .aicbody::-webkit-scrollbar{width:6px}#aicard .aicbody::-webkit-scrollbar-thumb{background:rgba(255,215,106,.45);border-radius:3px}',
+    '#aicard .aicdock{flex:0 0 auto;display:flex;flex-direction:column;gap:6px;padding:6px 0 2px;background:rgba(16,15,13,.97);border-top:1px solid rgba(255,255,255,.1);position:relative;z-index:2}',
     '#aicard .aictitle{font:700 13px/1.35 ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:#ffe3a0;letter-spacing:.01em}',
     '#aicard .aicprompt{display:flex;flex-direction:column;gap:7px;color:#ece6d8;font:400 15px/1.6 ThrydRead,Georgia,"Times New Roman",serif;font-weight:420;letter-spacing:.003em}',
     '#aicard .aicprompt p{margin:0}',
@@ -88,6 +91,11 @@
     '#aicard .aicprog .bar i{display:block;height:100%;background:linear-gradient(90deg,#c9a95a,#ffd76a);border-radius:3px}',
     '#aicard .aicprog .nx{color:#8f897c;font-weight:500}',
     '#aicard .aicwait{display:flex;align-items:center;gap:6px;font:600 11px/1.25 ui-sans-serif,system-ui,sans-serif;color:#ffd76a;padding:8px 10px;border-radius:999px;background:rgba(255,215,106,.08);border:1px dashed rgba(255,215,106,.4);align-self:flex-start;max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;box-sizing:border-box}',
+    /* v656: next job-card alert — same pill as waiting/update-ready, not tappable, stays until the next jN replaces it */
+    '#aicard .aicwait.aicalert{cursor:default;max-width:100%;pointer-events:none}',
+    '#aicmd,#menutog{position:relative}',
+    '#aicmd .aicmdalert,#menutog .aicmdalert{position:absolute;top:-7px;right:-8px;min-width:16px;height:16px;padding:0 5px;border-radius:999px;background:#ffd76a;color:#1a1608;font:700 9px/16px ui-sans-serif,system-ui,sans-serif;letter-spacing:.02em;pointer-events:none;box-shadow:0 1px 4px rgba(0,0,0,.45);white-space:nowrap}',
+    '#aicard > #aicalert,#aicard > .aicwait.aicalert{flex:0 0 auto;max-width:100%;margin:0}',
     '#aicard .aicwait .dot{width:7px;height:7px;border-radius:50%;background:#ffd76a;opacity:.85}',
     '#aicard .aicwait.aicsent.done{color:#8fe3a1;background:rgba(143,227,161,.08);border:1px solid rgba(143,227,161,.45)}',
     '#aicard .aicwait.aicsent.done .dot{background:#8fe3a1}',
@@ -530,7 +538,56 @@
     // v623: same rule as the drag (intent_ai.js clampPos): the box may hang off an edge, the [[god]] header strip may not
     const ai = AI(); if(ai && typeof ai.clampBox === 'function'){ try{ ai.clampBox(); }catch(e){} }
   }
-  addEventListener('resize', () => { try{ reclamp(); }catch(e){} }, {passive: true});
+  addEventListener('resize', () => { try{ reclamp(); liftForKeyboard(); }catch(e){} }, {passive: true});
+
+  // v656: keep the docked typeline above the on-screen keyboard (visualViewport on iOS/Android).
+  function keyboardGap(){
+    const vv = window.visualViewport;
+    if(!vv) return 0;
+    return Math.max(0, (window.innerHeight || 0) - (vv.height + vv.offsetTop));
+  }
+  function liftForKeyboard(){
+    const b = document.getElementById('aibox');
+    if(!b || !b.classList.contains('on')) return;
+    const vv = window.visualViewport;
+    const gap = keyboardGap();
+    if(gap > 40 && vv){
+      b.dataset.kbLift = '1';
+      b.style.maxHeight = Math.max(160, Math.floor(vv.height - 12)) + 'px';
+      const dragged = !!(b.style.top && b.style.top !== 'auto');
+      if(dragged){
+        if(b.dataset.kbTop == null) b.dataset.kbTop = b.style.top;
+        const r = b.getBoundingClientRect();
+        const vvBottom = vv.offsetTop + vv.height;
+        if(r.bottom > vvBottom - 8){
+          b.style.top = Math.max(0, r.top - (r.bottom - (vvBottom - 8))) + 'px';
+        }
+      } else {
+        b.style.bottom = (gap + 8) + 'px';
+      }
+    } else if(b.dataset.kbLift){
+      delete b.dataset.kbLift;
+      b.style.maxHeight = '';
+      if(b.dataset.kbTop != null){ b.style.top = b.dataset.kbTop; delete b.dataset.kbTop; }
+      else if(!(b.style.top && b.style.top !== 'auto')) b.style.bottom = '';
+      try{ reclamp(); }catch(e){}
+    }
+  }
+  function armKeyboardLift(){
+    if(armKeyboardLift.done) return;
+    armKeyboardLift.done = true;
+    const vv = window.visualViewport;
+    if(vv){
+      const go = () => { try{ liftForKeyboard(); }catch(e){} };
+      vv.addEventListener('resize', go, {passive: true});
+      vv.addEventListener('scroll', go, {passive: true});
+    }
+    addEventListener('focusin', ev => {
+      const t = ev.target;
+      if(t && t.closest && t.closest('#aicard .aicdock, #aicard .aicfree, form.airow')) setTimeout(() => { try{ liftForKeyboard(); }catch(e){} }, 50);
+    }, true);
+    addEventListener('focusout', () => setTimeout(() => { try{ liftForKeyboard(); }catch(e){} }, 80), true);
+  }
 
   function mount(){
     const b = box(); if(!b) return;
@@ -547,6 +604,7 @@
       menuEl = document.createElement('div'); menuEl.id = 'aimenu';
       b.appendChild(menuEl);
     }
+    armKeyboardLift();
     return {jobEl, menuEl};
   }
 
@@ -732,6 +790,56 @@
       try{ ta.placeholder = (innerWidth < 560) ? 'type a call \u00b7 or say it' : 'type a call \u00b7 teo.fold() \u00b7 or say what you want'; }catch(e){}
     }
   }
+  // v656 (Jesuye 10:23–10:25 PM): when the next JOB card (jN+1) is ready, show its title
+  // in the existing [[god]] alert strip (.aicwait). Not tappable; it just stays there until
+  // the next job card replaces it. Skip seed / menu / lock / prayer cards. Same job number
+  // on a later poll or rebuild does not re-fire. If the panel is closed, a badge sits on [[god]].
+  let jobAlert = null;
+  function isJobCard(j){
+    if(!j || !j.open || !j.job) return false;
+    if(j.kind && j.kind !== 'job') return false;
+    if(!/^j\d+$/i.test(String(j.job))) return false;
+    return !!((j.options || []).length);
+  }
+  function jobAlertTitle(j){
+    const line = String((j && j.prompt) || '').split('\n').map(x => x.trim()).filter(Boolean)[0] || '';
+    const title = line.replace(/\s*\u00b7\s*\d+\s+lines?\s+in\s*$/i, '').trim();
+    return title || String(j.job || '');
+  }
+  function paintJobBadge(){
+    const panelOn = !!(box() && box().classList.contains('on'));
+    const hosts = [document.getElementById('aicmd'), document.getElementById('menutog')].filter(Boolean);
+    hosts.forEach((host, i) => {
+      let badge = host.querySelector('.aicmdalert');
+      if(!jobAlert || panelOn){ if(badge) badge.remove(); return; }
+      if(!badge){
+        badge = document.createElement('span'); badge.className = 'aicmdalert';
+        badge.id = host.id === 'aicmd' ? 'aicmdalert' : 'amenualert';
+        badge.setAttribute('aria-hidden', 'true');
+        host.appendChild(badge);
+      }
+      badge.textContent = jobAlert.job || '';
+    });
+  }
+  function noteJobAlert(j){
+    if(!isJobCard(j)) return;
+    const title = jobAlertTitle(j);
+    if(jobAlert && jobAlert.job === j.job){
+      if(jobAlert.title !== title){ jobAlert.title = title; }
+      paintJobBadge();
+      return;
+    }
+    jobAlert = {job: j.job, title: title, run: j.run || ''};
+    paintJobBadge();
+  }
+  function jobAlertEl(){
+    if(!jobAlert || !jobAlert.title) return null;
+    const w = document.createElement('div'); w.className = 'aicwait aicalert'; w.id = 'aicalert';
+    w.setAttribute('role', 'status'); w.setAttribute('aria-live', 'polite');
+    const d = document.createElement('span'); d.className = 'dot'; w.appendChild(d);
+    w.appendChild(document.createTextNode(jobAlert.title));
+    return w;
+  }
   function seatStrip(){
 
     const m = meta || card, c = card;
@@ -808,6 +916,7 @@
     old.replaceWith(seatStrip());
     const lr = document.querySelector('#aimenu .aimrow[data-row="lock"]'); if(lr) lr.classList.toggle('hot', isLocked(meta || card));
     armSeedTypeline(meta || card);
+    paintJobBadge();
   }
 
 
@@ -908,17 +1017,19 @@
     const {jobEl, menuEl} = els;
     const c = card;
     if(c && sel.job !== c.job){ sel = {job: c.job, values: new Set(), text: ''}; }
-    const keepScroll = jobEl.scrollTop;
-    // --- job card (above the typeline) ---
+    const keepScroll = (jobEl.querySelector('.aicbody') || jobEl).scrollTop;
+    // --- job card (options scroll; typeline docked above the menu) ---
     jobEl.textContent = '';
-    jobEl.appendChild(seatStrip());
+    const alert = jobAlertEl(); if(alert) jobEl.appendChild(alert);
+    const body = document.createElement('div'); body.className = 'aicbody';
+    body.appendChild(seatStrip());
     const sheet = (meta && meta.sheet) || (c && c.sheet);
     // v645 (Jesuye 2:12 PM): no "How many minutes?" seed card over an open job card
     const seedBlocked = !!(sheet && sheet.kind === 'minutes' && seedGate(c));
     const sheetGone = isSheetClosed(sheet);
     const showSheet = !!(sheet && !seedBlocked && !sheetGone && (sheet.prompt || (sheet.options || []).length || sheet.body || (sheet.cards || []).length));
     if(showSheet){
-      jobEl.appendChild(sheetEl(sheet));
+      body.appendChild(sheetEl(sheet));
     }
     if(showSheet){
       // v652: Prayer jobs / Show all agendas take the card area so ~5 cards (or the agenda list) stay on screen
@@ -928,12 +1039,12 @@
       const empty = document.createElement('div'); empty.className = 'aicempty';
       // v627: a pinned [[god]] run between a seat and its next card says so instead of showing another agenda
       empty.textContent = c && !c.open ? (c.waiting && c.seated_job ? c.seated_job + ' is seated \u2014 the next job appears here when it is posted.' : 'No open job card right now. The next one appears here when it is posted.') : 'loading card\u2026';
-      jobEl.appendChild(empty);
+      body.appendChild(empty);
       }
     } else {
       const locked = wasSent(c.job);
-      if(c.prompt) jobEl.appendChild(promptEl(c.prompt));
-      if(c.helpText){ const h = document.createElement('div'); h.className = 'aichelt'; h.textContent = c.helpText; jobEl.appendChild(h); }
+      if(c.prompt) body.appendChild(promptEl(c.prompt));
+      if(c.helpText){ const h = document.createElement('div'); h.className = 'aichelt'; h.textContent = c.helpText; body.appendChild(h); }
       const opts = document.createElement('div'); opts.className = 'aicopts';
       // 🎥 is not a line any more: it is the '🎥 Live view' pill in the menu row (Jesuye 12:42 PM)
       (c.options || []).filter(o => !isLiveOpt(o)).forEach(o => {
@@ -966,13 +1077,14 @@
         }
         opts.appendChild(b);
       });
-      jobEl.appendChild(opts);
+      body.appendChild(opts);
+      const dock = document.createElement('div'); dock.className = 'aicdock';
       if(c.allowCustom && !locked){
         const t = document.createElement('input'); t.type = 'text'; t.className = 'aicfree'; t.placeholder = 'or type your own line'; t.autocomplete = 'off';
         t.value = sel.text || '';
         t.addEventListener('keydown', e => { e.stopPropagation(); if(e.key === 'Enter'){ e.preventDefault(); sendCard(document.querySelector('#aicard .aicgo')); } });
         t.addEventListener('input', () => { sel.text = t.value; });
-        jobEl.appendChild(t);
+        dock.appendChild(t);
       }
       const row = document.createElement('div'); row.className = 'aicsend';
       const n = document.createElement('div'); n.className = 'aicnote'; n.id = 'aicnote'; n.setAttribute('role', 'status'); n.setAttribute('aria-live', 'polite');
@@ -985,9 +1097,14 @@
       go.setAttribute('aria-label', '#thryd \u2014 send your pick'); go.title = '#thryd \u2014 send your pick (Enter)';
       tapOnce(go, () => sendCard(go));
       row.append(n, go);
-      jobEl.appendChild(row);
+      dock.appendChild(row);
+      jobEl.appendChild(body);
+      jobEl.appendChild(dock);
     }
-    jobEl.scrollTop = keepScroll;
+    if(!body.parentNode) jobEl.appendChild(body);
+    const scEl = jobEl.querySelector('.aicbody');
+    if(scEl) scEl.scrollTop = keepScroll;
+    try{ liftForKeyboard(); }catch(e){}
     // --- menu buttons (below the typeline): always visible, no list / dropdown / collapse ---
     menuEl.textContent = '';
     const main = (c && c.menus && c.menus.main) || [];
@@ -1218,8 +1335,7 @@
 
   function fetchCard(){
     if(document.hidden) return Promise.resolve();
-    const panelOn = box() && box().classList.contains('on');
-    if(!panelOn) return Promise.resolve();
+    // v656: still fetch when the panel is closed so the job alert / [[god]] badge can update
     return fetchOpen(10000).then(j => {
       if(!j || typeof j !== 'object') return;
       if(meta && atMs(j.at) && atMs(meta.at) > atMs(j.at)) return;   // v630: the lane already brought a newer card
@@ -1249,13 +1365,15 @@
         if(sentMap()[j.job] && sentMap()[j.job] !== optSig(j)) unmarkSent(j.job);
       }
       card = j; cardSig = sig;
+      noteJobAlert(j);
       if(box() && box().classList.contains('on')) render();   // v632: a lane card before the panel opens is kept for open()
+      else paintJobBadge();
     }
   }
 
   function startPoll(){
     stopPoll();
-    const tick = () => { if(document.hidden) return; if(!box() || !box().classList.contains('on')) return; fetchCard(); };
+    const tick = () => { if(document.hidden) return; fetchCard(); };
     if(root.LH && typeof LH.poll === 'function'){
       pollId = LH.poll(tick, POLL_MS);
     } else {
@@ -1273,11 +1391,12 @@
     const ai = AI(); if(!ai || ai._cardsHook) return !!ai;
     ai._cardsHook = true;
     const _open = ai.open, _close = ai.close;
-    ai.open = function(){ const r = _open.apply(this, arguments); mount(); if(card) render(); fetchCard(); startPoll(); laneOpen(); return r; };
+    ai.open = function(){ const r = _open.apply(this, arguments); mount(); if(card) render(); fetchCard(); startPoll(); laneOpen(); paintJobBadge(); return r; };
     ai.close = function(){
       if(!userClose) return; // typeline auto-close must not dismiss the card panel
-      stopPoll();
-      return _close.apply(this, arguments);
+      const r = _close.apply(this, arguments);
+      paintJobBadge();
+      return r;
     };
     const b = document.getElementById('aicmd');
     if(b && !b._cardsHook){
@@ -1285,7 +1404,7 @@
       b.addEventListener('click', ev => {
         ev.preventDefault(); ev.stopImmediatePropagation(); ev.stopPropagation();
         const on = box() && box().classList.contains('on');
-        if(on){ userClose = true; try{ _close.call(ai); } finally { userClose = false; stopPoll(); } }
+        if(on){ userClose = true; try{ _close.call(ai); } finally { userClose = false; paintJobBadge(); } }
         else { ai.open(); }
       }, true);
     }
@@ -1296,7 +1415,7 @@
       if(document.getElementById('aisheet')){ ev.preventDefault(); ev.stopPropagation(); ev.stopImmediatePropagation(); closeSheet(); return; }
       const t = ev.target;
       if(t && t.classList && t.classList.contains('aicfree')) return;
-      userClose = true; try{ _close.call(ai); } finally { userClose = false; stopPoll(); }
+      userClose = true; try{ _close.call(ai); } finally { userClose = false; paintJobBadge(); }
     }, true);
     return true;
   }
@@ -1306,7 +1425,7 @@
     laneOpen();                                   // v632: lane from load, panel open or not
     if(!hookTyped()) setTimeout(hookTyped, 1500); // v645: typed lines get a pill with a \u2715 while unanswered
     if(sentLog().some(e => !e.done_at)){ pillTick(); watchTyped(); }
-    if(hookClose()) return;
+    if(hookClose()){ startPoll(); fetchCard(); return; }
     setTimeout(ready, 100);
   }
   if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', ready);

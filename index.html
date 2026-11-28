@@ -18,7 +18,7 @@ every 5 min (23 Nov: was 15 s; low-heat, paused while hidden) this page reads da
 data-only commits (news, state, feed, a new live view) never change "v" and never reload. The reload waits until the tab is hidden, or 60 s with no pointer/key and
 no drag, so pictures never vanish mid-view — and it will not reload while yoki/lofi/brown is wanted, so the music is not torn down (v638).
 One reload per version per tab (sessionStorage). The stage, the root URL and ?slides=1
-all keep their own query on reload. */(function(){var VER=655,K='thryd_autover_done',lastAct=Date.now();
+all keep their own query on reload. */(function(){var VER=656,K='thryd_autover_done',lastAct=Date.now();
 function bump(){lastAct=Date.now();}
 ['pointerdown','keydown','wheel','touchstart'].forEach(function(ev){addEventListener(ev,bump,{passive:true});});
 function musicOn(){try{var s=window.thrydSound&&thrydSound.state&&thrydSound.state();return !!(s&&s.want&&s.mode&&s.mode!=='off');}catch(e){return false;}}
