@@ -32956,7 +32956,8 @@
    "runs": [
     "run-2eb42d",
     "story-4b1689",
-    "run-cf203b"
+    "run-cf203b",
+    "run-788e05"
    ],
    "defined": {
     "run": "run-2eb42d",
@@ -34790,6 +34791,126 @@
    "prior": [],
    "faded": false,
    "last_run": null
+  },
+  "chrome.add": {
+   "object": "chrome",
+   "method": "add",
+   "args": [],
+   "runs": [
+    "run-788e05"
+   ],
+   "defined": {
+    "run": "run-788e05",
+    "job": "j2",
+    "card": "j2",
+    "title": "chrome.browserhistory.add(pornhub)",
+    "emoji": "",
+    "at": "2026-11-27T23:30:09-05:00",
+    "source": "cli"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "chrome.browserhistory.add(pornhub)",
+     "emoji": "",
+     "arg": "",
+     "run": "run-788e05",
+     "job": "j2",
+     "tweets": [],
+     "consequence": "The customer typed this on this agenda.",
+     "consequence_job": ""
+    }
+   ],
+   "source": "cli",
+   "cli": true,
+   "sig": {
+    "params": [],
+    "text": "add()"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "thryd.log": {
+   "object": "thryd",
+   "method": "log",
+   "args": [],
+   "runs": [
+    "run-788e05"
+   ],
+   "defined": {
+    "run": "run-788e05",
+    "job": "j2",
+    "card": "j2",
+    "title": "#thryd.miracle.log(1)",
+    "emoji": "",
+    "at": "2026-11-27T23:30:09-05:00",
+    "source": "cli"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "#thryd.miracle.log(1)",
+     "emoji": "",
+     "arg": "",
+     "run": "run-788e05",
+     "job": "j2",
+     "tweets": [],
+     "consequence": "The customer typed this on this agenda.",
+     "consequence_job": ""
+    }
+   ],
+   "source": "cli",
+   "cli": true,
+   "sig": {
+    "params": [],
+    "text": "log()"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
+  },
+  "randomwoman.iscrying": {
+   "object": "randomwoman",
+   "method": "iscrying",
+   "args": [],
+   "runs": [
+    "run-788e05"
+   ],
+   "defined": {
+    "run": "run-788e05",
+    "job": "j2",
+    "card": "j2",
+    "title": "randomwoman.iscrying()",
+    "emoji": "",
+    "at": "2026-11-27T23:30:09-05:00",
+    "source": "cli"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "randomwoman.iscrying()",
+     "emoji": "",
+     "arg": "",
+     "run": "run-788e05",
+     "job": "j2",
+     "tweets": [],
+     "consequence": "The customer typed this on this agenda.",
+     "consequence_job": ""
+    }
+   ],
+   "source": "cli",
+   "cli": true,
+   "sig": {
+    "params": [],
+    "text": "iscrying()"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
   }
  },
  "objects": {
@@ -34962,6 +35083,9 @@
   ],
   "chasing": [
    "chasing.precisions"
+  ],
+  "chrome": [
+   "chrome.add"
   ],
   "cleaner": [
    "cleaner.lift"
@@ -35783,6 +35907,9 @@
    "randomrestaurant.put",
    "randomrestaurant.addguest"
   ],
+  "randomwoman": [
+   "randomwoman.iscrying"
+  ],
   "reaching": [
    "reaching.potential"
   ],
@@ -36051,7 +36178,8 @@
   "thryd": [
    "thryd.importtheme",
    "thryd.jumpahead",
-   "thryd.changereality"
+   "thryd.changereality",
+   "thryd.log"
   ],
   "ticketattendant": [
    "ticketattendant.gettotal"
@@ -61054,7 +61182,11 @@
     "anyway.click",
     "condolences.family",
     "could.see",
-    "good.news"
+    "good.news",
+    "thryd.importtheme",
+    "chrome.add",
+    "thryd.log",
+    "randomwoman.iscrying"
    ]
   },
   "run-7c51d3": {
@@ -66701,6 +66833,9 @@
   "chasing": [
    "chasing.precisions"
   ],
+  "chrome": [
+   "chrome.add"
+  ],
   "cleaner": [
    "cleaner.lift"
   ],
@@ -67316,6 +67451,9 @@
    "randomrestaurant.put",
    "randomrestaurant.addguest"
   ],
+  "randomwoman": [
+   "randomwoman.iscrying"
+  ],
   "reaching": [
    "reaching.potential"
   ],
@@ -67520,7 +67658,8 @@
   "thryd": [
    "thryd.importtheme",
    "thryd.jumpahead",
-   "thryd.changereality"
+   "thryd.changereality",
+   "thryd.log"
   ],
   "ticketattendant": [
    "ticketattendant.gettotal"
@@ -68115,7 +68254,9 @@
   "ronkesister": [],
   "destiny": [],
   "kasai": [],
-  "uber": []
+  "uber": [],
+  "chrome": [],
+  "randomwoman": []
  },
  "casts": {
   "run-5a58c4": [
@@ -68466,5 +68607,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-27T23:31:38-05:00"
+ "updated": "2026-11-27T23:51:39-05:00"
 }
