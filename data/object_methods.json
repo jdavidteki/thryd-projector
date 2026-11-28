@@ -30280,8 +30280,34 @@
     "emoji": "🧲",
     "at": "2026-11-27T23:01:34-05:00"
    },
-   "calls": 0,
+   "calls": 1,
    "titles": [
+    {
+     "title": "now.see(own)",
+     "emoji": "🪄",
+     "arg": "own",
+     "run": "run-788e05",
+     "job": "j11",
+     "tweets": [
+      {
+       "text": "- now but i no see. na ![[heat]][[play]] own still",
+       "year": "2025"
+      }
+     ],
+     "consequence": "The lines that landed: \"how much do you think #juniorboys is worth now?",
+     "consequence_job": "j12",
+     "resolved": "now.see(what=own:Thing) from j11",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "own",
+       "from_run": "run-788e05",
+       "from_job": "j11",
+       "source": "pick"
+      }
+     ]
+    },
     {
      "title": "now.see(own)",
      "emoji": "🧲",
@@ -30304,7 +30330,7 @@
        "instance": "own",
        "from_run": "run-788e05",
        "from_job": "j1",
-       "source": "pick"
+       "source": "original"
       }
      ]
     }
@@ -30326,35 +30352,35 @@
    "receiver_class": "Frequency",
    "prior": [
     {
+     "id": "debby.see",
+     "title": "debby.see(child)",
+     "run": "run-788e05",
+     "job": "j6",
+     "at": "2026-11-28T00:28:53-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "go.see",
+     "title": "go.see(why)",
+     "run": "run-788e05",
+     "job": "j3",
+     "at": "2026-11-27T23:53:39-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "could.see",
+     "title": "could.see(samson's)",
+     "run": "run-788e05",
+     "job": "j2",
+     "at": "2026-11-27T23:30:09-05:00",
+     "why": "same method"
+    },
+    {
      "id": "lez.see",
      "title": "lez.see(who)",
      "run": "run-cf203b",
      "job": "j74",
      "at": "2026-11-27T17:27:20-05:00",
-     "why": "same method"
-    },
-    {
-     "id": "can.see",
-     "title": "can.see()",
-     "run": "run-cf203b",
-     "job": "j57",
-     "at": "2026-11-26T21:15:02-05:00",
-     "why": "same method"
-    },
-    {
-     "id": "can.see",
-     "title": "can.see(code)",
-     "run": "run-cf203b",
-     "job": "j44",
-     "at": "2026-11-26T14:57:55-05:00",
-     "why": "same method"
-    },
-    {
-     "id": "can.see",
-     "title": "can.see(how)",
-     "run": "run-cf203b",
-     "job": "j12",
-     "at": "2026-11-25T13:04:53-05:00",
      "why": "same method"
     }
    ],
@@ -30421,15 +30447,15 @@
      ],
      "consequence": "What just happened: The lines that landed: \"tell am say make him come back\", \"[[nomb]] - you see, this is why i mind\", \"now but i no see.",
      "consequence_job": "j2",
-     "resolved": "see.why(what=own:Thing) from j1",
+     "resolved": "see.why(what=mind:Thing) from j1",
      "injected": [
       {
        "param": "what",
        "class": "Thing",
-       "instance": "own",
+       "instance": "mind",
        "from_run": "run-788e05",
        "from_job": "j1",
-       "source": "pick"
+       "source": "original"
       }
      ]
     }
@@ -32727,6 +32753,150 @@
    },
    "receiver_class": "Person",
    "prior": [],
+   "faded": false,
+   "last_run": "run-788e05"
+  },
+  "guy.where": {
+   "object": "guy",
+   "method": "where",
+   "args": [
+    "lola"
+   ],
+   "runs": [
+    "run-788e05"
+   ],
+   "defined": {
+    "run": "run-788e05",
+    "job": "j11",
+    "card": "w11",
+    "title": "guy.where(lola)",
+    "emoji": "🎐",
+    "at": "2026-11-28T12:17:28-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "guy.where(lola)",
+     "emoji": "🎐",
+     "arg": "lola",
+     "run": "run-788e05",
+     "job": "j11",
+     "tweets": [],
+     "consequence": "na ![[heat]][[play]] own still\" and \"this guy, where Lola sighed\".",
+     "consequence_job": "j12",
+     "resolved": "guy.where(what=lola:Thing) from j11",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "lola",
+       "from_run": "run-788e05",
+       "from_job": "j11",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "lola",
+      "first_run": "run-788e05",
+      "first_job": "j11"
+     }
+    ],
+    "text": "where(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [
+    {
+     "id": "society.where",
+     "title": "society.where(people)",
+     "run": "run-788e05",
+     "job": "j3",
+     "at": "2026-11-27T23:53:39-05:00",
+     "why": "same method"
+    }
+   ],
+   "faded": false,
+   "last_run": "run-788e05"
+  },
+  "how.much": {
+   "object": "how",
+   "method": "much",
+   "args": [
+    "think"
+   ],
+   "runs": [
+    "run-788e05"
+   ],
+   "defined": {
+    "run": "run-788e05",
+    "job": "j11",
+    "card": "w11",
+    "title": "how.much(think)",
+    "emoji": "🔮",
+    "at": "2026-11-28T12:17:28-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "how.much(think)",
+     "emoji": "🔮",
+     "arg": "think",
+     "run": "run-788e05",
+     "job": "j11",
+     "tweets": [
+      {
+       "text": "how much do you think #juniorboys is worth now? lol",
+       "year": "2023",
+       "id": "1708959901899264308"
+      }
+     ],
+     "consequence": "The lines that landed: \"how much do you think #juniorboys is worth now?",
+     "consequence_job": "j12",
+     "resolved": "how.much(what=think:Thing) from j11",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "think",
+       "from_run": "run-788e05",
+       "from_job": "j11",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "think",
+      "first_run": "run-cf203b",
+      "first_job": "j18"
+     }
+    ],
+    "text": "much(what: Thing)"
+   },
+   "receiver_class": "Manner",
+   "prior": [
+    {
+     "id": "then.much",
+     "title": "then.much()",
+     "run": "run-cf203b",
+     "job": "j45",
+     "at": "2026-11-26T15:07:04-05:00",
+     "why": "same method"
+    }
+   ],
    "faded": false,
    "last_run": "run-788e05"
   },
@@ -37761,7 +37931,8 @@
   "guy": [
    "guy.wan",
    "guy.can",
-   "guy.need"
+   "guy.need",
+   "guy.where"
   ],
   "h": [
    "h.ki"
@@ -37842,7 +38013,8 @@
    "hours.could"
   ],
   "how": [
-   "how.will"
+   "how.will",
+   "how.much"
   ],
   "however": [
    "however.go"
@@ -64080,6 +64252,8 @@
     "false.agenda",
     "go.still",
     "seniorgehs.straight",
+    "guy.where",
+    "how.much",
     "thryd.importtheme",
     "chrome.add",
     "thryd.log",
@@ -64602,7 +64776,9 @@
     "still.think",
     "false.agenda",
     "go.still",
-    "seniorgehs.straight"
+    "seniorgehs.straight",
+    "guy.where",
+    "how.much"
    ],
    "runs": [
     "run-788e05"
@@ -70070,7 +70246,8 @@
   "guy": [
    "guy.wan",
    "guy.can",
-   "guy.need"
+   "guy.need",
+   "guy.where"
   ],
   "h": [
    "h.ki"
@@ -70112,7 +70289,8 @@
    "hours.could"
   ],
   "how": [
-   "how.will"
+   "how.will",
+   "how.much"
   ],
   "however": [
    "however.go"
@@ -71669,6 +71847,8 @@
    "go",
    "god",
    "good",
+   "guy",
+   "how",
    "now",
    "old",
    "people",
@@ -71701,5 +71881,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-28T02:41:29-05:00"
+ "updated": "2026-11-28T12:19:10-05:00"
 }

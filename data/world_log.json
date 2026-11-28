@@ -23570,7 +23570,7 @@
   },
   "run-788e05": {
    "forked_from": "safe:08a8466187dc",
-   "head": "4e48bce93b",
+   "head": "05432e38de",
    "commits": [
     {
      "id": "1250cf9b22",
@@ -23634,10 +23634,6 @@
        [
         "come",
         "Action"
-       ],
-       [
-        "own",
-        "Thing"
        ],
        [
         "make",
@@ -24294,11 +24290,11 @@
      }
     },
     {
-     "id": "3cf06598ca",
+     "id": "9622cf5ce7",
      "parent": "c919b885e4",
      "branch": "run-788e05",
      "job": "j11",
-     "at": "2026-11-28T03:34:28-0500",
+     "at": "2026-11-28T12:17:28-05:00",
      "genre": "rising",
      "beat": "now",
      "diff": {
@@ -24401,13 +24397,42 @@
        }
       ],
       "facts_total": 12,
-      "functions": [],
-      "instances": []
+      "functions": [
+       {
+        "func": "now.see",
+        "title": "now.see(own)",
+        "op": "call"
+       },
+       {
+        "func": "guy.where",
+        "title": "guy.where(lola)",
+        "op": "define"
+       },
+       {
+        "func": "how.much",
+        "title": "how.much(think)",
+        "op": "define"
+       }
+      ],
+      "instances": [
+       [
+        "own",
+        "Thing"
+       ],
+       [
+        "lola",
+        "Thing"
+       ],
+       [
+        "think",
+        "Thing"
+       ]
+      ]
      }
     },
     {
-     "id": "4e48bce93b",
-     "parent": "3cf06598ca",
+     "id": "05432e38de",
+     "parent": "9622cf5ce7",
      "branch": "run-788e05",
      "job": "j13",
      "at": "2026-11-28T03:28:33-0500",
@@ -25269,7 +25294,7 @@
   "run-ab4653": "dd8e54daee",
   "run-cf203b": "ef471d637d",
   "run-888ea9": "e7f8e2d9e6",
-  "run-788e05": "4e48bce93b",
+  "run-788e05": "05432e38de",
   "run-dfd59e": "563e029cd5",
   "run-cb805f": "6744be496a",
   "run-0e8c": "51d2ab38f8",
@@ -25281,5 +25306,5 @@
   "run-6e6a": "e111a177c3"
  },
  "commits": 255,
- "updated": "2026-11-28T12:00:51-05:00"
+ "updated": "2026-11-28T12:19:10-05:00"
 }

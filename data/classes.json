@@ -109,8 +109,8 @@
     "say",
     "find"
    ],
-   "instances": 553,
-   "arg_instances": 216,
+   "instances": 554,
+   "arg_instances": 217,
    "parent": null,
    "chain": [
     "Thing"
@@ -5108,6 +5108,17 @@
    ],
    "tweets": []
   },
+  "lola": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-788e05",
+   "first_job": "j11",
+   "source": "pick",
+   "runs": [
+    "run-788e05"
+   ],
+   "tweets": []
+  },
   "look": {
    "class": "Thing",
    "cue": "default",
@@ -8535,7 +8546,8 @@
    "first_job": "j18",
    "source": "pick",
    "runs": [
-    "run-cf203b"
+    "run-cf203b",
+    "run-788e05"
    ],
    "tweets": [
     {
@@ -8545,6 +8557,11 @@
     {
      "text": "#thryd — this could be accuracy if you think about it",
      "year": "2025"
+    },
+    {
+     "text": "how much do you think #juniorboys is worth now? lol",
+     "year": "2023",
+     "id": "1708959901899264308"
     }
    ]
   },
@@ -11762,12 +11779,6 @@
     "pick"
    ],
    [
-    "own",
-    "Thing",
-    "j1",
-    "pick"
-   ],
-   [
     "make",
     "Action",
     "j1",
@@ -11921,6 +11932,24 @@
     "line",
     "Thing",
     "j10",
+    "pick"
+   ],
+   [
+    "own",
+    "Thing",
+    "j11",
+    "pick"
+   ],
+   [
+    "lola",
+    "Thing",
+    "j11",
+    "pick"
+   ],
+   [
+    "think",
+    "Thing",
+    "j11",
     "pick"
    ],
    [
@@ -14912,6 +14941,8 @@
   "false.agenda": "agenda(what: Thing)",
   "go.still": "still(what: Thing)",
   "seniorgehs.straight": "straight(what: Thing)",
+  "guy.where": "where(what: Thing)",
+  "how.much": "much(what: Thing)",
   "cooler.getdatemanufactured": "getDateManufactured()",
   "ronke.getlikes.contains": "getlikes.contains()",
   "kazeem.goodqualities.filter": "filter()",
@@ -15623,6 +15654,8 @@
    "go",
    "god",
    "good",
+   "guy",
+   "how",
    "now",
    "old",
    "people",
@@ -15713,5 +15746,5 @@
   "epilogue": "quiet",
   "coda": "quiet"
  },
- "updated": "2026-11-28T02:41:29-05:00"
+ "updated": "2026-11-28T12:18:19-05:00"
 }
