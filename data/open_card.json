@@ -12,23 +12,23 @@
  "menus": {
   "main": [
    {
-    "label": "🌱 Start a new agenda",
+    "label": "🌱 New",
     "value": "menu: Seed an agenda"
    },
    {
-    "label": "📐 Draw a story",
+    "label": "📐 Draw",
     "value": "menu: Draw a story"
    },
    {
-    "label": "🙏 Prayer jobs",
+    "label": "🙏 Prayers",
     "value": "menu: Prayer jobs"
    },
    {
-    "label": "⏳ Real-life jobs",
+    "label": "⏳ Real life",
     "value": "menu: Async jobs"
    },
    {
-    "label": "📋 All agendas",
+    "label": "📋 Agendas",
     "value": "menu: Show all agendas"
    },
    {
@@ -64,7 +64,7 @@
   ],
   "live": [
    {
-    "label": "🎥 Live view",
+    "label": "🎥 Live",
     "value": "live_view: j79"
    }
   ]
@@ -72,7 +72,7 @@
  "lines": 302,
  "next_lock_at_lines": 302,
  "lock_open": true,
- "at": "2026-11-27T20:58:06-05:00",
+ "at": "2026-11-27T21:07:28-05:00",
  "pinned": true,
  "waiting": true,
  "seated_job": "j79",
@@ -175,29 +175,10 @@
   }
  ],
  "async_jobs": [],
- "sheet": {
-  "kind": "minutes",
-  "prompt": "How many minutes?",
-  "helpText": "How long is this sitting? 30 min is 18 lines, 1 hr is 35, 2 hrs is 65 (about 9 lines / 16 min per card). Type a custom length if you like.",
-  "options": [
-   {
-    "label": "30 min",
-    "value": "minutes: 30",
-    "safe": "18 lines (about 9 lines / 16 min per card)"
-   },
-   {
-    "label": "1 hr",
-    "value": "minutes: 60",
-    "safe": "35 lines (about 9 lines / 16 min per card)"
-   },
-   {
-    "label": "2 hrs",
-    "value": "minutes: 120",
-    "safe": "65 lines (about 9 lines / 16 min per card)"
-   }
-  ],
-  "allowCustom": true,
-  "at": "2026-11-27T20:57:30-05:00",
-  "source_action": "menu: Seed an agenda"
+ "seed_pending": {
+  "minutes": 60.0,
+  "m": 35,
+  "status": "waiting_for_medium_link",
+  "label": "1 hr · 35 lines · send the Medium link"
  }
 }
