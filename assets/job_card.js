@@ -63,11 +63,10 @@
     '#aicard .aicgo.busy{opacity:.75}',
     '#aicard .aicempty{font:italic 400 14px/1.5 ThrydRead,Georgia,serif;color:#a59f91}',
     '#aimenu{flex:0 0 auto;display:flex;flex-direction:column;gap:6px;padding:8px 12px 10px;margin:0}',
-    '#aimenu .aimrow{display:flex;flex-wrap:nowrap;align-items:center;gap:6px;min-width:0}',
-    '#aimenu .aimscroll{flex:1 1 auto;min-width:0;display:flex;flex-wrap:nowrap;align-items:center;gap:6px;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;touch-action:pan-x;scroll-snap-type:x proximity;scrollbar-width:thin;scrollbar-color:rgba(255,215,106,.45) transparent}',
-    '#aimenu .aimscroll::-webkit-scrollbar{height:3px}#aimenu .aimscroll::-webkit-scrollbar-thumb{background:rgba(255,215,106,.45);border-radius:2px}',
-    '#aimenu .aimscroll::after{content:"";flex:0 0 18px;width:18px;height:30px;margin-left:-18px;position:sticky;right:0;background:linear-gradient(to right,transparent,rgba(16,15,13,.92));pointer-events:none;z-index:1}',
-    '#aimenu button{font:600 12px/1.2 ui-sans-serif,system-ui,sans-serif;color:#efe9dc;background:rgba(255,255,255,.06);border:1px solid rgba(201,169,90,.45);border-radius:999px;padding:5px 11px;cursor:pointer;min-height:30px;flex:0 0 auto;white-space:nowrap;scroll-snap-align:start}',
+    '#aimenu .aimrow{display:flex;flex-wrap:nowrap;align-items:flex-start;gap:6px;min-width:0}',
+    /* v653 (Jesuye 8:48 PM "keep only 2 rows for menu and lock"): wrap, never a 3rd row, no sideways scroll. */
+    '#aimenu .aimscroll{flex:1 1 auto;min-width:0;display:flex;flex-wrap:wrap;align-items:center;gap:6px;overflow:hidden;max-height:66px}',
+    '#aimenu button{font:600 11px/1.2 ui-sans-serif,system-ui,sans-serif;color:#efe9dc;background:rgba(255,255,255,.06);border:1px solid rgba(201,169,90,.45);border-radius:999px;padding:4px 8px;cursor:pointer;min-height:30px;flex:0 0 auto;white-space:nowrap}',
     '#aimenu button.live{border-color:rgba(255,120,120,.55);background:rgba(255,90,90,.1)}',
     '#aimenu button.sent{border-color:#2f8a50;background:rgba(47,138,80,.22);color:#d8ffe5}',
     '#aimenu button.err{border-color:#a04040;background:rgba(160,64,64,.25)}',
@@ -121,7 +120,7 @@
     '#aisheet .pnav button:disabled{opacity:.4;cursor:default}',
     '#aicard .aicsent.err{color:#f2b8a8}#aicard .aicwait .aicx{margin-left:auto;flex:0 0 auto;font:700 12px/1 ui-sans-serif,system-ui,sans-serif;color:#efe9dc;background:rgba(255,255,255,.08);border:1px solid rgba(201,169,90,.45);border-radius:999px;width:22px;height:22px;padding:0;cursor:pointer}',
     '#aisheet input.aishf{width:100%;box-sizing:border-box;margin:0 0 6px;padding:6px 9px;border-radius:9px;border:1px solid rgba(201,169,90,.4);background:rgba(0,0,0,.3);color:#efe9dc;font:500 12.5px/1.3 ui-sans-serif,system-ui,sans-serif}',
-    '@media (max-width:520px){#aibox.cards-on{width:96vw;bottom:6vh}#aicard .aicprompt{font-size:14.5px}}',
+    '@media (max-width:520px){#aibox.cards-on{width:96vw;bottom:6vh}#aicard .aicprompt{font-size:14.5px}#aimenu{padding:6px 8px 8px}#aimenu .aimlab{min-width:28px;letter-spacing:.06em;font-size:9px}#aimenu button{font-size:11px;padding:4px 7px;min-height:28px}#aimenu .aimscroll{max-height:62px;gap:5px}}',
     '@media (max-height:600px){#aibox.cards-on{max-height:88vh;max-height:88dvh;bottom:3vh}#aibox.cards-on:has(#aisheet){max-height:96vh;max-height:96dvh;bottom:1vh}#aibox.cards-on > .aim{display:none}#aibox.cards-on > form.airow{padding-top:5px}#aibox.cards-on textarea{min-height:30px}#aicard{gap:5px;padding:6px 10px 5px}#aicard .aicprompt{font-size:14px;line-height:1.55}#aicard:has(#aisheet) .aicseat{display:none}#aisheet .ht,#aisheet .pfrom{display:none}#aisheet .pcards{min-height:7em;gap:5px}#aisheet .pcard{padding:5px 7px}#aisheet .pcard .popts button{min-height:32px;padding:5px 8px}}'
   ].join('\n');
   const st = document.createElement('style'); st.textContent = CSS; document.head.appendChild(st);
@@ -711,7 +710,7 @@
     if(m && m.run && isLocked(m)){
       const lk = document.createElement('div'); lk.className = 'aiclock'; lk.setAttribute('role', 'status');
       const b = document.createElement('b'); b.textContent = '\ud83d\udd12 This agenda is locked \u00b7 ' + (m.lines || 0) + '/' + (m.next_lock_at_lines || m.lines || 0); lk.appendChild(b);
-      lk.appendChild(document.createTextNode('No more jobs on this agenda. Pick \ud83c\udf81 Souvenir, \ud83d\udc26 Tweets, \ud83d\udce3 Publish or \u23e9 Jump ahead on the lock row below.'));
+      lk.appendChild(document.createTextNode('No more jobs on this agenda. Pick \ud83c\udf81 Make the Hold, \ud83d\udc26 Show lines as tweets, \ud83d\udce3 Publish or \u23e9 Continue on the lock row below.'));
       wrap.appendChild(lk);
     }
     const ls = m && m.last_seat;

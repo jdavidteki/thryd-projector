@@ -30,15 +30,26 @@ test('layout is job card, then typeline, then plain always-visible buttons', ()=
   assert.doesNotMatch(js, /lock_open && c\.menus/);
   const card = JSON.parse(rd('data/open_card.json'));
   // v637: full [[god]] navigator on the menu row; Publish still lock-row only; Live view is menus.live
-  assert.deepEqual(card.menus.main.map(o => o.label), [
-    '🌱 Seed an agenda','📐 Draw a story','🧭 Move','🙏 Prayer jobs','⏳ Async jobs',
-    '🤲 Hold','🐦 Tweets','📋 Show all agendas','🖼️ view story diagram',
-    '🕊️ [[poetry]]','🐦 [[hpr]]','🗺️ Lovemap','🎙️ Podcasts'
+  assert.deepEqual(card.menus.main.map(o => o.value), [
+    'menu: Seed an agenda','menu: Draw a story','menu: Prayer jobs',
+    'menu: Async jobs','menu: Show all agendas','menu: More'
   ]);
-  assert.ok(card.menus.lock.length >= 4);
+  assert.equal(card.menus.main.length, 6);
+  assert.ok(!card.menus.main.some(o => /tweets|poetry|Move/i.test(o.label+o.value)));
+  assert.ok(card.menus.lock.length >= 3 && card.menus.lock.length <= 5);
   const lockVals = card.menus.lock.map(o => o.value);
-  ['souvenir','tweets','publish!','jump ahead'].forEach(v => assert.ok(lockVals.includes(v), v));
+  ['souvenir','tweets','publish!'].forEach(v => assert.ok(lockVals.includes(v), v));
+  assert.equal(card.menus.lock.find(o => o.value === 'souvenir').label, '🎁 Make the Hold');
+  assert.equal(card.menus.lock.find(o => o.value === 'tweets').label, '🐦 Show lines as tweets');
   assert.equal(card.menus.lock.find(o => o.value === 'publish!').label, '📣 Publish');
+  if(card.lock_open){
+    assert.ok(lockVals.includes('jump ahead'));
+    assert.equal(card.menus.lock.find(o => o.value === 'jump ahead').label, '⏩ Continue');
+    assert.ok(!lockVals.includes('lock now'));
+  } else {
+    assert.ok(lockVals.includes('lock now'));
+    assert.ok(!lockVals.includes('jump ahead'));
+  }
 });
 
 test('after Send the panel waits for the next job, then swaps on the slow poll', ()=>{
@@ -289,16 +300,14 @@ test('v634: open async jobs render as persistent waiting-on-real-life pills; emp
   assert.ok(card.async_jobs.every(j => j && typeof j.id === 'string' && j.id && typeof j.text === 'string'));
 });
 
-test('v638: MENU and LOCK buttons sit in one sideways-sliding row; a swipe is not a tap', ()=>{
+test('v653: MENU and LOCK wrap to at most 2 rows so the card stays above the fold', ()=>{
   assert.match(js, /#aimenu \.aimrow\{display:flex;flex-wrap:nowrap/);
   assert.match(js, /#aimenu \.aimscroll\{/);
-  assert.match(js, /overflow-x:auto/);
-  assert.match(js, /-webkit-overflow-scrolling:touch/);
-  assert.match(js, /scroll-snap-type:x proximity/);
-  assert.match(js, /#aimenu \.aimscroll::after\{content:""/);
+  assert.match(js, /#aimenu \.aimscroll\{[^}]*flex-wrap:wrap/);
+  assert.match(js, /max-height:66px/);
+  assert.doesNotMatch(js, /#aimenu \.aimscroll\{[^}]*overflow-x:auto/);
   assert.match(js, /sc\.className = 'aimscroll'/);
   assert.match(js, /sc\.appendChild\(menuBtn\(o\)\)/);
-  assert.doesNotMatch(js, /#aimenu \.aimrow\{display:flex;flex-wrap:wrap/);
   assert.match(js, /Math\.abs\(\(ev\.clientX \|\| sx\) - sx\) > 14/);
   assert.match(html, /var VER=(6[4-9]\d),/);
   assert.match(html, /job_card\.js\?v=20/);
@@ -415,6 +424,15 @@ test('v652 Prayer jobs shows about 5 cards; Show all agendas box has an x and Es
   assert.match(js, /closeSheet\(\); return;/);
   assert.match(html, /job_card\.js\?v=20/);
   const v = JSON.parse(ver);
-  assert.equal(v.v, 652);
+  assert.ok(v.v >= 652);
 });
 
+
+test('v653 menu and lock wrap to at most 2 rows, no sideways scroll', ()=>{
+  assert.match(js, /max-height:66px/);
+  assert.match(js, /#aimenu \.aimscroll\{[^}]*flex-wrap:wrap/);
+  assert.match(js, /No more jobs on this agenda\. Pick .*Make the Hold/);
+  assert.match(html, /var VER=653,/);
+  const v = JSON.parse(ver);
+  assert.equal(v.v, 653);
+});
