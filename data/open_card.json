@@ -1,37 +1,12 @@
 {
- "open": true,
+ "open": false,
  "run": "run-788e05",
- "job": "j9",
- "card": "w9",
- "kind": "job",
- "prompt": "j9: rap → champagne · 🌶️🌶️🌶️ · 1117. champagne by moonlight · 32 lines in\nWhat just happened: The last card asked for the next line, the one that answers \"call him for me, i'll give him that\". The lines that landed: \"#seniorgehs -- eez like eez bad but i can't stop staring\", \"na poor family dey get too much family secrets.\", \"God, if we have offended you, just say that. because see now 😔\" and \"see see @jollz - una no hear about nigerian airways? lol\".\n📖 Now: Get the next line, the one that answers \"see see @jollz - una no hear about nigerian airways? lol\".",
- "helpText": "s: rap → d: champagne (1117. champagne by moonlight): 32. 🌶️🌶️🌶️ extra spicy. [[the news]]: \"#thryd - this is the sound that face comes with - face.setlaughtersound(@tiktoksound.mp3)\" 2024.",
- "options": [
-  {
-   "label": "because.yuwa(doing) 🥥",
-   "value": "j9: - because yuwa doing like you dont know him",
-   "line": "- because yuwa doing like you dont know him",
-   "safe": "1104. i say laugh / 1. - abi shey mayai call am?! / 2. [[egbe]] - aahhh??!! / 3. «- because yuwa doing like you dont know him» / 4. - basket, dem dey #thryd you for [[here]] o! / 5. #yorubbbygehinny -- ah?!"
-  },
-  {
-   "label": "baba.draw(wan) 🧂",
-   "value": "j9: - no, baba draw wan line the oda day",
-   "line": "- no, baba draw wan line the oda day",
-   "safe": "1. - i juss hear! / 2. [[god]] -- am the same yesterday, today, and foreva! / 3. #thryd - egbon, no vess / 4. -- yoki, be kiafoo! / 5. «- no, baba draw wan line the oda day» / 6. - e [[shock]] me / 7. - bra shaggy go con teh you say make you no do am like dat / 8. - because #oyinboman say / 9. -"
-  },
-  {
-   "label": "people.look(him) 🍯",
-   "value": "j9: #seniorboys — people look at him and see money",
-   "line": "#seniorboys — people look at him and see money",
-   "safe": "1124. this is very very veerrrryyyyyy important / 1. [[ao]] -- sosi deeper #life / 2. - much about your private part / 3. «#seniorboys — people look at him and see money» / 4. [[nigeria]]— i look at him and see everything that is wrong"
-  },
-  {
-   "label": "still.think(about) 🥁",
-   "value": "j9: -- i still think about! you know?",
-   "line": "-- i still think about! you know?",
-   "safe": "spliced from 2 real sources: «-- i still think about!» / «you know?» — 331. prosper / 1. - because he said [[aam]] the [[rpitw]] in d room / 2. [[icsh]] - [[ikyn]] adam should have worn a [[cd]] / 3. «-- i still think about! when we say [[tfog]] came» / 4. [[atam]] - i definitely feel like [[aota]] of music / 5. - we will never see a [[eiass]] like that [[again]] / 6. «- this was [[when]] i knew he was a supasta #seniorboys - you know?» / 7. -"
-  }
- ],
+ "job": null,
+ "card": null,
+ "kind": null,
+ "prompt": "",
+ "helpText": "",
+ "options": [],
  "multiSelect": true,
  "allowCustom": true,
  "menus": {
@@ -63,20 +38,24 @@
   ],
   "lock": [
    {
-    "label": "🔒 Lock now",
-    "value": "lock now"
-   },
-   {
     "label": "🎁 Make the Hold",
-    "value": "souvenir"
+    "value": "souvenir",
+    "line": "souvenir"
    },
    {
     "label": "🐦 Show lines as tweets",
-    "value": "tweets"
+    "value": "tweets",
+    "line": "tweets"
    },
    {
     "label": "📣 Publish",
-    "value": "publish!"
+    "value": "publish!",
+    "line": "publish!"
+   },
+   {
+    "label": "⏩ Continue",
+    "value": "jump ahead",
+    "line": "jump ahead"
    }
   ],
   "live": [
@@ -86,20 +65,22 @@
    }
   ]
  },
- "lines": 32,
+ "lines": 36,
  "next_lock_at_lines": 35,
- "lock_open": false,
- "at": "2026-11-28T00:55:35-05:00",
+ "lock_open": true,
+ "at": "2026-11-28T01:08:09-05:00",
  "pinned": true,
+ "waiting": true,
+ "seated_job": "j9",
  "last_seat": {
-  "job": "j8",
+  "job": "j9",
   "lines": [
-   "#seniorgehs -- eez like eez bad but i can't stop staring",
-   "na poor family dey get too much family secrets.",
-   "God, if we have offended you, just say that. because see now 😔",
-   "- see see @jollz - una no hear about nigerian airways? lol"
+   "- because yuwa doing like you dont know him",
+   "- no, baba draw wan line the oda day",
+   "#seniorboys — people look at him and see money",
+   "-- i still think about! you know?"
   ],
-  "at": "2026-11-28T00:50:09-05:00"
+  "at": "2026-11-28T01:08:09-05:00"
  },
  "pending": null,
  "resolved": [
@@ -182,6 +163,13 @@
    "job": "j9",
    "action": "live_view: j9",
    "note": "cancelled"
+  },
+  {
+   "event_id": "pick-772dd3f9-7b16-41ff-bcfe-5f2c5d293a68",
+   "type": "card_pick",
+   "status": "seated",
+   "job": "j9",
+   "action": null
   }
  ],
  "async_jobs": []
