@@ -3637,6 +3637,16 @@
 "run": "run-cf203b",
 "card": "w57",
 "other": null
+},
+{
+"id": "wt_3615d2cdc6",
+"kind": "consequence",
+"text": "The lamp dips; the line stays unfinished and his stool is found empty.",
+"code": "dapo.interactwith(the_lamp){ dapo.set('dapo_asks_the_shed_lamp_for', 'no: The lamp dips; the line stays unfinished and his stool is found empty.'); }",
+"author": "cos",
+"run": "run-175d",
+"card": "p2",
+"other": "lamp"
 }
 ],
 "might_rich_but": [
@@ -11147,24 +11157,54 @@
 ],
 "adaora": [
 {
-"id": "wt_3119eb5c0e",
-"kind": "func_call",
-"text": "The adaora hears it (because nobody.rename(what=pen:Thing) from j16).",
-"code": "adaora.hears(chair, 'rename');",
-"author": "projector",
-"run": "run-g1-B",
-"card": "w10",
-"other": null
+"id": "wt_c90949b23c",
+"kind": "consequence",
+"text": "Kunle grants it, and Adaora is seen doing what Adaora came to do.",
+"code": "adaora.interactwith(kunle){ adaora.set('to_be_listened_to_the_first', 'yes: Kunle grants it, and Adaora is seen doing what Adaora came to do.'); }",
+"author": "cos",
+"run": "run-dfd59e",
+"card": "p5",
+"other": "kunle"
 },
 {
-"id": "wt_286c92e705",
-"kind": "func_call",
-"text": "Someone at the projector tapped the does mean figure and called adaora.write(where=generation:Place) from j71, first seated in run-g1-B j14.",
-"code": "adaora.write('generation');",
-"author": "projector",
-"run": "run-cf203b",
-"card": "w79",
-"other": null
+"id": "wt_7cba3129c9",
+"kind": "consequence",
+"text": "God grants it, and Adaora is seen doing what Adaora came to do.",
+"code": "adaora.interactwith(god){ adaora.set('to_be_listened_to_the_first', 'yes: God grants it, and Adaora is seen doing what Adaora came to do.'); }",
+"author": "cos",
+"run": "run-2716",
+"card": "p22",
+"other": "god"
+},
+{
+"id": "wt_382deefc11",
+"kind": "consequence",
+"text": "Kunle grants it, and Adaora is seen doing what Adaora came to do.",
+"code": "adaora.interactwith(kunle){ adaora.set('to_be_heard_the_first_time', 'yes: Kunle grants it, and Adaora is seen doing what Adaora came to do.'); }",
+"author": "cos",
+"run": "run-2716",
+"card": "p21",
+"other": "kunle"
+},
+{
+"id": "wt_4fa404847a",
+"kind": "consequence",
+"text": "The room stays quiet, and she keeps one palm flat on the folder until six.",
+"code": "adaora.interactwith(god){ adaora.set('adaora_asks_god_for_one_person', 'no: The room stays quiet, and she keeps one palm flat on the folder until six.'); }",
+"author": "cos",
+"run": "run-2716",
+"card": "p6",
+"other": "god"
+},
+{
+"id": "wt_f7a2e6269e",
+"kind": "consequence",
+"text": "The hall goes on stamping, and she leaves with the folder under her arm and her palm relaxed.",
+"code": "adaora.interactwith(god){ adaora.set('adaora_asks_god_to_let_her', 'yes: The hall goes on stamping, and she leaves with the folder under her arm and her palm relaxed.'); … }",
+"author": "cos",
+"run": "run-2716",
+"card": "p10",
+"other": "god"
 }
 ],
 "folake": [
@@ -11187,6 +11227,16 @@
 "run": "run-cf203b",
 "card": "w57",
 "other": null
+},
+{
+"id": "wt_911a7dcff4",
+"kind": "consequence",
+"text": "God grants it, and Folake is seen doing what Folake came to do.",
+"code": "folake.interactwith(god){ folake.set('to_keep_the_paper_kite_and', 'yes: God grants it, and Folake is seen doing what Folake came to do.'); }",
+"author": "cos",
+"run": "run-2716",
+"card": "p20",
+"other": "god"
 }
 ],
 "shyamoli_chatterjee": [
@@ -14766,328 +14816,251 @@
 "card": "j6",
 "other": "samson"
 }
+],
+"rotimi": [
+{
+"id": "wt_56cc0379f3",
+"kind": "consequence",
+"text": "She says it to the room, and he laughs before he answers. Rack focus from the speaker to the answer.",
+"code": "rotimi.interactwith(aunty_bimpe){ rotimi.set('rotimi_asks_aunty_bimpe_to_say', 'no: She says it to the room, and he laughs before he answers. Rack focus from the speake…",
+"author": "cos",
+"run": "run-bd649b",
+"card": "p1",
+"other": "aunty_bimpe"
+}
+],
+"kunle": [
+{
+"id": "wt_b197d3488c",
+"kind": "consequence",
+"text": "God holds back, and what Kunle lacks (be told he can stop measuring) stays in the room.",
+"code": "kunle.interactwith(god){ kunle.set('to_finish_a_job_exactly', 'no: God holds back, and what Kunle lacks (be told he can stop measuring) stays in the room.'); }",
+"author": "cos",
+"run": "run-dfd59e",
+"card": "p4",
+"other": "god"
+},
+{
+"id": "wt_f5faf87dde",
+"kind": "consequence",
+"text": "Dapo grants it, and Kunle is seen doing what Kunle came to do.",
+"code": "kunle.interactwith(dapo){ kunle.set('to_finish_a_job_exactly', 'yes: Dapo grants it, and Kunle is seen doing what Kunle came to do.'); }",
+"author": "cos",
+"run": "run-0e8c",
+"card": "p1",
+"other": "dapo"
+},
+{
+"id": "wt_6e47abe177",
+"kind": "consequence",
+"text": "The shopkeeper grants it, and Kunle is seen doing what Kunle came to do.",
+"code": "kunle.interactwith(the_shopkeeper){ kunle.set('to_finish_a_job_exactly', 'yes: The shopkeeper grants it, and Kunle is seen doing what Kunle came to do.'); }",
+"author": "cos",
+"run": "run-2716",
+"card": "p18",
+"other": "shopkeeper"
+},
+{
+"id": "wt_57b7721033",
+"kind": "consequence",
+"text": "The paper warms in his hand, and nobody asks for it back.",
+"code": "kunle.interactwith(god){ kunle.set('kunle_asks_god_to_tell_him', 'yes: The paper warms in his hand, and nobody asks for it back.'); }",
+"author": "cos",
+"run": "run-2716",
+"card": "p13",
+"other": "god"
+},
+{
+"id": "wt_bd686f48c5",
+"kind": "consequence",
+"text": "God grants it, and Kunle is seen doing what Kunle came to do.",
+"code": "kunle.interactwith(god){ kunle.set('to_hem_the_trousers_exactly', 'yes: God grants it, and Kunle is seen doing what Kunle came to do.'); }",
+"author": "cos",
+"run": "run-2716",
+"card": "p14",
+"other": "god"
+}
+],
+"iffy": [
+{
+"id": "wt_eddf9f46e1",
+"kind": "consequence",
+"text": "The message gets an answer today.",
+"code": "iffy.interactwith(god){ iffy.set('iffy_prays_that_kunle_answers_the', 'yes: The message gets an answer today.'); }",
+"author": "cos",
+"run": "run-dfd59e",
+"card": "p1",
+"other": "god"
+}
+],
+"amina_seidu": [
+{
+"id": "wt_98444f0ca3",
+"kind": "consequence",
+"text": "Lateef stays.",
+"code": "amina_seidu.interactwith(lateef){ amina_seidu.set('amina_seidu_asks_lateef_to_stay', 'yes: Lateef stays.'); }",
+"author": "cos",
+"run": "run-cb805f",
+"card": "p7",
+"other": "lateef"
+}
+],
+"bimbo": [
+{
+"id": "wt_e3b982e835",
+"kind": "consequence",
+"text": "His voice drops from booming to quiet, and the church sees her stand straight. Close-up, shallow depth, a long held beat.",
+"code": "bimbo.interactwith(daddy){ bimbo.set('bimbo_asks_daddy_to_bless_the', 'yes: His voice drops from booming to quiet, and the church sees her stand straight. Close-up, sha…",
+"author": "cos",
+"run": "run-2716",
+"card": "p23",
+"other": "daddy"
+}
+],
+"mama": [
+{
+"id": "wt_c6d7d1e656",
+"kind": "consequence",
+"text": "He counts it once out loud, finds it short, and learns what she has been carrying. Cut to a slow push-in on the hands.",
+"code": "mama.interactwith(pastor_obi){ mama.set('mama_asks_pastor_obi_to_count', 'yes: He counts it once out loud, finds it short, and learns what she has been carrying. Cut to…",
+"author": "cos",
+"run": "run-0e8c",
+"card": "p5",
+"other": "pastor_obi"
+}
+],
+"hawkers": [
+{
+"id": "wt_ca1bf3ceb8",
+"kind": "consequence",
+"text": "The bus pulls in late, and the stop fills with sellers calling at once. Match cut to the object they were holding.",
+"code": "the_hawkers.interactwith(the_bus_stop){ the_hawkers.set('hawkers_ask_the_bus_stop_to', 'yes: The bus pulls in late, and the stop fills with sellers calling at once. Mat…",
+"author": "cos",
+"run": "run-0e8c",
+"card": "p4",
+"other": "bus_stop"
+}
+],
+"clerk": [
+{
+"id": "wt_690a6c3a00",
+"kind": "consequence",
+"text": "The stamp stops, the boxes stop, and six o'clock arrives to a room breathing together.",
+"code": "a_clerk.interactwith(god){ a_clerk.set('clerk_asks_god_for_one_minute', 'yes: The stamp stops, the boxes stop, and six o\\'clock arrives to a room breathing together.'); }",
+"author": "cos",
+"run": "run-2716",
+"card": "p12",
+"other": "god"
+}
+],
+"shopkeeper": [
+{
+"id": "wt_9ed7f24a93",
+"kind": "consequence",
+"text": "The glass clears, tomorrow's weather is written plainly, and the shop keeps its flames steady.",
+"code": "the_shopkeeper.interactwith(the_lantern_glass){ the_shopkeeper.set('clear_picture_of_tomorrow_before_the', 'yes: The glass clears, tomorrow\\'s weather is written plainl…",
+"author": "cos",
+"run": "run-d6fc",
+"card": "p2",
+"other": "lantern_glass"
+}
+],
+"kehinde": [
+{
+"id": "wt_60614e93ba",
+"kind": "consequence",
+"text": "They forgive, the hem is mended, and the night class opens its doors with a lighter air.",
+"code": "kehinde.interactwith(her_parents){ kehinde.set('forgiveness_for_the_torn_hem_and', 'yes: They forgive, the hem is mended, and the night class opens its doors with a lighter air.'); … }",
+"author": "cos",
+"run": "run-86b1",
+"card": "p2",
+"other": "her_parents"
+}
+],
+"tailor": [
+{
+"id": "wt_8cdc51992f",
+"kind": "consequence",
+"text": "The stitch holds, the curtain hangs straight, and the love letter inside it stays sealed through the agenda.",
+"code": "the_tailor.interactwith(god){ the_tailor.set('one_more_steady_stitch_before_the', 'yes: The stitch holds, the curtain hangs straight, and the love letter inside it stay…",
+"author": "cos",
+"run": "run-86b1",
+"card": "p1",
+"other": "god"
+}
+],
+"dapo_ghost": [
+{
+"id": "wt_bf3b2a9cb0",
+"kind": "consequence",
+"text": "The road bends away; the ghost stays at the gate, still counting steps.",
+"code": "dapo_s_ghost.interactwith(the_road){ dapo_s_ghost.set('dapo_s_ghost_asks_the_road_for', 'no: The road bends away; the ghost stays at the gate, still counting steps.'); }",
+"author": "cos",
+"run": "run-175d",
+"card": "p4",
+"other": "road"
+}
+],
+"funmi": [
+{
+"id": "wt_cdf0d9c0ac",
+"kind": "consequence",
+"text": "The ruler keeps two lengths and the grain in the bowl stays restless.",
+"code": "funmi.interactwith(the_moon){ funmi.set('funmi_asks_the_moon_for_one', 'no: The ruler keeps two lengths and the grain in the bowl stays restless.'); }",
+"author": "cos",
+"run": "run-175d",
+"card": "p3",
+"other": "moon"
+},
+{
+"id": "wt_d115f32ed3",
+"kind": "consequence",
+"text": "He draws it in pencil, and the agenda gains an end to stand on; the studio clerk's two measurements agree.",
+"code": "funmi.interactwith(the_draughtsman){ funmi.set('funmi_asks_the_draughtsman_for_the', 'yes: He draws it in pencil, and the agenda gains an end to stand on; … }",
+"author": "cos",
+"run": "run-175d",
+"card": "p1",
+"other": "draughtsman"
+}
+],
+"danladi": [
+{
+"id": "wt_d1d61c84ff",
+"kind": "consequence",
+"text": "The dead line clicks. A voice answers. Whether it is hers is another story.",
+"code": "danladi.interactwith(the_host_of_heaven){ danladi.set('danladi_asks_the_host_of_heaven', 'yes: The dead line clicks. A voice answers. Whether it is hers is another story.'); … }",
+"author": "cos",
+"run": "run-febe",
+"card": "p1",
+"other": "host_heaven"
+}
+],
+"lawal": [
+{
+"id": "wt_21aae4b4c5",
+"kind": "consequence",
+"text": "She calls him from her father's stall that night.",
+"code": "lawal.interactwith(funmi){ lawal.set('lawal_asks_funmi_to_call_him', 'yes: She calls him from her father\\'s stall that night.'); }",
+"author": "cos",
+"run": "run-6e6a",
+"card": "p7",
+"other": "funmi"
+}
+],
+"soldier": [
+{
+"id": "wt_fb894ec274",
+"kind": "consequence",
+"text": "He gets the Nokia back and drives off with the hacker's messages still on it.",
+"code": "the_2010_soldier.interactwith(funmi){ the_2010_soldier.set('soldier_from_2010_red_cheek_and', 'yes: He gets the Nokia back and drives off with the hacker\\'s messages st…",
+"author": "cos",
+"run": "run-6e6a",
+"card": "p1",
+"other": "funmi"
+}
 ]
 },
 "consequences": [
-{
-"id": "wf_877ad0ce6b",
-"ts": "2026-11-24T14:05:21-0500",
-"a": "tbp",
-"b": "matbaotstaili",
-"code": "tbp.interactwith(matbaotstaili){ matbaotstaili.receives(tbp.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the matbaotstaili, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
-"id": "wf_cb550df98d",
-"ts": "2026-11-24T14:07:03-0500",
-"a": "itmoai",
-"b": "love",
-"code": "itmoai.interactwith(love){ love.receives(itmoai.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the love, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
-"id": "wf_c232fcafbf",
-"ts": "2026-11-24T14:10:26-0500",
-"a": "matbaotstaili",
-"b": "quiet_stretch_sand",
-"code": "matbaotstaili.interactwith(quiet_stretch_sand){ quiet_stretch_sand.receives(matbaotstaili.envelope); quiet_stretch_sand.remembers(bisola, 'brown envelope'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up beside the morning at the quiet stretch sand.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
-"id": "wt_d3f339904c",
-"ts": "2026-11-25T10:25:36-0500",
-"a": "ronke",
-"b": "pure_water_cooler",
-"code": "ronke.interactwith(pure_water_cooler){ ronke.calls(pure_water_cooler, 'closing time'); … }",
-"text": "Ronke calls out the time, 9:46 pm, over the cooler, so the last sachets go before the hall is locked.",
-"author": "cos",
-"run": "story-4b1689",
-"card": "j168"
-},
-{
-"id": "wt_02f7904878",
-"ts": "2026-11-25T10:25:36-0500",
-"a": "pure_water_cooler",
-"b": "chairman",
-"code": "chairman.interactwith(pure_water_cooler){ chairman.receives(pure_water_cooler, 'closing time'); … }",
-"text": "Hearing the time called at the cooler, the chairman cuts the meeting short and signs the minutes standing up.",
-"author": "cos",
-"run": "story-4b1689",
-"card": "j168"
-},
-{
-"id": "wt_6cb676af32",
-"ts": "2026-11-25T10:25:36-0500",
-"a": "pure_water_cooler",
-"b": "ronke",
-"code": "ronke.interactwith(pure_water_cooler){ ronke.weighs(pure_water_cooler, 'unsold sachets'); … }",
-"text": "Before she leaves, Ronke weighs the unsold sachets in her hand and bags the eleven that are left for the morning bus stop.",
-"author": "cos",
-"run": "story-4b1689",
-"card": "j171"
-},
-{
-"id": "wt_38b1590c5a",
-"ts": "2026-11-25T10:25:36-0500",
-"a": "ronke",
-"b": "investor",
-"code": "investor.interactwith(ronke){ investor.receives(ronke, 'unsold sachets'); … }",
-"text": "The next morning Ronke brings the bagged sachets to the Ojuelegba bus stop still cold, as she said she would, and the investor buys two and nods.",
-"author": "cos",
-"run": "story-4b1689",
-"card": "j171"
-},
-{
-"id": "wf_c57cd387db",
-"ts": "2026-11-25T13:40:41-0500",
-"a": "water",
-"b": "plot",
-"code": "water.interactwith(plot){ plot.receives(water.code); plot.remembers(ejiro, 'juju code'); plot.tucks(water, 'ttb note into the lamp soot'); }",
-"text": "A Ttb note with Ejiro's name and 'juju code' on it, 5:30pm, 13 Nov 2026, turns up inside the lamp soot at the plot, and Taiwo reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j2"
-},
-{
-"id": "wf_c1cdf7e684",
-"ts": "2026-11-25T13:41:35-0500",
-"a": "teoloveletter",
-"b": "marina_biscayne_bay",
-"code": "teoloveletter.interactwith(marina_biscayne_bay){ marina_biscayne_bay.receives(teoloveletter.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the marina biscayne bay, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
-"id": "wf_5626049f3f",
-"ts": "2026-11-25T13:42:27-0500",
-"a": "marker_b",
-"b": "bird",
-"code": "marker_b.interactwith(bird){ bird.receives(marker_b.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the envelope corner at the bird, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
-"id": "wf_7ab20732e3",
-"ts": "2026-11-25T13:43:20-0500",
-"a": "itmoai",
-"b": "sandal",
-"code": "itmoai.interactwith(sandal){ sandal.receives(itmoai.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the sandal, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
-"id": "wf_933859dd66",
-"ts": "2026-11-25T13:44:51-0500",
-"a": "health_marisol",
-"b": "hose",
-"code": "health_marisol.interactwith(hose){ hose.receives(health_marisol.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the brown envelope at the hose, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
-"id": "wf_dabf0dda4e",
-"ts": "2026-11-25T13:46:45-0500",
-"a": "tnw",
-"b": "marker",
-"code": "tnw.interactwith(marker){ marker.receives(tnw.envelope); marker.remembers(bisola, 'brown envelope'); marker.tucks(tnw, 'yaba bookshop receipt into the nice day sign'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the nice day sign at the marker, and Kunle reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
-"id": "wf_cad5bb7ce3",
-"ts": "2026-11-25T16:17:46-0500",
-"a": "love",
-"b": "florida",
-"code": "love.interactwith(florida){ florida.receives(love.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the green shirt at the florida, and Bisola reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
-"id": "wf_2a147ce2fd",
-"ts": "2026-11-25T16:19:40-0500",
-"a": "surulere_party_hall",
-"b": "abeokuta_parlour",
-"code": "surulere_party_hall.interactwith(abeokuta_parlour){ abeokuta_parlour.receives(surulere_party_hall.envelope); abeokuta_parlour.remembers(bisola, 'brown envelope'); }",
-"text": "The abeokuta parlour leaves with a Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am.",
-"author": "cos",
-"run": "run-cf203b",
-"card": "j6"
-},
-{
-"id": "wf_5c149a6f99",
-"ts": "2026-11-25T16:20:33-0500",
-"a": "dez",
-"b": "plot",
-"code": "dez.interactwith(plot){ plot.receives(dez.envelope); plot.remembers(bisola, 'brown envelope'); plot.tucks(dez, 'yaba bookshop receipt into the juju code'); }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the juju code at the plot, and Ejiro reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
-"id": "wf_da5e41d93c",
-"ts": "2026-11-25T16:21:25-0500",
-"a": "health_marisol",
-"b": "marker",
-"code": "health_marisol.interactwith(marker){ marker.receives(health_marisol.envelope); … }",
-"text": "A Yaba bookshop receipt with Bisola's name and 'brown envelope' on it, 7:40am, turns up inside the nice day sign at the marker, and Kunle reads the name twice.",
-"author": "cos",
-"run": "run-5a58c4",
-"card": "j6"
-},
-{
-"id": "wf_650dbbf9d2",
-"ts": "2026-11-25T23:23:23-0500",
-"a": "cup",
-"b": "point_kill",
-"code": "cup.interactwith(point_kill){ point_kill.receives(cup.something); }",
-"text": "The point kill now remembers the cup: Someone at the projector saw the cup passes over the point kill figure.",
-"author": "cos",
-"run": "run-cf203b",
-"card": "w24"
-},
-{
-"id": "wt_7be00476bd",
-"ts": "2026-11-26T10:25:00-0500",
-"a": "tobi",
-"b": "kemi",
-"code": "kemi.interactwith(tobi){ kemi.hears(tobi, 'half step'); kemi.set('heard', 'it sounded like give me a hug, in his half step'); }",
-"text": "Kemi tells what she heard in Tobi's half step: it sounded like give me a hug.",
-"author": "cos",
-"run": "run-cf203b",
-"card": "j32"
-},
-{
-"id": "wt_febe07a86e",
-"ts": "2026-11-26T10:25:00-0500",
-"a": "kemi",
-"b": "woman",
-"code": "woman.interactwith(kemi){ woman.interrupts(kemi, 'evidence'); woman.set('evidence', 'playing on speaker while kemi is still deciding what she heard'); }",
-"text": "The woman breaks in and plays her evidence on speaker, so Kemi has to answer with it in the air.",
-"author": "cos",
-"run": "run-cf203b",
-"card": "j32"
-},
-{
-"id": "wt_76c8589fe7",
-"ts": "2026-11-26T10:25:00-0500",
-"a": "woman",
-"b": "tobi",
-"code": "tobi.interactwith(woman){ tobi.receives(woman, 'evidence'); tobi.set('arms', 'open, waiting while the evidence plays on speaker'); }",
-"text": "With the evidence playing, Tobi keeps his arms open and waits, because stepping back would look like an answer.",
-"author": "cos",
-"run": "run-cf203b",
-"card": "j32"
-},
-{
-"id": "wt_1c8e45880e",
-"ts": "2026-11-26T10:25:00-0500",
-"a": "kemi",
-"b": "amusementpark",
-"code": "amusementpark.interactwith(kemi){ amusementpark.receives(kemi, 'heard'); … }",
-"text": "People at the gate slow down to watch, so the choice Kemi makes is now public and stays hers to make.",
-"author": "cos",
-"run": "run-cf203b",
-"card": "j32"
-},
-{
-"id": "wf_c186a6aff3",
-"ts": "2026-11-27T02:18:16-0500",
-"a": "cooler",
-"b": "ikorodu_marina",
-"code": "cooler.interactwith(ikorodu_marina){ ikorodu_marina.receives(cooler.something); }",
-"text": "The ikorodu marina now remembers the cooler: The customer typed cooler.getdatemanufactured() on run-qa j1.",
-"author": "cos",
-"run": "run-cf203b",
-"card": "j1"
-},
-{
-"id": "wf_9e0c8536c5",
-"ts": "2026-11-27T02:46:23-0500",
-"a": "ikorodu",
-"b": "foc_me",
-"code": "ikorodu.interactwith(foc_me){ foc_me.receives(ikorodu.something); }",
-"text": "The foc me now remembers the ikorodu: Someone at the projector saw the ikorodu gets tangled up with the foc me.",
-"author": "cos",
-"run": "run-cf203b",
-"card": "w65"
-},
-{
-"id": "wt_b100d4400f",
-"ts": "2026-11-27T12:04:59-0500",
-"a": "kemi",
-"b": "tobi",
-"code": "tobi.interactwith(kemi){ tobi.sends(kemi, 'message'); tobi.set('message', 'sent from home with a parcel: it should get to you in 5 business days'); }",
-"text": "From home, Tobi finally sends Kemi a message and a parcel, and tells her it should get to her in 5 business days.",
-"author": "cos",
-"run": "run-cf203b",
-"card": "j64"
-},
-{
-"id": "wt_2a550ad5e3",
-"ts": "2026-11-27T12:04:59-0500",
-"a": "tobi",
-"b": "kemi",
-"code": "kemi.receives(tobi, 'message'); kemi.set('phone', 'buzzing on the sister table: you got mi msg?');",
-"text": "Kemi's phone buzzes on her sister's table with Tobi's message, ending you got my msg?",
-"author": "cos",
-"run": "run-cf203b",
-"card": "j64"
-},
-{
-"id": "wt_d34408f21f",
-"ts": "2026-11-27T12:04:59-0500",
-"a": "kemi",
-"b": "kemisister",
-"code": "kemisister.interactwith(kemi){ kemisister.receives(kemi, 'message'); kemisister.set('hand', 'flat on the phone: hold jare!!! do not answer yet'); }",
-"text": "Her sister reads the message off Kemi's phone and puts her hand flat on it: hold jare, don't answer yet.",
-"author": "cos",
-"run": "run-cf203b",
-"card": "j64"
-},
-{
-"id": "wt_ef263c3ad1",
-"ts": "2026-11-27T12:04:59-0500",
-"a": "kemisister",
-"b": "kemi",
-"code": "kemi.interactwith(kemisister){ kemi.asks(kemisister, 'woman'); kemi.set('question', 'woman?!! is the parcel from tobi or from her'); }",
-"text": "Kemi asks her sister whether the parcel is from Tobi or from the woman, because the woman has been quiet for a week.",
-"author": "cos",
-"run": "run-cf203b",
-"card": "j64"
-},
-{
-"id": "wt_f06c304a70",
-"ts": "2026-11-27T12:04:59-0500",
-"a": "kemisister",
-"b": "cooler_subject",
-"code": "cooler_subject.receives(kemisister, 'hand'); cooler_subject.set('lid', 'open, sister serving jollof while the phone stays face down');",
-"text": "To keep her hands busy, the sister opens the cooler on the table and serves the jollof, so the parcel question waits until everyone has eaten.",
-"author": "cos",
-"run": "run-cf203b",
-"card": "j65"
-},
 {
 "id": "wf_c82a2f7be3",
 "ts": "2026-11-27T22:41:43-0500",
@@ -15208,6 +15181,325 @@
 "author": "cos",
 "run": "run-788e05",
 "card": "j11"
+},
+{
+"id": "wt_56cc0379f3",
+"ts": "2026-11-28T10:33:46-0500",
+"a": "aunty_bimpe",
+"b": "rotimi",
+"code": "rotimi.interactwith(aunty_bimpe){ rotimi.set('rotimi_asks_aunty_bimpe_to_say', 'no: She says it to the room, and he laughs before he answers. Rack focus from the speake…",
+"text": "She says it to the room, and he laughs before he answers. Rack focus from the speaker to the answer.",
+"author": "cos",
+"run": "run-bd649b",
+"card": "p1"
+},
+{
+"id": "wt_c90949b23c",
+"ts": "2026-11-28T10:33:46-0500",
+"a": "kunle",
+"b": "adaora",
+"code": "adaora.interactwith(kunle){ adaora.set('to_be_listened_to_the_first', 'yes: Kunle grants it, and Adaora is seen doing what Adaora came to do.'); }",
+"text": "Kunle grants it, and Adaora is seen doing what Adaora came to do.",
+"author": "cos",
+"run": "run-dfd59e",
+"card": "p5"
+},
+{
+"id": "wt_b197d3488c",
+"ts": "2026-11-28T10:33:46-0500",
+"a": "god",
+"b": "kunle",
+"code": "kunle.interactwith(god){ kunle.set('to_finish_a_job_exactly', 'no: God holds back, and what Kunle lacks (be told he can stop measuring) stays in the room.'); }",
+"text": "God holds back, and what Kunle lacks (be told he can stop measuring) stays in the room.",
+"author": "cos",
+"run": "run-dfd59e",
+"card": "p4"
+},
+{
+"id": "wt_eddf9f46e1",
+"ts": "2026-11-28T10:33:46-0500",
+"a": "god",
+"b": "iffy",
+"code": "iffy.interactwith(god){ iffy.set('iffy_prays_that_kunle_answers_the', 'yes: The message gets an answer today.'); }",
+"text": "The message gets an answer today.",
+"author": "cos",
+"run": "run-dfd59e",
+"card": "p1"
+},
+{
+"id": "wt_98444f0ca3",
+"ts": "2026-11-28T10:33:46-0500",
+"a": "lateef",
+"b": "amina_seidu",
+"code": "amina_seidu.interactwith(lateef){ amina_seidu.set('amina_seidu_asks_lateef_to_stay', 'yes: Lateef stays.'); }",
+"text": "Lateef stays.",
+"author": "cos",
+"run": "run-cb805f",
+"card": "p7"
+},
+{
+"id": "wt_f5faf87dde",
+"ts": "2026-11-28T10:33:46-0500",
+"a": "dapo",
+"b": "kunle",
+"code": "kunle.interactwith(dapo){ kunle.set('to_finish_a_job_exactly', 'yes: Dapo grants it, and Kunle is seen doing what Kunle came to do.'); }",
+"text": "Dapo grants it, and Kunle is seen doing what Kunle came to do.",
+"author": "cos",
+"run": "run-0e8c",
+"card": "p1"
+},
+{
+"id": "wt_e3b982e835",
+"ts": "2026-11-28T10:33:46-0500",
+"a": "daddy",
+"b": "bimbo",
+"code": "bimbo.interactwith(daddy){ bimbo.set('bimbo_asks_daddy_to_bless_the', 'yes: His voice drops from booming to quiet, and the church sees her stand straight. Close-up, sha…",
+"text": "His voice drops from booming to quiet, and the church sees her stand straight. Close-up, shallow depth, a long held beat.",
+"author": "cos",
+"run": "run-2716",
+"card": "p23"
+},
+{
+"id": "wt_7cba3129c9",
+"ts": "2026-11-28T10:33:46-0500",
+"a": "god",
+"b": "adaora",
+"code": "adaora.interactwith(god){ adaora.set('to_be_listened_to_the_first', 'yes: God grants it, and Adaora is seen doing what Adaora came to do.'); }",
+"text": "God grants it, and Adaora is seen doing what Adaora came to do.",
+"author": "cos",
+"run": "run-2716",
+"card": "p22"
+},
+{
+"id": "wt_382deefc11",
+"ts": "2026-11-28T10:33:46-0500",
+"a": "kunle",
+"b": "adaora",
+"code": "adaora.interactwith(kunle){ adaora.set('to_be_heard_the_first_time', 'yes: Kunle grants it, and Adaora is seen doing what Adaora came to do.'); }",
+"text": "Kunle grants it, and Adaora is seen doing what Adaora came to do.",
+"author": "cos",
+"run": "run-2716",
+"card": "p21"
+},
+{
+"id": "wt_c6d7d1e656",
+"ts": "2026-11-28T10:33:46-0500",
+"a": "pastor_obi",
+"b": "mama",
+"code": "mama.interactwith(pastor_obi){ mama.set('mama_asks_pastor_obi_to_count', 'yes: He counts it once out loud, finds it short, and learns what she has been carrying. Cut to…",
+"text": "He counts it once out loud, finds it short, and learns what she has been carrying. Cut to a slow push-in on the hands.",
+"author": "cos",
+"run": "run-0e8c",
+"card": "p5"
+},
+{
+"id": "wt_ca1bf3ceb8",
+"ts": "2026-11-28T10:33:46-0500",
+"a": "bus_stop",
+"b": "hawkers",
+"code": "the_hawkers.interactwith(the_bus_stop){ the_hawkers.set('hawkers_ask_the_bus_stop_to', 'yes: The bus pulls in late, and the stop fills with sellers calling at once. Mat…",
+"text": "The bus pulls in late, and the stop fills with sellers calling at once. Match cut to the object they were holding.",
+"author": "cos",
+"run": "run-0e8c",
+"card": "p4"
+},
+{
+"id": "wt_eb1dcdd989",
+"ts": "2026-11-28T10:33:46-0500",
+"a": "crew",
+"b": "kazeem",
+"code": "kazeem.interactwith(the_crew){ kazeem.set('kazeem_asks_the_crew_to_let', 'yes: They wait for his count, and the left turn lands together. Match cut to the object they w…",
+"text": "They wait for his count, and the left turn lands together. Match cut to the object they were holding.",
+"author": "cos",
+"run": "run-0e8c",
+"card": "p3"
+},
+{
+"id": "wt_911a7dcff4",
+"ts": "2026-11-28T10:33:46-0500",
+"a": "god",
+"b": "folake",
+"code": "folake.interactwith(god){ folake.set('to_keep_the_paper_kite_and', 'yes: God grants it, and Folake is seen doing what Folake came to do.'); }",
+"text": "God grants it, and Folake is seen doing what Folake came to do.",
+"author": "cos",
+"run": "run-2716",
+"card": "p20"
+},
+{
+"id": "wt_6e47abe177",
+"ts": "2026-11-28T10:33:46-0500",
+"a": "shopkeeper",
+"b": "kunle",
+"code": "kunle.interactwith(the_shopkeeper){ kunle.set('to_finish_a_job_exactly', 'yes: The shopkeeper grants it, and Kunle is seen doing what Kunle came to do.'); }",
+"text": "The shopkeeper grants it, and Kunle is seen doing what Kunle came to do.",
+"author": "cos",
+"run": "run-2716",
+"card": "p18"
+},
+{
+"id": "wt_57b7721033",
+"ts": "2026-11-28T10:33:46-0500",
+"a": "god",
+"b": "kunle",
+"code": "kunle.interactwith(god){ kunle.set('kunle_asks_god_to_tell_him', 'yes: The paper warms in his hand, and nobody asks for it back.'); }",
+"text": "The paper warms in his hand, and nobody asks for it back.",
+"author": "cos",
+"run": "run-2716",
+"card": "p13"
+},
+{
+"id": "wt_690a6c3a00",
+"ts": "2026-11-28T10:33:46-0500",
+"a": "god",
+"b": "clerk",
+"code": "a_clerk.interactwith(god){ a_clerk.set('clerk_asks_god_for_one_minute', 'yes: The stamp stops, the boxes stop, and six o\\'clock arrives to a room breathing together.'); }",
+"text": "The stamp stops, the boxes stop, and six o'clock arrives to a room breathing together.",
+"author": "cos",
+"run": "run-2716",
+"card": "p12"
+},
+{
+"id": "wt_bd686f48c5",
+"ts": "2026-11-28T10:33:46-0500",
+"a": "god",
+"b": "kunle",
+"code": "kunle.interactwith(god){ kunle.set('to_hem_the_trousers_exactly', 'yes: God grants it, and Kunle is seen doing what Kunle came to do.'); }",
+"text": "God grants it, and Kunle is seen doing what Kunle came to do.",
+"author": "cos",
+"run": "run-2716",
+"card": "p14"
+},
+{
+"id": "wt_4fa404847a",
+"ts": "2026-11-28T10:33:46-0500",
+"a": "god",
+"b": "adaora",
+"code": "adaora.interactwith(god){ adaora.set('adaora_asks_god_for_one_person', 'no: The room stays quiet, and she keeps one palm flat on the folder until six.'); }",
+"text": "The room stays quiet, and she keeps one palm flat on the folder until six.",
+"author": "cos",
+"run": "run-2716",
+"card": "p6"
+},
+{
+"id": "wt_f7a2e6269e",
+"ts": "2026-11-28T10:33:46-0500",
+"a": "god",
+"b": "adaora",
+"code": "adaora.interactwith(god){ adaora.set('adaora_asks_god_to_let_her', 'yes: The hall goes on stamping, and she leaves with the folder under her arm and her palm relaxed.'); … }",
+"text": "The hall goes on stamping, and she leaves with the folder under her arm and her palm relaxed.",
+"author": "cos",
+"run": "run-2716",
+"card": "p10"
+},
+{
+"id": "wt_9ed7f24a93",
+"ts": "2026-11-28T10:33:46-0500",
+"a": "lantern_glass",
+"b": "shopkeeper",
+"code": "the_shopkeeper.interactwith(the_lantern_glass){ the_shopkeeper.set('clear_picture_of_tomorrow_before_the', 'yes: The glass clears, tomorrow\\'s weather is written plainl…",
+"text": "The glass clears, tomorrow's weather is written plainly, and the shop keeps its flames steady.",
+"author": "cos",
+"run": "run-d6fc",
+"card": "p2"
+},
+{
+"id": "wt_60614e93ba",
+"ts": "2026-11-28T10:33:46-0500",
+"a": "her_parents",
+"b": "kehinde",
+"code": "kehinde.interactwith(her_parents){ kehinde.set('forgiveness_for_the_torn_hem_and', 'yes: They forgive, the hem is mended, and the night class opens its doors with a lighter air.'); … }",
+"text": "They forgive, the hem is mended, and the night class opens its doors with a lighter air.",
+"author": "cos",
+"run": "run-86b1",
+"card": "p2"
+},
+{
+"id": "wt_8cdc51992f",
+"ts": "2026-11-28T10:33:46-0500",
+"a": "god",
+"b": "tailor",
+"code": "the_tailor.interactwith(god){ the_tailor.set('one_more_steady_stitch_before_the', 'yes: The stitch holds, the curtain hangs straight, and the love letter inside it stay…",
+"text": "The stitch holds, the curtain hangs straight, and the love letter inside it stays sealed through the agenda.",
+"author": "cos",
+"run": "run-86b1",
+"card": "p1"
+},
+{
+"id": "wt_bf3b2a9cb0",
+"ts": "2026-11-28T10:33:46-0500",
+"a": "road",
+"b": "dapo_ghost",
+"code": "dapo_s_ghost.interactwith(the_road){ dapo_s_ghost.set('dapo_s_ghost_asks_the_road_for', 'no: The road bends away; the ghost stays at the gate, still counting steps.'); }",
+"text": "The road bends away; the ghost stays at the gate, still counting steps.",
+"author": "cos",
+"run": "run-175d",
+"card": "p4"
+},
+{
+"id": "wt_cdf0d9c0ac",
+"ts": "2026-11-28T10:33:46-0500",
+"a": "moon",
+"b": "funmi",
+"code": "funmi.interactwith(the_moon){ funmi.set('funmi_asks_the_moon_for_one', 'no: The ruler keeps two lengths and the grain in the bowl stays restless.'); }",
+"text": "The ruler keeps two lengths and the grain in the bowl stays restless.",
+"author": "cos",
+"run": "run-175d",
+"card": "p3"
+},
+{
+"id": "wt_3615d2cdc6",
+"ts": "2026-11-28T10:33:46-0500",
+"a": "lamp",
+"b": "dapo",
+"code": "dapo.interactwith(the_lamp){ dapo.set('dapo_asks_the_shed_lamp_for', 'no: The lamp dips; the line stays unfinished and his stool is found empty.'); }",
+"text": "The lamp dips; the line stays unfinished and his stool is found empty.",
+"author": "cos",
+"run": "run-175d",
+"card": "p2"
+},
+{
+"id": "wt_d115f32ed3",
+"ts": "2026-11-28T10:33:46-0500",
+"a": "draughtsman",
+"b": "funmi",
+"code": "funmi.interactwith(the_draughtsman){ funmi.set('funmi_asks_the_draughtsman_for_the', 'yes: He draws it in pencil, and the agenda gains an end to stand on; … }",
+"text": "He draws it in pencil, and the agenda gains an end to stand on; the studio clerk's two measurements agree.",
+"author": "cos",
+"run": "run-175d",
+"card": "p1"
+},
+{
+"id": "wt_d1d61c84ff",
+"ts": "2026-11-28T10:33:46-0500",
+"a": "host_heaven",
+"b": "danladi",
+"code": "danladi.interactwith(the_host_of_heaven){ danladi.set('danladi_asks_the_host_of_heaven', 'yes: The dead line clicks. A voice answers. Whether it is hers is another story.'); … }",
+"text": "The dead line clicks. A voice answers. Whether it is hers is another story.",
+"author": "cos",
+"run": "run-febe",
+"card": "p1"
+},
+{
+"id": "wt_21aae4b4c5",
+"ts": "2026-11-28T10:33:46-0500",
+"a": "funmi",
+"b": "lawal",
+"code": "lawal.interactwith(funmi){ lawal.set('lawal_asks_funmi_to_call_him', 'yes: She calls him from her father\\'s stall that night.'); }",
+"text": "She calls him from her father's stall that night.",
+"author": "cos",
+"run": "run-6e6a",
+"card": "p7"
+},
+{
+"id": "wt_fb894ec274",
+"ts": "2026-11-28T10:33:46-0500",
+"a": "funmi",
+"b": "soldier",
+"code": "the_2010_soldier.interactwith(funmi){ the_2010_soldier.set('soldier_from_2010_red_cheek_and', 'yes: He gets the Nokia back and drives off with the hacker\\'s messages st…",
+"text": "He gets the Nokia back and drives off with the hacker's messages still on it.",
+"author": "cos",
+"run": "run-6e6a",
+"card": "p1"
 }
 ],
 "memories": [
@@ -15311,5 +15603,5 @@
 "card": "j9"
 }
 ],
-"updated": "2026-11-28T10:25:20-0500"
+"updated": "2026-11-28T10:34:30-0500"
 }
