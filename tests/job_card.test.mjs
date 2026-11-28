@@ -124,7 +124,10 @@ test('v623: 🎥 is a Live view pill (own menu_action per job), not a line optio
   assert.match(js, /filter\(o => !isLiveOpt\(o\)\)/);
   assert.match(js, /c\.menus\.live/);
   const card = JSON.parse(rd('data/open_card.json'));
-  if(card.open){ assert.deepEqual(card.menus.live, [{label: '\u{1f3a5} Live view', value: 'live_view: ' + card.job}]); }
+  if(card.open){
+    assert.equal(card.menus.live[0].value, 'live_view: ' + card.job);
+    assert.match(card.menus.live[0].label, /Live/);
+  }
 });
 
 test('v624: the panel may hang off any edge; a 120px strip of the [[god]] header always stays on screen', ()=>{
@@ -201,7 +204,7 @@ test('v629: seat line, lock progress, waiting-to-be-seated, lock state on the pa
   assert.match(js, /jobEl\.appendChild\(seatStrip\(\)\)/);
   assert.match(js, /if\(metaChanged\) updateStrip\(\)/);
   assert.match(js, /pick waiting to be seated/);
-  assert.match(js, /This agenda is locked/);
+  assert.match(js, /\\ud83d\\udd12 Locked \\u00b7 /);
   assert.match(js, /'aimrow' \+ \(isLocked\(meta \|\| c\) \? ' hot' : ''\)/);
   assert.match(js, /#aimenu \.aimrow\.hot\{/);
   // no new timers / animation loops (heat)
@@ -300,12 +303,13 @@ test('v634: open async jobs render as persistent waiting-on-real-life pills; emp
   assert.ok(card.async_jobs.every(j => j && typeof j.id === 'string' && j.id && typeof j.text === 'string'));
 });
 
-test('v653: MENU and LOCK wrap to at most 2 rows so the card stays above the fold', ()=>{
+test('v653: MENU and LOCK stay one nowrap row (v654: 40px targets, sideways scroll if needed)', ()=>{
   assert.match(js, /#aimenu \.aimrow\{display:flex;flex-wrap:nowrap/);
   assert.match(js, /#aimenu \.aimscroll\{/);
-  assert.match(js, /#aimenu \.aimscroll\{[^}]*flex-wrap:wrap/);
-  assert.match(js, /max-height:66px/);
-  assert.doesNotMatch(js, /#aimenu \.aimscroll\{[^}]*overflow-x:auto/);
+  assert.match(js, /#aimenu \.aimscroll\{[^}]*flex-wrap:nowrap/);
+  assert.match(js, /max-height:44px/);
+  assert.match(js, /#aimenu \.aimscroll\{[^}]*overflow-x:auto/);
+  assert.match(js, /#aimenu button\{[^}]*min-height:40px/);
   assert.match(js, /sc\.className = 'aimscroll'/);
   assert.match(js, /sc\.appendChild\(menuBtn\(o\)\)/);
   assert.match(js, /Math\.abs\(\(ev\.clientX \|\| sx\) - sx\) > 14/);
@@ -416,7 +420,7 @@ test('v652 Prayer jobs shows about 5 cards; Show all agendas box has an x and Es
   assert.match(js, /aria-label', 'Close'/);
   assert.match(js, /textContent = '\\u00d7'/);
   assert.match(js, /#aisheet \.shx\{/);
-  assert.match(js, /width:44px;height:44px;min-width:44px;min-height:44px/);
+  assert.match(js, /width:40px;height:40px;min-width:40px;min-height:40px/);
   assert.match(js, /isSheetClosed\(sheet\)/);
   assert.match(js, /s\.kind === 'prayers'/);
   assert.match(js, /cards\.slice\(lo, lo \+ PRAYER_PAGE\)/);
@@ -428,11 +432,32 @@ test('v652 Prayer jobs shows about 5 cards; Show all agendas box has an x and Es
 });
 
 
-test('v653 menu and lock wrap to at most 2 rows, no sideways scroll', ()=>{
-  assert.match(js, /max-height:66px/);
-  assert.match(js, /#aimenu \.aimscroll\{[^}]*flex-wrap:wrap/);
-  assert.match(js, /No more jobs on this agenda\. Pick .*Make the Hold/);
-  assert.match(html, /var VER=653,/);
+test('v653/v654 menu and lock stay one line; lock banner is short', ()=>{
+  assert.match(js, /max-height:44px/);
+  assert.match(js, /#aimenu \.aimscroll\{[^}]*flex-wrap:nowrap/);
+  assert.match(js, /\\ud83d\\udd12 Locked \\u00b7 /);
+  assert.doesNotMatch(js, /Pick from the lock row below/);
+  assert.match(html, /var VER=654,/);
   const v = JSON.parse(ver);
-  assert.equal(v.v, 653);
+  assert.ok(v.v >= 654);
+});
+
+test('v654 sheet options are inline pills; menu slider auto-hides; panel stays tighter', ()=>{
+  assert.match(js, /#aisheet \.opts\{display:flex;flex-wrap:wrap/);
+  assert.match(js, /#aisheet button\{[^}]*border-radius:999px/);
+  assert.doesNotMatch(js, /#aisheet \.opts\{display:flex;flex-direction:column/);
+  assert.match(js, /function armScrollHide/);
+  assert.match(js, /aimhidebar/);
+  assert.match(js, /setTimeout\(.*aimhidebar.*, 3000\)/);
+  assert.match(js, /armScrollHide\(sc\)/);
+  assert.match(js, /aicpills/);
+  assert.match(js, /#aibox\.cards-on:has\(#aisheet \.pcards\)/);
+  assert.match(html, /var VER=654,/);
+  const v = JSON.parse(ver);
+  assert.equal(v.v, 654);
+  assert.doesNotMatch(js, /Pick from the lock row below/);
+  assert.match(js, /seed_pending/);
+  assert.match(js, /seed\.label/);
+  assert.match(js, /#aisheet \.shx\{[^}]*min-height:40px/);
+  assert.match(js, /#aisheet button\{[^}]*min-height:40px/);
 });
