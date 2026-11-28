@@ -4,7 +4,7 @@ import assert from 'node:assert';
 import {readFileSync} from 'node:fs';
 const here = new URL('..', import.meta.url);
 const rd = p => readFileSync(new URL(p, here), 'utf8');
-const js = rd('assets/job_card.js'), html = rd('index.html'), st = rd('assets/stage.js'), ver = rd('data/version.json'), ai = rd('assets/intent_ai.js');
+const js = rd('assets/job_card.js'), html = rd('index.html'), st = rd('assets/stage.js'), ver = rd('data/version.json'), ai = rd('assets/intent_ai.js'), pcs = rd('assets/projector.css'), alive = rd('assets/alive.css');
 
 test('job_card.js loads by default; ?cards=0 hides the panel', ()=>{
   assert.match(html, /cards=0/);
@@ -517,9 +517,32 @@ test('v657 typeline and #thryd share one 40px row; alert is a slim 24px line; sh
   assert.match(js, /#aimenu\{flex-direction:row;flex-wrap:nowrap/);
   assert.match(js, /min-height:45%/);
   assert.match(js, /bottom:44px/);
-  assert.match(html, /var VER=657,/);
+  assert.match(html, /var VER=(6[5-9]\d),/);
   const v = JSON.parse(ver);
-  assert.equal(v.v, 657);
+  assert.ok(v.v >= 657);
+});
+
+test('v658 typelines use self-hosted JetBrains Mono at 15px; 40px dock height is kept', ()=>{
+  assert.match(pcs, /@font-face\{font-family:'JetBrains Mono'/);
+  assert.match(pcs, /fonts\/JetBrainsMono-Regular\.woff2/);
+  assert.match(pcs, /fonts\/JetBrainsMono-SemiBold\.woff2/);
+  assert.match(pcs, /font-display:swap/);
+  assert.match(js, /#aicard \.aicfree\{[^}]*JetBrains Mono/);
+  assert.match(js, /#aicard \.aicfree\{[^}]*15px/);
+  assert.match(js, /#aicard \.aicfree\{[^}]*letter-spacing:\.03em/);
+  assert.match(js, /#aicard \.aicfree\{[^}]*height:40px/);
+  assert.match(js, /#aicard \.aicgo\{[^}]*height:40px/);
+  assert.match(js, /#aicard \.aicfree::placeholder/);
+  assert.match(js, /#aibox\.cards-on textarea\{[^}]*JetBrains Mono/);
+  assert.match(ai, /#aibox input,#aibox textarea\{[^}]*JetBrains Mono/);
+  assert.match(ai, /#aibox input::placeholder,#aibox textarea::placeholder/);
+  assert.match(alive, /#code\{[^}]*JetBrains Mono/);
+  assert.doesNotMatch(js, /#aicard \.aicfree\{[^}]*ThrydRead/);
+  // story / card body stays on ThrydRead
+  assert.match(js, /#aicard \.aicprompt\{[^}]*ThrydRead/);
+  assert.match(html, /var VER=658,/);
+  const v2 = JSON.parse(ver);
+  assert.equal(v2.v, 658);
 });
 
 test('v657 🎥 option publishes its description and is rendered like the other options', ()=>{
