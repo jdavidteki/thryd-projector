@@ -109,8 +109,8 @@
     "say",
     "find"
    ],
-   "instances": 555,
-   "arg_instances": 218,
+   "instances": 557,
+   "arg_instances": 220,
    "parent": null,
    "chain": [
     "Thing"
@@ -151,8 +151,8 @@
     "feel",
     "find"
    ],
-   "instances": 6,
-   "arg_instances": 6,
+   "instances": 7,
+   "arg_instances": 7,
    "parent": "Thing",
    "chain": [
     "Feeling",
@@ -164,6 +164,7 @@
     "weigh": "slump"
    },
    "implements": [
+    "Foldable",
     "Playable",
     "Readable",
     "Speakable",
@@ -4377,6 +4378,23 @@
    ],
    "tweets": []
   },
+  "joy": {
+   "class": "Feeling",
+   "cue": "word",
+   "first_run": "run-788e05",
+   "first_job": "j13",
+   "source": "pick",
+   "runs": [
+    "run-788e05"
+   ],
+   "tweets": [
+    {
+     "text": "lol! God has come! let every man be silent! #seniorboys",
+     "year": "2023",
+     "id": "1650237212720545795"
+    }
+   ]
+  },
   "juice": {
    "class": "Thing",
    "cue": "default",
@@ -5135,6 +5153,22 @@
     "run-788e05"
    ],
    "tweets": []
+  },
+  "longing": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-788e05",
+   "first_job": "j13",
+   "source": "pick",
+   "runs": [
+    "run-788e05"
+   ],
+   "tweets": [
+    {
+     "text": "— where have you been all my #life",
+     "year": "2024"
+    }
+   ]
   },
   "look": {
    "class": "Thing",
@@ -8636,6 +8670,22 @@
     }
    ]
   },
+  "tiwwn": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-788e05",
+   "first_job": "j13",
+   "source": "pick",
+   "runs": [
+    "run-788e05"
+   ],
+   "tweets": [
+    {
+     "text": "- you see am now? [[tiwwn]]! baba ibeji!",
+     "year": "2025"
+    }
+   ]
+  },
   "tnw": {
    "class": "Thing",
    "cue": "word",
@@ -11976,6 +12026,24 @@
     "pick"
    ],
    [
+    "tiwwn",
+    "Thing",
+    "j13",
+    "pick"
+   ],
+   [
+    "joy",
+    "Feeling",
+    "j13",
+    "pick"
+   ],
+   [
+    "longing",
+    "Thing",
+    "j13",
+    "pick"
+   ],
+   [
     "fireboydml",
     "Thing",
     "j2",
@@ -14967,6 +15035,10 @@
   "guy.where": "where(what: Thing)",
   "how.much": "much(what: Thing)",
   "eez.track": "track(what: Thing)",
+  "baba.hold": "hold(what: Thing)",
+  "god.hide": "hide(feeling: Feeling)",
+  "life.return": "return(what: Thing)",
+  "seniorgehs.return": "return(what: Thing)",
   "cooler.getdatemanufactured": "getDateManufactured()",
   "ronke.getlikes.contains": "getlikes.contains()",
   "kazeem.goodqualities.filter": "filter()",
@@ -15194,6 +15266,7 @@
     "vanish"
    ],
    "classes": [
+    "Feeling",
     "Manner",
     "Person",
     "Thing"
@@ -15201,6 +15274,7 @@
    "objects": [
     "buy",
     "dez",
+    "god",
     "lateef",
     "omo",
     "ronke",
@@ -15290,6 +15364,7 @@
     "Thing"
    ],
    "objects": [
+    "baba",
     "fine",
     "folake",
     "kunle",
@@ -15680,6 +15755,7 @@
    "good",
    "guy",
    "how",
+   "life",
    "now",
    "old",
    "people",
@@ -15770,5 +15846,5 @@
   "epilogue": "quiet",
   "coda": "quiet"
  },
- "updated": "2026-11-28T12:21:41-05:00"
+ "updated": "2026-11-28T12:26:40-05:00"
 }
