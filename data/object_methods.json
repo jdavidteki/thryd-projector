@@ -22772,15 +22772,15 @@
      ],
      "consequence": "The woman said it out loud on speaker, with the ladies listening: this has been going on a long time, long enough that they went to the picnic together.",
      "consequence_job": "j41",
-     "resolved": "has.bark(what=piknik:Thing) from j40",
+     "resolved": "has.bark(what=ezaley:Thing) from j40",
      "injected": [
       {
        "param": "what",
        "class": "Thing",
-       "instance": "piknik",
+       "instance": "ezaley",
        "from_run": "run-cf203b",
        "from_job": "j40",
-       "source": "pick"
+       "source": "original"
       }
      ]
     }
@@ -22837,15 +22837,15 @@
      ],
      "consequence": "The woman said it out loud on speaker, with the ladies listening: this has been going on a long time, long enough that they went to the picnic together.",
      "consequence_job": "j41",
-     "resolved": "long.looooong(what=piknik:Thing) from j40",
+     "resolved": "long.looooong(what=loooooong:Thing) from j40",
      "injected": [
       {
        "param": "what",
        "class": "Thing",
-       "instance": "piknik",
+       "instance": "loooooong",
        "from_run": "run-cf203b",
        "from_job": "j40",
-       "source": "pick"
+       "source": "original"
       }
      ]
     }
@@ -22958,7 +22958,7 @@
        "instance": "piknik",
        "from_run": "run-cf203b",
        "from_job": "j40",
-       "source": "pick"
+       "source": "original"
       }
      ]
     }
@@ -30023,6 +30023,89 @@
    "faded": false,
    "last_run": "run-cf203b"
   },
+  "god.have": {
+   "object": "god",
+   "method": "have",
+   "args": [
+    "offended"
+   ],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j79",
+    "card": "w79",
+    "title": "god.have(offended)",
+    "emoji": "🍱",
+    "at": "2026-11-27T20:11:21-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "god.have(offended)",
+     "emoji": "🍱",
+     "arg": "offended",
+     "run": "run-cf203b",
+     "job": "j79",
+     "tweets": [
+      {
+       "text": "God, if we have offended you, just say that. because see now 😔",
+       "year": "2023",
+       "id": "1640388642291040256"
+      }
+     ],
+     "consequence": "The lines that landed: \"God, if we have offended you, just say that.",
+     "consequence_job": "j80",
+     "resolved": "god.have(what=offended:Thing) from j79",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "offended",
+       "from_run": "run-cf203b",
+       "from_job": "j79",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "offended",
+      "first_run": "run-cf203b",
+      "first_job": "j79"
+     }
+    ],
+    "text": "have(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [
+    {
+     "id": "worry.have",
+     "title": "worry.have(deconversation)",
+     "run": "run-888ea9",
+     "job": "j4",
+     "at": "2026-11-23T17:51:25-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "kunle.have",
+     "title": "kunle.have(coordinates)",
+     "run": "run-g1-B",
+     "job": "j11",
+     "at": "2026-11-17T18:25:59-05:00",
+     "why": "same method"
+    }
+   ],
+   "faded": false,
+   "last_run": null
+  },
   "cooler.getdatemanufactured": {
    "object": "cooler",
    "method": "getDateManufactured",
@@ -34050,6 +34133,46 @@
    "prior": [],
    "faded": false,
    "last_run": null
+  },
+  "uber.addnewcustomer": {
+   "object": "uber",
+   "method": "addnewcustomer",
+   "args": [],
+   "runs": [
+    "run-cf203b"
+   ],
+   "defined": {
+    "run": "run-cf203b",
+    "job": "j80",
+    "card": "j80",
+    "title": "uber.addnewcustomer(kemi)",
+    "emoji": "",
+    "at": "2026-11-27T20:11:29-05:00",
+    "source": "cli"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "uber.addnewcustomer(kemi)",
+     "emoji": "",
+     "arg": "",
+     "run": "run-cf203b",
+     "job": "j80",
+     "tweets": [],
+     "consequence": "The customer typed this on this agenda.",
+     "consequence_job": ""
+    }
+   ],
+   "source": "cli",
+   "cli": true,
+   "sig": {
+    "params": [],
+    "text": "addnewcustomer()"
+   },
+   "receiver_class": "Thing",
+   "prior": [],
+   "faded": false,
+   "last_run": null
   }
  },
  "objects": {
@@ -34545,6 +34668,9 @@
   "go": [
    "go.back",
    "go.fit"
+  ],
+  "god": [
+   "god.have"
   ],
   "god_subject": [
    "object.look"
@@ -35347,6 +35473,9 @@
   "tyn": [
    "tyn.on",
    "tyn.getdetermines"
+  ],
+  "uber": [
+   "uber.addnewcustomer"
   ],
   "uncle_will_smith_subject": [
    "object.look"
@@ -60578,6 +60707,7 @@
     "life.what",
     "take.left",
     "wye.lagos",
+    "god.have",
     "cli.cli",
     "thryd.importtheme",
     "kemi.ismarried",
@@ -60604,7 +60734,8 @@
     "new.nonprofitorganization",
     "kasai.settemperature",
     "thryd.changereality",
-    "new.person"
+    "new.person",
+    "uber.addnewcustomer"
    ]
   },
   "run-d6fc": {
@@ -61966,7 +62097,8 @@
     "see.now",
     "life.what",
     "take.left",
-    "wye.lagos"
+    "wye.lagos",
+    "god.have"
    ],
    "runs": [
     "run-cf203b"
@@ -66057,6 +66189,9 @@
    "go.back",
    "go.fit"
   ],
+  "god": [
+   "god.have"
+  ],
   "gol": [
    "gol.lo"
   ],
@@ -66723,6 +66858,9 @@
    "tyn.on",
    "tyn.getdetermines"
   ],
+  "uber": [
+   "uber.addnewcustomer"
+  ],
   "understand": [
    "understand.now"
   ],
@@ -67208,6 +67346,7 @@
   "reaching": [],
   "take": [],
   "wye": [],
+  "god": [],
   "cooler": [],
   "kazeem.goodqualities": [],
   "app": [],
@@ -67250,7 +67389,8 @@
   "kemisister": [],
   "ronkesister": [],
   "destiny": [],
-  "kasai": []
+  "kasai": [],
+  "uber": []
  },
  "casts": {
   "run-5a58c4": [
@@ -67458,6 +67598,7 @@
    "get",
    "global",
    "go",
+   "god",
    "got",
    "green",
    "guy",
@@ -67589,5 +67730,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-27T19:58:23-05:00"
+ "updated": "2026-11-27T20:11:42-05:00"
 }

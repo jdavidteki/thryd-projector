@@ -108,8 +108,8 @@
     "find",
     "see"
    ],
-   "instances": 530,
-   "arg_instances": 204,
+   "instances": 531,
+   "arg_instances": 205,
    "parent": null,
    "chain": [
     "Thing"
@@ -5791,6 +5791,23 @@
    ],
    "tweets": []
   },
+  "offended": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-cf203b",
+   "first_job": "j79",
+   "source": "pick",
+   "runs": [
+    "run-cf203b"
+   ],
+   "tweets": [
+    {
+     "text": "God, if we have offended you, just say that. because see now 😔",
+     "year": "2023",
+     "id": "1640388642291040256"
+    }
+   ]
+  },
   "oldmaster": {
    "class": "Thing",
    "cue": "default",
@@ -10832,12 +10849,6 @@
   ],
   "run-cf203b": [
    [
-    "piknik",
-    "Thing",
-    "j40",
-    "pick"
-   ],
-   [
     "say",
     "Action",
     "j41",
@@ -11309,6 +11320,12 @@
     "shoot",
     "Thing",
     "j78",
+    "pick"
+   ],
+   [
+    "offended",
+    "Thing",
+    "j79",
     "pick"
    ]
   ],
@@ -14182,6 +14199,7 @@
   "life.what": "what(what: Thing)",
   "take.left": "left(what: Thing)",
   "wye.lagos": "lagos(what: Thing)",
+  "god.have": "have(what: Thing)",
   "cooler.getdatemanufactured": "getDateManufactured()",
   "ronke.getlikes.contains": "getlikes.contains()",
   "kazeem.goodqualities.filter": "filter()",
@@ -14277,7 +14295,8 @@
   "new.nonprofitorganization": "nonprofitorganization()",
   "kasai.settemperature": "settemperature()",
   "thryd.changereality": "changereality()",
-  "new.person": "person()"
+  "new.person": "person()",
+  "uber.addnewcustomer": "addnewcustomer()"
  },
  "parent": {
   "Person": "Thing",
@@ -14746,6 +14765,7 @@
    "get",
    "global",
    "go",
+   "god",
    "got",
    "green",
    "guy",
@@ -14936,5 +14956,5 @@
   "epilogue": "quiet",
   "coda": "quiet"
  },
- "updated": "2026-11-27T19:57:33-05:00"
+ "updated": "2026-11-27T20:11:42-05:00"
 }
