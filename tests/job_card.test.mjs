@@ -8,7 +8,7 @@ const js = rd('assets/job_card.js'), html = rd('index.html'), st = rd('assets/st
 
 test('job_card.js loads by default; ?cards=0 hides the panel', ()=>{
   assert.match(html, /cards=0/);
-  assert.match(html, /job_card\.js\?v=2[12]/);
+  assert.match(html, /job_card\.js\?v=2[123]/);
   assert.match(js, /cards=0/);
   assert.match(html, /if\(!\/\(\?:\^\|\[\?&\]\)cards=0/);
   assert.match(js, /if\(\/\(\?:\^\|\[\?&\]\)cards=0/);
@@ -181,7 +181,7 @@ test('v628: panel stays open after Send; waiting refresh keeps the sent card; ea
   assert.match(js, /border-radius:8px;white-space:normal/);
   assert.match(js, /max-height:15em;overflow-y:auto/);
   assert.match(js, /touch-action:pan-y/);
-  assert.match(html, /job_card\.js\?v=2[12]/);
+  assert.match(html, /job_card\.js\?v=2[123]/);
   assert.match(html, /intent_ai\.js\?v=614/);
   const src = js.slice(js.indexOf('function stripTweetUrls(s){') >= 0 ? js.indexOf('function stripTweetUrls(s){') : js.indexOf('function safeText(o){'), js.indexOf('function render(){'));
   const f = new Function(src + '; return {safeRows, safeText};')();
@@ -268,7 +268,7 @@ test('v633: archive safe lines flow inline at a smaller font; title stays its ow
 
 test('v634: open async jobs render as persistent waiting-on-real-life pills; empty list shows nothing', ()=>{
   assert.match(html, /var VER=(6[4-9]\d),/);
-  assert.match(html, /job_card\.js\?v=2[12]/);
+  assert.match(html, /job_card\.js\?v=2[123]/);
   const v = JSON.parse(ver);
   assert.ok(v.v >= 644);
   assert.match(js, /function asyncPills\(/);
@@ -314,7 +314,7 @@ test('v653: MENU and LOCK stay one nowrap row (v654: 40px targets, sideways scro
   assert.match(js, /sc\.appendChild\(menuBtn\(o\)\)/);
   assert.match(js, /Math\.abs\(\(ev\.clientX \|\| sx\) - sx\) > 14/);
   assert.match(html, /var VER=(6[4-9]\d),/);
-  assert.match(html, /job_card\.js\?v=2[12]/);
+  assert.match(html, /job_card\.js\?v=2[123]/);
   const v = JSON.parse(ver);
   assert.ok(v.v >= 644);
 });
@@ -338,7 +338,7 @@ __t('v644: send_receipt: tick only on the box receipt; 20 s timeout offers Resen
   const html = __fs.readFileSync(new URL('../index.html', import.meta.url), 'utf8');
   const ver = JSON.parse(__fs.readFileSync(new URL('../data/version.json', import.meta.url), 'utf8'));
   const pj = __fs.readFileSync(new URL('../assets/projector.js', import.meta.url), 'utf8');
-  __a.match(html, /var VER=(6[4-9]\d),/); __a.match(html, /job_card\.js\?v=2[12]/); __a.match(html, /projector\.js\?v=578/);
+  __a.match(html, /var VER=(6[4-9]\d),/); __a.match(html, /job_card\.js\?v=2[123]/); __a.match(html, /projector\.js\?v=578/);
   __a.ok(ver.v >= 645);
   __a.match(src, /const RECEIPT_MS = 20000;/);
   __a.match(src, /const eid = again \? again\.body\.event_id : uid\('pick-'\)/);          // resend reuses the event_id
@@ -369,7 +369,7 @@ __t('v645: pills read the box answer, say when unconfirmed, and a ✕ cancels by
   const html = __fs.readFileSync(new URL('../index.html', import.meta.url), 'utf8');
   const pj = __fs.readFileSync(new URL('../assets/projector.js', import.meta.url), 'utf8');
   const ver = JSON.parse(__fs.readFileSync(new URL('../data/version.json', import.meta.url), 'utf8'));
-  __a.ok(ver.v >= 645); __a.match(html, /var VER=(6[4-9]\d),/); __a.match(html, /job_card\.js\?v=2[12]/); __a.match(html, /projector\.js\?v=578/);
+  __a.ok(ver.v >= 645); __a.match(html, /var VER=(6[4-9]\d),/); __a.match(html, /job_card\.js\?v=2[123]/); __a.match(html, /projector\.js\?v=578/);
   __a.match(html, /thryd-update-ready/); __a.match(html, /window\.thrydReloadNow=/);
   __a.match(src, /update ready \(v/);
   __a.match(pj, /accept\(r, dest\.name, dest\.ep\)/);                       // reply topic follows the topic that carried it
@@ -426,7 +426,7 @@ test('v652 Prayer jobs shows about 5 cards; Show all agendas box has an x and Es
   assert.match(js, /cards\.slice\(lo, lo \+ PRAYER_PAGE\)/);
   assert.match(js, /if\(document\.getElementById\('aisheet'\)\)/);
   assert.match(js, /closeSheet\(\); return;/);
-  assert.match(html, /job_card\.js\?v=2[12]/);
+  assert.match(html, /job_card\.js\?v=2[123]/);
   const v = JSON.parse(ver);
   assert.ok(v.v >= 652);
 });
@@ -545,9 +545,9 @@ test('v658 typelines use self-hosted JetBrains Mono at 15px; 40px dock height is
   assert.ok(v2.v >= 658);
 });
 
-test('v659 tweet option descriptions never render x.com or twitter.com URLs; 🎥 live view stays', ()=>{
+test('v659 tweet option descriptions never render x.com or twitter.com URLs; 🎥 is not a list option', ()=>{
   assert.match(js, /function stripTweetUrls\(s\)\{/);
-  assert.match(html, /job_card\.js\?v=22/);
+  assert.match(html, /job_card\.js\?v=23/);
   assert.match(html, /var VER=659,/);
   const v = JSON.parse(ver);
   assert.equal(v.v, 659);
@@ -570,15 +570,25 @@ test('v659 tweet option descriptions never render x.com or twitter.com URLs; �
   assert.match(withSrc, /«line»/);
 });
 
-test('v657 🎥 option publishes its description and is rendered like the other options', ()=>{
-  assert.doesNotMatch(js, /filter\(o => !isLiveOpt\(o\)\)/);
-  assert.match(js, /\(c\.options \|\| \[\]\)\.forEach\(o => \{/);
+test('v659 job cards list 4 line options; 🎥 Live stays on the menu pill; no townhall.night echo', ()=>{
+  assert.match(js, /filter\(o => !isLiveOpt\(o\)\)/);
+  assert.match(js, /function stripTownhallEcho\(s\)\{/);
   const card = JSON.parse(rd('data/open_card.json'));
   if(card.open){
-    const live = card.options.find(o => o.label && /\u{1f3a5}/u.test(o.label.trim()));
-    assert.ok(live, 'open_card.json has a 🎥 option');
-    assert.equal(typeof live.safe, 'string');
-    assert.match(live.safe, /live view of the scene so far/i);
+    const live = (card.options || []).find(o => o.label && /\u{1f3a5}/u.test(String(o.label).trim()));
+    assert.equal(live, undefined, 'open_card.json must not list a 🎥 option');
+    assert.equal((card.options || []).length, 4);
+    const blob = JSON.stringify(card);
+    assert.equal(blob.includes('townhall.night'), false);
+    assert.equal(blob.includes('x.com'), false);
+    assert.equal(blob.includes('twitter.com'), false);
+    const typed = ['chrome.browserhistory.add(pornhub)', '#thryd.miracle.log(1)', '#thryd.importtheme(fireboydml)', 'randomwoman.iscrying()'];
+    for(const cmd of typed){
+      assert.equal((card.prompt || '').includes(cmd), false, cmd);
+    }
+    const pill = (((card.menus || {}).live) || []).find(o => /Live/i.test(String(o.label || '')));
+    assert.ok(pill, 'menus.live still has the 🎥 Live pill');
+    assert.match(String(pill.value || ''), /live_view/);
   }
 });
 

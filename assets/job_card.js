@@ -619,7 +619,7 @@
 
   const LEADS = [/^(Where things stand:)\s*/i, /^(What just happened:)\s*/i, /^(\ud83d\udcd6 Now:)\s*/];
   function promptEl(text){
-    const lines = String(text || '').split('\n').map(x => x.trim()).filter(Boolean);
+    const lines = stripTownhallEcho(String(text || '')).split('\n').map(x => x.trim()).filter(Boolean);
     const frag = document.createDocumentFragment();
     if(!lines.length) return frag;
     const t = document.createElement('div'); t.className = 'aictitle'; t.textContent = lines[0]; frag.appendChild(t);
@@ -659,7 +659,10 @@
   // v628: full archive safe (chat option description) under each option.
   // v659: never render an X/Twitter status URL or the old 'tweet, date, x.com/i/status/…' header.
   // Status ids may exist on the option as `_source` but are not shown. 🎥 keeps its live-view text.
-  function stripTweetUrls(s){
+    function stripTownhallEcho(s){
+    return String(s || '').replace(/(?:^|\n)[ \t]*townhall\.night\s*\{[\s\S]*?\}/gi, '').replace(/\n{3,}/g, '\n\n').trim();
+  }
+function stripTweetUrls(s){
     if(s == null) return '';
     s = String(s);
     if(/^\s*a live view of the scene so far\s*$/i.test(s)) return s.trim();
@@ -1070,11 +1073,10 @@
     } else {
       const locked = wasSent(c.job);
       if(c.prompt) body.appendChild(promptEl(c.prompt));
-      if(c.helpText){ const h = document.createElement('div'); h.className = 'aichelt'; h.textContent = stripTweetUrls(c.helpText); body.appendChild(h); }
+      if(c.helpText){ const h = document.createElement('div'); h.className = 'aichelt'; h.textContent = stripTweetUrls(stripTownhallEcho(c.helpText)); body.appendChild(h); }
       const opts = document.createElement('div'); opts.className = 'aicopts';
-      // v657: 🎥 is still the Live view pill in the menu row, and also a list option so its
-      // description ('a live view of the scene so far') shows the same way the other options do.
-      (c.options || []).forEach(o => {
+      // v659: 🎥 Live stays on the menu pill only; job cards list the 4 line options.
+      (c.options || []).filter(o => !isLiveOpt(o)).forEach(o => {
         const b = document.createElement('div'); b.className = 'aicopt' + (sel.values.has(o.value) ? ' on' : '') + (o.role === 'hook' ? ' hook' : '');
         if(o.role === 'hook' && /^#[0-9a-f]{6}$/i.test(o.color || '')){ b.style.setProperty('--hook', o.color); b.dataset.role = 'hook'; }
         b.dataset.value = o.value; b.setAttribute('role', 'button'); b.tabIndex = locked ? -1 : 0;
