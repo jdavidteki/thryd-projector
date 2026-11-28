@@ -9,8 +9,8 @@
     "happens",
     "know"
    ],
-   "instances": 6,
-   "arg_instances": 3,
+   "instances": 7,
+   "arg_instances": 4,
    "parent": "Thing",
    "chain": [
     "Frequency",
@@ -105,12 +105,12 @@
   "Thing": {
    "param": "what",
    "methods": [
-    "say",
     "see",
+    "say",
     "find"
    ],
-   "instances": 541,
-   "arg_instances": 212,
+   "instances": 543,
+   "arg_instances": 213,
    "parent": null,
    "chain": [
     "Thing"
@@ -1484,6 +1484,22 @@
     {
      "text": "[[ti]] -- you'd be stupid as an investor not to invest",
      "year": "2024"
+    }
+   ]
+  },
+  "child": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-788e05",
+   "first_job": "j6",
+   "source": "pick",
+   "runs": [
+    "run-788e05"
+   ],
+   "tweets": [
+    {
+     "text": "debby: but see, that child of god thing is a lie.",
+     "year": "2022"
     }
    ]
   },
@@ -6971,10 +6987,11 @@
   "rihanna": {
    "class": "Thing",
    "cue": "default",
-   "first_run": "run-5a58c4",
-   "first_job": "j45",
+   "first_run": "run-788e05",
+   "first_job": "j6",
    "source": "typed",
    "runs": [
+    "run-788e05",
     "run-5a58c4"
    ],
    "tweets": []
@@ -7829,6 +7846,23 @@
     "run-5a58c4"
    ],
    "tweets": []
+  },
+  "still": {
+   "class": "Frequency",
+   "cue": "word",
+   "first_run": "run-788e05",
+   "first_job": "j6",
+   "source": "pick",
+   "runs": [
+    "run-788e05"
+   ],
+   "tweets": [
+    {
+     "text": "samson when he still had his hair #seniorboys",
+     "year": "2024",
+     "id": "1773468660692111447"
+    }
+   ]
   },
   "stmaryscatholicchilurch": {
    "class": "Thing",
@@ -8787,6 +8821,17 @@
    ],
    "tweets": []
   },
+  "tylerperry": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-788e05",
+   "first_job": "j6",
+   "source": "typed",
+   "runs": [
+    "run-788e05"
+   ],
+   "tweets": []
+  },
   "tyn": {
    "class": "Thing",
    "cue": "default",
@@ -9553,6 +9598,7 @@
    "source": "pick",
    "runs": [
     "run-888ea9",
+    "run-788e05",
     "run-2eb42d"
    ],
    "tweets": [
@@ -11634,12 +11680,6 @@
     "pick"
    ],
    [
-    "people",
-    "Person",
-    "j5",
-    "pick"
-   ],
-   [
     "right",
     "Thing",
     "j5",
@@ -11649,6 +11689,24 @@
     "mummy",
     "Thing",
     "j5",
+    "pick"
+   ],
+   [
+    "child",
+    "Thing",
+    "j6",
+    "pick"
+   ],
+   [
+    "yuwa",
+    "Thing",
+    "j6",
+    "pick"
+   ],
+   [
+    "still",
+    "Frequency",
+    "j6",
     "pick"
    ],
    [
@@ -11673,6 +11731,24 @@
     "cubanachiefpriest",
     "Thing",
     "j4",
+    "typed"
+   ],
+   [
+    "tylerperry",
+    "Thing",
+    "j6",
+    "typed"
+   ],
+   [
+    "people",
+    "Person",
+    "j6",
+    "typed"
+   ],
+   [
+    "rihanna",
+    "Thing",
+    "j6",
     "typed"
    ]
   ],
@@ -14563,6 +14639,9 @@
   "shoot.him": "him(what: Thing)",
   "chugging.ahead": "ahead(what: Thing)",
   "where.next": "next(what: Thing)",
+  "debby.see": "see(what: Thing)",
+  "diss.thing": "thing(what: Thing)",
+  "samson.when": "when(when: Frequency)",
   "cooler.getdatemanufactured": "getDateManufactured()",
   "ronke.getlikes.contains": "getlikes.contains()",
   "kazeem.goodqualities.filter": "filter()",
@@ -14756,6 +14835,7 @@
     "chairman",
     "could",
     "crime",
+    "debby",
     "dez",
     "ehen",
     "folake",
@@ -14824,6 +14904,7 @@
     "can",
     "chairman",
     "could",
+    "debby",
     "dez",
     "everywhere",
     "folake",
@@ -15261,6 +15342,8 @@
    "chugging",
    "condolences",
    "could",
+   "debby",
+   "diss",
    "dyeriz",
    "eez",
    "go",
@@ -15268,6 +15351,7 @@
    "now",
    "old",
    "person",
+   "samson",
    "see",
    "shoot",
    "society",
@@ -15347,5 +15431,5 @@
   "epilogue": "quiet",
   "coda": "quiet"
  },
- "updated": "2026-11-28T00:18:23-05:00"
+ "updated": "2026-11-28T00:29:16-05:00"
 }
