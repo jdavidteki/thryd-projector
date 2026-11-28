@@ -30669,8 +30669,35 @@
     "emoji": "🧊",
     "at": "2026-11-27T23:30:09-05:00"
    },
-   "calls": 0,
+   "calls": 1,
    "titles": [
+    {
+     "title": "condolences.family(really)",
+     "emoji": "🧸",
+     "arg": "really",
+     "run": "run-788e05",
+     "job": "j12",
+     "tweets": [
+      {
+       "text": "condolences to his family! we really need to do better as a people.",
+       "year": "2023",
+       "id": "1654443011839782914"
+      }
+     ],
+     "consequence": "The lines that landed: \"eez a track because yuwa running-- eez a goal!#seniorboys\", \"“What’s on your mind, my daughter?” she asked with a gentle tone.\", \"condolences to his family!",
+     "consequence_job": "j13",
+     "resolved": "condolences.family(how=really:Manner) from j12",
+     "injected": [
+      {
+       "param": "how",
+       "class": "Manner",
+       "instance": "really",
+       "from_run": "run-788e05",
+       "from_job": "j12",
+       "source": "pick"
+      }
+     ]
+    },
     {
      "title": "condolences.family(really)",
      "emoji": "🧊",
@@ -30694,7 +30721,7 @@
        "instance": "really",
        "from_run": "run-788e05",
        "from_job": "j2",
-       "source": "pick"
+       "source": "original"
       }
      ]
     }
@@ -30714,7 +30741,16 @@
     "text": "family(how: Manner)"
    },
    "receiver_class": "Thing",
-   "prior": [],
+   "prior": [
+    {
+     "id": "poor.family",
+     "title": "poor.family(get)",
+     "run": "run-788e05",
+     "job": "j8",
+     "at": "2026-11-28T00:50:09-05:00",
+     "why": "same method"
+    }
+   ],
    "faded": false,
    "last_run": "run-788e05"
   },
@@ -32899,6 +32935,81 @@
    ],
    "faded": false,
    "last_run": "run-788e05"
+  },
+  "eez.track": {
+   "object": "eez",
+   "method": "track",
+   "args": [
+    "because"
+   ],
+   "runs": [
+    "run-788e05"
+   ],
+   "defined": {
+    "run": "run-788e05",
+    "job": "j12",
+    "card": "w12",
+    "title": "eez.track(because)",
+    "emoji": "🏮",
+    "at": "2026-11-28T12:21:04-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "eez.track(because)",
+     "emoji": "🏮",
+     "arg": "because",
+     "run": "run-788e05",
+     "job": "j12",
+     "tweets": [
+      {
+       "text": "- eez a track because yuwa running-- eez a goal!#seniorboys",
+       "year": "2024",
+       "id": "1750348634044948637"
+      }
+     ],
+     "consequence": "The lines that landed: \"eez a track because yuwa running-- eez a goal!#seniorboys\", \"“What’s on your mind, my daughter?” she asked with a gentle tone.\", \"condolences to his family!",
+     "consequence_job": "j13",
+     "resolved": "eez.track(what=because:Thing) from j12",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "because",
+       "from_run": "run-788e05",
+       "from_job": "j12",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "because",
+      "first_run": "run-788e05",
+      "first_job": "j12"
+     }
+    ],
+    "text": "track(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [
+    {
+     "id": "request.track",
+     "title": "request.track(response)",
+     "run": "run-888ea9",
+     "job": "j9",
+     "at": "2026-11-23T20:00:23-05:00",
+     "why": "same method"
+    }
+   ],
+   "faded": false,
+   "last_run": null
   },
   "cooler.getdatemanufactured": {
    "object": "cooler",
@@ -37692,7 +37803,8 @@
    "eez.heddie",
    "eez.good",
    "eez.now",
-   "eez.like"
+   "eez.like",
+   "eez.track"
   ],
   "ehen": [
    "ehen.serious"
@@ -64254,6 +64366,7 @@
     "seniorgehs.straight",
     "guy.where",
     "how.much",
+    "eez.track",
     "thryd.importtheme",
     "chrome.add",
     "thryd.log",
@@ -64778,7 +64891,8 @@
     "go.still",
     "seniorgehs.straight",
     "guy.where",
-    "how.much"
+    "how.much",
+    "eez.track"
    ],
    "runs": [
     "run-788e05"
@@ -70147,7 +70261,8 @@
    "eez.heddie",
    "eez.good",
    "eez.now",
-   "eez.like"
+   "eez.like",
+   "eez.track"
   ],
   "ehen": [
    "ehen.serious"
@@ -71881,5 +71996,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-28T12:19:10-05:00"
+ "updated": "2026-11-28T12:21:41-05:00"
 }
