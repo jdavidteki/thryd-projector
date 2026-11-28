@@ -136,6 +136,20 @@
     '#aisheet .pnav .ppos{font:500 11.5px/1.3 ui-sans-serif,system-ui,sans-serif;color:#b8b2a4}',
     '#aisheet .pnav button{min-height:40px;min-width:64px;text-align:center;border-radius:999px}',
     '#aisheet .pnav button:disabled{opacity:.4;cursor:default}',
+    /* v661 prayer UI: equal Yes/Maybe/No, held answers marked and parked at the back, one gold Send-all bar */
+    '#aisheet .pcard .popts{flex-wrap:nowrap}',
+    '#aisheet .pcard .popts button{flex:1 1 0;min-width:0;padding:8px 6px;white-space:nowrap}',
+    '#aisheet .pcard.held{border-color:rgba(143,227,161,.55);background:rgba(143,227,161,.06)}',
+    '#aisheet .pcard.held .ppr{color:#cfd9cf}',
+    '#aisheet .pcard .pans{font:650 11.5px/1.3 ui-sans-serif,system-ui,sans-serif;color:#8fe3a1;margin:0 0 5px}',
+    '#aisheet .pcard .popts button.chosen{background:rgba(143,227,161,.22);border-color:#8fe3a1;color:#e8ffee;box-shadow:inset 0 0 0 1px #8fe3a1}',
+    '#aisheet .pcard.held .popts button:not(.chosen){opacity:.55}',
+    '#aisheet .psend{display:block;width:100%;flex:0 0 auto;margin:0 0 7px;min-height:44px;padding:9px 12px;border-radius:12px;text-align:center;font:700 13px/1.25 ui-sans-serif,system-ui,sans-serif;color:#2a1d00;background:#ffd76a;border:1px solid #ffd76a;cursor:pointer}',
+    '#aisheet .psend small{display:block;font:500 10.5px/1.25 ui-sans-serif,system-ui,sans-serif;color:#4a3600;margin-top:1px}',
+    '#aisheet .psend:disabled{opacity:.6}',
+    '#aisheet .bd{flex:0 0 auto}',
+    '#aicard:has(#aisheet .pcards) .aicseat{display:none}',
+    '#aisheet .pbar{display:flex;flex-direction:column;flex:0 0 auto}@media (max-height:640px){#aisheet .psend small{display:none}#aisheet .pbar{flex-direction:row;align-items:center;gap:8px;margin:0 0 5px}#aisheet .pbar .psend{flex:1 1 auto;width:auto;margin:0;min-height:40px;padding:6px 10px}#aisheet .pbar .pnav{flex:0 0 auto;margin:0;gap:6px}#aisheet .pnav button{min-height:40px;min-width:56px}}',
     '#aicard .aicsent.err{color:#f2b8a8}#aicard .aicwait .aicx{margin-left:auto;flex:0 0 auto;font:700 12px/1 ui-sans-serif,system-ui,sans-serif;color:#efe9dc;background:rgba(255,255,255,.08);border:1px solid rgba(201,169,90,.45);border-radius:999px;width:22px;height:22px;padding:0;cursor:pointer}',
     '#aisheet input.aishf{width:100%;box-sizing:border-box;margin:0 0 6px;padding:8px 10px;border-radius:9px;border:1px solid rgba(201,169,90,.4);background:rgba(0,0,0,.3);color:#efe9dc;font:500 12.5px/1.3 ui-sans-serif,system-ui,sans-serif;min-height:40px}',
     '@media (max-width:520px){#aibox.cards-on{width:96vw;bottom:6vh}#aicard .aicprompt{font-size:14.5px}#aimenu{padding:4px 6px 5px}#aimenu .aimscroll{max-height:44px;gap:5px}}',
@@ -972,15 +986,56 @@ function stripTweetUrls(s){
     tapOnce(b, () => closeSheet());
     return b;
   }
+  // v661: prayer answers are held on the box (no AI); the sheet shows the answer, moves the card to the back and counts.
+  function isPrayerAns(v){ return /^prayer:\s*run-[0-9a-f]{4,6}\s+p\d+:\s*(yes|maybe|no)$/i.test(String(v || '').trim()); }
+  function isPrayerSendAll(v){ return /^prayer:\s*send\s+all/i.test(String(v || '').trim()); }
+  function isPrayerVal(v){ return isPrayerAns(v) || isPrayerSendAll(v); }
+  const PLAB = {yes: 'Yes \ud83d\ude4f', maybe: 'Maybe \ud83e\udd14', no: 'No \u270b'};
+  function prayerHeader(c){ return '\ud83d\ude4f Prayer jobs \u00b7 ' + c.answered + ' answered \u00b7 ' + c.listed + ' listed' + (c.sent ? ' \u00b7 ' + c.sent + ' sent' : ''); }
+  function prayerRecount(s){
+    const cs = s.cards || [], h = cs.filter(c => c.held).length;
+    s.counts = {answered: h, listed: cs.length, sent: (s.counts && s.counts.sent) || 0};
+    s.prompt = prayerHeader(s.counts);
+    if(h > 0) s.send_all = {label: '\ud83d\udce8 Send all answered prayers (' + h + ')', value: 'prayer: send all ' + h, count: h}; else delete s.send_all;
+  }
+  // optimistic local update so the card moves the moment the box accepts the tap; the pushed sheet replaces it seconds later
+  function prayerLocal(o){
+    const m = /^prayer:\s*(run-[0-9a-f]{4,6})\s+(p\d+):\s*(yes|maybe|no)$/i.exec(String(o.value || '').trim());
+    const s = m && ((meta && meta.sheet) || (card && card.sheet)); if(!s || s.kind !== 'prayers') return;
+    const i = (s.cards || []).findIndex(c => c.id === m[2].toLowerCase() && (!c.run || c.run === m[1].toLowerCase()));
+    if(i < 0) return;
+    const c = s.cards.splice(i, 1)[0], v = m[3].toLowerCase();
+    c.held = true; c.answer = v; c.answer_label = PLAB[v]; c.answered_at = new Date().toISOString();
+    s.cards.push(c); prayerRecount(s);
+    const last = Math.max(0, Math.ceil(s.cards.length / PRAYER_PAGE) - 1);
+    if(sheetPage > last) sheetPage = last;
+  }
+  function prayerLocalSent(){
+    const s = (meta && meta.sheet) || (card && card.sheet); if(!s || s.kind !== 'prayers') return;
+    const n = (s.cards || []).filter(c => c.held).length; if(!n) return;
+    s.cards = s.cards.filter(c => !c.held);
+    s.counts = {answered: 0, listed: s.cards.length, sent: ((s.counts && s.counts.sent) || 0) + n};
+    s.prompt = prayerHeader(s.counts); delete s.send_all; sheetPage = 0;
+    s.body = '\ud83d\udce8 Sent ' + n + ' answered prayer' + (n === 1 ? '' : 's') + ' in one batch \u00b7 with the Chief of Staff';
+    try{ render(); }catch(e){}
+  }
   function fillPrayerCards(box, s){
     const cards = s.cards || [];
-    const id = sheetId(s);
+    const id = 'prayers';   // v661: each answer re-pushes the sheet with a new `at`; stay on the page the customer is on
     if(sheetPageFor !== id){ sheetPage = 0; sheetPageFor = id; }
     const pages = Math.max(1, Math.ceil(cards.length / PRAYER_PAGE) || 1);
     if(sheetPage >= pages) sheetPage = pages - 1;
     if(sheetPage < 0) sheetPage = 0;
     const lo = sheetPage * PRAYER_PAGE;
     const slice = cards.slice(lo, lo + PRAYER_PAGE);
+    const bar = document.createElement('div'); bar.className = 'pbar';
+    if(s.send_all && s.send_all.value){
+      const sb = document.createElement('button'); sb.type = 'button'; sb.className = 'psend'; sb.dataset.value = s.send_all.value;
+      sb.textContent = s.send_all.label;
+      const sm = document.createElement('small'); sm.textContent = 'one tap delivers every held answer \u00b7 not a prayer answer'; sb.appendChild(sm);
+      tapOnce(sb, () => sendMenu(sb, s.send_all));
+      bar.appendChild(sb);
+    }
     if(cards.length > PRAYER_PAGE){
       const nav = document.createElement('div'); nav.className = 'pnav';
       const prev = document.createElement('button'); prev.type = 'button'; prev.textContent = 'Previous'; prev.disabled = sheetPage <= 0;
@@ -991,17 +1046,25 @@ function stripTweetUrls(s){
       if(!prev.disabled) tapOnce(prev, () => { sheetPage -= 1; render(); });
       if(!next.disabled) tapOnce(next, () => { sheetPage += 1; render(); });
       nav.appendChild(prev); nav.appendChild(pos); nav.appendChild(next);
-      box.appendChild(nav);
+      bar.appendChild(nav);
     }
+    if(bar.childNodes.length) box.appendChild(bar);
     const wrap = document.createElement('div'); wrap.className = 'pcards';
     slice.forEach(c => {
-      const el = document.createElement('div'); el.className = 'pcard';
+      const el = document.createElement('div'); el.className = 'pcard' + (c.held ? ' held' : '');
       if(c.id) el.dataset.id = c.id;
       if(c.prompt){ const h = document.createElement('div'); h.className = 'ppr'; h.textContent = c.prompt; el.appendChild(h); }
       if(c.from){ const f = document.createElement('div'); f.className = 'pfrom'; f.textContent = c.from; el.appendChild(f); }
+      if(c.held){
+        const a = document.createElement('div'); a.className = 'pans';
+        a.textContent = '\u2713 Answered ' + (c.answer_label || PLAB[c.answer] || c.answer) + (hhmm(c.answered_at) ? ' \u00b7 ' + hhmm(c.answered_at) : '') + ' \u00b7 held until Send all';
+        el.appendChild(a);
+      }
       const opts = document.createElement('div'); opts.className = 'popts';
       (c.options || []).forEach(o => {
         const b = menuBtn(o);
+        const vm = /:\s*(yes|maybe|no)$/i.exec(String(o && o.value || ''));
+        if(c.held && vm && vm[1].toLowerCase() === c.answer){ b.classList.add('chosen'); b.setAttribute('aria-pressed', 'true'); }
         if(/:\s*menu$/i.test(String(o && o.value || ''))){
           tapOnce(b, () => closeSheet());
         }
@@ -1208,7 +1271,7 @@ function stripTweetUrls(s){
   function menuBtn(o){
     const b = document.createElement('button'); b.type = 'button';
     b.textContent = o.label; b.dataset.value = o.value;
-    if(menuRecent(card && card.run, o.value)){ b.classList.add('sent'); b.title = 'sent'; }
+    if(!isPrayerVal(o.value) && menuRecent(card && card.run, o.value)){ b.classList.add('sent'); b.title = 'sent'; }
     tapOnce(b, () => sendMenu(b, o));
     return b;
   }
@@ -1372,7 +1435,7 @@ function stripTweetUrls(s){
     if(SEED_RE.test(String(o.value).trim()) && seedGate(card)){ menuNote(seedNote(card), 'err'); log({event: 'seed_blocked', job: card.job, action: o.value}); return; }
     const run = card && card.run;
     const again = pendingMenu[o.value] && pendingMenu[o.value].state === 'not_received' ? pendingMenu[o.value] : null;
-    if(!again && menuRecent(run, o.value)){ btn.classList.add('sent'); btn.title = 'sent'; menuNote(o.label + ' already sent \u2713', 'ok'); return; } // drop before POST
+    if(!again && !isPrayerVal(o.value) && menuRecent(run, o.value)){ btn.classList.add('sent'); btn.title = 'sent'; menuNote(o.label + ' already sent \u2713', 'ok'); return; } // drop before POST
     if(o.href && !again){ try{ window.open(o.href, '_blank', 'noopener'); }catch(e){} }
     btn.disabled = true; menuNote((again ? 'resending ' : 'sending ') + o.label + '\u2026', '');
     const eid = again ? again.body.event_id : uid('menu-');
@@ -1393,7 +1456,11 @@ function stripTweetUrls(s){
     post(body, onRetry).then(async r => {
       if(!(r && r.ok)) return fail(r ? 'HTTP ' + r.status : '');
       pm.r = r;
-      btn.disabled = false; markMenu(run, o.value); logSent({kind: 'menu', run, job: body.job || null, action: o.value, label: o.label, event_id: eid}); try{ updateStrip(); }catch(e){}
+      btn.disabled = false;
+      // v661: a prayer Yes / Maybe / No is only held on the box (no wait, no pill); the card moves at once. Send all is a normal waiting tap.
+      if(isPrayerAns(o.value)){ if(pendingMenu[o.value] === pm) delete pendingMenu[o.value]; prayerLocal(o); menuNote(o.label + ' held \u2713', 'ok'); try{ render(); }catch(e){} return; }
+      markMenu(run, o.value); logSent({kind: 'menu', run, job: body.job || null, action: o.value, label: o.label, event_id: eid}); try{ updateStrip(); }catch(e){}
+      if(isPrayerSendAll(o.value)) prayerLocalSent();
       btn.title = 'sending'; menuNote('\u2026 ' + o.label + ' sent, waiting for the box to confirm', 'busy');
       const m = await awaitReply(body, t0, r, RECEIPT_MS);
       if(m) return done(m);

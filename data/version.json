@@ -1,5 +1,5 @@
 {
- "v": 660,
- "at": "2026-11-28T00:25:13-05:00",
- "note": "v660: after a pick, the next job card is meant to show in about 5s without a GitHub Pages build. job_card.js reads open_card.json from origin raw (raw.githubusercontent, cache-bust) and Pages, and uses the newest `at`; while a pick is in flight it polls every 2s and swaps the next jN in automatically (the 30s idle Pages poll is unchanged). On github.io, job_card.js itself is loaded from origin raw (blob) so the script is not stuck behind Pages; assets/ is the fallback. The version check also reads origin raw. open_card_push still publishes the ntfy card lane and git-pushes data/open_card.json immediately on every seat (no force). auto_seat banks w(open+1) and w(open+2) in the background after open_card_next (bank_options only, never a future jobs/wK.json; respects the lock). v659 card list / typeline font / landscape panel are kept. version.json -> 660"
+ "v": 661,
+ "at": "2026-11-28T03:15:28-05:00",
+ "note": "v661: Prayer jobs sheet. Header counts (N answered · N listed [· N sent]); every prayer is Yes 🙏 / Maybe 🤔 / No ✋ (equal size, no Menu 🏠); an answer is held on the box with no AI call and the card moves to the back with its answer shown; one gold 📨 Send all answered prayers (N) button delivers all held answers in one batch (one Chief of Staff wake). version.json -> 661"
 }
