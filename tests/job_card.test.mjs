@@ -8,7 +8,7 @@ const js = rd('assets/job_card.js'), html = rd('index.html'), st = rd('assets/st
 
 test('job_card.js loads by default; ?cards=0 hides the panel', ()=>{
   assert.match(html, /cards=0/);
-  assert.match(html, /job_card\.js\?v=20/);
+  assert.match(html, /job_card\.js\?v=21/);
   assert.match(js, /cards=0/);
   assert.match(html, /if\(!\/\(\?:\^\|\[\?&\]\)cards=0/);
   assert.match(js, /if\(\/\(\?:\^\|\[\?&\]\)cards=0/);
@@ -120,9 +120,8 @@ test('v622: card/menu posts use the typeline lane with 429 backoff+retry, friend
   assert.match(js, /awaitReply\(body, t0, r, RECEIPT_MS\)/);   // v644: 20 s receipt window
 });
 
-test('v623: 🎥 is a Live view pill (own menu_action per job), not a line option', ()=>{
+test('v623: 🎥 is a Live view pill (own menu_action per job)', ()=>{
   assert.match(js, /function isLiveOpt/);
-  assert.match(js, /filter\(o => !isLiveOpt\(o\)\)/);
   assert.match(js, /c\.menus\.live/);
   const card = JSON.parse(rd('data/open_card.json'));
   if(card.open){
@@ -182,7 +181,7 @@ test('v628: panel stays open after Send; waiting refresh keeps the sent card; ea
   assert.match(js, /border-radius:8px;white-space:normal/);
   assert.match(js, /max-height:15em;overflow-y:auto/);
   assert.match(js, /touch-action:pan-y/);
-  assert.match(html, /job_card\.js\?v=20/);
+  assert.match(html, /job_card\.js\?v=21/);
   assert.match(html, /intent_ai\.js\?v=614/);
   const src = js.slice(js.indexOf('function safeText(o){'), js.indexOf('function render(){'));
   const f = new Function(src + '; return {safeRows, safeText};')();
@@ -269,7 +268,7 @@ test('v633: archive safe lines flow inline at a smaller font; title stays its ow
 
 test('v634: open async jobs render as persistent waiting-on-real-life pills; empty list shows nothing', ()=>{
   assert.match(html, /var VER=(6[4-9]\d),/);
-  assert.match(html, /job_card\.js\?v=20/);
+  assert.match(html, /job_card\.js\?v=21/);
   const v = JSON.parse(ver);
   assert.ok(v.v >= 644);
   assert.match(js, /function asyncPills\(/);
@@ -315,7 +314,7 @@ test('v653: MENU and LOCK stay one nowrap row (v654: 40px targets, sideways scro
   assert.match(js, /sc\.appendChild\(menuBtn\(o\)\)/);
   assert.match(js, /Math\.abs\(\(ev\.clientX \|\| sx\) - sx\) > 14/);
   assert.match(html, /var VER=(6[4-9]\d),/);
-  assert.match(html, /job_card\.js\?v=20/);
+  assert.match(html, /job_card\.js\?v=21/);
   const v = JSON.parse(ver);
   assert.ok(v.v >= 644);
 });
@@ -339,7 +338,7 @@ __t('v644: send_receipt: tick only on the box receipt; 20 s timeout offers Resen
   const html = __fs.readFileSync(new URL('../index.html', import.meta.url), 'utf8');
   const ver = JSON.parse(__fs.readFileSync(new URL('../data/version.json', import.meta.url), 'utf8'));
   const pj = __fs.readFileSync(new URL('../assets/projector.js', import.meta.url), 'utf8');
-  __a.match(html, /var VER=(6[4-9]\d),/); __a.match(html, /job_card\.js\?v=20/); __a.match(html, /projector\.js\?v=578/);
+  __a.match(html, /var VER=(6[4-9]\d),/); __a.match(html, /job_card\.js\?v=21/); __a.match(html, /projector\.js\?v=578/);
   __a.ok(ver.v >= 645);
   __a.match(src, /const RECEIPT_MS = 20000;/);
   __a.match(src, /const eid = again \? again\.body\.event_id : uid\('pick-'\)/);          // resend reuses the event_id
@@ -370,7 +369,7 @@ __t('v645: pills read the box answer, say when unconfirmed, and a ✕ cancels by
   const html = __fs.readFileSync(new URL('../index.html', import.meta.url), 'utf8');
   const pj = __fs.readFileSync(new URL('../assets/projector.js', import.meta.url), 'utf8');
   const ver = JSON.parse(__fs.readFileSync(new URL('../data/version.json', import.meta.url), 'utf8'));
-  __a.ok(ver.v >= 645); __a.match(html, /var VER=(6[4-9]\d),/); __a.match(html, /job_card\.js\?v=20/); __a.match(html, /projector\.js\?v=578/);
+  __a.ok(ver.v >= 645); __a.match(html, /var VER=(6[4-9]\d),/); __a.match(html, /job_card\.js\?v=21/); __a.match(html, /projector\.js\?v=578/);
   __a.match(html, /thryd-update-ready/); __a.match(html, /window\.thrydReloadNow=/);
   __a.match(src, /update ready \(v/);
   __a.match(pj, /accept\(r, dest\.name, dest\.ep\)/);                       // reply topic follows the topic that carried it
@@ -427,7 +426,7 @@ test('v652 Prayer jobs shows about 5 cards; Show all agendas box has an x and Es
   assert.match(js, /cards\.slice\(lo, lo \+ PRAYER_PAGE\)/);
   assert.match(js, /if\(document\.getElementById\('aisheet'\)\)/);
   assert.match(js, /closeSheet\(\); return;/);
-  assert.match(html, /job_card\.js\?v=20/);
+  assert.match(html, /job_card\.js\?v=21/);
   const v = JSON.parse(ver);
   assert.ok(v.v >= 652);
 });
@@ -485,9 +484,9 @@ test('v656 typeline + #thryd stay docked above the menu; only the options list s
   assert.match(js, /function armKeyboardLift/);
   assert.match(js, /dock\.appendChild\(t\)/);
   assert.match(js, /jobEl\.appendChild\(dock\)/);
-  assert.match(html, /var VER=656,/);
+  assert.match(html, /var VER=(6[5-9]\d),/);
   const v2 = JSON.parse(ver);
-  assert.equal(v2.v, 656);
+  assert.ok(v2.v >= 656);
 });
 
 test('v656 next job card shows in the existing alert and stays there, not tappable', ()=>{
@@ -508,3 +507,30 @@ test('v656 next job card shows in the existing alert and stays there, not tappab
   assert.match(js, /aicmdalert/);
   assert.doesNotMatch(js, /thrydCtx\(\)\.toast/);
 });
+
+test('v657 typeline and #thryd share one 40px row; alert is a slim 24px line; short landscape grows the panel', ()=>{
+  assert.match(js, /#aicard \.aicdock\{[^}]*flex-direction:row/);
+  assert.match(js, /#aicard \.aicfree\{[^}]*height:40px/);
+  assert.match(js, /#aicard \.aicgo\{[^}]*height:40px/);
+  assert.match(js, /#aicard \.aicwait\.aicalert\{[^}]*height:24px/);
+  assert.match(js, /@media \(max-height:600px\)\{[^}]*height:calc\(100dvh - 52px\)/);
+  assert.match(js, /#aimenu\{flex-direction:row;flex-wrap:nowrap/);
+  assert.match(js, /min-height:45%/);
+  assert.match(js, /bottom:44px/);
+  assert.match(html, /var VER=657,/);
+  const v = JSON.parse(ver);
+  assert.equal(v.v, 657);
+});
+
+test('v657 🎥 option publishes its description and is rendered like the other options', ()=>{
+  assert.doesNotMatch(js, /filter\(o => !isLiveOpt\(o\)\)/);
+  assert.match(js, /\(c\.options \|\| \[\]\)\.forEach\(o => \{/);
+  const card = JSON.parse(rd('data/open_card.json'));
+  if(card.open){
+    const live = card.options.find(o => o.label && /\u{1f3a5}/u.test(o.label.trim()));
+    assert.ok(live, 'open_card.json has a 🎥 option');
+    assert.equal(typeof live.safe, 'string');
+    assert.match(live.safe, /live view of the scene so far/i);
+  }
+});
+

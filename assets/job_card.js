@@ -26,7 +26,7 @@
     /* v656: only the options list scrolls; typeline + #thryd stay docked above the menu */
     '#aicard .aicbody{flex:1 1 auto;min-height:0;overflow:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;display:flex;flex-direction:column;gap:6px;padding-bottom:8px}',
     '#aicard .aicbody::-webkit-scrollbar{width:6px}#aicard .aicbody::-webkit-scrollbar-thumb{background:rgba(255,215,106,.45);border-radius:3px}',
-    '#aicard .aicdock{flex:0 0 auto;display:flex;flex-direction:column;gap:6px;padding:6px 0 2px;background:rgba(16,15,13,.97);border-top:1px solid rgba(255,255,255,.1);position:relative;z-index:2}',
+    '#aicard .aicdock{flex:0 0 auto;display:flex;flex-direction:row;flex-wrap:nowrap;align-items:center;gap:8px;padding:4px 0 0;background:rgba(16,15,13,.97);border-top:1px solid rgba(255,255,255,.1);position:relative;z-index:2}',
     '#aicard .aictitle{font:700 13px/1.35 ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:#ffe3a0;letter-spacing:.01em}',
     '#aicard .aicprompt{display:flex;flex-direction:column;gap:7px;color:#ece6d8;font:400 15px/1.6 ThrydRead,Georgia,"Times New Roman",serif;font-weight:420;letter-spacing:.003em}',
     '#aicard .aicprompt p{margin:0}',
@@ -55,12 +55,12 @@
     '#aicard .aicseat .sl .hook{color:var(--hook,#ff2bd6);font-weight:600}',
     "#aicard .aicopt.on::before{background:#ffd76a;border-color:#ffd76a;box-shadow:inset 0 0 0 2.5px #2a2416}",
     '#aicard .aicopt:disabled,#aicard .aicopt[aria-disabled="true"],#aimenu button:disabled{opacity:.5;cursor:default}',
-    '#aicard .aicfree{width:100%;box-sizing:border-box;font:400 14px/1.4 ThrydRead,Georgia,serif;color:#fff;background:rgba(0,0,0,.28);border:1px solid rgba(255,255,255,.16);border-radius:10px;padding:8px 11px;min-height:40px;outline:none}',
+    '#aicard .aicfree{flex:1 1 auto;width:auto;min-width:0;box-sizing:border-box;font:400 16px/1.2 ThrydRead,Georgia,serif;color:#fff;background:rgba(0,0,0,.28);border:1px solid rgba(255,255,255,.16);border-radius:10px;padding:0 11px;height:40px;min-height:40px;max-height:40px;outline:none}',
     '#aicard .aicfree:focus{border-color:#ffd76a}',
     '#aicard .aicsend{display:flex;align-items:center;gap:10px;justify-content:flex-end}',
-    '#aicard .aicnote{flex:1 1 auto;min-height:1em;font:500 12.5px/1.35 ui-sans-serif,system-ui,sans-serif;color:#b8b2a4}',
+    '#aicard .aicnote:not(.busy):not(.ok):not(.err){display:none}#aicard .aicnote{flex:0 0 auto;min-height:0;max-width:28vw;font:500 11px/1.2 ui-sans-serif,system-ui,sans-serif;color:#b8b2a4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}',
     '#aicard .aicnote.busy{color:#ffd76a}#aicard .aicnote.ok{color:#7fe0a0}#aicard .aicnote.err{color:#ff8f86;font-weight:600}',
-    '#aicard .aicgo{flex:0 0 auto;min-width:104px;white-space:nowrap;min-height:40px;padding:0 16px;font:700 14px/1 ui-sans-serif,system-ui,sans-serif;letter-spacing:.02em;color:#1a1608;background:linear-gradient(#ffe08a,#f5c84c);border:1px solid #c9a227;border-radius:10px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.35)}',
+    '#aicard .aicgo{flex:0 0 auto;min-width:72px;white-space:nowrap;height:40px;min-height:40px;padding:0 12px;font:700 13px/1 ui-sans-serif,system-ui,sans-serif;letter-spacing:.02em;color:#1a1608;background:linear-gradient(#ffe08a,#f5c84c);border:1px solid #c9a227;border-radius:10px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.35)}',
     '#aicard .aicgo.sent{background:#1f5a34;border-color:#2f8a50;color:#e6ffee}',
     '#aicard .aicgo.err{background:#5a1f1f;border-color:#a04040;color:#ffe3e0}',
     '#aicard .aicgo.busy{opacity:.75}',
@@ -92,10 +92,10 @@
     '#aicard .aicprog .nx{color:#8f897c;font-weight:500}',
     '#aicard .aicwait{display:flex;align-items:center;gap:6px;font:600 11px/1.25 ui-sans-serif,system-ui,sans-serif;color:#ffd76a;padding:8px 10px;border-radius:999px;background:rgba(255,215,106,.08);border:1px dashed rgba(255,215,106,.4);align-self:flex-start;max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;box-sizing:border-box}',
     /* v656: next job-card alert — same pill as waiting/update-ready, not tappable, stays until the next jN replaces it */
-    '#aicard .aicwait.aicalert{cursor:default;max-width:100%;pointer-events:none}',
+    '#aicard .aicwait.aicalert{cursor:default;max-width:100%;pointer-events:none;box-sizing:border-box;height:24px;min-height:24px;max-height:24px;padding:0 8px;gap:6px;font:600 10.5px/24px ui-sans-serif,system-ui,sans-serif}',
     '#aicmd,#menutog{position:relative}',
     '#aicmd .aicmdalert,#menutog .aicmdalert{position:absolute;top:-7px;right:-8px;min-width:16px;height:16px;padding:0 5px;border-radius:999px;background:#ffd76a;color:#1a1608;font:700 9px/16px ui-sans-serif,system-ui,sans-serif;letter-spacing:.02em;pointer-events:none;box-shadow:0 1px 4px rgba(0,0,0,.45);white-space:nowrap}',
-    '#aicard > #aicalert,#aicard > .aicwait.aicalert{flex:0 0 auto;max-width:100%;margin:0}',
+    '#aicard > #aicalert,#aicard > .aicwait.aicalert{flex:0 0 auto;max-width:100%;margin:0 0 2px}#aicard .aicwait.aicalert .dot{width:6px;height:6px}',
     '#aicard .aicwait .dot{width:7px;height:7px;border-radius:50%;background:#ffd76a;opacity:.85}',
     '#aicard .aicwait.aicsent.done{color:#8fe3a1;background:rgba(143,227,161,.08);border:1px solid rgba(143,227,161,.45)}',
     '#aicard .aicwait.aicsent.done .dot{background:#8fe3a1}',
@@ -139,6 +139,14 @@
     '#aisheet input.aishf{width:100%;box-sizing:border-box;margin:0 0 6px;padding:8px 10px;border-radius:9px;border:1px solid rgba(201,169,90,.4);background:rgba(0,0,0,.3);color:#efe9dc;font:500 12.5px/1.3 ui-sans-serif,system-ui,sans-serif;min-height:40px}',
     '@media (max-width:520px){#aibox.cards-on{width:96vw;bottom:6vh}#aicard .aicprompt{font-size:14.5px}#aimenu{padding:4px 6px 5px}#aimenu .aimscroll{max-height:44px;gap:5px}}',
     '@media (max-height:600px){#aibox.cards-on{max-height:62vh;max-height:62dvh;bottom:5vh}#aibox.cards-on:has(#aisheet),#aibox.cards-on:has(.aicopts),#aibox.cards-on:has(.aicseed),#aibox.cards-on:has(.aiclock){max-height:84vh;max-height:84dvh;bottom:2vh}#aibox.cards-on > .aim{display:none}#aibox.cards-on:has(#aisheet) > form.airow,#aibox.cards-on:has(.aicopts) > form.airow,#aibox.cards-on:has(.aiclock) > form.airow{display:none}#aibox.cards-on > form.airow{padding-top:4px}#aibox.cards-on textarea{min-height:40px;padding:8px 10px}#aicard{gap:4px;padding:5px 8px 4px}#aicard .aicprompt{font-size:14px;line-height:1.55}#aicard .aicseat .sl{display:none}#aicard:has(#aisheet) .aicseat{display:none}#aicard:has(#aisheet) .aiclock{display:none}#aicard .aiclock{padding:4px 8px;font-size:12px}#aisheet .ht,#aisheet .pfrom{display:none}#aisheet .opts{max-height:min(28vh,132px);overflow-y:auto;-webkit-overflow-scrolling:touch}#aisheet .pcards{min-height:6em;gap:5px}#aisheet .pcard{padding:5px 7px}}',
+    /* v657 (Jesuye 10:40–10:41 PM "too tight!" / "increase the length of the box"): on a short
+       landscape screen the [[god]] panel uses nearly the full viewport, sitting just above the
+       ticker; typeline + #thryd share one 40px row; the alert is a 24px line; both menu rows
+       share one sideways-scrolling strip so the options list can show several tweet cards. */
+    '@media (max-height:600px){#aibox.cards-on,#aibox.cards-on:has(#aisheet),#aibox.cards-on:has(.aicopts),#aibox.cards-on:has(.aicseed),#aibox.cards-on:has(.aiclock){height:calc(100vh - 52px);height:calc(100dvh - 52px);max-height:calc(100vh - 52px);max-height:calc(100dvh - 52px);bottom:44px}#aicard{gap:4px;padding:4px 8px 2px;border-bottom:0}#aicard .aicbody{padding-bottom:4px;min-height:45%}#aicard .aicdock{padding:2px 0 0;gap:8px}#aicard .aicopt{padding:6px 10px 6px 32px}#aicard .aicopt .ot{max-height:5.5em;padding:3px 5px}#aimenu{flex-direction:row;flex-wrap:nowrap;align-items:center;gap:8px;padding:2px 8px 4px;overflow-x:auto;overflow-y:hidden;max-height:44px;-webkit-overflow-scrolling:touch}#aimenu .aimrow{flex:0 0 auto;min-width:0}#aimenu .aimscroll{overflow:visible;max-height:none}#aimenu .aimnote{display:none}#aimenu .aimnote:not(:empty){display:none}}',
+    /* v657: the dock typeline is the card typeline on every viewport; hide the command-row
+       typeline while options are open so portrait does not show two inputs and two #thryd buttons. */
+    '#aibox.cards-on:has(.aicopts) > form.airow,#aibox.cards-on:has(.aicdock) > form.airow{display:none}',
     /* v655: typeline stays up while a seed waits for the Medium link, on every viewport */
     '#aibox.cards-on:has(.aicseed) > form.airow,#aibox.cards-on.seed-wait > form.airow{display:flex!important}'
   ].join('\n');
@@ -1046,8 +1054,9 @@
       if(c.prompt) body.appendChild(promptEl(c.prompt));
       if(c.helpText){ const h = document.createElement('div'); h.className = 'aichelt'; h.textContent = c.helpText; body.appendChild(h); }
       const opts = document.createElement('div'); opts.className = 'aicopts';
-      // 🎥 is not a line any more: it is the '🎥 Live view' pill in the menu row (Jesuye 12:42 PM)
-      (c.options || []).filter(o => !isLiveOpt(o)).forEach(o => {
+      // v657: 🎥 is still the Live view pill in the menu row, and also a list option so its
+      // description ('a live view of the scene so far') shows the same way the other options do.
+      (c.options || []).forEach(o => {
         const b = document.createElement('div'); b.className = 'aicopt' + (sel.values.has(o.value) ? ' on' : '') + (o.role === 'hook' ? ' hook' : '');
         if(o.role === 'hook' && /^#[0-9a-f]{6}$/i.test(o.color || '')){ b.style.setProperty('--hook', o.color); b.dataset.role = 'hook'; }
         b.dataset.value = o.value; b.setAttribute('role', 'button'); b.tabIndex = locked ? -1 : 0;
