@@ -34536,12 +34536,12 @@
      ],
      "consequence": "What just happened: The last card asked for the next line, the one that answers \"a society where people need to lie.",
      "consequence_job": "j18",
-     "resolved": "shaqs.break(what=longing:Thing) from j17",
+     "resolved": "shaqs.break(what=god:Thing) from j17",
      "injected": [
       {
        "param": "what",
        "class": "Thing",
-       "instance": "longing",
+       "instance": "god",
        "from_run": "run-788e05",
        "from_job": "j17",
        "source": "pick"
@@ -34567,6 +34567,347 @@
    "prior": [],
    "faded": false,
    "last_run": "run-788e05"
+  },
+  "baba.break": {
+   "object": "baba",
+   "method": "break",
+   "args": [
+    "life"
+   ],
+   "runs": [
+    "run-788e05"
+   ],
+   "defined": {
+    "run": "run-788e05",
+    "job": "j18",
+    "card": "w18",
+    "title": "baba.break(life)",
+    "emoji": "🦚",
+    "at": "2026-11-28T16:08:57-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "baba.break(life)",
+     "emoji": "🦚",
+     "arg": "life",
+     "run": "run-788e05",
+     "job": "j18",
+     "tweets": [],
+     "consequence": "because see now 😔\", \"i am family, my best guess\" and \"who are these white people, exactly like real life.\".",
+     "consequence_job": "j19",
+     "resolved": "baba.break(what=life:Thing) from j18",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "life",
+       "from_run": "run-788e05",
+       "from_job": "j18",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "life",
+      "first_run": "run-888ea9",
+      "first_job": "j7"
+     }
+    ],
+    "text": "break(what: Thing)"
+   },
+   "receiver_class": "Person",
+   "prior": [
+    {
+     "id": "shaqs.break",
+     "title": "shaqs.break(longing)",
+     "run": "run-788e05",
+     "job": "j17",
+     "at": "2026-11-28T14:14:58-05:00",
+     "why": "same method"
+    }
+   ],
+   "faded": false,
+   "last_run": null
+  },
+  "family.hide": {
+   "object": "family",
+   "method": "hide",
+   "args": [
+    "guess"
+   ],
+   "runs": [
+    "run-788e05"
+   ],
+   "defined": {
+    "run": "run-788e05",
+    "job": "j18",
+    "card": "w18",
+    "title": "family.hide(guess)",
+    "emoji": "☔",
+    "at": "2026-11-28T16:08:57-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "family.hide(guess)",
+     "emoji": "☔",
+     "arg": "guess",
+     "run": "run-788e05",
+     "job": "j18",
+     "tweets": [
+      {
+       "text": "i am family, my best guess",
+       "year": "2021"
+      }
+     ],
+     "consequence": "because see now 😔\", \"i am family, my best guess\" and \"who are these white people, exactly like real life.\".",
+     "consequence_job": "j19",
+     "resolved": "family.hide(what=guess:Thing) from j18",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "guess",
+       "from_run": "run-788e05",
+       "from_job": "j18",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "guess",
+      "first_run": "run-788e05",
+      "first_job": "j18"
+     }
+    ],
+    "text": "hide(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [
+    {
+     "id": "man.hide",
+     "title": "man.hide(pride)",
+     "run": "run-788e05",
+     "job": "j17",
+     "at": "2026-11-28T14:14:58-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "letter.hide",
+     "title": "letter.hide(love)",
+     "run": "run-788e05",
+     "job": "j16",
+     "at": "2026-11-28T13:22:52-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "daughter.hide",
+     "title": "daughter.hide(longing)",
+     "run": "run-788e05",
+     "job": "j15",
+     "at": "2026-11-28T12:31:46-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "god.hide",
+     "title": "god.hide(joy)",
+     "run": "run-788e05",
+     "job": "j13",
+     "at": "2026-11-28T12:26:06-05:00",
+     "why": "same method"
+    }
+   ],
+   "faded": false,
+   "last_run": null
+  },
+  "god.give": {
+   "object": "god",
+   "method": "give",
+   "args": [
+    "longing"
+   ],
+   "runs": [
+    "run-788e05"
+   ],
+   "defined": {
+    "run": "run-788e05",
+    "job": "j18",
+    "card": "w18",
+    "title": "god.give(longing)",
+    "emoji": "🌈",
+    "at": "2026-11-28T16:08:57-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "god.give(longing)",
+     "emoji": "🌈",
+     "arg": "longing",
+     "run": "run-788e05",
+     "job": "j18",
+     "tweets": [
+      {
+       "text": "God, if we have offended you, just say that. because see now 😔",
+       "year": "2023",
+       "id": "1640388642291040256"
+      }
+     ],
+     "consequence": "What just happened: The last run ended on \"no man has ever fought his own fate and won- until now#seniorgehs\", \"God, if we have offended you, just say that.",
+     "consequence_job": "j19",
+     "resolved": "god.give(what=longing:Thing) from j18",
+     "injected": [
+      {
+       "param": "what",
+       "class": "Thing",
+       "instance": "longing",
+       "from_run": "run-788e05",
+       "from_job": "j18",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "what",
+      "class": "Thing",
+      "default": "longing",
+      "first_run": "run-788e05",
+      "first_job": "j13"
+     }
+    ],
+    "text": "give(what: Thing)"
+   },
+   "receiver_class": "Thing",
+   "prior": [
+    {
+     "id": "seniorgehs.give",
+     "title": "seniorgehs.give(god)",
+     "run": "run-788e05",
+     "job": "j17",
+     "at": "2026-11-28T14:14:58-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "seniorboys.give",
+     "title": "seniorboys.give(ami)",
+     "run": "run-788e05",
+     "job": "j16",
+     "at": "2026-11-28T13:22:52-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "lola.give",
+     "title": "lola.give(pride)",
+     "run": "run-788e05",
+     "job": "j15",
+     "at": "2026-11-28T12:31:46-05:00",
+     "why": "same method"
+    },
+    {
+     "id": "life.give",
+     "title": "life.give(joy)",
+     "run": "run-788e05",
+     "job": "j14",
+     "at": "2026-11-28T12:29:03-05:00",
+     "why": "same method"
+    }
+   ],
+   "faded": false,
+   "last_run": null
+  },
+  "seniorgehs.win": {
+   "object": "seniorgehs",
+   "method": "win",
+   "args": [
+    "man"
+   ],
+   "runs": [
+    "run-788e05"
+   ],
+   "defined": {
+    "run": "run-788e05",
+    "job": "j18",
+    "card": "w18",
+    "title": "seniorgehs.win(man)",
+    "emoji": "⭐",
+    "at": "2026-11-28T16:08:57-05:00"
+   },
+   "calls": 0,
+   "titles": [
+    {
+     "title": "seniorgehs.win(man)",
+     "emoji": "⭐",
+     "arg": "man",
+     "run": "run-788e05",
+     "job": "j18",
+     "tweets": [
+      {
+       "text": "- no man has ever fought his own fate and won- until now#seniorgehs",
+       "year": "2023",
+       "id": "1722660912010592442"
+      }
+     ],
+     "consequence": "What just happened: The last run ended on \"no man has ever fought his own fate and won- until now#seniorgehs\", \"God, if we have offended you, just say that.",
+     "consequence_job": "j19",
+     "resolved": "seniorgehs.win(who=man:Person) from j18",
+     "injected": [
+      {
+       "param": "who",
+       "class": "Person",
+       "instance": "man",
+       "from_run": "run-788e05",
+       "from_job": "j18",
+       "source": "pick"
+      }
+     ]
+    }
+   ],
+   "source": null,
+   "cli": false,
+   "sig": {
+    "params": [
+     {
+      "name": "who",
+      "class": "Person",
+      "default": "man",
+      "first_run": "run-cf203b",
+      "first_job": "j61"
+     }
+    ],
+    "text": "win(who: Person)"
+   },
+   "receiver_class": "Person",
+   "prior": [
+    {
+     "id": "marisol.win",
+     "title": "marisol.win(reasons)",
+     "run": "run-5a58c4",
+     "job": "j53",
+     "at": "2026-11-24T15:31:13-05:00",
+     "why": "same method"
+    }
+   ],
+   "faded": false,
+   "last_run": null
   },
   "cooler.getdatemanufactured": {
    "object": "cooler",
@@ -38892,7 +39233,8 @@
   ],
   "baba": [
    "baba.draw",
-   "baba.hold"
+   "baba.hold",
+   "baba.break"
   ],
   "back_row_chemistry_subject_third": [
    "person.rest"
@@ -39428,6 +39770,9 @@
   "false": [
    "false.agenda"
   ],
+  "family": [
+   "family.hide"
+  ],
   "family_compound_ikorodu_subject_eighth": [
    "kunle.teach",
    "kunle.mix",
@@ -39569,7 +39914,8 @@
    "god.have",
    "god.hide",
    "god.pray",
-   "god.tell"
+   "god.tell",
+   "god.give"
   ],
   "god_doesnt_make_figure": [
    "person.rest"
@@ -40547,7 +40893,8 @@
   "seniorgehs": [
    "seniorgehs.straight",
    "seniorgehs.return",
-   "seniorgehs.give"
+   "seniorgehs.give",
+   "seniorgehs.win"
   ],
   "shakespopi_figure": [
    "person.rest"
@@ -65988,6 +66335,10 @@
     "man.hide",
     "seniorgehs.give",
     "shaqs.break",
+    "baba.break",
+    "family.hide",
+    "god.give",
+    "seniorgehs.win",
     "thryd.importtheme",
     "chrome.add",
     "thryd.log",
@@ -66541,7 +66892,11 @@
     "god.tell",
     "man.hide",
     "seniorgehs.give",
-    "shaqs.break"
+    "shaqs.break",
+    "baba.break",
+    "family.hide",
+    "god.give",
+    "seniorgehs.win"
    ],
    "runs": [
     "run-788e05"
@@ -67351,7 +67706,8 @@
     "baba.draw",
     "still.think",
     "lie.need",
-    "god.tell"
+    "god.tell",
+    "god.give"
    ],
    "runs": []
   },
@@ -68238,7 +68594,8 @@
   "9961df213f2c": {
    "title": "spiritual grievances: the song of an african girl",
    "funcs": [
-    "feminist.coalition"
+    "feminist.coalition",
+    "family.hide"
    ],
    "runs": []
   },
@@ -71776,7 +72133,8 @@
   ],
   "baba": [
    "baba.draw",
-   "baba.hold"
+   "baba.hold",
+   "baba.break"
   ],
   "beat": [
    "beat.out"
@@ -72022,6 +72380,9 @@
   "false": [
    "false.agenda"
   ],
+  "family": [
+   "family.hide"
+  ],
   "feel": [
    "feel.divine",
    "feel.shame"
@@ -72083,7 +72444,8 @@
    "god.have",
    "god.hide",
    "god.pray",
-   "god.tell"
+   "god.tell",
+   "god.give"
   ],
   "gol": [
    "gol.lo"
@@ -72618,7 +72980,8 @@
   "seniorgehs": [
    "seniorgehs.straight",
    "seniorgehs.return",
-   "seniorgehs.give"
+   "seniorgehs.give",
+   "seniorgehs.win"
   ],
   "shapes": [
    "shapes.do"
@@ -73355,6 +73718,9 @@
    "Foldable"
   ],
   "shaqs": [],
+  "family": [
+   "Foldable"
+  ],
   "cooler": [],
   "kazeem.goodqualities": [],
   "app": [],
@@ -73540,6 +73906,7 @@
    "dyeriz",
    "eez",
    "false",
+   "family",
    "friends",
    "go",
    "god",
@@ -73785,5 +74152,5 @@
   "n": 2,
   "rule": "a function with no calls in the last 2 agendas fades; a call revives it"
  },
- "updated": "2026-11-28T14:16:15-05:00"
+ "updated": "2026-11-28T16:09:16-05:00"
 }

@@ -107,10 +107,10 @@
    "methods": [
     "see",
     "say",
-    "find"
+    "give"
    ],
-   "instances": 558,
-   "arg_instances": 221,
+   "instances": 560,
+   "arg_instances": 222,
    "parent": null,
    "chain": [
     "Thing"
@@ -3566,6 +3566,22 @@
    ],
    "tweets": []
   },
+  "guess": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-788e05",
+   "first_job": "j18",
+   "source": "pick",
+   "runs": [
+    "run-788e05"
+   ],
+   "tweets": [
+    {
+     "text": "i am family, my best guess",
+     "year": "2021"
+    }
+   ]
+  },
   "guest": {
    "class": "Thing",
    "cue": "default",
@@ -5044,6 +5060,7 @@
    "source": "pick",
    "runs": [
     "run-888ea9",
+    "run-788e05",
     "run-65400f"
    ],
    "tweets": [
@@ -5346,12 +5363,18 @@
    "first_job": "j61",
    "source": "pick",
    "runs": [
-    "run-cf203b"
+    "run-cf203b",
+    "run-788e05"
    ],
    "tweets": [
     {
      "text": "- the ideal is a young man and an older woman",
      "year": "2025"
+    },
+    {
+     "text": "- no man has ever fought his own fate and won- until now#seniorgehs",
+     "year": "2023",
+     "id": "1722660912010592442"
     }
    ]
   },
@@ -6135,6 +6158,17 @@
      "year": "2024"
     }
    ]
+  },
+  "obicubana": {
+   "class": "Thing",
+   "cue": "default",
+   "first_run": "run-788e05",
+   "first_job": "j18",
+   "source": "typed",
+   "runs": [
+    "run-788e05"
+   ],
+   "tweets": []
   },
   "ocsw": {
    "class": "Thing",
@@ -12155,9 +12189,27 @@
     "pick"
    ],
    [
+    "life",
+    "Thing",
+    "j18",
+    "pick"
+   ],
+   [
+    "guess",
+    "Thing",
+    "j18",
+    "pick"
+   ],
+   [
     "longing",
     "Thing",
-    "j17",
+    "j18",
+    "pick"
+   ],
+   [
+    "man",
+    "Person",
+    "j18",
     "pick"
    ],
    [
@@ -12242,6 +12294,12 @@
     "swalee",
     "Thing",
     "j10",
+    "typed"
+   ],
+   [
+    "obicubana",
+    "Thing",
+    "j18",
     "typed"
    ]
   ],
@@ -15169,6 +15227,10 @@
   "man.hide": "hide(feeling: Feeling)",
   "seniorgehs.give": "give(what: Thing)",
   "shaqs.break": "break(what: Thing)",
+  "baba.break": "break(what: Thing)",
+  "family.hide": "hide(what: Thing)",
+  "god.give": "give(what: Thing)",
+  "seniorgehs.win": "win(who: Person)",
   "cooler.getdatemanufactured": "getDateManufactured()",
   "ronke.getlikes.contains": "getlikes.contains()",
   "kazeem.goodqualities.filter": "filter()",
@@ -15405,6 +15467,7 @@
     "buy",
     "daughter",
     "dez",
+    "family",
     "god",
     "lateef",
     "letter",
@@ -15684,6 +15747,7 @@
    "dyeriz",
    "eez",
    "false",
+   "family",
    "friends",
    "go",
    "god",
@@ -15987,5 +16051,5 @@
   "epilogue": "quiet",
   "coda": "quiet"
  },
- "updated": "2026-11-28T14:15:24-05:00"
+ "updated": "2026-11-28T16:09:16-05:00"
 }
